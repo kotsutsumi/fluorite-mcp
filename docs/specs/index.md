@@ -83,7 +83,26 @@ Fluorite MCPが提供するライブラリ仕様の一覧です。これらの�
 - `spec://fastapi-starter`
 
 ### 言語エコシステム
-- [Zig / Elixir / Go / Dart / Flutter / C# / Unity](./langs)
+- [Zig システムプログラミング](./langs) - `spec://zig-ecosystem`
+- [Elixir 関数型・並行プログラミング](./langs) - `spec://elixir-ecosystem`
+- [Go 高性能バックエンド開発](./langs) - `spec://go-ecosystem`
+- [Dart クロスプラットフォーム言語](./langs) - `spec://dart-ecosystem`
+- [Flutter モバイル開発](./langs) - `spec://flutter-ecosystem`
+- [C# エンタープライズ開発](./langs) - `spec://csharp-ecosystem`
+- [Unity ゲーム開発](./langs) - `spec://unity-ecosystem`
+
+### モバイル（Expo / React Native）
+- [Expo / React Native エコシステム](./expo-react-native) - `spec://expo-react-native-ecosystem`
+ - [モバイルネイティブ（iOS/Android/KMM）](./mobile-native) - `spec://mobile-native-ecosystem`
+
+### モダンスタック横断
+- [モダンスタック横断カタログ](./modern-tech) - `spec://modern-tech-ecosystem`
+
+### 可視化・編集
+- [フロントエンド可視化/編集エコシステム](./frontend-visualization) - `spec://frontend-visualization-ecosystem`
+
+### UI 品質（React/Vue）
+- [UI 品質向上（React/Vue）](./ui-component-quality) - `spec://ui-component-quality`
 
 ## 🐳 監視 & 分析
 

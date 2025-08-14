@@ -1,0 +1,2446 @@
+id: "dart-ecosystem"
+name: "Dart Programming Language Ecosystem"
+homepage: "https://dart.dev"
+summary: "マルチプラットフォーム開発に特化したDart言語エコシステム。ウェブ、サーバー、モバイル開発に対応し、高性能で開発者体験を重視した言語環境。"
+
+language:
+  name: "Dart"
+  version: "3.0+"
+  description: "Google開発のマルチプラットフォーム対応プログラミング言語"
+  features:
+    - "型安全性とnull安全性"
+    - "AOTとJITコンパイル対応"
+    - "ホットリロードによる高速開発"
+    - "非同期プログラミングサポート"
+    - "クロスプラットフォーム対応"
+
+std:
+  dart_core:
+    package: "dart:core"
+    summary: "Dart言語のコア機能とデータ型を提供する標準ライブラリ"
+    install: "Built-in with Dart SDK"
+    usage: |
+      // 基本データ型とコレクション
+      void main() {
+        // 文字列操作
+        String name = 'Dart';
+        String greeting = 'Hello, $name!';
+        print(greeting);
+        
+        // リスト操作
+        List<int> numbers = [1, 2, 3, 4, 5];
+        List<int> doubled = numbers.map((n) => n * 2).toList();
+        print('Doubled: $doubled');
+        
+        // セット操作
+        Set<String> fruits = {'apple', 'banana', 'orange'};
+        fruits.add('grape');
+        print('Fruits: $fruits');
+        
+        // マップ操作
+        Map<String, int> scores = {
+          'Alice': 95,
+          'Bob': 87,
+          'Charlie': 92,
+        };
+        
+        scores.forEach((name, score) {
+          print('$name: $score');
+        });
+        
+        // 型チェックとキャスト
+        dynamic value = 42;
+        if (value is int) {
+          print('Value is integer: $value');
+        }
+        
+        // null安全性
+        String? nullableString = null;
+        String nonNullString = nullableString ?? 'Default';
+        print('Non-null: $nonNullString');
+        
+        // 条件演算子
+        int age = 25;
+        String category = age >= 18 ? 'Adult' : 'Minor';
+        print('Category: $category');
+      }
+      
+      // クラス定義
+      class Person {
+        final String name;
+        final int age;
+        
+        Person(this.name, this.age);
+        
+        // Named constructor
+        Person.withDefaults() : name = 'Unknown', age = 0;
+        
+        // Factory constructor
+        factory Person.fromJson(Map<String, dynamic> json) {
+          return Person(json['name'], json['age']);
+        }
+        
+        // Getter
+        String get description => '$name is $age years old';
+        
+        // Method
+        void greet() {
+          print('Hello, I am $name');
+        }
+        
+        @override
+        String toString() => 'Person(name: $name, age: $age)';
+      }
+      
+      // 列挙型
+      enum Status {
+        pending,
+        approved,
+        rejected;
+        
+        bool get isApproved => this == Status.approved;
+      }
+      
+      // 拡張メソッド
+      extension StringExtensions on String {
+        String get capitalize => 
+          length > 0 ? '${this[0].toUpperCase()}${substring(1)}' : this;
+        
+        bool get isEmail => contains('@') && contains('.');
+      }
+
+http:
+  http:
+    package: "http"
+    version: "^1.1.0"
+    summary: "Dart標準HTTPクライアントライブラリ - シンプルで軽量なHTTPリクエスト処理"
+    install: |
+      dependencies:
+        http: ^1.1.0
+    usage: |
+      import 'dart:convert';
+      import 'package:http/http.dart' as http;
+      
+      // GETリクエスト
+      Future<void> getExample() async {
+        final response = await http.get(
+          Uri.parse('https://jsonplaceholder.typicode.com/users/1'),
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer your-token',
+          },
+        );
+        
+        if (response.statusCode == 200) {
+          final data = json.decode(response.body);
+          print('User: ${data['name']}');
+          print('Email: ${data['email']}');
+        } else {
+          print('Failed to load user: ${response.statusCode}');
+        }
+      }
+      
+      // POSTリクエスト
+      Future<void> postExample() async {
+        final user = {
+          'name': 'John Doe',
+          'email': 'john@example.com',
+          'username': 'johndoe',
+        };
+        
+        final response = await http.post(
+          Uri.parse('https://jsonplaceholder.typicode.com/users'),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: json.encode(user),
+        );
+        
+        if (response.statusCode == 201) {
+          final created = json.decode(response.body);
+          print('Created user with ID: ${created['id']}');
+        } else {
+          print('Failed to create user: ${response.statusCode}');
+        }
+      }
+      
+      // PUTリクエスト
+      Future<void> putExample(int userId) async {
+        final updatedUser = {
+          'id': userId,
+          'name': 'Jane Doe',
+          'email': 'jane@example.com',
+          'username': 'janedoe',
+        };
+        
+        final response = await http.put(
+          Uri.parse('https://jsonplaceholder.typicode.com/users/$userId'),
+          headers: {'Content-Type': 'application/json'},
+          body: json.encode(updatedUser),
+        );
+        
+        if (response.statusCode == 200) {
+          print('User updated successfully');
+        }
+      }
+      
+      // DELETEリクエスト
+      Future<void> deleteExample(int userId) async {
+        final response = await http.delete(
+          Uri.parse('https://jsonplaceholder.typicode.com/users/$userId'),
+        );
+        
+        if (response.statusCode == 200) {
+          print('User deleted successfully');
+        }
+      }
+      
+      // クエリパラメータ付きリクエスト
+      Future<void> getWithQuery() async {
+        final uri = Uri.parse('https://jsonplaceholder.typicode.com/posts')
+            .replace(queryParameters: {
+          'userId': '1',
+          '_limit': '5',
+        });
+        
+        final response = await http.get(uri);
+        
+        if (response.statusCode == 200) {
+          final posts = json.decode(response.body) as List;
+          for (final post in posts) {
+            print('Title: ${post['title']}');
+          }
+        }
+      }
+      
+      // ファイルダウンロード
+      Future<void> downloadFile() async {
+        final response = await http.get(
+          Uri.parse('https://example.com/file.pdf'),
+        );
+        
+        if (response.statusCode == 200) {
+          final bytes = response.bodyBytes;
+          // ファイルに保存
+          print('Downloaded ${bytes.length} bytes');
+        }
+      }
+      
+      // エラーハンドリング
+      Future<Map<String, dynamic>?> fetchUserSafely(int userId) async {
+        try {
+          final response = await http.get(
+            Uri.parse('https://jsonplaceholder.typicode.com/users/$userId'),
+          ).timeout(Duration(seconds: 10));
+          
+          if (response.statusCode == 200) {
+            return json.decode(response.body);
+          } else {
+            print('HTTP Error: ${response.statusCode}');
+            return null;
+          }
+        } catch (e) {
+          print('Request failed: $e');
+          return null;
+        }
+      }
+
+  dio:
+    package: "dio"
+    version: "^5.3.0"
+    summary: "高機能HTTPクライアント - インターセプター、変換、キャッシュ、認証などの高度な機能を提供"
+    install: |
+      dependencies:
+        dio: ^5.3.0
+    usage: |
+      import 'package:dio/dio.dart';
+      
+      class ApiClient {
+        late Dio _dio;
+        
+        ApiClient() {
+          _dio = Dio(BaseOptions(
+            baseUrl: 'https://jsonplaceholder.typicode.com',
+            connectTimeout: Duration(seconds: 5),
+            receiveTimeout: Duration(seconds: 3),
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+            },
+          ));
+          
+          _setupInterceptors();
+        }
+        
+        void _setupInterceptors() {
+          // リクエストインターセプター
+          _dio.interceptors.add(
+            InterceptorsWrapper(
+              onRequest: (options, handler) {
+                print('REQUEST[${options.method}] => PATH: ${options.path}');
+                // 認証トークンを追加
+                if (options.path != '/login') {
+                  options.headers['Authorization'] = 'Bearer your-token';
+                }
+                return handler.next(options);
+              },
+              onResponse: (response, handler) {
+                print('RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}');
+                return handler.next(response);
+              },
+              onError: (error, handler) {
+                print('ERROR[${error.response?.statusCode}] => PATH: ${error.requestOptions.path}');
+                print('Message: ${error.message}');
+                return handler.next(error);
+              },
+            ),
+          );
+          
+          // ログインターセプター
+          _dio.interceptors.add(LogInterceptor(
+            requestBody: true,
+            responseBody: true,
+            requestHeader: false,
+            responseHeader: false,
+          ));
+        }
+        
+        // GETリクエスト
+        Future<List<User>> getUsers() async {
+          try {
+            final response = await _dio.get('/users');
+            final List<dynamic> data = response.data;
+            return data.map((json) => User.fromJson(json)).toList();
+          } on DioException catch (e) {
+            throw _handleError(e);
+          }
+        }
+        
+        // POSTリクエスト
+        Future<User> createUser(User user) async {
+          try {
+            final response = await _dio.post(
+              '/users',
+              data: user.toJson(),
+            );
+            return User.fromJson(response.data);
+          } on DioException catch (e) {
+            throw _handleError(e);
+          }
+        }
+        
+        // PUTリクエスト
+        Future<User> updateUser(int id, User user) async {
+          try {
+            final response = await _dio.put(
+              '/users/$id',
+              data: user.toJson(),
+            );
+            return User.fromJson(response.data);
+          } on DioException catch (e) {
+            throw _handleError(e);
+          }
+        }
+        
+        // DELETEリクエスト
+        Future<void> deleteUser(int id) async {
+          try {
+            await _dio.delete('/users/$id');
+          } on DioException catch (e) {
+            throw _handleError(e);
+          }
+        }
+        
+        // ファイルアップロード
+        Future<void> uploadFile(String filePath) async {
+          try {
+            FormData formData = FormData.fromMap({
+              'file': await MultipartFile.fromFile(filePath),
+              'description': 'Profile picture',
+            });
+            
+            final response = await _dio.post(
+              '/upload',
+              data: formData,
+              onSendProgress: (sent, total) {
+                print('Upload progress: ${(sent / total * 100).toStringAsFixed(0)}%');
+              },
+            );
+            
+            print('Upload completed: ${response.data}');
+          } on DioException catch (e) {
+            throw _handleError(e);
+          }
+        }
+        
+        // ファイルダウンロード
+        Future<void> downloadFile(String url, String savePath) async {
+          try {
+            await _dio.download(
+              url,
+              savePath,
+              onReceiveProgress: (received, total) {
+                if (total != -1) {
+                  print('Download progress: ${(received / total * 100).toStringAsFixed(0)}%');
+                }
+              },
+            );
+            print('Download completed: $savePath');
+          } on DioException catch (e) {
+            throw _handleError(e);
+          }
+        }
+        
+        // リトライ機能
+        Future<Response<T>> retryRequest<T>(
+          RequestOptions requestOptions, {
+          int maxRetries = 3,
+        }) async {
+          int retryCount = 0;
+          
+          while (retryCount < maxRetries) {
+            try {
+              return await _dio.fetch<T>(requestOptions);
+            } on DioException catch (e) {
+              retryCount++;
+              if (retryCount >= maxRetries) {
+                throw e;
+              }
+              
+              // 指数バックオフ
+              await Future.delayed(Duration(seconds: retryCount * 2));
+            }
+          }
+          
+          throw DioException(
+            requestOptions: requestOptions,
+            error: 'Max retries exceeded',
+          );
+        }
+        
+        Exception _handleError(DioException error) {
+          switch (error.type) {
+            case DioExceptionType.connectionTimeout:
+              return Exception('Connection timeout');
+            case DioExceptionType.sendTimeout:
+              return Exception('Send timeout');
+            case DioExceptionType.receiveTimeout:
+              return Exception('Receive timeout');
+            case DioExceptionType.badResponse:
+              return Exception('Bad response: ${error.response?.statusCode}');
+            case DioExceptionType.cancel:
+              return Exception('Request cancelled');
+            default:
+              return Exception('Network error: ${error.message}');
+          }
+        }
+      }
+      
+      // データモデル
+      class User {
+        final int id;
+        final String name;
+        final String email;
+        final String username;
+        
+        User({
+          required this.id,
+          required this.name,
+          required this.email,
+          required this.username,
+        });
+        
+        factory User.fromJson(Map<String, dynamic> json) {
+          return User(
+            id: json['id'],
+            name: json['name'],
+            email: json['email'],
+            username: json['username'],
+          );
+        }
+        
+        Map<String, dynamic> toJson() {
+          return {
+            'id': id,
+            'name': name,
+            'email': email,
+            'username': username,
+          };
+        }
+      }
+
+serialization:
+  json_serializable:
+    package: "json_serializable"
+    version: "^6.7.0"
+    summary: "自動JSONシリアライゼーション - コード生成による型安全なJSON処理"
+    install: |
+      dependencies:
+        json_annotation: ^4.8.0
+      
+      dev_dependencies:
+        json_serializable: ^6.7.0
+        build_runner: ^2.4.0
+    usage: |
+      import 'package:json_annotation/json_annotation.dart';
+      
+      // 生成されるファイルをインポート
+      part 'user.g.dart';
+      
+      @JsonSerializable()
+      class User {
+        final int id;
+        final String name;
+        final String email;
+        
+        @JsonKey(name: 'user_name')
+        final String username;
+        
+        @JsonKey(name: 'created_at')
+        final DateTime createdAt;
+        
+        @JsonKey(includeFromJson: false, includeToJson: false)
+        final String? password;
+        
+        const User({
+          required this.id,
+          required this.name,
+          required this.email,
+          required this.username,
+          required this.createdAt,
+          this.password,
+        });
+        
+        // 生成されるfactory constructor
+        factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+        
+        // 生成されるtoJsonメソッド
+        Map<String, dynamic> toJson() => _$UserToJson(this);
+      }
+      
+      @JsonSerializable()
+      class Post {
+        final int id;
+        final String title;
+        final String content;
+        final User author;
+        final List<String> tags;
+        final Map<String, dynamic> metadata;
+        
+        @JsonKey(fromJson: _dateTimeFromEpoch, toJson: _dateTimeToEpoch)
+        final DateTime publishedAt;
+        
+        const Post({
+          required this.id,
+          required this.title,
+          required this.content,
+          required this.author,
+          required this.tags,
+          required this.metadata,
+          required this.publishedAt,
+        });
+        
+        factory Post.fromJson(Map<String, dynamic> json) => _$PostFromJson(json);
+        Map<String, dynamic> toJson() => _$PostToJson(this);
+        
+        // カスタム変換メソッド
+        static DateTime _dateTimeFromEpoch(int epoch) =>
+            DateTime.fromMillisecondsSinceEpoch(epoch * 1000);
+        
+        static int _dateTimeToEpoch(DateTime dateTime) =>
+            dateTime.millisecondsSinceEpoch ~/ 1000;
+      }
+      
+      // 列挙型のシリアライゼーション
+      @JsonEnum()
+      enum UserRole {
+        @JsonValue('admin')
+        administrator,
+        @JsonValue('user')
+        regularUser,
+        @JsonValue('guest')
+        guestUser,
+      }
+      
+      @JsonSerializable()
+      class UserProfile {
+        final String name;
+        final UserRole role;
+        final bool isActive;
+        
+        @JsonKey(includeIfNull: false)
+        final String? bio;
+        
+        @JsonKey(defaultValue: [])
+        final List<String> interests;
+        
+        const UserProfile({
+          required this.name,
+          required this.role,
+          required this.isActive,
+          this.bio,
+          this.interests = const [],
+        });
+        
+        factory UserProfile.fromJson(Map<String, dynamic> json) =>
+            _$UserProfileFromJson(json);
+        
+        Map<String, dynamic> toJson() => _$UserProfileToJson(this);
+      }
+      
+      // 使用例
+      void main() {
+        // JSONからオブジェクト作成
+        final userJson = {
+          'id': 1,
+          'name': 'John Doe',
+          'email': 'john@example.com',
+          'user_name': 'johndoe',
+          'created_at': '2023-01-01T00:00:00Z',
+        };
+        
+        final user = User.fromJson(userJson);
+        print('User: ${user.name} (${user.username})');
+        
+        // オブジェクトからJSON作成
+        final newUser = User(
+          id: 2,
+          name: 'Jane Smith',
+          email: 'jane@example.com',
+          username: 'janesmith',
+          createdAt: DateTime.now(),
+        );
+        
+        final json = newUser.toJson();
+        print('JSON: $json');
+        
+        // リストのシリアライゼーション
+        final users = [user, newUser];
+        final usersJson = users.map((u) => u.toJson()).toList();
+        print('Users JSON: $usersJson');
+        
+        // リストからオブジェクト復元
+        final restoredUsers = usersJson
+            .map((json) => User.fromJson(json))
+            .toList();
+        print('Restored ${restoredUsers.length} users');
+      }
+      
+      /*
+      コード生成実行:
+      dart run build_runner build
+      
+      または、ファイル監視モード:
+      dart run build_runner watch
+      */
+
+  freezed:
+    package: "freezed"
+    version: "^2.4.0"
+    summary: "イミュータブルクラス生成 - 値オブジェクト、ユニオン型、copyWithメソッドの自動生成"
+    install: |
+      dependencies:
+        freezed_annotation: ^2.4.0
+      
+      dev_dependencies:
+        freezed: ^2.4.0
+        build_runner: ^2.4.0
+        json_serializable: ^6.7.0
+    usage: |
+      import 'package:freezed_annotation/freezed_annotation.dart';
+      
+      part 'user.freezed.dart';
+      part 'user.g.dart';
+      
+      @freezed
+      class User with _$User {
+        const factory User({
+          required int id,
+          required String name,
+          required String email,
+          @Default(false) bool isActive,
+          @Default([]) List<String> roles,
+        }) = _User;
+        
+        factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+      }
+      
+      // ユニオン型（sealed class的な使用）
+      @freezed
+      class ApiResponse<T> with _$ApiResponse<T> {
+        const factory ApiResponse.loading() = Loading<T>;
+        const factory ApiResponse.success(T data) = Success<T>;
+        const factory ApiResponse.error(String message, {int? code}) = Error<T>;
+      }
+      
+      @freezed
+      class NetworkState with _$NetworkState {
+        const factory NetworkState.connected() = Connected;
+        const factory NetworkState.disconnected() = Disconnected;
+        const factory NetworkState.connecting() = Connecting;
+      }
+      
+      // カスタムメソッドを持つFreezedクラス
+      @freezed
+      class Person with _$Person {
+        const factory Person({
+          required String firstName,
+          required String lastName,
+          required DateTime birthDate,
+          @Default('') String email,
+        }) = _Person;
+        
+        const Person._();
+        
+        // カスタムgetter
+        String get fullName => '$firstName $lastName';
+        
+        int get age {
+          final now = DateTime.now();
+          int age = now.year - birthDate.year;
+          if (now.month < birthDate.month || 
+              (now.month == birthDate.month && now.day < birthDate.day)) {
+            age--;
+          }
+          return age;
+        }
+        
+        bool get isAdult => age >= 18;
+        
+        // カスタムメソッド
+        Person updateEmail(String newEmail) {
+          return copyWith(email: newEmail);
+        }
+        
+        factory Person.fromJson(Map<String, dynamic> json) => _$PersonFromJson(json);
+      }
+      
+      // 複雑なデータ構造
+      @freezed
+      class Product with _$Product {
+        const factory Product({
+          required String id,
+          required String name,
+          required double price,
+          required ProductCategory category,
+          @Default([]) List<String> tags,
+          @Default(true) bool isAvailable,
+          ProductDetails? details,
+        }) = _Product;
+        
+        factory Product.fromJson(Map<String, dynamic> json) => _$ProductFromJson(json);
+      }
+      
+      @freezed
+      class ProductCategory with _$ProductCategory {
+        const factory ProductCategory({
+          required String id,
+          required String name,
+          String? description,
+        }) = _ProductCategory;
+        
+        factory ProductCategory.fromJson(Map<String, dynamic> json) => 
+            _$ProductCategoryFromJson(json);
+      }
+      
+      @freezed
+      class ProductDetails with _$ProductDetails {
+        const factory ProductDetails({
+          required String description,
+          required Map<String, String> specifications,
+          @Default([]) List<String> images,
+          @Default(0.0) double weight,
+        }) = _ProductDetails;
+        
+        factory ProductDetails.fromJson(Map<String, dynamic> json) => 
+            _$ProductDetailsFromJson(json);
+      }
+      
+      // 使用例
+      void main() {
+        // オブジェクト作成
+        final user = User(
+          id: 1,
+          name: 'John Doe',
+          email: 'john@example.com',
+          isActive: true,
+          roles: ['user', 'admin'],
+        );
+        
+        print('User: ${user.name} (Active: ${user.isActive})');
+        
+        // copyWithメソッド
+        final updatedUser = user.copyWith(
+          email: 'john.doe@example.com',
+          roles: [...user.roles, 'moderator'],
+        );
+        
+        print('Updated email: ${updatedUser.email}');
+        print('Roles: ${updatedUser.roles}');
+        
+        // イミュータブル性
+        print('Original user email: ${user.email}'); // 変更されない
+        
+        // ユニオン型の使用
+        ApiResponse<User> response = ApiResponse.loading();
+        
+        response = response.when(
+          loading: () {
+            print('Loading...');
+            return ApiResponse.success(user);
+          },
+          success: (data) {
+            print('Success: ${data.name}');
+            return response;
+          },
+          error: (message, code) {
+            print('Error: $message (Code: $code)');
+            return response;
+          },
+        );
+        
+        // パターンマッチング
+        final networkState = NetworkState.connected();
+        final statusMessage = networkState.when(
+          connected: () => 'Online',
+          disconnected: () => 'Offline',
+          connecting: () => 'Connecting...',
+        );
+        
+        print('Status: $statusMessage');
+        
+        // JSONシリアライゼーション
+        final person = Person(
+          firstName: 'Alice',
+          lastName: 'Smith',
+          birthDate: DateTime(1990, 5, 15),
+          email: 'alice@example.com',
+        );
+        
+        final json = person.toJson();
+        print('Person JSON: $json');
+        
+        final restoredPerson = Person.fromJson(json);
+        print('Restored: ${restoredPerson.fullName} (Age: ${restoredPerson.age})');
+      }
+      
+      /*
+      コード生成実行:
+      dart run build_runner build
+      
+      ファイル監視モード:
+      dart run build_runner watch
+      */
+
+dependency_injection:
+  get_it:
+    package: "get_it"
+    version: "^7.6.0"
+    summary: "シンプルな依存性注入コンテナ - サービスロケーターパターンによるDI実装"
+    install: |
+      dependencies:
+        get_it: ^7.6.0
+    usage: |
+      import 'package:get_it/get_it.dart';
+      
+      // サービスロケーター
+      final GetIt getIt = GetIt.instance;
+      
+      // サービスインターフェース
+      abstract class UserRepository {
+        Future<User> getUserById(int id);
+        Future<List<User>> getAllUsers();
+        Future<User> createUser(User user);
+      }
+      
+      abstract class AuthService {
+        Future<bool> login(String email, String password);
+        Future<void> logout();
+        bool get isLoggedIn;
+        User? get currentUser;
+      }
+      
+      abstract class ApiClient {
+        Future<Map<String, dynamic>> get(String path);
+        Future<Map<String, dynamic>> post(String path, Map<String, dynamic> data);
+      }
+      
+      // 実装クラス
+      class ApiClientImpl implements ApiClient {
+        final String baseUrl;
+        
+        ApiClientImpl(this.baseUrl);
+        
+        @override
+        Future<Map<String, dynamic>> get(String path) async {
+          // HTTP GET実装
+          print('GET $baseUrl$path');
+          return {'status': 'success'};
+        }
+        
+        @override
+        Future<Map<String, dynamic>> post(String path, Map<String, dynamic> data) async {
+          // HTTP POST実装
+          print('POST $baseUrl$path with $data');
+          return {'status': 'success', 'id': 1};
+        }
+      }
+      
+      class UserRepositoryImpl implements UserRepository {
+        final ApiClient _apiClient;
+        
+        UserRepositoryImpl(this._apiClient);
+        
+        @override
+        Future<User> getUserById(int id) async {
+          final data = await _apiClient.get('/users/$id');
+          return User.fromJson(data);
+        }
+        
+        @override
+        Future<List<User>> getAllUsers() async {
+          final data = await _apiClient.get('/users');
+          return (data['users'] as List)
+              .map((json) => User.fromJson(json))
+              .toList();
+        }
+        
+        @override
+        Future<User> createUser(User user) async {
+          final data = await _apiClient.post('/users', user.toJson());
+          return User.fromJson(data);
+        }
+      }
+      
+      class AuthServiceImpl implements AuthService {
+        final ApiClient _apiClient;
+        final UserRepository _userRepository;
+        
+        User? _currentUser;
+        bool _isLoggedIn = false;
+        
+        AuthServiceImpl(this._apiClient, this._userRepository);
+        
+        @override
+        Future<bool> login(String email, String password) async {
+          try {
+            final response = await _apiClient.post('/auth/login', {
+              'email': email,
+              'password': password,
+            });
+            
+            if (response['success'] == true) {
+              _currentUser = await _userRepository.getUserById(response['userId']);
+              _isLoggedIn = true;
+              return true;
+            }
+            return false;
+          } catch (e) {
+            print('Login error: $e');
+            return false;
+          }
+        }
+        
+        @override
+        Future<void> logout() async {
+          await _apiClient.post('/auth/logout', {});
+          _currentUser = null;
+          _isLoggedIn = false;
+        }
+        
+        @override
+        bool get isLoggedIn => _isLoggedIn;
+        
+        @override
+        User? get currentUser => _currentUser;
+      }
+      
+      // 依存性注入の設定
+      void setupDependencies() {
+        // シングルトン登録
+        getIt.registerSingleton<ApiClient>(
+          ApiClientImpl('https://api.example.com'),
+        );
+        
+        // ファクトリー登録（毎回新しいインスタンス）
+        getIt.registerFactory<UserRepository>(
+          () => UserRepositoryImpl(getIt<ApiClient>()),
+        );
+        
+        // 遅延シングルトン登録（初回アクセス時に作成）
+        getIt.registerLazySingleton<AuthService>(
+          () => AuthServiceImpl(
+            getIt<ApiClient>(),
+            getIt<UserRepository>(),
+          ),
+        );
+        
+        // 条件付き登録
+        if (isDebugMode) {
+          getIt.registerSingleton<Logger>(DebugLogger());
+        } else {
+          getIt.registerSingleton<Logger>(ProductionLogger());
+        }
+        
+        // 非同期依存性の登録
+        getIt.registerSingletonAsync<DatabaseService>(
+          () async {
+            final db = DatabaseService();
+            await db.initialize();
+            return db;
+          },
+        );
+      }
+      
+      // 環境別設定
+      void setupEnvironmentDependencies(Environment env) {
+        switch (env) {
+          case Environment.development:
+            getIt.registerSingleton<ApiClient>(
+              ApiClientImpl('https://dev-api.example.com'),
+            );
+            break;
+          case Environment.staging:
+            getIt.registerSingleton<ApiClient>(
+              ApiClientImpl('https://staging-api.example.com'),
+            );
+            break;
+          case Environment.production:
+            getIt.registerSingleton<ApiClient>(
+              ApiClientImpl('https://api.example.com'),
+            );
+            break;
+        }
+      }
+      
+      // サービス使用例
+      Future<void> userService() async {
+        // 依存性の取得
+        final authService = getIt<AuthService>();
+        final userRepository = getIt<UserRepository>();
+        
+        // ログイン
+        final loginSuccess = await authService.login(
+          'user@example.com',
+          'password123',
+        );
+        
+        if (loginSuccess) {
+          print('Login successful');
+          print('Current user: ${authService.currentUser?.name}');
+          
+          // ユーザー一覧取得
+          final users = await userRepository.getAllUsers();
+          print('Found ${users.length} users');
+          
+          // 新しいユーザー作成
+          final newUser = User(
+            id: 0,
+            name: 'New User',
+            email: 'new@example.com',
+            username: 'newuser',
+          );
+          
+          final createdUser = await userRepository.createUser(newUser);
+          print('Created user: ${createdUser.name}');
+        }
+      }
+      
+      // テスト用のモック登録
+      void setupTestDependencies() {
+        getIt.reset(); // 既存の登録をクリア
+        
+        getIt.registerSingleton<ApiClient>(MockApiClient());
+        getIt.registerSingleton<UserRepository>(MockUserRepository());
+        getIt.registerSingleton<AuthService>(MockAuthService());
+      }
+      
+      // スコープ管理
+      void createUserScope() {
+        getIt.pushNewScope(
+          scopeName: 'userScope',
+          init: (scope) {
+            scope.registerSingleton<UserSession>(UserSession());
+            scope.registerFactory<UserPreferences>(
+              () => UserPreferences(getIt<UserSession>()),
+            );
+          },
+        );
+      }
+      
+      void disposeUserScope() {
+        getIt.popScope(); // userScopeを破棄
+      }
+      
+      // ヘルパークラス
+      enum Environment { development, staging, production }
+      
+      const bool isDebugMode = true;
+      
+      class User {
+        final int id;
+        final String name;
+        final String email;
+        final String username;
+        
+        User({
+          required this.id,
+          required this.name,
+          required this.email,
+          required this.username,
+        });
+        
+        factory User.fromJson(Map<String, dynamic> json) {
+          return User(
+            id: json['id'] ?? 0,
+            name: json['name'] ?? '',
+            email: json['email'] ?? '',
+            username: json['username'] ?? '',
+          );
+        }
+        
+        Map<String, dynamic> toJson() => {
+          'id': id,
+          'name': name,
+          'email': email,
+          'username': username,
+        };
+      }
+      
+      abstract class Logger {
+        void log(String message);
+      }
+      
+      class DebugLogger implements Logger {
+        @override
+        void log(String message) => print('[DEBUG] $message');
+      }
+      
+      class ProductionLogger implements Logger {
+        @override
+        void log(String message) {
+          // Production logging implementation
+        }
+      }
+      
+      class DatabaseService {
+        Future<void> initialize() async {
+          // Database initialization
+          await Future.delayed(Duration(seconds: 1));
+          print('Database initialized');
+        }
+      }
+      
+      class UserSession {}
+      class UserPreferences {
+        final UserSession session;
+        UserPreferences(this.session);
+      }
+      
+      // モッククラス
+      class MockApiClient implements ApiClient {
+        @override
+        Future<Map<String, dynamic>> get(String path) async =>
+            {'mock': true, 'path': path};
+        
+        @override
+        Future<Map<String, dynamic>> post(String path, Map<String, dynamic> data) async =>
+            {'mock': true, 'path': path, 'data': data};
+      }
+      
+      class MockUserRepository implements UserRepository {
+        @override
+        Future<User> getUserById(int id) async =>
+            User(id: id, name: 'Mock User', email: 'mock@example.com', username: 'mockuser');
+        
+        @override
+        Future<List<User>> getAllUsers() async => [
+          User(id: 1, name: 'User 1', email: 'user1@example.com', username: 'user1'),
+          User(id: 2, name: 'User 2', email: 'user2@example.com', username: 'user2'),
+        ];
+        
+        @override
+        Future<User> createUser(User user) async => user.copyWith(id: 999);
+      }
+      
+      class MockAuthService implements AuthService {
+        @override
+        Future<bool> login(String email, String password) async => true;
+        
+        @override
+        Future<void> logout() async {}
+        
+        @override
+        bool get isLoggedIn => true;
+        
+        @override
+        User? get currentUser => User(
+          id: 1,
+          name: 'Mock User',
+          email: 'mock@example.com',
+          username: 'mockuser',
+        );
+      }
+      
+      // 使用例
+      void main() async {
+        setupDependencies();
+        
+        // 非同期依存性の完了を待つ
+        await getIt.allReady();
+        
+        await userService();
+        
+        // スコープテスト
+        createUserScope();
+        final userPrefs = getIt<UserPreferences>();
+        print('User preferences created: $userPrefs');
+        disposeUserScope();
+      }
+
+state_management:
+  provider:
+    package: "provider"
+    version: "^6.1.0"
+    summary: "InheritedWidgetベースの状態管理 - シンプルで効率的なFlutter状態管理ソリューション"
+    install: |
+      dependencies:
+        provider: ^6.1.0
+    usage: |
+      import 'package:flutter/material.dart';
+      import 'package:provider/provider.dart';
+      
+      // データモデル
+      class User {
+        final String id;
+        final String name;
+        final String email;
+        
+        User({required this.id, required this.name, required this.email});
+      }
+      
+      class Product {
+        final String id;
+        final String name;
+        final double price;
+        final String imageUrl;
+        
+        Product({
+          required this.id,
+          required this.name,
+          required this.price,
+          required this.imageUrl,
+        });
+      }
+      
+      // ChangeNotifierベースの状態管理
+      class AuthProvider extends ChangeNotifier {
+        User? _user;
+        bool _isLoading = false;
+        String? _error;
+        
+        User? get user => _user;
+        bool get isLoggedIn => _user != null;
+        bool get isLoading => _isLoading;
+        String? get error => _error;
+        
+        Future<void> login(String email, String password) async {
+          _isLoading = true;
+          _error = null;
+          notifyListeners();
+          
+          try {
+            // シミュレートされたログイン
+            await Future.delayed(Duration(seconds: 2));
+            
+            if (email == 'test@example.com' && password == 'password') {
+              _user = User(
+                id: '1',
+                name: 'Test User',
+                email: email,
+              );
+              _error = null;
+            } else {
+              _error = 'Invalid credentials';
+              _user = null;
+            }
+          } catch (e) {
+            _error = 'Login failed: $e';
+            _user = null;
+          } finally {
+            _isLoading = false;
+            notifyListeners();
+          }
+        }
+        
+        void logout() {
+          _user = null;
+          _error = null;
+          notifyListeners();
+        }
+        
+        void clearError() {
+          _error = null;
+          notifyListeners();
+        }
+      }
+      
+      // ショッピングカート状態管理
+      class CartItem {
+        final Product product;
+        int quantity;
+        
+        CartItem({required this.product, this.quantity = 1});
+        
+        double get totalPrice => product.price * quantity;
+      }
+      
+      class CartProvider extends ChangeNotifier {
+        final List<CartItem> _items = [];
+        
+        List<CartItem> get items => List.unmodifiable(_items);
+        
+        int get itemCount => _items.fold(0, (sum, item) => sum + item.quantity);
+        
+        double get totalPrice => _items.fold(0, (sum, item) => sum + item.totalPrice);
+        
+        void addItem(Product product) {
+          final existingIndex = _items.indexWhere(
+            (item) => item.product.id == product.id,
+          );
+          
+          if (existingIndex >= 0) {
+            _items[existingIndex].quantity++;
+          } else {
+            _items.add(CartItem(product: product));
+          }
+          
+          notifyListeners();
+        }
+        
+        void removeItem(String productId) {
+          _items.removeWhere((item) => item.product.id == productId);
+          notifyListeners();
+        }
+        
+        void updateQuantity(String productId, int newQuantity) {
+          final index = _items.indexWhere(
+            (item) => item.product.id == productId,
+          );
+          
+          if (index >= 0) {
+            if (newQuantity <= 0) {
+              _items.removeAt(index);
+            } else {
+              _items[index].quantity = newQuantity;
+            }
+            notifyListeners();
+          }
+        }
+        
+        void clearCart() {
+          _items.clear();
+          notifyListeners();
+        }
+      }
+      
+      // カウンター（シンプルな例）
+      class CounterProvider extends ChangeNotifier {
+        int _count = 0;
+        
+        int get count => _count;
+        
+        void increment() {
+          _count++;
+          notifyListeners();
+        }
+        
+        void decrement() {
+          _count--;
+          notifyListeners();
+        }
+        
+        void reset() {
+          _count = 0;
+          notifyListeners();
+        }
+      }
+      
+      // テーマ管理
+      class ThemeProvider extends ChangeNotifier {
+        bool _isDarkMode = false;
+        
+        bool get isDarkMode => _isDarkMode;
+        
+        ThemeData get themeData => _isDarkMode
+            ? ThemeData.dark()
+            : ThemeData.light();
+        
+        void toggleTheme() {
+          _isDarkMode = !_isDarkMode;
+          notifyListeners();
+        }
+        
+        void setTheme(bool isDark) {
+          _isDarkMode = isDark;
+          notifyListeners();
+        }
+      }
+      
+      // 製品リスト管理
+      class ProductProvider extends ChangeNotifier {
+        List<Product> _products = [];
+        bool _isLoading = false;
+        String? _error;
+        
+        List<Product> get products => List.unmodifiable(_products);
+        bool get isLoading => _isLoading;
+        String? get error => _error;
+        
+        Future<void> loadProducts() async {
+          _isLoading = true;
+          _error = null;
+          notifyListeners();
+          
+          try {
+            // シミュレートされたAPI呼び出し
+            await Future.delayed(Duration(seconds: 1));
+            
+            _products = [
+              Product(
+                id: '1',
+                name: 'Laptop',
+                price: 999.99,
+                imageUrl: 'https://example.com/laptop.jpg',
+              ),
+              Product(
+                id: '2',
+                name: 'Mouse',
+                price: 29.99,
+                imageUrl: 'https://example.com/mouse.jpg',
+              ),
+              Product(
+                id: '3',
+                name: 'Keyboard',
+                price: 79.99,
+                imageUrl: 'https://example.com/keyboard.jpg',
+              ),
+            ];
+          } catch (e) {
+            _error = 'Failed to load products: $e';
+            _products = [];
+          } finally {
+            _isLoading = false;
+            notifyListeners();
+          }
+        }
+        
+        Product? getProductById(String id) {
+          return _products.firstWhere(
+            (product) => product.id == id,
+            orElse: () => null,
+          );
+        }
+      }
+      
+      // メインアプリ
+      class MyApp extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+          return MultiProvider(
+            providers: [
+              ChangeNotifierProvider(create: (_) => AuthProvider()),
+              ChangeNotifierProvider(create: (_) => CartProvider()),
+              ChangeNotifierProvider(create: (_) => CounterProvider()),
+              ChangeNotifierProvider(create: (_) => ThemeProvider()),
+              ChangeNotifierProvider(create: (_) => ProductProvider()),
+            ],
+            child: Consumer<ThemeProvider>(
+              builder: (context, themeProvider, child) {
+                return MaterialApp(
+                  title: 'Provider Demo',
+                  theme: themeProvider.themeData,
+                  home: HomeScreen(),
+                );
+              },
+            ),
+          );
+        }
+      }
+      
+      // ホーム画面
+      class HomeScreen extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+          return Scaffold(
+            appBar: AppBar(
+              title: Text('Provider Demo'),
+              actions: [
+                Consumer<ThemeProvider>(
+                  builder: (context, themeProvider, child) {
+                    return IconButton(
+                      icon: Icon(
+                        themeProvider.isDarkMode
+                            ? Icons.light_mode
+                            : Icons.dark_mode,
+                      ),
+                      onPressed: themeProvider.toggleTheme,
+                    );
+                  },
+                ),
+                Consumer<CartProvider>(
+                  builder: (context, cartProvider, child) {
+                    return Stack(
+                      children: [
+                        IconButton(
+                          icon: Icon(Icons.shopping_cart),
+                          onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (_) => CartScreen()),
+                          ),
+                        ),
+                        if (cartProvider.itemCount > 0)
+                          Positioned(
+                            right: 8,
+                            top: 8,
+                            child: Container(
+                              padding: EdgeInsets.all(2),
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              constraints: BoxConstraints(
+                                minWidth: 16,
+                                minHeight: 16,
+                              ),
+                              child: Text(
+                                '${cartProvider.itemCount}',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                      ],
+                    );
+                  },
+                ),
+              ],
+            ),
+            body: Consumer<AuthProvider>(
+              builder: (context, authProvider, child) {
+                if (!authProvider.isLoggedIn) {
+                  return LoginScreen();
+                }
+                return ProductListScreen();
+              },
+            ),
+          );
+        }
+      }
+      
+      // ログイン画面
+      class LoginScreen extends StatefulWidget {
+        @override
+        _LoginScreenState createState() => _LoginScreenState();
+      }
+      
+      class _LoginScreenState extends State<LoginScreen> {
+        final _emailController = TextEditingController();
+        final _passwordController = TextEditingController();
+        
+        @override
+        Widget build(BuildContext context) {
+          return Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextField(
+                  controller: _emailController,
+                  decoration: InputDecoration(
+                    labelText: 'Email',
+                    hintText: 'test@example.com',
+                  ),
+                ),
+                SizedBox(height: 16),
+                TextField(
+                  controller: _passwordController,
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    hintText: 'password',
+                  ),
+                  obscureText: true,
+                ),
+                SizedBox(height: 24),
+                Consumer<AuthProvider>(
+                  builder: (context, authProvider, child) {
+                    return Column(
+                      children: [
+                        if (authProvider.error != null) ...[
+                          Text(
+                            authProvider.error!,
+                            style: TextStyle(color: Colors.red),
+                          ),
+                          SizedBox(height: 16),
+                        ],
+                        ElevatedButton(
+                          onPressed: authProvider.isLoading
+                              ? null
+                              : () {
+                                  authProvider.login(
+                                    _emailController.text,
+                                    _passwordController.text,
+                                  );
+                                },
+                          child: authProvider.isLoading
+                              ? CircularProgressIndicator()
+                              : Text('Login'),
+                        ),
+                      ],
+                    );
+                  },
+                ),
+              ],
+            ),
+          );
+        }
+      }
+      
+      // 製品リスト画面
+      class ProductListScreen extends StatefulWidget {
+        @override
+        _ProductListScreenState createState() => _ProductListScreenState();
+      }
+      
+      class _ProductListScreenState extends State<ProductListScreen> {
+        @override
+        void initState() {
+          super.initState();
+          // 製品を読み込み
+          Future.microtask(() {
+            context.read<ProductProvider>().loadProducts();
+          });
+        }
+        
+        @override
+        Widget build(BuildContext context) {
+          return Consumer<ProductProvider>(
+            builder: (context, productProvider, child) {
+              if (productProvider.isLoading) {
+                return Center(child: CircularProgressIndicator());
+              }
+              
+              if (productProvider.error != null) {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(productProvider.error!),
+                      ElevatedButton(
+                        onPressed: productProvider.loadProducts,
+                        child: Text('Retry'),
+                      ),
+                    ],
+                  ),
+                );
+              }
+              
+              return ListView.builder(
+                itemCount: productProvider.products.length,
+                itemBuilder: (context, index) {
+                  final product = productProvider.products[index];
+                  return ListTile(
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(product.imageUrl),
+                    ),
+                    title: Text(product.name),
+                    subtitle: Text('\$${product.price.toStringAsFixed(2)}'),
+                    trailing: Consumer<CartProvider>(
+                      builder: (context, cartProvider, child) {
+                        return IconButton(
+                          icon: Icon(Icons.add_shopping_cart),
+                          onPressed: () {
+                            cartProvider.addItem(product);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('${product.name} added to cart'),
+                                duration: Duration(seconds: 1),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  );
+                },
+              );
+            },
+          );
+        }
+      }
+      
+      // カート画面
+      class CartScreen extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+          return Scaffold(
+            appBar: AppBar(
+              title: Text('Shopping Cart'),
+            ),
+            body: Consumer<CartProvider>(
+              builder: (context, cartProvider, child) {
+                if (cartProvider.items.isEmpty) {
+                  return Center(
+                    child: Text('Your cart is empty'),
+                  );
+                }
+                
+                return Column(
+                  children: [
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: cartProvider.items.length,
+                        itemBuilder: (context, index) {
+                          final item = cartProvider.items[index];
+                          return ListTile(
+                            leading: CircleAvatar(
+                              backgroundImage: NetworkImage(item.product.imageUrl),
+                            ),
+                            title: Text(item.product.name),
+                            subtitle: Text('\$${item.product.price.toStringAsFixed(2)}'),
+                            trailing: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                IconButton(
+                                  icon: Icon(Icons.remove),
+                                  onPressed: () {
+                                    cartProvider.updateQuantity(
+                                      item.product.id,
+                                      item.quantity - 1,
+                                    );
+                                  },
+                                ),
+                                Text('${item.quantity}'),
+                                IconButton(
+                                  icon: Icon(Icons.add),
+                                  onPressed: () {
+                                    cartProvider.updateQuantity(
+                                      item.product.id,
+                                      item.quantity + 1,
+                                    );
+                                  },
+                                ),
+                                IconButton(
+                                  icon: Icon(Icons.delete),
+                                  onPressed: () {
+                                    cartProvider.removeItem(item.product.id);
+                                  },
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Total: \$${cartProvider.totalPrice.toStringAsFixed(2)}',
+                                style: Theme.of(context).textTheme.headlineSmall,
+                              ),
+                              ElevatedButton(
+                                onPressed: () {
+                                  // チェックアウト処理
+                                  cartProvider.clearCart();
+                                  Navigator.pop(context);
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text('Order placed successfully!'),
+                                    ),
+                                  );
+                                },
+                                child: Text('Checkout'),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
+          );
+        }
+      }
+
+async:
+  dart_async:
+    package: "dart:async"
+    summary: "Dart標準非同期ライブラリ - Future、Stream、非同期プログラミング基盤"
+    install: "Built-in with Dart SDK"
+    usage: |
+      import 'dart:async';
+      import 'dart:math';
+      
+      // Future の基本使用
+      Future<String> fetchUserData(int userId) async {
+        // シミュレートされた非同期処理
+        await Future.delayed(Duration(seconds: 1));
+        
+        if (userId <= 0) {
+          throw ArgumentError('Invalid user ID');
+        }
+        
+        return 'User data for ID: $userId';
+      }
+      
+      // Future の複数処理
+      Future<Map<String, dynamic>> fetchUserProfile(int userId) async {
+        try {
+          // 複数の非同期処理を並行実行
+          final results = await Future.wait([
+            fetchUserData(userId),
+            fetchUserPreferences(userId),
+            fetchUserStats(userId),
+          ]);
+          
+          return {
+            'data': results[0],
+            'preferences': results[1],
+            'stats': results[2],
+          };
+        } catch (e) {
+          print('Error fetching user profile: $e');
+          rethrow;
+        }
+      }
+      
+      Future<String> fetchUserPreferences(int userId) async {
+        await Future.delayed(Duration(milliseconds: 500));
+        return 'Preferences for user $userId';
+      }
+      
+      Future<String> fetchUserStats(int userId) async {
+        await Future.delayed(Duration(milliseconds: 800));
+        return 'Stats for user $userId';
+      }
+      
+      // Stream の基本使用
+      Stream<int> countStream(int max) async* {
+        for (int i = 1; i <= max; i++) {
+          await Future.delayed(Duration(milliseconds: 500));
+          yield i;
+        }
+      }
+      
+      // Stream変換とフィルタリング
+      Stream<String> processNumberStream() {
+        return countStream(10)
+            .where((number) => number % 2 == 0) // 偶数のみ
+            .map((number) => 'Even number: $number')
+            .take(3); // 最初の3つのみ
+      }
+      
+      // StreamController使用例
+      class EventBus {
+        final StreamController<String> _controller = StreamController<String>.broadcast();
+        
+        Stream<String> get events => _controller.stream;
+        
+        void publishEvent(String event) {
+          _controller.add(event);
+        }
+        
+        void close() {
+          _controller.close();
+        }
+      }
+      
+      // Timer使用例
+      class TimerManager {
+        Timer? _periodicTimer;
+        Timer? _oneShotTimer;
+        
+        void startPeriodicTask() {
+          _periodicTimer = Timer.periodic(Duration(seconds: 2), (timer) {
+            print('Periodic task executed at ${DateTime.now()}');
+          });
+        }
+        
+        void scheduleOneShotTask() {
+          _oneShotTimer = Timer(Duration(seconds: 5), () {
+            print('One-shot task executed at ${DateTime.now()}');
+          });
+        }
+        
+        void stopAllTimers() {
+          _periodicTimer?.cancel();
+          _oneShotTimer?.cancel();
+        }
+      }
+      
+      // Completer使用例
+      class DataLoader {
+        final Completer<String> _completer = Completer<String>();
+        
+        Future<String> get result => _completer.future;
+        
+        void loadData() {
+          // シミュレートされた非同期データロード
+          Timer(Duration(seconds: 2), () {
+            final random = Random();
+            if (random.nextBool()) {
+              _completer.complete('Data loaded successfully');
+            } else {
+              _completer.completeError('Failed to load data');
+            }
+          });
+        }
+      }
+      
+      // Zone使用例（エラーハンドリング）
+      void runInZone() {
+        runZoned(() {
+          // この中で発生したエラーはonErrorでキャッチされる
+          Timer.periodic(Duration(seconds: 1), (timer) {
+            if (timer.tick > 3) {
+              timer.cancel();
+              throw Exception('Planned exception');
+            }
+            print('Tick: ${timer.tick}');
+          });
+        }, onError: (error, stackTrace) {
+          print('Caught error in zone: $error');
+        });
+      }
+      
+      // 非同期ジェネレータ（Stream生成）
+      Stream<int> fibonacciStream() async* {
+        int a = 0, b = 1;
+        
+        while (true) {
+          yield a;
+          final temp = a + b;
+          a = b;
+          b = temp;
+          
+          // CPUを他のタスクに譲る
+          await Future.delayed(Duration(microseconds: 1));
+        }
+      }
+      
+      // StreamSubscription管理
+      class StreamManager {
+        StreamSubscription? _subscription;
+        
+        void startListening() {
+          _subscription = fibonacciStream()
+              .take(10)
+              .listen(
+                (number) => print('Fibonacci: $number'),
+                onError: (error) => print('Stream error: $error'),
+                onDone: () => print('Stream completed'),
+              );
+        }
+        
+        void pauseListening() {
+          _subscription?.pause();
+        }
+        
+        void resumeListening() {
+          _subscription?.resume();
+        }
+        
+        void stopListening() {
+          _subscription?.cancel();
+          _subscription = null;
+        }
+      }
+      
+      // 使用例
+      void main() async {
+        print('=== Future Examples ===');
+        
+        // 基本的なFuture
+        try {
+          final userData = await fetchUserData(1);
+          print(userData);
+          
+          final userProfile = await fetchUserProfile(1);
+          print('Profile: $userProfile');
+        } catch (e) {
+          print('Error: $e');
+        }
+        
+        print('\n=== Stream Examples ===');
+        
+        // Stream の処理
+        await for (final value in processNumberStream()) {
+          print(value);
+        }
+        
+        print('\n=== EventBus Example ===');
+        
+        // EventBus
+        final eventBus = EventBus();
+        
+        eventBus.events.listen((event) {
+          print('Received event: $event');
+        });
+        
+        eventBus.publishEvent('User logged in');
+        eventBus.publishEvent('Data updated');
+        
+        // 少し待ってからクローズ
+        await Future.delayed(Duration(milliseconds: 100));
+        eventBus.close();
+        
+        print('\n=== Timer Example ===');
+        
+        // Timer管理
+        final timerManager = TimerManager();
+        timerManager.startPeriodicTask();
+        timerManager.scheduleOneShotTask();
+        
+        // 10秒後にタイマーを停止
+        Timer(Duration(seconds: 10), () {
+          timerManager.stopAllTimers();
+          print('All timers stopped');
+        });
+        
+        print('\n=== Completer Example ===');
+        
+        // Completer
+        final dataLoader = DataLoader();
+        dataLoader.loadData();
+        
+        try {
+          final result = await dataLoader.result;
+          print('Loader result: $result');
+        } catch (e) {
+          print('Loader error: $e');
+        }
+        
+        print('\n=== Zone Example ===');
+        runInZone();
+        
+        print('\n=== StreamManager Example ===');
+        
+        final streamManager = StreamManager();
+        streamManager.startListening();
+        
+        // 5秒後に一時停止
+        Timer(Duration(seconds: 5), () {
+          print('Pausing stream...');
+          streamManager.pauseListening();
+        });
+        
+        // 7秒後に再開
+        Timer(Duration(seconds: 7), () {
+          print('Resuming stream...');
+          streamManager.resumeListening();
+        });
+        
+        // 15秒後に停止
+        Timer(Duration(seconds: 15), () {
+          streamManager.stopListening();
+        });
+      }
+
+testing:
+  test:
+    package: "test"
+    version: "^1.24.0"
+    summary: "Dart標準テストフレームワーク - 単体テスト、統合テスト、モックテスト"
+    install: |
+      dev_dependencies:
+        test: ^1.24.0
+        mockito: ^5.4.0
+        build_runner: ^2.4.0
+    usage: |
+      import 'package:test/test.dart';
+      import 'package:mockito/mockito.dart';
+      import 'package:mockito/annotations.dart';
+      
+      // テスト対象のクラス
+      class Calculator {
+        double add(double a, double b) => a + b;
+        double subtract(double a, double b) => a - b;
+        double multiply(double a, double b) => a * b;
+        double divide(double a, double b) {
+          if (b == 0) throw ArgumentError('Division by zero');
+          return a / b;
+        }
+      }
+      
+      class User {
+        final String name;
+        final String email;
+        final int age;
+        
+        User({required this.name, required this.email, required this.age});
+        
+        bool get isAdult => age >= 18;
+        
+        @override
+        bool operator ==(Object other) =>
+            identical(this, other) ||
+            other is User &&
+                runtimeType == other.runtimeType &&
+                name == other.name &&
+                email == other.email &&
+                age == other.age;
+        
+        @override
+        int get hashCode => name.hashCode ^ email.hashCode ^ age.hashCode;
+      }
+      
+      // 非同期操作のクラス
+      class ApiService {
+        Future<Map<String, dynamic>> fetchUser(int id) async {
+          await Future.delayed(Duration(milliseconds: 100));
+          
+          if (id <= 0) {
+            throw ArgumentError('Invalid ID');
+          }
+          
+          return {
+            'id': id,
+            'name': 'User $id',
+            'email': 'user$id@example.com',
+          };
+        }
+        
+        Stream<int> countStream(int max) async* {
+          for (int i = 1; i <= max; i++) {
+            await Future.delayed(Duration(milliseconds: 50));
+            yield i;
+          }
+        }
+      }
+      
+      // モック用アノテーション
+      @GenerateMocks([ApiService])
+      void main() {
+        group('Calculator Tests', () {
+          late Calculator calculator;
+          
+          setUp(() {
+            calculator = Calculator();
+          });
+          
+          test('addition works correctly', () {
+            expect(calculator.add(2, 3), equals(5));
+            expect(calculator.add(-1, 1), equals(0));
+            expect(calculator.add(0.1, 0.2), closeTo(0.3, 0.0001));
+          });
+          
+          test('subtraction works correctly', () {
+            expect(calculator.subtract(5, 3), equals(2));
+            expect(calculator.subtract(0, 5), equals(-5));
+          });
+          
+          test('multiplication works correctly', () {
+            expect(calculator.multiply(3, 4), equals(12));
+            expect(calculator.multiply(-2, 3), equals(-6));
+            expect(calculator.multiply(0, 100), equals(0));
+          });
+          
+          test('division works correctly', () {
+            expect(calculator.divide(10, 2), equals(5));
+            expect(calculator.divide(7, 3), closeTo(2.333, 0.001));
+          });
+          
+          test('division by zero throws error', () {
+            expect(() => calculator.divide(10, 0), throwsArgumentError);
+          });
+        });
+        
+        group('User Tests', () {
+          test('user creation works correctly', () {
+            final user = User(
+              name: 'John Doe',
+              email: 'john@example.com',
+              age: 25,
+            );
+            
+            expect(user.name, equals('John Doe'));
+            expect(user.email, equals('john@example.com'));
+            expect(user.age, equals(25));
+            expect(user.isAdult, isTrue);
+          });
+          
+          test('isAdult property works correctly', () {
+            final adult = User(name: 'Adult', email: 'adult@example.com', age: 20);
+            final minor = User(name: 'Minor', email: 'minor@example.com', age: 16);
+            
+            expect(adult.isAdult, isTrue);
+            expect(minor.isAdult, isFalse);
+          });
+          
+          test('user equality works correctly', () {
+            final user1 = User(name: 'John', email: 'john@example.com', age: 25);
+            final user2 = User(name: 'John', email: 'john@example.com', age: 25);
+            final user3 = User(name: 'Jane', email: 'jane@example.com', age: 25);
+            
+            expect(user1, equals(user2));
+            expect(user1, isNot(equals(user3)));
+          });
+        });
+        
+        group('ApiService Tests', () {
+          late ApiService apiService;
+          
+          setUp(() {
+            apiService = ApiService();
+          });
+          
+          test('fetchUser returns correct data', () async {
+            final result = await apiService.fetchUser(1);
+            
+            expect(result, isA<Map<String, dynamic>>());
+            expect(result['id'], equals(1));
+            expect(result['name'], equals('User 1'));
+            expect(result['email'], equals('user1@example.com'));
+          });
+          
+          test('fetchUser throws error for invalid ID', () async {
+            expect(() => apiService.fetchUser(-1), throwsArgumentError);
+            expect(() => apiService.fetchUser(0), throwsArgumentError);
+          });
+          
+          test('countStream emits correct values', () async {
+            final stream = apiService.countStream(3);
+            final values = await stream.toList();
+            
+            expect(values, equals([1, 2, 3]));
+          });
+          
+          test('countStream emits values in correct order', () async {
+            final stream = apiService.countStream(5);
+            final values = <int>[];
+            
+            await for (final value in stream) {
+              values.add(value);
+            }
+            
+            expect(values, orderedEquals([1, 2, 3, 4, 5]));
+          });
+        });
+        
+        group('Mock Tests', () {
+          late MockApiService mockApiService;
+          
+          setUp(() {
+            mockApiService = MockApiService();
+          });
+          
+          test('mock fetchUser returns stubbed data', () async {
+            // モックの設定
+            when(mockApiService.fetchUser(1)).thenAnswer(
+              (_) async => {
+                'id': 1,
+                'name': 'Mocked User',
+                'email': 'mock@example.com',
+              },
+            );
+            
+            final result = await mockApiService.fetchUser(1);
+            
+            expect(result['name'], equals('Mocked User'));
+            expect(result['email'], equals('mock@example.com'));
+            
+            // メソッドが呼ばれたことを確認
+            verify(mockApiService.fetchUser(1)).called(1);
+          });
+          
+          test('mock fetchUser throws exception', () async {
+            // 例外をスタブ
+            when(mockApiService.fetchUser(any))
+                .thenThrow(Exception('Network error'));
+            
+            expect(
+              () => mockApiService.fetchUser(1),
+              throwsA(isA<Exception>()),
+            );
+          });
+          
+          test('mock countStream returns stubbed stream', () async {
+            // Streamのモック
+            when(mockApiService.countStream(any))
+                .thenAnswer((_) => Stream.fromIterable([10, 20, 30]));
+            
+            final stream = mockApiService.countStream(3);
+            final values = await stream.toList();
+            
+            expect(values, equals([10, 20, 30]));
+            verify(mockApiService.countStream(3)).called(1);
+          });
+        });
+        
+        group('Matchers Tests', () {
+          test('built-in matchers work correctly', () {
+            expect(42, isA<int>());
+            expect('hello', isA<String>());
+            expect([1, 2, 3], hasLength(3));
+            expect([1, 2, 3], contains(2));
+            expect([1, 2, 3], containsAll([1, 3]));
+            expect({'key': 'value'}, containsPair('key', 'value'));
+            expect(3.14159, closeTo(3.14, 0.01));
+            expect([1, 2, 3], orderedEquals([1, 2, 3]));
+            expect([3, 1, 2], unorderedEquals([1, 2, 3]));
+          });
+          
+          test('string matchers work correctly', () {
+            expect('hello world', startsWith('hello'));
+            expect('hello world', endsWith('world'));
+            expect('hello world', contains('lo wo'));
+            expect('Hello World', matches(r'^[A-Z][a-z]+ [A-Z][a-z]+$'));
+          });
+          
+          test('numeric matchers work correctly', () {
+            expect(5, greaterThan(3));
+            expect(5, greaterThanOrEqualTo(5));
+            expect(3, lessThan(5));
+            expect(3, lessThanOrEqualTo(3));
+            expect(5, inInclusiveRange(3, 7));
+            expect(5, inExclusiveRange(4, 6));
+          });
+        });
+        
+        group('Test Lifecycle', () {
+          setUpAll(() {
+            print('Setting up all tests');
+          });
+          
+          tearDownAll(() {
+            print('Tearing down all tests');
+          });
+          
+          setUp(() {
+            print('Setting up individual test');
+          });
+          
+          tearDown(() {
+            print('Tearing down individual test');
+          });
+          
+          test('first test', () {
+            expect(1 + 1, equals(2));
+          });
+          
+          test('second test', () {
+            expect(2 * 2, equals(4));
+          });
+        });
+        
+        group('Skip and Solo Tests', () {
+          test('normal test', () {
+            expect(true, isTrue);
+          });
+          
+          // このテストはスキップされる
+          test('skipped test', () {
+            expect(false, isTrue);
+          }, skip: 'This test is not ready');
+          
+          // 条件付きスキップ
+          test('conditionally skipped test', () {
+            expect(true, isTrue);
+          }, skip: Platform.isWindows ? 'Windows not supported' : null);
+          
+          // このテストのみ実行（solo）
+          // solo_test('only this test runs', () {
+          //   expect(true, isTrue);
+          // });
+        });
+      }
+
+build_system:
+  pubspec_yaml:
+    package: "pubspec.yaml"
+    summary: "Dartプロジェクト設定ファイル - 依存関係、メタデータ、ビルド設定"
+    usage: |
+      name: my_dart_app
+      description: A sample Dart application with comprehensive dependencies
+      version: 1.0.0+1
+      
+      environment:
+        sdk: '>=3.0.0 <4.0.0'
+      
+      dependencies:
+        # HTTP clients
+        http: ^1.1.0
+        dio: ^5.3.0
+        
+        # Serialization
+        json_annotation: ^4.8.0
+        freezed_annotation: ^2.4.0
+        
+        # Dependency injection
+        get_it: ^7.6.0
+        
+        # State management (for Flutter apps)
+        provider: ^6.1.0
+        
+        # Utilities
+        collection: ^1.17.0
+        meta: ^1.9.0
+        
+      dev_dependencies:
+        # Testing
+        test: ^1.24.0
+        mockito: ^5.4.0
+        
+        # Code generation
+        build_runner: ^2.4.0
+        json_serializable: ^6.7.0
+        freezed: ^2.4.0
+        mockito_gen: ^0.4.0
+        
+        # Linting
+        lints: ^3.0.0
+        
+        # Coverage
+        coverage: ^1.6.0
+      
+      # Build configuration
+      executables:
+        my_app: main
+        
+      # Flutter specific (if applicable)
+      flutter:
+        uses-material-design: true
+        assets:
+          - assets/images/
+          - assets/data/
+        fonts:
+          - family: CustomFont
+            fonts:
+              - asset: fonts/CustomFont-Regular.ttf
+              - asset: fonts/CustomFont-Bold.ttf
+                weight: 700
+
+best_practices:
+  - "null安全性を活用し、null可能型を適切に使用する"
+  - "非同期プログラミングでasync/awaitパターンを適切に実装する"
+  - "型推論を活用し、適切な場所で明示的な型注釈を使用する"
+  - "イミュータブルクラスとcopyWithパターンを活用する"
+  - "適切なエラーハンドリングとカスタム例外を実装する"
+  - "Stream処理で適切なリスナー管理とメモリリーク防止を実装する"
+  - "依存性注入パターンでテスタブルなコードを書く"
+  - "コード生成ツール（build_runner）を活用して保守性を向上させる"
+  - "適切なテストカバレッジと単体テスト、統合テストを実装する"
+  - "パフォーマンスを考慮した非同期処理とメモリ管理を実装する"
+  - "型安全なJSON処理とシリアライゼーションを実装する"
+  - "適切なファイル構造とパッケージ分割を実装する"
+

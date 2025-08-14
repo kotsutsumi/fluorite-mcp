@@ -1,0 +1,2000 @@
+id: "flutter-ecosystem"
+name: "Flutter Mobile Development Ecosystem"
+homepage: "https://flutter.dev"
+summary: "クロスプラットフォームモバイル開発のためのFlutterエコシステム。状態管理、ナビゲーション、データ永続化、Firebase統合、国際化など包括的なモバイル開発ツールチェーン。"
+
+language:
+  name: "Dart"
+  version: "3.0.0+"
+  description: "GoogleのマルチプラットフォームUI開発フレームワーク"
+  features:
+    - "ホットリロードによる高速開発サイクル"
+    - "単一コードベースでiOS/Android対応"
+    - "60fpsの高性能UI"
+    - "豊富なウィジェットライブラリ"
+    - "ネイティブコンパイル"
+
+core:
+  flutter_framework:
+    package: "flutter"
+    summary: "Google製クロスプラットフォームUIフレームワーク"
+    install: |
+      # Flutter SDKのインストール
+      # https://docs.flutter.dev/get-started/install
+      
+      # プロジェクト作成
+      flutter create my_app
+      cd my_app
+    usage: |
+      import 'package:flutter/material.dart';
+      
+      void main() {
+        runApp(MyApp());
+      }
+      
+      class MyApp extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+          return MaterialApp(
+            title: 'Flutter Demo',
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+              useMaterial3: true,
+            ),
+            home: MyHomePage(title: 'Flutter Demo Home Page'),
+          );
+        }
+      }
+      
+      class MyHomePage extends StatefulWidget {
+        const MyHomePage({Key? key, required this.title}) : super(key: key);
+        
+        final String title;
+        
+        @override
+        State<MyHomePage> createState() => _MyHomePageState();
+      }
+      
+      class _MyHomePageState extends State<MyHomePage> {
+        int _counter = 0;
+        
+        void _incrementCounter() {
+          setState(() {
+            _counter++;
+          });
+        }
+        
+        @override
+        Widget build(BuildContext context) {
+          return Scaffold(
+            appBar: AppBar(
+              backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+              title: Text(widget.title),
+            ),
+            body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const Text(
+                    'You have pushed the button this many times:',
+                  ),
+                  Text(
+                    '$_counter',
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
+                ],
+              ),
+            ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: _incrementCounter,
+              tooltip: 'Increment',
+              child: const Icon(Icons.add),
+            ),
+          );
+        }
+      }
+      
+      // カスタムウィジェット例
+      class CustomCard extends StatelessWidget {
+        final String title;
+        final String subtitle;
+        final VoidCallback? onTap;
+        
+        const CustomCard({
+          Key? key,
+          required this.title,
+          required this.subtitle,
+          this.onTap,
+        }) : super(key: key);
+        
+        @override
+        Widget build(BuildContext context) {
+          return Card(
+            elevation: 4,
+            margin: EdgeInsets.all(8),
+            child: ListTile(
+              title: Text(title),
+              subtitle: Text(subtitle),
+              trailing: Icon(Icons.arrow_forward_ios),
+              onTap: onTap,
+            ),
+          );
+        }
+      }
+      
+      // レスポンシブレイアウト
+      class ResponsiveLayout extends StatelessWidget {
+        final Widget mobile;
+        final Widget tablet;
+        final Widget desktop;
+        
+        const ResponsiveLayout({
+          Key? key,
+          required this.mobile,
+          required this.tablet,
+          required this.desktop,
+        }) : super(key: key);
+        
+        @override
+        Widget build(BuildContext context) {
+          return LayoutBuilder(
+            builder: (context, constraints) {
+              if (constraints.maxWidth < 600) {
+                return mobile;
+              } else if (constraints.maxWidth < 1200) {
+                return tablet;
+              } else {
+                return desktop;
+              }
+            },
+          );
+        }
+      }
+
+state_management:
+  flutter_bloc:
+    package: "flutter_bloc"
+    summary: "BLoCパターンによるビジネスロジック分離と状態管理"
+    install: |
+      dependencies:
+        flutter_bloc: ^8.1.3
+        equatable: ^2.0.5
+    usage: |
+      import 'package:flutter_bloc/flutter_bloc.dart';
+      import 'package:equatable/equatable.dart';
+      
+      // Events
+      abstract class CounterEvent extends Equatable {
+        const CounterEvent();
+        
+        @override
+        List<Object> get props => [];
+      }
+      
+      class CounterIncrement extends CounterEvent {}
+      class CounterDecrement extends CounterEvent {}
+      class CounterReset extends CounterEvent {}
+      
+      // State
+      class CounterState extends Equatable {
+        final int count;
+        final bool isLoading;
+        
+        const CounterState({this.count = 0, this.isLoading = false});
+        
+        CounterState copyWith({int? count, bool? isLoading}) {
+          return CounterState(
+            count: count ?? this.count,
+            isLoading: isLoading ?? this.isLoading,
+          );
+        }
+        
+        @override
+        List<Object> get props => [count, isLoading];
+      }
+      
+      // BLoC
+      class CounterBloc extends Bloc<CounterEvent, CounterState> {
+        CounterBloc() : super(const CounterState()) {
+          on<CounterIncrement>((event, emit) {
+            emit(state.copyWith(count: state.count + 1));
+          });
+          
+          on<CounterDecrement>((event, emit) {
+            emit(state.copyWith(count: state.count - 1));
+          });
+          
+          on<CounterReset>((event, emit) {
+            emit(const CounterState());
+          });
+        }
+      }
+      
+      // Widget integration
+      class CounterPage extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+          return BlocProvider(
+            create: (context) => CounterBloc(),
+            child: CounterView(),
+          );
+        }
+      }
+      
+      class CounterView extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+          return Scaffold(
+            appBar: AppBar(title: Text('Counter BLoC')),
+            body: BlocBuilder<CounterBloc, CounterState>(
+              builder: (context, state) {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        '${state.count}',
+                        style: Theme.of(context).textTheme.headlineLarge,
+                      ),
+                      SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FloatingActionButton(
+                            onPressed: () => context.read<CounterBloc>().add(CounterDecrement()),
+                            tooltip: 'Decrement',
+                            child: Icon(Icons.remove),
+                          ),
+                          SizedBox(width: 20),
+                          FloatingActionButton(
+                            onPressed: () => context.read<CounterBloc>().add(CounterIncrement()),
+                            tooltip: 'Increment',
+                            child: Icon(Icons.add),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          );
+        }
+      }
+      
+      // 非同期処理のBLoC例
+      class UserBloc extends Bloc<UserEvent, UserState> {
+        final UserRepository userRepository;
+        
+        UserBloc({required this.userRepository}) : super(UserInitial()) {
+          on<LoadUsers>(_onLoadUsers);
+          on<AddUser>(_onAddUser);
+        }
+        
+        Future<void> _onLoadUsers(LoadUsers event, Emitter<UserState> emit) async {
+          emit(UserLoading());
+          try {
+            final users = await userRepository.getUsers();
+            emit(UserLoaded(users));
+          } catch (e) {
+            emit(UserError(e.toString()));
+          }
+        }
+        
+        Future<void> _onAddUser(AddUser event, Emitter<UserState> emit) async {
+          if (state is UserLoaded) {
+            try {
+              await userRepository.addUser(event.user);
+              final users = await userRepository.getUsers();
+              emit(UserLoaded(users));
+            } catch (e) {
+              emit(UserError(e.toString()));
+            }
+          }
+        }
+      }
+  
+  riverpod:
+    package: "flutter_riverpod"
+    summary: "型安全でスケーラブルな状態管理ライブラリ"
+    install: |
+      dependencies:
+        flutter_riverpod: ^2.4.9
+        riverpod_annotation: ^2.3.3
+      
+      dev_dependencies:
+        riverpod_generator: ^2.3.9
+        build_runner: ^2.4.7
+    usage: |
+      import 'package:flutter_riverpod/flutter_riverpod.dart';
+      import 'package:riverpod_annotation/riverpod_annotation.dart';
+      
+      part 'counter.g.dart';
+      
+      // Provider定義（コード生成版）
+      @riverpod
+      class Counter extends _$Counter {
+        @override
+        int build() => 0;
+        
+        void increment() => state++;
+        void decrement() => state--;
+        void reset() => state = 0;
+      }
+      
+      // 非同期Provider
+      @riverpod
+      Future<List<User>> users(UsersRef ref) async {
+        final repository = ref.read(userRepositoryProvider);
+        return repository.getUsers();
+      }
+      
+      // ファミリーProvider（パラメータ付き）
+      @riverpod
+      Future<User?> user(UserRef ref, String userId) async {
+        final repository = ref.read(userRepositoryProvider);
+        return repository.getUserById(userId);
+      }
+      
+      // Widget integration
+      class CounterApp extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+          return ProviderScope(
+            child: MaterialApp(
+              home: CounterPage(),
+            ),
+          );
+        }
+      }
+      
+      class CounterPage extends ConsumerWidget {
+        @override
+        Widget build(BuildContext context, WidgetRef ref) {
+          final count = ref.watch(counterProvider);
+          
+          return Scaffold(
+            appBar: AppBar(title: Text('Counter Riverpod')),
+            body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '$count',
+                    style: Theme.of(context).textTheme.headlineLarge,
+                  ),
+                  SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () => ref.read(counterProvider.notifier).decrement(),
+                        child: Text('−'),
+                      ),
+                      SizedBox(width: 20),
+                      ElevatedButton(
+                        onPressed: () => ref.read(counterProvider.notifier).increment(),
+                        child: Text('+'),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
+      }
+      
+      // 非同期データ表示
+      class UserListPage extends ConsumerWidget {
+        @override
+        Widget build(BuildContext context, WidgetRef ref) {
+          final usersAsyncValue = ref.watch(usersProvider);
+          
+          return Scaffold(
+            appBar: AppBar(title: Text('Users')),
+            body: usersAsyncValue.when(
+              data: (users) => ListView.builder(
+                itemCount: users.length,
+                itemBuilder: (context, index) {
+                  final user = users[index];
+                  return ListTile(
+                    title: Text(user.name),
+                    subtitle: Text(user.email),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => UserDetailPage(userId: user.id),
+                      ),
+                    ),
+                  );
+                },
+              ),
+              loading: () => Center(child: CircularProgressIndicator()),
+              error: (error, stack) => Center(child: Text('Error: $error')),
+            ),
+          );
+        }
+      }
+      
+      // StateNotifierProvider（従来の方法）
+      class TodoNotifier extends StateNotifier<List<Todo>> {
+        TodoNotifier() : super([]);
+        
+        void addTodo(String title) {
+          state = [...state, Todo(id: DateTime.now().toString(), title: title)];
+        }
+        
+        void toggleTodo(String id) {
+          state = [
+            for (final todo in state)
+              if (todo.id == id) todo.copyWith(completed: !todo.completed) else todo,
+          ];
+        }
+      }
+      
+      final todoProvider = StateNotifierProvider<TodoNotifier, List<Todo>>((ref) {
+        return TodoNotifier();
+      });
+
+data_models:
+  freezed:
+    package: "freezed"
+    summary: "不変データクラスとユニオン型の自動生成"
+    install: |
+      dependencies:
+        freezed_annotation: ^2.4.1
+        json_annotation: ^4.8.1
+      
+      dev_dependencies:
+        freezed: ^2.4.6
+        json_serializable: ^6.7.1
+        build_runner: ^2.4.7
+    usage: |
+      import 'package:freezed_annotation/freezed_annotation.dart';
+      
+      part 'user.freezed.dart';
+      part 'user.g.dart';
+      
+      @freezed
+      class User with _$User {
+        const factory User({
+          required String id,
+          required String name,
+          required String email,
+          @Default(false) bool isActive,
+          DateTime? lastLogin,
+        }) = _User;
+        
+        factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+      }
+      
+      // ユニオン型
+      @freezed
+      sealed class LoadingState<T> with _$LoadingState<T> {
+        const factory LoadingState.loading() = LoadingStateLoading;
+        const factory LoadingState.data(T data) = LoadingStateData;
+        const factory LoadingState.error(String message) = LoadingStateError;
+      }
+      
+      // 使用例
+      void main() {
+        const user = User(
+          id: '1',
+          name: 'John Doe',
+          email: 'john@example.com',
+        );
+        
+        // copyWithで部分更新
+        final updatedUser = user.copyWith(isActive: true);
+        
+        // JSON変換
+        final json = user.toJson();
+        final userFromJson = User.fromJson(json);
+        
+        // ユニオン型の使用
+        LoadingState<List<User>> state = LoadingState.loading();
+        
+        state = state.when(
+          loading: () => LoadingState.data([user]),
+          data: (users) => LoadingState.data([...users, updatedUser]),
+          error: (message) => LoadingState.error(message),
+        );
+      }
+      
+      // より複雑な例
+      @freezed
+      class ApiResponse<T> with _$ApiResponse<T> {
+        const factory ApiResponse.success({
+          required T data,
+          required Map<String, dynamic> meta,
+        }) = ApiResponseSuccess;
+        
+        const factory ApiResponse.failure({
+          required int code,
+          required String message,
+          Map<String, dynamic>? details,
+        }) = ApiResponseFailure;
+        
+        factory ApiResponse.fromJson(
+          Map<String, dynamic> json,
+          T Function(Object?) fromJsonT,
+        ) => _$ApiResponseFromJson(json, fromJsonT);
+      }
+      
+      // カスタムメソッド追加
+      extension UserExtension on User {
+        bool get isValidEmail => email.contains('@');
+        String get displayName => name.isEmpty ? email : name;
+      }
+
+navigation:
+  go_router:
+    package: "go_router"
+    summary: "宣言的ルーティングとディープリンク対応ナビゲーション"
+    install: |
+      dependencies:
+        go_router: ^12.1.3
+    usage: |
+      import 'package:go_router/go_router.dart';
+      import 'package:flutter/material.dart';
+      
+      void main() {
+        runApp(MyApp());
+      }
+      
+      class MyApp extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+          return MaterialApp.router(
+            title: 'GoRouter Demo',
+            routerConfig: _router,
+          );
+        }
+      }
+      
+      // ルート定義
+      final _router = GoRouter(
+        initialLocation: '/',
+        routes: [
+          GoRoute(
+            path: '/',
+            builder: (context, state) => HomePage(),
+          ),
+          GoRoute(
+            path: '/users',
+            builder: (context, state) => UserListPage(),
+            routes: [
+              GoRoute(
+                path: '/:userId',
+                builder: (context, state) {
+                  final userId = state.pathParameters['userId']!;
+                  return UserDetailPage(userId: userId);
+                },
+                routes: [
+                  GoRoute(
+                    path: '/edit',
+                    builder: (context, state) {
+                      final userId = state.pathParameters['userId']!;
+                      return UserEditPage(userId: userId);
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
+          GoRoute(
+            path: '/settings',
+            builder: (context, state) => SettingsPage(),
+          ),
+        ],
+      );
+      
+      // ページナビゲーション例
+      class HomePage extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+          return Scaffold(
+            appBar: AppBar(title: Text('Home')),
+            body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () => context.go('/users'),
+                    child: Text('Users'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () => context.push('/settings'),
+                    child: Text('Settings'),
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
+      }
+      
+      class UserListPage extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+          return Scaffold(
+            appBar: AppBar(
+              title: Text('Users'),
+              leading: IconButton(
+                icon: Icon(Icons.arrow_back),
+                onPressed: () => context.go('/'),
+              ),
+            ),
+            body: ListView.builder(
+              itemCount: 10,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text('User $index'),
+                  onTap: () => context.go('/users/$index'),
+                );
+              },
+            ),
+          );
+        }
+      }
+      
+      class UserDetailPage extends StatelessWidget {
+        final String userId;
+        
+        const UserDetailPage({Key? key, required this.userId}) : super(key: key);
+        
+        @override
+        Widget build(BuildContext context) {
+          return Scaffold(
+            appBar: AppBar(
+              title: Text('User $userId'),
+              actions: [
+                IconButton(
+                  icon: Icon(Icons.edit),
+                  onPressed: () => context.go('/users/$userId/edit'),
+                ),
+              ],
+            ),
+            body: Center(
+              child: Column(
+                children: [
+                  Text('User Details for ID: $userId'),
+                  ElevatedButton(
+                    onPressed: () => context.pop(),
+                    child: Text('Back'),
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
+      }
+      
+      // 認証ガード付きルート
+      final _authenticatedRouter = GoRouter(
+        redirect: (context, state) {
+          final isLoggedIn = AuthService.isLoggedIn;
+          final isLoggingIn = state.location == '/login';
+          
+          if (!isLoggedIn && !isLoggingIn) return '/login';
+          if (isLoggedIn && isLoggingIn) return '/';
+          
+          return null;
+        },
+        routes: [
+          GoRoute(
+            path: '/login',
+            builder: (context, state) => LoginPage(),
+          ),
+          GoRoute(
+            path: '/',
+            builder: (context, state) => HomePage(),
+          ),
+          // その他の認証が必要なルート
+        ],
+      );
+      
+      // ボトムナビゲーション対応
+      class ScaffoldWithNavBar extends StatelessWidget {
+        final Widget child;
+        
+        const ScaffoldWithNavBar({Key? key, required this.child}) : super(key: key);
+        
+        @override
+        Widget build(BuildContext context) {
+          return Scaffold(
+            body: child,
+            bottomNavigationBar: BottomNavigationBar(
+              currentIndex: _calculateSelectedIndex(context),
+              onTap: (int idx) => _onItemTapped(idx, context),
+              items: [
+                BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+                BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Users'),
+                BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
+              ],
+            ),
+          );
+        }
+        
+        static int _calculateSelectedIndex(BuildContext context) {
+          final location = GoRouterState.of(context).location;
+          if (location.startsWith('/users')) return 1;
+          if (location.startsWith('/settings')) return 2;
+          return 0;
+        }
+        
+        void _onItemTapped(int index, BuildContext context) {
+          switch (index) {
+            case 0:
+              context.go('/');
+              break;
+            case 1:
+              context.go('/users');
+              break;
+            case 2:
+              context.go('/settings');
+              break;
+          }
+        }
+      }
+
+internationalization:
+  intl:
+    package: "intl"
+    summary: "国際化とローカライゼーション支援"
+    install: |
+      dependencies:
+        flutter_localizations:
+          sdk: flutter
+        intl: ^0.18.1
+        
+      dev_dependencies:
+        intl_utils: ^2.8.5
+    usage: |
+      import 'package:flutter/material.dart';
+      import 'package:flutter_localizations/flutter_localizations.dart';
+      import 'package:intl/intl.dart';
+      import 'generated/l10n.dart';
+      
+      void main() {
+        runApp(MyApp());
+      }
+      
+      class MyApp extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+          return MaterialApp(
+            localizationsDelegates: [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
+            locale: Locale('ja', 'JP'), // デフォルトロケール
+            home: HomePage(),
+          );
+        }
+      }
+      
+      class HomePage extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+          final l10n = S.of(context);
+          
+          return Scaffold(
+            appBar: AppBar(title: Text(l10n.appTitle)),
+            body: Column(
+              children: [
+                Text(l10n.welcomeMessage),
+                Text(l10n.greeting('John')),
+                Text(l10n.itemCount(5)),
+                
+                // 日付フォーマット
+                Text(DateFormat.yMMMd('ja').format(DateTime.now())),
+                
+                // 数値フォーマット
+                Text(NumberFormat.currency(locale: 'ja_JP', symbol: '¥').format(1234.56)),
+                
+                // 複数形対応
+                Text(Intl.plural(
+                  5,
+                  zero: 'アイテムはありません',
+                  one: '1つのアイテム',
+                  other: '${5}個のアイテム',
+                  locale: 'ja',
+                )),
+                
+                ElevatedButton(
+                  onPressed: () => _changeLocale(context),
+                  child: Text(l10n.changeLanguage),
+                ),
+              ],
+            ),
+          );
+        }
+        
+        void _changeLocale(BuildContext context) {
+          // ロケール変更ロジック
+          // 実際の実装では状態管理が必要
+        }
+      }
+      
+      // l10n.yaml設定例
+      /*
+      arb-dir: lib/l10n
+      template-arb-file: app_en.arb
+      output-localization-file: l10n.dart
+      */
+      
+      // lib/l10n/app_en.arb
+      /*
+      {
+        "appTitle": "My App",
+        "welcomeMessage": "Welcome to our app!",
+        "greeting": "Hello, {name}!",
+        "@greeting": {
+          "placeholders": {
+            "name": {
+              "type": "String"
+            }
+          }
+        },
+        "itemCount": "{count, plural, =0{No items} =1{1 item} other{{count} items}}",
+        "@itemCount": {
+          "placeholders": {
+            "count": {
+              "type": "int"
+            }
+          }
+        },
+        "changeLanguage": "Change Language"
+      }
+      */
+      
+      // lib/l10n/app_ja.arb
+      /*
+      {
+        "appTitle": "マイアプリ",
+        "welcomeMessage": "アプリへようこそ！",
+        "greeting": "こんにちは、{name}さん！",
+        "itemCount": "{count, plural, =0{アイテムなし} other{{count}個のアイテム}}",
+        "changeLanguage": "言語を変更"
+      }
+      */
+      
+      // ロケール管理
+      class LocaleProvider extends ChangeNotifier {
+        Locale _locale = Locale('en');
+        
+        Locale get locale => _locale;
+        
+        void setLocale(Locale locale) {
+          if (!S.delegate.supportedLocales.contains(locale)) return;
+          _locale = locale;
+          notifyListeners();
+        }
+        
+        void clearLocale() {
+          _locale = Locale('en');
+          notifyListeners();
+        }
+      }
+
+data_persistence:
+  hive:
+    package: "hive"
+    summary: "軽量で高速なNoSQLデータベース"
+    install: |
+      dependencies:
+        hive: ^2.2.3
+        hive_flutter: ^1.1.0
+      
+      dev_dependencies:
+        hive_generator: ^2.0.1
+        build_runner: ^2.4.7
+    usage: |
+      import 'package:hive/hive.dart';
+      import 'package:hive_flutter/hive_flutter.dart';
+      
+      part 'user.g.dart';
+      
+      @HiveType(typeId: 0)
+      class User extends HiveObject {
+        @HiveField(0)
+        String id;
+        
+        @HiveField(1)
+        String name;
+        
+        @HiveField(2)
+        String email;
+        
+        @HiveField(3)
+        bool isActive;
+        
+        User({
+          required this.id,
+          required this.name,
+          required this.email,
+          this.isActive = true,
+        });
+      }
+      
+      void main() async {
+        await Hive.initFlutter();
+        Hive.registerAdapter(UserAdapter());
+        
+        runApp(MyApp());
+      }
+      
+      class UserService {
+        static const String _boxName = 'users';
+        
+        static Future<Box<User>> get _box async => await Hive.openBox<User>(_boxName);
+        
+        // ユーザー追加
+        static Future<void> addUser(User user) async {
+          final box = await _box;
+          await box.put(user.id, user);
+        }
+        
+        // ユーザー取得
+        static Future<User?> getUser(String id) async {
+          final box = await _box;
+          return box.get(id);
+        }
+        
+        // 全ユーザー取得
+        static Future<List<User>> getAllUsers() async {
+          final box = await _box;
+          return box.values.toList();
+        }
+        
+        // ユーザー更新
+        static Future<void> updateUser(User user) async {
+          final box = await _box;
+          await user.save(); // HiveObjectのメソッド
+        }
+        
+        // ユーザー削除
+        static Future<void> deleteUser(String id) async {
+          final box = await _box;
+          await box.delete(id);
+        }
+        
+        // クエリ例
+        static Future<List<User>> getActiveUsers() async {
+          final box = await _box;
+          return box.values.where((user) => user.isActive).toList();
+        }
+      }
+      
+      // 使用例
+      class UserListPage extends StatefulWidget {
+        @override
+        _UserListPageState createState() => _UserListPageState();
+      }
+      
+      class _UserListPageState extends State<UserListPage> {
+        List<User> users = [];
+        
+        @override
+        void initState() {
+          super.initState();
+          _loadUsers();
+        }
+        
+        Future<void> _loadUsers() async {
+          final loadedUsers = await UserService.getAllUsers();
+          setState(() {
+            users = loadedUsers;
+          });
+        }
+        
+        Future<void> _addUser() async {
+          final newUser = User(
+            id: DateTime.now().millisecondsSinceEpoch.toString(),
+            name: 'New User',
+            email: 'new@example.com',
+          );
+          
+          await UserService.addUser(newUser);
+          await _loadUsers();
+        }
+        
+        @override
+        Widget build(BuildContext context) {
+          return Scaffold(
+            appBar: AppBar(title: Text('Users (Hive)')),
+            body: ListView.builder(
+              itemCount: users.length,
+              itemBuilder: (context, index) {
+                final user = users[index];
+                return ListTile(
+                  title: Text(user.name),
+                  subtitle: Text(user.email),
+                  trailing: IconButton(
+                    icon: Icon(Icons.delete),
+                    onPressed: () async {
+                      await UserService.deleteUser(user.id);
+                      await _loadUsers();
+                    },
+                  ),
+                );
+              },
+            ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: _addUser,
+              child: Icon(Icons.add),
+            ),
+          );
+        }
+      }
+      
+      // ボックス監視
+      class HiveWatchExample extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+          return ValueListenableBuilder<Box<User>>(
+            valueListenable: Hive.box<User>('users').listenable(),
+            builder: (context, box, _) {
+              final users = box.values.toList();
+              
+              return ListView.builder(
+                itemCount: users.length,
+                itemBuilder: (context, index) {
+                  final user = users[index];
+                  return ListTile(
+                    title: Text(user.name),
+                    subtitle: Text(user.email),
+                  );
+                },
+              );
+            },
+          );
+        }
+      }
+  
+  sqflite:
+    package: "sqflite"
+    summary: "SQLiteデータベースアクセス"
+    install: |
+      dependencies:
+        sqflite: ^2.3.0
+        path: ^1.8.3
+    usage: |
+      import 'package:sqflite/sqflite.dart';
+      import 'package:path/path.dart';
+      
+      class DatabaseHelper {
+        static final DatabaseHelper _instance = DatabaseHelper._internal();
+        factory DatabaseHelper() => _instance;
+        DatabaseHelper._internal();
+        
+        static Database? _database;
+        
+        Future<Database> get database async {
+          if (_database != null) return _database!;
+          _database = await _initDatabase();
+          return _database!;
+        }
+        
+        Future<Database> _initDatabase() async {
+          String path = join(await getDatabasesPath(), 'app_database.db');
+          
+          return await openDatabase(
+            path,
+            version: 1,
+            onCreate: _onCreate,
+          );
+        }
+        
+        Future<void> _onCreate(Database db, int version) async {
+          await db.execute('''
+            CREATE TABLE users(
+              id TEXT PRIMARY KEY,
+              name TEXT NOT NULL,
+              email TEXT UNIQUE NOT NULL,
+              created_at INTEGER NOT NULL
+            )
+          ''');
+          
+          await db.execute('''
+            CREATE TABLE posts(
+              id TEXT PRIMARY KEY,
+              user_id TEXT NOT NULL,
+              title TEXT NOT NULL,
+              content TEXT,
+              created_at INTEGER NOT NULL,
+              FOREIGN KEY(user_id) REFERENCES users(id)
+            )
+          ''');
+        }
+        
+        // ユーザー操作
+        Future<int> insertUser(Map<String, dynamic> user) async {
+          final db = await database;
+          return await db.insert('users', user);
+        }
+        
+        Future<List<Map<String, dynamic>>> getAllUsers() async {
+          final db = await database;
+          return await db.query('users', orderBy: 'created_at DESC');
+        }
+        
+        Future<Map<String, dynamic>?> getUser(String id) async {
+          final db = await database;
+          final result = await db.query(
+            'users',
+            where: 'id = ?',
+            whereArgs: [id],
+            limit: 1,
+          );
+          return result.isNotEmpty ? result.first : null;
+        }
+        
+        Future<int> updateUser(String id, Map<String, dynamic> user) async {
+          final db = await database;
+          return await db.update(
+            'users',
+            user,
+            where: 'id = ?',
+            whereArgs: [id],
+          );
+        }
+        
+        Future<int> deleteUser(String id) async {
+          final db = await database;
+          return await db.delete(
+            'users',
+            where: 'id = ?',
+            whereArgs: [id],
+          );
+        }
+        
+        // 複雑なクエリ例
+        Future<List<Map<String, dynamic>>> getUsersWithPostCount() async {
+          final db = await database;
+          return await db.rawQuery('''
+            SELECT 
+              u.id, u.name, u.email, 
+              COUNT(p.id) as post_count
+            FROM users u
+            LEFT JOIN posts p ON u.id = p.user_id
+            GROUP BY u.id, u.name, u.email
+            ORDER BY post_count DESC
+          ''');
+        }
+        
+        // トランザクション例
+        Future<void> transferData() async {
+          final db = await database;
+          await db.transaction((txn) async {
+            await txn.insert('users', {
+              'id': '1',
+              'name': 'John',
+              'email': 'john@example.com',
+              'created_at': DateTime.now().millisecondsSinceEpoch,
+            });
+            
+            await txn.insert('posts', {
+              'id': '1',
+              'user_id': '1',
+              'title': 'First Post',
+              'content': 'Hello, World!',
+              'created_at': DateTime.now().millisecondsSinceEpoch,
+            });
+          });
+        }
+        
+        // バッチ処理
+        Future<void> insertUsers(List<Map<String, dynamic>> users) async {
+          final db = await database;
+          final batch = db.batch();
+          
+          for (final user in users) {
+            batch.insert('users', user);
+          }
+          
+          await batch.commit();
+        }
+      }
+      
+      // 使用例
+      class SqliteExample extends StatefulWidget {
+        @override
+        _SqliteExampleState createState() => _SqliteExampleState();
+      }
+      
+      class _SqliteExampleState extends State<SqliteExample> {
+        final DatabaseHelper _dbHelper = DatabaseHelper();
+        List<Map<String, dynamic>> users = [];
+        
+        @override
+        void initState() {
+          super.initState();
+          _loadUsers();
+        }
+        
+        Future<void> _loadUsers() async {
+          final loadedUsers = await _dbHelper.getAllUsers();
+          setState(() {
+            users = loadedUsers;
+          });
+        }
+        
+        Future<void> _addUser() async {
+          await _dbHelper.insertUser({
+            'id': DateTime.now().millisecondsSinceEpoch.toString(),
+            'name': 'User ${users.length + 1}',
+            'email': 'user${users.length + 1}@example.com',
+            'created_at': DateTime.now().millisecondsSinceEpoch,
+          });
+          await _loadUsers();
+        }
+        
+        @override
+        Widget build(BuildContext context) {
+          return Scaffold(
+            appBar: AppBar(title: Text('SQLite Example')),
+            body: ListView.builder(
+              itemCount: users.length,
+              itemBuilder: (context, index) {
+                final user = users[index];
+                return ListTile(
+                  title: Text(user['name']),
+                  subtitle: Text(user['email']),
+                  trailing: IconButton(
+                    icon: Icon(Icons.delete),
+                    onPressed: () async {
+                      await _dbHelper.deleteUser(user['id']);
+                      await _loadUsers();
+                    },
+                  ),
+                );
+              },
+            ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: _addUser,
+              child: Icon(Icons.add),
+            ),
+          );
+        }
+      }
+  
+  shared_preferences:
+    package: "shared_preferences"
+    summary: "キー値ペアでの簡単データ永続化"
+    install: |
+      dependencies:
+        shared_preferences: ^2.2.2
+    usage: |
+      import 'package:shared_preferences/shared_preferences.dart';
+      
+      class PreferencesService {
+        static const String _keyUsername = 'username';
+        static const String _keyThemeMode = 'theme_mode';
+        static const String _keyNotifications = 'notifications_enabled';
+        static const String _keyCounter = 'counter';
+        static const String _keyUserData = 'user_data';
+        
+        // 文字列
+        static Future<void> setUsername(String username) async {
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.setString(_keyUsername, username);
+        }
+        
+        static Future<String?> getUsername() async {
+          final prefs = await SharedPreferences.getInstance();
+          return prefs.getString(_keyUsername);
+        }
+        
+        // ブール値
+        static Future<void> setNotificationsEnabled(bool enabled) async {
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.setBool(_keyNotifications, enabled);
+        }
+        
+        static Future<bool> getNotificationsEnabled() async {
+          final prefs = await SharedPreferences.getInstance();
+          return prefs.getBool(_keyNotifications) ?? false;
+        }
+        
+        // 整数
+        static Future<void> setCounter(int count) async {
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.setInt(_keyCounter, count);
+        }
+        
+        static Future<int> getCounter() async {
+          final prefs = await SharedPreferences.getInstance();
+          return prefs.getInt(_keyCounter) ?? 0;
+        }
+        
+        // リスト
+        static Future<void> setStringList(String key, List<String> list) async {
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.setStringList(key, list);
+        }
+        
+        static Future<List<String>> getStringList(String key) async {
+          final prefs = await SharedPreferences.getInstance();
+          return prefs.getStringList(key) ?? [];
+        }
+        
+        // JSON データ
+        static Future<void> setUserData(Map<String, dynamic> userData) async {
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.setString(_keyUserData, jsonEncode(userData));
+        }
+        
+        static Future<Map<String, dynamic>?> getUserData() async {
+          final prefs = await SharedPreferences.getInstance();
+          final jsonString = prefs.getString(_keyUserData);
+          if (jsonString != null) {
+            return jsonDecode(jsonString) as Map<String, dynamic>;
+          }
+          return null;
+        }
+        
+        // データ削除
+        static Future<void> removeData(String key) async {
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.remove(key);
+        }
+        
+        // 全データクリア
+        static Future<void> clearAll() async {
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.clear();
+        }
+        
+        // キーの存在確認
+        static Future<bool> containsKey(String key) async {
+          final prefs = await SharedPreferences.getInstance();
+          return prefs.containsKey(key);
+        }
+        
+        // 全キー取得
+        static Future<Set<String>> getAllKeys() async {
+          final prefs = await SharedPreferences.getInstance();
+          return prefs.getKeys();
+        }
+      }
+      
+      // 使用例
+      class SettingsPage extends StatefulWidget {
+        @override
+        _SettingsPageState createState() => _SettingsPageState();
+      }
+      
+      class _SettingsPageState extends State<SettingsPage> {
+        String username = '';
+        bool notificationsEnabled = false;
+        int counter = 0;
+        
+        @override
+        void initState() {
+          super.initState();
+          _loadSettings();
+        }
+        
+        Future<void> _loadSettings() async {
+          final loadedUsername = await PreferencesService.getUsername();
+          final loadedNotifications = await PreferencesService.getNotificationsEnabled();
+          final loadedCounter = await PreferencesService.getCounter();
+          
+          setState(() {
+            username = loadedUsername ?? '';
+            notificationsEnabled = loadedNotifications;
+            counter = loadedCounter;
+          });
+        }
+        
+        Future<void> _saveUsername(String value) async {
+          await PreferencesService.setUsername(value);
+          setState(() {
+            username = value;
+          });
+        }
+        
+        Future<void> _toggleNotifications(bool value) async {
+          await PreferencesService.setNotificationsEnabled(value);
+          setState(() {
+            notificationsEnabled = value;
+          });
+        }
+        
+        Future<void> _incrementCounter() async {
+          final newCounter = counter + 1;
+          await PreferencesService.setCounter(newCounter);
+          setState(() {
+            counter = newCounter;
+          });
+        }
+        
+        @override
+        Widget build(BuildContext context) {
+          return Scaffold(
+            appBar: AppBar(title: Text('Settings')),
+            body: Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Username'),
+                    controller: TextEditingController(text: username),
+                    onChanged: _saveUsername,
+                  ),
+                  SwitchListTile(
+                    title: Text('Notifications'),
+                    value: notificationsEnabled,
+                    onChanged: _toggleNotifications,
+                  ),
+                  ListTile(
+                    title: Text('Counter: $counter'),
+                    trailing: IconButton(
+                      icon: Icon(Icons.add),
+                      onPressed: _incrementCounter,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
+      }
+      
+      // 設定管理クラス例
+      class AppSettings {
+        static const String _keyThemeMode = 'theme_mode';
+        static const String _keyLanguage = 'language';
+        
+        static Future<ThemeMode> getThemeMode() async {
+          final prefs = await SharedPreferences.getInstance();
+          final themeModeIndex = prefs.getInt(_keyThemeMode) ?? 0;
+          return ThemeMode.values[themeModeIndex];
+        }
+        
+        static Future<void> setThemeMode(ThemeMode themeMode) async {
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.setInt(_keyThemeMode, themeMode.index);
+        }
+        
+        static Future<Locale> getLocale() async {
+          final prefs = await SharedPreferences.getInstance();
+          final languageCode = prefs.getString(_keyLanguage) ?? 'en';
+          return Locale(languageCode);
+        }
+        
+        static Future<void> setLocale(Locale locale) async {
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.setString(_keyLanguage, locale.languageCode);
+        }
+      }
+
+firebase_integration:
+  firebase_core:
+    package: "firebase_core"
+    summary: "Firebase初期化とコア機能"
+    install: |
+      dependencies:
+        firebase_core: ^2.24.2
+        firebase_auth: ^4.15.3
+        cloud_firestore: ^4.13.6
+        firebase_messaging: ^14.7.10
+        firebase_analytics: ^10.7.4
+        firebase_crashlytics: ^3.4.9
+    usage: |
+      import 'package:firebase_core/firebase_core.dart';
+      import 'firebase_options.dart';
+      
+      void main() async {
+        WidgetsFlutterBinding.ensureInitialized();
+        
+        await Firebase.initializeApp(
+          options: DefaultFirebaseOptions.currentPlatform,
+        );
+        
+        runApp(MyApp());
+      }
+      
+      // Firebase設定例（firebase_options.dart）
+      class DefaultFirebaseOptions {
+        static FirebaseOptions get currentPlatform {
+          switch (defaultTargetPlatform) {
+            case TargetPlatform.android:
+              return android;
+            case TargetPlatform.iOS:
+              return ios;
+            default:
+              throw UnsupportedError(
+                'DefaultFirebaseOptions have not been configured for this platform.',
+              );
+          }
+        }
+        
+        static const FirebaseOptions android = FirebaseOptions(
+          apiKey: 'your-api-key',
+          appId: 'your-app-id',
+          messagingSenderId: 'your-sender-id',
+          projectId: 'your-project-id',
+        );
+        
+        static const FirebaseOptions ios = FirebaseOptions(
+          apiKey: 'your-api-key',
+          appId: 'your-app-id',
+          messagingSenderId: 'your-sender-id',
+          projectId: 'your-project-id',
+          iosBundleId: 'com.example.yourapp',
+        );
+      }
+  
+  firebase_auth:
+    package: "firebase_auth"
+    summary: "Firebase Authentication"
+    usage: |
+      import 'package:firebase_auth/firebase_auth.dart';
+      
+      class AuthService {
+        final FirebaseAuth _auth = FirebaseAuth.instance;
+        
+        // 現在のユーザー
+        User? get currentUser => _auth.currentUser;
+        
+        // 認証状態の監視
+        Stream<User?> get authStateChanges => _auth.authStateChanges();
+        
+        // メール/パスワードでサインアップ
+        Future<UserCredential?> signUpWithEmailAndPassword(
+          String email,
+          String password,
+        ) async {
+          try {
+            final credential = await _auth.createUserWithEmailAndPassword(
+              email: email,
+              password: password,
+            );
+            return credential;
+          } on FirebaseAuthException catch (e) {
+            throw _handleAuthException(e);
+          }
+        }
+        
+        // メール/パスワードでサインイン
+        Future<UserCredential?> signInWithEmailAndPassword(
+          String email,
+          String password,
+        ) async {
+          try {
+            final credential = await _auth.signInWithEmailAndPassword(
+              email: email,
+              password: password,
+            );
+            return credential;
+          } on FirebaseAuthException catch (e) {
+            throw _handleAuthException(e);
+          }
+        }
+        
+        // サインアウト
+        Future<void> signOut() async {
+          await _auth.signOut();
+        }
+        
+        // パスワードリセット
+        Future<void> resetPassword(String email) async {
+          try {
+            await _auth.sendPasswordResetEmail(email: email);
+          } on FirebaseAuthException catch (e) {
+            throw _handleAuthException(e);
+          }
+        }
+        
+        // メール確認
+        Future<void> sendEmailVerification() async {
+          final user = currentUser;
+          if (user != null && !user.emailVerified) {
+            await user.sendEmailVerification();
+          }
+        }
+        
+        // プロフィール更新
+        Future<void> updateProfile({
+          String? displayName,
+          String? photoURL,
+        }) async {
+          final user = currentUser;
+          if (user != null) {
+            await user.updateDisplayName(displayName);
+            await user.updatePhotoURL(photoURL);
+          }
+        }
+        
+        // エラーハンドリング
+        String _handleAuthException(FirebaseAuthException e) {
+          switch (e.code) {
+            case 'weak-password':
+              return 'パスワードが弱すぎます';
+            case 'email-already-in-use':
+              return 'このメールアドレスは既に使用されています';
+            case 'user-not-found':
+              return 'ユーザーが見つかりません';
+            case 'wrong-password':
+              return 'パスワードが間違っています';
+            case 'invalid-email':
+              return '無効なメールアドレスです';
+            default:
+              return e.message ?? '認証エラーが発生しました';
+          }
+        }
+      }
+      
+      // 使用例
+      class LoginPage extends StatefulWidget {
+        @override
+        _LoginPageState createState() => _LoginPageState();
+      }
+      
+      class _LoginPageState extends State<LoginPage> {
+        final _formKey = GlobalKey<FormState>();
+        final _emailController = TextEditingController();
+        final _passwordController = TextEditingController();
+        final _authService = AuthService();
+        bool _isLoading = false;
+        
+        Future<void> _signIn() async {
+          if (_formKey.currentState!.validate()) {
+            setState(() {
+              _isLoading = true;
+            });
+            
+            try {
+              await _authService.signInWithEmailAndPassword(
+                _emailController.text,
+                _passwordController.text,
+              );
+              Navigator.pushReplacementNamed(context, '/home');
+            } catch (e) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(e.toString())),
+              );
+            } finally {
+              setState(() {
+                _isLoading = false;
+              });
+            }
+          }
+        }
+        
+        @override
+        Widget build(BuildContext context) {
+          return Scaffold(
+            appBar: AppBar(title: Text('Login')),
+            body: Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      controller: _emailController,
+                      decoration: InputDecoration(labelText: 'Email'),
+                      keyboardType: TextInputType.emailAddress,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'メールアドレスを入力してください';
+                        }
+                        return null;
+                      },
+                    ),
+                    TextFormField(
+                      controller: _passwordController,
+                      decoration: InputDecoration(labelText: 'Password'),
+                      obscureText: true,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'パスワードを入力してください';
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: 20),
+                    _isLoading
+                        ? CircularProgressIndicator()
+                        : ElevatedButton(
+                            onPressed: _signIn,
+                            child: Text('Sign In'),
+                          ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        }
+      }
+  
+  cloud_firestore:
+    package: "cloud_firestore"
+    summary: "Firestoreデータベース操作"
+    usage: |
+      import 'package:cloud_firestore/cloud_firestore.dart';
+      
+      class FirestoreService {
+        final FirebaseFirestore _db = FirebaseFirestore.instance;
+        
+        // ドキュメント追加
+        Future<DocumentReference> addDocument(
+          String collection,
+          Map<String, dynamic> data,
+        ) async {
+          data['created_at'] = FieldValue.serverTimestamp();
+          return await _db.collection(collection).add(data);
+        }
+        
+        // ドキュメント取得
+        Future<DocumentSnapshot> getDocument(
+          String collection,
+          String docId,
+        ) async {
+          return await _db.collection(collection).doc(docId).get();
+        }
+        
+        // ドキュメント更新
+        Future<void> updateDocument(
+          String collection,
+          String docId,
+          Map<String, dynamic> data,
+        ) async {
+          data['updated_at'] = FieldValue.serverTimestamp();
+          await _db.collection(collection).doc(docId).update(data);
+        }
+        
+        // ドキュメント削除
+        Future<void> deleteDocument(
+          String collection,
+          String docId,
+        ) async {
+          await _db.collection(collection).doc(docId).delete();
+        }
+        
+        // コレクション取得
+        Stream<QuerySnapshot> getCollection(String collection) {
+          return _db
+              .collection(collection)
+              .orderBy('created_at', descending: true)
+              .snapshots();
+        }
+        
+        // クエリ例
+        Stream<QuerySnapshot> getFilteredData(
+          String collection,
+          String field,
+          dynamic value,
+        ) {
+          return _db
+              .collection(collection)
+              .where(field, isEqualTo: value)
+              .snapshots();
+        }
+        
+        // バッチ処理
+        Future<void> batchWrite(List<Map<String, dynamic>> operations) async {
+          final batch = _db.batch();
+          
+          for (final operation in operations) {
+            final type = operation['type'];
+            final collection = operation['collection'];
+            final docId = operation['docId'];
+            final data = operation['data'];
+            
+            final ref = _db.collection(collection).doc(docId);
+            
+            switch (type) {
+              case 'set':
+                batch.set(ref, data);
+                break;
+              case 'update':
+                batch.update(ref, data);
+                break;
+              case 'delete':
+                batch.delete(ref);
+                break;
+            }
+          }
+          
+          await batch.commit();
+        }
+        
+        // トランザクション
+        Future<void> runTransaction() async {
+          await _db.runTransaction((transaction) async {
+            final docRef = _db.collection('counters').doc('global');
+            final snapshot = await transaction.get(docRef);
+            
+            if (!snapshot.exists) {
+              transaction.set(docRef, {'count': 1});
+            } else {
+              final currentCount = snapshot.data()!['count'] as int;
+              transaction.update(docRef, {'count': currentCount + 1});
+            }
+          });
+        }
+      }
+      
+      // 使用例
+      class PostsPage extends StatelessWidget {
+        final FirestoreService _firestoreService = FirestoreService();
+        
+        @override
+        Widget build(BuildContext context) {
+          return Scaffold(
+            appBar: AppBar(title: Text('Posts')),
+            body: StreamBuilder<QuerySnapshot>(
+              stream: _firestoreService.getCollection('posts'),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return Center(child: Text('Error: ${snapshot.error}'));
+                }
+                
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: CircularProgressIndicator());
+                }
+                
+                final posts = snapshot.data!.docs;
+                
+                return ListView.builder(
+                  itemCount: posts.length,
+                  itemBuilder: (context, index) {
+                    final post = posts[index].data() as Map<String, dynamic>;
+                    
+                    return ListTile(
+                      title: Text(post['title'] ?? ''),
+                      subtitle: Text(post['content'] ?? ''),
+                      trailing: IconButton(
+                        icon: Icon(Icons.delete),
+                        onPressed: () async {
+                          await _firestoreService.deleteDocument(
+                            'posts',
+                            posts[index].id,
+                          );
+                        },
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () async {
+                await _firestoreService.addDocument('posts', {
+                  'title': 'New Post',
+                  'content': 'This is a new post',
+                  'author_id': FirebaseAuth.instance.currentUser?.uid,
+                });
+              },
+              child: Icon(Icons.add),
+            ),
+          );
+        }
+      }
+  
+  firebase_messaging:
+    package: "firebase_messaging"
+    summary: "プッシュ通知機能"
+    usage: |
+      import 'package:firebase_messaging/firebase_messaging.dart';
+      import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+      
+      class NotificationService {
+        final FirebaseMessaging _messaging = FirebaseMessaging.instance;
+        final FlutterLocalNotificationsPlugin _localNotifications =
+            FlutterLocalNotificationsPlugin();
+        
+        Future<void> initialize() async {
+          // 権限リクエスト
+          NotificationSettings settings = await _messaging.requestPermission(
+            alert: true,
+            badge: true,
+            sound: true,
+          );
+          
+          if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+            print('User granted permission');
+          }
+          
+          // FCMトークン取得
+          String? token = await _messaging.getToken();
+          print('FCM Token: $token');
+          
+          // ローカル通知設定
+          const AndroidInitializationSettings initializationSettingsAndroid =
+              AndroidInitializationSettings('@mipmap/ic_launcher');
+          
+          const InitializationSettings initializationSettings =
+              InitializationSettings(
+            android: initializationSettingsAndroid,
+          );
+          
+          await _localNotifications.initialize(initializationSettings);
+          
+          // フォアグラウンド通知設定
+          FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+            _showLocalNotification(message);
+          });
+          
+          // バックグラウンド通知設定
+          FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+            _handleNotificationTap(message);
+          });
+        }
+        
+        Future<void> _showLocalNotification(RemoteMessage message) async {
+          const AndroidNotificationDetails androidPlatformChannelSpecifics =
+              AndroidNotificationDetails(
+            'default_channel',
+            'Default Channel',
+            importance: Importance.max,
+            priority: Priority.high,
+          );
+          
+          const NotificationDetails platformChannelSpecifics =
+              NotificationDetails(android: androidPlatformChannelSpecifics);
+          
+          await _localNotifications.show(
+            message.hashCode,
+            message.notification?.title,
+            message.notification?.body,
+            platformChannelSpecifics,
+          );
+        }
+        
+        void _handleNotificationTap(RemoteMessage message) {
+          // 通知タップ時の処理
+          print('Notification tapped: ${message.data}');
+        }
+        
+        // トピック購読
+        Future<void> subscribeToTopic(String topic) async {
+          await _messaging.subscribeToTopic(topic);
+        }
+        
+        // トピック購読解除
+        Future<void> unsubscribeFromTopic(String topic) async {
+          await _messaging.unsubscribeFromTopic(topic);
+        }
+      }
+      
+      // バックグラウンドメッセージハンドラー
+      @pragma('vm:entry-point')
+      Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+        await Firebase.initializeApp();
+        print('Handling a background message: ${message.messageId}');
+      }
+      
+      void main() async {
+        WidgetsFlutterBinding.ensureInitialized();
+        await Firebase.initializeApp();
+        
+        // バックグラウンドハンドラー設定
+        FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+        
+        runApp(MyApp());
+      }
+
+best_practices:
+  - "BLoCまたはRiverpodで一貫した状態管理アーキテクチャを選択し、プロジェクト全体で統一する"
+  - "go_routerで宣言的ルーティングを実装し、ディープリンクとナビゲーションを適切に管理する"
+  - "freezedで不変データクラスを作成し、型安全性とコードの一貫性を確保する"
+  - "適切なデータ永続化戦略を選択（SharedPreferences: 設定、Hive: 軽量データ、SQLite: 複雑なリレーション、Firestore: リアルタイム同期）"
+  - "intlで国際化対応を早期から実装し、グローバル展開に備える"
+  - "Firebase Authenticationでセキュアな認証フローを実装し、エラーハンドリングを適切に行う"
+  - "レスポンシブデザインを考慮し、異なる画面サイズに対応したUIを構築する"
+  - "パフォーマンス最適化（ウィジェットの適切な分割、const constructorの使用、不要なrebuildの回避）"
+  - "エラーハンドリングとログ出力を適切に実装し、本番環境での問題特定を容易にする"
+  - "テスト可能な設計（依存性注入、Repository pattern）を心がける"
+  - "Firestore Security Rulesを適切に設定し、データセキュリティを確保する"
+  - "プッシュ通知の適切な権限管理とユーザー体験を考慮した実装"
+

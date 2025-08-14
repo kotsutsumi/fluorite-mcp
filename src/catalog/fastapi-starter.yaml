@@ -1,0 +1,107 @@
+id: "fastapi-starter"
+name: "FastAPI スターター（SQLModel + Alembic + /healthz）"
+homepage: "https://fastapi.tiangolo.com/"
+summary: "FastAPI + SQLModel（SQLAlchemy/Pydantic）+ Alembic マイグレーションの実務スターター。/healthz を含む最小 API と開発/本番コマンドを同梱。"
+stack:
+  - "fastapi"
+  - "uvicorn"
+  - "sqlmodel"
+  - "alembic"
+  - "pydantic"
+install:
+  steps:
+    - "pip install fastapi uvicorn sqlmodel alembic pydantic"
+structure: |
+  app/
+    __init__.py
+    main.py
+    db.py
+    models.py
+    routers/
+      health.py
+  alembic.ini
+  alembic/
+    env.py
+    versions/
+snippets:
+  db: |
+    # app/db.py
+    from sqlmodel import SQLModel, create_engine, Session
+    DATABASE_URL = "sqlite:///./app.db"
+    engine = create_engine(DATABASE_URL, echo=False)
+    def get_session():
+        with Session(engine) as session:
+            yield session
+  models: |
+    # app/models.py
+    from typing import Optional
+    from sqlmodel import SQLModel, Field
+    class User(SQLModel, table=True):
+        id: Optional[int] = Field(default=None, primary_key=True)
+        email: str
+        name: str
+  health-router: |
+    # app/routers/health.py
+    from fastapi import APIRouter
+    router = APIRouter()
+    @router.get("/healthz")
+    def healthz():
+        return {"status": "ok"}
+  main: |
+    # app/main.py
+    from fastapi import FastAPI
+    from sqlmodel import SQLModel
+    from .db import engine
+    from .routers.health import router as health_router
+    app = FastAPI()
+    @app.on_event("startup")
+    def on_startup():
+        SQLModel.metadata.create_all(engine)  # dev-only; prod uses Alembic
+    app.include_router(health_router)
+  alembic-env: |
+    # alembic/env.py (excerpt)
+    from logging.config import fileConfig
+    from sqlalchemy import engine_from_config, pool
+    from alembic import context
+    from app.models import SQLModel
+    config = context.config
+    if config.config_file_name is not None:
+        fileConfig(config.config_file_name)
+    target_metadata = SQLModel.metadata
+    def run_migrations_offline():
+        context.configure(url="sqlite:///./app.db", target_metadata=target_metadata, literal_binds=True)
+        with context.begin_transaction():
+            context.run_migrations()
+    def run_migrations_online():
+        connectable = engine_from_config(config.get_section(config.config_ini_section), prefix="sqlalchemy.", poolclass=pool.NullPool)
+        with connectable.connect() as connection:
+            context.configure(connection=connection, target_metadata=target_metadata)
+            with context.begin_transaction():
+                context.run_migrations()
+    if context.is_offline_mode():
+        run_migrations_offline()
+    else:
+        run_migrations_online()
+commands:
+  dev: "uvicorn app.main:app --reload --host 0.0.0.0 --port 8000"
+  migrate: |
+    alembic init alembic
+    alembic revision --autogenerate -m "init"
+    alembic upgrade head
+  requirements: |
+    # requirements.txt (example)
+    fastapi>=0.110
+    uvicorn[standard]>=0.29
+    sqlmodel>=0.0.16
+    alembic>=1.13
+    pydantic>=2.7
+bestPractices:
+  - "開発は SQLModel.metadata.create_all()、本番は Alembic を使用してスキーマを管理"
+  - "設定/秘密は環境変数で注入し、.env はローカル限定"
+  - "/healthz と /metrics（必要なら）を用意し、ヘルスチェック/監視を早期導入"
+references:
+  - "FastAPI: https://fastapi.tiangolo.com/"
+  - "SQLModel: https://sqlmodel.tiangolo.com/"
+  - "Alembic: https://alembic.sqlalchemy.org/"
+license: "MIT"
+lastReviewed: "2025-08-15"

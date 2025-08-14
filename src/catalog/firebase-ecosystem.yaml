@@ -1,0 +1,49 @@
+id: "firebase-ecosystem"
+name: "Firebase エコシステム"
+homepage: "https://firebase.google.com/docs"
+summary: "Firebase のクライアント/サーバ SDK、各フレームワーク向けバインディング、CLI を網羅。Auth/Firestore/Storage/Functions/Messaging 等に対応。"
+packages:
+  - name: "firebase"
+    homepage: "https://firebase.google.com/docs/web/setup"
+    summary: "Web（JS）公式 SDK（modular API）。"
+    install:
+      - "npm i firebase"
+  - name: "firebase-admin"
+    homepage: "https://firebase.google.com/docs/admin/setup"
+    summary: "サーバーサイド向け Admin SDK。"
+    install:
+      - "npm i firebase-admin"
+  - name: "reactfire"
+    homepage: "https://github.com/FirebaseExtended/reactfire"
+    summary: "React 用 Hooks/Provider。"
+    install:
+      - "npm i reactfire"
+  - name: "vuefire"
+    homepage: "https://vuefire.vuejs.org/"
+    summary: "Vue 用の公式バインディング。"
+    install:
+      - "npm i vuefire"
+  - name: "angularfire"
+    homepage: "https://github.com/angular/angularfire"
+    summary: "Angular 用の公式バインディング。"
+    install:
+      - "npm i @angular/fire firebase"
+  - name: "firebase-functions"
+    homepage: "https://firebase.google.com/docs/functions"
+    summary: "Cloud Functions for Firebase Node.js SDK。"
+    install:
+      - "npm i firebase-functions"
+  - name: "firebase-tools"
+    homepage: "https://firebase.google.com/docs/cli"
+    summary: "CLI（deploy/emulators/hosting）。"
+    install:
+      - "npm i -g firebase-tools"
+bestPractices:
+  - "クライアント SDK は最小権限のセキュリティルールと組み合わせる"
+  - "Admin SDK はサーバーのみで使用し、秘密情報は Functions/サーバに隔離"
+  - "エミュレータスイートでローカル統合を確立"
+references:
+  - "Docs: https://firebase.google.com/docs"
+license: "Apache-2.0"
+lastReviewed: "2025-08-15"
+

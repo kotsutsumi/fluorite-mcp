@@ -1,0 +1,952 @@
+id: "vue-ecosystem"
+name: "Vue Ecosystem Packages"
+homepage: "https://vuejs.org/ecosystem"
+summary: "Vue.js エコシステムの主要パッケージ群。状態管理、UIコンポーネント、ルーティング、フォームバリデーション、国際化、開発ツールなどモダンVueアプリケーション開発に必要な全てを網羅。"
+
+state_management:
+  pinia:
+    package: "pinia"
+    summary: "Vue 3公式推奨の軽量で直感的な状態管理。TypeScript完全対応、DevTools統合、モジュラー設計。"
+    install: "npm i pinia"
+    usage: |
+      // stores/counter.ts
+      import { defineStore } from 'pinia'
+      import { ref, computed } from 'vue'
+      
+      export const useCounterStore = defineStore('counter', () => {
+        // State
+        const count = ref(0)
+        const name = ref('Eduardo')
+        
+        // Getters
+        const doubleCount = computed(() => count.value * 2)
+        const greeting = computed(() => `Hello ${name.value}!`)
+        
+        // Actions
+        function increment() {
+          count.value++
+        }
+        
+        async function fetchData() {
+          const response = await fetch('/api/data')
+          const data = await response.json()
+          count.value = data.count
+        }
+        
+        return { count, name, doubleCount, greeting, increment, fetchData }
+      })
+      
+      // コンポーネントでの使用
+      <script setup>
+      import { useCounterStore } from '@/stores/counter'
+      import { storeToRefs } from 'pinia'
+      
+      const store = useCounterStore()
+      // リアクティビティを保持して分割代入
+      const { count, doubleCount } = storeToRefs(store)
+      // アクションは直接分割代入可能
+      const { increment } = store
+      </script>
+      
+      <template>
+        <button @click="increment">Count: {{ count }}</button>
+        <p>Double: {{ doubleCount }}</p>
+      </template>
+  
+  tanstack_query:
+    package: "@tanstack/vue-query"
+    summary: "強力なサーバー状態管理。キャッシング、同期、バックグラウンド更新を自動化。"
+    install: "npm i @tanstack/vue-query"
+    usage: |
+      // main.ts
+      import { VueQueryPlugin } from '@tanstack/vue-query'
+      
+      app.use(VueQueryPlugin, {
+        queryClientConfig: {
+          defaultOptions: {
+            queries: {
+              staleTime: 1000 * 60 * 5, // 5分
+              cacheTime: 1000 * 60 * 10, // 10分
+              retry: 3,
+              retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 30000),
+            },
+          },
+        },
+      })
+      
+      // composables/useProducts.ts
+      import { useQuery, useMutation, useQueryClient } from '@tanstack/vue-query'
+      
+      export function useProducts() {
+        return useQuery({
+          queryKey: ['products'],
+          queryFn: async () => {
+            const response = await fetch('/api/products')
+            if (!response.ok) throw new Error('Failed to fetch')
+            return response.json()
+          },
+          staleTime: 1000 * 60 * 5,
+          refetchOnWindowFocus: false,
+        })
+      }
+      
+      export function useCreateProduct() {
+        const queryClient = useQueryClient()
+        
+        return useMutation({
+          mutationFn: async (product: Product) => {
+            const response = await fetch('/api/products', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(product),
+            })
+            return response.json()
+          },
+          onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['products'] })
+          },
+          onError: (error) => {
+            console.error('Failed to create product:', error)
+          },
+        })
+      }
+      
+      // コンポーネントでの使用
+      <script setup>
+      import { useProducts, useCreateProduct } from '@/composables/useProducts'
+      
+      const { data: products, isLoading, error, refetch } = useProducts()
+      const { mutate: createProduct, isPending } = useCreateProduct()
+      </script>
+  
+  vuex:
+    package: "vuex"
+    summary: "レガシー状態管理ライブラリ。Vue 2プロジェクトや既存システムとの互換性維持に使用。"
+    install: "npm i vuex@4"
+    usage: |
+      // store/index.ts
+      import { createStore } from 'vuex'
+      
+      export default createStore({
+        state: {
+          count: 0,
+          user: null
+        },
+        getters: {
+          doubleCount: state => state.count * 2,
+          isLoggedIn: state => !!state.user
+        },
+        mutations: {
+          increment(state) {
+            state.count++
+          },
+          setUser(state, user) {
+            state.user = user
+          }
+        },
+        actions: {
+          async login({ commit }, credentials) {
+            const response = await fetch('/api/login', {
+              method: 'POST',
+              body: JSON.stringify(credentials)
+            })
+            const user = await response.json()
+            commit('setUser', user)
+            return user
+          }
+        },
+        modules: {
+          // モジュール定義
+        }
+      })
+
+ui_components:
+  vuetify:
+    package: "vuetify"
+    summary: "Material Design準拠の包括的UIフレームワーク。エンタープライズグレードのコンポーネント群。"
+    install: |
+      npm i vuetify
+      npm i -D @mdi/font
+    usage: |
+      // main.ts
+      import 'vuetify/styles'
+      import { createVuetify } from 'vuetify'
+      import * as components from 'vuetify/components'
+      import * as directives from 'vuetify/directives'
+      
+      const vuetify = createVuetify({
+        components,
+        directives,
+        theme: {
+          defaultTheme: 'dark',
+          themes: {
+            dark: {
+              colors: {
+                primary: '#1976D2',
+                secondary: '#424242',
+                accent: '#82B1FF',
+              }
+            }
+          }
+        }
+      })
+      
+      app.use(vuetify)
+      
+      // コンポーネント使用例
+      <template>
+        <v-app>
+          <v-app-bar color="primary">
+            <v-app-bar-nav-icon></v-app-bar-nav-icon>
+            <v-toolbar-title>My App</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-btn icon>
+              <v-icon>mdi-magnify</v-icon>
+            </v-btn>
+          </v-app-bar>
+          
+          <v-main>
+            <v-container>
+              <v-row>
+                <v-col cols="12" md="6">
+                  <v-card>
+                    <v-card-title>Card Title</v-card-title>
+                    <v-card-text>Content here</v-card-text>
+                    <v-card-actions>
+                      <v-btn color="primary">Action</v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-main>
+        </v-app>
+      </template>
+  
+  naive_ui:
+    package: "naive-ui"
+    summary: "TypeScript完全対応のモダンUIライブラリ。Tree-shakeable、90+コンポーネント。"
+    install: "npm i naive-ui"
+    usage: |
+      // main.ts (完全インポート)
+      import naive from 'naive-ui'
+      app.use(naive)
+      
+      // または自動インポート (推奨)
+      // vite.config.ts
+      import AutoImport from 'unplugin-auto-import/vite'
+      import Components from 'unplugin-vue-components/vite'
+      import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
+      
+      export default {
+        plugins: [
+          AutoImport({
+            resolvers: [NaiveUiResolver()]
+          }),
+          Components({
+            resolvers: [NaiveUiResolver()]
+          })
+        ]
+      }
+      
+      // コンポーネント使用例
+      <template>
+        <n-config-provider :theme="darkTheme" :locale="zhCN">
+          <n-space vertical>
+            <n-button type="primary" @click="handleClick">
+              Primary Button
+            </n-button>
+            
+            <n-form :model="formValue" :rules="rules" ref="formRef">
+              <n-form-item label="Name" path="name">
+                <n-input v-model:value="formValue.name" />
+              </n-form-item>
+              <n-form-item label="Age" path="age">
+                <n-input-number v-model:value="formValue.age" />
+              </n-form-item>
+            </n-form>
+            
+            <n-data-table
+              :columns="columns"
+              :data="data"
+              :pagination="pagination"
+              :loading="loading"
+            />
+          </n-space>
+        </n-config-provider>
+      </template>
+  
+  element_plus:
+    package: "element-plus"
+    summary: "エンタープライズ向けVue 3 UIライブラリ。デスクトップファースト、豊富なコンポーネント。"
+    install: "npm i element-plus"
+    usage: |
+      // main.ts (完全インポート)
+      import ElementPlus from 'element-plus'
+      import 'element-plus/dist/index.css'
+      import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+      
+      app.use(ElementPlus)
+      for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+        app.component(key, component)
+      }
+      
+      // 自動インポート設定
+      // vite.config.ts
+      import AutoImport from 'unplugin-auto-import/vite'
+      import Components from 'unplugin-vue-components/vite'
+      import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+      
+      export default {
+        plugins: [
+          AutoImport({
+            resolvers: [ElementPlusResolver()],
+          }),
+          Components({
+            resolvers: [ElementPlusResolver()],
+          }),
+        ],
+      }
+      
+      // コンポーネント使用例
+      <template>
+        <el-container>
+          <el-header>Header</el-header>
+          <el-container>
+            <el-aside width="200px">
+              <el-menu>
+                <el-menu-item index="1">
+                  <el-icon><Document /></el-icon>
+                  <span>Navigator One</span>
+                </el-menu-item>
+              </el-menu>
+            </el-aside>
+            <el-main>
+              <el-form :model="form" :rules="rules" ref="formRef">
+                <el-form-item label="Activity name" prop="name">
+                  <el-input v-model="form.name" />
+                </el-form-item>
+                <el-form-item label="Activity zone" prop="region">
+                  <el-select v-model="form.region" placeholder="Select">
+                    <el-option label="Zone one" value="shanghai" />
+                    <el-option label="Zone two" value="beijing" />
+                  </el-select>
+                </el-form-item>
+                <el-form-item>
+                  <el-button type="primary" @click="submitForm">Create</el-button>
+                  <el-button @click="resetForm">Reset</el-button>
+                </el-form-item>
+              </el-form>
+              
+              <el-table :data="tableData" style="width: 100%">
+                <el-table-column prop="date" label="Date" width="180" />
+                <el-table-column prop="name" label="Name" width="180" />
+                <el-table-column prop="address" label="Address" />
+              </el-table>
+            </el-main>
+          </el-container>
+        </el-container>
+      </template>
+  
+  quasar:
+    package: "quasar"
+    summary: "フルスタックVueフレームワーク。Web、モバイル、デスクトップを単一コードベースで開発。"
+    install: |
+      npm i -g @quasar/cli
+      npm init quasar
+    usage: |
+      // quasar.config.js
+      module.exports = {
+        framework: {
+          plugins: ['Notify', 'Dialog', 'Loading'],
+          config: {
+            brand: {
+              primary: '#1976d2',
+              secondary: '#26A69A',
+              accent: '#9C27B0',
+            }
+          }
+        }
+      }
+      
+      // コンポーネント使用例
+      <template>
+        <q-layout view="lHh Lpr lFf">
+          <q-header elevated>
+            <q-toolbar>
+              <q-btn flat dense round icon="menu" @click="leftDrawerOpen = !leftDrawerOpen" />
+              <q-toolbar-title>Quasar App</q-toolbar-title>
+            </q-toolbar>
+          </q-header>
+          
+          <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
+            <q-list>
+              <q-item clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="inbox" />
+                </q-item-section>
+                <q-item-section>Inbox</q-item-section>
+              </q-item>
+            </q-list>
+          </q-drawer>
+          
+          <q-page-container>
+            <q-page padding>
+              <q-card class="q-ma-md">
+                <q-card-section>
+                  <div class="text-h6">Card Title</div>
+                </q-card-section>
+                <q-card-section>
+                  <q-form @submit="onSubmit">
+                    <q-input v-model="name" label="Name" :rules="[val => !!val || 'Required']" />
+                    <q-select v-model="model" :options="options" label="Select" />
+                    <q-btn type="submit" color="primary">Submit</q-btn>
+                  </q-form>
+                </q-card-section>
+              </q-card>
+            </q-page>
+          </q-page-container>
+        </q-layout>
+      </template>
+  
+  primevue:
+    package: "primevue"
+    summary: "包括的UIコンポーネントスイート。80+コンポーネント、複数テーマ、アクセシビリティ対応。"
+    install: |
+      npm i primevue primeicons
+    usage: |
+      // main.ts
+      import PrimeVue from 'primevue/config'
+      import 'primevue/resources/themes/lara-dark-indigo/theme.css'
+      import 'primevue/resources/primevue.css'
+      import 'primeicons/primeicons.css'
+      
+      app.use(PrimeVue)
+      
+      // コンポーネント使用例
+      <template>
+        <div>
+          <Card>
+            <template #title>Card Title</template>
+            <template #content>
+              <div class="field">
+                <label for="name">Name</label>
+                <InputText id="name" v-model="name" />
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <InputText id="email" v-model="email" type="email" />
+              </div>
+              <Button label="Submit" icon="pi pi-check" @click="submit" />
+            </template>
+          </Card>
+          
+          <DataTable :value="products" :paginator="true" :rows="10">
+            <Column field="code" header="Code" :sortable="true"></Column>
+            <Column field="name" header="Name" :sortable="true"></Column>
+            <Column field="price" header="Price">
+              <template #body="slotProps">
+                {{ formatCurrency(slotProps.data.price) }}
+              </template>
+            </Column>
+          </DataTable>
+        </div>
+      </template>
+  
+  ant_design_vue:
+    package: "ant-design-vue"
+    summary: "Ant Design のVue実装。エンタープライズ向けデザイン言語とコンポーネント。"
+    install: "npm i ant-design-vue"
+    usage: |
+      // main.ts
+      import Antd from 'ant-design-vue'
+      import 'ant-design-vue/dist/reset.css'
+      
+      app.use(Antd)
+      
+      // コンポーネント使用例
+      <template>
+        <a-layout>
+          <a-layout-header>Header</a-layout-header>
+          <a-layout>
+            <a-layout-sider>
+              <a-menu mode="inline" :selected-keys="selectedKeys">
+                <a-menu-item key="1">
+                  <template #icon><UserOutlined /></template>
+                  <span>User</span>
+                </a-menu-item>
+              </a-menu>
+            </a-layout-sider>
+            <a-layout-content>
+              <a-form :model="formState" :label-col="{ span: 8 }" :wrapper-col="{ span: 16 }">
+                <a-form-item label="Username" name="username" :rules="[{ required: true }]">
+                  <a-input v-model:value="formState.username" />
+                </a-form-item>
+                <a-form-item label="Password" name="password" :rules="[{ required: true }]">
+                  <a-input-password v-model:value="formState.password" />
+                </a-form-item>
+                <a-form-item :wrapper-col="{ offset: 8, span: 16 }">
+                  <a-button type="primary" html-type="submit">Submit</a-button>
+                </a-form-item>
+              </a-form>
+            </a-layout-content>
+          </a-layout>
+        </a-layout>
+      </template>
+
+utilities:
+  vee_validate:
+    package: "vee-validate"
+    summary: "Vue 3用の最も人気のあるフォームバリデーションライブラリ。Composition API完全対応。"
+    install: |
+      npm i vee-validate
+      npm i yup  # または zod
+    usage: |
+      // Composition API スタイル
+      <script setup>
+      import { useForm, useField } from 'vee-validate'
+      import * as yup from 'yup'
+      
+      const schema = yup.object({
+        email: yup.string().required().email(),
+        password: yup.string().required().min(8),
+        confirmPassword: yup.string()
+          .required()
+          .oneOf([yup.ref('password')], 'Passwords must match')
+      })
+      
+      const { handleSubmit, errors, isSubmitting } = useForm({
+        validationSchema: schema
+      })
+      
+      const { value: email } = useField('email')
+      const { value: password } = useField('password')
+      const { value: confirmPassword } = useField('confirmPassword')
+      
+      const onSubmit = handleSubmit(async (values) => {
+        await fetch('/api/register', {
+          method: 'POST',
+          body: JSON.stringify(values)
+        })
+      })
+      </script>
+      
+      <template>
+        <form @submit="onSubmit">
+          <div>
+            <input v-model="email" type="email" placeholder="Email">
+            <span>{{ errors.email }}</span>
+          </div>
+          <div>
+            <input v-model="password" type="password" placeholder="Password">
+            <span>{{ errors.password }}</span>
+          </div>
+          <div>
+            <input v-model="confirmPassword" type="password" placeholder="Confirm Password">
+            <span>{{ errors.confirmPassword }}</span>
+          </div>
+          <button type="submit" :disabled="isSubmitting">Submit</button>
+        </form>
+      </template>
+      
+      // コンポーネントスタイル
+      <script setup>
+      import { Form, Field, ErrorMessage } from 'vee-validate'
+      </script>
+      
+      <template>
+        <Form @submit="onSubmit" :validation-schema="schema">
+          <Field name="email" type="email" placeholder="Email" />
+          <ErrorMessage name="email" />
+          
+          <Field name="password" type="password" placeholder="Password" />
+          <ErrorMessage name="password" />
+          
+          <button type="submit">Submit</button>
+        </Form>
+      </template>
+  
+  vueuse:
+    package: "@vueuse/core"
+    summary: "200+のComposition APIユーティリティ関数集。リアクティブ、センサー、アニメーション、状態、ユーティリティ。"
+    install: "npm i @vueuse/core"
+    usage: |
+      // マウス位置追跡
+      import { useMouse } from '@vueuse/core'
+      const { x, y } = useMouse()
+      
+      // ローカルストレージ同期
+      import { useLocalStorage } from '@vueuse/core'
+      const store = useLocalStorage('my-storage', {
+        name: 'Apple',
+        color: 'red',
+      })
+      
+      // ダークモード切り替え
+      import { useDark, useToggle } from '@vueuse/core'
+      const isDark = useDark()
+      const toggleDark = useToggle(isDark)
+      
+      // デバウンス
+      import { useDebounceFn } from '@vueuse/core'
+      const debouncedFn = useDebounceFn(() => {
+        console.log('Debounced!')
+      }, 1000)
+      
+      // インターセクションオブザーバー
+      import { useIntersectionObserver } from '@vueuse/core'
+      const target = ref(null)
+      const targetIsVisible = ref(false)
+      
+      useIntersectionObserver(
+        target,
+        ([{ isIntersecting }]) => {
+          targetIsVisible.value = isIntersecting
+        },
+      )
+      
+      // クリップボード
+      import { useClipboard } from '@vueuse/core'
+      const { text, copy, copied, isSupported } = useClipboard()
+      
+      // フェッチ
+      import { useFetch } from '@vueuse/core'
+      const { isFetching, error, data } = useFetch('/api/data').json()
+      
+      // ブレークポイント
+      import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
+      const breakpoints = useBreakpoints(breakpointsTailwind)
+      const isMobile = breakpoints.smaller('md')
+
+routing:
+  vue_router:
+    package: "vue-router"
+    summary: "Vue.js公式ルーター。SPA用の高機能ルーティングシステム。"
+    install: "npm i vue-router@4"
+    usage: |
+      // router/index.ts
+      import { createRouter, createWebHistory } from 'vue-router'
+      import type { RouteRecordRaw } from 'vue-router'
+      
+      const routes: RouteRecordRaw[] = [
+        {
+          path: '/',
+          name: 'home',
+          component: () => import('@/views/HomeView.vue')
+        },
+        {
+          path: '/products',
+          name: 'products',
+          component: () => import('@/views/ProductsView.vue'),
+          children: [
+            {
+              path: ':id',
+              name: 'product-detail',
+              component: () => import('@/views/ProductDetail.vue'),
+              props: true
+            }
+          ]
+        },
+        {
+          path: '/admin',
+          component: () => import('@/layouts/AdminLayout.vue'),
+          meta: { requiresAuth: true },
+          children: [
+            {
+              path: 'dashboard',
+              name: 'admin-dashboard',
+              component: () => import('@/views/admin/Dashboard.vue')
+            }
+          ]
+        },
+        {
+          path: '/:pathMatch(.*)*',
+          name: 'not-found',
+          component: () => import('@/views/NotFound.vue')
+        }
+      ]
+      
+      const router = createRouter({
+        history: createWebHistory(import.meta.env.BASE_URL),
+        routes,
+        scrollBehavior(to, from, savedPosition) {
+          if (savedPosition) {
+            return savedPosition
+          } else {
+            return { top: 0 }
+          }
+        }
+      })
+      
+      // ナビゲーションガード
+      router.beforeEach((to, from) => {
+        if (to.meta.requiresAuth && !isAuthenticated()) {
+          return { name: 'login', query: { redirect: to.fullPath } }
+        }
+      })
+      
+      // コンポーネントでの使用
+      <script setup>
+      import { useRouter, useRoute } from 'vue-router'
+      
+      const router = useRouter()
+      const route = useRoute()
+      
+      const goToProduct = (id: string) => {
+        router.push({ name: 'product-detail', params: { id } })
+      }
+      </script>
+
+internationalization:
+  vue_i18n:
+    package: "vue-i18n"
+    summary: "Vue.js用の国際化プラグイン。多言語対応、複数形、日付/数値フォーマット。"
+    install: "npm i vue-i18n"
+    usage: |
+      // i18n/index.ts
+      import { createI18n } from 'vue-i18n'
+      
+      const messages = {
+        en: {
+          message: {
+            hello: 'Hello World',
+            greeting: 'Hello, {name}!',
+            plural: 'no apples | one apple | {count} apples',
+            currency: 'Price: {price}'
+          }
+        },
+        ja: {
+          message: {
+            hello: 'こんにちは、世界',
+            greeting: 'こんにちは、{name}さん！',
+            plural: 'りんごがありません | りんご1個 | りんご{count}個',
+            currency: '価格: {price}'
+          }
+        }
+      }
+      
+      const i18n = createI18n({
+        locale: 'ja',
+        fallbackLocale: 'en',
+        messages,
+        numberFormats: {
+          en: {
+            currency: {
+              style: 'currency',
+              currency: 'USD'
+            }
+          },
+          ja: {
+            currency: {
+              style: 'currency',
+              currency: 'JPY'
+            }
+          }
+        },
+        datetimeFormats: {
+          en: {
+            short: {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric'
+            }
+          },
+          ja: {
+            short: {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            }
+          }
+        }
+      })
+      
+      // コンポーネントでの使用
+      <script setup>
+      import { useI18n } from 'vue-i18n'
+      
+      const { t, n, d, locale } = useI18n()
+      
+      const switchLanguage = () => {
+        locale.value = locale.value === 'en' ? 'ja' : 'en'
+      }
+      </script>
+      
+      <template>
+        <div>
+          <p>{{ t('message.hello') }}</p>
+          <p>{{ t('message.greeting', { name: 'Vue' }) }}</p>
+          <p>{{ t('message.plural', 5) }}</p>
+          <p>{{ n(1234.56, 'currency') }}</p>
+          <p>{{ d(new Date(), 'short') }}</p>
+          <button @click="switchLanguage">Switch Language</button>
+        </div>
+      </template>
+
+build_tools:
+  vite_plugin_vue:
+    package: "@vitejs/plugin-vue"
+    summary: "Vite用Vue 3プラグイン。高速HMR、SFC変換、JSX対応。"
+    install: "npm i -D @vitejs/plugin-vue"
+    usage: |
+      // vite.config.ts
+      import { defineConfig } from 'vite'
+      import vue from '@vitejs/plugin-vue'
+      import vueJsx from '@vitejs/plugin-vue-jsx'
+      
+      export default defineConfig({
+        plugins: [
+          vue({
+            script: {
+              defineModel: true,
+              propsDestructure: true
+            },
+            template: {
+              compilerOptions: {
+                isCustomElement: (tag) => tag.startsWith('my-')
+              }
+            }
+          }),
+          vueJsx()
+        ],
+        resolve: {
+          alias: {
+            '@': '/src'
+          }
+        },
+        css: {
+          preprocessorOptions: {
+            scss: {
+              additionalData: `@import "@/styles/variables.scss";`
+            }
+          }
+        }
+      })
+
+testing:
+  vue_test_utils:
+    package: "@vue/test-utils"
+    summary: "Vue コンポーネントのための公式テストユーティリティ。"
+    install: "npm i -D @vue/test-utils vitest @vitest/ui happy-dom"
+    usage: |
+      // vitest.config.ts
+      import { defineConfig } from 'vitest/config'
+      import vue from '@vitejs/plugin-vue'
+      
+      export default defineConfig({
+        plugins: [vue()],
+        test: {
+          globals: true,
+          environment: 'happy-dom'
+        }
+      })
+      
+      // components/Counter.spec.ts
+      import { describe, it, expect } from 'vitest'
+      import { mount } from '@vue/test-utils'
+      import Counter from './Counter.vue'
+      
+      describe('Counter', () => {
+        it('increments count when button is clicked', async () => {
+          const wrapper = mount(Counter, {
+            props: {
+              initialCount: 5
+            }
+          })
+          
+          expect(wrapper.text()).toContain('Count: 5')
+          
+          await wrapper.find('button').trigger('click')
+          
+          expect(wrapper.text()).toContain('Count: 6')
+          expect(wrapper.emitted()).toHaveProperty('update:count')
+          expect(wrapper.emitted('update:count')[0]).toEqual([6])
+        })
+        
+        it('renders slot content', () => {
+          const wrapper = mount(Counter, {
+            slots: {
+              default: 'Custom content'
+            }
+          })
+          
+          expect(wrapper.text()).toContain('Custom content')
+        })
+      })
+
+documentation:
+  vuepress:
+    package: "vuepress"
+    summary: "Vue駆動の静的サイトジェネレーター。技術ドキュメント作成に最適。"
+    install: "npm i -D vuepress@next"
+    usage: |
+      // .vuepress/config.ts
+      import { defineUserConfig } from 'vuepress'
+      import { defaultTheme } from '@vuepress/theme-default'
+      
+      export default defineUserConfig({
+        lang: 'ja-JP',
+        title: 'My Documentation',
+        description: 'Documentation powered by VuePress',
+        
+        theme: defaultTheme({
+          navbar: [
+            { text: 'Guide', link: '/guide/' },
+            { text: 'API', link: '/api/' }
+          ],
+          sidebar: {
+            '/guide/': [
+              {
+                text: 'Guide',
+                children: [
+                  '/guide/getting-started.md',
+                  '/guide/configuration.md'
+                ]
+              }
+            ]
+          }
+        })
+      })
+
+developer_tools:
+  vue_devtools:
+    package: "vue-devtools"
+    summary: "Vue.js開発用ブラウザ拡張機能。コンポーネント階層、状態管理、パフォーマンス分析。"
+    install: |
+      # ブラウザ拡張機能として利用
+      # Chrome: Chrome Web Store から Vue.js devtools をインストール
+      # Firefox: Firefox Add-ons から Vue.js devtools をインストール
+      
+      # Standalone版（任意の環境で使用可能）
+      npm i -D @vue/devtools
+    usage: |
+      // Standalone版の使用（開発環境のみ）
+      if (process.env.NODE_ENV === 'development') {
+        const { devtools } = await import('@vue/devtools')
+        devtools.connect()
+      }
+      
+      // Vite設定での自動接続
+      // vite.config.ts
+      import vueDevTools from 'vite-plugin-vue-devtools'
+      
+      export default {
+        plugins: [
+          vue(),
+          vueDevTools()
+        ]
+      }
+
+best_practices:
+  - "Composition API を優先し、ロジックの再利用性を高める"
+  - "TypeScript を使用して型安全性を確保"
+  - "コンポーネントは単一責任原則に従って設計"
+  - "Props の型定義と検証を徹底"
+  - "v-for では必ず :key を使用"
+  - "算出プロパティ（computed）を活用してパフォーマンスを最適化"
+  - "非同期コンポーネントと Suspense で初期ロード時間を短縮"
+  - "Provide/Inject を使った依存性注入でプロップドリリングを回避"
+  - "適切なライフサイクルフックの使用（onMounted, onUnmounted等）"
+  - "リアクティビティの理解と適切な使用（ref, reactive, shallowRef）"
+  - "パフォーマンス最適化（v-memo, v-once, shallowRef の活用）"
+  - "アクセシビリティ（a11y）を考慮したコンポーネント設計"

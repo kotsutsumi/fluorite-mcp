@@ -1,0 +1,68 @@
+id: "vercel-ecosystem"
+name: "Vercel エコシステム"
+homepage: "https://vercel.com/docs"
+summary: "Vercel CLI、Serverless/Edge Functions、Analytics、Next.js（App Router/Edge Runtime）と推奨データフェッチ（SWR）を横断。"
+packages:
+  - name: "vercel"
+    homepage: "https://vercel.com/docs/cli"
+    summary: "CLI（デプロイ/ログ/シークレット管理）。"
+    install:
+      - "npm i -g vercel"
+  - name: "@vercel/node"
+    homepage: "https://vercel.com/docs/functions/serverless-functions/runtimes/nodejs"
+    summary: "Serverless Functions 用 Node.js ランタイム。"
+    install:
+      - "npm i @vercel/node"
+  - name: "@vercel/edge"
+    homepage: "https://vercel.com/docs/functions/edge-functions"
+    summary: "Edge Functions 用 SDK。"
+    install:
+      - "npm i @vercel/edge"
+  - name: "@vercel/analytics"
+    homepage: "https://vercel.com/docs/analytics"
+    summary: "Vercel Analytics 公式統合。"
+    install:
+      - "npm i @vercel/analytics"
+  - name: "next"
+    homepage: "https://nextjs.org/docs"
+    summary: "Vercel 開発の Next.js（App Router/Edge Runtime 対応）。"
+    install:
+      - "npm i next react react-dom"
+  - name: "swr"
+    homepage: "https://swr.vercel.app/"
+    summary: "推奨のデータフェッチ用 React Hooks。"
+    install:
+      - "npm i swr"
+snippets:
+  next-route-handler: |
+    // app/api/hello/route.ts (Next.js App Router)
+    import 'server-only'
+    export async function GET() {
+      return new Response(JSON.stringify({ hello: 'world' }), {
+        headers: { 'content-type': 'application/json' },
+      })
+    }
+  edge-runtime: |
+    // Use Edge Runtime for ultra-low latency
+    export const runtime = 'edge' // in app/route files or layout/page when supported
+  swr-basic: |
+    import useSWR from 'swr'
+    const fetcher = (url: string) => fetch(url).then(r => r.json())
+    export default function Example() {
+      const { data, isLoading, error } = useSWR('/api/hello', fetcher, { revalidateOnFocus: true })
+      if (isLoading) return <p>loading...</p>
+      if (error) return <p>error</p>
+      return <pre>{JSON.stringify(data, null, 2)}</pre>
+    }
+  vercel-cli: |
+    # 初回
+    vercel login
+    vercel init  # 既存でも可
+    vercel --prod
+bestPractices:
+  - "App Router と Edge Runtime を活用し、リージョン配置とキャッシュ戦略を設計"
+  - "SWR でクライアントフェッチ、Route Handlers で BFF を薄く運用"
+references:
+  - "Vercel Docs: https://vercel.com/docs"
+license: "Proprietary / MIT (各プロジェクトに従う)"
+lastReviewed: "2025-08-15"

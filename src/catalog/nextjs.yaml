@@ -1,0 +1,443 @@
+id: "nextjs"
+name: "Next.js 14/15"
+homepage: "https://nextjs.org"
+npm: "next"
+summary: "React フレームワークの決定版。App Router、Server Components、サーバーサイドレンダリング、静的生成、ISRなど最新のWeb開発パターンをフル実装。パフォーマンスとDXを両立。"
+install:
+  steps:
+    - "npx create-next-app@latest my-app"
+    - "# または: npm i next react react-dom"
+    - "# TypeScript: npm i -D typescript @types/react @types/node"
+
+architecture:
+  principles:
+    - "Server Components First - デフォルトでサーバーコンポーネント、必要時のみクライアント"
+    - "Data Fetching on Server - サーバーサイドでのデータ取得を優先"
+    - "Component Composition - 再利用可能なコンポーネント設計"
+    - "Progressive Enhancement - 段階的な機能拡張"
+  patterns:
+    - "Container/Presentational - ロジックとUIの分離"
+    - "Suspense & Streaming - 段階的なUI表示"
+    - "Request Memoization - リクエストの最適化"
+
+app_router:
+  structure: |
+    app/
+    ├── layout.tsx          # ルートレイアウト
+    ├── page.tsx           # ホームページ
+    ├── loading.tsx        # ローディングUI
+    ├── error.tsx          # エラーハンドリング
+    ├── not-found.tsx      # 404ページ
+    ├── (auth)/            # ルートグループ
+    │   ├── login/page.tsx
+    │   └── layout.tsx
+    └── api/               # APIルート
+        └── route.ts
+
+  routing:
+    dynamic: |
+      // app/blog/[slug]/page.tsx
+      export default function BlogPost({ 
+        params 
+      }: { 
+        params: { slug: string } 
+      }) {
+        return <article>Post: {params.slug}</article>
+      }
+    
+    parallel: |
+      // app/dashboard/layout.tsx
+      export default function Layout({
+        children,
+        team,
+        analytics
+      }: {
+        children: React.ReactNode
+        team: React.ReactNode
+        analytics: React.ReactNode
+      }) {
+        return (
+          <>
+            {children}
+            {team}
+            {analytics}
+          </>
+        )
+      }
+
+server_components:
+  basic: |
+    // デフォルトでServer Component
+    async function ProductList() {
+      const products = await fetch('https://api.example.com/products')
+      return (
+        <ul>
+          {products.map(p => (
+            <li key={p.id}>{p.name}</li>
+          ))}
+        </ul>
+      )
+    }
+  
+  with_client: |
+    // app/components/counter.tsx
+    'use client'
+    
+    import { useState } from 'react'
+    
+    export function Counter() {
+      const [count, setCount] = useState(0)
+      return (
+        <button onClick={() => setCount(count + 1)}>
+          Count: {count}
+        </button>
+      )
+    }
+
+data_fetching:
+  server_component: |
+    // app/products/page.tsx
+    async function ProductsPage() {
+      const res = await fetch('https://api.example.com/products', {
+        next: { revalidate: 3600 } // 1時間キャッシュ
+      })
+      const products = await res.json()
+      
+      return <ProductList products={products} />
+    }
+  
+  static_params: |
+    // app/blog/[slug]/page.tsx
+    export async function generateStaticParams() {
+      const posts = await fetch('https://api.example.com/posts').then(r => r.json())
+      return posts.map((post: { slug: string }) => ({
+        slug: post.slug,
+      }))
+    }
+  
+  metadata: |
+    import { Metadata } from 'next'
+    
+    export async function generateMetadata({ 
+      params 
+    }: { 
+      params: { id: string } 
+    }): Promise<Metadata> {
+      const product = await fetch(`/api/products/${params.id}`).then(r => r.json())
+      
+      return {
+        title: product.name,
+        description: product.description,
+        openGraph: {
+          images: [product.image],
+        },
+      }
+    }
+
+rendering:
+  static: |
+    // 静的レンダリング（デフォルト）
+    export default function Page() {
+      return <h1>Static Page</h1>
+    }
+  
+  dynamic: |
+    // 動的レンダリング
+    export const dynamic = 'force-dynamic'
+    // または
+    export const revalidate = 0
+    
+    export default async function Page() {
+      const data = await fetch('/api/data', { cache: 'no-store' })
+      return <div>{data}</div>
+    }
+  
+  isr: |
+    // Incremental Static Regeneration
+    export const revalidate = 60 // 60秒ごとに再生成
+    
+    export default async function Page() {
+      const data = await fetch('/api/data')
+      return <div>{data}</div>
+    }
+  
+  streaming: |
+    // app/page.tsx
+    import { Suspense } from 'react'
+    
+    export default function Page() {
+      return (
+        <>
+          <h1>Instant Loading</h1>
+          <Suspense fallback={<ProductsSkeleton />}>
+            <Products />
+          </Suspense>
+        </>
+      )
+    }
+
+caching:
+  fetch_cache: |
+    // デフォルトでキャッシュ
+    fetch('https://api.example.com/data')
+    
+    // キャッシュ無効化
+    fetch('https://api.example.com/data', { cache: 'no-store' })
+    
+    // 時間ベースの再検証
+    fetch('https://api.example.com/data', { 
+      next: { revalidate: 3600 } 
+    })
+  
+  route_cache: |
+    // ルート全体の再検証
+    import { revalidatePath, revalidateTag } from 'next/cache'
+    
+    export async function action() {
+      revalidatePath('/products')
+      // または
+      revalidateTag('products')
+    }
+
+server_actions:
+  basic: |
+    // app/actions.ts
+    'use server'
+    
+    export async function createProduct(formData: FormData) {
+      const name = formData.get('name')
+      const price = formData.get('price')
+      
+      await db.product.create({
+        data: { name, price }
+      })
+      
+      revalidatePath('/products')
+    }
+  
+  in_component: |
+    // app/add-product.tsx
+    import { createProduct } from './actions'
+    
+    export default function AddProduct() {
+      return (
+        <form action={createProduct}>
+          <input name="name" placeholder="Product name" />
+          <input name="price" type="number" />
+          <button type="submit">Add Product</button>
+        </form>
+      )
+    }
+
+middleware:
+  example: |
+    // middleware.ts
+    import { NextResponse } from 'next/server'
+    import type { NextRequest } from 'next/server'
+    
+    export function middleware(request: NextRequest) {
+      // 認証チェック
+      const token = request.cookies.get('token')
+      
+      if (!token && request.nextUrl.pathname.startsWith('/dashboard')) {
+        return NextResponse.redirect(new URL('/login', request.url))
+      }
+      
+      // レスポンスヘッダー追加
+      const response = NextResponse.next()
+      response.headers.set('x-custom-header', 'value')
+      
+      return response
+    }
+    
+    export const config = {
+      matcher: ['/dashboard/:path*', '/api/:path*']
+    }
+
+api_routes:
+  basic: |
+    // app/api/products/route.ts
+    import { NextRequest, NextResponse } from 'next/server'
+    
+    export async function GET(request: NextRequest) {
+      const products = await db.product.findMany()
+      return NextResponse.json(products)
+    }
+    
+    export async function POST(request: NextRequest) {
+      const body = await request.json()
+      const product = await db.product.create({ data: body })
+      return NextResponse.json(product, { status: 201 })
+    }
+  
+  dynamic: |
+    // app/api/products/[id]/route.ts
+    export async function GET(
+      request: NextRequest,
+      { params }: { params: { id: string } }
+    ) {
+      const product = await db.product.findUnique({
+        where: { id: params.id }
+      })
+      
+      if (!product) {
+        return NextResponse.json(
+          { error: 'Product not found' },
+          { status: 404 }
+        )
+      }
+      
+      return NextResponse.json(product)
+    }
+
+optimization:
+  images: |
+    import Image from 'next/image'
+    
+    export default function Hero() {
+      return (
+        <Image
+          src="/hero.jpg"
+          alt="Hero image"
+          width={1200}
+          height={600}
+          priority
+          placeholder="blur"
+          blurDataURL="data:image/jpeg;base64,..."
+        />
+      )
+    }
+  
+  fonts: |
+    import { Inter, Roboto_Mono } from 'next/font/google'
+    
+    const inter = Inter({
+      subsets: ['latin'],
+      display: 'swap',
+      variable: '--font-inter',
+    })
+    
+    const robotoMono = Roboto_Mono({
+      subsets: ['latin'],
+      display: 'swap',
+      variable: '--font-roboto-mono',
+    })
+    
+    export default function Layout({ children }) {
+      return (
+        <html className={`${inter.variable} ${robotoMono.variable}`}>
+          <body>{children}</body>
+        </html>
+      )
+    }
+  
+  lazy_loading: |
+    import dynamic from 'next/dynamic'
+    
+    const DynamicChart = dynamic(() => import('./chart'), {
+      loading: () => <p>Loading chart...</p>,
+      ssr: false
+    })
+
+error_handling:
+  error_boundary: |
+    // app/error.tsx
+    'use client'
+    
+    export default function Error({
+      error,
+      reset,
+    }: {
+      error: Error & { digest?: string }
+      reset: () => void
+    }) {
+      return (
+        <div>
+          <h2>Something went wrong!</h2>
+          <button onClick={() => reset()}>Try again</button>
+        </div>
+      )
+    }
+  
+  not_found: |
+    // app/not-found.tsx
+    import Link from 'next/link'
+    
+    export default function NotFound() {
+      return (
+        <div>
+          <h2>Not Found</h2>
+          <p>Could not find requested resource</p>
+          <Link href="/">Return Home</Link>
+        </div>
+      )
+    }
+
+testing:
+  unit: |
+    // __tests__/page.test.tsx
+    import { render, screen } from '@testing-library/react'
+    import Page from '@/app/page'
+    
+    describe('Page', () => {
+      it('renders a heading', () => {
+        render(<Page />)
+        const heading = screen.getByRole('heading', { level: 1 })
+        expect(heading).toBeInTheDocument()
+      })
+    })
+  
+  integration: |
+    // e2e/app.test.ts
+    import { test, expect } from '@playwright/test'
+    
+    test('should navigate to about page', async ({ page }) => {
+      await page.goto('/')
+      await page.click('text=About')
+      await expect(page).toHaveURL('/about')
+      await expect(page.locator('h1')).toContainText('About')
+    })
+
+deployment:
+  vercel: |
+    # Vercel (推奨)
+    npx vercel
+    
+    # または GitHub連携で自動デプロイ
+  
+  docker: |
+    # Dockerfile
+    FROM node:20-alpine AS base
+    
+    FROM base AS deps
+    WORKDIR /app
+    COPY package*.json ./
+    RUN npm ci
+    
+    FROM base AS builder
+    WORKDIR /app
+    COPY --from=deps /app/node_modules ./node_modules
+    COPY . .
+    RUN npm run build
+    
+    FROM base AS runner
+    WORKDIR /app
+    ENV NODE_ENV production
+    COPY --from=builder /app/public ./public
+    COPY --from=builder /app/.next/standalone ./
+    COPY --from=builder /app/.next/static ./.next/static
+    
+    EXPOSE 3000
+    CMD ["node", "server.js"]
+
+best_practices:
+  - "Server Components をデフォルトとし、インタラクティブな部分のみ Client Components"
+  - "データフェッチングはサーバーサイドで行い、ウォーターフォールを避ける"
+  - "Suspense と Streaming で段階的なレンダリングを実装"
+  - "適切なキャッシング戦略（Static, Dynamic, ISR）を選択"
+  - "Server Actions で フォーム処理を簡潔に実装"
+  - "Image と Font の最適化を活用"
+  - "TypeScript を使用して型安全性を確保"
+  - "環境変数で設定を管理（NEXT_PUBLIC_ プレフィックスに注意）"
+  - "エラーバウンダリーとローディングUIを適切に配置"
+  - "パフォーマンスモニタリングとCore Web Vitalsの最適化"

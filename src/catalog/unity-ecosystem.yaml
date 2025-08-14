@@ -1,0 +1,2210 @@
+id: "unity-ecosystem"
+name: "Unity Game Development Ecosystem"
+homepage: "https://unity.com"
+summary: "Unity 3Dゲーム開発エコシステム。DI・Reactive・アニメーション・カメラ制御・UI・エディタ拡張・アセット管理・マルチプレイ・テストなど、プロフェッショナルなゲーム開発のための包括的ツールチェーン。"
+
+language:
+  name: "C#"
+  version: "Unity 2022.3 LTS+"
+  description: "Unity Engine上でのC#ゲーム開発"
+  features:
+    - "クロスプラットフォーム対応（PC、Mobile、Console、WebGL）"
+    - "ビジュアルスクリプティングとC#コーディング"
+    - "リアルタイム3D/2Dレンダリング"
+    - "物理シミュレーションとアニメーション"
+    - "包括的なエディタツールチェーン"
+
+core:
+  unity_engine:
+    package: "Unity Engine"
+    summary: "クロスプラットフォーム3D/2Dゲーム開発エンジン"
+    install: |
+      # Unity Hub経由でインストール
+      # https://unity.com/download
+      
+      # プロジェクト作成
+      # Unity Hub → Projects → New Project → 3D/2D Template
+      
+      # Package Manager経由でパッケージ追加
+      # Window → Package Manager → Add package by name
+    usage: |
+      using UnityEngine;
+      using System.Collections;
+      using System.Collections.Generic;
+      
+      // 基本的なMonoBehaviourクラス
+      public class PlayerController : MonoBehaviour
+      {
+          [SerializeField] private float moveSpeed = 5.0f;
+          [SerializeField] private float jumpForce = 10.0f;
+          [SerializeField] private LayerMask groundMask = 1;
+          
+          private Rigidbody rb;
+          private Camera playerCamera;
+          private bool isGrounded;
+          
+          void Start()
+          {
+              rb = GetComponent<Rigidbody>();
+              playerCamera = Camera.main;
+              
+              // 初期化処理
+              Debug.Log("Player initialized");
+          }
+          
+          void Update()
+          {
+              HandleInput();
+              CheckGrounded();
+          }
+          
+          void FixedUpdate()
+          {
+              HandleMovement();
+          }
+          
+          private void HandleInput()
+          {
+              float horizontal = Input.GetAxis("Horizontal");
+              float vertical = Input.GetAxis("Vertical");
+              
+              Vector3 movement = new Vector3(horizontal, 0, vertical);
+              movement = transform.TransformDirection(movement);
+              movement *= moveSpeed;
+              
+              rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
+              
+              // ジャンプ入力
+              if (Input.GetButtonDown("Jump") && isGrounded)
+              {
+                  rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+              }
+          }
+          
+          private void HandleMovement()
+          {
+              // 物理ベースの移動処理
+          }
+          
+          private void CheckGrounded()
+          {
+              // 地面判定
+              isGrounded = Physics.Raycast(transform.position, Vector3.down, 1.1f, groundMask);
+          }
+          
+          void OnTriggerEnter(Collider other)
+          {
+              if (other.CompareTag("Collectible"))
+              {
+                  // アイテム収集処理
+                  Debug.Log($"Collected: {other.name}");
+                  Destroy(other.gameObject);
+              }
+          }
+      }
+      
+      // ScriptableObjectでデータ管理
+      [CreateAssetMenu(fileName = "New Character Data", menuName = "Game/Character Data")]
+      public class CharacterData : ScriptableObject
+      {
+          [Header("基本ステータス")]
+          public string characterName;
+          public int health = 100;
+          public float moveSpeed = 5.0f;
+          public float attackDamage = 10.0f;
+          
+          [Header("アニメーション")]
+          public AnimationClip idleAnimation;
+          public AnimationClip walkAnimation;
+          public AnimationClip attackAnimation;
+          
+          [Header("エフェクト")]
+          public GameObject attackEffect;
+          public AudioClip attackSound;
+      }
+      
+      // Singletonパターン
+      public class GameManager : MonoBehaviour
+      {
+          public static GameManager Instance { get; private set; }
+          
+          [SerializeField] private int score = 0;
+          [SerializeField] private int lives = 3;
+          
+          public event System.Action<int> OnScoreChanged;
+          public event System.Action<int> OnLivesChanged;
+          
+          void Awake()
+          {
+              if (Instance == null)
+              {
+                  Instance = this;
+                  DontDestroyOnLoad(gameObject);
+              }
+              else
+              {
+                  Destroy(gameObject);
+              }
+          }
+          
+          public void AddScore(int points)
+          {
+              score += points;
+              OnScoreChanged?.Invoke(score);
+          }
+          
+          public void LoseLife()
+          {
+              lives--;
+              OnLivesChanged?.Invoke(lives);
+              
+              if (lives <= 0)
+              {
+                  GameOver();
+              }
+          }
+          
+          private void GameOver()
+          {
+              Debug.Log("Game Over!");
+              // ゲームオーバー処理
+          }
+      }
+      
+      // Coroutineの活用
+      public class EffectController : MonoBehaviour
+      {
+          public void StartFadeEffect(float duration)
+          {
+              StartCoroutine(FadeCoroutine(duration));
+          }
+          
+          private IEnumerator FadeCoroutine(float duration)
+          {
+              CanvasGroup canvasGroup = GetComponent<CanvasGroup>();
+              float elapsedTime = 0;
+              float startAlpha = canvasGroup.alpha;
+              
+              while (elapsedTime < duration)
+              {
+                  elapsedTime += Time.deltaTime;
+                  float progress = elapsedTime / duration;
+                  canvasGroup.alpha = Mathf.Lerp(startAlpha, 0, progress);
+                  yield return null;
+              }
+              
+              canvasGroup.alpha = 0;
+          }
+      }
+
+dependency_injection:
+  zenject:
+    package: "Zenject"
+    summary: "Unity用の強力な依存性注入フレームワーク"
+    install: |
+      # Package Manager経由
+      # Window → Package Manager → Add package from git URL
+      # https://github.com/modesttree/Zenject.git?path=UnityProject/Assets/Plugins/Zenject
+      
+      # または Asset Store経由
+      # Asset Store → Zenject (Dependency Injection IOC)
+    usage: |
+      using UnityEngine;
+      using Zenject;
+      using System;
+      
+      // インストーラー（依存関係の設定）
+      public class GameInstaller : MonoInstaller
+      {
+          [SerializeField] private PlayerController playerPrefab;
+          [SerializeField] private EnemyController enemyPrefab;
+          
+          public override void InstallBindings()
+          {
+              // サービスのバインド
+              Container.Bind<IScoreService>().To<ScoreService>().AsSingle();
+              Container.Bind<IHealthService>().To<HealthService>().AsSingle();
+              Container.Bind<IInputService>().To<InputService>().AsSingle();
+              
+              // ファクトリーのバインド
+              Container.BindFactory<PlayerController, PlayerController.Factory>()
+                       .FromComponentInNewPrefab(playerPrefab);
+              
+              Container.BindFactory<Vector3, EnemyController, EnemyController.Factory>()
+                       .FromComponentInNewPrefab(enemyPrefab);
+              
+              // 設定データのバインド
+              Container.BindInstance(Resources.Load<GameSettings>("GameSettings"));
+              
+              // シグナルのバインド
+              SignalBusInstaller.Install(Container);
+              Container.DeclareSignal<PlayerDiedSignal>();
+              Container.DeclareSignal<EnemyDefeatedSignal>();
+              Container.DeclareSignal<ScoreUpdatedSignal>();
+          }
+      }
+      
+      // サービスインターフェース
+      public interface IScoreService
+      {
+          int CurrentScore { get; }
+          event Action<int> ScoreChanged;
+          void AddScore(int points);
+          void ResetScore();
+      }
+      
+      public class ScoreService : IScoreService
+      {
+          public int CurrentScore { get; private set; }
+          public event Action<int> ScoreChanged;
+          
+          [Inject] private SignalBus signalBus;
+          
+          public void AddScore(int points)
+          {
+              CurrentScore += points;
+              ScoreChanged?.Invoke(CurrentScore);
+              signalBus.Fire(new ScoreUpdatedSignal { NewScore = CurrentScore });
+          }
+          
+          public void ResetScore()
+          {
+              CurrentScore = 0;
+              ScoreChanged?.Invoke(CurrentScore);
+          }
+      }
+      
+      // 依存性注入を使用するコンポーネント
+      public class PlayerController : MonoBehaviour
+      {
+          [Inject] private IHealthService healthService;
+          [Inject] private IInputService inputService;
+          [Inject] private SignalBus signalBus;
+          [Inject] private GameSettings gameSettings;
+          
+          private void Update()
+          {
+              if (inputService.IsAttackPressed())
+              {
+                  Attack();
+              }
+              
+              if (healthService.CurrentHealth <= 0)
+              {
+                  Die();
+              }
+          }
+          
+          private void Attack()
+          {
+              // 攻撃処理
+              Debug.Log("Player attacks!");
+          }
+          
+          private void Die()
+          {
+              signalBus.Fire<PlayerDiedSignal>();
+              Debug.Log("Player died!");
+          }
+          
+          // ファクトリークラス
+          public class Factory : PlaceholderFactory<PlayerController> { }
+      }
+      
+      // シグナル（イベント）の定義
+      public struct PlayerDiedSignal { }
+      public struct EnemyDefeatedSignal 
+      { 
+          public int Points;
+          public Vector3 Position;
+      }
+      public struct ScoreUpdatedSignal 
+      { 
+          public int NewScore; 
+      }
+      
+      // シグナルハンドラー
+      public class GameEventHandler : IInitializable, IDisposable
+      {
+          [Inject] private SignalBus signalBus;
+          [Inject] private IScoreService scoreService;
+          
+          public void Initialize()
+          {
+              signalBus.Subscribe<PlayerDiedSignal>(OnPlayerDied);
+              signalBus.Subscribe<EnemyDefeatedSignal>(OnEnemyDefeated);
+          }
+          
+          public void Dispose()
+          {
+              signalBus.Unsubscribe<PlayerDiedSignal>(OnPlayerDied);
+              signalBus.Unsubscribe<EnemyDefeatedSignal>(OnEnemyDefeated);
+          }
+          
+          private void OnPlayerDied()
+          {
+              Debug.Log("Player died - handling game over logic");
+              // ゲームオーバー処理
+          }
+          
+          private void OnEnemyDefeated(EnemyDefeatedSignal signal)
+          {
+              scoreService.AddScore(signal.Points);
+              Debug.Log($"Enemy defeated at {signal.Position}, gained {signal.Points} points");
+          }
+      }
+
+reactive_programming:
+  unirx:
+    package: "UniRx"
+    summary: "Unity用Reactive Extensions - 非同期処理とイベント管理"
+    install: |
+      # Package Manager経由
+      # Window → Package Manager → Add package from git URL
+      # https://github.com/neuecc/UniRx.git?path=Assets/Plugins/UniRx/Scripts
+      
+      # または Asset Store経由
+      # Asset Store → UniRx (Reactive Extensions for Unity)
+    usage: |
+      using UnityEngine;
+      using UniRx;
+      using UniRx.Triggers;
+      using System;
+      using System.Collections;
+      
+      // 基本的なReactiveプログラミング
+      public class ReactivePlayerController : MonoBehaviour
+      {
+          [SerializeField] private float moveSpeed = 5.0f;
+          [SerializeField] private float attackCooldown = 1.0f;
+          
+          private ReactiveProperty<int> health = new ReactiveProperty<int>(100);
+          private ReactiveProperty<bool> isAlive = new ReactiveProperty<bool>(true);
+          private Subject<Unit> attackSubject = new Subject<Unit>();
+          
+          // プロパティの公開
+          public IReadOnlyReactiveProperty<int> Health => health;
+          public IReadOnlyReactiveProperty<bool> IsAlive => isAlive;
+          public IObservable<Unit> OnAttack => attackSubject.AsObservable();
+          
+          void Start()
+          {
+              SetupHealthObservation();
+              SetupInputHandling();
+              SetupAttackSystem();
+              SetupUpdateLoop();
+          }
+          
+          private void SetupHealthObservation()
+          {
+              // ヘルス変化の監視
+              health
+                  .Where(h => h <= 0)
+                  .Subscribe(_ => Die())
+                  .AddTo(this);
+              
+              // ヘルス変化のログ
+              health
+                  .Subscribe(h => Debug.Log($"Health changed: {h}"))
+                  .AddTo(this);
+              
+              // ヘルスと生存状態の連動
+              health
+                  .Select(h => h > 0)
+                  .Subscribe(alive => isAlive.Value = alive)
+                  .AddTo(this);
+          }
+          
+          private void SetupInputHandling()
+          {
+              // 移動入力の処理
+              this.UpdateAsObservable()
+                  .Where(_ => isAlive.Value)
+                  .Subscribe(_ => HandleMovement())
+                  .AddTo(this);
+              
+              // 攻撃入力の処理
+              this.UpdateAsObservable()
+                  .Where(_ => Input.GetButtonDown("Fire1"))
+                  .Where(_ => isAlive.Value)
+                  .Subscribe(_ => attackSubject.OnNext(Unit.Default))
+                  .AddTo(this);
+          }
+          
+          private void SetupAttackSystem()
+          {
+              // 攻撃のクールダウン処理
+              attackSubject
+                  .ThrottleFirst(TimeSpan.FromSeconds(attackCooldown))
+                  .Subscribe(_ => PerformAttack())
+                  .AddTo(this);
+          }
+          
+          private void SetupUpdateLoop()
+          {
+              // フレーム更新の監視
+              Observable.EveryUpdate()
+                  .Where(_ => isAlive.Value)
+                  .Subscribe(_ => 
+                  {
+                      // 毎フレーム実行する処理
+                      CheckEnemyCollision();
+                  })
+                  .AddTo(this);
+          }
+          
+          private void HandleMovement()
+          {
+              float horizontal = Input.GetAxis("Horizontal");
+              float vertical = Input.GetAxis("Vertical");
+              
+              Vector3 movement = new Vector3(horizontal, 0, vertical) * moveSpeed * Time.deltaTime;
+              transform.Translate(movement);
+          }
+          
+          private void PerformAttack()
+          {
+              Debug.Log("Player attacks!");
+              // 攻撃処理
+          }
+          
+          private void CheckEnemyCollision()
+          {
+              // 敵との衝突判定
+          }
+          
+          public void TakeDamage(int damage)
+          {
+              health.Value = Mathf.Max(0, health.Value - damage);
+          }
+          
+          private void Die()
+          {
+              Debug.Log("Player died!");
+              // 死亡処理
+          }
+          
+          void OnDestroy()
+          {
+              attackSubject?.Dispose();
+          }
+      }
+      
+      // UI と Reactive の連携
+      public class ReactiveUIManager : MonoBehaviour
+      {
+          [SerializeField] private UnityEngine.UI.Text healthText;
+          [SerializeField] private UnityEngine.UI.Slider healthSlider;
+          [SerializeField] private UnityEngine.UI.Button attackButton;
+          
+          [SerializeField] private ReactivePlayerController player;
+          
+          void Start()
+          {
+              SetupUIBinding();
+              SetupButtonHandling();
+          }
+          
+          private void SetupUIBinding()
+          {
+              // ヘルス表示の更新
+              player.Health
+                  .Subscribe(health => 
+                  {
+                      healthText.text = $"Health: {health}";
+                      healthSlider.value = health / 100f;
+                  })
+                  .AddTo(this);
+              
+              // 生存状態によるUIの制御
+              player.IsAlive
+                  .Subscribe(alive => 
+                  {
+                      attackButton.interactable = alive;
+                  })
+                  .AddTo(this);
+          }
+          
+          private void SetupButtonHandling()
+          {
+              // ボタンクリックの処理
+              attackButton.OnClickAsObservable()
+                  .Subscribe(_ => player.GetComponent<ReactivePlayerController>().attackSubject.OnNext(Unit.Default))
+                  .AddTo(this);
+          }
+      }
+      
+      // 非同期処理の例
+      public class AsyncOperationManager : MonoBehaviour
+      {
+          void Start()
+          {
+              ExampleAsyncOperations();
+          }
+          
+          private void ExampleAsyncOperations()
+          {
+              // タイマー処理
+              Observable.Timer(TimeSpan.FromSeconds(3))
+                  .Subscribe(_ => Debug.Log("3秒経過しました"))
+                  .AddTo(this);
+              
+              // 間隔実行
+              Observable.Interval(TimeSpan.FromSeconds(1))
+                  .Take(5)
+                  .Subscribe(count => Debug.Log($"カウント: {count}"))
+                  .AddTo(this);
+              
+              // HTTP リクエスト（仮想）
+              SimulateHttpRequest("https://api.example.com/data")
+                  .Subscribe(
+                      response => Debug.Log($"Success: {response}"),
+                      error => Debug.LogError($"Error: {error}"),
+                      () => Debug.Log("Request completed")
+                  )
+                  .AddTo(this);
+          }
+          
+          private IObservable<string> SimulateHttpRequest(string url)
+          {
+              return Observable.Create<string>(observer =>
+              {
+                  // 非同期処理のシミュレーション
+                  Observable.Timer(TimeSpan.FromSeconds(2))
+                      .Subscribe(_ =>
+                      {
+                          if (UnityEngine.Random.value > 0.5f)
+                          {
+                              observer.OnNext("データを正常に取得しました");
+                              observer.OnCompleted();
+                          }
+                          else
+                          {
+                              observer.OnError(new Exception("ネットワークエラー"));
+                          }
+                      });
+                  
+                  return Disposable.Empty;
+              });
+          }
+      }
+
+animation:
+  dotween:
+    package: "DOTween"
+    summary: "高性能で使いやすいアニメーション・ツイーンライブラリ"
+    install: |
+      # Asset Store経由
+      # Asset Store → DOTween (HOTween v2)
+      
+      # または Package Manager経由
+      # Window → Package Manager → Add package from git URL
+      # https://github.com/Demigiant/dotween.git
+    usage: |
+      using UnityEngine;
+      using DG.Tweening;
+      using UnityEngine.UI;
+      
+      public class DOTweenAnimationController : MonoBehaviour
+      {
+          [SerializeField] private Transform targetTransform;
+          [SerializeField] private CanvasGroup uiGroup;
+          [SerializeField] private Image fillImage;
+          [SerializeField] private Text animatedText;
+          
+          void Start()
+          {
+              // DOTween初期化
+              DOTween.Init(false, true, LogBehaviour.ErrorsOnly);
+              
+              SetupBasicAnimations();
+              SetupSequenceAnimations();
+              SetupUIAnimations();
+          }
+          
+          private void SetupBasicAnimations()
+          {
+              // 基本的な移動アニメーション
+              transform.DOMove(new Vector3(5, 0, 0), 2f)
+                  .SetEase(Ease.OutBounce)
+                  .OnComplete(() => Debug.Log("移動完了"));
+              
+              // 回転アニメーション
+              transform.DORotate(new Vector3(0, 360, 0), 3f, RotateMode.FastBeyond360)
+                  .SetLoops(-1, LoopType.Restart);
+              
+              // スケールアニメーション
+              transform.DOScale(Vector3.one * 1.5f, 1f)
+                  .SetLoops(-1, LoopType.Yoyo);
+          }
+          
+          private void SetupSequenceAnimations()
+          {
+              // シーケンスアニメーション
+              Sequence sequence = DOTween.Sequence();
+              
+              sequence.Append(targetTransform.DOMove(Vector3.up * 3, 1f))
+                      .Append(targetTransform.DORotate(Vector3.forward * 180, 0.5f))
+                      .Join(targetTransform.DOScale(Vector3.one * 2, 0.5f))
+                      .AppendInterval(0.5f)
+                      .Append(targetTransform.DOMove(Vector3.zero, 1f))
+                      .Join(targetTransform.DORotate(Vector3.zero, 1f))
+                      .Join(targetTransform.DOScale(Vector3.one, 1f))
+                      .SetLoops(-1);
+              
+              // コールバック付きシーケンス
+              Sequence callbackSequence = DOTween.Sequence();
+              callbackSequence.AppendCallback(() => Debug.Log("シーケンス開始"))
+                             .Append(transform.DOMove(Vector3.right * 5, 2f))
+                             .AppendCallback(() => Debug.Log("移動完了"))
+                             .Append(transform.DOMove(Vector3.zero, 2f))
+                             .OnComplete(() => Debug.Log("シーケンス完了"));
+          }
+          
+          private void SetupUIAnimations()
+          {
+              // UI フェードアニメーション
+              uiGroup.DOFade(0f, 1f)
+                     .From()
+                     .SetEase(Ease.InOutQuad);
+              
+              // イメージのfill値アニメーション
+              fillImage.DOFillAmount(1f, 2f)
+                       .From(0f)
+                       .SetEase(Ease.OutQuad);
+              
+              // テキストのタイプライター効果
+              animatedText.text = "";
+              animatedText.DOText("こんにちは、Unity!", 3f)
+                          .SetEase(Ease.Linear);
+              
+              // UIの拡大縮小アニメーション
+              RectTransform rectTransform = GetComponent<RectTransform>();
+              rectTransform.DOPunchScale(Vector3.one * 0.2f, 0.5f, 5, 0.5f);
+          }
+          
+          // ボタンクリック時のアニメーション
+          public void OnButtonClick()
+          {
+              // ボタンのパンチアニメーション
+              transform.DOPunchPosition(Vector3.up * 0.5f, 0.5f, 5, 0.5f);
+              transform.DOPunchScale(Vector3.one * 0.1f, 0.3f, 3, 0.3f);
+          }
+          
+          // 条件付きアニメーション
+          public void ConditionalAnimation(bool condition)
+          {
+              if (condition)
+              {
+                  transform.DOMove(Vector3.up * 5, 1f)
+                          .SetEase(Ease.OutBounce);
+              }
+              else
+              {
+                  transform.DOMove(Vector3.down * 2, 1f)
+                          .SetEase(Ease.InQuad);
+              }
+          }
+          
+          // アニメーションの停止と制御
+          public void StopAllAnimations()
+          {
+              transform.DOKill();
+              DOTween.KillAll();
+          }
+          
+          public void PauseAllAnimations()
+          {
+              DOTween.PauseAll();
+          }
+          
+          public void ResumeAllAnimations()
+          {
+              DOTween.PlayAll();
+          }
+          
+          void OnDestroy()
+          {
+              // メモリリーク防止
+              transform.DOKill();
+          }
+      }
+      
+      // アニメーション管理クラス
+      public class AnimationManager : MonoBehaviour
+      {
+          [SerializeField] private Transform[] animationTargets;
+          
+          public void PlaySequentialAnimation()
+          {
+              Sequence sequence = DOTween.Sequence();
+              
+              for (int i = 0; i < animationTargets.Length; i++)
+              {
+                  Transform target = animationTargets[i];
+                  sequence.Append(target.DOScale(Vector3.one * 1.2f, 0.2f))
+                          .Join(target.DORotate(Vector3.forward * 360, 0.5f, RotateMode.FastBeyond360))
+                          .Append(target.DOScale(Vector3.one, 0.2f));
+              }
+              
+              sequence.SetLoops(-1, LoopType.Restart);
+          }
+          
+          public void PlayParallelAnimation()
+          {
+              foreach (Transform target in animationTargets)
+              {
+                  target.DOMove(Random.insideUnitSphere * 3, 2f)
+                        .SetEase(Ease.InOutSine)
+                        .SetLoops(-1, LoopType.Yoyo);
+              }
+          }
+      }
+
+camera_control:
+  cinemachine:
+    package: "Cinemachine"
+    summary: "プロフェッショナルなカメラ制御システム"
+    install: |
+      # Package Manager経由
+      # Window → Package Manager → Unity Registry → Cinemachine
+      
+      # または
+      # Edit → Project Settings → XR Plug-in Management → Initialize XR SDK
+    usage: |
+      using UnityEngine;
+      using Cinemachine;
+      
+      // Cinemachine カメラ制御
+      public class CinemachineCameraController : MonoBehaviour
+      {
+          [SerializeField] private CinemachineVirtualCamera playerFollowCamera;
+          [SerializeField] private CinemachineVirtualCamera cutsceneCamera;
+          [SerializeField] private CinemachineFreeLook freeLookCamera;
+          [SerializeField] private Transform player;
+          
+          private CinemachineBrain cinemachineBrain;
+          
+          void Start()
+          {
+              cinemachineBrain = Camera.main.GetComponent<CinemachineBrain>();
+              SetupPlayerFollowCamera();
+              SetupFreeLookCamera();
+          }
+          
+          private void SetupPlayerFollowCamera()
+          {
+              if (playerFollowCamera != null)
+              {
+                  // プレイヤーフォローカメラの設定
+                  playerFollowCamera.Follow = player;
+                  playerFollowCamera.LookAt = player;
+                  
+                  // Composer設定
+                  var composer = playerFollowCamera.GetCinemachineComponent<CinemachineComposer>();
+                  if (composer != null)
+                  {
+                      composer.m_TrackedObjectOffset = new Vector3(0, 1.5f, 0);
+                      composer.m_DeadZoneWidth = 0.1f;
+                      composer.m_DeadZoneHeight = 0.1f;
+                  }
+                  
+                  // Transposer設定
+                  var transposer = playerFollowCamera.GetCinemachineComponent<CinemachineTransposer>();
+                  if (transposer != null)
+                  {
+                      transposer.m_FollowOffset = new Vector3(0, 5, -10);
+                      transposer.m_BindingMode = CinemachineTransposer.BindingMode.LockToTargetWithWorldUp;
+                  }
+              }
+          }
+          
+          private void SetupFreeLookCamera()
+          {
+              if (freeLookCamera != null)
+              {
+                  freeLookCamera.Follow = player;
+                  freeLookCamera.LookAt = player;
+                  
+                  // リグの設定
+                  freeLookCamera.m_YAxis.m_MaxSpeed = 2f;
+                  freeLookCamera.m_XAxis.m_MaxSpeed = 300f;
+                  
+                  // 軌道の設定
+                  freeLookCamera.m_Orbits[0].m_Height = 4.5f;  // Top
+                  freeLookCamera.m_Orbits[0].m_Radius = 1.75f;
+                  freeLookCamera.m_Orbits[1].m_Height = 2.5f;  // Middle
+                  freeLookCamera.m_Orbits[1].m_Radius = 3f;
+                  freeLookCamera.m_Orbits[2].m_Height = 0.4f;  // Bottom
+                  freeLookCamera.m_Orbits[2].m_Radius = 1.3f;
+              }
+          }
+          
+          // カメラ切り替え
+          public void SwitchToPlayerCamera()
+          {
+              playerFollowCamera.Priority = 10;
+              cutsceneCamera.Priority = 0;
+              freeLookCamera.Priority = 0;
+          }
+          
+          public void SwitchToCutsceneCamera()
+          {
+              playerFollowCamera.Priority = 0;
+              cutsceneCamera.Priority = 10;
+              freeLookCamera.Priority = 0;
+          }
+          
+          public void SwitchToFreeLookCamera()
+          {
+              playerFollowCamera.Priority = 0;
+              cutsceneCamera.Priority = 0;
+              freeLookCamera.Priority = 10;
+          }
+          
+          // カメラシェイク
+          public void ShakeCamera(float intensity, float duration)
+          {
+              var impulse = GetComponent<CinemachineImpulseSource>();
+              if (impulse != null)
+              {
+                  impulse.GenerateImpulse(Vector3.one * intensity);
+              }
+          }
+          
+          // カスタムブレンド
+          public void CustomBlendToCamera(CinemachineVirtualCamera targetCamera, float blendTime)
+          {
+              // すべてのカメラの優先度をリセット
+              playerFollowCamera.Priority = 0;
+              cutsceneCamera.Priority = 0;
+              freeLookCamera.Priority = 0;
+              
+              // ターゲットカメラの優先度を上げる
+              targetCamera.Priority = 10;
+              
+              // ブレンド時間を設定
+              cinemachineBrain.m_DefaultBlend.m_Time = blendTime;
+          }
+      }
+      
+      // イベント駆動のカメラ制御
+      public class CameraEventController : MonoBehaviour
+      {
+          [SerializeField] private CinemachineCameraController cameraController;
+          
+          void Start()
+          {
+              // ゲームイベントの購読
+              GameEvents.OnPlayerEnterCombat += () => cameraController.SwitchToFreeLookCamera();
+              GameEvents.OnPlayerExitCombat += () => cameraController.SwitchToPlayerCamera();
+              GameEvents.OnCutsceneStart += () => cameraController.SwitchToCutsceneCamera();
+              GameEvents.OnExplosion += (intensity) => cameraController.ShakeCamera(intensity, 0.5f);
+          }
+      }
+      
+      // ゲームイベントシステム
+      public static class GameEvents
+      {
+          public static event System.Action OnPlayerEnterCombat;
+          public static event System.Action OnPlayerExitCombat;
+          public static event System.Action OnCutsceneStart;
+          public static event System.Action<float> OnExplosion;
+          
+          public static void TriggerPlayerEnterCombat() => OnPlayerEnterCombat?.Invoke();
+          public static void TriggerPlayerExitCombat() => OnPlayerExitCombat?.Invoke();
+          public static void TriggerCutsceneStart() => OnCutsceneStart?.Invoke();
+          public static void TriggerExplosion(float intensity) => OnExplosion?.Invoke(intensity);
+      }
+
+ui_text:
+  textmeshpro:
+    package: "TextMeshPro"
+    summary: "高品質なテキスト描画とタイポグラフィ"
+    install: |
+      # 自動的にインポートされるUnityパッケージ
+      # Window → Package Manager → Unity Registry → TextMeshPro
+      
+      # 初回セットアップ
+      # Window → TextMeshPro → Import TMP Essential Resources
+    usage: |
+      using UnityEngine;
+      using TMPro;
+      using System.Collections;
+      
+      public class TextMeshProController : MonoBehaviour
+      {
+          [SerializeField] private TextMeshProUGUI uiText;
+          [SerializeField] private TextMeshPro worldText;
+          [SerializeField] private TMP_InputField inputField;
+          [SerializeField] private TMP_Dropdown dropdown;
+          
+          void Start()
+          {
+              SetupTextFormatting();
+              SetupAnimatedText();
+              SetupInputField();
+              SetupDropdown();
+          }
+          
+          private void SetupTextFormatting()
+          {
+              // 基本的なテキスト設定
+              uiText.text = "Hello <color=red>Unity</color>!";
+              uiText.fontSize = 24;
+              uiText.fontStyle = FontStyles.Bold;
+              uiText.alignment = TextAlignmentOptions.Center;
+              
+              // リッチテキストの例
+              string richText = @"
+              <size=30><color=blue>タイトル</color></size>
+              
+              <color=green>緑色のテキスト</color>
+              <color=#FF0000>赤色のテキスト</color>
+              
+              <b>太字</b> と <i>斜体</i>
+              <u>下線</u> と <s>取り消し線</s>
+              
+              <sup>上付き</sup> と <sub>下付き</sub>
+              
+              <sprite=0> スプライト表示";
+              
+              uiText.text = richText;
+              
+              // 世界座標テキスト
+              if (worldText != null)
+              {
+                  worldText.text = "World Space Text";
+                  worldText.fontSize = 5;
+                  worldText.color = Color.yellow;
+              }
+          }
+          
+          private void SetupAnimatedText()
+          {
+              StartCoroutine(TypewriterEffect("これはタイプライター効果です。", 0.1f));
+          }
+          
+          private IEnumerator TypewriterEffect(string fullText, float delay)
+          {
+              uiText.text = "";
+              
+              foreach (char character in fullText)
+              {
+                  uiText.text += character;
+                  yield return new WaitForSeconds(delay);
+              }
+          }
+          
+          public void AnimateTextColor()
+          {
+              StartCoroutine(ColorFadeEffect());
+          }
+          
+          private IEnumerator ColorFadeEffect()
+          {
+              Color originalColor = uiText.color;
+              Color targetColor = Color.red;
+              float duration = 2f;
+              float elapsedTime = 0;
+              
+              while (elapsedTime < duration)
+              {
+                  elapsedTime += Time.deltaTime;
+                  float progress = elapsedTime / duration;
+                  uiText.color = Color.Lerp(originalColor, targetColor, progress);
+                  yield return null;
+              }
+              
+              uiText.color = targetColor;
+          }
+          
+          private void SetupInputField()
+          {
+              if (inputField != null)
+              {
+                  inputField.placeholder.GetComponent<TextMeshProUGUI>().text = "テキストを入力してください...";
+                  inputField.characterLimit = 50;
+                  
+                  // 入力イベントの設定
+                  inputField.onValueChanged.AddListener(OnInputChanged);
+                  inputField.onEndEdit.AddListener(OnInputSubmitted);
+              }
+          }
+          
+          private void OnInputChanged(string value)
+          {
+              Debug.Log($"Input changed: {value}");
+          }
+          
+          private void OnInputSubmitted(string value)
+          {
+              Debug.Log($"Input submitted: {value}");
+              uiText.text = $"入力されたテキスト: {value}";
+          }
+          
+          private void SetupDropdown()
+          {
+              if (dropdown != null)
+              {
+                  dropdown.options.Clear();
+                  dropdown.options.Add(new TMP_Dropdown.OptionData("オプション1"));
+                  dropdown.options.Add(new TMP_Dropdown.OptionData("オプション2"));
+                  dropdown.options.Add(new TMP_Dropdown.OptionData("オプション3"));
+                  
+                  dropdown.onValueChanged.AddListener(OnDropdownChanged);
+              }
+          }
+          
+          private void OnDropdownChanged(int index)
+          {
+              string selectedOption = dropdown.options[index].text;
+              Debug.Log($"Selected: {selectedOption}");
+          }
+          
+          // テキストメッシュのアウトライン設定
+          public void SetTextOutline(Color color, float thickness)
+          {
+              uiText.fontMaterial.SetColor("_OutlineColor", color);
+              uiText.fontMaterial.SetFloat("_OutlineWidth", thickness);
+          }
+          
+          // グラデーション効果
+          public void ApplyGradient(Color topColor, Color bottomColor)
+          {
+              uiText.colorGradient = new VertexGradient(topColor, topColor, bottomColor, bottomColor);
+          }
+      }
+      
+      // 動的テキスト管理
+      public class DynamicTextManager : MonoBehaviour
+      {
+          [SerializeField] private TextMeshProUGUI scoreText;
+          [SerializeField] private TextMeshProUGUI timerText;
+          
+          private int currentScore = 0;
+          private float gameTime = 0f;
+          
+          void Update()
+          {
+              UpdateTimer();
+          }
+          
+          private void UpdateTimer()
+          {
+              gameTime += Time.deltaTime;
+              int minutes = Mathf.FloorToInt(gameTime / 60);
+              int seconds = Mathf.FloorToInt(gameTime % 60);
+              timerText.text = $"{minutes:00}:{seconds:00}";
+          }
+          
+          public void UpdateScore(int newScore)
+          {
+              currentScore = newScore;
+              scoreText.text = $"スコア: {currentScore:N0}";
+              
+              // スコア更新アニメーション
+              StartCoroutine(ScorePulseEffect());
+          }
+          
+          private IEnumerator ScorePulseEffect()
+          {
+              Vector3 originalScale = scoreText.transform.localScale;
+              Vector3 targetScale = originalScale * 1.2f;
+              
+              // 拡大
+              float duration = 0.1f;
+              float elapsedTime = 0;
+              while (elapsedTime < duration)
+              {
+                  elapsedTime += Time.deltaTime;
+                  float progress = elapsedTime / duration;
+                  scoreText.transform.localScale = Vector3.Lerp(originalScale, targetScale, progress);
+                  yield return null;
+              }
+              
+              // 縮小
+              elapsedTime = 0;
+              while (elapsedTime < duration)
+              {
+                  elapsedTime += Time.deltaTime;
+                  float progress = elapsedTime / duration;
+                  scoreText.transform.localScale = Vector3.Lerp(targetScale, originalScale, progress);
+                  yield return null;
+              }
+              
+              scoreText.transform.localScale = originalScale;
+          }
+      }
+
+editor_tools:
+  odin_inspector:
+    package: "Odin Inspector"
+    summary: "強力なエディタ拡張とインスペクタ改善ツール"
+    install: |
+      # Asset Store経由で購入・インストール
+      # Asset Store → Odin Inspector and Serializer
+      
+      # インストール後
+      # Tools → Odin Inspector → Getting Started
+    usage: |
+      using UnityEngine;
+      using Sirenix.OdinInspector;
+      using System.Collections.Generic;
+      using System;
+      
+      // Odin Inspectorの基本的な使用例
+      public class OdinInspectorExample : MonoBehaviour
+      {
+          [Title("基本的な属性")]
+          [InfoBox("これはOdin Inspectorの使用例です。")]
+          
+          [BoxGroup("プレイヤー設定")]
+          [Range(1, 100)]
+          public int playerHealth = 100;
+          
+          [BoxGroup("プレイヤー設定")]
+          [SuffixLabel("m/s")]
+          public float moveSpeed = 5.0f;
+          
+          [BoxGroup("プレイヤー設定")]
+          [ProgressBar(0, 100)]
+          public int experience = 75;
+          
+          [Title("条件付き表示")]
+          [EnumToggleButtons]
+          public WeaponType weaponType;
+          
+          [ShowIf("weaponType", WeaponType.Sword)]
+          [Range(1, 10)]
+          public int swordDamage = 5;
+          
+          [ShowIf("weaponType", WeaponType.Gun)]
+          [Range(1, 30)]
+          public int bulletCount = 20;
+          
+          [Title("ボタンとアクション")]
+          [Button("プレイヤーを初期化")]
+          public void InitializePlayer()
+          {
+              playerHealth = 100;
+              experience = 0;
+              Debug.Log("プレイヤーが初期化されました");
+          }
+          
+          [Button("ランダムステータス生成")]
+          [GUIColor(0.4f, 0.8f, 1f)]
+          public void GenerateRandomStats()
+          {
+              playerHealth = UnityEngine.Random.Range(50, 100);
+              moveSpeed = UnityEngine.Random.Range(3f, 8f);
+              experience = UnityEngine.Random.Range(0, 100);
+          }
+          
+          [Title("リストとディクショナリ")]
+          [ListDrawerSettings(ShowIndexLabels = true, ListElementLabelName = "name")]
+          public List<Item> inventory = new List<Item>();
+          
+          [DictionaryDrawerSettings(KeyLabel = "アイテム名", ValueLabel = "数量")]
+          public Dictionary<string, int> itemCounts = new Dictionary<string, int>();
+          
+          [Title("ファイル参照")]
+          [FilePath(Extensions = ".txt,.json")]
+          public string configFilePath;
+          
+          [FolderPath]
+          public string assetFolderPath;
+          
+          [Title("プリビュー")]
+          [PreviewField(100, ObjectFieldAlignment.Center)]
+          public Texture2D playerIcon;
+          
+          [PreviewField(50)]
+          public GameObject playerPrefab;
+          
+          [Title("タブグループ")]
+          [TabGroup("ステータス")]
+          [PropertySpace(10)]
+          public CharacterStats stats;
+          
+          [TabGroup("アニメーション")]
+          public AnimationClip[] animations;
+          
+          [TabGroup("エフェクト")]
+          public ParticleSystem[] effects;
+      }
+      
+      public enum WeaponType
+      {
+          Sword,
+          Gun,
+          Magic
+      }
+      
+      [Serializable]
+      public class Item
+      {
+          [HorizontalGroup("Item", 0.2f)]
+          [PreviewField(50)]
+          public Sprite icon;
+          
+          [HorizontalGroup("Item")]
+          [VerticalGroup("Item/Info")]
+          public string name;
+          
+          [VerticalGroup("Item/Info")]
+          public string description;
+          
+          [VerticalGroup("Item/Info")]
+          [Range(1, 99)]
+          public int quantity = 1;
+      }
+      
+      [Serializable]
+      public class CharacterStats
+      {
+          [HorizontalGroup("主要ステータス")]
+          [VerticalGroup("主要ステータス/左")]
+          [ProgressBar(0, 100, ColorGetter = "GetHealthBarColor")]
+          public int health = 100;
+          
+          [VerticalGroup("主要ステータス/左")]
+          [ProgressBar(0, 100, 0.2f, 0.8f, 1f)]
+          public int mana = 80;
+          
+          [VerticalGroup("主要ステータス/右")]
+          [Range(1, 20)]
+          public int strength = 10;
+          
+          [VerticalGroup("主要ステータス/右")]
+          [Range(1, 20)]
+          public int intelligence = 12;
+          
+          private Color GetHealthBarColor()
+          {
+              return health > 50 ? Color.green : Color.red;
+          }
+      }
+      
+      // エディタ専用機能
+      public class EditorToolsExample : MonoBehaviour
+      {
+          [Title("エディタツール")]
+          
+          [Button("選択されたオブジェクトを整理")]
+          [PropertySpace(10)]
+          public void OrganizeSelectedObjects()
+          {
+              #if UNITY_EDITOR
+              var selected = UnityEditor.Selection.gameObjects;
+              for (int i = 0; i < selected.Length; i++)
+              {
+                  selected[i].transform.position = new Vector3(i * 2, 0, 0);
+              }
+              #endif
+          }
+          
+          [Button("プレハブを生成")]
+          public void SpawnPrefabs()
+          {
+              if (playerPrefab != null)
+              {
+                  for (int i = 0; i < 5; i++)
+                  {
+                      Vector3 position = new Vector3(i * 3, 0, 0);
+                      Instantiate(playerPrefab, position, Quaternion.identity);
+                  }
+              }
+          }
+          
+          [AssetsOnly]
+          public GameObject playerPrefab;
+          
+          [SceneObjectsOnly]
+          public Transform spawnPoint;
+          
+          [ValidateInput("ValidateSpeed", "移動速度は0より大きい必要があります")]
+          public float speed = 5.0f;
+          
+          private bool ValidateSpeed(float value)
+          {
+              return value > 0;
+          }
+          
+          [OnValueChanged("OnHealthChanged")]
+          public int health = 100;
+          
+          private void OnHealthChanged()
+          {
+              if (health <= 0)
+              {
+                  Debug.LogWarning("ヘルスが0以下になりました！");
+              }
+          }
+      }
+
+asset_management:
+  addressables:
+    package: "Addressables"
+    summary: "アセットの動的ロードとメモリ管理システム"
+    install: |
+      # Package Manager経由
+      # Window → Package Manager → Unity Registry → Addressables
+      
+      # 初期化
+      # Window → Asset Management → Addressables → Groups
+    usage: |
+      using UnityEngine;
+      using UnityEngine.AddressableAssets;
+      using UnityEngine.ResourceManagement.AsyncOperations;
+      using System.Collections.Generic;
+      using System.Collections;
+      
+      public class AddressablesManager : MonoBehaviour
+      {
+          [SerializeField] private Transform spawnParent;
+          private List<AsyncOperationHandle> loadedAssets = new List<AsyncOperationHandle>();
+          
+          void Start()
+          {
+              LoadSingleAsset();
+              LoadMultipleAssets();
+              LoadAssetsByLabel();
+          }
+          
+          // 単一アセットのロード
+          private async void LoadSingleAsset()
+          {
+              try
+              {
+                  // 非同期ロード
+                  AsyncOperationHandle<GameObject> handle = Addressables.LoadAssetAsync<GameObject>("PlayerPrefab");
+                  GameObject playerPrefab = await handle.Task;
+                  
+                  if (handle.Status == AsyncOperationStatus.Succeeded)
+                  {
+                      GameObject player = Instantiate(playerPrefab, spawnParent);
+                      Debug.Log("プレイヤープレハブをロードしました");
+                  }
+                  
+                  loadedAssets.Add(handle);
+              }
+              catch (System.Exception e)
+              {
+                  Debug.LogError($"アセットロードエラー: {e.Message}");
+              }
+          }
+          
+          // 複数アセットのロード
+          private void LoadMultipleAssets()
+          {
+              List<string> assetKeys = new List<string> { "EnemyPrefab1", "EnemyPrefab2", "EnemyPrefab3" };
+              
+              var handle = Addressables.LoadAssetsAsync<GameObject>(assetKeys, (loadedAsset) =>
+              {
+                  // 各アセットがロードされるたびに呼ばれる
+                  Debug.Log($"ロード完了: {loadedAsset.name}");
+                  GameObject enemy = Instantiate(loadedAsset, GetRandomPosition(), Quaternion.identity, spawnParent);
+              });
+              
+              handle.Completed += (asyncHandle) =>
+              {
+                  if (asyncHandle.Status == AsyncOperationStatus.Succeeded)
+                  {
+                      Debug.Log($"全てのエネミープレハブをロードしました: {asyncHandle.Result.Count}個");
+                  }
+              };
+              
+              loadedAssets.Add(handle);
+          }
+          
+          // ラベルによるアセットロード
+          private void LoadAssetsByLabel()
+          {
+              var handle = Addressables.LoadAssetsAsync<AudioClip>("BGM", (audioClip) =>
+              {
+                  Debug.Log($"BGMロード: {audioClip.name}");
+              });
+              
+              handle.Completed += (asyncHandle) =>
+              {
+                  if (asyncHandle.Status == AsyncOperationStatus.Succeeded)
+                  {
+                      List<AudioClip> bgmList = asyncHandle.Result;
+                      Debug.Log($"BGMを{bgmList.Count}個ロードしました");
+                      
+                      // ランダムBGM再生
+                      if (bgmList.Count > 0)
+                      {
+                          AudioSource audioSource = GetComponent<AudioSource>();
+                          audioSource.clip = bgmList[Random.Range(0, bgmList.Count)];
+                          audioSource.Play();
+                      }
+                  }
+              };
+              
+              loadedAssets.Add(handle);
+          }
+          
+          // シーンのロード
+          public void LoadScene(string sceneName)
+          {
+              var handle = Addressables.LoadSceneAsync(sceneName, UnityEngine.SceneManagement.LoadSceneMode.Additive);
+              handle.Completed += (asyncHandle) =>
+              {
+                  if (asyncHandle.Status == AsyncOperationStatus.Succeeded)
+                  {
+                      Debug.Log($"シーン '{sceneName}' をロードしました");
+                  }
+              };
+              
+              loadedAssets.Add(handle);
+          }
+          
+          // アセットのインスタンス化
+          public void SpawnAddressableObject(string assetReference)
+          {
+              var handle = Addressables.InstantiateAsync(assetReference, GetRandomPosition(), Quaternion.identity, spawnParent);
+              handle.Completed += (asyncHandle) =>
+              {
+                  if (asyncHandle.Status == AsyncOperationStatus.Succeeded)
+                  {
+                      GameObject instance = asyncHandle.Result;
+                      Debug.Log($"オブジェクトを生成しました: {instance.name}");
+                      
+                      // 5秒後に削除
+                      StartCoroutine(DestroyAfterDelay(instance, handle, 5f));
+                  }
+              };
+          }
+          
+          private IEnumerator DestroyAfterDelay(GameObject instance, AsyncOperationHandle<GameObject> handle, float delay)
+          {
+              yield return new WaitForSeconds(delay);
+              
+              if (instance != null)
+              {
+                  Addressables.ReleaseInstance(handle);
+                  Debug.Log("インスタンスを解放しました");
+              }
+          }
+          
+          // メモリ使用量チェック
+          public void CheckMemoryUsage()
+          {
+              var handle = Addressables.GetDownloadSizeAsync("PlayerAssets");
+              handle.Completed += (asyncHandle) =>
+              {
+                  if (asyncHandle.Status == AsyncOperationStatus.Succeeded)
+                  {
+                      long downloadSize = asyncHandle.Result;
+                      Debug.Log($"ダウンロードサイズ: {downloadSize / 1024 / 1024} MB");
+                  }
+                  Addressables.Release(handle);
+              };
+          }
+          
+          // リソースのプリロード
+          public void PreloadAssets(List<string> assetKeys)
+          {
+              foreach (string key in assetKeys)
+              {
+                  var handle = Addressables.LoadAssetAsync<Object>(key);
+                  handle.Completed += (asyncHandle) =>
+                  {
+                      Debug.Log($"プリロード完了: {key}");
+                  };
+                  loadedAssets.Add(handle);
+              }
+          }
+          
+          private Vector3 GetRandomPosition()
+          {
+              return new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-10f, 10f));
+          }
+          
+          void OnDestroy()
+          {
+              // メモリリーク防止
+              foreach (var handle in loadedAssets)
+              {
+                  if (handle.IsValid())
+                  {
+                      Addressables.Release(handle);
+                  }
+              }
+              loadedAssets.Clear();
+          }
+      }
+      
+      // アセットリファレンスの使用
+      public class AssetReferenceExample : MonoBehaviour
+      {
+          [SerializeField] private AssetReference playerAssetRef;
+          [SerializeField] private AssetReferenceGameObject enemyAssetRef;
+          [SerializeField] private AssetReferenceTexture2D iconAssetRef;
+          
+          private AsyncOperationHandle<GameObject> playerHandle;
+          
+          public async void LoadPlayerAsset()
+          {
+              if (playerAssetRef.RuntimeKeyIsValid())
+              {
+                  playerHandle = playerAssetRef.LoadAssetAsync<GameObject>();
+                  GameObject playerPrefab = await playerHandle.Task;
+                  
+                  if (playerHandle.Status == AsyncOperationStatus.Succeeded)
+                  {
+                      Instantiate(playerPrefab);
+                      Debug.Log("プレイヤーアセットをロードしました");
+                  }
+              }
+          }
+          
+          public void ReleasePlayerAsset()
+          {
+              if (playerHandle.IsValid())
+              {
+                  playerAssetRef.ReleaseAsset();
+                  Debug.Log("プレイヤーアセットを解放しました");
+              }
+          }
+      }
+
+networking:
+  mirror:
+    package: "Mirror"
+    summary: "高性能ネットワークマルチプレイヤーフレームワーク"
+    install: |
+      # Asset Store経由
+      # Asset Store → Mirror Networking
+      
+      # または Package Manager経由
+      # Window → Package Manager → Add package from git URL
+      # https://github.com/vis2k/Mirror.git?path=Assets/Mirror
+    usage: |
+      using UnityEngine;
+      using Mirror;
+      
+      // ネットワークマネージャー
+      public class CustomNetworkManager : NetworkManager
+      {
+          [Header("カスタム設定")]
+          public GameObject playerSpawnPoint;
+          
+          public override void OnServerAddPlayer(NetworkConnectionToClient conn)
+          {
+              // プレイヤー生成位置の設定
+              Vector3 spawnPos = playerSpawnPoint != null ? 
+                  playerSpawnPoint.transform.position : Vector3.zero;
+              
+              GameObject player = Instantiate(playerPrefab, spawnPos, Quaternion.identity);
+              NetworkServer.AddPlayerForConnection(conn, player);
+              
+              Debug.Log($"プレイヤーが接続しました: {conn.connectionId}");
+          }
+          
+          public override void OnServerDisconnect(NetworkConnectionToClient conn)
+          {
+              Debug.Log($"プレイヤーが切断しました: {conn.connectionId}");
+              base.OnServerDisconnect(conn);
+          }
+          
+          public override void OnClientConnect()
+          {
+              Debug.Log("サーバーに接続しました");
+              base.OnClientConnect();
+          }
+          
+          public override void OnClientDisconnect()
+          {
+              Debug.Log("サーバーから切断しました");
+              base.OnClientDisconnect();
+          }
+      }
+      
+      // ネットワークプレイヤー
+      public class NetworkPlayerController : NetworkBehaviour
+      {
+          [Header("移動設定")]
+          [SerializeField] private float moveSpeed = 5f;
+          [SerializeField] private float rotateSpeed = 100f;
+          
+          [Header("ネットワーク同期")]
+          [SyncVar(hook = nameof(OnHealthChanged))]
+          public int health = 100;
+          
+          [SyncVar(hook = nameof(OnNameChanged))]
+          public string playerName = "Player";
+          
+          private Rigidbody rb;
+          private Camera playerCamera;
+          
+          void Start()
+          {
+              rb = GetComponent<Rigidbody>();
+              
+              // ローカルプレイヤーのみカメラを有効化
+              if (isLocalPlayer)
+              {
+                  playerCamera = GetComponentInChildren<Camera>();
+                  if (playerCamera != null)
+                  {
+                      playerCamera.enabled = true;
+                  }
+              }
+          }
+          
+          void Update()
+          {
+              // ローカルプレイヤーのみ入力処理
+              if (!isLocalPlayer) return;
+              
+              HandleMovement();
+              HandleActions();
+          }
+          
+          private void HandleMovement()
+          {
+              float horizontal = Input.GetAxis("Horizontal");
+              float vertical = Input.GetAxis("Vertical");
+              
+              Vector3 movement = transform.forward * vertical + transform.right * horizontal;
+              movement *= moveSpeed * Time.deltaTime;
+              
+              transform.Translate(movement, Space.World);
+              
+              // 回転
+              float rotation = Input.GetAxis("Mouse X") * rotateSpeed * Time.deltaTime;
+              transform.Rotate(0, rotation, 0);
+          }
+          
+          private void HandleActions()
+          {
+              if (Input.GetKeyDown(KeyCode.Space))
+              {
+                  CmdJump();
+              }
+              
+              if (Input.GetMouseButtonDown(0))
+              {
+                  CmdAttack();
+              }
+          }
+          
+          // サーバーコマンド
+          [Command]
+          void CmdJump()
+          {
+              if (rb != null)
+              {
+                  rb.AddForce(Vector3.up * 500f);
+              }
+              
+              // 全クライアントに実行
+              RpcPlayJumpEffect();
+          }
+          
+          [Command]
+          void CmdAttack()
+          {
+              Debug.Log($"{playerName} が攻撃しました!");
+              
+              // 攻撃判定
+              Collider[] hitColliders = Physics.OverlapSphere(transform.position, 2f);
+              foreach (var hitCollider in hitColliders)
+              {
+                  NetworkPlayerController target = hitCollider.GetComponent<NetworkPlayerController>();
+                  if (target != null && target != this)
+                  {
+                      target.TakeDamage(20);
+                  }
+              }
+              
+              RpcPlayAttackEffect();
+          }
+          
+          // クライアントRPC
+          [ClientRpc]
+          void RpcPlayJumpEffect()
+          {
+              Debug.Log($"{playerName} がジャンプしました!");
+              // ジャンプエフェクト再生
+          }
+          
+          [ClientRpc]
+          void RpcPlayAttackEffect()
+          {
+              Debug.Log($"{playerName} が攻撃エフェクトを再生!");
+              // 攻撃エフェクト再生
+          }
+          
+          // ダメージ処理
+          public void TakeDamage(int damage)
+          {
+              if (!isServer) return;
+              
+              health = Mathf.Max(0, health - damage);
+              
+              if (health <= 0)
+              {
+                  RpcPlayerDied();
+              }
+          }
+          
+          [ClientRpc]
+          void RpcPlayerDied()
+          {
+              Debug.Log($"{playerName} が倒されました!");
+              // 死亡エフェクト
+          }
+          
+          // SyncVar フック
+          void OnHealthChanged(int oldHealth, int newHealth)
+          {
+              Debug.Log($"{playerName} のヘルスが {oldHealth} から {newHealth} に変更");
+              // UI更新など
+          }
+          
+          void OnNameChanged(string oldName, string newName)
+          {
+              Debug.Log($"プレイヤー名が {oldName} から {newName} に変更");
+              // 名前表示更新
+          }
+          
+          // プレイヤー名設定
+          [Command]
+          public void CmdSetPlayerName(string name)
+          {
+              playerName = name;
+          }
+      }
+      
+      // ネットワークオブジェクトの例
+      public class NetworkItem : NetworkBehaviour
+      {
+          [SyncVar(hook = nameof(OnOwnerChanged))]
+          public uint ownerId;
+          
+          [SyncVar]
+          public bool isCollected = false;
+          
+          void OnTriggerEnter(Collider other)
+          {
+              if (!isServer) return;
+              
+              NetworkPlayerController player = other.GetComponent<NetworkPlayerController>();
+              if (player != null && !isCollected)
+              {
+                  CmdCollectItem(player.netId);
+              }
+          }
+          
+          [Command(requiresAuthority = false)]
+          void CmdCollectItem(uint playerId)
+          {
+              if (isCollected) return;
+              
+              ownerId = playerId;
+              isCollected = true;
+              
+              RpcItemCollected();
+              
+              // 5秒後に削除
+              Invoke(nameof(DestroyItem), 5f);
+          }
+          
+          [ClientRpc]
+          void RpcItemCollected()
+          {
+              Debug.Log("アイテムが収集されました!");
+              // 収集エフェクト
+          }
+          
+          void OnOwnerChanged(uint oldOwnerId, uint newOwnerId)
+          {
+              Debug.Log($"アイテムの所有者が変更されました: {newOwnerId}");
+          }
+          
+          void DestroyItem()
+          {
+              if (isServer)
+              {
+                  NetworkServer.Destroy(gameObject);
+              }
+          }
+      }
+      
+      // ゲームルーム管理
+      public class GameRoomManager : NetworkBehaviour
+      {
+          [SyncVar]
+          public int connectedPlayers = 0;
+          
+          [SyncVar]
+          public bool gameStarted = false;
+          
+          private readonly SyncList<string> playerNames = new SyncList<string>();
+          
+          void Start()
+          {
+              if (isServer)
+              {
+                  NetworkManager.singleton.onServerConnect.AddListener(OnPlayerConnected);
+                  NetworkManager.singleton.onServerDisconnect.AddListener(OnPlayerDisconnected);
+              }
+          }
+          
+          void OnPlayerConnected(NetworkConnection conn)
+          {
+              connectedPlayers++;
+              Debug.Log($"プレイヤー接続: {connectedPlayers}人");
+              
+              // 4人揃ったらゲーム開始
+              if (connectedPlayers >= 4 && !gameStarted)
+              {
+                  StartGame();
+              }
+          }
+          
+          void OnPlayerDisconnected(NetworkConnection conn)
+          {
+              connectedPlayers--;
+              Debug.Log($"プレイヤー切断: {connectedPlayers}人");
+          }
+          
+          [Server]
+          void StartGame()
+          {
+              gameStarted = true;
+              RpcGameStarted();
+          }
+          
+          [ClientRpc]
+          void RpcGameStarted()
+          {
+              Debug.Log("ゲーム開始!");
+              // ゲーム開始処理
+          }
+      }
+
+testing:
+  unity_test_framework:
+    package: "Unity Test Framework"
+    summary: "Unity統合テストフレームワーク"
+    install: |
+      # 通常はUnityに標準搭載
+      # Window → Package Manager → Unity Registry → Test Framework
+      
+      # テストランナー
+      # Window → General → Test Runner
+    usage: |
+      using UnityEngine;
+      using UnityEngine.TestTools;
+      using NUnit.Framework;
+      using System.Collections;
+      
+      // Edit Mode テスト
+      public class EditModeTests
+      {
+          [Test]
+          public void PlayerController_InitialHealth_ShouldBe100()
+          {
+              // Arrange
+              GameObject playerObject = new GameObject();
+              PlayerController player = playerObject.AddComponent<PlayerController>();
+              
+              // Act
+              int health = player.GetHealth();
+              
+              // Assert
+              Assert.AreEqual(100, health);
+              
+              // Cleanup
+              Object.DestroyImmediate(playerObject);
+          }
+          
+          [Test]
+          public void ScoreManager_AddScore_ShouldIncreaseTotal()
+          {
+              // Arrange
+              ScoreManager scoreManager = new ScoreManager();
+              int initialScore = scoreManager.CurrentScore;
+              
+              // Act
+              scoreManager.AddScore(50);
+              
+              // Assert
+              Assert.AreEqual(initialScore + 50, scoreManager.CurrentScore);
+          }
+          
+          [Test]
+          [TestCase(10, 5, 15)]
+          [TestCase(20, 30, 50)]
+          [TestCase(-5, 10, 5)]
+          public void MathUtils_Add_ShouldReturnCorrectSum(int a, int b, int expected)
+          {
+              // Act
+              int result = MathUtils.Add(a, b);
+              
+              // Assert
+              Assert.AreEqual(expected, result);
+          }
+          
+          [Test]
+          public void InventorySystem_AddItem_ShouldIncreaseCount()
+          {
+              // Arrange
+              InventorySystem inventory = new InventorySystem();
+              string itemName = "Health Potion";
+              
+              // Act
+              inventory.AddItem(itemName, 3);
+              
+              // Assert
+              Assert.IsTrue(inventory.HasItem(itemName));
+              Assert.AreEqual(3, inventory.GetItemCount(itemName));
+          }
+          
+          [Test]
+          public void GameSettings_ValidateSettings_ShouldThrowExceptionForInvalidData()
+          {
+              // Arrange
+              GameSettings settings = new GameSettings();
+              settings.maxPlayers = -1; // 無効な値
+              
+              // Act & Assert
+              Assert.Throws<ArgumentException>(() => settings.Validate());
+          }
+      }
+      
+      // Play Mode テスト
+      public class PlayModeTests
+      {
+          private GameObject testPlayerObject;
+          private PlayerController playerController;
+          
+          [SetUp]
+          public void SetUp()
+          {
+              // テスト用オブジェクトの準備
+              testPlayerObject = new GameObject("TestPlayer");
+              playerController = testPlayerObject.AddComponent<PlayerController>();
+              testPlayerObject.AddComponent<Rigidbody>();
+          }
+          
+          [TearDown]
+          public void TearDown()
+          {
+              // テスト後のクリーンアップ
+              if (testPlayerObject != null)
+              {
+                  Object.Destroy(testPlayerObject);
+              }
+          }
+          
+          [UnityTest]
+          public IEnumerator PlayerController_Jump_ShouldMoveUpward()
+          {
+              // Arrange
+              Vector3 initialPosition = testPlayerObject.transform.position;
+              
+              // Act
+              playerController.Jump();
+              
+              // Wait for physics
+              yield return new WaitForFixedUpdate();
+              yield return new WaitForSeconds(0.1f);
+              
+              // Assert
+              Assert.Greater(testPlayerObject.transform.position.y, initialPosition.y);
+          }
+          
+          [UnityTest]
+          public IEnumerator HealthSystem_TakeDamage_ShouldReduceHealthOverTime()
+          {
+              // Arrange
+              HealthSystem healthSystem = testPlayerObject.AddComponent<HealthSystem>();
+              int initialHealth = healthSystem.CurrentHealth;
+              
+              // Act
+              healthSystem.TakeDamageOverTime(10, 2f); // 2秒間で10ダメージ
+              
+              // Wait for damage to be applied
+              yield return new WaitForSeconds(2.5f);
+              
+              // Assert
+              Assert.Less(healthSystem.CurrentHealth, initialHealth);
+              Assert.AreEqual(initialHealth - 10, healthSystem.CurrentHealth);
+          }
+          
+          [UnityTest]
+          public IEnumerator AnimationController_PlayAttack_ShouldTriggerAnimation()
+          {
+              // Arrange
+              Animator animator = testPlayerObject.AddComponent<Animator>();
+              AnimationController animController = testPlayerObject.AddComponent<AnimationController>();
+              
+              // Act
+              animController.PlayAttackAnimation();
+              
+              // Wait for animation to start
+              yield return new WaitForEndOfFrame();
+              
+              // Assert
+              Assert.IsTrue(animator.GetBool("IsAttacking"));
+          }
+          
+          [UnityTest]
+          [Timeout(5000)] // 5秒でタイムアウト
+          public IEnumerator GameManager_StartGame_ShouldInitializeAllSystems()
+          {
+              // Arrange
+              GameObject gameManagerObject = new GameObject("GameManager");
+              GameManager gameManager = gameManagerObject.AddComponent<GameManager>();
+              
+              // Act
+              gameManager.StartGame();
+              
+              // Wait for initialization
+              yield return new WaitUntil(() => gameManager.IsInitialized);
+              
+              // Assert
+              Assert.IsTrue(gameManager.IsInitialized);
+              Assert.IsNotNull(gameManager.PlayerManager);
+              Assert.IsNotNull(gameManager.UIManager);
+              
+              // Cleanup
+              Object.Destroy(gameManagerObject);
+          }
+      }
+      
+      // 統合テスト
+      public class IntegrationTests
+      {
+          [UnityTest]
+          public IEnumerator PlayerAndEnemyInteraction_ShouldWorkCorrectly()
+          {
+              // Arrange
+              GameObject player = new GameObject("Player");
+              GameObject enemy = new GameObject("Enemy");
+              
+              PlayerController playerController = player.AddComponent<PlayerController>();
+              EnemyController enemyController = enemy.AddComponent<EnemyController>();
+              
+              // Position them close to each other
+              player.transform.position = Vector3.zero;
+              enemy.transform.position = Vector3.forward * 2f;
+              
+              // Act
+              playerController.Attack();
+              
+              // Wait for interaction to complete
+              yield return new WaitForSeconds(1f);
+              
+              // Assert
+              Assert.Less(enemyController.Health, enemyController.MaxHealth);
+              
+              // Cleanup
+              Object.Destroy(player);
+              Object.Destroy(enemy);
+          }
+          
+          [UnityTest]
+          public IEnumerator SceneLoadingTest_ShouldLoadCorrectly()
+          {
+              // Arrange
+              string testSceneName = "TestScene";
+              
+              // Act
+              var asyncOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(testSceneName, UnityEngine.SceneManagement.LoadSceneMode.Additive);
+              
+              // Wait for scene to load
+              yield return new WaitUntil(() => asyncOperation.isDone);
+              
+              // Assert
+              Assert.IsTrue(asyncOperation.isDone);
+              
+              var loadedScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName(testSceneName);
+              Assert.IsTrue(loadedScene.isLoaded);
+              
+              // Cleanup
+              yield return UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(testSceneName);
+          }
+      }
+      
+      // パフォーマンステスト
+      public class PerformanceTests
+      {
+          [Test]
+          [Performance]
+          public void InventorySystem_AddManyItems_ShouldBePerformant()
+          {
+              // Arrange
+              InventorySystem inventory = new InventorySystem();
+              
+              // Act
+              var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+              
+              for (int i = 0; i < 10000; i++)
+              {
+                  inventory.AddItem($"Item{i}", 1);
+              }
+              
+              stopwatch.Stop();
+              
+              // Assert
+              Assert.Less(stopwatch.ElapsedMilliseconds, 1000); // 1秒以内
+              Debug.Log($"10000アイテム追加時間: {stopwatch.ElapsedMilliseconds}ms");
+          }
+          
+          [UnityTest]
+          public IEnumerator ObjectPooling_CreateAndDestroy_ShouldBeEfficient()
+          {
+              // Arrange
+              ObjectPool pool = new ObjectPool();
+              GameObject prefab = new GameObject("PooledObject");
+              
+              // Act
+              var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+              
+              for (int i = 0; i < 1000; i++)
+              {
+                  GameObject obj = pool.Get(prefab);
+                  pool.Return(obj);
+                  
+                  if (i % 100 == 0)
+                  {
+                      yield return null; // フレーム分散
+                  }
+              }
+              
+              stopwatch.Stop();
+              
+              // Assert
+              Assert.Less(stopwatch.ElapsedMilliseconds, 500); // 0.5秒以内
+              Debug.Log($"オブジェクトプール処理時間: {stopwatch.ElapsedMilliseconds}ms");
+              
+              // Cleanup
+              Object.Destroy(prefab);
+          }
+      }
+
+best_practices:
+  - "Zenject DIコンテナで依存関係を管理し、テスタブルで保守性の高いアーキテクチャを構築する"
+  - "UniRxでReactiveプログラミングを活用し、イベント駆動型の設計で複雑な状態管理を簡素化する"
+  - "DOTweenで高性能なアニメーションを実装し、ユーザーエクスペリエンスを向上させる"
+  - "Cinemachineで映画的なカメラワークを実現し、プロフェッショナルな視覚体験を提供する"
+  - "TextMeshProで高品質なテキスト表示を実装し、UIの視認性と美しさを向上させる"
+  - "Odin Inspectorでエディタ機能を拡張し、開発効率とワークフローを大幅に改善する"
+  - "Addressablesでアセット管理を最適化し、メモリ効率とロード時間を改善する"
+  - "Mirrorでスケーラブルなマルチプレイヤー機能を実装し、リアルタイム通信を確実に行う"
+  - "Unity Test Frameworkで包括的なテストを実装し、品質保証と回帰防止を徹底する"
+  - "ScriptableObjectsでデータ駆動型設計を採用し、ゲームバランス調整を容易にする"
+  - "オブジェクトプールパターンでパフォーマンスを最適化し、ガベージコレクションを最小化する"
+  - "シングルトンパターンとDIを適切に使い分け、グローバル状態を安全に管理する"
+  - "コルーチンと async/await を適切に使い分け、非同期処理を効率的に実装する"
+  - "プロファイラーを活用してパフォーマンスボトルネックを特定し、継続的に最適化する"
+  - "バージョン管理でプレハブとシーンの競合を避け、チーム開発を円滑に進める"
+  - "ビルドパイプラインを自動化し、継続的インテグレーション/デプロイメントを実現する"
+  - "プラットフォーム固有の最適化を実装し、各ターゲットデバイスで最高のパフォーマンスを実現する"

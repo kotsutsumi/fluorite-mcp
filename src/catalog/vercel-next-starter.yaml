@@ -1,0 +1,93 @@
+id: "vercel-next-starter"
+name: "Next.js on Vercel スターター（Edge+SWR）"
+homepage: "https://nextjs.org/docs"
+summary: "App Router + Route Handlers（BFF）+ Edge Runtime + SWR を組み合わせた実務向けスターター。Vercel へのデプロイ前提の設定/スニペットを同梱。"
+stack:
+  runtime:
+    - "next@latest"
+    - "react"
+    - "react-dom"
+  data:
+    - "swr"
+  deploy:
+    - "vercel CLI（任意）"
+install:
+  steps:
+    - "npm i next react react-dom swr"
+    - "# （任意） npm i -g vercel"
+project:
+  structure: |
+    app/
+      layout.tsx
+      page.tsx
+      api/
+        hello/route.ts   # Route Handler (Edge)
+    lib/
+      fetcher.ts
+    components/
+      Example.tsx
+snippets:
+  route-handler: |
+    // app/api/hello/route.ts
+    export const runtime = 'edge' // Edge Runtime
+    export async function GET() {
+      return new Response(JSON.stringify({ hello: 'world' }), {
+        headers: { 'content-type': 'application/json' },
+      })
+    }
+  swr-fetcher: |
+    // lib/fetcher.ts
+    export const fetcher = (url: string) => fetch(url).then(r => r.json())
+  swr-component: |
+    // components/Example.tsx
+    'use client'
+    import useSWR from 'swr'
+    import { fetcher } from '@/lib/fetcher'
+    export function Example() {
+      const { data, error, isLoading } = useSWR('/api/hello', fetcher)
+      if (isLoading) return <p>loading...</p>
+      if (error) return <p>error</p>
+      return <pre>{JSON.stringify(data, null, 2)}</pre>
+    }
+  layout-page: |
+    // app/layout.tsx
+    export default function RootLayout({ children }: { children: React.ReactNode }) {
+      return (
+        <html lang="ja"><body>{children}</body></html>
+      )
+    }
+    // app/page.tsx
+    import { Example } from '@/components/Example'
+    export default function Page() { return <Example /> }
+  vercel-cli: |
+    vercel login
+    vercel --prod
+  package-json: |
+    {
+      "name": "vercel-next-starter",
+      "private": true,
+      "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+      },
+      "dependencies": {
+        "next": "^14",
+        "react": "^18",
+        "react-dom": "^18",
+        "swr": "^2"
+      }
+    }
+bestPractices:
+  - "Route Handlers を薄い BFF として活用し、SWR でクライアント側を最適化"
+  - "Edge Runtime を利用してレイテンシを最小化（I/O のみ・Node API 非依存に設計）"
+  - "環境変数は Vercel の Dashboard/CLI で管理し、public/private を分離"
+references:
+  - "Next App Router: https://nextjs.org/docs/app"
+  - "Route Handlers: https://nextjs.org/docs/app/building-your-application/routing/route-handlers"
+  - "Edge Runtime: https://nextjs.org/docs/app/building-your-application/rendering/edge-and-nodejs-runtimes"
+  - "SWR: https://swr.vercel.app/"
+  - "Vercel CLI: https://vercel.com/docs/cli"
+license: "MIT"
+lastReviewed: "2025-08-15"

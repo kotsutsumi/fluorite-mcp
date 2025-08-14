@@ -1,0 +1,99 @@
+id: "ui-component-quality"
+name: "UI 品質向上（React/Vue）: コンポーネント分割 + Storybook + Playwright"
+homepage: "https://storybook.js.org/ | https://playwright.dev/"
+summary: "React/Vue の UI を細かくコンポーネント化し、Storybook で設計/ドキュメント化、Playwright と Storybook Test Runner で相互作用/回帰テストを自動化するための実務ガイド。"
+principles:
+  - "Small, Pure, Testable: ロジック/スタイル/アクセシビリティを意識した最小責務のコンポーネント"
+  - "Atomic/Layered Design: atoms → molecules → organisms → templates → pages"
+  - "States First: 正常/ホバー/フォーカス/無効/ローディング/エラーなど UI 状態を stories で網羅"
+  - "Contract via Props/Slots: API は明確・最小に、アクセシブルなデフォルトを提供"
+
+tooling-react:
+  install:
+    - "npm i -D @storybook/react @storybook/addon-essentials @storybook/addon-interactions @storybook/testing-library @storybook/test @storybook/test-runner"
+    - "npm i -D @playwright/test"
+    - "npm i react react-dom"
+  config:
+    - ".storybook/main.ts に addons: ['@storybook/addon-essentials','@storybook/addon-interactions']"
+    - ".storybook/preview.ts に parameters.actions/controls/backgrounds を設定"
+  snippets:
+    button: |
+      // src/components/Button.tsx
+      import React from 'react'
+      type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & { variant?: 'primary'|'ghost' };
+      export const Button: React.FC<Props> = ({ variant='primary', ...props }) => (
+        <button data-variant={variant} {...props} />
+      )
+    story: |
+      // src/components/Button.stories.tsx (CSF3)
+      import type { Meta, StoryObj } from '@storybook/react';
+      import { Button } from './Button';
+      const meta: Meta<typeof Button> = { component: Button, title: 'Atoms/Button', args: { children: 'Click' } };
+      export default meta; type Story = StoryObj<typeof Button>;
+      export const Primary: Story = { args: { variant: 'primary' } };
+      export const Disabled: Story = { args: { disabled: true } };
+      export const WithClick: Story = { args: { onClick: () => console.log('clicked') } };
+    interactions: |
+      // src/components/Button.interactions.test.ts
+      import { test, expect } from '@storybook/test';
+      import { Primary } from './Button.stories';
+      test('button clickable', async ({ canvas }) => {
+        const btn = await canvas.getByRole('button');
+        await btn.click();
+        await expect(btn).toBeEnabled();
+      });
+    playwright-runner: |
+      // package.json scripts
+      {
+        "scripts": {
+          "storybook": "storybook dev -p 6006",
+          "build:storybook": "storybook build",
+          "test:ui": "storybook test --watch",
+          "test:ui:ci": "storybook test --ci"
+        }
+      }
+
+tooling-vue:
+  install:
+    - "npm i -D @storybook/vue3 @storybook/addon-essentials @storybook/addon-interactions @storybook/testing-library @storybook/test @storybook/test-runner"
+    - "npm i -D @playwright/test vue @vitejs/plugin-vue"
+  snippets:
+    button: |
+      <!-- src/components/Button.vue -->
+      <script setup lang="ts">
+      defineProps<{ variant?: 'primary'|'ghost' }>()
+      </script>
+      <template>
+        <button :data-variant="variant || 'primary'"><slot /></button>
+      </template>
+    story: |
+      // src/components/Button.stories.ts
+      import type { Meta, StoryObj } from '@storybook/vue3'
+      import Button from './Button.vue'
+      const meta: Meta<typeof Button> = { component: Button, title: 'Atoms/Button', args: { default: 'Click' } }
+      export default meta; type Story = StoryObj<typeof Button>
+      export const Primary: Story = { args: { variant: 'primary' } }
+    interactions: |
+      // src/components/Button.interactions.test.ts
+      import { test, expect } from '@storybook/test'
+      import { Primary } from './Button.stories'
+      test('button renders', async ({ canvas }) => {
+        const btn = await canvas.getByRole('button')
+        await expect(btn).toBeVisible()
+      })
+
+coverage-ci:
+  - "Visual 回帰が必要なら Playwright の screenshot/trace や Storybook Cloud/Chromatic を併用"
+  - "PR で stories と UI テストを必須にし、失敗時に差分を Artifact 化"
+
+bestPractices:
+  - "1 コンポーネント 1 ファイル（React: .tsx + .stories.tsx + .interactions.test.ts）で近接配置"
+  - "A11y: キーボード/Foccus/ARIA を stories と test で網羅（@storybook/addon-a11y も検討）"
+  - "State は props と制御/非制御を明確に。外部状態は Storybook Decorator で注入"
+references:
+  - "Storybook: https://storybook.js.org/docs"
+  - "Test Runner: https://storybook.js.org/docs/writing-tests/test-runner"
+  - "Playwright: https://playwright.dev/"
+license: "MIT"
+lastReviewed: "2025-08-15"
+

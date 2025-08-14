@@ -4,13 +4,14 @@
 [![Node.js Version](https://img.shields.io/node/v/fluorite-mcp.svg)](https://nodejs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
 
-**Fluorite MCP** は、ライブラリや UI コンポーネントの仕様を YAML/JSON で収集し、MCP (Model Context Protocol) で提供するサーバーです。Claude Code CLI に現代的な Web 開発ライブラリの深い知識を提供し、より正確で実用的なコード生成を可能にします。
+**Fluorite MCP** は、ライブラリや UI コンポーネントの仕様を YAML/JSON で収集し、MCP (Model Context Protocol) で提供するサーバーです。Claude Code CLI にモダン開発ライブラリと7つの主要プログラミング言語エコシステムの深い知識を提供し、より正確で実用的なコード生成を可能にします。
 
 ## 🚀 Why Fluorite MCP?
 
-Fluorite MCP transforms Claude Code CLI into an intelligent web development expert with:
+Fluorite MCP transforms Claude Code CLI into an intelligent multi-platform development expert with:
 
-- **📚 Deep Library Knowledge**: Comprehensive specs for 35+ essential libraries
+- **📚 Deep Library Knowledge**: Comprehensive specs for 50+ essential libraries
+- **🌐 Multi-Language Support**: 7 major programming language ecosystems
 - **⚡ Instant Code Generation**: Production-ready code with correct imports
 - **🎯 Best Practices Built-in**: Security, performance, and patterns included
 - **🔄 Library Integration**: Understands how libraries work together
@@ -73,6 +74,32 @@ See [BENEFITS.md](./BENEFITS.md) for detailed advantages.
 ### API & Backend
 - **tRPC** - End-to-end typesafe APIs
 - **Hono** - Ultrafast web framework
+
+## 🌐 Language Ecosystems
+
+### System Programming
+- **Zig** (`spec://zig-ecosystem`) - Memory-safe systems programming
+  - Standard library, networking, HTTP, SQLite, testing
+
+### Functional & Concurrent Programming  
+- **Elixir** (`spec://elixir-ecosystem`) - Actor model, fault-tolerant design
+  - Phoenix, Ecto, Absinthe, Plug, Guardian, Distillery
+
+### High-Performance Backend
+- **Go** (`spec://go-ecosystem`) - Concurrent backend development
+  - Gin, Gorilla Mux, Chi, GORM, SQLx, Go-Kit, gRPC, Zap, Prometheus
+
+### Cross-Platform Development
+- **Dart** (`spec://dart-ecosystem`) - Type-safe multi-platform language
+  - HTTP, Dio, json_serializable, Freezed, get_it, provider
+- **Flutter** (`spec://flutter-ecosystem`) - Mobile/desktop UI framework
+  - flutter_bloc, Riverpod, go_router, Intl, Hive, sqflite, Firebase
+
+### Enterprise & Game Development
+- **C#** (`spec://csharp-ecosystem`) - Enterprise application development
+  - ASP.NET Core, Entity Framework, Dapper, AutoMapper, MediatR, Serilog
+- **Unity** (`spec://unity-ecosystem`) - Professional game development
+  - Zenject, UniRx, DOTween, Cinemachine, TextMeshPro, Addressables, Mirror
 
 ## 🌐 Global Installation
 

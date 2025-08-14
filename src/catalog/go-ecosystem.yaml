@@ -1,0 +1,3048 @@
+id: "go-ecosystem"
+name: "Go Programming Language Ecosystem"
+homepage: "https://go.dev"
+summary: "高性能バックエンド開発に特化したGo言語エコシステム。並行処理、マイクロサービス、Web API、分散システム開発に最適化。"
+
+language:
+  name: "Go"
+  version: "1.21.0+"
+  description: "Google開発の静的型付けコンパイル言語"
+  features:
+    - "軽量ゴルーチン（goroutines）による並行処理"
+    - "チャネル（channels）による通信"
+    - "高速コンパイルと実行"
+    - "ガベージコレクション"
+    - "静的型付けと型安全"
+    - "シンプルな言語仕様"
+
+stdlib:
+  go_standard:
+    package: "Go Standard Library"
+    summary: "Go標準ライブラリ - 並行処理、HTTP、JSON、暗号化など包括的な機能を提供"
+    install: "Built-in with Go runtime"
+    usage: |
+      package main
+      
+      import (
+          "context"
+          "encoding/json"
+          "fmt"
+          "log"
+          "net/http"
+          "sync"
+          "time"
+      )
+      
+      // 基本的な並行処理
+      func main() {
+          // ゴルーチンとチャネル
+          ch := make(chan string, 3)
+          
+          go func() {
+              ch <- "Hello"
+              ch <- "World"
+              ch <- "Go"
+              close(ch)
+          }()
+          
+          for msg := range ch {
+              fmt.Println(msg)
+          }
+          
+          // WaitGroupによる同期
+          var wg sync.WaitGroup
+          
+          for i := 0; i < 3; i++ {
+              wg.Add(1)
+              go func(id int) {
+                  defer wg.Done()
+                  fmt.Printf("Worker %d started\n", id)
+                  time.Sleep(time.Second)
+                  fmt.Printf("Worker %d finished\n", id)
+              }(i)
+          }
+          
+          wg.Wait()
+          fmt.Println("All workers finished")
+          
+          // HTTPサーバー
+          startHTTPServer()
+      }
+      
+      // 基本的なHTTPサーバー
+      func startHTTPServer() {
+          mux := http.NewServeMux()
+          
+          // ハンドラー登録
+          mux.HandleFunc("/", homeHandler)
+          mux.HandleFunc("/api/users", usersHandler)
+          mux.HandleFunc("/health", healthHandler)
+          
+          // ミドルウェア
+          handler := loggingMiddleware(corsMiddleware(mux))
+          
+          server := &http.Server{
+              Addr:         ":8080",
+              Handler:      handler,
+              ReadTimeout:  15 * time.Second,
+              WriteTimeout: 15 * time.Second,
+              IdleTimeout:  60 * time.Second,
+          }
+          
+          log.Printf("Server starting on %s", server.Addr)
+          log.Fatal(server.ListenAndServe())
+      }
+      
+      // ハンドラー関数
+      func homeHandler(w http.ResponseWriter, r *http.Request) {
+          response := map[string]string{
+              "message": "Hello, Go!",
+              "version": "1.0.0",
+          }
+          
+          w.Header().Set("Content-Type", "application/json")
+          json.NewEncoder(w).Encode(response)
+      }
+      
+      type User struct {
+          ID    int    `json:"id"`
+          Name  string `json:"name"`
+          Email string `json:"email"`
+      }
+      
+      func usersHandler(w http.ResponseWriter, r *http.Request) {
+          switch r.Method {
+          case http.MethodGet:
+              users := []User{
+                  {ID: 1, Name: "Alice", Email: "alice@example.com"},
+                  {ID: 2, Name: "Bob", Email: "bob@example.com"},
+              }
+              
+              w.Header().Set("Content-Type", "application/json")
+              json.NewEncoder(w).Encode(users)
+              
+          case http.MethodPost:
+              var user User
+              if err := json.NewDecoder(r.Body).Decode(&user); err != nil {
+                  http.Error(w, "Invalid JSON", http.StatusBadRequest)
+                  return
+              }
+              
+              user.ID = 3 // 実際にはDBから取得
+              
+              w.Header().Set("Content-Type", "application/json")
+              w.WriteHeader(http.StatusCreated)
+              json.NewEncoder(w).Encode(user)
+              
+          default:
+              http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+          }
+      }
+      
+      func healthHandler(w http.ResponseWriter, r *http.Request) {
+          health := map[string]string{
+              "status": "ok",
+              "time":   time.Now().Format(time.RFC3339),
+          }
+          
+          w.Header().Set("Content-Type", "application/json")
+          json.NewEncoder(w).Encode(health)
+      }
+      
+      // ミドルウェア
+      func loggingMiddleware(next http.Handler) http.Handler {
+          return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+              start := time.Now()
+              next.ServeHTTP(w, r)
+              log.Printf("%s %s %v", r.Method, r.URL.Path, time.Since(start))
+          })
+      }
+      
+      func corsMiddleware(next http.Handler) http.Handler {
+          return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+              w.Header().Set("Access-Control-Allow-Origin", "*")
+              w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+              w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
+              
+              if r.Method == http.MethodOptions {
+                  w.WriteHeader(http.StatusOK)
+                  return
+              }
+              
+              next.ServeHTTP(w, r)
+          })
+      }
+      
+      // コンテキストの使用例
+      func contextExample() {
+          ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+          defer cancel()
+          
+          req, err := http.NewRequestWithContext(ctx, "GET", "https://api.example.com/data", nil)
+          if err != nil {
+              log.Fatal(err)
+          }
+          
+          client := &http.Client{}
+          resp, err := client.Do(req)
+          if err != nil {
+              log.Fatal(err)
+          }
+          defer resp.Body.Close()
+          
+          // レスポンス処理
+      }
+
+web_frameworks:
+  gin:
+    package: "gin-gonic/gin"
+    summary: "高性能・軽量Webフレームワーク - 高速ルーティングとミドルウェアサポート"
+    install: "go get github.com/gin-gonic/gin"
+    usage: |
+      package main
+      
+      import (
+          "net/http"
+          "strconv"
+          "github.com/gin-gonic/gin"
+      )
+      
+      type User struct {
+          ID    uint   `json:"id" gorm:"primaryKey"`
+          Name  string `json:"name" binding:"required"`
+          Email string `json:"email" binding:"required,email"`
+      }
+      
+      func main() {
+          // Ginルーター初期化
+          r := gin.Default()
+          
+          // ミドルウェア設定
+          r.Use(gin.Logger())
+          r.Use(gin.Recovery())
+          r.Use(corsMiddleware())
+          
+          // ルート定義
+          v1 := r.Group("/api/v1")
+          {
+              v1.GET("/users", getUsers)
+              v1.POST("/users", createUser)
+              v1.GET("/users/:id", getUser)
+              v1.PUT("/users/:id", updateUser)
+              v1.DELETE("/users/:id", deleteUser)
+          }
+          
+          // 認証が必要なルート
+          auth := v1.Group("/")
+          auth.Use(authMiddleware())
+          {
+              auth.GET("/profile", getProfile)
+              auth.PUT("/profile", updateProfile)
+          }
+          
+          // ヘルスチェック
+          r.GET("/health", func(c *gin.Context) {
+              c.JSON(http.StatusOK, gin.H{
+                  "status": "ok",
+                  "service": "user-api",
+              })
+          })
+          
+          // サーバー起動
+          r.Run(":8080")
+      }
+      
+      // ハンドラー関数
+      func getUsers(c *gin.Context) {
+          // クエリパラメータ
+          page, _ := strconv.Atoi(c.DefaultQuery("page", "1"))
+          limit, _ := strconv.Atoi(c.DefaultQuery("limit", "10"))
+          
+          users := []User{
+              {ID: 1, Name: "Alice", Email: "alice@example.com"},
+              {ID: 2, Name: "Bob", Email: "bob@example.com"},
+          }
+          
+          c.JSON(http.StatusOK, gin.H{
+              "data":  users,
+              "page":  page,
+              "limit": limit,
+              "total": len(users),
+          })
+      }
+      
+      func createUser(c *gin.Context) {
+          var user User
+          
+          // JSONバインディングとバリデーション
+          if err := c.ShouldBindJSON(&user); err != nil {
+              c.JSON(http.StatusBadRequest, gin.H{
+                  "error": err.Error(),
+              })
+              return
+          }
+          
+          // ユーザー作成ロジック（実際にはDBに保存）
+          user.ID = 123
+          
+          c.JSON(http.StatusCreated, gin.H{
+              "message": "User created successfully",
+              "data":    user,
+          })
+      }
+      
+      func getUser(c *gin.Context) {
+          id := c.Param("id")
+          userID, err := strconv.Atoi(id)
+          if err != nil {
+              c.JSON(http.StatusBadRequest, gin.H{
+                  "error": "Invalid user ID",
+              })
+              return
+          }
+          
+          // ユーザー取得ロジック
+          user := User{
+              ID:    uint(userID),
+              Name:  "Alice",
+              Email: "alice@example.com",
+          }
+          
+          c.JSON(http.StatusOK, gin.H{
+              "data": user,
+          })
+      }
+      
+      func updateUser(c *gin.Context) {
+          id := c.Param("id")
+          var user User
+          
+          if err := c.ShouldBindJSON(&user); err != nil {
+              c.JSON(http.StatusBadRequest, gin.H{
+                  "error": err.Error(),
+              })
+              return
+          }
+          
+          c.JSON(http.StatusOK, gin.H{
+              "message": fmt.Sprintf("User %s updated", id),
+              "data":    user,
+          })
+      }
+      
+      func deleteUser(c *gin.Context) {
+          id := c.Param("id")
+          
+          // 削除ロジック
+          
+          c.JSON(http.StatusOK, gin.H{
+              "message": fmt.Sprintf("User %s deleted", id),
+          })
+      }
+      
+      func getProfile(c *gin.Context) {
+          userID := c.GetString("userID") // authMiddlewareから取得
+          
+          c.JSON(http.StatusOK, gin.H{
+              "user_id": userID,
+              "profile": "user profile data",
+          })
+      }
+      
+      func updateProfile(c *gin.Context) {
+          // プロファイル更新
+      }
+      
+      // ミドルウェア
+      func corsMiddleware() gin.HandlerFunc {
+          return func(c *gin.Context) {
+              c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
+              c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
+              c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With")
+              c.Writer.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS, GET, PUT, DELETE")
+              
+              if c.Request.Method == "OPTIONS" {
+                  c.AbortWithStatus(204)
+                  return
+              }
+              
+              c.Next()
+          }
+      }
+      
+      func authMiddleware() gin.HandlerFunc {
+          return func(c *gin.Context) {
+              token := c.GetHeader("Authorization")
+              
+              if token == "" {
+                  c.JSON(http.StatusUnauthorized, gin.H{
+                      "error": "Authorization header required",
+                  })
+                  c.Abort()
+                  return
+              }
+              
+              // JWT検証ロジック
+              if !validateToken(token) {
+                  c.JSON(http.StatusUnauthorized, gin.H{
+                      "error": "Invalid token",
+                  })
+                  c.Abort()
+                  return
+              }
+              
+              c.Set("userID", "123")
+              c.Next()
+          }
+      }
+      
+      func validateToken(token string) bool {
+          // JWT検証ロジック
+          return token == "Bearer valid_token"
+      }
+
+  gorilla_mux:
+    package: "gorilla/mux"
+    summary: "強力なHTTPルーター - 柔軟なURL パターンマッチングとミドルウェアサポート"
+    install: "go get github.com/gorilla/mux"
+    usage: |
+      package main
+      
+      import (
+          "encoding/json"
+          "log"
+          "net/http"
+          "strconv"
+          "time"
+          
+          "github.com/gorilla/mux"
+      )
+      
+      func main() {
+          r := mux.NewRouter()
+          
+          // API routes
+          api := r.PathPrefix("/api/v1").Subrouter()
+          
+          // User routes
+          api.HandleFunc("/users", getUsersHandler).Methods("GET")
+          api.HandleFunc("/users", createUserHandler).Methods("POST")
+          api.HandleFunc("/users/{id:[0-9]+}", getUserHandler).Methods("GET")
+          api.HandleFunc("/users/{id:[0-9]+}", updateUserHandler).Methods("PUT")
+          api.HandleFunc("/users/{id:[0-9]+}", deleteUserHandler).Methods("DELETE")
+          
+          // Query parameter routes
+          api.HandleFunc("/search", searchHandler).Methods("GET").Queries("q", "{q}")
+          
+          // Subdomain routing
+          api.Host("api.example.com").HandleFunc("/status", statusHandler)
+          
+          // Middleware
+          r.Use(loggingMiddleware)
+          r.Use(corsMiddleware)
+          
+          // Static files
+          r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static/"))))
+          
+          // 404 handler
+          r.NotFoundHandler = http.HandlerFunc(notFoundHandler)
+          
+          srv := &http.Server{
+              Handler:      r,
+              Addr:         "127.0.0.1:8080",
+              WriteTimeout: 15 * time.Second,
+              ReadTimeout:  15 * time.Second,
+          }
+          
+          log.Println("Server starting on :8080")
+          log.Fatal(srv.ListenAndServe())
+      }
+      
+      func getUsersHandler(w http.ResponseWriter, r *http.Request) {
+          users := []map[string]interface{}{
+              {"id": 1, "name": "Alice", "email": "alice@example.com"},
+              {"id": 2, "name": "Bob", "email": "bob@example.com"},
+          }
+          
+          w.Header().Set("Content-Type", "application/json")
+          json.NewEncoder(w).Encode(map[string]interface{}{
+              "data": users,
+          })
+      }
+      
+      func getUserHandler(w http.ResponseWriter, r *http.Request) {
+          vars := mux.Vars(r)
+          id, err := strconv.Atoi(vars["id"])
+          if err != nil {
+              http.Error(w, "Invalid user ID", http.StatusBadRequest)
+              return
+          }
+          
+          user := map[string]interface{}{
+              "id":    id,
+              "name":  "Alice",
+              "email": "alice@example.com",
+          }
+          
+          w.Header().Set("Content-Type", "application/json")
+          json.NewEncoder(w).Encode(map[string]interface{}{
+              "data": user,
+          })
+      }
+      
+      func createUserHandler(w http.ResponseWriter, r *http.Request) {
+          var user map[string]interface{}
+          
+          if err := json.NewDecoder(r.Body).Decode(&user); err != nil {
+              http.Error(w, "Invalid JSON", http.StatusBadRequest)
+              return
+          }
+          
+          user["id"] = 123
+          
+          w.Header().Set("Content-Type", "application/json")
+          w.WriteHeader(http.StatusCreated)
+          json.NewEncoder(w).Encode(map[string]interface{}{
+              "message": "User created successfully",
+              "data":    user,
+          })
+      }
+      
+      func updateUserHandler(w http.ResponseWriter, r *http.Request) {
+          vars := mux.Vars(r)
+          id := vars["id"]
+          
+          var updates map[string]interface{}
+          json.NewDecoder(r.Body).Decode(&updates)
+          
+          w.Header().Set("Content-Type", "application/json")
+          json.NewEncoder(w).Encode(map[string]interface{}{
+              "message": "User " + id + " updated",
+              "data":    updates,
+          })
+      }
+      
+      func deleteUserHandler(w http.ResponseWriter, r *http.Request) {
+          vars := mux.Vars(r)
+          id := vars["id"]
+          
+          w.Header().Set("Content-Type", "application/json")
+          json.NewEncoder(w).Encode(map[string]interface{}{
+              "message": "User " + id + " deleted",
+          })
+      }
+      
+      func searchHandler(w http.ResponseWriter, r *http.Request) {
+          query := r.URL.Query().Get("q")
+          
+          results := []map[string]interface{}{
+              {"id": 1, "name": "Result for: " + query},
+          }
+          
+          w.Header().Set("Content-Type", "application/json")
+          json.NewEncoder(w).Encode(map[string]interface{}{
+              "query":   query,
+              "results": results,
+          })
+      }
+      
+      func statusHandler(w http.ResponseWriter, r *http.Request) {
+          w.Header().Set("Content-Type", "application/json")
+          json.NewEncoder(w).Encode(map[string]interface{}{
+              "status": "ok",
+              "host":   r.Host,
+          })
+      }
+      
+      func notFoundHandler(w http.ResponseWriter, r *http.Request) {
+          w.Header().Set("Content-Type", "application/json")
+          w.WriteHeader(http.StatusNotFound)
+          json.NewEncoder(w).Encode(map[string]interface{}{
+              "error": "Resource not found",
+              "path":  r.URL.Path,
+          })
+      }
+      
+      // Middleware
+      func loggingMiddleware(next http.Handler) http.Handler {
+          return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+              start := time.Now()
+              next.ServeHTTP(w, r)
+              log.Printf("%s %s %v", r.Method, r.URL.Path, time.Since(start))
+          })
+      }
+      
+      func corsMiddleware(next http.Handler) http.Handler {
+          return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+              w.Header().Set("Access-Control-Allow-Origin", "*")
+              w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+              w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
+              
+              if r.Method == "OPTIONS" {
+                  w.WriteHeader(http.StatusOK)
+                  return
+              }
+              
+              next.ServeHTTP(w, r)
+          })
+      }
+
+  chi:
+    package: "go-chi/chi"
+    summary: "軽量・高性能HTTPルーター - ミドルウェアスタックとコンテキストサポート"
+    install: "go get github.com/go-chi/chi/v5"
+    usage: |
+      package main
+      
+      import (
+          "context"
+          "encoding/json"
+          "net/http"
+          "strconv"
+          "time"
+          
+          "github.com/go-chi/chi/v5"
+          "github.com/go-chi/chi/v5/middleware"
+      )
+      
+      func main() {
+          r := chi.NewRouter()
+          
+          // Built-in middleware
+          r.Use(middleware.RequestID)
+          r.Use(middleware.Logger)
+          r.Use(middleware.Recoverer)
+          r.Use(middleware.URLFormat)
+          r.Use(middleware.Timeout(60 * time.Second))
+          
+          // Custom middleware
+          r.Use(corsMiddleware)
+          
+          // Routes
+          r.Route("/api/v1", func(r chi.Router) {
+              r.Route("/users", func(r chi.Router) {
+                  r.Get("/", listUsers)
+                  r.Post("/", createUser)
+                  
+                  r.Route("/{userID}", func(r chi.Router) {
+                      r.Use(userCtx) // コンテキストミドルウェア
+                      r.Get("/", getUser)
+                      r.Put("/", updateUser)
+                      r.Delete("/", deleteUser)
+                      
+                      r.Route("/posts", func(r chi.Router) {
+                          r.Get("/", getUserPosts)
+                          r.Post("/", createUserPost)
+                      })
+                  })
+              })
+              
+              // Admin routes
+              r.Route("/admin", func(r chi.Router) {
+                  r.Use(adminOnly)
+                  r.Get("/stats", getStats)
+                  r.Get("/users", getAdminUsers)
+              })
+          })
+          
+          // WebSocket
+          r.Get("/ws", websocketHandler)
+          
+          // Health check
+          r.Get("/health", func(w http.ResponseWriter, r *http.Request) {
+              w.Header().Set("Content-Type", "application/json")
+              json.NewEncoder(w).Encode(map[string]string{
+                  "status": "ok",
+                  "time":   time.Now().Format(time.RFC3339),
+              })
+          })
+          
+          http.ListenAndServe(":8080", r)
+      }
+      
+      type User struct {
+          ID    int    `json:"id"`
+          Name  string `json:"name"`
+          Email string `json:"email"`
+      }
+      
+      // Handlers
+      func listUsers(w http.ResponseWriter, r *http.Request) {
+          users := []User{
+              {ID: 1, Name: "Alice", Email: "alice@example.com"},
+              {ID: 2, Name: "Bob", Email: "bob@example.com"},
+          }
+          
+          w.Header().Set("Content-Type", "application/json")
+          json.NewEncoder(w).Encode(map[string]interface{}{
+              "data": users,
+          })
+      }
+      
+      func createUser(w http.ResponseWriter, r *http.Request) {
+          var user User
+          if err := json.NewDecoder(r.Body).Decode(&user); err != nil {
+              http.Error(w, err.Error(), http.StatusBadRequest)
+              return
+          }
+          
+          user.ID = 123
+          
+          w.Header().Set("Content-Type", "application/json")
+          w.WriteHeader(http.StatusCreated)
+          json.NewEncoder(w).Encode(map[string]interface{}{
+              "message": "User created",
+              "data":    user,
+          })
+      }
+      
+      func getUser(w http.ResponseWriter, r *http.Request) {
+          user := r.Context().Value("user").(User)
+          
+          w.Header().Set("Content-Type", "application/json")
+          json.NewEncoder(w).Encode(map[string]interface{}{
+              "data": user,
+          })
+      }
+      
+      func updateUser(w http.ResponseWriter, r *http.Request) {
+          user := r.Context().Value("user").(User)
+          
+          var updates User
+          json.NewDecoder(r.Body).Decode(&updates)
+          
+          user.Name = updates.Name
+          user.Email = updates.Email
+          
+          w.Header().Set("Content-Type", "application/json")
+          json.NewEncoder(w).Encode(map[string]interface{}{
+              "message": "User updated",
+              "data":    user,
+          })
+      }
+      
+      func deleteUser(w http.ResponseWriter, r *http.Request) {
+          userID := chi.URLParam(r, "userID")
+          
+          w.Header().Set("Content-Type", "application/json")
+          json.NewEncoder(w).Encode(map[string]interface{}{
+              "message": "User " + userID + " deleted",
+          })
+      }
+      
+      func getUserPosts(w http.ResponseWriter, r *http.Request) {
+          user := r.Context().Value("user").(User)
+          
+          posts := []map[string]interface{}{
+              {"id": 1, "title": "Post 1", "user_id": user.ID},
+              {"id": 2, "title": "Post 2", "user_id": user.ID},
+          }
+          
+          w.Header().Set("Content-Type", "application/json")
+          json.NewEncoder(w).Encode(map[string]interface{}{
+              "data": posts,
+          })
+      }
+      
+      func createUserPost(w http.ResponseWriter, r *http.Request) {
+          user := r.Context().Value("user").(User)
+          
+          var post map[string]interface{}
+          json.NewDecoder(r.Body).Decode(&post)
+          post["user_id"] = user.ID
+          post["id"] = 123
+          
+          w.Header().Set("Content-Type", "application/json")
+          w.WriteHeader(http.StatusCreated)
+          json.NewEncoder(w).Encode(map[string]interface{}{
+              "message": "Post created",
+              "data":    post,
+          })
+      }
+      
+      func getStats(w http.ResponseWriter, r *http.Request) {
+          stats := map[string]interface{}{
+              "total_users": 100,
+              "active_users": 85,
+              "total_posts": 250,
+          }
+          
+          w.Header().Set("Content-Type", "application/json")
+          json.NewEncoder(w).Encode(map[string]interface{}{
+              "data": stats,
+          })
+      }
+      
+      func getAdminUsers(w http.ResponseWriter, r *http.Request) {
+          // Admin user list
+      }
+      
+      func websocketHandler(w http.ResponseWriter, r *http.Request) {
+          // WebSocket upgrade logic
+      }
+      
+      // Middleware
+      func corsMiddleware(next http.Handler) http.Handler {
+          return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+              w.Header().Set("Access-Control-Allow-Origin", "*")
+              w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+              w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
+              
+              if r.Method == "OPTIONS" {
+                  w.WriteHeader(http.StatusOK)
+                  return
+              }
+              
+              next.ServeHTTP(w, r)
+          })
+      }
+      
+      func userCtx(next http.Handler) http.Handler {
+          return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+              userID := chi.URLParam(r, "userID")
+              id, err := strconv.Atoi(userID)
+              if err != nil {
+                  http.Error(w, "Invalid user ID", http.StatusBadRequest)
+                  return
+              }
+              
+              // データベースからユーザーを取得
+              user := User{
+                  ID:    id,
+                  Name:  "Alice",
+                  Email: "alice@example.com",
+              }
+              
+              ctx := context.WithValue(r.Context(), "user", user)
+              next.ServeHTTP(w, r.WithContext(ctx))
+          })
+      }
+      
+      func adminOnly(next http.Handler) http.Handler {
+          return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+              // 管理者認証チェック
+              token := r.Header.Get("Authorization")
+              if !isAdmin(token) {
+                  http.Error(w, "Admin access required", http.StatusForbidden)
+                  return
+              }
+              
+              next.ServeHTTP(w, r)
+          })
+      }
+      
+      func isAdmin(token string) bool {
+          // JWT検証 & 管理者権限チェック
+          return token == "Bearer admin_token"
+      }
+
+database:
+  gorm:
+    package: "gorm.io/gorm"
+    summary: "Go用ORM - 自動マイグレーション、アソシエーション、フックサポート"
+    install: |
+      go get gorm.io/gorm
+      go get gorm.io/driver/postgres
+      go get gorm.io/driver/mysql
+      go get gorm.io/driver/sqlite
+    usage: |
+      package main
+      
+      import (
+          "fmt"
+          "log"
+          "time"
+          
+          "gorm.io/driver/postgres"
+          "gorm.io/gorm"
+          "gorm.io/gorm/logger"
+      )
+      
+      // Models
+      type User struct {
+          ID        uint      `gorm:"primaryKey"`
+          Name      string    `gorm:"size:100;not null"`
+          Email     string    `gorm:"uniqueIndex;not null"`
+          Age       int       `gorm:"check:age > 0"`
+          Active    bool      `gorm:"default:true"`
+          CreatedAt time.Time
+          UpdatedAt time.Time
+          
+          // アソシエーション
+          Posts    []Post    `gorm:"foreignKey:UserID"`
+          Profile  Profile   `gorm:"foreignKey:UserID"`
+          Company  Company   `gorm:"foreignKey:CompanyID"`
+          CompanyID uint
+      }
+      
+      type Post struct {
+          ID        uint      `gorm:"primaryKey"`
+          Title     string    `gorm:"size:200;not null"`
+          Content   string    `gorm:"type:text"`
+          Published bool      `gorm:"default:false"`
+          UserID    uint      `gorm:"not null"`
+          CreatedAt time.Time
+          UpdatedAt time.Time
+          
+          User User `gorm:"foreignKey:UserID"`
+          Tags []Tag `gorm:"many2many:post_tags;"`
+      }
+      
+      type Profile struct {
+          ID       uint   `gorm:"primaryKey"`
+          Bio      string `gorm:"type:text"`
+          Website  string
+          UserID   uint   `gorm:"uniqueIndex"`
+      }
+      
+      type Company struct {
+          ID    uint   `gorm:"primaryKey"`
+          Name  string `gorm:"size:100;not null"`
+          Users []User `gorm:"foreignKey:CompanyID"`
+      }
+      
+      type Tag struct {
+          ID    uint   `gorm:"primaryKey"`
+          Name  string `gorm:"size:50;uniqueIndex"`
+          Posts []Post `gorm:"many2many:post_tags;"`
+      }
+      
+      func main() {
+          // データベース接続
+          dsn := "host=localhost user=username password=password dbname=testdb port=5432 sslmode=disable"
+          db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{
+              Logger: logger.Default.LogMode(logger.Info),
+          })
+          if err != nil {
+              log.Fatal("Failed to connect to database:", err)
+          }
+          
+          // マイグレーション
+          err = db.AutoMigrate(&User{}, &Post{}, &Profile{}, &Company{}, &Tag{})
+          if err != nil {
+              log.Fatal("Migration failed:", err)
+          }
+          
+          // CRUD操作のデモ
+          demonstrateCRUD(db)
+          demonstrateAssociations(db)
+          demonstrateQueries(db)
+          demonstrateTransactions(db)
+      }
+      
+      func demonstrateCRUD(db *gorm.DB) {
+          // Create
+          user := User{
+              Name:  "Alice",
+              Email: "alice@example.com",
+              Age:   30,
+          }
+          
+          result := db.Create(&user)
+          if result.Error != nil {
+              log.Println("Create error:", result.Error)
+              return
+          }
+          fmt.Printf("Created user with ID: %d\n", user.ID)
+          
+          // Read
+          var foundUser User
+          db.First(&foundUser, user.ID)
+          fmt.Printf("Found user: %+v\n", foundUser)
+          
+          // Update
+          db.Model(&foundUser).Update("age", 31)
+          db.Model(&foundUser).Updates(User{Name: "Alice Smith", Age: 32})
+          
+          // Delete (soft delete)
+          db.Delete(&foundUser, foundUser.ID)
+          
+          // 物理削除
+          // db.Unscoped().Delete(&foundUser, foundUser.ID)
+      }
+      
+      func demonstrateAssociations(db *gorm.DB) {
+          // ユーザーとプロファイルの作成
+          user := User{
+              Name:  "Bob",
+              Email: "bob@example.com",
+              Age:   25,
+              Profile: Profile{
+                  Bio:     "Software Developer",
+                  Website: "https://bob.dev",
+              },
+          }
+          
+          db.Create(&user)
+          
+          // アソシエーションの Preload
+          var userWithProfile User
+          db.Preload("Profile").First(&userWithProfile, user.ID)
+          fmt.Printf("User with profile: %+v\n", userWithProfile)
+          
+          // 投稿の作成
+          post := Post{
+              Title:   "First Post",
+              Content: "This is my first post",
+              UserID:  user.ID,
+          }
+          db.Create(&post)
+          
+          // ユーザーの投稿を取得
+          var userWithPosts User
+          db.Preload("Posts").First(&userWithPosts, user.ID)
+          fmt.Printf("User posts count: %d\n", len(userWithPosts.Posts))
+          
+          // Many2Many アソシエーション
+          tag1 := Tag{Name: "golang"}
+          tag2 := Tag{Name: "web"}
+          db.Create(&tag1)
+          db.Create(&tag2)
+          
+          // 投稿にタグを関連付け
+          db.Model(&post).Association("Tags").Append(&tag1, &tag2)
+          
+          // タグ付きの投稿を取得
+          var postWithTags Post
+          db.Preload("Tags").First(&postWithTags, post.ID)
+          fmt.Printf("Post tags count: %d\n", len(postWithTags.Tags))
+      }
+      
+      func demonstrateQueries(db *gorm.DB) {
+          // 複雑なクエリ
+          var users []User
+          
+          // 基本的な Where 条件
+          db.Where("age > ?", 25).Find(&users)
+          
+          // AND/OR 条件
+          db.Where("name = ? AND age > ?", "Alice", 20).Find(&users)
+          db.Where("name = ? OR email LIKE ?", "Alice", "%@example.com").Find(&users)
+          
+          // IN 条件
+          db.Where("age IN ?", []int{25, 30, 35}).Find(&users)
+          
+          // LIKE 検索
+          db.Where("name LIKE ?", "%alice%").Find(&users)
+          
+          // Struct による条件
+          db.Where(&User{Name: "Alice", Active: true}).Find(&users)
+          
+          // Map による条件
+          db.Where(map[string]interface{}{"name": "Alice", "age": 30}).Find(&users)
+          
+          // Order と Limit
+          db.Where("active = ?", true).Order("created_at desc").Limit(10).Find(&users)
+          
+          // Select 特定のフィールド
+          db.Select("name", "email").Where("active = ?", true).Find(&users)
+          
+          // Group By と Having
+          type Result struct {
+              CompanyID uint
+              Count     int64
+          }
+          var results []Result
+          db.Model(&User{}).Select("company_id, count(*) as count").Group("company_id").Having("count > ?", 1).Scan(&results)
+          
+          // Joins
+          var userPosts []struct {
+              UserName  string
+              PostTitle string
+          }
+          db.Table("users").
+              Select("users.name as user_name, posts.title as post_title").
+              Joins("left join posts on posts.user_id = users.id").
+              Scan(&userPosts)
+          
+          // サブクエリ
+          db.Where("age > (?)", db.Table("users").Select("AVG(age)")).Find(&users)
+          
+          // Raw SQL
+          db.Raw("SELECT name, age FROM users WHERE age > ?", 25).Scan(&users)
+      }
+      
+      func demonstrateTransactions(db *gorm.DB) {
+          // トランザクション
+          err := db.Transaction(func(tx *gorm.DB) error {
+              // ユーザー作成
+              user := User{Name: "Charlie", Email: "charlie@example.com", Age: 28}
+              if err := tx.Create(&user).Error; err != nil {
+                  return err
+              }
+              
+              // プロファイル作成
+              profile := Profile{Bio: "Photographer", UserID: user.ID}
+              if err := tx.Create(&profile).Error; err != nil {
+                  return err
+              }
+              
+              // 投稿作成
+              post := Post{Title: "Photography Tips", Content: "...", UserID: user.ID}
+              if err := tx.Create(&post).Error; err != nil {
+                  return err
+              }
+              
+              return nil
+          })
+          
+          if err != nil {
+              log.Println("Transaction failed:", err)
+          } else {
+              fmt.Println("Transaction completed successfully")
+          }
+          
+          // 手動トランザクション制御
+          tx := db.Begin()
+          defer func() {
+              if r := recover(); r != nil {
+                  tx.Rollback()
+              }
+          }()
+          
+          if err := tx.Error; err != nil {
+              return
+          }
+          
+          user := User{Name: "David", Email: "david@example.com"}
+          if err := tx.Create(&user).Error; err != nil {
+              tx.Rollback()
+              return
+          }
+          
+          if err := tx.Commit().Error; err != nil {
+              log.Println("Commit failed:", err)
+          }
+      }
+
+  sqlx:
+    package: "jmoiron/sqlx"
+    summary: "database/sql拡張ライブラリ - 構造体スキャンと名前付きクエリサポート"
+    install: |
+      go get github.com/jmoiron/sqlx
+      go get github.com/lib/pq  # PostgreSQL
+      go get github.com/go-sql-driver/mysql  # MySQL
+    usage: |
+      package main
+      
+      import (
+          "database/sql"
+          "fmt"
+          "log"
+          "time"
+          
+          "github.com/jmoiron/sqlx"
+          _ "github.com/lib/pq"
+      )
+      
+      type User struct {
+          ID        int       `db:"id"`
+          Name      string    `db:"name"`
+          Email     string    `db:"email"`
+          Age       int       `db:"age"`
+          Active    bool      `db:"active"`
+          CreatedAt time.Time `db:"created_at"`
+          UpdatedAt time.Time `db:"updated_at"`
+      }
+      
+      type Post struct {
+          ID        int       `db:"id"`
+          Title     string    `db:"title"`
+          Content   string    `db:"content"`
+          UserID    int       `db:"user_id"`
+          Published bool      `db:"published"`
+          CreatedAt time.Time `db:"created_at"`
+      }
+      
+      type UserWithPosts struct {
+          User
+          PostCount int `db:"post_count"`
+      }
+      
+      func main() {
+          // データベース接続
+          dsn := "postgres://username:password@localhost/testdb?sslmode=disable"
+          db, err := sqlx.Connect("postgres", dsn)
+          if err != nil {
+              log.Fatal("Failed to connect:", err)
+          }
+          defer db.Close()
+          
+          // 接続プール設定
+          db.SetMaxOpenConns(25)
+          db.SetMaxIdleConns(10)
+          db.SetConnMaxLifetime(5 * time.Minute)
+          
+          // テーブル作成
+          createTables(db)
+          
+          // CRUD操作のデモ
+          demonstrateCRUD(db)
+          demonstrateComplexQueries(db)
+          demonstrateTransactions(db)
+          demonstrateNamedQueries(db)
+      }
+      
+      func createTables(db *sqlx.DB) {
+          schema := `
+          CREATE TABLE IF NOT EXISTS users (
+              id SERIAL PRIMARY KEY,
+              name VARCHAR(100) NOT NULL,
+              email VARCHAR(255) UNIQUE NOT NULL,
+              age INTEGER CHECK (age > 0),
+              active BOOLEAN DEFAULT true,
+              created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+              updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+          );
+          
+          CREATE TABLE IF NOT EXISTS posts (
+              id SERIAL PRIMARY KEY,
+              title VARCHAR(200) NOT NULL,
+              content TEXT,
+              user_id INTEGER REFERENCES users(id),
+              published BOOLEAN DEFAULT false,
+              created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+          );
+          `
+          
+          db.MustExec(schema)
+      }
+      
+      func demonstrateCRUD(db *sqlx.DB) {
+          // Create
+          user := User{
+              Name:  "Alice",
+              Email: "alice@example.com",
+              Age:   30,
+          }
+          
+          // Named Exec
+          query := `
+              INSERT INTO users (name, email, age) 
+              VALUES (:name, :email, :age) 
+              RETURNING id, created_at, updated_at
+          `
+          
+          rows, err := db.NamedQuery(query, user)
+          if err != nil {
+              log.Fatal(err)
+          }
+          
+          if rows.Next() {
+              rows.Scan(&user.ID, &user.CreatedAt, &user.UpdatedAt)
+          }
+          rows.Close()
+          
+          fmt.Printf("Created user: %+v\n", user)
+          
+          // Read - Get single record
+          var foundUser User
+          err = db.Get(&foundUser, "SELECT * FROM users WHERE id = $1", user.ID)
+          if err != nil {
+              log.Printf("Get error: %v", err)
+          }
+          
+          // Read - Select multiple records
+          var users []User
+          err = db.Select(&users, "SELECT * FROM users WHERE age > $1", 25)
+          if err != nil {
+              log.Printf("Select error: %v", err)
+          }
+          
+          fmt.Printf("Found %d users\n", len(users))
+          
+          // Update
+          _, err = db.Exec("UPDATE users SET age = $1, updated_at = CURRENT_TIMESTAMP WHERE id = $2", 31, user.ID)
+          if err != nil {
+              log.Printf("Update error: %v", err)
+          }
+          
+          // Delete
+          _, err = db.Exec("DELETE FROM users WHERE id = $1", user.ID)
+          if err != nil {
+              log.Printf("Delete error: %v", err)
+          }
+      }
+      
+      func demonstrateComplexQueries(db *sqlx.DB) {
+          // サンプルデータ挿入
+          users := []User{
+              {Name: "Bob", Email: "bob@example.com", Age: 25},
+              {Name: "Charlie", Email: "charlie@example.com", Age: 35},
+          }
+          
+          for i := range users {
+              db.Get(&users[i], 
+                  "INSERT INTO users (name, email, age) VALUES ($1, $2, $3) RETURNING id, created_at, updated_at",
+                  users[i].Name, users[i].Email, users[i].Age)
+              
+              // 各ユーザーに投稿を作成
+              for j := 0; j < 3; j++ {
+                  _, err := db.Exec(
+                      "INSERT INTO posts (title, content, user_id, published) VALUES ($1, $2, $3, $4)",
+                      fmt.Sprintf("Post %d by %s", j+1, users[i].Name),
+                      fmt.Sprintf("Content of post %d", j+1),
+                      users[i].ID,
+                      j < 2, // 最初の2投稿は公開
+                  )
+                  if err != nil {
+                      log.Printf("Insert post error: %v", err)
+                  }
+              }
+          }
+          
+          // Join クエリ
+          var userPosts []struct {
+              UserName  string `db:"user_name"`
+              PostTitle string `db:"post_title"`
+              Published bool   `db:"published"`
+          }
+          
+          query := `
+              SELECT u.name as user_name, p.title as post_title, p.published
+              FROM users u
+              JOIN posts p ON u.id = p.user_id
+              WHERE p.published = true
+              ORDER BY u.name, p.created_at
+          `
+          
+          err := db.Select(&userPosts, query)
+          if err != nil {
+              log.Printf("Join query error: %v", err)
+          }
+          
+          fmt.Printf("Found %d published posts\n", len(userPosts))
+          
+          // 集計クエリ
+          var userStats []UserWithPosts
+          
+          aggregateQuery := `
+              SELECT u.*, COUNT(p.id) as post_count
+              FROM users u
+              LEFT JOIN posts p ON u.id = p.user_id
+              GROUP BY u.id, u.name, u.email, u.age, u.active, u.created_at, u.updated_at
+              HAVING COUNT(p.id) > 0
+              ORDER BY post_count DESC
+          `
+          
+          err = db.Select(&userStats, aggregateQuery)
+          if err != nil {
+              log.Printf("Aggregate query error: %v", err)
+          }
+          
+          for _, stat := range userStats {
+              fmt.Printf("User %s has %d posts\n", stat.Name, stat.PostCount)
+          }
+      }
+      
+      func demonstrateTransactions(db *sqlx.DB) {
+          // トランザクション
+          tx, err := db.Beginx()
+          if err != nil {
+              log.Fatal(err)
+          }
+          defer tx.Rollback()
+          
+          // ユーザー作成
+          var userID int
+          err = tx.Get(&userID, 
+              "INSERT INTO users (name, email, age) VALUES ($1, $2, $3) RETURNING id",
+              "David", "david@example.com", 28)
+          if err != nil {
+              log.Printf("Transaction user insert error: %v", err)
+              return
+          }
+          
+          // 投稿作成
+          posts := []Post{
+              {Title: "First Post", Content: "Content 1", UserID: userID, Published: true},
+              {Title: "Second Post", Content: "Content 2", UserID: userID, Published: false},
+          }
+          
+          for _, post := range posts {
+              _, err = tx.NamedExec(`
+                  INSERT INTO posts (title, content, user_id, published) 
+                  VALUES (:title, :content, :user_id, :published)
+              `, post)
+              if err != nil {
+                  log.Printf("Transaction post insert error: %v", err)
+                  return
+              }
+          }
+          
+          // コミット
+          err = tx.Commit()
+          if err != nil {
+              log.Printf("Transaction commit error: %v", err)
+          } else {
+              fmt.Println("Transaction completed successfully")
+          }
+      }
+      
+      func demonstrateNamedQueries(db *sqlx.DB) {
+          // Named parameters
+          user := User{
+              Name:  "Eve",
+              Email: "eve@example.com",
+              Age:   26,
+          }
+          
+          // NamedExec
+          _, err := db.NamedExec(`
+              INSERT INTO users (name, email, age) 
+              VALUES (:name, :email, :age)
+          `, user)
+          if err != nil {
+              log.Printf("NamedExec error: %v", err)
+          }
+          
+          // NamedQuery
+          rows, err := db.NamedQuery(`
+              SELECT * FROM users 
+              WHERE name = :name AND age > :min_age
+          `, map[string]interface{}{
+              "name":    "Eve",
+              "min_age": 20,
+          })
+          if err != nil {
+              log.Printf("NamedQuery error: %v", err)
+              return
+          }
+          defer rows.Close()
+          
+          for rows.Next() {
+              var u User
+              err := rows.StructScan(&u)
+              if err != nil {
+                  log.Printf("StructScan error: %v", err)
+                  continue
+              }
+              fmt.Printf("Named query result: %+v\n", u)
+          }
+          
+          // Prepared statements
+          stmt, err := db.Preparex("SELECT * FROM users WHERE age > $1 ORDER BY name")
+          if err != nil {
+              log.Printf("Prepare error: %v", err)
+              return
+          }
+          defer stmt.Close()
+          
+          var youngUsers []User
+          err = stmt.Select(&youngUsers, 25)
+          if err != nil {
+              log.Printf("Prepared statement error: %v", err)
+          }
+          
+          fmt.Printf("Found %d young users with prepared statement\n", len(youngUsers))
+      }
+
+microservices:
+  go_kit:
+    package: "go-kit/kit"
+    summary: "マイクロサービス開発ツールキット - サービス、エンドポイント、トランスポート分離"
+    install: "go get github.com/go-kit/kit"
+    usage: |
+      package main
+      
+      import (
+          "context"
+          "encoding/json"
+          "errors"
+          "fmt"
+          "log"
+          "net/http"
+          "strconv"
+          "time"
+          
+          "github.com/go-kit/kit/endpoint"
+          "github.com/go-kit/kit/log"
+          httptransport "github.com/go-kit/kit/transport/http"
+          "github.com/gorilla/mux"
+      )
+      
+      // Service definition
+      type UserService interface {
+          CreateUser(ctx context.Context, name, email string) (User, error)
+          GetUser(ctx context.Context, id int) (User, error)
+          UpdateUser(ctx context.Context, id int, name, email string) (User, error)
+          DeleteUser(ctx context.Context, id int) error
+          ListUsers(ctx context.Context) ([]User, error)
+      }
+      
+      type User struct {
+          ID    int    `json:"id"`
+          Name  string `json:"name"`
+          Email string `json:"email"`
+      }
+      
+      // Service implementation
+      type userService struct {
+          users map[int]User
+          nextID int
+      }
+      
+      func NewUserService() UserService {
+          return &userService{
+              users:  make(map[int]User),
+              nextID: 1,
+          }
+      }
+      
+      func (s *userService) CreateUser(ctx context.Context, name, email string) (User, error) {
+          if name == "" || email == "" {
+              return User{}, errors.New("name and email are required")
+          }
+          
+          user := User{
+              ID:    s.nextID,
+              Name:  name,
+              Email: email,
+          }
+          
+          s.users[s.nextID] = user
+          s.nextID++
+          
+          return user, nil
+      }
+      
+      func (s *userService) GetUser(ctx context.Context, id int) (User, error) {
+          user, exists := s.users[id]
+          if !exists {
+              return User{}, errors.New("user not found")
+          }
+          return user, nil
+      }
+      
+      func (s *userService) UpdateUser(ctx context.Context, id int, name, email string) (User, error) {
+          user, exists := s.users[id]
+          if !exists {
+              return User{}, errors.New("user not found")
+          }
+          
+          if name != "" {
+              user.Name = name
+          }
+          if email != "" {
+              user.Email = email
+          }
+          
+          s.users[id] = user
+          return user, nil
+      }
+      
+      func (s *userService) DeleteUser(ctx context.Context, id int) error {
+          _, exists := s.users[id]
+          if !exists {
+              return errors.New("user not found")
+          }
+          
+          delete(s.users, id)
+          return nil
+      }
+      
+      func (s *userService) ListUsers(ctx context.Context) ([]User, error) {
+          users := make([]User, 0, len(s.users))
+          for _, user := range s.users {
+              users = append(users, user)
+          }
+          return users, nil
+      }
+      
+      // Request/Response structures
+      type createUserRequest struct {
+          Name  string `json:"name"`
+          Email string `json:"email"`
+      }
+      
+      type createUserResponse struct {
+          User  User   `json:"user,omitempty"`
+          Error string `json:"error,omitempty"`
+      }
+      
+      type getUserRequest struct {
+          ID int `json:"id"`
+      }
+      
+      type getUserResponse struct {
+          User  User   `json:"user,omitempty"`
+          Error string `json:"error,omitempty"`
+      }
+      
+      type updateUserRequest struct {
+          ID    int    `json:"id"`
+          Name  string `json:"name"`
+          Email string `json:"email"`
+      }
+      
+      type updateUserResponse struct {
+          User  User   `json:"user,omitempty"`
+          Error string `json:"error,omitempty"`
+      }
+      
+      type deleteUserRequest struct {
+          ID int `json:"id"`
+      }
+      
+      type deleteUserResponse struct {
+          Error string `json:"error,omitempty"`
+      }
+      
+      type listUsersRequest struct{}
+      
+      type listUsersResponse struct {
+          Users []User `json:"users,omitempty"`
+          Error string `json:"error,omitempty"`
+      }
+      
+      // Endpoints
+      func makeCreateUserEndpoint(svc UserService) endpoint.Endpoint {
+          return func(ctx context.Context, request interface{}) (interface{}, error) {
+              req := request.(createUserRequest)
+              user, err := svc.CreateUser(ctx, req.Name, req.Email)
+              if err != nil {
+                  return createUserResponse{Error: err.Error()}, nil
+              }
+              return createUserResponse{User: user}, nil
+          }
+      }
+      
+      func makeGetUserEndpoint(svc UserService) endpoint.Endpoint {
+          return func(ctx context.Context, request interface{}) (interface{}, error) {
+              req := request.(getUserRequest)
+              user, err := svc.GetUser(ctx, req.ID)
+              if err != nil {
+                  return getUserResponse{Error: err.Error()}, nil
+              }
+              return getUserResponse{User: user}, nil
+          }
+      }
+      
+      func makeUpdateUserEndpoint(svc UserService) endpoint.Endpoint {
+          return func(ctx context.Context, request interface{}) (interface{}, error) {
+              req := request.(updateUserRequest)
+              user, err := svc.UpdateUser(ctx, req.ID, req.Name, req.Email)
+              if err != nil {
+                  return updateUserResponse{Error: err.Error()}, nil
+              }
+              return updateUserResponse{User: user}, nil
+          }
+      }
+      
+      func makeDeleteUserEndpoint(svc UserService) endpoint.Endpoint {
+          return func(ctx context.Context, request interface{}) (interface{}, error) {
+              req := request.(deleteUserRequest)
+              err := svc.DeleteUser(ctx, req.ID)
+              if err != nil {
+                  return deleteUserResponse{Error: err.Error()}, nil
+              }
+              return deleteUserResponse{}, nil
+          }
+      }
+      
+      func makeListUsersEndpoint(svc UserService) endpoint.Endpoint {
+          return func(ctx context.Context, request interface{}) (interface{}, error) {
+              users, err := svc.ListUsers(ctx)
+              if err != nil {
+                  return listUsersResponse{Error: err.Error()}, nil
+              }
+              return listUsersResponse{Users: users}, nil
+          }
+      }
+      
+      // HTTP Transport
+      func decodeCreateUserRequest(_ context.Context, r *http.Request) (interface{}, error) {
+          var request createUserRequest
+          if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
+              return nil, err
+          }
+          return request, nil
+      }
+      
+      func decodeGetUserRequest(_ context.Context, r *http.Request) (interface{}, error) {
+          vars := mux.Vars(r)
+          id, err := strconv.Atoi(vars["id"])
+          if err != nil {
+              return nil, err
+          }
+          return getUserRequest{ID: id}, nil
+      }
+      
+      func decodeUpdateUserRequest(_ context.Context, r *http.Request) (interface{}, error) {
+          vars := mux.Vars(r)
+          id, err := strconv.Atoi(vars["id"])
+          if err != nil {
+              return nil, err
+          }
+          
+          var req updateUserRequest
+          if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+              return nil, err
+          }
+          req.ID = id
+          
+          return req, nil
+      }
+      
+      func decodeDeleteUserRequest(_ context.Context, r *http.Request) (interface{}, error) {
+          vars := mux.Vars(r)
+          id, err := strconv.Atoi(vars["id"])
+          if err != nil {
+              return nil, err
+          }
+          return deleteUserRequest{ID: id}, nil
+      }
+      
+      func decodeListUsersRequest(_ context.Context, r *http.Request) (interface{}, error) {
+          return listUsersRequest{}, nil
+      }
+      
+      func encodeResponse(_ context.Context, w http.ResponseWriter, response interface{}) error {
+          w.Header().Set("Content-Type", "application/json; charset=utf-8")
+          return json.NewEncoder(w).Encode(response)
+      }
+      
+      // Middleware
+      func loggingMiddleware(logger log.Logger) endpoint.Middleware {
+          return func(next endpoint.Endpoint) endpoint.Endpoint {
+              return func(ctx context.Context, request interface{}) (interface{}, error) {
+                  defer func(begin time.Time) {
+                      logger.Log(
+                          "transport", "HTTP",
+                          "took", time.Since(begin),
+                      )
+                  }(time.Now())
+                  return next(ctx, request)
+              }
+          }
+      }
+      
+      func main() {
+          // Logger
+          logger := log.NewLogfmtLogger(os.Stderr)
+          
+          // Service
+          svc := NewUserService()
+          
+          // Endpoints
+          createUserEndpoint := makeCreateUserEndpoint(svc)
+          getUserEndpoint := makeGetUserEndpoint(svc)
+          updateUserEndpoint := makeUpdateUserEndpoint(svc)
+          deleteUserEndpoint := makeDeleteUserEndpoint(svc)
+          listUsersEndpoint := makeListUsersEndpoint(svc)
+          
+          // Middleware
+          createUserEndpoint = loggingMiddleware(logger)(createUserEndpoint)
+          getUserEndpoint = loggingMiddleware(logger)(getUserEndpoint)
+          updateUserEndpoint = loggingMiddleware(logger)(updateUserEndpoint)
+          deleteUserEndpoint = loggingMiddleware(logger)(deleteUserEndpoint)
+          listUsersEndpoint = loggingMiddleware(logger)(listUsersEndpoint)
+          
+          // HTTP Transport
+          createUserHandler := httptransport.NewServer(
+              createUserEndpoint,
+              decodeCreateUserRequest,
+              encodeResponse,
+          )
+          
+          getUserHandler := httptransport.NewServer(
+              getUserEndpoint,
+              decodeGetUserRequest,
+              encodeResponse,
+          )
+          
+          updateUserHandler := httptransport.NewServer(
+              updateUserEndpoint,
+              decodeUpdateUserRequest,
+              encodeResponse,
+          )
+          
+          deleteUserHandler := httptransport.NewServer(
+              deleteUserEndpoint,
+              decodeDeleteUserRequest,
+              encodeResponse,
+          )
+          
+          listUsersHandler := httptransport.NewServer(
+              listUsersEndpoint,
+              decodeListUsersRequest,
+              encodeResponse,
+          )
+          
+          // Routes
+          r := mux.NewRouter()
+          r.Methods("POST").Path("/users").Handler(createUserHandler)
+          r.Methods("GET").Path("/users").Handler(listUsersHandler)
+          r.Methods("GET").Path("/users/{id}").Handler(getUserHandler)
+          r.Methods("PUT").Path("/users/{id}").Handler(updateUserHandler)
+          r.Methods("DELETE").Path("/users/{id}").Handler(deleteUserHandler)
+          
+          // Health check
+          r.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
+              w.Header().Set("Content-Type", "application/json")
+              json.NewEncoder(w).Encode(map[string]string{
+                  "status": "ok",
+                  "service": "user-service",
+              })
+          }).Methods("GET")
+          
+          // Start server
+          fmt.Println("Starting server on :8080")
+          log.Fatal(http.ListenAndServe(":8080", r))
+      }
+
+grpc:
+  grpc_go:
+    package: "google.golang.org/grpc"
+    summary: "Go用gRPCフレームワーク - 高性能RPC通信とProtocol Buffers統合"
+    install: |
+      go get google.golang.org/grpc
+      go get google.golang.org/protobuf
+      
+      # protoc compiler インストール
+      # Protocol Buffer compiler (protoc) が必要
+      go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+      go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+    usage: |
+      // user.proto
+      syntax = "proto3";
+      
+      package user;
+      option go_package = "./proto";
+      
+      service UserService {
+        rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+        rpc GetUser(GetUserRequest) returns (GetUserResponse);
+        rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse);
+        rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
+        rpc ListUsers(ListUsersRequest) returns (stream User);
+        rpc StreamUpdates(stream UpdateRequest) returns (stream UpdateResponse);
+      }
+      
+      message User {
+        int32 id = 1;
+        string name = 2;
+        string email = 3;
+        int32 age = 4;
+        bool active = 5;
+      }
+      
+      message CreateUserRequest {
+        string name = 1;
+        string email = 2;
+        int32 age = 3;
+      }
+      
+      message CreateUserResponse {
+        User user = 1;
+        string error = 2;
+      }
+      
+      message GetUserRequest {
+        int32 id = 1;
+      }
+      
+      message GetUserResponse {
+        User user = 1;
+        string error = 2;
+      }
+      
+      message UpdateUserRequest {
+        int32 id = 1;
+        string name = 2;
+        string email = 3;
+        int32 age = 4;
+      }
+      
+      message UpdateUserResponse {
+        User user = 1;
+        string error = 2;
+      }
+      
+      message DeleteUserRequest {
+        int32 id = 1;
+      }
+      
+      message DeleteUserResponse {
+        string error = 1;
+      }
+      
+      message ListUsersRequest {}
+      
+      message UpdateRequest {
+        int32 user_id = 1;
+        string field = 2;
+        string value = 3;
+      }
+      
+      message UpdateResponse {
+        bool success = 1;
+        string error = 2;
+      }
+      
+      // server.go
+      package main
+      
+      import (
+          "context"
+          "errors"
+          "fmt"
+          "io"
+          "log"
+          "net"
+          "sync"
+          "time"
+          
+          "google.golang.org/grpc"
+          "google.golang.org/grpc/codes"
+          "google.golang.org/grpc/status"
+          
+          pb "./proto" // generated protobuf code
+      )
+      
+      type server struct {
+          pb.UnimplementedUserServiceServer
+          users  map[int32]*pb.User
+          nextID int32
+          mu     sync.RWMutex
+      }
+      
+      func newServer() *server {
+          return &server{
+              users:  make(map[int32]*pb.User),
+              nextID: 1,
+          }
+      }
+      
+      func (s *server) CreateUser(ctx context.Context, req *pb.CreateUserRequest) (*pb.CreateUserResponse, error) {
+          if req.Name == "" || req.Email == "" {
+              return &pb.CreateUserResponse{
+                  Error: "name and email are required",
+              }, nil
+          }
+          
+          s.mu.Lock()
+          defer s.mu.Unlock()
+          
+          user := &pb.User{
+              Id:     s.nextID,
+              Name:   req.Name,
+              Email:  req.Email,
+              Age:    req.Age,
+              Active: true,
+          }
+          
+          s.users[s.nextID] = user
+          s.nextID++
+          
+          return &pb.CreateUserResponse{User: user}, nil
+      }
+      
+      func (s *server) GetUser(ctx context.Context, req *pb.GetUserRequest) (*pb.GetUserResponse, error) {
+          s.mu.RLock()
+          defer s.mu.RUnlock()
+          
+          user, exists := s.users[req.Id]
+          if !exists {
+              return nil, status.Errorf(codes.NotFound, "user with id %d not found", req.Id)
+          }
+          
+          return &pb.GetUserResponse{User: user}, nil
+      }
+      
+      func (s *server) UpdateUser(ctx context.Context, req *pb.UpdateUserRequest) (*pb.UpdateUserResponse, error) {
+          s.mu.Lock()
+          defer s.mu.Unlock()
+          
+          user, exists := s.users[req.Id]
+          if !exists {
+              return &pb.UpdateUserResponse{
+                  Error: "user not found",
+              }, nil
+          }
+          
+          if req.Name != "" {
+              user.Name = req.Name
+          }
+          if req.Email != "" {
+              user.Email = req.Email
+          }
+          if req.Age > 0 {
+              user.Age = req.Age
+          }
+          
+          return &pb.UpdateUserResponse{User: user}, nil
+      }
+      
+      func (s *server) DeleteUser(ctx context.Context, req *pb.DeleteUserRequest) (*pb.DeleteUserResponse, error) {
+          s.mu.Lock()
+          defer s.mu.Unlock()
+          
+          _, exists := s.users[req.Id]
+          if !exists {
+              return &pb.DeleteUserResponse{
+                  Error: "user not found",
+              }, nil
+          }
+          
+          delete(s.users, req.Id)
+          return &pb.DeleteUserResponse{}, nil
+      }
+      
+      // Server streaming
+      func (s *server) ListUsers(req *pb.ListUsersRequest, stream pb.UserService_ListUsersServer) error {
+          s.mu.RLock()
+          defer s.mu.RUnlock()
+          
+          for _, user := range s.users {
+              if err := stream.Send(user); err != nil {
+                  return err
+              }
+              // シミュレーション用の遅延
+              time.Sleep(100 * time.Millisecond)
+          }
+          
+          return nil
+      }
+      
+      // Bidirectional streaming
+      func (s *server) StreamUpdates(stream pb.UserService_StreamUpdatesServer) error {
+          for {
+              req, err := stream.Recv()
+              if err == io.EOF {
+                  return nil
+              }
+              if err != nil {
+                  return err
+              }
+              
+              s.mu.Lock()
+              user, exists := s.users[req.UserId]
+              if !exists {
+                  s.mu.Unlock()
+                  if err := stream.Send(&pb.UpdateResponse{
+                      Success: false,
+                      Error:   "user not found",
+                  }); err != nil {
+                      return err
+                  }
+                  continue
+              }
+              
+              // フィールド更新
+              switch req.Field {
+              case "name":
+                  user.Name = req.Value
+              case "email":
+                  user.Email = req.Value
+              default:
+                  s.mu.Unlock()
+                  if err := stream.Send(&pb.UpdateResponse{
+                      Success: false,
+                      Error:   "invalid field",
+                  }); err != nil {
+                      return err
+                  }
+                  continue
+              }
+              s.mu.Unlock()
+              
+              if err := stream.Send(&pb.UpdateResponse{
+                  Success: true,
+              }); err != nil {
+                  return err
+              }
+          }
+      }
+      
+      func main() {
+          lis, err := net.Listen("tcp", ":50051")
+          if err != nil {
+              log.Fatalf("failed to listen: %v", err)
+          }
+          
+          s := grpc.NewServer()
+          pb.RegisterUserServiceServer(s, newServer())
+          
+          log.Println("gRPC server listening on :50051")
+          if err := s.Serve(lis); err != nil {
+              log.Fatalf("failed to serve: %v", err)
+          }
+      }
+      
+      // client.go
+      package main
+      
+      import (
+          "context"
+          "io"
+          "log"
+          "time"
+          
+          "google.golang.org/grpc"
+          "google.golang.org/grpc/credentials/insecure"
+          
+          pb "./proto"
+      )
+      
+      func main() {
+          // サーバー接続
+          conn, err := grpc.Dial("localhost:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
+          if err != nil {
+              log.Fatalf("did not connect: %v", err)
+          }
+          defer conn.Close()
+          
+          client := pb.NewUserServiceClient(conn)
+          
+          // Unary RPC
+          demonstrateUnaryRPC(client)
+          
+          // Server streaming
+          demonstrateServerStreaming(client)
+          
+          // Bidirectional streaming
+          demonstrateBidirectionalStreaming(client)
+      }
+      
+      func demonstrateUnaryRPC(client pb.UserServiceClient) {
+          ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+          defer cancel()
+          
+          // ユーザー作成
+          createResp, err := client.CreateUser(ctx, &pb.CreateUserRequest{
+              Name:  "Alice",
+              Email: "alice@example.com",
+              Age:   30,
+          })
+          if err != nil {
+              log.Fatalf("CreateUser failed: %v", err)
+          }
+          
+          if createResp.Error != "" {
+              log.Printf("CreateUser error: %s", createResp.Error)
+              return
+          }
+          
+          log.Printf("Created user: %v", createResp.User)
+          
+          // ユーザー取得
+          getResp, err := client.GetUser(ctx, &pb.GetUserRequest{
+              Id: createResp.User.Id,
+          })
+          if err != nil {
+              log.Fatalf("GetUser failed: %v", err)
+          }
+          
+          log.Printf("Retrieved user: %v", getResp.User)
+          
+          // ユーザー更新
+          updateResp, err := client.UpdateUser(ctx, &pb.UpdateUserRequest{
+              Id:   createResp.User.Id,
+              Name: "Alice Smith",
+              Age:  31,
+          })
+          if err != nil {
+              log.Fatalf("UpdateUser failed: %v", err)
+          }
+          
+          log.Printf("Updated user: %v", updateResp.User)
+      }
+      
+      func demonstrateServerStreaming(client pb.UserServiceClient) {
+          ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+          defer cancel()
+          
+          stream, err := client.ListUsers(ctx, &pb.ListUsersRequest{})
+          if err != nil {
+              log.Fatalf("ListUsers failed: %v", err)
+          }
+          
+          log.Println("Receiving users from server stream:")
+          for {
+              user, err := stream.Recv()
+              if err == io.EOF {
+                  break
+              }
+              if err != nil {
+                  log.Fatalf("stream.Recv() failed: %v", err)
+              }
+              log.Printf("Received user: %v", user)
+          }
+      }
+      
+      func demonstrateBidirectionalStreaming(client pb.UserServiceClient) {
+          ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+          defer cancel()
+          
+          stream, err := client.StreamUpdates(ctx)
+          if err != nil {
+              log.Fatalf("StreamUpdates failed: %v", err)
+          }
+          
+          // 送信ゴルーチン
+          go func() {
+              requests := []*pb.UpdateRequest{
+                  {UserId: 1, Field: "name", Value: "Alice Updated"},
+                  {UserId: 1, Field: "email", Value: "alice.updated@example.com"},
+                  {UserId: 999, Field: "name", Value: "Non-existent"},
+              }
+              
+              for _, req := range requests {
+                  if err := stream.Send(req); err != nil {
+                      log.Printf("stream.Send() failed: %v", err)
+                      return
+                  }
+                  time.Sleep(time.Second)
+              }
+              stream.CloseSend()
+          }()
+          
+          // 受信
+          for {
+              resp, err := stream.Recv()
+              if err == io.EOF {
+                  break
+              }
+              if err != nil {
+                  log.Fatalf("stream.Recv() failed: %v", err)
+              }
+              
+              if resp.Success {
+                  log.Println("Update successful")
+              } else {
+                  log.Printf("Update failed: %s", resp.Error)
+              }
+          }
+      }
+
+logging:
+  zap:
+    package: "uber-go/zap"
+    summary: "高性能構造化ロギングライブラリ - JSON出力と高速シリアライゼーション"
+    install: "go get go.uber.org/zap"
+    usage: |
+      package main
+      
+      import (
+          "context"
+          "errors"
+          "net/http"
+          "time"
+          
+          "go.uber.org/zap"
+          "go.uber.org/zap/zapcore"
+      )
+      
+      func main() {
+          // 基本的な使用法
+          basicUsage()
+          
+          // カスタム設定
+          customConfiguration()
+          
+          // 構造化ログ
+          structuredLogging()
+          
+          // コンテキストログ
+          contextLogging()
+          
+          // HTTPミドルウェア
+          httpMiddlewareExample()
+      }
+      
+      func basicUsage() {
+          // Development logger (人間が読みやすい形式)
+          logger, _ := zap.NewDevelopment()
+          defer logger.Sync()
+          
+          logger.Info("Development logger initialized")
+          logger.Warn("This is a warning")
+          logger.Error("This is an error", zap.Error(errors.New("example error")))
+          
+          // Production logger (JSON形式)
+          prodLogger, _ := zap.NewProduction()
+          defer prodLogger.Sync()
+          
+          prodLogger.Info("Production logger initialized",
+              zap.String("service", "user-api"),
+              zap.String("version", "1.0.0"),
+          )
+      }
+      
+      func customConfiguration() {
+          // カスタム設定
+          config := zap.Config{
+              Level:            zap.NewAtomicLevelAt(zap.InfoLevel),
+              Development:      false,
+              Encoding:         "json",
+              EncoderConfig:    zapcore.NewProductionEncoderConfig(),
+              OutputPaths:      []string{"stdout", "./app.log"},
+              ErrorOutputPaths: []string{"stderr"},
+          }
+          
+          // タイムスタンプ形式をカスタマイズ
+          config.EncoderConfig.TimeKey = "timestamp"
+          config.EncoderConfig.EncodeTime = zapcore.ISO8601TimeEncoder
+          
+          logger, err := config.Build()
+          if err != nil {
+              panic(err)
+          }
+          defer logger.Sync()
+          
+          logger.Info("Custom configured logger",
+              zap.String("config", "custom"),
+              zap.Duration("startup_time", 100*time.Millisecond),
+          )
+          
+          // Sugar logger (より簡潔な API)
+          sugar := logger.Sugar()
+          sugar.Infof("Sugar logger with formatted string: %s", "example")
+          sugar.Errorw("Sugar logger with key-value pairs",
+              "error", "database connection failed",
+              "retry_count", 3,
+              "timeout", "30s",
+          )
+      }
+      
+      func structuredLogging() {
+          logger, _ := zap.NewProduction()
+          defer logger.Sync()
+          
+          // 構造化フィールド
+          user := struct {
+              ID    int    `json:"id"`
+              Name  string `json:"name"`
+              Email string `json:"email"`
+          }{
+              ID:    123,
+              Name:  "Alice",
+              Email: "alice@example.com",
+          }
+          
+          logger.Info("User operation",
+              zap.String("operation", "create"),
+              zap.Int("user_id", user.ID),
+              zap.String("user_name", user.Name),
+              zap.String("user_email", user.Email),
+              zap.Duration("duration", 250*time.Millisecond),
+              zap.Bool("success", true),
+          )
+          
+          // ネストされたオブジェクト
+          logger.Info("Database operation",
+              zap.Object("query", zapcore.ObjectMarshalerFunc(func(enc zapcore.ObjectEncoder) error {
+                  enc.AddString("table", "users")
+                  enc.AddString("operation", "SELECT")
+                  enc.AddInt64("rows_affected", 5)
+                  enc.AddDuration("execution_time", 15*time.Millisecond)
+                  return nil
+              })),
+          )
+          
+          // 配列ログ
+          logger.Info("Batch operation",
+              zap.Array("user_ids", zapcore.ArrayMarshalerFunc(func(enc zapcore.ArrayEncoder) error {
+                  enc.AppendInt(1)
+                  enc.AppendInt(2)
+                  enc.AppendInt(3)
+                  return nil
+              })),
+          )
+      }
+      
+      func contextLogging() {
+          logger, _ := zap.NewProduction()
+          defer logger.Sync()
+          
+          // コンテキストにロガーを追加
+          ctx := context.WithValue(context.Background(), "logger", logger)
+          
+          // リクエストID付きロガー
+          requestLogger := logger.With(
+              zap.String("request_id", "req-123"),
+              zap.String("user_id", "user-456"),
+          )
+          
+          requestLogger.Info("Processing request")
+          
+          // ビジネスロジック関数
+          processUser(ctx, requestLogger)
+          
+          requestLogger.Info("Request completed")
+      }
+      
+      func processUser(ctx context.Context, logger *zap.Logger) {
+          // 関数レベルでのロガー使用
+          funcLogger := logger.With(zap.String("function", "processUser"))
+          
+          funcLogger.Info("Starting user processing")
+          
+          // エラーログの例
+          if err := validateUser(); err != nil {
+              funcLogger.Error("User validation failed",
+                  zap.Error(err),
+                  zap.String("validation_step", "email_check"),
+              )
+              return
+          }
+          
+          funcLogger.Info("User processing completed successfully")
+      }
+      
+      func validateUser() error {
+          return errors.New("invalid email format")
+      }
+      
+      func httpMiddlewareExample() {
+          logger, _ := zap.NewProduction()
+          defer logger.Sync()
+          
+          // HTTPミドルウェア
+          loggingMiddleware := func(next http.Handler) http.Handler {
+              return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+                  start := time.Now()
+                  
+                  // リクエストログ
+                  logger.Info("HTTP request started",
+                      zap.String("method", r.Method),
+                      zap.String("path", r.URL.Path),
+                      zap.String("user_agent", r.UserAgent()),
+                      zap.String("remote_addr", r.RemoteAddr),
+                  )
+                  
+                  // レスポンスライター wrapper
+                  wrapper := &responseWrapper{ResponseWriter: w, statusCode: 200}
+                  
+                  next.ServeHTTP(wrapper, r)
+                  
+                  // レスポンスログ
+                  duration := time.Since(start)
+                  
+                  logFunc := logger.Info
+                  if wrapper.statusCode >= 400 {
+                      logFunc = logger.Error
+                  } else if wrapper.statusCode >= 300 {
+                      logFunc = logger.Warn
+                  }
+                  
+                  logFunc("HTTP request completed",
+                      zap.String("method", r.Method),
+                      zap.String("path", r.URL.Path),
+                      zap.Int("status_code", wrapper.statusCode),
+                      zap.Duration("duration", duration),
+                      zap.Int("response_size", wrapper.size),
+                  )
+              })
+          }
+          
+          // ハンドラー
+          handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+              w.Header().Set("Content-Type", "application/json")
+              
+              if r.URL.Path == "/error" {
+                  w.WriteHeader(http.StatusInternalServerError)
+                  w.Write([]byte(`{"error": "Internal server error"}`))
+                  return
+              }
+              
+              w.WriteHeader(http.StatusOK)
+              w.Write([]byte(`{"message": "Hello, World!"}`))
+          })
+          
+          // サーバー設定
+          mux := http.NewServeMux()
+          mux.Handle("/", loggingMiddleware(handler))
+          mux.Handle("/error", loggingMiddleware(handler))
+          
+          logger.Info("Starting HTTP server on :8080")
+          // http.ListenAndServe(":8080", mux)
+      }
+      
+      type responseWrapper struct {
+          http.ResponseWriter
+          statusCode int
+          size       int
+      }
+      
+      func (rw *responseWrapper) WriteHeader(code int) {
+          rw.statusCode = code
+          rw.ResponseWriter.WriteHeader(code)
+      }
+      
+      func (rw *responseWrapper) Write(b []byte) (int, error) {
+          size, err := rw.ResponseWriter.Write(b)
+          rw.size += size
+          return size, err
+      }
+
+monitoring:
+  prometheus:
+    package: "prometheus/client_golang"
+    summary: "Prometheusメトリクス収集ライブラリ - カウンター、ゲージ、ヒストグラム対応"
+    install: "go get github.com/prometheus/client_golang/prometheus"
+    usage: |
+      package main
+      
+      import (
+          "log"
+          "math/rand"
+          "net/http"
+          "strconv"
+          "time"
+          
+          "github.com/prometheus/client_golang/prometheus"
+          "github.com/prometheus/client_golang/prometheus/promhttp"
+          "github.com/prometheus/client_golang/prometheus/promauto"
+      )
+      
+      var (
+          // Counter - 単調増加する値
+          httpRequestsTotal = promauto.NewCounterVec(
+              prometheus.CounterOpts{
+                  Name: "http_requests_total",
+                  Help: "Total number of HTTP requests",
+              },
+              []string{"method", "endpoint", "status_code"},
+          )
+          
+          // Gauge - 上下に変動する値
+          activeConnections = promauto.NewGauge(
+              prometheus.GaugeOpts{
+                  Name: "active_connections",
+                  Help: "Number of active connections",
+              },
+          )
+          
+          cpuUsage = promauto.NewGaugeVec(
+              prometheus.GaugeOpts{
+                  Name: "cpu_usage_percent",
+                  Help: "CPU usage percentage",
+              },
+              []string{"core"},
+          )
+          
+          // Histogram - 値の分布を記録
+          httpRequestDuration = promauto.NewHistogramVec(
+              prometheus.HistogramOpts{
+                  Name:    "http_request_duration_seconds",
+                  Help:    "HTTP request duration in seconds",
+                  Buckets: prometheus.DefBuckets, // 0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1, 2.5, 5, 10
+              },
+              []string{"method", "endpoint"},
+          )
+          
+          // カスタムバケット
+          databaseQueryDuration = promauto.NewHistogramVec(
+              prometheus.HistogramOpts{
+                  Name:    "database_query_duration_seconds",
+                  Help:    "Database query duration in seconds",
+                  Buckets: []float64{0.001, 0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1.0},
+              },
+              []string{"query_type", "table"},
+          )
+          
+          // Summary - パーセンタイルを計算
+          requestSize = promauto.NewSummaryVec(
+              prometheus.SummaryOpts{
+                  Name:       "http_request_size_bytes",
+                  Help:       "HTTP request size in bytes",
+                  Objectives: map[float64]float64{0.5: 0.05, 0.9: 0.01, 0.99: 0.001},
+              },
+              []string{"method", "endpoint"},
+          )
+          
+          // ビジネスメトリクス
+          userRegistrations = promauto.NewCounter(
+              prometheus.CounterOpts{
+                  Name: "user_registrations_total",
+                  Help: "Total number of user registrations",
+              },
+          )
+          
+          activeUsers = promauto.NewGauge(
+              prometheus.GaugeOpts{
+                  Name: "active_users",
+                  Help: "Number of currently active users",
+              },
+          )
+          
+          orderValue = promauto.NewHistogram(
+              prometheus.HistogramOpts{
+                  Name:    "order_value_dollars",
+                  Help:    "Order value in dollars",
+                  Buckets: []float64{10, 25, 50, 100, 250, 500, 1000, 2500, 5000},
+              },
+          )
+      )
+      
+      func main() {
+          // バックグラウンドでメトリクス更新
+          go updateMetrics()
+          
+          // HTTP handlers
+          http.HandleFunc("/", homeHandler)
+          http.HandleFunc("/api/users", usersHandler)
+          http.HandleFunc("/api/orders", ordersHandler)
+          http.HandleFunc("/health", healthHandler)
+          
+          // Prometheusメトリクス エンドポイント
+          http.Handle("/metrics", promhttp.Handler())
+          
+          log.Println("Server starting on :8080")
+          log.Println("Metrics available at http://localhost:8080/metrics")
+          log.Fatal(http.ListenAndServe(":8080", nil))
+      }
+      
+      // メトリクス付きミドルウェア
+      func metricsMiddleware(next http.HandlerFunc) http.HandlerFunc {
+          return func(w http.ResponseWriter, r *http.Request) {
+              start := time.Now()
+              
+              // レスポンスライター wrapper
+              wrapper := &responseWrapper{ResponseWriter: w, statusCode: 200}
+              
+              next.ServeHTTP(wrapper, r)
+              
+              duration := time.Since(start)
+              endpoint := r.URL.Path
+              method := r.Method
+              statusCode := strconv.Itoa(wrapper.statusCode)
+              
+              // メトリクス更新
+              httpRequestsTotal.WithLabelValues(method, endpoint, statusCode).Inc()
+              httpRequestDuration.WithLabelValues(method, endpoint).Observe(duration.Seconds())
+              
+              if r.ContentLength > 0 {
+                  requestSize.WithLabelValues(method, endpoint).Observe(float64(r.ContentLength))
+              }
+          }
+      }
+      
+      func homeHandler(w http.ResponseWriter, r *http.Request) {
+          metricsMiddleware(func(w http.ResponseWriter, r *http.Request) {
+              w.WriteHeader(http.StatusOK)
+              w.Write([]byte("Hello, Prometheus!"))
+          })(w, r)
+      }
+      
+      func usersHandler(w http.ResponseWriter, r *http.Request) {
+          metricsMiddleware(func(w http.ResponseWriter, r *http.Request) {
+              switch r.Method {
+              case http.MethodGet:
+                  // データベースクエリをシミュレート
+                  simulateDatabaseQuery("SELECT", "users")
+                  w.WriteHeader(http.StatusOK)
+                  w.Write([]byte(`{"users": []}`))
+                  
+              case http.MethodPost:
+                  // ユーザー登録をシミュレート
+                  simulateDatabaseQuery("INSERT", "users")
+                  userRegistrations.Inc()
+                  activeUsers.Inc()
+                  
+                  w.WriteHeader(http.StatusCreated)
+                  w.Write([]byte(`{"message": "User created"}`))
+                  
+              default:
+                  w.WriteHeader(http.StatusMethodNotAllowed)
+              }
+          })(w, r)
+      }
+      
+      func ordersHandler(w http.ResponseWriter, r *http.Request) {
+          metricsMiddleware(func(w http.ResponseWriter, r *http.Request) {
+              if r.Method == http.MethodPost {
+                  // 注文価値をランダムに生成
+                  value := rand.Float64() * 1000 + 10
+                  orderValue.Observe(value)
+                  
+                  simulateDatabaseQuery("INSERT", "orders")
+                  
+                  w.WriteHeader(http.StatusCreated)
+                  w.Write([]byte(`{"message": "Order created"}`))
+              } else {
+                  w.WriteHeader(http.StatusMethodNotAllowed)
+              }
+          })(w, r)
+      }
+      
+      func healthHandler(w http.ResponseWriter, r *http.Request) {
+          metricsMiddleware(func(w http.ResponseWriter, r *http.Request) {
+              w.WriteHeader(http.StatusOK)
+              w.Write([]byte(`{"status": "healthy"}`))
+          })(w, r)
+      }
+      
+      func simulateDatabaseQuery(queryType, table string) {
+          start := time.Now()
+          
+          // クエリ実行をシミュレート
+          time.Sleep(time.Duration(rand.Intn(50)) * time.Millisecond)
+          
+          duration := time.Since(start)
+          databaseQueryDuration.WithLabelValues(queryType, table).Observe(duration.Seconds())
+      }
+      
+      func updateMetrics() {
+          ticker := time.NewTicker(5 * time.Second)
+          defer ticker.Stop()
+          
+          for {
+              select {
+              case <-ticker.C:
+                  // アクティブ接続数をシミュレート
+                  activeConnections.Set(float64(rand.Intn(100) + 50))
+                  
+                  // CPU使用率をシミュレート
+                  for i := 0; i < 4; i++ {
+                      core := "core" + strconv.Itoa(i)
+                      usage := rand.Float64() * 100
+                      cpuUsage.WithLabelValues(core).Set(usage)
+                  }
+                  
+                  // アクティブユーザー数を変動
+                  current := int(activeUsers.Get())
+                  change := rand.Intn(21) - 10 // -10 to +10
+                  newValue := current + change
+                  if newValue < 0 {
+                      newValue = 0
+                  }
+                  activeUsers.Set(float64(newValue))
+              }
+          }
+      }
+      
+      type responseWrapper struct {
+          http.ResponseWriter
+          statusCode int
+      }
+      
+      func (rw *responseWrapper) WriteHeader(code int) {
+          rw.statusCode = code
+          rw.ResponseWriter.WriteHeader(code)
+      }
+
+build_system:
+  go_modules:
+    package: "go mod"
+    summary: "Go標準モジュールシステム - 依存関係管理とバージョニング"
+    usage: |
+      # プロジェクト初期化
+      go mod init github.com/username/project-name
+      
+      # 依存関係追加
+      go get github.com/gin-gonic/gin@v1.9.1
+      go get gorm.io/gorm@latest
+      go get go.uber.org/zap
+      
+      # 開発用依存関係
+      go get -t github.com/stretchr/testify/assert
+      
+      # 依存関係更新
+      go get -u ./...
+      go get -u=patch ./...
+      
+      # 不要な依存関係削除
+      go mod tidy
+      
+      # 依存関係ダウンロード
+      go mod download
+      
+      # ベンダリング
+      go mod vendor
+      
+      # go.mod例
+      module github.com/username/project-name
+      
+      go 1.21
+      
+      require (
+          github.com/gin-gonic/gin v1.9.1
+          github.com/go-sql-driver/mysql v1.7.1
+          github.com/golang-jwt/jwt/v5 v5.0.0
+          github.com/prometheus/client_golang v1.16.0
+          go.uber.org/zap v1.24.0
+          gorm.io/driver/mysql v1.5.1
+          gorm.io/gorm v1.25.2
+      )
+      
+      require (
+          github.com/bytedance/sonic v1.9.1 // indirect
+          github.com/chenzhuoyu/base64x v0.0.0-20221115062448-fe3a3abad311 // indirect
+          // ... other indirect dependencies
+      )
+
+testing:
+  testing:
+    package: "testing"
+    summary: "Go標準テストフレームワーク - ユニットテスト、ベンチマーク、例示"
+    usage: |
+      package main
+      
+      import (
+          "bytes"
+          "context"
+          "encoding/json"
+          "net/http"
+          "net/http/httptest"
+          "testing"
+          "time"
+          
+          "github.com/stretchr/testify/assert"
+          "github.com/stretchr/testify/mock"
+          "github.com/stretchr/testify/require"
+          "github.com/stretchr/testify/suite"
+      )
+      
+      // テスト対象の関数
+      func Add(a, b int) int {
+          return a + b
+      }
+      
+      func Divide(a, b float64) (float64, error) {
+          if b == 0 {
+              return 0, errors.New("division by zero")
+          }
+          return a / b, nil
+      }
+      
+      // 基本的なテスト
+      func TestAdd(t *testing.T) {
+          result := Add(2, 3)
+          if result != 5 {
+              t.Errorf("Add(2, 3) = %d; want 5", result)
+          }
+      }
+      
+      // テーブルドリブンテスト
+      func TestAddTableDriven(t *testing.T) {
+          tests := []struct {
+              name     string
+              a, b     int
+              expected int
+          }{
+              {"positive numbers", 2, 3, 5},
+              {"negative numbers", -2, -3, -5},
+              {"mixed numbers", -2, 3, 1},
+              {"zero", 0, 5, 5},
+          }
+          
+          for _, tt := range tests {
+              t.Run(tt.name, func(t *testing.T) {
+                  result := Add(tt.a, tt.b)
+                  if result != tt.expected {
+                      t.Errorf("Add(%d, %d) = %d; want %d", tt.a, tt.b, result, tt.expected)
+                  }
+              })
+          }
+      }
+      
+      // エラーテスト
+      func TestDivide(t *testing.T) {
+          // 正常ケース
+          result, err := Divide(10, 2)
+          assert.NoError(t, err)
+          assert.Equal(t, 5.0, result)
+          
+          // エラーケース
+          _, err = Divide(10, 0)
+          assert.Error(t, err)
+          assert.Contains(t, err.Error(), "division by zero")
+      }
+      
+      // HTTPテスト
+      func TestHTTPHandler(t *testing.T) {
+          handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+              w.Header().Set("Content-Type", "application/json")
+              json.NewEncoder(w).Encode(map[string]string{
+                  "message": "Hello, World!",
+              })
+          })
+          
+          req := httptest.NewRequest(http.MethodGet, "/", nil)
+          rr := httptest.NewRecorder()
+          
+          handler.ServeHTTP(rr, req)
+          
+          assert.Equal(t, http.StatusOK, rr.Code)
+          assert.Equal(t, "application/json", rr.Header().Get("Content-Type"))
+          
+          var response map[string]string
+          err := json.NewDecoder(rr.Body).Decode(&response)
+          require.NoError(t, err)
+          assert.Equal(t, "Hello, World!", response["message"])
+      }
+      
+      // モック
+      type UserRepository interface {
+          GetUser(id int) (User, error)
+          CreateUser(user User) error
+      }
+      
+      type MockUserRepository struct {
+          mock.Mock
+      }
+      
+      func (m *MockUserRepository) GetUser(id int) (User, error) {
+          args := m.Called(id)
+          return args.Get(0).(User), args.Error(1)
+      }
+      
+      func (m *MockUserRepository) CreateUser(user User) error {
+          args := m.Called(user)
+          return args.Error(0)
+      }
+      
+      func TestUserService(t *testing.T) {
+          mockRepo := new(MockUserRepository)
+          
+          // モックの設定
+          expectedUser := User{ID: 1, Name: "Alice"}
+          mockRepo.On("GetUser", 1).Return(expectedUser, nil)
+          
+          // テスト実行
+          service := NewUserService(mockRepo)
+          user, err := service.GetUser(1)
+          
+          // アサーション
+          assert.NoError(t, err)
+          assert.Equal(t, expectedUser, user)
+          mockRepo.AssertExpectations(t)
+      }
+      
+      // テストスイート
+      type UserServiceTestSuite struct {
+          suite.Suite
+          mockRepo *MockUserRepository
+          service  *UserService
+      }
+      
+      func (suite *UserServiceTestSuite) SetupTest() {
+          suite.mockRepo = new(MockUserRepository)
+          suite.service = NewUserService(suite.mockRepo)
+      }
+      
+      func (suite *UserServiceTestSuite) TestGetUser() {
+          expectedUser := User{ID: 1, Name: "Alice"}
+          suite.mockRepo.On("GetUser", 1).Return(expectedUser, nil)
+          
+          user, err := suite.service.GetUser(1)
+          
+          suite.NoError(err)
+          suite.Equal(expectedUser, user)
+          suite.mockRepo.AssertExpectations(suite.T())
+      }
+      
+      func (suite *UserServiceTestSuite) TestCreateUser() {
+          newUser := User{Name: "Bob", Email: "bob@example.com"}
+          suite.mockRepo.On("CreateUser", newUser).Return(nil)
+          
+          err := suite.service.CreateUser(newUser)
+          
+          suite.NoError(err)
+          suite.mockRepo.AssertExpectations(suite.T())
+      }
+      
+      func TestUserServiceTestSuite(t *testing.T) {
+          suite.Run(t, new(UserServiceTestSuite))
+      }
+      
+      // ベンチマークテスト
+      func BenchmarkAdd(b *testing.B) {
+          for i := 0; i < b.N; i++ {
+              Add(2, 3)
+          }
+      }
+      
+      func BenchmarkAddConcurrent(b *testing.B) {
+          b.RunParallel(func(pb *testing.PB) {
+              for pb.Next() {
+                  Add(2, 3)
+              }
+          })
+      }
+      
+      // メモリ割り当てベンチマーク
+      func BenchmarkStringConcat(b *testing.B) {
+          b.ResetTimer()
+          for i := 0; i < b.N; i++ {
+              var s string
+              for j := 0; j < 100; j++ {
+                  s += "a"
+              }
+          }
+      }
+      
+      func BenchmarkStringBuffer(b *testing.B) {
+          b.ResetTimer()
+          for i := 0; i < b.N; i++ {
+              var buf bytes.Buffer
+              for j := 0; j < 100; j++ {
+                  buf.WriteString("a")
+              }
+          }
+      }
+      
+      // 例示テスト
+      func ExampleAdd() {
+          result := Add(2, 3)
+          fmt.Println(result)
+          // Output: 5
+      }
+      
+      func ExampleDivide() {
+          result, err := Divide(10, 2)
+          if err != nil {
+              fmt.Println("Error:", err)
+              return
+          }
+          fmt.Println(result)
+          // Output: 5
+      }
+      
+      // 統合テスト
+      func TestIntegration(t *testing.T) {
+          if testing.Short() {
+              t.Skip("skipping integration test in short mode")
+          }
+          
+          // 実際のデータベース接続が必要な統合テスト
+          // docker-compose up -d postgres
+          
+          ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+          defer cancel()
+          
+          // テスト用データベース設定
+          // ...
+      }
+      
+      // ヘルパー関数
+      func setupTestDB(t *testing.T) *sql.DB {
+          db, err := sql.Open("postgres", "postgres://test:test@localhost/test_db?sslmode=disable")
+          require.NoError(t, err)
+          
+          // マイグレーション実行
+          // ...
+          
+          t.Cleanup(func() {
+              db.Close()
+          })
+          
+          return db
+      }
+
+best_practices:
+  - "ゴルーチンとチャネルを効果的に使用して並行処理を設計する"
+  - "context.Contextを使用してタイムアウトとキャンセレーションを管理する"
+  - "エラーハンドリングでwrapされたエラーを適切に処理する"
+  - "interface{}の代わりに具体的な型やジェネリクスを使用する"
+  - "パフォーマンス重視の設計でメモリアロケーションを最小化する"
+  - "標準ライブラリを優先し、必要最小限の外部依存関係を維持する"
+  - "テーブルドリブンテストとモックを使用して包括的なテストを作成する"
+  - "pprof を使用してプロファイリングとパフォーマンス分析を行う"
+  - "Go Modules を使用して依存関係を適切に管理する"
+  - "golangci-lint を使用してコード品質を維持する"
+  - "構造化ログとメトリクスで本番環境の可観測性を確保する"
+  - "グレースフルシャットダウンでサービスの信頼性を向上させる"

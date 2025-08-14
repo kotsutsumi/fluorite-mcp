@@ -1,0 +1,44 @@
+id: "supabase-ecosystem"
+name: "Supabase エコシステム"
+homepage: "https://supabase.com/docs"
+summary: "Auth、Postgres（PostgREST）、Storage、Realtime、Edge Functions を JS/TS から扱うためのクライアント/ヘルパ群。"
+packages:
+  - name: "@supabase/supabase-js"
+    homepage: "https://supabase.com/docs/reference/javascript/installing"
+    summary: "公式 JS クライアント（Auth、DB、Storage、Realtime、Functions）。"
+    install:
+      - "npm i @supabase/supabase-js"
+    usage: |
+      import { createClient } from '@supabase/supabase-js'
+      const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!)
+      const { data } = await supabase.from('todos').select('*')
+  - name: "@supabase/auth-helpers-nextjs"
+    homepage: "https://supabase.com/docs/guides/auth/auth-helpers/nextjs"
+    summary: "Next.js 用の認証ヘルパ（Server/Client Components 対応）。"
+    install:
+      - "npm i @supabase/auth-helpers-nextjs"
+  - name: "@supabase/auth-helpers/react"
+    homepage: "https://supabase.com/docs/guides/auth/auth-helpers/auth-ui"
+    summary: "React での認証状態/セッション取り回しを支援。"
+    install:
+      - "npm i @supabase/auth-helpers-react"
+  - name: "@supabase/functions-js"
+    homepage: "https://supabase.com/docs/reference/javascript/functions-invoke"
+    summary: "Edge Functions を JS/TS から呼び出し。"
+    install:
+      - "npm i @supabase/functions-js"
+  - name: "postgrest-js"
+    homepage: "https://github.com/supabase/postgrest-js"
+    summary: "PostgREST API クライアント（supabase-js 内部でも使用）。"
+  - name: "gotrue-js"
+    homepage: "https://github.com/supabase/gotrue-js"
+    summary: "GoTrue（Supabase Auth）専用クライアント。"
+bestPractices:
+  - "Row Level Security（RLS）前提でクエリを設計し、ポリシーで最小権限を徹底"
+  - "Auth セッションはヘルパを利用して SSR/CSR を安全に扱う"
+  - "Edge Functions でサーバー秘密を保持しつつ BFF を薄くする"
+references:
+  - "Docs: https://supabase.com/docs"
+license: "Apache-2.0"
+lastReviewed: "2025-08-15"
+

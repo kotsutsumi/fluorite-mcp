@@ -1,0 +1,697 @@
+id: "laravel"
+name: "Laravel Framework 11/12"
+homepage: "https://laravel.com"
+composer: "laravel/laravel"
+summary: "PHPの最もエレガントなWebアプリケーションフレームワーク。エンタープライズ対応の堅牢性、開発者体験、そして包括的なエコシステムを提供。"
+install:
+  steps:
+    - "composer create-project laravel/laravel my-app"
+    - "# または Laravel Installer: laravel new my-app"
+    - "# Sail (Docker): curl -s https://laravel.build/my-app | bash"
+
+architecture:
+  philosophy:
+    - "Convention over Configuration - 設定より規約"
+    - "Developer Happiness - 開発者の幸福を重視"
+    - "Elegant Syntax - エレガントで表現力豊かな構文"
+    - "Progressive Framework - 段階的に学習・採用可能"
+  patterns:
+    - "MVC Architecture - Model-View-Controller パターン"
+    - "Service Container - 依存性注入コンテナ"
+    - "Service Provider - サービスの登録と起動"
+    - "Repository Pattern - データアクセス層の抽象化"
+
+structure:
+  directories: |
+    my-app/
+    ├── app/
+    │   ├── Console/          # Artisanコマンド
+    │   ├── Exceptions/       # 例外ハンドラー
+    │   ├── Http/
+    │   │   ├── Controllers/  # コントローラー
+    │   │   ├── Middleware/   # ミドルウェア
+    │   │   └── Requests/     # フォームリクエスト
+    │   ├── Models/           # Eloquentモデル
+    │   └── Providers/        # サービスプロバイダー
+    ├── bootstrap/            # フレームワーク起動
+    ├── config/               # 設定ファイル
+    ├── database/
+    │   ├── migrations/       # データベースマイグレーション
+    │   ├── factories/        # モデルファクトリー
+    │   └── seeders/          # データベースシーダー
+    ├── public/               # Webルート
+    ├── resources/
+    │   ├── views/            # Bladeテンプレート
+    │   ├── js/               # JavaScript
+    │   └── css/              # スタイルシート
+    ├── routes/
+    │   ├── web.php           # Webルート
+    │   ├── api.php           # APIルート
+    │   └── console.php       # コンソールルート
+    ├── storage/              # ファイルストレージ
+    └── tests/                # テスト
+
+routing:
+  basic: |
+    // routes/web.php
+    use App\Http\Controllers\ProductController;
+    
+    Route::get('/', function () {
+        return view('welcome');
+    });
+    
+    Route::get('/products', [ProductController::class, 'index']);
+    Route::get('/products/{id}', [ProductController::class, 'show']);
+    Route::post('/products', [ProductController::class, 'store']);
+    Route::put('/products/{id}', [ProductController::class, 'update']);
+    Route::delete('/products/{id}', [ProductController::class, 'destroy']);
+    
+    // リソースルート
+    Route::resource('products', ProductController::class);
+  
+  grouped: |
+    // グループ化とミドルウェア
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index']);
+        Route::get('/profile', [ProfileController::class, 'show']);
+    });
+    
+    // プレフィックスと名前空間
+    Route::prefix('admin')
+        ->name('admin.')
+        ->middleware('admin')
+        ->group(function () {
+            Route::get('/users', [AdminUserController::class, 'index'])
+                ->name('users.index');
+        });
+
+controllers:
+  basic: |
+    <?php
+    
+    namespace App\Http\Controllers;
+    
+    use App\Models\Product;
+    use Illuminate\Http\Request;
+    
+    class ProductController extends Controller
+    {
+        public function index()
+        {
+            $products = Product::paginate(15);
+            return view('products.index', compact('products'));
+        }
+        
+        public function show(Product $product)
+        {
+            return view('products.show', compact('product'));
+        }
+        
+        public function store(Request $request)
+        {
+            $validated = $request->validate([
+                'name' => 'required|max:255',
+                'price' => 'required|numeric|min:0',
+                'description' => 'nullable|string'
+            ]);
+            
+            $product = Product::create($validated);
+            
+            return redirect()
+                ->route('products.show', $product)
+                ->with('success', 'Product created successfully.');
+        }
+    }
+  
+  api: |
+    <?php
+    
+    namespace App\Http\Controllers\Api;
+    
+    use App\Http\Controllers\Controller;
+    use App\Http\Resources\ProductResource;
+    use App\Models\Product;
+    
+    class ProductController extends Controller
+    {
+        public function index()
+        {
+            return ProductResource::collection(
+                Product::paginate()
+            );
+        }
+        
+        public function show(Product $product)
+        {
+            return new ProductResource($product);
+        }
+        
+        public function store(Request $request)
+        {
+            $product = Product::create(
+                $request->validated()
+            );
+            
+            return new ProductResource($product);
+        }
+    }
+
+eloquent:
+  model: |
+    <?php
+    
+    namespace App\Models;
+    
+    use Illuminate\Database\Eloquent\Factories\HasFactory;
+    use Illuminate\Database\Eloquent\Model;
+    use Illuminate\Database\Eloquent\SoftDeletes;
+    
+    class Product extends Model
+    {
+        use HasFactory, SoftDeletes;
+        
+        protected $fillable = [
+            'name',
+            'slug',
+            'description',
+            'price',
+            'stock_quantity',
+        ];
+        
+        protected $casts = [
+            'price' => 'decimal:2',
+            'stock_quantity' => 'integer',
+            'is_active' => 'boolean',
+            'published_at' => 'datetime',
+        ];
+        
+        // リレーションシップ
+        public function category()
+        {
+            return $this->belongsTo(Category::class);
+        }
+        
+        public function reviews()
+        {
+            return $this->hasMany(Review::class);
+        }
+        
+        public function tags()
+        {
+            return $this->belongsToMany(Tag::class);
+        }
+        
+        // スコープ
+        public function scopeActive($query)
+        {
+            return $query->where('is_active', true);
+        }
+        
+        public function scopeInStock($query)
+        {
+            return $query->where('stock_quantity', '>', 0);
+        }
+        
+        // アクセサー
+        public function getFormattedPriceAttribute()
+        {
+            return '$' . number_format($this->price, 2);
+        }
+    }
+  
+  relationships: |
+    // 1対1
+    $user->profile()->create([...]);
+    
+    // 1対多
+    $post->comments()->create([...]);
+    
+    // 多対多
+    $user->roles()->attach($roleId);
+    $user->roles()->sync([$role1, $role2]);
+    
+    // Has Many Through
+    $country->posts; // country -> users -> posts
+    
+    // Polymorphic
+    $post->comments();
+    $video->comments();
+  
+  queries: |
+    // 基本的なクエリ
+    Product::all();
+    Product::find(1);
+    Product::where('price', '>', 100)->get();
+    Product::whereIn('id', [1, 2, 3])->get();
+    
+    // Eager Loading (N+1問題の解決)
+    $products = Product::with(['category', 'reviews'])->get();
+    
+    // 集計
+    Product::count();
+    Product::sum('price');
+    Product::avg('rating');
+    
+    // チャンク処理
+    Product::chunk(100, function ($products) {
+        foreach ($products as $product) {
+            // 処理
+        }
+    });
+
+migrations:
+  create_table: |
+    <?php
+    
+    use Illuminate\Database\Migrations\Migration;
+    use Illuminate\Database\Schema\Blueprint;
+    use Illuminate\Support\Facades\Schema;
+    
+    return new class extends Migration
+    {
+        public function up(): void
+        {
+            Schema::create('products', function (Blueprint $table) {
+                $table->id();
+                $table->string('name');
+                $table->string('slug')->unique();
+                $table->text('description')->nullable();
+                $table->decimal('price', 10, 2);
+                $table->integer('stock_quantity')->default(0);
+                $table->boolean('is_active')->default(true);
+                $table->foreignId('category_id')
+                    ->constrained()
+                    ->cascadeOnDelete();
+                $table->timestamp('published_at')->nullable();
+                $table->timestamps();
+                $table->softDeletes();
+                
+                $table->index(['slug', 'is_active']);
+                $table->fullText('description');
+            });
+        }
+        
+        public function down(): void
+        {
+            Schema::dropIfExists('products');
+        }
+    };
+
+validation:
+  form_request: |
+    <?php
+    
+    namespace App\Http\Requests;
+    
+    use Illuminate\Foundation\Http\FormRequest;
+    
+    class StoreProductRequest extends FormRequest
+    {
+        public function authorize(): bool
+        {
+            return $this->user()->can('create', Product::class);
+        }
+        
+        public function rules(): array
+        {
+            return [
+                'name' => ['required', 'string', 'max:255'],
+                'slug' => ['required', 'string', 'unique:products'],
+                'description' => ['nullable', 'string'],
+                'price' => ['required', 'numeric', 'min:0'],
+                'category_id' => ['required', 'exists:categories,id'],
+                'images' => ['array', 'max:5'],
+                'images.*' => ['image', 'max:2048'],
+            ];
+        }
+        
+        public function messages(): array
+        {
+            return [
+                'name.required' => '商品名は必須です。',
+                'price.min' => '価格は0以上である必要があります。',
+            ];
+        }
+    }
+  
+  inline: |
+    $request->validate([
+        'email' => 'required|email|unique:users',
+        'password' => 'required|min:8|confirmed',
+        'terms' => 'accepted',
+    ]);
+
+middleware:
+  create: |
+    <?php
+    
+    namespace App\Http\Middleware;
+    
+    use Closure;
+    use Illuminate\Http\Request;
+    
+    class CheckSubscription
+    {
+        public function handle(Request $request, Closure $next): mixed
+        {
+            if (! $request->user()?->hasActiveSubscription()) {
+                return redirect('billing');
+            }
+            
+            return $next($request);
+        }
+    }
+  
+  register: |
+    // app/Http/Kernel.php または bootstrap/app.php (Laravel 11)
+    protected $middlewareAliases = [
+        'subscription' => \App\Http\Middleware\CheckSubscription::class,
+    ];
+
+authentication:
+  basic: |
+    // 認証スターターキット
+    composer require laravel/breeze --dev
+    php artisan breeze:install
+    
+    // 使用例
+    if (Auth::attempt(['email' => $email, 'password' => $password])) {
+        $request->session()->regenerate();
+        return redirect()->intended('dashboard');
+    }
+    
+    // ユーザー取得
+    $user = Auth::user();
+    $user = $request->user();
+    
+    // ログアウト
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+authorization:
+  gates: |
+    // app/Providers/AuthServiceProvider.php
+    Gate::define('update-post', function (User $user, Post $post) {
+        return $user->id === $post->user_id;
+    });
+    
+    // 使用
+    if (Gate::allows('update-post', $post)) {
+        // 許可された
+    }
+    
+    Gate::authorize('update-post', $post);
+  
+  policies: |
+    <?php
+    
+    namespace App\Policies;
+    
+    use App\Models\User;
+    use App\Models\Product;
+    
+    class ProductPolicy
+    {
+        public function viewAny(User $user): bool
+        {
+            return true;
+        }
+        
+        public function view(User $user, Product $product): bool
+        {
+            return $product->is_published || 
+                   $user->id === $product->user_id;
+        }
+        
+        public function create(User $user): bool
+        {
+            return $user->hasRole('vendor');
+        }
+        
+        public function update(User $user, Product $product): bool
+        {
+            return $user->id === $product->user_id;
+        }
+        
+        public function delete(User $user, Product $product): bool
+        {
+            return $user->id === $product->user_id &&
+                   !$product->has_orders;
+        }
+    }
+
+queues:
+  job: |
+    <?php
+    
+    namespace App\Jobs;
+    
+    use App\Models\Order;
+    use Illuminate\Bus\Queueable;
+    use Illuminate\Contracts\Queue\ShouldQueue;
+    use Illuminate\Foundation\Bus\Dispatchable;
+    use Illuminate\Queue\InteractsWithQueue;
+    use Illuminate\Queue\SerializesModels;
+    
+    class ProcessOrder implements ShouldQueue
+    {
+        use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+        
+        public function __construct(
+            public Order $order
+        ) {}
+        
+        public function handle(): void
+        {
+            // 注文処理ロジック
+            $this->order->process();
+            
+            // メール送信
+            Mail::to($this->order->user)
+                ->send(new OrderProcessed($this->order));
+        }
+        
+        public function failed(\Throwable $exception): void
+        {
+            // エラーハンドリング
+            Log::error('Order processing failed', [
+                'order_id' => $this->order->id,
+                'error' => $exception->getMessage()
+            ]);
+        }
+    }
+    
+    // ディスパッチ
+    ProcessOrder::dispatch($order);
+    ProcessOrder::dispatch($order)->delay(now()->addMinutes(10));
+
+events:
+  event_listener: |
+    // app/Events/OrderShipped.php
+    class OrderShipped
+    {
+        use Dispatchable, InteractsWithSockets, SerializesModels;
+        
+        public function __construct(
+            public Order $order
+        ) {}
+    }
+    
+    // app/Listeners/SendShipmentNotification.php
+    class SendShipmentNotification
+    {
+        public function handle(OrderShipped $event): void
+        {
+            Mail::to($event->order->user)
+                ->send(new ShipmentNotification($event->order));
+        }
+    }
+    
+    // イベント発火
+    event(new OrderShipped($order));
+
+blade:
+  layout: |
+    {{-- resources/views/layouts/app.blade.php --}}
+    <!DOCTYPE html>
+    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>@yield('title', config('app.name'))</title>
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @stack('styles')
+    </head>
+    <body>
+        <nav>
+            @include('partials.navigation')
+        </nav>
+        
+        <main>
+            @yield('content')
+        </main>
+        
+        @stack('scripts')
+    </body>
+    </html>
+  
+  page: |
+    {{-- resources/views/products/index.blade.php --}}
+    @extends('layouts.app')
+    
+    @section('title', 'Products')
+    
+    @section('content')
+        <div class="container">
+            <h1>Products</h1>
+            
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+            
+            <div class="row">
+                @foreach($products as $product)
+                    <div class="col-md-4">
+                        <x-product-card :product="$product" />
+                    </div>
+                @endforeach
+            </div>
+            
+            {{ $products->links() }}
+        </div>
+    @endsection
+  
+  component: |
+    {{-- resources/views/components/product-card.blade.php --}}
+    @props(['product'])
+    
+    <div class="card">
+        @if($product->image)
+            <img src="{{ $product->image_url }}" alt="{{ $product->name }}">
+        @endif
+        
+        <div class="card-body">
+            <h5>{{ $product->name }}</h5>
+            <p>{{ Str::limit($product->description, 100) }}</p>
+            <p class="price">{{ $product->formatted_price }}</p>
+            
+            @auth
+                <form action="{{ route('cart.add', $product) }}" method="POST">
+                    @csrf
+                    <button type="submit">Add to Cart</button>
+                </form>
+            @else
+                <a href="{{ route('login') }}">Login to purchase</a>
+            @endauth
+        </div>
+    </div>
+
+testing:
+  feature: |
+    <?php
+    
+    namespace Tests\Feature;
+    
+    use App\Models\User;
+    use App\Models\Product;
+    use Illuminate\Foundation\Testing\RefreshDatabase;
+    use Tests\TestCase;
+    
+    class ProductTest extends TestCase
+    {
+        use RefreshDatabase;
+        
+        public function test_user_can_view_products(): void
+        {
+            $products = Product::factory()->count(3)->create();
+            
+            $response = $this->get('/products');
+            
+            $response->assertStatus(200);
+            $response->assertSee($products->first()->name);
+        }
+        
+        public function test_authenticated_user_can_create_product(): void
+        {
+            $user = User::factory()->create();
+            
+            $response = $this->actingAs($user)
+                ->post('/products', [
+                    'name' => 'Test Product',
+                    'price' => 99.99,
+                    'description' => 'Test description'
+                ]);
+            
+            $response->assertRedirect();
+            $this->assertDatabaseHas('products', [
+                'name' => 'Test Product'
+            ]);
+        }
+    }
+  
+  unit: |
+    <?php
+    
+    namespace Tests\Unit;
+    
+    use App\Models\Product;
+    use Tests\TestCase;
+    
+    class ProductTest extends TestCase
+    {
+        public function test_product_has_formatted_price(): void
+        {
+            $product = new Product(['price' => 99.99]);
+            
+            $this->assertEquals('$99.99', $product->formatted_price);
+        }
+    }
+
+artisan:
+  commands: |
+    # マイグレーション
+    php artisan migrate
+    php artisan migrate:rollback
+    php artisan migrate:fresh --seed
+    
+    # モデル生成
+    php artisan make:model Product -mfsc
+    # -m: migration, -f: factory, -s: seeder, -c: controller
+    
+    # コントローラー生成
+    php artisan make:controller ProductController --resource
+    php artisan make:controller Api/ProductController --api
+    
+    # その他の生成
+    php artisan make:request StoreProductRequest
+    php artisan make:middleware CheckAge
+    php artisan make:job ProcessPayment
+    php artisan make:event OrderShipped
+    php artisan make:listener SendShipmentNotification
+    php artisan make:policy ProductPolicy
+    
+    # キャッシュ
+    php artisan config:cache
+    php artisan route:cache
+    php artisan view:cache
+    
+    # 最適化
+    php artisan optimize
+    php artisan optimize:clear
+
+best_practices:
+  - "Service Container と依存性注入を活用する"
+  - "Eloquent の Eager Loading で N+1 問題を回避"
+  - "Form Request でバリデーションロジックを分離"
+  - "Policy と Gate で認可ロジックを整理"
+  - "Queue でヘビーな処理を非同期化"
+  - "キャッシングで パフォーマンスを最適化"
+  - "Repository Pattern でデータアクセスを抽象化"
+  - "Service Class でビジネスロジックを分離"
+  - "適切なインデックスとクエリ最適化"
+  - "環境変数で設定を管理（.env ファイル）"
+  - "Laravel Telescope や Debugbar で開発時のデバッグ"
+  - "PHPUnit でテストカバレッジを確保"

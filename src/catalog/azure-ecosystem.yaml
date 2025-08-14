@@ -1,0 +1,53 @@
+id: "azure-ecosystem"
+name: "Azure エコシステム (JS/TS)"
+homepage: "https://learn.microsoft.com/azure/developer/javascript/"
+summary: "認証、Storage、Queue、Cosmos、Service Bus、Key Vault、Functions を JS/TS から利用するための SDK/CLI。"
+packages:
+  - name: "@azure/identity"
+    homepage: "https://www.npmjs.com/package/@azure/identity"
+    summary: "Azure 認証（ClientSecret/Managed Identity/MSAL 互換）。"
+    install:
+      - "npm i @azure/identity"
+  - name: "@azure/storage-blob"
+    homepage: "https://www.npmjs.com/package/@azure/storage-blob"
+    summary: "Blob Storage SDK。"
+    install:
+      - "npm i @azure/storage-blob"
+  - name: "@azure/storage-queue"
+    homepage: "https://www.npmjs.com/package/@azure/storage-queue"
+    summary: "Queue Storage SDK。"
+    install:
+      - "npm i @azure/storage-queue"
+  - name: "@azure/cosmos"
+    homepage: "https://www.npmjs.com/package/@azure/cosmos"
+    summary: "Cosmos DB SDK。"
+    install:
+      - "npm i @azure/cosmos"
+  - name: "@azure/service-bus"
+    homepage: "https://www.npmjs.com/package/@azure/service-bus"
+    summary: "Service Bus SDK。"
+    install:
+      - "npm i @azure/service-bus"
+  - name: "@azure/keyvault-secrets"
+    homepage: "https://www.npmjs.com/package/@azure/keyvault-secrets"
+    summary: "Key Vault Secrets SDK。"
+    install:
+      - "npm i @azure/keyvault-secrets"
+  - name: "@azure/functions"
+    homepage: "https://www.npmjs.com/package/@azure/functions"
+    summary: "Azure Functions JS/TS SDK。"
+    install:
+      - "npm i @azure/functions"
+  - name: "azure-functions-core-tools"
+    homepage: "https://learn.microsoft.com/azure/azure-functions/functions-run-local"
+    summary: "Azure Functions CLI（ローカル実行/デプロイ）。"
+    install:
+      - "npm i -g azure-functions-core-tools@4"
+bestPractices:
+  - "Managed Identity を優先し、秘密管理は Key Vault 経由に統一"
+  - "Functions ではトリガ/バインディングを活用し、最小の BFF で運用"
+references:
+  - "JS SDK overview: https://learn.microsoft.com/azure/developer/javascript/"
+license: "MIT / Proprietary (各サービスに準拠)"
+lastReviewed: "2025-08-15"
+

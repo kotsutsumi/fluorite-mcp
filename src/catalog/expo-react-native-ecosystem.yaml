@@ -1,0 +1,182 @@
+id: "expo-react-native-ecosystem"
+name: "Expo / React Native エコシステム"
+homepage: "https://docs.expo.dev/"
+summary: "Expo 公式パッケージと React Native の基盤/周辺ライブラリを横断。ルーティング、OTA、認証、セキュアストレージ、センサー/通知、状態管理、フォーム、UI、データ、テスト、監視/パフォーマンスまでを実務視点で集約。"
+categories:
+  expo-core:
+    - name: "expo"
+      homepage: "https://docs.expo.dev/get-started/installation/"
+      summary: "Expo 本体（ランタイム/ビルド）。"
+      install:
+        - "npx create-expo-app@latest"
+    - name: "expo-router"
+      homepage: "https://expo.github.io/router/docs"
+      summary: "ファイルベースルーティング（App Router 風）。"
+      install:
+        - "npx expo install expo-router react-native-safe-area-context react-native-screens"
+      usage: |
+        // app/_layout.tsx
+        import { Stack } from 'expo-router'
+        export default function Layout(){ return <Stack/> }
+        // app/index.tsx
+        import { Link } from 'expo-router';
+        export default function Home(){ return <Link href="/details">Go</Link> }
+    - name: "expo-updates"
+      homepage: "https://docs.expo.dev/versions/latest/sdk/updates/"
+      summary: "OTA（Over‑the‑Air）アップデート。"
+      install:
+        - "npx expo install expo-updates"
+    - name: "expo-auth-session"
+      homepage: "https://docs.expo.dev/versions/latest/sdk/auth-session/"
+      summary: "OAuth2 / OIDC フロー。"
+      install:
+        - "npx expo install expo-auth-session"
+      usage: |
+        import * as AuthSession from 'expo-auth-session'
+        const result = await AuthSession.startAsync({ authUrl })
+    - name: "expo-secure-store"
+      homepage: "https://docs.expo.dev/versions/latest/sdk/securestore/"
+      summary: "セキュアなキー値ストア。"
+      install:
+        - "npx expo install expo-secure-store"
+      usage: |
+        import * as SecureStore from 'expo-secure-store'
+        await SecureStore.setItemAsync('token', '...')
+    - name: "expo-camera / expo-image-picker / expo-location / expo-notifications / expo-sensors / expo-av / expo-file-system / expo-haptics / expo-application / expo-constants"
+      homepage: "https://docs.expo.dev/versions/latest/"
+      summary: "カメラ・画像・位置情報・通知・センサー・AV・FS・ハプティクス・アプリ情報・定数。"
+
+  react-native-core:
+    - name: "react-native"
+      homepage: "https://reactnative.dev/docs/getting-started"
+      summary: "React Native コア。"
+    - name: "@react-navigation/native + @react-navigation/stack"
+      homepage: "https://reactnavigation.org/"
+      summary: "ナビゲーション/スタック。"
+      install:
+        - "npm i @react-navigation/native @react-navigation/stack"
+        - "npx expo install react-native-screens react-native-safe-area-context"
+      usage: |
+        const Stack = createStackNavigator();
+        <NavigationContainer><Stack.Navigator><Stack.Screen name="Home" component={Home}/></Stack.Navigator></NavigationContainer>
+    - name: "react-native-gesture-handler / react-native-reanimated / react-native-screens / react-native-safe-area-context"
+      homepage: "https://docs.swmansion.com/react-native-gesture-handler/"
+      summary: "ジェスチャ・アニメ・スクリーン/セーフエリアの最適化。"
+    - name: "react-native-vector-icons"
+      homepage: "https://github.com/oblador/react-native-vector-icons"
+      summary: "アイコンセット。"
+    - name: "react-native-device-info"
+      homepage: "https://github.com/react-native-device-info/react-native-device-info"
+      summary: "デバイス情報。"
+    - name: "react-native-permissions"
+      homepage: "https://github.com/zoontek/react-native-permissions"
+      summary: "権限管理。"
+    - name: "react-native-background-fetch"
+      homepage: "https://github.com/transistorsoft/react-native-background-fetch"
+      summary: "バックグラウンド処理。"
+
+  state-management:
+    - name: "redux / @reduxjs/toolkit + react-redux"
+      homepage: "https://redux-toolkit.js.org/"
+      summary: "大規模向け状態管理（RTK 推奨）。"
+      usage: |
+        const store = configureStore({ reducer: { counter: slice.reducer } })
+        <Provider store={store}><App/></Provider>
+    - name: "jotai / recoil / zustand / mobx"
+      homepage: "https://github.com/pmndrs/zustand"
+      summary: "軽量な代替群。用途に応じて選択。"
+    - name: "@tanstack/react-query"
+      homepage: "https://tanstack.com/query/latest/docs/react/react-native"
+      summary: "サーバ状態/データフェッチのデファクト。"
+      usage: |
+        const qc = new QueryClient();
+        <QueryClientProvider client={qc}><App/></QueryClientProvider>
+
+  forms-validation:
+    - name: "react-hook-form"
+      homepage: "https://react-hook-form.com/"
+      summary: "高性能フォーム状態管理。"
+    - name: "yup / zod"
+      homepage: "https://zod.dev/"
+      summary: "スキーマバリデーション。"
+
+  ui-components:
+    - name: "react-native-paper / native-base / react-native-elements"
+      homepage: "https://callstack.github.io/react-native-paper/"
+      summary: "主要 UI コンポーネントライブラリ。"
+    - name: "react-native-svg"
+      homepage: "https://github.com/software-mansion/react-native-svg"
+      summary: "SVG 描画。"
+    - name: "react-native-fast-image"
+      homepage: "https://github.com/DylanVann/react-native-fast-image"
+      summary: "高性能画像表示。"
+
+  network-data:
+    - name: "axios"
+      homepage: "https://axios-http.com/"
+      summary: "HTTP クライアント。"
+    - name: "@apollo/client"
+      homepage: "https://www.apollographql.com/docs/react/"
+      summary: "GraphQL クライアント。"
+    - name: "realm"
+      homepage: "https://www.mongodb.com/docs/realm/sdk/react-native/"
+      summary: "モバイル向け DB。"
+    - name: "@react-native-async-storage/async-storage"
+      homepage: "https://react-native-async-storage.github.io/async-storage/"
+      summary: "永続キー値ストレージ。"
+      usage: |
+        await AsyncStorage.setItem('key','value')
+    - name: "watermelondb"
+      homepage: "https://watermelondb.dev/"
+      summary: "大規模データ同期 DB。"
+
+  auth-security:
+    - name: "@react-native-firebase/auth"
+      homepage: "https://rnfirebase.io/auth/usage"
+      summary: "Firebase 認証。"
+    - name: "react-native-keychain"
+      homepage: "https://github.com/oblador/react-native-keychain"
+      summary: "資格情報のセキュア保存。"
+    - name: "react-native-fingerprint-scanner / expo-local-authentication"
+      homepage: "https://docs.expo.dev/versions/latest/sdk/local-authentication/"
+      summary: "生体認証。"
+
+  test-quality:
+    - name: "jest"
+      homepage: "https://jestjs.io/"
+      summary: "ユニットテスト。"
+    - name: "@testing-library/react-native"
+      homepage: "https://testing-library.com/docs/react-native-testing-library/intro/"
+      summary: "コンポーネントテスト。"
+    - name: "detox"
+      homepage: "https://wix.github.io/Detox/"
+      summary: "E2E テスト。"
+    - name: "eslint / prettier"
+      homepage: "https://eslint.org/"
+      summary: "コード品質維持。"
+
+  perf-observability:
+    - name: "@sentry/react-native"
+      homepage: "https://docs.sentry.io/platforms/react-native/"
+      summary: "エラー監視/トレース。"
+    - name: "react-native-performance"
+      homepage: "https://github.com/Shopify/react-native-performance"
+      summary: "パフォーマンス計測。"
+    - name: "react-native-mmkv"
+      homepage: "https://github.com/mrousavy/react-native-mmkv"
+      summary: "高速キー値ストア。"
+    - name: "react-native-config"
+      homepage: "https://github.com/luggit/react-native-config"
+      summary: "環境変数管理。"
+
+bestPractices:
+  - "Expo で可能な限りネイティブ設定を簡略化し、EAS と OTA を前提に運用"
+  - "ジェスチャ/アニメ（RNGH/Reanimated）と Screens/Safe Area を併用して性能と UX を両立"
+  - "サーバ状態は React Query、クライアント状態は Redux/軽量ストアに役割分担"
+  - "認証トークンは SecureStore/Keychain に保存し、API 呼び出しはインターセプタで付与"
+references:
+  - "Expo Docs: https://docs.expo.dev/"
+  - "React Native Docs: https://reactnative.dev/docs/getting-started"
+license: "Mixed (各パッケージ準拠)"
+lastReviewed: "2025-08-15"
+

@@ -1,0 +1,1295 @@
+id: "elixir-ecosystem"
+name: "Elixir Programming Language Ecosystem"
+homepage: "https://elixir-lang.org"
+summary: "Actor モデルとフォルトトレラント設計を活かした関数型プログラミング言語エコシステム。分散システム、リアルタイムアプリケーション、高可用性システム開発に最適。"
+
+language:
+  name: "Elixir"
+  version: "1.15.0+"
+  description: "Erlang VM上で動作する動的関数型プログラミング言語"
+  features:
+    - "Actor モデルによる軽量プロセス"
+    - "フォルトトレラント設計"
+    - "分散システム対応"
+    - "パターンマッチング"
+    - "関数型プログラミング"
+    - "ホットコードスワッピング"
+
+stdlib:
+  elixir_standard:
+    package: "Elixir"
+    summary: "Elixir標準ライブラリ - Actor モデルと関数型プログラミングを提供する分散システム基盤"
+    install: "Built-in with Elixir runtime"
+    usage: |
+      # 基本的なElixirパターン
+      defmodule BasicExample do
+        # パターンマッチング
+        def greet(:world), do: "Hello, World!"
+        def greet(name) when is_binary(name), do: "Hello, #{name}!"
+        def greet(_), do: "Hello, stranger!"
+        
+        # パイプ演算子
+        def process_data(data) do
+          data
+          |> String.trim()
+          |> String.downcase()
+          |> String.split(" ")
+          |> Enum.map(&String.capitalize/1)
+          |> Enum.join(" ")
+        end
+        
+        # GenServer (Actor パターン)
+        defmodule Counter do
+          use GenServer
+          
+          # Client API
+          def start_link(initial_value \\ 0) do
+            GenServer.start_link(__MODULE__, initial_value, name: __MODULE__)
+          end
+          
+          def get_value do
+            GenServer.call(__MODULE__, :get)
+          end
+          
+          def increment do
+            GenServer.cast(__MODULE__, :increment)
+          end
+          
+          # Server callbacks
+          def init(initial_value) do
+            {:ok, initial_value}
+          end
+          
+          def handle_call(:get, _from, state) do
+            {:reply, state, state}
+          end
+          
+          def handle_cast(:increment, state) do
+            {:noreply, state + 1}
+          end
+        end
+        
+        # Supervisor (フォルトトレラント)
+        defmodule MyApp.Supervisor do
+          use Supervisor
+          
+          def start_link(opts) do
+            Supervisor.start_link(__MODULE__, :ok, opts)
+          end
+          
+          def init(:ok) do
+            children = [
+              {Counter, 0},
+              {Task.Supervisor, name: MyApp.TaskSupervisor}
+            ]
+            
+            Supervisor.init(children, strategy: :one_for_one)
+          end
+        end
+        
+        # 並行処理
+        def parallel_map(collection, func) do
+          collection
+          |> Enum.map(&Task.async(fn -> func.(&1) end))
+          |> Enum.map(&Task.await/1)
+        end
+        
+        # エラーハンドリング
+        def safe_divide(a, b) do
+          case b do
+            0 -> {:error, :division_by_zero}
+            _ -> {:ok, a / b}
+          end
+        end
+        
+        def handle_result({:ok, value}), do: "Success: #{value}"
+        def handle_result({:error, reason}), do: "Error: #{reason}"
+      end
+
+web_framework:
+  phoenix:
+    package: "phoenix"
+    summary: "生産性と高性能を両立するWebフレームワーク - リアルタイム機能とスケーラビリティを提供"
+    install: |
+      # 新規プロジェクト作成
+      mix archive.install hex phx_new
+      mix phx.new my_app --live
+      
+      # mix.exs
+      defp deps do
+        [
+          {:phoenix, "~> 1.7.10"},
+          {:phoenix_ecto, "~> 4.4"},
+          {:phoenix_html, "~> 3.3"},
+          {:phoenix_live_reload, "~> 1.2", only: :dev},
+          {:phoenix_live_view, "~> 0.20.0"},
+          {:phoenix_live_dashboard, "~> 0.8.0"}
+        ]
+      end
+    usage: |
+      # Router
+      defmodule MyAppWeb.Router do
+        use MyAppWeb, :router
+        
+        pipeline :browser do
+          plug :accepts, ["html"]
+          plug :fetch_session
+          plug :fetch_live_flash
+          plug :put_root_layout, html: {MyAppWeb.Layouts, :root}
+          plug :protect_from_forgery
+          plug :put_secure_browser_headers
+        end
+        
+        pipeline :api do
+          plug :accepts, ["json"]
+        end
+        
+        scope "/", MyAppWeb do
+          pipe_through :browser
+          
+          get "/", PageController, :home
+          live "/users", UserLive.Index, :index
+          live "/users/new", UserLive.Index, :new
+          live "/users/:id", UserLive.Show, :show
+        end
+        
+        scope "/api", MyAppWeb do
+          pipe_through :api
+          
+          resources "/posts", PostController, except: [:new, :edit]
+        end
+      end
+      
+      # Controller
+      defmodule MyAppWeb.PostController do
+        use MyAppWeb, :controller
+        
+        alias MyApp.Blog
+        alias MyApp.Blog.Post
+        
+        action_fallback MyAppWeb.FallbackController
+        
+        def index(conn, _params) do
+          posts = Blog.list_posts()
+          render(conn, :index, posts: posts)
+        end
+        
+        def create(conn, %{"post" => post_params}) do
+          with {:ok, %Post{} = post} <- Blog.create_post(post_params) do
+            conn
+            |> put_status(:created)
+            |> put_resp_header("location", ~p"/api/posts/#{post.id}")
+            |> render(:show, post: post)
+          end
+        end
+        
+        def show(conn, %{"id" => id}) do
+          post = Blog.get_post!(id)
+          render(conn, :show, post: post)
+        end
+      end
+      
+      # LiveView (リアルタイムUI)
+      defmodule MyAppWeb.UserLive.Index do
+        use MyAppWeb, :live_view
+        
+        alias MyApp.Accounts
+        alias MyApp.Accounts.User
+        
+        @impl true
+        def mount(_params, _session, socket) do
+          if connected?(socket), do: Accounts.subscribe()
+          
+          {:ok, 
+           socket
+           |> assign(:users, list_users())
+           |> assign(:form, to_form(Accounts.change_user(%User{})))}
+        end
+        
+        @impl true
+        def handle_params(params, _url, socket) do
+          {:noreply, apply_action(socket, socket.assigns.live_action, params)}
+        end
+        
+        @impl true
+        def handle_event("save", %{"user" => user_params}, socket) do
+          case Accounts.create_user(user_params) do
+            {:ok, _user} ->
+              {:noreply,
+               socket
+               |> put_flash(:info, "User created successfully")
+               |> assign(:users, list_users())}
+            
+            {:error, %Ecto.Changeset{} = changeset} ->
+              {:noreply, assign(socket, :form, to_form(changeset))}
+          end
+        end
+        
+        @impl true
+        def handle_info({:user_created, user}, socket) do
+          {:noreply, update(socket, :users, fn users -> [user | users] end)}
+        end
+        
+        defp list_users do
+          Accounts.list_users()
+        end
+      end
+      
+      # Channel (WebSocket)
+      defmodule MyAppWeb.RoomChannel do
+        use MyAppWeb, :channel
+        
+        @impl true
+        def join("room:lobby", payload, socket) do
+          if authorized?(payload) do
+            {:ok, socket}
+          else
+            {:error, %{reason: "unauthorized"}}
+          end
+        end
+        
+        @impl true
+        def handle_in("new_msg", %{"body" => body}, socket) do
+          broadcast!(socket, "new_msg", %{body: body})
+          {:noreply, socket}
+        end
+        
+        defp authorized?(_payload) do
+          true
+        end
+      end
+
+database:
+  ecto:
+    package: "ecto"
+    summary: "Elixir用データベース抽象化ライブラリ - 型安全なクエリとマイグレーション機能"
+    install: |
+      # mix.exs
+      defp deps do
+        [
+          {:ecto_sql, "~> 3.10"},
+          {:postgrex, ">= 0.0.0"}  # PostgreSQL
+          # {:myxql, ">= 0.0.0"}   # MySQL
+        ]
+      end
+    usage: |
+      # Schema定義
+      defmodule MyApp.Accounts.User do
+        use Ecto.Schema
+        import Ecto.Changeset
+        
+        schema "users" do
+          field :name, :string
+          field :email, :string
+          field :age, :integer
+          field :active, :boolean, default: true
+          
+          has_many :posts, MyApp.Blog.Post
+          belongs_to :company, MyApp.Company
+          
+          timestamps()
+        end
+        
+        def changeset(user, attrs) do
+          user
+          |> cast(attrs, [:name, :email, :age, :active])
+          |> validate_required([:name, :email])
+          |> validate_format(:email, ~r/@/)
+          |> validate_length(:name, min: 2, max: 100)
+          |> validate_number(:age, greater_than: 0, less_than: 150)
+          |> unique_constraint(:email)
+        end
+      end
+      
+      # Context (ビジネスロジック)
+      defmodule MyApp.Accounts do
+        import Ecto.Query, warn: false
+        alias MyApp.Repo
+        alias MyApp.Accounts.User
+        
+        def list_users do
+          Repo.all(User)
+        end
+        
+        def list_active_users do
+          from(u in User, where: u.active == true)
+          |> Repo.all()
+        end
+        
+        def get_user!(id), do: Repo.get!(User, id)
+        
+        def get_user_by_email(email) do
+          Repo.get_by(User, email: email)
+        end
+        
+        def create_user(attrs \\ %{}) do
+          %User{}
+          |> User.changeset(attrs)
+          |> Repo.insert()
+        end
+        
+        def update_user(%User{} = user, attrs) do
+          user
+          |> User.changeset(attrs)
+          |> Repo.update()
+        end
+        
+        def delete_user(%User{} = user) do
+          Repo.delete(user)
+        end
+        
+        def change_user(%User{} = user, attrs \\ %{}) do
+          User.changeset(user, attrs)
+        end
+        
+        # 複雑なクエリ
+        def search_users(query_string) do
+          search_term = "%#{query_string}%"
+          
+          from(u in User,
+            where: ilike(u.name, ^search_term) or ilike(u.email, ^search_term),
+            order_by: [desc: u.inserted_at],
+            preload: [:posts, :company]
+          )
+          |> Repo.all()
+        end
+        
+        # 集計クエリ
+        def user_statistics do
+          from(u in User,
+            group_by: u.active,
+            select: %{
+              active: u.active,
+              count: count(u.id),
+              avg_age: avg(u.age)
+            }
+          )
+          |> Repo.all()
+        end
+        
+        # トランザクション
+        def transfer_posts(from_user, to_user) do
+          Repo.transaction(fn ->
+            from(p in MyApp.Blog.Post, where: p.user_id == ^from_user.id)
+            |> Repo.update_all(set: [user_id: to_user.id])
+            
+            update_user(from_user, %{active: false})
+          end)
+        end
+      end
+      
+      # Migration
+      defmodule MyApp.Repo.Migrations.CreateUsers do
+        use Ecto.Migration
+        
+        def change do
+          create table(:users) do
+            add :name, :string, null: false
+            add :email, :string, null: false
+            add :age, :integer
+            add :active, :boolean, default: true, null: false
+            add :company_id, references(:companies, on_delete: :nilify_all)
+            
+            timestamps()
+          end
+          
+          create unique_index(:users, [:email])
+          create index(:users, [:company_id])
+          create index(:users, [:active])
+        end
+      end
+
+graphql:
+  absinthe:
+    package: "absinthe"
+    summary: "Elixir用GraphQLツールキット - 型安全でスケーラブルなAPI開発"
+    install: |
+      # mix.exs
+      defp deps do
+        [
+          {:absinthe, "~> 1.7"},
+          {:absinthe_plug, "~> 1.5"},
+          {:absinthe_phoenix, "~> 2.0"},
+          {:dataloader, "~> 1.0"}
+        ]
+      end
+    usage: |
+      # Schema定義
+      defmodule MyAppWeb.Schema do
+        use Absinthe.Schema
+        import_types MyAppWeb.Schema.UserTypes
+        import_types MyAppWeb.Schema.PostTypes
+        
+        alias MyAppWeb.Resolvers
+        
+        query do
+          @desc "Get all users"
+          field :users, list_of(:user) do
+            resolve &Resolvers.User.list_users/3
+          end
+          
+          @desc "Get a user by ID"
+          field :user, :user do
+            arg :id, non_null(:id)
+            resolve &Resolvers.User.get_user/3
+          end
+          
+          @desc "Search users"
+          field :search_users, list_of(:user) do
+            arg :query, non_null(:string)
+            resolve &Resolvers.User.search_users/3
+          end
+        end
+        
+        mutation do
+          @desc "Create a new user"
+          field :create_user, :user do
+            arg :input, non_null(:user_input)
+            resolve &Resolvers.User.create_user/3
+          end
+          
+          @desc "Update a user"
+          field :update_user, :user do
+            arg :id, non_null(:id)
+            arg :input, non_null(:user_input)
+            resolve &Resolvers.User.update_user/3
+          end
+        end
+        
+        subscription do
+          field :user_created, :user do
+            config fn _args, _info ->
+              {:ok, topic: "user_created"}
+            end
+          end
+          
+          field :user_updated, :user do
+            arg :id, non_null(:id)
+            
+            config fn %{id: id}, _info ->
+              {:ok, topic: "user_updated:#{id}"}
+            end
+          end
+        end
+      end
+      
+      # Types定義
+      defmodule MyAppWeb.Schema.UserTypes do
+        use Absinthe.Schema.Notation
+        import Absinthe.Resolution.Helpers, only: [dataloader: 1]
+        
+        object :user do
+          field :id, :id
+          field :name, :string
+          field :email, :string
+          field :age, :integer
+          field :active, :boolean
+          field :inserted_at, :naive_datetime
+          field :updated_at, :naive_datetime
+          
+          field :posts, list_of(:post), resolve: dataloader(MyApp.Blog)
+          field :company, :company, resolve: dataloader(MyApp.Company)
+        end
+        
+        input_object :user_input do
+          field :name, non_null(:string)
+          field :email, non_null(:string)
+          field :age, :integer
+          field :active, :boolean
+        end
+      end
+      
+      # Resolvers
+      defmodule MyAppWeb.Resolvers.User do
+        alias MyApp.Accounts
+        
+        def list_users(_parent, args, _resolution) do
+          users = Accounts.list_users()
+          {:ok, users}
+        end
+        
+        def get_user(_parent, %{id: id}, _resolution) do
+          case Accounts.get_user(id) do
+            nil -> {:error, "User not found"}
+            user -> {:ok, user}
+          end
+        end
+        
+        def search_users(_parent, %{query: query}, _resolution) do
+          users = Accounts.search_users(query)
+          {:ok, users}
+        end
+        
+        def create_user(_parent, %{input: input}, _resolution) do
+          case Accounts.create_user(input) do
+            {:ok, user} ->
+              Absinthe.Subscription.publish(
+                MyAppWeb.Endpoint,
+                user,
+                user_created: "user_created"
+              )
+              {:ok, user}
+            
+            {:error, changeset} ->
+              {:error, format_errors(changeset)}
+          end
+        end
+        
+        def update_user(_parent, %{id: id, input: input}, _resolution) do
+          with user when not is_nil(user) <- Accounts.get_user(id),
+               {:ok, updated_user} <- Accounts.update_user(user, input) do
+            
+            Absinthe.Subscription.publish(
+              MyAppWeb.Endpoint,
+              updated_user,
+              user_updated: "user_updated:#{id}"
+            )
+            
+            {:ok, updated_user}
+          else
+            nil -> {:error, "User not found"}
+            {:error, changeset} -> {:error, format_errors(changeset)}
+          end
+        end
+        
+        defp format_errors(changeset) do
+          Ecto.Changeset.traverse_errors(changeset, fn {msg, opts} ->
+            Enum.reduce(opts, msg, fn {key, value}, acc ->
+              String.replace(acc, "%{#{key}}", to_string(value))
+            end)
+          end)
+        end
+      end
+      
+      # Dataloader (N+1問題解決)
+      defmodule MyAppWeb.Schema.Context do
+        def dataloader do
+          Dataloader.new()
+          |> Dataloader.add_source(MyApp.Blog, MyApp.Blog.data())
+          |> Dataloader.add_source(MyApp.Company, MyApp.Company.data())
+        end
+        
+        def context(ctx) do
+          Map.put(ctx, :loader, dataloader())
+        end
+      end
+
+middleware:
+  plug:
+    package: "plug"
+    summary: "WebアプリケーションとWebサーバー間の仕様 - ミドルウェア構築基盤"
+    install: |
+      # mix.exs
+      defp deps do
+        [
+          {:plug, "~> 1.15"},
+          {:plug_cowboy, "~> 2.6"}
+        ]
+      end
+    usage: |
+      # 基本的なPlug
+      defmodule MyApp.HelloPlug do
+        import Plug.Conn
+        
+        def init(options) do
+          options
+        end
+        
+        def call(conn, _opts) do
+          conn
+          |> put_resp_content_type("text/plain")
+          |> send_resp(200, "Hello, Plug!")
+        end
+      end
+      
+      # Router
+      defmodule MyApp.Router do
+        use Plug.Router
+        
+        plug :match
+        plug :dispatch
+        
+        # カスタムミドルウェア
+        plug MyApp.Plugs.Logger
+        plug MyApp.Plugs.Auth
+        
+        get "/" do
+          send_resp(conn, 200, "Welcome!")
+        end
+        
+        get "/users/:id" do
+          send_resp(conn, 200, "User ID: #{id}")
+        end
+        
+        post "/api/users" do
+          {:ok, body, conn} = Plug.Conn.read_body(conn)
+          
+          case Jason.decode(body) do
+            {:ok, %{"name" => name}} ->
+              # ユーザー作成ロジック
+              response = Jason.encode!(%{id: 1, name: name, status: "created"})
+              
+              conn
+              |> put_resp_content_type("application/json")
+              |> send_resp(201, response)
+            
+            _ ->
+              send_resp(conn, 400, "Invalid JSON")
+          end
+        end
+        
+        match _ do
+          send_resp(conn, 404, "Not found")
+        end
+      end
+      
+      # カスタムミドルウェア
+      defmodule MyApp.Plugs.Logger do
+        import Plug.Conn
+        require Logger
+        
+        def init(opts), do: opts
+        
+        def call(conn, _opts) do
+          start_time = System.monotonic_time()
+          
+          Plug.Conn.register_before_send(conn, fn conn ->
+            duration = System.monotonic_time() - start_time
+            duration_ms = System.convert_time_unit(duration, :native, :millisecond)
+            
+            Logger.info("#{conn.method} #{conn.request_path} - #{conn.status} (#{duration_ms}ms)")
+            conn
+          end)
+        end
+      end
+      
+      defmodule MyApp.Plugs.Auth do
+        import Plug.Conn
+        
+        def init(opts), do: opts
+        
+        def call(conn, _opts) do
+          case get_req_header(conn, "authorization") do
+            ["Bearer " <> token] ->
+              case verify_token(token) do
+                {:ok, user_id} ->
+                  assign(conn, :current_user_id, user_id)
+                
+                {:error, _reason} ->
+                  conn
+                  |> put_resp_content_type("application/json")
+                  |> send_resp(401, Jason.encode!(%{error: "Invalid token"}))
+                  |> halt()
+              end
+            
+            _ ->
+              conn
+              |> put_resp_content_type("application/json")
+              |> send_resp(401, Jason.encode!(%{error: "Missing authorization header"}))
+              |> halt()
+          end
+        end
+        
+        defp verify_token(token) do
+          # JWT検証ロジック
+          case token do
+            "valid_token" -> {:ok, 1}
+            _ -> {:error, :invalid}
+          end
+        end
+      end
+      
+      # CORS ミドルウェア
+      defmodule MyApp.Plugs.CORS do
+        import Plug.Conn
+        
+        def init(opts), do: opts
+        
+        def call(conn, _opts) do
+          conn
+          |> put_resp_header("access-control-allow-origin", "*")
+          |> put_resp_header("access-control-allow-headers", "content-type, authorization")
+          |> put_resp_header("access-control-allow-methods", "GET, POST, PUT, DELETE, OPTIONS")
+          |> handle_preflight()
+        end
+        
+        defp handle_preflight(%{method: "OPTIONS"} = conn) do
+          conn
+          |> send_resp(200, "")
+          |> halt()
+        end
+        
+        defp handle_preflight(conn), do: conn
+      end
+      
+      # Application
+      defmodule MyApp.Application do
+        use Application
+        
+        def start(_type, _args) do
+          children = [
+            {Plug.Cowboy, scheme: :http, plug: MyApp.Router, options: [port: 4000]}
+          ]
+          
+          opts = [strategy: :one_for_one, name: MyApp.Supervisor]
+          Supervisor.start_link(children, opts)
+        end
+      end
+
+authentication:
+  guardian:
+    package: "guardian"
+    summary: "Elixir用認証ライブラリ - JWT トークンベース認証とアクセス制御"
+    install: |
+      # mix.exs
+      defp deps do
+        [
+          {:guardian, "~> 2.3"},
+          {:guardian_phoenix, "~> 2.0"}
+        ]
+      end
+    usage: |
+      # Guardian設定
+      defmodule MyApp.Guardian do
+        use Guardian, otp_app: :my_app
+        
+        def subject_for_token(%{id: id}, _claims) do
+          {:ok, to_string(id)}
+        end
+        
+        def subject_for_token(_, _) do
+          {:error, :reason_for_error}
+        end
+        
+        def resource_from_claims(%{"sub" => id}) do
+          case MyApp.Accounts.get_user(id) do
+            nil -> {:error, :resource_not_found}
+            user -> {:ok, user}
+          end
+        end
+        
+        def resource_from_claims(_claims) do
+          {:error, :reason_for_error}
+        end
+        
+        # カスタムクレーム
+        def build_claims(claims, _resource, opts) do
+          claims = 
+            claims
+            |> Map.put("iss", "my_app")
+            |> Map.put("aud", "my_app")
+          
+          {:ok, claims}
+        end
+        
+        # トークン検証
+        def verify_claims(claims, _opts) do
+          if claims["iss"] == "my_app" and claims["aud"] == "my_app" do
+            {:ok, claims}
+          else
+            {:error, :invalid_issuer_or_audience}
+          end
+        end
+      end
+      
+      # Authentication Context
+      defmodule MyApp.Accounts.Auth do
+        alias MyApp.Accounts
+        alias MyApp.Guardian
+        
+        def authenticate_user(email, password) do
+          with user when not is_nil(user) <- Accounts.get_user_by_email(email),
+               true <- verify_password(password, user.password_hash) do
+            create_token(user)
+          else
+            _ -> {:error, :invalid_credentials}
+          end
+        end
+        
+        def create_token(user) do
+          Guardian.encode_and_sign(user, %{}, ttl: {2, :weeks})
+        end
+        
+        def refresh_token(token) do
+          Guardian.refresh(token)
+        end
+        
+        def revoke_token(token) do
+          Guardian.revoke(token)
+        end
+        
+        defp verify_password(password, hash) do
+          Bcrypt.verify_pass(password, hash)
+        end
+      end
+      
+      # Controller でのGuardian使用
+      defmodule MyAppWeb.AuthController do
+        use MyAppWeb, :controller
+        
+        alias MyApp.Accounts.Auth
+        alias MyApp.Guardian
+        
+        action_fallback MyAppWeb.FallbackController
+        
+        def login(conn, %{"email" => email, "password" => password}) do
+          case Auth.authenticate_user(email, password) do
+            {:ok, token, _claims} ->
+              conn
+              |> put_status(:ok)
+              |> render(:token, token: token)
+            
+            {:error, :invalid_credentials} ->
+              conn
+              |> put_status(:unauthorized)
+              |> render(:error, message: "Invalid credentials")
+          end
+        end
+        
+        def logout(conn, _params) do
+          token = Guardian.Plug.current_token(conn)
+          
+          case Guardian.revoke(token) do
+            {:ok, _} ->
+              conn
+              |> put_status(:ok)
+              |> render(:message, message: "Logged out successfully")
+            
+            {:error, _reason} ->
+              conn
+              |> put_status(:unprocessable_entity)
+              |> render(:error, message: "Failed to logout")
+          end
+        end
+        
+        def refresh(conn, _params) do
+          token = Guardian.Plug.current_token(conn)
+          
+          case Guardian.refresh(token) do
+            {:ok, new_token, _new_claims} ->
+              conn
+              |> put_status(:ok)
+              |> render(:token, token: new_token)
+            
+            {:error, _reason} ->
+              conn
+              |> put_status(:unauthorized)
+              |> render(:error, message: "Failed to refresh token")
+          end
+        end
+      end
+      
+      # Phoenix Pipeline でのGuardian認証
+      defmodule MyAppWeb.Guardian.AuthPipeline do
+        use Guardian.Plug.Pipeline,
+          otp_app: :my_app,
+          module: MyApp.Guardian,
+          error_handler: MyAppWeb.Guardian.ErrorHandler
+        
+        plug Guardian.Plug.VerifyHeader, realm: "Bearer"
+        plug Guardian.Plug.EnsureAuthenticated
+        plug Guardian.Plug.LoadResource, allow_blank: true
+      end
+      
+      # エラーハンドラー
+      defmodule MyAppWeb.Guardian.ErrorHandler do
+        import Plug.Conn
+        
+        @behaviour Guardian.Plug.ErrorHandler
+        
+        @impl Guardian.Plug.ErrorHandler
+        def auth_error(conn, {type, _reason}, _opts) do
+          body = Jason.encode!(%{error: to_string(type)})
+          
+          conn
+          |> put_resp_content_type("application/json")
+          |> send_resp(401, body)
+        end
+      end
+      
+      # Router での認証パイプライン使用
+      defmodule MyAppWeb.Router do
+        use MyAppWeb, :router
+        
+        pipeline :api do
+          plug :accepts, ["json"]
+        end
+        
+        pipeline :auth do
+          plug MyAppWeb.Guardian.AuthPipeline
+        end
+        
+        scope "/api", MyAppWeb do
+          pipe_through :api
+          
+          post "/auth/login", AuthController, :login
+        end
+        
+        scope "/api", MyAppWeb do
+          pipe_through [:api, :auth]
+          
+          get "/auth/me", AuthController, :me
+          post "/auth/refresh", AuthController, :refresh
+          delete "/auth/logout", AuthController, :logout
+          
+          resources "/users", UserController
+          resources "/posts", PostController
+        end
+      end
+
+deployment:
+  releases:
+    package: "mix release"
+    summary: "Elixir標準リリースツール - 本番環境向けビルドとデプロイメント"
+    install: "Built-in with Elixir 1.9+"
+    usage: |
+      # config/runtime.exs
+      import Config
+      
+      if config_env() == :prod do
+        database_url =
+          System.get_env("DATABASE_URL") ||
+            raise """
+            environment variable DATABASE_URL is missing.
+            For example: ecto://USER:PASS@HOST/DATABASE
+            """
+        
+        config :my_app, MyApp.Repo,
+          url: database_url,
+          pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
+          socket_options: [:inet6]
+        
+        secret_key_base =
+          System.get_env("SECRET_KEY_BASE") ||
+            raise """
+            environment variable SECRET_KEY_BASE is missing.
+            You can generate one by calling: mix phx.gen.secret
+            """
+        
+        host = System.get_env("PHX_HOST") || "example.com"
+        port = String.to_integer(System.get_env("PORT") || "4000")
+        
+        config :my_app, MyAppWeb.Endpoint,
+          url: [host: host, port: 443, scheme: "https"],
+          http: [
+            ip: {0, 0, 0, 0, 0, 0, 0, 0},
+            port: port
+          ],
+          secret_key_base: secret_key_base
+      end
+      
+      # rel/env.sh.eex
+      #!/bin/sh
+      
+      # Custom environment setup
+      export RELEASE_DISTRIBUTION=name
+      export RELEASE_NODE=<%= @release.name %>@${HOSTNAME}
+      
+      # Database setup
+      export ECTO_IPV6=true
+      export ERL_AFLAGS="-proto_dist inet6_tcp"
+      
+      # config/prod.exs
+      import Config
+      
+      config :my_app, MyAppWeb.Endpoint,
+        cache_static_manifest: "priv/static/cache_manifest.json",
+        server: true
+      
+      config :logger, level: :info
+      
+      config :logger, :console,
+        format: "$time $metadata[$level] $message\n",
+        metadata: [:request_id]
+      
+      # mix.exs でのリリース設定
+      def project do
+        [
+          # ... 他の設定
+          releases: [
+            my_app: [
+              include_executables_for: [:unix],
+              applications: [runtime_tools: :permanent],
+              steps: [:assemble, &copy_bin_files/1, :tar]
+            ]
+          ]
+        ]
+      end
+      
+      defp copy_bin_files(release) do
+        File.cp_r!("rel/bin", Path.join(release.path, "bin"))
+        release
+      end
+      
+      # リリース用カスタムコマンド
+      # rel/commands/migrate.sh
+      #!/bin/sh
+      
+      release_ctl eval --mfa "MyApp.Release.migrate/0"
+      
+      # lib/my_app/release.ex
+      defmodule MyApp.Release do
+        @moduledoc """
+        Used for executing DB release tasks when run in production without Mix
+        installed.
+        """
+        @app :my_app
+        
+        def migrate do
+          load_app()
+          
+          for repo <- repos() do
+            {:ok, _, _} = Ecto.Migrator.with_repo(repo, &Ecto.Migrator.run(&1, :up, all: true))
+          end
+        end
+        
+        def rollback(repo, version) do
+          load_app()
+          {:ok, _, _} = Ecto.Migrator.with_repo(repo, &Ecto.Migrator.run(&1, :down, to: version))
+        end
+        
+        defp repos do
+          Application.fetch_env!(@app, :ecto_repos)
+        end
+        
+        defp load_app do
+          Application.load(@app)
+        end
+      end
+      
+      # Dockerfile
+      FROM elixir:1.15-alpine AS build
+      
+      # Install build dependencies
+      RUN apk add --no-cache build-base npm git python3
+      
+      # Prepare build dir
+      WORKDIR /app
+      
+      # Install hex + rebar
+      RUN mix local.hex --force && \
+          mix local.rebar --force
+      
+      # Set build ENV
+      ENV MIX_ENV=prod
+      
+      # Install mix dependencies
+      COPY mix.exs mix.lock ./
+      COPY config config
+      RUN mix do deps.get, deps.compile
+      
+      # Build assets
+      COPY assets/package.json assets/package-lock.json ./assets/
+      RUN npm --prefix ./assets ci --progress=false --no-audit --loglevel=error
+      
+      COPY priv priv
+      COPY assets assets
+      RUN npm run --prefix ./assets deploy
+      RUN mix phx.digest
+      
+      # Compile and build release
+      COPY lib lib
+      RUN mix do compile, release
+      
+      # Prepare runtime image
+      FROM alpine:3.17 AS app
+      RUN apk add --no-cache libstdc++ openssl ncurses-libs
+      
+      WORKDIR /app
+      
+      RUN addgroup -g 1001 -S my_app && \
+          adduser -S my_app -G my_app -u 1001
+      
+      USER my_app
+      
+      COPY --from=build --chown=my_app:my_app /app/_build/prod/rel/my_app ./
+      
+      EXPOSE 4000
+      
+      ENV HOME=/app
+      
+      CMD ["bin/my_app", "start"]
+      
+      # Docker Compose
+      version: '3.8'
+      
+      services:
+        app:
+          build: .
+          ports:
+            - "4000:4000"
+          environment:
+            - DATABASE_URL=ecto://postgres:postgres@db:5432/my_app_prod
+            - SECRET_KEY_BASE=supersecretkey
+            - PHX_HOST=localhost
+          depends_on:
+            - db
+        
+        db:
+          image: postgres:15
+          environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_DB=my_app_prod
+          volumes:
+            - postgres_data:/var/lib/postgresql/data
+      
+      volumes:
+        postgres_data:
+
+testing:
+  exunit:
+    package: "ExUnit"
+    summary: "Elixir標準テストフレームワーク"
+    usage: |
+      # test/support/factory.ex
+      defmodule MyApp.Factory do
+        use ExMachina.Ecto, repo: MyApp.Repo
+        
+        def user_factory do
+          %MyApp.Accounts.User{
+            name: "Test User",
+            email: sequence(:email, &"user#{&1}@example.com"),
+            age: 25,
+            active: true
+          }
+        end
+        
+        def post_factory do
+          %MyApp.Blog.Post{
+            title: "Test Post",
+            content: "This is a test post content",
+            user: build(:user)
+          }
+        end
+      end
+      
+      # test/my_app/accounts_test.exs
+      defmodule MyApp.AccountsTest do
+        use MyApp.DataCase
+        
+        alias MyApp.Accounts
+        import MyApp.Factory
+        
+        describe "users" do
+          test "list_users/0 returns all users" do
+            user = insert(:user)
+            assert Accounts.list_users() == [user]
+          end
+          
+          test "get_user!/1 returns the user with given id" do
+            user = insert(:user)
+            assert Accounts.get_user!(user.id) == user
+          end
+          
+          test "create_user/1 with valid data creates a user" do
+            valid_attrs = %{name: "Alice", email: "alice@example.com", age: 30}
+            
+            assert {:ok, %User{} = user} = Accounts.create_user(valid_attrs)
+            assert user.name == "Alice"
+            assert user.email == "alice@example.com"
+            assert user.age == 30
+          end
+          
+          test "create_user/1 with invalid data returns error changeset" do
+            assert {:error, %Ecto.Changeset{}} = Accounts.create_user(%{})
+          end
+        end
+      end
+      
+      # test/my_app_web/controllers/user_controller_test.exs
+      defmodule MyAppWeb.UserControllerTest do
+        use MyAppWeb.ConnCase
+        
+        import MyApp.Factory
+        
+        @create_attrs %{name: "Alice", email: "alice@example.com", age: 30}
+        @invalid_attrs %{name: nil, email: nil, age: nil}
+        
+        setup %{conn: conn} do
+          {:ok, conn: put_req_header(conn, "accept", "application/json")}
+        end
+        
+        describe "index" do
+          test "lists all users", %{conn: conn} do
+            conn = get(conn, ~p"/api/users")
+            assert json_response(conn, 200)["data"] == []
+          end
+        end
+        
+        describe "create user" do
+          test "renders user when data is valid", %{conn: conn} do
+            conn = post(conn, ~p"/api/users", user: @create_attrs)
+            assert %{"id" => id} = json_response(conn, 201)["data"]
+            
+            conn = get(conn, ~p"/api/users/#{id}")
+            
+            assert %{
+              "id" => ^id,
+              "name" => "Alice",
+              "email" => "alice@example.com",
+              "age" => 30
+            } = json_response(conn, 200)["data"]
+          end
+          
+          test "renders errors when data is invalid", %{conn: conn} do
+            conn = post(conn, ~p"/api/users", user: @invalid_attrs)
+            assert json_response(conn, 422)["errors"] != %{}
+          end
+        end
+      end
+      
+      # test/my_app_web/live/user_live_test.exs
+      defmodule MyAppWeb.UserLiveTest do
+        use MyAppWeb.ConnCase
+        
+        import Phoenix.LiveViewTest
+        import MyApp.Factory
+        
+        describe "Index" do
+          test "lists all users", %{conn: conn} do
+            user = insert(:user)
+            {:ok, _index_live, html} = live(conn, ~p"/users")
+            
+            assert html =~ "Users"
+            assert html =~ user.name
+          end
+          
+          test "saves new user", %{conn: conn} do
+            {:ok, index_live, _html} = live(conn, ~p"/users")
+            
+            assert index_live |> element("a", "New User") |> render_click() =~
+                     "New User"
+            
+            assert_patch(index_live, ~p"/users/new")
+            
+            assert index_live
+                   |> form("#user-form", user: %{name: nil})
+                   |> render_change() =~ "can&#39;t be blank"
+            
+            assert index_live
+                   |> form("#user-form", user: @create_attrs)
+                   |> render_submit()
+            
+            assert_patch(index_live, ~p"/users")
+            
+            html = render(index_live)
+            assert html =~ "User created successfully"
+            assert html =~ "Alice"
+          end
+        end
+      end
+
+best_practices:
+  - "Actor モデルを活用して並行性を設計する"
+  - "フォルトトレラント設計でシステムの可用性を確保する"
+  - "パターンマッチングとガードを効果的に使用する"
+  - "Supervisor ツリーで適切なエラー回復戦略を実装する"
+  - "GenServer を使用して状態管理とプロセス通信を行う"
+  - "Ecto を使用して型安全なデータベース操作を実装する"
+  - "Phoenix LiveView でリアルタイムUIを構築する"
+  - "Plug ミドルウェアで横断的関心事を分離する"
+  - "Guardian でセキュアな認証システムを構築する"
+  - "ExUnit を使用して包括的なテストスイートを作成する"
+  - "Mix Release を使用して本番環境向けビルドを作成する"
+  - "分散システムとしての特性を活かした設計を行う"

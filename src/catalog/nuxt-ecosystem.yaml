@@ -1,0 +1,1253 @@
+id: "nuxt-ecosystem"
+name: "Nuxt Ecosystem Packages"
+homepage: "https://nuxt.com"
+summary: "Nuxt 3 エコシステムの主要モジュール群。UI、コンテンツ管理、画像最適化、PWA、認証、SEO、サーバーエンジンなどモダンフルスタックアプリケーション開発に必要な全てを網羅。"
+
+ui_components:
+  nuxt_ui:
+    package: "@nuxt/ui"
+    summary: "Tailwind CSS、Headless UI、アイコン統合のモダンUIライブラリ。完全カスタマイズ可能なコンポーネント群。"
+    install: "npm i @nuxt/ui"
+    nuxt_config: |
+      // nuxt.config.ts
+      export default defineNuxtConfig({
+        modules: ['@nuxt/ui'],
+        ui: {
+          global: true,
+          icons: ['mdi', 'heroicons', 'simple-icons']
+        }
+      })
+    usage: |
+      // app.vue
+      <template>
+        <div>
+          <!-- ボタン -->
+          <UButton
+            icon="i-heroicons-paper-airplane"
+            size="sm"
+            color="primary"
+            variant="solid"
+            label="Send"
+            :trailing="false"
+          />
+          
+          <!-- モーダル -->
+          <UModal v-model="isOpen">
+            <UCard>
+              <template #header>
+                <h3 class="text-base font-semibold leading-6">
+                  Modal Title
+                </h3>
+              </template>
+              
+              <p>Modal content here...</p>
+              
+              <template #footer>
+                <UButton @click="isOpen = false">Close</UButton>
+              </template>
+            </UCard>
+          </UModal>
+          
+          <!-- フォーム -->
+          <UForm :validate="validate" :state="state" @submit="onSubmit">
+            <UFormGroup label="Email" name="email" required>
+              <UInput v-model="state.email" type="email" />
+            </UFormGroup>
+            
+            <UFormGroup label="Password" name="password" required>
+              <UInput v-model="state.password" type="password" />
+            </UFormGroup>
+            
+            <UButton type="submit">Submit</UButton>
+          </UForm>
+          
+          <!-- テーブル -->
+          <UTable
+            :rows="people"
+            :columns="columns"
+            :loading="pending"
+            :sort="{ column: 'name', direction: 'asc' }"
+            @select="select"
+          />
+          
+          <!-- 通知 -->
+          <UNotifications />
+        </div>
+      </template>
+      
+      <script setup>
+      const toast = useToast()
+      
+      const state = reactive({
+        email: '',
+        password: ''
+      })
+      
+      const validate = (state: any) => {
+        const errors = []
+        if (!state.email) errors.push({ path: 'email', message: 'Required' })
+        if (!state.password) errors.push({ path: 'password', message: 'Required' })
+        return errors
+      }
+      
+      const onSubmit = async () => {
+        toast.add({
+          title: 'Success',
+          description: 'Form submitted successfully'
+        })
+      }
+      </script>
+
+content_management:
+  nuxt_content:
+    package: "@nuxt/content"
+    summary: "Git-based CMSフレームワーク。Markdown、YAML、JSON、CSVサポート。MDCでインタラクティブコンテンツ作成。"
+    install: "npm i @nuxt/content"
+    nuxt_config: |
+      // nuxt.config.ts
+      export default defineNuxtConfig({
+        modules: ['@nuxt/content'],
+        content: {
+          highlight: {
+            theme: {
+              default: 'github-light',
+              dark: 'github-dark'
+            },
+            preload: ['vue', 'typescript', 'javascript']
+          },
+          markdown: {
+            toc: {
+              depth: 3,
+              searchDepth: 3
+            },
+            anchorLinks: {
+              depth: 6
+            }
+          }
+        }
+      })
+    usage: |
+      // content/blog/my-post.md
+      ---
+      title: 'My First Blog Post'
+      description: 'Learning how to use @nuxt/content'
+      image: '/img/blog/my-post.jpg'
+      date: 2024-01-15
+      author:
+        name: 'John Doe'
+        avatar: '/img/authors/john.jpg'
+      tags: ['Nuxt', 'Content', 'Blog']
+      ---
+      
+      # My First Blog Post
+      
+      Welcome to my blog! This is written in **Markdown**.
+      
+      ::alert{type="info"}
+      This is an MDC component in Markdown!
+      ::
+      
+      ```vue [app.vue]
+      <template>
+        <div>Hello World</div>
+      </template>
+      ```
+      
+      // pages/blog/[...slug].vue
+      <template>
+        <article>
+          <ContentDoc>
+            <template #not-found>
+              <h1>Document not found</h1>
+            </template>
+            
+            <template v-slot="{ doc }">
+              <h1>{{ doc.title }}</h1>
+              <p>{{ doc.description }}</p>
+              <img :src="doc.image" :alt="doc.title">
+              
+              <ContentRenderer :value="doc" />
+              
+              <div class="author">
+                <img :src="doc.author.avatar" :alt="doc.author.name">
+                <span>{{ doc.author.name }}</span>
+                <time>{{ formatDate(doc.date) }}</time>
+              </div>
+            </template>
+          </ContentDoc>
+        </article>
+      </template>
+      
+      // pages/blog/index.vue
+      <template>
+        <div>
+          <h1>Blog Posts</h1>
+          <ContentList path="/blog" :query="query" v-slot="{ list }">
+            <article v-for="article in list" :key="article._path">
+              <NuxtLink :to="article._path">
+                <h2>{{ article.title }}</h2>
+                <p>{{ article.description }}</p>
+                <time>{{ article.date }}</time>
+              </NuxtLink>
+            </article>
+          </ContentList>
+        </div>
+      </template>
+      
+      <script setup>
+      const query = {
+        path: '/blog',
+        where: {
+          _draft: false
+        },
+        sort: {
+          date: -1
+        },
+        limit: 10
+      }
+      </script>
+
+image_optimization:
+  nuxt_image:
+    package: "@nuxt/image"
+    summary: "自動画像最適化。リサイズ、フォーマット変換、レイジーロード、プロバイダー統合。"
+    install: "npm i @nuxt/image"
+    nuxt_config: |
+      // nuxt.config.ts
+      export default defineNuxtConfig({
+        modules: ['@nuxt/image'],
+        image: {
+          quality: 80,
+          format: ['webp', 'avif'],
+          screens: {
+            xs: 320,
+            sm: 640,
+            md: 768,
+            lg: 1024,
+            xl: 1280,
+            xxl: 1536,
+            '2xl': 1536
+          },
+          providers: {
+            cloudinary: {
+              baseURL: 'https://res.cloudinary.com/nuxt/image/upload/'
+            }
+          },
+          presets: {
+            avatar: {
+              modifiers: {
+                format: 'jpg',
+                width: 50,
+                height: 50
+              }
+            },
+            hero: {
+              modifiers: {
+                format: 'webp',
+                width: 1200,
+                height: 600,
+                fit: 'cover'
+              }
+            }
+          }
+        }
+      })
+    usage: |
+      <template>
+        <div>
+          <!-- 基本的な使用 -->
+          <NuxtImg
+            src="/img/nuxt.png"
+            alt="Nuxt"
+            width="400"
+            height="300"
+            loading="lazy"
+          />
+          
+          <!-- レスポンシブ画像 -->
+          <NuxtImg
+            src="/img/hero.jpg"
+            alt="Hero"
+            sizes="sm:100vw md:50vw lg:400px"
+            :modifiers="{ fit: 'cover', format: 'webp' }"
+          />
+          
+          <!-- プリセット使用 -->
+          <NuxtImg
+            preset="avatar"
+            src="/img/user.jpg"
+            alt="User Avatar"
+          />
+          
+          <!-- Picture要素 -->
+          <NuxtPicture
+            src="/img/landscape.jpg"
+            alt="Landscape"
+            format="avif,webp,jpeg"
+            :img-attrs="{ class: 'rounded-lg' }"
+          />
+          
+          <!-- Cloudinaryプロバイダー -->
+          <NuxtImg
+            provider="cloudinary"
+            src="/remote/nuxt.jpg"
+            width="300"
+            height="200"
+            :modifiers="{
+              effect: 'blur:300',
+              opacity: 80
+            }"
+          />
+          
+          <!-- プレースホルダー付き -->
+          <NuxtImg
+            src="/img/large.jpg"
+            placeholder
+            placeholder-class="blur-sm"
+            loading="lazy"
+          />
+        </div>
+      </template>
+
+developer_tools:
+  nuxt_devtools:
+    package: "@nuxt/devtools"
+    summary: "強力な開発者ツール。コンポーネント検査、ルート可視化、モジュール管理、パフォーマンス分析。"
+    install: "自動的にNuxt 3に含まれています"
+    nuxt_config: |
+      // nuxt.config.ts
+      export default defineNuxtConfig({
+        devtools: {
+          enabled: true,
+          timeline: {
+            enabled: true
+          }
+        }
+      })
+    usage: |
+      // 開発サーバー起動時に自動的に有効化
+      // Shift + Alt + D でDevToolsパネルを開く
+      
+      // カスタムタブの追加
+      // modules/my-module/index.ts
+      import { defineNuxtModule, addCustomTab } from '@nuxt/kit'
+      
+      export default defineNuxtModule({
+        setup() {
+          addCustomTab({
+            name: 'my-module',
+            title: 'My Module',
+            icon: 'i-carbon-settings',
+            view: {
+              type: 'iframe',
+              src: '/__my-module'
+            }
+          })
+        }
+      })
+
+pwa:
+  nuxt_pwa:
+    package: "@vite-pwa/nuxt"
+    summary: "プログレッシブWebアプリ機能。サービスワーカー、オフライン対応、インストール可能。"
+    install: "npm i @vite-pwa/nuxt"
+    nuxt_config: |
+      // nuxt.config.ts
+      export default defineNuxtConfig({
+        modules: ['@vite-pwa/nuxt'],
+        pwa: {
+          registerType: 'autoUpdate',
+          manifest: {
+            name: 'Nuxt PWA',
+            short_name: 'NuxtPWA',
+            description: 'My Nuxt PWA Application',
+            theme_color: '#ffffff',
+            icons: [
+              {
+                src: 'pwa-192x192.png',
+                sizes: '192x192',
+                type: 'image/png'
+              },
+              {
+                src: 'pwa-512x512.png',
+                sizes: '512x512',
+                type: 'image/png'
+              }
+            ]
+          },
+          workbox: {
+            navigateFallback: '/',
+            globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+            runtimeCaching: [
+              {
+                urlPattern: /^https:\/\/api\.example\.com\/.*/,
+                handler: 'CacheFirst',
+                options: {
+                  cacheName: 'api-cache',
+                  expiration: {
+                    maxEntries: 10,
+                    maxAgeSeconds: 60 * 60 * 24 * 7 // 1週間
+                  },
+                  cacheableResponse: {
+                    statuses: [0, 200]
+                  }
+                }
+              }
+            ]
+          },
+          client: {
+            installPrompt: true,
+            periodicSyncForUpdates: 3600
+          }
+        }
+      })
+    usage: |
+      <template>
+        <div>
+          <!-- オフライン状態の検出 -->
+          <div v-if="!$pwa.isOnline" class="offline-banner">
+            現在オフラインです
+          </div>
+          
+          <!-- インストールプロンプト -->
+          <button v-if="$pwa.showInstallPrompt" @click="$pwa.install()">
+            アプリをインストール
+          </button>
+          
+          <!-- 更新通知 -->
+          <div v-if="$pwa.needRefresh" class="update-banner">
+            <span>新しいバージョンが利用可能です</span>
+            <button @click="$pwa.updateServiceWorker()">更新</button>
+          </div>
+        </div>
+      </template>
+      
+      <script setup>
+      const { $pwa } = useNuxtApp()
+      
+      // PWAの状態を監視
+      watch(() => $pwa.isOnline, (online) => {
+        console.log('Online status:', online)
+      })
+      </script>
+
+authentication:
+  nuxt_auth:
+    package: "@sidebase/nuxt-auth"
+    summary: "NextAuth.js のNuxt 3版。OAuth、Credentials、JWT、セッション管理対応。"
+    install: "npm i @sidebase/nuxt-auth @auth/core"
+    nuxt_config: |
+      // nuxt.config.ts
+      export default defineNuxtConfig({
+        modules: ['@sidebase/nuxt-auth'],
+        auth: {
+          baseURL: process.env.AUTH_ORIGIN,
+          provider: {
+            type: 'authjs'
+          }
+        }
+      })
+    usage: |
+      // server/api/auth/[...].ts
+      import { NuxtAuthHandler } from '#auth'
+      import GithubProvider from '@auth/core/providers/github'
+      import GoogleProvider from '@auth/core/providers/google'
+      import CredentialsProvider from '@auth/core/providers/credentials'
+      import { PrismaAdapter } from '@auth/prisma-adapter'
+      import { prisma } from '~/lib/prisma'
+      
+      export default NuxtAuthHandler({
+        secret: useRuntimeConfig().authSecret,
+        adapter: PrismaAdapter(prisma),
+        providers: [
+          GithubProvider({
+            clientId: process.env.GITHUB_CLIENT_ID,
+            clientSecret: process.env.GITHUB_CLIENT_SECRET
+          }),
+          GoogleProvider({
+            clientId: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET
+          }),
+          CredentialsProvider({
+            name: 'credentials',
+            credentials: {
+              email: { label: 'Email', type: 'email' },
+              password: { label: 'Password', type: 'password' }
+            },
+            async authorize(credentials) {
+              const user = await prisma.user.findUnique({
+                where: { email: credentials?.email }
+              })
+              
+              if (user && await verifyPassword(credentials.password, user.password)) {
+                return { id: user.id, email: user.email, name: user.name }
+              }
+              
+              return null
+            }
+          })
+        ],
+        callbacks: {
+          jwt({ token, user }) {
+            if (user) {
+              token.id = user.id
+              token.role = user.role
+            }
+            return token
+          },
+          session({ session, token }) {
+            if (session.user) {
+              session.user.id = token.id
+              session.user.role = token.role
+            }
+            return session
+          }
+        },
+        pages: {
+          signIn: '/auth/signin',
+          signOut: '/auth/signout',
+          error: '/auth/error'
+        }
+      })
+      
+      // pages/protected.vue
+      <template>
+        <div>
+          <h1>Protected Page</h1>
+          <p>Welcome, {{ data?.user?.name }}!</p>
+          <button @click="signOut()">Sign Out</button>
+        </div>
+      </template>
+      
+      <script setup>
+      definePageMeta({
+        middleware: 'auth'
+      })
+      
+      const { data, signOut } = useAuth()
+      </script>
+      
+      // middleware/auth.ts
+      export default defineNuxtRouteMiddleware((to) => {
+        const { status } = useAuth()
+        
+        if (status.value === 'unauthenticated' && to.path !== '/auth/signin') {
+          return navigateTo('/auth/signin')
+        }
+      })
+
+seo_optimization:
+  nuxt_seo:
+    package: "@nuxtjs/seo"
+    summary: "包括的SEOモジュール。メタタグ、sitemap、robots.txt、Schema.org、OGP自動生成。"
+    install: "npm i @nuxtjs/seo"
+    nuxt_config: |
+      // nuxt.config.ts
+      export default defineNuxtConfig({
+        modules: ['@nuxtjs/seo'],
+        site: {
+          url: 'https://example.com',
+          name: 'My Awesome Site',
+          description: 'Welcome to my awesome site!',
+          defaultLocale: 'ja'
+        },
+        seo: {
+          redirectToCanonical: true,
+          automaticDefaults: true
+        },
+        sitemap: {
+          hostname: 'https://example.com',
+          gzip: true,
+          exclude: ['/admin/**'],
+          routes: async () => {
+            const posts = await fetchPosts()
+            return posts.map(post => ({
+              url: `/blog/${post.slug}`,
+              changefreq: 'weekly',
+              priority: 0.8,
+              lastmod: post.updatedAt
+            }))
+          }
+        },
+        robots: {
+          UserAgent: '*',
+          Disallow: ['/admin', '/api'],
+          Sitemap: 'https://example.com/sitemap.xml'
+        },
+        schemaOrg: {
+          host: 'https://example.com',
+          inLanguage: 'ja-JP',
+          datePublished: '2024-01-01',
+          dateModified: '2024-01-15'
+        },
+        ogImage: {
+          enabled: true,
+          defaults: {
+            width: 1200,
+            height: 630,
+            type: 'image/png'
+          }
+        }
+      })
+    usage: |
+      // app.vue または pages/index.vue
+      <script setup>
+      useSeoMeta({
+        title: 'Home',
+        description: 'Welcome to our homepage',
+        ogTitle: 'Home - My Awesome Site',
+        ogDescription: 'Welcome to our homepage',
+        ogImage: '/og-image.png',
+        twitterCard: 'summary_large_image'
+      })
+      
+      useSchemaOrg([
+        defineWebSite({
+          name: 'My Awesome Site',
+          url: 'https://example.com',
+          potentialAction: {
+            '@type': 'SearchAction',
+            target: 'https://example.com/search?q={search_term_string}',
+            'query-input': 'required name=search_term_string'
+          }
+        }),
+        defineOrganization({
+          name: 'My Company',
+          url: 'https://example.com',
+          logo: 'https://example.com/logo.png',
+          sameAs: [
+            'https://twitter.com/mycompany',
+            'https://github.com/mycompany'
+          ]
+        })
+      ])
+      </script>
+      
+      // pages/blog/[slug].vue
+      <script setup>
+      const route = useRoute()
+      const { data: post } = await useAsyncData(
+        `post-${route.params.slug}`,
+        () => $fetch(`/api/posts/${route.params.slug}`)
+      )
+      
+      useHead({
+        title: post.value.title,
+        meta: [
+          { name: 'description', content: post.value.excerpt },
+          { property: 'article:published_time', content: post.value.publishedAt },
+          { property: 'article:author', content: post.value.author.name }
+        ]
+      })
+      
+      useSchemaOrg([
+        defineArticle({
+          '@id': `https://example.com/blog/${post.value.slug}`,
+          headline: post.value.title,
+          description: post.value.excerpt,
+          image: post.value.image,
+          datePublished: post.value.publishedAt,
+          dateModified: post.value.updatedAt,
+          author: {
+            '@type': 'Person',
+            name: post.value.author.name
+          }
+        })
+      ])
+      </script>
+
+utilities:
+  nuxt_icon:
+    package: "nuxt-icon"
+    summary: "10万以上のアイコン。Iconify統合、動的ロード、カスタムコレクション対応。"
+    install: "npm i nuxt-icon"
+    nuxt_config: |
+      // nuxt.config.ts
+      export default defineNuxtConfig({
+        modules: ['nuxt-icon'],
+        icon: {
+          size: '24px',
+          class: 'icon',
+          aliases: {
+            'nuxt': 'logos:nuxt-icon',
+            'vue': 'logos:vue',
+            'github': 'mdi:github'
+          },
+          collections: ['mdi', 'heroicons', 'carbon']
+        }
+      })
+    usage: |
+      <template>
+        <div>
+          <!-- 基本的な使用 -->
+          <Icon name="mdi:home" />
+          
+          <!-- サイズ指定 -->
+          <Icon name="heroicons:user" size="32" />
+          
+          <!-- カラー指定 -->
+          <Icon name="carbon:settings" color="red" />
+          
+          <!-- エイリアス使用 -->
+          <Icon name="nuxt" />
+          
+          <!-- 動的アイコン -->
+          <Icon :name="isOpen ? 'mdi:chevron-up' : 'mdi:chevron-down'" />
+          
+          <!-- カスタムSVG -->
+          <Icon name="custom:my-icon" />
+        </div>
+      </template>
+  
+  nuxt_color_mode:
+    package: "@nuxtjs/color-mode"
+    summary: "ダークモード/ライトモード切り替え。自動検出、永続化、SSR対応。"
+    install: "npm i @nuxtjs/color-mode"
+    nuxt_config: |
+      // nuxt.config.ts
+      export default defineNuxtConfig({
+        modules: ['@nuxtjs/color-mode'],
+        colorMode: {
+          preference: 'system',
+          fallback: 'light',
+          hid: 'nuxt-color-mode-script',
+          globalName: '__NUXT_COLOR_MODE__',
+          componentName: 'ColorScheme',
+          classPrefix: '',
+          classSuffix: '-mode',
+          storageKey: 'nuxt-color-mode'
+        }
+      })
+    usage: |
+      <template>
+        <div>
+          <button @click="toggleColorMode">
+            <Icon :name="colorMode.preference === 'dark' ? 'mdi:weather-sunny' : 'mdi:weather-night'" />
+            {{ colorMode.preference }}
+          </button>
+          
+          <!-- カラーモードごとのスタイル -->
+          <div class="bg-white dark:bg-gray-900 text-black dark:text-white">
+            Content adapts to color mode
+          </div>
+        </div>
+      </template>
+      
+      <script setup>
+      const colorMode = useColorMode()
+      
+      const toggleColorMode = () => {
+        colorMode.preference = colorMode.preference === 'dark' ? 'light' : 'dark'
+      }
+      
+      // CSS変数の使用
+      </script>
+      
+      <style>
+      :root {
+        --bg-color: white;
+        --text-color: black;
+      }
+      
+      .dark-mode {
+        --bg-color: #1a1a1a;
+        --text-color: white;
+      }
+      
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+      }
+      </style>
+  
+  nuxt_tailwindcss:
+    package: "@nuxtjs/tailwindcss"
+    summary: "Tailwind CSS完全統合。自動インポート、パージ、JIT、設定管理。"
+    install: "npm i @nuxtjs/tailwindcss"
+    nuxt_config: |
+      // nuxt.config.ts
+      export default defineNuxtConfig({
+        modules: ['@nuxtjs/tailwindcss'],
+        tailwindcss: {
+          cssPath: '~/assets/css/tailwind.css',
+          configPath: 'tailwind.config',
+          exposeConfig: false,
+          config: {},
+          injectPosition: 0,
+          viewer: true
+        }
+      })
+    usage: |
+      // tailwind.config.js
+      module.exports = {
+        content: [
+          './components/**/*.{js,vue,ts}',
+          './layouts/**/*.vue',
+          './pages/**/*.vue',
+          './plugins/**/*.{js,ts}',
+          './nuxt.config.{js,ts}',
+          './app.vue'
+        ],
+        theme: {
+          extend: {
+            colors: {
+              primary: '#00DC82'
+            }
+          }
+        },
+        plugins: [
+          require('@tailwindcss/forms'),
+          require('@tailwindcss/typography'),
+          require('@tailwindcss/aspect-ratio')
+        ]
+      }
+      
+      // assets/css/tailwind.css
+      @tailwind base;
+      @tailwind components;
+      @tailwind utilities;
+      
+      @layer components {
+        .btn-primary {
+          @apply px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors;
+        }
+      }
+      
+      // コンポーネントでの使用
+      <template>
+        <div class="container mx-auto px-4">
+          <h1 class="text-3xl font-bold text-gray-900 dark:text-white">
+            Welcome to Nuxt
+          </h1>
+          <button class="btn-primary">
+            Click me
+          </button>
+        </div>
+      </template>
+  
+  nuxt_vueuse:
+    package: "@vueuse/nuxt"
+    summary: "VueUse完全統合。200+のComposition APIユーティリティを自動インポート。"
+    install: "npm i @vueuse/nuxt @vueuse/core"
+    nuxt_config: |
+      // nuxt.config.ts
+      export default defineNuxtConfig({
+        modules: ['@vueuse/nuxt'],
+        vueuse: {
+          ssrHandlers: true,
+          autoImports: true
+        }
+      })
+    usage: |
+      <template>
+        <div>
+          <!-- マウス位置 -->
+          <div>Mouse: {{ x }}, {{ y }}</div>
+          
+          <!-- ローカルストレージ -->
+          <input v-model="store.name" />
+          
+          <!-- ダークモード -->
+          <button @click="toggleDark()">
+            {{ isDark ? '🌙' : '☀️' }}
+          </button>
+          
+          <!-- インターセクション -->
+          <div ref="target">
+            <p v-if="targetIsVisible">Visible!</p>
+          </div>
+          
+          <!-- ブレークポイント -->
+          <div v-if="isMobile">Mobile View</div>
+        </div>
+      </template>
+      
+      <script setup>
+      // 自動インポートされる
+      const { x, y } = useMouse()
+      const store = useLocalStorage('my-store', { name: 'Nuxt' })
+      const isDark = useDark()
+      const toggleDark = useToggle(isDark)
+      
+      const target = ref(null)
+      const targetIsVisible = ref(false)
+      useIntersectionObserver(
+        target,
+        ([{ isIntersecting }]) => {
+          targetIsVisible.value = isIntersecting
+        }
+      )
+      
+      const breakpoints = useBreakpoints({
+        mobile: 640,
+        tablet: 768,
+        desktop: 1024
+      })
+      const isMobile = breakpoints.smaller('tablet')
+      </script>
+
+integrations:
+  nuxt_strapi:
+    package: "@nuxtjs/strapi"
+    summary: "Strapi CMS統合。認証、メディア、コンテンツタイプ、GraphQL対応。"
+    install: "npm i @nuxtjs/strapi"
+    nuxt_config: |
+      // nuxt.config.ts
+      export default defineNuxtConfig({
+        modules: ['@nuxtjs/strapi'],
+        strapi: {
+          url: process.env.STRAPI_URL || 'http://localhost:1337',
+          prefix: '/api',
+          version: 'v4',
+          cookie: {},
+          cookieName: 'strapi_jwt'
+        }
+      })
+    usage: |
+      <script setup>
+      const { find, findOne, create, update, delete: remove } = useStrapi()
+      
+      // データ取得
+      const { data: posts } = await useAsyncData(
+        'posts',
+        () => find('posts', {
+          populate: ['author', 'categories'],
+          sort: ['publishedAt:desc'],
+          pagination: {
+            page: 1,
+            pageSize: 10
+          }
+        })
+      )
+      
+      // 単一データ取得
+      const { data: post } = await useAsyncData(
+        `post-${route.params.id}`,
+        () => findOne('posts', route.params.id, {
+          populate: '*'
+        })
+      )
+      
+      // 認証
+      const { login, logout, register, user } = useStrapiAuth()
+      
+      const handleLogin = async () => {
+        await login({
+          identifier: 'user@example.com',
+          password: 'password'
+        })
+      }
+      
+      // データ作成（認証済み）
+      const createPost = async () => {
+        const newPost = await create('posts', {
+          data: {
+            title: 'New Post',
+            content: 'Post content',
+            author: user.value.id
+          }
+        })
+      }
+      
+      // メディアアップロード
+      const uploadFile = async (file: File) => {
+        const formData = new FormData()
+        formData.append('files', file)
+        
+        const response = await $fetch('/api/upload', {
+          method: 'POST',
+          body: formData
+        })
+        
+        return response
+      }
+      </script>
+  
+  nuxt_supabase:
+    package: "@nuxtjs/supabase"
+    summary: "Supabase統合。認証、リアルタイムDB、ストレージ、Edge Functions対応。"
+    install: "npm i @nuxtjs/supabase"
+    nuxt_config: |
+      // nuxt.config.ts
+      export default defineNuxtConfig({
+        modules: ['@nuxtjs/supabase'],
+        supabase: {
+          url: process.env.SUPABASE_URL,
+          key: process.env.SUPABASE_ANON_KEY,
+          redirect: true,
+          redirectOptions: {
+            login: '/auth/login',
+            callback: '/dashboard',
+            exclude: ['/']
+          }
+        }
+      })
+    usage: |
+      <script setup>
+      const supabase = useSupabaseClient()
+      const user = useSupabaseUser()
+      
+      // データ取得
+      const { data: todos, error } = await supabase
+        .from('todos')
+        .select('*')
+        .eq('user_id', user.value?.id)
+        .order('created_at', { ascending: false })
+      
+      // リアルタイムサブスクリプション
+      const todos = ref([])
+      
+      onMounted(() => {
+        const channel = supabase
+          .channel('todos')
+          .on('postgres_changes', 
+            { event: '*', schema: 'public', table: 'todos' },
+            (payload) => {
+              if (payload.eventType === 'INSERT') {
+                todos.value.push(payload.new)
+              }
+              if (payload.eventType === 'DELETE') {
+                todos.value = todos.value.filter(t => t.id !== payload.old.id)
+              }
+            }
+          )
+          .subscribe()
+      })
+      
+      // 認証
+      const signIn = async () => {
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email: 'user@example.com',
+          password: 'password'
+        })
+      }
+      
+      const signInWithGitHub = async () => {
+        const { data, error } = await supabase.auth.signInWithOAuth({
+          provider: 'github'
+        })
+      }
+      
+      const signOut = async () => {
+        await supabase.auth.signOut()
+      }
+      
+      // ストレージ
+      const uploadAvatar = async (file: File) => {
+        const fileName = `${user.value?.id}/${Date.now()}`
+        const { data, error } = await supabase.storage
+          .from('avatars')
+          .upload(fileName, file)
+        
+        if (data) {
+          const { data: { publicUrl } } = supabase.storage
+            .from('avatars')
+            .getPublicUrl(fileName)
+          
+          return publicUrl
+        }
+      }
+      
+      // Edge Functions呼び出し
+      const { data, error } = await supabase.functions.invoke('hello', {
+        body: { name: 'World' }
+      })
+      </script>
+
+server_engine:
+  nitro:
+    package: "nitropack"
+    summary: "ユニバーサルサーバーエンジン。エッジ対応、自動最適化、マルチプロバイダーデプロイ。"
+    install: "Nuxt 3に自動的に含まれています"
+    usage: |
+      // server/api/hello.ts
+      export default defineEventHandler((event) => {
+        return {
+          hello: 'world'
+        }
+      })
+      
+      // server/api/users/[id].ts
+      export default defineEventHandler(async (event) => {
+        const id = getRouterParam(event, 'id')
+        const query = getQuery(event)
+        
+        // データベースから取得
+        const user = await getUserById(id)
+        
+        return user
+      })
+      
+      // server/api/submit.post.ts
+      export default defineEventHandler(async (event) => {
+        const body = await readBody(event)
+        
+        // バリデーション
+        if (!body.email) {
+          throw createError({
+            statusCode: 400,
+            statusMessage: 'Email is required'
+          })
+        }
+        
+        // 処理
+        const result = await processSubmission(body)
+        
+        return result
+      })
+      
+      // server/middleware/auth.ts
+      export default defineEventHandler(async (event) => {
+        if (event.node.req.url?.startsWith('/api/protected')) {
+          const token = getCookie(event, 'auth-token')
+          
+          if (!token || !await verifyToken(token)) {
+            throw createError({
+              statusCode: 401,
+              statusMessage: 'Unauthorized'
+            })
+          }
+        }
+      })
+      
+      // server/plugins/database.ts
+      export default defineNitroPlugin((nitroApp) => {
+        console.log('Nitro plugin initialized')
+        
+        // データベース接続など
+        connectDatabase()
+        
+        nitroApp.hooks.hook('close', async () => {
+          await disconnectDatabase()
+        })
+      })
+      
+      // server/routes/sitemap.xml.ts
+      export default defineEventHandler(async (event) => {
+        const posts = await getPosts()
+        
+        const sitemap = posts.map(post => 
+          `<url><loc>https://example.com/blog/${post.slug}</loc></url>`
+        ).join('')
+        
+        setHeader(event, 'content-type', 'text/xml')
+        return `<?xml version="1.0" encoding="UTF-8"?>
+          <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+            ${sitemap}
+          </urlset>`
+      })
+      
+      // server/api/stream.ts (Server-Sent Events)
+      export default defineEventHandler(async (event) => {
+        setHeader(event, 'content-type', 'text/event-stream')
+        setHeader(event, 'cache-control', 'no-cache')
+        
+        const stream = createEventStream(event)
+        
+        const interval = setInterval(async () => {
+          await stream.push({
+            data: JSON.stringify({ time: new Date() })
+          })
+        }, 1000)
+        
+        stream.onClosed(async () => {
+          clearInterval(interval)
+        })
+        
+        return stream.send()
+      })
+
+unjs_ecosystem:
+  unjs_utils:
+    package: "various unjs packages"
+    summary: "UnJSエコシステムのユーティリティ群。ofetch、ufo、ohash、defu、consola等。"
+    install: "多くは自動的にNuxtに含まれています"
+    usage: |
+      // ofetch - Better fetch API
+      import { $fetch } from 'ofetch'
+      
+      const data = await $fetch('/api/users', {
+        method: 'POST',
+        body: { name: 'John' },
+        retry: 3,
+        retryDelay: 1000,
+        onRequest({ request, options }) {
+          options.headers = {
+            ...options.headers,
+            Authorization: `Bearer ${token}`
+          }
+        },
+        onResponseError({ response }) {
+          console.error('API Error:', response._data)
+        }
+      })
+      
+      // ufo - URL utilities
+      import { parseURL, withQuery, joinURL } from 'ufo'
+      
+      const url = parseURL('https://example.com/path?foo=bar')
+      console.log(url.pathname) // '/path'
+      
+      const newUrl = withQuery('/api/users', { page: 1, limit: 10 })
+      // '/api/users?page=1&limit=10'
+      
+      const fullUrl = joinURL('https://api.example.com', '/v1', '/users')
+      // 'https://api.example.com/v1/users'
+      
+      // ohash - Object hash
+      import { hash, objectHash, sha256 } from 'ohash'
+      
+      const objHash = objectHash({ foo: 'bar' })
+      const strHash = hash('hello world')
+      const sha = sha256('data')
+      
+      // defu - Deep defaults
+      import { defu } from 'defu'
+      
+      const options = defu(userOptions, {
+        deep: true,
+        array: ['item1'],
+        object: {
+          key: 'default'
+        }
+      })
+      
+      // consola - Beautiful console
+      import { consola } from 'consola'
+      
+      consola.success('Build completed')
+      consola.info('Server running on port 3000')
+      consola.warn('Deprecation warning')
+      consola.error(new Error('Something went wrong'))
+      consola.box('Nuxt 3.0.0')
+      
+      // pathe - Path utilities
+      import { resolve, join, basename } from 'pathe'
+      
+      const fullPath = resolve('./src', 'components')
+      const fileName = basename('/path/to/file.txt') // 'file.txt'
+      
+      // pkg-types - Package.json types
+      import { readPackageJSON, writePackageJSON } from 'pkg-types'
+      
+      const pkg = await readPackageJSON()
+      console.log(pkg.version)
+      
+      await writePackageJSON({
+        ...pkg,
+        version: '2.0.0'
+      })
+
+best_practices:
+  - "サーバーコンポーネントとクライアントコンポーネントを適切に分離"
+  - "自動インポートを活用してボイラープレートを削減"
+  - "Nitroのサーバー機能を使ってAPIを統合"
+  - "useFetchとuseAsyncDataでデータフェッチングを最適化"
+  - "レイヤーシステムでコードを再利用"
+  - "TypeScriptを使用して型安全性を確保"
+  - "Nuxt DevToolsで開発効率を向上"
+  - "適切なキャッシング戦略を実装"
+  - "画像最適化とレイジーローディングを活用"
+  - "SEO最適化を初期段階から実装"
+  - "PWA機能でオフライン対応を実現"
+  - "環境変数とランタイム設定を適切に管理"

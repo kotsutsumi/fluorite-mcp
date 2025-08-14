@@ -1,0 +1,665 @@
+id: "zig-ecosystem"
+name: "Zig Programming Language Ecosystem"
+homepage: "https://ziglang.org"
+summary: "メモリ安全性と低レベル制御を活かしたシステムプログラミング言語エコシステム。組み込み開発、システムソフトウェア、高性能アプリケーション開発に最適。"
+
+language:
+  name: "Zig"
+  version: "0.11.0+"
+  description: "シンプルさ、性能、安全性を重視したシステムプログラミング言語"
+  features:
+    - "コンパイル時実行によるメタプログラミング"
+    - "手動メモリ管理とメモリ安全性保証"
+    - "Cとの完全互換性"
+    - "クロスプラットフォーム対応"
+    - "ランタイムオーバーヘッドゼロ"
+
+std:
+  standard_library:
+    package: "std"
+    summary: "Zig標準ライブラリ - メモリ安全性と低レベル制御を提供するシステム開発基盤"
+    install: "Built-in with Zig compiler"
+    usage: |
+      const std = @import("std");
+      const print = std.debug.print;
+      const ArrayList = std.ArrayList;
+      const Allocator = std.mem.Allocator;
+      
+      // メモリ管理
+      pub fn main() !void {
+          var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+          defer _ = gpa.deinit();
+          const allocator = gpa.allocator();
+          
+          // 動的配列
+          var list = ArrayList(i32).init(allocator);
+          defer list.deinit();
+          
+          try list.append(42);
+          try list.append(84);
+          
+          print("List length: {}\n", .{list.items.len});
+          
+          // 文字列操作
+          const name = "Zig";
+          const message = try std.fmt.allocPrint(allocator, "Hello, {}!", .{name});
+          defer allocator.free(message);
+          print("{s}\n", .{message});
+      }
+      
+      // ファイルI/O
+      pub fn readFile(allocator: Allocator, path: []const u8) ![]u8 {
+          const file = try std.fs.cwd().openFile(path, .{});
+          defer file.close();
+          
+          const file_size = try file.getEndPos();
+          const contents = try allocator.alloc(u8, file_size);
+          _ = try file.readAll(contents);
+          
+          return contents;
+      }
+      
+      // JSON処理
+      const User = struct {
+          name: []const u8,
+          age: u32,
+      };
+      
+      pub fn parseJson(allocator: Allocator, json_str: []const u8) !User {
+          return try std.json.parseFromSlice(User, allocator, json_str, .{});
+      }
+      
+      // エラーハンドリング
+      const CustomError = error{
+          InvalidInput,
+          NetworkFailure,
+      };
+      
+      pub fn divide(a: f64, b: f64) CustomError!f64 {
+          if (b == 0) return CustomError.InvalidInput;
+          return a / b;
+      }
+      
+      // コンパイル時計算
+      pub fn fibonacci(n: u32) u32 {
+          if (n <= 1) return n;
+          return fibonacci(n - 1) + fibonacci(n - 2);
+      }
+      
+      // コンパイル時定数
+      const fib_10 = comptime fibonacci(10);
+
+network:
+  zig_network:
+    package: "ziglang/zig-network"
+    summary: "クロスプラットフォームネットワークソケット操作ユーティリティ"
+    install: |
+      # build.zig
+      const network = b.dependency("network", .{});
+      exe.addModule("network", network.module("network"));
+    usage: |
+      const std = @import("std");
+      const network = @import("network");
+      
+      pub fn main() !void {
+          // ネットワーク初期化
+          try network.init();
+          defer network.deinit();
+          
+          // TCPサーバー
+          const socket = try network.Socket.create(.ipv4, .tcp);
+          defer socket.close();
+          
+          try socket.bind(.{
+              .address = .{ .ipv4 = network.Address.IPv4.any },
+              .port = 8080,
+          });
+          
+          try socket.listen();
+          
+          std.debug.print("Server listening on port 8080\n");
+          
+          while (true) {
+              const client = try socket.accept();
+              defer client.close();
+              
+              // リクエスト読み取り
+              var buffer: [1024]u8 = undefined;
+              const bytes_read = try client.receive(&buffer);
+              
+              // レスポンス送信
+              const response = "HTTP/1.1 200 OK\r\nContent-Length: 12\r\n\r\nHello, Zig!";
+              _ = try client.send(response);
+          }
+      }
+      
+      // TCPクライアント
+      pub fn tcpClient() !void {
+          try network.init();
+          defer network.deinit();
+          
+          const socket = try network.Socket.create(.ipv4, .tcp);
+          defer socket.close();
+          
+          try socket.connect(.{
+              .address = .{ .ipv4 = .{ .value = .{ 127, 0, 0, 1 } } },
+              .port = 8080,
+          });
+          
+          const message = "GET / HTTP/1.1\r\nHost: localhost\r\n\r\n";
+          _ = try socket.send(message);
+          
+          var buffer: [1024]u8 = undefined;
+          const bytes_read = try socket.receive(&buffer);
+          std.debug.print("Received: {s}\n", .{buffer[0..bytes_read]});
+      }
+      
+      // UDPソケット
+      pub fn udpExample() !void {
+          try network.init();
+          defer network.deinit();
+          
+          const socket = try network.Socket.create(.ipv4, .udp);
+          defer socket.close();
+          
+          try socket.bind(.{
+              .address = .{ .ipv4 = network.Address.IPv4.any },
+              .port = 9090,
+          });
+          
+          var buffer: [1024]u8 = undefined;
+          const endpoint = try socket.receiveFrom(&buffer);
+          
+          std.debug.print("Received from {}: {s}\n", .{ endpoint.address, buffer[0..endpoint.size] });
+      }
+
+cli:
+  zig_clap:
+    package: "ziglang/zig-clap"
+    summary: "シンプルで型安全なコマンドライン引数パーサー"
+    install: |
+      # build.zig
+      const clap = b.dependency("clap", .{});
+      exe.addModule("clap", clap.module("clap"));
+    usage: |
+      const std = @import("std");
+      const clap = @import("clap");
+      
+      pub fn main() !void {
+          var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+          defer _ = gpa.deinit();
+          const allocator = gpa.allocator();
+          
+          // CLI引数定義
+          const params = clap.parseParamsComptime(
+              \\-h, --help             Display this help and exit.
+              \\-v, --verbose          Enable verbose output.
+              \\-o, --output <str>     Output file path.
+              \\-c, --count <usize>    Number of iterations.
+              \\<str>                  Input file.
+              \\
+          );
+          
+          // 引数パース
+          var diag = clap.Diagnostic{};
+          var res = clap.parse(clap.Help, &params, clap.parsers.default, .{
+              .diagnostic = &diag,
+              .allocator = allocator,
+          }) catch |err| switch (err) {
+              error.InvalidArgument => {
+                  clap.help(std.io.getStdErr().writer(), clap.Help, &params, .{}) catch {};
+                  std.debug.print("{}\n", .{diag});
+                  return;
+              },
+              else => return err,
+          };
+          defer res.deinit();
+          
+          // ヘルプ表示
+          if (res.args.help != 0) {
+              return clap.help(std.io.getStdOut().writer(), clap.Help, &params, .{});
+          }
+          
+          // 引数処理
+          const verbose = res.args.verbose != 0;
+          const output_file = res.args.output;
+          const count = res.args.count orelse 1;
+          
+          if (verbose) {
+              std.debug.print("Verbose mode enabled\n");
+              std.debug.print("Output file: {?s}\n", .{output_file});
+              std.debug.print("Count: {}\n", .{count});
+          }
+          
+          // 位置引数
+          for (res.positionals) |input_file| {
+              std.debug.print("Processing file: {s}\n", .{input_file});
+              try processFile(input_file, output_file, count);
+          }
+      }
+      
+      fn processFile(input: []const u8, output: ?[]const u8, count: usize) !void {
+          // ファイル処理ロジック
+          _ = input;
+          _ = output;
+          _ = count;
+          std.debug.print("File processed successfully\n");
+      }
+      
+      // サブコマンド例
+      const SubCommand = enum {
+          build,
+          test,
+          run,
+      };
+      
+      pub fn subcommandExample() !void {
+          const params = clap.parseParamsComptime(
+              \\-h, --help             Show help
+              \\<str>                  Subcommand (build, test, run)
+              \\
+          );
+          
+          // パース処理...
+          // サブコマンド判定
+          // for (res.positionals) |arg| {
+          //     const cmd = std.meta.stringToEnum(SubCommand, arg) orelse {
+          //         std.debug.print("Unknown command: {s}\n", .{arg});
+          //         return;
+          //     };
+          //     
+          //     switch (cmd) {
+          //         .build => try buildCommand(),
+          //         .test => try testCommand(),
+          //         .run => try runCommand(),
+          //     }
+          // }
+      }
+
+http:
+  zig_http:
+    package: "ziglang/http"
+    summary: "HTTPクライアント/サーバー実装（コミュニティ版）"
+    install: |
+      # build.zig dependencies
+      const http = b.dependency("http", .{});
+      exe.addModule("http", http.module("http"));
+    usage: |
+      const std = @import("std");
+      const http = @import("http");
+      
+      // HTTPサーバー
+      pub fn httpServer() !void {
+          var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+          defer _ = gpa.deinit();
+          const allocator = gpa.allocator();
+          
+          const server = try http.Server.init(allocator, .{
+              .address = "127.0.0.1",
+              .port = 8080,
+          });
+          defer server.deinit();
+          
+          std.debug.print("HTTP Server listening on http://127.0.0.1:8080\n");
+          
+          try server.listen(struct {
+              fn handle(request: *http.Request, response: *http.Response) !void {
+                  try response.headers.put("Content-Type", "application/json");
+                  
+                  switch (request.method) {
+                      .GET => {
+                          if (std.mem.eql(u8, request.path, "/")) {
+                              try response.writeAll("{\"message\": \"Hello, Zig HTTP!\"}");
+                          } else if (std.mem.eql(u8, request.path, "/health")) {
+                              try response.writeAll("{\"status\": \"ok\"}");
+                          } else {
+                              response.status = .not_found;
+                              try response.writeAll("{\"error\": \"Not found\"}");
+                          }
+                      },
+                      .POST => {
+                          const body = try request.readAllAlloc(response.allocator, 1024 * 1024);
+                          defer response.allocator.free(body);
+                          
+                          // JSON解析
+                          const parsed = try std.json.parseFromSlice(
+                              struct { name: []const u8 },
+                              response.allocator,
+                              body,
+                              .{}
+                          );
+                          defer parsed.deinit();
+                          
+                          const json_response = try std.fmt.allocPrint(
+                              response.allocator,
+                              "{{\"received\": \"{s}\"}}",
+                              .{parsed.value.name}
+                          );
+                          defer response.allocator.free(json_response);
+                          
+                          try response.writeAll(json_response);
+                      },
+                      else => {
+                          response.status = .method_not_allowed;
+                          try response.writeAll("{\"error\": \"Method not allowed\"}");
+                      },
+                  }
+              }
+          }.handle);
+      }
+      
+      // HTTPクライアント
+      pub fn httpClient() !void {
+          var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+          defer _ = gpa.deinit();
+          const allocator = gpa.allocator();
+          
+          const client = try http.Client.init(allocator);
+          defer client.deinit();
+          
+          // GET リクエスト
+          const response = try client.get("https://api.github.com/users/ziglang");
+          defer response.deinit();
+          
+          std.debug.print("Status: {}\n", .{response.status});
+          std.debug.print("Body: {s}\n", .{response.body});
+          
+          // POST リクエスト
+          const post_data = "{\"name\": \"test\"}";
+          const post_response = try client.post("http://localhost:8080/api", .{
+              .headers = &.{
+                  .{ .name = "Content-Type", .value = "application/json" },
+              },
+              .body = post_data,
+          });
+          defer post_response.deinit();
+          
+          std.debug.print("POST Response: {s}\n", .{post_response.body});
+      }
+      
+      // ミドルウェア例
+      const Middleware = struct {
+          fn logger(request: *http.Request, response: *http.Response, next: anytype) !void {
+              const start = std.time.timestamp();
+              try next(request, response);
+              const duration = std.time.timestamp() - start;
+              std.debug.print("{s} {s} - {}ms\n", .{ @tagName(request.method), request.path, duration });
+          }
+          
+          fn cors(request: *http.Request, response: *http.Response, next: anytype) !void {
+              try response.headers.put("Access-Control-Allow-Origin", "*");
+              try response.headers.put("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+              try response.headers.put("Access-Control-Allow-Headers", "Content-Type, Authorization");
+              
+              if (request.method == .OPTIONS) {
+                  response.status = .no_content;
+                  return;
+              }
+              
+              try next(request, response);
+          }
+      };
+
+database:
+  zig_sqlite:
+    package: "ziglang/sqlite"
+    summary: "型安全なSQLiteバインディング"
+    install: |
+      # build.zig
+      const sqlite = b.dependency("sqlite", .{});
+      exe.addModule("sqlite", sqlite.module("sqlite"));
+      exe.linkSystemLibrary("sqlite3");
+    usage: |
+      const std = @import("std");
+      const sqlite = @import("sqlite");
+      
+      const User = struct {
+          id: i64,
+          name: []const u8,
+          email: []const u8,
+          created_at: i64,
+      };
+      
+      pub fn main() !void {
+          var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+          defer _ = gpa.deinit();
+          const allocator = gpa.allocator();
+          
+          // データベース接続
+          var db = try sqlite.Db.init(.{
+              .mode = sqlite.Db.Mode{ .File = "users.db" },
+              .open_flags = .{
+                  .write = true,
+                  .create = true,
+              },
+          });
+          defer db.deinit();
+          
+          // テーブル作成
+          try db.exec(
+              \\CREATE TABLE IF NOT EXISTS users (
+              \\    id INTEGER PRIMARY KEY AUTOINCREMENT,
+              \\    name TEXT NOT NULL,
+              \\    email TEXT UNIQUE NOT NULL,
+              \\    created_at INTEGER NOT NULL
+              \\)
+          , .{}, .{});
+          
+          // データ挿入
+          const insert_stmt = try db.prepareDynamic(
+              "INSERT INTO users (name, email, created_at) VALUES (?, ?, ?)"
+          );
+          defer insert_stmt.deinit();
+          
+          try insert_stmt.exec(.{}, .{ "Alice", "alice@example.com", std.time.timestamp() });
+          try insert_stmt.exec(.{}, .{ "Bob", "bob@example.com", std.time.timestamp() });
+          
+          // データ取得
+          const select_stmt = try db.prepareDynamic("SELECT id, name, email, created_at FROM users WHERE name LIKE ?");
+          defer select_stmt.deinit();
+          
+          var users = std.ArrayList(User).init(allocator);
+          defer users.deinit();
+          
+          const rows = try select_stmt.all(User, allocator, .{}, .{"%Alice%"});
+          defer allocator.free(rows);
+          
+          for (rows) |user| {
+              std.debug.print("User: {s} ({s}) - ID: {}\n", .{ user.name, user.email, user.id });
+          }
+          
+          // トランザクション
+          try db.exec("BEGIN TRANSACTION", .{}, .{});
+          
+          const update_stmt = try db.prepareDynamic("UPDATE users SET email = ? WHERE id = ?");
+          defer update_stmt.deinit();
+          
+          try update_stmt.exec(.{}, .{ "alice.new@example.com", 1 });
+          
+          // コミット or ロールバック
+          try db.exec("COMMIT", .{}, .{});
+          // try db.exec("ROLLBACK", .{}, .{});
+      }
+      
+      // バッチ処理
+      pub fn batchInsert(db: *sqlite.Db, users: []const User) !void {
+          try db.exec("BEGIN TRANSACTION", .{}, .{});
+          defer db.exec("COMMIT", .{}, .{}) catch {};
+          
+          const stmt = try db.prepareDynamic(
+              "INSERT INTO users (name, email, created_at) VALUES (?, ?, ?)"
+          );
+          defer stmt.deinit();
+          
+          for (users) |user| {
+              try stmt.exec(.{}, .{ user.name, user.email, user.created_at });
+          }
+      }
+      
+      // 集計クエリ
+      pub fn getUserStats(db: *sqlite.Db) !struct { count: i64, latest: i64 } {
+          const stmt = try db.prepareDynamic("SELECT COUNT(*), MAX(created_at) FROM users");
+          defer stmt.deinit();
+          
+          const row = try stmt.one(struct { count: i64, latest: i64 }, .{}, .{});
+          return row orelse .{ .count = 0, .latest = 0 };
+      }
+
+build_system:
+  build_zig:
+    package: "build.zig"
+    summary: "Zigビルドシステム設定"
+    usage: |
+      const std = @import("std");
+      
+      pub fn build(b: *std.Build) void {
+          // ターゲット設定
+          const target = b.standardTargetOptions(.{});
+          const optimize = b.standardOptimizeOption(.{});
+          
+          // 実行ファイル
+          const exe = b.addExecutable(.{
+              .name = "myapp",
+              .root_source_file = .{ .path = "src/main.zig" },
+              .target = target,
+              .optimize = optimize,
+          });
+          
+          // 依存関係追加
+          const network_dep = b.dependency("network", .{
+              .target = target,
+              .optimize = optimize,
+          });
+          exe.addModule("network", network_dep.module("network"));
+          
+          const clap_dep = b.dependency("clap", .{});
+          exe.addModule("clap", clap_dep.module("clap"));
+          
+          // システムライブラリリンク
+          exe.linkSystemLibrary("sqlite3");
+          exe.linkLibC();
+          
+          // インストール
+          b.installArtifact(exe);
+          
+          // 実行コマンド
+          const run_cmd = b.addRunArtifact(exe);
+          run_cmd.step.dependOn(b.getInstallStep());
+          
+          if (b.args) |args| {
+              run_cmd.addArgs(args);
+          }
+          
+          const run_step = b.step("run", "Run the app");
+          run_step.dependOn(&run_cmd.step);
+          
+          // テスト
+          const unit_tests = b.addTest(.{
+              .root_source_file = .{ .path = "src/main.zig" },
+              .target = target,
+              .optimize = optimize,
+          });
+          
+          const run_unit_tests = b.addRunArtifact(unit_tests);
+          const test_step = b.step("test", "Run unit tests");
+          test_step.dependOn(&run_unit_tests.step);
+          
+          // ライブラリ作成
+          const lib = b.addStaticLibrary(.{
+              .name = "mylib",
+              .root_source_file = .{ .path = "src/lib.zig" },
+              .target = target,
+              .optimize = optimize,
+          });
+          
+          b.installArtifact(lib);
+      }
+
+testing:
+  testing:
+    package: "std.testing"
+    summary: "Zig標準テストフレームワーク"
+    usage: |
+      const std = @import("std");
+      const testing = std.testing;
+      const expect = testing.expect;
+      const expectEqual = testing.expectEqual;
+      const expectError = testing.expectError;
+      
+      // 基本テスト
+      test "basic arithmetic" {
+          try expect(2 + 2 == 4);
+          try expectEqual(@as(i32, 42), 42);
+      }
+      
+      // エラーテスト
+      const MathError = error{DivisionByZero};
+      
+      fn divide(a: f64, b: f64) MathError!f64 {
+          if (b == 0) return MathError.DivisionByZero;
+          return a / b;
+      }
+      
+      test "division by zero" {
+          try expectError(MathError.DivisionByZero, divide(10, 0));
+          try expectEqual(@as(f64, 5.0), try divide(10, 2));
+      }
+      
+      // メモリテスト
+      test "memory allocation" {
+          var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+          defer _ = gpa.deinit();
+          const allocator = gpa.allocator();
+          
+          const buffer = try allocator.alloc(u8, 100);
+          defer allocator.free(buffer);
+          
+          try expect(buffer.len == 100);
+      }
+      
+      // 配列テスト
+      test "array operations" {
+          const numbers = [_]i32{ 1, 2, 3, 4, 5 };
+          
+          try expectEqual(@as(usize, 5), numbers.len);
+          try expectEqual(@as(i32, 3), numbers[2]);
+          
+          var sum: i32 = 0;
+          for (numbers) |num| {
+              sum += num;
+          }
+          try expectEqual(@as(i32, 15), sum);
+      }
+      
+      // 構造体テスト
+      const Point = struct {
+          x: f64,
+          y: f64,
+          
+          fn distance(self: Point, other: Point) f64 {
+              const dx = self.x - other.x;
+              const dy = self.y - other.y;
+              return @sqrt(dx * dx + dy * dy);
+          }
+      };
+      
+      test "Point struct" {
+          const p1 = Point{ .x = 0, .y = 0 };
+          const p2 = Point{ .x = 3, .y = 4 };
+          
+          try expectEqual(@as(f64, 5.0), p1.distance(p2));
+      }
+
+best_practices:
+  - "メモリ管理を明示的に行い、アロケーターを適切に使用する"
+  - "コンパイル時実行を活用してパフォーマンスを最適化する"
+  - "エラーハンドリングを必須とし、エラー型を明確に定義する"
+  - "型安全性を最大限活用し、未定義動作を避ける"
+  - "テストを書いてメモリ安全性を確認する"
+  - "クロスプラットフォーム対応を考慮してコードを書く"
+  - "標準ライブラリを優先し、必要最小限の依存関係にとどめる"
+  - "パフォーマンス重視の設計を心がける"
+  - "ドキュメントコメントでAPIを明確に記述する"
+  - "ビルドシステム(build.zig)を適切に設定する"
+  - "リソースの確実な解放(defer)を実装する"
+  - "コンパイル時チェックを最大限活用する"

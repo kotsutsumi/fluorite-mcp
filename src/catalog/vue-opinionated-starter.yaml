@@ -1,0 +1,74 @@
+id: "vue-opinionated-starter"
+name: "Vue 3 スターター（Opinionated）"
+homepage: "https://vuejs.org/"
+summary: "実務向けの推奨スタックをひとまとめにした Vue 3 スターター。Pinia + Vue Query + Vue Router + Naive UI + VeeValidate + Zod を中核に、Sentry/Vitest/Cypress/Storybook/ESLint/Prettier を同梱する想定。"
+stack:
+  state:
+    - "pinia"
+    - "@tanstack/vue-query"
+  ui:
+    - "naive-ui"
+  forms:
+    - "vee-validate"
+    - "zod"
+  routing:
+    - "vue-router"
+  observability:
+    - "@sentry/vue"
+  quality:
+    - "eslint + eslint-plugin-vue + @vue/eslint-config-typescript"
+    - "prettier + eslint-config-prettier"
+    - "vitest + @vue/test-utils"
+    - "cypress or @playwright/test"
+    - "storybook@latest --type vue"
+install:
+  steps:
+    - "npm i pinia @tanstack/vue-query vue-router naive-ui vee-validate zod @sentry/vue"
+    - "npm i -D eslint eslint-plugin-vue @vue/eslint-config-typescript prettier eslint-config-prettier vitest @vue/test-utils cypress @playwright/test @storybook/cli @vitejs/plugin-vue"
+blueprints:
+  main: |
+    // main.ts
+    import { createApp } from 'vue'
+    import { createPinia } from 'pinia'
+    import { VueQueryPlugin, QueryClient } from '@tanstack/vue-query'
+    import { createRouter, createWebHistory } from 'vue-router'
+    import * as Sentry from '@sentry/vue'
+    import App from './App.vue'
+
+    const app = createApp(App)
+    app.use(createPinia())
+    app.use(VueQueryPlugin, { queryClient: new QueryClient() })
+    app.use(createRouter({ history: createWebHistory(), routes: [{ path: '/', component: () => import('./pages/Home.vue') }] }))
+    Sentry.init({ app, dsn: import.meta.env.VITE_SENTRY_DSN, tracesSampleRate: 0.1 })
+    app.mount('#app')
+  form: |
+    // forms/login.ts
+    import { z } from 'zod'
+    import { useForm, useField } from 'vee-validate'
+    import { toTypedSchema } from '@vee-validate/zod'
+    const schema = z.object({ email: z.string().email(), password: z.string().min(8) })
+    export function useLoginForm() {
+      const { handleSubmit } = useForm({ validationSchema: toTypedSchema(schema) })
+      const { value: email } = useField('email')
+      const { value: password } = useField('password')
+      return { email, password, onSubmit: handleSubmit(console.log) }
+    }
+  query: |
+    // queries/users.ts
+    import { useQuery } from '@tanstack/vue-query'
+    export const useUsers = () => useQuery({ queryKey: ['users'], queryFn: () => fetch('/api/users').then(r=>r.json()) })
+bestPractices:
+  - "サーバ状態（Vue Query）とクライアント状態（Pinia）の責務分離"
+  - "UI ライブラリはプロジェクト初期に 1 つへ絞り、Design Token を整理"
+  - "フォームはスキーマファースト（Zod）+ VeeValidate で一貫性"
+  - "Sentry を初期から有効化し、リリースと環境をタグで管理"
+references:
+  - "Vue: https://vuejs.org/"
+  - "Pinia: https://pinia.vuejs.org/"
+  - "Vue Query: https://tanstack.com/query/v5/docs/vue/overview"
+  - "Naive UI: https://www.naiveui.com/"
+  - "VeeValidate: https://vee-validate.logaretm.com/"
+  - "Zod: https://zod.dev/"
+  - "Sentry Vue: https://docs.sentry.io/platforms/javascript/guides/vue/"
+license: "MIT"
+lastReviewed: "2025-08-15"

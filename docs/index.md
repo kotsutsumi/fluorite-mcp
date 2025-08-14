@@ -3,8 +3,8 @@ layout: home
 
 hero:
   name: "Fluorite MCP"
-  text: "Modern Web Development Context"
-  tagline: "35+ ライブラリの深い知識をClaude Code CLIに提供し、実用的なコード生成を実現"
+  text: "Multi-Platform Development Context"
+  tagline: "50+ ライブラリと7つのプログラミング言語エコシステムの深い知識をClaude Code CLIに提供"
   actions:
     - theme: brand
       text: はじめる
@@ -16,16 +16,16 @@ hero:
 features:
   - icon: 📚
     title: 深いライブラリ知識
-    details: 35以上の必須ライブラリの包括的な仕様を提供。正確なインポート、型定義、実装パターンを含む
+    details: 50以上の必須ライブラリの包括的な仕様を提供。正確なインポート、型定義、実装パターンを含む
+  - icon: 🌐
+    title: 多言語エコシステム
+    details: Zig、Elixir、Go、Dart、Flutter、C#、Unityの7つの主要言語エコシステムをサポート
   - icon: ⚡
     title: 即座のコード生成
     details: プロダクションレディなコードを正しいインポートとベストプラクティスで生成
   - icon: 🎯
     title: ベストプラクティス内蔵
     details: セキュリティ、パフォーマンス、デザインパターンが組み込まれた実装
-  - icon: 🔄
-    title: ライブラリ統合
-    details: 複数のライブラリがどのように連携するかを理解し、統合的なソリューションを提供
 ---
 
 ## 🚀 Fluorite MCPとは？
@@ -59,6 +59,25 @@ features:
 - **Drizzle ORM** - TypeScript ORM
 
 ### 他多数...
+
+## 🌐 言語エコシステム
+
+### システムプログラミング
+- **Zig** (`spec://zig-ecosystem`) - メモリ安全なシステムプログラミング
+
+### 関数型・並行プログラミング
+- **Elixir** (`spec://elixir-ecosystem`) - Actorモデル、フォルトトレラント設計
+
+### 高性能バックエンド
+- **Go** (`spec://go-ecosystem`) - 並行処理、マイクロサービス
+
+### クロスプラットフォーム開発
+- **Dart** (`spec://dart-ecosystem`) - 型安全なマルチプラットフォーム言語
+- **Flutter** (`spec://flutter-ecosystem`) - モバイル・デスクトップUIフレームワーク
+
+### エンタープライズ・ゲーム開発
+- **C#** (`spec://csharp-ecosystem`) - エンタープライズアプリケーション開発
+- **Unity** (`spec://unity-ecosystem`) - プロフェッショナルゲーム開発
 
 ## 🛠️ クイックスタート
 

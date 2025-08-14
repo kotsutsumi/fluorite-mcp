@@ -2,7 +2,7 @@
 
 ## 🎯 エグゼクティブサマリー
 
-**Fluorite MCP**は、Claude Code CLIをモダンWeb開発のエキスパートに変換する革新的なMCPサーバーです。45以上のライブラリとフレームワークの深い知識を提供し、開発者の生産性を劇的に向上させます。
+**Fluorite MCP**は、Claude Code CLIをマルチプラットフォーム開発のエキスパートに変換する革新的なMCPサーバーです。50以上のライブラリとフレームワーク、7つの主要プログラミング言語エコシステムの深い知識を提供し、開発者の生産性を劇的に向上させます。
 
 ### 主要な成果指標
 - **開発速度**: 3-5倍の高速化
@@ -503,6 +503,1128 @@ await topic.publish(Buffer.from(JSON.stringify(productData)))
 - **Edge Computing**: 低レイテンシー、グローバル配信
 - **CI/CD統合**: GitHub Actions、Vercel Preview、自動デプロイ
 - **監視・分析**: 組み込みの分析ツール、パフォーマンス監視
+
+## 🌐 多言語エコシステムの包括的サポート
+
+### Zig システムプログラミングにおける優位性
+
+```zig
+// ❌ Cでの従来的なアプローチ - 手動メモリ管理とエラー処理
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct {
+    char* data;
+    size_t length;
+    size_t capacity;
+} String;
+
+String* string_create(const char* initial) {
+    String* str = malloc(sizeof(String));
+    if (!str) return NULL;
+    
+    size_t len = strlen(initial);
+    str->data = malloc(len + 1);
+    if (!str->data) {
+        free(str);
+        return NULL;
+    }
+    strcpy(str->data, initial);
+    str->length = len;
+    str->capacity = len + 1;
+    return str;
+}
+
+// ✅ Fluorite MCPあり - Zigのメモリ安全性とコンパイル時実行
+const std = @import("std");
+const net = @import("network");
+const testing = std.testing;
+
+const StringBuffer = struct {
+    data: []u8,
+    length: usize,
+    allocator: std.mem.Allocator,
+    
+    const Self = @This();
+    
+    pub fn init(allocator: std.mem.Allocator, initial: []const u8) !Self {
+        const data = try allocator.alloc(u8, initial.len * 2);
+        std.mem.copy(u8, data, initial);
+        
+        return Self{
+            .data = data,
+            .length = initial.len,
+            .allocator = allocator,
+        };
+    }
+    
+    pub fn append(self: *Self, text: []const u8) !void {
+        if (self.length + text.len > self.data.len) {
+            const new_size = (self.length + text.len) * 2;
+            self.data = try self.allocator.realloc(self.data, new_size);
+        }
+        
+        std.mem.copy(u8, self.data[self.length..], text);
+        self.length += text.len;
+    }
+    
+    pub fn deinit(self: *Self) void {
+        self.allocator.free(self.data);
+    }
+};
+
+// HTTP サーバーの例 - ゼロコスト抽象化
+const HttpServer = struct {
+    allocator: std.mem.Allocator,
+    socket: net.Socket,
+    
+    pub fn init(allocator: std.mem.Allocator, port: u16) !@This() {
+        var socket = try net.Socket.create(.ipv4, .tcp);
+        try socket.bindToPort(port);
+        try socket.listen();
+        
+        return .{
+            .allocator = allocator,
+            .socket = socket,
+        };
+    }
+    
+    pub fn handleRequest(self: *@This()) !void {
+        var client = try self.socket.accept();
+        defer client.close();
+        
+        var buffer: [4096]u8 = undefined;
+        const bytes_read = try client.receive(&buffer);
+        
+        const response = "HTTP/1.1 200 OK\r\n\r\nHello from Zig!";
+        _ = try client.send(response);
+    }
+};
+```
+
+**具体的なメリット**:
+- **メモリ安全性**: コンパイル時のメモリ安全保証
+- **ゼロコスト抽象化**: Rustレベルの安全性とCレベルの性能
+- **クロスコンパイル**: ワンコマンドで全プラットフォーム対応
+- **Cとの完全互換性**: 既存のCライブラリを直接利用
+- **組み込み開発**: WebAssembly、Arduino、RTOS対応
+
+### Elixir 関数型・並行プログラミングにおける優位性
+
+```elixir
+# ❌ 従来のマルチスレッド開発 - 複雑な同期処理
+# Node.js / JavaScriptでの例
+class UserService {
+  async processUsers(users) {
+    const promises = users.map(async user => {
+      try {
+        const profile = await this.fetchProfile(user.id)
+        const notifications = await this.getNotifications(user.id)
+        return { ...user, profile, notifications }
+      } catch (error) {
+        console.error(`Error processing user ${user.id}:`, error)
+        return null
+      }
+    })
+    
+    return (await Promise.all(promises)).filter(Boolean)
+  }
+}
+
+# ✅ Fluorite MCPあり - Elixirの軽量プロセスとフォルトトレラント設計
+defmodule UserService do
+  use GenServer
+  require Logger
+  
+  # 軽量プロセス - 100万プロセスも軽々と実行
+  def start_link(opts \\ []) do
+    GenServer.start_link(__MODULE__, %{}, opts)
+  end
+  
+  # 非同期処理 - 各ユーザーが独立したプロセス
+  def process_users(users) when is_list(users) do
+    users
+    |> Task.async_stream(&process_single_user/1, 
+         max_concurrency: 100,
+         timeout: 5_000,
+         on_timeout: :kill_task)
+    |> Stream.map(fn
+      {:ok, result} -> result
+      {:exit, :timeout} -> {:error, :timeout}
+    end)
+    |> Enum.to_list()
+  end
+  
+  defp process_single_user(user) do
+    with {:ok, profile} <- fetch_profile(user.id),
+         {:ok, notifications} <- get_notifications(user.id) do
+      {:ok, Map.merge(user, %{profile: profile, notifications: notifications})}
+    else
+      {:error, reason} -> 
+        Logger.warning("Failed to process user #{user.id}: #{inspect(reason)}")
+        {:error, reason}
+    end
+  end
+  
+  # Phoenix LiveView - リアルタイム更新
+  defmodule UserLive do
+    use Phoenix.LiveView
+    
+    def mount(_params, _session, socket) do
+      if connected?(socket) do
+        Phoenix.PubSub.subscribe(MyApp.PubSub, "users")
+      end
+      
+      {:ok, assign(socket, users: fetch_users())}
+    end
+    
+    # サーバー送信イベント - 自動UI更新
+    def handle_info({:user_updated, user}, socket) do
+      updated_users = update_user_in_list(socket.assigns.users, user)
+      {:noreply, assign(socket, users: updated_users)}
+    end
+    
+    def render(assigns) do
+      ~H"""
+      <div id="users" phx-update="stream">
+        <%= for user <- @users do %>
+          <div id={"user-#{user.id}"} class="user-card">
+            <%= user.name %> - <%= user.status %>
+          </div>
+        <% end %>
+      </div>
+      """
+    end
+  end
+  
+  # OTP Supervisor - 自動回復
+  defmodule UserSupervisor do
+    use Supervisor
+    
+    def start_link(opts) do
+      Supervisor.start_link(__MODULE__, :ok, opts)
+    end
+    
+    def init(:ok) do
+      children = [
+        {UserService, name: UserService},
+        {Task.Supervisor, name: UserTaskSupervisor},
+        # プロセス停止時に自動再起動
+        {DynamicSupervisor, strategy: :one_for_one, name: UserWorkerSupervisor}
+      ]
+      
+      Supervisor.init(children, strategy: :one_for_one)
+    end
+  end
+end
+```
+
+**具体的なメリット**:
+- **軽量プロセス**: 100万プロセス同時実行（メモリ数KB/プロセス）
+- **フォルトトレラント**: プロセス障害が他に影響せず自動回復
+- **リアルタイム通信**: Phoenix LiveViewによる即座のUI更新
+- **分散システム**: ノード間通信とクラスタリング
+- **高可用性**: 99.9999999%（ナインナイン）の稼働率実現
+
+### Go 高性能バックエンド開発における優位性
+
+```go
+// ❌ 従来のシングルスレッド/非効率な実装
+// Express.js での例
+app.get('/api/users/:id/dashboard', async (req, res) => {
+  try {
+    const userId = req.params.id
+    
+    // 直列実行 - 非効率
+    const user = await User.findById(userId)
+    const posts = await Post.findByUserId(userId)
+    const followers = await Follow.getFollowers(userId)
+    const analytics = await Analytics.getUserData(userId)
+    
+    res.json({
+      user,
+      posts,
+      followers,
+      analytics
+    })
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+})
+
+// ✅ Fluorite MCPあり - Goの並行処理とパフォーマンス最適化
+package main
+
+import (
+    "context"
+    "encoding/json"
+    "fmt"
+    "log"
+    "net/http"
+    "sync"
+    "time"
+    
+    "github.com/gin-gonic/gin"
+    "github.com/go-redis/redis/v8"
+    "gorm.io/gorm"
+    "go.uber.org/zap"
+)
+
+type UserService struct {
+    db     *gorm.DB
+    cache  *redis.Client
+    logger *zap.Logger
+}
+
+type DashboardData struct {
+    User      User      `json:"user"`
+    Posts     []Post    `json:"posts"`
+    Followers []User    `json:"followers"`
+    Analytics Analytics `json:"analytics"`
+}
+
+// ゴルーチンによる並行データ取得
+func (s *UserService) GetUserDashboard(ctx context.Context, userID uint) (*DashboardData, error) {
+    var wg sync.WaitGroup
+    var mu sync.RWMutex
+    
+    dashboard := &DashboardData{}
+    errs := make([]error, 0, 4)
+    
+    // キャッシュチェック
+    if cached, err := s.getCachedDashboard(ctx, userID); err == nil {
+        return cached, nil
+    }
+    
+    // 並行データ取得 - 4つの処理を同時実行
+    wg.Add(4)
+    
+    // ユーザー情報取得
+    go func() {
+        defer wg.Done()
+        if user, err := s.getUserByID(ctx, userID); err != nil {
+            mu.Lock()
+            errs = append(errs, fmt.Errorf("user fetch: %w", err))
+            mu.Unlock()
+        } else {
+            mu.Lock()
+            dashboard.User = *user
+            mu.Unlock()
+        }
+    }()
+    
+    // 投稿取得
+    go func() {
+        defer wg.Done()
+        if posts, err := s.getUserPosts(ctx, userID); err != nil {
+            mu.Lock()
+            errs = append(errs, fmt.Errorf("posts fetch: %w", err))
+            mu.Unlock()
+        } else {
+            mu.Lock()
+            dashboard.Posts = posts
+            mu.Unlock()
+        }
+    }()
+    
+    // フォロワー取得
+    go func() {
+        defer wg.Done()
+        if followers, err := s.getFollowers(ctx, userID); err != nil {
+            mu.Lock()
+            errs = append(errs, fmt.Errorf("followers fetch: %w", err))
+            mu.Unlock()
+        } else {
+            mu.Lock()
+            dashboard.Followers = followers
+            mu.Unlock()
+        }
+    }()
+    
+    // 分析データ取得
+    go func() {
+        defer wg.Done()
+        if analytics, err := s.getAnalytics(ctx, userID); err != nil {
+            mu.Lock()
+            errs = append(errs, fmt.Errorf("analytics fetch: %w", err))
+            mu.Unlock()
+        } else {
+            mu.Lock()
+            dashboard.Analytics = *analytics
+            mu.Unlock()
+        }
+    }()
+    
+    wg.Wait()
+    
+    if len(errs) > 0 {
+        s.logger.Error("Dashboard fetch errors", zap.Errors("errors", errs))
+        return nil, fmt.Errorf("failed to fetch dashboard data: %v", errs)
+    }
+    
+    // 結果をキャッシュ（5分間）
+    if err := s.cacheDashboard(ctx, userID, dashboard, 5*time.Minute); err != nil {
+        s.logger.Warn("Failed to cache dashboard", zap.Error(err))
+    }
+    
+    return dashboard, nil
+}
+
+// 高性能Ginルーター
+func (s *UserService) SetupRoutes() *gin.Engine {
+    gin.SetMode(gin.ReleaseMode)
+    r := gin.New()
+    
+    // ミドルウェア
+    r.Use(gin.Recovery())
+    r.Use(s.LoggerMiddleware())
+    r.Use(s.CORSMiddleware())
+    r.Use(s.RateLimitMiddleware(100, time.Minute)) // 100req/min
+    
+    api := r.Group("/api/v1")
+    {
+        api.GET("/users/:id/dashboard", s.handleDashboard)
+        api.GET("/health", s.handleHealth)
+    }
+    
+    return r
+}
+
+func (s *UserService) handleDashboard(c *gin.Context) {
+    userID, exists := c.Get("userID")
+    if !exists {
+        c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
+        return
+    }
+    
+    ctx, cancel := context.WithTimeout(c.Request.Context(), 10*time.Second)
+    defer cancel()
+    
+    dashboard, err := s.GetUserDashboard(ctx, userID.(uint))
+    if err != nil {
+        s.logger.Error("Dashboard fetch failed", 
+            zap.Uint("userID", userID.(uint)), 
+            zap.Error(err))
+        c.JSON(http.StatusInternalServerError, gin.H{"error": "internal server error"})
+        return
+    }
+    
+    c.JSON(http.StatusOK, dashboard)
+}
+
+// サーキットブレーカーとグレースフルシャットダウン
+func main() {
+    ctx, cancel := context.WithCancel(context.Background())
+    defer cancel()
+    
+    userService := &UserService{
+        db:     setupDatabase(),
+        cache:  setupRedis(),
+        logger: setupLogger(),
+    }
+    
+    router := userService.SetupRoutes()
+    
+    srv := &http.Server{
+        Addr:         ":8080",
+        Handler:      router,
+        ReadTimeout:  10 * time.Second,
+        WriteTimeout: 10 * time.Second,
+        IdleTimeout:  120 * time.Second,
+    }
+    
+    // グレースフルシャットダウン
+    go func() {
+        <-ctx.Done()
+        
+        shutdownCtx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+        defer cancel()
+        
+        if err := srv.Shutdown(shutdownCtx); err != nil {
+            log.Printf("Server forced to shutdown: %v", err)
+        }
+    }()
+    
+    log.Printf("Server starting on :8080")
+    if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+        log.Fatalf("Failed to start server: %v", err)
+    }
+}
+```
+
+**具体的なメリット**:
+- **軽量ゴルーチン**: 数千～数十万の並行処理を効率実行
+- **チャネル通信**: データ競合のない安全な並行プログラミング
+- **高速コンパイル**: 大規模コードベースも数秒でビルド
+- **クロスコンパイル**: ワンコマンドで全OS・アーキテクチャ対応
+- **マイクロサービス**: Kubernetes、Docker最適化
+
+### Dart・Flutter クロスプラットフォーム開発における優位性
+
+```dart
+// ❌ 従来のネイティブ開発 - プラットフォーム別実装
+// iOS (Swift)
+class UserRepository {
+    func fetchUsers() async throws -> [User] {
+        let url = URL(string: "https://api.example.com/users")!
+        let (data, _) = try await URLSession.shared.data(from: url)
+        return try JSONDecoder().decode([User].self, from: data)
+    }
+}
+
+// Android (Kotlin)
+class UserRepository {
+    suspend fun fetchUsers(): Result<List<User>> {
+        return try {
+            val response = httpClient.get("https://api.example.com/users")
+            val users = Json.decodeFromString<List<User>>(response.bodyAsText())
+            Result.success(users)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+}
+
+// ✅ Fluorite MCPあり - Dartの統一コードベースとFlutterの高性能UI
+// data/repositories/user_repository.dart
+import 'package:dio/dio.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+
+part 'user_repository.freezed.dart';
+part 'user_repository.g.dart';
+
+@freezed
+class User with _$User {
+  const factory User({
+    required int id,
+    required String name,
+    required String email,
+    String? avatar,
+    @Default(false) bool isActive,
+    @JsonKey(fromJson: _dateFromString, toJson: _dateToString)
+    DateTime? lastLogin,
+  }) = _User;
+  
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+}
+
+class UserRepository {
+  final Dio _dio;
+  final Box<User> _cache;
+  
+  UserRepository(this._dio, this._cache);
+  
+  // 型安全なAPIクライアント
+  Future<List<User>> fetchUsers({
+    int page = 1,
+    int limit = 20,
+    String? search,
+  }) async {
+    try {
+      // キャッシュファーストアプローチ
+      final cacheKey = 'users_${page}_${limit}_${search ?? ''}';
+      final cached = _cache.get(cacheKey);
+      
+      if (cached != null && _isValidCache(cached)) {
+        return cached;
+      }
+      
+      final response = await _dio.get<Map<String, dynamic>>(
+        '/users',
+        queryParameters: {
+          'page': page,
+          'limit': limit,
+          if (search != null) 'search': search,
+        },
+        options: Options(
+          headers: {'Accept': 'application/json'},
+          receiveTimeout: Duration(seconds: 10),
+        ),
+      );
+      
+      final users = (response.data!['data'] as List)
+          .map((json) => User.fromJson(json as Map<String, dynamic>))
+          .toList();
+      
+      // オフライン対応キャッシュ
+      await _cache.put(cacheKey, users);
+      
+      return users;
+    } on DioException catch (e) {
+      throw _handleDioError(e);
+    }
+  }
+  
+  // リアルタイム更新対応
+  Stream<List<User>> watchUsers() async* {
+    yield await fetchUsers();
+    
+    await for (final update in _realTimeUpdates()) {
+      yield update;
+    }
+  }
+  
+  Stream<List<User>> _realTimeUpdates() {
+    // WebSocket接続でリアルタイム更新
+    return WebSocketChannel.connect(
+      Uri.parse('wss://api.example.com/users/stream'),
+    ).stream.map((data) {
+      final json = jsonDecode(data) as Map<String, dynamic>;
+      return (json['users'] as List)
+          .map((u) => User.fromJson(u))
+          .toList();
+    });
+  }
+}
+
+// presentation/providers/user_providers.dart
+final userRepositoryProvider = Provider<UserRepository>((ref) {
+  final dio = ref.watch(dioProvider);
+  final cache = ref.watch(userCacheProvider);
+  return UserRepository(dio, cache);
+});
+
+final usersProvider = StreamProvider.autoDispose
+    .family<List<User>, UserFilter>((ref, filter) {
+  final repository = ref.watch(userRepositoryProvider);
+  return repository.watchUsers();
+});
+
+// presentation/pages/user_list_page.dart
+class UserListPage extends ConsumerWidget {
+  const UserListPage({super.key});
+  
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final usersAsync = ref.watch(usersProvider(UserFilter()));
+    
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(context.l10n.users),
+        actions: [
+          IconButton(
+            onPressed: () => ref.refresh(usersProvider(UserFilter())),
+            icon: const Icon(Icons.refresh),
+          ),
+        ],
+      ),
+      body: usersAsync.when(
+        data: (users) => _UserList(users: users),
+        loading: () => const _LoadingShimmer(),
+        error: (error, stack) => _ErrorView(
+          error: error,
+          onRetry: () => ref.refresh(usersProvider(UserFilter())),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => context.push('/users/create'),
+        child: const Icon(Icons.add),
+      ),
+    );
+  }
+}
+
+class _UserList extends StatelessWidget {
+  final List<User> users;
+  
+  const _UserList({required this.users});
+  
+  @override
+  Widget build(BuildContext context) {
+    return CustomScrollView(
+      slivers: [
+        SliverAppBar.large(
+          title: Text(context.l10n.userListTitle),
+          flexibleSpace: FlexibleSpaceBar(
+            background: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Theme.of(context).primaryColor,
+                    Theme.of(context).primaryColor.withOpacity(0.7),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+        SliverList.builder(
+          itemCount: users.length,
+          itemBuilder: (context, index) {
+            final user = users[index];
+            return UserCard(
+              user: user,
+              onTap: () => context.push('/users/${user.id}'),
+            );
+          },
+        ),
+      ],
+    );
+  }
+}
+
+// 高性能なカスタムWidget
+class UserCard extends StatelessWidget {
+  final User user;
+  final VoidCallback? onTap;
+  
+  const UserCard({
+    super.key,
+    required this.user,
+    this.onTap,
+  });
+  
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      elevation: 2,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Row(
+            children: [
+              CircleAvatar(
+                radius: 24,
+                backgroundImage: user.avatar != null
+                    ? CachedNetworkImageProvider(user.avatar!)
+                    : null,
+                child: user.avatar == null
+                    ? Text(user.name.characters.first.toUpperCase())
+                    : null,
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      user.name,
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      user.email,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                    if (user.lastLogin != null) ...[
+                      const SizedBox(height: 4),
+                      Text(
+                        '最終ログイン: ${DateFormat.yMd(context.locale.languageCode).format(user.lastLogin!)}',
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+              if (user.isActive)
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.primaryContainer,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    'アクティブ',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onPrimaryContainer,
+                      fontSize: 12,
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+
+**具体的なメリット**:
+- **単一コードベース**: iOS/Android/Web/デスクトップを統一開発
+- **ホットリロード**: 状態保持での瞬間的なUI更新
+- **60fps UI**: 高性能レンダリングエンジンSkia
+- **型安全性**: null安全性とSound null safety
+- **豊富なパッケージ**: pub.devで40,000+のパッケージ
+
+### C#・Unity ゲーム開発・エンタープライズ開発における優位性
+
+```csharp
+// ❌ 従来のゲーム開発 - MonoBehaviourの乱用とパフォーマンス問題
+using UnityEngine;
+using System.Collections.Generic;
+
+public class GameManager : MonoBehaviour 
+{
+    public List<Enemy> enemies = new List<Enemy>();
+    public Player player;
+    public UI ui;
+    
+    void Update() 
+    {
+        // 全てのエネミーを毎フレーム処理 - 重い
+        foreach (var enemy in enemies) 
+        {
+            if (enemy != null) 
+            {
+                enemy.UpdateAI();
+                enemy.Move();
+                
+                // プレイヤーとの距離計算 - 最適化なし
+                float distance = Vector3.Distance(player.transform.position, enemy.transform.position);
+                if (distance < 5f) 
+                {
+                    enemy.AttackPlayer(player);
+                }
+            }
+        }
+        
+        // UIの更新も毎フレーム
+        ui.UpdateHealth(player.health);
+        ui.UpdateScore(player.score);
+    }
+}
+
+// ✅ Fluorite MCPあり - 依存性注入、ECS、最適化されたUnity開発
+using UnityEngine;
+using Zenject;
+using UniRx;
+using System;
+using Cysharp.Threading.Tasks;
+using DG.Tweening;
+
+// SOLID原則に基づく設計
+public interface IGameStateManager 
+{
+    IObservable<GameState> GameStateChanged { get; }
+    GameState CurrentState { get; }
+    void ChangeState(GameState newState);
+}
+
+public interface IEnemyService 
+{
+    UniTask<Enemy> SpawnEnemyAsync(EnemyType type, Vector3 position);
+    IObservable<Enemy> EnemyDestroyed { get; }
+    void DestroyEnemy(Enemy enemy);
+}
+
+public interface IPlayerService 
+{
+    IReactiveProperty<int> Health { get; }
+    IReactiveProperty<int> Score { get; }
+    Vector3 Position { get; }
+}
+
+// Zenjectによる依存性注入
+public class GameManagerInstaller : MonoInstaller<GameManagerInstaller>
+{
+    [SerializeField] private GameSettings gameSettings;
+    
+    public override void InstallBindings()
+    {
+        // インターフェースベースの実装
+        Container.Bind<IGameStateManager>().To<GameStateManager>().AsSingle();
+        Container.Bind<IEnemyService>().To<EnemyService>().AsSingle();
+        Container.Bind<IPlayerService>().To<PlayerService>().AsSingle();
+        Container.Bind<IUIManager>().To<UIManager>().AsSingle();
+        
+        // 設定の注入
+        Container.BindInstance(gameSettings);
+        
+        // ファクトリーパターン
+        Container.BindFactory<EnemyType, Vector3, Enemy, Enemy.Factory>();
+    }
+}
+
+// Reactive Extensions による状態管理
+public class GameStateManager : IGameStateManager, IDisposable
+{
+    private readonly ReactiveProperty<GameState> _gameState = new ReactiveProperty<GameState>(GameState.Menu);
+    private readonly CompositeDisposable _disposables = new CompositeDisposable();
+    
+    public IObservable<GameState> GameStateChanged => _gameState.AsObservable();
+    public GameState CurrentState => _gameState.Value;
+    
+    [Inject]
+    public void Initialize()
+    {
+        // ゲーム状態の変更を監視
+        _gameState
+            .Where(state => state == GameState.Playing)
+            .Subscribe(_ => OnGameStarted())
+            .AddTo(_disposables);
+            
+        _gameState
+            .Where(state => state == GameState.GameOver)
+            .Subscribe(_ => OnGameEnded())
+            .AddTo(_disposables);
+    }
+    
+    public void ChangeState(GameState newState)
+    {
+        if (_gameState.Value != newState)
+        {
+            _gameState.Value = newState;
+        }
+    }
+    
+    private void OnGameStarted()
+    {
+        // ゲーム開始時の処理をリアクティブに実行
+        Observable.Timer(TimeSpan.FromSeconds(1))
+            .Repeat()
+            .TakeWhile(_ => _gameState.Value == GameState.Playing)
+            .Subscribe(_ => SpawnWave())
+            .AddTo(_disposables);
+    }
+    
+    private async void SpawnWave()
+    {
+        // 非同期でエネミー生成
+        var enemyService = Container.Resolve<IEnemyService>();
+        await enemyService.SpawnEnemyAsync(EnemyType.Basic, GetRandomSpawnPosition());
+    }
+    
+    public void Dispose()
+    {
+        _disposables?.Dispose();
+        _gameState?.Dispose();
+    }
+}
+
+// 高性能な敵管理システム
+public class EnemyService : IEnemyService, IInitializable, IDisposable
+{
+    private readonly Enemy.Factory _enemyFactory;
+    private readonly List<Enemy> _activeEnemies = new List<Enemy>();
+    private readonly Subject<Enemy> _enemyDestroyed = new Subject<Enemy>();
+    private readonly CompositeDisposable _disposables = new CompositeDisposable();
+    
+    public IObservable<Enemy> EnemyDestroyed => _enemyDestroyed.AsObservable();
+    
+    [Inject]
+    public EnemyService(Enemy.Factory enemyFactory)
+    {
+        _enemyFactory = enemyFactory;
+    }
+    
+    public void Initialize()
+    {
+        // 最適化されたUpdate処理 - フレームレート調整
+        Observable.EveryUpdate()
+            .Sample(TimeSpan.FromMilliseconds(16.67f)) // 60fps
+            .Subscribe(_ => UpdateEnemies())
+            .AddTo(_disposables);
+    }
+    
+    public async UniTask<Enemy> SpawnEnemyAsync(EnemyType type, Vector3 position)
+    {
+        // Object Poolingによる最適化
+        var enemy = await _enemyFactory.Create(type, position);
+        
+        if (enemy != null)
+        {
+            _activeEnemies.Add(enemy);
+            
+            // エネミーの死亡イベントを購読
+            enemy.OnDestroyed
+                .Subscribe(_ => DestroyEnemy(enemy))
+                .AddTo(_disposables);
+                
+            // DOTweenによるスムーズなアニメーション
+            enemy.transform.localScale = Vector3.zero;
+            enemy.transform.DOScale(Vector3.one, 0.5f)
+                .SetEase(Ease.OutBack);
+        }
+        
+        return enemy;
+    }
+    
+    private void UpdateEnemies()
+    {
+        // 空間分割による効率的な当たり判定
+        var playerPosition = Container.Resolve<IPlayerService>().Position;
+        
+        for (int i = _activeEnemies.Count - 1; i >= 0; i--)
+        {
+            var enemy = _activeEnemies[i];
+            if (enemy == null || !enemy.IsAlive)
+            {
+                _activeEnemies.RemoveAt(i);
+                continue;
+            }
+            
+            // 距離ベースのLOD (Level of Detail)
+            float distanceToPlayer = Vector3.Distance(enemy.transform.position, playerPosition);
+            enemy.SetLODLevel(distanceToPlayer);
+            
+            // 画面外の敵は処理をスキップ
+            if (!enemy.IsInView())
+            {
+                enemy.SetActive(false);
+                continue;
+            }
+            
+            enemy.SetActive(true);
+            enemy.UpdateBehavior(playerPosition);
+        }
+    }
+    
+    public void DestroyEnemy(Enemy enemy)
+    {
+        if (_activeEnemies.Remove(enemy))
+        {
+            _enemyDestroyed.OnNext(enemy);
+            
+            // パーティクル効果
+            enemy.PlayDestroyEffect();
+            
+            // Object Poolへ返却
+            enemy.ReturnToPool();
+        }
+    }
+    
+    public void Dispose()
+    {
+        _disposables?.Dispose();
+        _enemyDestroyed?.Dispose();
+        
+        foreach (var enemy in _activeEnemies)
+        {
+            enemy?.ReturnToPool();
+        }
+        _activeEnemies.Clear();
+    }
+}
+
+// UI管理の分離
+public class UIManager : MonoBehaviour, IUIManager
+{
+    [SerializeField] private HealthBar healthBar;
+    [SerializeField] private ScoreDisplay scoreDisplay;
+    [SerializeField] private GameObject gameOverPanel;
+    
+    private IPlayerService _playerService;
+    private IGameStateManager _gameStateManager;
+    private CompositeDisposable _disposables = new CompositeDisposable();
+    
+    [Inject]
+    public void Initialize(IPlayerService playerService, IGameStateManager gameStateManager)
+    {
+        _playerService = playerService;
+        _gameStateManager = gameStateManager;
+        
+        // リアクティブなUI更新
+        _playerService.Health
+            .Subscribe(health => healthBar.UpdateHealth(health))
+            .AddTo(_disposables);
+            
+        _playerService.Score
+            .Subscribe(score => scoreDisplay.UpdateScore(score))
+            .AddTo(_disposables);
+            
+        _gameStateManager.GameStateChanged
+            .Where(state => state == GameState.GameOver)
+            .Subscribe(_ => ShowGameOverPanel())
+            .AddTo(_disposables);
+    }
+    
+    private void ShowGameOverPanel()
+    {
+        gameOverPanel.SetActive(true);
+        gameOverPanel.transform.localScale = Vector3.zero;
+        gameOverPanel.transform.DOScale(Vector3.one, 0.3f)
+            .SetEase(Ease.OutBack);
+    }
+    
+    private void OnDestroy()
+    {
+        _disposables?.Dispose();
+    }
+}
+
+// テスト可能な設計
+[TestFixture]
+public class EnemyServiceTests
+{
+    private EnemyService _enemyService;
+    private Mock<Enemy.Factory> _mockFactory;
+    private Mock<Enemy> _mockEnemy;
+    
+    [SetUp]
+    public void Setup()
+    {
+        _mockFactory = new Mock<Enemy.Factory>();
+        _mockEnemy = new Mock<Enemy>();
+        _enemyService = new EnemyService(_mockFactory.Object);
+    }
+    
+    [Test]
+    public async Task SpawnEnemyAsync_CreatesEnemyWithCorrectType()
+    {
+        // Arrange
+        var enemyType = EnemyType.Basic;
+        var position = Vector3.zero;
+        _mockFactory.Setup(f => f.Create(enemyType, position))
+                   .ReturnsAsync(_mockEnemy.Object);
+        
+        // Act
+        var result = await _enemyService.SpawnEnemyAsync(enemyType, position);
+        
+        // Assert
+        Assert.That(result, Is.EqualTo(_mockEnemy.Object));
+        _mockFactory.Verify(f => f.Create(enemyType, position), Times.Once);
+    }
+    
+    [Test]
+    public void DestroyEnemy_RaisesEnemyDestroyedEvent()
+    {
+        // Arrange
+        Enemy destroyedEnemy = null;
+        _enemyService.EnemyDestroyed.Subscribe(enemy => destroyedEnemy = enemy);
+        
+        // Act
+        _enemyService.DestroyEnemy(_mockEnemy.Object);
+        
+        // Assert
+        Assert.That(destroyedEnemy, Is.EqualTo(_mockEnemy.Object));
+    }
+}
+```
+
+**具体的なメリット**:
+- **プロフェッショナルゲーム開発**: AAA品質のアーキテクチャパターン
+- **クロスプラットフォーム**: PC/Console/Mobile/WebGL統一開発
+- **高性能**: Job System、ECS、Burst Compilerによる最適化
+- **エンタープライズ対応**: SOLID原則、テスト駆動開発、CI/CD
+- **豊富なアセット**: Asset Store、Visual Scripting、Timeline
+
+### 多言語エコシステムの包括的サポート
+
+#### システムからゲームまでの完全カバレッジ
+- **Zig**: 組み込み、WebAssembly、システムプログラミング
+- **Elixir**: 分散システム、リアルタイム通信、IoT
+- **Go**: マイクロサービス、クラウドネイティブ、DevOps
+- **Dart**: Web、モバイル、デスクトップのマルチプラットフォーム
+- **Flutter**: iOS/Android統一開発、60fps高性能UI
+- **C#**: エンタープライズ、Web API、データベース連携
+- **Unity**: プロフェッショナルゲーム開発、VR/AR
+
+#### パフォーマンス特性の最適化
+- **メモリ管理**: Zig/Go/C#それぞれの最適なパターン
+- **並行処理**: Elixir Actor、Go Goroutine、C# Task完全対応
+- **型安全性**: 各言語の型システムを最大活用
+- **クロスプラットフォーム**: Docker、WebAssembly、ネイティブコンパイル
 
 ## 💡 定性的メリット
 

@@ -1,0 +1,784 @@
+id: "laravel-ecosystem"
+name: "Laravel Ecosystem Packages"
+homepage: "https://laravel.com/ecosystem"
+summary: "Laravel エコシステムの主要パッケージ群。認証、権限管理、マルチテナンシー、モニタリング、管理パネル、開発支援ツールなどエンタープライズ開発に必要な全てを網羅。"
+
+authentication_authorization:
+  spatie_permission:
+    package: "spatie/laravel-permission"
+    summary: "強力で柔軟なロール・権限管理。エンタープライズでも信頼されている定番。"
+    install: "composer require spatie/laravel-permission"
+    publish: "php artisan vendor:publish --provider=\"Spatie\\Permission\\PermissionServiceProvider\""
+    usage: |
+      // ロールと権限の作成
+      use Spatie\Permission\Models\Role;
+      use Spatie\Permission\Models\Permission;
+      
+      $role = Role::create(['name' => 'admin']);
+      $permission = Permission::create(['name' => 'edit articles']);
+      
+      // ロールに権限を付与
+      $role->givePermissionTo($permission);
+      $role->syncPermissions(['edit articles', 'delete articles']);
+      
+      // ユーザーにロールを付与
+      $user->assignRole('admin');
+      $user->givePermissionTo('edit articles');
+      
+      // チェック
+      if ($user->hasRole('admin')) { }
+      if ($user->can('edit articles')) { }
+      
+      // Blade ディレクティブ
+      @role('admin')
+        // 管理者のみ
+      @endrole
+      
+      @can('edit articles')
+        // 権限を持つユーザーのみ
+      @endcan
+  
+  bouncer:
+    package: "silber/bouncer"
+    summary: "リソース単位やユーザー単位の細粒度な権限設定に対応。"
+    install: "composer require silber/bouncer"
+    usage: |
+      use Bouncer;
+      
+      // 能力を付与
+      Bouncer::allow($user)->to('edit', Post::class);
+      Bouncer::allow($user)->to('edit', $post);
+      
+      // ロールを作成
+      $admin = Bouncer::role()->create([
+          'name' => 'admin',
+          'title' => 'Administrator',
+      ]);
+      
+      // ロールに能力を付与
+      Bouncer::allow('admin')->everything();
+      Bouncer::allow('editor')->to(['view', 'edit'], Post::class);
+      
+      // ユーザーにロールを割り当て
+      Bouncer::assign('admin')->to($user);
+      
+      // チェック
+      if ($user->can('edit', $post)) { }
+      if (Bouncer::is($user)->an('admin')) { }
+  
+  spatie_activitylog:
+    package: "spatie/laravel-activitylog"
+    summary: "ユーザーやシステムの操作ログを簡単に管理・記録。"
+    install: "composer require spatie/laravel-activitylog"
+    publish: "php artisan vendor:publish --provider=\"Spatie\\Activitylog\\ActivitylogServiceProvider\""
+    usage: |
+      use Spatie\Activitylog\Models\Activity;
+      
+      // アクティビティを記録
+      activity()
+         ->performedOn($product)
+         ->causedBy($user)
+         ->withProperties(['old' => $oldAttributes, 'new' => $product->getAttributes()])
+         ->log('Product updated');
+      
+      // モデルで自動ログ
+      use Spatie\Activitylog\Traits\LogsActivity;
+      use Spatie\Activitylog\LogOptions;
+      
+      class Product extends Model
+      {
+          use LogsActivity;
+          
+          public function getActivitylogOptions(): LogOptions
+          {
+              return LogOptions::defaults()
+                  ->logOnly(['name', 'price'])
+                  ->logOnlyDirty()
+                  ->useLogName('product');
+          }
+      }
+      
+      // ログを取得
+      Activity::all();
+      Activity::inLog('product')->get();
+      $product->activities;
+
+  laravel_sanctum:
+    package: "laravel/sanctum"
+    summary: "SPAやAPI向けに軽量トークン認証を実現。"
+    install: |
+      composer require laravel/sanctum
+      php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+      php artisan migrate
+    usage: |
+      // API トークン認証
+      $token = $user->createToken('token-name');
+      return ['token' => $token->plainTextToken];
+      
+      // SPA認証（Cookie）
+      // config/sanctum.php で stateful domains を設定
+      
+      // ミドルウェア
+      Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+          return $request->user();
+      });
+      
+      // トークンの能力
+      $token = $user->createToken('token-name', ['server:update']);
+      
+      if ($user->tokenCan('server:update')) {
+          // 許可された操作
+      }
+  
+  laravel_socialite:
+    package: "laravel/socialite"
+    summary: "各種ソーシャルログイン（OAuth）統合を簡単に実装。"
+    install: "composer require laravel/socialite"
+    config: |
+      // config/services.php
+      'github' => [
+          'client_id' => env('GITHUB_CLIENT_ID'),
+          'client_secret' => env('GITHUB_CLIENT_SECRET'),
+          'redirect' => env('GITHUB_REDIRECT_URI'),
+      ],
+    usage: |
+      use Laravel\Socialite\Facades\Socialite;
+      
+      // リダイレクト
+      return Socialite::driver('github')->redirect();
+      
+      // コールバック
+      $githubUser = Socialite::driver('github')->user();
+      
+      $user = User::updateOrCreate([
+          'github_id' => $githubUser->id,
+      ], [
+          'name' => $githubUser->name,
+          'email' => $githubUser->email,
+          'github_token' => $githubUser->token,
+          'github_refresh_token' => $githubUser->refreshToken,
+      ]);
+      
+      Auth::login($user);
+  
+  laravel_passport:
+    package: "laravel/passport"
+    summary: "フル機能の OAuth2 サーバー構築対応。"
+    install: |
+      composer require laravel/passport
+      php artisan migrate
+      php artisan passport:install
+    usage: |
+      // User モデル
+      use Laravel\Passport\HasApiTokens;
+      
+      class User extends Authenticatable
+      {
+          use HasApiTokens;
+      }
+      
+      // AuthServiceProvider
+      use Laravel\Passport\Passport;
+      
+      public function boot()
+      {
+          Passport::tokensExpireIn(now()->addDays(15));
+          Passport::refreshTokensExpireIn(now()->addDays(30));
+          Passport::personalAccessTokensExpireIn(now()->addMonths(6));
+      }
+      
+      // パーソナルアクセストークン
+      $token = $user->createToken('Token Name')->accessToken;
+
+architecture:
+  laravel_modules:
+    package: "nwidart/laravel-modules"
+    summary: "モジュール構造で大型プロジェクトの整理に最適。"
+    install: |
+      composer require nwidart/laravel-modules
+      php artisan vendor:publish --provider="Nwidart\Modules\LaravelModulesServiceProvider"
+    usage: |
+      // モジュール作成
+      php artisan module:make Blog
+      
+      // 構造
+      Modules/
+      └── Blog/
+          ├── Config/
+          ├── Console/
+          ├── Database/
+          │   ├── Migrations/
+          │   └── Seeders/
+          ├── Entities/        # Models
+          ├── Http/
+          │   ├── Controllers/
+          │   ├── Middleware/
+          │   └── Requests/
+          ├── Providers/
+          ├── Resources/
+          │   ├── assets/
+          │   ├── lang/
+          │   └── views/
+          ├── Routes/
+          │   ├── api.php
+          │   └── web.php
+          ├── Tests/
+          ├── composer.json
+          └── module.json
+      
+      // コマンド
+      php artisan module:make-controller PostController Blog
+      php artisan module:make-model Post Blog
+      php artisan module:make-migration create_posts_table Blog
+      
+      // 有効/無効
+      php artisan module:enable Blog
+      php artisan module:disable Blog
+  
+  tenancy_archtechx:
+    package: "stancl/tenancy"
+    summary: "テナント分離・DBマルチなど対応のマルチテナンシーパッケージ。"
+    install: |
+      composer require stancl/tenancy
+      php artisan tenancy:install
+    usage: |
+      // テナント作成
+      use Stancl\Tenancy\Database\Models\Tenant;
+      
+      $tenant = Tenant::create([
+          'id' => 'acme',
+      ]);
+      
+      $tenant->domains()->create([
+          'domain' => 'acme.example.com',
+      ]);
+      
+      // テナントコンテキストで実行
+      tenancy()->initialize($tenant);
+      
+      // または
+      $tenant->run(function () {
+          User::create([
+              'name' => 'John Doe',
+              'email' => 'john@acme.com',
+          ]);
+      });
+      
+      // ミドルウェア
+      Route::middleware([
+          'tenant',
+      ])->group(function () {
+          Route::get('/', [HomeController::class, 'index']);
+      });
+  
+  spatie_multitenancy:
+    package: "spatie/laravel-multitenancy"
+    summary: "Spatieによるマルチテナンシー実装。"
+    install: |
+      composer require spatie/laravel-multitenancy
+      php artisan vendor:publish --provider="Spatie\Multitenancy\MultitenancyServiceProvider"
+      php artisan migrate --path=database/migrations/landlord
+    usage: |
+      use Spatie\Multitenancy\Models\Tenant;
+      
+      // テナント作成
+      Tenant::create([
+          'name' => 'ACME',
+          'domain' => 'acme.example.com',
+          'database' => 'acme_tenant',
+      ]);
+      
+      // 現在のテナント
+      $tenant = Tenant::current();
+      
+      // テナント切り替え
+      $tenant->makeCurrent();
+      
+      // テナントスコープ
+      use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
+      
+      class Product extends Model
+      {
+          use UsesTenantConnection;
+      }
+
+monitoring:
+  laravel_debugbar:
+    package: "barryvdh/laravel-debugbar"
+    summary: "SQL、ルート表示、パフォーマンス計測を行いバグ発見や最適化に貢献。"
+    install: |
+      composer require barryvdh/laravel-debugbar --dev
+      php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider"
+    config: |
+      // .env
+      DEBUGBAR_ENABLED=true
+      
+      // config/debugbar.php
+      'enabled' => env('DEBUGBAR_ENABLED', null),
+      'storage' => [
+          'enabled' => true,
+          'driver' => 'file',
+      ],
+    usage: |
+      // デバッグメッセージ
+      \Debugbar::info($object);
+      \Debugbar::error('Error!');
+      \Debugbar::warning('Watch out…');
+      \Debugbar::addMessage('Another message', 'mylabel');
+      
+      // 計測
+      \Debugbar::startMeasure('render','Time for rendering');
+      \Debugbar::stopMeasure('render');
+      \Debugbar::addMeasure('now', LARAVEL_START, microtime(true));
+      
+      // 例外
+      try {
+          throw new Exception('foobar');
+      } catch (Exception $e) {
+          \Debugbar::addThrowable($e);
+      }
+  
+  laravel_telescope:
+    package: "laravel/telescope"
+    summary: "リクエスト、クエリ、例外、ジョブなどアプリ全体の観測をサポートするダッシュボード。"
+    install: |
+      composer require laravel/telescope
+      php artisan telescope:install
+      php artisan migrate
+    config: |
+      // TelescopeServiceProvider
+      public function gate()
+      {
+          Gate::define('viewTelescope', function ($user) {
+              return in_array($user->email, [
+                  'admin@example.com',
+              ]);
+          });
+      }
+      
+      // 記録するものを制御
+      'watchers' => [
+          Watchers\CacheWatcher::class => true,
+          Watchers\CommandWatcher::class => true,
+          Watchers\DumpWatcher::class => true,
+          Watchers\EventWatcher::class => true,
+          Watchers\ExceptionWatcher::class => true,
+          Watchers\JobWatcher::class => true,
+          Watchers\LogWatcher::class => true,
+          Watchers\MailWatcher::class => true,
+          Watchers\ModelWatcher::class => true,
+          Watchers\NotificationWatcher::class => true,
+          Watchers\QueryWatcher::class => true,
+          Watchers\RedisWatcher::class => true,
+          Watchers\RequestWatcher::class => true,
+          Watchers\GateWatcher::class => true,
+          Watchers\ScheduleWatcher::class => true,
+          Watchers\ViewWatcher::class => true,
+      ],
+  
+  spatie_backup:
+    package: "spatie/laravel-backup"
+    summary: "データベースやストレージのバックアップ＆復元を簡単に運用可能。"
+    install: |
+      composer require spatie/laravel-backup
+      php artisan vendor:publish --provider="Spatie\Backup\BackupServiceProvider"
+    usage: |
+      // バックアップ実行
+      php artisan backup:run
+      php artisan backup:run --only-db
+      php artisan backup:run --only-files
+      
+      // スケジュール設定
+      // app/Console/Kernel.php
+      $schedule->command('backup:run')->daily()->at('01:00');
+      $schedule->command('backup:clean')->daily()->at('02:00');
+      $schedule->command('backup:monitor')->daily()->at('03:00');
+      
+      // 通知設定
+      'notifications' => [
+          'notifications' => [
+              \Spatie\Backup\Notifications\Notifications\BackupHasFailedNotification::class,
+              \Spatie\Backup\Notifications\Notifications\UnhealthyBackupWasFoundNotification::class,
+              \Spatie\Backup\Notifications\Notifications\CleanupHasFailedNotification::class,
+              \Spatie\Backup\Notifications\Notifications\BackupWasSuccessfulNotification::class,
+              \Spatie\Backup\Notifications\Notifications\HealthyBackupWasFoundNotification::class,
+              \Spatie\Backup\Notifications\Notifications\CleanupWasSuccessfulNotification::class,
+          ],
+          
+          'notifiable' => \Spatie\Backup\Notifications\Notifiable::class,
+          
+          'mail' => [
+              'to' => 'admin@example.com',
+          ],
+      ],
+  
+  spatie_responsecache:
+    package: "spatie/laravel-responsecache"
+    summary: "レスポンスキャッシュで高速化。"
+    install: |
+      composer require spatie/laravel-responsecache
+      php artisan vendor:publish --provider="Spatie\ResponseCache\ResponseCacheServiceProvider"
+    usage: |
+      // ミドルウェア
+      Route::middleware('cacheResponse')->get('/posts', function () {
+          return Post::all();
+      });
+      
+      // カスタム時間
+      Route::middleware('cacheResponse:300')->get('/posts', function () {
+          return Post::all();
+      });
+      
+      // キャッシュクリア
+      ResponseCache::clear();
+      ResponseCache::forget('/some-uri');
+      
+      // イベントでクリア
+      class EventServiceProvider extends ServiceProvider
+      {
+          protected $listen = [
+              'eloquent.saved: App\Models\Post' => [
+                  'Spatie\ResponseCache\Facades\ResponseCache@clear',
+              ],
+          ];
+      }
+
+admin_panels:
+  filament:
+    package: "filament/filament"
+    summary: "モダンで拡張性の高い TALL スタックベースの管理UI。"
+    install: |
+      composer require filament/filament:"^3.0-stable" -W
+      php artisan filament:install --panels
+    usage: |
+      // リソース作成
+      php artisan make:filament-resource Product
+      
+      // app/Filament/Resources/ProductResource.php
+      use Filament\Forms;
+      use Filament\Tables;
+      use Filament\Resources\Resource;
+      
+      class ProductResource extends Resource
+      {
+          protected static ?string $model = Product::class;
+          
+          public static function form(Form $form): Form
+          {
+              return $form
+                  ->schema([
+                      Forms\Components\TextInput::make('name')
+                          ->required()
+                          ->maxLength(255),
+                      Forms\Components\Textarea::make('description')
+                          ->columnSpanFull(),
+                      Forms\Components\TextInput::make('price')
+                          ->required()
+                          ->numeric()
+                          ->prefix('$'),
+                      Forms\Components\Toggle::make('is_active')
+                          ->required(),
+                  ]);
+          }
+          
+          public static function table(Table $table): Table
+          {
+              return $table
+                  ->columns([
+                      Tables\Columns\TextColumn::make('name')
+                          ->searchable(),
+                      Tables\Columns\TextColumn::make('price')
+                          ->money()
+                          ->sortable(),
+                      Tables\Columns\IconColumn::make('is_active')
+                          ->boolean(),
+                      Tables\Columns\TextColumn::make('created_at')
+                          ->dateTime()
+                          ->sortable(),
+                  ])
+                  ->filters([
+                      Tables\Filters\TernaryFilter::make('is_active'),
+                  ])
+                  ->actions([
+                      Tables\Actions\EditAction::make(),
+                      Tables\Actions\DeleteAction::make(),
+                  ])
+                  ->bulkActions([
+                      Tables\Actions\BulkActionGroup::make([
+                          Tables\Actions\DeleteBulkAction::make(),
+                      ]),
+                  ]);
+          }
+      }
+  
+  laravel_voyager:
+    package: "tcg/voyager"
+    summary: "BREAD CRUD、メディア管理、RBACを備えた即戦力のバックエンドUI。"
+    install: |
+      composer require tcg/voyager
+      php artisan voyager:install
+      php artisan voyager:admin admin@example.com --create
+    usage: |
+      // BREAD (Browse, Read, Edit, Add, Delete) 作成
+      php artisan voyager:make posts
+      
+      // カスタムコントローラー
+      namespace App\Http\Controllers\Voyager;
+      
+      use TCG\Voyager\Http\Controllers\VoyagerBaseController;
+      
+      class ProductController extends VoyagerBaseController
+      {
+          public function index(Request $request)
+          {
+              // カスタムロジック
+              return parent::index($request);
+          }
+      }
+      
+      // フィールドタイプ
+      // Text, Text Area, Rich Text Box, Code Editor, Password, 
+      // Number, Checkbox, Radio Button, Select Dropdown, 
+      // Select Multiple, File, Image, Date, Time, Timestamp, 
+      // Hidden, Color, Coordinates, Markdown Editor
+
+utilities:
+  laravel_ide_helper:
+    package: "barryvdh/laravel-ide-helper"
+    summary: "IDE に Laravel の補完やコード補入力を提供。開発効率を大きく向上。"
+    install: |
+      composer require --dev barryvdh/laravel-ide-helper
+      php artisan vendor:publish --provider="Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider" --tag=config
+    usage: |
+      // ヘルパーファイル生成
+      php artisan ide-helper:generate
+      php artisan ide-helper:models
+      php artisan ide-helper:meta
+      
+      // composer.json に追加
+      "scripts": {
+          "post-update-cmd": [
+              "@php artisan ide-helper:generate",
+              "@php artisan ide-helper:meta"
+          ]
+      }
+  
+  laravel_horizon:
+    package: "laravel/horizon"
+    summary: "Redisバックエンドのキューを管理・監視できる可視化ツール。"
+    install: |
+      composer require laravel/horizon
+      php artisan horizon:install
+    config: |
+      // config/horizon.php
+      'environments' => [
+          'production' => [
+              'supervisor-1' => [
+                  'connection' => 'redis',
+                  'queue' => ['default'],
+                  'balance' => 'auto',
+                  'minProcesses' => 1,
+                  'maxProcesses' => 10,
+                  'balanceMaxShift' => 1,
+                  'balanceCooldown' => 3,
+                  'tries' => 3,
+              ],
+          ],
+      ],
+    usage: |
+      // 起動
+      php artisan horizon
+      
+      // Supervisor設定
+      [program:horizon]
+      process_name=%(program_name)s
+      command=php /home/forge/app.com/artisan horizon
+      autostart=true
+      autorestart=true
+      user=forge
+      redirect_stderr=true
+      stdout_logfile=/home/forge/app.com/horizon.log
+      stopwaitsecs=3600
+      
+      // ダッシュボードアクセス制御
+      Horizon::auth(function ($request) {
+          return Gate::check('viewHorizon', [$request->user()]);
+      });
+  
+  laravel_scout:
+    package: "laravel/scout"
+    summary: "AlgoliaやMeilisearchとの連携で全文検索をEloquentに統合。"
+    install: |
+      composer require laravel/scout
+      php artisan vendor:publish --provider="Laravel\Scout\ScoutServiceProvider"
+    usage: |
+      // モデルに追加
+      use Laravel\Scout\Searchable;
+      
+      class Product extends Model
+      {
+          use Searchable;
+          
+          public function toSearchableArray()
+          {
+              return [
+                  'id' => $this->id,
+                  'name' => $this->name,
+                  'description' => $this->description,
+              ];
+          }
+          
+          public function searchableAs()
+          {
+              return 'products_index';
+          }
+      }
+      
+      // インデックス
+      php artisan scout:import "App\Models\Product"
+      
+      // 検索
+      $products = Product::search('keyword')->get();
+      $products = Product::search('keyword')
+          ->where('price', '<', 100)
+          ->paginate();
+  
+  laravel_cashier:
+    package: "laravel/cashier"
+    summary: "Stripe/Braintree を利用したサブスクリプション処理対応。"
+    install: |
+      composer require laravel/cashier
+      php artisan migrate
+      php artisan vendor:publish --tag="cashier-config"
+    usage: |
+      // User モデル
+      use Laravel\Cashier\Billable;
+      
+      class User extends Authenticatable
+      {
+          use Billable;
+      }
+      
+      // サブスクリプション作成
+      $user->newSubscription('default', 'price_monthly')
+          ->create($paymentMethod);
+      
+      // 課金
+      $user->charge(100, $paymentMethod);
+      $user->invoice();
+      
+      // チェック
+      if ($user->subscribed('default')) { }
+      if ($user->subscribedToProduct('prod_premium')) { }
+      if ($user->subscribedToPrice('price_basic_monthly')) { }
+      if ($user->onTrial()) { }
+      if ($user->hasExpiredTrial()) { }
+      
+      // キャンセル
+      $user->subscription('default')->cancel();
+      $user->subscription('default')->cancelAtPeriodEnd();
+  
+  laravel_dusk:
+    package: "laravel/dusk"
+    summary: "ブラウザの E2E テストに強力かつ直感的な方法を提供。"
+    install: |
+      composer require --dev laravel/dusk
+      php artisan dusk:install
+    usage: |
+      // テスト作成
+      php artisan dusk:make LoginTest
+      
+      // tests/Browser/LoginTest.php
+      use Laravel\Dusk\Browser;
+      use Tests\DuskTestCase;
+      
+      class LoginTest extends DuskTestCase
+      {
+          public function testLogin()
+          {
+              $this->browse(function (Browser $browser) {
+                  $browser->visit('/login')
+                          ->type('email', 'admin@example.com')
+                          ->type('password', 'password')
+                          ->press('Login')
+                          ->assertPathIs('/home')
+                          ->assertSee('Dashboard');
+              });
+          }
+          
+          public function testRegistration()
+          {
+              $this->browse(function (Browser $browser) {
+                  $browser->visit('/register')
+                          ->type('name', 'Test User')
+                          ->type('email', 'test@example.com')
+                          ->type('password', 'password')
+                          ->type('password_confirmation', 'password')
+                          ->press('Register')
+                          ->assertPathIs('/home');
+              });
+          }
+      }
+      
+      // 実行
+      php artisan dusk
+  
+  livewire:
+    package: "livewire/livewire"
+    summary: "Bladeビューへのリアクティブ動作追加が簡単に実現可能。"
+    install: |
+      composer require livewire/livewire
+      php artisan livewire:publish --config
+    usage: |
+      // コンポーネント作成
+      php artisan make:livewire SearchProducts
+      
+      // app/Livewire/SearchProducts.php
+      namespace App\Livewire;
+      
+      use Livewire\Component;
+      use App\Models\Product;
+      
+      class SearchProducts extends Component
+      {
+          public $search = '';
+          public $products = [];
+          
+          public function updatedSearch()
+          {
+              $this->products = Product::where('name', 'like', '%'.$this->search.'%')
+                  ->limit(10)
+                  ->get();
+          }
+          
+          public function render()
+          {
+              return view('livewire.search-products');
+          }
+      }
+      
+      // resources/views/livewire/search-products.blade.php
+      <div>
+          <input wire:model.live="search" type="text" placeholder="Search products...">
+          
+          <ul>
+              @foreach($products as $product)
+                  <li wire:key="{{ $product->id }}">
+                      {{ $product->name }} - ${{ $product->price }}
+                  </li>
+              @endforeach
+          </ul>
+      </div>
+      
+      // ビューで使用
+      @livewire('search-products')
+
+best_practices:
+  - "パッケージの組み合わせを慎重に選択（相性問題の回避）"
+  - "バージョン互換性を常に確認"
+  - "開発環境と本番環境で異なるパッケージを使い分け"
+  - "セキュリティ関連パッケージは最新版を維持"
+  - "パフォーマンスへの影響を測定してから導入"
+  - "公式ドキュメントとコミュニティサポートの充実度を確認"
+  - "ライセンスと商用利用の条件を確認"
+  - "テスト環境で十分に検証してから本番導入"

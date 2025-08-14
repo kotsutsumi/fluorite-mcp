@@ -1,0 +1,1346 @@
+id: "rust-tauri-ecosystem"
+name: "Rust & Tauri Ecosystem"
+homepage: "https://tauri.app"
+summary: "Rust言語とTauriフレームワークのエコシステム。デスクトップアプリケーション開発、非同期処理、Webフレームワーク、データベース、シリアライゼーションなど、モダンで安全なアプリケーション開発に必要な全てを網羅。"
+
+tauri_core:
+  tauri:
+    package: "tauri"
+    summary: "軽量で安全なデスクトップアプリケーションフレームワーク。Web技術とRustの組み合わせで高性能なネイティブアプリを構築。"
+    install: |
+      # Tauri CLIのインストール
+      cargo install tauri-cli
+      
+      # プロジェクト作成
+      npm create tauri-app@latest
+      # または
+      cargo install create-tauri-app
+      cargo create-tauri-app
+    usage: |
+      // src-tauri/src/main.rs
+      #![cfg_attr(
+        all(not(debug_assertions), target_os = "windows"),
+        windows_subsystem = "windows"
+      )]
+      
+      use tauri::{CustomMenuItem, Menu, MenuItem, Submenu};
+      use tauri::{Manager, Window};
+      use serde::{Deserialize, Serialize};
+      
+      #[derive(Debug, Serialize, Deserialize)]
+      struct Payload {
+          message: String,
+          data: Option<serde_json::Value>,
+      }
+      
+      // コマンドの定義
+      #[tauri::command]
+      fn greet(name: &str) -> String {
+          format!("Hello, {}! Welcome to Tauri!", name)
+      }
+      
+      #[tauri::command]
+      async fn fetch_data(url: String) -> Result<String, String> {
+          let response = reqwest::get(&url)
+              .await
+              .map_err(|e| e.to_string())?;
+          
+          let text = response.text()
+              .await
+              .map_err(|e| e.to_string())?;
+          
+          Ok(text)
+      }
+      
+      #[tauri::command]
+      fn open_docs(handle: tauri::AppHandle) {
+          tauri::api::shell::open(
+              &handle.shell_scope(),
+              "https://tauri.app",
+              None
+          ).unwrap();
+      }
+      
+      fn main() {
+          // メニューの作成
+          let quit = CustomMenuItem::new("quit".to_string(), "Quit");
+          let close = CustomMenuItem::new("close".to_string(), "Close");
+          let submenu = Submenu::new("File", Menu::new()
+              .add_item(quit)
+              .add_item(close));
+          
+          let menu = Menu::new()
+              .add_native_item(MenuItem::Copy)
+              .add_item(CustomMenuItem::new("hide", "Hide"))
+              .add_submenu(submenu);
+          
+          tauri::Builder::default()
+              .menu(menu)
+              .on_menu_event(|event| {
+                  match event.menu_item_id() {
+                      "quit" => {
+                          std::process::exit(0);
+                      }
+                      "close" => {
+                          event.window().close().unwrap();
+                      }
+                      _ => {}
+                  }
+              })
+              .setup(|app| {
+                  let window = app.get_window("main").unwrap();
+                  
+                  // ウィンドウイベントのリスニング
+                  window.on_window_event(move |event| {
+                      match event {
+                          tauri::WindowEvent::CloseRequested { api, .. } => {
+                              // クローズ前の処理
+                              api.prevent_close();
+                              // 確認ダイアログなど
+                          }
+                          _ => {}
+                      }
+                  });
+                  
+                  Ok(())
+              })
+              .invoke_handler(tauri::generate_handler![
+                  greet,
+                  fetch_data,
+                  open_docs
+              ])
+              .run(tauri::generate_context!())
+              .expect("error while running tauri application");
+      }
+      
+      // tauri.conf.json
+      {
+        "build": {
+          "beforeDevCommand": "npm run dev",
+          "beforeBuildCommand": "npm run build",
+          "devPath": "http://localhost:5173",
+          "distDir": "../dist"
+        },
+        "package": {
+          "productName": "My Tauri App",
+          "version": "1.0.0"
+        },
+        "tauri": {
+          "allowlist": {
+            "all": false,
+            "shell": {
+              "all": false,
+              "open": true
+            },
+            "window": {
+              "all": true
+            },
+            "fs": {
+              "all": true,
+              "scope": ["$APPDATA/*", "$RESOURCE/*"]
+            },
+            "http": {
+              "all": true,
+              "scope": ["https://api.example.com/*"]
+            }
+          },
+          "bundle": {
+            "active": true,
+            "icon": [
+              "icons/32x32.png",
+              "icons/128x128.png",
+              "icons/128x128@2x.png",
+              "icons/icon.icns",
+              "icons/icon.ico"
+            ],
+            "identifier": "com.example.app",
+            "targets": "all"
+          },
+          "security": {
+            "csp": null
+          },
+          "updater": {
+            "active": true,
+            "endpoints": [
+              "https://releases.example.com/{{target}}/{{arch}}/{{current_version}}"
+            ],
+            "dialog": true,
+            "pubkey": "YOUR_PUBLIC_KEY"
+          },
+          "windows": [
+            {
+              "fullscreen": false,
+              "height": 600,
+              "resizable": true,
+              "title": "My Tauri App",
+              "width": 800
+            }
+          ]
+        }
+      }
+
+tauri_plugins:
+  tauri_plugin_store:
+    package: "tauri-plugin-store"
+    summary: "Key-Value永続ストレージ。設定やユーザーデータの保存。"
+    install: |
+      # Cargo.toml
+      [dependencies]
+      tauri-plugin-store = "0.1"
+    usage: |
+      // Rust側
+      use tauri_plugin_store::PluginBuilder;
+      
+      fn main() {
+          tauri::Builder::default()
+              .plugin(PluginBuilder::default().build())
+              .run(tauri::generate_context!())
+              .expect("error while running tauri application");
+      }
+      
+      // JavaScript側
+      import { Store } from 'tauri-plugin-store-api';
+      
+      const store = new Store('.settings.dat');
+      
+      // 値の保存
+      await store.set('theme', 'dark');
+      await store.set('user', { name: 'John', age: 30 });
+      
+      // 値の取得
+      const theme = await store.get('theme');
+      const user = await store.get('user');
+      
+      // 値の削除
+      await store.delete('theme');
+      
+      // すべてのキーを取得
+      const keys = await store.keys();
+      
+      // ストアの保存
+      await store.save();
+  
+  tauri_plugin_sql:
+    package: "tauri-plugin-sql"
+    summary: "SQLiteデータベースアクセス。ローカルデータベース操作。"
+    install: |
+      # Cargo.toml
+      [dependencies]
+      tauri-plugin-sql = { version = "0.1", features = ["sqlite"] }
+    usage: |
+      // Rust側
+      use tauri_plugin_sql::{Migration, MigrationKind, PluginBuilder};
+      
+      fn main() {
+          let migrations = vec![
+              Migration {
+                  version: 1,
+                  description: "create_users_table",
+                  sql: "CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT NOT NULL);",
+                  kind: MigrationKind::Up,
+              }
+          ];
+          
+          tauri::Builder::default()
+              .plugin(PluginBuilder::default()
+                  .add_migrations("sqlite:app.db", migrations)
+                  .build())
+              .run(tauri::generate_context!())
+              .expect("error while running tauri application");
+      }
+      
+      // JavaScript側
+      import Database from 'tauri-plugin-sql-api';
+      
+      const db = await Database.load('sqlite:app.db');
+      
+      // クエリ実行
+      await db.execute('INSERT INTO users (name) VALUES (?)', ['John']);
+      
+      // 選択
+      const users = await db.select('SELECT * FROM users');
+      
+      // トランザクション
+      await db.execute('BEGIN');
+      try {
+          await db.execute('INSERT INTO users (name) VALUES (?)', ['Alice']);
+          await db.execute('INSERT INTO users (name) VALUES (?)', ['Bob']);
+          await db.execute('COMMIT');
+      } catch (error) {
+          await db.execute('ROLLBACK');
+          throw error;
+      }
+  
+  tauri_plugin_window_state:
+    package: "tauri-plugin-window-state"
+    summary: "ウィンドウ状態の永続化。位置、サイズ、最大化状態の保存。"
+    install: |
+      # Cargo.toml
+      [dependencies]
+      tauri-plugin-window-state = "0.1"
+    usage: |
+      use tauri_plugin_window_state::{AppHandleExt, StateFlags};
+      
+      fn main() {
+          tauri::Builder::default()
+              .plugin(tauri_plugin_window_state::Builder::default()
+                  .with_state_flags(StateFlags::all())
+                  .build())
+              .setup(|app| {
+                  let handle = app.handle();
+                  // ウィンドウ状態の復元
+                  handle.restore_state(StateFlags::all())?;
+                  Ok(())
+              })
+              .run(tauri::generate_context!())
+              .expect("error while running tauri application");
+      }
+  
+  tauri_plugin_fs_watch:
+    package: "tauri-plugin-fs-watch"
+    summary: "ファイルシステム監視。ファイル変更の検知とイベント通知。"
+    install: |
+      # Cargo.toml
+      [dependencies]
+      tauri-plugin-fs-watch = "0.1"
+    usage: |
+      // JavaScript側
+      import { watch, watchImmediate } from 'tauri-plugin-fs-watch-api';
+      
+      // ファイル監視
+      const stopWatching = await watch(
+          '/path/to/file',
+          (event) => {
+              console.log('File changed:', event);
+          },
+          { recursive: true }
+      );
+      
+      // 監視停止
+      stopWatching();
+      
+      // 即座に現在の状態を取得してから監視
+      await watchImmediate(
+          '/path/to/directory',
+          (event) => {
+              console.log('Change detected:', event);
+          }
+      );
+
+async_runtime:
+  tokio:
+    package: "tokio"
+    summary: "Rust用の最も人気のある非同期ランタイム。マルチスレッド、タイマー、I/O、同期プリミティブ。"
+    install: |
+      # Cargo.toml
+      [dependencies]
+      tokio = { version = "1", features = ["full"] }
+    usage: |
+      use tokio::io::{AsyncReadExt, AsyncWriteExt};
+      use tokio::net::{TcpListener, TcpStream};
+      use tokio::time::{sleep, Duration};
+      use tokio::sync::{mpsc, Mutex};
+      use std::sync::Arc;
+      
+      #[tokio::main]
+      async fn main() -> Result<(), Box<dyn std::error::Error>> {
+          // TCPサーバー
+          let listener = TcpListener::bind("127.0.0.1:8080").await?;
+          
+          // チャンネル
+          let (tx, mut rx) = mpsc::channel::<String>(100);
+          
+          // 共有状態
+          let counter = Arc::new(Mutex::new(0));
+          
+          // タスクのスポーン
+          tokio::spawn(async move {
+              while let Some(msg) = rx.recv().await {
+                  println!("Received: {}", msg);
+              }
+          });
+          
+          // 並行処理
+          let task1 = tokio::spawn(async {
+              sleep(Duration::from_secs(1)).await;
+              "Task 1 complete"
+          });
+          
+          let task2 = tokio::spawn(async {
+              sleep(Duration::from_millis(500)).await;
+              "Task 2 complete"
+          });
+          
+          let (res1, res2) = tokio::join!(task1, task2);
+          println!("{}, {}", res1?, res2?);
+          
+          // タイムアウト
+          let result = tokio::time::timeout(
+              Duration::from_secs(5),
+              async_operation()
+          ).await;
+          
+          match result {
+              Ok(value) => println!("Operation succeeded: {:?}", value),
+              Err(_) => println!("Operation timed out"),
+          }
+          
+          // select!マクロ
+          tokio::select! {
+              _ = sleep(Duration::from_secs(1)) => {
+                  println!("Timeout reached");
+              }
+              Ok((stream, addr)) = listener.accept() => {
+                  println!("New connection from: {}", addr);
+                  handle_connection(stream).await?;
+              }
+          }
+          
+          Ok(())
+      }
+      
+      async fn handle_connection(mut stream: TcpStream) -> Result<(), Box<dyn std::error::Error>> {
+          let mut buffer = [0; 1024];
+          let n = stream.read(&mut buffer).await?;
+          stream.write_all(&buffer[..n]).await?;
+          Ok(())
+      }
+      
+      async fn async_operation() -> String {
+          sleep(Duration::from_secs(2)).await;
+          "Operation complete".to_string()
+      }
+
+web_frameworks:
+  axum:
+    package: "axum"
+    summary: "エルゴノミックで高性能なWebフレームワーク。Tower/Hyper基盤、型安全なルーティング。"
+    install: |
+      # Cargo.toml
+      [dependencies]
+      axum = "0.7"
+      tokio = { version = "1", features = ["full"] }
+      tower = "0.4"
+      tower-http = { version = "0.5", features = ["fs", "cors", "trace"] }
+      serde = { version = "1", features = ["derive"] }
+      serde_json = "1"
+    usage: |
+      use axum::{
+          extract::{Path, Query, State, Json},
+          http::StatusCode,
+          middleware,
+          response::{IntoResponse, Response},
+          routing::{get, post, put, delete},
+          Router,
+      };
+      use serde::{Deserialize, Serialize};
+      use std::sync::Arc;
+      use tower_http::cors::CorsLayer;
+      use tower_http::trace::TraceLayer;
+      
+      #[derive(Debug, Serialize, Deserialize)]
+      struct User {
+          id: u64,
+          name: String,
+          email: String,
+      }
+      
+      #[derive(Debug, Deserialize)]
+      struct CreateUser {
+          name: String,
+          email: String,
+      }
+      
+      #[derive(Debug, Deserialize)]
+      struct Pagination {
+          page: Option<u32>,
+          per_page: Option<u32>,
+      }
+      
+      #[derive(Clone)]
+      struct AppState {
+          // データベース接続など
+      }
+      
+      #[tokio::main]
+      async fn main() {
+          let app_state = Arc::new(AppState {});
+          
+          let app = Router::new()
+              .route("/", get(root))
+              .route("/users", get(list_users).post(create_user))
+              .route("/users/:id", get(get_user).put(update_user).delete(delete_user))
+              .route("/health", get(health_check))
+              .layer(middleware::from_fn(auth_middleware))
+              .layer(CorsLayer::permissive())
+              .layer(TraceLayer::new_for_http())
+              .with_state(app_state);
+          
+          let listener = tokio::net::TcpListener::bind("0.0.0.0:3000")
+              .await
+              .unwrap();
+          
+          println!("Server running on http://0.0.0.0:3000");
+          
+          axum::serve(listener, app)
+              .await
+              .unwrap();
+      }
+      
+      async fn root() -> &'static str {
+          "Hello, World!"
+      }
+      
+      async fn health_check() -> impl IntoResponse {
+          Json(serde_json::json!({
+              "status": "healthy",
+              "timestamp": chrono::Utc::now().to_rfc3339()
+          }))
+      }
+      
+      async fn list_users(
+          Query(params): Query<Pagination>,
+          State(state): State<Arc<AppState>>,
+      ) -> Result<Json<Vec<User>>, AppError> {
+          let page = params.page.unwrap_or(1);
+          let per_page = params.per_page.unwrap_or(10);
+          
+          // データベースから取得
+          let users = vec![
+              User { id: 1, name: "Alice".to_string(), email: "alice@example.com".to_string() },
+              User { id: 2, name: "Bob".to_string(), email: "bob@example.com".to_string() },
+          ];
+          
+          Ok(Json(users))
+      }
+      
+      async fn get_user(Path(id): Path<u64>) -> Result<Json<User>, AppError> {
+          // データベースから取得
+          Ok(Json(User {
+              id,
+              name: "Alice".to_string(),
+              email: "alice@example.com".to_string(),
+          }))
+      }
+      
+      async fn create_user(
+          State(state): State<Arc<AppState>>,
+          Json(payload): Json<CreateUser>,
+      ) -> Result<(StatusCode, Json<User>), AppError> {
+          let user = User {
+              id: 1,
+              name: payload.name,
+              email: payload.email,
+          };
+          
+          Ok((StatusCode::CREATED, Json(user)))
+      }
+      
+      async fn update_user(
+          Path(id): Path<u64>,
+          Json(payload): Json<CreateUser>,
+      ) -> Result<Json<User>, AppError> {
+          Ok(Json(User {
+              id,
+              name: payload.name,
+              email: payload.email,
+          }))
+      }
+      
+      async fn delete_user(Path(id): Path<u64>) -> Result<StatusCode, AppError> {
+          Ok(StatusCode::NO_CONTENT)
+      }
+      
+      async fn auth_middleware(
+          req: axum::http::Request<axum::body::Body>,
+          next: axum::middleware::Next,
+      ) -> Result<Response, StatusCode> {
+          // 認証チェック
+          let auth_header = req.headers()
+              .get("authorization")
+              .and_then(|h| h.to_str().ok());
+          
+          if let Some(auth) = auth_header {
+              if auth.starts_with("Bearer ") {
+                  return Ok(next.run(req).await);
+              }
+          }
+          
+          Err(StatusCode::UNAUTHORIZED)
+      }
+      
+      // カスタムエラー型
+      struct AppError(anyhow::Error);
+      
+      impl IntoResponse for AppError {
+          fn into_response(self) -> Response {
+              (
+                  StatusCode::INTERNAL_SERVER_ERROR,
+                  format!("Something went wrong: {}", self.0),
+              ).into_response()
+          }
+      }
+      
+      impl<E> From<E> for AppError
+      where
+          E: Into<anyhow::Error>,
+      {
+          fn from(err: E) -> Self {
+              Self(err.into())
+          }
+      }
+  
+  actix_web:
+    package: "actix-web"
+    summary: "強力で実用的なWebフレームワーク。アクターモデル、WebSocket、HTTP/2対応。"
+    install: |
+      # Cargo.toml
+      [dependencies]
+      actix-web = "4"
+      actix-cors = "0.6"
+      serde = { version = "1", features = ["derive"] }
+      serde_json = "1"
+    usage: |
+      use actix_web::{
+          middleware, web, App, HttpRequest, HttpResponse, HttpServer, Result,
+          error::ResponseError,
+      };
+      use actix_cors::Cors;
+      use serde::{Deserialize, Serialize};
+      use std::sync::Mutex;
+      
+      #[derive(Debug, Serialize, Deserialize)]
+      struct User {
+          id: u64,
+          name: String,
+      }
+      
+      struct AppState {
+          counter: Mutex<u32>,
+      }
+      
+      #[actix_web::main]
+      async fn main() -> std::io::Result<()> {
+          let app_state = web::Data::new(AppState {
+              counter: Mutex::new(0),
+          });
+          
+          HttpServer::new(move || {
+              App::new()
+                  .app_data(app_state.clone())
+                  .wrap(middleware::Logger::default())
+                  .wrap(Cors::permissive())
+                  .service(
+                      web::scope("/api")
+                          .route("/hello", web::get().to(hello))
+                          .route("/users", web::get().to(list_users))
+                          .route("/users", web::post().to(create_user))
+                          .route("/counter", web::get().to(get_counter))
+                  )
+                  .route("/", web::get().to(index))
+                  .default_service(web::to(not_found))
+          })
+          .bind("127.0.0.1:8080")?
+          .run()
+          .await
+      }
+      
+      async fn index() -> Result<HttpResponse> {
+          Ok(HttpResponse::Ok().body("Hello, Actix Web!"))
+      }
+      
+      async fn hello(req: HttpRequest) -> Result<HttpResponse> {
+          let name = req.match_info().query("name");
+          Ok(HttpResponse::Ok().json(serde_json::json!({
+              "message": format!("Hello, {}!", name)
+          })))
+      }
+      
+      async fn list_users() -> Result<HttpResponse> {
+          let users = vec![
+              User { id: 1, name: "Alice".to_string() },
+              User { id: 2, name: "Bob".to_string() },
+          ];
+          Ok(HttpResponse::Ok().json(users))
+      }
+      
+      async fn create_user(user: web::Json<User>) -> Result<HttpResponse> {
+          Ok(HttpResponse::Created().json(&user.into_inner()))
+      }
+      
+      async fn get_counter(data: web::Data<AppState>) -> Result<HttpResponse> {
+          let mut counter = data.counter.lock().unwrap();
+          *counter += 1;
+          Ok(HttpResponse::Ok().json(serde_json::json!({
+              "counter": *counter
+          })))
+      }
+      
+      async fn not_found() -> Result<HttpResponse> {
+          Ok(HttpResponse::NotFound().body("Page not found"))
+      }
+  
+  rocket:
+    package: "rocket"
+    summary: "型安全で開発者フレンドリーなWebフレームワーク。マクロベースのルーティング。"
+    install: |
+      # Cargo.toml
+      [dependencies]
+      rocket = { version = "0.5", features = ["json"] }
+      serde = { version = "1", features = ["derive"] }
+    usage: |
+      #[macro_use] extern crate rocket;
+      
+      use rocket::serde::{Deserialize, Serialize, json::Json};
+      use rocket::{State, response::status};
+      use std::sync::Mutex;
+      
+      #[derive(Serialize, Deserialize)]
+      #[serde(crate = "rocket::serde")]
+      struct User {
+          id: u64,
+          name: String,
+          email: String,
+      }
+      
+      type UserList = Mutex<Vec<User>>;
+      
+      #[get("/")]
+      fn index() -> &'static str {
+          "Hello, Rocket!"
+      }
+      
+      #[get("/hello/<name>/<age>")]
+      fn hello(name: &str, age: u8) -> String {
+          format!("Hello, {} year old named {}!", age, name)
+      }
+      
+      #[get("/users")]
+      fn get_users(users: &State<UserList>) -> Json<Vec<User>> {
+          let users = users.lock().unwrap();
+          Json(users.clone())
+      }
+      
+      #[get("/users/<id>")]
+      fn get_user(id: u64, users: &State<UserList>) -> Option<Json<User>> {
+          let users = users.lock().unwrap();
+          users.iter()
+              .find(|u| u.id == id)
+              .map(|u| Json(u.clone()))
+      }
+      
+      #[post("/users", data = "<user>")]
+      fn create_user(user: Json<User>, users: &State<UserList>) -> status::Created<Json<User>> {
+          let mut users = users.lock().unwrap();
+          users.push(user.clone().into_inner());
+          status::Created::new("/users").body(user)
+      }
+      
+      #[delete("/users/<id>")]
+      fn delete_user(id: u64, users: &State<UserList>) -> status::NoContent {
+          let mut users = users.lock().unwrap();
+          users.retain(|u| u.id != id);
+          status::NoContent
+      }
+      
+      #[launch]
+      fn rocket() -> _ {
+          let users = UserList::new(vec![
+              User { id: 1, name: "Alice".to_string(), email: "alice@example.com".to_string() },
+              User { id: 2, name: "Bob".to_string(), email: "bob@example.com".to_string() },
+          ]);
+          
+          rocket::build()
+              .mount("/", routes![index, hello])
+              .mount("/api", routes![get_users, get_user, create_user, delete_user])
+              .manage(users)
+      }
+
+serialization:
+  serde:
+    package: "serde"
+    summary: "Rustのデファクトスタンダードなシリアライゼーションフレームワーク。JSON、YAML、TOML、MessagePack対応。"
+    install: |
+      # Cargo.toml
+      [dependencies]
+      serde = { version = "1", features = ["derive"] }
+      serde_json = "1"
+      serde_yaml = "0.9"
+      toml = "0.8"
+    usage: |
+      use serde::{Deserialize, Serialize};
+      use serde_json;
+      use chrono::{DateTime, Utc};
+      use std::collections::HashMap;
+      
+      #[derive(Debug, Serialize, Deserialize)]
+      struct User {
+          id: u64,
+          #[serde(rename = "userName")]
+          name: String,
+          email: String,
+          #[serde(skip_serializing_if = "Option::is_none")]
+          phone: Option<String>,
+          #[serde(default)]
+          is_active: bool,
+          #[serde(with = "chrono::serde::ts_seconds")]
+          created_at: DateTime<Utc>,
+          #[serde(flatten)]
+          metadata: HashMap<String, serde_json::Value>,
+      }
+      
+      #[derive(Debug, Serialize, Deserialize)]
+      #[serde(tag = "type")]
+      enum Message {
+          Request { id: String, method: String },
+          Response { id: String, result: serde_json::Value },
+          Notification { method: String },
+      }
+      
+      fn main() -> Result<(), Box<dyn std::error::Error>> {
+          let user = User {
+              id: 1,
+              name: "Alice".to_string(),
+              email: "alice@example.com".to_string(),
+              phone: Some("+1234567890".to_string()),
+              is_active: true,
+              created_at: Utc::now(),
+              metadata: HashMap::new(),
+          };
+          
+          // JSON シリアライゼーション
+          let json = serde_json::to_string_pretty(&user)?;
+          println!("JSON: {}", json);
+          
+          // JSON デシリアライゼーション
+          let parsed: User = serde_json::from_str(&json)?;
+          println!("Parsed: {:?}", parsed);
+          
+          // YAML
+          let yaml = serde_yaml::to_string(&user)?;
+          let from_yaml: User = serde_yaml::from_str(&yaml)?;
+          
+          // TOML
+          let toml = toml::to_string(&user)?;
+          let from_toml: User = toml::from_str(&toml)?;
+          
+          // カスタムシリアライゼーション
+          #[derive(Debug)]
+          struct CustomDate(DateTime<Utc>);
+          
+          impl Serialize for CustomDate {
+              fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+              where
+                  S: serde::Serializer,
+              {
+                  let s = self.0.format("%Y-%m-%d").to_string();
+                  serializer.serialize_str(&s)
+              }
+          }
+          
+          Ok(())
+      }
+
+database:
+  sqlx:
+    package: "sqlx"
+    summary: "非同期SQLツールキット。コンパイル時SQL検証、マイグレーション、複数DB対応。"
+    install: |
+      # Cargo.toml
+      [dependencies]
+      sqlx = { version = "0.7", features = ["runtime-tokio", "postgres", "sqlite", "mysql", "chrono", "uuid"] }
+      tokio = { version = "1", features = ["full"] }
+    usage: |
+      use sqlx::{postgres::PgPoolOptions, Pool, Postgres, Row};
+      use sqlx::FromRow;
+      use chrono::{DateTime, Utc};
+      use uuid::Uuid;
+      
+      #[derive(Debug, FromRow)]
+      struct User {
+          id: Uuid,
+          email: String,
+          name: String,
+          created_at: DateTime<Utc>,
+      }
+      
+      #[tokio::main]
+      async fn main() -> Result<(), sqlx::Error> {
+          // データベース接続プール
+          let pool = PgPoolOptions::new()
+              .max_connections(5)
+              .connect("postgres://user:password@localhost/mydb")
+              .await?;
+          
+          // マイグレーション実行
+          sqlx::migrate!("./migrations")
+              .run(&pool)
+              .await?;
+          
+          // クエリマクロ（コンパイル時検証）
+          let user = sqlx::query_as!(
+              User,
+              "SELECT * FROM users WHERE email = $1",
+              "alice@example.com"
+          )
+          .fetch_one(&pool)
+          .await?;
+          
+          println!("User: {:?}", user);
+          
+          // 動的クエリ
+          let users = sqlx::query_as::<_, User>(
+              "SELECT * FROM users WHERE created_at > $1"
+          )
+          .bind(Utc::now() - chrono::Duration::days(7))
+          .fetch_all(&pool)
+          .await?;
+          
+          // トランザクション
+          let mut tx = pool.begin().await?;
+          
+          let user_id = Uuid::new_v4();
+          sqlx::query!(
+              "INSERT INTO users (id, email, name) VALUES ($1, $2, $3)",
+              user_id,
+              "bob@example.com",
+              "Bob"
+          )
+          .execute(&mut *tx)
+          .await?;
+          
+          sqlx::query!(
+              "INSERT INTO profiles (user_id, bio) VALUES ($1, $2)",
+              user_id,
+              "Hello, I'm Bob!"
+          )
+          .execute(&mut *tx)
+          .await?;
+          
+          tx.commit().await?;
+          
+          // プリペアドステートメント
+          let stmt = sqlx::query_as::<_, User>(
+              "SELECT * FROM users WHERE name LIKE $1"
+          )
+          .bind("%Alice%");
+          
+          let results = stmt.fetch_all(&pool).await?;
+          
+          Ok(())
+      }
+  
+  diesel:
+    package: "diesel"
+    summary: "安全で拡張可能なORM。コンパイル時SQL検証、スキーマ推論。"
+    install: |
+      # Cargo.toml
+      [dependencies]
+      diesel = { version = "2", features = ["postgres", "chrono", "uuid"] }
+      dotenvy = "0.15"
+      
+      # CLIツール
+      cargo install diesel_cli --no-default-features --features postgres
+    usage: |
+      use diesel::prelude::*;
+      use diesel::pg::PgConnection;
+      use dotenvy::dotenv;
+      use std::env;
+      use chrono::NaiveDateTime;
+      use uuid::Uuid;
+      
+      // スキーマ定義 (schema.rs - diesel migration run で自動生成)
+      table! {
+          users (id) {
+              id -> Uuid,
+              email -> Varchar,
+              name -> Varchar,
+              created_at -> Timestamp,
+          }
+      }
+      
+      table! {
+          posts (id) {
+              id -> Uuid,
+              user_id -> Uuid,
+              title -> Varchar,
+              body -> Text,
+              published -> Bool,
+              created_at -> Timestamp,
+          }
+      }
+      
+      joinable!(posts -> users (user_id));
+      allow_tables_to_appear_in_same_query!(users, posts);
+      
+      // モデル定義
+      #[derive(Queryable, Selectable, Debug)]
+      #[diesel(table_name = users)]
+      struct User {
+          id: Uuid,
+          email: String,
+          name: String,
+          created_at: NaiveDateTime,
+      }
+      
+      #[derive(Insertable)]
+      #[diesel(table_name = users)]
+      struct NewUser<'a> {
+          email: &'a str,
+          name: &'a str,
+      }
+      
+      #[derive(Queryable, Associations, Debug)]
+      #[diesel(belongs_to(User))]
+      #[diesel(table_name = posts)]
+      struct Post {
+          id: Uuid,
+          user_id: Uuid,
+          title: String,
+          body: String,
+          published: bool,
+          created_at: NaiveDateTime,
+      }
+      
+      fn establish_connection() -> PgConnection {
+          dotenv().ok();
+          let database_url = env::var("DATABASE_URL")
+              .expect("DATABASE_URL must be set");
+          PgConnection::establish(&database_url)
+              .unwrap_or_else(|_| panic!("Error connecting to {}", database_url))
+      }
+      
+      fn main() {
+          let mut conn = establish_connection();
+          
+          // INSERT
+          let new_user = NewUser {
+              email: "alice@example.com",
+              name: "Alice",
+          };
+          
+          let inserted_user: User = diesel::insert_into(users::table)
+              .values(&new_user)
+              .get_result(&mut conn)
+              .expect("Error saving new user");
+          
+          println!("Created user: {:?}", inserted_user);
+          
+          // SELECT
+          let results = users::table
+              .filter(users::name.like("%Ali%"))
+              .limit(5)
+              .load::<User>(&mut conn)
+              .expect("Error loading users");
+          
+          // JOIN
+          let user_with_posts = users::table
+              .inner_join(posts::table)
+              .filter(posts::published.eq(true))
+              .select((users::all_columns, posts::all_columns))
+              .load::<(User, Post)>(&mut conn)
+              .expect("Error loading users with posts");
+          
+          // UPDATE
+          diesel::update(users::table.find(inserted_user.id))
+              .set(users::name.eq("Alice Smith"))
+              .execute(&mut conn)
+              .expect("Error updating user");
+          
+          // DELETE
+          diesel::delete(users::table.filter(users::email.eq("bob@example.com")))
+              .execute(&mut conn)
+              .expect("Error deleting user");
+          
+          // トランザクション
+          conn.transaction::<_, diesel::result::Error, _>(|conn| {
+              diesel::insert_into(users::table)
+                  .values(&new_user)
+                  .execute(conn)?;
+              
+              diesel::update(users::table)
+                  .set(users::name.eq("Updated Name"))
+                  .execute(conn)?;
+              
+              Ok(())
+          }).expect("Transaction failed");
+      }
+  
+  sea_orm:
+    package: "sea-orm"
+    summary: "動的で非同期なORM。ActiveRecord/DataMapperパターン、マイグレーション、モックサポート。"
+    install: |
+      # Cargo.toml
+      [dependencies]
+      sea-orm = { version = "0.12", features = ["sqlx-postgres", "runtime-tokio-native-tls", "macros"] }
+      tokio = { version = "1", features = ["full"] }
+    usage: |
+      use sea_orm::*;
+      use sea_orm::entity::prelude::*;
+      
+      // エンティティ定義
+      #[derive(Clone, Debug, PartialEq, DeriveEntityModel)]
+      #[sea_orm(table_name = "users")]
+      pub struct Model {
+          #[sea_orm(primary_key)]
+          pub id: Uuid,
+          pub email: String,
+          pub name: String,
+          pub created_at: DateTimeUtc,
+      }
+      
+      #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]
+      pub enum Relation {
+          #[sea_orm(has_many = "super::post::Entity")]
+          Posts,
+      }
+      
+      impl Related<super::post::Entity> for Entity {
+          fn to() -> RelationDef {
+              Relation::Posts.def()
+          }
+      }
+      
+      impl ActiveModelBehavior for ActiveModel {}
+      
+      #[tokio::main]
+      async fn main() -> Result<(), DbErr> {
+          // データベース接続
+          let db = Database::connect("postgres://user:password@localhost/mydb").await?;
+          
+          // INSERT
+          let user = users::ActiveModel {
+              id: Set(Uuid::new_v4()),
+              email: Set("alice@example.com".to_string()),
+              name: Set("Alice".to_string()),
+              created_at: Set(Utc::now()),
+          };
+          
+          let user = user.insert(&db).await?;
+          
+          // SELECT
+          let users = Users::find()
+              .filter(users::Column::Name.contains("Alice"))
+              .order_by_asc(users::Column::CreatedAt)
+              .all(&db)
+              .await?;
+          
+          // SELECT with relations
+          let users_with_posts = Users::find()
+              .find_with_related(Posts)
+              .all(&db)
+              .await?;
+          
+          // UPDATE
+          let mut user: users::ActiveModel = user.into();
+          user.name = Set("Alice Smith".to_string());
+          let user = user.update(&db).await?;
+          
+          // DELETE
+          user.delete(&db).await?;
+          
+          // ページネーション
+          let paginator = Users::find()
+              .paginate(&db, 10);
+          
+          let page1 = paginator.fetch_page(0).await?;
+          
+          // トランザクション
+          db.transaction::<_, (), DbErr>(|txn| {
+              Box::pin(async move {
+                  Users::insert(user)
+                      .exec(txn)
+                      .await?;
+                  
+                  Posts::insert(post)
+                      .exec(txn)
+                      .await?;
+                  
+                  Ok(())
+              })
+          }).await?;
+          
+          Ok(())
+      }
+
+development_tools:
+  cargo:
+    package: "cargo"
+    summary: "Rustのパッケージマネージャー兼ビルドツール。依存関係管理、テスト、ドキュメント生成。"
+    usage: |
+      # 新規プロジェクト作成
+      cargo new my_project
+      cargo new --lib my_library
+      
+      # ビルド
+      cargo build
+      cargo build --release
+      
+      # 実行
+      cargo run
+      cargo run --release
+      cargo run -- arg1 arg2
+      
+      # テスト
+      cargo test
+      cargo test --lib
+      cargo test --doc
+      cargo test test_name
+      
+      # ベンチマーク
+      cargo bench
+      
+      # ドキュメント
+      cargo doc
+      cargo doc --open
+      
+      # 依存関係
+      cargo add serde
+      cargo add tokio --features full
+      cargo update
+      cargo tree
+      
+      # フォーマット
+      cargo fmt
+      cargo fmt --check
+      
+      # リント
+      cargo clippy
+      cargo clippy --fix
+      
+      # クリーン
+      cargo clean
+      
+      # パブリッシュ
+      cargo publish
+      cargo publish --dry-run
+      
+      # Cargo.toml
+      [package]
+      name = "my_project"
+      version = "0.1.0"
+      edition = "2021"
+      authors = ["Your Name <email@example.com>"]
+      description = "A brief description"
+      license = "MIT OR Apache-2.0"
+      repository = "https://github.com/username/repo"
+      
+      [dependencies]
+      serde = { version = "1", features = ["derive"] }
+      tokio = { version = "1", features = ["full"] }
+      
+      [dev-dependencies]
+      criterion = "0.5"
+      
+      [build-dependencies]
+      cc = "1"
+      
+      [profile.release]
+      opt-level = 3
+      lto = true
+      codegen-units = 1
+      strip = true
+      
+      [workspace]
+      members = ["crates/*"]
+  
+  rustfmt:
+    package: "rustfmt"
+    summary: "Rustコードフォーマッター。一貫したコードスタイルの維持。"
+    install: "rustup component add rustfmt"
+    usage: |
+      # フォーマット実行
+      cargo fmt
+      
+      # チェックのみ
+      cargo fmt --check
+      
+      # 特定ファイル
+      rustfmt src/main.rs
+      
+      # rustfmt.toml 設定例
+      edition = "2021"
+      max_width = 100
+      tab_spaces = 4
+      use_small_heuristics = "Default"
+      reorder_imports = true
+      reorder_modules = true
+      remove_nested_parens = true
+      use_field_init_shorthand = true
+      use_try_shorthand = true
+      normalize_comments = true
+      normalize_doc_attributes = true
+      format_code_in_doc_comments = true
+      format_macro_matchers = true
+      format_macro_bodies = true
+      format_strings = true
+      imports_granularity = "Crate"
+      group_imports = "StdExternalCrate"
+  
+  clippy:
+    package: "clippy"
+    summary: "Rustの高度なリンター。一般的なミスの検出とベストプラクティスの提案。"
+    install: "rustup component add clippy"
+    usage: |
+      # 実行
+      cargo clippy
+      
+      # 自動修正
+      cargo clippy --fix
+      
+      # すべての警告を有効化
+      cargo clippy -- -W clippy::all
+      
+      # ペダンティックモード
+      cargo clippy -- -W clippy::pedantic
+      
+      # clippy.toml 設定例
+      msrv = "1.70.0"
+      warn-on-all-wildcard-imports = true
+      
+      # コード内での設定
+      #![warn(clippy::all)]
+      #![warn(clippy::pedantic)]
+      #![warn(clippy::nursery)]
+      #![warn(clippy::cargo)]
+      
+      #[allow(clippy::module_name_repetitions)]
+      #[allow(clippy::must_use_candidate)]
+      
+      #[clippy::cognitive_complexity = "10"]
+  
+  rust_analyzer:
+    package: "rust-analyzer"
+    summary: "Rust用Language Server Protocol実装。IDE統合、コード補完、リファクタリング。"
+    install: |
+      # VS Code: rust-analyzer拡張機能をインストール
+      # 手動インストール
+      curl -L https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
+      chmod +x ~/.local/bin/rust-analyzer
+    usage: |
+      // .vscode/settings.json
+      {
+          "rust-analyzer.cargo.features": "all",
+          "rust-analyzer.checkOnSave.command": "clippy",
+          "rust-analyzer.inlayHints.chainingHints.enable": true,
+          "rust-analyzer.inlayHints.closingBraceHints.enable": true,
+          "rust-analyzer.inlayHints.parameterHints.enable": true,
+          "rust-analyzer.inlayHints.typeHints.enable": true,
+          "rust-analyzer.procMacro.enable": true,
+          "rust-analyzer.cargo.buildScripts.enable": true,
+          "rust-analyzer.diagnostics.experimental.enable": true
+      }
+
+best_practices:
+  - "所有権とライフタイムを理解し、メモリ安全性を保証"
+  - "Result<T, E>とOption<T>でエラーハンドリング"
+  - "イテレータを活用して効率的なコード記述"
+  - "トレイトで抽象化と多態性を実現"
+  - "並行性にはChannelやArc<Mutex<T>>を適切に使用"
+  - "unsafe使用は最小限に留め、安全なAPIでラップ"
+  - "テストとドキュメントを充実させる"
+  - "Clippyの警告に対応してコード品質を向上"
+  - "依存関係は最小限に保ち、features flagを活用"
+  - "ゼロコスト抽象化を意識した設計"
+  - "非同期処理ではtokioまたはasync-stdを統一して使用"
+  - "Cargoのworkspace機能でモノレポを管理"

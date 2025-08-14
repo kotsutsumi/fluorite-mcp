@@ -1,0 +1,53 @@
+id: "gcp-ecosystem"
+name: "GCP エコシステム (Node.js)"
+homepage: "https://cloud.google.com/docs?hl=ja"
+summary: "GCP の主要 SDK（Storage、Pub/Sub、Firestore、Functions、Secret Manager、Logging、Vision、Google APIs）を Node.js/TS から利用。"
+packages:
+  - name: "@google-cloud/storage"
+    homepage: "https://www.npmjs.com/package/@google-cloud/storage"
+    summary: "Cloud Storage クライアント。"
+    install:
+      - "npm i @google-cloud/storage"
+  - name: "@google-cloud/pubsub"
+    homepage: "https://www.npmjs.com/package/@google-cloud/pubsub"
+    summary: "Pub/Sub クライアント。"
+    install:
+      - "npm i @google-cloud/pubsub"
+  - name: "@google-cloud/firestore"
+    homepage: "https://www.npmjs.com/package/@google-cloud/firestore"
+    summary: "Firestore 管理用 SDK。"
+    install:
+      - "npm i @google-cloud/firestore"
+  - name: "@google-cloud/functions-framework"
+    homepage: "https://www.npmjs.com/package/@google-cloud/functions-framework"
+    summary: "Cloud Functions のローカル実行・ランタイム。"
+    install:
+      - "npm i @google-cloud/functions-framework"
+  - name: "@google-cloud/secret-manager"
+    homepage: "https://www.npmjs.com/package/@google-cloud/secret-manager"
+    summary: "Secret Manager SDK。"
+    install:
+      - "npm i @google-cloud/secret-manager"
+  - name: "@google-cloud/logging"
+    homepage: "https://www.npmjs.com/package/@google-cloud/logging"
+    summary: "Cloud Logging SDK（Stackdriver）。"
+    install:
+      - "npm i @google-cloud/logging"
+  - name: "@google-cloud/vision"
+    homepage: "https://www.npmjs.com/package/@google-cloud/vision"
+    summary: "Vision API クライアント。"
+    install:
+      - "npm i @google-cloud/vision"
+  - name: "googleapis"
+    homepage: "https://www.npmjs.com/package/googleapis"
+    summary: "GCP 全体の API クライアント（OAuth2 含む）。"
+    install:
+      - "npm i googleapis"
+bestPractices:
+  - "Workload Identity / サービスアカウントで認証し、鍵配布を最小化"
+  - "Functions/Run/Cloud Tasks を活用して疎結合に"
+references:
+  - "GCP Docs: https://cloud.google.com/docs"
+license: "Apache-2.0 / Proprietary (各サービスに準拠)"
+lastReviewed: "2025-08-15"
+

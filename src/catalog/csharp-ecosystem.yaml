@@ -1,0 +1,1720 @@
+id: "csharp-ecosystem"
+name: "C# Enterprise Development Ecosystem"
+homepage: "https://dotnet.microsoft.com"
+summary: "エンタープライズアプリケーション開発のためのC#/.NETエコシステム。ASP.NET Core、Entity Framework、マイクロサービス、テスト、ログ、認証、API開発などの包括的な企業レベル開発ツールチェーン。"
+
+language:
+  name: "C#"
+  version: ".NET 8.0+"
+  description: "Microsoft製のモダンでタイプセーフなオブジェクト指向プログラミング言語"
+  features:
+    - "静的型システムとnull許容参照型"
+    - "高性能なJIT/AOTコンパイル"
+    - "包括的なガベージコレクション"
+    - "豊富な標準ライブラリとエコシステム"
+    - "クロスプラットフォーム対応"
+
+core:
+  dotnet_framework:
+    package: ".NET"
+    summary: "Microsoft製のクロスプラットフォーム開発プラットフォーム"
+    install: |
+      # .NET SDK のインストール
+      # https://dotnet.microsoft.com/download
+      
+      # プロジェクト作成
+      dotnet new webapi -n MyApi
+      cd MyApi
+      
+      # パッケージ追加
+      dotnet add package EntityFrameworkCore
+      dotnet add package Serilog.AspNetCore
+    usage: |
+      using System;
+      using System.Collections.Generic;
+      using System.Linq;
+      using System.Threading.Tasks;
+      
+      // Program.cs (.NET 6+)
+      var builder = WebApplication.CreateBuilder(args);
+      
+      // サービス登録
+      builder.Services.AddControllers();
+      builder.Services.AddEndpointsApiExplorer();
+      builder.Services.AddSwaggerGen();
+      
+      var app = builder.Build();
+      
+      // ミドルウェア設定
+      if (app.Environment.IsDevelopment())
+      {
+          app.UseSwagger();
+          app.UseSwaggerUI();
+      }
+      
+      app.UseHttpsRedirection();
+      app.UseAuthorization();
+      app.MapControllers();
+      
+      app.Run();
+      
+      // レコード型
+      public record UserDto(int Id, string Name, string Email, bool IsActive);
+      
+      // nullable参照型
+      public class User
+      {
+          public int Id { get; set; }
+          public string Name { get; set; } = string.Empty;
+          public string? Email { get; set; }
+          public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+      }
+      
+      // async/await パターン
+      public class UserService
+      {
+          private readonly List<User> _users = new();
+          
+          public async Task<IEnumerable<User>> GetUsersAsync()
+          {
+              await Task.Delay(100); // シミュレート
+              return _users.AsEnumerable();
+          }
+          
+          public async Task<User?> GetUserAsync(int id)
+          {
+              await Task.Delay(50);
+              return _users.FirstOrDefault(u => u.Id == id);
+          }
+          
+          public async Task<User> CreateUserAsync(User user)
+          {
+              await Task.Delay(100);
+              user.Id = _users.Count + 1;
+              _users.Add(user);
+              return user;
+          }
+      }
+      
+      // LINQ例
+      public class DataProcessor
+      {
+          public IEnumerable<UserDto> ProcessUsers(IEnumerable<User> users)
+          {
+              return users
+                  .Where(u => u.IsActive)
+                  .OrderBy(u => u.Name)
+                  .Select(u => new UserDto(u.Id, u.Name, u.Email ?? "", u.IsActive))
+                  .ToList();
+          }
+          
+          public async Task<Dictionary<string, int>> GetUserCountByDomainAsync(IEnumerable<User> users)
+          {
+              return await Task.FromResult(
+                  users
+                      .Where(u => !string.IsNullOrEmpty(u.Email))
+                      .GroupBy(u => u.Email!.Split('@')[1])
+                      .ToDictionary(g => g.Key, g => g.Count())
+              );
+          }
+      }
+      
+      // パターンマッチング
+      public class Calculator
+      {
+          public double Calculate(string operation, double a, double b) => operation switch
+          {
+              "add" => a + b,
+              "subtract" => a - b,
+              "multiply" => a * b,
+              "divide" when b != 0 => a / b,
+              "divide" => throw new ArgumentException("Division by zero"),
+              _ => throw new ArgumentException($"Unknown operation: {operation}")
+          };
+      }
+
+web_framework:
+  aspnet_core:
+    package: "Microsoft.AspNetCore.App"
+    summary: "高性能でクロスプラットフォームなWebフレームワーク"
+    install: |
+      # テンプレートからプロジェクト作成
+      dotnet new webapi -n MyWebApi
+      dotnet new mvc -n MyMvcApp
+      dotnet new blazorserver -n MyBlazorApp
+      
+      # 必要なパッケージ
+      dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
+      dotnet add package Microsoft.AspNetCore.Cors
+      dotnet add package Microsoft.AspNetCore.ResponseCompression
+    usage: |
+      using Microsoft.AspNetCore.Mvc;
+      using Microsoft.AspNetCore.Authorization;
+      using System.ComponentModel.DataAnnotations;
+      
+      // Minimal API (.NET 6+)
+      var builder = WebApplication.CreateBuilder(args);
+      
+      builder.Services.AddAuthentication().AddJwtBearer();
+      builder.Services.AddAuthorization();
+      builder.Services.AddCors(options =>
+      {
+          options.AddDefaultPolicy(policy =>
+          {
+              policy.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+          });
+      });
+      
+      var app = builder.Build();
+      
+      app.UseCors();
+      app.UseAuthentication();
+      app.UseAuthorization();
+      
+      // Minimal API エンドポイント
+      app.MapGet("/", () => "Hello World!");
+      
+      app.MapGet("/users", async (UserService userService) =>
+      {
+          var users = await userService.GetUsersAsync();
+          return Results.Ok(users);
+      });
+      
+      app.MapPost("/users", async (CreateUserRequest request, UserService userService) =>
+      {
+          var user = new User { Name = request.Name, Email = request.Email };
+          var created = await userService.CreateUserAsync(user);
+          return Results.Created($"/users/{created.Id}", created);
+      });
+      
+      app.MapGet("/users/{id:int}", async (int id, UserService userService) =>
+      {
+          var user = await userService.GetUserAsync(id);
+          return user is not null ? Results.Ok(user) : Results.NotFound();
+      });
+      
+      app.Run();
+      
+      // リクエスト/レスポンスモデル
+      public record CreateUserRequest([Required] string Name, string? Email);
+      
+      // コントローラーベースのAPI
+      [ApiController]
+      [Route("api/[controller]")]
+      public class UsersController : ControllerBase
+      {
+          private readonly UserService _userService;
+          private readonly ILogger<UsersController> _logger;
+          
+          public UsersController(UserService userService, ILogger<UsersController> logger)
+          {
+              _userService = userService;
+              _logger = logger;
+          }
+          
+          [HttpGet]
+          public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers()
+          {
+              try
+              {
+                  var users = await _userService.GetUsersAsync();
+                  var userDtos = users.Select(u => new UserDto(u.Id, u.Name, u.Email ?? "", u.IsActive));
+                  return Ok(userDtos);
+              }
+              catch (Exception ex)
+              {
+                  _logger.LogError(ex, "Error getting users");
+                  return StatusCode(500, "Internal server error");
+              }
+          }
+          
+          [HttpGet("{id}")]
+          public async Task<ActionResult<UserDto>> GetUser(int id)
+          {
+              var user = await _userService.GetUserAsync(id);
+              if (user == null)
+              {
+                  return NotFound();
+              }
+              
+              return Ok(new UserDto(user.Id, user.Name, user.Email ?? "", user.IsActive));
+          }
+          
+          [HttpPost]
+          [Authorize]
+          public async Task<ActionResult<UserDto>> CreateUser(CreateUserRequest request)
+          {
+              if (!ModelState.IsValid)
+              {
+                  return BadRequest(ModelState);
+              }
+              
+              var user = new User { Name = request.Name, Email = request.Email };
+              var created = await _userService.CreateUserAsync(user);
+              var userDto = new UserDto(created.Id, created.Name, created.Email ?? "", created.IsActive);
+              
+              return CreatedAtAction(nameof(GetUser), new { id = created.Id }, userDto);
+          }
+      }
+      
+      // ミドルウェア例
+      public class RequestLoggingMiddleware
+      {
+          private readonly RequestDelegate _next;
+          private readonly ILogger<RequestLoggingMiddleware> _logger;
+          
+          public RequestLoggingMiddleware(RequestDelegate next, ILogger<RequestLoggingMiddleware> logger)
+          {
+              _next = next;
+              _logger = logger;
+          }
+          
+          public async Task InvokeAsync(HttpContext context)
+          {
+              var startTime = DateTime.UtcNow;
+              
+              await _next(context);
+              
+              var endTime = DateTime.UtcNow;
+              var duration = endTime - startTime;
+              
+              _logger.LogInformation(
+                  "Request {Method} {Path} responded {StatusCode} in {Duration}ms",
+                  context.Request.Method,
+                  context.Request.Path,
+                  context.Response.StatusCode,
+                  duration.TotalMilliseconds);
+          }
+      }
+      
+      // カスタムフィルター
+      public class ValidateModelAttribute : ActionFilterAttribute
+      {
+          public override void OnActionExecuting(ActionExecutingContext context)
+          {
+              if (!context.ModelState.IsValid)
+              {
+                  context.Result = new BadRequestObjectResult(context.ModelState);
+              }
+          }
+      }
+
+orm:
+  entity_framework_core:
+    package: "Microsoft.EntityFrameworkCore"
+    summary: "軽量で拡張可能なオブジェクトリレーショナルマッパー"
+    install: |
+      dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+      dotnet add package Microsoft.EntityFrameworkCore.Tools
+      dotnet add package Microsoft.EntityFrameworkCore.Design
+      
+      # マイグレーション
+      dotnet ef migrations add InitialCreate
+      dotnet ef database update
+    usage: |
+      using Microsoft.EntityFrameworkCore;
+      using System.ComponentModel.DataAnnotations;
+      using System.ComponentModel.DataAnnotations.Schema;
+      
+      // エンティティ定義
+      public class User
+      {
+          public int Id { get; set; }
+          
+          [Required]
+          [MaxLength(100)]
+          public string Name { get; set; } = string.Empty;
+          
+          [EmailAddress]
+          public string? Email { get; set; }
+          
+          public bool IsActive { get; set; } = true;
+          public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+          public DateTime? UpdatedAt { get; set; }
+          
+          // ナビゲーションプロパティ
+          public ICollection<Post> Posts { get; set; } = new List<Post>();
+          public UserProfile? Profile { get; set; }
+      }
+      
+      public class Post
+      {
+          public int Id { get; set; }
+          
+          [Required]
+          [MaxLength(200)]
+          public string Title { get; set; } = string.Empty;
+          
+          public string? Content { get; set; }
+          public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+          
+          // 外部キー
+          public int UserId { get; set; }
+          public User User { get; set; } = null!;
+          
+          public ICollection<Comment> Comments { get; set; } = new List<Comment>();
+      }
+      
+      public class Comment
+      {
+          public int Id { get; set; }
+          public string Content { get; set; } = string.Empty;
+          public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+          
+          public int PostId { get; set; }
+          public Post Post { get; set; } = null!;
+          
+          public int UserId { get; set; }
+          public User User { get; set; } = null!;
+      }
+      
+      public class UserProfile
+      {
+          public int Id { get; set; }
+          public string? Bio { get; set; }
+          public string? Avatar { get; set; }
+          public DateTime? DateOfBirth { get; set; }
+          
+          public int UserId { get; set; }
+          public User User { get; set; } = null!;
+      }
+      
+      // DbContext
+      public class ApplicationDbContext : DbContext
+      {
+          public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+              : base(options)
+          {
+          }
+          
+          public DbSet<User> Users { get; set; }
+          public DbSet<Post> Posts { get; set; }
+          public DbSet<Comment> Comments { get; set; }
+          public DbSet<UserProfile> UserProfiles { get; set; }
+          
+          protected override void OnModelCreating(ModelBuilder modelBuilder)
+          {
+              // インデックス
+              modelBuilder.Entity<User>()
+                  .HasIndex(u => u.Email)
+                  .IsUnique();
+              
+              // 関係設定
+              modelBuilder.Entity<User>()
+                  .HasOne(u => u.Profile)
+                  .WithOne(p => p.User)
+                  .HasForeignKey<UserProfile>(p => p.UserId);
+              
+              modelBuilder.Entity<Post>()
+                  .HasOne(p => p.User)
+                  .WithMany(u => u.Posts)
+                  .HasForeignKey(p => p.UserId)
+                  .OnDelete(DeleteBehavior.Cascade);
+              
+              // デフォルト値
+              modelBuilder.Entity<User>()
+                  .Property(u => u.CreatedAt)
+                  .HasDefaultValueSql("GETUTCDATE()");
+              
+              // データシード
+              modelBuilder.Entity<User>().HasData(
+                  new User { Id = 1, Name = "Admin", Email = "admin@example.com" }
+              );
+          }
+      }
+      
+      // リポジトリパターン
+      public interface IUserRepository
+      {
+          Task<IEnumerable<User>> GetUsersAsync();
+          Task<User?> GetUserByIdAsync(int id);
+          Task<User> CreateUserAsync(User user);
+          Task<User> UpdateUserAsync(User user);
+          Task DeleteUserAsync(int id);
+          Task<IEnumerable<User>> GetActiveUsersAsync();
+      }
+      
+      public class UserRepository : IUserRepository
+      {
+          private readonly ApplicationDbContext _context;
+          
+          public UserRepository(ApplicationDbContext context)
+          {
+              _context = context;
+          }
+          
+          public async Task<IEnumerable<User>> GetUsersAsync()
+          {
+              return await _context.Users
+                  .Include(u => u.Profile)
+                  .OrderBy(u => u.Name)
+                  .ToListAsync();
+          }
+          
+          public async Task<User?> GetUserByIdAsync(int id)
+          {
+              return await _context.Users
+                  .Include(u => u.Profile)
+                  .Include(u => u.Posts.Take(5))
+                  .FirstOrDefaultAsync(u => u.Id == id);
+          }
+          
+          public async Task<User> CreateUserAsync(User user)
+          {
+              _context.Users.Add(user);
+              await _context.SaveChangesAsync();
+              return user;
+          }
+          
+          public async Task<User> UpdateUserAsync(User user)
+          {
+              user.UpdatedAt = DateTime.UtcNow;
+              _context.Entry(user).State = EntityState.Modified;
+              await _context.SaveChangesAsync();
+              return user;
+          }
+          
+          public async Task DeleteUserAsync(int id)
+          {
+              var user = await _context.Users.FindAsync(id);
+              if (user != null)
+              {
+                  _context.Users.Remove(user);
+                  await _context.SaveChangesAsync();
+              }
+          }
+          
+          public async Task<IEnumerable<User>> GetActiveUsersAsync()
+          {
+              return await _context.Users
+                  .Where(u => u.IsActive)
+                  .ToListAsync();
+          }
+      }
+  
+  dapper:
+    package: "Dapper"
+    summary: "軽量で高性能なマイクロORM"
+    install: |
+      dotnet add package Dapper
+      dotnet add package Microsoft.Data.SqlClient
+    usage: |
+      using Dapper;
+      using Microsoft.Data.SqlClient;
+      using System.Data;
+      
+      public class DapperUserRepository
+      {
+          private readonly string _connectionString;
+          
+          public DapperUserRepository(string connectionString)
+          {
+              _connectionString = connectionString;
+          }
+          
+          public async Task<IEnumerable<User>> GetUsersAsync()
+          {
+              using var connection = new SqlConnection(_connectionString);
+              const string sql = @"
+                  SELECT Id, Name, Email, IsActive, CreatedAt, UpdatedAt 
+                  FROM Users 
+                  WHERE IsActive = 1 
+                  ORDER BY Name";
+              
+              return await connection.QueryAsync<User>(sql);
+          }
+          
+          public async Task<User?> GetUserByIdAsync(int id)
+          {
+              using var connection = new SqlConnection(_connectionString);
+              const string sql = @"
+                  SELECT Id, Name, Email, IsActive, CreatedAt, UpdatedAt 
+                  FROM Users 
+                  WHERE Id = @Id";
+              
+              return await connection.QuerySingleOrDefaultAsync<User>(sql, new { Id = id });
+          }
+          
+          public async Task<User> CreateUserAsync(User user)
+          {
+              using var connection = new SqlConnection(_connectionString);
+              const string sql = @"
+                  INSERT INTO Users (Name, Email, IsActive, CreatedAt) 
+                  OUTPUT INSERTED.Id 
+                  VALUES (@Name, @Email, @IsActive, @CreatedAt)";
+              
+              var id = await connection.QuerySingleAsync<int>(sql, user);
+              user.Id = id;
+              return user;
+          }
+          
+          public async Task<bool> UpdateUserAsync(User user)
+          {
+              using var connection = new SqlConnection(_connectionString);
+              const string sql = @"
+                  UPDATE Users 
+                  SET Name = @Name, Email = @Email, IsActive = @IsActive, UpdatedAt = @UpdatedAt 
+                  WHERE Id = @Id";
+              
+              user.UpdatedAt = DateTime.UtcNow;
+              var rowsAffected = await connection.ExecuteAsync(sql, user);
+              return rowsAffected > 0;
+          }
+          
+          public async Task<bool> DeleteUserAsync(int id)
+          {
+              using var connection = new SqlConnection(_connectionString);
+              const string sql = "DELETE FROM Users WHERE Id = @Id";
+              
+              var rowsAffected = await connection.ExecuteAsync(sql, new { Id = id });
+              return rowsAffected > 0;
+          }
+          
+          // 複雑なクエリ例
+          public async Task<IEnumerable<UserWithPostCount>> GetUsersWithPostCountAsync()
+          {
+              using var connection = new SqlConnection(_connectionString);
+              const string sql = @"
+                  SELECT 
+                      u.Id,
+                      u.Name,
+                      u.Email,
+                      COUNT(p.Id) as PostCount
+                  FROM Users u
+                  LEFT JOIN Posts p ON u.Id = p.UserId
+                  GROUP BY u.Id, u.Name, u.Email
+                  ORDER BY PostCount DESC";
+              
+              return await connection.QueryAsync<UserWithPostCount>(sql);
+          }
+          
+          // ストアドプロシージャ実行
+          public async Task<IEnumerable<User>> GetUsersByDomainAsync(string domain)
+          {
+              using var connection = new SqlConnection(_connectionString);
+              
+              return await connection.QueryAsync<User>(
+                  "GetUsersByEmailDomain",
+                  new { Domain = domain },
+                  commandType: CommandType.StoredProcedure);
+          }
+          
+          // トランザクション例
+          public async Task TransferDataAsync(int fromUserId, int toUserId)
+          {
+              using var connection = new SqlConnection(_connectionString);
+              connection.Open();
+              
+              using var transaction = connection.BeginTransaction();
+              try
+              {
+                  await connection.ExecuteAsync(
+                      "UPDATE Posts SET UserId = @ToUserId WHERE UserId = @FromUserId",
+                      new { FromUserId = fromUserId, ToUserId = toUserId },
+                      transaction);
+                  
+                  await connection.ExecuteAsync(
+                      "UPDATE Users SET IsActive = 0 WHERE Id = @UserId",
+                      new { UserId = fromUserId },
+                      transaction);
+                  
+                  transaction.Commit();
+              }
+              catch
+              {
+                  transaction.Rollback();
+                  throw;
+              }
+          }
+      }
+      
+      public record UserWithPostCount(int Id, string Name, string Email, int PostCount);
+
+mapping:
+  automapper:
+    package: "AutoMapper"
+    summary: "オブジェクト間のマッピングライブラリ"
+    install: |
+      dotnet add package AutoMapper
+      dotnet add package AutoMapper.Extensions.Microsoft.DependencyInjection
+    usage: |
+      using AutoMapper;
+      
+      // マッピングプロファイル
+      public class UserMappingProfile : Profile
+      {
+          public UserMappingProfile()
+          {
+              // 基本マッピング
+              CreateMap<User, UserDto>();
+              CreateMap<CreateUserRequest, User>()
+                  .ForMember(dest => dest.Id, opt => opt.Ignore())
+                  .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => DateTime.UtcNow));
+              
+              // 複雑なマッピング
+              CreateMap<User, UserDetailDto>()
+                  .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.Name))
+                  .ForMember(dest => dest.PostCount, opt => opt.MapFrom(src => src.Posts.Count))
+                  .ForMember(dest => dest.Bio, opt => opt.MapFrom(src => src.Profile != null ? src.Profile.Bio : null));
+              
+              // 条件付きマッピング
+              CreateMap<User, UserPublicDto>()
+                  .ForMember(dest => dest.Email, opt => opt.Condition(src => src.IsActive));
+              
+              // ネストしたオブジェクト
+              CreateMap<Post, PostDto>()
+                  .ForMember(dest => dest.AuthorName, opt => opt.MapFrom(src => src.User.Name));
+          }
+      }
+      
+      // DTOクラス
+      public record UserDto(int Id, string Name, string? Email, bool IsActive);
+      public record UserDetailDto(int Id, string FullName, string? Email, int PostCount, string? Bio);
+      public record UserPublicDto(int Id, string Name, string? Email);
+      public record PostDto(int Id, string Title, string? Content, string AuthorName, DateTime CreatedAt);
+      
+      // サービスでの使用
+      public class UserService
+      {
+          private readonly IUserRepository _userRepository;
+          private readonly IMapper _mapper;
+          
+          public UserService(IUserRepository userRepository, IMapper mapper)
+          {
+              _userRepository = userRepository;
+              _mapper = mapper;
+          }
+          
+          public async Task<IEnumerable<UserDto>> GetUsersAsync()
+          {
+              var users = await _userRepository.GetUsersAsync();
+              return _mapper.Map<IEnumerable<UserDto>>(users);
+          }
+          
+          public async Task<UserDetailDto?> GetUserDetailAsync(int id)
+          {
+              var user = await _userRepository.GetUserByIdAsync(id);
+              return user != null ? _mapper.Map<UserDetailDto>(user) : null;
+          }
+          
+          public async Task<UserDto> CreateUserAsync(CreateUserRequest request)
+          {
+              var user = _mapper.Map<User>(request);
+              var created = await _userRepository.CreateUserAsync(user);
+              return _mapper.Map<UserDto>(created);
+          }
+      }
+      
+      // DI設定
+      public class Startup
+      {
+          public void ConfigureServices(IServiceCollection services)
+          {
+              services.AddAutoMapper(typeof(UserMappingProfile));
+              services.AddScoped<IUserRepository, UserRepository>();
+              services.AddScoped<UserService>();
+          }
+      }
+      
+      // カスタムコンバーター
+      public class DateTimeToStringConverter : ITypeConverter<DateTime, string>
+      {
+          public string Convert(DateTime source, string destination, ResolutionContext context)
+          {
+              return source.ToString("yyyy-MM-dd HH:mm:ss");
+          }
+      }
+      
+      // カスタムバリューリゾルバー
+      public class FullNameResolver : IValueResolver<User, UserDetailDto, string>
+      {
+          public string Resolve(User source, UserDetailDto destination, string destMember, ResolutionContext context)
+          {
+              return $"{source.Name} ({source.Email})";
+          }
+      }
+
+mediator:
+  mediatr:
+    package: "MediatR"
+    summary: "CQRSパターンとメディエーターパターンの実装"
+    install: |
+      dotnet add package MediatR
+      dotnet add package MediatR.Extensions.Microsoft.DependencyInjection
+    usage: |
+      using MediatR;
+      using FluentValidation;
+      
+      // クエリ (CQRS Read側)
+      public record GetUsersQuery : IRequest<IEnumerable<UserDto>>;
+      
+      public record GetUserByIdQuery(int Id) : IRequest<UserDto?>;
+      
+      public class GetUsersQueryHandler : IRequestHandler<GetUsersQuery, IEnumerable<UserDto>>
+      {
+          private readonly IUserRepository _userRepository;
+          private readonly IMapper _mapper;
+          
+          public GetUsersQueryHandler(IUserRepository userRepository, IMapper mapper)
+          {
+              _userRepository = userRepository;
+              _mapper = mapper;
+          }
+          
+          public async Task<IEnumerable<UserDto>> Handle(GetUsersQuery request, CancellationToken cancellationToken)
+          {
+              var users = await _userRepository.GetUsersAsync();
+              return _mapper.Map<IEnumerable<UserDto>>(users);
+          }
+      }
+      
+      public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, UserDto?>
+      {
+          private readonly IUserRepository _userRepository;
+          private readonly IMapper _mapper;
+          
+          public GetUserByIdQueryHandler(IUserRepository userRepository, IMapper mapper)
+          {
+              _userRepository = userRepository;
+              _mapper = mapper;
+          }
+          
+          public async Task<UserDto?> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
+          {
+              var user = await _userRepository.GetUserByIdAsync(request.Id);
+              return user != null ? _mapper.Map<UserDto>(user) : null;
+          }
+      }
+      
+      // コマンド (CQRS Write側)
+      public record CreateUserCommand(string Name, string? Email) : IRequest<UserDto>;
+      
+      public record UpdateUserCommand(int Id, string Name, string? Email, bool IsActive) : IRequest<UserDto?>;
+      
+      public record DeleteUserCommand(int Id) : IRequest<bool>;
+      
+      public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, UserDto>
+      {
+          private readonly IUserRepository _userRepository;
+          private readonly IMapper _mapper;
+          
+          public CreateUserCommandHandler(IUserRepository userRepository, IMapper mapper)
+          {
+              _userRepository = userRepository;
+              _mapper = mapper;
+          }
+          
+          public async Task<UserDto> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+          {
+              var user = new User
+              {
+                  Name = request.Name,
+                  Email = request.Email
+              };
+              
+              var created = await _userRepository.CreateUserAsync(user);
+              return _mapper.Map<UserDto>(created);
+          }
+      }
+      
+      // バリデーション
+      public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
+      {
+          public CreateUserCommandValidator()
+          {
+              RuleFor(x => x.Name)
+                  .NotEmpty()
+                  .MaximumLength(100);
+              
+              RuleFor(x => x.Email)
+                  .EmailAddress()
+                  .When(x => !string.IsNullOrEmpty(x.Email));
+          }
+      }
+      
+      // 通知 (ドメインイベント)
+      public record UserCreatedNotification(int UserId, string Name) : INotification;
+      
+      public class UserCreatedNotificationHandler : INotificationHandler<UserCreatedNotification>
+      {
+          private readonly ILogger<UserCreatedNotificationHandler> _logger;
+          
+          public UserCreatedNotificationHandler(ILogger<UserCreatedNotificationHandler> logger)
+          {
+              _logger = logger;
+          }
+          
+          public Task Handle(UserCreatedNotification notification, CancellationToken cancellationToken)
+          {
+              _logger.LogInformation("User created: {UserId} - {Name}", notification.UserId, notification.Name);
+              return Task.CompletedTask;
+          }
+      }
+      
+      // パイプライン動作 (横断的関心事)
+      public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+          where TRequest : IRequest<TResponse>
+      {
+          private readonly IEnumerable<IValidator<TRequest>> _validators;
+          
+          public ValidationBehavior(IEnumerable<IValidator<TRequest>> validators)
+          {
+              _validators = validators;
+          }
+          
+          public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
+          {
+              if (_validators.Any())
+              {
+                  var context = new ValidationContext<TRequest>(request);
+                  var validationResults = await Task.WhenAll(_validators.Select(v => v.ValidateAsync(context, cancellationToken)));
+                  var failures = validationResults.SelectMany(r => r.Errors).Where(f => f != null).ToList();
+                  
+                  if (failures.Count != 0)
+                  {
+                      throw new ValidationException(failures);
+                  }
+              }
+              
+              return await next();
+          }
+      }
+      
+      // コントローラーでの使用
+      [ApiController]
+      [Route("api/[controller]")]
+      public class UsersController : ControllerBase
+      {
+          private readonly IMediator _mediator;
+          
+          public UsersController(IMediator mediator)
+          {
+              _mediator = mediator;
+          }
+          
+          [HttpGet]
+          public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers()
+          {
+              var users = await _mediator.Send(new GetUsersQuery());
+              return Ok(users);
+          }
+          
+          [HttpGet("{id}")]
+          public async Task<ActionResult<UserDto>> GetUser(int id)
+          {
+              var user = await _mediator.Send(new GetUserByIdQuery(id));
+              return user != null ? Ok(user) : NotFound();
+          }
+          
+          [HttpPost]
+          public async Task<ActionResult<UserDto>> CreateUser(CreateUserCommand command)
+          {
+              var user = await _mediator.Send(command);
+              await _mediator.Publish(new UserCreatedNotification(user.Id, user.Name));
+              return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user);
+          }
+      }
+
+logging:
+  serilog:
+    package: "Serilog.AspNetCore"
+    summary: "構造化ログライブラリ"
+    install: |
+      dotnet add package Serilog.AspNetCore
+      dotnet add package Serilog.Sinks.Console
+      dotnet add package Serilog.Sinks.File
+      dotnet add package Serilog.Sinks.Seq
+      dotnet add package Serilog.Enrichers.Environment
+    usage: |
+      using Serilog;
+      using Serilog.Events;
+      
+      // Program.cs での設定
+      var builder = WebApplication.CreateBuilder(args);
+      
+      // Serilog設定
+      builder.Host.UseSerilog((context, configuration) =>
+      {
+          configuration
+              .ReadFrom.Configuration(context.Configuration)
+              .Enrich.FromLogContext()
+              .Enrich.WithEnvironmentName()
+              .Enrich.WithMachineName()
+              .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj} {Properties:j}{NewLine}{Exception}")
+              .WriteTo.File("logs/app-.log", rollingInterval: RollingInterval.Day)
+              .WriteTo.Seq("http://localhost:5341");
+      });
+      
+      var app = builder.Build();
+      
+      // Serilogリクエストログ
+      app.UseSerilogRequestLogging(options =>
+      {
+          options.MessageTemplate = "HTTP {RequestMethod} {RequestPath} responded {StatusCode} in {Elapsed:0.0000} ms";
+          options.EnrichDiagnosticContext = (diagnosticContext, httpContext) =>
+          {
+              diagnosticContext.Set("RequestHost", httpContext.Request.Host.Value);
+              diagnosticContext.Set("RequestScheme", httpContext.Request.Scheme);
+              diagnosticContext.Set("UserAgent", httpContext.Request.Headers["User-Agent"].FirstOrDefault());
+          };
+      });
+      
+      app.Run();
+      
+      // サービスでのログ使用
+      public class UserService
+      {
+          private readonly IUserRepository _userRepository;
+          private readonly ILogger<UserService> _logger;
+          
+          public UserService(IUserRepository userRepository, ILogger<UserService> logger)
+          {
+              _userRepository = userRepository;
+              _logger = logger;
+          }
+          
+          public async Task<User?> GetUserAsync(int userId)
+          {
+              using var scope = _logger.BeginScope("GetUser {UserId}", userId);
+              
+              try
+              {
+                  _logger.LogInformation("Retrieving user {UserId}", userId);
+                  
+                  var user = await _userRepository.GetUserByIdAsync(userId);
+                  
+                  if (user == null)
+                  {
+                      _logger.LogWarning("User {UserId} not found", userId);
+                      return null;
+                  }
+                  
+                  _logger.LogInformation("Successfully retrieved user {UserId} - {UserName}", 
+                      userId, user.Name);
+                  
+                  return user;
+              }
+              catch (Exception ex)
+              {
+                  _logger.LogError(ex, "Error retrieving user {UserId}", userId);
+                  throw;
+              }
+          }
+          
+          public async Task<User> CreateUserAsync(User user)
+          {
+              try
+              {
+                  _logger.LogInformation("Creating new user {UserName} with email {Email}", 
+                      user.Name, user.Email);
+                  
+                  var created = await _userRepository.CreateUserAsync(user);
+                  
+                  _logger.LogInformation("Successfully created user {UserId} - {UserName}", 
+                      created.Id, created.Name);
+                  
+                  return created;
+              }
+              catch (Exception ex)
+              {
+                  _logger.LogError(ex, "Failed to create user {UserName}", user.Name);
+                  throw;
+              }
+          }
+      }
+      
+      // 構造化ログの例
+      public class OrderService
+      {
+          private readonly ILogger<OrderService> _logger;
+          
+          public OrderService(ILogger<OrderService> logger)
+          {
+              _logger = logger;
+          }
+          
+          public async Task ProcessOrderAsync(Order order)
+          {
+              var stopwatch = Stopwatch.StartNew();
+              
+              using var scope = _logger.BeginScope(new Dictionary<string, object>
+              {
+                  ["OrderId"] = order.Id,
+                  ["CustomerId"] = order.CustomerId,
+                  ["OrderTotal"] = order.Total
+              });
+              
+              try
+              {
+                  _logger.LogInformation("Processing order {OrderId} for customer {CustomerId} with total {OrderTotal:C}",
+                      order.Id, order.CustomerId, order.Total);
+                  
+                  // 処理ロジック
+                  await ValidateOrderAsync(order);
+                  await ProcessPaymentAsync(order);
+                  await ShipOrderAsync(order);
+                  
+                  stopwatch.Stop();
+                  
+                  _logger.LogInformation("Successfully processed order {OrderId} in {ProcessingTime}ms",
+                      order.Id, stopwatch.ElapsedMilliseconds);
+              }
+              catch (Exception ex)
+              {
+                  stopwatch.Stop();
+                  
+                  _logger.LogError(ex, "Failed to process order {OrderId} after {ProcessingTime}ms",
+                      order.Id, stopwatch.ElapsedMilliseconds);
+                  
+                  throw;
+              }
+          }
+      }
+      
+      // appsettings.json でのSerilog設定
+      /*
+      {
+        "Serilog": {
+          "Using": ["Serilog.Sinks.Console", "Serilog.Sinks.File"],
+          "MinimumLevel": {
+            "Default": "Information",
+            "Override": {
+              "Microsoft": "Warning",
+              "System": "Warning"
+            }
+          },
+          "WriteTo": [
+            {
+              "Name": "Console",
+              "Args": {
+                "outputTemplate": "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj} {Properties:j}{NewLine}{Exception}"
+              }
+            },
+            {
+              "Name": "File",
+              "Args": {
+                "path": "logs/app-.log",
+                "rollingInterval": "Day",
+                "retainedFileCountLimit": 7
+              }
+            }
+          ],
+          "Enrich": ["FromLogContext", "WithEnvironmentName", "WithMachineName"]
+        }
+      }
+      */
+
+resilience:
+  polly:
+    package: "Polly"
+    summary: "レジリエンスと一時的エラー処理ライブラリ"
+    install: |
+      dotnet add package Polly
+      dotnet add package Polly.Extensions.Http
+      dotnet add package Microsoft.Extensions.Http.Polly
+    usage: |
+      using Polly;
+      using Polly.Extensions.Http;
+      using Polly.CircuitBreaker;
+      using Polly.Timeout;
+      
+      // シンプルな再試行ポリシー
+      public class HttpService
+      {
+          private readonly HttpClient _httpClient;
+          private readonly IAsyncPolicy<HttpResponseMessage> _retryPolicy;
+          
+          public HttpService(HttpClient httpClient)
+          {
+              _httpClient = httpClient;
+              
+              _retryPolicy = Policy
+                  .HandleResult<HttpResponseMessage>(r => !r.IsSuccessStatusCode)
+                  .Or<HttpRequestException>()
+                  .WaitAndRetryAsync(
+                      retryCount: 3,
+                      sleepDurationProvider: retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
+                      onRetry: (outcome, timespan, retryCount, context) =>
+                      {
+                          Console.WriteLine($"Retry {retryCount} in {timespan} seconds");
+                      });
+          }
+          
+          public async Task<string> GetDataAsync(string url)
+          {
+              var response = await _retryPolicy.ExecuteAsync(async () =>
+              {
+                  var result = await _httpClient.GetAsync(url);
+                  result.EnsureSuccessStatusCode();
+                  return result;
+              });
+              
+              return await response.Content.ReadAsStringAsync();
+          }
+      }
+      
+      // 複合ポリシー (サーキットブレーカー + 再試行 + タイムアウト)
+      public class ResilientService
+      {
+          private readonly HttpClient _httpClient;
+          private readonly IAsyncPolicy<HttpResponseMessage> _resilientPolicy;
+          
+          public ResilientService(HttpClient httpClient)
+          {
+              _httpClient = httpClient;
+              
+              // タイムアウトポリシー
+              var timeoutPolicy = Policy.TimeoutAsync<HttpResponseMessage>(10);
+              
+              // 再試行ポリシー
+              var retryPolicy = Policy
+                  .HandleResult<HttpResponseMessage>(r => !r.IsSuccessStatusCode)
+                  .Or<HttpRequestException>()
+                  .Or<TimeoutRejectedException>()
+                  .WaitAndRetryAsync(
+                      retryCount: 3,
+                      sleepDurationProvider: retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)));
+              
+              // サーキットブレーカーポリシー
+              var circuitBreakerPolicy = Policy
+                  .HandleResult<HttpResponseMessage>(r => !r.IsSuccessStatusCode)
+                  .Or<HttpRequestException>()
+                  .CircuitBreakerAsync(
+                      handledEventsAllowedBeforeBreaking: 3,
+                      durationOfBreak: TimeSpan.FromSeconds(30),
+                      onBreak: (result, timespan) =>
+                      {
+                          Console.WriteLine($"Circuit breaker opened for {timespan}");
+                      },
+                      onReset: () =>
+                      {
+                          Console.WriteLine("Circuit breaker reset");
+                      });
+              
+              // ポリシーの結合
+              _resilientPolicy = Policy.WrapAsync(retryPolicy, circuitBreakerPolicy, timeoutPolicy);
+          }
+          
+          public async Task<T> ExecuteAsync<T>(Func<Task<T>> operation)
+          {
+              return await Policy
+                  .Handle<Exception>()
+                  .WaitAndRetryAsync(
+                      retryCount: 3,
+                      sleepDurationProvider: retryAttempt => TimeSpan.FromSeconds(retryAttempt))
+                  .ExecuteAsync(operation);
+          }
+      }
+      
+      // DI設定でのHTTPクライアント
+      public class Startup
+      {
+          public void ConfigureServices(IServiceCollection services)
+          {
+              services.AddHttpClient<ApiService>(client =>
+              {
+                  client.BaseAddress = new Uri("https://api.example.com/");
+                  client.Timeout = TimeSpan.FromSeconds(30);
+              })
+              .AddPolicyHandler(GetRetryPolicy())
+              .AddPolicyHandler(GetCircuitBreakerPolicy());
+          }
+          
+          private static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy()
+          {
+              return HttpPolicyExtensions
+                  .HandleTransientHttpError()
+                  .WaitAndRetryAsync(
+                      retryCount: 3,
+                      sleepDurationProvider: retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
+                      onRetry: (outcome, timespan, retryCount, context) =>
+                      {
+                          Console.WriteLine($"Retry {retryCount} for {context.OperationKey} in {timespan}");
+                      });
+          }
+          
+          private static IAsyncPolicy<HttpResponseMessage> GetCircuitBreakerPolicy()
+          {
+              return HttpPolicyExtensions
+                  .HandleTransientHttpError()
+                  .CircuitBreakerAsync(
+                      handledEventsAllowedBeforeBreaking: 5,
+                      durationOfBreak: TimeSpan.FromSeconds(30));
+          }
+      }
+      
+      // データベース操作のレジリエンス
+      public class ResilientUserRepository : IUserRepository
+      {
+          private readonly IUserRepository _innerRepository;
+          private readonly IAsyncPolicy _retryPolicy;
+          
+          public ResilientUserRepository(IUserRepository innerRepository)
+          {
+              _innerRepository = innerRepository;
+              
+              _retryPolicy = Policy
+                  .Handle<SqlException>()
+                  .Or<TimeoutException>()
+                  .WaitAndRetryAsync(
+                      retryCount: 3,
+                      sleepDurationProvider: retryAttempt => TimeSpan.FromMilliseconds(100 * retryAttempt),
+                      onRetry: (exception, timespan, retryCount, context) =>
+                      {
+                          Console.WriteLine($"Database retry {retryCount}: {exception.GetType().Name}");
+                      });
+          }
+          
+          public async Task<IEnumerable<User>> GetUsersAsync()
+          {
+              return await _retryPolicy.ExecuteAsync(async () =>
+              {
+                  return await _innerRepository.GetUsersAsync();
+              });
+          }
+          
+          public async Task<User?> GetUserByIdAsync(int id)
+          {
+              return await _retryPolicy.ExecuteAsync(async () =>
+              {
+                  return await _innerRepository.GetUserByIdAsync(id);
+              });
+          }
+          
+          // 他のメソッドも同様に実装...
+      }
+
+api_documentation:
+  swashbuckle:
+    package: "Swashbuckle.AspNetCore"
+    summary: "Swagger/OpenAPI文書生成"
+    install: |
+      dotnet add package Swashbuckle.AspNetCore
+      dotnet add package Swashbuckle.AspNetCore.Annotations
+    usage: |
+      using Microsoft.OpenApi.Models;
+      using Swashbuckle.AspNetCore.Annotations;
+      using System.Reflection;
+      
+      // Program.cs での設定
+      var builder = WebApplication.CreateBuilder(args);
+      
+      builder.Services.AddControllers();
+      builder.Services.AddEndpointsApiExplorer();
+      builder.Services.AddSwaggerGen(c =>
+      {
+          c.SwaggerDoc("v1", new OpenApiInfo
+          {
+              Title = "My API",
+              Version = "v1",
+              Description = "A sample API for demonstration",
+              Contact = new OpenApiContact
+              {
+                  Name = "Developer",
+                  Email = "developer@example.com",
+                  Url = new Uri("https://example.com")
+              },
+              License = new OpenApiLicense
+              {
+                  Name = "MIT",
+                  Url = new Uri("https://opensource.org/licenses/MIT")
+              }
+          });
+          
+          // JWT認証設定
+          c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+          {
+              Description = "JWT Authorization header using the Bearer scheme.",
+              Name = "Authorization",
+              In = ParameterLocation.Header,
+              Type = SecuritySchemeType.ApiKey,
+              Scheme = "Bearer"
+          });
+          
+          c.AddSecurityRequirement(new OpenApiSecurityRequirement
+          {
+              {
+                  new OpenApiSecurityScheme
+                  {
+                      Reference = new OpenApiReference
+                      {
+                          Type = ReferenceType.SecurityScheme,
+                          Id = "Bearer"
+                      }
+                  },
+                  new string[] {}
+              }
+          });
+          
+          // XMLコメント
+          var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+          var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+          c.IncludeXmlComments(xmlPath);
+          
+          // アノテーション有効化
+          c.EnableAnnotations();
+      });
+      
+      var app = builder.Build();
+      
+      if (app.Environment.IsDevelopment())
+      {
+          app.UseSwagger();
+          app.UseSwaggerUI(c =>
+          {
+              c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+              c.RoutePrefix = string.Empty; // Swagger UIをルートで表示
+          });
+      }
+      
+      app.UseHttpsRedirection();
+      app.UseAuthorization();
+      app.MapControllers();
+      app.Run();
+      
+      // コントローラーでのドキュメント
+      /// <summary>
+      /// ユーザー管理API
+      /// </summary>
+      [ApiController]
+      [Route("api/[controller]")]
+      [Produces("application/json")]
+      public class UsersController : ControllerBase
+      {
+          private readonly UserService _userService;
+          
+          public UsersController(UserService userService)
+          {
+              _userService = userService;
+          }
+          
+          /// <summary>
+          /// 全ユーザーを取得します
+          /// </summary>
+          /// <returns>ユーザーリスト</returns>
+          /// <response code="200">成功</response>
+          /// <response code="500">サーバーエラー</response>
+          [HttpGet]
+          [SwaggerOperation(Summary = "ユーザー一覧取得", Description = "全てのアクティブなユーザーを取得します")]
+          [SwaggerResponse(200, "成功", typeof(IEnumerable<UserDto>))]
+          [SwaggerResponse(500, "内部サーバーエラー")]
+          public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers()
+          {
+              var users = await _userService.GetUsersAsync();
+              return Ok(users);
+          }
+          
+          /// <summary>
+          /// 指定されたIDのユーザーを取得します
+          /// </summary>
+          /// <param name="id">ユーザーID</param>
+          /// <returns>ユーザー情報</returns>
+          /// <response code="200">成功</response>
+          /// <response code="404">ユーザーが見つかりません</response>
+          [HttpGet("{id}")]
+          [SwaggerOperation(Summary = "ユーザー詳細取得")]
+          [SwaggerResponse(200, "成功", typeof(UserDto))]
+          [SwaggerResponse(404, "ユーザーが見つかりません")]
+          public async Task<ActionResult<UserDto>> GetUser(
+              [FromRoute, SwaggerParameter("ユーザーID", Required = true)] int id)
+          {
+              var user = await _userService.GetUserAsync(id);
+              return user != null ? Ok(user) : NotFound();
+          }
+          
+          /// <summary>
+          /// 新しいユーザーを作成します
+          /// </summary>
+          /// <param name="request">ユーザー作成リクエスト</param>
+          /// <returns>作成されたユーザー</returns>
+          /// <response code="201">作成成功</response>
+          /// <response code="400">無効なリクエスト</response>
+          [HttpPost]
+          [SwaggerOperation(Summary = "ユーザー作成")]
+          [SwaggerResponse(201, "作成成功", typeof(UserDto))]
+          [SwaggerResponse(400, "無効なリクエスト")]
+          public async Task<ActionResult<UserDto>> CreateUser(
+              [FromBody, SwaggerRequestBody("ユーザー作成情報")] CreateUserRequest request)
+          {
+              if (!ModelState.IsValid)
+              {
+                  return BadRequest(ModelState);
+              }
+              
+              var user = await _userService.CreateUserAsync(request);
+              return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user);
+          }
+      }
+      
+      // DTOクラスでのドキュメント
+      /// <summary>
+      /// ユーザー情報
+      /// </summary>
+      public record UserDto
+      {
+          /// <summary>
+          /// ユーザーID
+          /// </summary>
+          /// <example>1</example>
+          public int Id { get; init; }
+          
+          /// <summary>
+          /// ユーザー名
+          /// </summary>
+          /// <example>山田太郎</example>
+          public string Name { get; init; } = string.Empty;
+          
+          /// <summary>
+          /// メールアドレス
+          /// </summary>
+          /// <example>yamada@example.com</example>
+          public string? Email { get; init; }
+          
+          /// <summary>
+          /// アクティブフラグ
+          /// </summary>
+          /// <example>true</example>
+          public bool IsActive { get; init; }
+      }
+      
+      /// <summary>
+      /// ユーザー作成リクエスト
+      /// </summary>
+      public class CreateUserRequest
+      {
+          /// <summary>
+          /// ユーザー名（必須）
+          /// </summary>
+          /// <example>山田太郎</example>
+          [Required]
+          [MaxLength(100)]
+          [SwaggerSchema("ユーザー名", Description = "100文字以内で入力してください")]
+          public string Name { get; set; } = string.Empty;
+          
+          /// <summary>
+          /// メールアドレス（オプション）
+          /// </summary>
+          /// <example>yamada@example.com</example>
+          [EmailAddress]
+          [SwaggerSchema("メールアドレス", Description = "有効なメールアドレス形式で入力してください")]
+          public string? Email { get; set; }
+      }
+
+validation:
+  fluentvalidation:
+    package: "FluentValidation.AspNetCore"
+    summary: "流暢なバリデーションライブラリ"
+    install: |
+      dotnet add package FluentValidation.AspNetCore
+      dotnet add package FluentValidation.DependencyInjectionExtensions
+    usage: |
+      using FluentValidation;
+      using FluentValidation.AspNetCore;
+      
+      // バリデーターの定義
+      public class CreateUserRequestValidator : AbstractValidator<CreateUserRequest>
+      {
+          public CreateUserRequestValidator()
+          {
+              RuleFor(x => x.Name)
+                  .NotEmpty()
+                  .WithMessage("名前は必須です")
+                  .MaximumLength(100)
+                  .WithMessage("名前は100文字以内で入力してください")
+                  .Must(BeValidName)
+                  .WithMessage("名前に無効な文字が含まれています");
+              
+              RuleFor(x => x.Email)
+                  .EmailAddress()
+                  .WithMessage("有効なメールアドレスを入力してください")
+                  .MustAsync(BeUniqueEmailAsync)
+                  .WithMessage("このメールアドレスは既に使用されています")
+                  .When(x => !string.IsNullOrEmpty(x.Email));
+              
+              RuleFor(x => x.Age)
+                  .GreaterThanOrEqualTo(0)
+                  .WithMessage("年齢は0以上である必要があります")
+                  .LessThan(150)
+                  .WithMessage("年齢は150未満である必要があります");
+              
+              RuleFor(x => x.Password)
+                  .NotEmpty()
+                  .WithMessage("パスワードは必須です")
+                  .MinimumLength(8)
+                  .WithMessage("パスワードは8文字以上である必要があります")
+                  .Matches(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]")
+                  .WithMessage("パスワードは大文字、小文字、数字、特殊文字を含む必要があります");
+              
+              RuleFor(x => x.ConfirmPassword)
+                  .Equal(x => x.Password)
+                  .WithMessage("パスワードが一致しません");
+          }
+          
+          private bool BeValidName(string name)
+          {
+              // カスタムバリデーションロジック
+              return !name.Any(char.IsDigit);
+          }
+          
+          private async Task<bool> BeUniqueEmailAsync(string email, CancellationToken cancellationToken)
+          {
+              // 非同期バリデーション例
+              await Task.Delay(100, cancellationToken);
+              // 実際の実装では、データベースでメールアドレスの重複をチェック
+              return email != "existing@example.com";
+          }
+      }
+      
+      // より複雑なバリデーター
+      public class UpdateUserRequestValidator : AbstractValidator<UpdateUserRequest>
+      {
+          public UpdateUserRequestValidator()
+          {
+              RuleFor(x => x.Id)
+                  .GreaterThan(0)
+                  .WithMessage("無効なユーザーIDです");
+              
+              RuleFor(x => x.Name)
+                  .NotEmpty()
+                  .MaximumLength(100);
+              
+              // 条件付きバリデーション
+              RuleFor(x => x.Email)
+                  .EmailAddress()
+                  .When(x => !string.IsNullOrEmpty(x.Email));
+              
+              // ネストしたオブジェクトのバリデーション
+              RuleFor(x => x.Address)
+                  .SetValidator(new AddressValidator())
+                  .When(x => x.Address != null);
+              
+              // コレクションのバリデーション
+              RuleForEach(x => x.PhoneNumbers)
+                  .SetValidator(new PhoneNumberValidator());
+              
+              // カスタムルール
+              RuleFor(x => x)
+                  .Must(HaveAtLeastOneContactMethod)
+                  .WithMessage("メールアドレスまたは電話番号のいずれかが必要です");
+          }
+          
+          private bool HaveAtLeastOneContactMethod(UpdateUserRequest request)
+          {
+              return !string.IsNullOrEmpty(request.Email) || 
+                     (request.PhoneNumbers?.Any() == true);
+          }
+      }
+      
+      public class AddressValidator : AbstractValidator<Address>
+      {
+          public AddressValidator()
+          {
+              RuleFor(x => x.Street)
+                  .NotEmpty()
+                  .WithMessage("住所は必須です");
+              
+              RuleFor(x => x.City)
+                  .NotEmpty()
+                  .WithMessage("市区町村は必須です");
+              
+              RuleFor(x => x.PostalCode)
+                  .Matches(@"^\d{3}-\d{4}$")
+                  .WithMessage("郵便番号は123-4567の形式で入力してください");
+          }
+      }
+      
+      // DI設定
+      public class Startup
+      {
+          public void ConfigureServices(IServiceCollection services)
+          {
+              services.AddControllers();
+              
+              // FluentValidation設定
+              services.AddFluentValidationAutoValidation();
+              services.AddFluentValidationClientsideAdapters();
+              services.AddValidatorsFromAssemblyContaining<CreateUserRequestValidator>();
+          }
+      }
+      
+      // コントローラーでの使用
+      [ApiController]
+      [Route("api/[controller]")]
+      public class UsersController : ControllerBase
+      {
+          private readonly IValidator<CreateUserRequest> _validator;
+          
+          public UsersController(IValidator<CreateUserRequest> validator)
+          {
+              _validator = validator;
+          }
+          
+          [HttpPost]
+          public async Task<ActionResult<UserDto>> CreateUser(CreateUserRequest request)
+          {
+              // 手動バリデーション（必要な場合）
+              var validationResult = await _validator.ValidateAsync(request);
+              if (!validationResult.IsValid)
+              {
+                  validationResult.AddToModelState(ModelState, null);
+                  return BadRequest(ModelState);
+              }
+              
+              // 処理続行...
+              return Ok();
+          }
+      }
+      
+      // カスタムバリデーションレスポンス
+      public class ValidationActionFilter : IActionFilter
+      {
+          public void OnActionExecuting(ActionExecutingContext context)
+          {
+              if (!context.ModelState.IsValid)
+              {
+                  var errors = context.ModelState
+                      .Where(x => x.Value?.Errors.Count > 0)
+                      .ToDictionary(
+                          kvp => kvp.Key,
+                          kvp => kvp.Value?.Errors.Select(e => e.ErrorMessage).ToArray()
+                      );
+                  
+                  var response = new ValidationErrorResponse
+                  {
+                      Message = "Validation failed",
+                      Errors = errors
+                  };
+                  
+                  context.Result = new BadRequestObjectResult(response);
+              }
+          }
+          
+          public void OnActionExecuted(ActionExecutedContext context) { }
+      }
+      
+      public class ValidationErrorResponse
+      {
+          public string Message { get; set; } = string.Empty;
+          public Dictionary<string, string[]> Errors { get; set; } = new();
+      }
+
+best_practices:
+  - "ASP.NET Coreで最小APIまたはコントローラーベースAPIを適切に選択し、プロジェクトの複雑さに応じて使い分ける"
+  - "Entity Framework CoreまたはDapperをデータアクセス戦略に応じて選択（EF Core: 複雑なドメイン、Dapper: 高性能が必要）"
+  - "MediatRでCQRSパターンを実装し、コマンドとクエリを分離して責任を明確化する"
+  - "AutoMapperでオブジェクトマッピングを自動化し、ボイラープレートコードを削減する"
+  - "Serilogで構造化ログを実装し、本番環境での問題分析とモニタリングを効率化する"
+  - "Pollyで一時的エラーに対するレジリエンス機能（再試行、サーキットブレーカー、タイムアウト）を実装する"
+  - "Swashbuckle/Swagger UIでAPI文書を自動生成し、チーム間の連携とAPIの理解を促進する"
+  - "FluentValidationで流暢で再利用可能なバリデーションルールを定義し、データ整合性を確保する"
+  - "依存性注入（DI）を適切に活用し、テスタブルで疎結合なアーキテクチャを構築する"
+  - "非同期プログラミング（async/await）を適切に使用し、スケーラビリティを向上させる"
+  - "nullable参照型を有効にして、null参照例外を設計時に防止する"
+  - "APIのバージョニング戦略を計画し、後方互換性を維持しながら進化させる"
+  - "認証・認可を適切に実装し（JWT、OAuth 2.0、Identity）、セキュリティを確保する"
+  - "中間件（middleware）を活用してクロスカッティング機能（ログ、認証、エラーハンドリング）を実装する"
+  - "設定管理（appsettings.json、環境変数）を適切に行い、環境ごとの差異を管理する"
+  - "ユニットテストとインテグレーションテストを包括的に実装し、コード品質を保証する"
+  - "パフォーマンス監視とメトリクス収集を実装し、アプリケーションの健全性を継続的に確認する"
