@@ -1,0 +1,370 @@
+id: "@minoru/react-dnd-treeview"
+name: "React DnD TreeView"
+version: "^3.4.4"
+homepage: "https://github.com/minop1205/react-dnd-treeview"
+npm: "@minoru/react-dnd-treeview"
+summary: "Drag-and-drop enabled React tree component with customizable node rendering via render props."
+description: |
+  A flexible and performant tree view component for React applications that supports:
+  - Drag and drop functionality for reordering nodes
+  - Custom node rendering through render props pattern
+  - Touch and pointer device support via MultiBackend
+  - Controlled and uncontrolled component patterns
+  - Accessibility features with keyboard navigation
+tags:
+  - tree-view
+  - drag-drop
+  - react-component
+  - hierarchical-data
+  - file-explorer
+install:
+  npm: "npm install react-dnd @minoru/react-dnd-treeview"
+  yarn: "yarn add react-dnd @minoru/react-dnd-treeview"
+  pnpm: "pnpm add react-dnd @minoru/react-dnd-treeview"
+  requirements:
+    - "React 16.8+ (hooks support required)"
+    - "react-dnd for drag-and-drop functionality"
+dependencies:
+  required:
+    react-dnd: "^14.0.0 || ^15.0.0 || ^16.0.0"
+  peer:
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+dataModel:
+  node:
+    id:
+      type: "number | string"
+      required: true
+      description: "Unique identifier for the node"
+    parent:
+      type: "number | string | 0"
+      required: true
+      description: "Parent node ID (0 for root level)"
+    text:
+      type: "string"
+      required: true
+      description: "Display text for the node"
+    droppable:
+      type: "boolean"
+      required: false
+      default: false
+      description: "Whether the node can accept dropped items"
+    data:
+      type: "any"
+      required: false
+      description: "Custom data attached to the node"
+api:
+  component: "Tree"
+  imports:
+    named:
+      - Tree
+      - MultiBackend
+      - getBackendOptions
+      - NodeModel
+      - DropOptions
+      - RenderParams
+  props:
+    required:
+      tree:
+        type: "NodeModel<T>[]"
+        description: "Array of tree nodes with hierarchical structure"
+      rootId:
+        type: "number | string"
+        description: "ID of the root node (typically 0)"
+      render:
+        type: "(node: NodeModel<T>, params: RenderParams) => ReactNode"
+        description: "Function to render each node with access to depth, isOpen, onToggle"
+      onDrop:
+        type: "(tree: NodeModel<T>[], options: DropOptions<T>) => void"
+        description: "Callback when node is dropped with updated tree structure"
+    optional:
+      extraAcceptTypes:
+        type: "string[]"
+        description: "Additional drag types to accept from external sources"
+      classes:
+        type: "Record<string, string> | ((node: NodeModel<T>, params: ClassParams) => string)"
+        description: "CSS classes for styling nodes"
+      listComponent:
+        type: "string | React.ComponentType"
+        default: "'ul'"
+        description: "Component or tag for list container"
+      listItemComponent:
+        type: "string | React.ComponentType"
+        default: "'li'"
+        description: "Component or tag for list items"
+      dragPreviewRender:
+        type: "(monitorProps: DragLayerMonitorProps<T>) => ReactNode"
+        description: "Custom drag preview renderer for touch devices"
+      canDrag:
+        type: "(node: NodeModel<T>) => boolean"
+        description: "Determines if a node can be dragged"
+      canDrop:
+        type: "(tree: NodeModel<T>[], options: DropOptions<T>) => boolean"
+        description: "Determines if a node can be dropped at location"
+      sort:
+        type: "(a: NodeModel<T>, b: NodeModel<T>) => number"
+        description: "Custom sort function for siblings"
+      insertDroppableFirst:
+        type: "boolean"
+        default: true
+        description: "Place droppable nodes before non-droppable siblings"
+      initialOpen:
+        type: "boolean | number[] | string[]"
+        description: "Initially expanded nodes (true for all, array for specific IDs)"
+      onChangeOpen:
+        type: "(nodeIds: Array<string | number>) => void"
+        description: "Callback when nodes are expanded/collapsed"
+      placeholderRender:
+        type: "(node: NodeModel<T>, params: PlaceholderRenderParams) => ReactNode"
+        description: "Custom placeholder during drag operations"
+types:
+  NodeModel:
+    description: "Base node structure for tree data"
+    properties:
+      id: "number | string"
+      parent: "number | string"
+      text: "string"
+      droppable: "boolean"
+      data: "T (generic type parameter)"
+  RenderParams:
+    description: "Parameters passed to render function"
+    properties:
+      depth: "number - nesting level of the node"
+      isOpen: "boolean - whether node is expanded"
+      isDropTarget: "boolean - whether node is current drop target"
+      isDragging: "boolean - whether node is being dragged"
+      onToggle: "() => void - toggle node expansion"
+  DropOptions:
+    description: "Information about drop operation"
+    properties:
+      dragSourceId: "number | string - ID of dragged node"
+      dropTargetId: "number | string - ID of drop target"
+      destinationIndex: "number - position in parent's children"
+
+usage:
+  basicExample: |
+    import { useState } from "react";
+    import {
+      Tree,
+      MultiBackend,
+      getBackendOptions
+    } from "@minoru/react-dnd-treeview";
+    import { DndProvider } from "react-dnd";
+
+    const initialData = [
+      { id: 1, parent: 0, droppable: true, text: "Folder 1" },
+      { id: 2, parent: 1, text: "File 1-1" }
+    ];
+
+    export default function App() {
+      const [treeData, setTreeData] = useState(initialData);
+      return (
+        <DndProvider backend={MultiBackend} options={getBackendOptions()}>
+          <Tree
+            tree={treeData}
+            rootId={0}
+            onDrop={setTreeData}
+            render={(node, { depth, isOpen, onToggle }) => (
+              <div style={{ marginLeft: depth * 10 }}>
+                {node.droppable && (
+                  <span onClick={onToggle}>{isOpen ? "[-]" : "[+]"}</span>
+                )}
+                {node.text}
+              </div>
+            )}
+          />
+        </DndProvider>
+      );
+    }
+features:
+  - "Hierarchical drag and drop with automatic tree restructuring"
+  - "Touch and mouse support via react-dnd MultiBackend"
+  - "Customizable node rendering with full control over appearance"
+  - "Keyboard navigation and accessibility support"
+  - "Virtual scrolling support for large trees"
+  - "Controlled and uncontrolled component patterns"
+  - "TypeScript support with full type definitions"
+
+bestPractices:
+  - "Use MultiBackend for cross-device compatibility (touch/pointer)"
+  - "Implement dragPreviewRender for better touch device experience"
+  - "Memoize render functions to optimize performance with large trees"
+  - "Use the canDrag and canDrop props for fine-grained control"
+  - "Consider virtual scrolling for trees with >1000 nodes"
+  - "Implement proper key handling for accessibility"
+
+performance:
+  optimization:
+    - "Use React.memo for custom node components"
+    - "Implement virtualization for large datasets"
+    - "Debounce onChangeOpen callbacks if persisting state"
+    - "Use production builds of react-dnd for better performance"
+  benchmarks:
+    - "Handles 10,000+ nodes with virtual scrolling"
+    - "Sub-100ms drag response time"
+    - "60fps animations during drag operations"
+
+compatibility:
+  browsers:
+    - "Chrome 90+"
+    - "Firefox 88+"
+    - "Safari 14+"
+    - "Edge 90+"
+  devices:
+    - "Desktop (mouse/trackpad)"
+    - "Mobile (touch)"
+    - "Tablets (touch/stylus)"
+
+accessibility:
+  - "ARIA attributes for tree structure"
+  - "Keyboard navigation (arrow keys, enter, space)"
+  - "Screen reader announcements for operations"
+  - "Focus management during interactions"
+
+troubleshooting:
+  commonIssues:
+    - issue: "Drag preview not showing on touch devices"
+      solution: "Implement dragPreviewRender prop with custom preview component"
+    - issue: "Performance issues with large trees"
+      solution: "Implement virtual scrolling or pagination"
+    - issue: "Nodes not dropping in correct position"
+      solution: "Ensure parent IDs are correctly set and validate canDrop logic"
+    - issue: "TypeScript errors with custom data"
+      solution: "Use generic type parameter: Tree<YourDataType>"
+examples:
+  advancedExample: |
+    // Advanced example with TypeScript and custom styling
+    import { useState, useCallback, useMemo } from "react";
+    import {
+      Tree,
+      NodeModel,
+      RenderParams,
+      DropOptions,
+      MultiBackend,
+      getBackendOptions
+    } from "@minoru/react-dnd-treeview";
+    import { DndProvider } from "react-dnd";
+    
+    interface CustomData {
+      fileType: 'folder' | 'file';
+      size?: number;
+      modified?: Date;
+    }
+    
+    type CustomNode = NodeModel<CustomData>;
+    
+    const FileExplorer: React.FC = () => {
+      const [treeData, setTreeData] = useState<CustomNode[]>([
+        {
+          id: 1,
+          parent: 0,
+          text: "Documents",
+          droppable: true,
+          data: { fileType: 'folder' }
+        },
+        {
+          id: 2,
+          parent: 1,
+          text: "report.pdf",
+          droppable: false,
+          data: { fileType: 'file', size: 1024000 }
+        }
+      ]);
+      
+      const [openNodes, setOpenNodes] = useState<Array<string | number>>([1]);
+      
+      const handleDrop = useCallback(
+        (newTree: CustomNode[], options: DropOptions<CustomData>) => {
+          setTreeData(newTree);
+          console.log('Dropped:', options);
+        },
+        []
+      );
+      
+      const renderNode = useCallback(
+        (node: CustomNode, { depth, isOpen, onToggle, isDragging }: RenderParams) => (
+          <div
+            className={`node-item $\{isDragging ? 'dragging' : ''\}`}
+            style={{ 
+              paddingLeft: depth * 24,
+              opacity: isDragging ? 0.5 : 1
+            }}
+          >
+            {node.droppable && (
+              <button onClick={onToggle} className="toggle-btn">
+                {isOpen ? '📂' : '📁'}
+              </button>
+            )}
+            <span className="node-text">
+              {node.data?.fileType === 'file' ? '📄' : ''} {node.text}
+            </span>
+            {node.data?.size && (
+              <span className="file-size">
+                {(node.data.size / 1024).toFixed(1)} KB
+              </span>
+            )}
+          </div>
+        ),
+        []
+      );
+      
+      const canDrop = useCallback(
+        (tree: CustomNode[], { dropTargetId, dragSourceId }: DropOptions<CustomData>) => {
+          const target = tree.find(node => node.id === dropTargetId);
+          return target?.data?.fileType === 'folder';
+        },
+        []
+      );
+      
+      return (
+        <DndProvider backend={MultiBackend} options={getBackendOptions()}>
+          <div className="file-explorer">
+            <Tree<CustomData>
+              tree={treeData}
+              rootId={0}
+              render={renderNode}
+              onDrop={handleDrop}
+              canDrop={canDrop}
+              initialOpen={openNodes}
+              onChangeOpen={setOpenNodes}
+              classes={{
+                root: 'tree-root',
+                container: 'tree-container',
+                dropTarget: 'drop-target-highlight'
+              }}
+              sort={(a, b) => {
+                // Folders first, then alphabetical
+                if (a.droppable !== b.droppable) {
+                  return a.droppable ? -1 : 1;
+                }
+                return a.text.localeCompare(b.text);
+              }}
+            />
+          </div>
+        </DndProvider>
+      );
+    };
+
+references:
+  documentation: "https://github.com/minop1205/react-dnd-treeview/blob/main/README.md"
+  demo: "https://minop1205.github.io/react-dnd-treeview/"
+  api: "https://github.com/minop1205/react-dnd-treeview/blob/main/docs/api.md"
+  examples: "https://github.com/minop1205/react-dnd-treeview/tree/main/examples"
+  changelog: "https://github.com/minop1205/react-dnd-treeview/blob/main/CHANGELOG.md"
+  issues: "https://github.com/minop1205/react-dnd-treeview/issues"
+relatedPackages:
+  - "react-dnd: Core drag and drop library"
+  - "react-sortable-tree: Alternative tree component with built-in features"
+  - "rc-tree: Ant Design tree component"
+  - "react-arborist: File-tree component with virtualization"
+
+license: "MIT"
+author: "minop1205"
+maintainers:
+  - "minop1205"
+lastReviewed: "2025-08-14"
+metadata:
+  npmWeeklyDownloads: "~5000"
+  githubStars: "400+"
+  lastPublished: "2024-03"
+  bundleSize: "~45KB minified"

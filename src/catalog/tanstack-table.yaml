@@ -1,0 +1,492 @@
+id: "@tanstack/react-table"
+name: "TanStack Table"
+version: "^8.11.0"
+homepage: "https://tanstack.com/table/v8"
+github: "https://github.com/TanStack/table"
+npm: "@tanstack/react-table"
+summary: "Headless UI library for building powerful tables with complete control over markup and styles."
+description: |
+  TanStack Table is a headless table library that provides complete control over markup and styles
+  while handling the complex logic of tables. It's framework-agnostic with adapters for React, Vue,
+  Solid, and Svelte. Features include sorting, filtering, pagination, grouping, and virtualization.
+  Being headless means you have full control over styling with any CSS framework.
+tags:
+  - table
+  - data-grid
+  - headless-ui
+  - react
+  - typescript
+  - virtualization
+  - sorting
+
+install:
+  npm: |
+    npm install @tanstack/react-table
+    # For virtualization (optional)
+    npm install @tanstack/react-virtual
+  yarn: |
+    yarn add @tanstack/react-table
+    yarn add @tanstack/react-virtual
+  pnpm: |
+    pnpm add @tanstack/react-table
+    pnpm add @tanstack/react-virtual
+
+dependencies:
+  required:
+    "@tanstack/react-table": "^8.11.0"
+    react: "^16.8.0 || ^17.0.0 || ^18.0.0"
+    react-dom: "^16.8.0 || ^17.0.0 || ^18.0.0"
+  optional:
+    "@tanstack/react-virtual": "^3.0.0"
+    "@tanstack/match-sorter-utils": "^8.11.0"
+
+api:
+  core:
+    useReactTable:
+      description: "Main hook for table functionality"
+      options:
+        data: "Array of row data"
+        columns: "Column definitions"
+        getCoreRowModel: "Required row model"
+        getSortedRowModel: "Sorting functionality"
+        getFilteredRowModel: "Filtering functionality"
+        getPaginationRowModel: "Pagination functionality"
+    
+    createColumnHelper:
+      description: "Type-safe column definition helper"
+      methods:
+        accessor: "Define data accessor column"
+        display: "Define display-only column"
+        group: "Define column group"
+    
+    flexRender:
+      description: "Render cells with proper types"
+      usage: "flexRender(cell.column.columnDef.cell, cell.getContext())"
+
+usage:
+  basicTable: |
+    import {
+      createColumnHelper,
+      flexRender,
+      getCoreRowModel,
+      useReactTable,
+    } from '@tanstack/react-table'
+    import { useMemo } from 'react'
+    
+    type Person = {
+      id: number
+      firstName: string
+      lastName: string
+      age: number
+      email: string
+      status: 'active' | 'inactive'
+    }
+    
+    const columnHelper = createColumnHelper<Person>()
+    
+    export function BasicTable() {
+      const data = useMemo<Person[]>(
+        () => [
+          { id: 1, firstName: 'John', lastName: 'Doe', age: 30, email: 'john@example.com', status: 'active' },
+          { id: 2, firstName: 'Jane', lastName: 'Smith', age: 25, email: 'jane@example.com', status: 'inactive' },
+          { id: 3, firstName: 'Bob', lastName: 'Johnson', age: 35, email: 'bob@example.com', status: 'active' },
+        ],
+        []
+      )
+      
+      const columns = useMemo(
+        () => [
+          columnHelper.accessor('firstName', {
+            header: 'First Name',
+            cell: info => info.getValue(),
+          }),
+          columnHelper.accessor('lastName', {
+            header: 'Last Name',
+            cell: info => info.getValue(),
+          }),
+          columnHelper.accessor('age', {
+            header: 'Age',
+            cell: info => info.getValue(),
+          }),
+          columnHelper.accessor('email', {
+            header: 'Email',
+            cell: info => <a href={`mailto:${info.getValue()}`}>{info.getValue()}</a>,
+          }),
+          columnHelper.accessor('status', {
+            header: 'Status',
+            cell: info => (
+              <span className={`badge ${info.getValue() === 'active' ? 'badge-success' : 'badge-warning'}`}>
+                {info.getValue()}
+              </span>
+            ),
+          }),
+        ],
+        []
+      )
+      
+      const table = useReactTable({
+        data,
+        columns,
+        getCoreRowModel: getCoreRowModel(),
+      })
+      
+      return (
+        <table className="table">
+          <thead>
+            {table.getHeaderGroups().map(headerGroup => (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map(header => (
+                  <th key={header.id}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(header.column.columnDef.header, header.getContext())}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody>
+            {table.getRowModel().rows.map(row => (
+              <tr key={row.id}>
+                {row.getVisibleCells().map(cell => (
+                  <td key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )
+    }
+  
+  sortingAndFiltering: |
+    import {
+      createColumnHelper,
+      flexRender,
+      getCoreRowModel,
+      getSortedRowModel,
+      getFilteredRowModel,
+      useReactTable,
+      SortingState,
+      ColumnFiltersState,
+    } from '@tanstack/react-table'
+    import { useState, useMemo } from 'react'
+    
+    export function SortableFilterableTable() {
+      const [sorting, setSorting] = useState<SortingState>([])
+      const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+      const [globalFilter, setGlobalFilter] = useState('')
+      
+      const columns = useMemo(
+        () => [
+          columnHelper.accessor('name', {
+            header: ({ column }) => (
+              <button
+                onClick={column.getToggleSortingHandler()}
+                className={column.getIsSorted() ? 'sorted' : ''}
+              >
+                Name
+                {{
+                  asc: ' 🔼',
+                  desc: ' 🔽',
+                }[column.getIsSorted() as string] ?? ' ↕️'}
+              </button>
+            ),
+            cell: info => info.getValue(),
+            filterFn: 'includesString',
+          }),
+          columnHelper.accessor('age', {
+            header: 'Age',
+            cell: info => info.getValue(),
+            filterFn: 'inNumberRange',
+          }),
+          columnHelper.accessor('status', {
+            header: 'Status',
+            cell: info => info.getValue(),
+            filterFn: (row, id, value) => {
+              return value.includes(row.getValue(id))
+            },
+          }),
+        ],
+        []
+      )
+      
+      const table = useReactTable({
+        data,
+        columns,
+        state: {
+          sorting,
+          columnFilters,
+          globalFilter,
+        },
+        onSortingChange: setSorting,
+        onColumnFiltersChange: setColumnFilters,
+        onGlobalFilterChange: setGlobalFilter,
+        getCoreRowModel: getCoreRowModel(),
+        getSortedRowModel: getSortedRowModel(),
+        getFilteredRowModel: getFilteredRowModel(),
+      })
+      
+      return (
+        <div>
+          <input
+            value={globalFilter ?? ''}
+            onChange={e => setGlobalFilter(e.target.value)}
+            placeholder="Search all columns..."
+            className="global-filter"
+          />
+          <table>
+            <thead>
+              {table.getHeaderGroups().map(headerGroup => (
+                <tr key={headerGroup.id}>
+                  {headerGroup.headers.map(header => (
+                    <th key={header.id}>
+                      <div>
+                        {flexRender(header.column.columnDef.header, header.getContext())}
+                      </div>
+                      {header.column.getCanFilter() ? (
+                        <input
+                          value={(header.column.getFilterValue() ?? '') as string}
+                          onChange={e => header.column.setFilterValue(e.target.value)}
+                          placeholder={`Filter ${header.column.id}...`}
+                          className="column-filter"
+                        />
+                      ) : null}
+                    </th>
+                  ))}
+                </tr>
+              ))}
+            </thead>
+            <tbody>
+              {table.getRowModel().rows.map(row => (
+                <tr key={row.id}>
+                  {row.getVisibleCells().map(cell => (
+                    <td key={cell.id}>
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )
+    }
+  
+  paginationExample: |
+    import {
+      useReactTable,
+      getPaginationRowModel,
+      PaginationState,
+    } from '@tanstack/react-table'
+    
+    export function PaginatedTable() {
+      const [pagination, setPagination] = useState<PaginationState>({
+        pageIndex: 0,
+        pageSize: 10,
+      })
+      
+      const table = useReactTable({
+        data,
+        columns,
+        state: {
+          pagination,
+        },
+        onPaginationChange: setPagination,
+        getCoreRowModel: getCoreRowModel(),
+        getPaginationRowModel: getPaginationRowModel(),
+        pageCount: Math.ceil(data.length / pagination.pageSize),
+      })
+      
+      return (
+        <div>
+          <table>{/* ... table markup ... */}</table>
+          <div className="pagination">
+            <button
+              onClick={() => table.setPageIndex(0)}
+              disabled={!table.getCanPreviousPage()}
+            >
+              {'<<'}
+            </button>
+            <button
+              onClick={() => table.previousPage()}
+              disabled={!table.getCanPreviousPage()}
+            >
+              {'<'}
+            </button>
+            <span>
+              Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
+            </span>
+            <button
+              onClick={() => table.nextPage()}
+              disabled={!table.getCanNextPage()}
+            >
+              {'>'}
+            </button>
+            <button
+              onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+              disabled={!table.getCanNextPage()}
+            >
+              {'>>'}
+            </button>
+            <select
+              value={table.getState().pagination.pageSize}
+              onChange={e => table.setPageSize(Number(e.target.value))}
+            >
+              {[10, 20, 30, 40, 50].map(pageSize => (
+                <option key={pageSize} value={pageSize}>
+                  Show {pageSize}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+      )
+    }
+  
+  rowSelection: |
+    import { useReactTable, RowSelectionState } from '@tanstack/react-table'
+    
+    export function SelectableTable() {
+      const [rowSelection, setRowSelection] = useState<RowSelectionState>({})
+      
+      const columns = useMemo(
+        () => [
+          {
+            id: 'select',
+            header: ({ table }) => (
+              <input
+                type="checkbox"
+                checked={table.getIsAllRowsSelected()}
+                indeterminate={table.getIsSomeRowsSelected()}
+                onChange={table.getToggleAllRowsSelectedHandler()}
+              />
+            ),
+            cell: ({ row }) => (
+              <input
+                type="checkbox"
+                checked={row.getIsSelected()}
+                disabled={!row.getCanSelect()}
+                onChange={row.getToggleSelectedHandler()}
+              />
+            ),
+          },
+          // ... other columns
+        ],
+        []
+      )
+      
+      const table = useReactTable({
+        data,
+        columns,
+        state: {
+          rowSelection,
+        },
+        onRowSelectionChange: setRowSelection,
+        getCoreRowModel: getCoreRowModel(),
+        enableRowSelection: true, // or a function for row-specific
+      })
+      
+      const selectedRows = table.getFilteredSelectedRowModel().rows
+      
+      return (
+        <div>
+          <div>Selected: {selectedRows.length} rows</div>
+          <table>{/* ... */}</table>
+        </div>
+      )
+    }
+
+bestPractices:
+  - "Memoize columns and data to prevent unnecessary re-renders"
+  - "Use column helpers for type-safe column definitions"
+  - "Implement virtualization for large datasets"
+  - "Keep table state in React state, not in the table instance"
+  - "Use proper TypeScript generics for row data types"
+  - "Implement proper key props for all mapped elements"
+  - "Consider using CSS-in-JS or Tailwind for styling flexibility"
+
+performance:
+  optimization:
+    - "Memoization: Use useMemo for data and columns"
+    - "Virtualization: Use @tanstack/react-virtual for large datasets"
+    - "Pagination: Reduce rendered rows"
+    - "Lazy loading: Load data on demand"
+    - "Debouncing: Debounce filter and search inputs"
+
+features:
+  core:
+    - "Sorting (single and multi-column)"
+    - "Filtering (column and global)"
+    - "Pagination"
+    - "Row selection (single and multi)"
+    - "Column visibility toggle"
+    - "Column reordering"
+    - "Column resizing"
+  
+  advanced:
+    - "Row grouping and aggregation"
+    - "Row expansion (tree data)"
+    - "Column pinning (freeze columns)"
+    - "Virtualization support"
+    - "Custom cell renderers"
+    - "Editable cells"
+
+styling:
+  approaches:
+    - "CSS Modules for scoped styles"
+    - "Tailwind CSS for utility classes"
+    - "Styled Components for CSS-in-JS"
+    - "CSS frameworks (Bootstrap, Bulma)"
+  
+  examples: |
+    /* Tailwind CSS example */
+    <table className="min-w-full divide-y divide-gray-200">
+      <thead className="bg-gray-50">
+        <tr>
+          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            {/* header content */}
+          </th>
+        </tr>
+      </thead>
+    </table>
+
+troubleshooting:
+  commonIssues:
+    - issue: "Table not re-rendering on data change"
+      solution: "Ensure data is memoized and reference changes on updates"
+    - issue: "Sorting not working"
+      solution: "Import and use getSortedRowModel, check column sort configuration"
+    - issue: "TypeScript errors"
+      solution: "Use createColumnHelper with proper generic type"
+    - issue: "Performance issues with large datasets"
+      solution: "Implement pagination or virtualization"
+
+ecosystem:
+  adapters:
+    - "@tanstack/vue-table: Vue adapter"
+    - "@tanstack/solid-table: Solid adapter"
+    - "@tanstack/svelte-table: Svelte adapter"
+  
+  related:
+    - "@tanstack/react-virtual: Virtualization"
+    - "@tanstack/match-sorter-utils: Advanced filtering"
+
+references:
+  documentation: "https://tanstack.com/table/v8/docs/introduction"
+  examples: "https://tanstack.com/table/v8/docs/examples/react/basic"
+  api: "https://tanstack.com/table/v8/docs/api/core/table"
+  migration: "https://tanstack.com/table/v8/docs/guide/migrating"
+  github: "https://github.com/TanStack/table"
+  discord: "https://discord.com/invite/WrRKjPJ"
+
+license: "MIT"
+author: "Tanner Linsley"
+maintainers:
+  - "TanStack Team"
+lastReviewed: "2025-08-14"
+metadata:
+  npmWeeklyDownloads: "~2500000"
+  githubStars: "24000+"
+  bundleSize: "~14KB minified + gzipped"

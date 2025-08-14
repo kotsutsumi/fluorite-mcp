@@ -1,0 +1,53 @@
+id: "posthog"
+name: "PostHog"
+homepage: "https://posthog.com/docs"
+npm: "posthog-js, @posthog/nextjs"
+summary: "プロダクト分析/イベント計測、フィーチャーフラグ、セッションリプレイを提供するオープンソース/クラウドプラットフォーム。Next.js 統合あり。"
+install:
+  steps:
+    - "npm i posthog-js"
+    - "# App Router 用に @posthog/nextjs も利用可"
+    - "# NEXT_PUBLIC_POSTHOG_KEY, NEXT_PUBLIC_POSTHOG_HOST を設定"
+nextjs:
+  provider: |
+    'use client'
+    import posthog from 'posthog-js'
+    import { useEffect } from 'react'
+
+    export function PostHogProvider({ children }: { children: React.ReactNode }) {
+      useEffect(() => {
+        if (process.env.NODE_ENV === 'development') return
+        posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
+          api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://app.posthog.com',
+          capture_pageview: true,
+        })
+      }, [])
+      return <>{children}</>
+    }
+  capture: |
+    'use client'
+    import posthog from 'posthog-js'
+    export function BuyButton() {
+      return <button onClick={() => posthog.capture('buy_clicked', { plan: 'pro' })}>Buy</button>
+    }
+  flags: |
+    'use client'
+    import posthog from 'posthog-js'
+    export function Feature() {
+      const enabled = posthog.isFeatureEnabled('new-ui')
+      return enabled ? <NewUI/> : <OldUI/>
+    }
+server:
+  apiCapture: |
+    // サーバーでのイベント（簡易）: REST API を利用
+    // fetch('https://app.posthog.com/capture/', { method: 'POST', body: JSON.stringify({...}) })
+bestPractices:
+  - "開発環境では送信を無効化、または別プロジェクトに分離"
+  - "個人情報はプロパティから除去し、匿名化/同意管理と両立"
+  - "Feature Flags はロールアウト戦略（%/国/ユーザーセグメント）を設計"
+references:
+  - "Docs: https://posthog.com/docs"
+  - "Next.js: https://posthog.com/docs/libraries/next-js"
+license: "MIT"
+lastReviewed: "2025-08-14"
+

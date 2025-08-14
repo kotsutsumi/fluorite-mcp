@@ -1,0 +1,136 @@
+id: "@mui/x-data-grid"
+name: "MUI X Data Grid"
+homepage: "https://mui.com/x/react-data-grid/"
+npm: "@mui/x-data-grid"
+summary: "MUI 公式の高速データグリッド。仮想化・ソート・フィルタ・ページネーション等を提供（MIT）。Pro/Premium で列グループ化/集計/ツリー表示など高機能が解放。"
+install:
+  steps:
+    - "npm i @mui/material @emotion/react @emotion/styled"
+    - "npm i @mui/x-data-grid"
+peerDependencies:
+  - react
+  - react-dom
+  - @mui/material
+api:
+  component: "<DataGrid rows columns ...props />"
+  props:
+    - "rows: Array<{ id: GridRowId } & T>"
+    - "columns: GridColDef[]"
+    - "paginationModel / onPaginationModelChange"
+    - "sortModel / onSortModelChange"
+    - "filterModel / onFilterModelChange"
+    - "checkboxSelection, disableRowSelectionOnClick"
+    - "rowSelectionModel / onRowSelectionModelChange"
+usage:
+  basic: |
+    import * as React from 'react'
+    import { DataGrid, GridColDef } from '@mui/x-data-grid'
+
+    const rows = [
+      { id: 1, name: 'Alice', age: 28 },
+      { id: 2, name: 'Bob', age: 35 },
+    ]
+    const columns: GridColDef[] = [
+      { field: 'name', headerName: 'Name', flex: 1 },
+      { field: 'age', headerName: 'Age', width: 120, type: 'number' },
+    ]
+
+    export default function GridBasic() {
+      return (
+        <div style={{ height: 400 }}>
+          <DataGrid rows={rows} columns={columns} pageSizeOptions={[5, 10, 25]} />
+        </div>
+      )
+    }
+  clientSideFeatures: |
+    import { DataGrid, GridColDef } from '@mui/x-data-grid'
+
+    const columns: GridColDef[] = [
+      { field: 'name', headerName: 'Name', flex: 1, sortable: true },
+      { field: 'age', headerName: 'Age', width: 120, type: 'number' },
+    ]
+
+    export function WithSelection({ rows }: { rows: any[] }) {
+      const [sel, setSel] = React.useState([])
+      return (
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          checkboxSelection
+          rowSelectionModel={sel}
+          onRowSelectionModelChange={(m) => setSel(m)}
+        />
+      )
+    }
+  serverSideHandlers: |
+    import * as React from 'react'
+    import { DataGrid, GridColDef, GridPaginationModel, GridSortModel, GridFilterModel } from '@mui/x-data-grid'
+
+    export function ServerGrid() {
+      const [rows, setRows] = React.useState<any[]>([])
+      const [rowCount, setRowCount] = React.useState(0)
+      const [paginationModel, setPaginationModel] = React.useState<GridPaginationModel>({ page: 0, pageSize: 25 })
+      const [sortModel, setSortModel] = React.useState<GridSortModel>([])
+      const [filterModel, setFilterModel] = React.useState<GridFilterModel>({ items: [] })
+
+      React.useEffect(() => {
+        const params = new URLSearchParams({
+          page: String(paginationModel.page),
+          pageSize: String(paginationModel.pageSize),
+          sort: JSON.stringify(sortModel),
+          filter: JSON.stringify(filterModel),
+        })
+        fetch(`/api/users?${params}`).then(r => r.json()).then(d => {
+          setRows(d.rows)
+          setRowCount(d.total)
+        })
+      }, [paginationModel, sortModel, filterModel])
+
+      const columns: GridColDef[] = [
+        { field: 'name', flex: 1 },
+        { field: 'age', type: 'number', width: 120 },
+      ]
+
+      return (
+        <div style={{ height: 480 }}>
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            paginationMode="server"
+            rowCount={rowCount}
+            paginationModel={paginationModel}
+            onPaginationModelChange={setPaginationModel}
+            sortingMode="server"
+            sortModel={sortModel}
+            onSortModelChange={setSortModel}
+            filterMode="server"
+            filterModel={filterModel}
+            onFilterModelChange={setFilterModel}
+          />
+        </div>
+      )
+    }
+  customRender: |
+    import { DataGrid, GridColDef } from '@mui/x-data-grid'
+
+    const columns: GridColDef[] = [
+      { field: 'name', headerName: 'User', flex: 1, renderCell: (params) => <a href={`/users/${params.id}`}>{params.value}</a> },
+      { field: 'amount', headerName: 'Amount', type: 'number', valueFormatter: ({ value }) => new Intl.NumberFormat('ja-JP').format(value as number) },
+    ]
+bestPractices:
+  - "rows/columns はメモ化し、安定した参照を維持して不要な再レンダーを回避"
+  - "各行に一意な id を付与（getRowId を使うか、id フィールドを提供）"
+  - "表示整形は valueFormatter を優先、複雑な UI は renderCell"
+  - "サーバーサイドでは paginationMode/sortingMode/filterMode='server' を適切に組み合わせる"
+  - "大規模データはページングや仮想化前提で設計する"
+notes:
+  - "MIT ライセンス（@mui/x-data-grid）。Pro/Premium は別パッケージ＆ライセンス"
+  - "MUI Theme と統合されるため、見た目はテーマで一元管理可能"
+  - "SSR 互換（Next.js など）だが、仮想化の高さ計算はクライアントで最終調整される"
+references:
+  - "Docs: https://mui.com/x/react-data-grid/"
+  - "Columns: https://mui.com/x/react-data-grid/columns/"
+  - "Filtering/Sorting: https://mui.com/x/react-data-grid/filtering/"
+license: "MIT"
+lastReviewed: "2025-08-14"
+

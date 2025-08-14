@@ -1,0 +1,476 @@
+id: "@prisma/client"
+name: "Prisma"
+version: "^5.8.0"
+homepage: "https://www.prisma.io"
+github: "https://github.com/prisma/prisma"
+npm: "@prisma/client"
+summary: "Next-generation ORM with type-safe database access, migrations, and powerful query builder for Node.js and TypeScript."
+description: |
+  Prisma is a next-generation ORM that provides type-safe database access through an auto-generated query builder.
+  It supports PostgreSQL, MySQL, SQLite, SQL Server, MongoDB, and CockroachDB. Features include declarative data
+  modeling with Prisma Schema, automated migrations, type-safe queries with auto-completion, and a powerful
+  GUI for database management (Prisma Studio).
+tags:
+  - orm
+  - database
+  - typescript
+  - postgresql
+  - mysql
+  - sqlite
+  - mongodb
+  - migrations
+install:
+  npm: |
+    npm install @prisma/client
+    npm install -D prisma
+    # Initialize Prisma
+    npx prisma init
+  yarn: |
+    yarn add @prisma/client
+    yarn add -D prisma
+    yarn prisma init
+  pnpm: |
+    pnpm add @prisma/client
+    pnpm add -D prisma
+    pnpm exec prisma init
+
+dependencies:
+  required:
+    "@prisma/client": "^5.8.0"
+  devDependencies:
+    "prisma": "^5.8.0"
+  optional:
+    "@prisma/migrate": "^5.8.0"
+    "@prisma/studio": "^0.494.0"
+
+api:
+  core:
+    PrismaClient:
+      description: "Main database client"
+      methods:
+        - "$connect(): Connect to database"
+        - "$disconnect(): Disconnect from database"
+        - "$transaction(): Database transactions"
+        - "$queryRaw(): Raw SQL queries"
+        - "$extends(): Client extensions"
+    
+    modelOperations:
+      findUnique: "Find single record by unique field"
+      findFirst: "Find first matching record"
+      findMany: "Find multiple records"
+      create: "Create new record"
+      update: "Update existing record"
+      upsert: "Create or update record"
+      delete: "Delete record"
+      deleteMany: "Delete multiple records"
+      count: "Count records"
+      aggregate: "Aggregate operations"
+      groupBy: "Group records"
+usage:
+  schema: |
+    // prisma/schema.prisma - Define your data model
+    generator client {
+      provider = "prisma-client-js"
+    }
+    
+    datasource db {
+      provider = "postgresql"
+      url      = env("DATABASE_URL")
+    }
+    
+    model User {
+      id        String   @id @default(cuid())
+      email     String   @unique
+      name      String?
+      bio       String?  @db.Text
+      role      Role     @default(USER)
+      posts     Post[]
+      profile   Profile?
+      createdAt DateTime @default(now())
+      updatedAt DateTime @updatedAt
+      
+      @@index([email])
+    }
+    
+    model Profile {
+      id     String @id @default(cuid())
+      bio    String?
+      avatar String?
+      user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+      userId String @unique
+    }
+    
+    model Post {
+      id        String   @id @default(cuid())
+      title     String
+      content   String?  @db.Text
+      published Boolean  @default(false)
+      author    User     @relation(fields: [authorId], references: [id])
+      authorId  String
+      tags      Tag[]
+      createdAt DateTime @default(now())
+      updatedAt DateTime @updatedAt
+      
+      @@index([authorId, published])
+    }
+    
+    model Tag {
+      id    String @id @default(cuid())
+      name  String @unique
+      posts Post[]
+    }
+    
+    enum Role {
+      USER
+      ADMIN
+      MODERATOR
+    }
+  
+  migration: |
+    # Create and apply migrations
+    npx prisma migrate dev --name add_user_model
+    
+    # Apply migrations in production
+    npx prisma migrate deploy
+    
+    # Generate Prisma Client
+    npx prisma generate
+    
+    # Reset database (development only)
+    npx prisma migrate reset
+  clientSingleton: |
+    // lib/prisma.ts - Singleton instance for Next.js
+    import { PrismaClient } from '@prisma/client'
+    
+    const globalForPrisma = globalThis as unknown as {
+      prisma: PrismaClient | undefined
+    }
+    
+    export const prisma =
+      globalForPrisma.prisma ??
+      new PrismaClient({
+        log: process.env.NODE_ENV === 'development' 
+          ? ['query', 'error', 'warn'] 
+          : ['error'],
+      })
+    
+    if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
+  
+  basicQueries: |
+    // Basic CRUD operations
+    import { prisma } from '@/lib/prisma'
+    
+    // Create
+    const user = await prisma.user.create({
+      data: {
+        email: 'alice@example.com',
+        name: 'Alice',
+        posts: {
+          create: [
+            { title: 'First Post', content: 'Hello World' },
+          ],
+        },
+      },
+      include: {
+        posts: true,
+      },
+    })
+    
+    // Read
+    const users = await prisma.user.findMany({
+      where: {
+        email: {
+          contains: 'example.com',
+        },
+        posts: {
+          some: {
+            published: true,
+          },
+        },
+      },
+      include: {
+        posts: {
+          where: {
+            published: true,
+          },
+        },
+        profile: true,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+      take: 10,
+      skip: 0,
+    })
+    
+    // Update
+    const updatedUser = await prisma.user.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        name: 'Alice Smith',
+        posts: {
+          updateMany: {
+            where: {
+              published: false,
+            },
+            data: {
+              published: true,
+            },
+          },
+        },
+      },
+    })
+    
+    // Delete
+    const deletedUser = await prisma.user.delete({
+      where: {
+        id: userId,
+      },
+    })
+  
+  advancedQueries: |
+    // Advanced queries and operations
+    import { prisma } from '@/lib/prisma'
+    
+    // Transactions
+    const [user, totalPosts] = await prisma.$transaction([
+      prisma.user.create({
+        data: { email: 'test@example.com', name: 'Test' },
+      }),
+      prisma.post.count(),
+    ])
+    
+    // Interactive transactions
+    await prisma.$transaction(async (tx) => {
+      const user = await tx.user.create({
+        data: { email: 'alice@example.com', name: 'Alice' },
+      })
+      
+      if (await checkSomething(user)) {
+        await tx.post.create({
+          data: {
+            title: 'Welcome',
+            authorId: user.id,
+          },
+        })
+      }
+    })
+    
+    // Raw SQL
+    const result = await prisma.$queryRaw`
+      SELECT * FROM "User" 
+      WHERE email = ${email} 
+      LIMIT 1
+    `
+    
+    // Aggregations
+    const aggregations = await prisma.user.aggregate({
+      _count: {
+        _all: true,
+      },
+      _avg: {
+        age: true,
+      },
+    })
+    
+    // Group by
+    const grouped = await prisma.post.groupBy({
+      by: ['published'],
+      _count: {
+        _all: true,
+      },
+    })
+  
+  nextjsRoutes: |
+    // app/api/users/route.ts - API Route Handler
+    import { NextRequest, NextResponse } from 'next/server'
+    import { prisma } from '@/lib/prisma'
+    import { z } from 'zod'
+    
+    const createUserSchema = z.object({
+      email: z.string().email(),
+      name: z.string().min(1),
+    })
+    
+    export async function GET(req: NextRequest) {
+      try {
+        const searchParams = req.nextUrl.searchParams
+        const page = Number(searchParams.get('page')) || 1
+        const limit = Number(searchParams.get('limit')) || 10
+        
+        const users = await prisma.user.findMany({
+          include: {
+            _count: {
+              select: { posts: true },
+            },
+          },
+          skip: (page - 1) * limit,
+          take: limit,
+          orderBy: { createdAt: 'desc' },
+        })
+        
+        const total = await prisma.user.count()
+        
+        return NextResponse.json({
+          users,
+          pagination: {
+            page,
+            limit,
+            total,
+            pages: Math.ceil(total / limit),
+          },
+        })
+      } catch (error) {
+        return NextResponse.json(
+          { error: 'Failed to fetch users' },
+          { status: 500 }
+        )
+      }
+    }
+    
+    export async function POST(req: NextRequest) {
+      try {
+        const body = await req.json()
+        const data = createUserSchema.parse(body)
+        
+        const user = await prisma.user.create({
+          data,
+        })
+        
+        return NextResponse.json(user, { status: 201 })
+      } catch (error) {
+        if (error instanceof z.ZodError) {
+          return NextResponse.json(
+            { error: 'Invalid data', details: error.errors },
+            { status: 400 }
+          )
+        }
+        
+        return NextResponse.json(
+          { error: 'Failed to create user' },
+          { status: 500 }
+        )
+      }
+    }
+  
+  serverComponents: |
+    // app/users/page.tsx - Server Component
+    import { prisma } from '@/lib/prisma'
+    import { Suspense } from 'react'
+    
+    async function UserList() {
+      const users = await prisma.user.findMany({
+        include: {
+          posts: {
+            where: {
+              published: true,
+            },
+            select: {
+              id: true,
+              title: true,
+            },
+          },
+          profile: true,
+        },
+        orderBy: {
+          createdAt: 'desc',
+        },
+      })
+      
+      return (
+        <div className="grid gap-4">
+          {users.map((user) => (
+            <div key={user.id} className="border p-4 rounded">
+              <h3 className="font-bold">{user.name}</h3>
+              <p className="text-sm text-gray-600">{user.email}</p>
+              <p className="mt-2">
+                {user.posts.length} published posts
+              </p>
+            </div>
+          ))}
+        </div>
+      )
+    }
+    
+    export default function UsersPage() {
+      return (
+        <div className="container mx-auto p-4">
+          <h1 className="text-2xl font-bold mb-4">Users</h1>
+          <Suspense fallback={<div>Loading users...</div>}>
+            <UserList />
+          </Suspense>
+        </div>
+      )
+    }
+bestPractices:
+  - "Use singleton pattern for PrismaClient in Next.js"
+  - "Enable query logging in development only"
+  - "Use transactions for related operations"
+  - "Implement proper error handling and retries"
+  - "Use select to fetch only needed fields"
+  - "Index frequently queried fields"
+  - "Use connection pooling in production"
+  - "Implement soft deletes for audit trails"
+
+performance:
+  optimization:
+    - "Connection pooling: Configure pool size"
+    - "Query optimization: Use select and include wisely"
+    - "Pagination: Implement cursor-based pagination"
+    - "N+1 prevention: Use include for relations"
+    - "Raw queries: For complex operations"
+  
+  edgeRuntime:
+    - "Use Prisma Accelerate for Edge Runtime"
+    - "Consider Prisma Data Proxy"
+    - "Use connection pooling"
+
+patterns:
+  repository:
+    - "Abstract database logic in repositories"
+    - "Type-safe query builders"
+    - "Reusable query fragments"
+  
+  softDelete:
+    - "Add deletedAt field"
+    - "Filter by default in queries"
+    - "Implement restoration logic"
+
+troubleshooting:
+  commonIssues:
+    - issue: "Connection pool exhausted"
+      solution: "Increase connection_limit in DATABASE_URL or use pgbouncer"
+    - issue: "Prisma Client not generated"
+      solution: "Run npx prisma generate after schema changes"
+    - issue: "Migration failed"
+      solution: "Check migration SQL, use --create-only to review"
+    - issue: "Type errors after schema change"
+      solution: "Regenerate client with npx prisma generate"
+
+tools:
+  studio: "npx prisma studio - GUI for database"
+  migrate: "npx prisma migrate - Migration management"
+  db: "npx prisma db - Database utilities"
+  format: "npx prisma format - Format schema file"
+  validate: "npx prisma validate - Validate schema"
+
+references:
+  documentation: "https://www.prisma.io/docs"
+  nextjs: "https://www.prisma.io/docs/guides/nextjs"
+  schema: "https://www.prisma.io/docs/orm/prisma-schema"
+  client: "https://www.prisma.io/docs/orm/prisma-client"
+  migrations: "https://www.prisma.io/docs/orm/prisma-migrate"
+  examples: "https://github.com/prisma/prisma-examples"
+
+license: "Apache-2.0"
+author: "Prisma"
+maintainers:
+  - "Prisma Team"
+lastReviewed: "2025-08-14"
+metadata:
+  npmWeeklyDownloads: "~4000000"
+  githubStars: "38000+"
+  bundleSize: "~2MB installed"
+

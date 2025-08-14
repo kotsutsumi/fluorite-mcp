@@ -1,0 +1,197 @@
+id: "zod"
+name: "Zod"
+version: "^3.22.0"
+homepage: "https://zod.dev"
+github: "https://github.com/colinhacks/zod"
+npm: "zod"
+summary: "TypeScript-first schema validation with static type inference."
+description: |
+  Zod is a TypeScript-first schema declaration and validation library designed to be as developer-friendly as possible.
+  It provides static type inference, meaning you can extract TypeScript types from your schemas.
+  Features include composable schemas, custom error messages, transformation and preprocessing,
+  and zero dependencies.
+tags:
+  - validation
+  - schema
+  - typescript
+  - type-inference
+  - runtime-validation
+  - zero-dependency
+install:
+  steps:
+    - "npm i zod"
+    - "# （任意）react-hook-form 統合: npm i @hookform/resolvers"
+peerDependencies:
+  - "(任意) @hookform/resolvers"
+api:
+  core:
+    - "z.string(), z.number(), z.boolean(), z.bigint(), z.symbol(), z.date(), z.undefined(), z.null()"
+    - "z.literal('x'), z.enum(['A','B']), z.nativeEnum(Enum)"
+    - "z.object({...}), z.array(T), z.tuple([...]), z.record(keySchema, valueSchema)"
+    - "z.union([A, B]), z.discriminatedUnion('type', [...])"
+    - "optional(), nullable(), default(value), catch(value)"
+    - "transform(fn), preprocess(fn, schema)"
+    - "refine(predicate, message?), superRefine((ctx) => ctx.addIssue(...))"
+    - "parse(data), safeParse(data) -> { success, data|error }"
+    - "z.infer<typeof schema> で型を取得"
+usage:
+  basic: |
+    import { z } from 'zod'
+
+    // 基本スキーマ
+    const User = z.object({
+      id: z.string().uuid(),
+      name: z.string().min(1, '必須'),
+      age: z.number().int().min(0).max(150).optional(),
+      email: z.string().email(),
+      roles: z.array(z.enum(['admin','editor','viewer'])).default(['viewer'])
+    })
+
+    // 実行時検証
+    const parsed = User.parse({
+      id: 'b2f6b3a4-2c5d-4d64-8e6a-3b8a9a7c0a11',
+      name: 'Alice',
+      email: 'alice@example.com'
+    })
+
+    // 失敗時は ZodError を throw
+    // try { User.parse(bad) } catch (e) { if (e instanceof z.ZodError) console.log(e.flatten()) }
+
+    // 型推論
+    type User = z.infer<typeof User>
+  safeParseAndErrors: |
+    import { z } from 'zod'
+
+    const Login = z.object({ email: z.string().email(), password: z.string().min(8) })
+    const result = Login.safeParse({ email: 'bad', password: 'short' })
+    if (!result.success) {
+      const { fieldErrors, formErrors } = result.error.flatten()
+      console.log(fieldErrors.email) // ['Invalid email'] など
+    }
+  refineAndTransform: |
+    import { z } from 'zod'
+
+    // 前処理: 文字列→数値
+    const Quantity = z.preprocess((v) => {
+      if (typeof v === 'string' && v.trim() !== '') return Number(v)
+      return v
+    }, z.number().int().min(0))
+
+    // 相関チェック: superRefine で複数フィールド検証
+    const Range = z.object({ start: z.number(), end: z.number() }).superRefine((val, ctx) => {
+      if (val.end < val.start) {
+        ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'end は start 以上', path: ['end'] })
+      }
+    })
+  unionsAndDiscriminators: |
+    import { z } from 'zod'
+
+    // 手動 union
+    const Circle = z.object({ type: z.literal('circle'), radius: z.number().positive() })
+    const Rect = z.object({ type: z.literal('rect'), w: z.number().positive(), h: z.number().positive() })
+    const Shape = z.union([Circle, Rect])
+
+    // 識別子付き union（推論がより正確）
+    const DShape = z.discriminatedUnion('type', [Circle, Rect])
+  objectUtils: |
+    import { z } from 'zod'
+
+    const Base = z.object({ id: z.string(), createdAt: z.date().default(() => new Date()) })
+    const Detail = Base.extend({ title: z.string(), desc: z.string().optional() })
+
+    // ユーティリティ
+    const PartialDetail = Detail.partial()      // すべて optional
+    const RequiredDetail = Detail.required({    // 指定キーを required に
+      desc: true
+    })
+    const Picked = Detail.pick({ title: true })
+    const Omitted = Detail.omit({ desc: true })
+    const Merged = Base.merge(z.object({ updatedAt: z.date().optional() }))
+  withReactHookForm: |
+    // react-hook-form との連携（任意）
+    // npm i zod @hookform/resolvers
+    import { useForm } from 'react-hook-form'
+    import { z } from 'zod'
+    import { zodResolver } from '@hookform/resolvers/zod'
+
+    const Schema = z.object({
+      email: z.string().email(),
+      age: z.preprocess(v => (typeof v === 'string' ? Number(v) : v), z.number().int().min(0))
+    })
+    type FormData = z.infer<typeof Schema>
+
+    export function Form() {
+      const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
+        resolver: zodResolver(Schema),
+        defaultValues: { email: '', age: 0 },
+      })
+      return (
+        <form onSubmit={handleSubmit(console.log)}>
+          <input {...register('email')} />{errors.email && <span>{errors.email.message}</span>}
+          <input type="number" {...register('age', { valueAsNumber: true })} />
+          {errors.age && <span>{errors.age.message}</span>}
+          <button>送信</button>
+        </form>
+      )
+    }
+bestPractices:
+  - "Use z.infer for consistent type generation from schemas"
+  - "Apply preprocess/transform for input normalization"
+  - "Use superRefine for multi-field validation with proper error paths"
+  - "Prefer discriminatedUnion over union for better type inference"
+  - "Always validate at system boundaries (API, forms, env vars)"
+  - "Create reusable schema primitives and compose them"
+  - "Use branded types for domain modeling"
+  - "Implement proper error handling with flatten() or format()"
+performance:
+  characteristics:
+    - "Zero dependencies"
+    - "Bundle size: ~12KB minified + gzipped"
+    - "Tree-shakeable"
+    - "Minimal runtime overhead"
+  
+advancedFeatures:
+  - "Branded types for nominal typing"
+  - "Recursive schemas for tree structures"
+  - "Async validation with z.promise()"
+  - "Custom error maps for i18n"
+  - "Coercion for type conversion"
+  - "Lazy schemas for circular dependencies"
+
+troubleshooting:
+  commonIssues:
+    - issue: "Type inference not working"
+      solution: "Ensure TypeScript strict mode is enabled and use z.infer<typeof schema>"
+    - issue: "Optional vs nullable confusion"
+      solution: "Use .optional() for T | undefined, .nullable() for T | null"
+    - issue: "Date validation failing"
+      solution: "Use z.preprocess() to convert strings to Date objects first"
+references:
+  - "Basics: https://zod.dev/basics"
+  - "API: https://zod.dev/?id=api"
+  - "Error handling: https://zod.dev/?id=error-handling"
+ecosystem:
+  integrations:
+    - "react-hook-form: @hookform/resolvers/zod"
+    - "tRPC: Built-in Zod support"
+    - "Fastify: fastify-zod plugin"
+    - "Express: express-zod-api"
+    - "Next.js: API route validation"
+    - "Remix: Action/loader validation"
+  
+  relatedLibraries:
+    - "Yup: Alternative schema validation"
+    - "Joi: Alternative with different API"
+    - "Superstruct: Lighter alternative"
+    - "Valibot: Performance-focused alternative"
+
+license: "MIT"
+author: "Colin McDonnell"
+maintainers:
+  - "colinhacks"
+lastReviewed: "2025-08-14"
+metadata:
+  npmWeeklyDownloads: "~7000000"
+  githubStars: "30000+"
+  bundleSize: "~12KB minified + gzipped"
+

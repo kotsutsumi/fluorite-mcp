@@ -1,0 +1,206 @@
+id: "jotai"
+name: "Jotai"
+version: "^2.6.0"
+homepage: "https://jotai.org"
+github: "https://github.com/pmndrs/jotai"
+npm: "jotai"
+summary: "Primitive and flexible state management for React."
+description: |
+  Jotai takes an atomic approach to React state management with a model inspired by Recoil.
+  Build state by combining atoms and renders are optimized automatically based on atom dependency.
+  It solves common issues like unnecessary re-renders, zombie child problems, and React Context limitations.
+  Supports async atoms, atom families, and integration with Suspense, Immer, and other libraries.
+tags:
+  - state-management
+  - react
+  - atoms
+  - typescript
+  - suspense
+  - async-state
+install:
+  steps:
+    - "npm i jotai"
+    - "# 拡張ユーティリティ（任意）: npm i jotai-immer jotai-optics jotai-xstate"
+peerDependencies:
+  - react
+  - react-dom
+provider:
+  description: "<Provider> で木をラップするとスコープが分離され、同じ atom でもツリー単位で状態を持てる（省略時はデフォルトプロバイダ）。"
+  example: |
+    import { Provider } from 'jotai'
+
+    export function AppProviders({ children }: { children: React.ReactNode }) {
+      return <Provider>{children}</Provider>
+    }
+api:
+  core:
+    - "atom(initialValue | (get) => value | async (get) => value)"
+    - "useAtom(atom) -> [value, setValue]"
+    - "useAtomValue(atom)"
+    - "useSetAtom(atom)"
+  utils:
+    - "selectAtom(baseAtom, selector)  # 一部だけ購読して再レンダー削減"
+    - "atomFamily(key => atom(...))   # パラメータ化された atom を生成"
+    - "atomWithStorage(key, initial)  # localStorage などと同期（jotai/utils）"
+    - "loadable(atom)                 # 非同期 atom の状態(loading/error)を扱う（jotai/utils）"
+usage:
+  basicCounter: |
+    import { atom, useAtom } from 'jotai'
+
+    const countAtom = atom(0)
+
+    export default function Counter() {
+      const [count, setCount] = useAtom(countAtom)
+      return (
+        <div className="space-x-2">
+          <button onClick={() => setCount((c) => c - 1)}>-</button>
+          <span>{count}</span>
+          <button onClick={() => setCount((c) => c + 1)}>+</button>
+        </div>
+      )
+    }
+  derivedAtom: |
+    import { atom, useAtom } from 'jotai'
+
+    const priceAtom = atom(1000)
+    const qtyAtom = atom(2)
+    const totalAtom = atom((get) => get(priceAtom) * get(qtyAtom))
+
+    export function Cart() {
+      const [price, setPrice] = useAtom(priceAtom)
+      const [qty, setQty] = useAtom(qtyAtom)
+      const [total] = useAtom(totalAtom)
+      return (
+        <div>
+          <input type="number" value={price} onChange={(e) => setPrice(+e.target.value)} />
+          <input type="number" value={qty} onChange={(e) => setQty(+e.target.value)} />
+          <p>Total: {total}</p>
+        </div>
+      )
+    }
+  asyncAtomSuspense: |
+    import { Suspense } from 'react'
+    import { atom, useAtom } from 'jotai'
+
+    const userAtom = atom(async () => {
+      const res = await fetch('/api/user')
+      if (!res.ok) throw new Error('failed')
+      return res.json() as Promise<{ name: string }>
+    })
+
+    function UserName() {
+      const [user] = useAtom(userAtom)
+      return <p>{user.name}</p>
+    }
+
+    export function Page() {
+      return (
+        <Suspense fallback={<span>loading...</span>}>
+          <UserName />
+        </Suspense>
+      )
+    }
+  selectAtom: |
+    import { atom, useAtomValue } from 'jotai'
+    import { selectAtom } from 'jotai/utils'
+
+    const userAtom = atom({ id: '1', name: 'Jane', theme: { color: 'indigo' } })
+    const userNameAtom = selectAtom(userAtom, (u) => u.name)
+
+    export function UserName() {
+      const name = useAtomValue(userNameAtom) // name が変わるときだけ再レンダー
+      return <span>{name}</span>
+    }
+  atomWithStorage: |
+    import { atomWithStorage } from 'jotai/utils'
+    import { useAtom } from 'jotai'
+
+    const themeAtom = atomWithStorage<'light'|'dark'>('theme', 'light')
+
+    export function ThemeToggle() {
+      const [theme, setTheme] = useAtom(themeAtom)
+      return <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>{theme}</button>
+    }
+  atomFamily: |
+    import { atom, useAtom } from 'jotai'
+    import { atomFamily } from 'jotai/utils'
+
+    const itemAtomFamily = atomFamily((id: number) => atom({ id, checked: false }))
+
+    export function Item({ id }: { id: number }) {
+      const [item, setItem] = useAtom(itemAtomFamily(id))
+      return (
+        <label>
+          <input type="checkbox" checked={item.checked} onChange={(e) => setItem({ ...item, checked: e.target.checked })} />
+          #{id}
+        </label>
+      )
+    }
+bestPractices:
+  - "Split atoms by concern to avoid large global stores"
+  - "Use selectAtom/useAtomValue/useSetAtom to minimize re-renders"
+  - "Leverage Suspense for async atoms with proper error boundaries"
+  - "Use Provider for scoped atom instances when needed"
+  - "Keep derived atoms pure - side effects belong in components"
+  - "Use atomFamily for parameterized atoms"
+  - "Implement proper TypeScript types for atom values"
+  - "Consider atomWithStorage for persistence"
+performance:
+  characteristics:
+    - "No unnecessary re-renders with atom subscriptions"
+    - "Bundle size: ~13KB minified + gzipped"
+    - "Tree-shakeable utilities"
+    - "Optimized dependency tracking"
+  features:
+    - "Automatic batching of updates"
+    - "Lazy atom evaluation"
+    - "Memory efficient with WeakMap usage"
+
+advancedPatterns:
+  - "Async atoms with Suspense integration"
+  - "Atom effects for side effects"
+  - "Immer integration for immutable updates"
+  - "DevTools integration for debugging"
+  - "Query atoms for data fetching"
+  - "Machine atoms with XState"
+
+troubleshooting:
+  commonIssues:
+    - issue: "Atom values not persisting"
+      solution: "Use atomWithStorage from jotai/utils for persistence"
+    - issue: "Infinite loops with derived atoms"
+      solution: "Ensure derived atoms don't create circular dependencies"
+    - issue: "SSR hydration mismatch"
+      solution: "Use useHydrateAtoms for SSR or wrap initial values properly"
+references:
+  - "Docs: https://jotai.org/docs"
+  - "API: https://jotai.org/docs/api"
+  - "Utils: https://jotai.org/docs/utilities/overview"
+ecosystem:
+  officialUtils:
+    - "jotai/utils: Storage, families, select, loadable"
+    - "jotai-immer: Immer integration"
+    - "jotai-optics: Optics integration"
+    - "jotai-xstate: XState integration"
+    - "jotai-valtio: Valtio integration"
+    - "jotai-zustand: Zustand integration"
+    - "jotai-redux: Redux integration"
+    - "jotai-tanstack-query: TanStack Query integration"
+  
+  comparisons:
+    - "vs Redux: Simpler API, no boilerplate, automatic optimization"
+    - "vs Zustand: More granular, React-first, better TypeScript"
+    - "vs Recoil: Production-ready, smaller bundle, simpler API"
+    - "vs Context: No provider hell, optimized re-renders"
+
+license: "MIT"
+author: "Poimandres"
+maintainers:
+  - "dai-shi"
+  - "Poimandres Team"
+lastReviewed: "2025-08-14"
+metadata:
+  npmWeeklyDownloads: "~1500000"
+  githubStars: "17000+"
+  bundleSize: "~13KB minified + gzipped"
+

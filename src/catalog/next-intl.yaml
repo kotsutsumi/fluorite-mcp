@@ -1,0 +1,59 @@
+id: "next-intl"
+name: "next-intl"
+homepage: "https://next-intl.dev/docs/getting-started"
+npm: "next-intl"
+summary: "Next.js App Router での国際化ライブラリ。サーバー/クライアント双方で型安全な翻訳を提供し、ルーティングとロケール検出に対応。"
+install:
+  steps:
+    - "npm i next-intl"
+    - "# ディレクトリ構成（例）: app/[locale]/... と messages/{locale}.json"
+middleware:
+  example: |
+    // middleware.ts（ロケールの自動付与）
+    import createMiddleware from 'next-intl/middleware'
+    export default createMiddleware({
+      locales: ['en', 'ja'],
+      defaultLocale: 'en'
+    })
+    export const config = { matcher: ['/((?!_next|.*\..*).*)'] }
+provider:
+  layout: |
+    // app/[locale]/layout.tsx
+    import { NextIntlClientProvider } from 'next-intl'
+    import { notFound } from 'next/navigation'
+
+    export default async function LocaleLayout({ children, params: { locale } }: any) {
+      let messages
+      try {
+        messages = (await import(`@/messages/${locale}.json`)).default
+      } catch {
+        notFound()
+      }
+      return <NextIntlClientProvider locale={locale} messages={messages}>{children}</NextIntlClientProvider>
+    }
+usage:
+  client: |
+    'use client'
+    import { useTranslations } from 'next-intl'
+    export function Title() {
+      const t = useTranslations('Home')
+      return <h1>{t('greeting', { name: 'Alice' })}</h1>
+    }
+  server: |
+    import { getTranslations } from 'next-intl/server'
+    export default async function Page() {
+      const t = await getTranslations('Home')
+      return <p>{t('intro')}</p>
+    }
+bestPractices:
+  - "messages を静的 import に近づけ、バンドルとキャッシュを最適化"
+  - "フォールバック/未翻訳キーの扱いを決め、CI で整合を検証"
+  - "URL 構造は /[locale]/... とし、middleware でデフォルト付与"
+notes:
+  - "Route Handlers/Server Components でも getTranslations が使用可能"
+references:
+  - "Getting Started: https://next-intl.dev/docs/getting-started"
+  - "Routing: https://next-intl.dev/docs/routing"
+license: "MIT"
+lastReviewed: "2025-08-14"
+

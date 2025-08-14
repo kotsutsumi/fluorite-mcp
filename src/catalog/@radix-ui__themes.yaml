@@ -1,0 +1,477 @@
+id: "@radix-ui/themes"
+name: "Radix UI Themes"
+version: "^3.0.0"
+homepage: "https://www.radix-ui.com/themes/docs"
+github: "https://github.com/radix-ui/themes"
+npm: "@radix-ui/themes"
+summary: "A complete design system and component library built on Radix Primitives with built-in dark mode and accessibility."
+description: |
+  Radix Themes provides a complete design system with pre-styled components, built on top of Radix UI primitives.
+  It includes a comprehensive theming system using CSS variables, automatic dark mode support, and consistent design tokens.
+  Unlike Radix Primitives (unstyled), Radix Themes provides ready-to-use styled components that maintain full accessibility.
+  No Tailwind CSS required - uses its own design system based on Radix Colors.
+tags:
+  - design-system
+  - component-library
+  - radix-ui
+  - react
+  - typescript
+  - accessibility
+  - dark-mode
+install:
+  npm: |
+    npm install @radix-ui/themes
+    # Import the CSS in your app entry point
+  yarn: |
+    yarn add @radix-ui/themes
+    # Import the CSS in your app entry point
+  pnpm: |
+    pnpm add @radix-ui/themes
+    # Import the CSS in your app entry point
+  setup:
+    vite: |
+      // main.tsx or main.jsx
+      import '@radix-ui/themes/styles.css'
+      import './index.css' // Your app styles after Radix
+    nextjs: |
+      // app/layout.tsx (App Router)
+      import '@radix-ui/themes/styles.css'
+      import './globals.css' // Your app styles after Radix
+      
+      // pages/_app.tsx (Pages Router)
+      import '@radix-ui/themes/styles.css'
+      import '../styles/globals.css'
+dependencies:
+  required:
+    react: ">=16.8 || ^17.0 || ^18.0"
+    react-dom: ">=16.8 || ^17.0 || ^18.0"
+  optional:
+    "@radix-ui/react-*": "For additional primitive components"
+    "@radix-ui/colors": "For extended color palette"
+designTokens:
+  appearance:
+    values: ["light", "dark", "inherit"]
+    description: "Color scheme for the theme"
+  accentColor:
+    values: ["gray", "gold", "bronze", "brown", "yellow", "amber", "orange", "tomato", "red", "ruby", "crimson", "pink", "plum", "purple", "violet", "iris", "indigo", "blue", "cyan", "teal", "jade", "green", "grass", "lime", "mint", "sky"]
+    description: "Primary color for interactive elements"
+  grayColor:
+    values: ["auto", "gray", "mauve", "slate", "sage", "olive", "sand"]
+    description: "Gray scale for neutral colors"
+  panelBackground:
+    values: ["solid", "translucent"]
+    description: "Background style for panels and cards"
+  radius:
+    values: ["none", "small", "medium", "large", "full"]
+    description: "Border radius scale"
+  scaling:
+    values: ["90%", "95%", "100%", "105%", "110%"]
+    description: "Size scaling for all components"
+components:
+  layout:
+    - Box: "Basic container with spacing props"
+    - Flex: "Flexbox container with gap and alignment"
+    - Grid: "CSS Grid container"
+    - Container: "Centered max-width container"
+    - Section: "Semantic section wrapper"
+    - ScrollArea: "Custom scrollbar container"
+  typography:
+    - Text: "Body text with size and weight variants"
+    - Heading: "Headings h1-h6 with responsive sizing"
+    - Link: "Styled anchor links"
+    - Code: "Inline code styling"
+    - Em: "Emphasized text"
+    - Kbd: "Keyboard key styling"
+    - Quote: "Blockquote styling"
+    - Strong: "Bold text"
+  forms:
+    - Button: "Interactive button with variants"
+    - TextField: "Text input with labels"
+    - TextArea: "Multi-line text input"
+    - Select: "Dropdown selection"
+    - Checkbox: "Checkbox with label"
+    - RadioGroup: "Radio button group"
+    - Slider: "Range slider"
+    - Switch: "Toggle switch"
+  feedback:
+    - AlertDialog: "Modal confirmation dialog"
+    - Dialog: "Modal dialog"
+    - HoverCard: "Hover-triggered card"
+    - Popover: "Click-triggered floating content"
+    - Tooltip: "Hover tooltips"
+    - ContextMenu: "Right-click menu"
+    - DropdownMenu: "Dropdown menu"
+  dataDisplay:
+    - Avatar: "User avatars with fallback"
+    - Badge: "Status badges"
+    - Card: "Content cards"
+    - Table: "Data tables"
+    - Tabs: "Tabbed interface"
+    - DataList: "Key-value data display"
+    - Inset: "Inset content within cards"
+  utilities:
+    - Separator: "Visual separator line"
+    - Skeleton: "Loading placeholder"
+    - Spinner: "Loading spinner"
+    - VisuallyHidden: "Screen reader only content"
+api:
+  themeProvider:
+    props:
+      appearance: "'light' | 'dark' | 'inherit'"
+      accentColor: "Color name for primary color"
+      grayColor: "Gray scale color"
+      panelBackground: "'solid' | 'translucent'"
+      radius: "Border radius scale"
+      scaling: "Component size scaling"
+      hasBackground: "Apply background color to body"
+    
+usage:
+  basicSetup: |
+    // main.tsx (Vite/React)
+    import React from 'react'
+    import ReactDOM from 'react-dom/client'
+    import { Theme, ThemePanel } from '@radix-ui/themes'
+    import '@radix-ui/themes/styles.css'
+    import App from './App'
+    
+    ReactDOM.createRoot(document.getElementById('root')!).render(
+      <React.StrictMode>
+        <Theme
+          appearance="light"
+          accentColor="indigo"
+          grayColor="slate"
+          radius="medium"
+          scaling="100%"
+        >
+          <App />
+          {/* Optional: Theme customization panel for development */}
+          {process.env.NODE_ENV === 'development' && <ThemePanel />}
+        </Theme>
+      </React.StrictMode>
+    )
+  nextjsSetup: |
+    // app/layout.tsx (Next.js App Router)
+    import '@radix-ui/themes/styles.css'
+    import './globals.css' // Your custom styles
+    import { Theme } from '@radix-ui/themes'
+    
+    export default function RootLayout({
+      children,
+    }: {
+      children: React.ReactNode
+    }) {
+      return (
+        <html lang="en" suppressHydrationWarning>
+          <body>
+            <Theme
+              appearance="inherit"
+              accentColor="blue"
+              grayColor="slate"
+              panelBackground="solid"
+              radius="medium"
+            >
+              {children}
+            </Theme>
+          </body>
+        </html>
+      )
+    }
+  darkModeExample: |
+    // Dark mode toggle component
+    import { useState, useEffect } from 'react'
+    import { Theme, Button, Flex, Text, IconButton } from '@radix-ui/themes'
+    import { SunIcon, MoonIcon } from '@radix-ui/react-icons'
+    
+    export function ThemeProvider({ children }: { children: React.ReactNode }) {
+      const [theme, setTheme] = useState<'light' | 'dark'>('light')
+      
+      useEffect(() => {
+        // Check system preference or localStorage
+        const stored = localStorage.getItem('theme')
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+        setTheme(stored === 'dark' || (!stored && systemDark) ? 'dark' : 'light')
+      }, [])
+      
+      const toggleTheme = () => {
+        const newTheme = theme === 'light' ? 'dark' : 'light'
+        setTheme(newTheme)
+        localStorage.setItem('theme', newTheme)
+      }
+      
+      return (
+        <Theme appearance={theme}>
+          <Flex direction="column" gap="3">
+            <Flex justify="end" p="2">
+              <IconButton
+                size="2"
+                variant="ghost"
+                onClick={toggleTheme}
+                aria-label="Toggle theme"
+              >
+                {theme === 'light' ? <MoonIcon /> : <SunIcon />}
+              </IconButton>
+            </Flex>
+            {children}
+          </Flex>
+        </Theme>
+      )
+    }
+  componentsExample: |
+    // Comprehensive component examples
+    import {
+      Container,
+      Card,
+      Heading,
+      Text,
+      Flex,
+      Button,
+      TextField,
+      Select,
+      Checkbox,
+      Badge,
+      Avatar,
+      Table,
+      Tabs,
+      Dialog,
+      AlertDialog,
+      DropdownMenu,
+    } from '@radix-ui/themes'
+    
+    export function ComponentShowcase() {
+      return (
+        <Container size="3" p="4">
+          <Flex direction="column" gap="6">
+            {/* Typography */}
+            <Card>
+              <Heading size="8" mb="2">Typography</Heading>
+              <Text as="p" size="3" color="gray">
+                Body text with different sizes and colors.
+              </Text>
+              <Code>Inline code</Code>
+            </Card>
+            
+            {/* Form Controls */}
+            <Card>
+              <Heading size="6" mb="4">Form Controls</Heading>
+              <Flex direction="column" gap="3">
+                <TextField.Root>
+                  <TextField.Slot>
+                    <MagnifyingGlassIcon />
+                  </TextField.Slot>
+                  <TextField.Input placeholder="Search..." />
+                </TextField.Root>
+                
+                <Select.Root defaultValue="apple">
+                  <Select.Trigger />
+                  <Select.Content>
+                    <Select.Item value="apple">Apple</Select.Item>
+                    <Select.Item value="orange">Orange</Select.Item>
+                  </Select.Content>
+                </Select.Root>
+                
+                <Flex gap="2">
+                  <Checkbox defaultChecked />
+                  <Text size="2">I agree to the terms</Text>
+                </Flex>
+                
+                <Flex gap="2">
+                  <Button>Save</Button>
+                  <Button variant="soft">Cancel</Button>
+                  <Button variant="outline">Options</Button>
+                </Flex>
+              </Flex>
+            </Card>
+            
+            {/* Data Display */}
+            <Card>
+              <Heading size="6" mb="4">Data Display</Heading>
+              <Table.Root>
+                <Table.Header>
+                  <Table.Row>
+                    <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>Status</Table.ColumnHeaderCell>
+                  </Table.Row>
+                </Table.Header>
+                <Table.Body>
+                  <Table.Row>
+                    <Table.Cell>
+                      <Flex gap="2" align="center">
+                        <Avatar
+                          size="1"
+                          fallback="JD"
+                          radius="full"
+                        />
+                        <Text>John Doe</Text>
+                      </Flex>
+                    </Table.Cell>
+                    <Table.Cell>
+                      <Badge color="green">Active</Badge>
+                    </Table.Cell>
+                  </Table.Row>
+                </Table.Body>
+              </Table.Root>
+            </Card>
+          </Flex>
+        </Container>
+      )
+    }
+  customizationExample: |
+    // Extending with custom styles and variants
+    import { Theme, Button, Flex } from '@radix-ui/themes'
+    import './custom-theme.css'
+    
+    // custom-theme.css
+    /*
+    .radix-themes {
+      --color-brand: 220 100% 50%;
+      --color-brand-9: 220 100% 45%;
+      --color-brand-10: 220 100% 40%;
+    }
+    
+    .custom-gradient {
+      background: linear-gradient(135deg, var(--accent-9), var(--accent-11));
+      color: white;
+    }
+    */
+    
+    export function CustomButton() {
+      return (
+        <Flex gap="3">
+          {/* Using built-in variants */}
+          <Button variant="solid">Solid</Button>
+          <Button variant="soft">Soft</Button>
+          <Button variant="surface">Surface</Button>
+          <Button variant="outline">Outline</Button>
+          <Button variant="ghost">Ghost</Button>
+          
+          {/* Custom styled button */}
+          <Button className="custom-gradient">
+            Gradient Button
+          </Button>
+          
+          {/* Size variants */}
+          <Button size="1">Small</Button>
+          <Button size="2">Medium</Button>
+          <Button size="3">Large</Button>
+          <Button size="4">Extra Large</Button>
+        </Flex>
+      )
+    }
+bestPractices:
+  - "Wrap Theme at the root level for consistent theming throughout the app"
+  - "Use appearance='inherit' to follow system dark mode preferences"
+  - "Leverage design tokens for consistency while allowing local overrides"
+  - "Combine with Radix Primitives for additional unstyled components"
+  - "Use semantic color scales (1-12) for proper contrast in both light and dark modes"
+  - "Implement responsive scaling with the scaling prop for different device sizes"
+  - "Use panelBackground='translucent' for layered UI designs"
+  - "Apply proper TypeScript types with component props"
+  - "Test with ThemePanel during development for quick iteration"
+performance:
+  optimization:
+    - "CSS variables provide runtime theming without JavaScript overhead"
+    - "Components are tree-shakeable"
+    - "Minimal runtime with ~45KB CSS (gzipped)"
+    - "No JavaScript theming library overhead"
+    - "Efficient re-renders with React.memo where appropriate"
+  bundleSize:
+    - "CSS: ~45KB gzipped"
+    - "JS components: 2-5KB each (tree-shakeable)"
+    - "Total with all components: ~150KB"
+
+accessibility:
+  - "Built on Radix Primitives with full WCAG 2.1 compliance"
+  - "Proper ARIA attributes and roles"
+  - "Keyboard navigation for all interactive components"
+  - "Focus management and focus-visible styling"
+  - "Screen reader announcements"
+  - "High contrast mode support"
+  - "Reduced motion support"
+  - "Color contrast ratios meet WCAG AA standards"
+
+comparison:
+  vsRadixPrimitives:
+    - "Radix Themes: Pre-styled, ready to use, opinionated design"
+    - "Radix Primitives: Unstyled, fully customizable, bring your own styles"
+  vsTailwindCSS:
+    - "Radix Themes: Component-based, design system included"
+    - "Tailwind CSS: Utility-first, build your own components"
+  vsMaterialUI:
+    - "Radix Themes: Lighter weight, more customizable, better accessibility"
+    - "Material UI: Google's Material Design, larger ecosystem"
+
+troubleshooting:
+  commonIssues:
+    - issue: "Styles not applying correctly"
+      solution: "Ensure @radix-ui/themes/styles.css is imported before your custom styles"
+    - issue: "Dark mode not working"
+      solution: "Check appearance prop and ensure system preferences are detected"
+    - issue: "Conflicts with Tailwind CSS"
+      solution: "Load Radix CSS first, then Tailwind, and use prefixing if needed"
+    - issue: "TypeScript errors"
+      solution: "Install @types/react and ensure TypeScript version is 4.5+"
+    - issue: "SSR hydration mismatch"
+      solution: "Use suppressHydrationWarning on html element for theme detection"
+migration:
+  fromV2: |
+    // Major changes in v3:
+    // 1. New color system based on Radix Colors v2
+    // 2. Improved TypeScript support
+    // 3. New components: DataList, Skeleton, Spinner
+    // 4. Breaking: Some prop names changed for consistency
+    
+    // Before (v2):
+    <Button color="blue" variant="soft" />
+    
+    // After (v3):
+    <Button color="blue" variant="soft" /> // Same API, improved implementation
+  
+  fromOtherLibraries: |
+    // From Material-UI:
+    // - Replace ThemeProvider with Theme
+    // - Map MUI components to Radix equivalents
+    // - Update color system to use Radix Colors
+    
+    // From Ant Design:
+    // - Replace ConfigProvider with Theme
+    // - Update component APIs to Radix patterns
+    // - Migrate form handling to native or react-hook-form
+
+integrations:
+  formLibraries:
+    - "react-hook-form: Recommended for complex forms"
+    - "Formik: Compatible with custom adapters"
+    - "React Final Form: Works with Controller pattern"
+  
+  stateManagement:
+    - "Zustand: Works seamlessly"
+    - "Jotai: Excellent integration"
+    - "Redux Toolkit: No conflicts"
+    - "TanStack Query: Perfect for data fetching"
+  
+  frameworks:
+    - "Next.js: Full support for App Router and Pages Router"
+    - "Vite: Optimal development experience"
+    - "Remix: SSR compatible"
+    - "Gatsby: Static generation support"
+
+references:
+  documentation: "https://www.radix-ui.com/themes/docs"
+  playground: "https://www.radix-ui.com/themes/playground"
+  components: "https://www.radix-ui.com/themes/docs/components/button"
+  colors: "https://www.radix-ui.com/colors"
+  primitives: "https://www.radix-ui.com/primitives"
+  github: "https://github.com/radix-ui/themes"
+  discord: "https://discord.com/invite/7Xb99uG"
+  examples: "https://github.com/radix-ui/themes/tree/main/examples"
+
+license: "MIT"
+author: "WorkOS"
+maintainers:
+  - "Radix UI Team"
+lastReviewed: "2025-08-14"
+metadata:
+  npmWeeklyDownloads: "~500000"
+  githubStars: "15000+"
+  lastPublished: "2024-11"
+  bundleSize: "~45KB CSS + component JS"

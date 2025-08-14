@@ -1,0 +1,40 @@
+id: "@upstash/redis"
+name: "Upstash Redis"
+homepage: "https://upstash.com/docs/introduction"
+npm: "@upstash/redis, @upstash/ratelimit"
+summary: "サーバーレス/エッジ向けのマネージド Redis。HTTP ベースのクライアントでコネクションレスに利用でき、Vercel/Cloudflare などと相性が良い。"
+install:
+  steps:
+    - "npm i @upstash/redis"
+    - "# レート制限など: npm i @upstash/ratelimit"
+    - "# 環境変数: UPSTASH_REDIS_REST_URL, UPSTASH_REDIS_REST_TOKEN"
+client:
+  basic: |
+    import { Redis } from '@upstash/redis'
+    export const redis = new Redis({ url: process.env.UPSTASH_REDIS_REST_URL!, token: process.env.UPSTASH_REDIS_REST_TOKEN! })
+
+    // 例: app/api/incr/route.ts
+    export async function POST() {
+      const n = await redis.incr('counter')
+      return Response.json({ n })
+    }
+  ratelimit: |
+    import { Ratelimit } from '@upstash/ratelimit'
+    import { redis } from './client'
+    const limiter = new Ratelimit({ redis, limiter: Ratelimit.slidingWindow(10, '60 s') })
+
+    export async function GET(req: Request) {
+      const ip = req.headers.get('x-forwarded-for') ?? 'anonymous'
+      const { success } = await limiter.limit(ip)
+      return new Response(success ? 'ok' : 'rate limited', { status: success ? 200 : 429 })
+    }
+bestPractices:
+  - "HTTP クライアントはエッジ/サーバレスでのコネクション競合を回避。Node 用 Redis と混同しない"
+  - "キー設計・TTL 設計を明確にし、キャッシュ/ロック/レート制御などの用途に合わせる"
+  - "リージョンをアプリに近づけ、レイテンシを最小化"
+references:
+  - "Introduction: https://upstash.com/docs/introduction"
+  - "Redis: https://upstash.com/docs/redis"
+license: "Proprietary"
+lastReviewed: "2025-08-14"
+

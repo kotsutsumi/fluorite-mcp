@@ -1,0 +1,110 @@
+id: "ag-grid"
+name: "AG Grid (React)"
+homepage: "https://www.ag-grid.com/react-data-grid/getting-started/"
+npm: "ag-grid-react"
+summary: "高機能なデータグリッド。ソート/フィルタ/ページネーション/列の可視化/ピボット/集計など豊富な機能を提供。React ラッパー（ag-grid-react）で型安全に使用可能。Community は MIT、Enterprise は商用ライセンス。"
+install:
+  steps:
+    - "npm i ag-grid-community ag-grid-react"
+    - "// CSS をグローバルに取り込み（v29+ の新しいスタイルパス）"
+    - "import 'ag-grid-community/styles/ag-grid.css'"
+    - "import 'ag-grid-community/styles/ag-theme-quartz.css'  // 任意のテーマ"
+peerDependencies:
+  - react
+  - react-dom
+api:
+  components:
+    - "<AgGridReact rowData columnDefs defaultColDef />"
+  props:
+    - "rowData: any[]"
+    - "columnDefs: ColDef[]"
+    - "defaultColDef?: ColDef"
+    - "pagination?: boolean, paginationPageSize?: number"
+    - "rowSelection?: 'single'|'multiple'"
+    - "getRowId?: (params) => string"
+    - "onGridReady?: (params) => void"
+usage:
+  basic: |
+    import { useMemo, useState } from 'react'
+    import { AgGridReact } from 'ag-grid-react'
+    import 'ag-grid-community/styles/ag-grid.css'
+    import 'ag-grid-community/styles/ag-theme-quartz.css'
+
+    export default function GridExample() {
+      const [rowData] = useState([
+        { id: 1, name: 'Alice', age: 28 },
+        { id: 2, name: 'Bob', age: 35 },
+      ])
+      const columnDefs = useMemo(() => [
+        { headerName: 'ID', field: 'id', width: 100 },
+        { headerName: 'Name', field: 'name', filter: true },
+        { headerName: 'Age', field: 'age', type: 'numberColumn', sortable: true },
+      ], [])
+      const defaultColDef = useMemo(() => ({ sortable: true, resizable: true }), [])
+
+      return (
+        <div className="ag-theme-quartz" style={{ height: 400, width: '100%' }}>
+          <AgGridReact
+            rowData={rowData}
+            columnDefs={columnDefs}
+            defaultColDef={defaultColDef}
+            pagination
+            paginationPageSize={25}
+          />
+        </div>
+      )
+    }
+  selectionAndCheckbox: |
+    import { useMemo } from 'react'
+    import { AgGridReact } from 'ag-grid-react'
+
+    export function SelectionGrid({ rows }: { rows: any[] }) {
+      const columnDefs = useMemo(() => [
+        { headerName: '', checkboxSelection: true, headerCheckboxSelection: true, width: 50 },
+        { field: 'name' },
+        { field: 'role' },
+      ], [])
+      return (
+        <div className="ag-theme-quartz" style={{ height: 360 }}>
+          <AgGridReact rowData={rows} columnDefs={columnDefs} rowSelection="multiple" />
+        </div>
+      )
+    }
+  valueFormatterAndRenderer: |
+    import { useMemo } from 'react'
+    import { AgGridReact } from 'ag-grid-react'
+
+    const currencyFormatter = (p: any) => new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'JPY' }).format(p.value)
+    const LinkRenderer = (p: any) => <a href={`/users/${p.data.id}`}>{p.value}</a>
+
+    export function CustomGrid({ rows }: { rows: any[] }) {
+      const columnDefs = useMemo(() => [
+        { field: 'name', cellRenderer: LinkRenderer },
+        { field: 'amount', valueFormatter: currencyFormatter },
+      ], [])
+      return (
+        <div className="ag-theme-quartz" style={{ height: 320 }}>
+          <AgGridReact rowData={rows} columnDefs={columnDefs} />
+        </div>
+      )
+    }
+  serverSideSkeleton: |
+    // サーバーサイド問い合わせ（行数が非常に多い場合）には Server-Side Row Model を検討（Enterprise）。
+    // Community では onFilterChanged/onSortChanged で自前にフェッチして rowData を更新する構成が一般的。
+bestPractices:
+  - "columnDefs/defaultColDef は useMemo で安定化し、不要な再レンダーを回避"
+  - "ユニークな行キーは getRowId で提供し、差分更新の精度とパフォーマンスを向上"
+  - "表示専用の整形は valueFormatter を優先（cellRenderer は必要時のみ）"
+  - "テーマ CSS は必要なもののみ読み込み（バンドルサイズ配慮）"
+  - "大量データはページング/仮想化/サーバー問い合わせを併用し、DOM コストを抑制"
+notes:
+  - "Community: MIT ライセンス。Enterprise 機能は別ライセンスが必要"
+  - "Next.js ではクライアント側でレンダリング（window 参照を含むため）。必要に応じて dynamic import"
+  - "v29+ でスタイルの取り込みパスが変更。styles/* 経由でテーマを読み込む"
+references:
+  - "Getting Started: https://www.ag-grid.com/react-data-grid/getting-started/"
+  - "Column Definitions: https://www.ag-grid.com/react-data-grid/column-definitions/"
+  - "Value Formatters: https://www.ag-grid.com/react-data-grid/value-formatters/"
+license: "MIT"
+lastReviewed: "2025-08-14"
+

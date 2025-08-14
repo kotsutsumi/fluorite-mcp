@@ -1,0 +1,60 @@
+id: "uploadthing"
+name: "UploadThing (Next.js)"
+homepage: "https://docs.uploadthing.com/"
+npm: "uploadthing, @uploadthing/react"
+summary: "Next.js 向けのファイルアップロード基盤。サーバー側でルータ（FileRouter）を定義し、クライアントの UploadButton/Dropzone から直接アップロードする。型安全なメタデータ/認可を実装可能。"
+install:
+  steps:
+    - "npm i uploadthing @uploadthing/react"
+    - "# env に UPLOADTHING_SECRET, UPLOADTHING_APP_ID を設定"
+server:
+  fileRouter: |
+    // app/api/uploadthing/core.ts
+    import { createUploadthing, type FileRouter } from 'uploadthing/server'
+    const f = createUploadthing()
+
+    export const ourFileRouter = {
+      avatar: f({ image: { maxFileSize: '2MB' } })
+        .middleware(async ({ req }) => {
+          // 認証チェック（例）
+          const userId = 'user_id'
+          if (!userId) throw new Error('Unauthorized')
+          return { userId }
+        })
+        .onUploadComplete(async ({ metadata, file }) => {
+          // 例: メタデータ保存
+          console.log('uploaded', metadata.userId, file.url)
+        }),
+    } satisfies FileRouter
+
+    export type OurFileRouter = typeof ourFileRouter
+  routeHandler: |
+    // app/api/uploadthing/route.ts
+    import { createRouteHandler } from 'uploadthing/server'
+    import { ourFileRouter } from './core'
+    export const { GET, POST } = createRouteHandler({ router: ourFileRouter })
+client:
+  uploadButton: |
+    'use client'
+    import { UploadButton } from '@uploadthing/react'
+    import type { OurFileRouter } from '@/app/api/uploadthing/core'
+
+    export default function AvatarUploader() {
+      return (
+        <UploadButton<OurFileRouter>
+          endpoint="avatar"
+          onClientUploadComplete={(res) => console.log(res)}
+          onUploadError={(e) => alert(e.message)}
+        />
+      )
+    }
+bestPractices:
+  - "FileRouter でサイズ/拡張子/認可を厳密に定義"
+  - "アップロード完了フックで DB へ URL を保存し、後続処理をトリガ"
+  - "プライベートファイルは署名付き URL やリダイレクトで保護"
+  - "大容量は並列/再開を考慮し、UI で進捗/エラーを明示"
+references:
+  - "Docs: https://docs.uploadthing.com/"
+license: "MIT"
+lastReviewed: "2025-08-14"
+
