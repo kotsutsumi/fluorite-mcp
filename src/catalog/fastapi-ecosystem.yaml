@@ -1,0 +1,1120 @@
+id: "fastapi-ecosystem"
+name: "FastAPI Ecosystem Packages"
+homepage: "https://fastapi.tiangolo.com"
+summary: "FastAPIエコシステムの包括的パッケージ群。高性能Python Webフレームワーク、非同期処理、認証、データベース、キャッシュ、監視、テストなど、モダンAPIサーバー開発に必要な全てを網羅。"
+
+framework_core:
+  fastapi:
+    package: "fastapi"
+    summary: "高性能Python Webフレームワーク。型注釈による自動ドキュメント生成と高いパフォーマンス。"
+    install: "pip install fastapi"
+    usage: |
+      # main.py
+      from fastapi import FastAPI, HTTPException, Depends, status
+      from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+      from pydantic import BaseModel, Field
+      from typing import Optional, List
+      from datetime import datetime
+      
+      app = FastAPI(
+          title="My API",
+          description="Production-ready API with FastAPI",
+          version="1.0.0",
+          docs_url="/docs",
+          redoc_url="/redoc"
+      )
+      
+      # Pydanticモデル
+      class Product(BaseModel):
+          id: int
+          name: str = Field(..., min_length=1, max_length=100)
+          price: float = Field(..., gt=0)
+          description: Optional[str] = None
+          created_at: datetime = Field(default_factory=datetime.utcnow)
+          
+          class Config:
+              json_schema_extra = {
+                  "example": {
+                      "id": 1,
+                      "name": "Laptop",
+                      "price": 999.99,
+                      "description": "High-performance laptop"
+                  }
+              }
+      
+      # 依存性注入
+      security = HTTPBearer()
+      
+      async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)):
+          token = credentials.credentials
+          # トークン検証ロジック
+          if token != "valid_token":
+              raise HTTPException(
+                  status_code=status.HTTP_401_UNAUTHORIZED,
+                  detail="Invalid authentication credentials",
+                  headers={"WWW-Authenticate": "Bearer"},
+              )
+          return {"user_id": 1, "username": "john"}
+      
+      # エンドポイント
+      @app.get("/")
+      async def root():
+          return {"message": "Welcome to FastAPI"}
+      
+      @app.get("/products", response_model=List[Product])
+      async def get_products(
+          skip: int = 0,
+          limit: int = 10,
+          current_user: dict = Depends(get_current_user)
+      ):
+          # データベースからの取得をシミュレート
+          products = [
+              Product(id=i, name=f"Product {i}", price=100.0 * i)
+              for i in range(skip, skip + limit)
+          ]
+          return products
+      
+      @app.post("/products", response_model=Product, status_code=status.HTTP_201_CREATED)
+      async def create_product(
+          product: Product,
+          current_user: dict = Depends(get_current_user)
+      ):
+          # データベースへの保存をシミュレート
+          return product
+      
+      # エラーハンドリング
+      @app.exception_handler(ValueError)
+      async def value_error_handler(request, exc):
+          return JSONResponse(
+              status_code=400,
+              content={"message": str(exc)}
+          )
+      
+      # 起動コマンド: uvicorn main:app --reload
+
+  uvicorn:
+    package: "uvicorn[standard]"
+    summary: "高性能ASGIサーバー。開発・本番両方で利用可能。WebSocketやHTTP/2対応。"
+    install: "pip install uvicorn[standard]"
+    usage: |
+      # 開発環境での起動
+      uvicorn main:app --reload --host 0.0.0.0 --port 8000
+      
+      # 本番環境での起動
+      uvicorn main:app --host 0.0.0.0 --port 8000 --workers 4
+      
+      # SSL/TLS対応
+      uvicorn main:app --ssl-keyfile=./key.pem --ssl-certfile=./cert.pem
+      
+      # プログラマティックな起動
+      import uvicorn
+      
+      if __name__ == "__main__":
+          uvicorn.run(
+              "main:app",
+              host="0.0.0.0",
+              port=8000,
+              reload=True,
+              log_level="info",
+              access_log=True
+          )
+
+  hypercorn:
+    package: "hypercorn"
+    summary: "高機能ASGIサーバー。HTTP/2、HTTP/3、WebSocket対応。"
+    install: "pip install hypercorn"
+    usage: |
+      # 基本的な起動
+      hypercorn main:app --bind 0.0.0.0:8000
+      
+      # HTTP/2対応
+      hypercorn main:app --bind 0.0.0.0:8000 --certfile cert.pem --keyfile key.pem
+      
+      # 設定ファイル使用
+      # hypercorn_config.py
+      bind = "0.0.0.0:8000"
+      workers = 4
+      accesslog = "-"
+      errorlog = "-"
+      use_reloader = True
+      
+      # 起動
+      hypercorn main:app -c hypercorn_config.py
+
+  gunicorn:
+    package: "gunicorn"
+    summary: "本番用プロセスマネージャー。uvicorn workerと組み合わせて高性能化。"
+    install: "pip install gunicorn"
+    usage: |
+      # Uvicorn workerでの起動
+      gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000
+      
+      # 設定ファイル (gunicorn.conf.py)
+      import multiprocessing
+      
+      bind = "0.0.0.0:8000"
+      workers = multiprocessing.cpu_count() * 2 + 1
+      worker_class = "uvicorn.workers.UvicornWorker"
+      worker_connections = 1000
+      max_requests = 1000
+      max_requests_jitter = 50
+      preload_app = True
+      accesslog = "-"
+      errorlog = "-"
+      
+      # 起動
+      gunicorn -c gunicorn.conf.py main:app
+
+authentication:
+  python_jose:
+    package: "python-jose[cryptography]"
+    summary: "JWT発行・検証。OAuth2/OpenID Connect連携対応。"
+    install: "pip install python-jose[cryptography]"
+    usage: |
+      from jose import JWTError, jwt
+      from datetime import datetime, timedelta
+      from typing import Optional
+      
+      SECRET_KEY = "your-secret-key-here"
+      ALGORITHM = "HS256"
+      ACCESS_TOKEN_EXPIRE_MINUTES = 30
+      
+      def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
+          to_encode = data.copy()
+          if expires_delta:
+              expire = datetime.utcnow() + expires_delta
+          else:
+              expire = datetime.utcnow() + timedelta(minutes=15)
+          
+          to_encode.update({"exp": expire})
+          encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+          return encoded_jwt
+      
+      def verify_token(token: str):
+          try:
+              payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+              username: str = payload.get("sub")
+              if username is None:
+                  raise HTTPException(
+                      status_code=401,
+                      detail="Could not validate credentials"
+                  )
+              return username
+          except JWTError:
+              raise HTTPException(
+                  status_code=401,
+                  detail="Could not validate credentials"
+              )
+      
+      # FastAPIエンドポイントでの使用
+      @app.post("/token")
+      async def login(username: str, password: str):
+          # ユーザー認証
+          if not verify_password(password, get_password_hash(password)):
+              raise HTTPException(status_code=401, detail="Invalid credentials")
+          
+          access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+          access_token = create_access_token(
+              data={"sub": username}, expires_delta=access_token_expires
+          )
+          return {"access_token": access_token, "token_type": "bearer"}
+
+  passlib:
+    package: "passlib[bcrypt]"
+    summary: "セキュアなパスワードハッシュ化。bcrypt、argon2対応。"
+    install: "pip install passlib[bcrypt]"
+    usage: |
+      from passlib.context import CryptContext
+      
+      # パスワードコンテキスト設定
+      pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+      
+      # パスワードハッシュ化
+      def get_password_hash(password: str) -> str:
+          return pwd_context.hash(password)
+      
+      # パスワード検証
+      def verify_password(plain_password: str, hashed_password: str) -> bool:
+          return pwd_context.verify(plain_password, hashed_password)
+      
+      # Argon2使用例（より安全）
+      from passlib.hash import argon2
+      
+      # ハッシュ化
+      hash = argon2.hash("password123")
+      
+      # 検証
+      argon2.verify("password123", hash)  # True
+      
+      # FastAPIでの統合
+      class UserCreate(BaseModel):
+          username: str
+          password: str
+      
+      @app.post("/register")
+      async def register(user: UserCreate):
+          hashed_password = get_password_hash(user.password)
+          # データベースに保存
+          db_user = User(
+              username=user.username,
+              hashed_password=hashed_password
+          )
+          return {"message": "User created successfully"}
+
+  authlib:
+    package: "authlib"
+    summary: "OAuth 1/2、OpenID Connectのクライアント・サーバー実装。"
+    install: "pip install authlib"
+    usage: |
+      from authlib.integrations.starlette_client import OAuth
+      from starlette.config import Config
+      
+      # OAuth設定
+      config = Config('.env')
+      oauth = OAuth(config)
+      
+      # Google OAuth設定
+      oauth.register(
+          name='google',
+          server_metadata_url='https://accounts.google.com/.well-known/openid-configuration',
+          client_kwargs={'scope': 'openid email profile'}
+      )
+      
+      # FastAPIでの使用
+      @app.get('/login/google')
+      async def login_google(request: Request):
+          redirect_uri = request.url_for('auth_google')
+          return await oauth.google.authorize_redirect(request, redirect_uri)
+      
+      @app.get('/auth/google')
+      async def auth_google(request: Request):
+          token = await oauth.google.authorize_access_token(request)
+          user = token.get('userinfo')
+          if user:
+              request.session['user'] = dict(user)
+          return RedirectResponse(url='/')
+
+database:
+  sqlalchemy:
+    package: "sqlalchemy[asyncio]"
+    summary: "強力なORM/クエリビルダー。同期/非同期両対応。"
+    install: "pip install sqlalchemy[asyncio]"
+    usage: |
+      from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime
+      from sqlalchemy.ext.declarative import declarative_base
+      from sqlalchemy.orm import sessionmaker, Session
+      from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+      from datetime import datetime
+      
+      # データベース接続
+      DATABASE_URL = "postgresql://user:password@localhost/dbname"
+      # 非同期用
+      ASYNC_DATABASE_URL = "postgresql+asyncpg://user:password@localhost/dbname"
+      
+      # 同期エンジン
+      engine = create_engine(DATABASE_URL)
+      SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+      
+      # 非同期エンジン
+      async_engine = create_async_engine(ASYNC_DATABASE_URL)
+      AsyncSessionLocal = sessionmaker(
+          async_engine, class_=AsyncSession, expire_on_commit=False
+      )
+      
+      # モデル定義
+      Base = declarative_base()
+      
+      class Product(Base):
+          __tablename__ = "products"
+          
+          id = Column(Integer, primary_key=True, index=True)
+          name = Column(String, index=True)
+          price = Column(Float)
+          description = Column(String, nullable=True)
+          created_at = Column(DateTime, default=datetime.utcnow)
+      
+      # 依存性注入
+      def get_db():
+          db = SessionLocal()
+          try:
+              yield db
+          finally:
+              db.close()
+      
+      async def get_async_db():
+          async with AsyncSessionLocal() as session:
+              yield session
+      
+      # FastAPIエンドポイント
+      @app.get("/products")
+      async def get_products(
+          skip: int = 0,
+          limit: int = 10,
+          db: AsyncSession = Depends(get_async_db)
+      ):
+          result = await db.execute(
+              select(Product).offset(skip).limit(limit)
+          )
+          products = result.scalars().all()
+          return products
+
+  sqlmodel:
+    package: "sqlmodel"
+    summary: "SQLAlchemy + Pydanticを組み合わせた型安全ORM。"
+    install: "pip install sqlmodel"
+    usage: |
+      from sqlmodel import Field, SQLModel, create_engine, Session, select
+      from typing import Optional
+      from datetime import datetime
+      
+      # モデル定義（Pydantic + SQLAlchemy）
+      class Product(SQLModel, table=True):
+          id: Optional[int] = Field(default=None, primary_key=True)
+          name: str = Field(index=True, min_length=1, max_length=100)
+          price: float = Field(gt=0)
+          description: Optional[str] = None
+          created_at: datetime = Field(default_factory=datetime.utcnow)
+      
+      # エンジン作成
+      engine = create_engine("sqlite:///./database.db")
+      
+      # テーブル作成
+      SQLModel.metadata.create_all(engine)
+      
+      # FastAPIでの使用
+      @app.post("/products", response_model=Product)
+      def create_product(product: Product):
+          with Session(engine) as session:
+              session.add(product)
+              session.commit()
+              session.refresh(product)
+              return product
+      
+      @app.get("/products", response_model=list[Product])
+      def read_products(skip: int = 0, limit: int = 10):
+          with Session(engine) as session:
+              products = session.exec(
+                  select(Product).offset(skip).limit(limit)
+              ).all()
+              return products
+
+  alembic:
+    package: "alembic"
+    summary: "データベースマイグレーション管理。"
+    install: "pip install alembic"
+    usage: |
+      # 初期化
+      alembic init alembic
+      
+      # alembic.ini設定
+      sqlalchemy.url = postgresql://user:password@localhost/dbname
+      
+      # マイグレーション作成
+      alembic revision --autogenerate -m "Add product table"
+      
+      # マイグレーション実行
+      alembic upgrade head
+      
+      # ロールバック
+      alembic downgrade -1
+      
+      # 履歴確認
+      alembic history
+      
+      # env.pyでの非同期対応
+      from sqlalchemy.ext.asyncio import AsyncEngine
+      import asyncio
+      
+      def run_migrations_online():
+          if isinstance(engine, AsyncEngine):
+              asyncio.run(run_async_migrations())
+          else:
+              run_sync_migrations()
+
+async_tasks:
+  celery:
+    package: "celery[redis]"
+    summary: "分散タスクキュー。バックグラウンドジョブ処理。"
+    install: "pip install celery[redis]"
+    usage: |
+      # celery_app.py
+      from celery import Celery
+      
+      celery_app = Celery(
+          "tasks",
+          broker="redis://localhost:6379/0",
+          backend="redis://localhost:6379/0"
+      )
+      
+      # タスク定義
+      @celery_app.task
+      def send_email(to: str, subject: str, body: str):
+          # メール送信処理
+          return f"Email sent to {to}"
+      
+      @celery_app.task
+      def process_payment(order_id: int):
+          # 決済処理
+          return f"Payment processed for order {order_id}"
+      
+      # FastAPIとの統合
+      from fastapi import BackgroundTasks
+      
+      @app.post("/orders")
+      async def create_order(
+          order: Order,
+          background_tasks: BackgroundTasks
+      ):
+          # 注文保存
+          order_id = save_order(order)
+          
+          # バックグラウンドタスク追加
+          process_payment.delay(order_id)
+          send_email.delay(
+              order.email,
+              "Order Confirmation",
+              f"Your order {order_id} has been received"
+          )
+          
+          return {"order_id": order_id}
+      
+      # Celeryワーカー起動
+      # celery -A celery_app worker --loglevel=info
+
+  dramatiq:
+    package: "dramatiq[redis, watch]"
+    summary: "シンプルで信頼性の高いタスクキュー。"
+    install: "pip install dramatiq[redis, watch]"
+    usage: |
+      import dramatiq
+      from dramatiq.brokers.redis import RedisBroker
+      
+      # ブローカー設定
+      redis_broker = RedisBroker(host="localhost", port=6379)
+      dramatiq.set_broker(redis_broker)
+      
+      # アクター（タスク）定義
+      @dramatiq.actor
+      def send_notification(user_id: int, message: str):
+          print(f"Sending notification to user {user_id}: {message}")
+          # 通知送信処理
+      
+      @dramatiq.actor(max_retries=3, min_backoff=5000)
+      def process_image(image_path: str):
+          # 画像処理
+          pass
+      
+      # FastAPIから呼び出し
+      @app.post("/notify")
+      async def notify_user(user_id: int, message: str):
+          send_notification.send(user_id, message)
+          return {"status": "notification queued"}
+      
+      # ワーカー起動
+      # dramatiq tasks
+
+  arq:
+    package: "arq"
+    summary: "asyncioベースのRedisジョブキュー。"
+    install: "pip install arq"
+    usage: |
+      from arq import create_pool
+      from arq.connections import RedisSettings
+      
+      # ワーカー関数
+      async def send_email(ctx, to: str, subject: str):
+          # 非同期メール送信
+          await some_async_email_service.send(to, subject)
+          
+      async def download_file(ctx, url: str):
+          async with aiohttp.ClientSession() as session:
+              async with session.get(url) as response:
+                  content = await response.read()
+                  return len(content)
+      
+      # FastAPIでのエンキュー
+      async def get_redis_pool():
+          return await create_pool(
+              RedisSettings(host="localhost", port=6379)
+          )
+      
+      @app.post("/tasks/email")
+      async def queue_email(to: str, subject: str):
+          pool = await get_redis_pool()
+          job = await pool.enqueue_job(
+              "send_email", to, subject
+          )
+          return {"job_id": job.job_id}
+      
+      # ワーカー設定 (worker.py)
+      class WorkerSettings:
+          functions = [send_email, download_file]
+          redis_settings = RedisSettings()
+      
+      # 起動: arq worker.WorkerSettings
+
+caching:
+  redis:
+    package: "redis"
+    summary: "高速インメモリデータストア。キャッシュ、セッション管理。"
+    install: "pip install redis"
+    usage: |
+      import redis
+      import json
+      from typing import Optional
+      
+      # Redis接続
+      redis_client = redis.Redis(
+          host='localhost',
+          port=6379,
+          db=0,
+          decode_responses=True
+      )
+      
+      # キャッシュヘルパー
+      def cache_key(prefix: str, *args) -> str:
+          return f"{prefix}:{':'.join(map(str, args))}"
+      
+      def get_cached_data(key: str) -> Optional[dict]:
+          data = redis_client.get(key)
+          return json.loads(data) if data else None
+      
+      def set_cached_data(key: str, data: dict, ttl: int = 3600):
+          redis_client.setex(key, ttl, json.dumps(data))
+      
+      # FastAPIでの使用
+      @app.get("/products/{product_id}")
+      async def get_product(product_id: int):
+          # キャッシュチェック
+          cache_key = f"product:{product_id}"
+          cached = get_cached_data(cache_key)
+          
+          if cached:
+              return cached
+          
+          # DBから取得
+          product = fetch_from_database(product_id)
+          
+          # キャッシュに保存
+          set_cached_data(cache_key, product, ttl=600)
+          
+          return product
+
+  aioredis:
+    package: "redis[hiredis]"
+    summary: "非同期Redisクライアント（redis-py v4.2+で統合）。"
+    install: "pip install redis[hiredis]"
+    usage: |
+      import redis.asyncio as redis
+      from typing import Optional
+      import json
+      
+      # 非同期Redis接続
+      async def get_redis():
+          return await redis.from_url(
+              "redis://localhost:6379",
+              encoding="utf-8",
+              decode_responses=True
+          )
+      
+      # FastAPIでの使用
+      @app.on_event("startup")
+      async def startup():
+          app.state.redis = await get_redis()
+      
+      @app.on_event("shutdown")
+      async def shutdown():
+          await app.state.redis.close()
+      
+      @app.get("/cache/{key}")
+      async def get_cache(key: str):
+          value = await app.state.redis.get(key)
+          return {"key": key, "value": value}
+      
+      @app.post("/cache/{key}")
+      async def set_cache(key: str, value: str, ttl: int = 60):
+          await app.state.redis.setex(key, ttl, value)
+          return {"status": "cached"}
+
+  fastapi_cache:
+    package: "fastapi-cache2[redis]"
+    summary: "FastAPI向けキャッシュデコレーター。"
+    install: "pip install fastapi-cache2[redis]"
+    usage: |
+      from fastapi_cache import FastAPICache
+      from fastapi_cache.decorator import cache
+      from fastapi_cache.backends.redis import RedisBackend
+      import redis.asyncio as redis
+      
+      # 初期化
+      @app.on_event("startup")
+      async def startup():
+          redis_client = redis.from_url(
+              "redis://localhost:6379", 
+              encoding="utf8", 
+              decode_responses=True
+          )
+          FastAPICache.init(RedisBackend(redis_client), prefix="fastapi-cache")
+      
+      # キャッシュデコレーター使用
+      @app.get("/products")
+      @cache(expire=60)  # 60秒キャッシュ
+      async def get_products(skip: int = 0, limit: int = 10):
+          # 重い処理
+          products = await fetch_products_from_db(skip, limit)
+          return products
+      
+      # キーのカスタマイズ
+      def product_cache_key(product_id: int):
+          return f"product:{product_id}"
+      
+      @app.get("/products/{product_id}")
+      @cache(expire=300, key_builder=product_cache_key)
+      async def get_product(product_id: int):
+          return await fetch_product(product_id)
+
+security:
+  slowapi:
+    package: "slowapi"
+    summary: "レート制限（Rate Limiting）実装。"
+    install: "pip install slowapi"
+    usage: |
+      from slowapi import Limiter, _rate_limit_exceeded_handler
+      from slowapi.util import get_remote_address
+      from slowapi.errors import RateLimitExceeded
+      
+      # Limiter作成
+      limiter = Limiter(
+          key_func=get_remote_address,
+          default_limits=["100/minute"]
+      )
+      
+      app.state.limiter = limiter
+      app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+      
+      # エンドポイントごとの制限
+      @app.get("/api/search")
+      @limiter.limit("5/minute")
+      async def search(request: Request, query: str):
+          return {"results": f"Search results for {query}"}
+      
+      # ユーザーごとの制限
+      def get_user_id(request: Request):
+          # トークンからユーザーID取得
+          return request.headers.get("user-id", "anonymous")
+      
+      @app.post("/api/expensive-operation")
+      @limiter.limit("1/hour", key_func=get_user_id)
+      async def expensive_operation(request: Request):
+          return {"status": "completed"}
+      
+      # 動的な制限
+      @app.get("/api/dynamic")
+      @limiter.limit(lambda: "10/minute" if is_premium_user() else "2/minute")
+      async def dynamic_limit(request: Request):
+          return {"data": "response"}
+
+monitoring:
+  structlog:
+    package: "structlog"
+    summary: "構造化ログ出力。JSONフォーマット対応。"
+    install: "pip install structlog"
+    usage: |
+      import structlog
+      from structlog.processors import JSONRenderer, TimeStamper
+      
+      # ログ設定
+      structlog.configure(
+          processors=[
+              structlog.stdlib.filter_by_level,
+              structlog.stdlib.add_logger_name,
+              structlog.stdlib.add_log_level,
+              TimeStamper(fmt="iso"),
+              structlog.processors.StackInfoRenderer(),
+              structlog.processors.format_exc_info,
+              JSONRenderer()
+          ],
+          context_class=dict,
+          logger_factory=structlog.stdlib.LoggerFactory(),
+          cache_logger_on_first_use=True,
+      )
+      
+      # ロガー取得
+      logger = structlog.get_logger()
+      
+      # FastAPIでの使用
+      @app.middleware("http")
+      async def log_requests(request: Request, call_next):
+          request_id = str(uuid.uuid4())
+          
+          # コンテキストバインド
+          logger_with_context = logger.bind(
+              request_id=request_id,
+              method=request.method,
+              path=request.url.path
+          )
+          
+          start_time = time.time()
+          response = await call_next(request)
+          process_time = time.time() - start_time
+          
+          logger_with_context.info(
+              "request_completed",
+              status_code=response.status_code,
+              process_time=process_time
+          )
+          
+          return response
+
+  loguru:
+    package: "loguru"
+    summary: "シンプルで強力なロギングライブラリ。"
+    install: "pip install loguru"
+    usage: |
+      from loguru import logger
+      import sys
+      
+      # ログ設定
+      logger.remove()  # デフォルトハンドラー削除
+      logger.add(
+          sys.stdout,
+          format="{time} | {level} | {message}",
+          level="INFO"
+      )
+      logger.add(
+          "app.log",
+          rotation="500 MB",
+          retention="10 days",
+          level="DEBUG"
+      )
+      
+      # FastAPIでの使用
+      @app.on_event("startup")
+      async def startup():
+          logger.info("Application starting up")
+      
+      @app.middleware("http")
+      async def log_requests(request: Request, call_next):
+          logger.info(f"Request: {request.method} {request.url.path}")
+          response = await call_next(request)
+          logger.info(f"Response: {response.status_code}")
+          return response
+      
+      # エラーログ
+      @app.exception_handler(Exception)
+      async def exception_handler(request: Request, exc: Exception):
+          logger.error(f"Unhandled exception: {exc}")
+          return JSONResponse(
+              status_code=500,
+              content={"detail": "Internal server error"}
+          )
+
+  sentry_sdk:
+    package: "sentry-sdk[fastapi]"
+    summary: "エラー監視・パフォーマンストレース。"
+    install: "pip install sentry-sdk[fastapi]"
+    usage: |
+      import sentry_sdk
+      from sentry_sdk.integrations.fastapi import FastApiIntegration
+      from sentry_sdk.integrations.sqlalchemy import SqlalchemyIntegration
+      
+      # Sentry初期化
+      sentry_sdk.init(
+          dsn="https://your-dsn@sentry.io/project-id",
+          integrations=[
+              FastApiIntegration(
+                  transaction_style="endpoint",
+                  failed_request_status_codes=[403, range(500, 599)]
+              ),
+              SqlalchemyIntegration(),
+          ],
+          traces_sample_rate=0.1,  # 10%のトランザクションをトレース
+          environment="production",
+          release="myapp@1.0.0"
+      )
+      
+      # カスタムコンテキスト
+      @app.middleware("http")
+      async def add_sentry_context(request: Request, call_next):
+          with sentry_sdk.configure_scope() as scope:
+              scope.set_tag("endpoint", request.url.path)
+              scope.set_user({"id": get_user_id(request)})
+          
+          response = await call_next(request)
+          return response
+      
+      # 手動エラーキャプチャ
+      @app.get("/risky-operation")
+      async def risky_operation():
+          try:
+              result = perform_risky_operation()
+              return result
+          except Exception as e:
+              sentry_sdk.capture_exception(e)
+              raise
+
+testing:
+  pytest:
+    package: "pytest"
+    summary: "Pythonテストフレームワーク。"
+    install: "pip install pytest"
+    usage: |
+      # test_main.py
+      import pytest
+      from fastapi.testclient import TestClient
+      from main import app
+      
+      client = TestClient(app)
+      
+      def test_read_root():
+          response = client.get("/")
+          assert response.status_code == 200
+          assert response.json() == {"message": "Welcome to FastAPI"}
+      
+      def test_create_product():
+          product_data = {
+              "name": "Test Product",
+              "price": 99.99,
+              "description": "Test description"
+          }
+          response = client.post("/products", json=product_data)
+          assert response.status_code == 201
+          assert response.json()["name"] == "Test Product"
+      
+      # フィクスチャ
+      @pytest.fixture
+      def test_db():
+          # テスト用DB設定
+          engine = create_engine("sqlite:///:memory:")
+          Base.metadata.create_all(bind=engine)
+          yield engine
+          Base.metadata.drop_all(bind=engine)
+      
+      # パラメトリックテスト
+      @pytest.mark.parametrize("price,expected", [
+          (100, True),
+          (0, False),
+          (-10, False),
+      ])
+      def test_price_validation(price, expected):
+          is_valid = validate_price(price)
+          assert is_valid == expected
+
+  httpx:
+    package: "httpx"
+    summary: "非同期HTTPクライアント。テストにも最適。"
+    install: "pip install httpx"
+    usage: |
+      import httpx
+      from httpx import AsyncClient
+      
+      # 非同期テスト
+      import pytest
+      
+      @pytest.mark.asyncio
+      async def test_async_endpoint():
+          async with AsyncClient(app=app, base_url="http://test") as client:
+              response = await client.get("/products")
+              assert response.status_code == 200
+              assert len(response.json()) > 0
+      
+      # 外部API呼び出し
+      async def fetch_external_data():
+          async with httpx.AsyncClient() as client:
+              response = await client.get(
+                  "https://api.example.com/data",
+                  headers={"Authorization": "Bearer token"},
+                  timeout=10.0
+              )
+              response.raise_for_status()
+              return response.json()
+      
+      # モック
+      @pytest.mark.asyncio
+      async def test_with_mock(httpx_mock):
+          httpx_mock.add_response(
+              url="https://api.example.com/data",
+              json={"mocked": "data"}
+          )
+          
+          result = await fetch_external_data()
+          assert result == {"mocked": "data"}
+
+  pytest_asyncio:
+    package: "pytest-asyncio"
+    summary: "非同期関数のテストサポート。"
+    install: "pip install pytest-asyncio"
+    usage: |
+      import pytest
+      import asyncio
+      from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+      
+      # 非同期フィクスチャ
+      @pytest.fixture
+      async def async_db():
+          engine = create_async_engine("sqlite+aiosqlite:///:memory:")
+          async with engine.begin() as conn:
+              await conn.run_sync(Base.metadata.create_all)
+          
+          async with AsyncSession(engine) as session:
+              yield session
+          
+          await engine.dispose()
+      
+      # 非同期テスト
+      @pytest.mark.asyncio
+      async def test_async_create_product(async_db):
+          product = Product(
+              name="Async Product",
+              price=99.99
+          )
+          async_db.add(product)
+          await async_db.commit()
+          
+          result = await async_db.get(Product, product.id)
+          assert result.name == "Async Product"
+      
+      # イベントループフィクスチャ
+      @pytest.fixture(scope="session")
+      def event_loop():
+          loop = asyncio.get_event_loop_policy().new_event_loop()
+          yield loop
+          loop.close()
+
+deployment:
+  docker:
+    package: "Docker"
+    summary: "コンテナ化による一貫したデプロイメント。"
+    install: "# Dockerfileを作成"
+    usage: |
+      # Dockerfile
+      FROM python:3.11-slim
+      
+      WORKDIR /app
+      
+      # 依存関係インストール
+      COPY requirements.txt .
+      RUN pip install --no-cache-dir -r requirements.txt
+      
+      # アプリケーションコピー
+      COPY . .
+      
+      # 非rootユーザー作成
+      RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
+      USER appuser
+      
+      # ポート公開
+      EXPOSE 8000
+      
+      # 起動コマンド
+      CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+      
+      # docker-compose.yml
+      version: '3.8'
+      
+      services:
+        app:
+          build: .
+          ports:
+            - "8000:8000"
+          environment:
+            - DATABASE_URL=postgresql://user:password@db:5432/dbname
+            - REDIS_URL=redis://redis:6379
+          depends_on:
+            - db
+            - redis
+          volumes:
+            - ./app:/app
+          command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+      
+        db:
+          image: postgres:15
+          environment:
+            - POSTGRES_USER=user
+            - POSTGRES_PASSWORD=password
+            - POSTGRES_DB=dbname
+          volumes:
+            - postgres_data:/var/lib/postgresql/data
+      
+        redis:
+          image: redis:7-alpine
+          ports:
+            - "6379:6379"
+      
+      volumes:
+        postgres_data:
+
+  nginx:
+    package: "nginx"
+    summary: "リバースプロキシ、ロードバランサー、SSL終端。"
+    install: "# nginx設定ファイルを作成"
+    usage: |
+      # nginx.conf
+      upstream fastapi_app {
+          server app1:8000;
+          server app2:8000;
+          server app3:8000;
+      }
+      
+      server {
+          listen 80;
+          server_name api.example.com;
+          
+          # SSL リダイレクト
+          return 301 https://$server_name$request_uri;
+      }
+      
+      server {
+          listen 443 ssl http2;
+          server_name api.example.com;
+          
+          # SSL設定
+          ssl_certificate /etc/nginx/ssl/cert.pem;
+          ssl_certificate_key /etc/nginx/ssl/key.pem;
+          ssl_protocols TLSv1.2 TLSv1.3;
+          ssl_ciphers HIGH:!aNULL:!MD5;
+          
+          # セキュリティヘッダー
+          add_header X-Frame-Options "SAMEORIGIN" always;
+          add_header X-Content-Type-Options "nosniff" always;
+          add_header X-XSS-Protection "1; mode=block" always;
+          
+          # プロキシ設定
+          location / {
+              proxy_pass http://fastapi_app;
+              proxy_http_version 1.1;
+              proxy_set_header Upgrade $http_upgrade;
+              proxy_set_header Connection 'upgrade';
+              proxy_set_header Host $host;
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Proto $scheme;
+              proxy_cache_bypass $http_upgrade;
+              
+              # タイムアウト設定
+              proxy_connect_timeout 60s;
+              proxy_send_timeout 60s;
+              proxy_read_timeout 60s;
+          }
+          
+          # 静的ファイル
+          location /static {
+              alias /var/www/static;
+              expires 30d;
+              add_header Cache-Control "public, immutable";
+          }
+      }
+
+best_practices:
+  - "非同期処理を活用してパフォーマンスを最大化"
+  - "Pydanticモデルで型安全性とバリデーションを確保"
+  - "依存性注入（Dependency Injection）でテスタブルな設計"
+  - "環境変数で設定管理（python-dotenv使用）"
+  - "適切なHTTPステータスコードとエラーハンドリング"
+  - "OpenAPIドキュメントの自動生成を活用"
+  - "バックグラウンドタスクで重い処理を非同期化"
+  - "データベース接続プーリングの適切な設定"
+  - "ロギングとモニタリングで可観測性を確保"
+  - "セキュリティベストプラクティスの実装（CORS、認証、レート制限）"
+  - "コンテナ化による一貫したデプロイメント"
+  - "CI/CDパイプラインの構築"

@@ -23,6 +23,12 @@ Fluorite MCPが提供するライブラリ仕様の一覧です。これらの�
 - **Recharts** - D3ベースのコンポーザブルなチャートライブラリ
 - **visx** - Airbnb製の低レベル可視化コンポーネント
 
+### Vue エコシステム
+- [Vue エコシステム](./vue) - `spec://vue-ecosystem` とスターター `spec://vue-opinionated-starter`
+
+### Nuxt エコシステム
+- [Nuxt エコシステム](./nuxt) - `spec://nuxt-ecosystem`
+
 ## 📊 データグリッド & テーブル
 
 - **AG Grid** - エンタープライズグレードのデータグリッド
@@ -56,6 +62,25 @@ Fluorite MCPが提供するライブラリ仕様の一覧です。これらの�
 - **Hono** - 超高速Webフレームワーク
 - **tRPC** - エンドツーエンドの型安全API
 - **next-intl** - Next.js用国際化ライブラリ
+
+### PHP/Laravel
+- [Laravel 基礎](./laravel) - `spec://laravel`
+- [Laravel エコシステム](./laravel) - `spec://laravel-ecosystem`
+
+### Rust / Tauri
+- [Rust / Tauri エコシステム](./rust-tauri) - `spec://rust-tauri-ecosystem`
+
+### FastAPI
+- [FastAPI エコシステム](./fastapi) - `spec://fastapi-ecosystem`
+
+### クラウドプラットフォーム
+- [Supabase / Firebase / Vercel / Azure / GCP](./cloud-platforms)
+
+### Vercel / Next.js スターター
+- `spec://vercel-next-starter`
+
+### FastAPI スターター
+- `spec://fastapi-starter`
 
 ## 🐳 監視 & 分析
 

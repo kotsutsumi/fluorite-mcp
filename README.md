@@ -74,6 +74,20 @@ See [BENEFITS.md](./BENEFITS.md) for detailed advantages.
 - **tRPC** - End-to-end typesafe APIs
 - **Hono** - Ultrafast web framework
 
+## 🌐 Global Installation
+
+For the simplest setup, install Fluorite MCP globally:
+
+```bash
+# Install globally via npm
+npm i -g fluorite-mcp
+
+# Add to Claude Code CLI
+claude mcp add fluorite -- fluorite-mcp
+```
+
+This automatically configures Fluorite MCP with Claude Code CLI, providing instant access to all library specifications.
+
 ## Quick Start
 
 ```bash

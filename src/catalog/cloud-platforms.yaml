@@ -1,0 +1,1109 @@
+id: "cloud-platforms"
+name: "Cloud Platforms & BaaS SDKs"
+homepage: "https://cloud.google.com"
+summary: ";ÅØÈ¶…◊È√»’©¸‡hBaaSBackend as a Service	nSDK§SupabaseFirebaseVercelAzureGCPkàãç<«¸øŸ¸ππ»Ï¸∏¢pAI/MLµ¸”πqí≤Ö"
+
+supabase:
+  supabase_js:
+    package: "@supabase/supabase-js"
+    summary: "SupabaselJavaScriptØÈ§¢Û»AuthDBStorageRealtime APIÕ\"
+    install: "npm install @supabase/supabase-js"
+    usage: |
+      import { createClient } from '@supabase/supabase-js'
+      
+      // SupabaseØÈ§¢Û»
+      const supabaseUrl = 'https://your-project.supabase.co'
+      const supabaseKey = 'your-anon-public-key'
+      const supabase = createClient(supabaseUrl, supabaseKey)
+      
+      // ç<
+      // µ§Û¢√◊
+      const { data: authData, error: authError } = await supabase.auth.signUp({
+        email: 'user@example.com',
+        password: 'secure-password',
+        options: {
+          data: {
+            first_name: 'John',
+            age: 25
+          }
+        }
+      })
+      
+      // µ§Û§Û
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: 'user@example.com',
+        password: 'secure-password'
+      })
+      
+      // OAuthç<
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'github',
+        options: {
+          redirectTo: 'http://localhost:3000/auth/callback'
+        }
+      })
+      
+      // «¸øŸ¸πÕ\PostgREST	
+      // SELECT
+      const { data: products, error } = await supabase
+        .from('products')
+        .select('*, category(name)')
+        .eq('is_active', true)
+        .order('created_at', { ascending: false })
+        .limit(10)
+      
+      // INSERT
+      const { data, error } = await supabase
+        .from('products')
+        .insert([
+          { name: 'Product 1', price: 99.99 },
+          { name: 'Product 2', price: 149.99 }
+        ])
+        .select()
+      
+      // UPDATE
+      const { data, error } = await supabase
+        .from('products')
+        .update({ price: 89.99 })
+        .eq('id', 1)
+        .select()
+      
+      // DELETE
+      const { error } = await supabase
+        .from('products')
+        .delete()
+        .eq('id', 1)
+      
+      // Realtime¸≠
+      const channel = supabase
+        .channel('room1')
+        .on('postgres_changes', 
+          { event: 'INSERT', schema: 'public', table: 'messages' },
+          (payload) => console.log('New message:', payload.new)
+        )
+        .on('presence', { event: 'sync' }, () => {
+          const state = channel.presenceState()
+          console.log('Online users:', state)
+        })
+        .subscribe()
+      
+      // StorageÕ\
+      // ’°§Î¢√◊Ì¸…
+      const { data, error } = await supabase.storage
+        .from('avatars')
+        .upload('public/avatar1.png', file, {
+          cacheControl: '3600',
+          upsert: false
+        })
+      
+      // ’°§Î¿¶ÛÌ¸…
+      const { data, error } = await supabase.storage
+        .from('avatars')
+        .download('public/avatar1.png')
+      
+      // lãURL÷ó
+      const { data } = supabase.storage
+        .from('avatars')
+        .getPublicUrl('public/avatar1.png')
+      
+      // Edge Functions|s˙W
+      const { data, error } = await supabase.functions.invoke('hello-world', {
+        body: { name: 'Functions' }
+      })
+
+  auth_helpers_nextjs:
+    package: "@supabase/auth-helpers-nextjs"
+    summary: "Next.jsQSupabaseç<ÿÎ—¸SSR/SSG˛‹"
+    install: "npm install @supabase/auth-helpers-nextjs"
+    usage: |
+      // app/layout.tsx (App Router)
+      import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+      import { cookies } from 'next/headers'
+      
+      export default async function RootLayout({
+        children,
+      }: {
+        children: React.ReactNode
+      }) {
+        const supabase = createServerComponentClient({ cookies })
+        const { data: { session } } = await supabase.auth.getSession()
+        
+        return (
+          <html>
+            <body>
+              <nav>
+                {session ? (
+                  <span>Logged in as {session.user.email}</span>
+                ) : (
+                  <a href="/login">Login</a>
+                )}
+              </nav>
+              {children}
+            </body>
+          </html>
+        )
+      }
+      
+      // app/api/auth/callback/route.ts
+      import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
+      import { cookies } from 'next/headers'
+      import { NextResponse } from 'next/server'
+      
+      export async function GET(request: Request) {
+        const requestUrl = new URL(request.url)
+        const code = requestUrl.searchParams.get('code')
+        
+        if (code) {
+          const supabase = createRouteHandlerClient({ cookies })
+          await supabase.auth.exchangeCodeForSession(code)
+        }
+        
+        return NextResponse.redirect(requestUrl.origin)
+      }
+      
+      // middleware.ts
+      import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs'
+      import { NextResponse } from 'next/server'
+      import type { NextRequest } from 'next/server'
+      
+      export async function middleware(req: NextRequest) {
+        const res = NextResponse.next()
+        const supabase = createMiddlewareClient({ req, res })
+        await supabase.auth.getSession()
+        return res
+      }
+
+  auth_helpers_react:
+    package: "@supabase/auth-helpers-react"
+    summary: "ReactQSupabaseç<ÿÎ—¸Hooks–õ"
+    install: "npm install @supabase/auth-helpers-react"
+    usage: |
+      // App.tsx
+      import { createClient } from '@supabase/supabase-js'
+      import { SessionContextProvider } from '@supabase/auth-helpers-react'
+      
+      const supabase = createClient(
+        process.env.REACT_APP_SUPABASE_URL!,
+        process.env.REACT_APP_SUPABASE_ANON_KEY!
+      )
+      
+      function App() {
+        return (
+          <SessionContextProvider supabaseClient={supabase}>
+            <AuthComponent />
+          </SessionContextProvider>
+        )
+      }
+      
+      // AuthComponent.tsx
+      import { useSession, useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
+      
+      function AuthComponent() {
+        const session = useSession()
+        const supabase = useSupabaseClient()
+        const user = useUser()
+        
+        if (!session) {
+          return (
+            <button onClick={() => supabase.auth.signInWithOAuth({ provider: 'github' })}>
+              Sign in with GitHub
+            </button>
+          )
+        }
+        
+        return (
+          <div>
+            <p>Welcome {user?.email}</p>
+            <button onClick={() => supabase.auth.signOut()}>Sign out</button>
+          </div>
+        )
+      }
+
+firebase:
+  firebase:
+    package: "firebase"
+    summary: "FirebaselJavaScript SDKAuthFirestoreStorageFunctionsI"
+    install: "npm install firebase"
+    usage: |
+      // firebase.ts - 
+      import { initializeApp } from 'firebase/app'
+      import { getAuth } from 'firebase/auth'
+      import { getFirestore } from 'firebase/firestore'
+      import { getStorage } from 'firebase/storage'
+      import { getFunctions } from 'firebase/functions'
+      import { getAnalytics } from 'firebase/analytics'
+      
+      const firebaseConfig = {
+        apiKey: "your-api-key",
+        authDomain: "your-auth-domain",
+        projectId: "your-project-id",
+        storageBucket: "your-storage-bucket",
+        messagingSenderId: "your-sender-id",
+        appId: "your-app-id"
+      }
+      
+      const app = initializeApp(firebaseConfig)
+      export const auth = getAuth(app)
+      export const db = getFirestore(app)
+      export const storage = getStorage(app)
+      export const functions = getFunctions(app)
+      export const analytics = getAnalytics(app)
+      
+      // ç<
+      import { 
+        createUserWithEmailAndPassword,
+        signInWithEmailAndPassword,
+        signInWithPopup,
+        GoogleAuthProvider,
+        signOut,
+        onAuthStateChanged
+      } from 'firebase/auth'
+      
+      // µ§Û¢√◊
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        'user@example.com',
+        'password123'
+      )
+      
+      // Googleç<
+      const provider = new GoogleAuthProvider()
+      const result = await signInWithPopup(auth, provider)
+      
+      // ç<∂K„ñ
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          console.log('User is signed in:', user.uid)
+        } else {
+          console.log('User is signed out')
+        }
+      })
+      
+      // Firestore
+      import { 
+        collection, 
+        doc, 
+        getDoc, 
+        getDocs, 
+        addDoc, 
+        updateDoc, 
+        deleteDoc,
+        query,
+        where,
+        orderBy,
+        limit,
+        onSnapshot
+      } from 'firebase/firestore'
+      
+      // …≠Â·Û»˝†
+      const docRef = await addDoc(collection(db, 'products'), {
+        name: 'Product 1',
+        price: 99.99,
+        created: new Date()
+      })
+      
+      // Ø®Í
+      const q = query(
+        collection(db, 'products'),
+        where('price', '>', 50),
+        orderBy('created', 'desc'),
+        limit(10)
+      )
+      const querySnapshot = await getDocs(q)
+      
+      // Í¢Îø§‡Íπ ¸
+      const unsubscribe = onSnapshot(
+        collection(db, 'products'),
+        (snapshot) => {
+          snapshot.docChanges().forEach((change) => {
+            if (change.type === 'added') {
+              console.log('New product:', change.doc.data())
+            }
+          })
+        }
+      )
+      
+      // Storage
+      import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage'
+      
+      // ’°§Î¢√◊Ì¸…
+      const storageRef = ref(storage, 'images/photo.jpg')
+      const snapshot = await uploadBytes(storageRef, file)
+      const downloadURL = await getDownloadURL(snapshot.ref)
+      
+      // Cloud Functions|s˙W
+      import { httpsCallable } from 'firebase/functions'
+      
+      const addMessage = httpsCallable(functions, 'addMessage')
+      const result = await addMessage({ text: 'Hello World' })
+
+  firebase_admin:
+    package: "firebase-admin"
+    summary: "µ¸–¸µ§…(Firebase Admin SDK"
+    install: "npm install firebase-admin"
+    usage: |
+      // admin.ts
+      import * as admin from 'firebase-admin'
+      
+      // µ¸”π¢´¶Û»g
+      admin.initializeApp({
+        credential: admin.credential.cert({
+          projectId: process.env.FIREBASE_PROJECT_ID,
+          clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+          privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n')
+        })
+      })
+      
+      const auth = admin.auth()
+      const db = admin.firestore()
+      const storage = admin.storage()
+      
+      // ´πø‡»¸ØÛ
+      const customToken = await auth.createCustomToken('user123', {
+        role: 'admin',
+        permissions: ['read', 'write']
+      })
+      
+      // Ê¸∂¸°
+      // Ê¸∂¸\
+      const userRecord = await auth.createUser({
+        email: 'user@example.com',
+        password: 'password123',
+        displayName: 'John Doe',
+        disabled: false
+      })
+      
+      // Ê¸∂¸≈1Ù∞
+      await auth.updateUser(userRecord.uid, {
+        emailVerified: true,
+        customClaims: { admin: true }
+      })
+      
+      // FirestoreÕ\–√¡Ê	
+      const batch = db.batch()
+      
+      const productRef = db.collection('products').doc()
+      batch.set(productRef, { name: 'Product 1', price: 99.99 })
+      
+      const categoryRef = db.collection('categories').doc('electronics')
+      batch.update(categoryRef, { productCount: admin.firestore.FieldValue.increment(1) })
+      
+      await batch.commit()
+      
+      // ª≠ÂÍ∆£Î¸ÎÙ∞
+      const rulesFile = await admin.securityRules().getFirestoreRuleset()
+
+  reactfire:
+    package: "reactfire"
+    summary: "ReactQFirebase HooksÈ§÷ÈÍ"
+    install: "npm install reactfire"
+    usage: |
+      // App.tsx
+      import { FirebaseAppProvider } from 'reactfire'
+      import { getFirestore } from 'firebase/firestore'
+      import { getAuth } from 'firebase/auth'
+      import { FirestoreProvider, AuthProvider, useFirebaseApp } from 'reactfire'
+      
+      const firebaseConfig = { /* ... */ }
+      
+      function App() {
+        return (
+          <FirebaseAppProvider firebaseConfig={firebaseConfig}>
+            <AppWithProviders />
+          </FirebaseAppProvider>
+        )
+      }
+      
+      function AppWithProviders() {
+        const app = useFirebaseApp()
+        const firestore = getFirestore(app)
+        const auth = getAuth(app)
+        
+        return (
+          <AuthProvider sdk={auth}>
+            <FirestoreProvider sdk={firestore}>
+              <MainApp />
+            </FirestoreProvider>
+          </AuthProvider>
+        )
+      }
+      
+      // Component.tsx
+      import { useUser, useFirestore, useFirestoreCollectionData } from 'reactfire'
+      import { collection, query, where } from 'firebase/firestore'
+      
+      function ProductList() {
+        const { data: user } = useUser()
+        const firestore = useFirestore()
+        
+        const productsQuery = query(
+          collection(firestore, 'products'),
+          where('userId', '==', user?.uid ?? '')
+        )
+        
+        const { status, data: products } = useFirestoreCollectionData(productsQuery, {
+          idField: 'id'
+        })
+        
+        if (status === 'loading') return <div>Loading...</div>
+        
+        return (
+          <ul>
+            {products.map(product => (
+              <li key={product.id}>{product.name}</li>
+            ))}
+          </ul>
+        )
+      }
+
+vercel:
+  vercel_cli:
+    package: "vercel"
+    summary: "Vercel CLI«◊Ì§˚°ƒ¸Î"
+    install: "npm install -g vercel"
+    usage: |
+      # «◊Ì§
+      vercel
+      
+      # ◊Ì¿Ø∑ÁÛ«◊Ì§
+      vercel --prod
+      
+      # ∞É	p-ö
+      vercel env add DATABASE_URL
+      vercel env pull .env.local
+      
+      # …·§Û˝†
+      vercel domains add example.com
+      
+      # Functions\
+      vercel functions create my-function
+      
+      # Ì∞∫ç
+      vercel logs
+      
+      # ◊Ì∏ßØ»ÍÛØ
+      vercel link
+      
+      # ãzµ¸–¸
+      vercel dev
+
+  vercel_node:
+    package: "@vercel/node"
+    summary: "Vercel Serverless Functions(Node.jsÈÛø§‡"
+    install: "npm install @vercel/node"
+    usage: |
+      // api/hello.ts
+      import type { VercelRequest, VercelResponse } from '@vercel/node'
+      
+      export default function handler(
+        req: VercelRequest,
+        res: VercelResponse
+      ) {
+        const { name = 'World' } = req.query
+        
+        // CORS-ö
+        res.setHeader('Access-Control-Allow-Origin', '*')
+        res.setHeader('Access-Control-Allow-Methods', 'GET,POST')
+        
+        // Ïπ›Ûπ
+        res.status(200).json({
+          message: `Hello ${name}!`,
+          timestamp: new Date().toISOString()
+        })
+      }
+      
+      // api/products.ts - «¸øŸ¸π•ö
+      import { sql } from '@vercel/postgres'
+      
+      export default async function handler(
+        req: VercelRequest,
+        res: VercelResponse
+      ) {
+        if (req.method === 'GET') {
+          const { rows } = await sql`SELECT * FROM products`
+          return res.status(200).json(rows)
+        }
+        
+        if (req.method === 'POST') {
+          const { name, price } = req.body
+          const { rows } = await sql`
+            INSERT INTO products (name, price)
+            VALUES (${name}, ${price})
+            RETURNING *
+          `
+          return res.status(201).json(rows[0])
+        }
+        
+        res.status(405).json({ error: 'Method not allowed' })
+      }
+      
+      // vercel.json-ö
+      {
+        "functions": {
+          "api/hello.ts": {
+            "maxDuration": 10
+          },
+          "api/products.ts": {
+            "maxDuration": 30,
+            "memory": 1024
+          }
+        }
+      }
+
+  vercel_edge:
+    package: "@vercel/edge"
+    summary: "Edge Functions(SDK∞Ì¸–Î®√∏güL"
+    install: "npm install @vercel/edge"
+    usage: |
+      // api/edge.ts
+      import { NextRequest } from 'next/server'
+      
+      export const config = {
+        runtime: 'edge',
+      }
+      
+      export default async function handler(req: NextRequest) {
+        // 0≈1÷ó
+        const country = req.geo?.country || 'US'
+        const city = req.geo?.city || 'Unknown'
+        
+        // Ï¸»6PKV(	
+        const ip = req.ip || 'unknown'
+        const rateLimit = await checkRateLimit(ip)
+        
+        if (!rateLimit.allowed) {
+          return new Response('Too Many Requests', { status: 429 })
+        }
+        
+        // A/B∆π»
+        const variant = req.cookies.get('variant')?.value || 'a'
+        
+        // Ïπ›Ûπn´πøﬁ§∫
+        const response = new Response(
+          JSON.stringify({
+            message: 'Hello from the edge!',
+            location: { country, city },
+            variant
+          }),
+          {
+            status: 200,
+            headers: {
+              'content-type': 'application/json',
+              'cache-control': 'public, s-maxage=10'
+            }
+          }
+        )
+        
+        // Cookie-ö
+        response.headers.append(
+          'Set-Cookie',
+          `variant=${variant}; Path=/; HttpOnly`
+        )
+        
+        return response
+      }
+      
+      // Middleware
+      import { NextResponse } from 'next/server'
+      import type { NextRequest } from 'next/server'
+      
+      export function middleware(request: NextRequest) {
+        // Í¿§ÏØ»
+        if (request.nextUrl.pathname === '/old-path') {
+          return NextResponse.redirect(new URL('/new-path', request.url))
+        }
+        
+        // ÿ√¿¸˝†
+        const response = NextResponse.next()
+        response.headers.set('x-custom-header', 'value')
+        
+        return response
+      }
+      
+      export const config = {
+        matcher: ['/api/:path*', '/protected/:path*']
+      }
+
+azure:
+  azure_identity:
+    package: "@azure/identity"
+    summary: "Azureç<È§÷ÈÍMSALí€Managed Identity˛‹"
+    install: "npm install @azure/identity"
+    usage: |
+      import { DefaultAzureCredential, ClientSecretCredential } from '@azure/identity'
+      
+      // «’©Î»ç<ãz∞Égo∞É	p,jgoManaged Identity	
+      const credential = new DefaultAzureCredential()
+      
+      // µ¸”π◊ÍÛ∑—Îç<
+      const credential = new ClientSecretCredential(
+        process.env.AZURE_TENANT_ID!,
+        process.env.AZURE_CLIENT_ID!,
+        process.env.AZURE_CLIENT_SECRET!
+      )
+      
+      // ˛qãç<ãz(	
+      import { InteractiveBrowserCredential } from '@azure/identity'
+      
+      const credential = new InteractiveBrowserCredential({
+        clientId: 'your-client-id',
+        tenantId: 'your-tenant-id'
+      })
+
+  azure_storage_blob:
+    package: "@azure/storage-blob"
+    summary: "Azure Blob Storage SDK"
+    install: "npm install @azure/storage-blob"
+    usage: |
+      import { BlobServiceClient, BlockBlobClient } from '@azure/storage-blob'
+      import { DefaultAzureCredential } from '@azure/identity'
+      
+      // •öáWg•ö
+      const blobServiceClient = BlobServiceClient.fromConnectionString(
+        process.env.AZURE_STORAGE_CONNECTION_STRING!
+      )
+      
+      // Managed Identityg•ö
+      const account = 'your-storage-account'
+      const blobServiceClient = new BlobServiceClient(
+        `https://${account}.blob.core.windows.net`,
+        new DefaultAzureCredential()
+      )
+      
+      // ≥Û∆ Õ\
+      const containerClient = blobServiceClient.getContainerClient('my-container')
+      await containerClient.createIfNotExists({ access: 'container' })
+      
+      // ’°§Î¢√◊Ì¸…
+      const blockBlobClient = containerClient.getBlockBlobClient('file.txt')
+      const uploadResponse = await blockBlobClient.upload(
+        'Hello Azure!',
+        'Hello Azure!'.length,
+        {
+          blobHTTPHeaders: {
+            blobContentType: 'text/plain'
+          },
+          metadata: {
+            uploadedBy: 'user123'
+          }
+        }
+      )
+      
+      // ’°§Î¿¶ÛÌ¸…
+      const downloadResponse = await blockBlobClient.download()
+      const downloadedContent = await streamToString(downloadResponse.readableStreamBody!)
+      
+      // ’°§Î ß
+      for await (const blob of containerClient.listBlobsFlat()) {
+        console.log(`- ${blob.name} (${blob.properties.contentLength} bytes)`)
+      }
+      
+      // SAS URL
+      import { generateBlobSASQueryParameters, BlobSASPermissions } from '@azure/storage-blob'
+      
+      const sasUrl = await blockBlobClient.generateSasUrl({
+        permissions: BlobSASPermissions.parse('r'),
+        startsOn: new Date(),
+        expiresOn: new Date(new Date().valueOf() + 3600 * 1000)
+      })
+
+  azure_cosmos:
+    package: "@azure/cosmos"
+    summary: "Azure Cosmos DB SDK"
+    install: "npm install @azure/cosmos"
+    usage: |
+      import { CosmosClient } from '@azure/cosmos'
+      
+      // ØÈ§¢Û»
+      const client = new CosmosClient({
+        endpoint: process.env.COSMOS_ENDPOINT!,
+        key: process.env.COSMOS_KEY!
+      })
+      
+      // «¸øŸ¸πh≥Û∆ 
+      const database = client.database('my-database')
+      const container = database.container('products')
+      
+      // ¢§∆‡\
+      const { resource: createdItem } = await container.items.create({
+        id: '1',
+        name: 'Product 1',
+        price: 99.99,
+        category: 'electronics'
+      })
+      
+      // Ø®Í
+      const querySpec = {
+        query: 'SELECT * FROM c WHERE c.category = @category AND c.price > @minPrice',
+        parameters: [
+          { name: '@category', value: 'electronics' },
+          { name: '@minPrice', value: 50 }
+        ]
+      }
+      
+      const { resources: items } = await container.items
+        .query(querySpec)
+        .fetchAll()
+      
+      // ¢§∆‡Ù∞
+      const { resource: updatedItem } = await container
+        .item('1', 'electronics')  // id, partition key
+        .replace({
+          id: '1',
+          name: 'Updated Product',
+          price: 89.99,
+          category: 'electronics'
+        })
+      
+      // π»¢…◊Ì∑¸∏„
+      const { resource: result } = await container.scripts
+        .storedProcedure('myStoredProc')
+        .execute('partitionKey', [param1, param2])
+
+  azure_functions:
+    package: "@azure/functions"
+    summary: "Azure Functions(TypeScript/JavaScript SDK"
+    install: "npm install @azure/functions"
+    usage: |
+      // HTTP Trigger
+      import { app, HttpRequest, HttpResponseInit, InvocationContext } from '@azure/functions'
+      
+      export async function httpTrigger(
+        request: HttpRequest,
+        context: InvocationContext
+      ): Promise<HttpResponseInit> {
+        context.log('HTTP trigger function processed a request')
+        
+        const name = request.query.get('name') || await request.text() || 'world'
+        
+        return { 
+          body: `Hello, ${name}!`,
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      }
+      
+      app.http('httpTrigger', {
+        methods: ['GET', 'POST'],
+        authLevel: 'anonymous',
+        handler: httpTrigger
+      })
+      
+      // Timer Trigger
+      import { app, Timer, InvocationContext } from '@azure/functions'
+      
+      export async function timerTrigger(
+        myTimer: Timer,
+        context: InvocationContext
+      ): Promise<void> {
+        context.log('Timer trigger function ran at', new Date().toISOString())
+        
+        if (myTimer.isPastDue) {
+          context.log('Timer is past due!')
+        }
+      }
+      
+      app.timer('timerTrigger', {
+        schedule: '0 */5 * * * *',  // 5Th
+        handler: timerTrigger
+      })
+      
+      // Queue Trigger
+      import { app, InvocationContext } from '@azure/functions'
+      
+      export async function queueTrigger(
+        queueItem: any,
+        context: InvocationContext
+      ): Promise<void> {
+        context.log('Queue trigger function processed:', queueItem)
+        
+        // ÊÌ∏√Ø
+        await processQueueItem(queueItem)
+      }
+      
+      app.storageQueue('queueTrigger', {
+        queueName: 'my-queue',
+        connection: 'AzureWebJobsStorage',
+        handler: queueTrigger
+      })
+      
+      // Cosmos DB Trigger
+      app.cosmosDB('cosmosDBTrigger', {
+        databaseName: 'my-database',
+        collectionName: 'my-collection',
+        connectionStringSetting: 'CosmosDBConnection',
+        leaseCollectionName: 'leases',
+        handler: async (documents: any[], context: InvocationContext) => {
+          context.log(`Cosmos DB trigger processed ${documents.length} documents`)
+          
+          for (const doc of documents) {
+            await processDocument(doc)
+          }
+        }
+      })
+
+gcp:
+  google_cloud_storage:
+    package: "@google-cloud/storage"
+    summary: "Google Cloud Storage ØÈ§¢Û»"
+    install: "npm install @google-cloud/storage"
+    usage: |
+      import { Storage } from '@google-cloud/storage'
+      
+      // ØÈ§¢Û»
+      const storage = new Storage({
+        projectId: 'your-project-id',
+        keyFilename: 'path/to/service-account.json'  // ~_o∞É	pGOOGLE_APPLICATION_CREDENTIALS
+      })
+      
+      // –±√»Õ\
+      const bucket = storage.bucket('my-bucket')
+      
+      // ’°§Î¢√◊Ì¸…
+      await bucket.upload('local-file.txt', {
+        destination: 'uploaded-file.txt',
+        metadata: {
+          contentType: 'text/plain',
+          metadata: {
+            custom: 'metadata'
+          }
+        }
+      })
+      
+      // π»Í¸‡¢√◊Ì¸…
+      const file = bucket.file('stream-upload.txt')
+      const stream = file.createWriteStream({
+        metadata: {
+          contentType: 'text/plain'
+        }
+      })
+      
+      stream.on('error', (err) => console.error(err))
+      stream.on('finish', () => console.log('Upload complete'))
+      stream.end('Hello GCS!')
+      
+      // ’°§Î¿¶ÛÌ¸…
+      await bucket.file('file.txt').download({
+        destination: 'local-copy.txt'
+      })
+      
+      // ’°§Î ß
+      const [files] = await bucket.getFiles({ prefix: 'images/' })
+      files.forEach(file => {
+        console.log(file.name)
+      })
+      
+      // rÿMURL
+      const [signedUrl] = await bucket.file('file.txt').getSignedUrl({
+        version: 'v4',
+        action: 'read',
+        expires: Date.now() + 15 * 60 * 1000, // 15
+      })
+
+  google_cloud_firestore:
+    package: "@google-cloud/firestore"
+    summary: "Cloud FirestoreØÈ§¢Û»"
+    install: "npm install @google-cloud/firestore"
+    usage: |
+      import { Firestore } from '@google-cloud/firestore'
+      
+      // ØÈ§¢Û»
+      const firestore = new Firestore({
+        projectId: 'your-project-id',
+        keyFilename: 'path/to/service-account.json'
+      })
+      
+      // …≠Â·Û»Õ\
+      const docRef = firestore.collection('users').doc('user1')
+      
+      // \/Ù∞
+      await docRef.set({
+        name: 'John Doe',
+        email: 'john@example.com',
+        age: 30
+      })
+      
+      // ËÙ∞
+      await docRef.update({
+        age: 31,
+        'address.city': 'Tokyo'
+      })
+      
+      // ÷ó
+      const doc = await docRef.get()
+      if (doc.exists) {
+        console.log('Document data:', doc.data())
+      }
+      
+      // Ø®Í
+      const snapshot = await firestore
+        .collection('products')
+        .where('price', '>', 50)
+        .where('category', '==', 'electronics')
+        .orderBy('price', 'desc')
+        .limit(10)
+        .get()
+      
+      snapshot.forEach(doc => {
+        console.log(doc.id, '=>', doc.data())
+      })
+      
+      // –√¡Õ\
+      const batch = firestore.batch()
+      
+      const ref1 = firestore.collection('products').doc()
+      batch.set(ref1, { name: 'Product 1', price: 99.99 })
+      
+      const ref2 = firestore.collection('products').doc('product2')
+      batch.update(ref2, { stock: 100 })
+      
+      await batch.commit()
+      
+      // Í¢Îø§‡Íπ ¸
+      const unsubscribe = firestore
+        .collection('messages')
+        .orderBy('timestamp', 'desc')
+        .limit(50)
+        .onSnapshot(snapshot => {
+          snapshot.docChanges().forEach(change => {
+            if (change.type === 'added') {
+              console.log('New message:', change.doc.data())
+            }
+          })
+        })
+
+  google_cloud_pubsub:
+    package: "@google-cloud/pubsub"
+    summary: "Cloud Pub/Sub·√ª¸∏Û∞µ¸”πØÈ§¢Û»"
+    install: "npm install @google-cloud/pubsub"
+    usage: |
+      import { PubSub } from '@google-cloud/pubsub'
+      
+      const pubsub = new PubSub({
+        projectId: 'your-project-id'
+      })
+      
+      // »‘√Ø\
+      const [topic] = await pubsub.createTopic('my-topic')
+      console.log(`Topic ${topic.name} created.`)
+      
+      // ·√ª¸∏zL
+      const topic = pubsub.topic('my-topic')
+      
+      const messageBuffer = Buffer.from(JSON.stringify({
+        data: 'Hello, Pub/Sub!',
+        timestamp: new Date().toISOString()
+      }))
+      
+      const messageId = await topic.publish(messageBuffer, {
+        customAttribute: 'value'
+      })
+      console.log(`Message ${messageId} published.`)
+      
+      // –√¡zL
+      const messages = [
+        { data: 'Message 1', attributes: { key: 'value1' } },
+        { data: 'Message 2', attributes: { key: 'value2' } }
+      ]
+      
+      const batchPublisher = topic.batching({
+        maxMessages: 100,
+        maxMilliseconds: 1000
+      })
+      
+      for (const message of messages) {
+        await batchPublisher.publish(Buffer.from(message.data), message.attributes)
+      }
+      
+      // µ÷πØÍ◊∑ÁÛ\
+      const [subscription] = await topic.createSubscription('my-subscription', {
+        ackDeadlineSeconds: 60
+      })
+      
+      // ·√ª¸∏◊·
+      const subscription = pubsub.subscription('my-subscription')
+      
+      subscription.on('message', message => {
+        console.log('Received message:', message.data.toString())
+        console.log('Attributes:', message.attributes)
+        
+        // ·√ª¸∏∫ç
+        message.ack()
+      })
+      
+      subscription.on('error', error => {
+        console.error('Received error:', error)
+      })
+
+  google_cloud_functions:
+    package: "@google-cloud/functions-framework"
+    summary: "Cloud FunctionsÌ¸´ÎüL˚∆π»’Ï¸‡Ô¸Ø"
+    install: "npm install @google-cloud/functions-framework"
+    usage: |
+      // index.ts - HTTP Function
+      import { HttpFunction } from '@google-cloud/functions-framework'
+      
+      export const helloHTTP: HttpFunction = (req, res) => {
+        const name = req.query.name || req.body.name || 'World'
+        res.send(`Hello ${name}!`)
+      }
+      
+      // CloudEvent Function
+      import { CloudEventFunction } from '@google-cloud/functions-framework'
+      import { CloudEvent } from 'cloudevents'
+      
+      export const helloPubSub: CloudEventFunction = (cloudEvent: CloudEvent) => {
+        const base64data = cloudEvent.data?.message?.data
+        
+        if (base64data) {
+          const message = Buffer.from(base64data, 'base64').toString()
+          console.log(`Pub/Sub message: ${message}`)
+        }
+      }
+      
+      // Typed CloudEvent
+      interface MessagePublishedData {
+        message: {
+          data: string
+          attributes?: { [key: string]: string }
+        }
+        subscription: string
+      }
+      
+      export const processMessage: CloudEventFunction<MessagePublishedData> = (cloudEvent) => {
+        const messageData = Buffer.from(cloudEvent.data!.message.data, 'base64').toString()
+        console.log('Message:', messageData)
+        console.log('Attributes:', cloudEvent.data!.message.attributes)
+      }
+      
+      // package.json
+      {
+        "scripts": {
+          "start": "functions-framework --target=helloHTTP --port=8080"
+        }
+      }
+      
+      // Ì¸´ÎüL
+      // npx functions-framework --target=helloHTTP
+      
+      // «◊Ì§
+      // gcloud functions deploy helloHTTP \
+      //   --runtime nodejs18 \
+      //   --trigger-http \
+      //   --allow-unauthenticated
+
+best_practices:
+  - "∞É	pgç<≈1í°ÿ∆≈1í≥¸…k+ÅjD	"
+  - "ij®È¸œÛ…ÍÛ∞hÍ»È§Ì∏√Ønü≈"
+  - "≠„√∑Û∞&eg API ≥¸Îpí "
+  - "–√¡Õ\í;(Wf—’©¸ﬁÛπí
+"
+  - "Í¢Îø§‡_˝o≈Åj4n(≥π» i	"
+  - "ij)P-öhª≠ÂÍ∆£Î¸Înü≈"
+  - "‚ÀøÍÛ∞hÌ∞2gOLíÈzã"
+  - "ãz/π∆¸∏Û∞/,j∞Én‚"
+  - "CI/CD —§◊È§ÛnÀ…gÍ’«◊Ì§"
+  - "≥π»„ñh¢È¸»-ö"
+  - "«¸øn–√Ø¢√◊h«£∂πøÍ´–Í¸;"
+  - "µ¸”π˙	nŸπ»◊ÈØ∆£πkìF"
