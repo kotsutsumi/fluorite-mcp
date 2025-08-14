@@ -1,0 +1,380 @@
+id: "@tanstack/react-query"
+name: "TanStack Query"
+version: "^5.17.0"
+homepage: "https://tanstack.com/query/latest"
+github: "https://github.com/TanStack/query"
+npm: "@tanstack/react-query"
+summary: "Powerful asynchronous state management for React with caching, synchronization, and server state updates."
+description: |
+  TanStack Query (formerly React Query) is a powerful data-fetching and state management library for React applications.
+  It provides declarative, auto-managed queries and mutations with caching, background refetching, and optimistic updates.
+  Features include parallel queries, dependent queries, paginated/infinite queries, and offline support.
+  Eliminates boilerplate for server state management while providing excellent DevTools.
+tags:
+  - data-fetching
+  - state-management
+  - caching
+  - react
+  - typescript
+  - server-state
+  - async
+
+install:
+  npm: |
+    npm install @tanstack/react-query
+    # Optional: DevTools
+    npm install @tanstack/react-query-devtools
+  yarn: |
+    yarn add @tanstack/react-query
+    yarn add @tanstack/react-query-devtools
+  pnpm: |
+    pnpm add @tanstack/react-query
+    pnpm add @tanstack/react-query-devtools
+
+dependencies:
+  required:
+    react: "^18.0.0"
+    react-dom: "^18.0.0"
+  optional:
+    "@tanstack/react-query-devtools": "^5.17.0"
+    "@tanstack/query-sync-storage-persister": "^5.17.0"
+    "@tanstack/react-query-persist-client": "^5.17.0"
+
+api:
+  core:
+    queryClient:
+      description: "Central store for query cache and configuration"
+      methods:
+        - "invalidateQueries: Invalidate and refetch queries"
+        - "prefetchQuery: Prefetch data before it's needed"
+        - "setQueryData: Manually update cache"
+        - "getQueryData: Read from cache"
+        - "cancelQueries: Cancel in-flight requests"
+    
+    hooks:
+      useQuery:
+        description: "Fetch and cache data"
+        params:
+          queryKey: "Unique key for the query"
+          queryFn: "Function that fetches data"
+          options: "Configuration options"
+      
+      useMutation:
+        description: "Perform mutations with side effects"
+        params:
+          mutationFn: "Function that performs mutation"
+          options: "onSuccess, onError, onSettled callbacks"
+      
+      useQueries:
+        description: "Fetch multiple queries in parallel"
+      
+      useInfiniteQuery:
+        description: "Fetch paginated data with infinite scroll"
+      
+      useIsFetching:
+        description: "Global fetching indicator"
+      
+      useIsMutating:
+        description: "Global mutation indicator"
+
+usage:
+  basicSetup: |
+    // app.tsx - Setup QueryClient and Provider
+    import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+    import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+    
+    const queryClient = new QueryClient({
+      defaultOptions: {
+        queries: {
+          staleTime: 60 * 1000, // 1 minute
+          gcTime: 5 * 60 * 1000, // 5 minutes (formerly cacheTime)
+          retry: 3,
+          refetchOnWindowFocus: false,
+        },
+      },
+    })
+    
+    export default function App() {
+      return (
+        <QueryClientProvider client={queryClient}>
+          <YourApp />
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+      )
+    }
+  
+  basicQuery: |
+    // Fetching data with useQuery
+    import { useQuery } from '@tanstack/react-query'
+    
+    interface User {
+      id: number
+      name: string
+      email: string
+    }
+    
+    async function fetchUser(userId: number): Promise<User> {
+      const response = await fetch(`/api/users/${userId}`)
+      if (!response.ok) throw new Error('Failed to fetch user')
+      return response.json()
+    }
+    
+    export function UserProfile({ userId }: { userId: number }) {
+      const { data, error, isLoading, isError } = useQuery({
+        queryKey: ['user', userId],
+        queryFn: () => fetchUser(userId),
+        staleTime: 5 * 60 * 1000, // Consider data fresh for 5 minutes
+      })
+      
+      if (isLoading) return <div>Loading...</div>
+      if (isError) return <div>Error: {error.message}</div>
+      
+      return (
+        <div>
+          <h1>{data.name}</h1>
+          <p>{data.email}</p>
+        </div>
+      )
+    }
+  
+  mutationExample: |
+    // Mutations with optimistic updates
+    import { useMutation, useQueryClient } from '@tanstack/react-query'
+    
+    interface UpdateUserDTO {
+      name: string
+      email: string
+    }
+    
+    export function EditUserForm({ userId }: { userId: number }) {
+      const queryClient = useQueryClient()
+      
+      const mutation = useMutation({
+        mutationFn: async (data: UpdateUserDTO) => {
+          const response = await fetch(`/api/users/${userId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          })
+          if (!response.ok) throw new Error('Update failed')
+          return response.json()
+        },
+        onMutate: async (newData) => {
+          // Cancel outgoing refetches
+          await queryClient.cancelQueries({ queryKey: ['user', userId] })
+          
+          // Snapshot previous value
+          const previousUser = queryClient.getQueryData(['user', userId])
+          
+          // Optimistically update
+          queryClient.setQueryData(['user', userId], (old: any) => ({
+            ...old,
+            ...newData,
+          }))
+          
+          return { previousUser }
+        },
+        onError: (err, newData, context) => {
+          // Rollback on error
+          queryClient.setQueryData(['user', userId], context?.previousUser)
+        },
+        onSettled: () => {
+          // Refetch after error or success
+          queryClient.invalidateQueries({ queryKey: ['user', userId] })
+        },
+      })
+      
+      const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault()
+        const formData = new FormData(e.target as HTMLFormElement)
+        mutation.mutate({
+          name: formData.get('name') as string,
+          email: formData.get('email') as string,
+        })
+      }
+      
+      return (
+        <form onSubmit={handleSubmit}>
+          <input name="name" required />
+          <input name="email" type="email" required />
+          <button type="submit" disabled={mutation.isPending}>
+            {mutation.isPending ? 'Saving...' : 'Save'}
+          </button>
+          {mutation.isError && <p>Error: {mutation.error.message}</p>}
+        </form>
+      )
+    }
+  
+  infiniteQueryExample: |
+    // Infinite scroll with useInfiniteQuery
+    import { useInfiniteQuery } from '@tanstack/react-query'
+    import { useInView } from 'react-intersection-observer'
+    import { useEffect } from 'react'
+    
+    interface PostsPage {
+      posts: Array<{ id: number; title: string; content: string }>
+      nextCursor?: number
+    }
+    
+    export function InfinitePosts() {
+      const { ref, inView } = useInView()
+      
+      const {
+        data,
+        error,
+        fetchNextPage,
+        hasNextPage,
+        isFetchingNextPage,
+        isLoading,
+      } = useInfiniteQuery({
+        queryKey: ['posts'],
+        queryFn: async ({ pageParam }) => {
+          const response = await fetch(
+            `/api/posts?cursor=${pageParam ?? 0}&limit=10`
+          )
+          if (!response.ok) throw new Error('Failed to fetch posts')
+          return response.json() as Promise<PostsPage>
+        },
+        initialPageParam: 0,
+        getNextPageParam: (lastPage) => lastPage.nextCursor,
+      })
+      
+      useEffect(() => {
+        if (inView && hasNextPage) {
+          fetchNextPage()
+        }
+      }, [inView, fetchNextPage, hasNextPage])
+      
+      if (isLoading) return <div>Loading...</div>
+      if (error) return <div>Error: {error.message}</div>
+      
+      return (
+        <div>
+          {data.pages.map((page) =>
+            page.posts.map((post) => (
+              <article key={post.id}>
+                <h2>{post.title}</h2>
+                <p>{post.content}</p>
+              </article>
+            ))
+          )}
+          <div ref={ref}>
+            {isFetchingNextPage
+              ? 'Loading more...'
+              : hasNextPage
+              ? 'Load More'
+              : 'Nothing more to load'}
+          </div>
+        </div>
+      )
+    }
+  
+  dependentQueries: |
+    // Dependent/Sequential queries
+    import { useQuery } from '@tanstack/react-query'
+    
+    export function UserPosts({ userId }: { userId: number }) {
+      // First query: fetch user
+      const userQuery = useQuery({
+        queryKey: ['user', userId],
+        queryFn: () => fetchUser(userId),
+      })
+      
+      // Second query: fetch posts (depends on user)
+      const postsQuery = useQuery({
+        queryKey: ['posts', userQuery.data?.id],
+        queryFn: () => fetchUserPosts(userQuery.data!.id),
+        enabled: !!userQuery.data, // Only run when user data is available
+      })
+      
+      if (userQuery.isLoading) return <div>Loading user...</div>
+      if (userQuery.isError) return <div>Error loading user</div>
+      
+      if (postsQuery.isLoading) return <div>Loading posts...</div>
+      if (postsQuery.isError) return <div>Error loading posts</div>
+      
+      return (
+        <div>
+          <h1>{userQuery.data.name}'s Posts</h1>
+          {postsQuery.data?.map(post => (
+            <article key={post.id}>{post.title}</article>
+          ))}
+        </div>
+      )
+    }
+
+bestPractices:
+  - "Use consistent query key patterns: ['resource', id, params]"
+  - "Set appropriate staleTime and gcTime based on data volatility"
+  - "Implement proper error boundaries for query errors"
+  - "Use optimistic updates for better UX in mutations"
+  - "Prefetch data on hover/focus for instant navigation"
+  - "Leverage query invalidation for cache management"
+  - "Use select option to transform/filter data"
+  - "Implement proper TypeScript types for all queries"
+
+performance:
+  optimization:
+    - "Window focus refetching: disable for non-critical data"
+    - "Query deduplication: automatic for identical keys"
+    - "Parallel queries: use useQueries for better performance"
+    - "Selective rehydration: only hydrate critical queries"
+    - "Background refetching: keeps data fresh automatically"
+  caching:
+    - "Structural sharing: minimizes re-renders"
+    - "Smart garbage collection with gcTime"
+    - "Query persistence for offline support"
+    - "Optimistic updates for instant feedback"
+
+patterns:
+  dataFetching:
+    - "Suspense mode for cleaner loading states"
+    - "Error boundaries for error handling"
+    - "Prefetching on route changes"
+    - "Background sync for real-time updates"
+  
+  stateManagement:
+    - "Replace Redux/MobX for server state"
+    - "Combine with Zustand/Jotai for client state"
+    - "Use as single source of truth for async data"
+
+troubleshooting:
+  commonIssues:
+    - issue: "Query not refetching"
+      solution: "Check staleTime, ensure query key changes, verify enabled option"
+    - issue: "Infinite re-renders"
+      solution: "Stabilize queryFn with useCallback, check query key dependencies"
+    - issue: "Memory leaks"
+      solution: "Set appropriate gcTime, cleanup subscriptions properly"
+    - issue: "TypeScript errors"
+      solution: "Use generic types: useQuery<Data, Error>, ensure proper return types"
+
+ecosystem:
+  adapters:
+    - "@tanstack/solid-query: SolidJS adapter"
+    - "@tanstack/vue-query: Vue adapter"
+    - "@tanstack/svelte-query: Svelte adapter"
+  
+  extensions:
+    - "@tanstack/query-sync-storage-persister: Persist cache"
+    - "@tanstack/react-query-persist-client: Persistent client"
+    - "@tanstack/eslint-plugin-query: ESLint rules"
+
+references:
+  documentation: "https://tanstack.com/query/latest/docs/react/overview"
+  guides: "https://tanstack.com/query/latest/docs/react/guides/queries"
+  examples: "https://tanstack.com/query/latest/docs/react/examples/simple"
+  api: "https://tanstack.com/query/latest/docs/react/reference/useQuery"
+  migration: "https://tanstack.com/query/latest/docs/react/guides/migrating-to-v5"
+  devtools: "https://tanstack.com/query/latest/docs/react/devtools"
+  discord: "https://discord.com/invite/WrRKjPJ"
+
+license: "MIT"
+author: "Tanner Linsley"
+maintainers:
+  - "TanStack Team"
+lastReviewed: "2025-08-14"
+metadata:
+  npmWeeklyDownloads: "~3500000"
+  githubStars: "40000+"
+  bundleSize: "~13KB minified + gzipped"

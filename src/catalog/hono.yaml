@@ -1,0 +1,50 @@
+id: "hono"
+name: "Hono"
+homepage: "https://hono.dev/docs/getting-started/basic"
+npm: "hono"
+summary: "超軽量な Web フレームワーク。Cloudflare Workers, Vercel, Bun, Node など多環境で動作し、高速なルーティングとミドルウェアを提供。"
+install:
+  steps:
+    - "npm i hono"
+    - "# デプロイ先に応じてアダプタ/ランタイム設定（Cloudflare/Vercel/Node 等）"
+usage:
+  basic: |
+    import { Hono } from 'hono'
+    const app = new Hono()
+
+    app.get('/', (c) => c.text('Hello Hono'))
+    app.get('/hello/:name', (c) => c.json({ hi: c.req.param('name') }))
+
+    // Node（serve）
+    // import { serve } from '@hono/node-server'
+    // serve({ fetch: app.fetch, port: 3000 })
+  middleware: |
+    import { Hono } from 'hono'
+    import { logger } from 'hono/logger'
+    import { cors } from 'hono/cors'
+    const app = new Hono()
+    app.use('*', logger())
+    app.use('/api/*', cors())
+    app.get('/api/ping', (c) => c.json({ ok: true }))
+  validator: |
+    import { Hono } from 'hono'
+    import { z } from 'zod'
+    import { zValidator } from '@hono/zod-validator'
+    const app = new Hono()
+    const schema = z.object({ q: z.string().min(1) })
+    app.get('/search', zValidator('query', schema), (c) => {
+      const { q } = c.req.valid('query')
+      return c.text(`q=${q}`)
+    })
+bestPractices:
+  - "環境に応じて適切なアダプタを使用（Workers/Vercel/Node）"
+  - "型安全なバリデーションに zod-validator を導入"
+  - "エッジでの cold start を意識し、依存/初期化を最小化"
+notes:
+  - "ファイルアップロードやセッションなどはミドルウェア/外部サービスで補完"
+references:
+  - "Getting Started: https://hono.dev/docs/getting-started/basic"
+  - "Middleware: https://hono.dev/docs/middleware/builtin/logger"
+license: "MIT"
+lastReviewed: "2025-08-14"
+

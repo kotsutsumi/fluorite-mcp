@@ -1,0 +1,423 @@
+id: "@paddle/paddle-js"
+name: "Paddle"
+version: "^1.0.0"
+homepage: "https://paddle.com"
+github: "https://github.com/PaddleHQ/paddle-js"
+npm: "@paddle/paddle-js"
+summary: "Complete payment, billing, and subscription platform for SaaS with global tax compliance and merchant of record services."
+description: |
+  Paddle is a complete payments, tax, and subscriptions solution for SaaS businesses. As a merchant of record,
+  Paddle handles global sales tax compliance, payment processing, subscription management, and revenue recovery.
+  It provides checkout experiences, subscription billing, invoicing, and comprehensive webhook events for 
+  real-time updates. Supports 200+ countries with localized payment methods.
+tags:
+  - payments
+  - subscriptions
+  - billing
+  - saas
+  - tax-compliance
+  - merchant-of-record
+  - webhooks
+
+install:
+  npm: |
+    npm install @paddle/paddle-js
+    # For Node.js SDK (optional)
+    npm install @paddle/paddle-node-sdk
+  yarn: |
+    yarn add @paddle/paddle-js
+    yarn add @paddle/paddle-node-sdk
+  pnpm: |
+    pnpm add @paddle/paddle-js
+    pnpm add @paddle/paddle-node-sdk
+
+dependencies:
+  required:
+    "@paddle/paddle-js": "^1.0.0"
+  optional:
+    "@paddle/paddle-node-sdk": "^1.0.0"
+    "crypto": "native"
+
+api:
+  core:
+    PaddleJS:
+      description: "Client-side SDK for checkout"
+      methods:
+        - "Initialize(options): Initialize Paddle"
+        - "Checkout.open(settings): Open checkout overlay"
+        - "Checkout.close(): Close checkout"
+        - "Price.preview(items): Preview pricing"
+    
+    PaddleSDK:
+      description: "Server-side SDK for API calls"
+      resources:
+        - "customers: Create and manage customers"
+        - "products: Manage products and prices"
+        - "subscriptions: Manage subscriptions"
+        - "transactions: Handle transactions"
+        - "invoices: Generate invoices"
+
+usage:
+  initialization: |
+    // lib/paddle-client.ts - Client-side initialization
+    import { initializePaddle, Paddle } from '@paddle/paddle-js'
+    
+    let paddle: Paddle | undefined
+    
+    export async function getPaddle() {
+      if (!paddle) {
+        paddle = await initializePaddle({
+          environment: process.env.NODE_ENV === 'production' 
+            ? 'production' 
+            : 'sandbox',
+          seller: Number(process.env.NEXT_PUBLIC_PADDLE_SELLER_ID),
+          eventCallback: (event) => {
+            console.log('Paddle event:', event)
+          },
+        })
+      }
+      return paddle
+    }
+    
+    // lib/paddle-server.ts - Server-side SDK
+    import { PaddleSDK } from '@paddle/paddle-node-sdk'
+    
+    export const paddle = new PaddleSDK(
+      process.env.PADDLE_API_KEY!,
+      {
+        environment: process.env.NODE_ENV === 'production' 
+          ? 'production' 
+          : 'sandbox'
+      }
+    )
+  
+  checkoutOverlay: |
+    // components/checkout-button.tsx - Checkout overlay
+    "use client"
+    
+    import { getPaddle } from '@/lib/paddle-client'
+    import { useState } from 'react'
+    
+    interface CheckoutButtonProps {
+      priceId: string
+      customerId?: string
+      customerEmail?: string
+    }
+    
+    export function CheckoutButton({ 
+      priceId, 
+      customerId, 
+      customerEmail 
+    }: CheckoutButtonProps) {
+      const [loading, setLoading] = useState(false)
+      
+      const handleCheckout = async () => {
+        setLoading(true)
+        try {
+          const paddle = await getPaddle()
+          
+          await paddle.Checkout.open({
+            items: [{ priceId, quantity: 1 }],
+            customer: customerId ? { id: customerId } : undefined,
+            customerEmail,
+            customData: {
+              userId: customerId,
+            },
+            settings: {
+              displayMode: 'overlay',
+              theme: 'light',
+              locale: 'en',
+              frameTarget: 'checkout-container',
+              frameInitialHeight: 450,
+              frameStyle: 'width: 100%; background-color: transparent; border: none;',
+              successUrl: `${window.location.origin}/success`,
+            },
+          })
+        } catch (error) {
+          console.error('Checkout error:', error)
+        } finally {
+          setLoading(false)
+        }
+      }
+      
+      return (
+        <button
+          onClick={handleCheckout}
+          disabled={loading}
+          className="btn btn-primary"
+        >
+          {loading ? 'Loading...' : 'Subscribe'}
+        </button>
+      )
+    }
+  
+  subscriptionManagement: |
+    // app/api/subscriptions/route.ts - Manage subscriptions
+    import { NextRequest, NextResponse } from 'next/server'
+    import { paddle } from '@/lib/paddle-server'
+    
+    // Create subscription
+    export async function POST(req: NextRequest) {
+      try {
+        const { customerId, priceId } = await req.json()
+        
+        // Create or get customer
+        const customer = await paddle.customers.create({
+          email: 'customer@example.com',
+          name: 'John Doe',
+          customData: {
+            userId: customerId,
+          },
+        })
+        
+        // Create subscription
+        const subscription = await paddle.subscriptions.create({
+          customerId: customer.id,
+          items: [
+            {
+              priceId,
+              quantity: 1,
+            },
+          ],
+          collectionMode: 'automatic',
+          billingDetails: {
+            enableCheckout: true,
+            paymentTerms: {
+              interval: 'month',
+              frequency: 1,
+            },
+          },
+        })
+        
+        return NextResponse.json({ subscription })
+      } catch (error) {
+        console.error('Subscription error:', error)
+        return NextResponse.json(
+          { error: 'Failed to create subscription' },
+          { status: 500 }
+        )
+      }
+    }
+    
+    // Cancel subscription
+    export async function DELETE(req: NextRequest) {
+      try {
+        const { subscriptionId } = await req.json()
+        
+        const subscription = await paddle.subscriptions.cancel(
+          subscriptionId,
+          {
+            effectiveFrom: 'next_billing_period',
+          }
+        )
+        
+        return NextResponse.json({ subscription })
+      } catch (error) {
+        return NextResponse.json(
+          { error: 'Failed to cancel subscription' },
+          { status: 500 }
+        )
+      }
+    }
+  
+  webhookHandler: |
+    // app/api/webhook/paddle/route.ts - Handle webhooks
+    import { NextRequest, NextResponse } from 'next/server'
+    import { paddle } from '@/lib/paddle-server'
+    import crypto from 'crypto'
+    
+    export async function POST(req: NextRequest) {
+      const signature = req.headers.get('paddle-signature')
+      const rawBody = await req.text()
+      
+      // Verify webhook signature
+      const webhookSecret = process.env.PADDLE_WEBHOOK_SECRET!
+      const hmac = crypto.createHmac('sha256', webhookSecret)
+      const digest = hmac.update(rawBody).digest('hex')
+      
+      if (signature !== digest) {
+        return NextResponse.json(
+          { error: 'Invalid signature' },
+          { status: 401 }
+        )
+      }
+      
+      const event = JSON.parse(rawBody)
+      
+      try {
+        switch (event.event_type) {
+          case 'subscription.created':
+            await handleSubscriptionCreated(event.data)
+            break
+            
+          case 'subscription.updated':
+            await handleSubscriptionUpdated(event.data)
+            break
+            
+          case 'subscription.canceled':
+            await handleSubscriptionCanceled(event.data)
+            break
+            
+          case 'transaction.completed':
+            await handleTransactionCompleted(event.data)
+            break
+            
+          case 'transaction.payment_failed':
+            await handlePaymentFailed(event.data)
+            break
+            
+          default:
+            console.log('Unhandled event:', event.event_type)
+        }
+        
+        return NextResponse.json({ received: true })
+      } catch (error) {
+        console.error('Webhook error:', error)
+        return NextResponse.json(
+          { error: 'Webhook processing failed' },
+          { status: 500 }
+        )
+      }
+    }
+    
+    async function handleSubscriptionCreated(data: any) {
+      // Update user subscription status
+      const userId = data.custom_data?.userId
+      console.log('Subscription created for user:', userId)
+    }
+    
+    async function handleSubscriptionUpdated(data: any) {
+      // Handle subscription changes
+      console.log('Subscription updated:', data.id)
+    }
+    
+    async function handleSubscriptionCanceled(data: any) {
+      // Handle cancellation
+      console.log('Subscription canceled:', data.id)
+    }
+    
+    async function handleTransactionCompleted(data: any) {
+      // Handle successful payment
+      console.log('Transaction completed:', data.id)
+    }
+    
+    async function handlePaymentFailed(data: any) {
+      // Handle failed payment
+      console.log('Payment failed:', data.id)
+    }
+  
+  pricingPreview: |
+    // components/pricing-preview.tsx - Show pricing with tax
+    "use client"
+    
+    import { useState, useEffect } from 'react'
+    import { getPaddle } from '@/lib/paddle-client'
+    
+    export function PricingPreview({ priceId }: { priceId: string }) {
+      const [preview, setPreview] = useState<any>(null)
+      const [loading, setLoading] = useState(true)
+      
+      useEffect(() => {
+        async function loadPreview() {
+          try {
+            const paddle = await getPaddle()
+            const result = await paddle.PricePreview({
+              items: [{ priceId, quantity: 1 }],
+            })
+            setPreview(result)
+          } catch (error) {
+            console.error('Preview error:', error)
+          } finally {
+            setLoading(false)
+          }
+        }
+        
+        loadPreview()
+      }, [priceId])
+      
+      if (loading) return <div>Loading pricing...</div>
+      if (!preview) return <div>Unable to load pricing</div>
+      
+      return (
+        <div className="pricing-preview">
+          <div className="price">
+            {preview.currency} {preview.totals.total / 100}
+          </div>
+          <div className="tax">
+            Includes {preview.currency} {preview.totals.tax / 100} tax
+          </div>
+          <div className="billing">
+            Billed {preview.recurringTotals.interval}
+          </div>
+        </div>
+      )
+    }
+
+bestPractices:
+  - "Use sandbox environment for development and testing"
+  - "Implement webhook signature verification"
+  - "Store Paddle IDs in your database for reference"
+  - "Use custom_data to link Paddle objects to your data"
+  - "Handle all subscription states in webhooks"
+  - "Implement proper error handling and retries"
+  - "Use Paddle's tax calculation for compliance"
+  - "Test with different countries for tax scenarios"
+
+security:
+  features:
+    - "PCI DSS compliance (handled by Paddle)"
+    - "Webhook signature verification"
+    - "3D Secure authentication"
+    - "Fraud prevention"
+    - "Global tax compliance"
+  
+  recommendations:
+    - "Never expose API keys in client code"
+    - "Always verify webhook signatures"
+    - "Use HTTPS for all communications"
+    - "Implement rate limiting on endpoints"
+    - "Store minimal payment data"
+
+patterns:
+  checkout:
+    - "Overlay checkout for seamless UX"
+    - "Inline checkout for custom flows"
+    - "Hosted checkout pages"
+    - "Price preview with tax calculation"
+  
+  subscriptions:
+    - "Fixed recurring billing"
+    - "Usage-based billing"
+    - "Free trials"
+    - "Pause and resume subscriptions"
+    - "Proration on plan changes"
+
+troubleshooting:
+  commonIssues:
+    - issue: "Checkout not opening"
+      solution: "Ensure Paddle is initialized and seller ID is correct"
+    - issue: "Webhook not receiving events"
+      solution: "Verify webhook URL is publicly accessible and signature is correct"
+    - issue: "Tax calculation incorrect"
+      solution: "Ensure customer location data is provided"
+    - issue: "Subscription not updating"
+      solution: "Check webhook handlers and event processing"
+
+references:
+  documentation: "https://developer.paddle.com"
+  apiReference: "https://developer.paddle.com/api-reference"
+  webhooks: "https://developer.paddle.com/webhooks/overview"
+  checkout: "https://developer.paddle.com/build/checkout"
+  testing: "https://developer.paddle.com/build/testing"
+  sdks: "https://developer.paddle.com/build/sdks"
+
+license: "Commercial"
+author: "Paddle"
+maintainers:
+  - "Paddle Team"
+lastReviewed: "2025-08-14"
+metadata:
+  npmWeeklyDownloads: "~20000"
+  githubStars: "100+"
+  bundleSize: "~50KB minified + gzipped"
+

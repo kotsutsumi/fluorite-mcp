@@ -1,0 +1,541 @@
+id: "shadcn/ui"
+name: "shadcn/ui"
+version: "latest"
+homepage: "https://ui.shadcn.com/"
+github: "https://github.com/shadcn-ui/ui"
+summary: "Copy-paste approach to building modern UI components using Radix UI and Tailwind CSS."
+description: |
+  A collection of beautifully designed, accessible, and customizable components that you can copy and paste into your apps.
+  Unlike traditional component libraries, shadcn/ui gives you ownership of the code by copying components directly into your project.
+  Built on top of Radix UI primitives for accessibility and Tailwind CSS for styling.
+tags:
+  - ui-components
+  - design-system
+  - tailwindcss
+  - radix-ui
+  - react
+  - typescript
+  - copy-paste
+install:
+  prerequisites:
+    - "React 18+ project (Next.js, Vite, Remix, etc.)"
+    - "TypeScript configured (recommended but optional)"
+  steps:
+    npm: |
+      # Step 1: Install Tailwind CSS
+      npm install -D tailwindcss postcss autoprefixer
+      npx tailwindcss init -p
+      
+      # Step 2: Initialize shadcn/ui
+      npx shadcn@latest init
+      
+      # Step 3: Add components as needed
+      npx shadcn@latest add button
+      npx shadcn@latest add card
+      npx shadcn@latest add dialog
+    yarn: |
+      # Step 1: Install Tailwind CSS
+      yarn add -D tailwindcss postcss autoprefixer
+      yarn tailwindcss init -p
+      
+      # Step 2: Initialize shadcn/ui
+      npx shadcn@latest init
+      
+      # Step 3: Add components
+      npx shadcn@latest add button card dialog
+    pnpm: |
+      # Step 1: Install Tailwind CSS
+      pnpm add -D tailwindcss postcss autoprefixer
+      pnpm exec tailwindcss init -p
+      
+      # Step 2: Initialize shadcn/ui
+      pnpm dlx shadcn@latest init
+      
+      # Step 3: Add components
+      pnpm dlx shadcn@latest add button card dialog
+dependencies:
+  core:
+    react: "^18.0.0"
+    react-dom: "^18.0.0"
+    tailwindcss: "^3.3.0"
+  utilities:
+    class-variance-authority: "^0.7.0"
+    clsx: "^2.0.0"
+    tailwind-merge: "^2.0.0"
+    tailwindcss-animate: "^1.0.7"
+  componentSpecific:
+    "@radix-ui/react-*": "Component-specific Radix primitives"
+    "lucide-react": "^0.300.0 (for icons)"
+    "cmdk": "^0.2.0 (for command component)"
+    "embla-carousel-react": "^8.0.0 (for carousel)"
+    "react-day-picker": "^8.10.0 (for calendar)"
+    "recharts": "^2.10.0 (for charts)"
+cli:
+  commands:
+    init:
+      description: "Initialize shadcn/ui in your project"
+      options:
+        "--style": "default | new-york (design style)"
+        "--tailwind-config": "Path to tailwind config"
+        "--global-css": "Path to global CSS file"
+        "--tsx": "Use TypeScript (default: auto-detect)"
+        "--base-color": "slate | gray | neutral | stone | zinc"
+    add:
+      description: "Add components to your project"
+      syntax: "npx shadcn@latest add [component]"
+      examples:
+        - "npx shadcn@latest add button"
+        - "npx shadcn@latest add dialog sheet"
+        - "npx shadcn@latest add --all (add all components)"
+    diff:
+      description: "Check for component updates"
+      syntax: "npx shadcn@latest diff [component]"
+  configuration:
+    components.json: |
+      {
+        "$schema": "https://ui.shadcn.com/schema.json",
+        "style": "default",
+        "rsc": true,
+        "tsx": true,
+        "tailwind": {
+          "config": "tailwind.config.ts",
+          "css": "app/globals.css",
+          "baseColor": "slate",
+          "cssVariables": true
+        },
+        "aliases": {
+          "components": "@/components",
+          "utils": "@/lib/utils"
+        }
+      }
+components:
+  categories:
+    layout:
+      - "Aspect Ratio"
+      - "Container"
+      - "Separator"
+      - "Skeleton"
+    forms:
+      - "Button"
+      - "Checkbox"
+      - "Input"
+      - "Label"
+      - "Radio Group"
+      - "Select"
+      - "Slider"
+      - "Switch"
+      - "Textarea"
+      - "Form (with react-hook-form)"
+    navigation:
+      - "Breadcrumb"
+      - "Dropdown Menu"
+      - "Navigation Menu"
+      - "Pagination"
+      - "Tabs"
+    feedback:
+      - "Alert"
+      - "Alert Dialog"
+      - "Badge"
+      - "Dialog"
+      - "Drawer"
+      - "Progress"
+      - "Sheet"
+      - "Toast"
+      - "Tooltip"
+    data-display:
+      - "Avatar"
+      - "Calendar"
+      - "Card"
+      - "Carousel"
+      - "Chart"
+      - "Data Table"
+      - "Table"
+    utilities:
+      - "Accordion"
+      - "Collapsible"
+      - "Command"
+      - "Context Menu"
+      - "Hover Card"
+      - "Menubar"
+      - "Popover"
+      - "Resizable"
+      - "Scroll Area"
+      - "Toggle"
+      - "Toggle Group"
+
+usage:
+  basicExample: |
+    // tailwind のセットアップ後、Button を追加
+    // $ npx shadcn@latest add button
+    
+    import { Button } from "@/components/ui/button"
+    
+    export default function ButtonDemo() {
+      return (
+        <div className="flex flex-wrap gap-4">
+          {/* Variants */}
+          <Button>Default</Button>
+          <Button variant="secondary">Secondary</Button>
+          <Button variant="destructive">Destructive</Button>
+          <Button variant="outline">Outline</Button>
+          <Button variant="ghost">Ghost</Button>
+          <Button variant="link">Link</Button>
+          
+          {/* Sizes */}
+          <Button size="lg">Large</Button>
+          <Button size="default">Default</Button>
+          <Button size="sm">Small</Button>
+          <Button size="icon">
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+          
+          {/* States */}
+          <Button disabled>Disabled</Button>
+          <Button asChild>
+            <a href="/">Link Button</a>
+          </Button>
+        </div>
+      )
+    }
+  formExample: |
+    // Using shadcn/ui Form with react-hook-form and zod
+    import { zodResolver } from "@hookform/resolvers/zod"
+    import { useForm } from "react-hook-form"
+    import * as z from "zod"
+    import { Button } from "@/components/ui/button"
+    import {
+      Form,
+      FormControl,
+      FormDescription,
+      FormField,
+      FormItem,
+      FormLabel,
+      FormMessage,
+    } from "@/components/ui/form"
+    import { Input } from "@/components/ui/input"
+    
+    const formSchema = z.object({
+      username: z.string().min(2).max(50),
+      email: z.string().email(),
+    })
+    
+    export function ProfileForm() {
+      const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+          username: "",
+          email: "",
+        },
+      })
+    
+      function onSubmit(values: z.infer<typeof formSchema>) {
+        console.log(values)
+      }
+    
+      return (
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <FormField
+              control={form.control}
+              name="username"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Username</FormLabel>
+                  <FormControl>
+                    <Input placeholder="shadcn" {...field} />
+                  </FormControl>
+                  <FormDescription>
+                    This is your public display name.
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input type="email" placeholder="email@example.com" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button type="submit">Submit</Button>
+          </form>
+        </Form>
+      )
+    }
+  
+  dataTableExample: |
+    // Data table with sorting, filtering, and pagination
+    import { DataTable } from "@/components/ui/data-table"
+    import { columns } from "./columns"
+    
+    async function getData() {
+      // Fetch data from your API here.
+      return [
+        { id: "1", name: "John Doe", email: "john@example.com", status: "active" },
+        { id: "2", name: "Jane Smith", email: "jane@example.com", status: "pending" },
+      ]
+    }
+    
+    export default async function UsersPage() {
+      const data = await getData()
+      return (
+        <div className="container mx-auto py-10">
+          <DataTable columns={columns} data={data} />
+        </div>
+      )
+    }
+  
+  tailwindConfig: |
+    // tailwind.config.ts
+    import type { Config } from "tailwindcss"
+    import animate from "tailwindcss-animate"
+    
+    const config = {
+      darkMode: ["class"],
+      content: [
+        './pages/**/*.{ts,tsx}',
+        './components/**/*.{ts,tsx}',
+        './app/**/*.{ts,tsx}',
+        './src/**/*.{ts,tsx}',
+      ],
+      prefix: "",
+      theme: {
+        container: {
+          center: true,
+          padding: "2rem",
+          screens: {
+            "2xl": "1400px",
+          },
+        },
+        extend: {
+          colors: {
+            border: "hsl(var(--border))",
+            input: "hsl(var(--input))",
+            ring: "hsl(var(--ring))",
+            background: "hsl(var(--background))",
+            foreground: "hsl(var(--foreground))",
+            primary: {
+              DEFAULT: "hsl(var(--primary))",
+              foreground: "hsl(var(--primary-foreground))",
+            },
+            secondary: {
+              DEFAULT: "hsl(var(--secondary))",
+              foreground: "hsl(var(--secondary-foreground))",
+            },
+            destructive: {
+              DEFAULT: "hsl(var(--destructive))",
+              foreground: "hsl(var(--destructive-foreground))",
+            },
+            muted: {
+              DEFAULT: "hsl(var(--muted))",
+              foreground: "hsl(var(--muted-foreground))",
+            },
+            accent: {
+              DEFAULT: "hsl(var(--accent))",
+              foreground: "hsl(var(--accent-foreground))",
+            },
+            popover: {
+              DEFAULT: "hsl(var(--popover))",
+              foreground: "hsl(var(--popover-foreground))",
+            },
+            card: {
+              DEFAULT: "hsl(var(--card))",
+              foreground: "hsl(var(--card-foreground))",
+            },
+          },
+          borderRadius: {
+            lg: "var(--radius)",
+            md: "calc(var(--radius) - 2px)",
+            sm: "calc(var(--radius) - 4px)",
+          },
+          keyframes: {
+            "accordion-down": {
+              from: { height: "0" },
+              to: { height: "var(--radix-accordion-content-height)" },
+            },
+            "accordion-up": {
+              from: { height: "var(--radix-accordion-content-height)" },
+              to: { height: "0" },
+            },
+          },
+          animation: {
+            "accordion-down": "accordion-down 0.2s ease-out",
+            "accordion-up": "accordion-up 0.2s ease-out",
+          },
+        },
+      },
+      plugins: [animate],
+    } satisfies Config
+    
+    export default config
+theming:
+  cssVariables: |
+    /* Example CSS variables in globals.css */
+    @layer base {
+      :root {
+        --background: 0 0% 100%;
+        --foreground: 222.2 84% 4.9%;
+        --card: 0 0% 100%;
+        --card-foreground: 222.2 84% 4.9%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 222.2 84% 4.9%;
+        --primary: 222.2 47.4% 11.2%;
+        --primary-foreground: 210 40% 98%;
+        --secondary: 210 40% 96.1%;
+        --secondary-foreground: 222.2 47.4% 11.2%;
+        --muted: 210 40% 96.1%;
+        --muted-foreground: 215.4 16.3% 46.9%;
+        --accent: 210 40% 96.1%;
+        --accent-foreground: 222.2 47.4% 11.2%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 40% 98%;
+        --border: 214.3 31.8% 91.4%;
+        --input: 214.3 31.8% 91.4%;
+        --ring: 222.2 84% 4.9%;
+        --radius: 0.5rem;
+      }
+      
+      .dark {
+        --background: 222.2 84% 4.9%;
+        --foreground: 210 40% 98%;
+        /* ... other dark mode variables ... */
+      }
+    }
+  
+  customization: |
+    // Example: Customizing button component
+    // components/ui/button.tsx
+    
+    const buttonVariants = cva(
+      "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+      {
+        variants: {
+          variant: {
+            default: "bg-primary text-primary-foreground shadow hover:bg-primary/90",
+            destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
+            outline: "border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground",
+            secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
+            ghost: "hover:bg-accent hover:text-accent-foreground",
+            link: "text-primary underline-offset-4 hover:underline",
+            // Add custom variants
+            brand: "bg-brand text-white shadow hover:bg-brand/90",
+          },
+          size: {
+            default: "h-9 px-4 py-2",
+            sm: "h-8 rounded-md px-3 text-xs",
+            lg: "h-10 rounded-md px-8",
+            icon: "h-9 w-9",
+          },
+        },
+        defaultVariants: {
+          variant: "default",
+          size: "default",
+        },
+      }
+    )
+
+bestPractices:
+  - "Keep components in your codebase for full control and customization"
+  - "Use CSS variables for consistent theming across all components"
+  - "Leverage Radix UI primitives for accessibility compliance"
+  - "Customize components by editing the generated files directly"
+  - "Use cn() utility for conditional class names and style merging"
+  - "Implement proper TypeScript types for component props"
+  - "Consider performance with React.memo for complex components"
+  - "Use the Form component with react-hook-form for complex forms"
+  - "Test accessibility with screen readers and keyboard navigation"
+
+performance:
+  optimization:
+    - "Components are tree-shakeable by default"
+    - "Tailwind CSS purges unused styles in production"
+    - "Radix UI provides unstyled, performant primitives"
+    - "Use dynamic imports for heavy components (charts, etc.)"
+  bundleSize:
+    - "Individual components: 2-10KB each"
+    - "Tailwind CSS: ~10KB (minified + gzipped)"
+    - "Total with 10 components: ~50KB"
+
+accessibility:
+  - "Built on Radix UI with WCAG 2.1 compliance"
+  - "Full keyboard navigation support"
+  - "ARIA attributes properly implemented"
+  - "Focus management and trapping"
+  - "Screen reader announcements"
+  - "Reduced motion support"
+
+troubleshooting:
+  commonIssues:
+    - issue: "Components not styled correctly"
+      solution: "Ensure Tailwind config includes component paths and CSS variables are imported"
+    - issue: "TypeScript errors with component imports"
+      solution: "Check tsconfig paths alias configuration matches components.json"
+    - issue: "Dark mode not working"
+      solution: "Add 'dark' class to html element and configure darkMode: ['class'] in Tailwind"
+    - issue: "Component not found after adding"
+      solution: "Check components directory path in components.json matches your project structure"
+ecosystem:
+  themes:
+    - "Default: Clean, minimal design"
+    - "New York: More compact with tighter spacing"
+    - "Community themes available on GitHub"
+  
+  blocks:
+    description: "Pre-built page sections and layouts"
+    categories:
+      - "Authentication (login, register, password reset)"
+      - "Dashboard layouts"
+      - "Marketing sections"
+      - "E-commerce components"
+  
+  templates:
+    - "Next.js starter with authentication"
+    - "Admin dashboard template"
+    - "E-commerce template"
+    - "Marketing site template"
+
+integrations:
+  frameworks:
+    - "Next.js (App Router & Pages Router)"
+    - "Vite"
+    - "Remix"
+    - "Gatsby"
+    - "Astro"
+  
+  stateManagement:
+    - "Zustand"
+    - "Jotai"
+    - "Redux Toolkit"
+    - "TanStack Query"
+  
+  formLibraries:
+    - "react-hook-form (recommended)"
+    - "Formik"
+    - "React Final Form"
+
+references:
+  documentation: "https://ui.shadcn.com/docs"
+  components: "https://ui.shadcn.com/docs/components/accordion"
+  examples: "https://ui.shadcn.com/examples"
+  blocks: "https://ui.shadcn.com/blocks"
+  themes: "https://ui.shadcn.com/themes"
+  github: "https://github.com/shadcn-ui/ui"
+  discord: "https://discord.gg/shadcn"
+  
+license: "MIT"
+author: "shadcn"
+maintainers:
+  - "shadcn"
+lastReviewed: "2025-08-14"
+metadata:
+  githubStars: "50000+"
+  weeklyDownloads: "CLI used by 100000+ developers"
+  lastUpdated: "2024-12"
+  communitySize: "Large and active"

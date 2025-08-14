@@ -1,0 +1,480 @@
+id: "@clerk/nextjs"
+name: "Clerk"
+version: "^4.29.0"
+homepage: "https://clerk.com"
+github: "https://github.com/clerkinc/javascript"
+npm: "@clerk/nextjs"
+summary: "Complete user management and authentication solution with pre-built UI components, multi-factor auth, and social logins."
+description: |
+  Clerk is a complete user management platform with authentication, user profiles, and organization management.
+  It provides pre-built React components, hooks, and helpers for authentication flows including passwordless,
+  OAuth, SAML SSO, and multi-factor authentication. Features include user profiles, organizations/teams,
+  webhooks, and edge middleware support for Next.js.
+tags:
+  - authentication
+  - user-management
+  - nextjs
+  - react
+  - oauth
+  - sso
+  - multi-factor
+  - typescript
+
+install:
+  npm: |
+    npm install @clerk/nextjs
+    # For themes (optional)
+    npm install @clerk/themes
+  yarn: |
+    yarn add @clerk/nextjs
+    yarn add @clerk/themes
+  pnpm: |
+    pnpm add @clerk/nextjs
+    pnpm add @clerk/themes
+
+dependencies:
+  required:
+    "@clerk/nextjs": "^4.29.0"
+    "next": "^13.0.0 || ^14.0.0"
+    "react": "^18.0.0"
+    "react-dom": "^18.0.0"
+  optional:
+    "@clerk/themes": "^1.7.0"
+    "@clerk/backend": "^0.38.0"
+    "@clerk/clerk-sdk-node": "^4.13.0"
+
+api:
+  core:
+    ClerkProvider:
+      description: "Main provider component"
+      props:
+        publishableKey: "Clerk publishable key"
+        appearance: "Theme customization"
+        localization: "i18n configuration"
+    
+    auth:
+      description: "Server-side auth helper"
+      methods:
+        - "auth(): Get auth state"
+        - "currentUser(): Get user object"
+        - "redirectToSignIn(): Redirect helper"
+    
+    hooks:
+      useAuth:
+        description: "Authentication state hook"
+        returns: "{ isLoaded, isSignedIn, userId, sessionId, orgId }"
+      
+      useUser:
+        description: "Current user data hook"
+        returns: "{ isLoaded, isSignedIn, user }"
+      
+      useOrganization:
+        description: "Organization context hook"
+        returns: "{ organization, membership }"
+      
+      useClerk:
+        description: "Clerk instance hook"
+        returns: "Clerk SDK instance"
+
+usage:
+  providerSetup: |
+    // app/layout.tsx - Root layout with ClerkProvider
+    import { ClerkProvider } from '@clerk/nextjs'
+    import { Inter } from 'next/font/google'
+    import './globals.css'
+    
+    const inter = Inter({ subsets: ['latin'] })
+    
+    export default function RootLayout({
+      children,
+    }: {
+      children: React.ReactNode
+    }) {
+      return (
+        <ClerkProvider
+          appearance={{
+            baseTheme: 'light',
+            variables: {
+              colorPrimary: '#6366f1',
+              borderRadius: '0.5rem',
+            },
+            elements: {
+              formButtonPrimary: 
+                'bg-indigo-500 hover:bg-indigo-600 text-white',
+              card: 'shadow-lg',
+            },
+          }}
+        >
+          <html lang="en">
+            <body className={inter.className}>
+              {children}
+            </body>
+          </html>
+        </ClerkProvider>
+      )
+    }
+  
+  middleware: |
+    // middleware.ts - Protect routes
+    import { authMiddleware } from '@clerk/nextjs'
+    
+    export default authMiddleware({
+      // Public routes that don't require authentication
+      publicRoutes: [
+        '/',
+        '/about',
+        '/pricing',
+        '/api/webhook/clerk',
+        '/sign-in(.*)',
+        '/sign-up(.*)',
+      ],
+      
+      // Routes that should be ignored by the middleware
+      ignoredRoutes: [
+        '/api/public(.*)',
+        '/_next(.*)',
+        '/favicon.ico',
+      ],
+      
+      // Custom redirect logic
+      afterAuth(auth, req) {
+        // Handle users who aren't authenticated
+        if (!auth.userId && !auth.isPublicRoute) {
+          const signInUrl = new URL('/sign-in', req.url)
+          signInUrl.searchParams.set('redirect_url', req.url)
+          return Response.redirect(signInUrl)
+        }
+        
+        // Redirect users to organization selection
+        if (
+          auth.userId &&
+          !auth.orgId &&
+          req.nextUrl.pathname !== '/org-selection'
+        ) {
+          const orgSelection = new URL('/org-selection', req.url)
+          return Response.redirect(orgSelection)
+        }
+      },
+    })
+    
+    export const config = {
+      matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
+    }
+  
+  serverAuth: |
+    // app/dashboard/page.tsx - Server component with auth
+    import { auth, currentUser } from '@clerk/nextjs'
+    import { redirect } from 'next/navigation'
+    
+    export default async function DashboardPage() {
+      const { userId, orgId } = auth()
+      
+      if (!userId) {
+        redirect('/sign-in')
+      }
+      
+      const user = await currentUser()
+      
+      return (
+        <div className="p-6">
+          <h1 className="text-2xl font-bold">
+            Welcome, {user?.firstName || 'User'}!
+          </h1>
+          <div className="mt-4 space-y-2">
+            <p>Email: {user?.emailAddresses[0]?.emailAddress}</p>
+            <p>User ID: {userId}</p>
+            {orgId && <p>Organization ID: {orgId}</p>}
+          </div>
+        </div>
+      )
+    }
+  
+  clientComponents: |
+    // components/user-button.tsx - Client component
+    "use client"
+    
+    import {
+      UserButton,
+      SignInButton,
+      SignUpButton,
+      SignedIn,
+      SignedOut,
+      SignOutButton,
+    } from '@clerk/nextjs'
+    import { useUser } from '@clerk/nextjs'
+    
+    export function Header() {
+      const { isLoaded, isSignedIn, user } = useUser()
+      
+      return (
+        <header className="flex justify-between items-center p-4">
+          <div className="text-lg font-semibold">My App</div>
+          
+          <nav className="flex items-center gap-4">
+            <SignedOut>
+              <SignInButton mode="modal">
+                <button className="btn btn-ghost">
+                  Sign In
+                </button>
+              </SignInButton>
+              <SignUpButton mode="modal">
+                <button className="btn btn-primary">
+                  Sign Up
+                </button>
+              </SignUpButton>
+            </SignedOut>
+            
+            <SignedIn>
+              {isLoaded && (
+                <span className="text-sm">
+                  Hello, {user?.firstName}!
+                </span>
+              )}
+              <UserButton 
+                afterSignOutUrl="/"
+                appearance={{
+                  elements: {
+                    avatarBox: 'w-10 h-10',
+                  },
+                }}
+              />
+            </SignedIn>
+          </nav>
+        </header>
+      )
+    }
+  
+  organizationManagement: |
+    // components/organization-switcher.tsx
+    "use client"
+    
+    import {
+      OrganizationSwitcher,
+      OrganizationList,
+      CreateOrganization,
+    } from '@clerk/nextjs'
+    import { useOrganization, useOrganizationList } from '@clerk/nextjs'
+    
+    export function OrgSwitcher() {
+      const { organization } = useOrganization()
+      const { organizationList } = useOrganizationList()
+      
+      return (
+        <div className="flex items-center gap-4">
+          <OrganizationSwitcher
+            appearance={{
+              elements: {
+                rootBox: 'flex items-center',
+                organizationSwitcherTrigger: 'px-4 py-2',
+              },
+            }}
+          />
+          
+          {organization && (
+            <div className="text-sm text-gray-600">
+              {organization.membersCount} members
+            </div>
+          )}
+        </div>
+      )
+    }
+    
+    // Organization creation modal
+    export function CreateOrgModal() {
+      return (
+        <CreateOrganization 
+          afterCreateOrganizationUrl="/dashboard"
+          appearance={{
+            elements: {
+              formButtonPrimary: 
+                'bg-blue-500 hover:bg-blue-600',
+            },
+          }}
+        />
+      )
+    }
+  
+  customPages: |
+    // app/sign-in/[[...sign-in]]/page.tsx - Custom sign-in page
+    import { SignIn } from '@clerk/nextjs'
+    
+    export default function SignInPage() {
+      return (
+        <div className="flex justify-center items-center min-h-screen">
+          <SignIn 
+            appearance={{
+              elements: {
+                rootBox: 'mx-auto',
+                card: 'shadow-2xl',
+              },
+            }}
+            redirectUrl="/dashboard"
+            signUpUrl="/sign-up"
+          />
+        </div>
+      )
+    }
+    
+    // app/sign-up/[[...sign-up]]/page.tsx - Custom sign-up page
+    import { SignUp } from '@clerk/nextjs'
+    
+    export default function SignUpPage() {
+      return (
+        <div className="flex justify-center items-center min-h-screen">
+          <SignUp 
+            appearance={{
+              elements: {
+                rootBox: 'mx-auto',
+                card: 'shadow-2xl',
+              },
+            }}
+            redirectUrl="/dashboard"
+            signInUrl="/sign-in"
+          />
+        </div>
+      )
+    }
+  
+  webhooks: |
+    // app/api/webhook/clerk/route.ts - Webhook handler
+    import { Webhook } from 'svix'
+    import { headers } from 'next/headers'
+    import { WebhookEvent } from '@clerk/nextjs/server'
+    
+    export async function POST(req: Request) {
+      const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET
+      
+      if (!WEBHOOK_SECRET) {
+        throw new Error('Missing CLERK_WEBHOOK_SECRET')
+      }
+      
+      // Get headers
+      const headerPayload = headers()
+      const svix_id = headerPayload.get('svix-id')
+      const svix_timestamp = headerPayload.get('svix-timestamp')
+      const svix_signature = headerPayload.get('svix-signature')
+      
+      if (!svix_id || !svix_timestamp || !svix_signature) {
+        return new Response('Error: Missing svix headers', {
+          status: 400,
+        })
+      }
+      
+      // Get body
+      const payload = await req.json()
+      const body = JSON.stringify(payload)
+      
+      // Create Svix instance
+      const wh = new Webhook(WEBHOOK_SECRET)
+      
+      let evt: WebhookEvent
+      
+      // Verify payload
+      try {
+        evt = wh.verify(body, {
+          'svix-id': svix_id,
+          'svix-timestamp': svix_timestamp,
+          'svix-signature': svix_signature,
+        }) as WebhookEvent
+      } catch (err) {
+        console.error('Error verifying webhook:', err)
+        return new Response('Error: Verification failed', {
+          status: 400,
+        })
+      }
+      
+      // Handle events
+      const eventType = evt.type
+      
+      switch (eventType) {
+        case 'user.created':
+          console.log('User created:', evt.data)
+          // Create user in database
+          break
+          
+        case 'user.updated':
+          console.log('User updated:', evt.data)
+          // Update user in database
+          break
+          
+        case 'user.deleted':
+          console.log('User deleted:', evt.data)
+          // Delete user from database
+          break
+          
+        case 'organization.created':
+          console.log('Organization created:', evt.data)
+          // Handle organization creation
+          break
+      }
+      
+      return new Response('Webhook processed', { status: 200 })
+    }
+
+bestPractices:
+  - "Use environment variables for keys (NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY, CLERK_SECRET_KEY)"
+  - "Implement proper error handling for auth failures"
+  - "Use middleware for route protection"
+  - "Leverage pre-built components for faster development"
+  - "Implement webhooks for data synchronization"
+  - "Use organizations for multi-tenant applications"
+  - "Configure custom session token claims"
+  - "Implement proper RBAC with custom roles"
+
+security:
+  features:
+    - "Multi-factor authentication (SMS, TOTP)"
+    - "OAuth providers (Google, GitHub, etc.)"
+    - "SAML SSO for enterprise"
+    - "Bot protection and CAPTCHA"
+    - "Session management"
+    - "Device management"
+  
+  recommendations:
+    - "Enable MFA for sensitive applications"
+    - "Use webhook signature verification"
+    - "Implement rate limiting"
+    - "Configure allowed redirect URLs"
+    - "Use secure session tokens"
+
+patterns:
+  authentication:
+    - "Passwordless (magic links, OTP)"
+    - "Social OAuth providers"
+    - "Username/password with MFA"
+    - "SAML SSO for enterprise"
+  
+  authorization:
+    - "Role-based access control"
+    - "Organization-based permissions"
+    - "Custom session claims"
+    - "API key authentication"
+
+troubleshooting:
+  commonIssues:
+    - issue: "Middleware not protecting routes"
+      solution: "Check publicRoutes config and matcher pattern in middleware"
+    - issue: "Webhooks not verifying"
+      solution: "Ensure CLERK_WEBHOOK_SECRET matches dashboard webhook endpoint secret"
+    - issue: "User data not loading"
+      solution: "Check if ClerkProvider wraps the entire app"
+    - issue: "Redirect loops"
+      solution: "Verify afterAuth logic and publicRoutes configuration"
+
+references:
+  documentation: "https://clerk.com/docs"
+  components: "https://clerk.com/docs/components/overview"
+  nextjs: "https://clerk.com/docs/nextjs/get-started"
+  webhooks: "https://clerk.com/docs/webhooks/overview"
+  organizations: "https://clerk.com/docs/organizations/overview"
+  customization: "https://clerk.com/docs/components/customization/overview"
+
+license: "Commercial"
+author: "Clerk Inc."
+maintainers:
+  - "Clerk Team"
+lastReviewed: "2025-08-14"
+metadata:
+  npmWeeklyDownloads: "~250000"
+  githubStars: "5000+"
+  bundleSize: "~85KB minified + gzipped"

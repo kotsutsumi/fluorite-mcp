@@ -1,0 +1,91 @@
+id: "visx"
+name: "visx"
+homepage: "https://airbnb.io/visx/docs"
+npm: "@visx/*"
+summary: "低レベルな可視化コンポーネント群。D3 の強力なエコシステムと React を橋渡しし、スケール/シェイプ/軸/ツールチップ/レイアウト等を組み合わせて柔軟な可視化を構築できる。"
+install:
+  steps:
+    - "# 代表的なパッケージ（用途に応じて選択）"
+    - "npm i @visx/xychart @visx/responsive"
+    - "# 低レベル合成向け"
+    - "npm i @visx/scale @visx/axis @visx/shape @visx/tooltip @visx/event"
+peerDependencies:
+  - react
+  - react-dom
+api:
+  xychart:
+    - "<XYChart xScale yScale> <AnimatedAxis/> <AnimatedGrid/> <BarSeries|LineSeries|AreaSeries .../> <Tooltip/> </XYChart>"
+  lowLevel:
+    - "scales: scaleLinear/scaleBand（@visx/scale）"
+    - "axes: Axis/AnimatedAxis（@visx/axis）"
+    - "shapes: LinePath/AreaClosed/Bar（@visx/shape）"
+    - "tooltip: useTooltip, Tooltip, useTooltipInPortal（@visx/tooltip）"
+usage:
+  xychartBar: |
+    import { XYChart, AnimatedAxis, AnimatedGrid, BarSeries, Tooltip } from '@visx/xychart'
+    import { ParentSize } from '@visx/responsive'
+
+    const data = [
+      { x: 'Jan', y: 120 },
+      { x: 'Feb', y: 98 },
+      { x: 'Mar', y: 140 },
+    ]
+
+    export default function BarChart() {
+      return (
+        <ParentSize>{({ width, height }) => (
+          <XYChart height={Math.max(240, height)} xScale={{ type: 'band' }} yScale={{ type: 'linear' }} width={width}>
+            <AnimatedGrid rows columns />
+            <AnimatedAxis orientation="bottom" />
+            <AnimatedAxis orientation="left" />
+            <BarSeries dataKey="Sales" data={data} xAccessor={(d) => d.x} yAccessor={(d) => d.y} />
+            <Tooltip
+              renderTooltip={({ datum }) => (
+                <div>{(datum as any)?.x}: {(datum as any)?.y}</div>
+              )}
+            />
+          </XYChart>
+        )}</ParentSize>
+      )
+    }
+  lowLevelLine: |
+    import { scaleLinear } from '@visx/scale'
+    import { LinePath } from '@visx/shape'
+    import { AxisBottom, AxisLeft } from '@visx/axis'
+
+    const data = Array.from({ length: 50 }, (_, i) => ({ x: i, y: Math.sin(i / 8) }))
+
+    export function LineChart({ width = 500, height = 300 }) {
+      const margin = { top: 10, right: 10, bottom: 30, left: 40 }
+      const xMax = width - margin.left - margin.right
+      const yMax = height - margin.top - margin.bottom
+      const x = (d: any) => d.x
+      const y = (d: any) => d.y
+      const xScale = scaleLinear({ domain: [0, Math.max(...data.map(x))], range: [0, xMax] })
+      const yScale = scaleLinear({ domain: [Math.min(...data.map(y)), Math.max(...data.map(y))], range: [yMax, 0] })
+
+      return (
+        <svg width={width} height={height}>
+          <g transform={`translate(${margin.left},${margin.top})`}>
+            <AxisBottom top={yMax} scale={xScale} />
+            <AxisLeft scale={yScale} />
+            <LinePath data={data} x={(d) => xScale(x(d))} y={(d) => yScale(y(d))} stroke="#4f46e5" strokeWidth={2} />
+          </g>
+        </svg>
+      )
+    }
+bestPractices:
+  - "素早く構築するなら @visx/xychart、粒度の細かい制御が必要なら低レベル API を選択"
+  - "親サイズにフィットさせる場合は @visx/responsive の ParentSize を利用"
+  - "スケール/アクセサ/データは useMemo で安定化し、再描画コストを削減"
+  - "ツールチップは useTooltip + Portal を活用し、スクロール/オーバーフローに強い UI を構築"
+notes:
+  - "SVG ベース。大量点描画ではサンプリングやキャンバス化（@visx/xychart の GlyphSeries 最適化等）を検討"
+  - "個別パッケージ採用でバンドル最適化が可能"
+references:
+  - "Docs: https://airbnb.io/visx/docs"
+  - "xychart: https://airbnb.io/visx/xychart"
+  - "responsive: https://airbnb.io/visx/responsive"
+license: "MIT"
+lastReviewed: "2025-08-14"
+

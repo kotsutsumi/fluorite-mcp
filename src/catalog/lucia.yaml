@@ -1,0 +1,512 @@
+id: "lucia"
+name: "Lucia Auth"
+version: "^3.0.0"
+homepage: "https://lucia-auth.com"
+github: "https://github.com/lucia-auth/lucia"
+npm: "lucia"
+summary: "Simple and flexible authentication library with session management, supporting multiple databases and frameworks."
+description: |
+  Lucia is a simple, flexible, and type-safe authentication library that handles sessions and works with
+  your database. Unlike other auth solutions, Lucia doesn't hide the database layer - you have full control
+  over your user data. It provides session management, CSRF protection, and works with any runtime including
+  Node.js, Bun, Deno, and Cloudflare Workers.
+tags:
+  - authentication
+  - sessions
+  - typescript
+  - database-agnostic
+  - nodejs
+  - edge-runtime
+  - security
+
+install:
+  npm: |
+    npm install lucia
+    # Database adapter (choose one)
+    npm install @lucia-auth/adapter-prisma
+    # OR
+    npm install @lucia-auth/adapter-drizzle
+    # OR
+    npm install @lucia-auth/adapter-mongodb
+  yarn: |
+    yarn add lucia
+    yarn add @lucia-auth/adapter-prisma
+  pnpm: |
+    pnpm add lucia
+    pnpm add @lucia-auth/adapter-prisma
+
+dependencies:
+  required:
+    "lucia": "^3.0.0"
+    "oslo": "^1.0.0"
+  optional:
+    "@lucia-auth/adapter-prisma": "^4.0.0"
+    "@lucia-auth/adapter-drizzle": "^1.0.0"
+    "@lucia-auth/adapter-mongodb": "^1.0.0"
+    "arctic": "^1.0.0"
+
+api:
+  core:
+    Lucia:
+      description: "Main authentication class"
+      methods:
+        - "createSession(userId, attributes?): Create session"
+        - "validateSession(sessionId): Validate session"
+        - "invalidateSession(sessionId): Invalidate session"
+        - "invalidateUserSessions(userId): Invalidate all user sessions"
+        - "createSessionCookie(session): Create cookie"
+        - "createBlankSessionCookie(): Create blank cookie"
+    
+    Scrypt:
+      description: "Password hashing utility"
+      methods:
+        - "new Scrypt(): Create hasher instance"
+        - "hash(password): Hash password"
+        - "verify(hash, password): Verify password"
+    
+    generateId:
+      description: "Generate cryptographically secure IDs"
+      usage: "generateId(length): string"
+
+usage:
+  initialization: |
+    // lib/auth.ts - Initialize Lucia
+    import { Lucia } from "lucia"
+    import { PrismaAdapter } from "@lucia-auth/adapter-prisma"
+    import { prisma } from "@/lib/prisma"
+    import { cookies } from "next/headers"
+    import { cache } from "react"
+    
+    const adapter = new PrismaAdapter(prisma.session, prisma.user)
+    
+    export const lucia = new Lucia(adapter, {
+      sessionCookie: {
+        // Cookie settings for Next.js
+        attributes: {
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "lax",
+          path: "/",
+        },
+        expires: false, // Session cookies
+      },
+      getUserAttributes: (attributes) => {
+        return {
+          // Return user attributes to be included in session
+          email: attributes.email,
+          username: attributes.username,
+          emailVerified: attributes.emailVerified,
+        }
+      },
+    })
+    
+    // IMPORTANT: Declare module augmentation
+    declare module "lucia" {
+      interface Register {
+        Lucia: typeof lucia
+        DatabaseUserAttributes: DatabaseUserAttributes
+      }
+    }
+    
+    interface DatabaseUserAttributes {
+      email: string
+      username: string
+      emailVerified: boolean
+    }
+    
+    // Validate request helper
+    export const validateRequest = cache(
+      async (): Promise<
+        { user: User; session: Session } | { user: null; session: null }
+      > => {
+        const sessionId = cookies().get(lucia.sessionCookieName)?.value ?? null
+        if (!sessionId) {
+          return {
+            user: null,
+            session: null,
+          }
+        }
+        
+        const result = await lucia.validateSession(sessionId)
+        
+        try {
+          if (result.session && result.session.fresh) {
+            const sessionCookie = lucia.createSessionCookie(result.session.id)
+            cookies().set(
+              sessionCookie.name,
+              sessionCookie.value,
+              sessionCookie.attributes
+            )
+          }
+          if (!result.session) {
+            const sessionCookie = lucia.createBlankSessionCookie()
+            cookies().set(
+              sessionCookie.name,
+              sessionCookie.value,
+              sessionCookie.attributes
+            )
+          }
+        } catch {
+          // Next.js throws when cookies are set in layouts
+        }
+        
+        return result
+      }
+    )
+  
+  signupFlow: |
+    // app/signup/actions.ts - Sign up with email/password
+    "use server"
+    
+    import { lucia } from "@/lib/auth"
+    import { prisma } from "@/lib/prisma"
+    import { generateId } from "lucia"
+    import { Scrypt } from "lucia"
+    import { cookies } from "next/headers"
+    import { redirect } from "next/navigation"
+    import { z } from "zod"
+    
+    const signupSchema = z.object({
+      email: z.string().email(),
+      username: z.string().min(3).max(31).regex(/^[a-z0-9_-]+$/),
+      password: z.string().min(8).max(255),
+    })
+    
+    export async function signup(formData: FormData) {
+      const result = signupSchema.safeParse({
+        email: formData.get("email"),
+        username: formData.get("username"),
+        password: formData.get("password"),
+      })
+      
+      if (!result.success) {
+        return {
+          error: "Invalid input",
+        }
+      }
+      
+      const { email, username, password } = result.data
+      const scrypt = new Scrypt()
+      const hashedPassword = await scrypt.hash(password)
+      const userId = generateId(15)
+      
+      try {
+        await prisma.user.create({
+          data: {
+            id: userId,
+            email,
+            username,
+            hashedPassword,
+            emailVerified: false,
+          },
+        })
+        
+        const session = await lucia.createSession(userId, {})
+        const sessionCookie = lucia.createSessionCookie(session.id)
+        
+        cookies().set(
+          sessionCookie.name,
+          sessionCookie.value,
+          sessionCookie.attributes
+        )
+      } catch (e) {
+        // Handle unique constraint error
+        return {
+          error: "Username or email already taken",
+        }
+      }
+      
+      redirect("/dashboard")
+    }
+  
+  loginFlow: |
+    // app/login/actions.ts - Login with email/password
+    "use server"
+    
+    import { lucia } from "@/lib/auth"
+    import { prisma } from "@/lib/prisma"
+    import { Scrypt } from "lucia"
+    import { cookies } from "next/headers"
+    import { redirect } from "next/navigation"
+    
+    export async function login(formData: FormData) {
+      const username = formData.get("username")
+      const password = formData.get("password")
+      
+      if (
+        typeof username !== "string" ||
+        typeof password !== "string"
+      ) {
+        return {
+          error: "Invalid input",
+        }
+      }
+      
+      const existingUser = await prisma.user.findUnique({
+        where: {
+          username: username.toLowerCase(),
+        },
+      })
+      
+      if (!existingUser || !existingUser.hashedPassword) {
+        return {
+          error: "Invalid username or password",
+        }
+      }
+      
+      const scrypt = new Scrypt()
+      const validPassword = await scrypt.verify(
+        existingUser.hashedPassword,
+        password
+      )
+      
+      if (!validPassword) {
+        return {
+          error: "Invalid username or password",
+        }
+      }
+      
+      const session = await lucia.createSession(existingUser.id, {})
+      const sessionCookie = lucia.createSessionCookie(session.id)
+      
+      cookies().set(
+        sessionCookie.name,
+        sessionCookie.value,
+        sessionCookie.attributes
+      )
+      
+      redirect("/dashboard")
+    }
+  
+  logoutFlow: |
+    // app/logout/actions.ts - Logout
+    "use server"
+    
+    import { lucia, validateRequest } from "@/lib/auth"
+    import { cookies } from "next/headers"
+    import { redirect } from "next/navigation"
+    
+    export async function logout() {
+      const { session } = await validateRequest()
+      
+      if (!session) {
+        return {
+          error: "Unauthorized",
+        }
+      }
+      
+      await lucia.invalidateSession(session.id)
+      
+      const sessionCookie = lucia.createBlankSessionCookie()
+      cookies().set(
+        sessionCookie.name,
+        sessionCookie.value,
+        sessionCookie.attributes
+      )
+      
+      redirect("/login")
+    }
+  
+  protectedRoute: |
+    // app/dashboard/page.tsx - Protected server component
+    import { validateRequest } from "@/lib/auth"
+    import { redirect } from "next/navigation"
+    
+    export default async function DashboardPage() {
+      const { user } = await validateRequest()
+      
+      if (!user) {
+        redirect("/login")
+      }
+      
+      return (
+        <div>
+          <h1>Welcome, {user.username}!</h1>
+          <p>Your email: {user.email}</p>
+          <p>
+            Email verified: {user.emailVerified ? "Yes" : "No"}
+          </p>
+        </div>
+      )
+    }
+  
+  oauthFlow: |
+    // lib/oauth.ts - OAuth with Arctic
+    import { Arctic } from "arctic"
+    import { lucia } from "@/lib/auth"
+    import { prisma } from "@/lib/prisma"
+    import { cookies } from "next/headers"
+    import { generateId } from "lucia"
+    
+    export const github = new Arctic.GitHub(
+      process.env.GITHUB_CLIENT_ID!,
+      process.env.GITHUB_CLIENT_SECRET!
+    )
+    
+    // app/login/github/route.ts - GitHub OAuth redirect
+    import { generateState } from "arctic"
+    import { github } from "@/lib/oauth"
+    import { cookies } from "next/headers"
+    
+    export async function GET(): Promise<Response> {
+      const state = generateState()
+      const url = await github.createAuthorizationURL(state, {
+        scopes: ["user:email"],
+      })
+      
+      cookies().set("github_oauth_state", state, {
+        path: "/",
+        secure: process.env.NODE_ENV === "production",
+        httpOnly: true,
+        maxAge: 60 * 10,
+        sameSite: "lax",
+      })
+      
+      return Response.redirect(url)
+    }
+    
+    // app/login/github/callback/route.ts - GitHub OAuth callback
+    export async function GET(request: Request): Promise<Response> {
+      const url = new URL(request.url)
+      const code = url.searchParams.get("code")
+      const state = url.searchParams.get("state")
+      const storedState = cookies().get("github_oauth_state")?.value ?? null
+      
+      if (!code || !state || !storedState || state !== storedState) {
+        return new Response(null, {
+          status: 400,
+        })
+      }
+      
+      try {
+        const tokens = await github.validateAuthorizationCode(code)
+        const githubUserResponse = await fetch("https://api.github.com/user", {
+          headers: {
+            Authorization: `Bearer ${tokens.accessToken}`,
+          },
+        })
+        const githubUser = await githubUserResponse.json()
+        
+        // Check if user exists
+        const existingUser = await prisma.user.findUnique({
+          where: {
+            githubId: githubUser.id,
+          },
+        })
+        
+        if (existingUser) {
+          const session = await lucia.createSession(existingUser.id, {})
+          const sessionCookie = lucia.createSessionCookie(session.id)
+          cookies().set(
+            sessionCookie.name,
+            sessionCookie.value,
+            sessionCookie.attributes
+          )
+          return new Response(null, {
+            status: 302,
+            headers: {
+              Location: "/dashboard",
+            },
+          })
+        }
+        
+        // Create new user
+        const userId = generateId(15)
+        await prisma.user.create({
+          data: {
+            id: userId,
+            githubId: githubUser.id,
+            username: githubUser.login,
+            email: githubUser.email,
+            emailVerified: true,
+          },
+        })
+        
+        const session = await lucia.createSession(userId, {})
+        const sessionCookie = lucia.createSessionCookie(session.id)
+        cookies().set(
+          sessionCookie.name,
+          sessionCookie.value,
+          sessionCookie.attributes
+        )
+        
+        return new Response(null, {
+          status: 302,
+          headers: {
+            Location: "/dashboard",
+          },
+        })
+      } catch (e) {
+        return new Response(null, {
+          status: 500,
+        })
+      }
+    }
+
+bestPractices:
+  - "Use Scrypt for password hashing (built-in)"
+  - "Implement CSRF protection for forms"
+  - "Use secure session configuration"
+  - "Validate sessions on every request"
+  - "Implement proper error handling"
+  - "Use database transactions for user creation"
+  - "Cache validation results with React cache()"
+  - "Set appropriate cookie attributes"
+
+security:
+  features:
+    - "Secure session management"
+    - "CSRF token generation and validation"
+    - "Constant-time string comparison"
+    - "Cryptographically secure ID generation"
+    - "Password hashing with Scrypt"
+  
+  recommendations:
+    - "Always use HTTPS in production"
+    - "Set secure cookie attributes"
+    - "Implement rate limiting"
+    - "Use CSRF tokens for state-changing operations"
+    - "Validate all user input"
+
+patterns:
+  authentication:
+    - "Username/password authentication"
+    - "OAuth with Arctic library"
+    - "Email verification flows"
+    - "Password reset flows"
+    - "Two-factor authentication"
+  
+  sessionManagement:
+    - "Database-backed sessions"
+    - "Session expiration and renewal"
+    - "Device session management"
+    - "Remember me functionality"
+
+troubleshooting:
+  commonIssues:
+    - issue: "Session not persisting"
+      solution: "Check cookie attributes and ensure cookies are being set correctly"
+    - issue: "TypeScript errors"
+      solution: "Ensure module augmentation is properly declared"
+    - issue: "Database adapter errors"
+      solution: "Verify database schema matches adapter requirements"
+    - issue: "OAuth redirect issues"
+      solution: "Check redirect URI configuration and state parameter"
+
+references:
+  documentation: "https://lucia-auth.com"
+  guides: "https://lucia-auth.com/guides"
+  database: "https://lucia-auth.com/database"
+  oauth: "https://lucia-auth.com/guides/oauth"
+  nextjs: "https://lucia-auth.com/guides/nextjs"
+  examples: "https://github.com/lucia-auth/examples"
+
+license: "MIT"
+author: "pilcrowOnPaper"
+maintainers:
+  - "Lucia Auth Team"
+lastReviewed: "2025-08-14"
+metadata:
+  npmWeeklyDownloads: "~50000"
+  githubStars: "8000+"
+  bundleSize: "~10KB minified + gzipped"
+

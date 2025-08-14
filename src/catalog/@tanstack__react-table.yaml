@@ -1,0 +1,168 @@
+id: "@tanstack/react-table"
+name: "TanStack Table (React Table)"
+homepage: "https://tanstack.com/table/latest/docs/introduction"
+npm: "@tanstack/react-table"
+summary: "ヘッドレスなテーブルライブラリ。レンダリングを強制せず、列定義・行モデル・ソート/フィルタ/ページング等のロジックを提供。任意の UI（MUI/Chakra/Tailwind/raw HTML）と組み合わせ可能。"
+install:
+  steps:
+    - "npm i @tanstack/react-table"
+peerDependencies:
+  - react
+  - react-dom
+api:
+  core:
+    - "useReactTable({ data, columns, getCoreRowModel, getSortedRowModel, getFilteredRowModel, getPaginationRowModel })"
+    - "createColumnHelper<T>()（任意）"
+    - "flexRender(def, ctx) でヘッド/セルを描画"
+    - "row.getVisibleCells(), table.getHeaderGroups(), table.getRowModel()"
+  sorting:
+    - "column.toggleSorting() / column.getIsSorted()"
+  filtering:
+    - "column.setFilterValue(v) / column.getFilterValue()"
+  pagination:
+    - "table.nextPage(), previousPage(), setPageIndex(n), getState().pagination"
+usage:
+  basic: |
+    import * as React from 'react'
+    import { useReactTable, getCoreRowModel, flexRender, type ColumnDef } from '@tanstack/react-table'
+
+    type Person = { id: number; name: string; age: number }
+
+    const columns: ColumnDef<Person>[] = [
+      { header: 'ID', accessorKey: 'id' },
+      { header: 'Name', accessorKey: 'name' },
+      { header: 'Age', accessorKey: 'age' },
+    ]
+
+    export default function BasicTable() {
+      const [data] = React.useState<Person[]>([
+        { id: 1, name: 'Alice', age: 28 },
+        { id: 2, name: 'Bob', age: 35 },
+      ])
+      const table = useReactTable({ data, columns, getCoreRowModel: getCoreRowModel() })
+      return (
+        <table>
+          <thead>
+            {table.getHeaderGroups().map(hg => (
+              <tr key={hg.id}>
+                {hg.headers.map(h => (
+                  <th key={h.id}>
+                    {h.isPlaceholder ? null : flexRender(h.column.columnDef.header, h.getContext())}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody>
+            {table.getRowModel().rows.map(r => (
+              <tr key={r.id}>
+                {r.getVisibleCells().map(c => (
+                  <td key={c.id}>{flexRender(c.column.columnDef.cell, c.getContext())}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )
+    }
+  sortingAndFiltering: |
+    import * as React from 'react'
+    import { useReactTable, getCoreRowModel, getSortedRowModel, getFilteredRowModel, flexRender, type ColumnDef } from '@tanstack/react-table'
+
+    type Person = { name: string; age: number }
+    const columns: ColumnDef<Person>[] = [
+      { header: 'Name', accessorKey: 'name' },
+      { header: 'Age', accessorKey: 'age' },
+    ]
+
+    export function SortFilterTable({ data }: { data: Person[] }) {
+      const [sorting, setSorting] = React.useState([])
+      const [globalFilter, setGlobalFilter] = React.useState('')
+      const table = useReactTable({
+        data,
+        columns,
+        state: { sorting, globalFilter },
+        onSortingChange: setSorting,
+        onGlobalFilterChange: setGlobalFilter,
+        getCoreRowModel: getCoreRowModel(),
+        getSortedRowModel: getSortedRowModel(),
+        getFilteredRowModel: getFilteredRowModel(),
+      })
+
+      return (
+        <div>
+          <input value={globalFilter ?? ''} onChange={(e) => setGlobalFilter(e.target.value)} placeholder="Filter..." />
+          <table>
+            <thead>
+              {table.getHeaderGroups().map(hg => (
+                <tr key={hg.id}>
+                  {hg.headers.map(h => (
+                    <th key={h.id} onClick={h.column.getToggleSortingHandler()} style={{ cursor: 'pointer' }}>
+                      {flexRender(h.column.columnDef.header, h.getContext())}
+                      {{ asc: ' ▲', desc: ' ▼' }[h.column.getIsSorted() as string] ?? null}
+                    </th>
+                  ))}
+                </tr>
+              ))}
+            </thead>
+            <tbody>
+              {table.getRowModel().rows.map(r => (
+                <tr key={r.id}>
+                  {r.getVisibleCells().map(c => (
+                    <td key={c.id}>{flexRender(c.column.columnDef.cell, c.getContext())}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )
+    }
+  pagination: |
+    import * as React from 'react'
+    import { useReactTable, getCoreRowModel, getPaginationRowModel, flexRender } from '@tanstack/react-table'
+
+    export function PagingTable({ data, columns }: any) {
+      const table = useReactTable({
+        data,
+        columns,
+        getCoreRowModel: getCoreRowModel(),
+        getPaginationRowModel: getPaginationRowModel(),
+      })
+      const { pageIndex, pageSize } = table.getState().pagination
+      return (
+        <div>
+          <table>
+            <thead>{/* ... */}</thead>
+            <tbody>
+              {table.getRowModel().rows.map(r => (
+                <tr key={r.id}>{r.getVisibleCells().map(c => <td key={c.id}>{flexRender(c.column.columnDef.cell, c.getContext())}</td>)}</tr>
+              ))}
+            </tbody>
+          </table>
+          <div className="space-x-2">
+            <button onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>Prev</button>
+            <span>Page {pageIndex + 1}</span>
+            <button onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>Next</button>
+            <select value={pageSize} onChange={(e) => table.setPageSize(Number(e.target.value))}>
+              {[10, 20, 50].map(s => <option key={s} value={s}>{s}</option>)}
+            </select>
+          </div>
+        </div>
+      )
+    }
+bestPractices:
+  - "列/データは useMemo で安定化し再レンダーを抑制"
+  - "アクセシビリティとフォーカス管理は使用する UI コンポーネント側で担保（Table はヘッドレス）"
+  - "大規模データではサーバーサイドソート/フィルタ/ページングを検討し、状態を onChange 経由で同期"
+  - "UI ライブラリと組み合わせる場合は flexRender とセル/ヘッダ用のラッパーを共通化"
+notes:
+  - "TanStack Table は DOM/スタイル無依存。MUI, Chakra, Radix, Tailwind などと併用可"
+  - "列定義の accessorKey と accessorFn どちらも利用可。display 列でアクション列も作れる"
+references:
+  - "Introduction: https://tanstack.com/table/latest/docs/introduction"
+  - "React Guide: https://tanstack.com/table/latest/docs/framework/react/overview"
+  - "APIs: https://tanstack.com/table/latest/docs/api/core/table"
+license: "MIT"
+lastReviewed: "2025-08-14"
+

@@ -1,0 +1,147 @@
+id: "@tanstack/react-query"
+name: "TanStack Query (React Query)"
+homepage: "https://tanstack.com/query/latest/docs/framework/react/overview"
+npm: "@tanstack/react-query"
+summary: "サーバー状態管理のデファクト。キャッシュ・同期・再試行・並行制御・データのライフサイクルを抽象化し、最小コードで信頼性の高いデータ取得/更新フローを構築できる。"
+install:
+  steps:
+    - "npm i @tanstack/react-query"
+    - "# （任意）Devtools: npm i -D @tanstack/react-query-devtools"
+provider:
+  description: "アプリを QueryClientProvider でラップし、単一の QueryClient を提供。SSR/複数クライアントのケース以外は 1 つで十分。"
+  example: |
+    import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
+    const queryClient = new QueryClient({
+      defaultOptions: {
+        queries: { retry: 2, staleTime: 60_000 },
+      },
+    })
+
+    export function AppProviders({ children }: { children: React.ReactNode }) {
+      return (
+        <QueryClientProvider client={queryClient}>
+          {children}
+        </QueryClientProvider>
+      )
+    }
+api:
+  hooks:
+    - "useQuery({ queryKey, queryFn, enabled, staleTime, gcTime, select, placeholderData })"
+    - "useMutation({ mutationFn, onMutate, onError, onSuccess, onSettled })"
+    - "useInfiniteQuery({ queryKey, queryFn, getNextPageParam })"
+    - "useQueryClient()  # キャッシュ操作: invalidate, setQueryData, getQueryData, prefetchQuery"
+  queryClient:
+    - "invalidateQueries({ queryKey })"
+    - "prefetchQuery({ queryKey, queryFn })"
+    - "setQueryData(queryKey, updater) / getQueryData(queryKey)"
+usage:
+  basicQuery: |
+    import { useQuery } from '@tanstack/react-query'
+
+    async function fetchUsers() {
+      const r = await fetch('/api/users')
+      if (!r.ok) throw new Error('Failed')
+      return r.json() as Promise<{ id: string; name: string }[]>
+    }
+
+    export function Users() {
+      const { data, isLoading, isError, error } = useQuery({
+        queryKey: ['users'],
+        queryFn: fetchUsers,
+        staleTime: 60_000,
+      })
+      if (isLoading) return <p>Loading...</p>
+      if (isError) return <p>Error: {(error as Error).message}</p>
+      return (
+        <ul>{data!.map(u => <li key={u.id}>{u.name}</li>)}</ul>
+      )
+    }
+  mutationAndInvalidate: |
+    import { useMutation, useQueryClient } from '@tanstack/react-query'
+
+    async function createUser(input: { name: string }) {
+      const r = await fetch('/api/users', { method: 'POST', body: JSON.stringify(input) })
+      if (!r.ok) throw new Error('Failed')
+      return r.json()
+    }
+
+    export function NewUser() {
+      const qc = useQueryClient()
+      const { mutate, isPending } = useMutation({
+        mutationFn: createUser,
+        onSuccess: () => qc.invalidateQueries({ queryKey: ['users'] }),
+      })
+      return (
+        <button disabled={isPending} onClick={() => mutate({ name: 'Alice' })}>Create</button>
+      )
+    }
+  optimisticUpdate: |
+    import { useMutation, useQueryClient } from '@tanstack/react-query'
+
+    async function updateUser(id: string, name: string) {
+      const r = await fetch(`/api/users/${id}`, { method: 'PUT', body: JSON.stringify({ name }) })
+      if (!r.ok) throw new Error('Failed')
+      return r.json()
+    }
+
+    export function RenameUser({ id }: { id: string }) {
+      const qc = useQueryClient()
+      const { mutate } = useMutation({
+        mutationFn: ({ id, name }: { id: string; name: string }) => updateUser(id, name),
+        onMutate: async ({ id, name }) => {
+          await qc.cancelQueries({ queryKey: ['user', id] })
+          const prev = qc.getQueryData<{ id: string; name: string }>(['user', id])
+          qc.setQueryData(['user', id], (cur: any) => ({ ...cur, name }))
+          return { prev }
+        },
+        onError: (_err, { id }, ctx) => {
+          if (ctx?.prev) qc.setQueryData(['user', id], ctx.prev)
+        },
+        onSettled: (_data, _err, { id }) => {
+          qc.invalidateQueries({ queryKey: ['user', id] })
+        },
+      })
+      return <button onClick={() => mutate({ id, name: 'Bob' })}>Rename</button>
+    }
+  infiniteQuery: |
+    import { useInfiniteQuery } from '@tanstack/react-query'
+
+    async function fetchPage({ pageParam = 0 }) {
+      const r = await fetch(`/api/items?cursor=${pageParam}`)
+      if (!r.ok) throw new Error('Failed')
+      return r.json() as Promise<{ items: string[]; nextCursor?: number }>
+    }
+
+    export function InfiniteList() {
+      const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery({
+        queryKey: ['items'],
+        queryFn: ({ pageParam }) => fetchPage({ pageParam }),
+        getNextPageParam: (lastPage) => lastPage.nextCursor ?? undefined,
+      })
+      return (
+        <div>
+          {data?.pages.flatMap(p => p.items).map((it, i) => <div key={i}>{it}</div>)}
+          <button disabled={!hasNextPage || isFetchingNextPage} onClick={() => fetchNextPage()}>
+            {isFetchingNextPage ? 'Loading...' : hasNextPage ? 'More' : 'End'}
+          </button>
+        </div>
+      )
+    }
+bestPractices:
+  - "クエリキーは配列で安定化（['user', id] など）。パラメータをキーに含める"
+  - "fetcher は失敗時に throw して isError/retry が機能するようにする"
+  - "staleTime/gcTime をユースケースに合わせて調整し、不要な再フェッチ/メモリ使用を最適化"
+  - "ミューテーション後は invalidateQueries か setQueryData でキャッシュを更新"
+  - "リスト/詳細の整合を保つため、optimistic update + onError ロールバックを設計"
+notes:
+  - "Suspense/ErrorBoundary 連携が可能。UX に応じて有効化（experimental 事項は公式に準拠）"
+  - "Devtools を導入するとキャッシュ/フェッチ状態の可視化が容易"
+  - "SSR/SSG は Hydration 前後のキャッシュ整合に注意（prefetch/dehydrate/hydrate パターンを使用）"
+references:
+  - "Overview: https://tanstack.com/query/latest/docs/framework/react/overview"
+  - "Guides: https://tanstack.com/query/latest/docs/framework/react/guides/queries"
+  - "API: https://tanstack.com/query/latest/docs/framework/react/reference/useQuery"
+license: "MIT"
+lastReviewed: "2025-08-14"
+
