@@ -1,0 +1,125 @@
+id: "@tremor/react"
+name: "tremor (React)"
+homepage: "https://tremor.so/docs/getting-started/installation"
+npm: "@tremor/react"
+summary: "ダッシュボード向けの React UI コンポーネント（カード、KPI、チャートなど）。Tailwind CSS と統合して、データ可視化を素早く構築できる。"
+install:
+  steps:
+    - "npm i @tremor/react"
+    - "# Tailwind CSS（推奨）をセットアップしてユーティリティ/トークンを有効化"
+    - "npm i -D tailwindcss postcss autoprefixer"
+    - "npx tailwindcss init -p"
+    - "tailwind.config.* の content にプロジェクトのテンプレートパスを追加"
+peerDependencies:
+  - react
+  - react-dom
+  - tailwindcss
+  - postcss
+  - autoprefixer
+tailwind:
+  configHints: |
+    // tailwind.config.ts の例
+    import type { Config } from 'tailwindcss'
+    import animate from 'tailwindcss-animate'
+
+    export default {
+      darkMode: 'class',
+      content: [
+        './index.html',
+        './src/**/*.{ts,tsx}',
+        // tremor のコンポーネントもプロジェクト配下にインポートされるため上記で十分
+      ],
+      theme: { extend: {} },
+      plugins: [animate],
+    } satisfies Config
+  globalsCss: |
+    /* src/index.css 等 */
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+
+    /* 必要に応じて色/間隔トークンを拡張 */
+api:
+  components:
+    - "<Card>, <Metric>, <Text>, <Title>, <Flex>, <Grid>"
+    - "<BarChart>, <LineChart>, <AreaChart>, <DonutChart>"
+    - "<Badge>, <TabGroup>, <TabList>, <Tab>, <TabPanels>, <TabPanel>"
+usage:
+  kpiAndCard: |
+    import { Card, Metric, Text, Flex } from '@tremor/react'
+
+    export default function KpiCard() {
+      return (
+        <Card className="max-w-sm">
+          <Flex justifyContent="between" alignItems="baseline">
+            <Text>売上 (今月)</Text>
+            <Text className="text-gray-500">前年比 +12%</Text>
+          </Flex>
+          <Metric>¥1,234,567</Metric>
+        </Card>
+      )
+    }
+  barChart: |
+    import { Card, Title, BarChart } from '@tremor/react'
+
+    const data = [
+      { month: 'Jan', sales: 120 },
+      { month: 'Feb', sales: 98 },
+      { month: 'Mar', sales: 140 },
+    ]
+
+    export function SalesChart() {
+      return (
+        <Card>
+          <Title>月次売上</Title>
+          <BarChart
+            data={data}
+            index="month"
+            categories={["sales"]}
+            colors={["indigo"]}
+            valueFormatter={(n) => new Intl.NumberFormat('ja-JP').format(n)}
+            yAxisWidth={48}
+          />
+        </Card>
+      )
+    }
+  tabsAndGrid: |
+    import { Card, TabGroup, TabList, Tab, TabPanels, TabPanel, Grid } from '@tremor/react'
+
+    export function Dashboard() {
+      return (
+        <TabGroup>
+          <TabList>
+            <Tab>概要</Tab>
+            <Tab>詳細</Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel>
+              <Grid numItemsSm={2} numItemsLg={3} className="gap-4">
+                <Card>Card A</Card>
+                <Card>Card B</Card>
+                <Card>Card C</Card>
+              </Grid>
+            </TabPanel>
+            <TabPanel>
+              <Card>Details...</Card>
+            </TabPanel>
+          </TabPanels>
+        </TabGroup>
+      )
+    }
+bestPractices:
+  - "Tailwind の content 設定漏れを防ぎ未使用クラス除去を適切に行う"
+  - "ダークモードは 'class' 戦略を採用し、UI ルートでトグル可能にする"
+  - "チャートのフォーマッタは Intl を用いロケール整合を保つ"
+  - "レイアウトは <Grid>/<Flex> を活用しレスポンシブを簡潔に保つ"
+notes:
+  - "tremor は Tailwind 前提のユーティリティクラスでスタイルされる。既存フレームワークと重複しないようベーススタイルの競合に注意"
+  - "Next.js でも通常通り利用可。クライアントコンポーネントでの描画を基本とする"
+references:
+  - "Installation: https://tremor.so/docs/getting-started/installation"
+  - "Components: https://tremor.so/components"
+  - "Examples: https://tremor.so/examples"
+license: "MIT"
+lastReviewed: "2025-08-14"
+

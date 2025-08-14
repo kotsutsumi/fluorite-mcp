@@ -1,0 +1,163 @@
+id: "tailwindcss"
+name: "Tailwind CSS"
+version: "^3.4.0"
+homepage: "https://tailwindcss.com/docs"
+github: "https://github.com/tailwindlabs/tailwindcss"
+npm: "tailwindcss"
+summary: "A utility-first CSS framework for rapidly building custom user interfaces."
+description: |
+  Tailwind CSS is a utility-first CSS framework that provides low-level utility classes to build custom designs directly in your markup.
+  It uses a JIT (Just-In-Time) compiler to generate styles on-demand, resulting in smaller CSS bundles.
+  Features automatic removal of unused styles, responsive design utilities, and dark mode support.
+tags:
+  - css-framework
+  - utility-first
+  - responsive-design
+  - dark-mode
+  - postcss
+  - jit-compiler
+install:
+  steps:
+    - "npm i -D tailwindcss postcss autoprefixer"
+    - "npx tailwindcss init -p  # tailwind.config.js と postcss.config.js を生成"
+    - "tailwind.config.* の content にテンプレートパスを設定"
+    - "グローバル CSS に @tailwind base; @tailwind components; @tailwind utilities; を追加"
+peerDependencies:
+  - postcss
+  - autoprefixer
+config:
+  tailwindConfigVite: |
+    // tailwind.config.ts（Vite/React の例）
+    import type { Config } from 'tailwindcss'
+
+    export default {
+      darkMode: 'class',
+      content: [
+        './index.html',
+        './src/**/*.{ts,tsx,js,jsx}',
+      ],
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#6366f1',
+              foreground: '#ffffff'
+            }
+          },
+        },
+      },
+      plugins: [],
+    } satisfies Config
+  tailwindConfigNext: |
+    // tailwind.config.ts（Next.js App Router の例）
+    import type { Config } from 'tailwindcss'
+
+    const config: Config = {
+      darkMode: 'class',
+      content: [
+        './app/**/*.{ts,tsx}',
+        './pages/**/*.{ts,tsx}',
+        './components/**/*.{ts,tsx}',
+        './src/**/*.{ts,tsx}',
+      ],
+      theme: { extend: {} },
+      plugins: [],
+    }
+    export default config
+  globalsCss: |
+    /* src/index.css など */
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+
+    /* 任意: カスタムレイヤー */
+    @layer base {
+      :root { --brand: 99 102 241 } /* 例: rgb 変数 */
+    }
+usage:
+  basicReact: |
+    // 任意のコンポーネント
+    export default function Example() {
+      return (
+        <div className="p-6 space-y-4">
+          <h1 className="text-2xl font-bold">Tailwind 基本例</h1>
+          <button className="px-4 py-2 rounded-md bg-brand text-white hover:opacity-90">
+            Button
+          </button>
+          <div className="grid grid-cols-2 gap-3">
+            <div className="h-16 rounded bg-gray-100" />
+            <div className="h-16 rounded bg-gray-100" />
+          </div>
+        </div>
+      )
+    }
+  darkModeToggle: |
+    // darkMode: 'class' 設定時。ルート要素に 'dark' クラスを切り替え
+    export function toggleDark() {
+      document.documentElement.classList.toggle('dark')
+    }
+    // 使用例: <div className="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100" />
+  withPostcssCli: |
+    // CLI ビルド例（package.json）
+    {
+      "scripts": {
+        "tw:build": "tailwindcss -i ./src/index.css -o ./dist/tailwind.css --minify",
+        "tw:watch": "tailwindcss -i ./src/index.css -o ./dist/tailwind.css --watch"
+      }
+    }
+bestPractices:
+  - "Configure content paths to cover all template files for proper tree-shaking"
+  - "Use utility composition (clsx/tailwind-merge) instead of @apply for maintainability"
+  - "Implement dark mode with 'class' strategy for better control"
+  - "Avoid conflicts with other CSS frameworks by managing reset styles"
+  - "Use consistent spacing and sizing scales across the project"
+  - "Leverage JIT mode for development with arbitrary values"
+  - "Extract repeated patterns into components rather than @layer directives"
+performance:
+  optimization:
+    - "JIT compiler generates styles on-demand for minimal CSS"
+    - "Automatic purging of unused styles in production"
+    - "Typical production CSS: 5-15KB gzipped"
+    - "No runtime JavaScript overhead"
+  features:
+    - "Arbitrary value support: bg-[#1da1f2]"
+    - "Responsive variants: sm:, md:, lg:, xl:, 2xl:"
+    - "State variants: hover:, focus:, active:, disabled:"
+    - "Dark mode variants: dark:"
+    - "Container queries: @container"
+
+troubleshooting:
+  commonIssues:
+    - issue: "Styles not applying in production"
+      solution: "Ensure content paths include all files with Tailwind classes"
+    - issue: "Dynamic classes not working"
+      solution: "Avoid string concatenation; use complete class names or safelist"
+    - issue: "IntelliSense not working"
+      solution: "Install Tailwind CSS IntelliSense VS Code extension"
+references:
+  - "Docs: https://tailwindcss.com/docs"
+  - "Configuration: https://tailwindcss.com/docs/configuration"
+  - "Play CDN: https://tailwindcss.com/docs/installation/play-cdn"
+ecosystem:
+  plugins:
+    official:
+      - "@tailwindcss/typography: Prose styles for markdown content"
+      - "@tailwindcss/forms: Form element reset styles"
+      - "@tailwindcss/aspect-ratio: Aspect ratio utilities"
+      - "@tailwindcss/container-queries: Container query support"
+    community:
+      - "daisyui: Component library"
+      - "tailwindcss-animate: Animation utilities"
+      - "tailwind-scrollbar: Custom scrollbar styles"
+
+license: "MIT"
+author: "Tailwind Labs"
+maintainers:
+  - "Adam Wathan"
+  - "Tailwind Labs Team"
+lastReviewed: "2025-08-14"
+metadata:
+  npmWeeklyDownloads: "~8000000"
+  githubStars: "80000+"
+  cssSize: "5-15KB gzipped (production)"
+

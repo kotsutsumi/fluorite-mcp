@@ -1,0 +1,161 @@
+id: "@trpc/server"
+name: "tRPC"
+version: "^10.45.0"
+homepage: "https://trpc.io"
+github: "https://github.com/trpc/trpc"
+npm: "@trpc/server @trpc/client"
+summary: "End-to-end typesafe APIs made easy with automatic type inference between client and server."
+description: |
+  tRPC allows you to build fully typesafe APIs without any code generation or runtime overhead.
+  It leverages TypeScript's inference to share types between your backend and frontend automatically.
+  Features include type-safe API calls, auto-completion in IDEs, and seamless refactoring.
+  Works with any frontend framework and supports various backend adapters.
+tags:
+  - api
+  - typescript
+  - rpc
+  - type-safety
+  - full-stack
+  - real-time
+  - websockets
+install:
+  steps:
+    - "# サーバー"
+    - "npm i @trpc/server zod"
+    - "# React クライアント（TanStack Query 連携）"
+    - "npm i @trpc/react-query @tanstack/react-query"
+    - "# Next.js 用（任意）"
+    - "npm i @trpc/next"
+    - "# Node アダプタ例（Express/Fastify など、必要に応じて）"
+    - "npm i express @trpc/server @trpc/client"
+api:
+  server:
+    - "initTRPC.create({ transformer?, errorFormatter? })"
+    - "t.router({ ...procedures })"
+    - "t.procedure.input(zodSchema).query(fn) / .mutation(fn)"
+    - "t.middleware(({ ctx, next }) => next({ ctx }))"
+    - "mergeRouters(a, b) でルーター結合"
+  client:
+    - "createTRPCReact<AppRouter>() で React 用フック生成"
+    - "createTRPCProxyClient<AppRouter>({ links }) で非 React クライアント"
+    - "links: httpBatchLink / httpLink / loggerLink"
+    - "transformer（superjson など）で Date/Map 等を透過シリアライズ"
+usage:
+  serverRouterBasics: |
+    // src/server/trpc.ts
+    import { initTRPC } from '@trpc/server'
+    import { z } from 'zod'
+
+    const t = initTRPC.create()
+    export const publicProcedure = t.procedure
+    export const router = t.router
+
+    export const appRouter = router({
+      hello: publicProcedure
+        .input(z.object({ name: z.string().min(1) }))
+        .query(({ input }) => ({ greeting: `hello ${input.name}` })),
+      add: publicProcedure
+        .input(z.object({ a: z.number(), b: z.number() }))
+        .mutation(({ input }) => ({ sum: input.a + input.b })),
+    })
+
+    // 型エクスポート（E2E 型推論）
+    export type AppRouter = typeof appRouter
+  serverAdaptersNext: |
+    // app/api/trpc/[trpc]/route.ts（Next.js App Router）
+    import { fetchRequestHandler } from '@trpc/server/adapters/fetch'
+    import { appRouter } from '@/server/trpc'
+
+    const handler = (req: Request) =>
+      fetchRequestHandler({ req, endpoint: '/api/trpc', router: appRouter, createContext: () => ({}) })
+
+    export { handler as GET, handler as POST }
+  serverAdaptersExpress: |
+    // server.ts（Express の例）
+    import express from 'express'
+    import * as trpcExpress from '@trpc/server/adapters/express'
+    import { appRouter } from './server/trpc'
+
+    const app = express()
+    app.use('/trpc', trpcExpress.createExpressMiddleware({ router: appRouter, createContext: () => ({}) }))
+    app.listen(3000)
+  reactSetup: |
+    // src/trpc/react.ts
+    import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+    import { createTRPCReact } from '@trpc/react-query'
+    import type { AppRouter } from '@/server/trpc'
+
+    export const api = createTRPCReact<AppRouter>()
+    const queryClient = new QueryClient()
+
+    export function Providers({ children }: { children: React.ReactNode }) {
+      return (
+        <api.Provider queryClient={queryClient} client={api.createClient({
+          links: [
+            // import { httpBatchLink } from '@trpc/react-query'
+            // httpBatchLink({ url: '/api/trpc' })
+          ],
+        })}>
+          <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+        </api.Provider>
+      )
+    }
+  reactHooks: |
+    import { api } from '@/trpc/react'
+
+    export function Example() {
+      const hello = api.hello.useQuery({ name: 'Alice' })
+      const add = api.add.useMutation()
+      return (
+        <div>
+          <p>{hello.data?.greeting}</p>
+          <button onClick={() => add.mutate({ a: 1, b: 2 })}>add</button>
+        </div>
+      )
+    }
+  nonReactClient: |
+    import { createTRPCProxyClient, httpBatchLink } from '@trpc/client'
+    import type { AppRouter } from '@/server/trpc'
+
+    const client = createTRPCProxyClient<AppRouter>({
+      links: [httpBatchLink({ url: '/api/trpc' })],
+    })
+
+    const res = await client.hello.query({ name: 'Taro' })
+    console.log(res.greeting)
+  protectedProcedure: |
+    import { initTRPC, TRPCError } from '@trpc/server'
+
+    const t = initTRPC.context<{ user?: { id: string } }>().create()
+    const isAuthed = t.middleware(({ ctx, next }) => {
+      if (!ctx.user) throw new TRPCError({ code: 'UNAUTHORIZED' })
+      return next({ ctx })
+    })
+    export const protectedProcedure = t.procedure.use(isAuthed)
+
+    // 利用例
+    // user.me: protectedProcedure.query(({ ctx }) => ({ id: ctx.user!.id }))
+  inferenceHelpers: |
+    import type { AppRouter } from '@/server/trpc'
+    import type { inferRouterInputs, inferRouterOutputs } from '@trpc/server'
+
+    export type RouterInputs = inferRouterInputs<AppRouter>
+    export type RouterOutputs = inferRouterOutputs<AppRouter>
+    // 例: type HelloInput = RouterInputs['hello']
+bestPractices:
+  - "Zod などで input スキーマを明示し、サーバー境界で parse/safeParse する"
+  - "public/protected の procedure ビルダーを作り、認可/コンテキストを一元化"
+  - "React では @tanstack/react-query と連携してキャッシュ戦略（staleTime, gcTime, invalidate）を設計"
+  - "クライアント/サーバーで共通の型エクスポート（AppRouter と infer ヘルパ）を徹底"
+  - "transformer（superjson 等）を用い、Date/Map などのシリアライズを正しく扱う"
+notes:
+  - "Next.js App Router は fetchRequestHandler を利用。Pages Router では @trpc/next の createNextApiHandler を使用"
+  - "リンク構成（loggerLink, httpBatchLink）は開発/本番で切り替え可能。バッチングはデフォルト推奨"
+  - "SSR/SSG は prefetch + dehydrate/hydrate パターン（@tanstack/react-query）を採用"
+references:
+  - "Docs: https://trpc.io/docs"
+  - "React Query integration: https://trpc.io/docs/client/react"
+  - "Next.js: https://trpc.io/docs/client/nextjs"
+license: "MIT"
+lastReviewed: "2025-08-14"
+

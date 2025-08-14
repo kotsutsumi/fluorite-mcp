@@ -1,0 +1,73 @@
+id: "drizzle-orm"
+name: "Drizzle ORM"
+homepage: "https://orm.drizzle.team/docs/overview"
+npm: "drizzle-orm, drizzle-kit"
+summary: "型安全で軽量な ORM/クエリビルダ。スキーマを TypeScript で記述し、マイグレーションは drizzle-kit で管理。エッジ環境や多様なドライバに対応。"
+install:
+  steps:
+    - "npm i drizzle-orm"
+    - "# ドライバ例: Postgres (postgres-js)"
+    - "npm i postgres"
+    - "# マイグレーション"
+    - "npm i -D drizzle-kit"
+config:
+  drizzleConfig: |
+    // drizzle.config.ts（postgres-js の例）
+    import type { Config } from 'drizzle-kit'
+    export default {
+      schema: './src/db/schema.ts',
+      out: './drizzle',
+      dialect: 'postgresql',
+      dbCredentials: { url: process.env.DATABASE_URL! },
+    } satisfies Config
+schema:
+  example: |
+    // src/db/schema.ts
+    import { pgTable, serial, text, timestamp } from 'drizzle-orm/pg-core'
+    export const users = pgTable('users', {
+      id: serial('id').primaryKey(),
+      email: text('email').notNull().unique(),
+      name: text('name'),
+      createdAt: timestamp('created_at').defaultNow().notNull(),
+    })
+db:
+  connectAndQuery: |
+    // src/db/index.ts
+    import postgres from 'postgres'
+    import { drizzle } from 'drizzle-orm/postgres-js'
+    import { users } from './schema'
+
+    const client = postgres(process.env.DATABASE_URL!)
+    export const db = drizzle(client)
+
+    // 利用例
+    // const list = await db.select().from(users)
+usage:
+  nextRoute: |
+    // app/api/users/route.ts
+    import { db } from '@/db'
+    import { users } from '@/db/schema'
+    export async function GET() {
+      const list = await db.select().from(users)
+      return Response.json(list)
+    }
+  insert: |
+    import { db } from '@/db'
+    import { users } from '@/db/schema'
+    await db.insert(users).values({ email: 'a@example.com', name: 'Alice' })
+  migrate: |
+    # 生成/適用
+    npx drizzle-kit generate
+    npx drizzle-kit migrate
+bestPractices:
+  - "ドライバに応じた import を選択（postgres-js/neon/http、better-sqlite3、mysql2 等）"
+  - "スキーマを一箇所に集約し、型/クエリ/マイグレーションを同期"
+  - "エッジ環境では HTTP 対応ドライバを使用（neon-http/planetScale 等）"
+  - "接続は再利用し、サーバーレスではコネクション数に注意"
+references:
+  - "Overview: https://orm.drizzle.team/docs/overview"
+  - "Postgres: https://orm.drizzle.team/docs/quick-postgresql"
+  - "Migrations: https://orm.drizzle.team/docs/kit-overview"
+license: "MIT"
+lastReviewed: "2025-08-14"
+

@@ -1,0 +1,203 @@
+id: "react-hook-form"
+name: "React Hook Form"
+version: "^7.48.0"
+homepage: "https://react-hook-form.com"
+github: "https://github.com/react-hook-form/react-hook-form"
+npm: "react-hook-form"
+summary: "Performant forms with easy-to-use validation and minimal re-renders."
+description: |
+  React Hook Form is a performant, flexible forms library with easy-to-use validation.
+  Built with performance and developer experience in mind, it leverages uncontrolled components
+  and native HTML validation to minimize re-renders and improve performance.
+  Features include built-in validation, error handling, integration with UI libraries,
+  and TypeScript support.
+tags:
+  - forms
+  - validation
+  - react
+  - typescript
+  - performance
+  - uncontrolled-components
+install:
+  steps:
+    - "npm i react-hook-form"
+    - "# スキーマバリデーションを使う場合（任意）"
+    - "npm i zod @hookform/resolvers"
+peerDependencies:
+  - react
+  - react-dom
+  - "(任意) zod"
+  - "(任意) @hookform/resolvers"
+api:
+  hooks:
+    - "useForm({ defaultValues, mode, resolver, shouldUnregister })"
+    - "useController({ name, control })"
+    - "useFieldArray({ control, name })"
+    - "useWatch({ control, name })"
+  components:
+    - "Controller"
+usage:
+  basic: |
+    import { useForm } from 'react-hook-form'
+
+    type FormData = { email: string; age?: number }
+
+    export default function BasicForm() {
+      const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>()
+
+      const onSubmit = (data: FormData) => console.log(data)
+
+      return (
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+          <label className="block">
+            <span>Email</span>
+            <input
+              type="email"
+              className="border px-2 py-1"
+              {...register('email', { required: '必須です' })}
+            />
+            {errors.email && <p className="text-red-600 text-sm">{errors.email.message}</p>}
+          </label>
+
+          <label className="block">
+            <span>Age</span>
+            <input
+              type="number"
+              className="border px-2 py-1"
+              {...register('age', { valueAsNumber: true, min: { value: 0, message: '0 以上' } })}
+            />
+            {errors.age && <p className="text-red-600 text-sm">{errors.age.message}</p>}
+          </label>
+
+          <button disabled={isSubmitting} className="px-3 py-1 rounded bg-black text-white">送信</button>
+        </form>
+      )
+    }
+  withZod: |
+    import { useForm } from 'react-hook-form'
+    import { z } from 'zod'
+    import { zodResolver } from '@hookform/resolvers/zod'
+
+    const schema = z.object({
+      email: z.string().email(),
+      password: z.string().min(8),
+    })
+    type FormData = z.infer<typeof schema>
+
+    export function ZodForm() {
+      const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
+        resolver: zodResolver(schema),
+        defaultValues: { email: '', password: '' },
+      })
+      return (
+        <form onSubmit={handleSubmit(console.log)}>
+          <input {...register('email')} placeholder="email" />
+          {errors.email && <span>{errors.email.message}</span>}
+          <input type="password" {...register('password')} placeholder="password" />
+          {errors.password && <span>{errors.password.message}</span>}
+          <button>送信</button>
+        </form>
+      )
+    }
+  withController: |
+    import { useForm, Controller } from 'react-hook-form'
+    import { useState } from 'react'
+
+    // 例: カスタム/制御コンポーネント（外部 UI ライブラリ等）
+    function Switch({ checked, onChange }: { checked: boolean; onChange: (v: boolean) => void }) {
+      return <button type="button" onClick={() => onChange(!checked)}>{checked ? 'ON' : 'OFF'}</button>
+    }
+
+    type FormData = { enabled: boolean }
+
+    export function ControllerExample() {
+      const { control, handleSubmit } = useForm<FormData>({ defaultValues: { enabled: false } })
+      return (
+        <form onSubmit={handleSubmit(console.log)}>
+          <Controller
+            name="enabled"
+            control={control}
+            render={({ field }) => (
+              <Switch checked={!!field.value} onChange={field.onChange} />
+            )}
+          />
+          <button>送信</button>
+        </form>
+      )
+    }
+  fieldArray: |
+    import { useForm, useFieldArray } from 'react-hook-form'
+
+    type FormData = { users: { name: string }[] }
+
+    export function FieldArrayExample() {
+      const { control, register, handleSubmit } = useForm<FormData>({ defaultValues: { users: [{ name: '' }] } })
+      const { fields, append, remove } = useFieldArray({ control, name: 'users' })
+      return (
+        <form onSubmit={handleSubmit(console.log)}>
+          {fields.map((f, i) => (
+            <div key={f.id}>
+              <input {...register(`users.${i}.name` as const)} />
+              <button type="button" onClick={() => remove(i)}>削除</button>
+            </div>
+          ))}
+          <button type="button" onClick={() => append({ name: '' })}>追加</button>
+          <button>送信</button>
+        </form>
+      )
+    }
+bestPractices:
+  - "Use uncontrolled components by default, Controller only when necessary"
+  - "Always specify defaultValues for consistent form initialization"
+  - "Understand shouldUnregister behavior for conditional fields"
+  - "Use watch/useWatch sparingly to avoid unnecessary re-renders"
+  - "Leverage valueAsNumber/valueAsDate for proper type conversion"
+  - "Implement proper TypeScript types for form data"
+  - "Use formState.isDirty and isValid for submit button states"
+  - "Combine with schema validation (Zod, Yup) for complex validation"
+performance:
+  metrics:
+    - "Minimal re-renders using uncontrolled components"
+    - "Bundle size: ~25KB minified + gzipped"
+    - "Zero dependencies"
+    - "Optimized for 1000+ field forms"
+  features:
+    - "Built-in debouncing for validation"
+    - "Lazy validation on blur/submit"
+    - "Field array optimization"
+
+troubleshooting:
+  commonIssues:
+    - issue: "Form not submitting"
+      solution: "Check validation errors in formState.errors and ensure handleSubmit wraps onSubmit"
+    - issue: "Values not updating"
+      solution: "Ensure name prop matches register() and check defaultValues"
+    - issue: "Controller not working with custom component"
+      solution: "Ensure component forwards onChange, onBlur, value, and ref properly"
+references:
+  - "Get Started: https://react-hook-form.com/get-started"
+  - "API: https://react-hook-form.com/docs/useform"
+  - "Resolvers: https://react-hook-form.com/docs/useform#resolver"
+integrations:
+  validation:
+    - "Zod: Type-safe schema validation"
+    - "Yup: Object schema validation"
+    - "Joi: Schema description language"
+    - "AJV: JSON schema validator"
+    - "Vest: Declarative validation"
+  uiLibraries:
+    - "Material-UI: Full integration support"
+    - "Ant Design: Controller examples"
+    - "Chakra UI: Form control integration"
+    - "shadcn/ui: Native integration"
+
+license: "MIT"
+author: "Bill Luo"
+maintainers:
+  - "bluebill1049"
+lastReviewed: "2025-08-14"
+metadata:
+  npmWeeklyDownloads: "~4000000"
+  githubStars: "40000+"
+  bundleSize: "~25KB minified + gzipped"
+

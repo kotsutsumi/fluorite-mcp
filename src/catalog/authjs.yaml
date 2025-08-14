@@ -1,0 +1,428 @@
+id: "next-auth"
+name: "Auth.js (NextAuth.js)"
+version: "^5.0.0"
+homepage: "https://authjs.dev"
+github: "https://github.com/nextauthjs/next-auth"
+npm: "next-auth"
+summary: "Authentication for Next.js with support for 50+ providers, database adapters, and JWT/session management."
+description: |
+  Auth.js (formerly NextAuth.js) is a complete authentication solution for Next.js applications.
+  It supports OAuth providers (Google, GitHub, etc.), email/password, magic links, and custom authentication.
+  Features include built-in CSRF protection, secure cookies, database session management, and JWT support.
+  Works with serverless, supports TypeScript, and provides hooks for client-side auth state.
+tags:
+  - authentication
+  - nextjs
+  - oauth
+  - jwt
+  - session
+  - security
+  - typescript
+
+install:
+  npm: |
+    npm install next-auth
+    # For database adapter (optional)
+    npm install @auth/prisma-adapter prisma
+    # Or other adapters: @auth/drizzle-adapter, @auth/mongodb-adapter
+  yarn: |
+    yarn add next-auth
+    yarn add @auth/prisma-adapter prisma
+  pnpm: |
+    pnpm add next-auth
+    pnpm add @auth/prisma-adapter prisma
+
+dependencies:
+  required:
+    "next-auth": "^5.0.0"
+    "next": "^13.5.0 || ^14.0.0"
+    "react": "^18.2.0"
+    "react-dom": "^18.2.0"
+  optional:
+    "@auth/prisma-adapter": "^1.0.0"
+    "@auth/drizzle-adapter": "^0.3.0"
+    "@auth/mongodb-adapter": "^2.0.0"
+    "nodemailer": "^6.9.0"
+
+api:
+  core:
+    NextAuth:
+      description: "Main configuration function"
+      config:
+        providers: "Array of authentication providers"
+        adapter: "Database adapter for sessions"
+        callbacks: "Lifecycle hooks for customization"
+        pages: "Custom auth pages"
+        session: "Session configuration"
+        jwt: "JWT configuration"
+    
+    auth:
+      description: "Server-side auth helper"
+      methods:
+        - "auth(): Get current session"
+        - "signIn(): Programmatic sign in"
+        - "signOut(): Programmatic sign out"
+    
+    hooks:
+      useSession:
+        description: "Client-side session hook"
+        returns: "{ data: session, status, update }"
+      
+      signIn:
+        description: "Client-side sign in"
+      
+      signOut:
+        description: "Client-side sign out"
+
+usage:
+  configuration: |
+    // auth.ts - Auth.js configuration
+    import NextAuth from "next-auth"
+    import GitHub from "next-auth/providers/github"
+    import Google from "next-auth/providers/google"
+    import Credentials from "next-auth/providers/credentials"
+    import { PrismaAdapter } from "@auth/prisma-adapter"
+    import { prisma } from "@/lib/prisma"
+    import bcrypt from "bcryptjs"
+    
+    export const { 
+      handlers, 
+      auth, 
+      signIn, 
+      signOut 
+    } = NextAuth({
+      adapter: PrismaAdapter(prisma),
+      
+      providers: [
+        GitHub({
+          clientId: process.env.GITHUB_ID!,
+          clientSecret: process.env.GITHUB_SECRET!,
+        }),
+        
+        Google({
+          clientId: process.env.GOOGLE_ID!,
+          clientSecret: process.env.GOOGLE_SECRET!,
+        }),
+        
+        Credentials({
+          name: "credentials",
+          credentials: {
+            email: { label: "Email", type: "email" },
+            password: { label: "Password", type: "password" }
+          },
+          async authorize(credentials) {
+            if (!credentials?.email || !credentials?.password) {
+              return null
+            }
+            
+            const user = await prisma.user.findUnique({
+              where: { email: credentials.email }
+            })
+            
+            if (!user || !user.hashedPassword) {
+              return null
+            }
+            
+            const isValid = await bcrypt.compare(
+              credentials.password,
+              user.hashedPassword
+            )
+            
+            if (!isValid) {
+              return null
+            }
+            
+            return {
+              id: user.id,
+              email: user.email,
+              name: user.name,
+              image: user.image,
+            }
+          }
+        })
+      ],
+      
+      callbacks: {
+        async jwt({ token, user, account, profile }) {
+          if (user) {
+            token.id = user.id
+            token.role = user.role
+          }
+          return token
+        },
+        
+        async session({ session, token }) {
+          if (session.user) {
+            session.user.id = token.id as string
+            session.user.role = token.role as string
+          }
+          return session
+        },
+        
+        async signIn({ user, account, profile }) {
+          // Custom sign in logic
+          // Return true to allow sign in
+          // Return false to deny access
+          // Return string to redirect to a URL
+          return true
+        },
+        
+        async redirect({ url, baseUrl }) {
+          // Redirect after sign in
+          if (url.startsWith("/")) return `${baseUrl}${url}`
+          if (new URL(url).origin === baseUrl) return url
+          return baseUrl
+        }
+      },
+      
+      pages: {
+        signIn: "/auth/signin",
+        signOut: "/auth/signout",
+        error: "/auth/error",
+        verifyRequest: "/auth/verify",
+        newUser: "/auth/welcome"
+      },
+      
+      session: {
+        strategy: "jwt", // or "database"
+        maxAge: 30 * 24 * 60 * 60, // 30 days
+      },
+      
+      jwt: {
+        maxAge: 30 * 24 * 60 * 60, // 30 days
+      },
+      
+      debug: process.env.NODE_ENV === "development",
+    })
+  
+  routeHandler: |
+    // app/api/auth/[...nextauth]/route.ts
+    import { handlers } from "@/auth"
+    
+    export const { GET, POST } = handlers
+  
+  middleware: |
+    // middleware.ts - Protect routes
+    import { auth } from "@/auth"
+    import { NextResponse } from "next/server"
+    
+    export default auth((req) => {
+      const isLoggedIn = !!req.auth
+      const isAuthPage = req.nextUrl.pathname.startsWith("/auth")
+      const isProtectedRoute = req.nextUrl.pathname.startsWith("/dashboard")
+      
+      if (isAuthPage) {
+        if (isLoggedIn) {
+          return NextResponse.redirect(new URL("/dashboard", req.url))
+        }
+        return null
+      }
+      
+      if (!isLoggedIn && isProtectedRoute) {
+        let callbackUrl = req.nextUrl.pathname
+        if (req.nextUrl.search) {
+          callbackUrl += req.nextUrl.search
+        }
+        
+        const encodedCallbackUrl = encodeURIComponent(callbackUrl)
+        return NextResponse.redirect(
+          new URL(`/auth/signin?callbackUrl=${encodedCallbackUrl}`, req.url)
+        )
+      }
+      
+      return null
+    })
+    
+    export const config = {
+      matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+    }
+  
+  serverComponent: |
+    // app/dashboard/page.tsx - Server component
+    import { auth } from "@/auth"
+    import { redirect } from "next/navigation"
+    
+    export default async function DashboardPage() {
+      const session = await auth()
+      
+      if (!session?.user) {
+        redirect("/auth/signin")
+      }
+      
+      return (
+        <div>
+          <h1>Welcome {session.user.name}</h1>
+          <p>Email: {session.user.email}</p>
+          <p>Role: {session.user.role}</p>
+        </div>
+      )
+    }
+  
+  clientComponent: |
+    // components/user-menu.tsx - Client component
+    "use client"
+    
+    import { useSession, signIn, signOut } from "next-auth/react"
+    import { Button } from "@/components/ui/button"
+    
+    export function UserMenu() {
+      const { data: session, status } = useSession()
+      
+      if (status === "loading") {
+        return <div>Loading...</div>
+      }
+      
+      if (status === "unauthenticated") {
+        return (
+          <Button onClick={() => signIn()}>
+            Sign In
+          </Button>
+        )
+      }
+      
+      return (
+        <div className="flex items-center gap-4">
+          <img 
+            src={session?.user?.image || ""} 
+            alt={session?.user?.name || ""}
+            className="w-8 h-8 rounded-full"
+          />
+          <span>{session?.user?.name}</span>
+          <Button 
+            variant="outline"
+            onClick={() => signOut()}
+          >
+            Sign Out
+          </Button>
+        </div>
+      )
+    }
+  
+  sessionProvider: |
+    // app/providers.tsx - Session provider
+    "use client"
+    
+    import { SessionProvider } from "next-auth/react"
+    
+    export function Providers({ children }: { children: React.ReactNode }) {
+      return (
+        <SessionProvider>
+          {children}
+        </SessionProvider>
+      )
+    }
+    
+    // app/layout.tsx
+    import { Providers } from "./providers"
+    
+    export default function RootLayout({
+      children,
+    }: {
+      children: React.ReactNode
+    }) {
+      return (
+        <html lang="en">
+          <body>
+            <Providers>
+              {children}
+            </Providers>
+          </body>
+        </html>
+      )
+    }
+
+bestPractices:
+  - "Always use environment variables for sensitive data"
+  - "Implement CSRF protection (built-in with Auth.js)"
+  - "Use secure, httpOnly, sameSite cookies"
+  - "Implement proper session management"
+  - "Use database sessions for better security in production"
+  - "Implement rate limiting on auth endpoints"
+  - "Add custom error pages for better UX"
+  - "Use TypeScript for type safety"
+  - "Implement proper role-based access control"
+
+security:
+  features:
+    - "CSRF token protection"
+    - "Secure cookie defaults"
+    - "Content Security Policy support"
+    - "PKCE for OAuth flows"
+    - "JWT encryption support"
+  
+  recommendations:
+    - "Use strong JWT secrets (32+ characters)"
+    - "Enable HTTPS in production"
+    - "Implement rate limiting"
+    - "Use database sessions for sensitive apps"
+    - "Regularly rotate secrets"
+
+patterns:
+  authentication:
+    - "OAuth with multiple providers"
+    - "Email/password with bcrypt"
+    - "Magic links via email"
+    - "Passwordless authentication"
+    - "Two-factor authentication"
+  
+  authorization:
+    - "Role-based access control (RBAC)"
+    - "Custom authorization logic"
+    - "Route protection with middleware"
+    - "API route protection"
+
+troubleshooting:
+  commonIssues:
+    - issue: "NEXTAUTH_URL error"
+      solution: "Set NEXTAUTH_URL environment variable to your app URL"
+    - issue: "OAuth redirect URI mismatch"
+      solution: "Ensure callback URL matches provider settings: /api/auth/callback/[provider]"
+    - issue: "Session not persisting"
+      solution: "Check NEXTAUTH_SECRET is set and cookies are enabled"
+    - issue: "TypeScript errors"
+      solution: "Extend next-auth module types in types/next-auth.d.ts"
+
+typescript:
+  augmentation: |
+    // types/next-auth.d.ts
+    import { DefaultSession, DefaultUser } from "next-auth"
+    import { JWT, DefaultJWT } from "next-auth/jwt"
+    
+    declare module "next-auth" {
+      interface Session {
+        user: {
+          id: string
+          role: string
+        } & DefaultSession["user"]
+      }
+      
+      interface User extends DefaultUser {
+        role: string
+      }
+    }
+    
+    declare module "next-auth/jwt" {
+      interface JWT extends DefaultJWT {
+        id: string
+        role: string
+      }
+    }
+
+references:
+  documentation: "https://authjs.dev"
+  providers: "https://authjs.dev/reference/providers"
+  adapters: "https://authjs.dev/reference/adapters"
+  callbacks: "https://authjs.dev/reference/callbacks"
+  typescript: "https://authjs.dev/getting-started/typescript"
+  migration: "https://authjs.dev/guides/upgrade-to-v5"
+  examples: "https://github.com/nextauthjs/next-auth-example"
+
+license: "ISC"
+author: "Balázs Orbán"
+maintainers:
+  - "NextAuth.js Team"
+lastReviewed: "2025-08-14"
+metadata:
+  npmWeeklyDownloads: "~800000"
+  githubStars: "23000+"
+  bundleSize: "~50KB minified + gzipped"

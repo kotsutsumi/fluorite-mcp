@@ -1,0 +1,71 @@
+id: "@auth/nextjs"
+name: "Auth.js for Next.js"
+homepage: "https://authjs.dev/getting-started"
+npm: "next-auth"
+summary: "Next.js で使われる認証ソリューション（Auth.js）。OAuth/OpenID など多数プロバイダ、JWT/DB セッション、App Router 対応のハンドラを提供。"
+install:
+  steps:
+    - "npm i next-auth"
+    - "# 環境変数に NEXTAUTH_SECRET と各 OAuth クレデンシャルを設定"
+api:
+  appRouter:
+    - "Route Handler: app/api/auth/[...nextauth]/route.ts"
+    - "NextAuth(authOptions) でプロバイダ/セッション設定"
+    - "認証ヘルパ: getServerSession, useSession, signIn, signOut"
+providers:
+  examples:
+    - "GitHubProvider({ clientId: process.env.GITHUB_ID!, clientSecret: process.env.GITHUB_SECRET! })"
+    - "GoogleProvider({ clientId: process.env.GOOGLE_ID!, clientSecret: process.env.GOOGLE_SECRET! })"
+usage:
+  routeHandler: |
+    // app/api/auth/[...nextauth]/route.ts
+    import NextAuth from 'next-auth'
+    import GitHubProvider from 'next-auth/providers/github'
+
+    const handler = NextAuth({
+      providers: [
+        GitHubProvider({
+          clientId: process.env.GITHUB_ID!,
+          clientSecret: process.env.GITHUB_SECRET!,
+        }),
+      ],
+      session: { strategy: 'jwt' },
+    })
+
+    export { handler as GET, handler as POST }
+  clientSession: |
+    // 任意のクライアントコンポーネント
+    'use client'
+    import { useSession, signIn, signOut } from 'next-auth/react'
+
+    export function SessionButton() {
+      const { data: session, status } = useSession()
+      if (status === 'loading') return <button disabled>loading...</button>
+      if (!session) return <button onClick={() => signIn('github')}>Sign in</button>
+      return <button onClick={() => signOut()}>Sign out ({session.user?.name})</button>
+    }
+  serverSession: |
+    // サーバーコンポーネント / Route Handler での検証
+    import { getServerSession } from 'next-auth'
+    import { authOptions } from '@/lib/auth' // 別ファイルに切り出す場合
+
+    export default async function Page() {
+      const session = await getServerSession(authOptions)
+      if (!session) return <div>Unauthorized</div>
+      return <div>Hello {session.user?.name}</div>
+    }
+bestPractices:
+  - "App Router では Route Handler を利用し、GET/POST をエクスポート"
+  - "セッション戦略（jwt or database）を要件に合わせて選択。JWT は手軽、DB はリボーク/多端末管理が容易"
+  - "環境変数と認証コールバック（signIn/jwt/session）で権限やドメインルールを実装"
+  - "保護ルートはミドルウェアやサーバーコンポーネントで getServerSession を使ってガード"
+notes:
+  - "ブランドは Auth.js。パッケージは歴史的に next-auth を利用するケースが一般的"
+  - "複数フレームワーク対応の @auth/core も提供。Next.js 以外ではそちらを利用"
+references:
+  - "Getting Started: https://authjs.dev/getting-started"
+  - "NextAuth (next-auth): https://next-auth.js.org/"
+  - "Providers: https://next-auth.js.org/providers/"
+license: "ISC"
+lastReviewed: "2025-08-14"
+

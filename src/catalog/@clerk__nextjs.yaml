@@ -1,0 +1,72 @@
+id: "@clerk/nextjs"
+name: "Clerk for Next.js"
+homepage: "https://clerk.com/docs/quickstarts/nextjs"
+npm: "@clerk/nextjs"
+summary: "ホスト型認証（IDaaS）。サインイン/サインアップ UI、ユーザーデータ、セッション、OAuth、組織などを提供し、Next.js と密接に統合。"
+install:
+  steps:
+    - "npm i @clerk/nextjs"
+    - "# 環境変数: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY, CLERK_SECRET_KEY を設定"
+provider:
+  description: "ルートで <ClerkProvider> をラップし、アプリ全体に認証コンテキストを提供。"
+  example: |
+    // app/layout.tsx
+    import { ClerkProvider } from '@clerk/nextjs'
+
+    export default function RootLayout({ children }: { children: React.ReactNode }) {
+      return (
+        <html lang="ja">
+          <body>
+            <ClerkProvider>{children}</ClerkProvider>
+          </body>
+        </html>
+      )
+    }
+api:
+  components:
+    - "<SignIn/>, <SignUp/>, <UserButton/>, <UserProfile/>, <OrganizationSwitcher/>"
+  helpers:
+    - "auth()（サーバーでの検証）"
+    - "currentUser()（サーバーでのユーザー取得）"
+    - "useUser(), useAuth()（クライアント）"
+usage:
+  routes: |
+    // app/sign-in/[[...sign-in]]/page.tsx
+    import { SignIn } from '@clerk/nextjs'
+    export default function Page() { return <SignIn /> }
+
+    // app/page.tsx（保護例）
+    import { auth } from '@clerk/nextjs'
+    export default async function Home() {
+      const { userId } = auth()
+      if (!userId) return <div>Unauthorized</div>
+      return <div>Welcome</div>
+    }
+  clientUser: |
+    'use client'
+    import { useUser, UserButton } from '@clerk/nextjs'
+    export function Header() {
+      const { user, isSignedIn, isLoaded } = useUser()
+      if (!isLoaded) return null
+      return (
+        <header>
+          {isSignedIn ? <UserButton /> : <a href="/sign-in">Sign in</a>}
+          <span>{user?.fullName}</span>
+        </header>
+      )
+    }
+bestPractices:
+  - "公開鍵/秘密鍵を正しい環境に設定（ビルド時/実行時）"
+  - "サーバー側で auth()/currentUser() を使い、重要なデータゲートはサーバーで"
+  - "UI は提供コンポーネントを活用しつつ、Theme/appearance で外観を統一"
+  - "組織/ロールベースの認可が必要なら Organization 機能を活用"
+notes:
+  - "App Router 想定。Pages Router も対応だが構成が異なる"
+  - "エッジ/ミドルウェア連携にも対応（公式サンプル参照）"
+references:
+  - "Quickstart: https://clerk.com/docs/quickstarts/nextjs"
+  - "Auth helpers: https://clerk.com/docs/references/nextjs/auth"
+  - "Components: https://clerk.com/docs/components/overview"
+license: "Proprietary"
+lastReviewed: "2025-08-14"
+

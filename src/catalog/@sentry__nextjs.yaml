@@ -1,0 +1,41 @@
+id: "@sentry/nextjs"
+name: "Sentry for Next.js"
+homepage: "https://docs.sentry.io/platforms/javascript/guides/nextjs/"
+npm: "@sentry/nextjs"
+summary: "エラー/パフォーマンス/トレースを収集する監視プラットフォーム。Next.js に特化した自動計装と Edge/Server/Client の各ランタイムに対応。"
+install:
+  steps:
+    - "npm i @sentry/nextjs"
+    - "# 推奨: セットアップウィザード npx @sentry/wizard@latest -i nextjs"
+config:
+  clientServer: |
+    // sentry.client.config.ts
+    import * as Sentry from '@sentry/nextjs'
+    Sentry.init({ dsn: process.env.NEXT_PUBLIC_SENTRY_DSN, tracesSampleRate: 0.1 })
+
+    // sentry.server.config.ts
+    import * as SentryS from '@sentry/nextjs'
+    SentryS.init({ dsn: process.env.SENTRY_DSN, tracesSampleRate: 0.1 })
+  edge: |
+    // sentry.edge.config.ts（Edge Runtime 用）
+    import * as Sentry from '@sentry/nextjs'
+    Sentry.init({ dsn: process.env.NEXT_PUBLIC_SENTRY_DSN, tracesSampleRate: 0.1 })
+usage:
+  capture: |
+    import { captureException } from '@sentry/nextjs'
+    try { /* ... */ } catch (e) { captureException(e) }
+  routeHandler: |
+    import { withSentry } from '@sentry/nextjs'
+    async function handler(req: Request) { return new Response('ok') }
+    export const GET = withSentry(handler)
+bestPractices:
+  - "DSN/環境/リリースバージョンを環境変数で設定し、ステージごとに分離"
+  - "PII/個人情報はスクラブ。サンプリングを適切に設定してコストを最適化"
+  - "パフォーマンス計測やトレースを有効化してボトルネックを可視化"
+notes:
+  - "ウィザードは自動で必要ファイルを生成し、next.config の計装も追加"
+references:
+  - "Guide: https://docs.sentry.io/platforms/javascript/guides/nextjs/"
+license: "Business Source License"
+lastReviewed: "2025-08-14"
+
