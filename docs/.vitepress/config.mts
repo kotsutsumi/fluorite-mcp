@@ -4,7 +4,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: 'fluorite-mcp',
   description: 'Library spec MCP server + docs',
-  base: '/',
+  base: '/fluorite-mcp/',
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
@@ -17,7 +17,7 @@ export default defineConfig({
       ]
     },
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/your-org/fluorite-mcp' }
+      { icon: 'github', link: 'https://github.com/kotsutsumi/fluorite-mcp' }
     ]
   }
 })
