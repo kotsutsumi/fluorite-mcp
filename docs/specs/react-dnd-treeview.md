@@ -1,6 +1,6 @@
 # React DnD TreeView
 
-A flexible and performant drag-and-drop tree view component for React applications.
+高機能なドラッグ&ドロップ対応のReactツリービューコンポーネント
 
 - **NPM**: `@minoru/react-dnd-treeview`  
 - **Repository**: <https://github.com/minop1205/react-dnd-treeview>
