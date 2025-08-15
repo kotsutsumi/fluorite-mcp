@@ -1,305 +1,271 @@
 # Fluorite MCP - Modern Web Development Context for Claude Code CLI
 
+[![NPM Version](https://img.shields.io/npm/v/fluorite-mcp.svg)](https://www.npmjs.com/package/fluorite-mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js Version](https://img.shields.io/node/v/fluorite-mcp.svg)](https://nodejs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
+[![Documentation](https://img.shields.io/badge/docs-vitepress-green.svg)](https://kotsutsumi.github.io/fluorite-mcp)
 
-**Fluorite MCP** は、ライブラリや UI コンポーネントの仕様を YAML/JSON で収集し、MCP (Model Context Protocol) で提供するサーバーです。Claude Code CLI にモダン開発ライブラリと12の主要プログラミング言語エコシステムの深い知識を提供し、より正確で実用的なコード生成を可能にします。
+**Fluorite MCP** enhances Claude Code CLI with comprehensive library specifications, development methodologies, and multi-language ecosystem knowledge, enabling production-ready code generation with best practices built-in.
 
-## 🚀 Why Fluorite MCP?
+[English](#english) | [日本語](#日本語)
 
-Fluorite MCP transforms Claude Code CLI into an intelligent multi-platform development expert with:
+## English
 
-- **📚 Deep Library Knowledge**: Comprehensive specs for 90+ essential libraries
-- **🌐 Multi-Language Support**: 12 major programming language ecosystems
-- **⚡ Instant Code Generation**: Production-ready code with correct imports
-- **🎯 Best Practices Built-in**: Security, performance, and patterns included
-- **🔄 Library Integration**: Understands how libraries work together
+### 🚀 Features
 
-See [BENEFITS.md](./BENEFITS.md) for detailed advantages.
+- **📚 90+ Library Specifications**: Deep knowledge of modern web development libraries
+- **🌍 12 Language Ecosystems**: From TypeScript to Rust, covering all major platforms
+- **🎯 Development Methodologies**: Spike development, agile practices, and more
+- **⚡ Production-Ready Code**: Generate code with correct imports, types, and patterns
+- **🔍 Static Analysis**: 50+ validation rules for Next.js, React, Vue
+- **🤖 Error Prediction**: AI-inspired pattern matching to prevent runtime errors
 
-## 📦 Supported Libraries
-
-### UI Components & Styling
-- **shadcn/ui** - Copy-paste React components
-- **Radix UI Themes** - Complete design system
-- **Tailwind CSS** - Utility-first CSS
-- **Aceternity UI** - Animated components
-- **Magic UI** - Beautiful animations
-
-### Forms & Validation
-- **react-hook-form** - Performant forms
-- **Zod** - TypeScript-first validation
-
-### State Management
-- **Jotai** - Atomic state management
-- **TanStack Query** - Async state & caching
-- **Zustand** - Lightweight state management
-
-### Data Tables & Visualization
-- **AG Grid** - Enterprise data grid
-- **MUI X Data Grid** - Material-UI grid
-- **TanStack Table** - Headless tables
-- **Recharts** - Composable charts
-- **Tremor** - Dashboard components
-- **visx** - D3-based visualizations
-
-### Authentication
-- **Auth.js (NextAuth)** - Complete auth solution
-- **Clerk** - User management platform
-- **Lucia** - Simple auth library
-
-### Payments & Billing
-- **Stripe** - Payment processing
-- **Paddle** - SaaS billing & tax compliance
-
-### Database & ORM
-- **Prisma** - Next-generation ORM
-- **Drizzle ORM** - TypeScript ORM
-
-### File Uploads
-- **UploadThing** - File upload infrastructure
-
-### Internationalization
-- **next-intl** - Next.js i18n
-
-### Monitoring & Analytics
-- **Sentry** - Error tracking & performance
-- **PostHog** - Product analytics
-
-### Infrastructure
-- **Upstash Redis** - Serverless Redis
-- **Hono** - Fast web framework
-
-### API & Backend
-- **tRPC** - End-to-end typesafe APIs
-- **Hono** - Ultrafast web framework
-
-## 🚀 Comprehensive Ecosystems
-
-### Web Development Utilities & Modules
-- **Comprehensive Web Development Ecosystem** (`spec://web-development-comprehensive-ecosystem`) - Complete modern web development toolkit
-  - Build Tools: Vite, Rspack, ESBuild, SWC with lightning-fast compilation and optimization
-  - Monorepo Management: Turborepo, Nx, Lage for efficient large-scale project management
-  - Release Automation: Changesets, semantic-release, release-please for automated versioning
-  - Quality Gates: Husky, lint-staged, commitlint for code quality enforcement
-  - Type Safety: Zod, Valibot, MSW, GraphQL Code Generator for runtime validation
-  - Security: jose, Helmet, zxcvbn, DOMPurify for comprehensive protection
-  - Performance: Sharp, UploadThing, Meilisearch, Typesense for optimization
-  - Testing: Playwright, Vitest, Cypress with E2E and component testing
-  - Frameworks: Remix, Qwik, SolidStart for modern web applications
-  - Cross-Platform: Capacitor, Electron for mobile and desktop deployment
-  - Infrastructure: OpenShift, Rancher, Portainer for container management
-  - IoT Integration: Node-RED, MQTT brokers for IoT device connectivity
-
-### Development Methodology
-- **Spike Development Ecosystem** (`spec://spike-development-ecosystem`) - Agile spike solution methodology and tools
-  - Rapid Prototyping: Vite, StackBlitz, CodeSandbox for instant project creation
-  - Component Isolation: Storybook for independent UI development and testing
-  - Interaction Testing: React DnD, Framer Motion for drag-and-drop and animation prototypes
-  - Mock Development: MSW for API mocking, Faker.js for test data generation
-  - State Management: Zustand, Jotai for minimal-setup state management
-  - Integration Tools: Plop, Hygen for automated spike-to-production code generation
-  - Parallel Experiments: Git Worktree for concurrent approach testing
-  - Validation: Playwright, Vitest for spike verification and acceptance testing
-
-## 🌐 Language Ecosystems
-
-### System Programming
-- **Zig** (`spec://zig-ecosystem`) - Memory-safe systems programming
-  - Standard library, networking, HTTP, SQLite, testing
-
-### Functional & Concurrent Programming  
-- **Elixir** (`spec://elixir-ecosystem`) - Actor model, fault-tolerant design
-  - Phoenix, Ecto, Absinthe, Plug, Guardian, Distillery
-
-### High-Performance Backend
-- **Go** (`spec://go-ecosystem`) - Concurrent backend development
-  - Gin, Gorilla Mux, Chi, GORM, SQLx, Go-Kit, gRPC, Zap, Prometheus
-
-### Cross-Platform Development
-- **Dart** (`spec://dart-ecosystem`) - Type-safe multi-platform language
-  - HTTP, Dio, json_serializable, Freezed, get_it, provider
-- **Flutter** (`spec://flutter-ecosystem`) - Mobile/desktop UI framework
-  - flutter_bloc, Riverpod, go_router, Intl, Hive, sqflite, Firebase
-
-### Enterprise & Game Development
-- **C#** (`spec://csharp-ecosystem`) - Enterprise application development
-  - ASP.NET Core, Entity Framework, Dapper, AutoMapper, MediatR, Serilog
-- **Unity** (`spec://unity-ecosystem`) - Professional game development
-  - Zenject, UniRx, DOTween, Cinemachine, TextMeshPro, Addressables, Mirror
-
-### Web Development & Documentation
-- **Static Site Generators** (`spec://static-site-generators`) - Modern documentation and site generation
-  - VitePress, Docusaurus, Next.js Static, Nuxt Content, Astro, Gatsby, Hugo, Jekyll, Eleventy
-  - MkDocs, GitBook, Slate for documentation-specific needs
-  - Includes search (Algolia, Pagefind), syntax highlighting (Shiki, Prism), and diagrams (Mermaid)
-
-### Scripting & Embedded Programming
-- **Lua** (`spec://lua-ecosystem`) - Lightweight embedded scripting
-  - LuaJIT, Love2D, Defold, Roblox Luau for game development
-  - OpenResty, Lapis, Kong for web services
-  - LuaRocks package management, testing frameworks (Busted, LuaUnit)
-
-### Full-Stack Web Development
-- **Ruby on Rails** (`spec://ruby-rails-ecosystem`) - Complete full-stack framework
-  - Rails with Active Record, Action Cable, Active Storage, Action Mailer
-  - Authentication: Devise, OmniAuth, Pundit, CanCanCan
-  - Background Jobs: Sidekiq, Resque, Delayed Job, GoodJob
-  - Testing: RSpec, Capybara, Factory Bot, SimpleCov
-  - Frontend: Hotwire (Turbo & Stimulus), React-Rails, Vue.js Rails
-
-### Real-Time Communication & Streaming
-- **WebRTC & Streaming** (`spec://webrtc-streaming-ecosystem`) - Comprehensive real-time media ecosystem
-  - WebRTC: PeerJS, simple-peer, SkyWay, mediasoup, Janus Gateway, Jitsi Meet
-  - Streaming Players: hls.js, Video.js, Shaka Player, dash.js, Clappr, ExoPlayer, AVPlayer
-  - Media Servers: Kurento, Ant Media Server, OvenMediaEngine, Wowza, Red5 Pro
-  - Streaming Platforms: Agora.io, Twilio, AWS IVS, AWS Chime SDK, Mux, Cloudflare Stream
-  - Processing Tools: FFmpeg, GStreamer, OBS Studio, Streamlink
-  - Low-Latency: LL-HLS, WebTransport, WebCodecs, QUIC/HTTP/3
-
-### Shell Scripting & System Administration
-- **Shell Tools & CLI Utilities** (`spec://shell-tools-ecosystem`) - Comprehensive command-line toolkit
-  - Shell Environments: bash, sh (POSIX), zsh with advanced scripting capabilities
-  - Text Processing: sed, awk, grep/egrep/fgrep, cut, tr, sort, uniq, wc, paste, join, comm
-  - File Operations: cat, head, tail, less, touch, cp, mv, rm, ln, find, locate, xargs
-  - Archive/Compression: tar, gzip, bzip2, xz, zip/unzip with cross-platform support
-  - System Monitoring: ps, top, htop, df, du, free, uptime, uname, lsof, netstat/ss
-  - Network Tools: curl, wget, scp, rsync, ping, traceroute, dig, nslookup
-  - Text Editors: vi, vim, nano with advanced editing capabilities
-  - Job Control: jobs, fg, bg, kill, pkill, killall, nohup, background execution
-  - Utilities: date, env, export, history, alias, which, type, command location
-
-### DevOps & Infrastructure Operations
-- **DevOps Operations Ecosystem** (`spec://devops-operations-ecosystem`) - Comprehensive cloud-native operations toolkit
-  - Infrastructure as Code: Terraform, Pulumi, CloudFormation, ARM Templates, Bicep, Google Cloud Deployment Manager
-  - Configuration Management: Ansible, Chef, Puppet, SaltStack with declarative automation
-  - Kubernetes Ecosystem: Kubernetes, Helm, Kustomize, Argo CD, Flux CD, Istio, Linkerd
-  - Container Platforms: Docker, Podman, BuildKit with multi-stage builds and security scanning
-  - CI/CD Pipelines: GitHub Actions, GitLab CI, Jenkins, CircleCI, Argo Workflows, Tekton
-  - Monitoring & Observability: Prometheus, Grafana, Loki, ELK Stack, OpenTelemetry, Jaeger
-  - Security Scanning: Trivy, Snyk, tfsec, Checkov, kube-bench, kube-hunter
-  - Load Testing: Apache JMeter, k6, Locust, Vegeta for performance validation
-  - Secret Management: HashiCorp Vault, AWS Secrets Manager, Azure Key Vault, GCP Secret Manager
-
-## 🌐 Global Installation
-
-For the simplest setup, install Fluorite MCP globally:
+### 📦 Installation
 
 ```bash
-# Install globally via npm
+# Install globally
 npm i -g fluorite-mcp
 
 # Add to Claude Code CLI
 claude mcp add fluorite -- fluorite-mcp
 ```
 
-This automatically configures Fluorite MCP with Claude Code CLI, providing instant access to all library specifications.
+### 🎯 What's Included
 
-## Quick Start
+#### Core Libraries (90+)
+- **UI Components**: shadcn/ui, Radix UI, Tailwind CSS, Material-UI
+- **State Management**: Zustand, Jotai, TanStack Query, Redux Toolkit
+- **Forms & Validation**: react-hook-form, Zod, Valibot, Yup
+- **Data Tables**: AG Grid, TanStack Table, MUI X Data Grid
+- **Authentication**: NextAuth.js, Clerk, Lucia, Supabase Auth
+- **Payments**: Stripe, Paddle, RevenueCat
+- **Testing**: Playwright, Vitest, Cypress, Testing Library
 
-```bash
-# 1) 依存導入
-npm i
+#### Comprehensive Ecosystems
 
-# 2) 開発モード（MCP サーバー）
-npm run dev
+**Web Development**
+- Build Tools: Vite, Webpack, ESBuild, SWC, Rollup
+- Frameworks: Next.js, Remix, Nuxt, SvelteKit, Astro
+- Mobile/Desktop: React Native, Expo, Electron, Tauri, Capacitor
 
-# 3) ビルド & 実行
-npm run build
-npm start
+**Development Methodologies**
+- **Spike Development**: Rapid prototyping and proof-of-concept workflows
+- **Agile Practices**: User story templates, sprint planning tools
+- **Testing Strategies**: TDD, BDD, E2E testing patterns
 
-# 4) Docs（ローカル）
-npm run docs:dev
-```
+**Language Ecosystems**
+- **TypeScript/JavaScript**: Modern web development
+- **Rust**: Systems programming with Tauri
+- **Go**: High-performance backends
+- **Python**: FastAPI, Django, data science
+- **Ruby**: Rails full-stack development
+- **Elixir**: Phoenix framework, fault-tolerant systems
+- **C#**: .NET Core, Unity game development
+- **Dart/Flutter**: Cross-platform mobile apps
+- **Lua**: Embedded scripting, game development
+- **Zig**: Memory-safe systems programming
 
-### MCP 接続（例：Claude Desktop）
+**Infrastructure & DevOps**
+- **Kubernetes**: Helm, ArgoCD, Flux, Istio
+- **IaC**: Terraform, Pulumi, CloudFormation
+- **CI/CD**: GitHub Actions, GitLab CI, Jenkins
+- **Monitoring**: Prometheus, Grafana, OpenTelemetry
 
-```json
-{
-  "mcpServers": {
-    "fluorite": {
-      "command": "node",
-      "args": ["dist/server.js"],
-      "cwd": "/path/to/fluorite-mcp"
-    }
-  }
-}
-```
+### 💡 Usage Examples
 
-### Available Resources & Tools
-
-- **Resource**: `spec://{pkg}` 例 `spec://@minoru/react-dnd-treeview`
-- **Tools**:
-  - `list-specs` : 仕様一覧を取得
-  - `upsert-spec` : 仕様の登録/更新（YAMLを保存）
-
-## 💡 Usage Examples
-
-Once connected, Claude can provide expert guidance:
+Once connected to Claude Code CLI, Fluorite MCP automatically provides context:
 
 ```typescript
-// "Create a data table with sorting and filtering using TanStack Table"
-// Claude will generate complete, type-safe implementation
+// User: "Create a data table with sorting and filtering"
+// Claude will use spec://tanstack-table for accurate implementation
 
-// "Set up react-hook-form with Zod validation"
-// Claude provides production-ready form with validation
+// User: "Set up authentication with NextAuth"
+// Claude will use spec://nextauth with correct configuration
 
-// "Implement infinite scroll with TanStack Query"
-// Claude creates optimized data fetching with caching
+// User: "Create a spike for drag-and-drop feature"
+// Claude will use spec://spike-development-ecosystem
 ```
 
-## 🛠️ Development
+### 📚 Documentation
 
-### Project Structure
+- [API Documentation](./API.md) - Complete API reference
+- [Contributing Guide](./CONTRIBUTING.md) - How to contribute
+- [Benefits Overview](./BENEFITS.md) - Detailed advantages
+- [Online Documentation](https://kotsutsumi.github.io/fluorite-mcp) - Full documentation
 
-```
-fluorite-mcp/
-├── src/
-│   ├── catalog/        # Library specifications (YAML)
-│   ├── core/           # Core MCP functionality
-│   └── server.ts       # MCP server entry
-├── docs/               # VitePress documentation
-│   └── specs/          # Generated documentation
-├── BENEFITS.md         # Detailed benefits documentation
-└── package.json
-```
-
-### Adding New Specifications
-
-1. Create YAML file in `src/catalog/` (format: `@scope__name.yaml`)
-2. Follow existing structure for consistency
-3. Include comprehensive examples and best practices
-4. Update documentation in `docs/specs/`
-
-### Testing
+### 🛠️ Development
 
 ```bash
+# Clone repository
+git clone https://github.com/kotsutsumi/fluorite-mcp.git
+cd fluorite-mcp
+
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+
 # Run tests
 npm test
 
-# Run specific test
-npm test -- catalog.test.ts
-
-# Watch mode
-npm run test:watch
+# Build documentation
+npm run docs:dev
 ```
 
-## GitHub Actions
+### 🤝 Contributing
 
-- **`release.yml`**: `v*.*.*` タグで npm publish（要 `NPM_TOKEN`）
-- **`deploy-docs.yml`**: `main` への push で VitePress を GitHub Pages にデプロイ
+We welcome contributions! Please see our [Contributing Guide](./CONTRIBUTING.md) for details.
 
-## 🤝 Contributing
+Common contributions:
+- Adding new library specifications
+- Updating existing specifications
+- Adding language ecosystems
+- Improving documentation
+- Bug fixes and enhancements
 
-Contributions are welcome! Please:
+---
 
-1. Fork the repository
-2. Create your feature branch
-3. Add/update specifications with examples
-4. Submit a pull request
+## 日本語
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
+### 🚀 特徴
+
+- **📚 90以上のライブラリ仕様**: モダンWeb開発ライブラリの深い知識
+- **🌍 12の言語エコシステム**: TypeScriptからRustまで、主要プラットフォームを網羅
+- **🎯 開発方法論**: スパイク開発、アジャイル手法など
+- **⚡ 本番対応コード**: 正しいインポート、型、パターンでコード生成
+- **🔍 静的解析**: Next.js、React、Vue向けの50以上の検証ルール
+- **🤖 エラー予測**: AIパターンマッチングによる実行時エラー防止
+
+### 📦 インストール
+
+```bash
+# グローバルインストール
+npm i -g fluorite-mcp
+
+# Claude Code CLIに追加
+claude mcp add fluorite -- fluorite-mcp
+```
+
+### 🎯 含まれる内容
+
+#### コアライブラリ（90以上）
+- **UIコンポーネント**: shadcn/ui、Radix UI、Tailwind CSS、Material-UI
+- **状態管理**: Zustand、Jotai、TanStack Query、Redux Toolkit
+- **フォーム・検証**: react-hook-form、Zod、Valibot、Yup
+- **データテーブル**: AG Grid、TanStack Table、MUI X Data Grid
+- **認証**: NextAuth.js、Clerk、Lucia、Supabase Auth
+- **決済**: Stripe、Paddle、RevenueCat
+- **テスト**: Playwright、Vitest、Cypress、Testing Library
+
+#### 包括的エコシステム
+
+**Web開発**
+- ビルドツール: Vite、Webpack、ESBuild、SWC、Rollup
+- フレームワーク: Next.js、Remix、Nuxt、SvelteKit、Astro
+- モバイル/デスクトップ: React Native、Expo、Electron、Tauri、Capacitor
+
+**開発方法論**
+- **スパイク開発**: 高速プロトタイピングとPoCワークフロー
+- **アジャイル手法**: ユーザーストーリーテンプレート、スプリント計画ツール
+- **テスト戦略**: TDD、BDD、E2Eテストパターン
+
+**言語エコシステム**
+- **TypeScript/JavaScript**: モダンWeb開発
+- **Rust**: Tauriを使用したシステムプログラミング
+- **Go**: 高性能バックエンド
+- **Python**: FastAPI、Django、データサイエンス
+- **Ruby**: Railsフルスタック開発
+- **Elixir**: Phoenixフレームワーク、耐障害性システム
+- **C#**: .NET Core、Unityゲーム開発
+- **Dart/Flutter**: クロスプラットフォームモバイルアプリ
+- **Lua**: 組み込みスクリプティング、ゲーム開発
+- **Zig**: メモリ安全なシステムプログラミング
+
+**インフラ・DevOps**
+- **Kubernetes**: Helm、ArgoCD、Flux、Istio
+- **IaC**: Terraform、Pulumi、CloudFormation
+- **CI/CD**: GitHub Actions、GitLab CI、Jenkins
+- **監視**: Prometheus、Grafana、OpenTelemetry
+
+### 💡 使用例
+
+Claude Code CLIに接続すると、Fluorite MCPが自動的にコンテキストを提供：
+
+```typescript
+// ユーザー: "ソートとフィルタリング機能付きのデータテーブルを作成"
+// Claudeは spec://tanstack-table を使用して正確な実装を提供
+
+// ユーザー: "NextAuthで認証を設定"
+// Claudeは spec://nextauth を使用して正しい設定を提供
+
+// ユーザー: "ドラッグ&ドロップ機能のスパイクを作成"
+// Claudeは spec://spike-development-ecosystem を使用
+```
+
+### 📚 ドキュメント
+
+- [APIドキュメント](./API.md) - 完全なAPIリファレンス
+- [コントリビューションガイド](./CONTRIBUTING.md) - 貢献方法
+- [利点の概要](./BENEFITS.md) - 詳細な利点
+- [オンラインドキュメント](https://kotsutsumi.github.io/fluorite-mcp) - 完全なドキュメント
+
+### 🛠️ 開発
+
+```bash
+# リポジトリをクローン
+git clone https://github.com/kotsutsumi/fluorite-mcp.git
+cd fluorite-mcp
+
+# 依存関係をインストール
+npm install
+
+# 開発サーバーを実行
+npm run dev
+
+# テストを実行
+npm test
+
+# ドキュメントをビルド
+npm run docs:dev
+```
+
+### 🤝 コントリビューション
+
+貢献を歓迎します！詳細は[コントリビューションガイド](./CONTRIBUTING.md)をご覧ください。
+
+一般的な貢献：
+- 新しいライブラリ仕様の追加
+- 既存仕様の更新
+- 言語エコシステムの追加
+- ドキュメントの改善
+- バグ修正と機能強化
+
+---
+
+## 📊 Project Statistics
+
+- **Total Specifications**: 90+ libraries and tools
+- **Language Ecosystems**: 12 comprehensive ecosystems
+- **Validation Rules**: 50+ for framework-specific checks
+- **Error Patterns**: 12 predictive patterns
+- **Documentation**: 100+ pages of guides and references
+
+## 🏗️ Project Structure
+
+```
+fluorite-mcp/
+├── catalog/          # YAML specification files
+├── src/             # TypeScript source code
+│   ├── core/        # Core MCP functionality
+│   ├── server.ts    # MCP server entry point
+│   └── test/        # Test files
+├── docs/            # VitePress documentation
+│   └── specs/       # Library specifications
+├── dist/            # Compiled JavaScript
+└── package.json     # Project configuration
+```
 
 ## 📄 License
 
@@ -308,11 +274,19 @@ MIT License - see [LICENSE](./LICENSE) file
 ## 🙏 Acknowledgments
 
 - Claude Code CLI team for MCP support
-- Library maintainers for excellent documentation
-- Community contributors for specifications
+- All library maintainers for excellent documentation
+- Community contributors for specifications and improvements
+
+## 🔗 Links
+
+- [NPM Package](https://www.npmjs.com/package/fluorite-mcp)
+- [GitHub Repository](https://github.com/kotsutsumi/fluorite-mcp)
+- [Documentation](https://kotsutsumi.github.io/fluorite-mcp)
+- [Issue Tracker](https://github.com/kotsutsumi/fluorite-mcp/issues)
+- [Discussions](https://github.com/kotsutsumi/fluorite-mcp/discussions)
 
 ---
 
 <p align="center">
-  Built with ❤️ to enhance Claude Code CLI's web development capabilities
+  Built with ❤️ to enhance Claude Code CLI's capabilities
 </p>

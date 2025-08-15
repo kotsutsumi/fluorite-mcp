@@ -221,6 +221,27 @@ describe('E2E MCP Server Tests', () => {
     }
   });
 
+  it('should print version with -v and --version', async () => {
+    const runWithFlag = (flag: string) => new Promise<{ code: number | null; out: string; err: string }>((resolve) => {
+      const p = spawn('node', [serverPath, flag], { stdio: ['ignore', 'pipe', 'pipe'] });
+      let out = '';
+      let err = '';
+      p.stdout.on('data', (d: Buffer) => { out += d.toString(); });
+      p.stderr.on('data', (d: Buffer) => { err += d.toString(); });
+      p.on('close', (code) => resolve({ code, out, err }));
+    });
+    const pkg = JSON.parse(await fs.readFile(path.resolve('package.json'), 'utf-8'));
+    const expected = `fluorite-mcp ${pkg.version}`;
+
+    const resShort = await runWithFlag('-v');
+    expect(resShort.code).toBe(0);
+    expect(resShort.out.trim()).toBe(expected);
+
+    const resLong = await runWithFlag('--version');
+    expect(resLong.code).toBe(0);
+    expect(resLong.out.trim()).toBe(expected);
+  }, E2E_TIMEOUT);
+
   it('should initialize MCP server successfully', async () => {
     await client.start(serverPath);
     // If we get here, initialization was successful

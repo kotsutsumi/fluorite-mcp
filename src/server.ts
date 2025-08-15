@@ -2,6 +2,7 @@
 import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
+import { createRequire } from 'node:module';
 import { 
   handleSpecResource,
   handleUpsertSpecTool,
@@ -24,6 +25,17 @@ import {
   type RealTimeValidationInput
 } from "./core/static-analysis-handlers.js";
 
+// Resolve package version from package.json at runtime
+function getPackageVersion(): string {
+  try {
+    const require = createRequire(import.meta.url);
+    const pkg = require('../package.json');
+    return typeof pkg?.version === 'string' ? pkg.version : 'unknown';
+  } catch {
+    return 'unknown';
+  }
+}
+
 // Create server logger
 const serverLogger = createLogger('server', 'fluorite-mcp');
 
@@ -36,7 +48,7 @@ const config: CatalogConfig = {
 // Initialize server with enhanced configuration
 const server = new McpServer({ 
   name: "fluorite-mcp", 
-  version: "0.1.0"
+  version: getPackageVersion()
 });
 
 server.registerResource(
@@ -268,6 +280,12 @@ async function main() {
   try {
     // Check for command line arguments
     const args = process.argv.slice(2);
+    
+    // Handle version flags early and exit
+    if (args.includes('-v') || args.includes('--version')) {
+      console.log(`fluorite-mcp ${getPackageVersion()}`);
+      process.exit(0);
+    }
     
     // Handle self-test mode
     if (args.includes('--self-test') || args.includes('--test')) {
