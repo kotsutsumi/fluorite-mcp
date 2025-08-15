@@ -1,0 +1,17 @@
+{
+  "id": "nextjs-middleware-feature-flag-upstash",
+  "name": "Next.js Middleware Feature Flag (Upstash KV)",
+  "version": "1.0.0",
+  "stack": ["nextjs", "upstash"],
+  "tags": ["middleware", "feature-flag"],
+  "description": "Gate routes behind a feature flag stored in Upstash KV.",
+  "params": [{ "name": "app_name", "default": "next-app" }, { "name": "flag_key", "default": "feature:new-ui" }],
+  "files": [
+    { "path": "{{app_name}}/middleware.ts", "template": "import { NextResponse } from 'next/server'; import type { NextRequest } from 'next/server';\nimport { Redis } from '@upstash/redis'; const kv = Redis.fromEnv();\nexport async function middleware(req: NextRequest){ const on = await kv.get<boolean>('{{flag_key}}'); if(on!==true && req.nextUrl.pathname.startsWith('/new-ui')){ return NextResponse.rewrite(new URL('/disabled', req.url)); } return NextResponse.next(); }\nexport const config = { matcher: '/:path*' };\n" },
+    { "path": "{{app_name}}/app/disabled/page.tsx", "template": "export default function Page(){ return <main>Feature disabled</main>; }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "UPSTASH_REDIS_REST_URL=\nUPSTASH_REDIS_REST_TOKEN=\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"@upstash/redis\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

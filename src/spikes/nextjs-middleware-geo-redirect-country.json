@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-middleware-geo-redirect-country",
+  "name": "Next.js Middleware Geo Redirect by Country",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["middleware", "geo"],
+  "description": "Redirect certain countries to localized paths.",
+  "params": [{ "name": "app_name", "default": "next-app" }, { "name": "country", "default": "JP" }],
+  "files": [
+    { "path": "{{app_name}}/middleware.ts", "template": "import { NextResponse } from 'next/server'; import type { NextRequest } from 'next/server';\nexport function middleware(req: NextRequest){ const c = req.geo?.country || 'UN'; if(c==='{{country}}' && req.nextUrl.pathname==='/'){ const url = req.nextUrl.clone(); url.pathname = '/ja/'; return NextResponse.redirect(url); } return NextResponse.next(); }\nexport const config = { matcher: '/:path*' };\n" }
+  ],
+  "patches": []
+}
+

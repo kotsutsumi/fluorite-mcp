@@ -1,0 +1,15 @@
+{
+  "id": "nextauth-azureb2c-provider",
+  "name": "NextAuth Azure AD B2C Provider",
+  "version": "1.0.0",
+  "stack": ["nextjs", "nextauth"],
+  "tags": ["auth", "oauth"],
+  "description": "Configure NextAuth with Azure AD B2C provider (minimal).",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/auth/[...nextauth]/route.ts", "template": "import NextAuth from 'next-auth';\nimport AzureAdB2C from 'next-auth/providers/azure-ad-b2c';\nconst handler = NextAuth({ providers: [AzureAdB2C] });\nexport { handler as GET, handler as POST };\n" },
+    { "path": "{{app_name}}/.env.example", "template": "AUTH_AZURE_AD_B2C_ID=\nAUTH_AZURE_AD_B2C_SECRET=\nAUTH_AZURE_AD_B2C_ISSUER=\nNEXTAUTH_URL=http://localhost:3000\nNEXTAUTH_SECRET=changeme\n" }
+  ],
+  "patches": []
+}
+

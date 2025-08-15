@@ -1,0 +1,15 @@
+{
+  "id": "nextauth-okta-provider",
+  "name": "NextAuth Okta Provider",
+  "version": "1.0.0",
+  "stack": ["nextjs", "nextauth"],
+  "tags": ["auth", "oauth"],
+  "description": "Configure NextAuth with Okta provider.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/auth/[...nextauth]/route.ts", "template": "import NextAuth from 'next-auth';\nimport Okta from 'next-auth/providers/okta';\nconst handler = NextAuth({ providers: [Okta] });\nexport { handler as GET, handler as POST };\n" },
+    { "path": "{{app_name}}/.env.example", "template": "AUTH_OKTA_ID=\nAUTH_OKTA_SECRET=\nAUTH_OKTA_ISSUER=\nNEXTAUTH_URL=http://localhost:3000\nNEXTAUTH_SECRET=changeme\n" }
+  ],
+  "patches": []
+}
+
