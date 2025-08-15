@@ -1,0 +1,118 @@
+id: "vitepress-ecosystem"
+name: "VitePress / ドキュメント・SSG エコシステム"
+homepage: "https://vitepress.dev/"
+summary: "VitePress を中心に、他の主要 SSG・ドキュメント基盤と拡張ツール群を横断。技術ブログ/製品マニュアル/ナレッジベースの構築に役立つカタログ。"
+categories:
+  vitepress-core:
+    - name: "vitepress"
+      homepage: "https://vitepress.dev/"
+      summary: "Vite + Vue ベースの SSG。高速、MDX 風構文、Vue コンポーネント埋め込み、SSR/静的出力対応。"
+      install:
+        - "npm i -D vitepress"
+      snippets:
+        init: |
+          // package.json
+          {
+            "scripts": {
+              "docs:dev": "vitepress dev docs",
+              "docs:build": "vitepress build docs",
+              "docs:preview": "vitepress preview docs"
+            }
+          }
+        theme: |
+          // docs/.vitepress/config.ts
+          import { defineConfig } from 'vitepress'
+          export default defineConfig({
+            lang: 'ja-JP', title: 'My Docs', description: 'Product docs',
+            themeConfig: {
+              nav: [{ text: 'Guide', link: '/guide/' }],
+              sidebar: { '/guide/': [{ text: 'Intro', link: '/guide/' }] }
+            }
+          })
+    - name: "@vitepress/theme-default"
+      homepage: "https://github.com/vuejs/vitepress/tree/main/src/client/theme-default"
+      summary: "デフォルトテーマ。カスタムテーマ作成のリファレンスに。"
+    - name: "Vite プラグイン/拡張"
+      homepage: "https://vitepress.dev/guide/markdown"
+      summary: "markdown-it 拡張、mermaid、search（Lunr/Pagefind/Algolia など）で機能拡張。"
+      snippets:
+        mermaid: |
+          // docs/.vitepress/config.ts（一例）
+          import { defineConfig } from 'vitepress'
+          import mdIt from 'markdown-it'
+          import mdMermaid from 'markdown-it-mermaid'
+          export default defineConfig({
+            markdown: {
+              config: (md) => { (md as unknown as mdIt).use(mdMermaid) }
+            }
+          })
+        vueEmbed: |
+          // Markdown 内で Vue コンポーネントを使用
+          // docs/components/Badge.vue を作成後、.md に <Badge text="New" /> と記述
+
+  other-ssg:
+    - name: "Docusaurus"
+      homepage: "https://docusaurus.io/"
+      summary: "React ベースのドキュメント SSG。多言語、バージョニング、プラグインが充実。"
+    - name: "Next.js (Static Export/ISR)"
+      homepage: "https://nextjs.org/docs/pages/building-your-application/deploying/static-exports"
+      summary: "ISR/SSG 対応。マーケ/ブログ/製品サイトに強い。"
+    - name: "Nuxt Content + Nuxt Generate"
+      homepage: "https://content.nuxt.com/"
+      summary: "Vue ベース。Markdown をデータ層として活用。"
+    - name: "Astro"
+      homepage: "https://astro.build/"
+      summary: "アイランドアーキテクチャ。React/Vue/Svelte 統合可。"
+    - name: "Gatsby"
+      homepage: "https://www.gatsbyjs.com/"
+      summary: "GraphQL データレイヤーを持つ React SSG。"
+    - name: "Hugo"
+      homepage: "https://gohugo.io/"
+      summary: "Go 製の超高速 SSG。CI/CD と相性良。"
+    - name: "Jekyll"
+      homepage: "https://jekyllrb.com/"
+      summary: "Ruby 製の老舗。GitHub Pages 連携が容易。"
+    - name: "Eleventy (11ty)"
+      homepage: "https://www.11ty.dev/"
+      summary: "Node 製軽量 SSG。自由度が高い。"
+
+  docs-kb:
+    - name: "mkdocs + mkdocs-material"
+      homepage: "https://squidfunk.github.io/mkdocs-material/"
+      summary: "Python 製。Material テーマが人気のドキュメント基盤。"
+    - name: "GitBook"
+      homepage: "https://www.gitbook.com/"
+      summary: "SaaS 型のドキュメント管理/公開。"
+    - name: "Read the Docs"
+      homepage: "https://readthedocs.org/"
+      summary: "OSS 向けドキュメントホスティング。"
+    - name: "Slate"
+      homepage: "https://github.com/slatedocs/slate"
+      summary: "API ドキュメント用静的サイト。"
+
+  extensions-tools:
+    - name: "mermaid"
+      homepage: "https://mermaid.js.org/"
+      summary: "シーケンス/フローチャート等の図を Markdown で。"
+    - name: "PlantUML"
+      homepage: "https://plantuml.com/"
+      summary: "UML 図生成。"
+    - name: "Algolia DocSearch"
+      homepage: "https://docsearch.algolia.com/"
+      summary: "高速全文検索の組み込み（OSS 無償枠あり）。"
+    - name: "Shiki"
+      homepage: "https://shiki.matsu.io/"
+      summary: "高速シンタックスハイライト（VitePress/Docusaurus で利用可）。"
+    - name: "Lunr.js / Pagefind"
+      homepage: "https://lunrjs.com/ | https://pagefind.app/"
+      summary: "クライアントサイド全文検索。"
+
+bestPractices:
+  - "ナビ/サイドバー/バージョン方針/検索方針（Algolia or ローカル）を初期に決める"
+  - "図は mermaid/PlantUML を統一し、テンプレと Lint で書式を揃える"
+  - "埋め込み Vue/React コンポーネントは最小限にし、ビルド時間と MD 可搬性を確保"
+references:
+  - "VitePress Guide: https://vitepress.dev/guide/what-is-vitepress"
+license: "MIT / Mixed"
+lastReviewed: "2025-08-15"
+

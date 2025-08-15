@@ -14,6 +14,15 @@ import {
 } from "./core/handlers.js";
 import { ensureCatalogDirectory, DEFAULT_CONFIG, type CatalogConfig } from "./core/catalog.js";
 import { logger, createLogger, performanceMonitor } from "./core/logger.js";
+import {
+  handleStaticAnalysisTool,
+  handleQuickValidateTool,
+  handleRealTimeValidationTool,
+  handleGetValidationRulesTool,
+  type StaticAnalysisInput,
+  type QuickValidateInput,
+  type RealTimeValidationInput
+} from "./core/static-analysis-handlers.js";
 
 // Create server logger
 const serverLogger = createLogger('server', 'fluorite-mcp');
@@ -185,6 +194,76 @@ server.registerTool(
   }
 );
 
+// Register static analysis tools
+server.registerTool(
+  "static-analysis",
+  {
+    title: "Comprehensive Static Analysis",
+    description: "実行前に包括的な静的解析を実行し、潜在的な問題を検出します（特にNext.jsなどのフレームワーク向け）",
+    inputSchema: {
+      projectPath: z.string().describe("Project root directory path"),
+      targetFiles: z.array(z.string()).optional().describe("Specific files to analyze"),
+      framework: z.enum(['nextjs', 'react', 'vue']).optional().describe("Target framework"),
+      enabledRules: z.array(z.string()).optional().describe("Specific rules to enable"),
+      disabledRules: z.array(z.string()).optional().describe("Specific rules to disable"),
+      strictMode: z.boolean().optional().describe("Enable strict validation mode"),
+      autoFix: z.boolean().optional().describe("Generate auto-fix suggestions"),
+      predictErrors: z.boolean().optional().describe("Enable error prediction"),
+      analyzeDependencies: z.boolean().optional().describe("Analyze dependencies"),
+      maxIssues: z.number().optional().describe("Maximum issues to report")
+    }
+  },
+  async (input) => {
+    return await handleStaticAnalysisTool(input as StaticAnalysisInput);
+  }
+);
+
+server.registerTool(
+  "quick-validate",
+  {
+    title: "Quick Code Validation",
+    description: "コードスニペットの迅速な検証を実行します",
+    inputSchema: {
+      code: z.string().describe("Code to validate"),
+      language: z.enum(['typescript', 'javascript', 'jsx', 'tsx']).optional().describe("Code language"),
+      framework: z.string().optional().describe("Target framework"),
+      fileName: z.string().optional().describe("Optional file name for context")
+    }
+  },
+  async (input) => {
+    return await handleQuickValidateTool(input as QuickValidateInput);
+  }
+);
+
+server.registerTool(
+  "realtime-validation",
+  {
+    title: "Real-time File Validation",
+    description: "ファイルのリアルタイム検証を実行します",
+    inputSchema: {
+      file: z.string().describe("File path to validate"),
+      content: z.string().optional().describe("File content (if not reading from disk)"),
+      framework: z.string().optional().describe("Target framework"),
+      watchMode: z.boolean().optional().describe("Enable watch mode for continuous validation")
+    }
+  },
+  async (input) => {
+    return await handleRealTimeValidationTool(input as RealTimeValidationInput);
+  }
+);
+
+server.registerTool(
+  "get-validation-rules",
+  {
+    title: "Get Available Validation Rules",
+    description: "利用可能な検証ルールのリストを取得します",
+    inputSchema: {}
+  },
+  async () => {
+    return await handleGetValidationRulesTool();
+  }
+);
+
 async function main() {
   try {
     // Check for command line arguments
@@ -252,14 +331,21 @@ async function main() {
       mode: 'stdio',
       catalogDirectory: config.baseDir,
       supportedFormats: config.supportedExtensions,
-      availableTools: ['upsert-spec', 'list-specs', 'catalog-stats', 'self-test', 'performance-test', 'server-metrics']
+      availableTools: [
+        'upsert-spec', 'list-specs', 'catalog-stats', 
+        'self-test', 'performance-test', 'server-metrics',
+        'static-analysis', 'quick-validate', 'realtime-validation', 'get-validation-rules'
+      ]
     });
     
     // Only log to stderr in stdio mode to avoid interfering with MCP protocol
     console.error("fluorite-mcp server (stdio) running...");
     console.error(`Catalog directory: ${config.baseDir}`);
     console.error(`Supported formats: ${config.supportedExtensions.join(", ")}`);
-    console.error("Available tools: upsert-spec, list-specs, catalog-stats, self-test, performance-test, server-metrics");
+    console.error("Available tools:");
+    console.error("  - Spec Management: upsert-spec, list-specs, catalog-stats");
+    console.error("  - Diagnostics: self-test, performance-test, server-metrics");
+    console.error("  - Static Analysis: static-analysis, quick-validate, realtime-validation, get-validation-rules");
     
     // Graceful shutdown handling
     process.on("SIGINT", async () => {

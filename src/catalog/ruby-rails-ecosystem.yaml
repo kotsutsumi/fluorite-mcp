@@ -1,0 +1,122 @@
+id: "ruby-rails-ecosystem"
+name: "Ruby / Ruby on Rails エコシステム"
+homepage: "https://www.ruby-lang.org/ | https://rubyonrails.org/"
+summary: "Ruby 本体/開発基盤、Rails フレームワーク、認証/認可、DB/ORM、パフォーマンス/非同期、API 開発、テスト/品質、アップロード、フロント統合、セキュリティ、運用/監視まで。"
+categories:
+  ruby-core:
+    - name: "ruby"
+      homepage: "https://www.ruby-lang.org/"
+      summary: "高水準オブジェクト指向スクリプト言語。"
+    - name: "rbenv / RVM"
+      homepage: "https://github.com/rbenv/rbenv"
+      summary: "Ruby バージョン管理。"
+    - name: "bundler"
+      homepage: "https://bundler.io/"
+      summary: "依存パッケージ管理。"
+    - name: "rake"
+      homepage: "https://ruby.github.io/rake/"
+      summary: "タスク自動化。"
+
+  rails-framework:
+    - name: "rails"
+      homepage: "https://rubyonrails.org/"
+      summary: "フルスタック MVC（Active Record/Action Pack/Active Job 等）。"
+    - name: "sprockets / webpacker / jsbundling-rails"
+      homepage: "https://github.com/rails/jsbundling-rails"
+      summary: "アセット管理。"
+    - name: "importmap-rails"
+      homepage: "https://github.com/rails/importmap-rails"
+      summary: "CDN から ESModules を読み込む構成。"
+
+  authz:
+    - name: "devise"
+      homepage: "https://github.com/heartcombo/devise"
+      summary: "高機能認証（ログイン/登録/回復）。"
+    - name: "omniauth"
+      homepage: "https://github.com/omniauth/omniauth"
+      summary: "OAuth1/2 統合。"
+    - name: "pundit"
+      homepage: "https://github.com/varvet/pundit"
+      summary: "ポリシーベース認可。"
+    - name: "cancancan"
+      homepage: "https://github.com/CanCanCommunity/cancancan"
+      summary: "権限管理。"
+
+  db-orm:
+    - name: "active_record"
+      homepage: "https://guides.rubyonrails.org/active_record_basics.html"
+      summary: "Rails 標準 ORM。"
+    - name: "pg / mysql2 / sqlite3"
+      homepage: "https://rubygems.org/"
+      summary: "各 DB アダプタ。"
+    - name: "scenic"
+      homepage: "https://github.com/scenic-views/scenic"
+      summary: "DB ビュー管理。"
+    - name: "strong_migrations"
+      homepage: "https://github.com/ankane/strong_migrations"
+      summary: "危険なマイグレーション検知。"
+    - name: "apartment"
+      homepage: "https://github.com/influitive/apartment"
+      summary: "マルチテナント対応。"
+
+  performance-async:
+    - name: "redis"
+      homepage: "https://redis.io/"
+      summary: "キャッシュ/セッション。"
+    - name: "sidekiq / resque / delayed_job"
+      homepage: "https://sidekiq.org/"
+      summary: "ジョブキュー/非同期処理。"
+    - name: "rack-mini-profiler"
+      homepage: "https://github.com/MiniProfiler/rack-mini-profiler"
+      summary: "パフォーマンス分析。"
+
+  api-development:
+    - name: "jbuilder / active_model_serializers / rabl"
+      homepage: "https://github.com/rails/jbuilder"
+      summary: "JSON レスポンス生成/シリアライズ。"
+    - name: "grape"
+      homepage: "https://github.com/ruby-grape/grape"
+      summary: "軽量 API フレームワーク。"
+
+  test-quality:
+    - name: "rspec-rails / minitest"
+      homepage: "https://github.com/rspec/rspec-rails"
+      summary: "テストフレームワーク。"
+    - name: "capybara / factory_bot_rails / faker"
+      homepage: "https://github.com/teamcapybara/capybara"
+      summary: "E2E/テストデータ/ダミーデータ。"
+    - name: "rubocop / brakeman"
+      homepage: "https://rubocop.org/"
+      summary: "静的解析/スタイル/セキュリティ。"
+
+  uploads:
+    - name: "active_storage / carrierwave / shrine"
+      homepage: "https://github.com/rails/rails/tree/main/activestorage"
+      summary: "アップロード/処理/ストレージ統合。"
+
+  frontend-integration:
+    - name: "hotwire-rails (Turbo + Stimulus)"
+      homepage: "https://hotwired.dev/"
+      summary: "サーバードリブン UI 更新。"
+    - name: "react-rails / vuejs-rails"
+      homepage: "https://github.com/reactjs/react-rails"
+      summary: "React/Vue 統合。"
+
+  security:
+    - name: "rack-attack / secure_headers / devise-security"
+      homepage: "https://github.com/rack/rack-attack"
+      summary: "レート制限/ヘッダー/認証強化。"
+
+  monitoring-ops:
+    - name: "skylight / newrelic_rpm / sentry-ruby / sentry-rails / lograge"
+      homepage: "https://www.skylight.io/"
+      summary: "APM/エラートラッキング/ログ簡素化。"
+
+bestPractices:
+  - "Jobs/非同期を前提に、Active Job + Sidekiq/Resque を早期導入"
+  - "JSON API は serializer レイヤーを一貫させ、N+1 を避ける"
+references:
+  - "Rails Guides: https://guides.rubyonrails.org/"
+license: "MIT / Mixed"
+lastReviewed: "2025-08-15"
+

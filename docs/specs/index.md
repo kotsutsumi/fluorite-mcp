@@ -123,6 +123,19 @@ Fluorite MCPが提供するライブラリ仕様の一覧です。これらの�
 
 ### モダンスタック横断
 - [モダンスタック横断カタログ](./modern-tech) - `spec://modern-tech-ecosystem`
+ 
+### 可視化・編集
+- [フロントエンド可視化/編集エコシステム](./frontend-visualization) - `spec://frontend-visualization-ecosystem`
+
+### UI 品質（React/Vue）
+- [UI 品質向上（React/Vue）](./ui-component-quality) - `spec://ui-component-quality`
+
+### ドキュメント/SSG
+- [VitePress / ドキュメント・SSG エコシステム](./vitepress) - `spec://vitepress-ecosystem`
+
+### スクリプト言語 / Ruby on Rails
+- [Lua / 軽量スクリプト言語エコシステム](./lua) - `spec://lua-ecosystem`
+- [Ruby / Ruby on Rails エコシステム](./ruby-rails) - `spec://ruby-rails-ecosystem`
 
 ## 🐳 監視 & 分析
 
