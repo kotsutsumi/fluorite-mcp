@@ -4,14 +4,14 @@
 [![Node.js Version](https://img.shields.io/node/v/fluorite-mcp.svg)](https://nodejs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
 
-**Fluorite MCP** は、ライブラリや UI コンポーネントの仕様を YAML/JSON で収集し、MCP (Model Context Protocol) で提供するサーバーです。Claude Code CLI にモダン開発ライブラリと11の主要プログラミング言語エコシステムの深い知識を提供し、より正確で実用的なコード生成を可能にします。
+**Fluorite MCP** は、ライブラリや UI コンポーネントの仕様を YAML/JSON で収集し、MCP (Model Context Protocol) で提供するサーバーです。Claude Code CLI にモダン開発ライブラリと12の主要プログラミング言語エコシステムの深い知識を提供し、より正確で実用的なコード生成を可能にします。
 
 ## 🚀 Why Fluorite MCP?
 
 Fluorite MCP transforms Claude Code CLI into an intelligent multi-platform development expert with:
 
-- **📚 Deep Library Knowledge**: Comprehensive specs for 85+ essential libraries
-- **🌐 Multi-Language Support**: 11 major programming language ecosystems
+- **📚 Deep Library Knowledge**: Comprehensive specs for 90+ essential libraries
+- **🌐 Multi-Language Support**: 12 major programming language ecosystems
 - **⚡ Instant Code Generation**: Production-ready code with correct imports
 - **🎯 Best Practices Built-in**: Security, performance, and patterns included
 - **🔄 Library Integration**: Understands how libraries work together
@@ -129,6 +129,18 @@ See [BENEFITS.md](./BENEFITS.md) for detailed advantages.
   - Streaming Platforms: Agora.io, Twilio, AWS IVS, AWS Chime SDK, Mux, Cloudflare Stream
   - Processing Tools: FFmpeg, GStreamer, OBS Studio, Streamlink
   - Low-Latency: LL-HLS, WebTransport, WebCodecs, QUIC/HTTP/3
+
+### Shell Scripting & System Administration
+- **Shell Tools & CLI Utilities** (`spec://shell-tools-ecosystem`) - Comprehensive command-line toolkit
+  - Shell Environments: bash, sh (POSIX), zsh with advanced scripting capabilities
+  - Text Processing: sed, awk, grep/egrep/fgrep, cut, tr, sort, uniq, wc, paste, join, comm
+  - File Operations: cat, head, tail, less, touch, cp, mv, rm, ln, find, locate, xargs
+  - Archive/Compression: tar, gzip, bzip2, xz, zip/unzip with cross-platform support
+  - System Monitoring: ps, top, htop, df, du, free, uptime, uname, lsof, netstat/ss
+  - Network Tools: curl, wget, scp, rsync, ping, traceroute, dig, nslookup
+  - Text Editors: vi, vim, nano with advanced editing capabilities
+  - Job Control: jobs, fg, bg, kill, pkill, killall, nohup, background execution
+  - Utilities: date, env, export, history, alias, which, type, command location
 
 ## 🌐 Global Installation
 

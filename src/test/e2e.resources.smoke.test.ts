@@ -47,7 +47,7 @@ describe('Spec resources smoke (upsert + read)', () => {
     'fastapi-ecosystem', 'supabase-ecosystem', 'firebase-ecosystem', 'vercel-ecosystem', 'azure-ecosystem', 'gcp-ecosystem',
     'vercel-next-starter', 'fastapi-starter'
     , 'zig-ecosystem', 'elixir-ecosystem', 'go-ecosystem', 'dart-ecosystem', 'flutter-ecosystem', 'csharp-ecosystem', 'unity-ecosystem',
-    'expo-react-native-ecosystem', 'mobile-native-ecosystem', 'frontend-visualization-ecosystem', 'ui-component-quality', 'vitepress-ecosystem', 'lua-ecosystem', 'ruby-rails-ecosystem', 'webrtc-streaming-ecosystem', 'modern-tech-ecosystem'
+    'expo-react-native-ecosystem', 'mobile-native-ecosystem', 'frontend-visualization-ecosystem', 'ui-component-quality', 'vitepress-ecosystem', 'lua-ecosystem', 'ruby-rails-ecosystem', 'webrtc-streaming-ecosystem', 'shell-tools-ecosystem', 'modern-tech-ecosystem'
   ]
   const client = new Client()
   beforeAll(async () => { await client.start() })

@@ -1,0 +1,98 @@
+id: "shell-tools-ecosystem"
+name: "シェル/テキスト処理/ネットワーク CLI エコシステム"
+homepage: "https://pubs.opengroup.org/onlinepubs/9699919799/"
+summary: "bash/sh/zsh を中核に、テキスト処理、ファイル操作、圧縮、システム情報、ネットワーク、ジョブ制御、ユーティリティまでの定番 CLI を体系化。日々の開発/運用/CI で再現性の高いスクリプト作成に役立つ。"
+categories:
+  shells:
+    - name: "bash"
+      summary: "最も広く使われるシェル。配列/連想配列、拡張グロブ、プロセス置換など。"
+    - name: "sh (POSIX)"
+      summary: "最小機能の標準シェル。移植性重視のスクリプトに。"
+    - name: "zsh"
+      summary: "bash 互換 + 強力な補完/プラグイン。対話利用に最適。"
+
+  text-processing:
+    - name: "sed"
+      summary: "ストリーム編集（置換/抽出/削除）。"
+      snippets:
+        substitute: "sed -E 's/foo/bar/g' input.txt > out.txt"
+    - name: "awk"
+      summary: "パターンマッチ + フィールド処理。集計/加工に強い。"
+      snippets:
+        sum: "awk -F, '{s+=$3} END{print s}' data.csv"
+    - name: "grep / egrep / fgrep"
+      summary: "パターン検索（拡張正規/固定文字列）。"
+    - name: "cut / tr / sort / uniq / wc / paste / join / comm"
+      summary: "フィールド抽出/変換/整列/重複除去/行列変換/結合/差分。"
+
+  file-ops:
+    - name: "cat / head / tail"
+      summary: "内容表示、先頭/末尾表示、tail -f で追跡。"
+    - name: "less / more"
+      summary: "ページャ。"
+    - name: "touch / cp / mv / rm / ln"
+      summary: "作成/コピー/移動/削除/リンク。"
+    - name: "find / locate / xargs"
+      summary: "検索 + 条件アクション、DB ベース高速検索、引数生成。"
+      snippets:
+        find_del: "find . -type f -name '*.tmp' -print0 | xargs -0 rm -f"
+
+  archive-compress:
+    - name: "tar"
+      summary: "アーカイブ作成/展開。"
+      snippets:
+        create: "tar -czf backup.tgz ./project"
+        extract: "tar -xzf backup.tgz -C /tmp"
+    - name: "gzip / bzip2 / xz / zip"
+      summary: "各圧縮形式の圧縮/展開。"
+
+  system-monitor:
+    - name: "ps / top / htop"
+      summary: "プロセス/CPU/メモリ監視。"
+    - name: "df / du / free / uptime / uname"
+      summary: "ディスク/メモリ/稼働/システム情報。"
+    - name: "lsof / netstat / ss"
+      summary: "オープンファイル/ネットワーク接続。"
+
+  network:
+    - name: "curl / wget"
+      summary: "HTTP/FTP 通信・取得。"
+      snippets:
+        curl_json: "curl -sS -H 'accept: application/json' https://api.example.com/v1/items"
+    - name: "scp / rsync"
+      summary: "SSH 経由コピー / 高速同期・バックアップ。"
+    - name: "ping / traceroute"
+      summary: "疎通/経路確認。"
+    - name: "dig / nslookup"
+      summary: "DNS クエリ。"
+
+  editors:
+    - name: "vi / vim / nano"
+      summary: "CLI テキストエディタ。"
+
+  jobs:
+    - name: "jobs / fg / bg"
+      summary: "ジョブ管理。"
+    - name: "kill / pkill / killall"
+      summary: "プロセス終了。"
+    - name: "nohup / & / && / ||"
+      summary: "セッション独立実行 / 条件付き実行。"
+
+  utilities:
+    - name: "date / env / printenv / export / history"
+      summary: "日時/環境変数/履歴。"
+    - name: "alias / unalias / which / type / command -v"
+      summary: "エイリアス/コマンド解決。"
+
+bestPractices:
+  - "set -Eeuo pipefail と IFS の明示（IFS=$'\n\t'）で安全な bash スクリプトを"
+  - "POSIX 互換が必要な場面は /bin/sh + POSIX 準拠の構文/コマンドを選ぶ"
+  - "GNU と BSD（macOS）のオプション差異に注意（sed/awk/find/sort 等）"
+  - "クォート/エスケープ/ヌル区切り（-print0/-0）でスペース/改行を安全に扱う"
+references:
+  - "POSIX Shell: https://pubs.opengroup.org/onlinepubs/9699919799/"
+  - "GNU Coreutils: https://www.gnu.org/software/coreutils/"
+  - "Bash Manual: https://www.gnu.org/software/bash/manual/"
+license: "MIT / Mixed"
+lastReviewed: "2025-08-15"
+

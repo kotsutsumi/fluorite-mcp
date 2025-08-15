@@ -154,6 +154,9 @@ Fluorite MCPが提供するライブラリ仕様の一覧です。これらの�
 
 - **UploadThing** - TypeScript対応ファイルアップロードサービス
 
+### シェル / テキスト処理 / ネットワーク
+- [シェル/テキスト処理/ネットワーク CLI エコシステム](./shell-tools) - `spec://shell-tools-ecosystem`
+
 ---
 
 ::: tip 新しい仕様を追加したいですか？

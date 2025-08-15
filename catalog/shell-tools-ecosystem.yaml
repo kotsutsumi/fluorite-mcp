@@ -1,0 +1,1934 @@
+---
+name: Shell Tools and CLI Utilities Ecosystem
+version: 1.0.0
+description: Comprehensive shell scripting, text processing, and command-line utilities ecosystem
+category: system-tools
+subcategory: command-line-interface
+tags:
+  - bash
+  - shell
+  - cli
+  - text-processing
+  - unix
+  - linux
+  - automation
+  - scripting
+
+core:
+  shell_foundation:
+    posix_shell:
+      name: POSIX Shell (sh)
+      description: Standard minimal shell compliant with POSIX specifications
+      features:
+        - Portable across Unix-like systems
+        - Basic variable expansion
+        - Command substitution
+        - Simple control structures
+        - Redirection and pipes
+      use_cases:
+        - System initialization scripts
+        - Portable shell scripts
+        - Embedded systems
+        - Minimal environments
+      best_practices:
+        - Use portable syntax only
+        - Test across different systems
+        - Avoid bash-specific features
+        - Keep scripts minimal
+
+shell_environments:
+  bash:
+    name: Bash (Bourne Again Shell)
+    description: Most widely used shell environment with advanced scripting capabilities
+    homepage: https://www.gnu.org/software/bash/
+    features:
+      - Variables and arrays
+      - Functions and local scope
+      - Control structures (if, for, while, case)
+      - Command history and editing
+      - Job control
+      - Completion system
+      - Regular expressions
+      - Process substitution
+    advanced_features:
+      - Associative arrays
+      - Parameter expansion
+      - Arithmetic evaluation
+      - Here documents and strings
+      - Brace expansion
+      - Pathname expansion
+    code_examples:
+      basic_script: |
+        #!/bin/bash
+        
+        # Variables and arrays
+        name="World"
+        numbers=(1 2 3 4 5)
+        
+        # Function definition
+        greet() {
+            local user=${1:-$name}
+            echo "Hello, $user!"
+        }
+        
+        # Control structures
+        for num in "${numbers[@]}"; do
+            if [[ $num -gt 3 ]]; then
+                echo "Number $num is greater than 3"
+            fi
+        done
+        
+        greet "Linux User"
+      
+      advanced_features: |
+        #!/bin/bash
+        
+        # Associative array
+        declare -A config
+        config[host]="localhost"
+        config[port]="8080"
+        
+        # Parameter expansion
+        file="/path/to/file.txt"
+        echo "Directory: ${file%/*}"
+        echo "Filename: ${file##*/}"
+        echo "Extension: ${file##*.}"
+        
+        # Process substitution
+        diff <(sort file1.txt) <(sort file2.txt)
+        
+        # Here document
+        cat <<EOF
+        Configuration:
+        Host: ${config[host]}
+        Port: ${config[port]}
+        EOF
+
+  zsh:
+    name: Z Shell (zsh)
+    description: Advanced shell with bash compatibility and enhanced features
+    homepage: https://zsh.sourceforge.io/
+    features:
+      - Bash compatibility
+      - Advanced completion system
+      - Spelling correction
+      - Theme and plugin support
+      - Extended globbing
+      - Powerful prompt customization
+    frameworks:
+      - Oh My Zsh
+      - Prezto
+      - Zinit
+      - Starship (prompt)
+    plugins:
+      - git integration
+      - syntax highlighting
+      - autosuggestions
+      - directory jumping
+    code_examples:
+      advanced_globbing: |
+        # Extended globbing patterns
+        ls **/*.txt          # Recursive search
+        ls *.txt~backup*     # Exclude patterns
+        ls *(.)              # Only files
+        ls *(/)              # Only directories
+        ls *(.x)             # Executable files
+      
+      completion_example: |
+        # Custom completion function
+        _mycommand() {
+            local -a commands
+            commands=(
+                'start:Start the service'
+                'stop:Stop the service'
+                'restart:Restart the service'
+            )
+            _describe 'commands' commands
+        }
+        
+        compdef _mycommand mycommand
+
+text_processing:
+  stream_editors:
+    sed:
+      name: sed (Stream Editor)
+      description: Stream editor for filtering and transforming text using regular expressions
+      features:
+        - Pattern-based text substitution
+        - Line deletion and insertion
+        - Regular expression support
+        - In-place file editing
+        - Multiple commands execution
+      common_operations:
+        - Text replacement
+        - Line extraction
+        - Character deletion
+        - File modification
+      code_examples:
+        basic_usage: |
+          # Substitute text
+          sed 's/old/new/g' file.txt
+          
+          # Delete lines containing pattern
+          sed '/pattern/d' file.txt
+          
+          # Print specific lines
+          sed -n '5,10p' file.txt
+          
+          # In-place editing
+          sed -i 's/foo/bar/g' file.txt
+          
+          # Multiple commands
+          sed -e 's/old/new/g' -e '/pattern/d' file.txt
+        
+        advanced_usage: |
+          # Address ranges
+          sed '1,5s/old/new/g' file.txt    # Lines 1-5
+          sed '/start/,/end/s/old/new/g' file.txt  # Pattern range
+          
+          # Hold space operations
+          sed -n '1!G;h;$p' file.txt       # Reverse file
+          
+          # Conditional substitution
+          sed '/pattern/{s/old/new/g;}' file.txt
+          
+          # Append and insert
+          sed '/pattern/a\New line after' file.txt
+          sed '/pattern/i\New line before' file.txt
+
+  pattern_processors:
+    awk:
+      name: AWK
+      description: Pattern scanning and data extraction language with powerful text processing capabilities
+      features:
+        - Pattern-action programming model
+        - Built-in variables (NR, NF, FS, OFS)
+        - Associative arrays
+        - Mathematical functions
+        - Regular expressions
+        - User-defined functions
+      built_in_variables:
+        - "NR: Number of records"
+        - "NF: Number of fields"
+        - "FS: Field separator"
+        - "OFS: Output field separator"
+        - "RS: Record separator"
+        - "$0: Entire record"
+        - "$1, $2, ...: Field values"
+      code_examples:
+        basic_usage: |
+          # Print specific fields
+          awk '{print $1, $3}' file.txt
+          
+          # Pattern matching
+          awk '/pattern/ {print $0}' file.txt
+          
+          # Field separator
+          awk -F',' '{print $2}' data.csv
+          
+          # Sum column
+          awk '{sum += $3} END {print sum}' numbers.txt
+          
+          # Count lines
+          awk 'END {print NR}' file.txt
+        
+        advanced_usage: |
+          # Associative arrays for counting
+          awk '{count[$1]++} END {for (i in count) print i, count[i]}'
+          
+          # Multiple patterns and actions
+          awk '
+          BEGIN { FS=","; total=0 }
+          /ERROR/ { errors++; print "Error on line " NR ": " $0 }
+          /WARNING/ { warnings++ }
+          { total++ }
+          END { 
+              print "Total lines:", total
+              print "Errors:", errors
+              print "Warnings:", warnings
+          }'
+          
+          # User-defined functions
+          awk '
+          function factorial(n) {
+              return (n <= 1) ? 1 : n * factorial(n-1)
+          }
+          { print $1, factorial($1) }'
+
+  search_tools:
+    grep:
+      name: grep (Global Regular Expression Print)
+      description: Pattern search utility with regular expression support
+      variants:
+        grep: "Basic regular expressions"
+        egrep: "Extended regular expressions (same as grep -E)"
+        fgrep: "Fixed string search (same as grep -F)"
+        rg: "ripgrep - modern replacement with better performance"
+      features:
+        - Regular expression matching
+        - Recursive directory search
+        - Context lines display
+        - Line numbering
+        - Color output
+        - Multiple file search
+      code_examples:
+        basic_usage: |
+          # Simple pattern search
+          grep "pattern" file.txt
+          
+          # Case insensitive search
+          grep -i "pattern" file.txt
+          
+          # Recursive search
+          grep -r "pattern" /path/to/directory
+          
+          # Line numbers
+          grep -n "pattern" file.txt
+          
+          # Count matches
+          grep -c "pattern" file.txt
+          
+          # Invert match
+          grep -v "pattern" file.txt
+        
+        advanced_usage: |
+          # Extended regular expressions
+          egrep '(foo|bar)' file.txt
+          
+          # Word boundaries
+          grep -w "word" file.txt
+          
+          # Context lines
+          grep -C 3 "pattern" file.txt    # 3 lines before and after
+          grep -A 2 "pattern" file.txt    # 2 lines after
+          grep -B 2 "pattern" file.txt    # 2 lines before
+          
+          # Multiple patterns
+          grep -E "(error|warning|fail)" logfile.txt
+          
+          # Files with matches
+          grep -l "pattern" *.txt
+          
+          # Binary file handling
+          grep -a "pattern" binary_file
+
+  field_processing:
+    cut:
+      name: cut
+      description: Extract specific fields or byte ranges from lines of text
+      features:
+        - Field extraction by delimiter
+        - Byte/character position extraction
+        - Multiple field selection
+        - Custom delimiters
+      code_examples:
+        usage: |
+          # Extract specific fields (comma-separated)
+          cut -d',' -f1,3 data.csv
+          
+          # Extract character positions
+          cut -c1-10 file.txt
+          
+          # Extract bytes
+          cut -b1-5 file.txt
+          
+          # Tab-separated fields
+          cut -f2,4 data.tsv
+          
+          # Custom delimiter
+          cut -d':' -f1,6 /etc/passwd
+
+    tr:
+      name: tr (translate)
+      description: Character translation and deletion utility
+      features:
+        - Character translation
+        - Character deletion
+        - Character squeezing
+        - Case conversion
+      code_examples:
+        usage: |
+          # Translate characters
+          tr 'a-z' 'A-Z' < file.txt    # Uppercase
+          tr 'A-Z' 'a-z' < file.txt    # Lowercase
+          
+          # Delete characters
+          tr -d '0-9' < file.txt       # Remove digits
+          
+          # Squeeze repeated characters
+          tr -s ' ' < file.txt         # Single spaces
+          
+          # Replace characters
+          tr ',' '\n' < data.csv       # CSV to lines
+          
+          # Character sets
+          tr '[:lower:]' '[:upper:]' < file.txt
+
+  sorting_utilities:
+    sort:
+      name: sort
+      description: Sort lines of text files with various options
+      features:
+        - Alphabetical sorting
+        - Numerical sorting
+        - Reverse sorting
+        - Custom key sorting
+        - Unique sorting
+        - Merge sorted files
+      code_examples:
+        usage: |
+          # Basic sorting
+          sort file.txt
+          
+          # Numerical sort
+          sort -n numbers.txt
+          
+          # Reverse sort
+          sort -r file.txt
+          
+          # Sort by specific field
+          sort -t',' -k2 data.csv      # Sort by 2nd field
+          
+          # Unique sort
+          sort -u file.txt
+          
+          # Human readable numbers
+          sort -h sizes.txt            # 1K, 1M, 1G
+          
+          # Multiple keys
+          sort -t',' -k1,1 -k2,2n data.csv
+
+    uniq:
+      name: uniq
+      description: Report or filter out repeated lines in files
+      features:
+        - Remove duplicate lines
+        - Count occurrences
+        - Show only duplicates
+        - Show only unique lines
+      code_examples:
+        usage: |
+          # Remove duplicates (requires sorted input)
+          sort file.txt | uniq
+          
+          # Count occurrences
+          sort file.txt | uniq -c
+          
+          # Show only duplicates
+          sort file.txt | uniq -d
+          
+          # Show only unique lines
+          sort file.txt | uniq -u
+          
+          # Ignore case
+          sort file.txt | uniq -i
+          
+          # Skip fields/characters
+          uniq -f1 file.txt            # Skip first field
+          uniq -s5 file.txt            # Skip first 5 chars
+
+  counting_utilities:
+    wc:
+      name: wc (word count)
+      description: Count lines, words, characters, and bytes in files
+      features:
+        - Line counting
+        - Word counting
+        - Character counting
+        - Byte counting
+      code_examples:
+        usage: |
+          # Count lines, words, characters
+          wc file.txt
+          
+          # Count only lines
+          wc -l file.txt
+          
+          # Count only words
+          wc -w file.txt
+          
+          # Count only characters
+          wc -c file.txt
+          
+          # Count multiple files
+          wc -l *.txt
+          
+          # Count from stdin
+          echo "Hello World" | wc -w
+
+  file_joining:
+    paste:
+      name: paste
+      description: Merge lines of files side by side
+      features:
+        - Column-wise file merging
+        - Custom delimiters
+        - Serial concatenation
+      code_examples:
+        usage: |
+          # Merge files side by side
+          paste file1.txt file2.txt
+          
+          # Custom delimiter
+          paste -d',' file1.txt file2.txt
+          
+          # Serial mode
+          paste -s file.txt
+          
+          # Multiple delimiters
+          paste -d',;' file1.txt file2.txt file3.txt
+
+    join:
+      name: join
+      description: Join lines of two files on a common field
+      features:
+        - Database-like join operations
+        - Custom field separators
+        - Outer joins
+        - Case insensitive joins
+      code_examples:
+        usage: |
+          # Join on first field
+          join file1.txt file2.txt
+          
+          # Join on specific fields
+          join -1 2 -2 1 file1.txt file2.txt
+          
+          # Custom separator
+          join -t',' file1.csv file2.csv
+          
+          # Left outer join
+          join -a1 file1.txt file2.txt
+          
+          # Case insensitive
+          join -i file1.txt file2.txt
+
+    comm:
+      name: comm
+      description: Compare two sorted files line by line
+      features:
+        - Three-column output
+        - Lines unique to first file
+        - Lines unique to second file
+        - Lines common to both files
+      code_examples:
+        usage: |
+          # Compare sorted files
+          comm file1.txt file2.txt
+          
+          # Show only common lines
+          comm -12 file1.txt file2.txt
+          
+          # Show only lines unique to file1
+          comm -23 file1.txt file2.txt
+          
+          # Show only lines unique to file2
+          comm -13 file1.txt file2.txt
+
+file_operations:
+  display_tools:
+    cat:
+      name: cat (concatenate)
+      description: Display, combine, and manipulate file contents
+      features:
+        - File content display
+        - File concatenation
+        - Line numbering
+        - Non-printable character display
+      code_examples:
+        usage: |
+          # Display file contents
+          cat file.txt
+          
+          # Concatenate files
+          cat file1.txt file2.txt > combined.txt
+          
+          # Line numbers
+          cat -n file.txt
+          
+          # Show non-printable characters
+          cat -A file.txt
+          
+          # Squeeze blank lines
+          cat -s file.txt
+
+    head:
+      name: head
+      description: Display the first lines of files
+      features:
+        - First n lines display
+        - Multiple file handling
+        - Byte count option
+      code_examples:
+        usage: |
+          # First 10 lines (default)
+          head file.txt
+          
+          # First n lines
+          head -n 20 file.txt
+          
+          # First n bytes
+          head -c 100 file.txt
+          
+          # Multiple files
+          head -n 5 *.txt
+
+    tail:
+      name: tail
+      description: Display the last lines of files with real-time monitoring
+      features:
+        - Last n lines display
+        - Real-time file monitoring
+        - Multiple file following
+        - Byte count option
+      code_examples:
+        usage: |
+          # Last 10 lines (default)
+          tail file.txt
+          
+          # Last n lines
+          tail -n 20 file.txt
+          
+          # Follow file (real-time)
+          tail -f logfile.txt
+          
+          # Follow multiple files
+          tail -f file1.txt file2.txt
+          
+          # Follow with retry
+          tail -F logfile.txt
+
+  pagers:
+    less:
+      name: less
+      description: Advanced pager for viewing large files
+      features:
+        - Backward and forward navigation
+        - Search functionality
+        - Line numbering
+        - Pattern highlighting
+      navigation:
+        - "Space: Next page"
+        - "b: Previous page"
+        - "/pattern: Search forward"
+        - "?pattern: Search backward"
+        - "q: Quit"
+      code_examples:
+        usage: |
+          # View file
+          less file.txt
+          
+          # Line numbers
+          less -N file.txt
+          
+          # Case insensitive search
+          less -i file.txt
+          
+          # Show raw control characters
+          less -r colored_output.txt
+
+    more:
+      name: more
+      description: Simple pager for viewing files one screen at a time
+      features:
+        - Forward navigation only
+        - Basic search
+        - Space bar pagination
+      code_examples:
+        usage: |
+          # View file
+          more file.txt
+          
+          # Start at specific line
+          more +50 file.txt
+
+  file_management:
+    touch:
+      name: touch
+      description: Create empty files and update timestamps
+      features:
+        - Empty file creation
+        - Timestamp modification
+        - Access time update
+        - Modification time update
+      code_examples:
+        usage: |
+          # Create empty file
+          touch newfile.txt
+          
+          # Update timestamp
+          touch existing_file.txt
+          
+          # Set specific time
+          touch -t 202301011200 file.txt
+          
+          # Don't create if doesn't exist
+          touch -c file.txt
+
+    cp:
+      name: cp (copy)
+      description: Copy files and directories
+      features:
+        - File copying
+        - Directory copying
+        - Preserve attributes
+        - Interactive mode
+        - Recursive copying
+      code_examples:
+        usage: |
+          # Copy file
+          cp source.txt destination.txt
+          
+          # Copy to directory
+          cp file.txt /path/to/directory/
+          
+          # Recursive directory copy
+          cp -r source_dir destination_dir
+          
+          # Preserve attributes
+          cp -p file.txt backup.txt
+          
+          # Interactive mode
+          cp -i file.txt existing_file.txt
+
+    mv:
+      name: mv (move)
+      description: Move and rename files and directories
+      features:
+        - File moving
+        - File renaming
+        - Directory moving
+        - Interactive mode
+      code_examples:
+        usage: |
+          # Rename file
+          mv oldname.txt newname.txt
+          
+          # Move file to directory
+          mv file.txt /path/to/directory/
+          
+          # Move multiple files
+          mv file1.txt file2.txt /destination/
+          
+          # Interactive mode
+          mv -i source.txt destination.txt
+
+    rm:
+      name: rm (remove)
+      description: Remove files and directories
+      features:
+        - File deletion
+        - Directory deletion
+        - Recursive removal
+        - Interactive mode
+        - Force removal
+      code_examples:
+        usage: |
+          # Remove file
+          rm file.txt
+          
+          # Remove multiple files
+          rm file1.txt file2.txt
+          
+          # Interactive removal
+          rm -i file.txt
+          
+          # Recursive directory removal
+          rm -r directory/
+          
+          # Force removal
+          rm -f file.txt
+          
+          # Recursive force removal (dangerous!)
+          rm -rf directory/
+
+    ln:
+      name: ln (link)
+      description: Create hard and symbolic links
+      features:
+        - Hard link creation
+        - Symbolic link creation
+        - Directory linking
+      code_examples:
+        usage: |
+          # Create hard link
+          ln original.txt hardlink.txt
+          
+          # Create symbolic link
+          ln -s original.txt symlink.txt
+          
+          # Link to directory
+          ln -s /path/to/directory shortcut
+          
+          # Force link creation
+          ln -sf new_target existing_link
+
+  search_tools:
+    find:
+      name: find
+      description: Search for files and directories with extensive filtering options
+      features:
+        - Recursive directory search
+        - Name pattern matching
+        - Size filtering
+        - Time-based filtering
+        - Permission filtering
+        - Action execution
+      code_examples:
+        basic_usage: |
+          # Find by name
+          find /path -name "*.txt"
+          
+          # Case insensitive name search
+          find /path -iname "*.TXT"
+          
+          # Find directories only
+          find /path -type d -name "config"
+          
+          # Find files only
+          find /path -type f -name "*.log"
+          
+          # Find by size
+          find /path -size +100M        # Larger than 100MB
+          find /path -size -1k          # Smaller than 1KB
+        
+        advanced_usage: |
+          # Find by modification time
+          find /path -mtime -7          # Modified in last 7 days
+          find /path -mtime +30         # Modified more than 30 days ago
+          
+          # Find by permissions
+          find /path -perm 755
+          find /path -perm -644         # At least these permissions
+          
+          # Execute commands on found files
+          find /path -name "*.tmp" -delete
+          find /path -name "*.log" -exec gzip {} \;
+          find /path -type f -exec chmod 644 {} \;
+          
+          # Complex expressions
+          find /path \( -name "*.txt" -o -name "*.log" \) -mtime -1
+
+    locate:
+      name: locate
+      description: Fast file search using pre-built database
+      features:
+        - Database-based search
+        - Pattern matching
+        - Case insensitive search
+        - Regular expression support
+      code_examples:
+        usage: |
+          # Simple search
+          locate filename
+          
+          # Case insensitive
+          locate -i FILENAME
+          
+          # Limit results
+          locate -l 10 pattern
+          
+          # Update database (usually run by cron)
+          sudo updatedb
+          
+          # Regex search
+          locate -r "\.txt$"
+
+    xargs:
+      name: xargs
+      description: Build and execute command lines from standard input
+      features:
+        - Command argument construction
+        - Parallel execution
+        - Delimiter specification
+        - Null termination handling
+      code_examples:
+        usage: |
+          # Basic usage
+          find /path -name "*.txt" | xargs grep "pattern"
+          
+          # Parallel execution
+          find /path -name "*.jpg" | xargs -P 4 -I {} convert {} {}.thumbnail
+          
+          # Handle spaces in filenames
+          find /path -name "*.txt" -print0 | xargs -0 grep "pattern"
+          
+          # Limit arguments per command
+          echo "1 2 3 4 5" | xargs -n 2 echo
+          
+          # Interactive mode
+          find /path -name "*.tmp" | xargs -p rm
+
+archive_compression:
+  archive_tools:
+    tar:
+      name: tar (tape archive)
+      description: Archive files and directories with compression support
+      features:
+        - Archive creation and extraction
+        - Compression integration
+        - Incremental backups
+        - Remote archives
+      compression_formats:
+        - gzip (.tar.gz, .tgz)
+        - bzip2 (.tar.bz2)
+        - xz (.tar.xz)
+        - compress (.tar.Z)
+      code_examples:
+        basic_usage: |
+          # Create archive
+          tar -cf archive.tar directory/
+          
+          # Create compressed archive
+          tar -czf archive.tar.gz directory/    # gzip
+          tar -cjf archive.tar.bz2 directory/   # bzip2
+          tar -cJf archive.tar.xz directory/    # xz
+          
+          # Extract archive
+          tar -xf archive.tar
+          tar -xzf archive.tar.gz
+          
+          # List archive contents
+          tar -tf archive.tar
+          
+          # Verbose output
+          tar -cvf archive.tar directory/
+        
+        advanced_usage: |
+          # Extract to specific directory
+          tar -xf archive.tar -C /destination/
+          
+          # Exclude patterns
+          tar -czf backup.tar.gz --exclude="*.log" directory/
+          
+          # Incremental backup
+          tar -czf full.tar.gz directory/
+          tar -czf incremental.tar.gz --newer-mtime="2023-01-01" directory/
+          
+          # Remote archives
+          tar -czf - directory/ | ssh user@host "cat > remote_backup.tar.gz"
+
+  compression_tools:
+    gzip:
+      name: gzip/gunzip
+      description: GNU compression utility with good compression ratio and speed
+      features:
+        - Fast compression
+        - Recursive directory compression
+        - Compression level control
+        - Keep original files option
+      code_examples:
+        usage: |
+          # Compress file
+          gzip file.txt              # Creates file.txt.gz
+          
+          # Decompress file
+          gunzip file.txt.gz         # Creates file.txt
+          
+          # Keep original file
+          gzip -k file.txt
+          
+          # Compression levels (1-9)
+          gzip -9 file.txt           # Maximum compression
+          gzip -1 file.txt           # Fastest compression
+          
+          # Recursive compression
+          gzip -r directory/
+          
+          # Test archive integrity
+          gzip -t file.txt.gz
+
+    bzip2:
+      name: bzip2/bunzip2
+      description: High compression ratio utility suitable for archival
+      features:
+        - High compression ratio
+        - Slower than gzip but better compression
+        - Parallel compression support
+      code_examples:
+        usage: |
+          # Compress file
+          bzip2 file.txt             # Creates file.txt.bz2
+          
+          # Decompress file
+          bunzip2 file.txt.bz2       # Creates file.txt
+          
+          # Keep original file
+          bzip2 -k file.txt
+          
+          # Compression levels (1-9)
+          bzip2 -9 file.txt
+          
+          # Test archive
+          bzip2 -t file.txt.bz2
+
+    xz:
+      name: xz/unxz
+      description: Modern compression utility with excellent compression ratio
+      features:
+        - Excellent compression ratio
+        - LZMA2 algorithm
+        - Multi-threading support
+        - Memory usage control
+      code_examples:
+        usage: |
+          # Compress file
+          xz file.txt                # Creates file.txt.xz
+          
+          # Decompress file
+          unxz file.txt.xz           # Creates file.txt
+          
+          # Keep original file
+          xz -k file.txt
+          
+          # Compression levels (0-9)
+          xz -9 file.txt
+          
+          # Multi-threading
+          xz -T 4 file.txt
+          
+          # Extreme compression
+          xz -e file.txt
+
+    zip:
+      name: zip/unzip
+      description: Cross-platform archive format with directory support
+      features:
+        - Cross-platform compatibility
+        - Directory archiving
+        - Password protection
+        - Selective extraction
+      code_examples:
+        usage: |
+          # Create zip archive
+          zip archive.zip file1.txt file2.txt
+          
+          # Zip directory recursively
+          zip -r archive.zip directory/
+          
+          # Extract zip archive
+          unzip archive.zip
+          
+          # Extract to specific directory
+          unzip archive.zip -d /destination/
+          
+          # List archive contents
+          unzip -l archive.zip
+          
+          # Password protection
+          zip -P password archive.zip files*
+
+system_monitoring:
+  process_management:
+    ps:
+      name: ps (process status)
+      description: Display information about running processes
+      features:
+        - Process listing
+        - CPU and memory usage
+        - Process hierarchy
+        - Custom output formats
+      code_examples:
+        usage: |
+          # Show all processes
+          ps aux
+          
+          # Show process tree
+          ps auxf
+          
+          # Show processes for current user
+          ps ux
+          
+          # Show specific process
+          ps -p 1234
+          
+          # Custom format
+          ps -eo pid,ppid,cmd,%mem,%cpu
+          
+          # Sort by CPU usage
+          ps aux --sort=-%cpu
+
+    top:
+      name: top/htop
+      description: Real-time system monitor displaying running processes
+      features:
+        - Real-time process monitoring
+        - CPU and memory usage
+        - Load average display
+        - Interactive process management
+      top_commands:
+        - "q: Quit"
+        - "k: Kill process"
+        - "r: Renice process"
+        - "M: Sort by memory"
+        - "P: Sort by CPU"
+      htop_features:
+        - Color-coded display
+        - Mouse support
+        - Tree view
+        - Process searching
+      code_examples:
+        usage: |
+          # Standard top
+          top
+          
+          # Enhanced htop (if available)
+          htop
+          
+          # Top with specific user
+          top -u username
+          
+          # Batch mode (for scripts)
+          top -b -n 1
+
+  disk_monitoring:
+    df:
+      name: df (disk free)
+      description: Display filesystem disk space usage
+      features:
+        - Filesystem usage display
+        - Human-readable sizes
+        - Inode usage
+        - Specific filesystem types
+      code_examples:
+        usage: |
+          # Show disk usage
+          df
+          
+          # Human readable format
+          df -h
+          
+          # Show inodes
+          df -i
+          
+          # Specific filesystem type
+          df -t ext4
+          
+          # Exclude filesystem types
+          df -x tmpfs
+
+    du:
+      name: du (disk usage)
+      description: Display directory space usage
+      features:
+        - Directory size calculation
+        - Recursive analysis
+        - Human-readable output
+        - Size sorting
+      code_examples:
+        usage: |
+          # Show directory size
+          du /path/to/directory
+          
+          # Human readable
+          du -h /path/to/directory
+          
+          # Summary only
+          du -s /path/to/directory
+          
+          # Show all files
+          du -a /path/to/directory
+          
+          # Sort by size
+          du -h /path | sort -hr
+
+  memory_monitoring:
+    free:
+      name: free
+      description: Display memory usage statistics
+      features:
+        - Physical memory usage
+        - Swap usage
+        - Buffer and cache information
+        - Continuous monitoring
+      code_examples:
+        usage: |
+          # Show memory usage
+          free
+          
+          # Human readable
+          free -h
+          
+          # Show in megabytes
+          free -m
+          
+          # Continuous monitoring
+          free -s 5              # Update every 5 seconds
+
+  system_info:
+    uptime:
+      name: uptime
+      description: Show system uptime and load average
+      features:
+        - System uptime display
+        - Load average (1, 5, 15 minutes)
+        - User count
+      code_examples:
+        usage: |
+          # Show uptime and load
+          uptime
+          
+          # Pretty format
+          uptime -p
+          
+          # Since when system is up
+          uptime -s
+
+    uname:
+      name: uname
+      description: Display system information
+      features:
+        - Kernel name and version
+        - Machine architecture
+        - Operating system
+        - Network node hostname
+      code_examples:
+        usage: |
+          # All system information
+          uname -a
+          
+          # Kernel name
+          uname -s
+          
+          # Kernel version
+          uname -r
+          
+          # Machine architecture
+          uname -m
+          
+          # Operating system
+          uname -o
+
+    lsof:
+      name: lsof (list open files)
+      description: List open files and network connections
+      features:
+        - Open file listing
+        - Process file usage
+        - Network connection monitoring
+        - Port usage analysis
+      code_examples:
+        usage: |
+          # List all open files
+          lsof
+          
+          # Files opened by process
+          lsof -p 1234
+          
+          # Files opened by user
+          lsof -u username
+          
+          # Network connections
+          lsof -i
+          
+          # Specific port
+          lsof -i :80
+          
+          # Files in directory
+          lsof +D /path/to/directory
+
+  network_monitoring:
+    netstat:
+      name: netstat/ss
+      description: Display network connections and routing tables
+      features:
+        - Network connection listing
+        - Routing table display
+        - Interface statistics
+        - Port listening status
+      code_examples:
+        usage: |
+          # All connections
+          netstat -a
+          
+          # Listening ports
+          netstat -l
+          
+          # TCP connections
+          netstat -t
+          
+          # UDP connections
+          netstat -u
+          
+          # With process names
+          netstat -p
+          
+          # Modern replacement (ss)
+          ss -tuln                   # TCP/UDP listening
+          ss -i                      # Interface info
+
+network_tools:
+  http_clients:
+    curl:
+      name: curl
+      description: Command-line tool for transferring data with URLs
+      features:
+        - HTTP/HTTPS requests
+        - FTP/SFTP support
+        - Data upload/download
+        - Authentication support
+        - Cookie handling
+        - JSON processing
+      code_examples:
+        basic_usage: |
+          # GET request
+          curl https://api.example.com
+          
+          # POST with data
+          curl -X POST -d "data=value" https://api.example.com
+          
+          # JSON POST
+          curl -X POST -H "Content-Type: application/json" \
+               -d '{"key":"value"}' https://api.example.com
+          
+          # Download file
+          curl -O https://example.com/file.zip
+          
+          # Follow redirects
+          curl -L https://example.com
+        
+        advanced_usage: |
+          # Authentication
+          curl -u username:password https://api.example.com
+          
+          # Headers
+          curl -H "Authorization: Bearer token" https://api.example.com
+          
+          # Cookies
+          curl -c cookies.txt -b cookies.txt https://example.com
+          
+          # Upload file
+          curl -X POST -F "file=@document.pdf" https://upload.example.com
+          
+          # Rate limiting
+          curl --limit-rate 100k https://example.com/largefile
+          
+          # Verbose output
+          curl -v https://example.com
+
+    wget:
+      name: wget
+      description: Non-interactive downloader for retrieving files from web servers
+      features:
+        - Recursive download
+        - Background downloading
+        - Resume interrupted downloads
+        - Mirror websites
+        - FTP support
+      code_examples:
+        usage: |
+          # Download file
+          wget https://example.com/file.zip
+          
+          # Resume download
+          wget -c https://example.com/largefile.iso
+          
+          # Recursive download
+          wget -r https://example.com/
+          
+          # Mirror website
+          wget -m https://example.com/
+          
+          # Background download
+          wget -b https://example.com/file.zip
+          
+          # Custom user agent
+          wget --user-agent="Mozilla/5.0" https://example.com
+
+  file_transfer:
+    scp:
+      name: scp (secure copy)
+      description: Secure file transfer over SSH
+      features:
+        - SSH-based file transfer
+        - Recursive directory copying
+        - Preserve file attributes
+        - Progress display
+      code_examples:
+        usage: |
+          # Copy file to remote
+          scp file.txt user@remote:/path/to/destination/
+          
+          # Copy from remote
+          scp user@remote:/path/to/file.txt ./
+          
+          # Recursive copy
+          scp -r directory/ user@remote:/path/
+          
+          # Preserve attributes
+          scp -p file.txt user@remote:/path/
+          
+          # Custom port
+          scp -P 2222 file.txt user@remote:/path/
+
+    rsync:
+      name: rsync
+      description: Efficient file synchronization and backup tool
+      features:
+        - Delta transfer algorithm
+        - Preserve file attributes
+        - Exclude patterns
+        - Bandwidth limiting
+        - Dry run mode
+      code_examples:
+        usage: |
+          # Sync directories
+          rsync -av source/ destination/
+          
+          # Remote sync
+          rsync -av source/ user@remote:/path/
+          
+          # Delete extra files
+          rsync -av --delete source/ destination/
+          
+          # Exclude patterns
+          rsync -av --exclude="*.log" source/ destination/
+          
+          # Dry run
+          rsync -av --dry-run source/ destination/
+          
+          # Bandwidth limit
+          rsync -av --bwlimit=1000 source/ destination/
+
+  connectivity_tools:
+    ping:
+      name: ping
+      description: Send ICMP echo requests to test network connectivity
+      features:
+        - Network connectivity testing
+        - RTT measurement
+        - Packet loss detection
+        - IPv4/IPv6 support
+      code_examples:
+        usage: |
+          # Basic ping
+          ping google.com
+          
+          # Limited count
+          ping -c 4 google.com
+          
+          # Interval
+          ping -i 2 google.com       # Every 2 seconds
+          
+          # IPv6
+          ping6 google.com
+          
+          # Flood ping (root only)
+          ping -f google.com
+
+    traceroute:
+      name: traceroute
+      description: Trace the route packets take to a network host
+      features:
+        - Route discovery
+        - Hop-by-hop analysis
+        - RTT per hop
+        - Multiple protocols
+      code_examples:
+        usage: |
+          # Trace route
+          traceroute google.com
+          
+          # UDP traceroute
+          traceroute -U google.com
+          
+          # ICMP traceroute
+          traceroute -I google.com
+          
+          # IPv6
+          traceroute6 google.com
+
+  dns_tools:
+    dig:
+      name: dig (domain information groper)
+      description: DNS lookup tool for querying DNS servers
+      features:
+        - DNS record queries
+        - Reverse lookups
+        - Trace queries
+        - Batch processing
+      code_examples:
+        usage: |
+          # Basic lookup
+          dig google.com
+          
+          # Specific record type
+          dig google.com MX
+          dig google.com AAAA
+          
+          # Reverse lookup
+          dig -x 8.8.8.8
+          
+          # Specific DNS server
+          dig @8.8.8.8 google.com
+          
+          # Short output
+          dig +short google.com
+          
+          # Trace query
+          dig +trace google.com
+
+    nslookup:
+      name: nslookup
+      description: Interactive DNS lookup utility
+      features:
+        - Interactive and batch modes
+        - Record type queries
+        - Server selection
+        - Reverse lookups
+      code_examples:
+        usage: |
+          # Basic lookup
+          nslookup google.com
+          
+          # Specific record type
+          nslookup -type=MX google.com
+          
+          # Specific DNS server
+          nslookup google.com 8.8.8.8
+          
+          # Reverse lookup
+          nslookup 8.8.8.8
+
+text_editors:
+  vi_family:
+    vi:
+      name: vi
+      description: Classic Unix text editor with modal interface
+      features:
+        - Modal editing (command/insert modes)
+        - Minimal resource usage
+        - Available on all Unix systems
+        - Keyboard-only operation
+      basic_commands:
+        - "i: Insert mode"
+        - "ESC: Command mode"
+        - ":w: Save file"
+        - ":q: Quit"
+        - ":wq: Save and quit"
+        - "dd: Delete line"
+        - "yy: Copy line"
+        - "p: Paste"
+
+    vim:
+      name: vim (Vi IMproved)
+      description: Enhanced version of vi with additional features
+      features:
+        - Syntax highlighting
+        - Multiple windows
+        - Plugin system
+        - Scripting support
+        - Undo/redo trees
+        - Visual mode
+      code_examples:
+        basic_usage: |
+          # Open file
+          vim filename.txt
+          
+          # Multiple files
+          vim file1.txt file2.txt
+          
+          # Open at specific line
+          vim +25 filename.txt
+          
+          # Read-only mode
+          vim -R filename.txt
+        
+        advanced_features: |
+          # Search and replace
+          :%s/old/new/g
+          
+          # Execute shell command
+          :!ls -la
+          
+          # Split windows
+          :split filename.txt    # Horizontal split
+          :vsplit filename.txt   # Vertical split
+          
+          # Multiple buffers
+          :bnext                 # Next buffer
+          :bprev                 # Previous buffer
+
+    nano:
+      name: nano
+      description: Simple, user-friendly text editor for beginners
+      features:
+        - Easy to use interface
+        - On-screen help
+        - Search and replace
+        - Syntax highlighting
+        - Mouse support
+      shortcuts:
+        - "Ctrl+O: Save"
+        - "Ctrl+X: Exit"
+        - "Ctrl+W: Search"
+        - "Ctrl+K: Cut line"
+        - "Ctrl+U: Paste"
+      code_examples:
+        usage: |
+          # Edit file
+          nano filename.txt
+          
+          # Show line numbers
+          nano -l filename.txt
+          
+          # Soft wrap lines
+          nano -S filename.txt
+
+job_control:
+  process_control:
+    jobs:
+      name: jobs
+      description: Display active jobs in current shell session
+      features:
+        - Job listing
+        - Job status display
+        - Process group management
+      code_examples:
+        usage: |
+          # List all jobs
+          jobs
+          
+          # List with PIDs
+          jobs -l
+          
+          # Running jobs only
+          jobs -r
+          
+          # Stopped jobs only
+          jobs -s
+
+    fg_bg:
+      name: fg/bg (foreground/background)
+      description: Move jobs between foreground and background
+      features:
+        - Job state manipulation
+        - Process continuation
+        - Interactive control
+      code_examples:
+        usage: |
+          # Move job to foreground
+          fg %1                  # Job number 1
+          fg                     # Current job
+          
+          # Move job to background
+          bg %1                  # Job number 1
+          bg                     # Current job
+          
+          # Start command in background
+          command &
+
+    kill_commands:
+      name: kill/pkill/killall
+      description: Terminate processes using various methods
+      features:
+        - Signal sending
+        - Process termination
+        - Pattern-based killing
+        - Graceful and forced termination
+      signals:
+        - "TERM (15): Graceful termination"
+        - "KILL (9): Forced termination"
+        - "HUP (1): Hang up"
+        - "INT (2): Interrupt"
+        - "STOP (19): Stop process"
+        - "CONT (18): Continue process"
+      code_examples:
+        usage: |
+          # Kill by PID
+          kill 1234
+          
+          # Force kill
+          kill -9 1234
+          
+          # Kill by name
+          pkill firefox
+          killall firefox
+          
+          # Kill by user
+          pkill -u username
+          
+          # Send specific signal
+          kill -HUP 1234
+
+    nohup:
+      name: nohup (no hang up)
+      description: Run commands immune to hangups and session termination
+      features:
+        - Session-independent execution
+        - Output redirection
+        - Background execution
+        - Process persistence
+      code_examples:
+        usage: |
+          # Run command with nohup
+          nohup command &
+          
+          # Redirect output
+          nohup command > output.log 2>&1 &
+          
+          # Long-running process
+          nohup ./long_running_script.sh &
+
+    operators:
+      name: Shell Operators (&, &&, ||)
+      description: Control command execution and job management
+      features:
+        - Background execution
+        - Conditional execution
+        - Command chaining
+        - Error handling
+      code_examples:
+        usage: |
+          # Background execution
+          command &
+          
+          # Execute if previous succeeds
+          command1 && command2
+          
+          # Execute if previous fails
+          command1 || command2
+          
+          # Command chaining
+          command1; command2; command3
+          
+          # Complex conditions
+          command1 && command2 || command3
+
+utilities:
+  date_time:
+    date:
+      name: date
+      description: Display and set system date and time
+      features:
+        - Date display
+        - Date formatting
+        - Time zone handling
+        - Date arithmetic
+      code_examples:
+        usage: |
+          # Current date and time
+          date
+          
+          # Custom format
+          date '+%Y-%m-%d %H:%M:%S'
+          
+          # UTC time
+          date -u
+          
+          # Specific time zone
+          TZ='America/New_York' date
+          
+          # Date arithmetic
+          date -d "tomorrow"
+          date -d "next week"
+          date -d "2023-01-01 + 30 days"
+          
+          # Epoch time
+          date +%s
+          date -d @1609459200
+
+  environment:
+    env:
+      name: env/printenv
+      description: Display and manipulate environment variables
+      features:
+        - Environment variable display
+        - Variable setting
+        - Command execution with modified environment
+      code_examples:
+        usage: |
+          # Show all environment variables
+          env
+          printenv
+          
+          # Show specific variable
+          printenv PATH
+          
+          # Run command with modified environment
+          env VAR=value command
+          
+          # Clear environment
+          env -i command
+
+    export:
+      name: export
+      description: Set environment variables for child processes
+      features:
+        - Variable export
+        - Persistent environment setup
+        - Shell configuration
+      code_examples:
+        usage: |
+          # Export variable
+          export VAR=value
+          
+          # Export with assignment
+          export PATH="$PATH:/new/path"
+          
+          # Export function
+          export -f function_name
+          
+          # List exported variables
+          export -p
+
+  command_history:
+    history:
+      name: history
+      description: Command history management and recall
+      features:
+        - Command history display
+        - History search
+        - Command recall
+        - History expansion
+      code_examples:
+        usage: |
+          # Show command history
+          history
+          
+          # Show last n commands
+          history 10
+          
+          # Search history
+          history | grep pattern
+          
+          # Execute command by number
+          !123
+          
+          # Execute last command
+          !!
+          
+          # Execute last command starting with pattern
+          !pattern
+
+    alias:
+      name: alias/unalias
+      description: Create command shortcuts and abbreviations
+      features:
+        - Command aliasing
+        - Parameter inclusion
+        - Alias management
+        - Shell customization
+      code_examples:
+        usage: |
+          # Create alias
+          alias ll='ls -la'
+          alias grep='grep --color=auto'
+          
+          # List all aliases
+          alias
+          
+          # Remove alias
+          unalias ll
+          
+          # Remove all aliases
+          unalias -a
+          
+          # Temporary disable alias
+          \ls                    # Use original ls command
+
+  command_location:
+    which:
+      name: which/type/command
+      description: Locate commands and show their type
+      features:
+        - Command path display
+        - Command type identification
+        - Alias resolution
+        - Function detection
+      code_examples:
+        usage: |
+          # Find command location
+          which ls
+          which python
+          
+          # Show command type
+          type ls
+          type cd                # Built-in
+          type ll                # Alias
+          
+          # Portable command location
+          command -v ls
+          
+          # Show all locations
+          type -a python
+
+best_practices:
+  scripting:
+    - Use shellcheck for script validation
+    - Always quote variables: "$var" instead of $var
+    - Use [[ ]] for conditions instead of [ ]
+    - Set strict mode: set -euo pipefail
+    - Use local variables in functions
+    - Include proper error handling
+    - Add usage instructions and help
+
+  security:
+    - Validate input parameters
+    - Use absolute paths for security-critical scripts
+    - Avoid eval and shell injection
+    - Set proper file permissions
+    - Use sudo judiciously
+    - Log important operations
+
+  performance:
+    - Use built-in commands when possible
+    - Minimize external command calls in loops
+    - Use efficient text processing tools
+    - Leverage parallel processing where appropriate
+    - Profile scripts for bottlenecks
+
+  portability:
+    - Use POSIX-compliant syntax when possible
+    - Test on target systems
+    - Avoid GNU-specific extensions unless necessary
+    - Use portable shebang lines
+    - Document system requirements
+
+integration_patterns:
+  automation_workflows:
+    description: Common patterns for system automation
+    pattern: |
+      - Log processing with text tools
+      - Backup and synchronization scripts
+      - System monitoring and alerting
+      - Deployment automation
+      - File organization and cleanup
+    technologies: [bash, cron, systemd, logrotate]
+
+  data_processing_pipelines:
+    description: Text processing and data transformation workflows
+    pattern: |
+      - Extract data with grep/sed/awk
+      - Transform with text processing tools
+      - Aggregate with sort/uniq/wc
+      - Output formatting and reporting
+    technologies: [grep, sed, awk, sort, uniq]
+
+  system_administration:
+    description: Common sysadmin task automation
+    pattern: |
+      - User and permission management
+      - Service monitoring and control
+      - Log analysis and rotation
+      - System backup and recovery
+    technologies: [find, xargs, cron, systemctl]
+
+learning_resources:
+  documentation:
+    - GNU Bash Manual
+    - POSIX Shell Command Language
+    - Advanced Bash-Scripting Guide
+    - Unix/Linux Command Reference
+
+  online_resources:
+    - ShellCheck (script analysis)
+    - Bash Hackers Wiki
+    - Linux Command Line tutorials
+    - Unix Stack Exchange
+
+  books:
+    - "Learning the Bash Shell"
+    - "Classic Shell Scripting"
+    - "The Linux Command Line"
+    - "Unix Power Tools"
