@@ -1,0 +1,14 @@
+{
+  "id": "docker-compose-postgres",
+  "name": "Docker Compose: Postgres",
+  "version": "1.0.0",
+  "stack": ["docker", "postgres"],
+  "tags": ["db", "compose"],
+  "description": "Minimal docker-compose file for Postgres.",
+  "params": [{ "name": "project_name", "default": "compose" }],
+  "files": [
+    { "path": "{{project_name}}/docker-compose.yml", "template": "version: '3.9'\nservices:\n  db:\n    image: postgres:16\n    environment:\n      POSTGRES_PASSWORD: postgres\n    ports:\n      - '5432:5432'\n    volumes:\n      - pgdata:/var/lib/postgresql/data\nvolumes:\n  pgdata: {}\n" }
+  ],
+  "patches": []
+}
+

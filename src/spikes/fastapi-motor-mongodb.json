@@ -1,0 +1,15 @@
+{
+  "id": "fastapi-motor-mongodb",
+  "name": "FastAPI + Motor (MongoDB)",
+  "version": "1.0.0",
+  "stack": ["python", "fastapi", "mongodb"],
+  "tags": ["db"],
+  "description": "Use Motor async client to read/write MongoDB.",
+  "params": [{ "name": "project_name", "default": "fastapi-mongo" }],
+  "files": [
+    { "path": "{{project_name}}/requirements.txt", "template": "fastapi\nuvicorn\nmotor\n" },
+    { "path": "{{project_name}}/main.py", "template": "from fastapi import FastAPI\nfrom motor.motor_asyncio import AsyncIOMotorClient\napp = FastAPI()\nclient = AsyncIOMotorClient('mongodb://localhost:27017')\ndb = client['demo']\n@app.post('/items')\nasync def create_item(name: str):\n    r = await db.items.insert_one({'name': name})\n    return {'id': str(r.inserted_id)}\n" }
+  ],
+  "patches": []
+}
+

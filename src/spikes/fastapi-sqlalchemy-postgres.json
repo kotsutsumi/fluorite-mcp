@@ -1,0 +1,15 @@
+{
+  "id": "fastapi-sqlalchemy-postgres",
+  "name": "FastAPI + SQLAlchemy (Postgres)",
+  "version": "1.0.0",
+  "stack": ["python", "fastapi", "sqlalchemy", "postgres"],
+  "tags": ["db"],
+  "description": "Connect to Postgres with SQLAlchemy and simple query.",
+  "params": [{ "name": "project_name", "default": "fastapi-pg" }],
+  "files": [
+    { "path": "{{project_name}}/requirements.txt", "template": "fastapi\nuvicorn\nsqlalchemy\npsycopg2-binary\n" },
+    { "path": "{{project_name}}/main.py", "template": "from fastapi import FastAPI\nfrom sqlalchemy import create_engine, text\napp = FastAPI()\nengine = create_engine('postgresql+psycopg2://postgres:postgres@localhost:5432/postgres')\n@app.get('/now')\ndef now():\n    with engine.connect() as conn:\n        t = conn.execute(text('select now()')).scalar()\n        return {'now': str(t)}\n" }
+  ],
+  "patches": []
+}
+

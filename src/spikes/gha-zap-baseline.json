@@ -1,0 +1,14 @@
+{
+  "id": "gha-zap-baseline",
+  "name": "GitHub Actions: OWASP ZAP Baseline",
+  "version": "1.0.0",
+  "stack": ["github-actions", "security"],
+  "tags": ["dast", "zap"],
+  "description": "Run ZAP baseline DAST scan against a URL.",
+  "params": [{ "name": "app_name", "default": "repo" }, { "name": "target_url", "default": "http://localhost:3000" }],
+  "files": [
+    { "path": "{{app_name}}/.github/workflows/zap.yml", "template": "name: ZAP Baseline\n\non: [workflow_dispatch]\n\njobs:\n  zap:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - name: ZAP Baseline Scan\n        uses: zaproxy/action-baseline@v0.12.0\n        with:\n          target: '{{target_url}}'\n          cmd_options: '-a'\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "gha-syft-sbom",
+  "name": "GitHub Actions: Syft SBOM",
+  "version": "1.0.0",
+  "stack": ["github-actions", "security"],
+  "tags": ["sbom", "supply-chain"],
+  "description": "Generate SBOM using anchore/sbom-action (Syft).",
+  "params": [{ "name": "app_name", "default": "repo" }],
+  "files": [
+    { "path": "{{app_name}}/.github/workflows/sbom.yml", "template": "name: SBOM\n\non: [push, pull_request]\n\njobs:\n  sbom:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: anchore/sbom-action@v0\n        with:\n          path: .\n          format: spdx-json\n          output-file: sbom.spdx.json\n" }
+  ],
+  "patches": []
+}
+

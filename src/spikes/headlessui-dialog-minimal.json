@@ -1,0 +1,15 @@
+{
+  "id": "headlessui-dialog-minimal",
+  "name": "Headless UI Dialog (React)",
+  "version": "1.0.0",
+  "stack": ["react", "headlessui"],
+  "tags": ["ui", "dialog"],
+  "description": "Minimal @headlessui/react Dialog.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/HeadlessDialog.tsx", "template": "import React from 'react';\nimport { Dialog } from '@headlessui/react';\nexport default function HeadlessDialog(){ const [open,setOpen]=React.useState(false); return (<div><button onClick={()=>setOpen(true)}>Open</button><Dialog open={open} onClose={setOpen}><Dialog.Panel><Dialog.Title>Title</Dialog.Title><p>Body</p><button onClick={()=>setOpen(false)}>Close</button></Dialog.Panel></Dialog></div>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@headlessui/react\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

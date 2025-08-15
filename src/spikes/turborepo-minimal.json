@@ -1,0 +1,14 @@
+{
+  "id": "turborepo-minimal",
+  "name": "Turborepo Minimal",
+  "version": "1.0.0",
+  "stack": ["turbo", "monorepo"],
+  "tags": ["workspace", "cache"],
+  "description": "Minimal turbo.json with two pipelines.",
+  "params": [{ "name": "repo_name", "default": "monorepo" }],
+  "files": [
+    { "path": "{{repo_name}}/turbo.json", "template": "{\n  \"$schema\": \"https://turbo.build/schema.json\",\n  \"pipeline\": {\n    \"build\": { \"dependsOn\": [\"^build\"], \"outputs\": [\"dist/**\"] },\n    \"lint\": {}\n  }\n}\n" }
+  ],
+  "patches": []
+}
+

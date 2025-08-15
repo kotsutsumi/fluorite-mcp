@@ -1,0 +1,15 @@
+{
+  "id": "node-redis-cache",
+  "name": "Node + Redis Cache (ioredis)",
+  "version": "1.0.0",
+  "stack": ["node", "redis"],
+  "tags": ["cache"],
+  "description": "Minimal Redis get/set using ioredis.",
+  "params": [{ "name": "app_name", "default": "node-app" }, { "name": "redis_url", "default": "redis://localhost:6379" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import Redis from 'ioredis';\nconst redis = new Redis('{{redis_url}}');\nawait redis.set('hello','world');\nconsole.log('value=', await redis.get('hello'));\nawait redis.quit();\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"ioredis\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "terraform-aws-s3-cloudfront",
+  "name": "Terraform AWS S3 + CloudFront",
+  "version": "1.0.0",
+  "stack": ["terraform", "aws"],
+  "tags": ["iac", "cdn"],
+  "description": "Minimal S3 website bucket and CloudFront distribution.",
+  "params": [{ "name": "project_name", "default": "tf" }],
+  "files": [
+    { "path": "{{project_name}}/main.tf", "template": "provider \"aws\" { region = var.region }\nresource \"aws_s3_bucket\" \"site\" { bucket = var.bucket force_destroy = true }\nresource \"aws_cloudfront_distribution\" \"cdn\" { enabled = true origins { domain_name = aws_s3_bucket.site.bucket_regional_domain_name origin_id = \"s3\" } default_cache_behavior { viewer_protocol_policy = \"redirect-to-https\" target_origin_id = \"s3\" allowed_methods = [\"GET\",\"HEAD\"] cached_methods = [\"GET\",\"HEAD\"] forwarded_values { query_string = false cookies { forward = \"none\" } } } viewer_certificate { cloudfront_default_certificate = true } }\nvariable \"region\" { default = \"us-east-1\" }\nvariable \"bucket\" { default = \"my-static-site-demo\" }\n" }
+  ],
+  "patches": []
+}
+

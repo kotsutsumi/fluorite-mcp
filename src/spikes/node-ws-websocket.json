@@ -1,0 +1,15 @@
+{
+  "id": "node-ws-websocket",
+  "name": "Node WebSocket (ws) Echo",
+  "version": "1.0.0",
+  "stack": ["node", "ws"],
+  "tags": ["realtime"],
+  "description": "Minimal WebSocket echo server using ws.",
+  "params": [{ "name": "app_name", "default": "ws-app" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { WebSocketServer } from 'ws';\nconst wss = new WebSocketServer({ port: 8080 });\nwss.on('connection', ws => { ws.on('message', m => ws.send(m)); });\nconsole.log('ws on 8080');\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"ws\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

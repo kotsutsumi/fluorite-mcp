@@ -1,0 +1,15 @@
+{
+  "id": "ag-grid-react-minimal",
+  "name": "AG Grid React Minimal",
+  "version": "1.0.0",
+  "stack": ["react", "ag-grid"],
+  "tags": ["table", "grid"],
+  "description": "Basic AG Grid table setup.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/Grid.tsx", "template": "import React from 'react';\nimport { AgGridReact } from 'ag-grid-react';\nimport 'ag-grid-community/styles/ag-grid.css';\nimport 'ag-grid-community/styles/ag-theme-alpine.css';\nexport function Grid(){ const rowData=[{id:1,name:'A'}]; const colDefs=[{field:'id'},{field:'name'}]; return (<div className=\"ag-theme-alpine\" style={{height:200}}><AgGridReact rowData={rowData} columnDefs={colDefs} /></div>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"ag-grid-react\": \"latest\", \"ag-grid-community\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

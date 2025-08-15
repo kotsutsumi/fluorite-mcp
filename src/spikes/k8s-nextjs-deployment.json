@@ -1,0 +1,14 @@
+{
+  "id": "k8s-nextjs-deployment",
+  "name": "Kubernetes: Next.js Deployment + Service",
+  "version": "1.0.0",
+  "stack": ["kubernetes", "nextjs"],
+  "tags": ["deploy"],
+  "description": "Minimal Deployment and ClusterIP Service for Next.js container.",
+  "params": [{ "name": "project_name", "default": "k8s" }, { "name": "image", "default": "ghcr.io/owner/next-app:latest" }],
+  "files": [
+    { "path": "{{project_name}}/next-deploy.yaml", "template": "apiVersion: apps/v1\nkind: Deployment\nmetadata: { name: next-app }\nspec:\n  replicas: 1\n  selector: { matchLabels: { app: next-app } }\n  template:\n    metadata: { labels: { app: next-app } }\n    spec:\n      containers:\n        - name: app\n          image: {{image}}\n          ports: [{ containerPort: 3000 }]\n---\napiVersion: v1\nkind: Service\nmetadata: { name: next-app }\nspec:\n  type: ClusterIP\n  selector: { app: next-app }\n  ports: [{ port: 80, targetPort: 3000 }]\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "gha-dependency-review",
+  "name": "GitHub Actions: Dependency Review",
+  "version": "1.0.0",
+  "stack": ["github-actions", "security"],
+  "tags": ["deps", "vuln"],
+  "description": "Use GitHub dependency-review-action to block vulnerable changes.",
+  "params": [{ "name": "app_name", "default": "repo" }],
+  "files": [
+    { "path": "{{app_name}}/.github/workflows/dependency-review.yml", "template": "name: Dependency Review\n\non: [pull_request]\n\njobs:\n  review:\n    runs-on: ubuntu-latest\n    permissions:\n      contents: read\n      pull-requests: write\n    steps:\n      - uses: actions/dependency-review-action@v4\n        with:\n          fail-on-severity: high\n" }
+  ],
+  "patches": []
+}
+

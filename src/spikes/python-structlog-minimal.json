@@ -1,0 +1,15 @@
+{
+  "id": "python-structlog-minimal",
+  "name": "Python structlog Minimal",
+  "version": "1.0.0",
+  "stack": ["python", "structlog"],
+  "tags": ["logging"],
+  "description": "JSON structured logging with structlog.",
+  "params": [{ "name": "project_name", "default": "py-app" }],
+  "files": [
+    { "path": "{{project_name}}/requirements.txt", "template": "structlog\n" },
+    { "path": "{{project_name}}/main.py", "template": "import structlog\nstructlog.configure(processors=[structlog.processors.JSONRenderer()])\nlog = structlog.get_logger()\nlog.info('started', service='demo')\n" }
+  ],
+  "patches": []
+}
+

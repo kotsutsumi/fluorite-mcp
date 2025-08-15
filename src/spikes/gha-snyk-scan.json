@@ -1,0 +1,14 @@
+{
+  "id": "gha-snyk-scan",
+  "name": "GitHub Actions: Snyk Scan",
+  "version": "1.0.0",
+  "stack": ["github-actions", "security"],
+  "tags": ["sast", "deps"],
+  "description": "Run Snyk scan (requires SNYK_TOKEN secret).",
+  "params": [{ "name": "app_name", "default": "repo" }],
+  "files": [
+    { "path": "{{app_name}}/.github/workflows/snyk.yml", "template": "name: Snyk\n\non: [push, pull_request]\n\njobs:\n  snyk:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: snyk/actions/node@master\n        env:\n          SNYK_TOKEN: \${{ secrets.SNYK_TOKEN }}\n        with:\n          args: --severity-threshold=high\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "express-cors",
+  "name": "Express CORS Middleware",
+  "version": "1.0.0",
+  "stack": ["node", "express"],
+  "tags": ["cors"],
+  "description": "Enable CORS for all origins using cors package.",
+  "params": [{ "name": "app_name", "default": "express-app" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import express from 'express';\nimport cors from 'cors';\nconst app = express();\napp.use(cors());\napp.get('/health', (_req,res)=>res.json({status:'ok'}));\napp.listen(3000);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"express\": \"latest\", \"cors\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

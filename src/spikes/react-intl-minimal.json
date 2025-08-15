@@ -1,0 +1,15 @@
+{
+  "id": "react-intl-minimal",
+  "name": "React Intl Minimal",
+  "version": "1.0.0",
+  "stack": ["react", "react-intl"],
+  "tags": ["i18n"],
+  "description": "Minimal setup for react-intl with messages.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/i18n.tsx", "template": "import React from 'react';\nimport { IntlProvider, useIntl } from 'react-intl';\nconst messages = { en: { hello: 'Hello' }, ja: { hello: 'こんにちは' } };\nexport function App(){ const [lng,setLng]=React.useState('en'); const intl = useIntl as any; return (<IntlProvider locale={lng} messages={messages[lng]}><p>{intl?.formatMessage? intl.formatMessage({id:'hello'}): 'Hello'}</p><button onClick={()=>setLng('ja')}>JA</button><button onClick={()=>setLng('en')}>EN</button></IntlProvider>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"react-intl\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

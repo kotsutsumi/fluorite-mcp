@@ -1,0 +1,14 @@
+{
+  "id": "gitleaks-action",
+  "name": "GitHub Actions: Gitleaks",
+  "version": "1.0.0",
+  "stack": ["github-actions", "security"],
+  "tags": ["secrets"],
+  "description": "Run Gitleaks to detect secrets in history.",
+  "params": [{ "name": "app_name", "default": "repo" }],
+  "files": [
+    { "path": "{{app_name}}/.github/workflows/gitleaks.yml", "template": "name: Gitleaks\n\non: [push, pull_request]\n\njobs:\n  scan:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n        with:\n          fetch-depth: 0\n      - uses: gitleaks/gitleaks-action@v2\n        with:\n          args: detect --redact --verbose\n" }
+  ],
+  "patches": []
+}
+

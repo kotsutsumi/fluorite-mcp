@@ -1,0 +1,15 @@
+{
+  "id": "openapi-cli-validate",
+  "name": "OpenAPI CLI Validate",
+  "version": "1.0.0",
+  "stack": ["openapi"],
+  "tags": ["validation"],
+  "description": "Validate an OpenAPI file using Redocly openapi-cli.",
+  "params": [{ "name": "app_name", "default": "api" }],
+  "files": [
+    { "path": "{{app_name}}/openapi.yaml", "template": "openapi: 3.0.0\ninfo:\n  title: Demo\n  version: 1.0.0\npaths: {}\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"lint:openapi\": \"openapi lint openapi.yaml\" }, \"devDependencies\": { \"@redocly/cli\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

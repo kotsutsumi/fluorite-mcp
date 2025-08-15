@@ -1,0 +1,16 @@
+{
+  "id": "node-kafkajs-producer-consumer",
+  "name": "Node + KafkaJS Producer/Consumer",
+  "version": "1.0.0",
+  "stack": ["node", "kafka"],
+  "tags": ["mq", "stream"],
+  "description": "Produce and consume a message using kafkajs.",
+  "params": [{ "name": "app_name", "default": "kafka-app" }],
+  "files": [
+    { "path": "{{app_name}}/producer.mjs", "template": "import { Kafka } from 'kafkajs';\nconst kafka = new Kafka({ clientId: 'demo', brokers: ['localhost:9092'] });\nconst p = kafka.producer();\nawait p.connect();\nawait p.send({ topic: 'demo', messages: [{ value: 'hello' }] });\nawait p.disconnect();\n" },
+    { "path": "{{app_name}}/consumer.mjs", "template": "import { Kafka } from 'kafkajs';\nconst kafka = new Kafka({ clientId: 'demo', brokers: ['localhost:9092'] });\nconst c = kafka.consumer({ groupId: 'demo-group' });\nawait c.connect();\nawait c.subscribe({ topic: 'demo' });\nawait c.run({ eachMessage: async ({ message }) => console.log('msg', message.value?.toString()) });\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"kafkajs\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

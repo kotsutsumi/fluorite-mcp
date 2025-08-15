@@ -1,0 +1,15 @@
+{
+  "id": "prism-mock-openapi",
+  "name": "Prism Mock Server for OpenAPI",
+  "version": "1.0.0",
+  "stack": ["openapi", "prism"],
+  "tags": ["mock"],
+  "description": "Use @stoplight/prism-cli to mock an OpenAPI spec.",
+  "params": [{ "name": "app_name", "default": "api" }],
+  "files": [
+    { "path": "{{app_name}}/openapi.yaml", "template": "openapi: 3.0.0\ninfo: { title: Demo, version: 1.0.0 }\npaths:\n  /hello:\n    get:\n      responses:\n        '200':\n          description: ok\n          content:\n            application/json:\n              example: { message: 'hello' }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"mock\": \"prism mock openapi.yaml\" }, \"devDependencies\": { \"@stoplight/prism-cli\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

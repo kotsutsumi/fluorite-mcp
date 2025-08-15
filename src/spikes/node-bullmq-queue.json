@@ -1,0 +1,16 @@
+{
+  "id": "node-bullmq-queue",
+  "name": "Node + BullMQ Queue",
+  "version": "1.0.0",
+  "stack": ["node", "redis", "bullmq"],
+  "tags": ["queue", "jobs"],
+  "description": "Producer/worker minimal example using BullMQ.",
+  "params": [{ "name": "app_name", "default": "queue-app" }],
+  "files": [
+    { "path": "{{app_name}}/producer.mjs", "template": "import { Queue } from 'bullmq';\nconst queue = new Queue('tasks');\nawait queue.add('say', { text: 'hello' });\nawait queue.close();\n" },
+    { "path": "{{app_name}}/worker.mjs", "template": "import { Worker } from 'bullmq';\nnew Worker('tasks', async job => { console.log('job', job.name, job.data); });\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"bullmq\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "dnd-kit-minimal",
+  "name": "dnd-kit Minimal Drag & Drop",
+  "version": "1.0.0",
+  "stack": ["react", "dnd-kit"],
+  "tags": ["dnd"],
+  "description": "Basic sortable list using dnd-kit primitives.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/DnD.tsx", "template": "import React from 'react';\nimport { DndContext } from '@dnd-kit/core';\nexport function DnD(){ return (<DndContext><div>Drag zone (add sensors/items as needed)</div></DndContext>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@dnd-kit/core\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

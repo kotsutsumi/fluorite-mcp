@@ -1,0 +1,18 @@
+{
+  "id": "react-tailwind-vite",
+  "name": "React + Vite + Tailwind",
+  "version": "1.0.0",
+  "stack": ["react", "vite", "tailwind"],
+  "tags": ["css", "spa"],
+  "description": "Vite + Tailwind minimal setup for React.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/postcss.config.cjs", "template": "module.exports = { plugins: { tailwindcss: {}, autoprefixer: {} } };\n" },
+    { "path": "{{app_name}}/tailwind.config.cjs", "template": "module.exports = { content: ['./index.html','./src/**/*.{ts,tsx}'], theme: { extend: {} }, plugins: [] };\n" },
+    { "path": "{{app_name}}/src/index.css", "template": "@tailwind base;\n@tailwind components;\n@tailwind utilities;\n" },
+    { "path": "{{app_name}}/index.html", "template": "<!doctype html><html><body><div id=\"root\"></div><script type=module src=\"/src/main.tsx\"></script></body></html>" },
+    { "path": "{{app_name}}/src/main.tsx", "template": "import React from 'react';\nimport { createRoot } from 'react-dom/client';\nimport './index.css';\ncreateRoot(document.getElementById('root')!).render(<h1 className=\"text-3xl font-bold\">Tailwind Ready</h1>);\n" }
+  ],
+  "patches": []
+}
+

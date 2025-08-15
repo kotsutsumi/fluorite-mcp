@@ -1,0 +1,15 @@
+{
+  "id": "react-dnd-minimal",
+  "name": "React DnD Minimal",
+  "version": "1.0.0",
+  "stack": ["react", "react-dnd"],
+  "tags": ["dnd"],
+  "description": "Setup DnDProvider with HTML5Backend and a simple draggable.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/DndProvider.tsx", "template": "import React from 'react';\nimport { DndProvider, useDrag } from 'react-dnd';\nimport { HTML5Backend } from 'react-dnd-html5-backend';\nfunction Box(){ const [{isDragging}, drag] = useDrag(()=>({ type:'BOX', collect:(m)=>({isDragging:m.isDragging()}) })); return <div ref={drag} style={{opacity:isDragging?0.5:1}}>Drag me</div>; }\nexport function App(){ return (<DndProvider backend={HTML5Backend}><Box/></DndProvider>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"react-dnd\": \"latest\", \"react-dnd-html5-backend\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

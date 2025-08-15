@@ -1,0 +1,15 @@
+{
+  "id": "fastapi-redis-cache",
+  "name": "FastAPI + Redis Cache",
+  "version": "1.0.0",
+  "stack": ["python", "fastapi", "redis"],
+  "tags": ["cache"],
+  "description": "Cache endpoint response in Redis.",
+  "params": [{ "name": "project_name", "default": "fastapi-redis" }],
+  "files": [
+    { "path": "{{project_name}}/requirements.txt", "template": "fastapi\nuvicorn\nredis\n" },
+    { "path": "{{project_name}}/main.py", "template": "from fastapi import FastAPI\nimport redis\nr = redis.Redis(host='localhost', port=6379, db=0)\napp = FastAPI()\n@app.get('/zen')\ndef zen():\n    v = r.get('zen')\n    if v: return {'zen': v.decode()}\n    msg = 'Keep it simple.'\n    r.setex('zen', 30, msg)\n    return {'zen': msg}\n" }
+  ],
+  "patches": []
+}
+

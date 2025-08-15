@@ -1,0 +1,15 @@
+{
+  "id": "fastify-prometheus-metrics",
+  "name": "Fastify Prometheus Metrics",
+  "version": "1.0.0",
+  "stack": ["node", "fastify", "prometheus"],
+  "tags": ["metrics"],
+  "description": "Expose /metrics using prom-client and Fastify route.",
+  "params": [{ "name": "app_name", "default": "fastify-app" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import Fastify from 'fastify';\nimport client from 'prom-client';\nconst app = Fastify();\nconst registry = new client.Registry();\nclient.collectDefaultMetrics({ register: registry });\napp.get('/metrics', async (_req, reply) => { reply.header('content-type', registry.contentType); return registry.metrics(); });\napp.get('/health', async()=>({status:'ok'}));\napp.listen({ port: 3000 });\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"fastify\": \"latest\", \"prom-client\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

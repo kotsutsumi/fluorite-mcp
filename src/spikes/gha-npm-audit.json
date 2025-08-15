@@ -1,0 +1,14 @@
+{
+  "id": "gha-npm-audit",
+  "name": "GitHub Actions: npm audit CI",
+  "version": "1.0.0",
+  "stack": ["github-actions", "node"],
+  "tags": ["security", "deps"],
+  "description": "Run npm audit and fail on vulnerabilities.",
+  "params": [{ "name": "app_name", "default": "repo" }],
+  "files": [
+    { "path": "{{app_name}}/.github/workflows/npm-audit.yml", "template": "name: npm audit\n\non: [push, pull_request]\n\njobs:\n  audit:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 20\n      - run: npm ci\n      - run: npm audit --audit-level=high\n" }
+  ],
+  "patches": []
+}
+

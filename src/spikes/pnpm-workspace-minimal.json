@@ -1,0 +1,16 @@
+{
+  "id": "pnpm-workspace-minimal",
+  "name": "pnpm Workspace Minimal Monorepo",
+  "version": "1.0.0",
+  "stack": ["pnpm", "monorepo"],
+  "tags": ["workspace"],
+  "description": "Minimal pnpm-workspace with two packages.",
+  "params": [{ "name": "repo_name", "default": "monorepo" }],
+  "files": [
+    { "path": "{{repo_name}}/pnpm-workspace.yaml", "template": "packages:\n  - packages/*\n" },
+    { "path": "{{repo_name}}/packages/a/package.json", "template": "{ \"name\": \"a\", \"version\": \"0.0.0\" }\n" },
+    { "path": "{{repo_name}}/packages/b/package.json", "template": "{ \"name\": \"b\", \"version\": \"0.0.0\" }\n" }
+  ],
+  "patches": []
+}
+

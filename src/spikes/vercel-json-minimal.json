@@ -1,0 +1,14 @@
+{
+  "id": "vercel-json-minimal",
+  "name": "Vercel vercel.json Minimal",
+  "version": "1.0.0",
+  "stack": ["vercel", "nextjs"],
+  "tags": ["deploy"],
+  "description": "Minimal vercel.json for Next.js project.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/vercel.json", "template": "{\n  \"version\": 2,\n  \"builds\": [{ \"src\": \"package.json\", \"use\": \"@vercel/next\" }],\n  \"routes\": [{ \"src\": \"/(.*)\", \"dest\": \"/$1\" }]\n}\n" }
+  ],
+  "patches": []
+}
+

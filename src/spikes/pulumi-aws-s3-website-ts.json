@@ -1,0 +1,15 @@
+{
+  "id": "pulumi-aws-s3-website-ts",
+  "name": "Pulumi AWS S3 Website (TS)",
+  "version": "1.0.0",
+  "stack": ["pulumi", "aws", "typescript"],
+  "tags": ["iac", "cdn"],
+  "description": "Pulumi TS program to create an S3 static site.",
+  "params": [{ "name": "project_name", "default": "pulumi" }],
+  "files": [
+    { "path": "{{project_name}}/index.ts", "template": "import * as aws from '@pulumi/aws';\nconst bucket = new aws.s3.Bucket('site', { website: { indexDocument: 'index.html' } });\nexport const bucketName = bucket.bucket;\n" },
+    { "path": "{{project_name}}/package.json", "template": "{ \"name\": \"pulumi-site\", \"private\": true, \"dependencies\": { \"@pulumi/aws\": \"latest\", \"@pulumi/pulumi\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,16 @@
+{
+  "id": "redis-streams-ioredis",
+  "name": "Redis Streams with ioredis",
+  "version": "1.0.0",
+  "stack": ["node", "redis"],
+  "tags": ["stream"],
+  "description": "XADD producer and XREADGROUP consumer.",
+  "params": [{ "name": "app_name", "default": "redis-app" }],
+  "files": [
+    { "path": "{{app_name}}/producer.mjs", "template": "import Redis from 'ioredis';\nconst r = new Redis();\nawait r.xadd('mystream', '*', 'msg', 'hello');\nawait r.quit();\n" },
+    { "path": "{{app_name}}/consumer.mjs", "template": "import Redis from 'ioredis';\nconst r = new Redis();\nawait r.xgroup('CREATE', 'mystream', 'g1', '$', 'MKSTREAM');\nwhile (true){ const res = await r.xreadgroup('GROUP','g1','c1','BLOCK','5000','COUNT','1','STREAMS','mystream','>'); if(res){ console.log(res); } }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"ioredis\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

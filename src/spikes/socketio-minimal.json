@@ -1,0 +1,15 @@
+{
+  "id": "socketio-minimal",
+  "name": "Socket.IO Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "socket.io"],
+  "tags": ["realtime"],
+  "description": "Minimal Socket.IO server with a single event.",
+  "params": [{ "name": "app_name", "default": "socket-app" }],
+  "files": [
+    { "path": "{{app_name}}/server.mjs", "template": "import { createServer } from 'http';\nimport { Server } from 'socket.io';\nconst http = createServer();\nconst io = new Server(http, { cors: { origin: '*' } });\nio.on('connection', s => { s.on('ping', () => s.emit('pong')); });\nhttp.listen(3000);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"socket.io\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

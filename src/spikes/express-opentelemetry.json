@@ -1,0 +1,16 @@
+{
+  "id": "express-opentelemetry",
+  "name": "Express + OpenTelemetry Tracing",
+  "version": "1.0.0",
+  "stack": ["node", "express", "opentelemetry"],
+  "tags": ["tracing", "otel"],
+  "description": "Auto-instrument Express with OpenTelemetry OTLP exporter.",
+  "params": [{ "name": "app_name", "default": "express-otel" }, { "name": "port", "default": "3000" }],
+  "files": [
+    { "path": "{{app_name}}/tracing.mjs", "template": "import { NodeSDK } from '@opentelemetry/sdk-node';\nimport { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';\nimport { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';\nconst sdk = new NodeSDK({ traceExporter: new OTLPTraceExporter(), instrumentations: [getNodeAutoInstrumentations()] });\nsdk.start();\n" },
+    { "path": "{{app_name}}/server.mjs", "template": "import './tracing.mjs';\nimport express from 'express';\nconst app = express();\napp.get('/health', (_req,res)=>res.json({status:'ok'}));\napp.listen({{port}}, ()=>console.log('listening'));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"express\": \"latest\", \"@opentelemetry/sdk-node\": \"latest\", \"@opentelemetry/auto-instrumentations-node\": \"latest\", \"@opentelemetry/exporter-trace-otlp-http\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

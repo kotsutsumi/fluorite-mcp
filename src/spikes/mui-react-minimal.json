@@ -1,0 +1,15 @@
+{
+  "id": "mui-react-minimal",
+  "name": "Material UI Minimal",
+  "version": "1.0.0",
+  "stack": ["react", "mui"],
+  "tags": ["ui"],
+  "description": "Minimal @mui/material Button example.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/MuiButton.tsx", "template": "import * as React from 'react';\nimport Button from '@mui/material/Button';\nexport function MuiButton(){ return <Button variant=\"contained\">Click</Button>; }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@mui/material\": \"latest\", \"@emotion/react\": \"latest\", \"@emotion/styled\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

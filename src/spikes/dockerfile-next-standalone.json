@@ -1,0 +1,14 @@
+{
+  "id": "dockerfile-next-standalone",
+  "name": "Dockerfile for Next.js Standalone",
+  "version": "1.0.0",
+  "stack": ["docker", "nextjs"],
+  "tags": ["docker"],
+  "description": "Multi-stage Dockerfile using Next.js standalone output.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/Dockerfile", "template": "# Install deps\nFROM node:20-alpine AS deps\nWORKDIR /app\nCOPY package.json package-lock.json* pnpm-lock.yaml* yarn.lock* ./\nRUN npm ci || yarn --frozen-lockfile || pnpm i --frozen-lockfile\n# Build\nFROM node:20-alpine AS build\nWORKDIR /app\nCOPY --from=deps /app/node_modules ./node_modules\nCOPY . .\nRUN npm run build || yarn build\n# Run\nFROM node:20-alpine AS run\nWORKDIR /app\nENV NODE_ENV=production\nCOPY --from=build /app/.next/standalone ./\nCOPY --from=build /app/.next/static ./.next/static\nCOPY --from=build /app/public ./public\nEXPOSE 3000\nCMD [\"node\", \"server.js\"]\n" }
+  ],
+  "patches": []
+}
+

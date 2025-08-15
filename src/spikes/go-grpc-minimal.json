@@ -1,0 +1,14 @@
+{
+  "id": "go-grpc-minimal",
+  "name": "Go gRPC Minimal Server",
+  "version": "1.0.0",
+  "stack": ["go", "grpc"],
+  "tags": ["rpc"],
+  "description": "Skeleton gRPC server in Go (no .proto in this spike).",
+  "params": [{ "name": "project_name", "default": "grpc-app" }],
+  "files": [
+    { "path": "{{project_name}}/main.go", "template": "package main\nimport (\n  \"google.golang.org/grpc\"\n  \"net\"\n  \"log\"\n)\nfunc main(){ lis, _ := net.Listen(\"tcp\", \":50051\"); s := grpc.NewServer(); log.Println(\"listening on :50051\"); s.Serve(lis) }\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "node-winston-logger",
+  "name": "Node Winston Logger",
+  "version": "1.0.0",
+  "stack": ["node", "winston"],
+  "tags": ["logging"],
+  "description": "Structured logging with winston (JSON format).",
+  "params": [{ "name": "app_name", "default": "node-app" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import winston from 'winston';\nconst logger = winston.createLogger({ level: 'info', transports: [new winston.transports.Console({ format: winston.format.json() })] });\nlogger.info('started', { service: 'demo' });\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"winston\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

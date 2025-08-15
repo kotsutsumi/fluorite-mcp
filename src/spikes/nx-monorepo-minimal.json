@@ -1,0 +1,15 @@
+{
+  "id": "nx-monorepo-minimal",
+  "name": "Nx Monorepo Minimal",
+  "version": "1.0.0",
+  "stack": ["nx", "monorepo"],
+  "tags": ["workspace"],
+  "description": "Minimal nx.json workspace skeleton.",
+  "params": [{ "name": "repo_name", "default": "monorepo" }],
+  "files": [
+    { "path": "{{repo_name}}/nx.json", "template": "{ \"extends\": \"nx/presets/npm.json\", \"npmScope\": \"org\" }\n" },
+    { "path": "{{repo_name}}/package.json", "template": "{ \"name\": \"{{repo_name}}\", \"private\": true }\n" }
+  ],
+  "patches": []
+}
+

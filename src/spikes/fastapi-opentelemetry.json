@@ -1,0 +1,15 @@
+{
+  "id": "fastapi-opentelemetry",
+  "name": "FastAPI + OpenTelemetry Tracing",
+  "version": "1.0.0",
+  "stack": ["python", "fastapi", "opentelemetry"],
+  "tags": ["tracing", "otel"],
+  "description": "Instrument FastAPI with OTLP HTTP exporter.",
+  "params": [{ "name": "project_name", "default": "fastapi-otel" }],
+  "files": [
+    { "path": "{{project_name}}/requirements.txt", "template": "fastapi\nuvicorn\nopentelemetry-sdk\nopentelemetry-instrumentation-fastapi\nopentelemetry-exporter-otlp\n" },
+    { "path": "{{project_name}}/main.py", "template": "from fastapi import FastAPI\nfrom opentelemetry.instrumentation.fastapi import FastAPIInstrumentor\nfrom opentelemetry import trace\nfrom opentelemetry.sdk.trace import TracerProvider\nfrom opentelemetry.sdk.trace.export import BatchSpanProcessor\nfrom opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter\nprovider = TracerProvider()\nprovider.add_span_processor(BatchSpanProcessor(OTLPSpanExporter()))\ntrace.set_tracer_provider(provider)\napp = FastAPI()\nFastAPIInstrumentor.instrument_app(app)\n@app.get('/ping')\ndef ping(): return {'ok': True}\n" }
+  ],
+  "patches": []
+}
+

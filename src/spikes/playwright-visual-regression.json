@@ -1,0 +1,15 @@
+{
+  "id": "playwright-visual-regression",
+  "name": "Playwright Visual Regression",
+  "version": "1.0.0",
+  "stack": ["playwright"],
+  "tags": ["vr", "screenshots"],
+  "description": "Enable toHaveScreenshot with sensible defaults.",
+  "params": [{ "name": "app_name", "default": "web-app" }],
+  "files": [
+    { "path": "{{app_name}}/playwright.config.ts", "template": "import { defineConfig } from '@playwright/test';\nexport default defineConfig({\n  use: { screenshot: 'only-on-failure' },\n  expect: { toHaveScreenshot: { maxDiffPixels: 100 } }\n});\n" },
+    { "path": "{{app_name}}/tests/visual.spec.ts", "template": "import { test, expect } from '@playwright/test';\n\ntest('homepage visual', async ({ page }) => {\n  await page.goto('https://example.com');\n  await expect(page).toHaveScreenshot();\n});\n" }
+  ],
+  "patches": []
+}
+

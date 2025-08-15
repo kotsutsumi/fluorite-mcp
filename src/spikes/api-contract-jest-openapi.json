@@ -1,0 +1,16 @@
+{
+  "id": "api-contract-jest-openapi",
+  "name": "API Contract Test with jest-openapi",
+  "version": "1.0.0",
+  "stack": ["node", "jest", "openapi"],
+  "tags": ["contract"],
+  "description": "Validate API responses against OpenAPI using jest-openapi.",
+  "params": [{ "name": "app_name", "default": "api" }],
+  "files": [
+    { "path": "{{app_name}}/openapi.yaml", "template": "openapi: 3.0.0\ninfo: { title: Demo, version: 1.0.0 }\npaths:\n  /health:\n    get:\n      responses:\n        '200':\n          description: ok\n          content:\n            application/json:\n              schema:\n                type: object\n                properties:\n                  status: { type: string }\n                required: [status]\n" },
+    { "path": "{{app_name}}/tests/health.test.mjs", "template": "import jestOpenAPI from 'jest-openapi';\nimport path from 'node:path';\nimport fetch from 'node-fetch';\njestOpenAPI(path.join(process.cwd(), 'openapi.yaml'));\n\ntest('GET /health', async () => {\n  const res = await fetch('http://localhost:3000/health');\n  expect(res.status).toBe(200);\n  await expect(res).toSatisfyApiSpec();\n});\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"scripts\": { \"test\": \"node --test\" }, \"devDependencies\": { \"jest-openapi\": \"latest\", \"node-fetch\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

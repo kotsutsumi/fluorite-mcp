@@ -1,0 +1,16 @@
+{
+  "id": "serverless-framework-lambda-ts",
+  "name": "Serverless Framework Lambda (TypeScript)",
+  "version": "1.0.0",
+  "stack": ["aws", "serverless", "lambda"],
+  "tags": ["serverless"],
+  "description": "Minimal serverless.yml and TypeScript handler.",
+  "params": [{ "name": "project_name", "default": "sls-app" }],
+  "files": [
+    { "path": "{{project_name}}/serverless.yml", "template": "service: sls-app\nprovider:\n  name: aws\n  runtime: nodejs20.x\nfunctions:\n  hello:\n    handler: dist/handler.hello\n    events:\n      - httpApi: GET /hello\n" },
+    { "path": "{{project_name}}/src/handler.ts", "template": "export async function hello(){ return { statusCode: 200, body: JSON.stringify({ hello: 'world' }) }; }\n" },
+    { "path": "{{project_name}}/tsconfig.json", "template": "{ \"compilerOptions\": { \"target\": \"ES2022\", \"module\": \"commonjs\", \"outDir\": \"dist\" }, \"include\": [\"src\"] }\n" }
+  ],
+  "patches": []
+}
+

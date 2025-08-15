@@ -1,0 +1,15 @@
+{
+  "id": "cloudflare-workers-minimal",
+  "name": "Cloudflare Workers Minimal",
+  "version": "1.0.0",
+  "stack": ["cloudflare-workers"],
+  "tags": ["edge"],
+  "description": "Minimal worker with wrangler config.",
+  "params": [{ "name": "project_name", "default": "cf-worker" }],
+  "files": [
+    { "path": "{{project_name}}/wrangler.toml", "template": "name = \"cf-worker\"\nmain = \"src/index.js\"\ncompatibility_date = \"2024-01-01\"\n" },
+    { "path": "{{project_name}}/src/index.js", "template": "export default {\n  async fetch(req) { return new Response(JSON.stringify({ hello: 'world' }), { headers: { 'content-type': 'application/json' } }); }\n}\n" }
+  ],
+  "patches": []
+}
+

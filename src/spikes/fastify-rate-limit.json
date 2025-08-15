@@ -1,0 +1,15 @@
+{
+  "id": "fastify-rate-limit",
+  "name": "Fastify Rate Limit",
+  "version": "1.0.0",
+  "stack": ["node", "fastify"],
+  "tags": ["ratelimit"],
+  "description": "Enable rate limiting with @fastify/rate-limit.",
+  "params": [{ "name": "app_name", "default": "fastify-app" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import Fastify from 'fastify';\nimport rateLimit from '@fastify/rate-limit';\nconst app = Fastify();\nawait app.register(rateLimit, { max: 60, timeWindow: '1 minute' });\napp.get('/health', async()=>({status:'ok'}));\napp.listen({ port: 3000 });\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"fastify\": \"latest\", \"@fastify/rate-limit\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

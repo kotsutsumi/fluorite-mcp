@@ -1,0 +1,15 @@
+{
+  "id": "react-hook-form-yup-login",
+  "name": "React Hook Form + Yup Login",
+  "version": "1.0.0",
+  "stack": ["react", "react-hook-form", "yup"],
+  "tags": ["forms", "validation"],
+  "description": "Login form validated with Yup.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/LoginYup.tsx", "template": "import React from 'react';\nimport { useForm } from 'react-hook-form';\nimport * as yup from 'yup';\nimport { yupResolver } from '@hookform/resolvers/yup';\nconst schema = yup.object({ email: yup.string().email().required(), password: yup.string().min(6).required() });\nexport function LoginYup(){ const { register, handleSubmit, formState:{errors} } = useForm({ resolver: yupResolver(schema) });\n  return (<form onSubmit={handleSubmit(console.log)}><input placeholder='email' {...register('email')} />{errors.email?.message as any}<input placeholder='password' type='password' {...register('password')} />{errors.password?.message as any}<button>Login</button></form>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"react-hook-form\": \"latest\", \"yup\": \"latest\", \"@hookform/resolvers\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

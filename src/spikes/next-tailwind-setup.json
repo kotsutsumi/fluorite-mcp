@@ -1,0 +1,17 @@
+{
+  "id": "next-tailwind-setup",
+  "name": "Next.js + Tailwind CSS Setup",
+  "version": "1.0.0",
+  "stack": ["nextjs", "tailwind"],
+  "tags": ["css", "utility"],
+  "description": "Configure Tailwind for Next.js App Router with minimal files.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/postcss.config.js", "template": "module.exports = { plugins: { tailwindcss: {}, autoprefixer: {} } };\n" },
+    { "path": "{{app_name}}/tailwind.config.js", "template": "/** @type {import('tailwindcss').Config} */\nmodule.exports = {\n  content: ['app/**/*.{js,ts,jsx,tsx}', 'components/**/*.{js,ts,jsx,tsx}'],\n  theme: { extend: {} },\n  plugins: []\n};\n" },
+    { "path": "{{app_name}}/app/globals.css", "template": "@tailwind base;\n@tailwind components;\n@tailwind utilities;\n" },
+    { "path": "{{app_name}}/app/page.tsx", "template": "export default function Page(){ return (<main className=\"min-h-screen grid place-items-center\"><h1 className=\"text-3xl font-bold\">Hello Tailwind</h1></main>); }\n" }
+  ],
+  "patches": []
+}
+

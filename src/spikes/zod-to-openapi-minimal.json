@@ -1,0 +1,15 @@
+{
+  "id": "zod-to-openapi-minimal",
+  "name": "Zod to OpenAPI Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "zod", "openapi"],
+  "tags": ["api", "schema"],
+  "description": "Convert Zod schema to OpenAPI document.",
+  "params": [{ "name": "app_name", "default": "schema-app" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { z } from 'zod';\nimport { OpenAPIGenerator, OpenAPIRegistry } from '@asteasolutions/zod-to-openapi';\nconst registry = new OpenAPIRegistry();\nconst User = z.object({ id: z.number(), name: z.string() });\nregistry.register('User', User);\nconst generator = new OpenAPIGenerator(registry.definitions, '3.0.0');\nconsole.log(JSON.stringify(generator.generateDocument({ info: { title: 'Demo', version: '1.0.0' } }), null, 2));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"zod\": \"latest\", \"@asteasolutions/zod-to-openapi\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

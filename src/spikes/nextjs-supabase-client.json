@@ -1,0 +1,16 @@
+{
+  "id": "nextjs-supabase-client",
+  "name": "Next.js Supabase Client Minimal",
+  "version": "1.0.0",
+  "stack": ["nextjs", "supabase"],
+  "tags": ["db", "auth"],
+  "description": "Create Supabase client and fetch a table on server component.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/lib/supabase.ts", "template": "import { createClient } from '@supabase/supabase-js';\nexport const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);\n" },
+    { "path": "{{app_name}}/app/data/page.tsx", "template": "import { supabase } from '../../lib/supabase';\nexport default async function Page(){ const { data } = await supabase.from('items').select('*'); return <pre>{JSON.stringify(data,null,2)}</pre>; }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "NEXT_PUBLIC_SUPABASE_URL=\nNEXT_PUBLIC_SUPABASE_ANON_KEY=\n" }
+  ],
+  "patches": []
+}
+
