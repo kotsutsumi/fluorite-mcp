@@ -1,0 +1,15 @@
+{
+  "id": "typeorm-migration",
+  "name": "TypeORM Migration Script",
+  "version": "1.0.0",
+  "stack": ["typeorm", "postgres"],
+  "tags": ["db", "migrate"],
+  "description": "Configure TypeORM migration run script.",
+  "params": [{ "name": "app_name", "default": "typeorm-app" }],
+  "files": [
+    { "path": "{{app_name}}/ormconfig.json", "template": "{ \"type\": \"postgres\", \"url\": \"$DATABASE_URL\", \"entities\": [\"src/entity/*.ts\"], \"migrations\": [\"src/migration/*.ts\"], \"cli\": { \"migrationsDir\": \"src/migration\" } }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"typeorm\": \"typeorm-ts-node-commonjs\", \"migration:run\": \"typeorm-ts-node-commonjs migration:run\" }, \"devDependencies\": { \"ts-node\": \"latest\", \"typeorm\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

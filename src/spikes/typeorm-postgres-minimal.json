@@ -1,0 +1,17 @@
+{
+  "id": "typeorm-postgres-minimal",
+  "name": "TypeORM + Postgres Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "typeorm", "postgres"],
+  "tags": ["db"],
+  "description": "Minimal TypeORM DataSource and entity.",
+  "params": [{ "name": "app_name", "default": "typeorm-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/entity/User.ts", "template": "import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';\n@Entity() export class User { @PrimaryGeneratedColumn() id!: number; @Column() email!: string; }\n" },
+    { "path": "{{app_name}}/src/data-source.ts", "template": "import 'reflect-metadata';\nimport { DataSource } from 'typeorm';\nimport { User } from './entity/User';\nexport const AppDataSource = new DataSource({ type: 'postgres', url: process.env.DATABASE_URL, entities: [User], synchronize: true });\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"dependencies\": { \"typeorm\": \"latest\", \"pg\": \"latest\", \"reflect-metadata\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres\n" }
+  ],
+  "patches": []
+}
+

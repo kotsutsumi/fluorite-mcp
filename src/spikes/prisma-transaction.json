@@ -1,0 +1,14 @@
+{
+  "id": "prisma-transaction",
+  "name": "Prisma Transaction (Interactive)",
+  "version": "1.0.0",
+  "stack": ["prisma"],
+  "tags": ["db", "transaction"],
+  "description": "Use $transaction with multiple operations.",
+  "params": [{ "name": "app_name", "default": "prisma-app" }],
+  "files": [
+    { "path": "{{app_name}}/txn.mjs", "template": "import { PrismaClient } from '@prisma/client';\nconst prisma = new PrismaClient();\nawait prisma.$transaction(async (tx) => {\n  await tx.user.create({ data: { email: 'b@example.com' } });\n  await tx.user.create({ data: { email: 'c@example.com' } });\n});\nawait prisma.$disconnect();\n" }
+  ],
+  "patches": []
+}
+

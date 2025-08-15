@@ -1,0 +1,14 @@
+{
+  "id": "gha-artifact-upload",
+  "name": "GitHub Actions: Upload Artifacts",
+  "version": "1.0.0",
+  "stack": ["github-actions"],
+  "tags": ["artifacts", "ci"],
+  "description": "Upload build artifacts from CI.",
+  "params": [{ "name": "app_name", "default": "repo" }],
+  "files": [
+    { "path": "{{app_name}}/.github/workflows/artifacts.yml", "template": "name: Artifacts\n\non: [push]\n\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - run: mkdir -p dist && echo hello > dist/app.txt\n      - uses: actions/upload-artifact@v4\n        with:\n          name: build-output\n          path: dist\n" }
+  ],
+  "patches": []
+}
+

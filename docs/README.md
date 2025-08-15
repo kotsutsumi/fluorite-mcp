@@ -25,7 +25,7 @@ Complete documentation for Fluorite MCP - the comprehensive Model Context Protoc
 
 | Feature | Guide | Description |
 |---------|-------|-------------|
-| **Strike Templates** | **[Strike Templates Guide](./strike-templates.md)** | 110+ production-ready development scaffolds |
+| **Strike Templates** | **[Strike Templates Guide](./strike-templates.md)** | 140+ production-ready development scaffolds |
 | **Spike Templates** | **[Legacy Spike Templates](./spike-templates.md)** | Legacy rapid prototyping system |
 | **Static Analysis** | **[API Documentation](../API.md#static-analysis)** | Framework-specific code analysis |
 | **Custom Integrations** | **[Developer Guide](./developer.md#plugin-development)** | Building custom plugins and extensions |
@@ -96,7 +96,7 @@ Documentation is updated with each release:
 |-------|----------|
 | **Library Specifications** | 90+ libraries with complete usage patterns |
 | **Static Analysis** | 50+ validation rules across frameworks |
-| **Strike Templates** | 110+ production scaffolds for rapid development |
+| **Strike Templates** | 140+ production scaffolds for rapid development |
 | **Spike Templates** | Legacy template system |
 | **Natural Language** | How Claude automatically uses Fluorite MCP |
 
@@ -173,7 +173,7 @@ This documentation is actively maintained:
 ## 📊 Documentation Metrics
 
 - **Total Pages**: 9 comprehensive guides
-- **Code Examples**: 100+ working examples + 110+ Strike templates
+- **Code Examples**: 100+ working examples + 140+ Strike templates
 - **Cross-References**: 250+ internal links
 - **Languages**: English and Japanese
 - **Update Frequency**: Every release

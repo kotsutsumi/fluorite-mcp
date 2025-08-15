@@ -1,0 +1,15 @@
+{
+  "id": "next-shadcn-setup",
+  "name": "Next.js shadcn/ui Setup",
+  "version": "1.0.0",
+  "stack": ["nextjs", "shadcn"],
+  "tags": ["ui", "tailwind"],
+  "description": "Minimal shadcn/ui usage with Button component (assumes Tailwind).",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/components/ui/button.tsx", "template": "import * as React from 'react';\nexport function Button({ children }: { children: React.ReactNode }) { return (<button className=\"inline-flex items-center rounded-md bg-black px-3 py-2 text-white\">{children}</button>); }\n" },
+    { "path": "{{app_name}}/app/page.tsx", "template": "import { Button } from '../components/ui/button';\nexport default function Page(){ return <main className=\"p-8\"><Button>Click</Button></main>; }\n" }
+  ],
+  "patches": []
+}
+

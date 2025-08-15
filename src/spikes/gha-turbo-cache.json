@@ -1,0 +1,14 @@
+{
+  "id": "gha-turbo-cache",
+  "name": "GitHub Actions: Turborepo Remote Cache",
+  "version": "1.0.0",
+  "stack": ["github-actions", "turbo"],
+  "tags": ["cache", "ci"],
+  "description": "Use Turborepo remote cache (env vars required).",
+  "params": [{ "name": "repo_name", "default": "monorepo" }],
+  "files": [
+    { "path": "{{repo_name}}/.github/workflows/turbo.yml", "template": "name: Turbo\n\non: [push, pull_request]\n\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 20\n      - run: npm i -g turbo\n      - run: turbo run build --cache-dir=.turbo\n        env:\n          TURBO_TOKEN: \${{ secrets.TURBO_TOKEN }}\n          TURBO_TEAM: \${{ secrets.TURBO_TEAM }}\n" }
+  ],
+  "patches": []
+}
+

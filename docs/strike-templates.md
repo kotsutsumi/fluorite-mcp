@@ -1,6 +1,6 @@
 # Strike Templates - Comprehensive Development Scaffolds
 
-Complete reference for fluorite-mcp's 110+ Strike templates for rapid prototyping and development.
+Complete reference for fluorite-mcp's 140+ Strike templates for rapid prototyping and development.
 
 ## Overview
 
@@ -8,9 +8,9 @@ Strike templates are production-ready scaffolds that implement the Strike develo
 
 ## Template Categories
 
-### 🌐 Frontend Frameworks (22 templates)
+### 🌐 Frontend Frameworks (23 templates)
 
-#### Next.js Ecosystem (15 templates)
+#### Next.js Ecosystem (16 templates)
 | Template | Description | Use Case |
 |----------|-------------|----------|
 | `nextjs-minimal` | Basic SSR Next.js app with TypeScript | Starting point for any Next.js project |
@@ -62,6 +62,7 @@ Strike templates are production-ready scaffolds that implement the Strike develo
 | `nuxt-minimal` | Nuxt.js starter | Universal Vue.js |
 | `sveltekit-minimal` | SvelteKit application | Svelte + Kit |
 | `next-tailwind-setup` | Next.js + Tailwind CSS setup | Styling framework |
+| `next-shadcn-setup` | Next.js shadcn/ui Setup | Modern UI components |
 
 ### 🚀 Backend Frameworks (25 templates)
 
@@ -149,15 +150,19 @@ Strike templates are production-ready scaffolds that implement the Strike develo
 | `gha-syft-sbom` | Software Bill of Materials | Security compliance |
 | `gha-zap-baseline` | OWASP ZAP security testing | Security testing |
 
-### 🎨 UI Components & Libraries (12 templates)
+### 🎨 UI Components & Libraries (16 templates)
 
 #### Component Libraries
 | Template | Description | Library |
 |----------|-------------|---------|
 | `mui-react-minimal` | Material-UI components | Google Material Design |
+| `mui-react-hook-form` | MUI + React Hook Form | Form integration |
 | `radix-ui-dialog-minimal` | Radix UI dialog component | Accessible primitives |
+| `radix-popover-minimal` | Radix UI Popover | Floating UI element |
+| `radix-tooltip-minimal` | Radix UI Tooltip | Contextual information |
 | `headlessui-dialog-minimal` | Headless UI components | Unstyled components |
 | `tanstack-table-react-minimal` | Data table implementation | TanStack Table |
+| `tanstack-table-sorting` | TanStack Table with sorting | Advanced table features |
 | `ag-grid-react-minimal` | Enterprise data grid | AG Grid |
 
 #### Interactive Components
@@ -166,12 +171,15 @@ Strike templates are production-ready scaffolds that implement the Strike develo
 | `dnd-kit-minimal` | Drag and drop interface | Modern DnD implementation |
 | `react-dnd-minimal` | React DnD implementation | Traditional DnD |
 
-### 🗄️ Data & State Management (8 templates)
+### 🗄️ Data & State Management (12 templates)
 
 #### Database Integration
 | Template | Description | Database |
 |----------|-------------|----------|
 | `docker-compose-postgres` | PostgreSQL with Docker | Development database |
+| `prisma-postgres-migrate` | Prisma + Postgres migrations | Database schema management |
+| `typeorm-postgres-minimal` | TypeORM + Postgres | Enterprise ORM |
+| `sqlite-wal-config` | SQLite WAL configuration | High-performance SQLite |
 | `node-redis-cache` | Redis caching | In-memory cache |
 | `node-bullmq-queue` | BullMQ job queue | Task processing |
 
@@ -181,6 +189,7 @@ Strike templates are production-ready scaffolds that implement the Strike develo
 | `socketio-minimal` | Socket.IO real-time | WebSocket communication |
 | `node-ws-websocket` | Native WebSocket | Low-level WebSocket |
 | `node-kafkajs-producer-consumer` | Apache Kafka | Message streaming |
+| `nats-js-minimal` | NATS.js Pub/Sub | Lightweight messaging |
 
 ### ☁️ Infrastructure & DevOps (18 templates)
 
@@ -314,10 +323,10 @@ Each Strike template follows a consistent JSON structure:
 
 ### By Use Case
 - **Authentication**: 4 templates (JWT, OAuth2, Auth0, NextAuth)
-- **Database**: 8 templates (PostgreSQL, MongoDB, SQLite, Redis)
+- **Database**: 11 templates (PostgreSQL, MongoDB, SQLite, Redis, Prisma, TypeORM)
 - **Testing**: 15 templates (Playwright, GitHub Actions, pytest)
-- **UI Components**: 12 templates (Material-UI, Radix UI, drag-drop)
-- **Real-time**: 3 templates (WebSocket, Socket.IO, Kafka)
+- **UI Components**: 16 templates (Material-UI, Radix UI, shadcn/ui, drag-drop)
+- **Real-time**: 4 templates (WebSocket, Socket.IO, Kafka, NATS)
 - **Infrastructure**: 18 templates (Docker, Kubernetes, Terraform)
 
 ### By Complexity
@@ -369,7 +378,7 @@ All Strike templates work with full SuperClaude parameter bypass:
 
 ---
 
-**Total Templates**: 110+ production-ready scaffolds  
+**Total Templates**: 140+ production-ready scaffolds  
 **Total Lines**: 2,100+ lines of battle-tested configurations  
 **Coverage**: 15+ technology stacks, 50+ frameworks and libraries  
 **Quality**: Enterprise-grade patterns with security and performance built-in

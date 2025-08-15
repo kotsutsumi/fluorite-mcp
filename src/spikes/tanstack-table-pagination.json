@@ -1,0 +1,15 @@
+{
+  "id": "tanstack-table-pagination",
+  "name": "TanStack Table Pagination (React)",
+  "version": "1.0.0",
+  "stack": ["react", "tanstack-table"],
+  "tags": ["table", "pagination"],
+  "description": "Client-side pagination controls.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/TablePagination.tsx", "template": "import * as React from 'react';\nimport { useReactTable, getCoreRowModel, createColumnHelper, getPaginationRowModel } from '@tanstack/react-table';\nconst ch = createColumnHelper<{ id:number; name:string }>();\nconst columns = [ ch.accessor('id',{ header: 'ID' }), ch.accessor('name',{ header: 'Name' }) ];\nconst data = Array.from({length:42}, (_,i)=>({id:i+1, name:'Item '+(i+1)}));\nexport function TablePagination(){ const table = useReactTable({ data, columns, getCoreRowModel: getCoreRowModel(), getPaginationRowModel: getPaginationRowModel(), initialState:{ pagination:{ pageSize: 10 } } });\n  return (<div><table><thead>{table.getHeaderGroups().map(hg=>(<tr key={hg.id}>{hg.headers.map(h=>(<th key={h.id}>{h.column.columnDef.header as any}</th>))}</tr>))}</thead><tbody>{table.getRowModel().rows.map(r=>(<tr key={r.id}>{r.getVisibleCells().map(c=>(<td key={c.id}>{c.getValue() as any}</td>))}</tr>))}</tbody></table><div><button onClick={()=>table.previousPage()} disabled={!table.getCanPreviousPage()}>Prev</button><span>{table.getState().pagination.pageIndex+1}</span><button onClick={()=>table.nextPage()} disabled={!table.getCanNextPage()}>Next</button></div></div>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@tanstack/react-table\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

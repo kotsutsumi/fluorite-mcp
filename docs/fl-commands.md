@@ -100,7 +100,7 @@ Users receive enhanced capabilities without awareness:
 - Performance optimization suggestions
 
 ### Strike Templates
-- 110+ production-ready scaffolds
+- 140+ production-ready scaffolds
 - 15+ technology stacks covered
 - Natural language template discovery
 - Strike development workflow integration

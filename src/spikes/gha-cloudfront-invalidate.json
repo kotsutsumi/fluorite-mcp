@@ -1,0 +1,14 @@
+{
+  "id": "gha-cloudfront-invalidate",
+  "name": "GitHub Actions: CloudFront Invalidation",
+  "version": "1.0.0",
+  "stack": ["github-actions", "aws"],
+  "tags": ["cdn", "deploy"],
+  "description": "Invalidate CloudFront cache after deploy.",
+  "params": [{ "name": "app_name", "default": "repo" }],
+  "files": [
+    { "path": "{{app_name}}/.github/workflows/cloudfront.yml", "template": "name: CloudFront Invalidate\n\non: [workflow_dispatch]\n\njobs:\n  invalidate:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: awact/cloudfront-invalidation-action@v2\n        with:\n          distribution-id: ${{ secrets.CF_DISTRIBUTION_ID }}\n          paths: '/*'\n          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}\n          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}\n          aws-region: 'us-east-1'\n" }
+  ],
+  "patches": []
+}
+

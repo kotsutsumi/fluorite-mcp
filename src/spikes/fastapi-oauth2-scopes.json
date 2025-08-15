@@ -1,0 +1,15 @@
+{
+  "id": "fastapi-oauth2-scopes",
+  "name": "FastAPI OAuth2 with Scopes",
+  "version": "1.0.0",
+  "stack": ["python", "fastapi", "oauth2"],
+  "tags": ["auth"],
+  "description": "OAuth2 password flow with scopes enforcement.",
+  "params": [{ "name": "project_name", "default": "fastapi-oauth-scopes" }],
+  "files": [
+    { "path": "{{project_name}}/requirements.txt", "template": "fastapi\nuvicorn\npython-multipart\n" },
+    { "path": "{{project_name}}/main.py", "template": "from fastapi import FastAPI, Depends, HTTPException, Security\nfrom fastapi.security import OAuth2PasswordBearer, SecurityScopes, OAuth2PasswordRequestForm\napp = FastAPI()\noauth2_scheme = OAuth2PasswordBearer(tokenUrl='token', scopes={'read':'read access','write':'write access'})\n\n@app.post('/token')\nasync def token(form: OAuth2PasswordRequestForm = Depends()):\n    return { 'access_token': 'read write', 'token_type': 'bearer' }\n\n@app.get('/secure')\nasync def secure(sec: SecurityScopes, token: str = Depends(oauth2_scheme)):\n    needed = set(sec.scopes)\n    have = set(token.split())\n    if not needed.issubset(have):\n        raise HTTPException(403, 'insufficient_scope')\n    return { 'ok': True }\n" }
+  ],
+  "patches": []
+}
+

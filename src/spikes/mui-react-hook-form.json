@@ -1,0 +1,15 @@
+{
+  "id": "mui-react-hook-form",
+  "name": "MUI + React Hook Form",
+  "version": "1.0.0",
+  "stack": ["react", "mui", "react-hook-form"],
+  "tags": ["forms", "ui"],
+  "description": "Login form using MUI TextField and RHF.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/MuiLogin.tsx", "template": "import * as React from 'react';\nimport TextField from '@mui/material/TextField';\nimport Button from '@mui/material/Button';\nimport { useForm } from 'react-hook-form';\nexport function MuiLogin(){ const { register, handleSubmit } = useForm(); return (<form onSubmit={handleSubmit(console.log)}><TextField label='Email' {...register('email')} /><TextField label='Password' type='password' {...register('password')} /><Button type='submit' variant='contained'>Login</Button></form>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@mui/material\": \"latest\", \"@emotion/react\": \"latest\", \"@emotion/styled\": \"latest\", \"react-hook-form\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

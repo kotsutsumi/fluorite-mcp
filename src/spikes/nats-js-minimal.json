@@ -1,0 +1,16 @@
+{
+  "id": "nats-js-minimal",
+  "name": "NATS.js Minimal Pub/Sub",
+  "version": "1.0.0",
+  "stack": ["node", "nats"],
+  "tags": ["mq"],
+  "description": "Publish and subscribe with nats.ws (or nats).",
+  "params": [{ "name": "app_name", "default": "nats-app" }],
+  "files": [
+    { "path": "{{app_name}}/pub.mjs", "template": "import { connect, StringCodec } from 'nats';\nconst nc = await connect({ servers: 'localhost:4222' });\nconst sc = StringCodec();\nawait nc.publish('demo', sc.encode('hello'));\nawait nc.drain();\n" },
+    { "path": "{{app_name}}/sub.mjs", "template": "import { connect, StringCodec } from 'nats';\nconst nc = await connect({ servers: 'localhost:4222' });\nconst sc = StringCodec();\nconst sub = nc.subscribe('demo');\n(async () => { for await (const m of sub) console.log(sc.decode(m.data)); })();\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"nats\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "docker-compose-prom-grafana",
+  "name": "Docker Compose: Prometheus + Grafana",
+  "version": "1.0.0",
+  "stack": ["docker", "prometheus", "grafana"],
+  "tags": ["observability"],
+  "description": "Compose stack for Prometheus and Grafana.",
+  "params": [{ "name": "project_name", "default": "obs" }],
+  "files": [
+    { "path": "{{project_name}}/docker-compose.yml", "template": "version: '3.9'\nservices:\n  prometheus:\n    image: prom/prometheus\n    volumes: [ './prometheus.yml:/etc/prometheus/prometheus.yml' ]\n    ports: [ '9090:9090' ]\n  grafana:\n    image: grafana/grafana\n    ports: [ '3000:3000' ]\n    depends_on: [ prometheus ]\n" },
+    { "path": "{{project_name}}/prometheus.yml", "template": "global: { scrape_interval: 15s }\nscrape_configs:\n  - job_name: 'self'\n    static_configs: [{ targets: ['host.docker.internal:9090'] }]\n" }
+  ],
+  "patches": []
+}
+

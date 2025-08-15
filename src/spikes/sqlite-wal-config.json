@@ -1,0 +1,14 @@
+{
+  "id": "sqlite-wal-config",
+  "name": "SQLite WAL Configuration",
+  "version": "1.0.0",
+  "stack": ["sqlite"],
+  "tags": ["db"],
+  "description": "Enable Write-Ahead Logging and recommended pragmas.",
+  "params": [{ "name": "project_name", "default": "sqlite-app" }],
+  "files": [
+    { "path": "{{project_name}}/setup.sql", "template": "PRAGMA journal_mode=WAL;\nPRAGMA synchronous=NORMAL;\nPRAGMA foreign_keys=ON;\n" }
+  ],
+  "patches": []
+}
+

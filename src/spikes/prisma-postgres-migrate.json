@@ -1,0 +1,16 @@
+{
+  "id": "prisma-postgres-migrate",
+  "name": "Prisma + Postgres Migrate",
+  "version": "1.0.0",
+  "stack": ["prisma", "postgres"],
+  "tags": ["db", "migrate"],
+  "description": "Prisma schema and migrate dev script for Postgres.",
+  "params": [{ "name": "app_name", "default": "prisma-app" }],
+  "files": [
+    { "path": "{{app_name}}/prisma/schema.prisma", "template": "generator client { provider = \"prisma-client-js\" }\ndatasource db { provider = \"postgresql\" url = env(\"DATABASE_URL\") }\nmodel User { id Int @id @default(autoincrement()) email String @unique }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"migrate\": \"prisma migrate dev --name init\" }, \"devDependencies\": { \"prisma\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

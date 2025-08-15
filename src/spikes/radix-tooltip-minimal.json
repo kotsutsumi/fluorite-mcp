@@ -1,0 +1,15 @@
+{
+  "id": "radix-tooltip-minimal",
+  "name": "Radix UI Tooltip (React)",
+  "version": "1.0.0",
+  "stack": ["react", "radix-ui"],
+  "tags": ["ui", "tooltip"],
+  "description": "Minimal @radix-ui/react-tooltip usage.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/TooltipExample.tsx", "template": "import * as Tooltip from '@radix-ui/react-tooltip';\nexport default function TooltipExample(){ return (<Tooltip.Provider><Tooltip.Root><Tooltip.Trigger>Hover</Tooltip.Trigger><Tooltip.Portal><Tooltip.Content>Hint<Tooltip.Arrow /></Tooltip.Content></Tooltip.Portal></Tooltip.Root></Tooltip.Provider>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@radix-ui/react-tooltip\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

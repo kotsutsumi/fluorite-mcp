@@ -1,0 +1,15 @@
+{
+  "id": "radix-popover-minimal",
+  "name": "Radix UI Popover (React)",
+  "version": "1.0.0",
+  "stack": ["react", "radix-ui"],
+  "tags": ["ui", "popover"],
+  "description": "Minimal @radix-ui/react-popover usage.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/PopoverExample.tsx", "template": "import * as Popover from '@radix-ui/react-popover';\nexport default function Pop(){ return (<Popover.Root><Popover.Trigger>Open</Popover.Trigger><Popover.Portal><Popover.Content>Content<Popover.Arrow /></Popover.Content></Popover.Portal></Popover.Root>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@radix-ui/react-popover\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+
