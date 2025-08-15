@@ -1,0 +1,106 @@
+id: "web-utils-modules-ecosystem"
+name: "Web開発 — ユーティリティ/モジュール深堀り"
+homepage: "https://github.com/kotsutsumi/fluorite-mcp"
+summary: "ビルド/モノレポ/リリース、型・スキーマ・API契約、認証/セキュリティ、キャッシュ/配信/画像、検索、観測/品質/テスト、フィーチャーフラグ、生成系/ドキュメントまでを横断整理。既存スタックに“何を足すか”の判断を助ける実務カタログ。"
+categories:
+  build-bundle-foundation:
+    - name: "Vite / Rspack / ESBuild / SWC"
+      homepage: "https://vitejs.dev/ | https://www.rspack.dev/ | https://esbuild.github.io/ | https://swc.rs/"
+      summary: "高速ビルド/バンドル/トランスパイル基盤。"
+    - name: "Turborepo / Nx / Lage"
+      homepage: "https://turbo.build/repo | https://nx.dev/ | https://github.com/microsoft/lage"
+      summary: "モノレポ運用・分散キャッシュ・影響範囲ビルド。"
+    - name: "Changesets / semantic-release / release-please"
+      homepage: "https://github.com/changesets/changesets | https://semantic-release.gitbook.io/semantic-release/ | https://github.com/googleapis/release-please"
+      summary: "セマンティックリリース自動化。バージョン/CHANGELOG/Publish。"
+    - name: "Husky + lint-staged + commitlint"
+      homepage: "https://typicode.github.io/husky | https://github.com/okonet/lint-staged | https://commitlint.js.org/"
+      summary: "Git フックで品質担保（Conventional Commits）。"
+
+  types-schema-api:
+    - name: "Zod / Valibot / Superstruct / Ajv(JSON Schema)"
+      homepage: "https://zod.dev/ | https://valibot.dev/ | https://docs.superstructjs.org/ | https://ajv.js.org/"
+      summary: "型/スキーマバリデーション。ランタイム検証/変換。"
+    - name: "MSW (Mock Service Worker)"
+      homepage: "https://mswjs.io/"
+      summary: "API モック。E2E/Storybook と好相性。"
+    - name: "Pact (CDC) / OpenAPI Generator / Orval"
+      homepage: "https://pact.io/ | https://openapi-generator.tech/ | https://orval.dev/"
+      summary: "API 契約テストと SDK 自動生成。"
+    - name: "GraphQL Code Generator"
+      homepage: "https://the-guild.dev/graphql/codegen"
+      summary: "スキーマから型/フック自動生成。"
+
+  auth-security:
+    - name: "jose / node-oidc-provider / passport.js"
+      homepage: "https://github.com/panva/jose | https://github.com/panva/node-oidc-provider | http://www.passportjs.org/"
+      summary: "JWT/OIDC/OAuth 実装。"
+    - name: "Helmet / Csurf / rate-limiter-flexible"
+      homepage: "https://helmetjs.github.io/ | https://github.com/expressjs/csurf | https://github.com/animir/node-rate-limiter-flexible"
+      summary: "ヘッダー強化・CSRF・レート制御。"
+    - name: "Zxcvbn"
+      homepage: "https://github.com/dropbox/zxcvbn"
+      summary: "パスワード強度評価。"
+    - name: "DOMPurify / sanitize-html"
+      homepage: "https://github.com/cure53/DOMPurify | https://github.com/apostrophecms/sanitize-html"
+      summary: "XSS 対策サニタイズ。"
+
+  cache-delivery-media:
+    - name: "LRU Cache / Keyv / ioredis"
+      homepage: "https://github.com/isaacs/node-lru-cache | https://keyv.org/ | https://github.com/redis/ioredis"
+      summary: "アプリ側キャッシュ層・KV ストア・Redis クライアント。"
+    - name: "Sharp / Squoosh / imgproxy"
+      homepage: "https://sharp.pixelplumbing.com/ | https://squoosh.app/ | https://github.com/imgproxy/imgproxy"
+      summary: "画像変換/最適化/プロキシ。"
+    - name: "UploadThing / Uppy / tus"
+      homepage: "https://uploadthing.com/ | https://uppy.io/ | https://tus.io/"
+      summary: "大容量アップロード最適化・レジューム。"
+
+  search-fulltext:
+    - name: "Meilisearch / Typesense / Elastic (client)"
+      homepage: "https://www.meilisearch.com/ | https://typesense.org/ | https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html"
+      summary: "検索基盤 + JS クライアント。"
+    - name: "fuse.js / minisearch"
+      homepage: "https://fusejs.io/ | https://lucaong.github.io/minisearch/"
+      summary: "小規模全文検索（クライアント内）。"
+
+  observability-quality-test:
+    - name: "Playwright / Cypress"
+      homepage: "https://playwright.dev/ | https://www.cypress.io/"
+      summary: "E2E / Component Testing。"
+    - name: "Vitest / Jest / Testing Library"
+      homepage: "https://vitest.dev/ | https://jestjs.io/ | https://testing-library.com/"
+      summary: "ユニット/統合テスト。"
+    - name: "OpenTelemetry JS / Sentry / Datadog RUM"
+      homepage: "https://opentelemetry.io/docs/js/ | https://sentry.io/ | https://www.datadoghq.com/product/real-user-monitoring/"
+      summary: "トレーシング・フロント監視。"
+    - name: "Lighthouse CI / bundle-buddy / webpack-bundle-analyzer"
+      homepage: "https://github.com/GoogleChrome/lighthouse-ci | https://github.com/samccone/bundle-buddy | https://github.com/webpack-contrib/webpack-bundle-analyzer"
+      summary: "速度/バンドル最適化。"
+
+  feature-flags:
+    - name: "Unleash / GrowthBook / Flagsmith"
+      homepage: "https://www.getunleash.io/ | https://www.growthbook.io/ | https://www.flagsmith.com/"
+      summary: "フラグ/実験/ロールアウト制御。"
+
+  docs-diagrams:
+    - name: "Storybook / Ladle"
+      homepage: "https://storybook.js.org/ | https://ladle.dev/"
+      summary: "コンポーネントカタログ + 相互作用テスト。"
+    - name: "Mermaid / PlantUML / Structurizr DSL"
+      homepage: "https://mermaid.js.org/ | https://plantuml.com/ | https://structurizr.org/dsl"
+      summary: "図/アーキテクチャ可視化。"
+    - name: "Docusaurus / VitePress / Nextra"
+      homepage: "https://docusaurus.io/ | https://vitepress.dev/ | https://nextra.site/"
+      summary: "技術サイト/ドキュメント整備。"
+
+bestPractices:
+  - "モノレポはキャッシュ/影響範囲ビルド/Release 戦略（Changesets 等）を最初に設計"
+  - "API 契約は MSW/Pact/OpenAPI/GraphQL Codegen で“型から運用”を徹底"
+  - "認証/セキュリティは jose + Helmet + CSRF + rate-limit と XSS サニタイズをセットで"
+  - "画像/アップロード/検索/監視/フラグは後付け不可視点になりがち—最初から計画"
+references:
+  - "各プロジェクトの公式ドキュメントと Awesome リスト"
+license: "Mixed"
+lastReviewed: "2025-08-15"
+

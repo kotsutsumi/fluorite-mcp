@@ -1,0 +1,1593 @@
+---
+name: Comprehensive Web Development Utilities and Modules Ecosystem
+version: 1.0.0
+description: Comprehensive ecosystem covering build tools, frameworks, testing, security, mobile/desktop development, IoT, and infrastructure for modern web development
+category: web-development
+subcategory: comprehensive-utilities
+tags:
+  - web-development
+  - build-tools
+  - frameworks
+  - testing
+  - security
+  - mobile-development
+  - iot
+  - infrastructure
+  - utilities
+
+core:
+  ecosystem_foundation:
+    philosophy:
+      name: Modern Web Development Ecosystem
+      description: Comprehensive toolkit covering all aspects of modern web development from build tools to deployment
+      principles:
+        - Developer experience optimization through tooling
+        - Type safety and schema validation across the stack
+        - Performance-first approach with optimization tools
+        - Security by design with integrated protection
+        - Cross-platform development capabilities
+        - Scalable architecture patterns
+        - Comprehensive testing strategies
+      practices:
+        - Monorepo management with workspace tools
+        - Automated builds and deployments
+        - Contract-first API development
+        - Progressive enhancement strategies
+        - Component-driven development
+        - Performance monitoring and optimization
+
+build_bundle_foundation:
+  vite:
+    name: Vite
+    description: Next generation frontend tooling with lightning fast HMR and optimized builds
+    homepage: https://vitejs.dev
+    repository: https://github.com/vitejs/vite
+    language: JavaScript/TypeScript
+    features:
+      - Lightning fast hot module replacement (HMR)
+      - Native ES modules during development
+      - Optimized production builds with Rollup
+      - Built-in TypeScript support
+      - CSS preprocessing and PostCSS integration
+      - Plugin ecosystem for framework support
+    configuration_example: |
+      // vite.config.ts
+      import { defineConfig } from 'vite'
+      import react from '@vitejs/plugin-react'
+      import path from 'path'
+      
+      export default defineConfig({
+        plugins: [react()],
+        resolve: {
+          alias: {
+            '@': path.resolve(__dirname, './src'),
+          },
+        },
+        build: {
+          target: 'esnext',
+          minify: 'esbuild',
+          sourcemap: true,
+          rollupOptions: {
+            output: {
+              manualChunks: {
+                vendor: ['react', 'react-dom'],
+              },
+            },
+          },
+        },
+        server: {
+          port: 3000,
+          open: true,
+        },
+      })
+    best_practices:
+      - Use environment-specific configurations
+      - Optimize bundle splitting for better caching
+      - Enable tree-shaking for smaller bundles
+      - Configure proper asset handling
+
+  rspack:
+    name: Rspack
+    description: Fast Rust-based web bundler with webpack compatibility
+    homepage: https://www.rspack.dev
+    repository: https://github.com/web-infra-dev/rspack
+    language: Rust
+    features:
+      - 10x faster than webpack
+      - Compatible with webpack ecosystem
+      - Built-in TypeScript and JSX support
+      - Tree shaking and code splitting
+      - Hot module replacement
+      - Multi-threading compilation
+    configuration_example: |
+      // rspack.config.js
+      module.exports = {
+        entry: './src/index.js',
+        mode: 'development',
+        devServer: {
+          port: 8080,
+        },
+        module: {
+          rules: [
+            {
+              test: /\.tsx?$/,
+              use: 'builtin:swc-loader',
+              options: {
+                jsc: {
+                  parser: {
+                    syntax: 'typescript',
+                    tsx: true,
+                  },
+                },
+              },
+            },
+          ],
+        },
+        resolve: {
+          extensions: ['.ts', '.tsx', '.js', '.jsx'],
+        },
+      }
+
+  esbuild:
+    name: ESBuild
+    description: Extremely fast JavaScript bundler and minifier
+    homepage: https://esbuild.github.io
+    repository: https://github.com/evanw/esbuild
+    language: Go
+    features:
+      - 10-100x faster than other bundlers
+      - Native ES6 and CommonJS support
+      - TypeScript and JSX transformation
+      - Tree shaking and minification
+      - Source map generation
+      - Watch mode for development
+    configuration_example: |
+      // esbuild.config.js
+      import { build } from 'esbuild'
+      
+      await build({
+        entryPoints: ['src/index.ts'],
+        bundle: true,
+        minify: true,
+        sourcemap: true,
+        target: 'es2020',
+        outfile: 'dist/bundle.js',
+        define: {
+          'process.env.NODE_ENV': '"production"',
+        },
+        loader: {
+          '.png': 'dataurl',
+          '.svg': 'text',
+        },
+      })
+
+  swc:
+    name: SWC
+    description: Speedy web compiler written in Rust
+    homepage: https://swc.rs
+    repository: https://github.com/swc-project/swc
+    language: Rust
+    features:
+      - 20x faster than Babel
+      - TypeScript and JSX support
+      - Modern JavaScript features
+      - Minification and optimization
+      - Plugin system
+      - Bundle size optimization
+    configuration_example: |
+      // .swcrc
+      {
+        "jsc": {
+          "parser": {
+            "syntax": "typescript",
+            "tsx": true,
+            "decorators": true,
+            "dynamicImport": true
+          },
+          "transform": {
+            "react": {
+              "runtime": "automatic"
+            }
+          },
+          "target": "es2020",
+          "loose": false,
+          "externalHelpers": false,
+          "keepClassNames": false,
+          "preserveAllComments": false
+        },
+        "module": {
+          "type": "es6"
+        },
+        "minify": true,
+        "sourceMaps": true
+      }
+
+monorepo_tools:
+  turborepo:
+    name: Turborepo
+    description: High-performance build system for JavaScript and TypeScript codebases
+    homepage: https://turbo.build/repo
+    repository: https://github.com/vercel/turbo
+    language: Go/JavaScript
+    features:
+      - Incremental builds with caching
+      - Parallel execution of tasks
+      - Remote caching capabilities
+      - Pipeline configuration
+      - Workspace dependency management
+      - Build optimization insights
+    configuration_example: |
+      // turbo.json
+      {
+        "$schema": "https://turbo.build/schema.json",
+        "globalDependencies": ["**/.env.*local"],
+        "pipeline": {
+          "build": {
+            "dependsOn": ["^build"],
+            "outputs": [".next/**", "!.next/cache/**", "dist/**"]
+          },
+          "test": {
+            "dependsOn": ["build"],
+            "inputs": ["src/**/*.tsx", "src/**/*.ts", "test/**/*.ts"]
+          },
+          "lint": {
+            "outputs": []
+          },
+          "dev": {
+            "cache": false,
+            "persistent": true
+          }
+        }
+      }
+
+  nx:
+    name: Nx
+    description: Smart, fast and extensible build system with first class monorepo support
+    homepage: https://nx.dev
+    repository: https://github.com/nrwl/nx
+    language: TypeScript
+    features:
+      - Computation caching and distribution
+      - Code generation and scaffolding
+      - Dependency graph visualization
+      - Affected project detection
+      - Plugin ecosystem for frameworks
+      - Cloud integration for caching
+    configuration_example: |
+      // nx.json
+      {
+        "extends": "nx/presets/npm.json",
+        "$schema": "./node_modules/nx/schemas/nx-schema.json",
+        "targetDefaults": {
+          "build": {
+            "dependsOn": ["^build"],
+            "inputs": ["production", "^production"],
+            "cache": true
+          },
+          "test": {
+            "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+            "cache": true
+          }
+        },
+        "namedInputs": {
+          "default": ["{projectRoot}/**/*", "sharedGlobals"],
+          "production": [
+            "default",
+            "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+            "!{projectRoot}/tsconfig.spec.json",
+            "!{projectRoot}/jest.config.[jt]s",
+            "!{projectRoot}/src/test-setup.[jt]s",
+            "!{projectRoot}/.eslintrc.json"
+          ],
+          "sharedGlobals": []
+        }
+      }
+
+release_automation:
+  changesets:
+    name: Changesets
+    description: A way to manage versioning and changelogs with multi-package repositories
+    homepage: https://github.com/changesets/changesets
+    repository: https://github.com/changesets/changesets
+    language: TypeScript
+    features:
+      - Version management for monorepos
+      - Changelog generation
+      - Semantic versioning support
+      - CI/CD integration
+      - Collaborative release process
+      - Package publishing automation
+    configuration_example: |
+      // .changeset/config.json
+      {
+        "$schema": "https://unpkg.com/@changesets/config@2.3.1/schema.json",
+        "changelog": "@changesets/cli/changelog",
+        "commit": false,
+        "fixed": [],
+        "linked": [],
+        "access": "restricted",
+        "baseBranch": "main",
+        "updateInternalDependencies": "patch",
+        "ignore": ["@example/ignored"]
+      }
+
+  semantic_release:
+    name: Semantic Release
+    description: Fully automated version management and package publishing
+    homepage: https://semantic-release.gitbook.io
+    repository: https://github.com/semantic-release/semantic-release
+    language: JavaScript
+    features:
+      - Automated semantic versioning
+      - Changelog generation
+      - Git tag creation
+      - Package publishing
+      - Plugin ecosystem
+      - CI/CD integration
+    configuration_example: |
+      // .releaserc.json
+      {
+        "branches": ["main"],
+        "plugins": [
+          "@semantic-release/commit-analyzer",
+          "@semantic-release/release-notes-generator",
+          "@semantic-release/changelog",
+          "@semantic-release/npm",
+          "@semantic-release/github",
+          ["@semantic-release/git", {
+            "assets": ["CHANGELOG.md", "package.json"],
+            "message": "chore(release): ${nextRelease.version} [skip ci]\\n\\n${nextRelease.notes}"
+          }]
+        ]
+      }
+
+git_hooks_quality:
+  husky:
+    name: Husky
+    description: Modern native git hooks made easy
+    homepage: https://typicode.github.io/husky
+    repository: https://github.com/typicode/husky
+    language: JavaScript
+    features:
+      - Git hooks automation
+      - Pre-commit and pre-push hooks
+      - Easy configuration
+      - Cross-platform support
+      - Integration with lint-staged
+      - Bypass mechanisms for CI
+    configuration_example: |
+      // .husky/pre-commit
+      #!/usr/bin/env sh
+      . "$(dirname -- "$0")/_/husky.sh"
+      
+      npx lint-staged
+      npm run test:changed
+
+  lint_staged:
+    name: lint-staged
+    description: Run linters against staged git files
+    homepage: https://github.com/okonet/lint-staged
+    repository: https://github.com/okonet/lint-staged
+    language: JavaScript
+    features:
+      - Lint only staged files
+      - Multiple linter support
+      - Glob pattern matching
+      - Custom command execution
+      - Integration with Husky
+      - Performance optimization
+    configuration_example: |
+      // lint-staged.config.js
+      module.exports = {
+        '*.{js,jsx,ts,tsx}': [
+          'eslint --fix',
+          'prettier --write',
+          'jest --bail --findRelatedTests'
+        ],
+        '*.{json,md,yml,yaml}': ['prettier --write'],
+        '*.{css,scss,less}': ['stylelint --fix', 'prettier --write']
+      }
+
+  commitlint:
+    name: Commitlint
+    description: Lint commit messages to ensure consistent format
+    homepage: https://commitlint.js.org
+    repository: https://github.com/conventional-changelog/commitlint
+    language: JavaScript
+    features:
+      - Conventional commit format
+      - Configurable rules
+      - Multiple format support
+      - CI/CD integration
+      - Custom rule creation
+      - Team collaboration
+    configuration_example: |
+      // commitlint.config.js
+      module.exports = {
+        extends: ['@commitlint/config-conventional'],
+        rules: {
+          'type-enum': [
+            2,
+            'always',
+            [
+              'feat',
+              'fix',
+              'docs',
+              'style',
+              'refactor',
+              'perf',
+              'test',
+              'chore',
+              'ci',
+              'build'
+            ]
+          ],
+          'subject-max-length': [2, 'always', 100],
+          'body-max-line-length': [2, 'always', 100]
+        }
+      }
+
+types_schema_validation:
+  zod:
+    name: Zod
+    description: TypeScript-first schema declaration and validation library
+    homepage: https://zod.dev
+    repository: https://github.com/colinhacks/zod
+    language: TypeScript
+    features:
+      - Runtime type validation
+      - Static type inference
+      - Schema composition
+      - Error handling
+      - Transformation pipelines
+      - Framework integrations
+    examples:
+      basic_schema: |
+        import { z } from 'zod'
+        
+        const User = z.object({
+          id: z.string().uuid(),
+          name: z.string().min(1).max(100),
+          email: z.string().email(),
+          age: z.number().int().min(0).max(120),
+          roles: z.array(z.enum(['admin', 'user', 'moderator'])),
+          createdAt: z.date().default(() => new Date()),
+        })
+        
+        type UserType = z.infer<typeof User>
+        
+        // Validation
+        const result = User.safeParse(userData)
+        if (result.success) {
+          console.log(result.data)
+        } else {
+          console.error(result.error.issues)
+        }
+      api_integration: |
+        // API request/response validation
+        const CreateUserRequest = z.object({
+          name: z.string(),
+          email: z.string().email(),
+        })
+        
+        const CreateUserResponse = z.object({
+          id: z.string(),
+          name: z.string(),
+          email: z.string(),
+          createdAt: z.string().datetime(),
+        })
+        
+        app.post('/users', async (req, res) => {
+          const body = CreateUserRequest.parse(req.body)
+          const user = await createUser(body)
+          res.json(CreateUserResponse.parse(user))
+        })
+
+  valibot:
+    name: Valibot
+    description: Modular and type-safe schema library for TypeScript
+    homepage: https://valibot.dev
+    repository: https://github.com/fabian-hiller/valibot
+    language: TypeScript
+    features:
+      - Modular bundle size
+      - Type-safe validation
+      - Async validation support
+      - Custom error messages
+      - Transformations
+      - Framework agnostic
+    examples:
+      basic_usage: |
+        import * as v from 'valibot'
+        
+        const LoginSchema = v.object({
+          email: v.pipe(v.string(), v.email()),
+          password: v.pipe(v.string(), v.minLength(8)),
+          remember: v.optional(v.boolean(), false),
+        })
+        
+        type LoginData = v.InferInput<typeof LoginSchema>
+        
+        const result = v.safeParse(LoginSchema, formData)
+        if (result.success) {
+          // result.output is fully typed
+          processLogin(result.output)
+        }
+
+  msw:
+    name: Mock Service Worker (MSW)
+    description: API mocking library that uses Service Worker API to intercept requests
+    homepage: https://mswjs.io
+    repository: https://github.com/mswjs/msw
+    language: TypeScript
+    features:
+      - Browser and Node.js support
+      - Request interception
+      - Realistic API mocking
+      - TypeScript support
+      - Storybook integration
+      - Testing framework compatibility
+    examples:
+      setup: |
+        // src/mocks/handlers.ts
+        import { rest } from 'msw'
+        
+        export const handlers = [
+          rest.get('/api/users', (req, res, ctx) => {
+            return res(
+              ctx.status(200),
+              ctx.json([
+                { id: '1', name: 'John Doe', email: 'john@example.com' },
+                { id: '2', name: 'Jane Smith', email: 'jane@example.com' },
+              ])
+            )
+          }),
+          
+          rest.post('/api/users', async (req, res, ctx) => {
+            const newUser = await req.json()
+            return res(
+              ctx.status(201),
+              ctx.json({
+                id: Math.random().toString(36).substr(2, 9),
+                ...newUser,
+                createdAt: new Date().toISOString(),
+              })
+            )
+          }),
+        ]
+      browser_setup: |
+        // src/mocks/browser.ts
+        import { setupWorker } from 'msw'
+        import { handlers } from './handlers'
+        
+        export const worker = setupWorker(...handlers)
+        
+        // In your app entry point
+        if (process.env.NODE_ENV === 'development') {
+          worker.start()
+        }
+
+authentication_security:
+  jose:
+    name: JOSE (JavaScript Object Signing and Encryption)
+    description: Universal JavaScript API for JSON Web Tokens and more
+    homepage: https://github.com/panva/jose
+    repository: https://github.com/panva/jose
+    language: TypeScript
+    features:
+      - JWT creation and verification
+      - JWE encryption/decryption
+      - JWS signing/verification
+      - JWK key management
+      - Node.js and browser support
+      - TypeScript definitions
+    examples:
+      jwt_creation: |
+        import { SignJWT } from 'jose'
+        
+        const secret = new TextEncoder().encode('your-secret-key')
+        
+        const jwt = await new SignJWT({ userId: '123', role: 'admin' })
+          .setProtectedHeader({ alg: 'HS256' })
+          .setIssuedAt()
+          .setExpirationTime('2h')
+          .setIssuer('your-app')
+          .setAudience('your-audience')
+          .sign(secret)
+      jwt_verification: |
+        import { jwtVerify } from 'jose'
+        
+        try {
+          const { payload } = await jwtVerify(jwt, secret, {
+            issuer: 'your-app',
+            audience: 'your-audience',
+          })
+          console.log('Valid token:', payload)
+        } catch (error) {
+          console.error('Invalid token:', error)
+        }
+
+  helmet:
+    name: Helmet
+    description: Express middleware to secure apps by setting various HTTP headers
+    homepage: https://helmetjs.github.io
+    repository: https://github.com/helmetjs/helmet
+    language: JavaScript
+    features:
+      - Security header management
+      - Content Security Policy
+      - HTTPS enforcement
+      - Clickjacking protection
+      - XSS protection
+      - MIME type sniffing prevention
+    configuration_example: |
+      import helmet from 'helmet'
+      import express from 'express'
+      
+      const app = express()
+      
+      app.use(helmet({
+        contentSecurityPolicy: {
+          directives: {
+            defaultSrc: ["'self'"],
+            styleSrc: ["'self'", "'unsafe-inline'"],
+            scriptSrc: ["'self'", "'unsafe-inline'"],
+            imgSrc: ["'self'", "data:", "https:"],
+          },
+        },
+        hsts: {
+          maxAge: 31536000,
+          includeSubDomains: true,
+          preload: true,
+        },
+      }))
+
+  zxcvbn:
+    name: zxcvbn
+    description: Low-budget password strength estimation
+    homepage: https://github.com/dropbox/zxcvbn
+    repository: https://github.com/dropbox/zxcvbn
+    language: JavaScript
+    features:
+      - Password strength estimation
+      - Crack time estimation
+      - Feedback suggestions
+      - Pattern recognition
+      - Dictionary attacks detection
+      - Sequence detection
+    usage_example: |
+      import zxcvbn from 'zxcvbn'
+      
+      function validatePassword(password: string, userInputs: string[] = []) {
+        const result = zxcvbn(password, userInputs)
+        
+        return {
+          score: result.score, // 0-4
+          crackTime: result.crack_times_display.offline_slow_hashing_1e4_per_second,
+          feedback: result.feedback,
+          isStrong: result.score >= 3,
+        }
+      }
+
+cache_media_optimization:
+  sharp:
+    name: Sharp
+    description: High performance Node.js image processing library
+    homepage: https://sharp.pixelplumbing.com
+    repository: https://github.com/lovell/sharp
+    language: C++/JavaScript
+    features:
+      - Fast image resizing and conversion
+      - Multiple format support
+      - Metadata extraction
+      - Image optimization
+      - Streaming support
+      - Memory efficient processing
+    examples:
+      basic_processing: |
+        import sharp from 'sharp'
+        
+        // Resize and optimize
+        await sharp('input.jpg')
+          .resize(800, 600)
+          .jpeg({ quality: 80, progressive: true })
+          .toFile('output.jpg')
+        
+        // Generate multiple sizes
+        const sizes = [400, 800, 1200]
+        for (const size of sizes) {
+          await sharp('input.jpg')
+            .resize(size)
+            .webp({ quality: 80 })
+            .toFile(`output-${size}.webp`)
+        }
+      image_pipeline: |
+        import sharp from 'sharp'
+        import { pipeline } from 'stream'
+        
+        // Streaming pipeline
+        pipeline(
+          fs.createReadStream('input.jpg'),
+          sharp()
+            .resize(1200, 800)
+            .jpeg({ quality: 85 })
+            .png({ compressionLevel: 9 }),
+          fs.createWriteStream('output.png'),
+          (err) => {
+            if (err) console.error('Pipeline failed:', err)
+            else console.log('Pipeline succeeded')
+          }
+        )
+
+  uploadthing:
+    name: UploadThing
+    description: Simple file uploads for modern web apps
+    homepage: https://uploadthing.com
+    repository: https://github.com/pingdotgg/uploadthing
+    language: TypeScript
+    features:
+      - Simple file upload API
+      - Client-side components
+      - Image optimization
+      - Type-safe configuration
+      - Progress tracking
+      - Multiple framework support
+    examples:
+      setup: |
+        // app/api/uploadthing/core.ts
+        import { createUploadthing, type FileRouter } from "uploadthing/next";
+        
+        const f = createUploadthing();
+        
+        export const ourFileRouter = {
+          imageUploader: f({ image: { maxFileSize: "4MB" } })
+            .middleware(async ({ req }) => {
+              const user = await auth(req);
+              if (!user) throw new Error("Unauthorized");
+              return { userId: user.id };
+            })
+            .onUploadComplete(async ({ metadata, file }) => {
+              console.log("Upload complete for userId:", metadata.userId);
+              console.log("file url", file.url);
+              return { uploadedBy: metadata.userId };
+            }),
+        } satisfies FileRouter;
+        
+        export type OurFileRouter = typeof ourFileRouter;
+      client_usage: |
+        // components/FileUpload.tsx
+        import { UploadButton } from "@/utils/uploadthing";
+        
+        export default function FileUpload() {
+          return (
+            <UploadButton
+              endpoint="imageUploader"
+              onClientUploadComplete={(res) => {
+                console.log("Files: ", res);
+                alert("Upload Completed");
+              }}
+              onUploadError={(error: Error) => {
+                alert(`ERROR! ${error.message}`);
+              }}
+            />
+          );
+        }
+
+search_engines:
+  meilisearch:
+    name: Meilisearch
+    description: Lightning fast search engine that fits effortlessly into your apps
+    homepage: https://www.meilisearch.com
+    repository: https://github.com/meilisearch/meilisearch
+    language: Rust
+    features:
+      - Instant search experience
+      - Typo tolerance
+      - Faceting and filtering
+      - Multi-language support
+      - Geo search capabilities
+      - RESTful API
+    examples:
+      client_setup: |
+        import { MeiliSearch } from 'meilisearch'
+        
+        const client = new MeiliSearch({
+          host: 'http://127.0.0.1:7700',
+          apiKey: 'your-api-key',
+        })
+        
+        // Add documents
+        const documents = [
+          { id: 1, title: 'Carol', genres: ['Romance', 'Drama'] },
+          { id: 2, title: 'Wonder Woman', genres: ['Action', 'Adventure'] },
+          { id: 3, title: 'Life of Pi', genres: ['Adventure', 'Drama'] },
+        ]
+        
+        await client.index('movies').addDocuments(documents)
+      search_implementation: |
+        // Search with filters and facets
+        const searchResults = await client.index('movies').search('wonder', {
+          filter: 'genres = Action',
+          facets: ['genres'],
+          attributesToHighlight: ['title'],
+          limit: 20,
+        })
+        
+        console.log(searchResults)
+
+  typesense:
+    name: Typesense
+    description: Fast, typo-tolerant search engine for building delightful search experiences
+    homepage: https://typesense.org
+    repository: https://github.com/typesense/typesense
+    language: C++
+    features:
+      - Typo tolerance and fuzzy search
+      - Faceting and filtering
+      - Geo search
+      - Auto-complete
+      - Scoped API keys
+      - High availability
+    examples:
+      schema_setup: |
+        import Typesense from 'typesense'
+        
+        const client = new Typesense.Client({
+          nodes: [
+            {
+              host: 'localhost',
+              port: 8108,
+              protocol: 'http',
+            },
+          ],
+          apiKey: 'xyz',
+        })
+        
+        const schema = {
+          name: 'products',
+          fields: [
+            { name: 'name', type: 'string' },
+            { name: 'description', type: 'string' },
+            { name: 'price', type: 'float' },
+            { name: 'category', type: 'string', facet: true },
+            { name: 'ratings', type: 'int32' },
+          ],
+        }
+        
+        await client.collections().create(schema)
+
+testing_quality_tools:
+  playwright:
+    name: Playwright
+    description: Fast and reliable end-to-end testing for modern web apps
+    homepage: https://playwright.dev
+    repository: https://github.com/microsoft/playwright
+    language: TypeScript
+    features:
+      - Cross-browser testing
+      - Auto-wait mechanisms
+      - Component testing
+      - Visual comparisons
+      - Mobile testing
+      - API testing
+    examples:
+      e2e_test: |
+        import { test, expect } from '@playwright/test'
+        
+        test('user can create account', async ({ page }) => {
+          await page.goto('/signup')
+          
+          await page.fill('[data-testid=email]', 'user@example.com')
+          await page.fill('[data-testid=password]', 'securepassword')
+          await page.click('[data-testid=submit]')
+          
+          await expect(page.locator('.success-message')).toBeVisible()
+          await expect(page).toHaveURL('/dashboard')
+        })
+      component_testing: |
+        import { test, expect } from '@playwright/experimental-ct-react'
+        import { Button } from './Button'
+        
+        test('button renders correctly', async ({ mount }) => {
+          const component = await mount(
+            <Button variant="primary" onClick={() => console.log('clicked')}>
+              Click me
+            </Button>
+          )
+          
+          await expect(component).toContainText('Click me')
+          await component.click()
+        })
+
+  vitest:
+    name: Vitest
+    description: Blazing fast unit test framework powered by Vite
+    homepage: https://vitest.dev
+    repository: https://github.com/vitest-dev/vitest
+    language: TypeScript
+    features:
+      - Native ES modules support
+      - TypeScript support
+      - JSX and Vue component testing
+      - Watch mode with HMR
+      - Snapshot testing
+      - Coverage reporting
+    examples:
+      basic_test: |
+        import { describe, it, expect, vi } from 'vitest'
+        import { render, screen } from '@testing-library/react'
+        import { UserProfile } from './UserProfile'
+        
+        describe('UserProfile', () => {
+          it('displays user information', () => {
+            const user = { name: 'John Doe', email: 'john@example.com' }
+            render(<UserProfile user={user} />)
+            
+            expect(screen.getByText('John Doe')).toBeInTheDocument()
+            expect(screen.getByText('john@example.com')).toBeInTheDocument()
+          })
+          
+          it('calls onEdit when edit button is clicked', () => {
+            const onEdit = vi.fn()
+            render(<UserProfile user={user} onEdit={onEdit} />)
+            
+            screen.getByRole('button', { name: /edit/i }).click()
+            expect(onEdit).toHaveBeenCalledOnce()
+          })
+        })
+
+feature_flags_experimentation:
+  unleash:
+    name: Unleash
+    description: Open-source feature management platform
+    homepage: https://www.getunleash.io
+    repository: https://github.com/Unleash/unleash
+    language: TypeScript
+    features:
+      - Feature toggles management
+      - A/B testing support
+      - Gradual rollouts
+      - User segmentation
+      - Metrics and analytics
+      - Enterprise security
+    examples:
+      client_setup: |
+        import { UnleashClient } from 'unleash-client'
+        
+        const unleash = new UnleashClient({
+          url: 'https://your-unleash-instance.com/api/',
+          appName: 'my-app',
+          instanceId: 'unique-instance-id',
+          customHeaders: {
+            Authorization: 'Bearer your-api-token',
+          },
+        })
+        
+        unleash.start()
+      feature_usage: |
+        // Check if feature is enabled
+        if (unleash.isEnabled('new-checkout-flow')) {
+          return <NewCheckoutFlow />
+        }
+        
+        // With context
+        const context = {
+          userId: user.id,
+          properties: {
+            region: user.region,
+            plan: user.plan,
+          },
+        }
+        
+        if (unleash.isEnabled('premium-features', context)) {
+          return <PremiumFeatures />
+        }
+
+modern_web_frameworks:
+  remix:
+    name: Remix
+    description: Full stack web framework focused on web standards and modern UX
+    homepage: https://remix.run
+    repository: https://github.com/remix-run/remix
+    language: TypeScript
+    features:
+      - Server-side rendering
+      - Progressive enhancement
+      - Nested routing
+      - Data loading
+      - Form handling
+      - Error boundaries
+    examples:
+      route_with_loader: |
+        // app/routes/posts.$postId.tsx
+        import { json, type LoaderFunctionArgs } from '@remix-run/node'
+        import { useLoaderData } from '@remix-run/react'
+        
+        export async function loader({ params }: LoaderFunctionArgs) {
+          const post = await getPost(params.postId)
+          if (!post) throw new Response('Not Found', { status: 404 })
+          return json({ post })
+        }
+        
+        export default function Post() {
+          const { post } = useLoaderData<typeof loader>()
+          return (
+            <article>
+              <h1>{post.title}</h1>
+              <p>{post.content}</p>
+            </article>
+          )
+        }
+      form_handling: |
+        // app/routes/contact.tsx
+        import { type ActionFunctionArgs, redirect } from '@remix-run/node'
+        
+        export async function action({ request }: ActionFunctionArgs) {
+          const formData = await request.formData()
+          const email = formData.get('email')
+          const message = formData.get('message')
+          
+          await sendEmail({ email, message })
+          return redirect('/contact?success=true')
+        }
+        
+        export default function Contact() {
+          return (
+            <Form method="post">
+              <input name="email" type="email" required />
+              <textarea name="message" required />
+              <button type="submit">Send</button>
+            </Form>
+          )
+        }
+
+  qwik:
+    name: Qwik
+    description: The HTML-first framework with resumability and zero hydration
+    homepage: https://qwik.builder.io
+    repository: https://github.com/BuilderIO/qwik
+    language: TypeScript
+    features:
+      - Zero hydration overhead
+      - Resumability instead of hydration
+      - Fine-grained lazy loading
+      - Progressive enhancement
+      - Streaming SSR
+      - Optimal performance by default
+    examples:
+      component: |
+        import { component$, useSignal } from '@builder.io/qwik'
+        
+        export default component$(() => {
+          const count = useSignal(0)
+          
+          return (
+            <div>
+              <p>Count: {count.value}</p>
+              <button onClick$={() => count.value++}>
+                Increment
+              </button>
+            </div>
+          )
+        })
+      routing: |
+        // src/routes/layout.tsx
+        import { component$, Slot } from '@builder.io/qwik'
+        
+        export default component$(() => {
+          return (
+            <main>
+              <nav>
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+              </nav>
+              <Slot />
+            </main>
+          )
+        })
+
+mobile_desktop_development:
+  capacitor:
+    name: Capacitor
+    description: Build cross-platform Native Progressive Web Apps
+    homepage: https://capacitorjs.com
+    repository: https://github.com/ionic-team/capacitor
+    language: TypeScript
+    features:
+      - Native mobile app deployment
+      - Progressive Web App support
+      - Native plugin access
+      - Live updates
+      - Cross-platform compatibility
+      - Web-first development
+    examples:
+      setup: |
+        // capacitor.config.ts
+        import type { CapacitorConfig } from '@capacitor/cli';
+        
+        const config: CapacitorConfig = {
+          appId: 'com.example.app',
+          appName: 'my-app',
+          webDir: 'dist',
+          server: {
+            androidScheme: 'https'
+          },
+          plugins: {
+            Camera: {
+              permissions: ['camera', 'photos', 'photosAddOnly']
+            },
+            Geolocation: {
+              permissions: ['location', 'coarseLocation']
+            }
+          }
+        };
+        
+        export default config;
+      native_features: |
+        import { Camera, CameraResultType } from '@capacitor/camera';
+        import { Geolocation } from '@capacitor/geolocation';
+        
+        // Take photo
+        const takePicture = async () => {
+          const image = await Camera.getPhoto({
+            quality: 90,
+            allowEditing: true,
+            resultType: CameraResultType.Uri
+          });
+          return image.webPath;
+        };
+        
+        // Get location
+        const getCurrentPosition = async () => {
+          const coordinates = await Geolocation.getCurrentPosition();
+          return {
+            lat: coordinates.coords.latitude,
+            lng: coordinates.coords.longitude
+          };
+        };
+
+  electron:
+    name: Electron
+    description: Build cross-platform desktop apps with JavaScript, HTML, and CSS
+    homepage: https://www.electronjs.org
+    repository: https://github.com/electron/electron
+    language: C++/JavaScript
+    features:
+      - Cross-platform desktop apps
+      - Native OS integration
+      - Auto-updater
+      - Crash reporting
+      - Native menus and notifications
+      - Chromium and Node.js integration
+    examples:
+      main_process: |
+        // main.js
+        const { app, BrowserWindow, Menu, ipcMain } = require('electron')
+        const path = require('path')
+        
+        function createWindow() {
+          const mainWindow = new BrowserWindow({
+            width: 1200,
+            height: 800,
+            webPreferences: {
+              nodeIntegration: false,
+              contextIsolation: true,
+              enableRemoteModule: false,
+              preload: path.join(__dirname, 'preload.js')
+            }
+          })
+        
+          mainWindow.loadFile('dist/index.html')
+        }
+        
+        app.whenReady().then(() => {
+          createWindow()
+          
+          app.on('activate', function () {
+            if (BrowserWindow.getAllWindows().length === 0) createWindow()
+          })
+        })
+      preload_script: |
+        // preload.js
+        const { contextBridge, ipcRenderer } = require('electron')
+        
+        contextBridge.exposeInMainWorld('electronAPI', {
+          openFile: () => ipcRenderer.invoke('dialog:openFile'),
+          saveFile: (content) => ipcRenderer.invoke('dialog:saveFile', content),
+          onMenuClick: (callback) => ipcRenderer.on('menu:click', callback)
+        })
+
+iot_development:
+  node_red:
+    name: Node-RED
+    description: Flow-based development tool for visual programming
+    homepage: https://nodered.org
+    repository: https://github.com/node-red/node-red
+    language: JavaScript
+    features:
+      - Visual programming interface
+      - Built-in library of nodes
+      - IoT device integration
+      - HTTP endpoints and APIs
+      - Real-time data processing
+      - Dashboard creation
+    examples:
+      custom_node: |
+        // nodes/temperature-sensor.js
+        module.exports = function(RED) {
+          function TemperatureSensorNode(config) {
+            RED.nodes.createNode(this, config);
+            const node = this;
+            
+            const interval = setInterval(() => {
+              const temperature = Math.random() * 40 + 10; // 10-50°C
+              const msg = {
+                payload: {
+                  temperature: temperature,
+                  unit: 'celsius',
+                  timestamp: new Date().toISOString()
+                }
+              };
+              node.send(msg);
+            }, config.interval || 5000);
+            
+            node.on('close', () => {
+              clearInterval(interval);
+            });
+          }
+          
+          RED.nodes.registerType('temperature-sensor', TemperatureSensorNode);
+        }
+      flow_example: |
+        // Basic IoT data flow
+        [
+          {
+            "id": "sensor1",
+            "type": "temperature-sensor",
+            "name": "Room Temperature",
+            "interval": 5000
+          },
+          {
+            "id": "filter1",
+            "type": "function",
+            "func": "if (msg.payload.temperature > 25) { return msg; }",
+            "wires": [["alert1"]]
+          },
+          {
+            "id": "alert1",
+            "type": "debug",
+            "name": "High Temperature Alert"
+          }
+        ]
+
+  mqtt_brokers:
+    name: MQTT Brokers (Mosquitto, EMQX, HiveMQ)
+    description: Message brokers for IoT device communication
+    features:
+      mosquitto:
+        - Lightweight MQTT broker
+        - Open source Eclipse project
+        - Low resource requirements
+        - SSL/TLS security support
+      emqx:
+        - High-performance MQTT broker
+        - Clustering support
+        - Rule engine for data processing
+        - Built-in dashboard
+      hivemq:
+        - Enterprise MQTT platform
+        - High availability clustering
+        - Security features
+        - Cloud-native deployment
+    examples:
+      mosquitto_config: |
+        # mosquitto.conf
+        port 1883
+        protocol mqtt
+        
+        listener 8883
+        protocol mqtt
+        cafile /etc/mosquitto/certs/ca.crt
+        certfile /etc/mosquitto/certs/server.crt
+        keyfile /etc/mosquitto/certs/server.key
+        
+        listener 9001
+        protocol websockets
+        
+        allow_anonymous false
+        password_file /etc/mosquitto/passwd
+      client_usage: |
+        import mqtt from 'mqtt'
+        
+        const client = mqtt.connect('mqtt://localhost:1883', {
+          clientId: 'device_' + Math.random().toString(16).substr(2, 8),
+          username: 'device1',
+          password: 'password123',
+          keepalive: 30,
+          clean: true
+        })
+        
+        client.on('connect', () => {
+          console.log('Connected to MQTT broker')
+          
+          // Subscribe to topics
+          client.subscribe(['sensors/temperature', 'sensors/humidity'])
+          
+          // Publish sensor data
+          setInterval(() => {
+            const data = {
+              temperature: Math.random() * 30 + 10,
+              humidity: Math.random() * 100,
+              timestamp: Date.now()
+            }
+            
+            client.publish('sensors/data', JSON.stringify(data))
+          }, 5000)
+        })
+
+infrastructure_extensions:
+  openshift:
+    name: OpenShift
+    description: Enterprise Kubernetes platform by Red Hat
+    homepage: https://www.openshift.com
+    repository: https://github.com/openshift/origin
+    language: Go
+    features:
+      - Enterprise Kubernetes distribution
+      - Developer and operations tools
+      - Built-in CI/CD pipelines
+      - Security and compliance
+      - Multi-cloud deployment
+      - Application lifecycle management
+    examples:
+      deployment_config: |
+        # openshift-deployment.yaml
+        apiVersion: apps.openshift.io/v1
+        kind: DeploymentConfig
+        metadata:
+          name: web-app
+          labels:
+            app: web-app
+        spec:
+          replicas: 3
+          selector:
+            app: web-app
+          template:
+            metadata:
+              labels:
+                app: web-app
+            spec:
+              containers:
+              - name: web-app
+                image: registry.access.redhat.com/ubi8/nodejs-14:latest
+                ports:
+                - containerPort: 8080
+                env:
+                - name: NODE_ENV
+                  value: "production"
+          triggers:
+          - type: ImageChange
+            imageChangeParams:
+              automatic: true
+              containerNames:
+              - web-app
+              from:
+                kind: ImageStreamTag
+                name: web-app:latest
+      build_config: |
+        # build-config.yaml
+        apiVersion: build.openshift.io/v1
+        kind: BuildConfig
+        metadata:
+          name: web-app-build
+        spec:
+          source:
+            git:
+              uri: https://github.com/your-org/web-app
+              ref: main
+            type: Git
+          strategy:
+            sourceStrategy:
+              from:
+                kind: ImageStreamTag
+                name: nodejs:14-ubi8
+            type: Source
+          output:
+            to:
+              kind: ImageStreamTag
+              name: web-app:latest
+
+  rancher:
+    name: Rancher
+    description: Complete container management platform
+    homepage: https://rancher.com
+    repository: https://github.com/rancher/rancher
+    language: Go
+    features:
+      - Multi-cluster Kubernetes management
+      - Centralized authentication
+      - Policy management
+      - Monitoring and alerting
+      - Application catalog
+      - GitOps workflows
+    examples:
+      cluster_config: |
+        # rancher-cluster.yaml
+        apiVersion: provisioning.cattle.io/v1
+        kind: Cluster
+        metadata:
+          name: production-cluster
+          namespace: fleet-default
+        spec:
+          kubernetesVersion: v1.26.0+rke2r1
+          rkeConfig:
+            chartValues:
+              rke2-calico: {}
+            etcd:
+              snapshotRetention: 5
+              snapshotSchedule: "0 */5 * * *"
+            machineGlobalConfig:
+              cni: calico
+              disable-kube-proxy: false
+              etcd-expose-metrics: false
+            machineSelectorConfig:
+            - config:
+                node-label:
+                  - "node-type=worker"
+                protect-kernel-defaults: false
+
+best_practices:
+  development:
+    - "Use TypeScript for better developer experience and type safety"
+    - "Implement comprehensive testing strategy with unit, integration, and E2E tests"
+    - "Set up proper linting and formatting with ESLint and Prettier"
+    - "Use semantic versioning and conventional commits for release management"
+    - "Implement proper error handling and monitoring"
+    - "Optimize bundle size and performance from the start"
+    - "Use environment-specific configurations"
+    - "Implement proper security measures including CSP and input validation"
+    - "Set up CI/CD pipelines for automated testing and deployment"
+    - "Document APIs and maintain up-to-date documentation"
+
+  architecture:
+    - "Design with scalability and maintainability in mind"
+    - "Use component-driven development with Storybook"
+    - "Implement proper separation of concerns"
+    - "Use dependency injection for better testability"
+    - "Design resilient systems with proper error boundaries"
+    - "Implement caching strategies at multiple levels"
+    - "Use feature flags for safer deployments"
+    - "Design for observability with proper logging and metrics"
+    - "Implement proper authentication and authorization"
+    - "Plan for internationalization and accessibility from the start"
+
+  performance:
+    - "Implement lazy loading and code splitting"
+    - "Optimize images and assets"
+    - "Use CDN for static asset delivery"
+    - "Implement proper caching strategies"
+    - "Monitor Core Web Vitals and performance metrics"
+    - "Use service workers for offline functionality"
+    - "Optimize database queries and implement proper indexing"
+    - "Use compression and minification for production builds"
+    - "Implement proper memory management"
+    - "Use performance profiling tools to identify bottlenecks"
+
+  security:
+    - "Implement proper input validation and sanitization"
+    - "Use HTTPS everywhere and implement HSTS"
+    - "Implement proper session management"
+    - "Use secure headers and CSP policies"
+    - "Implement rate limiting and DDoS protection"
+    - "Regular security audits and dependency updates"
+    - "Implement proper logging for security events"
+    - "Use principle of least privilege"
+    - "Implement proper secret management"
+    - "Regular penetration testing and vulnerability assessments"
+
+integration_patterns:
+  monorepo_setup:
+    description: "Setting up a comprehensive monorepo with all tools integrated"
+    example: |
+      // Package structure
+      packages/
+      ├── web-app/          # Next.js/React app
+      ├── mobile-app/       # React Native/Capacitor app
+      ├── desktop-app/      # Electron app
+      ├── api/             # Backend API
+      ├── shared-ui/       # Shared components
+      ├── shared-utils/    # Shared utilities
+      └── shared-types/    # Shared TypeScript types
+      
+      // Root configuration
+      ├── .github/workflows/     # CI/CD pipelines
+      ├── .changeset/           # Release management
+      ├── .husky/              # Git hooks
+      └── turbo.json           # Turborepo configuration
+
+  full_stack_integration:
+    description: "Complete integration example with type safety"
+    example: |
+      // Shared schema definition
+      export const UserSchema = z.object({
+        id: z.string().uuid(),
+        name: z.string().min(1),
+        email: z.string().email(),
+      })
+      
+      // API route with validation
+      app.post('/users', async (req, res) => {
+        const user = UserSchema.parse(req.body)
+        const created = await db.users.create(user)
+        res.json(UserSchema.parse(created))
+      })
+      
+      // Frontend with MSW mocking
+      const handlers = [
+        rest.post('/api/users', (req, res, ctx) => {
+          return res(ctx.json({ id: '1', ...req.body }))
+        }),
+      ]
+      
+      // Component testing with Playwright
+      test('user creation flow', async ({ page }) => {
+        await page.goto('/users/new')
+        await page.fill('[name="name"]', 'John Doe')
+        await page.fill('[name="email"]', 'john@example.com')
+        await page.click('button[type="submit"]')
+        await expect(page.locator('.success')).toBeVisible()
+      })
+
+learning_resources:
+  documentation:
+    - "MDN Web Docs: Comprehensive web development reference"
+    - "React Documentation: Official React guides and API reference"
+    - "TypeScript Handbook: Complete TypeScript documentation"
+    - "Node.js Documentation: Official Node.js API documentation"
+    - "Web.dev: Google's web development best practices"
+
+  courses:
+    - "Frontend Masters: Advanced web development courses"
+    - "Egghead.io: Short, focused development tutorials"
+    - "Pluralsight: Technology skills platform"
+    - "Udemy: Comprehensive development courses"
+    - "YouTube channels: Fireship, Web Dev Simplified, Traversy Media"
+
+  communities:
+    - "Stack Overflow: Developer Q&A platform"
+    - "GitHub: Code hosting and collaboration"
+    - "Discord/Slack communities: Real-time developer chat"
+    - "Reddit: r/webdev, r/reactjs, r/typescript"
+    - "Dev.to: Developer articles and discussions"
+
+tools_matrix:
+  by_use_case:
+    build_optimization:
+      - "Vite: Modern frontend tooling"
+      - "esbuild: Ultra-fast bundling"
+      - "SWC: Fast compilation"
+      - "Webpack: Mature bundler with plugins"
+    
+    type_safety:
+      - "TypeScript: Static typing"
+      - "Zod: Runtime validation"
+      - "tRPC: End-to-end type safety"
+      - "GraphQL Code Generator: Schema-based types"
+    
+    testing:
+      - "Vitest: Fast unit testing"
+      - "Playwright: E2E and component testing"
+      - "MSW: API mocking"
+      - "Testing Library: Component testing utilities"
+    
+    mobile_development:
+      - "React Native: Cross-platform mobile"
+      - "Capacitor: Web-to-native bridge"
+      - "Ionic: UI components for mobile"
+      - "Expo: React Native development platform"
+    
+    performance:
+      - "Lighthouse: Performance auditing"
+      - "Bundle Analyzer: Bundle optimization"
+      - "Sharp: Image optimization"
+      - "Service Workers: Offline functionality"

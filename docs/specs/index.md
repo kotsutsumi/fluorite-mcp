@@ -93,6 +93,9 @@ Fluorite MCPが提供するライブラリ仕様の一覧です。これらの�
 
 ## 🚀 包括的エコシステム仕様
 
+### Web開発・ユーティリティ
+- [包括的Web開発ユーティリティ・モジュールエコシステム](./web-development-comprehensive) - `spec://web-development-comprehensive-ecosystem`
+
 ### モバイル開発
 - [Expo / React Native 包括エコシステム](./expo-react-native-comprehensive) - `spec://expo-react-native-comprehensive-ecosystem`
 - [ネイティブモバイル開発（Swift/Kotlin）](./additional-modern-technologies) - `spec://additional-modern-technologies-ecosystem`
