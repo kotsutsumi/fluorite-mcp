@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-multipart-s3-abort",
+  "name": "Next.js S3 Abort Multipart Upload",
+  "version": "1.0.0",
+  "stack": ["nextjs", "aws-s3"],
+  "tags": ["storage", "multipart"],
+  "description": "Abort a multipart upload given uploadId.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/s3-multipart/abort/route.ts", "template": "import { S3Client, AbortMultipartUploadCommand } from '@aws-sdk/client-s3';\nexport async function POST(req: Request){ const { uploadId } = await req.json(); const s3 = new S3Client({}); await s3.send(new AbortMultipartUploadCommand({ Bucket: process.env.S3_BUCKET!, Key:'big.bin', UploadId: uploadId })); return Response.json({ aborted: true }); }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "S3_BUCKET=\nAWS_ACCESS_KEY_ID=\nAWS_SECRET_ACCESS_KEY=\nAWS_REGION=\n" }
+  ]
+}
+

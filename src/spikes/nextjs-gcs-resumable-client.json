@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-gcs-resumable-client",
+  "name": "Next.js GCS Resumable Client (Chunks)",
+  "version": "1.0.0",
+  "stack": ["nextjs", "gcs"],
+  "tags": ["storage", "resumable"],
+  "description": "Client page to upload chunks to GCS resumable URL.",
+  "params": [{ "name": "app_name", "default": "next-app" }, { "name": "chunk", "default": "5242880" }],
+  "files": [
+    { "path": "{{app_name}}/app/gcs-upload/page.tsx", "template": "'use client'; export default function Page(){ async function onFile(e){ const file = e.target.files[0]; if(!file) return; const { url } = await fetch('/api/gcs-resumable/init').then(r=>r.json()); const size = {{chunk}}; for(let off=0, i=0; off<file.size; off+=size, i++){ const end = Math.min(off+size, file.size)-1; const chunk = file.slice(off, off+size); await fetch(url, { method:'PUT', body: chunk, headers:{ 'Content-Range': `bytes ${off}-${end}/${file.size}` } }); } alert('uploaded'); } return (<main><input type='file' onChange={onFile}/></main>); }\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "nextjs-middleware-ip-reputation-kv",
+  "name": "Next.js Middleware IP Reputation via KV",
+  "version": "1.0.0",
+  "stack": ["nextjs", "upstash"],
+  "tags": ["middleware", "security"],
+  "description": "Block or challenge requests based on IP reputation score stored in KV.",
+  "params": [{ "name": "app_name", "default": "next-app" }, { "name": "threshold", "default": "70" }],
+  "files": [
+    { "path": "{{app_name}}/middleware.ts", "template": "import { NextResponse } from 'next/server'; import type { NextRequest } from 'next/server';\nimport { Redis } from '@upstash/redis'; const kv = Redis.fromEnv();\nexport async function middleware(req: NextRequest){ const ip = req.ip || req.headers.get('x-forwarded-for') || 'unknown'; const score = await kv.get<number>('rep:'+ip) || 0; if(score >= {{threshold}}){ return new Response('blocked', { status: 403 }); } return NextResponse.next(); }\nexport const config = { matcher: '/:path*' };\n" },
+    { "path": "{{app_name}}/.env.example", "template": "UPSTASH_REDIS_REST_URL=\nUPSTASH_REDIS_REST_TOKEN=\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"@upstash/redis\": \"latest\" } }\n" }
+  ]
+}
+

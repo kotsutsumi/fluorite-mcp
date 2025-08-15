@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-prom-client-custom-counter",
+  "name": "Next.js prom-client Custom Counter",
+  "version": "1.0.0",
+  "stack": ["nextjs", "prometheus"],
+  "tags": ["metrics"],
+  "description": "Expose a custom counter metric and increment on hit.",
+  "params": [{ "name": "app_name", "default": "next-app" }, { "name": "metric", "default": "hits_total" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/metrics/route.ts", "template": "export const runtime='nodejs'; import client from 'prom-client'; const reg = new client.Registry(); client.collectDefaultMetrics({ register: reg }); const hits = new client.Counter({ name: '{{metric}}', help: 'Total hits' }); reg.registerMetric(hits); export async function GET(){ hits.inc(); return new Response(await reg.metrics(), { headers:{ 'content-type': reg.contentType } }); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"prom-client\": \"latest\" } }\n" }
+  ]
+}
+

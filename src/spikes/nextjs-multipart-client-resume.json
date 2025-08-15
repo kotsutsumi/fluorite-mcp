@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-multipart-client-resume",
+  "name": "Next.js Multipart Client Resume Upload",
+  "version": "1.0.0",
+  "stack": ["nextjs", "aws-s3"],
+  "tags": ["storage", "multipart"],
+  "description": "Client page that resumes multipart upload using saved uploadId and completed parts.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/upload-resume/page.tsx", "template": "'use client'; export default function Page(){ async function onFile(e){ const file = e.target.files[0]; if(!file) return; let state = JSON.parse(localStorage.getItem('mp-state')||'{}'); let uploadId = state.uploadId; let done = new Set((state.parts||[]).map((p:any)=>p.PartNumber)); if(!uploadId){ const init = await fetch('/api/s3-multipart/init', { method:'POST' }).then(r=>r.json()); uploadId = init.uploadId; state.uploadId = uploadId; state.parts = []; localStorage.setItem('mp-state', JSON.stringify(state)); } const partSize = 5*1024*1024; for(let pn=1, off=0; off<file.size; pn++, off+=partSize){ if(done.has(pn)) continue; const blob = file.slice(off, off+partSize); const { url } = await fetch(`/api/s3-multipart/part?uploadId=${uploadId}&partNumber=${pn}`).then(r=>r.json()); const res = await fetch(url, { method:'PUT', body: blob }); const etag = res.headers.get('etag')?.replaceAll('"',''); state.parts.push({ PartNumber: pn, ETag: etag }); localStorage.setItem('mp-state', JSON.stringify(state)); } await fetch('/api/s3-multipart/complete', { method:'POST', body: JSON.stringify({ uploadId, parts: state.parts }), headers:{ 'content-type':'application/json' } }); localStorage.removeItem('mp-state'); alert('uploaded'); } return (<main><input type='file' onChange={onFile}/></main>); }\n" }
+  ]
+}
+

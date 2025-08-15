@@ -1,0 +1,16 @@
+{
+  "id": "nextjs-supabase-edge-function-invoke",
+  "name": "Next.js Invoke Supabase Edge Function",
+  "version": "1.0.0",
+  "stack": ["nextjs", "supabase"],
+  "tags": ["serverless", "invoke"],
+  "description": "Call a Supabase Edge Function from a Route Handler.",
+  "params": [{ "name": "app_name", "default": "next-app" }, { "name": "fn", "default": "hello" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/supa-fn/route.ts", "template": "import { createClient } from '@supabase/supabase-js';\nexport async function GET(){ const supa = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!); const { data, error } = await supa.functions.invoke('{{fn}}', { body: { msg:'hi' } }); return Response.json({ data, error }); }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "NEXT_PUBLIC_SUPABASE_URL=\nNEXT_PUBLIC_SUPABASE_ANON_KEY=\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"@supabase/supabase-js\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

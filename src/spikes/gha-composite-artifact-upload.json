@@ -1,0 +1,13 @@
+{
+  "id": "gha-composite-artifact-upload",
+  "name": "GHA Composite: Upload Artifacts",
+  "version": "1.0.0",
+  "stack": ["github-actions"],
+  "tags": ["ci", "artifacts"],
+  "description": "Reusable composite to upload build artifacts.",
+  "params": [{ "name": "repo_name", "default": "repo" }],
+  "files": [
+    { "path": "{{repo_name}}/.github/actions/artifact-upload/action.yml", "template": "name: Upload Artifact\ndescription: Upload build artifacts from dist\nruns:\n  using: composite\n  steps:\n    - uses: actions/upload-artifact@v4\n      with:\n        name: build-output\n        path: dist\n" }
+  ]
+}
+

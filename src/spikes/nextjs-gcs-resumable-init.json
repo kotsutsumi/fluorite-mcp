@@ -1,0 +1,15 @@
+{
+  "id": "nextjs-gcs-resumable-init",
+  "name": "Next.js GCS Resumable Upload Init",
+  "version": "1.0.0",
+  "stack": ["nextjs", "gcs"],
+  "tags": ["storage", "resumable"],
+  "description": "Create a GCS resumable upload session URL.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/gcs-resumable/init/route.ts", "template": "import { Storage } from '@google-cloud/storage';\nexport async function GET(){ const storage = new Storage(); const [url] = await storage.bucket(process.env.GCS_BUCKET!).file('big.bin').createResumableUpload({ origin:'*' }); return Response.json({ url }); }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "GOOGLE_APPLICATION_CREDENTIALS=/path/to/sa.json\nGCS_BUCKET=\n" }
+  ],
+  "patches": []
+}
+

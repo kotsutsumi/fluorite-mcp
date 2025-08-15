@@ -1,0 +1,15 @@
+{
+  "id": "nextjs-middleware-ab-test-kv",
+  "name": "Next.js Middleware A/B Test with KV",
+  "version": "1.0.0",
+  "stack": ["nextjs", "upstash"],
+  "tags": ["middleware", "experiment"],
+  "description": "Assign A/B variant using Upstash KV and persist in cookie.",
+  "params": [{ "name": "app_name", "default": "next-app" }, { "name": "key_prefix", "default": "ab:user:" }],
+  "files": [
+    { "path": "{{app_name}}/middleware.ts", "template": "import { NextResponse } from 'next/server'; import type { NextRequest } from 'next/server';\nimport { Redis } from '@upstash/redis'; const kv = Redis.fromEnv();\nexport async function middleware(req: NextRequest){ const uid = req.cookies.get('uid')?.value || crypto.randomUUID(); const k = '{{key_prefix}}'+uid; let v = await kv.get<string>(k); if(!v){ v = Math.random() < 0.5 ? 'A' : 'B'; await kv.set(k, v, { ex: 60*60*24*7 }); } const res = NextResponse.next(); res.headers.set('x-variant', v!); res.cookies.set('uid', uid, { path:'/' }); return res; }\nexport const config = { matcher: '/:path*' };\n" },
+    { "path": "{{app_name}}/.env.example", "template": "UPSTASH_REDIS_REST_URL=\nUPSTASH_REDIS_REST_TOKEN=\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"@upstash/redis\": \"latest\" } }\n" }
+  ]
+}
+

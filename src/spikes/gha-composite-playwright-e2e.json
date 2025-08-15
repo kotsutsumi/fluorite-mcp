@@ -1,0 +1,14 @@
+{
+  "id": "gha-composite-playwright-e2e",
+  "name": "GHA Composite: Playwright E2E",
+  "version": "1.0.0",
+  "stack": ["github-actions", "playwright"],
+  "tags": ["ci", "composite", "e2e"],
+  "description": "Reusable composite to install browsers and run Playwright tests.",
+  "params": [{ "name": "repo_name", "default": "repo" }],
+  "files": [
+    { "path": "{{repo_name}}/.github/actions/playwright-e2e/action.yml", "template": "name: Playwright E2E\ndescription: Install browsers and run E2E\nruns:\n  using: composite\n  steps:\n    - run: npx playwright install --with-deps\n      shell: bash\n    - run: npm run -s test:e2e || npx playwright test\n      shell: bash\n" }
+  ],
+  "patches": []
+}
+

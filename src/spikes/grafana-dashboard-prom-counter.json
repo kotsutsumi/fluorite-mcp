@@ -1,0 +1,13 @@
+{
+  "id": "grafana-dashboard-prom-counter",
+  "name": "Grafana Dashboard: Prometheus Counter Panel",
+  "version": "1.0.0",
+  "stack": ["grafana", "prometheus"],
+  "tags": ["observability", "dashboard"],
+  "description": "Single stat panel for a counter metric (e.g., hits_total).",
+  "params": [{ "name": "project_name", "default": "grafana" }, { "name": "metric", "default": "hits_total" }],
+  "files": [
+    { "path": "{{project_name}}/dashboard-prom-counter.json", "template": "{\n  \"title\": \"Counter\",\n  \"panels\": [ { \"type\": \"stat\", \"title\": \"Hits\", \"targets\": [ { \"expr\": \"{{metric}}\" } ] } ]\n}\n" }
+  ]
+}
+
