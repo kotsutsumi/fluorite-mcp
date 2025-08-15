@@ -1,0 +1,15 @@
+{
+  "id": "nextjs-route-ajv-validate",
+  "name": "Next.js Route JSON Schema Validation (ajv)",
+  "version": "1.0.0",
+  "stack": ["nextjs", "ajv"],
+  "tags": ["api", "validation"],
+  "description": "Validate POST body with Ajv and return 400 on invalid.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/ajv/route.ts", "template": "import Ajv from 'ajv'; const ajv = new Ajv();\nconst schema = { type:'object', properties:{ email:{ type:'string', format:'email' } }, required:['email'], additionalProperties:false };\nconst validate = ajv.compile(schema as any);\nexport async function POST(req: Request){ const json = await req.json().catch(()=>undefined); if(!validate(json)){ return new Response(JSON.stringify({ errors: validate.errors }), { status: 400, headers:{ 'content-type':'application/json' } }); } return Response.json({ ok:true }); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"ajv\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

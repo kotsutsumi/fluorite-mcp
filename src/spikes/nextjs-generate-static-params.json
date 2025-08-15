@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-generate-static-params",
+  "name": "Next.js generateStaticParams (Dynamic Route)",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["app-router", "ssg"],
+  "description": "Dynamic segment with generateStaticParams and SSG.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/items/[id]/page.tsx", "template": "export async function generateStaticParams(){ return [{ id:'a' }, { id:'b' }]; } export default function Page({ params }:{ params:{ id:string }}){ return <main>Item {params.id}</main>; }\n" }
+  ],
+  "patches": []
+}
+

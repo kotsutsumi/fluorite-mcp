@@ -1,0 +1,15 @@
+{
+  "id": "nextjs-gcs-signed-put",
+  "name": "Next.js GCS Signed PUT URL",
+  "version": "1.0.0",
+  "stack": ["nextjs", "gcs"],
+  "tags": ["storage", "upload"],
+  "description": "Generate a signed PUT URL for Google Cloud Storage.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/gcs-put/route.ts", "template": "import { Storage } from '@google-cloud/storage';\nexport async function GET(){ const storage = new Storage(); const [url] = await storage.bucket(process.env.GCS_BUCKET!).file('upload.bin').getSignedUrl({ action:'write', expires: Date.now()+5*60*1000, contentType: 'application/octet-stream' }); return Response.json({ url }); }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "GOOGLE_APPLICATION_CREDENTIALS=/path/to/sa.json\nGCS_BUCKET=\n" }
+  ],
+  "patches": []
+}
+

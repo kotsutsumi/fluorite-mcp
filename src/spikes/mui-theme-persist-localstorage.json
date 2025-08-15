@@ -1,0 +1,15 @@
+{
+  "id": "mui-theme-persist-localstorage",
+  "name": "MUI Theme Persist (localStorage)",
+  "version": "1.0.0",
+  "stack": ["react", "mui"],
+  "tags": ["ui", "theme"],
+  "description": "Persist light/dark theme to localStorage.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/ThemePersist.tsx", "template": "import * as React from 'react';\nimport { createTheme, ThemeProvider, Button } from '@mui/material';\nexport default function ThemePersist(){ const [dark,setDark]=React.useState(false); React.useEffect(()=>{ setDark(localStorage.getItem('theme')==='dark'); },[]); React.useEffect(()=>{ localStorage.setItem('theme', dark?'dark':'light'); },[dark]); const theme = React.useMemo(()=>createTheme({ palette:{ mode: dark?'dark':'light' } }), [dark]); return (<ThemeProvider theme={theme}><Button onClick={()=>setDark(d=>!d)}>{dark?'Dark':'Light'}</Button></ThemeProvider>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@mui/material\": \"latest\", \"@emotion/react\": \"latest\", \"@emotion/styled\": \"latest\" }\n}\n" }
+  ],
+  "patches": []
+}
+

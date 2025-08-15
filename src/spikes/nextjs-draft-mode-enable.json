@@ -1,0 +1,15 @@
+{
+  "id": "nextjs-draft-mode-enable",
+  "name": "Next.js Draft Mode Enable/Disable",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["draft-mode"],
+  "description": "Route to enable/disable draft mode for previewing content.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/draft/enable/route.ts", "template": "import { draftMode } from 'next/headers'; export async function GET(){ draftMode().enable(); return new Response('enabled'); }\n" },
+    { "path": "{{app_name}}/app/api/draft/disable/route.ts", "template": "import { draftMode } from 'next/headers'; export async function GET(){ draftMode().disable(); return new Response('disabled'); }\n" }
+  ],
+  "patches": []
+}
+

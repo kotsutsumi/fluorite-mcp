@@ -1,0 +1,15 @@
+{
+  "id": "s3-signed-delete-url",
+  "name": "S3 Signed DELETE URL (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "aws-s3"],
+  "tags": ["storage", "delete"],
+  "description": "Generate signed URL for object deletion.",
+  "params": [{ "name": "app_name", "default": "node-app" }],
+  "files": [
+    { "path": "{{app_name}}/s3-delete.mjs", "template": "import { S3Client, DeleteObjectCommand } from '@aws-sdk/client-s3';\nimport { getSignedUrl } from '@aws-sdk/s3-request-presigner';\nconst s3 = new S3Client({});\nconst url = await getSignedUrl(s3, new DeleteObjectCommand({ Bucket: process.env.S3_BUCKET, Key: 'upload.bin' }), { expiresIn: 300 });\nconsole.log({ url });\n" },
+    { "path": "{{app_name}}/.env.example", "template": "AWS_ACCESS_KEY_ID=\nAWS_SECRET_ACCESS_KEY=\nAWS_REGION=\nS3_BUCKET=\n" }
+  ],
+  "patches": []
+}
+

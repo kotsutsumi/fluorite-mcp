@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-route-problem-json",
+  "name": "Next.js Route Problem+JSON (RFC7807)",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["api", "error"],
+  "description": "Return application/problem+json error body.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/problem/route.ts", "template": "export async function GET(){ const body = { type: 'https://example.com/probs/out-of-credit', title: 'You do not have enough credit.', status: 402, detail: 'Your current balance is 30, but that costs 50.', instance: '/account/12345/msgs/abc' }; return new Response(JSON.stringify(body), { status: 402, headers:{ 'content-type':'application/problem+json' } }); }\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "gha-cache-node-modules",
+  "name": "GHA Cache node_modules by lockfile",
+  "version": "1.0.0",
+  "stack": ["github-actions", "node"],
+  "tags": ["ci", "cache"],
+  "description": "Use actions/cache keyed by lockfile to cache node_modules.",
+  "params": [{ "name": "app_name", "default": "repo" }],
+  "files": [
+    { "path": "{{app_name}}/.github/workflows/cache.yml", "template": "name: Cache deps\n\non: [push, pull_request]\n\njobs:\n  cache:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 20\n      - uses: actions/cache@v4\n        with:\n          path: node_modules\n          key: node-${{ hashFiles('package-lock.json', 'pnpm-lock.yaml', 'yarn.lock') }}\n          restore-keys: |\n            node-\n      - run: npm ci\n      - run: npm test --silent || echo 'no tests'\n" }
+  ],
+  "patches": []
+}
+

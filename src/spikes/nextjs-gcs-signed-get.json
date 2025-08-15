@@ -1,0 +1,15 @@
+{
+  "id": "nextjs-gcs-signed-get",
+  "name": "Next.js GCS Signed GET URL",
+  "version": "1.0.0",
+  "stack": ["nextjs", "gcs"],
+  "tags": ["storage", "download"],
+  "description": "Generate a signed GET URL for Google Cloud Storage.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/gcs-get/route.ts", "template": "import { Storage } from '@google-cloud/storage';\nexport async function GET(){ const storage = new Storage(); const [url] = await storage.bucket(process.env.GCS_BUCKET!).file('download.bin').getSignedUrl({ action:'read', expires: Date.now()+5*60*1000 }); return Response.json({ url }); }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "GOOGLE_APPLICATION_CREDENTIALS=/path/to/sa.json\nGCS_BUCKET=\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "cf-workers-r2-upload-worker",
+  "name": "Cloudflare Workers R2 Upload Worker",
+  "version": "1.0.0",
+  "stack": ["cloudflare-workers", "r2"],
+  "tags": ["storage", "edge"],
+  "description": "Worker script that writes a PUT body to R2 (binding required).",
+  "params": [{ "name": "project_name", "default": "cf-worker" }],
+  "files": [
+    { "path": "{{project_name}}/wrangler.toml", "template": "name = \"cf-r2-upload\"\nmain = \"src/index.js\"\ncompatibility_date = \"2024-01-01\"\n[[r2_buckets]]\nbinding = \"MY_BUCKET\"\nbucket_name = \"my-bucket\"\n" },
+    { "path": "{{project_name}}/src/index.js", "template": "export default {\n  async fetch(req, env){ if(req.method==='PUT'){ const key = new URL(req.url).pathname.slice(1)||'upload.bin'; await env.MY_BUCKET.put(key, await req.arrayBuffer()); return new Response(JSON.stringify({ ok:true, key }), { headers:{'content-type':'application/json'} }); } return new Response('Use PUT /:key'); }\n}\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-middleware-security-headers",
+  "name": "Next.js Middleware Security Headers",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["middleware", "security"],
+  "description": "Set common security headers (CSP, X-Frame-Options, etc.).",
+  "params": [{ "name": "app_name", "default": "next-app" }, { "name": "csp", "default": "default-src 'self'" }],
+  "files": [
+    { "path": "{{app_name}}/middleware.ts", "template": "import { NextResponse } from 'next/server'; import type { NextRequest } from 'next/server';\nexport function middleware(req: NextRequest){ const res = NextResponse.next(); res.headers.set('x-frame-options','DENY'); res.headers.set('x-content-type-options','nosniff'); res.headers.set('referrer-policy','no-referrer'); res.headers.set('content-security-policy', `{{csp}}`); return res; }\nexport const config = { matcher: '/:path*' };\n" }
+  ],
+  "patches": []
+}
+

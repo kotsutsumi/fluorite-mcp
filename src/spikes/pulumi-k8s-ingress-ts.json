@@ -1,0 +1,15 @@
+{
+  "id": "pulumi-k8s-ingress-ts",
+  "name": "Pulumi k8s Ingress (TS) Minimal",
+  "version": "1.0.0",
+  "stack": ["pulumi", "kubernetes", "typescript"],
+  "tags": ["iac", "ingress"],
+  "description": "Create a minimal Kubernetes Ingress using Pulumi TS.",
+  "params": [{ "name": "project_name", "default": "pulumi" }],
+  "files": [
+    { "path": "{{project_name}}/index.ts", "template": "import * as k8s from '@pulumi/kubernetes';\nconst ns = new k8s.core.v1.Namespace('demo');\nnew k8s.networking.v1.Ingress('app', { metadata:{ namespace: ns.metadata.name }, spec:{ rules:[{ host:'example.com', http:{ paths:[{ path:'/', pathType:'Prefix', backend:{ service:{ name:'app', port:{ number:80 } } } }] } }] } });\n" },
+    { "path": "{{project_name}}/package.json", "template": "{ \"name\": \"pulumi-k8s\", \"private\": true, \"dependencies\": { \"@pulumi/pulumi\": \"latest\", \"@pulumi/kubernetes\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

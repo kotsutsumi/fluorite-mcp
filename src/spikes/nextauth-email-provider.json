@@ -1,0 +1,15 @@
+{
+  "id": "nextauth-email-provider",
+  "name": "NextAuth Email Provider (Minimal)",
+  "version": "1.0.0",
+  "stack": ["nextjs", "nextauth"],
+  "tags": ["auth", "email"],
+  "description": "Enable Email provider with ephemeral send (console log).",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/auth/[...nextauth]/route.ts", "template": "import NextAuth from 'next-auth';\nimport Email from 'next-auth/providers/email';\nconst handler = NextAuth({ providers: [Email({ sendVerificationRequest({ identifier, url }){ console.log('Login link for', identifier, url); } })] });\nexport { handler as GET, handler as POST };\n" },
+    { "path": "{{app_name}}/.env.example", "template": "NEXTAUTH_URL=http://localhost:3000\nNEXTAUTH_SECRET=changeme\nEMAIL_SERVER=smtp://user:pass@smtp.example.com:587\nEMAIL_FROM=noreply@example.com\n" }
+  ],
+  "patches": []
+}
+

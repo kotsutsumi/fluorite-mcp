@@ -1,0 +1,15 @@
+{
+  "id": "nextjs-middleware-rewrite",
+  "name": "Next.js Middleware Rewrite",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["middleware", "rewrite"],
+  "description": "Rewrite /old to /new via middleware.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/middleware.ts", "template": "import { NextResponse } from 'next/server'; import type { NextRequest } from 'next/server';\nexport function middleware(req: NextRequest){ if(req.nextUrl.pathname==='/old'){ const url = req.nextUrl.clone(); url.pathname = '/new'; return NextResponse.rewrite(url); } return NextResponse.next(); }\nexport const config = { matcher: '/:path*' };\n" },
+    { "path": "{{app_name}}/app/new/page.tsx", "template": "export default function Page(){ return <main>New page</main>; }\n" }
+  ],
+  "patches": []
+}
+

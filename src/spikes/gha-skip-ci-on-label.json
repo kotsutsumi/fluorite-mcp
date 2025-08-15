@@ -1,0 +1,14 @@
+{
+  "id": "gha-skip-ci-on-label",
+  "name": "GHA Skip CI on Label",
+  "version": "1.0.0",
+  "stack": ["github-actions"],
+  "tags": ["ci", "labels"],
+  "description": "Skip CI jobs when PR has 'skip-ci' label.",
+  "params": [{ "name": "app_name", "default": "repo" }],
+  "files": [
+    { "path": "{{app_name}}/.github/workflows/skip-ci.yml", "template": "name: Skip CI\n\non: [pull_request]\n\njobs:\n  decide:\n    runs-on: ubuntu-latest\n    outputs:\n      skip: ${{ steps.check.outputs.skip }}\n    steps:\n      - id: check\n        run: |\n          echo \"skip=false\" >> $GITHUB_OUTPUT\n          if [[ \"${{ toJson(github.event.pull_request.labels.*.name) }}\" == *\"skip-ci\"* ]]; then echo \"skip=true\" >> $GITHUB_OUTPUT; fi\n  build:\n    needs: decide\n    if: needs.decide.outputs.skip != 'true'\n    runs-on: ubuntu-latest\n    steps:\n      - run: echo 'Running CI'\n" }
+  ],
+  "patches": []
+}
+

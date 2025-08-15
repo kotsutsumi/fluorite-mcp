@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-route-last-modified",
+  "name": "Next.js Route Last-Modified Conditional",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["api", "conditional"],
+  "description": "Use Last-Modified / If-Modified-Since for 304 responses.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/lastmod/route.ts", "template": "export async function GET(req: Request){ const last = new Date(Date.now()-60000).toUTCString(); const ims = new Headers(req.headers).get('if-modified-since'); if(ims && new Date(ims) >= new Date(last)){ return new Response(null, { status: 304 }); } return new Response(JSON.stringify({ ok: true }), { headers:{ 'content-type':'application/json', 'last-modified': last } }); }\n" }
+  ],
+  "patches": []
+}
+

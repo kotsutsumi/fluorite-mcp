@@ -1,0 +1,15 @@
+{
+  "id": "clerk-webhook-skeleton",
+  "name": "Clerk Webhook Route Skeleton (Next.js)",
+  "version": "1.0.0",
+  "stack": ["nextjs", "clerk"],
+  "tags": ["auth", "webhook"],
+  "description": "Accept Clerk webhooks and verify using CLERK_WEBHOOK_SECRET.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/clerk-webhook/route.ts", "template": "export const runtime = 'nodejs';\nexport async function POST(req: Request){ const sig = req.headers.get('svix-signature'); if(!sig) return new Response('missing signature', { status: 400 }); // TODO: verify using @svix library\n  const body = await req.text(); console.log('webhook', sig, body); return new Response('ok'); }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "CLERK_WEBHOOK_SECRET=\n" }
+  ],
+  "patches": []
+}
+

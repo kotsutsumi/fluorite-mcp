@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-middleware-redirect",
+  "name": "Next.js Middleware Redirect (307)",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["middleware", "redirect"],
+  "description": "Redirect /legacy to / using 307.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/middleware.ts", "template": "import { NextResponse } from 'next/server'; import type { NextRequest } from 'next/server';\nexport function middleware(req: NextRequest){ if(req.nextUrl.pathname.startsWith('/legacy')){ const url = req.nextUrl.clone(); url.pathname = '/'; return NextResponse.redirect(url, 307); } return NextResponse.next(); }\nexport const config = { matcher: '/:path*' };\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-middleware-ip-block",
+  "name": "Next.js Middleware IP Blocklist",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["middleware", "security"],
+  "description": "Block requests from IPs in a simple denylist.",
+  "params": [{ "name": "app_name", "default": "next-app" }, { "name": "blocked", "default": "1.2.3.4,5.6.7.8" }],
+  "files": [
+    { "path": "{{app_name}}/middleware.ts", "template": "import { NextResponse } from 'next/server'; import type { NextRequest } from 'next/server';\nconst BLOCKED = new Set('{{blocked}}'.split(',').map(s=>s.trim()));\nexport function middleware(req: NextRequest){ const ip = req.ip || req.headers.get('x-forwarded-for') || ''; if(ip && Array.from(BLOCKED).some(b=>ip.includes(b))){ return new Response('forbidden', { status: 403 }); } return NextResponse.next(); }\nexport const config = { matcher: '/:path*' };\n" }
+  ],
+  "patches": []
+}
+

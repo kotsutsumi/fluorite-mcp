@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-route-head-method",
+  "name": "Next.js Route HEAD Method",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["api"],
+  "description": "Implement HEAD to return headers without body.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/head/route.ts", "template": "export async function GET(){ return new Response('ok'); } export async function HEAD(){ return new Response(null, { headers:{ 'x-ok':'1' } }); }\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,16 @@
+{
+  "id": "clerk-webhook-verify-svix",
+  "name": "Clerk Webhook Verify (svix) Skeleton",
+  "version": "1.0.0",
+  "stack": ["nextjs", "clerk"],
+  "tags": ["auth", "webhook"],
+  "description": "Verify Clerk webhooks using svix library in Route Handler.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/clerk-webhook/route.ts", "template": "export const runtime = 'nodejs';\nimport { Webhook } from 'svix';\nexport async function POST(req: Request){ const secret = process.env.CLERK_WEBHOOK_SECRET!; const svix = new Webhook(secret); const payload = await req.text(); const headers = Object.fromEntries(req.headers.entries()); try { const evt = svix.verify(payload, headers); console.log('event', evt); return new Response('ok'); } catch(e){ return new Response('invalid', { status: 400 }); } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "CLERK_WEBHOOK_SECRET=\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"svix\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

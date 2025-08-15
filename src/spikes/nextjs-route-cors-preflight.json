@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-route-cors-preflight",
+  "name": "Next.js Route CORS + Preflight",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["api", "cors"],
+  "description": "Handle OPTIONS preflight and set CORS headers.",
+  "params": [{ "name": "app_name", "default": "next-app" }, { "name": "origin", "default": "*" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/cors/route.ts", "template": "const headers = { 'access-control-allow-origin': '{{origin}}', 'access-control-allow-headers':'content-type, authorization', 'access-control-allow-methods':'GET,POST,PUT,DELETE,OPTIONS' };\nexport async function OPTIONS(){ return new Response(null, { headers }); }\nexport async function GET(){ return new Response('ok', { headers }); }\nexport async function POST(){ return new Response('ok', { headers }); }\n" }
+  ],
+  "patches": []
+}
+

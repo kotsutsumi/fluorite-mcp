@@ -1,0 +1,14 @@
+{
+  "id": "gha-vercel-preview-comment-url",
+  "name": "GHA Comment Vercel Preview URL",
+  "version": "1.0.0",
+  "stack": ["github-actions", "vercel"],
+  "tags": ["preview", "comment"],
+  "description": "Comment the Vercel preview URL on PR using github-script.",
+  "params": [{ "name": "app_name", "default": "repo" }],
+  "files": [
+    { "path": "{{app_name}}/.github/workflows/vercel-comment.yml", "template": "name: Vercel Preview Comment\n\non: [pull_request]\n\njobs:\n  deploy-and-comment:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - id: vercel\n        uses: amondnet/vercel-action@v25\n        with:\n          vercel-token: ${{ secrets.VERCEL_TOKEN }}\n          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}\n          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}\n          working-directory: .\n          vercel-args: '--prebuilt'\n      - uses: actions/github-script@v7\n        with:\n          github-token: ${{ secrets.GITHUB_TOKEN }}\n          script: |\n            const url = core.getInput('preview-url') || (\n              (\n                (context.payload as any).deployment?.payload?.url || ''\n              )\n            );\n            const body = `Preview: ${url || 'deployed'}`;\n            github.rest.issues.createComment({ owner: context.repo.owner, repo: context.repo.repo, issue_number: context.issue.number, body });\n" }
+  ],
+  "patches": []
+}
+

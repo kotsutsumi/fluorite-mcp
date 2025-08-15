@@ -1,0 +1,15 @@
+{
+  "id": "nextjs-app-not-found",
+  "name": "Next.js App Router not-found.tsx",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["app-router", "not-found"],
+  "description": "Add not-found.tsx and a route that calls notFound().",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/not-found.tsx", "template": "export default function NotFound(){ return <main>Not Found</main>; }\n" },
+    { "path": "{{app_name}}/app/missing/page.tsx", "template": "import { notFound } from 'next/navigation'; export default function Page(){ notFound(); }\n" }
+  ],
+  "patches": []
+}
+

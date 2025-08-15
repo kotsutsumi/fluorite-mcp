@@ -1,0 +1,14 @@
+{
+  "id": "grafana-provisioning-datasource",
+  "name": "Grafana Provisioning: Prometheus Datasource",
+  "version": "1.0.0",
+  "stack": ["grafana"],
+  "tags": ["observability", "provisioning"],
+  "description": "Provision Prometheus datasource via YAML.",
+  "params": [{ "name": "project_name", "default": "grafana" }],
+  "files": [
+    { "path": "{{project_name}}/datasource.yml", "template": "apiVersion: 1\ndatasources:\n  - name: Prometheus\n    type: prometheus\n    access: proxy\n    url: http://prometheus:9090\n    isDefault: true\n" }
+  ],
+  "patches": []
+}
+

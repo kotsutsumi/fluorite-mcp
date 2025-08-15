@@ -1,0 +1,15 @@
+{
+  "id": "gcs-list-objects-route",
+  "name": "Next.js Route: GCS List Objects",
+  "version": "1.0.0",
+  "stack": ["nextjs", "gcs"],
+  "tags": ["storage", "list"],
+  "description": "List GCS objects from a Route Handler.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/gcs-list/route.ts", "template": "import { Storage } from '@google-cloud/storage';\nexport async function GET(){ const storage = new Storage(); const [files] = await storage.bucket(process.env.GCS_BUCKET!).getFiles(); return Response.json({ keys: files.map(f=>f.name) }); }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "GOOGLE_APPLICATION_CREDENTIALS=/path/to/sa.json\nGCS_BUCKET=\n" }
+  ],
+  "patches": []
+}
+

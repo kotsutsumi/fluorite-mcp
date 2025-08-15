@@ -1,0 +1,14 @@
+{
+  "id": "terraform-aws-oidc-github",
+  "name": "Terraform AWS OIDC GitHub Actions Role",
+  "version": "1.0.0",
+  "stack": ["terraform", "aws"],
+  "tags": ["iac", "oidc"],
+  "description": "IAM role trust for GitHub OIDC to assume AWS role.",
+  "params": [{ "name": "project_name", "default": "tf" }, { "name": "repo", "default": "owner/repo" }],
+  "files": [
+    { "path": "{{project_name}}/main.tf", "template": "provider \"aws\" { region = var.region }\nresource \"aws_iam_openid_connect_provider\" \"github\" { url = \"https://token.actions.githubusercontent.com\" client_id_list = [\"sts.amazonaws.com\"] thumbprint_list = [\"6938fd4d98bab03faadb97b34396831e3780aea1\"] }\nresource \"aws_iam_role\" \"gha\" { name = \"gha-oidc-role\" assume_role_policy = jsonencode({ Version = '2012-10-17', Statement = [{ Effect='Allow', Principal={ Federated=aws_iam_openid_connect_provider.github.arn }, Action='sts:AssumeRoleWithWebIdentity', Condition={ StringLike={ \"token.actions.githubusercontent.com:sub\" = \"repo:{{repo}}:*\" } } }] }) }\nvariable \"region\" { default = \"us-east-1\" }\n" }
+  ],
+  "patches": []
+}
+

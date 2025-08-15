@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-segment-config",
+  "name": "Next.js Route Segment Config (dynamic/revalidate)",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["app-router", "segment"],
+  "description": "Demonstrate segment config: dynamic = 'force-dynamic' and revalidate.",
+  "params": [{ "name": "app_name", "default": "next-app" }, { "name": "revalidate", "default": "120" }],
+  "files": [
+    { "path": "{{app_name}}/app/segment/page.tsx", "template": "export const dynamic = 'force-dynamic';\nexport const revalidate = {{revalidate}};\nexport default async function Page(){ const t = new Date().toISOString(); return <main>Dynamic at {t}</main>; }\n" }
+  ],
+  "patches": []
+}
+

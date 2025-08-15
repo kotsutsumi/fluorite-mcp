@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-multipart-client-example",
+  "name": "Next.js Multipart Client Example (UI + Parts)",
+  "version": "1.0.0",
+  "stack": ["nextjs", "aws-s3"],
+  "tags": ["storage", "multipart"],
+  "description": "Client page that calls init/part/complete routes to upload file in parts.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/upload/page.tsx", "template": "'use client'; export default function Page(){ async function onFile(e){ const f = e.target.files[0]; if(!f) return; const init = await fetch('/api/s3-multipart/init', { method:'POST' }).then(r=>r.json()); const { uploadId } = init; const partSize = 5*1024*1024; const parts=[]; for(let pn=1,off=0; off<f.size; pn++, off+=partSize){ const blob = f.slice(off, off+partSize); const { url } = await fetch(`/api/s3-multipart/part?uploadId=${uploadId}&partNumber=${pn}`).then(r=>r.json()); const res = await fetch(url, { method:'PUT', body: blob }); const etag = res.headers.get('etag')?.replaceAll('"',''); parts.push({ PartNumber: pn, ETag: etag }); } await fetch('/api/s3-multipart/complete', { method:'POST', body: JSON.stringify({ uploadId, parts }), headers:{ 'content-type':'application/json' } }); alert('uploaded'); } return (<main><input type='file' onChange={onFile} /></main>); }\n" }
+  ],
+  "patches": []
+}
+

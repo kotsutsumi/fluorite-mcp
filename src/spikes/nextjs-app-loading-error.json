@@ -1,0 +1,15 @@
+{
+  "id": "nextjs-app-loading-error",
+  "name": "Next.js App Router loading.tsx & error.tsx",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["app-router", "loading", "error"],
+  "description": "Scaffold loading.tsx and error.tsx for App Router.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/loading.tsx", "template": "export default function Loading(){ return <p>Loading...</p>; }\n" },
+    { "path": "{{app_name}}/app/error.tsx", "template": "'use client'; export default function Error({ error, reset }: { error: Error; reset: ()=>void }){ return (<div><p>Error: {error.message}</p><button onClick={reset}>Retry</button></div>); }\n" }
+  ],
+  "patches": []
+}
+

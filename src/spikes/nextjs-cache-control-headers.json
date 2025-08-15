@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-cache-control-headers",
+  "name": "Next.js Route Cache-Control Headers",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["cache"],
+  "description": "Set Cache-Control for static/dynamic routes.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/cache/route.ts", "template": "export async function GET(){ return new Response('ok', { headers:{ 'cache-control':'public, max-age=60, s-maxage=300, stale-while-revalidate=60' } }); }\n" }
+  ],
+  "patches": []
+}
+

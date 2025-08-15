@@ -1,0 +1,15 @@
+{
+  "id": "nextjs-otel-trace-route",
+  "name": "Next.js Route with OpenTelemetry Span",
+  "version": "1.0.0",
+  "stack": ["nextjs", "opentelemetry"],
+  "tags": ["otel", "tracing"],
+  "description": "Create a custom span in a Route Handler (node runtime).",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/trace/route.ts", "template": "export const runtime = 'nodejs';\nimport { trace } from '@opentelemetry/api';\nexport async function GET(){ const tracer = trace.getTracer('next-route'); const result = await tracer.startActiveSpan('work', async (span)=>{ await new Promise(r=>setTimeout(r,50)); span.end(); return 'ok'; }); return Response.json({ result }); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"@opentelemetry/api\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

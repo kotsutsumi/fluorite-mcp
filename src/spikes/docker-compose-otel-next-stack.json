@@ -1,0 +1,16 @@
+{
+  "id": "docker-compose-otel-next-stack",
+  "name": "Docker Compose: Next.js + OTEL Collector + Loki/Tempo",
+  "version": "1.0.0",
+  "stack": ["docker", "nextjs", "otel", "grafana"],
+  "tags": ["observability", "compose"],
+  "description": "Compose stack wiring Next.js app with OTEL collector and Loki/Tempo.",
+  "params": [{ "name": "project_name", "default": "obs" }],
+  "files": [
+    { "path": "{{project_name}}/docker-compose.yml", "template": "version: '3.9'\nservices:\n  app:\n    image: node:20-alpine\n    command: sh -c \"node /app/server.js\"\n    volumes: [ './app:/app' ]\n    environment:\n      OTEL_EXPORTER_OTLP_ENDPOINT: http://collector:4318\n    ports: [ '3000:3000' ]\n  collector:\n    image: otel/opentelemetry-collector\n    volumes: [ './otel.yaml:/etc/otelcol/config.yaml' ]\n    ports: [ '4318:4318' ]\n  loki:\n    image: grafana/loki:2.9.0\n    ports: [ '3100:3100' ]\n  tempo:\n    image: grafana/tempo:latest\n    ports: [ '3200:3200' ]\n" },
+    { "path": "{{project_name}}/otel.yaml", "template": "receivers: { otlp: { protocols: { http: {} } } }\nexporters: { logging: {}, otlphttp/loki: { endpoint: http://loki:3100/otlp }, otlphttp/tempo: { endpoint: http://tempo:3200 } }\nservice:\n  pipelines:\n    traces: { receivers: [otlp], exporters: [logging, otlphttp/tempo] }\n    logs: { receivers: [otlp], exporters: [logging, otlphttp/loki] }\n" },
+    { "path": "{{project_name}}/app/server.js", "template": "const http = require('http'); const server=http.createServer((_,res)=>{ res.writeHead(200); res.end('ok'); }); server.listen(3000);\n" }
+  ],
+  "patches": []
+}
+

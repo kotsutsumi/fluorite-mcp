@@ -1,0 +1,15 @@
+{
+  "id": "nextjs-multipart-s3-complete",
+  "name": "Next.js S3 Complete Multipart",
+  "version": "1.0.0",
+  "stack": ["nextjs", "aws-s3"],
+  "tags": ["storage", "multipart"],
+  "description": "Complete multipart upload given parts ETags.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/s3-multipart/complete/route.ts", "template": "import { S3Client, CompleteMultipartUploadCommand } from '@aws-sdk/client-s3';\nexport async function POST(req: Request){ const { uploadId, parts } = await req.json(); const s3 = new S3Client({}); const out = await s3.send(new CompleteMultipartUploadCommand({ Bucket: process.env.S3_BUCKET!, Key:'big.bin', UploadId: uploadId, MultipartUpload: { Parts: parts } })); return Response.json({ location: out.Location }); }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "S3_BUCKET=\nAWS_ACCESS_KEY_ID=\nAWS_SECRET_ACCESS_KEY=\nAWS_REGION=\n" }
+  ],
+  "patches": []
+}
+

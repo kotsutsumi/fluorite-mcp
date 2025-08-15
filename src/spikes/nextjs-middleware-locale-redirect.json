@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-middleware-locale-redirect",
+  "name": "Next.js Middleware Locale Redirect",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["middleware", "i18n"],
+  "description": "Redirect / to /{locale}/ based on Accept-Language.",
+  "params": [{ "name": "app_name", "default": "next-app" }, { "name": "default_locale", "default": "en" }],
+  "files": [
+    { "path": "{{app_name}}/middleware.ts", "template": "import { NextResponse } from 'next/server'; import type { NextRequest } from 'next/server';\nconst SUPPORTED = ['en','ja'];\nexport function middleware(req: NextRequest){ const { pathname } = req.nextUrl; if(pathname==='/' || pathname===''){ const al = req.headers.get('accept-language')||''; const cand = al.split(',')[0].split('-')[0]; const locale = SUPPORTED.includes(cand)?cand:'{{default_locale}}'; const url = req.nextUrl.clone(); url.pathname = '/' + locale + '/'; return NextResponse.redirect(url); } return NextResponse.next(); }\nexport const config = { matcher: '/:path*' };\n" }
+  ],
+  "patches": []
+}
+

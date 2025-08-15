@@ -1,0 +1,15 @@
+{
+  "id": "radix-separator-minimal",
+  "name": "Radix UI Separator (React)",
+  "version": "1.0.0",
+  "stack": ["react", "radix-ui"],
+  "tags": ["ui", "separator"],
+  "description": "Minimal @radix-ui/react-separator usage.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/SeparatorExample.tsx", "template": "import * as S from '@radix-ui/react-separator';\nexport default function Sep(){ return (<div><div>Above</div><S.Root decorative className='my-2 h-px bg-gray-300' /><div>Below</div></div>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@radix-ui/react-separator\": \"latest\" }\n}\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-route-422-zod",
+  "name": "Next.js Route 422 Validation (Zod)",
+  "version": "1.0.0",
+  "stack": ["nextjs", "zod"],
+  "tags": ["api", "validation"],
+  "description": "POST body validation with Zod returning 422 on errors.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/validate/route.ts", "template": "import { z } from 'zod';\nconst Body = z.object({ email: z.string().email(), age: z.number().int().min(0) });\nexport async function POST(req: Request){ const json = await req.json().catch(()=>undefined); const r = Body.safeParse(json); if(!r.success){ return new Response(JSON.stringify({ errors: r.error.flatten() }), { status: 422, headers:{ 'content-type':'application/json' } }); } return Response.json({ ok:true, data:r.data }); }\n" }
+  ],
+  "patches": []
+}
+
