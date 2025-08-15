@@ -14,9 +14,9 @@ Welcome to Fluorite MCP! This guide will help you quickly set up and start using
 
 Fluorite MCP is a Model Context Protocol (MCP) server that enhances Claude Code CLI with:
 
-- **📚 90+ Library Specifications**: Deep knowledge of modern web development libraries
-- **🌍 12 Language Ecosystems**: From TypeScript to Rust, covering all major platforms
-- **🧪 1000+ Spike Templates**: Pre-built patterns for rapid prototyping
+- **📚 87+ Library Specifications**: Deep knowledge of modern web development libraries
+- **🌍 12+ Language Ecosystems**: From TypeScript to Rust, covering all major platforms
+- **🧪 282+ Production Templates**: Pre-built patterns for rapid prototyping
 - **🔍 Static Analysis**: 50+ validation rules for Next.js, React, Vue
 - **🤖 Error Prediction**: AI-powered pattern matching to prevent runtime errors
 
@@ -33,7 +33,7 @@ npm i -g fluorite-mcp
 
 ```bash
 # Connect to Claude Code CLI
-claude mcp add fluorite -- fluorite-mcp
+claude mcp add fluorite -- fluorite-mcp-server
 ```
 
 ### Step 3: Verify Installation

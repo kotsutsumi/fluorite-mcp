@@ -10,7 +10,7 @@ Transform Claude Code CLI into a comprehensive development powerhouse with **Flu
 
 > **Enterprise Solution**: From rapid prototyping to production deployment - all specifications validated, maintained, and optimized for professional development workflows.
 
-**Quick Installation**: `npm i -g fluorite-mcp && claude mcp add fluorite -- fluorite-mcp`
+**Quick Installation**: `npm i -g fluorite-mcp && claude mcp add fluorite -- fluorite-mcp-server`
 
 ## 🎯 What is Fluorite MCP?
 
@@ -18,7 +18,7 @@ Fluorite MCP is a comprehensive Model Context Protocol server that enhances Clau
 
 ### Core Value Proposition
 - **🚀 10x Development Speed**: Turn requirements into production code in minutes, not hours
-- **🎯 Zero Learning Curve**: Works with natural language - no new syntax or commands to learn  
+- **🎯 Zero Learning Curve**: Works with natural language—no new syntax or commands to learn  
 - **💎 Production Quality**: Every output follows industry best practices and includes proper TypeScript types
 - **🔧 Framework Native**: Deep integration with modern frameworks (Next.js, React, FastAPI, Vue, and more)
 
@@ -50,14 +50,14 @@ Prevent issues before they occur with intelligent analysis:
 Bridge the gap between idea and implementation:
 
 - **🏭 282+ Production Templates**: Battle-tested scaffolds for authentication, APIs, testing, and deployment
-- **🗣️ Natural Language Interface**: Describe features in plain English - no complex syntax to learn
+- **🗣️ Natural Language Interface**: Describe features in plain English—no complex syntax to learn
 - **🎯 Intelligent Selection**: AI-powered template matching based on your project context and requirements
 - **🔄 Iterative Refinement**: Built-in quality validation and improvement loops
 
 ### ⚡ Superior Developer Experience
 Professional-grade tooling that scales with your team:
 
-- **🎬 Zero Configuration**: Works immediately after installation - no setup required
+- **🎬 Zero Configuration**: Works immediately after installation—no setup required
 - **💎 Production Quality**: Every generated component includes TypeScript definitions, accessibility features, and comprehensive error handling
 - **📏 Consistent Standards**: Enforced coding patterns ensure maintainable, scalable codebases
 - **🔧 IDE Integration**: Seamless integration with Claude Code CLI and modern development environments
@@ -77,10 +77,10 @@ Professional-grade tooling that scales with your team:
 npm install -g fluorite-mcp
 
 # 2. Add to Claude Code CLI
-claude mcp add fluorite -- fluorite-mcp
+claude mcp add fluorite -- fluorite-mcp-server
 
 # 3. Verify installation
-claude --list-mcps
+claude mcp list
 ```
 
 **Alternative Installation Methods**:

@@ -346,7 +346,7 @@ const bestApproach = await evaluateApproaches(approaches);
 ## 📚 学習リソース
 
 ### 記事
-- [Agile Spikes Explained](https://www.agilealliance.org/glossary/spike) - スパイクの概念
+- [Agile Spikes Explained](https://en.wikipedia.org/wiki/Spike_(software_development)) - スパイクの概念
 - [Spike Solutions in Scrum](https://www.scrum.org/resources/what-is-a-spike) - Scrumでの活用
 
 ### 書籍
