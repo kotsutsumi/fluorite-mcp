@@ -1,0 +1,660 @@
+---
+name: WebRTC and Streaming Ecosystem
+version: 1.0.0
+description: Comprehensive WebRTC, streaming, and real-time media communication ecosystem
+category: media-streaming
+subcategory: real-time-communication
+tags:
+  - webrtc
+  - streaming
+  - hls
+  - dash
+  - real-time
+  - video
+  - audio
+  - p2p
+
+core:
+  webrtc_foundation:
+    webrtc_native_api:
+      name: WebRTC Native API
+      description: Browser built-in WebRTC APIs and native C++/Go implementations
+      homepage: https://webrtc.org
+      repository: https://github.com/webrtc/webrtc
+      features:
+        - Peer-to-peer communication
+        - getUserMedia API
+        - RTCPeerConnection
+        - RTCDataChannel
+        - STUN/TURN support
+        - Media capture and recording
+      use_cases:
+        - Video conferencing
+        - Screen sharing
+        - File transfer
+        - Gaming communication
+        - IoT device communication
+
+webrtc_libraries:
+  peerjs:
+    name: PeerJS
+    description: Simple WebRTC API wrapper for P2P connection management
+    homepage: https://peerjs.com
+    repository: https://github.com/peers/peerjs
+    npm_package: peerjs
+    features:
+      - Simple P2P connections
+      - Data channels
+      - Media streams
+      - Built-in signaling server
+      - Cross-browser compatibility
+    use_cases:
+      - Simple video calls
+      - File sharing
+      - Real-time collaboration
+      - P2P gaming
+    code_examples:
+      basic_connection: |
+        import Peer from 'peerjs';
+        
+        const peer = new Peer();
+        const conn = peer.connect('other-peer-id');
+        
+        conn.on('open', () => {
+          conn.send('Hello!');
+        });
+
+  simple_peer:
+    name: simple-peer
+    description: Minimal WebRTC wrapper for Node.js and browsers
+    repository: https://github.com/feross/simple-peer
+    npm_package: simple-peer
+    features:
+      - Minimal API
+      - Node.js and browser support
+      - No external dependencies
+      - TypeScript support
+      - Data and media channels
+    code_examples:
+      basic_usage: |
+        import SimplePeer from 'simple-peer';
+        
+        const peer = new SimplePeer({
+          initiator: true,
+          trickle: false
+        });
+        
+        peer.on('signal', data => {
+          // Send signal data to remote peer
+        });
+
+  skyway:
+    name: SkyWay
+    description: NTT Communications WebRTC PaaS platform
+    homepage: https://skyway.ntt.com
+    region: Japan
+    features:
+      - Managed signaling
+      - TURN/STUN servers
+      - Video/audio/data communication
+      - SDK for multiple platforms
+      - Enterprise support
+    platforms:
+      - JavaScript SDK
+      - iOS SDK
+      - Android SDK
+      - Unity SDK
+    use_cases:
+      - Video conferencing apps
+      - Live streaming
+      - Remote support
+      - Educational platforms
+
+sfu_servers:
+  mediasoup:
+    name: mediasoup
+    description: Selective Forwarding Unit (SFU) server implementation
+    homepage: https://mediasoup.org
+    repository: https://github.com/versatica/mediasoup
+    npm_package: mediasoup
+    language: C++/Node.js
+    features:
+      - High-performance SFU
+      - Simulcast support
+      - Record and playback
+      - Bandwidth adaptation
+      - Screen sharing
+    architecture:
+      - C++ core for performance
+      - Node.js API
+      - Worker processes
+      - Router-based topology
+    use_cases:
+      - Large video conferences
+      - Webinar platforms
+      - Broadcasting
+      - Virtual events
+
+  janus_gateway:
+    name: Janus Gateway
+    description: C implementation WebRTC server gateway
+    homepage: https://janus.conf.meetecho.com
+    repository: https://github.com/meetecho/janus-gateway
+    language: C
+    features:
+      - SFU and MCU support
+      - Plugin architecture
+      - WebSocket and HTTP APIs
+      - Recording capabilities
+      - Load balancing
+    plugins:
+      - VideoCall plugin
+      - SIP gateway
+      - Streaming plugin
+      - Recording plugin
+      - Text room plugin
+    deployment:
+      - Docker support
+      - Kubernetes ready
+      - Cloud deployments
+      - On-premise installation
+
+  jitsi_meet:
+    name: Jitsi Meet / lib-jitsi-meet
+    description: Open-source web conferencing platform and JavaScript library
+    homepage: https://jitsi.org
+    repository: https://github.com/jitsi/jitsi-meet
+    components:
+      jitsi_meet:
+        description: Complete video conferencing solution
+        features:
+          - No account required
+          - Screen sharing
+          - Chat and file sharing
+          - Recording
+          - Live streaming
+      lib_jitsi_meet:
+        description: JavaScript library for custom integrations
+        npm_package: lib-jitsi-meet
+        features:
+          - Conference management
+          - Participant handling
+          - Media control
+          - Custom UI development
+
+streaming_players:
+  hls_players:
+    hls_js:
+      name: hls.js
+      description: JavaScript HLS player using Media Source Extensions
+      homepage: https://github.com/video-dev/hls.js
+      repository: https://github.com/video-dev/hls.js
+      npm_package: hls.js
+      features:
+        - MSE-based playback
+        - Adaptive bitrate
+        - Live and VoD support
+        - Fragment loading
+        - Error recovery
+      browser_support:
+        - Chrome
+        - Firefox
+        - Safari (native HLS fallback)
+        - Edge
+      code_examples:
+        basic_setup: |
+          import Hls from 'hls.js';
+          
+          if (Hls.isSupported()) {
+            const video = document.querySelector('video');
+            const hls = new Hls();
+            hls.loadSource('https://example.com/stream.m3u8');
+            hls.attachMedia(video);
+          }
+
+    video_js:
+      name: Video.js
+      description: HTML5 video player with HLS/DASH support
+      homepage: https://videojs.com
+      repository: https://github.com/videojs/video.js
+      npm_package: video.js
+      features:
+        - Plugin architecture
+        - Responsive design
+        - Accessibility support
+        - Multi-format support
+        - Custom skins
+      plugins:
+        - videojs-contrib-hls
+        - videojs-contrib-dash
+        - videojs-playlist
+        - videojs-record
+
+  dash_players:
+    shaka_player:
+      name: Shaka Player
+      description: Google's JavaScript DASH/HLS player
+      homepage: https://github.com/shaka-project/shaka-player
+      repository: https://github.com/shaka-project/shaka-player
+      npm_package: shaka-player
+      features:
+        - DASH and HLS support
+        - DRM support
+        - Live streaming
+        - Offline playback
+        - Multi-language support
+      drm_support:
+        - Widevine
+        - PlayReady
+        - FairPlay
+        - ClearKey
+
+    dash_js:
+      name: dash.js
+      description: DASH reference player implementation
+      homepage: https://github.com/Dash-Industry-Forum/dash.js
+      repository: https://github.com/Dash-Industry-Forum/dash.js
+      features:
+        - MPEG-DASH standard compliance
+        - Adaptive streaming
+        - Low latency support
+        - Multi-period content
+        - Custom metrics
+
+  mobile_players:
+    exoplayer:
+      name: ExoPlayer
+      description: Google's Android media player with HLS/DASH support
+      homepage: https://exoplayer.dev
+      repository: https://github.com/google/ExoPlayer
+      platform: Android
+      language: Java/Kotlin
+      features:
+        - DASH, HLS, SmoothStreaming
+        - DRM support
+        - Custom media sources
+        - Extensions support
+        - Background playback
+
+    avplayer:
+      name: AVPlayer
+      description: iOS/macOS native HLS player
+      platform: iOS/macOS
+      language: Swift/Objective-C
+      features:
+        - Native HLS support
+        - AirPlay integration
+        - Picture-in-picture
+        - Background audio
+        - TVMLKit integration
+
+media_servers:
+  kurento:
+    name: Kurento Media Server
+    description: WebRTC/SFU media server with processing capabilities
+    homepage: https://kurento.openvidu.io
+    repository: https://github.com/Kurento/kurento-media-server
+    features:
+      - Media processing pipelines
+      - Computer vision integration
+      - Recording and playback
+      - Media element composition
+      - WebRTC gateway
+    use_cases:
+      - Video surveillance
+      - Augmented reality
+      - Computer vision apps
+      - Media transcoding
+
+  ant_media:
+    name: Ant Media Server
+    description: Low-latency streaming server supporting WebRTC, HLS, DASH, RTMP
+    homepage: https://antmedia.io
+    repository: https://github.com/ant-media/Ant-Media-Server
+    features:
+      - Ultra-low latency WebRTC
+      - RTMP to WebRTC conversion
+      - Adaptive bitrate streaming
+      - Clustering support
+      - REST API
+    protocols:
+      input: [RTMP, WebRTC, RTSP, MP4]
+      output: [WebRTC, HLS, DASH, MP4]
+
+  ovenmediaengine:
+    name: OvenMediaEngine
+    description: Ultra-low latency WebRTC/HLS streaming server
+    homepage: https://ovenmediaengine.com
+    repository: https://github.com/AirenSoft/OvenMediaEngine
+    features:
+      - Sub-second latency WebRTC
+      - Low-latency HLS (LL-HLS)
+      - RTMP ingestion
+      - Adaptive bitrate
+      - Open source
+    protocols:
+      input: [RTMP, SRT, WebRTC, RTSP]
+      output: [WebRTC, LL-HLS, DASH]
+
+  wowza:
+    name: Wowza Streaming Engine
+    description: Commercial streaming server platform
+    homepage: https://www.wowza.com
+    type: commercial
+    features:
+      - Multi-protocol support
+      - Transcoding
+      - DRM integration
+      - Cloud deployment
+      - Analytics
+    protocols:
+      - RTMP/RTMPS
+      - HLS/DASH
+      - WebRTC
+      - SRT
+      - MPEG-TS
+
+streaming_platforms:
+  agora_io:
+    name: Agora.io
+    description: Real-time engagement platform with video/audio/data APIs
+    homepage: https://www.agora.io
+    features:
+      - Global network
+      - 1-to-1 and group calls
+      - Live streaming
+      - Recording
+      - AI-powered features
+    sdks:
+      - Web SDK
+      - iOS SDK
+      - Android SDK
+      - Unity SDK
+      - React Native
+      - Flutter
+    pricing_model: Pay-per-use
+
+  twilio:
+    name: Twilio Live / Twilio Video
+    description: Twilio's video communication APIs
+    homepage: https://www.twilio.com/video
+    features:
+      - Programmable video
+      - Live streaming
+      - Recording
+      - Composition
+      - Insights and analytics
+    products:
+      twilio_video:
+        description: Video calling API
+        features:
+          - Group video calls
+          - Screen sharing
+          - Recording
+          - Compositions
+      twilio_live:
+        description: Live streaming API
+        features:
+          - Interactive live streaming
+          - Player SDK
+          - Recording
+          - Real-time analytics
+
+  aws_services:
+    aws_ivs:
+      name: AWS Interactive Video Service
+      description: Amazon's managed live streaming service
+      homepage: https://aws.amazon.com/ivs
+      features:
+        - Ultra-low latency streaming
+        - Managed infrastructure
+        - Auto-scaling
+        - SDK and APIs
+        - Timed metadata
+      latency: Sub-second
+
+    aws_chime_sdk:
+      name: AWS Chime SDK
+      description: Amazon's communication SDK
+      homepage: https://aws.amazon.com/chime/chime-sdk
+      features:
+        - Audio/video meetings
+        - Screen sharing
+        - Chat messaging
+        - PSTN integration
+        - Recording
+      sdks:
+        - JavaScript SDK
+        - iOS SDK
+        - Android SDK
+
+  mux:
+    name: Mux
+    description: Video infrastructure for developers
+    homepage: https://mux.com
+    features:
+      - Video API
+      - Live streaming
+      - Analytics
+      - Global CDN
+      - Webhook integrations
+    products:
+      mux_video:
+        description: Video hosting and delivery
+      mux_live:
+        description: Live streaming API
+      mux_data:
+        description: Video analytics
+
+  cloudflare_stream:
+    name: Cloudflare Stream
+    description: Video streaming platform with global CDN
+    homepage: https://developers.cloudflare.com/stream
+    features:
+      - Global video delivery
+      - Automatic encoding
+      - Live streaming
+      - Analytics
+      - Access controls
+    integration:
+      - REST API
+      - SDK libraries
+      - Webhook events
+
+processing_tools:
+  ffmpeg:
+    name: FFmpeg
+    description: Complete multimedia framework for video/audio processing
+    homepage: https://ffmpeg.org
+    repository: https://github.com/FFmpeg/FFmpeg
+    language: C
+    features:
+      - Format conversion
+      - Live transcoding
+      - Streaming protocols
+      - Filters and effects
+      - Hardware acceleration
+    protocols:
+      - RTMP/RTSP
+      - HLS/DASH
+      - WebRTC (experimental)
+      - SRT
+    use_cases:
+      - Media transcoding
+      - Live streaming preparation
+      - Format conversion
+      - Video processing pipelines
+
+  gstreamer:
+    name: GStreamer
+    description: Multimedia pipeline construction framework
+    homepage: https://gstreamer.freedesktop.org
+    repository: https://gitlab.freedesktop.org/gstreamer/gstreamer
+    language: C
+    features:
+      - Pipeline architecture
+      - Plugin system
+      - Cross-platform
+      - Hardware acceleration
+      - Real-time processing
+    use_cases:
+      - Custom media pipelines
+      - Embedded systems
+      - Broadcasting
+      - Media servers
+
+  obs_studio:
+    name: OBS Studio
+    description: Open-source streaming and recording software
+    homepage: https://obsproject.com
+    repository: https://github.com/obsproject/obs-studio
+    features:
+      - Scene composition
+      - Multiple sources
+      - Real-time encoding
+      - Plugin system
+      - Broadcasting
+    platforms:
+      - Windows
+      - macOS
+      - Linux
+    streaming_services:
+      - Twitch
+      - YouTube
+      - Facebook Live
+      - Custom RTMP
+
+low_latency_technologies:
+  ll_hls:
+    name: Low-Latency HLS (LL-HLS)
+    description: HLS extension for reduced latency streaming
+    specification: Apple HLS RFC 8216
+    features:
+      - Partial segments
+      - Preload hints
+      - Blocking playlist reload
+      - Sub-second latency
+    latency: 2-6 seconds (vs 15-30s traditional HLS)
+    support:
+      - Native iOS/macOS support
+      - hls.js v1.0+
+      - Video.js plugins
+
+  webtransport:
+    name: WebTransport
+    description: Next-generation low-latency communication API
+    specification: W3C Draft
+    features:
+      - QUIC-based transport
+      - Unreliable delivery options
+      - Stream multiplexing
+      - Built-in encryption
+    browser_support:
+      - Chrome (experimental)
+      - Firefox (development)
+    use_cases:
+      - Real-time gaming
+      - Live streaming
+      - Interactive applications
+
+  webcodecs:
+    name: WebCodecs
+    description: Browser API for low-level codec access
+    specification: W3C Draft
+    features:
+      - Hardware-accelerated encoding/decoding
+      - Frame-level control
+      - Custom processing pipelines
+      - Low-latency processing
+    support:
+      - Chrome 94+
+      - Safari (experimental)
+
+  quic_http3:
+    name: QUIC / HTTP/3
+    description: Next-generation transport protocol
+    specification: RFC 9000
+    features:
+      - Reduced connection establishment time
+      - Multiplexing without head-of-line blocking
+      - Connection migration
+      - Built-in encryption
+    benefits:
+      - Faster initial connections
+      - Better mobile performance
+      - Improved reliability
+
+integration_patterns:
+  webrtc_hls_hybrid:
+    description: Combine WebRTC for low latency with HLS for scale
+    pattern: |
+      - Use WebRTC for interactive participants
+      - Stream to HLS for viewers at scale
+      - Switch between modes based on user role
+    technologies: [WebRTC, HLS, Media Servers]
+
+  adaptive_streaming:
+    description: Implement adaptive bitrate streaming
+    pattern: |
+      - Multiple quality renditions
+      - Bandwidth detection
+      - Automatic quality switching
+      - User manual override
+    technologies: [HLS, DASH, Video Players]
+
+  recording_workflows:
+    description: Record and process live streams
+    pattern: |
+      - Live stream ingestion
+      - Real-time recording
+      - Post-processing pipeline
+      - Archive and delivery
+    technologies: [FFmpeg, Media Servers, Cloud Storage]
+
+best_practices:
+  performance:
+    - Use adaptive bitrate streaming
+    - Implement proper error handling
+    - Optimize for mobile networks
+    - Use CDN for global delivery
+    - Monitor streaming metrics
+
+  security:
+    - Implement token-based authentication
+    - Use DRM for premium content
+    - Secure signaling channels
+    - Validate all inputs
+    - Monitor for abuse
+
+  scalability:
+    - Use SFU for group communications
+    - Implement cascading for large audiences
+    - Use cloud auto-scaling
+    - Optimize bandwidth usage
+    - Plan for peak loads
+
+  user_experience:
+    - Minimize startup time
+    - Provide quality controls
+    - Handle network changes gracefully
+    - Show connection status
+    - Implement fallback options
+
+learning_resources:
+  specifications:
+    - WebRTC 1.0 W3C Recommendation
+    - HLS RFC 8216
+    - MPEG-DASH ISO/IEC 23009
+    - WebTransport Draft
+
+  documentation:
+    - MDN WebRTC API documentation
+    - Google WebRTC samples
+    - Apple HLS authoring guide
+    - DASH Industry Forum guidelines
+
+  tutorials:
+    - WebRTC for the Curious
+    - Real-time Communication with WebRTC
+    - HLS and DASH streaming guides
+    - Media server deployment guides

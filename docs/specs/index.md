@@ -137,6 +137,9 @@ Fluorite MCPが提供するライブラリ仕様の一覧です。これらの�
 - [Lua / 軽量スクリプト言語エコシステム](./lua) - `spec://lua-ecosystem`
 - [Ruby / Ruby on Rails エコシステム](./ruby-rails) - `spec://ruby-rails-ecosystem`
 
+### 映像配信 / WebRTC
+- [WebRTC / ストリーミング配信エコシステム](./webrtc-streaming) - `spec://webrtc-streaming-ecosystem`
+
 ## 🐳 監視 & 分析
 
 - **@sentry/nextjs** - エラー追跡とパフォーマンス監視
