@@ -1,0 +1,2801 @@
+---
+name: DevOps Operations and Infrastructure Ecosystem
+version: 1.0.0
+description: Comprehensive DevOps, Infrastructure as Code, Kubernetes, CI/CD, and cloud operations ecosystem
+category: devops-infrastructure
+subcategory: cloud-operations
+tags:
+  - devops
+  - infrastructure-as-code
+  - kubernetes
+  - ci-cd
+  - monitoring
+  - security
+  - automation
+  - cloud-native
+
+core:
+  devops_foundation:
+    philosophy:
+      name: DevOps Culture and Practices
+      description: Cultural and operational transformation combining development and operations
+      principles:
+        - Collaboration between development and operations teams
+        - Automation of deployment, testing, and infrastructure provisioning
+        - Continuous integration and continuous deployment (CI/CD)
+        - Infrastructure as Code (IaC) for reproducible environments
+        - Monitoring and observability for system reliability
+        - Security integration throughout the development lifecycle
+      practices:
+        - Version control for infrastructure configurations
+        - Automated testing at multiple levels
+        - Deployment automation and rollback capabilities
+        - Monitoring and alerting for proactive issue detection
+        - Incident response and post-mortem analysis
+
+infrastructure_as_code:
+  terraform:
+    name: Terraform
+    description: Multi-cloud infrastructure as code tool using HashiCorp Configuration Language (HCL)
+    homepage: https://terraform.io
+    repository: https://github.com/hashicorp/terraform
+    language: HCL (HashiCorp Configuration Language)
+    features:
+      - Multi-cloud and multi-service support
+      - Declarative configuration syntax
+      - Execution plan generation and review
+      - Resource dependency management
+      - State management and remote state storage
+      - Module system for reusable infrastructure patterns
+    providers:
+      - AWS, Azure, Google Cloud, Alibaba Cloud
+      - Kubernetes, Docker, VMware
+      - GitHub, GitLab, Datadog, PagerDuty
+      - DNS providers (Cloudflare, Route53)
+    code_examples:
+      basic_aws_instance: |
+        # Configure AWS provider
+        terraform {
+          required_providers {
+            aws = {
+              source  = "hashicorp/aws"
+              version = "~> 5.0"
+            }
+          }
+        }
+        
+        provider "aws" {
+          region = var.aws_region
+        }
+        
+        # Create VPC
+        resource "aws_vpc" "main" {
+          cidr_block           = "10.0.0.0/16"
+          enable_dns_hostnames = true
+          enable_dns_support   = true
+          
+          tags = {
+            Name        = "main-vpc"
+            Environment = var.environment
+          }
+        }
+        
+        # Create EC2 instance
+        resource "aws_instance" "web" {
+          ami                    = data.aws_ami.ubuntu.id
+          instance_type          = var.instance_type
+          subnet_id              = aws_subnet.public.id
+          vpc_security_group_ids = [aws_security_group.web.id]
+          
+          user_data = file("${path.module}/user_data.sh")
+          
+          tags = {
+            Name = "web-server"
+          }
+        }
+      
+      modules_example: |
+        # modules/vpc/main.tf
+        variable "cidr_block" {
+          description = "CIDR block for VPC"
+          type        = string
+        }
+        
+        variable "environment" {
+          description = "Environment name"
+          type        = string
+        }
+        
+        resource "aws_vpc" "this" {
+          cidr_block           = var.cidr_block
+          enable_dns_hostnames = true
+          enable_dns_support   = true
+          
+          tags = {
+            Name        = "${var.environment}-vpc"
+            Environment = var.environment
+          }
+        }
+        
+        output "vpc_id" {
+          value = aws_vpc.this.id
+        }
+        
+        # main.tf
+        module "vpc" {
+          source = "./modules/vpc"
+          
+          cidr_block  = "10.0.0.0/16"
+          environment = "production"
+        }
+
+  terragrunt:
+    name: Terragrunt
+    description: Terraform wrapper for DRY configurations and dependency management
+    homepage: https://terragrunt.gruntwork.io
+    repository: https://github.com/gruntwork-io/terragrunt
+    features:
+      - DRY principle enforcement
+      - Remote state configuration
+      - Dependency management between modules
+      - Environment-specific configurations
+      - Before/after hooks for custom actions
+    code_examples:
+      terragrunt_config: |
+        # terragrunt.hcl
+        terraform {
+          source = "git::https://github.com/company/terraform-modules//vpc?ref=v1.0.0"
+        }
+        
+        include "root" {
+          path = find_in_parent_folders()
+        }
+        
+        inputs = {
+          cidr_block     = "10.0.0.0/16"
+          environment    = "production"
+          enable_nat_gw  = true
+          az_count       = 3
+        }
+        
+        dependencies {
+          paths = ["../kms", "../route53"]
+        }
+
+  pulumi:
+    name: Pulumi
+    description: Infrastructure as code using familiar programming languages
+    homepage: https://pulumi.com
+    repository: https://github.com/pulumi/pulumi
+    languages:
+      - TypeScript/JavaScript
+      - Python
+      - Go
+      - C#/.NET
+      - Java
+      - YAML
+    features:
+      - Use existing programming languages and tools
+      - Rich ecosystem of libraries and frameworks
+      - Native testing with unit and integration tests
+      - Policy as code with CrossGuard
+      - Secrets management integration
+    code_examples:
+      typescript_aws: |
+        import * as aws from "@pulumi/aws";
+        import * as awsx from "@pulumi/awsx";
+        
+        // Create a VPC
+        const vpc = new awsx.ec2.Vpc("main", {
+          cidrBlock: "10.0.0.0/16",
+          numberOfAvailabilityZones: 2,
+        });
+        
+        // Create an ECS cluster
+        const cluster = new aws.ecs.Cluster("app-cluster", {
+          vpcId: vpc.vpcId,
+        });
+        
+        // Create a load-balanced service
+        const service = new awsx.ecs.FargateService("app-service", {
+          cluster: cluster.arn,
+          taskDefinitionArgs: {
+            container: {
+              image: "nginx:latest",
+              memory: 256,
+              cpu: 128,
+              portMappings: [{ containerPort: 80 }],
+            },
+          },
+          desiredCount: 2,
+        });
+        
+        export const url = service.loadBalancer.loadBalancer.dnsName;
+
+  aws_tools:
+    cloudformation:
+      name: AWS CloudFormation
+      description: AWS native infrastructure as code service using JSON/YAML templates
+      homepage: https://aws.amazon.com/cloudformation/
+      features:
+        - AWS native integration
+        - Change sets for preview
+        - Stack policies and protection
+        - Nested stacks and cross-stack references
+        - Drift detection and remediation
+      code_examples:
+        yaml_template: |
+          AWSTemplateFormatVersion: '2010-09-09'
+          Description: 'Web application infrastructure'
+          
+          Parameters:
+            InstanceType:
+              Type: String
+              Default: t3.micro
+              AllowedValues: [t3.micro, t3.small, t3.medium]
+          
+          Resources:
+            VPC:
+              Type: AWS::EC2::VPC
+              Properties:
+                CidrBlock: 10.0.0.0/16
+                EnableDnsHostnames: true
+                EnableDnsSupport: true
+                Tags:
+                  - Key: Name
+                    Value: MainVPC
+          
+            WebServerInstance:
+              Type: AWS::EC2::Instance
+              Properties:
+                ImageId: ami-0abcdef1234567890
+                InstanceType: !Ref InstanceType
+                SubnetId: !Ref PublicSubnet
+                SecurityGroupIds:
+                  - !Ref WebServerSecurityGroup
+                UserData:
+                  Fn::Base64: !Sub |
+                    #!/bin/bash
+                    yum update -y
+                    yum install -y httpd
+                    systemctl start httpd
+                    systemctl enable httpd
+          
+          Outputs:
+            WebsiteURL:
+              Description: Website URL
+              Value: !Sub 'http://${WebServerInstance.PublicDnsName}'
+
+    cdk:
+      name: AWS CDK (Cloud Development Kit)
+      description: Define AWS infrastructure using familiar programming languages
+      homepage: https://aws.amazon.com/cdk/
+      repository: https://github.com/aws/aws-cdk
+      languages: [TypeScript, Python, Java, C#, Go]
+      features:
+        - High-level constructs with sensible defaults
+        - Type safety and IDE support
+        - Built-in best practices
+        - Asset bundling and deployment
+        - Integration with AWS services
+      code_examples:
+        typescript_stack: |
+          import * as cdk from 'aws-cdk-lib';
+          import * as ec2 from 'aws-cdk-lib/aws-ec2';
+          import * as ecs from 'aws-cdk-lib/aws-ecs';
+          import * as ecs_patterns from 'aws-cdk-lib/aws-ecs-patterns';
+          
+          export class WebAppStack extends cdk.Stack {
+            constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
+              super(scope, id, props);
+          
+              // Create VPC
+              const vpc = new ec2.Vpc(this, 'WebAppVpc', {
+                maxAzs: 2,
+                natGateways: 1,
+              });
+          
+              // Create ECS cluster
+              const cluster = new ecs.Cluster(this, 'WebAppCluster', {
+                vpc: vpc,
+                containerInsights: true,
+              });
+          
+              // Create Fargate service with load balancer
+              const fargateService = new ecs_patterns.ApplicationLoadBalancedFargateService(this, 'WebAppService', {
+                cluster: cluster,
+                cpu: 256,
+                memoryLimitMiB: 512,
+                desiredCount: 2,
+                taskImageOptions: {
+                  image: ecs.ContainerImage.fromRegistry('nginx:latest'),
+                  containerPort: 80,
+                },
+                publicLoadBalancer: true,
+              });
+          
+              // Output the load balancer URL
+              new cdk.CfnOutput(this, 'LoadBalancerDNS', {
+                value: fargateService.loadBalancer.loadBalancerDnsName,
+              });
+            }
+          }
+
+  azure_tools:
+    arm_templates:
+      name: Azure Resource Manager (ARM) Templates
+      description: Azure native infrastructure as code using JSON templates
+      homepage: https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/
+      features:
+        - Declarative JSON syntax
+        - Parameter and variable support
+        - Template linking and nesting
+        - Resource dependencies
+        - Output values
+      code_examples:
+        arm_template: |
+          {
+            "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+            "contentVersion": "1.0.0.0",
+            "parameters": {
+              "vmName": {
+                "type": "string",
+                "defaultValue": "webVM"
+              },
+              "adminUsername": {
+                "type": "string"
+              },
+              "adminPassword": {
+                "type": "securestring"
+              }
+            },
+            "variables": {
+              "vnetName": "[concat(parameters('vmName'), '-vnet')]",
+              "subnetName": "default"
+            },
+            "resources": [
+              {
+                "type": "Microsoft.Network/virtualNetworks",
+                "apiVersion": "2021-02-01",
+                "name": "[variables('vnetName')]",
+                "location": "[resourceGroup().location]",
+                "properties": {
+                  "addressSpace": {
+                    "addressPrefixes": ["10.0.0.0/16"]
+                  },
+                  "subnets": [
+                    {
+                      "name": "[variables('subnetName')]",
+                      "properties": {
+                        "addressPrefix": "10.0.0.0/24"
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "outputs": {
+              "vnetId": {
+                "type": "string",
+                "value": "[resourceId('Microsoft.Network/virtualNetworks', variables('vnetName'))]"
+              }
+            }
+          }
+
+    bicep:
+      name: Bicep
+      description: Domain-specific language for deploying Azure resources with simplified syntax
+      homepage: https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/
+      repository: https://github.com/Azure/bicep
+      features:
+        - Simplified syntax compared to ARM templates
+        - Type safety and IntelliSense support
+        - Modularity and code reuse
+        - Automatic dependency management
+        - Transpiles to ARM templates
+      code_examples:
+        bicep_module: |
+          // main.bicep
+          param location string = resourceGroup().location
+          param vmName string = 'webVM'
+          param adminUsername string
+          @secure()
+          param adminPassword string
+          
+          // Virtual Network
+          resource vnet 'Microsoft.Network/virtualNetworks@2021-02-01' = {
+            name: '${vmName}-vnet'
+            location: location
+            properties: {
+              addressSpace: {
+                addressPrefixes: ['10.0.0.0/16']
+              }
+              subnets: [
+                {
+                  name: 'default'
+                  properties: {
+                    addressPrefix: '10.0.0.0/24'
+                  }
+                }
+              ]
+            }
+          }
+          
+          // Network Security Group
+          resource nsg 'Microsoft.Network/networkSecurityGroups@2021-02-01' = {
+            name: '${vmName}-nsg'
+            location: location
+            properties: {
+              securityRules: [
+                {
+                  name: 'HTTP'
+                  properties: {
+                    priority: 100
+                    protocol: 'Tcp'
+                    access: 'Allow'
+                    direction: 'Inbound'
+                    sourceAddressPrefix: '*'
+                    sourcePortRange: '*'
+                    destinationAddressPrefix: '*'
+                    destinationPortRange: '80'
+                  }
+                }
+              ]
+            }
+          }
+          
+          output vnetId string = vnet.id
+          output nsgId string = nsg.id
+
+  google_cloud:
+    deployment_manager:
+      name: Google Cloud Deployment Manager
+      description: GCP native infrastructure as code using YAML/Python templates
+      homepage: https://cloud.google.com/deployment-manager
+      features:
+        - YAML/Python/Jinja2 templates
+        - Parallel deployment
+        - Preview mode
+        - Template imports and references
+      code_examples:
+        yaml_config: |
+          # config.yaml
+          imports:
+          - path: vm-template.jinja
+          
+          resources:
+          - name: production-vm
+            type: vm-template.jinja
+            properties:
+              zone: us-central1-a
+              machineType: n1-standard-1
+              network: default
+              
+          - name: test-vm
+            type: vm-template.jinja
+            properties:
+              zone: us-central1-b
+              machineType: f1-micro
+              network: default
+
+  kubernetes_native:
+    crossplane:
+      name: Crossplane
+      description: Kubernetes-native infrastructure management platform
+      homepage: https://crossplane.io
+      repository: https://github.com/crossplane/crossplane
+      features:
+        - Kubernetes API extensions for cloud resources
+        - Composition and reusable infrastructure patterns
+        - GitOps integration
+        - Policy enforcement
+        - Multi-cloud abstractions
+      code_examples:
+        crossplane_composition: |
+          # XRD (Composite Resource Definition)
+          apiVersion: apiextensions.crossplane.io/v1
+          kind: CompositeResourceDefinition
+          metadata:
+            name: xpostgresqlinstances.database.example.com
+          spec:
+            group: database.example.com
+            names:
+              kind: XPostgreSQLInstance
+              plural: xpostgresqlinstances
+            claimNames:
+              kind: PostgreSQLInstance
+              plural: postgresqlinstances
+            versions:
+            - name: v1alpha1
+              served: true
+              referenceable: true
+              schema:
+                openAPIV3Schema:
+                  type: object
+                  properties:
+                    spec:
+                      type: object
+                      properties:
+                        parameters:
+                          type: object
+                          properties:
+                            storageGB:
+                              type: integer
+                            region:
+                              type: string
+          ---
+          # Composition
+          apiVersion: apiextensions.crossplane.io/v1
+          kind: Composition
+          metadata:
+            name: xpostgresqlinstances.aws.database.example.com
+          spec:
+            compositeTypeRef:
+              apiVersion: database.example.com/v1alpha1
+              kind: XPostgreSQLInstance
+            resources:
+            - name: rdsinstance
+              base:
+                apiVersion: rds.aws.crossplane.io/v1alpha1
+                kind: RDSInstance
+                spec:
+                  forProvider:
+                    region: us-east-1
+                    dbInstanceClass: db.t2.small
+                    engine: postgres
+                    dbName: starter
+                    username: masteruser
+                    autoMinorVersionUpgrade: true
+                    backupRetentionPeriod: 7
+                    multiAZ: false
+                    publiclyAccessible: false
+              patches:
+              - type: FromCompositeFieldPath
+                fromFieldPath: spec.parameters.storageGB
+                toFieldPath: spec.forProvider.allocatedStorage
+              - type: FromCompositeFieldPath
+                fromFieldPath: spec.parameters.region
+                toFieldPath: spec.forProvider.region
+
+configuration_management:
+  ansible:
+    name: Ansible
+    description: Agentless configuration management and automation platform using YAML playbooks
+    homepage: https://ansible.com
+    repository: https://github.com/ansible/ansible
+    language: YAML + Python
+    features:
+      - Agentless architecture (SSH-based)
+      - Declarative YAML playbooks
+      - Idempotent operations
+      - Large module library
+      - Role-based organization
+      - Vault for secrets management
+    components:
+      - Ansible Core (engine)
+      - Ansible Galaxy (community roles)
+      - Ansible Tower/AWX (web UI)
+      - Ansible Vault (encryption)
+    code_examples:
+      basic_playbook: |
+        ---
+        - name: Configure web servers
+          hosts: webservers
+          become: yes
+          vars:
+            http_port: 80
+            max_clients: 200
+          
+          tasks:
+            - name: Install Apache
+              package:
+                name: "{{ item }}"
+                state: present
+              loop:
+                - httpd
+                - mod_ssl
+              notify: restart apache
+            
+            - name: Copy configuration file
+              template:
+                src: httpd.conf.j2
+                dest: /etc/httpd/conf/httpd.conf
+                backup: yes
+              notify: restart apache
+            
+            - name: Start Apache service
+              service:
+                name: httpd
+                state: started
+                enabled: yes
+            
+            - name: Open firewall for HTTP
+              firewalld:
+                service: http
+                permanent: yes
+                state: enabled
+                immediate: yes
+          
+          handlers:
+            - name: restart apache
+              service:
+                name: httpd
+                state: restarted
+      
+      role_structure: |
+        # roles/webserver/tasks/main.yml
+        ---
+        - name: Install web server packages
+          package:
+            name: "{{ item }}"
+            state: present
+          loop: "{{ webserver_packages }}"
+        
+        - name: Configure web server
+          template:
+            src: "{{ webserver_config_template }}"
+            dest: "{{ webserver_config_path }}"
+            backup: yes
+          notify: restart webserver
+        
+        # roles/webserver/defaults/main.yml
+        ---
+        webserver_packages:
+          - httpd
+          - mod_ssl
+        webserver_config_template: httpd.conf.j2
+        webserver_config_path: /etc/httpd/conf/httpd.conf
+        
+        # roles/webserver/handlers/main.yml
+        ---
+        - name: restart webserver
+          service:
+            name: httpd
+            state: restarted
+
+  chef:
+    name: Chef
+    description: Configuration management using Ruby DSL for infrastructure automation
+    homepage: https://chef.io
+    repository: https://github.com/chef/chef
+    language: Ruby DSL
+    features:
+      - Ruby-based configuration language
+      - Test-driven infrastructure development
+      - Compliance automation
+      - Policy-based management
+      - Habitat for application automation
+    components:
+      - Chef Infra (configuration management)
+      - Chef InSpec (compliance testing)
+      - Chef Habitat (application automation)
+      - Chef Automate (operations dashboard)
+    code_examples:
+      cookbook_recipe: |
+        # cookbooks/webserver/recipes/default.rb
+        package 'httpd' do
+          action :install
+        end
+        
+        service 'httpd' do
+          action [:enable, :start]
+        end
+        
+        template '/etc/httpd/conf/httpd.conf' do
+          source 'httpd.conf.erb'
+          owner 'root'
+          group 'root'
+          mode '0644'
+          variables(
+            port: node['webserver']['port'],
+            server_name: node['webserver']['server_name']
+          )
+          notifies :restart, 'service[httpd]', :delayed
+        end
+        
+        # cookbooks/webserver/attributes/default.rb
+        default['webserver']['port'] = 80
+        default['webserver']['server_name'] = node['fqdn']
+        
+        # cookbooks/webserver/metadata.rb
+        name 'webserver'
+        maintainer 'DevOps Team'
+        version '1.0.0'
+        description 'Installs and configures web server'
+        supports 'centos'
+        supports 'ubuntu'
+
+  puppet:
+    name: Puppet
+    description: Declarative configuration management with its own DSL
+    homepage: https://puppet.com
+    repository: https://github.com/puppetlabs/puppet
+    language: Puppet DSL
+    features:
+      - Declarative resource-based language
+      - Agent-server architecture
+      - Catalog compilation and enforcement
+      - Reporting and analytics
+      - Hiera for data separation
+    code_examples:
+      manifest: |
+        # manifests/webserver.pp
+        class webserver (
+          $package_name = 'httpd',
+          $service_name = 'httpd',
+          $config_path  = '/etc/httpd/conf/httpd.conf',
+          $document_root = '/var/www/html',
+        ) {
+          package { $package_name:
+            ensure => installed,
+          }
+        
+          file { $config_path:
+            ensure  => file,
+            content => template('webserver/httpd.conf.erb'),
+            owner   => 'root',
+            group   => 'root',
+            mode    => '0644',
+            require => Package[$package_name],
+            notify  => Service[$service_name],
+          }
+        
+          service { $service_name:
+            ensure    => running,
+            enable    => true,
+            subscribe => File[$config_path],
+          }
+        
+          file { $document_root:
+            ensure => directory,
+            owner  => 'apache',
+            group  => 'apache',
+            mode   => '0755',
+          }
+        }
+        
+        # Apply the class
+        include webserver
+
+  saltstack:
+    name: SaltStack
+    description: Fast and scalable configuration management with event-driven orchestration
+    homepage: https://saltproject.io
+    repository: https://github.com/saltstack/salt
+    language: YAML + Python
+    features:
+      - High-speed communication (ZeroMQ)
+      - Event-driven architecture
+      - Remote execution capabilities
+      - Highly scalable (thousands of nodes)
+      - Flexible targeting system
+    code_examples:
+      state_file: |
+        # states/webserver/init.sls
+        webserver_packages:
+          pkg.installed:
+            - pkgs:
+              - httpd
+              - mod_ssl
+        
+        httpd_config:
+          file.managed:
+            - name: /etc/httpd/conf/httpd.conf
+            - source: salt://webserver/files/httpd.conf
+            - template: jinja
+            - context:
+                port: {{ pillar['webserver']['port'] }}
+                server_name: {{ grains['fqdn'] }}
+            - require:
+              - pkg: webserver_packages
+        
+        httpd_service:
+          service.running:
+            - name: httpd
+            - enable: True
+            - require:
+              - pkg: webserver_packages
+            - watch:
+              - file: httpd_config
+        
+        # pillar/webserver.sls
+        webserver:
+          port: 80
+          max_clients: 150
+
+kubernetes_ecosystem:
+  core_kubernetes:
+    kubernetes:
+      name: Kubernetes
+      description: Container orchestration platform for automating deployment, scaling, and management
+      homepage: https://kubernetes.io
+      repository: https://github.com/kubernetes/kubernetes
+      features:
+        - Container orchestration and scheduling
+        - Service discovery and load balancing
+        - Storage orchestration
+        - Automated rollouts and rollbacks
+        - Self-healing capabilities
+        - Horizontal scaling
+      core_concepts:
+        - Pods (smallest deployable units)
+        - Services (network abstraction)
+        - Deployments (declarative updates)
+        - ConfigMaps and Secrets (configuration)
+        - Namespaces (resource isolation)
+        - Ingress (external access)
+      code_examples:
+        basic_deployment: |
+          # deployment.yaml
+          apiVersion: apps/v1
+          kind: Deployment
+          metadata:
+            name: web-app
+            labels:
+              app: web-app
+          spec:
+            replicas: 3
+            selector:
+              matchLabels:
+                app: web-app
+            template:
+              metadata:
+                labels:
+                  app: web-app
+              spec:
+                containers:
+                - name: web-app
+                  image: nginx:1.21
+                  ports:
+                  - containerPort: 80
+                  resources:
+                    requests:
+                      memory: "64Mi"
+                      cpu: "250m"
+                    limits:
+                      memory: "128Mi"
+                      cpu: "500m"
+          ---
+          # service.yaml
+          apiVersion: v1
+          kind: Service
+          metadata:
+            name: web-app-service
+          spec:
+            selector:
+              app: web-app
+            ports:
+            - protocol: TCP
+              port: 80
+              targetPort: 80
+            type: LoadBalancer
+
+  package_management:
+    helm:
+      name: Helm
+      description: Kubernetes package manager for managing complex applications
+      homepage: https://helm.sh
+      repository: https://github.com/helm/helm
+      features:
+        - Package management for Kubernetes
+        - Templating and parameterization
+        - Release management and rollbacks
+        - Chart repositories
+        - Dependency management
+      components:
+        - Charts (Kubernetes packages)
+        - Releases (chart instances)
+        - Repositories (chart collections)
+        - Values (configuration)
+      code_examples:
+        chart_structure: |
+          # Chart.yaml
+          apiVersion: v2
+          name: web-app
+          description: A simple web application
+          version: 0.1.0
+          appVersion: 1.0.0
+          dependencies:
+          - name: postgresql
+            version: 11.6.12
+            repository: https://charts.bitnami.com/bitnami
+          
+          # values.yaml
+          replicaCount: 3
+          
+          image:
+            repository: nginx
+            tag: 1.21
+            pullPolicy: IfNotPresent
+          
+          service:
+            type: ClusterIP
+            port: 80
+          
+          ingress:
+            enabled: false
+            annotations: {}
+            hosts:
+            - host: web-app.local
+              paths:
+              - path: /
+                pathType: Prefix
+          
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+        
+        template_deployment: |
+          # templates/deployment.yaml
+          apiVersion: apps/v1
+          kind: Deployment
+          metadata:
+            name: {{ include "web-app.fullname" . }}
+            labels:
+              {{- include "web-app.labels" . | nindent 4 }}
+          spec:
+            replicas: {{ .Values.replicaCount }}
+            selector:
+              matchLabels:
+                {{- include "web-app.selectorLabels" . | nindent 6 }}
+            template:
+              metadata:
+                labels:
+                  {{- include "web-app.selectorLabels" . | nindent 8 }}
+              spec:
+                containers:
+                - name: {{ .Chart.Name }}
+                  image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+                  imagePullPolicy: {{ .Values.image.pullPolicy }}
+                  ports:
+                  - name: http
+                    containerPort: 80
+                    protocol: TCP
+                  resources:
+                    {{- toYaml .Values.resources | nindent 10 }}
+
+    kustomize:
+      name: Kustomize
+      description: Kubernetes configuration management through layered customization
+      homepage: https://kustomize.io
+      repository: https://github.com/kubernetes-sigs/kustomize
+      features:
+        - Template-free customization
+        - Layered configuration management
+        - Strategic merge patches
+        - JSON 6902 patches
+        - Generator functions
+      code_examples:
+        base_kustomization: |
+          # base/kustomization.yaml
+          apiVersion: kustomize.config.k8s.io/v1beta1
+          kind: Kustomization
+          
+          resources:
+          - deployment.yaml
+          - service.yaml
+          
+          commonLabels:
+            app: web-app
+            version: v1
+          
+          images:
+          - name: nginx
+            newTag: 1.21
+          
+          # overlays/production/kustomization.yaml
+          apiVersion: kustomize.config.k8s.io/v1beta1
+          kind: Kustomization
+          
+          resources:
+          - ../../base
+          
+          patchesStrategicMerge:
+          - deployment-patch.yaml
+          
+          replicas:
+          - name: web-app
+            count: 5
+          
+          # overlays/production/deployment-patch.yaml
+          apiVersion: apps/v1
+          kind: Deployment
+          metadata:
+            name: web-app
+          spec:
+            template:
+              spec:
+                containers:
+                - name: web-app
+                  resources:
+                    requests:
+                      memory: "256Mi"
+                      cpu: "500m"
+                    limits:
+                      memory: "512Mi"
+                      cpu: "1000m"
+
+  gitops_deployment:
+    argo_cd:
+      name: Argo CD
+      description: GitOps continuous delivery tool for Kubernetes
+      homepage: https://argoproj.github.io/cd/
+      repository: https://github.com/argoproj/argo-cd
+      features:
+        - GitOps workflow automation
+        - Multi-cluster deployment
+        - RBAC and SSO integration
+        - Application health monitoring
+        - Automated sync and rollback
+        - Web UI and CLI
+      code_examples:
+        application_manifest: |
+          # application.yaml
+          apiVersion: argoproj.io/v1alpha1
+          kind: Application
+          metadata:
+            name: web-app
+            namespace: argocd
+            finalizers:
+            - resources-finalizer.argocd.argoproj.io
+          spec:
+            project: default
+            source:
+              repoURL: https://github.com/company/k8s-manifests
+              targetRevision: HEAD
+              path: apps/web-app/overlays/production
+            destination:
+              server: https://kubernetes.default.svc
+              namespace: web-app
+            syncPolicy:
+              automated:
+                prune: true
+                selfHeal: true
+              syncOptions:
+              - CreateNamespace=true
+              retry:
+                limit: 3
+                backoff:
+                  duration: 5s
+                  factor: 2
+                  maxDuration: 3m
+
+    flux_cd:
+      name: Flux CD
+      description: CNCF GitOps toolkit for Kubernetes
+      homepage: https://fluxcd.io
+      repository: https://github.com/fluxcd/flux2
+      features:
+        - Git repository synchronization
+        - Helm and Kustomize support
+        - Image automation
+        - Notification system
+        - Multi-tenancy support
+      components:
+        - Source Controller (Git/Helm repositories)
+        - Kustomize Controller (Kustomize resources)
+        - Helm Controller (Helm releases)
+        - Notification Controller (events)
+        - Image Automation Controllers
+      code_examples:
+        flux_manifests: |
+          # source.yaml
+          apiVersion: source.toolkit.fluxcd.io/v1beta2
+          kind: GitRepository
+          metadata:
+            name: web-app
+            namespace: flux-system
+          spec:
+            interval: 1m
+            ref:
+              branch: main
+            url: https://github.com/company/k8s-manifests
+          ---
+          # kustomization.yaml
+          apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+          kind: Kustomization
+          metadata:
+            name: web-app
+            namespace: flux-system
+          spec:
+            interval: 10m
+            path: "./apps/web-app"
+            prune: true
+            sourceRef:
+              kind: GitRepository
+              name: web-app
+            healthChecks:
+            - apiVersion: apps/v1
+              kind: Deployment
+              name: web-app
+              namespace: default
+
+  service_mesh:
+    istio:
+      name: Istio
+      description: Service mesh providing security, traffic management, and observability
+      homepage: https://istio.io
+      repository: https://github.com/istio/istio
+      features:
+        - Traffic management and load balancing
+        - Security policies and mTLS
+        - Observability and tracing
+        - Policy enforcement
+        - Multi-cluster support
+      components:
+        - Envoy Proxy (data plane)
+        - Istiod (control plane)
+        - Ingress/Egress Gateways
+      code_examples:
+        virtual_service: |
+          # virtual-service.yaml
+          apiVersion: networking.istio.io/v1beta1
+          kind: VirtualService
+          metadata:
+            name: web-app
+          spec:
+            http:
+            - match:
+              - headers:
+                  canary:
+                    exact: "true"
+              route:
+              - destination:
+                  host: web-app
+                  subset: canary
+                weight: 100
+            - route:
+              - destination:
+                  host: web-app
+                  subset: stable
+                weight: 90
+              - destination:
+                  host: web-app
+                  subset: canary
+                weight: 10
+          ---
+          # destination-rule.yaml
+          apiVersion: networking.istio.io/v1beta1
+          kind: DestinationRule
+          metadata:
+            name: web-app
+          spec:
+            host: web-app
+            subsets:
+            - name: stable
+              labels:
+                version: stable
+            - name: canary
+              labels:
+                version: canary
+
+    linkerd:
+      name: Linkerd
+      description: Ultralight service mesh for Kubernetes
+      homepage: https://linkerd.io
+      repository: https://github.com/linkerd/linkerd2
+      features:
+        - Automatic mTLS
+        - Traffic splitting and load balancing
+        - Real-time metrics and monitoring
+        - Minimal resource overhead
+        - Simple installation and operation
+      code_examples:
+        service_profile: |
+          # service-profile.yaml
+          apiVersion: linkerd.io/v1alpha2
+          kind: ServiceProfile
+          metadata:
+            name: web-app
+            namespace: default
+          spec:
+            routes:
+            - name: api
+              condition:
+                method: GET
+                pathRegex: /api/.*
+              responseClasses:
+              - condition:
+                  status:
+                    min: 200
+                    max: 299
+                isFailure: false
+              - condition:
+                  status:
+                    min: 500
+                    max: 599
+                isFailure: true
+            retryBudget:
+              retryRatio: 0.2
+              minRetriesPerSecond: 10
+              ttl: 10s
+
+container_platforms:
+  docker:
+    name: Docker
+    description: Containerization platform for packaging applications and dependencies
+    homepage: https://docker.com
+    repository: https://github.com/docker/docker-ce
+    features:
+      - Container runtime and management
+      - Image building and distribution
+      - Volume and network management
+      - Multi-stage builds
+      - Docker Compose for multi-container applications
+    code_examples:
+      dockerfile: |
+        # Multi-stage Dockerfile
+        FROM node:18-alpine AS builder
+        WORKDIR /app
+        COPY package*.json ./
+        RUN npm ci --only=production
+        
+        FROM node:18-alpine AS runtime
+        RUN addgroup -g 1001 -S nodejs && \
+            adduser -S nextjs -u 1001
+        
+        WORKDIR /app
+        COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
+        COPY --chown=nextjs:nodejs . .
+        
+        USER nextjs
+        EXPOSE 3000
+        ENV PORT 3000
+        
+        CMD ["node", "server.js"]
+      
+      docker_compose: |
+        # docker-compose.yml
+        version: '3.8'
+        
+        services:
+          web:
+            build:
+              context: .
+              dockerfile: Dockerfile
+            ports:
+              - "3000:3000"
+            environment:
+              - NODE_ENV=production
+              - DATABASE_URL=postgresql://user:pass@db:5432/myapp
+            depends_on:
+              - db
+              - redis
+            volumes:
+              - ./uploads:/app/uploads
+            restart: unless-stopped
+        
+          db:
+            image: postgres:14-alpine
+            environment:
+              POSTGRES_DB: myapp
+              POSTGRES_USER: user
+              POSTGRES_PASSWORD: pass
+            volumes:
+              - postgres_data:/var/lib/postgresql/data
+            ports:
+              - "5432:5432"
+        
+          redis:
+            image: redis:7-alpine
+            command: redis-server --appendonly yes
+            volumes:
+              - redis_data:/data
+            ports:
+              - "6379:6379"
+        
+        volumes:
+          postgres_data:
+          redis_data:
+
+  podman:
+    name: Podman
+    description: Daemonless container engine for running OCI containers
+    homepage: https://podman.io
+    repository: https://github.com/containers/podman
+    features:
+      - Daemonless architecture
+      - Rootless containers
+      - Docker CLI compatibility
+      - Pod support (group of containers)
+      - Systemd integration
+    code_examples:
+      podman_commands: |
+        # Run container rootless
+        podman run -d --name web -p 8080:80 nginx:alpine
+        
+        # Create and manage pods
+        podman pod create --name web-app --publish 8080:80
+        podman run -d --pod web-app --name web nginx:alpine
+        podman run -d --pod web-app --name db postgres:13
+        
+        # Generate Kubernetes YAML
+        podman generate kube web-app > web-app-pod.yaml
+        
+        # Generate systemd service
+        podman generate systemd --new --name web-app
+        
+        # Build image
+        podman build -t my-app:latest .
+        
+        # Container management
+        podman ps -a
+        podman logs web
+        podman exec -it web /bin/bash
+
+  buildkit:
+    name: BuildKit / Docker Buildx
+    description: Advanced Docker image building with enhanced features
+    homepage: https://github.com/moby/buildkit
+    features:
+      - Parallel build stages
+      - Multi-platform builds
+      - Build caching improvements
+      - Dockerfile frontend flexibility
+      - Rootless building
+    code_examples:
+      buildx_usage: |
+        # Create multi-platform builder
+        docker buildx create --name mybuilder --use
+        
+        # Multi-platform build
+        docker buildx build \
+          --platform linux/amd64,linux/arm64 \
+          --tag myapp:latest \
+          --push .
+        
+        # Advanced Dockerfile with BuildKit features
+        # syntax=docker/dockerfile:1
+        FROM --platform=$BUILDPLATFORM node:18-alpine AS builder
+        ARG BUILDPLATFORM
+        ARG TARGETPLATFORM
+        
+        WORKDIR /app
+        COPY package*.json ./
+        RUN --mount=type=cache,target=/root/.npm \
+            npm ci --only=production
+        
+        FROM node:18-alpine AS runtime
+        RUN apk add --no-cache dumb-init
+        
+        COPY --from=builder /app/node_modules ./node_modules
+        COPY . .
+        
+        ENTRYPOINT ["dumb-init", "--"]
+        CMD ["node", "server.js"]
+
+cicd_pipelines:
+  github_actions:
+    name: GitHub Actions
+    description: GitHub-integrated CI/CD platform with workflow automation
+    homepage: https://github.com/features/actions
+    features:
+      - YAML-based workflow definition
+      - Matrix builds and strategy
+      - Secrets management
+      - Marketplace of actions
+      - Self-hosted runners
+      - Integration with GitHub ecosystem
+    code_examples:
+      workflow_example: |
+        # .github/workflows/ci-cd.yml
+        name: CI/CD Pipeline
+        
+        on:
+          push:
+            branches: [main, develop]
+          pull_request:
+            branches: [main]
+        
+        env:
+          REGISTRY: ghcr.io
+          IMAGE_NAME: ${{ github.repository }}
+        
+        jobs:
+          test:
+            runs-on: ubuntu-latest
+            strategy:
+              matrix:
+                node-version: [16, 18, 20]
+            
+            steps:
+            - uses: actions/checkout@v4
+            
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                node-version: ${{ matrix.node-version }}
+                cache: 'npm'
+            
+            - name: Install dependencies
+              run: npm ci
+            
+            - name: Run tests
+              run: npm run test:coverage
+            
+            - name: Upload coverage to Codecov
+              uses: codecov/codecov-action@v3
+              if: matrix.node-version == 18
+        
+          build-and-deploy:
+            needs: test
+            runs-on: ubuntu-latest
+            if: github.ref == 'refs/heads/main'
+            
+            permissions:
+              contents: read
+              packages: write
+            
+            steps:
+            - uses: actions/checkout@v4
+            
+            - name: Login to Container Registry
+              uses: docker/login-action@v3
+              with:
+                registry: ${{ env.REGISTRY }}
+                username: ${{ github.actor }}
+                password: ${{ secrets.GITHUB_TOKEN }}
+            
+            - name: Extract metadata
+              id: meta
+              uses: docker/metadata-action@v5
+              with:
+                images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+                tags: |
+                  type=ref,event=branch
+                  type=sha,prefix={{branch}}-
+            
+            - name: Build and push
+              uses: docker/build-push-action@v5
+              with:
+                context: .
+                platforms: linux/amd64,linux/arm64
+                push: true
+                tags: ${{ steps.meta.outputs.tags }}
+                labels: ${{ steps.meta.outputs.labels }}
+            
+            - name: Deploy to Kubernetes
+              run: |
+                echo "${{ secrets.KUBECONFIG }}" | base64 -d > kubeconfig
+                export KUBECONFIG=kubeconfig
+                kubectl set image deployment/web-app web-app=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main-${{ github.sha }}
+                kubectl rollout status deployment/web-app
+
+  gitlab_ci:
+    name: GitLab CI/CD
+    description: GitLab-integrated CI/CD with comprehensive DevOps features
+    homepage: https://docs.gitlab.com/ee/ci/
+    features:
+      - YAML-based pipeline configuration
+      - Built-in container registry
+      - Security scanning integration
+      - Review apps and environments
+      - GitOps deployments
+    code_examples:
+      gitlab_ci_yaml: |
+        # .gitlab-ci.yml
+        stages:
+          - test
+          - build
+          - deploy
+        
+        variables:
+          DOCKER_DRIVER: overlay2
+          DOCKER_TLS_CERTDIR: "/certs"
+          IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+        
+        services:
+          - docker:dind
+        
+        test:
+          stage: test
+          image: node:18-alpine
+          cache:
+            paths:
+              - node_modules/
+          script:
+            - npm ci
+            - npm run lint
+            - npm run test:coverage
+          coverage: '/All files[^|]*\|[^|]*\s+([\d\.]+)/'
+          artifacts:
+            reports:
+              coverage_report:
+                coverage_format: cobertura
+                path: coverage/cobertura-coverage.xml
+        
+        build:
+          stage: build
+          image: docker:latest
+          before_script:
+            - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+          script:
+            - docker build -t $IMAGE_TAG .
+            - docker push $IMAGE_TAG
+          only:
+            - main
+            - develop
+        
+        deploy_staging:
+          stage: deploy
+          image: bitnami/kubectl:latest
+          environment:
+            name: staging
+            url: https://staging.example.com
+          script:
+            - kubectl config use-context staging
+            - kubectl set image deployment/web-app web-app=$IMAGE_TAG
+            - kubectl rollout status deployment/web-app
+          only:
+            - develop
+        
+        deploy_production:
+          stage: deploy
+          image: bitnami/kubectl:latest
+          environment:
+            name: production
+            url: https://example.com
+          script:
+            - kubectl config use-context production
+            - kubectl set image deployment/web-app web-app=$IMAGE_TAG
+            - kubectl rollout status deployment/web-app
+          when: manual
+          only:
+            - main
+
+  jenkins:
+    name: Jenkins
+    description: Extensible automation server for CI/CD pipelines
+    homepage: https://jenkins.io
+    repository: https://github.com/jenkinsci/jenkins
+    features:
+      - Plugin ecosystem (1800+ plugins)
+      - Pipeline as Code (Jenkinsfile)
+      - Distributed builds
+      - Blue Ocean modern UI
+      - Integration with SCM systems
+    code_examples:
+      jenkinsfile_pipeline: |
+        // Jenkinsfile
+        pipeline {
+            agent any
+            
+            environment {
+                DOCKER_REGISTRY = 'docker.io'
+                IMAGE_NAME = 'myapp'
+                KUBECONFIG = credentials('kubeconfig')
+            }
+            
+            stages {
+                stage('Checkout') {
+                    steps {
+                        checkout scm
+                    }
+                }
+                
+                stage('Test') {
+                    parallel {
+                        stage('Unit Tests') {
+                            agent {
+                                docker {
+                                    image 'node:18-alpine'
+                                    args '-v /var/run/docker.sock:/var/run/docker.sock'
+                                }
+                            }
+                            steps {
+                                sh 'npm ci'
+                                sh 'npm run test:unit'
+                            }
+                            post {
+                                always {
+                                    publishTestResults testResultsPattern: 'test-results.xml'
+                                    publishCoverage adapters: [
+                                        coberturaAdapter('coverage/cobertura-coverage.xml')
+                                    ]
+                                }
+                            }
+                        }
+                        
+                        stage('Integration Tests') {
+                            steps {
+                                sh 'docker-compose -f docker-compose.test.yml up --abort-on-container-exit'
+                            }
+                            post {
+                                always {
+                                    sh 'docker-compose -f docker-compose.test.yml down'
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                stage('Build') {
+                    when {
+                        anyOf {
+                            branch 'main'
+                            branch 'develop'
+                        }
+                    }
+                    steps {
+                        script {
+                            def image = docker.build("${DOCKER_REGISTRY}/${IMAGE_NAME}:${BUILD_NUMBER}")
+                            docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials') {
+                                image.push()
+                                image.push('latest')
+                            }
+                        }
+                    }
+                }
+                
+                stage('Deploy') {
+                    when {
+                        branch 'main'
+                    }
+                    steps {
+                        sh """
+                            kubectl set image deployment/web-app web-app=${DOCKER_REGISTRY}/${IMAGE_NAME}:${BUILD_NUMBER}
+                            kubectl rollout status deployment/web-app --timeout=300s
+                        """
+                    }
+                }
+            }
+            
+            post {
+                always {
+                    cleanWs()
+                }
+                failure {
+                    emailext(
+                        subject: "Build Failed: ${env.JOB_NAME} - ${env.BUILD_NUMBER}",
+                        body: "Build failed. Check console output at ${env.BUILD_URL}",
+                        to: "${env.CHANGE_AUTHOR_EMAIL}"
+                    )
+                }
+            }
+        }
+
+  argo_workflows:
+    name: Argo Workflows
+    description: Kubernetes-native workflow engine for complex job orchestration
+    homepage: https://argoproj.github.io/argo-workflows/
+    repository: https://github.com/argoproj/argo-workflows
+    features:
+      - DAG and step-based workflows
+      - Container-native execution
+      - Artifact management
+      - Conditional execution
+      - Parallel processing
+    code_examples:
+      workflow_example: |
+        # ci-workflow.yaml
+        apiVersion: argoproj.io/v1alpha1
+        kind: Workflow
+        metadata:
+          generateName: ci-pipeline-
+        spec:
+          entrypoint: ci-pipeline
+          
+          templates:
+          - name: ci-pipeline
+            dag:
+              tasks:
+              - name: test
+                template: run-tests
+              - name: build
+                template: build-image
+                dependencies: [test]
+              - name: security-scan
+                template: security-scan
+                dependencies: [build]
+              - name: deploy-staging
+                template: deploy
+                dependencies: [security-scan]
+                arguments:
+                  parameters:
+                  - name: environment
+                    value: staging
+          
+          - name: run-tests
+            container:
+              image: node:18-alpine
+              command: [sh, -c]
+              args: ["npm ci && npm run test"]
+              workingDir: /workspace
+            inputs:
+              artifacts:
+              - name: source
+                path: /workspace
+                git:
+                  repo: https://github.com/company/app.git
+                  revision: "{{workflow.parameters.revision}}"
+          
+          - name: build-image
+            container:
+              image: gcr.io/kaniko-project/executor:latest
+              args:
+              - --dockerfile=/workspace/Dockerfile
+              - --context=/workspace
+              - --destination=myregistry/myapp:{{workflow.parameters.revision}}
+            inputs:
+              artifacts:
+              - name: source
+                path: /workspace
+                git:
+                  repo: https://github.com/company/app.git
+                  revision: "{{workflow.parameters.revision}}"
+
+monitoring_observability:
+  prometheus_stack:
+    prometheus:
+      name: Prometheus
+      description: Time-series monitoring and alerting system
+      homepage: https://prometheus.io
+      repository: https://github.com/prometheus/prometheus
+      features:
+        - Multi-dimensional data model
+        - PromQL query language
+        - Pull-based metric collection
+        - Service discovery integration
+        - Alerting integration
+      code_examples:
+        prometheus_config: |
+          # prometheus.yml
+          global:
+            scrape_interval: 15s
+            evaluation_interval: 15s
+          
+          rule_files:
+            - "alerts.yml"
+          
+          alerting:
+            alertmanagers:
+              - static_configs:
+                  - targets:
+                    - alertmanager:9093
+          
+          scrape_configs:
+            - job_name: 'prometheus'
+              static_configs:
+                - targets: ['localhost:9090']
+          
+            - job_name: 'kubernetes-pods'
+              kubernetes_sd_configs:
+                - role: pod
+              relabel_configs:
+                - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+                  action: keep
+                  regex: true
+                - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]
+                  action: replace
+                  target_label: __metrics_path__
+                  regex: (.+)
+        
+        alert_rules: |
+          # alerts.yml
+          groups:
+          - name: example
+            rules:
+            - alert: HighErrorRate
+              expr: rate(http_requests_total{status=~"5.."}[5m]) > 0.1
+              for: 5m
+              labels:
+                severity: critical
+              annotations:
+                summary: "High error rate detected"
+                description: "Error rate is {{ $value }} for {{ $labels.instance }}"
+          
+            - alert: HighMemoryUsage
+              expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes > 0.8
+              for: 2m
+              labels:
+                severity: warning
+              annotations:
+                summary: "High memory usage on {{ $labels.instance }}"
+
+    grafana:
+      name: Grafana
+      description: Analytics and visualization platform for metrics
+      homepage: https://grafana.com
+      repository: https://github.com/grafana/grafana
+      features:
+        - Multiple data source support
+        - Rich visualization options
+        - Dashboard templating
+        - Alerting and notifications
+        - Plugin ecosystem
+      code_examples:
+        dashboard_json: |
+          {
+            "dashboard": {
+              "title": "Application Metrics",
+              "panels": [
+                {
+                  "title": "Request Rate",
+                  "type": "graph",
+                  "targets": [
+                    {
+                      "expr": "rate(http_requests_total[5m])",
+                      "legendFormat": "{{method}} {{status}}"
+                    }
+                  ],
+                  "yAxes": [
+                    {
+                      "label": "Requests/sec"
+                    }
+                  ]
+                },
+                {
+                  "title": "Response Time",
+                  "type": "graph",
+                  "targets": [
+                    {
+                      "expr": "histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m]))",
+                      "legendFormat": "95th percentile"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+
+    loki:
+      name: Loki
+      description: Log aggregation system designed for cloud-native environments
+      homepage: https://grafana.com/oss/loki/
+      repository: https://github.com/grafana/loki
+      features:
+        - Prometheus-like labels for logs
+        - LogQL query language
+        - Horizontal scalability
+        - Cost-effective storage
+        - Grafana integration
+      code_examples:
+        loki_config: |
+          # loki.yml
+          auth_enabled: false
+          
+          server:
+            http_listen_port: 3100
+          
+          ingester:
+            lifecycler:
+              address: 127.0.0.1
+              ring:
+                kvstore:
+                  store: inmemory
+                replication_factor: 1
+            chunk_idle_period: 1h
+            max_chunk_age: 1h
+            chunk_target_size: 1048576
+            chunk_retain_period: 30s
+          
+          schema_config:
+            configs:
+              - from: 2020-10-24
+                store: boltdb-shipper
+                object_store: filesystem
+                schema: v11
+                index:
+                  prefix: index_
+                  period: 24h
+          
+          storage_config:
+            boltdb_shipper:
+              active_index_directory: /loki/boltdb-shipper-active
+              cache_location: /loki/boltdb-shipper-cache
+              shared_store: filesystem
+            filesystem:
+              directory: /loki/chunks
+        
+        promtail_config: |
+          # promtail.yml
+          server:
+            http_listen_port: 9080
+            grpc_listen_port: 0
+          
+          positions:
+            filename: /tmp/positions.yaml
+          
+          clients:
+            - url: http://loki:3100/loki/api/v1/push
+          
+          scrape_configs:
+            - job_name: containers
+              static_configs:
+                - targets:
+                    - localhost
+                  labels:
+                    job: containerlogs
+                    __path__: /var/log/containers/*log
+              pipeline_stages:
+                - json:
+                    expressions:
+                      output: log
+                      stream: stream
+                      attrs:
+                - json:
+                    expressions:
+                      tag: attrs.tag
+                    source: attrs
+                - regex:
+                    expression: (?P<container_name>(?:[^/]*/)*)
+                    source: tag
+                - timestamp:
+                    format: RFC3339Nano
+                    source: time
+
+  elk_stack:
+    elasticsearch:
+      name: Elasticsearch
+      description: Distributed search and analytics engine
+      homepage: https://elastic.co/elasticsearch/
+      repository: https://github.com/elastic/elasticsearch
+      features:
+        - Full-text search capabilities
+        - Real-time data and analytics
+        - Horizontal scalability
+        - RESTful API
+        - Schema-free JSON documents
+      code_examples:
+        index_template: |
+          # Index template for application logs
+          PUT _index_template/app-logs
+          {
+            "index_patterns": ["app-logs-*"],
+            "template": {
+              "settings": {
+                "number_of_shards": 2,
+                "number_of_replicas": 1
+              },
+              "mappings": {
+                "properties": {
+                  "@timestamp": {
+                    "type": "date"
+                  },
+                  "level": {
+                    "type": "keyword"
+                  },
+                  "message": {
+                    "type": "text",
+                    "analyzer": "standard"
+                  },
+                  "service": {
+                    "type": "keyword"
+                  },
+                  "trace_id": {
+                    "type": "keyword"
+                  }
+                }
+              }
+            }
+          }
+
+    logstash:
+      name: Logstash
+      description: Data processing pipeline for log ingestion and transformation
+      homepage: https://elastic.co/logstash/
+      repository: https://github.com/elastic/logstash
+      features:
+        - Data ingestion from multiple sources
+        - Real-time processing and transformation
+        - Plugin ecosystem
+        - Filtering and parsing
+        - Output to multiple destinations
+      code_examples:
+        logstash_config: |
+          # logstash.conf
+          input {
+            beats {
+              port => 5044
+            }
+            
+            http {
+              port => 8080
+              codec => json
+            }
+          }
+          
+          filter {
+            if [type] == "application" {
+              grok {
+                match => { "message" => "%{TIMESTAMP_ISO8601:timestamp} %{LOGLEVEL:level} %{GREEDYDATA:msg}" }
+              }
+              
+              date {
+                match => [ "timestamp", "ISO8601" ]
+              }
+              
+              if [level] == "ERROR" {
+                mutate {
+                  add_tag => [ "error" ]
+                }
+              }
+            }
+            
+            # Extract trace ID from message
+            grok {
+              match => { "message" => "trace_id=%{WORD:trace_id}" }
+              tag_on_failure => []
+            }
+          }
+          
+          output {
+            elasticsearch {
+              hosts => ["elasticsearch:9200"]
+              index => "app-logs-%{+YYYY.MM.dd}"
+            }
+            
+            if "error" in [tags] {
+              email {
+                to => "alerts@company.com"
+                subject => "Application Error Detected"
+                body => "Error: %{message}"
+              }
+            }
+          }
+
+    kibana:
+      name: Kibana
+      description: Data visualization and exploration platform for Elasticsearch
+      homepage: https://elastic.co/kibana/
+      repository: https://github.com/elastic/kibana
+      features:
+        - Interactive dashboards
+        - Data discovery and exploration
+        - Machine learning integration
+        - Canvas for infographic-style presentations
+        - Maps for geospatial data
+      code_examples:
+        index_pattern: |
+          # Kibana index pattern configuration
+          PUT .kibana/_doc/index-pattern:app-logs-*
+          {
+            "type": "index-pattern",
+            "index-pattern": {
+              "title": "app-logs-*",
+              "timeFieldName": "@timestamp",
+              "fields": "[{\"name\":\"@timestamp\",\"type\":\"date\",\"searchable\":true,\"aggregatable\":true}]"
+            }
+          }
+
+  opentelemetry:
+    name: OpenTelemetry
+    description: Observability framework for generating, collecting, and exporting telemetry data
+    homepage: https://opentelemetry.io
+    repository: https://github.com/open-telemetry/opentelemetry-collector
+    features:
+      - Vendor-neutral APIs and SDKs
+      - Automatic and manual instrumentation
+      - Traces, metrics, and logs correlation
+      - Language-specific implementations
+      - Collector for data processing
+    code_examples:
+      otel_collector_config: |
+        # otel-collector.yaml
+        receivers:
+          otlp:
+            protocols:
+              grpc:
+                endpoint: 0.0.0.0:4317
+              http:
+                endpoint: 0.0.0.0:4318
+          
+          prometheus:
+            config:
+              scrape_configs:
+                - job_name: 'kubernetes-pods'
+                  kubernetes_sd_configs:
+                    - role: pod
+        
+        processors:
+          batch:
+          
+          resource:
+            attributes:
+              - key: environment
+                value: production
+                action: insert
+        
+        exporters:
+          prometheus:
+            endpoint: "0.0.0.0:8889"
+          
+          jaeger:
+            endpoint: jaeger:14250
+            tls:
+              insecure: true
+          
+          elasticsearch:
+            endpoints: ["http://elasticsearch:9200"]
+            logs_index: otel-logs
+        
+        service:
+          pipelines:
+            traces:
+              receivers: [otlp]
+              processors: [batch, resource]
+              exporters: [jaeger]
+            
+            metrics:
+              receivers: [otlp, prometheus]
+              processors: [batch, resource]
+              exporters: [prometheus]
+            
+            logs:
+              receivers: [otlp]
+              processors: [batch, resource]
+              exporters: [elasticsearch]
+
+security_scanning:
+  container_security:
+    trivy:
+      name: Trivy
+      description: Comprehensive security scanner for containers, IaC, and dependencies
+      homepage: https://trivy.dev
+      repository: https://github.com/aquasecurity/trivy
+      features:
+        - Container image vulnerability scanning
+        - Infrastructure as Code (IaC) scanning
+        - Dependency vulnerability detection
+        - Secret detection
+        - Policy enforcement
+      scan_types:
+        - OS packages vulnerabilities
+        - Language-specific dependencies
+        - IaC misconfigurations
+        - Secret detection
+        - License compliance
+      code_examples:
+        docker_scan: |
+          # Scan container image
+          trivy image nginx:latest
+          
+          # Scan with specific severity
+          trivy image --severity HIGH,CRITICAL nginx:latest
+          
+          # Scan filesystem
+          trivy fs /path/to/project
+          
+          # Scan Kubernetes manifests
+          trivy k8s --report summary cluster
+          
+          # Scan Terraform files
+          trivy config ./terraform/
+          
+          # CI/CD integration
+          trivy image --exit-code 1 --severity HIGH,CRITICAL myapp:$CI_COMMIT_SHA
+        
+        trivy_config: |
+          # .trivyignore
+          CVE-2021-12345
+          CVE-2021-67890
+          
+          # trivy.yaml
+          cache:
+            dir: /tmp/trivy
+          db:
+            skip-update: false
+          vulnerability:
+            type:
+              - os
+              - library
+          iac:
+            type:
+              - terraform
+              - cloudformation
+              - dockerfile
+              - kubernetes
+
+    snyk:
+      name: Snyk
+      description: Developer-first security platform for finding and fixing vulnerabilities
+      homepage: https://snyk.io
+      features:
+        - Dependency vulnerability scanning
+        - Container security
+        - IaC security scanning
+        - Code analysis (SAST)
+        - License compliance
+        - Developer workflow integration
+      code_examples:
+        snyk_cli: |
+          # Install Snyk CLI
+          npm install -g snyk
+          
+          # Authenticate
+          snyk auth
+          
+          # Test for vulnerabilities
+          snyk test
+          
+          # Test container image
+          snyk container test nginx:latest
+          
+          # Test IaC files
+          snyk iac test ./terraform
+          
+          # Monitor project
+          snyk monitor
+          
+          # Fix vulnerabilities
+          snyk fix
+
+  iac_security:
+    tfsec:
+      name: tfsec
+      description: Static analysis security scanner for Terraform code
+      homepage: https://tfsec.dev
+      repository: https://github.com/aquasecurity/tfsec
+      features:
+        - Terraform security scanning
+        - Custom rule definitions
+        - CI/CD integration
+        - Multiple output formats
+        - Ignore and exclude capabilities
+      code_examples:
+        tfsec_usage: |
+          # Scan Terraform files
+          tfsec .
+          
+          # Scan specific directory
+          tfsec ./terraform/aws
+          
+          # Output in JSON format
+          tfsec --format json .
+          
+          # Run with custom rules
+          tfsec --custom-check-dir ./custom-rules .
+          
+          # Exclude specific checks
+          tfsec --exclude aws-s3-bucket-public-read .
+        
+        tfsec_config: |
+          # .tfsec/config.yml
+          severity_overrides:
+            aws-s3-bucket-public-read: ERROR
+            aws-s3-bucket-logging: WARNING
+          
+          exclude:
+            - aws-vpc-no-public-ingress-sgr
+          
+          # Custom rule example
+          # custom-rules/s3-bucket-encryption.yaml
+          package custom.s3
+          
+          import rego.v1
+          
+          deny contains res if {
+            some resource in input.resource.aws_s3_bucket
+            not resource.server_side_encryption_configuration
+            res := result.new(
+              "S3 bucket should have encryption enabled",
+              resource
+            )
+          }
+
+    checkov:
+      name: Checkov
+      description: Static analysis tool for IaC security and compliance
+      homepage: https://checkov.io
+      repository: https://github.com/bridgecrewio/checkov
+      features:
+        - Multi-platform IaC scanning
+        - Policy as Code
+        - Custom policy creation
+        - CI/CD integration
+        - Compliance frameworks support
+      supported_formats:
+        - Terraform
+        - CloudFormation
+        - Kubernetes
+        - Docker
+        - Ansible
+        - Serverless Framework
+      code_examples:
+        checkov_usage: |
+          # Install Checkov
+          pip install checkov
+          
+          # Scan Terraform files
+          checkov -f main.tf
+          
+          # Scan directory
+          checkov -d ./terraform
+          
+          # Scan Kubernetes manifests
+          checkov -f k8s-deployment.yaml
+          
+          # Skip specific checks
+          checkov -d . --skip-check CKV_AWS_20
+          
+          # Generate report
+          checkov -d . -o json --output-file report.json
+        
+        custom_check: |
+          # custom_checks/MyCustomCheck.py
+          from checkov.common.models.enums import TRUE_VALUES
+          from checkov.terraform.checks.resource.base_resource_check import BaseResourceCheck
+          from checkov.common.models.enums import Severities
+          
+          class MyCustomS3Check(BaseResourceCheck):
+              def __init__(self):
+                  name = "S3 bucket should have versioning enabled"
+                  id = "CKV_AWS_CUSTOM_S3_VERSIONING"
+                  supported_resources = ['aws_s3_bucket']
+                  categories = ['LOGGING']
+                  super().__init__(name=name, id=id, categories=categories, supported_resources=supported_resources, severity=Severities.MEDIUM)
+          
+              def scan_resource_conf(self, conf):
+                  if 'versioning' in conf:
+                      versioning = conf['versioning'][0]
+                      if isinstance(versioning, dict) and 'enabled' in versioning:
+                          if versioning['enabled'][0] in TRUE_VALUES:
+                              return CheckResult.PASSED
+                  return CheckResult.FAILED
+          
+          check = MyCustomS3Check()
+
+  kubernetes_security:
+    kube_bench:
+      name: kube-bench
+      description: CIS Kubernetes Benchmark compliance checker
+      homepage: https://github.com/aquasecurity/kube-bench
+      repository: https://github.com/aquasecurity/kube-bench
+      features:
+        - CIS Kubernetes Benchmark tests
+        - Multiple Kubernetes distributions support
+        - JSON/YAML output formats
+        - Custom configuration support
+      code_examples:
+        kube_bench_usage: |
+          # Run kube-bench on master node
+          kubectl apply -f https://raw.githubusercontent.com/aquasecurity/kube-bench/main/job.yaml
+          
+          # Run as DaemonSet
+          kubectl apply -f https://raw.githubusercontent.com/aquasecurity/kube-bench/main/job-node.yaml
+          
+          # Run specific version
+          ./kube-bench --version 1.20
+          
+          # Run specific controls
+          ./kube-bench --controls 1.1.1,1.1.2
+          
+          # Output in JSON
+          ./kube-bench --json
+
+    kube_hunter:
+      name: kube-hunter
+      description: Kubernetes cluster penetration testing tool
+      homepage: https://github.com/aquasecurity/kube-hunter
+      repository: https://github.com/aquasecurity/kube-hunter
+      features:
+        - Kubernetes security weakness detection
+        - Remote and local scanning modes
+        - Network discovery
+        - Vulnerability assessment
+      code_examples:
+        kube_hunter_usage: |
+          # Run as pod in cluster
+          kubectl create -f https://raw.githubusercontent.com/aquasecurity/kube-hunter/main/job.yaml
+          
+          # Run remotely against cluster
+          ./kube-hunter --remote some.node.com
+          
+          # Run with specific interface
+          ./kube-hunter --interface eth0
+          
+          # Generate report
+          ./kube-hunter --report json
+
+load_testing:
+  jmeter:
+    name: Apache JMeter
+    description: Load testing application for performance and functional testing
+    homepage: https://jmeter.apache.org
+    repository: https://github.com/apache/jmeter
+    features:
+      - GUI and command-line modes
+      - Multiple protocol support
+      - Test plan recording
+      - Distributed testing
+      - Extensive reporting
+    code_examples:
+      jmeter_test_plan: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <jmeterTestPlan version="1.2">
+          <hashTree>
+            <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Web Application Test Plan">
+              <elementProp name="TestPlan.arguments" elementType="Arguments" guiclass="ArgumentsPanel">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="host" elementType="Argument">
+                    <stringProp name="Argument.name">host</stringProp>
+                    <stringProp name="Argument.value">example.com</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </TestPlan>
+            <hashTree>
+              <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group">
+                <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+                <elementProp name="ThreadGroup.main_controller" elementType="LoopController">
+                  <boolProp name="LoopController.continue_forever">false</boolProp>
+                  <stringProp name="LoopController.loops">10</stringProp>
+                </elementProp>
+                <stringProp name="ThreadGroup.num_threads">100</stringProp>
+                <stringProp name="ThreadGroup.ramp_time">60</stringProp>
+              </ThreadGroup>
+              <hashTree>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request">
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel">
+                    <collectionProp name="Arguments.arguments"/>
+                  </elementProp>
+                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
+                  <stringProp name="HTTPSampler.port">443</stringProp>
+                  <stringProp name="HTTPSampler.protocol">https</stringProp>
+                  <stringProp name="HTTPSampler.path">/api/users</stringProp>
+                  <stringProp name="HTTPSampler.method">GET</stringProp>
+                </HTTPSamplerProxy>
+              </hashTree>
+            </hashTree>
+          </hashTree>
+        </jmeterTestPlan>
+
+  k6:
+    name: k6
+    description: Modern load testing tool using JavaScript for performance testing
+    homepage: https://k6.io
+    repository: https://github.com/grafana/k6
+    features:
+      - JavaScript ES6+ test scripts
+      - Cloud and on-premise execution
+      - Performance and load testing
+      - API testing capabilities
+      - Rich ecosystem of extensions
+    code_examples:
+      k6_script: |
+        // load-test.js
+        import http from 'k6/http';
+        import { check, sleep } from 'k6';
+        import { Rate } from 'k6/metrics';
+        
+        export let errorRate = new Rate('errors');
+        
+        export let options = {
+          stages: [
+            { duration: '2m', target: 10 }, // Ramp up
+            { duration: '5m', target: 10 }, // Stay at 10 users
+            { duration: '2m', target: 20 }, // Ramp up to 20 users
+            { duration: '5m', target: 20 }, // Stay at 20 users
+            { duration: '2m', target: 0 },  // Ramp down
+          ],
+          thresholds: {
+            http_req_duration: ['p(95)<500'], // 95% of requests must complete below 500ms
+            errors: ['rate<0.1'],             // Error rate must be below 10%
+          },
+        };
+        
+        export default function() {
+          const response = http.get('https://api.example.com/users');
+          
+          const result = check(response, {
+            'status is 200': (r) => r.status === 200,
+            'response time < 500ms': (r) => r.timings.duration < 500,
+          });
+          
+          errorRate.add(!result);
+          
+          sleep(1);
+        }
+        
+        export function handleSummary(data) {
+          return {
+            'summary.json': JSON.stringify(data, null, 2),
+          };
+        }
+
+  locust:
+    name: Locust
+    description: Python-based load testing framework with web UI
+    homepage: https://locust.io
+    repository: https://github.com/locustio/locust
+    language: Python
+    features:
+      - Python test scripts
+      - Web-based UI
+      - Distributed testing
+      - Real-time monitoring
+      - Extensible and hackable
+    code_examples:
+      locust_file: |
+        # locustfile.py
+        from locust import HttpUser, task, between
+        import json
+        
+        class WebUser(HttpUser):
+            wait_time = between(1, 3)
+            
+            def on_start(self):
+                # Login when user starts
+                response = self.client.post("/login", {
+                    "username": "test@example.com",
+                    "password": "password123"
+                })
+                if response.status_code == 200:
+                    self.token = response.json().get("token")
+            
+            @task(3)
+            def view_items(self):
+                self.client.get("/api/items", headers={
+                    "Authorization": f"Bearer {self.token}"
+                })
+            
+            @task(1)
+            def create_item(self):
+                self.client.post("/api/items", 
+                    json={
+                        "name": "Test Item",
+                        "description": "A test item"
+                    },
+                    headers={
+                        "Authorization": f"Bearer {self.token}",
+                        "Content-Type": "application/json"
+                    }
+                )
+            
+            @task(2)
+            def view_profile(self):
+                self.client.get("/api/profile", headers={
+                    "Authorization": f"Bearer {self.token}"
+                })
+
+secret_management:
+  vault:
+    name: HashiCorp Vault
+    description: Secrets management, encryption, and privileged access management
+    homepage: https://vaultproject.io
+    repository: https://github.com/hashicorp/vault
+    features:
+      - Dynamic secrets generation
+      - Data encryption and key management
+      - Identity-based access
+      - Audit logging
+      - High availability
+    secret_engines:
+      - KV (Key-Value) secrets
+      - Database credentials
+      - PKI certificates
+      - AWS/Azure/GCP credentials
+      - SSH certificates
+    code_examples:
+      vault_setup: |
+        # Initialize Vault
+        vault operator init
+        
+        # Unseal Vault
+        vault operator unseal
+        
+        # Enable secret engine
+        vault secrets enable -path=myapp kv-v2
+        
+        # Store secret
+        vault kv put myapp/database username=admin password=secret
+        
+        # Read secret
+        vault kv get myapp/database
+        
+        # Enable database engine
+        vault secrets enable database
+        
+        # Configure database connection
+        vault write database/config/postgresql \
+          plugin_name=postgresql-database-plugin \
+          connection_url="postgresql://vault:password@localhost:5432/mydb" \
+          allowed_roles="my-role"
+        
+        # Create role for dynamic credentials
+        vault write database/roles/my-role \
+          db_name=postgresql \
+          creation_statements="CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}'; GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"{{name}}\";" \
+          default_ttl="1h" \
+          max_ttl="24h"
+      
+      vault_policy: |
+        # vault-policy.hcl
+        path "myapp/data/*" {
+          capabilities = ["create", "read", "update", "delete", "list"]
+        }
+        
+        path "database/creds/my-role" {
+          capabilities = ["read"]
+        }
+        
+        path "auth/token/lookup-self" {
+          capabilities = ["read"]
+        }
+
+  cloud_secret_managers:
+    aws_secrets_manager:
+      name: AWS Secrets Manager
+      description: AWS managed service for storing and retrieving secrets
+      homepage: https://aws.amazon.com/secrets-manager/
+      features:
+        - Automatic rotation
+        - Cross-region replication
+        - Fine-grained access control
+        - Integration with AWS services
+        - Audit and compliance
+      code_examples:
+        aws_cli_usage: |
+          # Create secret
+          aws secretsmanager create-secret \
+            --name myapp/database \
+            --description "Database credentials" \
+            --secret-string '{"username":"admin","password":"supersecret"}'
+          
+          # Retrieve secret
+          aws secretsmanager get-secret-value \
+            --secret-id myapp/database
+          
+          # Update secret
+          aws secretsmanager update-secret \
+            --secret-id myapp/database \
+            --secret-string '{"username":"admin","password":"newsecret"}'
+          
+          # Enable automatic rotation
+          aws secretsmanager rotate-secret \
+            --secret-id myapp/database \
+            --rotation-lambda-arn arn:aws:lambda:region:account:function:rotation-function
+
+    azure_key_vault:
+      name: Azure Key Vault
+      description: Azure cloud service for safeguarding cryptographic keys and secrets
+      homepage: https://azure.microsoft.com/services/key-vault/
+      features:
+        - Hardware security modules (HSM)
+        - Certificate management
+        - Key management
+        - Secret storage
+        - Access policies and RBAC
+      code_examples:
+        azure_cli_usage: |
+          # Create Key Vault
+          az keyvault create \
+            --name myapp-vault \
+            --resource-group myapp-rg \
+            --location eastus
+          
+          # Set secret
+          az keyvault secret set \
+            --vault-name myapp-vault \
+            --name database-password \
+            --value "supersecret"
+          
+          # Get secret
+          az keyvault secret show \
+            --vault-name myapp-vault \
+            --name database-password
+          
+          # Create certificate
+          az keyvault certificate create \
+            --vault-name myapp-vault \
+            --name myapp-cert \
+            --policy @policy.json
+
+    gcp_secret_manager:
+      name: GCP Secret Manager
+      description: Google Cloud service for storing API keys, passwords, and certificates
+      homepage: https://cloud.google.com/secret-manager
+      features:
+        - Global replication
+        - Automatic versioning
+        - IAM integration
+        - Audit logging
+        - Client libraries
+      code_examples:
+        gcloud_usage: |
+          # Create secret
+          gcloud secrets create database-password \
+            --replication-policy="automatic"
+          
+          # Add secret version
+          echo -n "supersecret" | gcloud secrets versions add database-password --data-file=-
+          
+          # Access secret
+          gcloud secrets versions access latest --secret="database-password"
+          
+          # List secrets
+          gcloud secrets list
+          
+          # Update secret metadata
+          gcloud secrets update database-password \
+            --update-labels=env=production
+
+best_practices:
+  infrastructure_as_code:
+    - Use version control for all infrastructure code
+    - Implement code review processes for infrastructure changes
+    - Use modules and reusable components
+    - Validate configurations with linting and testing
+    - Implement gradual rollouts and blue-green deployments
+    - Document infrastructure decisions and patterns
+
+  security:
+    - Scan for vulnerabilities early and often
+    - Implement least privilege access principles
+    - Use secrets management for sensitive data
+    - Enable audit logging and monitoring
+    - Regular security assessments and penetration testing
+    - Keep dependencies and base images updated
+
+  monitoring:
+    - Implement comprehensive observability (metrics, logs, traces)
+    - Set up alerting for critical issues
+    - Use dashboards for visualization
+    - Monitor both infrastructure and application performance
+    - Implement SLIs/SLOs for service reliability
+    - Practice chaos engineering for resilience testing
+
+  ci_cd:
+    - Implement automated testing at multiple levels
+    - Use progressive deployment strategies
+    - Enable fast feedback loops
+    - Implement feature flags for controlled rollouts
+    - Maintain deployment documentation
+    - Monitor deployment success metrics
+
+integration_patterns:
+  gitops_workflow:
+    description: Git-based infrastructure and application deployment
+    pattern: |
+      - Store infrastructure and application definitions in Git
+      - Use automated synchronization to deploy changes
+      - Implement approval workflows through pull requests
+      - Enable automated rollback capabilities
+    technologies: [Git, Argo CD, Flux CD, Kubernetes]
+
+  ci_cd_pipeline:
+    description: Comprehensive continuous integration and deployment
+    pattern: |
+      - Source code triggers build pipeline
+      - Automated testing and security scanning
+      - Container image building and scanning
+      - Progressive deployment to environments
+      - Monitoring and rollback capabilities
+    technologies: [GitHub Actions, Jenkins, Docker, Kubernetes]
+
+  infrastructure_automation:
+    description: Automated infrastructure provisioning and management
+    pattern: |
+      - Define infrastructure as code
+      - Validate and test infrastructure changes
+      - Progressive rollout of infrastructure updates
+      - Configuration management and compliance
+    technologies: [Terraform, Ansible, Cloud APIs]
+
+learning_resources:
+  documentation:
+    - Kubernetes Official Documentation
+    - Terraform Documentation and Guides
+    - Prometheus and Grafana Documentation
+    - CNCF Landscape and Projects
+    - Cloud Provider Documentation (AWS, Azure, GCP)
+
+  certifications:
+    - Certified Kubernetes Administrator (CKA)
+    - Certified Kubernetes Application Developer (CKAD)
+    - AWS Certified DevOps Engineer
+    - Azure DevOps Engineer Expert
+    - Google Cloud Professional DevOps Engineer
+    - HashiCorp Certified Terraform Associate
+
+  books:
+    - "Kubernetes: Up and Running"
+    - "Infrastructure as Code"
+    - "The DevOps Handbook"
+    - "Site Reliability Engineering"
+    - "Continuous Delivery"
+    - "Building Secure and Reliable Systems"

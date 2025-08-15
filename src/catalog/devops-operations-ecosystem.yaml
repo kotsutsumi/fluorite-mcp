@@ -1,0 +1,122 @@
+id: "devops-operations-ecosystem"
+name: "Shell / DevOps / IaC / Kubernetes / CI-CD エコシステム"
+homepage: "https://github.com/kotsutsumi/fluorite-mcp"
+summary: "シェル・テキスト処理から IaC、構成管理、Kubernetes、コンテナ、CI/CD、可観測性、セキュリティ、負荷試験、シークレット管理までを横断。日々の運用・自動化・プラットフォーム構築を加速するための実務カタログ。"
+categories:
+  shell-langs:
+    - name: "bash"
+      summary: "最も広く利用されるシェル。スクリプト化/ジョブ制御/配列。"
+    - name: "sh (POSIX)"
+      summary: "最小機能の標準シェル。移植性重視のスクリプトに。"
+    - name: "zsh"
+      summary: "bash 互換 + 補完/プラグインが豊富。"
+
+  text-processing:
+    - name: "sed / awk / grep(egrep/fgrep) / cut / tr / sort / uniq / wc / paste / join / comm"
+      summary: "正規表現置換、パターン抽出、集計、フィールド加工、整列/重複除去/差分。"
+
+  file-ops:
+    - name: "cat / head / tail / less / more / touch / cp / mv / rm / ln"
+      summary: "表示/ページング/作成/コピー/移動/削除/リンク。"
+    - name: "find / locate / xargs"
+      summary: "検索 + 条件アクション、DB 検索、引数生成。"
+
+  archive-compress:
+    - name: "tar / gzip / bzip2 / xz / zip"
+      summary: "アーカイブ/圧縮/展開。"
+
+  system-monitor:
+    - name: "ps / top / htop / df / du / free / uptime / uname / lsof / netstat / ss"
+      summary: "プロセス/CPU/メモリ/ディスク/ネットワーク/システム情報。"
+
+  network-tools:
+    - name: "curl / wget / scp / rsync / ping / traceroute / dig / nslookup"
+      summary: "通信・取得・同期・疎通・経路・DNS。"
+
+  editors-jobs-utils:
+    - name: "vi/vim/nano"
+      summary: "CLI テキスト編集。"
+    - name: "jobs / fg / bg / kill / pkill / killall / nohup / & / && / ||"
+      summary: "ジョブ制御と条件実行。"
+    - name: "date / env / printenv / export / history / alias / which / type / command -v"
+      summary: "日時/環境変数/履歴/コマンド解決。"
+
+  iac:
+    - name: "Terraform / Terragrunt"
+      homepage: "https://www.terraform.io/ | https://terragrunt.gruntwork.io/"
+      summary: "HCL による IaC とラッパー（共通化/依存管理）。"
+    - name: "Pulumi"
+      homepage: "https://www.pulumi.com/"
+      summary: "TS/Python/Go/C#/Java などで IaC。"
+    - name: "AWS CloudFormation / Azure ARM / Bicep / GCP Deployment Manager"
+      summary: "各クラウド公式テンプレート/言語。"
+    - name: "AWS CDK / CDK for Terraform (CDKTF) / Crossplane"
+      summary: "言語で IaC / Kubernetes 上でクラウド管理。"
+
+  config-provisioning:
+    - name: "Ansible / Chef / Puppet / SaltStack"
+      summary: "構成管理/プロビジョニング（エージェントレス/宣言/DSL/イベント駆動）。"
+
+  kubernetes-orchestration:
+    - name: "Kubernetes"
+      homepage: "https://kubernetes.io/"
+      summary: "標準的コンテナオーケストレーション。"
+    - name: "Helm / Kustomize"
+      summary: "パッケージマネージャ/マニフェストレイヤ管理。"
+    - name: "Argo CD / Flux CD"
+      summary: "GitOps デプロイ管理（CNCF）。"
+    - name: "Istio / Linkerd"
+      summary: "サービスメッシュ。"
+
+  containers:
+    - name: "Docker / Podman"
+      summary: "コンテナ実行環境（Daemon/Daemonless）。"
+    - name: "BuildKit / Buildx"
+      summary: "高速/マルチアーキビルド。"
+    - name: "Docker Compose"
+      summary: "ローカル開発のマルチコンテナ管理。"
+
+  cicd:
+    - name: "GitHub Actions / GitLab CI/CD / Jenkins / CircleCI"
+      summary: "主要 CI/CD。"
+    - name: "Argo Workflows / Tekton"
+      summary: "Kubernetes ネイティブのワークフロー/CI。"
+
+  observability:
+    - name: "Prometheus / Grafana / Loki / Alertmanager"
+      summary: "メトリクス・可視化・ログ・アラート。"
+    - name: "ELK Stack (Elasticsearch + Logstash + Kibana)"
+      summary: "ログ収集/分析/可視化。"
+    - name: "OpenTelemetry"
+      summary: "分散トレース/メトリクス/ログ標準化。"
+    - name: "Datadog / New Relic / Splunk"
+      summary: "SaaS 可観測性。"
+
+  security-scan:
+    - name: "Trivy / Snyk"
+      summary: "コンテナ/依存脆弱性スキャン。"
+    - name: "tfsec / Checkov"
+      summary: "IaC セキュリティ/コンプライアンス検証。"
+    - name: "kube-bench / kube-hunter"
+      summary: "Kubernetes 検査（CIS/脆弱性）。"
+
+  load-testing:
+    - name: "Apache JMeter / k6 / Locust / Vegeta"
+      summary: "HTTP/シナリオ/コードベース負荷試験。"
+
+  secret-management:
+    - name: "HashiCorp Vault / AWS Secrets Manager / Azure Key Vault / GCP Secret Manager"
+      summary: "クラウド/オンプレ横断のシークレット管理。"
+
+bestPractices:
+  - "bash は set -Eeuo pipefail と IFS 明示で安全に。POSIX 必要時は /bin/sh 構文に徹する"
+  - "IaC は plan/review を CI に組み込み、State/権限/ポリシーを厳格に運用"
+  - "GitOps（Argo CD/Flux）で環境差分をコード化、監査可能に"
+  - "メトリクス/ログ/トレースは OpenTelemetry を基盤に統一"
+references:
+  - "Terraform: https://www.terraform.io/"
+  - "Kubernetes: https://kubernetes.io/"
+  - "Prometheus: https://prometheus.io/"
+license: "Mixed"
+lastReviewed: "2025-08-15"
+

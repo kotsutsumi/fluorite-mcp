@@ -157,6 +157,9 @@ Fluorite MCPが提供するライブラリ仕様の一覧です。これらの�
 ### シェル / テキスト処理 / ネットワーク
 - [シェル/テキスト処理/ネットワーク CLI エコシステム](./shell-tools) - `spec://shell-tools-ecosystem`
 
+### DevOps / IaC / Kubernetes / CI-CD
+- [Shell / DevOps / IaC / Kubernetes / CI‑CD エコシステム](./devops) - `spec://devops-operations-ecosystem`
+
 ---
 
 ::: tip 新しい仕様を追加したいですか？

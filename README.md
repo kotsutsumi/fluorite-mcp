@@ -142,6 +142,18 @@ See [BENEFITS.md](./BENEFITS.md) for detailed advantages.
   - Job Control: jobs, fg, bg, kill, pkill, killall, nohup, background execution
   - Utilities: date, env, export, history, alias, which, type, command location
 
+### DevOps & Infrastructure Operations
+- **DevOps Operations Ecosystem** (`spec://devops-operations-ecosystem`) - Comprehensive cloud-native operations toolkit
+  - Infrastructure as Code: Terraform, Pulumi, CloudFormation, ARM Templates, Bicep, Google Cloud Deployment Manager
+  - Configuration Management: Ansible, Chef, Puppet, SaltStack with declarative automation
+  - Kubernetes Ecosystem: Kubernetes, Helm, Kustomize, Argo CD, Flux CD, Istio, Linkerd
+  - Container Platforms: Docker, Podman, BuildKit with multi-stage builds and security scanning
+  - CI/CD Pipelines: GitHub Actions, GitLab CI, Jenkins, CircleCI, Argo Workflows, Tekton
+  - Monitoring & Observability: Prometheus, Grafana, Loki, ELK Stack, OpenTelemetry, Jaeger
+  - Security Scanning: Trivy, Snyk, tfsec, Checkov, kube-bench, kube-hunter
+  - Load Testing: Apache JMeter, k6, Locust, Vegeta for performance validation
+  - Secret Management: HashiCorp Vault, AWS Secrets Manager, Azure Key Vault, GCP Secret Manager
+
 ## 🌐 Global Installation
 
 For the simplest setup, install Fluorite MCP globally:
