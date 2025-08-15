@@ -1,0 +1,15 @@
+{
+  "id": "next-shadcn-command",
+  "name": "Next.js shadcn/ui Command Palette",
+  "version": "1.0.0",
+  "stack": ["nextjs", "shadcn"],
+  "tags": ["ui", "command"],
+  "description": "Command palette style input with suggestions.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/components/ui/command.tsx", "template": "import * as React from 'react';\nconst items = ['Open', 'Save', 'Close'];\nexport function Command(){ const [q,setQ]=React.useState(''); const list = items.filter(i=>i.toLowerCase().includes(q.toLowerCase())); return (<div className='w-80 border rounded p-2'><input className='w-full outline-none' placeholder='Type a command' value={q} onChange={e=>setQ(e.target.value)} />{q && (<div className='mt-2'>{list.map(i=>(<div key={i} className='px-2 py-1 hover:bg-gray-100 cursor-pointer' onMouseDown={()=>setQ(i)}>{i}</div>))}</div>)}</div>); }\n" },
+    { "path": "{{app_name}}/app/page.tsx", "template": "import { Command } from '../components/ui/command'; export default function Page(){ return <main className='p-6'><Command/></main>; }\n" }
+  ],
+  "patches": []
+}
+

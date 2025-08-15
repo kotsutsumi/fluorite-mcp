@@ -1,0 +1,15 @@
+{
+  "id": "next-shadcn-radio",
+  "name": "Next.js shadcn/ui Radio",
+  "version": "1.0.0",
+  "stack": ["nextjs", "shadcn"],
+  "tags": ["ui", "radio"],
+  "description": "Radio group with utility classes.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/components/ui/radio.tsx", "template": "export function RadioGroup(){ return (<div className='flex flex-col gap-2'><label className='inline-flex items-center gap-2'><input type='radio' name='opt' defaultChecked className='h-4 w-4' />Option A</label><label className='inline-flex items-center gap-2'><input type='radio' name='opt' className='h-4 w-4' />Option B</label></div>); }\n" },
+    { "path": "{{app_name}}/app/page.tsx", "template": "import { RadioGroup } from '../components/ui/radio'; export default function Page(){ return <main className='p-6'><RadioGroup/></main>; }\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "next-shadcn-progress",
+  "name": "Next.js shadcn/ui Progress",
+  "version": "1.0.0",
+  "stack": ["nextjs", "shadcn"],
+  "tags": ["ui", "progress"],
+  "description": "Progress bar using utility classes.",
+  "params": [{ "name": "app_name", "default": "next-app" }, { "name": "value", "default": "40" }],
+  "files": [
+    { "path": "{{app_name}}/components/ui/progress.tsx", "template": "export function Progress({ value=40 }: { value?: number }){ return (<div className='w-64 h-2 bg-gray-200 rounded'><div className='h-2 bg-black rounded' style={{ width: `${value}%` }} /></div>); }\n" },
+    { "path": "{{app_name}}/app/page.tsx", "template": "import { Progress } from '../components/ui/progress'; export default function Page(){ return <main className='p-6'><Progress value={{{value}}} /></main>; }\n" }
+  ],
+  "patches": []
+}
+

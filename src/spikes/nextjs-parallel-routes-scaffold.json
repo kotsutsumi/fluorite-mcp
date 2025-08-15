@@ -1,0 +1,16 @@
+{
+  "id": "nextjs-parallel-routes-scaffold",
+  "name": "Next.js Parallel Routes Scaffold",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["app-router", "parallel-routes"],
+  "description": "Minimal scaffold for parallel routes (@a and @b).",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/layout.tsx", "template": "export default function RootLayout({ children, a, b }: { children: React.ReactNode; a: React.ReactNode; b: React.ReactNode }){ return (<html><body><div>{children}</div><div className='grid grid-cols-2 gap-4'><div>{a}</div><div>{b}</div></div></body></html>); }\n" },
+    { "path": "{{app_name}}/app/@a/page.tsx", "template": "export default function A(){ return <div>Route A</div> }\n" },
+    { "path": "{{app_name}}/app/@b/page.tsx", "template": "export default function B(){ return <div>Route B</div> }\n" }
+  ],
+  "patches": []
+}
+

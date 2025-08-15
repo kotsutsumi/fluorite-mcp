@@ -1,0 +1,15 @@
+{
+  "id": "mui-theme-toggle",
+  "name": "MUI Theme Toggle (Light/Dark)",
+  "version": "1.0.0",
+  "stack": ["react", "mui"],
+  "tags": ["ui", "theme"],
+  "description": "Switch between light and dark themes with MUI ThemeProvider.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/ThemeToggle.tsx", "template": "import * as React from 'react';\nimport { createTheme, ThemeProvider, Button } from '@mui/material';\nexport default function ThemeToggle(){ const [dark,setDark]=React.useState(false); const theme = React.useMemo(()=>createTheme({ palette:{ mode: dark?'dark':'light' } }), [dark]); return (<ThemeProvider theme={theme}><Button variant='contained' onClick={()=>setDark(d=>!d)}>{dark?'Dark':'Light'}</Button></ThemeProvider>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@mui/material\": \"latest\", \"@emotion/react\": \"latest\", \"@emotion/styled\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

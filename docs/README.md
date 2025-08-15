@@ -25,7 +25,7 @@ Complete documentation for Fluorite MCP - the comprehensive Model Context Protoc
 
 | Feature | Guide | Description |
 |---------|-------|-------------|
-| **Strike Templates** | **[Strike Templates Guide](./strike-templates.md)** | 194 production-ready development scaffolds |
+| **Spike Templates** | **[Spike Templates Guide](./spike-templates.md)** | 206 production-ready development scaffolds |
 | **Spike Templates** | **[Legacy Spike Templates](./spike-templates.md)** | Legacy rapid prototyping system |
 | **Static Analysis** | **[API Documentation](../API.md#static-analysis)** | Framework-specific code analysis |
 | **Custom Integrations** | **[Developer Guide](./developer.md#plugin-development)** | Building custom plugins and extensions |
@@ -45,7 +45,7 @@ Complete documentation for Fluorite MCP - the comprehensive Model Context Protoc
 1. **Start Here**: [Getting Started Guide](./getting-started.md)
 2. **Install**: Follow the [Installation Guide](./installation.md)
 3. **Learn Commands**: Review [Command Reference](./commands.md)
-4. **Explore Templates**: Browse [Strike Templates](./strike-templates.md)
+4. **Explore Templates**: Browse [Spike Templates](./spike-templates.md)
 5. **Try Spikes**: Explore [Legacy Spike Templates](./spike-templates.md)
 
 ### For Developers
@@ -96,7 +96,7 @@ Documentation is updated with each release:
 |-------|----------|
 | **Library Specifications** | 90+ libraries with complete usage patterns |
 | **Static Analysis** | 50+ validation rules across frameworks |
-| **Strike Templates** | 194 production scaffolds for rapid development |
+| **Spike Templates** | 206 production scaffolds for rapid development |
 | **Spike Templates** | Legacy template system |
 | **Natural Language** | How Claude automatically uses Fluorite MCP |
 
@@ -115,9 +115,9 @@ Documentation is updated with each release:
 |-------------|----------------|
 | **Claude Code CLI** | [Getting Started](./getting-started.md), [Installation](./installation.md) |
 | **SuperClaude Integration** | [/fl: Commands](./fl-commands.md) |
-| **Strike Development** | [Strike Templates](./strike-templates.md) |
+| **Spike Development** | [Spike Templates](./spike-templates.md) |
 | **Custom Plugins** | [Developer Guide](./developer.md#plugin-development) |
-| **CI/CD Pipelines** | [Strike Templates - CI/CD Section](./strike-templates.md#testing--quality-15-templates) |
+| **CI/CD Pipelines** | [Spike Templates - CI/CD Section](./spike-templates.md#testing--quality-19-templates) |
 | **Team Workflows** | [Template Creation](./template-creation.md#team-distribution) |
 
 ## 🚀 Quick Reference
@@ -173,7 +173,7 @@ This documentation is actively maintained:
 ## 📊 Documentation Metrics
 
 - **Total Pages**: 9 comprehensive guides
-- **Code Examples**: 100+ working examples + 194 Strike templates
+- **Code Examples**: 100+ working examples + 206 Spike templates
 - **Cross-References**: 250+ internal links
 - **Languages**: English and Japanese
 - **Update Frequency**: Every release

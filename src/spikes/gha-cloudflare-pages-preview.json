@@ -1,0 +1,14 @@
+{
+  "id": "gha-cloudflare-pages-preview",
+  "name": "GHA Cloudflare Pages Preview",
+  "version": "1.0.0",
+  "stack": ["github-actions", "cloudflare"],
+  "tags": ["preview", "deploy"],
+  "description": "Build and deploy preview to Cloudflare Pages.",
+  "params": [{ "name": "app_name", "default": "repo" }],
+  "files": [
+    { "path": "{{app_name}}/.github/workflows/cf-pages.yml", "template": "name: Cloudflare Pages\n\non: [pull_request]\n\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 20\n      - run: npm ci && npm run build\n      - uses: cloudflare/pages-action@v1\n        with:\n          apiToken: ${{ secrets.CF_API_TOKEN }}\n          accountId: ${{ secrets.CF_ACCOUNT_ID }}\n          projectName: ${{ secrets.CF_PAGES_PROJECT }}\n          directory: dist\n          gitHubToken: ${{ secrets.GITHUB_TOKEN }}\n" }
+  ],
+  "patches": []
+}
+

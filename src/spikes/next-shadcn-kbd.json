@@ -1,0 +1,15 @@
+{
+  "id": "next-shadcn-kbd",
+  "name": "Next.js shadcn/ui Kbd",
+  "version": "1.0.0",
+  "stack": ["nextjs", "shadcn"],
+  "tags": ["ui", "kbd"],
+  "description": "Keyboard key hint styling (utility classes).",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/components/ui/kbd.tsx", "template": "export function Kbd({ children }: { children: React.ReactNode }){ return (<kbd className='rounded border bg-gray-50 px-1.5 py-0.5 text-xs font-mono shadow-inner'>{children}</kbd>); }\n" },
+    { "path": "{{app_name}}/app/page.tsx", "template": "import { Kbd } from '../components/ui/kbd'; export default function Page(){ return <main className='p-6'>Press <Kbd>⌘</Kbd> + <Kbd>K</Kbd></main>; }\n" }
+  ],
+  "patches": []
+}
+

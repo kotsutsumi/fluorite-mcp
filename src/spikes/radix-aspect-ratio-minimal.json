@@ -1,0 +1,15 @@
+{
+  "id": "radix-aspect-ratio-minimal",
+  "name": "Radix UI AspectRatio (React)",
+  "version": "1.0.0",
+  "stack": ["react", "radix-ui"],
+  "tags": ["ui", "media"],
+  "description": "Minimal @radix-ui/react-aspect-ratio usage.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/AspectExample.tsx", "template": "import * as AR from '@radix-ui/react-aspect-ratio';\nexport default function Aspect(){ return (<AR.Root ratio={16/9}><img src='https://picsum.photos/640/360' className='w-full h-full object-cover' /></AR.Root>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@radix-ui/react-aspect-ratio\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

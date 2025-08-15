@@ -1,0 +1,15 @@
+{
+  "id": "radix-collapsible-minimal",
+  "name": "Radix UI Collapsible (React)",
+  "version": "1.0.0",
+  "stack": ["react", "radix-ui"],
+  "tags": ["ui", "collapsible"],
+  "description": "Minimal @radix-ui/react-collapsible usage.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/CollapsibleExample.tsx", "template": "import * as C from '@radix-ui/react-collapsible';\nexport default function Col(){ return (<C.Root><C.Trigger>Toggle</C.Trigger><C.Content>Hidden content</C.Content></C.Root>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@radix-ui/react-collapsible\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

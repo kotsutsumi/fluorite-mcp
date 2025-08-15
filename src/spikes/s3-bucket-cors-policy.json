@@ -1,0 +1,15 @@
+{
+  "id": "s3-bucket-cors-policy",
+  "name": "S3 Bucket CORS + Policy JSON",
+  "version": "1.0.0",
+  "stack": ["aws-s3"],
+  "tags": ["storage", "cors"],
+  "description": "Example CORS configuration and bucket policy for direct uploads.",
+  "params": [{ "name": "project_name", "default": "s3" }],
+  "files": [
+    { "path": "{{project_name}}/cors.json", "template": "[{ \"AllowedOrigins\": [\"*\"], \"AllowedMethods\": [\"GET\", \"PUT\", \"POST\"], \"AllowedHeaders\": [\"*\"], \"ExposeHeaders\": [\"ETag\"] }]\n" },
+    { "path": "{{project_name}}/bucket-policy.json", "template": "{ \"Version\": \"2012-10-17\", \"Statement\": [ { \"Effect\": \"Allow\", \"Principal\": \"*\", \"Action\": [ \"s3:PutObject\" ], \"Resource\": \"arn:aws:s3:::YOUR_BUCKET/uploads/*\" } ] }\n" }
+  ],
+  "patches": []
+}
+

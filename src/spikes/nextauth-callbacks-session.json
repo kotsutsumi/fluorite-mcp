@@ -1,0 +1,15 @@
+{
+  "id": "nextauth-callbacks-session",
+  "name": "NextAuth Callbacks & Session Strategy",
+  "version": "1.0.0",
+  "stack": ["nextjs", "nextauth"],
+  "tags": ["auth"],
+  "description": "Configure callbacks and JWT session strategy (App Router).",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/auth/[...nextauth]/route.ts", "template": "import NextAuth from 'next-auth';\nimport GitHub from 'next-auth/providers/github';\nconst handler = NextAuth({\n  session: { strategy: 'jwt' },\n  providers: [GitHub],\n  callbacks: {\n    async jwt({ token, account }){ if(account) token.provider = account.provider; return token; },\n    async session({ session, token }){ (session as any).provider = token.provider; return session; }\n  }\n});\nexport { handler as GET, handler as POST };\n" },
+    { "path": "{{app_name}}/.env.example", "template": "AUTH_GITHUB_ID=\nAUTH_GITHUB_SECRET=\nNEXTAUTH_SECRET=changeme\n" }
+  ],
+  "patches": []
+}
+

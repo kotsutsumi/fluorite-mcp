@@ -1,0 +1,15 @@
+{
+  "id": "mui-snackbar-minimal",
+  "name": "MUI Snackbar Minimal",
+  "version": "1.0.0",
+  "stack": ["react", "mui"],
+  "tags": ["ui", "snackbar"],
+  "description": "Show a snackbar on button click.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/SnackbarExample.tsx", "template": "import * as React from 'react';\nimport Snackbar from '@mui/material/Snackbar';\nimport Button from '@mui/material/Button';\nexport default function Snack(){ const [o,setO]=React.useState(false); return (<div><Button onClick={()=>setO(true)}>Show</Button><Snackbar open={o} autoHideDuration={2000} onClose={()=>setO(false)} message='Saved' /></div>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@mui/material\": \"latest\", \"@emotion/react\": \"latest\", \"@emotion/styled\": \"latest\" }\n}\n" }
+  ],
+  "patches": []
+}
+

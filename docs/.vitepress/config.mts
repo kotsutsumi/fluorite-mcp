@@ -10,7 +10,7 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Getting Started', link: '/getting-started' },
-      { text: 'Strike Templates', link: '/strike-templates' },
+      { text: 'Spike Templates', link: '/spike-templates' },
       { text: 'Specs', link: '/specs/' },
       { text: 'API', link: '/API' }
     ],
@@ -24,7 +24,8 @@ export default defineConfig({
             { text: 'Installation', link: '/installation' },
             { text: 'Commands', link: '/commands' },
             { text: '/fl: Commands', link: '/fl-commands' },
-            { text: 'Strike Templates', link: '/strike-templates' },
+            { text: '/fl: Commands Detailed', link: '/fl-commands-detailed' },
+            { text: 'Spike Templates', link: '/spike-templates' },
             { text: 'Developer Guide', link: '/developer' },
             { text: 'API Reference', link: '/API' }
           ]
@@ -62,10 +63,10 @@ export default defineConfig({
           ]
         },
         {
-          text: 'Strike開発',
+          text: 'Spike開発',
           collapsed: false,
           items: [
-            { text: 'Strike開発エコシステム', link: '/specs/spike-development' }
+            { text: 'Spike開発エコシステム', link: '/specs/spike-development' }
           ]
         }
       ]

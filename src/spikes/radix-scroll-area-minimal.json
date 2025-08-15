@@ -1,0 +1,15 @@
+{
+  "id": "radix-scroll-area-minimal",
+  "name": "Radix UI ScrollArea (React)",
+  "version": "1.0.0",
+  "stack": ["react", "radix-ui"],
+  "tags": ["ui", "scroll"],
+  "description": "Minimal @radix-ui/react-scroll-area usage.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/ScrollAreaExample.tsx", "template": "import * as SA from '@radix-ui/react-scroll-area';\nexport default function Scroll(){ return (<SA.Root className='w-64 h-32 border'><SA.Viewport className='w-full h-full'><div style={{height:300}}>Long content</div></SA.Viewport><SA.Scrollbar orientation='vertical' /></SA.Root>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@radix-ui/react-scroll-area\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

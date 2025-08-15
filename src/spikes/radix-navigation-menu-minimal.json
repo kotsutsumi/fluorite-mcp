@@ -1,0 +1,15 @@
+{
+  "id": "radix-navigation-menu-minimal",
+  "name": "Radix UI Navigation Menu (React)",
+  "version": "1.0.0",
+  "stack": ["react", "radix-ui"],
+  "tags": ["ui", "nav"],
+  "description": "Minimal @radix-ui/react-navigation-menu usage.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/NavMenu.tsx", "template": "import * as NM from '@radix-ui/react-navigation-menu';\nexport default function Nav(){ return (<NM.Root><NM.List><NM.Item><NM.Link href='#a'>A</NM.Link></NM.Item><NM.Item><NM.Link href='#b'>B</NM.Link></NM.Item></NM.List></NM.Root>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@radix-ui/react-navigation-menu\": \"latest\" }\n}\n" }
+  ],
+  "patches": []
+}
+

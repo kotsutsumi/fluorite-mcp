@@ -1,0 +1,16 @@
+{
+  "id": "supabase-rls-crud",
+  "name": "Supabase RLS CRUD (Schema + Client)",
+  "version": "1.0.0",
+  "stack": ["supabase", "postgres"],
+  "tags": ["db", "auth"],
+  "description": "Table schema with RLS policy and minimal JS client insert.",
+  "params": [{ "name": "project_name", "default": "supabase" }],
+  "files": [
+    { "path": "{{project_name}}/schema.sql", "template": "create table if not exists items ( id bigserial primary key, user_id uuid not null, name text not null );\nalter table items enable row level security;\ncreate policy own_items on items for all using (auth.uid() = user_id) with check (auth.uid() = user_id);\n" },
+    { "path": "{{project_name}}/client.mjs", "template": "import { createClient } from '@supabase/supabase-js';\nconst supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);\nconst userId = '00000000-0000-0000-0000-000000000000';\nconst { data, error } = await supabase.from('items').insert({ user_id: userId, name: 'demo' }).select('*');\nconsole.log({ data, error });\n" },
+    { "path": "{{project_name}}/.env.example", "template": "SUPABASE_URL=\nSUPABASE_ANON_KEY=\n" }
+  ],
+  "patches": []
+}
+

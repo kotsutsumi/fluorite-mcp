@@ -1,0 +1,15 @@
+{
+  "id": "next-shadcn-toggle",
+  "name": "Next.js shadcn/ui Toggle",
+  "version": "1.0.0",
+  "stack": ["nextjs", "shadcn"],
+  "tags": ["ui", "toggle"],
+  "description": "Toggle button with pressed state styles.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/components/ui/toggle.tsx", "template": "'use client'; export function Toggle(){ const [on,setOn]=React.useState(false); return (<button onClick={()=>setOn(v=>!v)} className={'px-3 py-1 border rounded '+(on?'bg-black text-white':'')}>{on?'On':'Off'}</button>); }\n" },
+    { "path": "{{app_name}}/app/page.tsx", "template": "import React from 'react'; import { Toggle } from '../components/ui/toggle'; export default function Page(){ return <main className='p-6'><Toggle/></main>; }\n" }
+  ],
+  "patches": []
+}
+

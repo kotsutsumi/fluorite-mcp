@@ -1,0 +1,15 @@
+{
+  "id": "clerk-protected-api",
+  "name": "Clerk Protected API Route (Next.js)",
+  "version": "1.0.0",
+  "stack": ["nextjs", "clerk"],
+  "tags": ["auth"],
+  "description": "Protect a Route Handler using Clerk server-side auth().",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/private/route.ts", "template": "import { auth } from '@clerk/nextjs/server';\nexport async function GET(){ const { userId } = auth(); if(!userId) return new Response('unauthorized', { status: 401 }); return Response.json({ userId }); }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=\nCLERK_SECRET_KEY=\n" }
+  ],
+  "patches": []
+}
+

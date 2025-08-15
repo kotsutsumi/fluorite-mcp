@@ -1,10 +1,10 @@
 # /fl: Command Reference - SuperClaude Integration
 
-Enhanced fluorite-mcp commands with SuperClaude parameter bypass and Strike development workflow integration.
+Enhanced fluorite-mcp commands with SuperClaude parameter bypass and Spike development workflow integration.
 
 ## Overview
 
-The `/fl:` command series provides enhanced fluorite-mcp functionality with complete SuperClaude parameter bypass support. These commands bridge Claude Code CLI with fluorite-mcp's comprehensive library knowledge and Strike development workflows.
+The `/fl:` command series provides enhanced fluorite-mcp functionality with complete SuperClaude parameter bypass support. These commands bridge Claude Code CLI with fluorite-mcp's comprehensive library knowledge and Spike development workflows.
 
 ## Complete Parameter Bypass Support
 
@@ -20,12 +20,12 @@ The `/fl:` command series provides enhanced fluorite-mcp functionality with comp
 
 ### /fl:implement
 
-Enhanced feature implementation with Strike development integration.
+Enhanced feature implementation with Spike development integration.
 
 **Usage**: `/fl:implement [description] [SuperClaude-flags] [--type type] [--framework name]`
 
 **Key Features**:
-- Strike development workflow for UI components
+- Spike development workflow for UI components
 - Automatic spike template discovery and application
 - Full SuperClaude parameter bypass
 - Natural language understanding for requirements
@@ -35,9 +35,9 @@ Enhanced feature implementation with Strike development integration.
 /fl:implement --loop --wave-mode --delegate --until-perfect --ultrathink --all-mcp "ドラッグアンドドロップできるツリービュー" --type component --framework react
 ```
 
-**Strike Workflow Example**:
+**Spike Workflow Example**:
 1. 🔍 **Spike Discovery**: Find drag-drop tree templates
-2. 🏗️ **Strike Minimal App**: Create standalone tree component app
+2. 🏗️ **Spike Minimal App**: Create standalone tree component app
 3. 🧪 **Validation**: Test functionality in isolation
 4. 🔗 **Integration**: Seamlessly merge into main application
 
@@ -68,11 +68,11 @@ All `/fl:` commands support the same parameter bypass pattern:
 - `/fl:design` - Design system integration
 - `/fl:document` - Professional documentation generation
 
-## Strike Development Integration
+## Spike Development Integration
 
 ### Automatic Workflow Selection
 
-Commands automatically detect when Strike development workflow is beneficial:
+Commands automatically detect when Spike development workflow is beneficial:
 
 - **UI Components**: Drag-and-drop, tree views, complex forms
 - **Data Visualization**: Charts, dashboards, analytics
@@ -82,7 +82,7 @@ Commands automatically detect when Strike development workflow is beneficial:
 ### Seamless User Experience
 
 Users receive enhanced capabilities without awareness:
-- ✅ Strike development expertise automatically applied
+- ✅ Spike development expertise automatically applied
 - ✅ Spike templates discovered and integrated seamlessly  
 - ✅ SuperClaude flags work identically to `/sc:` commands
 - ✅ Optimal development workflow chosen automatically
@@ -99,11 +99,11 @@ Users receive enhanced capabilities without awareness:
 - Error prediction engine
 - Performance optimization suggestions
 
-### Strike Templates
+### Spike Templates
 - 194 production-ready scaffolds
 - 15+ technology stacks covered
 - Natural language template discovery
-- Strike development workflow integration
+- Spike development workflow integration
 
 ## Examples
 
@@ -151,6 +151,6 @@ fluorite-mcp setup
 ---
 
 For complete documentation, see:
-- **[Strike Templates Catalog](./strike-templates.md)** - Complete 194 template reference
+- **[Spike Templates Catalog](./spike-templates.md)** - Complete 206 template reference
 - **[API Documentation](../API.md)** - Technical API reference
 - **[Commands Reference](./commands.md)** - Standard command documentation

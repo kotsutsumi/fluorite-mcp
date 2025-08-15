@@ -1,0 +1,15 @@
+{
+  "id": "nextjs-multipart-s3-init",
+  "name": "Next.js S3 Multipart Init Route",
+  "version": "1.0.0",
+  "stack": ["nextjs", "aws-s3"],
+  "tags": ["storage", "multipart"],
+  "description": "Create multipart upload and return uploadId (init step).",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/s3-multipart/init/route.ts", "template": "import { S3Client, CreateMultipartUploadCommand } from '@aws-sdk/client-s3';\nexport async function POST(){ const s3 = new S3Client({}); const out = await s3.send(new CreateMultipartUploadCommand({ Bucket: process.env.S3_BUCKET!, Key: 'big.bin' })); return Response.json({ uploadId: out.UploadId }); }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "S3_BUCKET=\nAWS_ACCESS_KEY_ID=\nAWS_SECRET_ACCESS_KEY=\nAWS_REGION=\n" }
+  ],
+  "patches": []
+}
+

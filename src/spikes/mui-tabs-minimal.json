@@ -1,0 +1,15 @@
+{
+  "id": "mui-tabs-minimal",
+  "name": "MUI Tabs Minimal",
+  "version": "1.0.0",
+  "stack": ["react", "mui"],
+  "tags": ["ui", "tabs"],
+  "description": "Basic MUI Tabs with two panels.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/TabsExample.tsx", "template": "import * as React from 'react';\nimport { Tabs, Tab, Box } from '@mui/material';\nexport default function TabsExample(){ const [v,setV]=React.useState(0); return (<Box><Tabs value={v} onChange={(_,nv)=>setV(nv)}><Tab label='A'/><Tab label='B'/></Tabs><Box mt={2}>{v===0?'Panel A':'Panel B'}</Box></Box>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@mui/material\": \"latest\", \"@emotion/react\": \"latest\", \"@emotion/styled\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

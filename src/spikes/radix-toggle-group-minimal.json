@@ -1,0 +1,15 @@
+{
+  "id": "radix-toggle-group-minimal",
+  "name": "Radix UI Toggle Group (React)",
+  "version": "1.0.0",
+  "stack": ["react", "radix-ui"],
+  "tags": ["ui", "toggle"],
+  "description": "Minimal @radix-ui/react-toggle-group usage.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/ToggleGroupExample.tsx", "template": "import * as TG from '@radix-ui/react-toggle-group';\nexport default function TGExample(){ return (<TG.Root type='single' defaultValue='bold'><TG.Item value='bold'>B</TG.Item><TG.Item value='italic'>I</TG.Item></TG.Root>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@radix-ui/react-toggle-group\": \"latest\" }\n}\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "mui-rhf-zod-integration",
+  "name": "MUI + RHF + Zod Integration",
+  "version": "1.0.0",
+  "stack": ["react", "mui", "react-hook-form", "zod"],
+  "tags": ["forms", "validation"],
+  "description": "Integrate MUI TextField with RHF and Zod resolver.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/MuiRHFZod.tsx", "template": "import * as React from 'react';\nimport TextField from '@mui/material/TextField';\nimport Button from '@mui/material/Button';\nimport { useForm } from 'react-hook-form';\nimport { z } from 'zod';\nimport { zodResolver } from '@hookform/resolvers/zod';\nconst schema = z.object({ email: z.string().email('Invalid email') });\nexport default function Form(){ const { register, handleSubmit, formState:{ errors } } = useForm({ resolver: zodResolver(schema) }); return (<form onSubmit={handleSubmit(console.log)}><TextField label='Email' {...register('email')} error={!!errors.email} helperText={errors.email?.message as any} /><Button type='submit'>Send</Button></form>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@mui/material\": \"latest\", \"@emotion/react\": \"latest\", \"@emotion/styled\": \"latest\", \"react-hook-form\": \"latest\", \"zod\": \"latest\", \"@hookform/resolvers\": \"latest\" }\n}\n" }
+  ],
+  "patches": []
+}
+

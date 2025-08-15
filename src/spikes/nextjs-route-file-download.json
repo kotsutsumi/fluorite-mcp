@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-route-file-download",
+  "name": "Next.js Route File Download",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["api", "download"],
+  "description": "Return a file with Content-Disposition attachment.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/download/route.ts", "template": "export async function GET(){ const data = new TextEncoder().encode('hello world'); return new Response(data, { headers:{ 'content-type':'text/plain', 'content-disposition':'attachment; filename=hello.txt' } }); }\n" }
+  ],
+  "patches": []
+}
+

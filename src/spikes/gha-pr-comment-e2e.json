@@ -1,0 +1,14 @@
+{
+  "id": "gha-pr-comment-e2e",
+  "name": "GHA PR Comment with E2E Results",
+  "version": "1.0.0",
+  "stack": ["github-actions"],
+  "tags": ["ci", "report"],
+  "description": "Run E2E and comment summary on PR using github-script.",
+  "params": [{ "name": "app_name", "default": "repo" }],
+  "files": [
+    { "path": "{{app_name}}/.github/workflows/pr-comment.yml", "template": "name: E2E and Comment\n\non: [pull_request]\n\njobs:\n  e2e:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 20\n      - run: npm ci\n      - run: npm run -s test:e2e || echo 'no e2e'\n      - name: Comment PR\n        uses: actions/github-script@v7\n        with:\n          github-token: ${{ secrets.GITHUB_TOKEN }}\n          script: |\n            const body = 'E2E completed. Check artifacts/logs for details.';\n            github.rest.issues.createComment({ owner: context.repo.owner, repo: context.repo.repo, issue_number: context.issue.number, body });\n" }
+  ],
+  "patches": []
+}
+

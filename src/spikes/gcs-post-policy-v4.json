@@ -1,0 +1,15 @@
+{
+  "id": "gcs-post-policy-v4",
+  "name": "GCS Signed POST Policy V4",
+  "version": "1.0.0",
+  "stack": ["gcs"],
+  "tags": ["storage", "policy"],
+  "description": "Generate a POST policy V4 for GCS direct upload.",
+  "params": [{ "name": "app_name", "default": "node-app" }],
+  "files": [
+    { "path": "{{app_name}}/gcs-policy.mjs", "template": "import { Storage } from '@google-cloud/storage';\nconst storage = new Storage();\nconst bucket = storage.bucket(process.env.GCS_BUCKET);\nconst file = bucket.file('uploads/demo.bin');\nconst [policy] = await file.generateSignedPostPolicyV4({ expires: Date.now()+5*60*1000, conditions: [['content-length-range', 0, 10485760]] });\nconsole.log(policy);\n" },
+    { "path": "{{app_name}}/.env.example", "template": "GOOGLE_APPLICATION_CREDENTIALS=/path/to/sa.json\nGCS_BUCKET=\n" }
+  ],
+  "patches": []
+}
+

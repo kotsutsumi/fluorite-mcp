@@ -1,0 +1,15 @@
+{
+  "id": "next-shadcn-breadcrumb",
+  "name": "Next.js shadcn/ui Breadcrumb",
+  "version": "1.0.0",
+  "stack": ["nextjs", "shadcn"],
+  "tags": ["ui", "breadcrumb"],
+  "description": "Breadcrumb navigation using utility classes.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/components/ui/breadcrumb.tsx", "template": "export function Breadcrumb(){ return (<nav className='text-sm text-gray-600'><ol className='flex gap-2'><li><a href='/' className='hover:underline'>Home</a></li><li>/</li><li><a href='/docs' className='hover:underline'>Docs</a></li><li>/</li><li aria-current='page' className='text-black'>Intro</li></ol></nav>); }\n" },
+    { "path": "{{app_name}}/app/page.tsx", "template": "import { Breadcrumb } from '../components/ui/breadcrumb'; export default function Page(){ return <main className='p-6'><Breadcrumb/></main>; }\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "mui-autocomplete-minimal",
+  "name": "MUI Autocomplete Minimal",
+  "version": "1.0.0",
+  "stack": ["react", "mui"],
+  "tags": ["ui", "autocomplete"],
+  "description": "Autocomplete with few options.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/AutocompleteExample.tsx", "template": "import * as React from 'react';\nimport Autocomplete from '@mui/material/Autocomplete';\nimport TextField from '@mui/material/TextField';\nexport default function Auto(){ return (<Autocomplete options={['A','B','C']} renderInput={(p)=><TextField {...p} label='Pick'/>}/>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@mui/material\": \"latest\", \"@emotion/react\": \"latest\", \"@emotion/styled\": \"latest\" }\n}\n" }
+  ],
+  "patches": []
+}
+

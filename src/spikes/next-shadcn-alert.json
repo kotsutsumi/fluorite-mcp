@@ -1,0 +1,15 @@
+{
+  "id": "next-shadcn-alert",
+  "name": "Next.js shadcn/ui Alert",
+  "version": "1.0.0",
+  "stack": ["nextjs", "shadcn"],
+  "tags": ["ui", "alert"],
+  "description": "Alert box with icon area and message.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/components/ui/alert.tsx", "template": "export function Alert({ title, desc }: { title: string; desc?: string }){ return (<div className='border-l-4 border-amber-500 bg-amber-50 p-3 rounded'><div className='font-semibold'>{title}</div>{desc && <div className='text-sm text-amber-700 mt-1'>{desc}</div>}</div>); }\n" },
+    { "path": "{{app_name}}/app/page.tsx", "template": "import { Alert } from '../components/ui/alert'; export default function Page(){ return <main className='p-6'><Alert title='Heads up' desc='This is an example alert.'/></main>; }\n" }
+  ],
+  "patches": []
+}
+

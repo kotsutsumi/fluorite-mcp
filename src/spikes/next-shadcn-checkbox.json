@@ -1,0 +1,15 @@
+{
+  "id": "next-shadcn-checkbox",
+  "name": "Next.js shadcn/ui Checkbox",
+  "version": "1.0.0",
+  "stack": ["nextjs", "shadcn"],
+  "tags": ["ui", "checkbox"],
+  "description": "Checkbox with label styled via utility classes.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/components/ui/checkbox.tsx", "template": "export function Checkbox({ label }: { label: string }){ return (<label className='inline-flex items-center gap-2'><input type='checkbox' className='h-4 w-4 rounded border-gray-300 text-black focus:ring-black' />{label}</label>); }\n" },
+    { "path": "{{app_name}}/app/page.tsx", "template": "import { Checkbox } from '../components/ui/checkbox'; export default function Page(){ return <main className='p-6'><Checkbox label='Accept terms' /></main>; }\n" }
+  ],
+  "patches": []
+}
+

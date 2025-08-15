@@ -1,0 +1,15 @@
+{
+  "id": "mui-drawer-minimal",
+  "name": "MUI Drawer Minimal",
+  "version": "1.0.0",
+  "stack": ["react", "mui"],
+  "tags": ["ui", "drawer"],
+  "description": "Left-side Drawer with toggle button.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/DrawerExample.tsx", "template": "import * as React from 'react';\nimport { Drawer, Button } from '@mui/material';\nexport default function DrawerExample(){ const [o,setO]=React.useState(false); return (<div><Button onClick={()=>setO(true)}>Open</Button><Drawer open={o} onClose={()=>setO(false)}><div style={{width:250, padding:16}}>Menu</div></Drawer></div>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@mui/material\": \"latest\", \"@emotion/react\": \"latest\", \"@emotion/styled\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

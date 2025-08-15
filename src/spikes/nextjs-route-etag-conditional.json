@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-route-etag-conditional",
+  "name": "Next.js Route ETag Conditional GET",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["api", "etag"],
+  "description": "Return ETag header and handle If-None-Match.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/etag/route.ts", "template": "export async function GET(req: Request){ const body = JSON.stringify({ time: new Date().toISOString() }); const etag = 'W/\"'+body.length+'\"'; const inm = new Headers(req.headers).get('if-none-match'); if(inm===etag){ return new Response(null, { status: 304 }); } return new Response(body, { headers:{ 'content-type':'application/json', 'etag': etag } }); }\n" }
+  ],
+  "patches": []
+}
+

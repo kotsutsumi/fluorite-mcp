@@ -1,0 +1,15 @@
+{
+  "id": "nextjs-intercepted-routes-scaffold",
+  "name": "Next.js Intercepted Routes Scaffold",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["app-router", "intercept"],
+  "description": "Minimal intercepted route using (.) to show modal over a page.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/gallery/page.tsx", "template": "export default function Gallery(){ return <main>Gallery list (click image...)</main> }\n" },
+    { "path": "{{app_name}}/app/gallery/(.)photo/page.tsx", "template": "export default function PhotoModal(){ return <div style={{ position:'fixed', inset:0, background:'rgba(0,0,0,0.5)' }}><div style={{ margin:'10% auto', background:'#fff', padding:20, width:300 }}>Photo modal</div></div> }\n" }
+  ],
+  "patches": []
+}
+
