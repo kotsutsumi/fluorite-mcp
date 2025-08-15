@@ -3,9 +3,23 @@
  */
 
 import { readFile, writeFile, readdir, mkdir, access, stat } from "node:fs/promises";
+import { createRequire } from 'node:module';
 import path from "node:path";
 import { constants } from "node:fs";
 import { ValidationError, FileSystemError, type ServerConfig } from "./types.js";
+
+/**
+ * Package version utility
+ */
+export function getPackageVersion(): string {
+  try {
+    const require = createRequire(import.meta.url);
+    const pkg = require('../package.json');
+    return typeof pkg?.version === 'string' ? pkg.version : 'unknown';
+  } catch {
+    return 'unknown';
+  }
+}
 
 /**
  * Configuration constants

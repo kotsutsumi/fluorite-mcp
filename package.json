@@ -24,10 +24,12 @@
   "author": "kotsutsumi",
   "license": "MIT",
   "type": "module",
-  "main": "dist/server.js",
-  "types": "dist/server.d.ts",
+  "main": "dist/mcp-server.js",
+  "types": "dist/mcp-server.d.ts",
   "bin": {
-    "fluorite-mcp": "dist/server.js"
+    "fluorite-mcp": "dist/cli/index.js",
+    "fluorite": "dist/cli/index.js",
+    "fluorite-mcp-server": "dist/mcp-server.js"
   },
   "engines": {
     "node": ">=18"
@@ -65,6 +67,7 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
+    "commander": "^12.1.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
