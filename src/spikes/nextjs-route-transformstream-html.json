@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-route-transformstream-html",
+  "name": "Next.js Route TransformStream HTML Streaming",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["api", "streaming"],
+  "description": "Use TransformStream to stream HTML chunks.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/html-stream/route.ts", "template": "export async function GET(){ const { readable, writable } = new TransformStream(); const writer = writable.getWriter(); const enc = new TextEncoder(); (async()=>{ await writer.write(enc.encode('<!doctype html><html><body>')); for(let i=1;i<=3;i++){ await writer.write(enc.encode('<p>Chunk '+i+'</p>')); await new Promise(r=>setTimeout(r,200)); } await writer.write(enc.encode('</body></html>')); writer.close(); })(); return new Response(readable, { headers:{ 'content-type':'text/html; charset=utf-8' } }); }\n" }
+  ],
+  "patches": []
+}
+

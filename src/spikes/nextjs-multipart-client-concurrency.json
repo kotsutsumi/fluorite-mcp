@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-multipart-client-concurrency",
+  "name": "Next.js Multipart Client with Concurrency",
+  "version": "1.0.0",
+  "stack": ["nextjs", "aws-s3"],
+  "tags": ["storage", "multipart"],
+  "description": "Upload parts concurrently with a small pool size.",
+  "params": [{ "name": "app_name", "default": "next-app" }, { "name": "pool", "default": "3" }],
+  "files": [
+    { "path": "{{app_name}}/app/upload-concurrent/page.tsx", "template": "'use client'; export default function Page(){ async function onFile(e){ const file = e.target.files[0]; if(!file) return; const { uploadId } = await fetch('/api/s3-multipart/init', { method:'POST' }).then(r=>r.json()); const partSize = 5*1024*1024; const parts=[]; const tasks=[]; let pn=1; for(let off=0; off<file.size; off+=partSize, pn++){ tasks.push({ pn, blob: file.slice(off, off+partSize) }); } const pool = {{pool}}; let i=0; async function worker(){ while(i<tasks.length){ const t = tasks[i++]; const { url } = await fetch(`/api/s3-multipart/part?uploadId=${uploadId}&partNumber=${t.pn}`).then(r=>r.json()); const res = await fetch(url, { method:'PUT', body: t.blob }); const etag = res.headers.get('etag')?.replaceAll('"',''); parts[t.pn-1] = { PartNumber: t.pn, ETag: etag }; } } await Promise.all(Array.from({length:pool}, worker)); await fetch('/api/s3-multipart/complete', { method:'POST', body: JSON.stringify({ uploadId, parts }), headers:{ 'content-type':'application/json' } }); alert('uploaded'); } return (<main><input type='file' onChange={onFile}/></main>); }\n" }
+  ],
+  "patches": []
+}
+

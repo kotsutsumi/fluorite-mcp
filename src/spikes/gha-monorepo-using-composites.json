@@ -1,0 +1,14 @@
+{
+  "id": "gha-monorepo-using-composites",
+  "name": "GHA Monorepo Using Composite Actions",
+  "version": "1.0.0",
+  "stack": ["github-actions", "monorepo"],
+  "tags": ["ci", "composite"],
+  "description": "Use node-setup-cache and lint-typecheck-build composites per package.",
+  "params": [{ "name": "repo_name", "default": "monorepo" }],
+  "files": [
+    { "path": "{{repo_name}}/.github/workflows/monorepo-composites.yml", "template": "name: Monorepo Composites\n\non: [push, pull_request]\n\njobs:\n  build:\n    runs-on: ubuntu-latest\n    strategy:\n      matrix:\n        pkg: ['packages/a', 'packages/b']\n    steps:\n      - uses: actions/checkout@v4\n      - uses: ./.github/actions/node-setup-cache\n      - name: Build one\n        working-directory: ${{ matrix.pkg }}\n        uses: ./.github/actions/lint-typecheck-build\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "gha-composite-node-setup-cache",
+  "name": "GHA Composite Action: Node Setup + Cache",
+  "version": "1.0.0",
+  "stack": ["github-actions"],
+  "tags": ["ci", "composite"],
+  "description": "Reusable composite action to setup Node and cache deps.",
+  "params": [{ "name": "repo_name", "default": "repo" }],
+  "files": [
+    { "path": "{{repo_name}}/.github/actions/node-setup-cache/action.yml", "template": "name: Node Setup Cache\ndescription: Setup Node.js and cache deps by lockfile\nruns:\n  using: composite\n  steps:\n    - uses: actions/setup-node@v4\n      with:\n        node-version: 20\n    - uses: actions/cache@v4\n      with:\n        path: node_modules\n        key: node-${{ hashFiles('package-lock.json', 'pnpm-lock.yaml', 'yarn.lock') }}\n        restore-keys: |\n          node-\n    - run: npm ci\n      shell: bash\n" }
+  ],
+  "patches": []
+}
+

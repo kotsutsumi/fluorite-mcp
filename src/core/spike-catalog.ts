@@ -9,6 +9,55 @@ import { createLogger } from './logger.js';
 
 const log = createLogger('spike-catalog', 'fluorite-mcp');
 
+// Simple LRU cache for loaded spikes
+class SpikeCache {
+  private cache = new Map<string, { spec: SpikeSpec; timestamp: number }>();
+  private maxSize = 50; // Keep only 50 spikes in memory
+  private maxAge = 300000; // 5 minutes TTL
+
+  get(id: string): SpikeSpec | null {
+    const entry = this.cache.get(id);
+    if (!entry) return null;
+    
+    if (Date.now() - entry.timestamp > this.maxAge) {
+      this.cache.delete(id);
+      return null;
+    }
+    
+    return entry.spec;
+  }
+
+  set(id: string, spec: SpikeSpec): void {
+    // Remove oldest entries if cache is full
+    if (this.cache.size >= this.maxSize) {
+      const oldestKey = this.cache.keys().next().value;
+      if (oldestKey) {
+        this.cache.delete(oldestKey);
+      }
+    }
+    
+    this.cache.set(id, { spec, timestamp: Date.now() });
+  }
+
+  clear(): void {
+    this.cache.clear();
+  }
+}
+
+const spikeCache = new SpikeCache();
+
+// Lightweight spike metadata for indexing
+export interface SpikeMetadata {
+  id: string;
+  name: string;
+  description?: string;
+  stack?: string[];
+  tags?: string[];
+  version?: string;
+  fileCount?: number;
+  patchCount?: number;
+}
+
 export interface SpikeParamDef {
   name: string;
   required?: boolean;
@@ -68,16 +117,71 @@ export async function listSpikeIds(filter?: string, cfg: SpikeCatalogConfig = DE
 }
 
 export async function loadSpike(id: string, cfg: SpikeCatalogConfig = DEFAULT_SPIKE_CONFIG): Promise<SpikeSpec> {
+  // Check cache first
+  const cached = spikeCache.get(id);
+  if (cached) {
+    return cached;
+  }
+
   const file = path.resolve(cfg.baseDir, `${id}.json`);
   const raw = await readFile(file, 'utf-8');
   try {
     const spec = JSON.parse(raw) as SpikeSpec;
     if (!spec.id) spec.id = id;
+    
+    // Cache the loaded spike
+    spikeCache.set(id, spec);
+    
     return spec;
   } catch (e) {
     log.error('Failed to parse spike JSON', e as Error, { id, file });
     throw e;
   }
+}
+
+// Load only metadata from spike files for efficient indexing
+export async function loadSpikeMetadata(id: string, cfg: SpikeCatalogConfig = DEFAULT_SPIKE_CONFIG): Promise<SpikeMetadata> {
+  const file = path.resolve(cfg.baseDir, `${id}.json`);
+  const raw = await readFile(file, 'utf-8');
+  try {
+    const spec = JSON.parse(raw) as SpikeSpec;
+    return {
+      id: spec.id || id,
+      name: spec.name || id,
+      description: spec.description,
+      stack: spec.stack,
+      tags: spec.tags,
+      version: spec.version,
+      fileCount: spec.files?.length || 0,
+      patchCount: spec.patches?.length || 0
+    };
+  } catch (e) {
+    log.error('Failed to parse spike JSON metadata', e as Error, { id, file });
+    throw e;
+  }
+}
+
+// Load metadata for multiple spikes with pagination
+export async function loadSpikeMetadataBatch(
+  ids: string[], 
+  limit = 20, 
+  offset = 0, 
+  cfg: SpikeCatalogConfig = DEFAULT_SPIKE_CONFIG
+): Promise<SpikeMetadata[]> {
+  const paginatedIds = ids.slice(offset, offset + limit);
+  const metadata: SpikeMetadata[] = [];
+  
+  for (const id of paginatedIds) {
+    try {
+      const meta = await loadSpikeMetadata(id, cfg);
+      metadata.push(meta);
+    } catch (e) {
+      log.warn('Failed to load spike metadata', { errorMessage: (e as Error).message, id });
+      // Continue with other spikes instead of failing completely
+    }
+  }
+  
+  return metadata;
 }
 
 export function renderTemplateString(input: string, params: Record<string, string>): string {
@@ -96,8 +200,10 @@ export function renderFiles(files: SpikeFileTemplate[] | undefined, params: Reco
   }));
 }
 
-export function scoreSpikeMatch(task: string, spec: SpikeSpec): number {
-  const hay = `${spec.id} ${spec.name} ${(spec.stack||[]).join(' ')} ${(spec.tags||[]).join(' ')} ${spec.description||''}`.toLowerCase();
+export function scoreSpikeMatch(task: string, spec: SpikeSpec): number;
+export function scoreSpikeMatch(task: string, meta: SpikeMetadata): number;
+export function scoreSpikeMatch(task: string, specOrMeta: SpikeSpec | SpikeMetadata): number {
+  const hay = `${specOrMeta.id} ${specOrMeta.name} ${(specOrMeta.stack||[]).join(' ')} ${(specOrMeta.tags||[]).join(' ')} ${specOrMeta.description||''}`.toLowerCase();
   const words = Array.from(new Set(task.toLowerCase().split(/[^a-z0-9_@#:+.-]+/i))).filter(Boolean);
   if (words.length === 0) return 0;
   const hits = words.reduce((acc,w)=> acc + (hay.includes(w) ? 1 : 0), 0);

@@ -1,0 +1,14 @@
+{
+  "id": "terraform-aws-cloudfront-s3",
+  "name": "Terraform AWS CloudFront + S3 Origin",
+  "version": "1.0.0",
+  "stack": ["terraform", "aws"],
+  "tags": ["iac", "cdn"],
+  "description": "CloudFront distribution with S3 origin (public demo).",
+  "params": [{ "name": "project_name", "default": "tf" }],
+  "files": [
+    { "path": "{{project_name}}/main.tf", "template": "provider \"aws\" { region = var.region }\nresource \"aws_s3_bucket\" \"origin\" { bucket = \"demo-origin-bucket\" }\nresource \"aws_cloudfront_distribution\" \"cdn\" { enabled = true origins { domain_name = aws_s3_bucket.origin.bucket_regional_domain_name origin_id = \"s3origin\" } default_cache_behavior { viewer_protocol_policy = \"redirect-to-https\" target_origin_id = \"s3origin\" allowed_methods = [\"GET\",\"HEAD\"] cached_methods = [\"GET\",\"HEAD\"] forwarded_values { query_string = false cookies { forward = \"none\" } } } viewer_certificate { cloudfront_default_certificate = true } }\nvariable \"region\" { default = \"us-east-1\" }\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "grafana-provisioning-dashboards",
+  "name": "Grafana Provisioning: Dashboards Folder",
+  "version": "1.0.0",
+  "stack": ["grafana"],
+  "tags": ["observability", "provisioning"],
+  "description": "Provision dashboards folder via YAML.",
+  "params": [{ "name": "project_name", "default": "grafana" }],
+  "files": [
+    { "path": "{{project_name}}/dashboards.yml", "template": "apiVersion: 1\nproviders:\n  - name: 'default'\n    orgId: 1\n    folder: ''\n    type: file\n    disableDeletion: false\n    editable: true\n    options:\n      path: /var/lib/grafana/dashboards\n" }
+  ],
+  "patches": []
+}
+

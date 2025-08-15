@@ -1,0 +1,15 @@
+{
+  "id": "pulumi-aws-cloudfront-s3-ts",
+  "name": "Pulumi AWS CloudFront + S3 (TS)",
+  "version": "1.0.0",
+  "stack": ["pulumi", "aws", "typescript"],
+  "tags": ["iac", "cdn"],
+  "description": "CloudFront distribution with S3 origin in Pulumi TS.",
+  "params": [{ "name": "project_name", "default": "pulumi" }],
+  "files": [
+    { "path": "{{project_name}}/index.ts", "template": "import * as aws from '@pulumi/aws';\nconst bucket = new aws.s3.Bucket('origin');\nconst cdn = new aws.cloudfront.Distribution('cdn', { enabled:true, origins:[{ domainName: bucket.bucketRegionalDomainName, originId:'s3origin' }], defaultCacheBehavior:{ targetOriginId:'s3origin', viewerProtocolPolicy:'redirect-to-https', allowedMethods:['GET','HEAD'], cachedMethods:['GET','HEAD'], forwardedValues:{ queryString:false, cookies:{ forward:'none' } } }, viewerCertificate:{ cloudfrontDefaultCertificate:true } });\nexport const originBucket = bucket.bucket; export const cdnDomain = cdn.domainName;\n" },
+    { "path": "{{project_name}}/package.json", "template": "{ \"name\": \"pulumi-cf-s3\", \"private\": true, \"dependencies\": { \"@pulumi/aws\": \"latest\", \"@pulumi/pulumi\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

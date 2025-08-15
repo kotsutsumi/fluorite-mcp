@@ -1,0 +1,15 @@
+{
+  "id": "nextjs-middleware-csp-report-only",
+  "name": "Next.js Middleware CSP Report-Only",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["middleware", "security"],
+  "description": "Set Content-Security-Policy-Report-Only header.",
+  "params": [{ "name": "app_name", "default": "next-app" }, { "name": "report_uri", "default": "/csp-report" }],
+  "files": [
+    { "path": "{{app_name}}/middleware.ts", "template": "import { NextResponse } from 'next/server'; import type { NextRequest } from 'next/server';\nexport function middleware(req: NextRequest){ const res = NextResponse.next(); res.headers.set('content-security-policy-report-only', `default-src 'self'; report-uri {{report_uri}}`); return res; }\nexport const config = { matcher: '/:path*' };\n" },
+    { "path": "{{app_name}}/app/csp-report/route.ts", "template": "export const runtime='nodejs'; export async function POST(req: Request){ const body = await req.text(); console.log('CSP report', body); return new Response('ok'); }\n" }
+  ],
+  "patches": []
+}
+

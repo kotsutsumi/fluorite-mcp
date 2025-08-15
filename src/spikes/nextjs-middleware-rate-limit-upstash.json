@@ -1,0 +1,16 @@
+{
+  "id": "nextjs-middleware-rate-limit-upstash",
+  "name": "Next.js Middleware Rate Limit (Upstash)",
+  "version": "1.0.0",
+  "stack": ["nextjs", "upstash"],
+  "tags": ["middleware", "ratelimit", "edge"],
+  "description": "Use Upstash Ratelimit in middleware for IP-based limiting.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/middleware.ts", "template": "import { NextResponse } from 'next/server';\nimport type { NextRequest } from 'next/server';\nimport { Ratelimit } from '@upstash/ratelimit';\nimport { Redis } from '@upstash/redis';\nconst ratelimit = new Ratelimit({ redis: Redis.fromEnv(), limiter: Ratelimit.slidingWindow(60, '1 m') });\nexport async function middleware(req: NextRequest){ const ip = req.ip || req.headers.get('x-forwarded-for') || '127.0.0.1'; const { success, remaining } = await ratelimit.limit(ip); if(!success){ return new Response('Too Many Requests', { status: 429 }); } const res = NextResponse.next(); res.headers.set('x-ratelimit-remaining', String(remaining)); return res; }\nexport const config = { matcher: '/:path*' };\n" },
+    { "path": "{{app_name}}/.env.example", "template": "UPSTASH_REDIS_REST_URL=\nUPSTASH_REDIS_REST_TOKEN=\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"@upstash/ratelimit\": \"latest\", \"@upstash/redis\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "grafana-dashboard-loki-tempo",
+  "name": "Grafana Dashboard JSON for Loki/Tempo",
+  "version": "1.0.0",
+  "stack": ["grafana", "loki", "tempo"],
+  "tags": ["observability", "dashboard"],
+  "description": "Minimal panels: logs from Loki and traces from Tempo.",
+  "params": [{ "name": "project_name", "default": "grafana" }],
+  "files": [
+    { "path": "{{project_name}}/dashboard-loki-tempo.json", "template": "{\n  \"title\": \"Logs & Traces\",\n  \"panels\": [\n    { \"type\": \"logs\", \"title\": \"Loki Logs\", \"targets\": [{ \"expr\": "{job='nextjs'}" }] },\n    { \"type\": \"traces\", \"title\": \"Tempo Traces\", \"targets\": [{ \"query\": \"{}\" }] }\n  ]\n}\n" }
+  ],
+  "patches": []
+}
+

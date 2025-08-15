@@ -1,0 +1,14 @@
+{
+  "id": "otel-collector-advanced-pipelines",
+  "name": "OTEL Collector Advanced Pipelines",
+  "version": "1.0.0",
+  "stack": ["otel"],
+  "tags": ["observability", "collector"],
+  "description": "Collector config with separate logs/metrics/traces pipelines and processors.",
+  "params": [{ "name": "project_name", "default": "obs" }],
+  "files": [
+    { "path": "{{project_name}}/otel-advanced.yaml", "template": "receivers: { otlp: { protocols: { http: {} } } }\nprocessors: { batch: {} }\nexporters: { logging: {}, otlphttp/traces: { endpoint: http://tempo:3200 }, otlphttp/logs: { endpoint: http://loki:3100/otlp }, prometheus: { endpoint: '0.0.0.0:9464' } }\nextensions: { health_check: {} }\nservice:\n  extensions: [health_check]\n  pipelines:\n    traces: { receivers:[otlp], processors:[batch], exporters:[logging, otlphttp/traces] }\n    logs: { receivers:[otlp], processors:[batch], exporters:[logging, otlphttp/logs] }\n    metrics: { receivers:[otlp], processors:[batch], exporters:[prometheus] }\n" }
+  ],
+  "patches": []
+}
+

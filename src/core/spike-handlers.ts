@@ -6,9 +6,11 @@ import {
   SpikeSpec,
   SpikeFileTemplate,
   SpikePatch,
+  SpikeMetadata,
   ensureSpikeDirectory,
   listSpikeIds,
   loadSpike,
+  loadSpikeMetadataBatch,
   renderFiles,
   scoreSpikeMatch
 } from './spike-catalog.js';
@@ -22,24 +24,50 @@ interface ToolCallResult {
 
 const log = createLogger('spike-handlers', 'fluorite-mcp');
 
-export interface DiscoverInput { query?: string; limit?: number }
+export interface DiscoverInput { query?: string; limit?: number; offset?: number }
 export async function handleDiscoverSpikesTool(input: DiscoverInput = {}): Promise<ToolCallResult> {
   try {
     await ensureSpikeDirectory();
-    const ids = await listSpikeIds(undefined, DEFAULT_SPIKE_CONFIG);
+    const allIds = await listSpikeIds(undefined, DEFAULT_SPIKE_CONFIG);
+    
+    // Default to showing only first 20 spikes to avoid memory issues
+    const limit = Math.min(input.limit || 20, 50); // Max 50 spikes at once
+    const offset = input.offset || 0;
+    
+    // Load only metadata for efficiency
+    const metadata = await loadSpikeMetadataBatch(allIds, limit * 2, offset, DEFAULT_SPIKE_CONFIG); // Load a bit more for scoring
+    
     const items: { id: string; name?: string; stack?: string[]; tags?: string[]; score: number }[] = [];
-    for (const id of ids) {
-      const spec = await loadSpike(id, DEFAULT_SPIKE_CONFIG);
-      const score = input.query ? scoreSpikeMatch(input.query, spec) : 0.0;
-      items.push({ id: spec.id, name: spec.name, stack: spec.stack, tags: spec.tags, score: Math.round(score*100)/100 });
+    for (const meta of metadata) {
+      const score = input.query ? scoreSpikeMatch(input.query, meta) : 0.0;
+      items.push({ 
+        id: meta.id, 
+        name: meta.name, 
+        stack: meta.stack, 
+        tags: meta.tags, 
+        score: Math.round(score*100)/100 
+      });
     }
+    
     items.sort((a,b)=> (b.score - a.score) || a.id.localeCompare(b.id));
-    const limited = typeof input.limit === 'number' ? items.slice(0, Math.max(0, input.limit)) : items;
+    const limited = items.slice(0, limit);
+    
     const lines = [
-      `Found ${items.length} spike(s). Showing ${limited.length}.`,
-      ...limited.map(i => `• ${i.id}${i.name?` - ${i.name}`:''} [score=${i.score}]`)
-    ];
-    return { content: [{ type: 'text', text: lines.join('\n') }], metadata: { items: limited } };
+      `Found ${allIds.length} total spikes. Showing ${limited.length} (offset: ${offset}).`,
+      input.query ? `Query: "${input.query}"` : '',
+      ...limited.map(i => `• ${i.id}${i.name && i.name !== i.id ? ` - ${i.name}` : ''} [score=${i.score}]`)
+    ].filter(Boolean);
+    
+    return { 
+      content: [{ type: 'text', text: lines.join('\n') }], 
+      metadata: { 
+        items: limited, 
+        total: allIds.length,
+        limit,
+        offset,
+        hasMore: offset + limit < allIds.length
+      } 
+    };
   } catch (e) {
     log.error('discover-spikes failed', e as Error);
     return { content: [{ type: 'text', text: `❌ discover-spikes failed: ${(e as Error).message}` }], isError: true };
@@ -124,18 +152,68 @@ export interface AutoSpikeInput { task: string; constraints?: Record<string,stri
 export async function handleAutoSpikeTool(input: AutoSpikeInput): Promise<ToolCallResult> {
   try {
     await ensureSpikeDirectory();
-    const ids = await listSpikeIds(undefined, DEFAULT_SPIKE_CONFIG);
-    let best: { spec: SpikeSpec; score: number } | null = null;
-    for (const id of ids) {
-      const spec = await loadSpike(id, DEFAULT_SPIKE_CONFIG);
-      const s = scoreSpikeMatch(input.task, spec);
-      if (!best || s > best.score) best = { spec, score: s };
+    const allIds = await listSpikeIds(undefined, DEFAULT_SPIKE_CONFIG);
+    
+    if (allIds.length === 0) {
+      return { content: [{ type: 'text', text: 'No spikes available' }], metadata: { items: [] } };
     }
-    if (!best) return { content: [{ type: 'text', text: 'No spikes available' }], metadata: { items: [] } };
+    
+    // First pass: score all spikes using metadata only (efficient)
+    const batchSize = 50; // Process in batches to avoid memory issues
+    let topCandidates: { id: string; score: number }[] = [];
+    
+    for (let i = 0; i < allIds.length; i += batchSize) {
+      const batchIds = allIds.slice(i, i + batchSize);
+      const metadata = await loadSpikeMetadataBatch(batchIds, batchSize, 0, DEFAULT_SPIKE_CONFIG);
+      
+      for (const meta of metadata) {
+        const score = scoreSpikeMatch(input.task, meta);
+        if (score > 0) {
+          topCandidates.push({ id: meta.id, score });
+        }
+      }
+    }
+    
+    // Sort and get top 5 candidates
+    topCandidates.sort((a, b) => b.score - a.score);
+    const topFive = topCandidates.slice(0, 5);
+    
+    if (topFive.length === 0) {
+      return { content: [{ type: 'text', text: 'No matching spikes found' }], metadata: { items: [] } };
+    }
+    
+    // Second pass: load full specs only for top candidates
+    let best: { spec: SpikeSpec; score: number } | null = null;
+    for (const candidate of topFive) {
+      try {
+        const spec = await loadSpike(candidate.id, DEFAULT_SPIKE_CONFIG);
+        const detailedScore = scoreSpikeMatch(input.task, spec);
+        if (!best || detailedScore > best.score) {
+          best = { spec, score: detailedScore };
+        }
+      } catch (e) {
+        log.warn('Failed to load spike for detailed scoring', { errorMessage: (e as Error).message, id: candidate.id });
+      }
+    }
+    
+    if (!best) {
+      return { content: [{ type: 'text', text: 'Failed to load matching spikes' }], metadata: { items: [] } };
+    }
+    
     const coverage = Math.round(Math.min(1, Math.max(0.1, best.score)) * 100) / 100;
     const next = [{ tool: 'preview-spike', args: { id: best.spec.id, params: input.constraints || {} } }];
     const text = `Selected spike: ${best.spec.id} (coverage_score=${coverage})`;
-    return { content: [{ type: 'text', text }], metadata: { selected_spike: best.spec, coverage_score: coverage, residual_work: [], next_actions: next } };
+    
+    return { 
+      content: [{ type: 'text', text }], 
+      metadata: { 
+        selected_spike: best.spec, 
+        coverage_score: coverage, 
+        residual_work: [], 
+        next_actions: next,
+        candidates_evaluated: topCandidates.length
+      } 
+    };
   } catch (e) {
     log.error('auto-spike failed', e as Error);
     return { content: [{ type: 'text', text: `❌ auto-spike failed: ${(e as Error).message}` }], isError: true };

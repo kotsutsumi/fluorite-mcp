@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-middleware-hsts",
+  "name": "Next.js Middleware HSTS Header",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["middleware", "security"],
+  "description": "Set Strict-Transport-Security header (HSTS).",
+  "params": [{ "name": "app_name", "default": "next-app" }, { "name": "max_age", "default": "31536000" }],
+  "files": [
+    { "path": "{{app_name}}/middleware.ts", "template": "import { NextResponse } from 'next/server'; import type { NextRequest } from 'next/server';\nexport function middleware(req: NextRequest){ const res = NextResponse.next(); res.headers.set('strict-transport-security', `max-age={{max_age}}; includeSubDomains; preload`); return res; }\nexport const config = { matcher: '/:path*' };\n" }
+  ],
+  "patches": []
+}
+

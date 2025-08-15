@@ -1,6 +1,6 @@
 # Spike Templates - Comprehensive Development Scaffolds
 
-Complete reference for fluorite-mcp's 206 Spike templates for rapid prototyping and development.
+Complete reference for fluorite-mcp's 282 Spike templates for rapid prototyping and development.
 
 ## Overview
 
@@ -8,9 +8,9 @@ Spike templates are production-ready scaffolds that implement the Spike developm
 
 ## Template Categories
 
-### 🌐 Frontend Frameworks (42 templates)
+### 🌐 Frontend Frameworks (98+ templates)
 
-#### Next.js Ecosystem (39 templates)
+#### Next.js Ecosystem (98 templates)
 | Template | Description | Use Case |
 |----------|-------------|----------|
 | `nextjs-minimal` | Basic SSR Next.js app with TypeScript | Starting point for any Next.js project |
@@ -51,7 +51,7 @@ Spike templates are production-ready scaffolds that implement the Spike developm
 | `nextjs-prom-client-metrics` | Prometheus metrics endpoint | Monitoring integration |
 | `nextjs-route-formdata-upload` | FormData file upload | File handling |
 
-#### React Ecosystem (10 templates)
+#### React Ecosystem (17 templates)
 | Template | Description | Stack |
 |----------|-------------|-------|
 | `react-vite-minimal` | React + Vite TypeScript starter | React, Vite, TypeScript |
@@ -91,9 +91,9 @@ Spike templates are production-ready scaffolds that implement the Spike developm
 | `next-shadcn-combobox` | Next.js shadcn/ui Combobox | Searchable select |
 | `next-shadcn-select` | Next.js shadcn/ui Select | Dropdown select |
 
-### 🚀 Backend Frameworks (29 templates)
+### 🚀 Backend Frameworks (59+ templates)
 
-#### FastAPI Ecosystem (20 templates)
+#### FastAPI Ecosystem (24 templates)
 | Template | Description | Features |
 |----------|-------------|----------|
 | `fastapi-minimal` | Basic FastAPI app | Health endpoint, async support |
@@ -142,9 +142,9 @@ Spike templates are production-ready scaffolds that implement the Spike developm
 | `rust-axum-minimal` | Axum web framework | Modern async Rust |
 | `rust-actix-minimal` | Actix web framework | High-performance Rust |
 
-### 🧪 Testing & Quality (19 templates)
+### 🧪 Testing & Quality (58+ templates)
 
-#### Playwright Testing (9 templates)
+#### Playwright Testing (11 templates)
 | Template | Description | Capability |
 |----------|-------------|------------|
 | `playwright-minimal` | Basic E2E testing setup | Cross-browser testing |
@@ -165,7 +165,7 @@ Spike templates are production-ready scaffolds that implement the Spike developm
 | `gitleaks-action` | Detect secrets in code | Security scanning |
 | `secretlint-config` | Secret detection config | Security configuration |
 
-#### GitHub Actions CI/CD (25 templates)
+#### GitHub Actions CI/CD (32 templates)
 | Template | Description | Purpose |
 |----------|-------------|---------|
 | `gha-node-ci` | Node.js CI pipeline | Basic CI setup |
@@ -196,7 +196,7 @@ Spike templates are production-ready scaffolds that implement the Spike developm
 | `gha-turbo-cache` | Turborepo remote cache | Build performance |
 | `gha-vercel-preview` | Vercel preview deployment | Preview environments |
 
-### 🎨 UI Components & Libraries (36 templates)
+### 🎨 UI Components & Libraries (72+ templates)
 
 #### Component Libraries
 | Template | Description | Library |
@@ -231,7 +231,7 @@ Spike templates are production-ready scaffolds that implement the Spike developm
 | `dnd-kit-minimal` | Drag and drop interface | Modern DnD implementation |
 | `react-dnd-minimal` | React DnD implementation | Traditional DnD |
 
-### 🗄️ Data & State Management (19 templates)
+### 🗄️ Data & State Management (35+ templates)
 
 #### Database Integration
 | Template | Description | Database |
@@ -261,7 +261,7 @@ Spike templates are production-ready scaffolds that implement the Spike developm
 | `redis-streams-ioredis` | Redis Streams | Stream processing |
 | `nats-js-minimal` | NATS.js Pub/Sub | Lightweight messaging |
 
-### ☁️ Infrastructure & DevOps (34 templates)
+### ☁️ Infrastructure & DevOps (40+ templates)
 
 #### Container & Orchestration
 | Template | Description | Technology |
@@ -290,7 +290,7 @@ Spike templates are production-ready scaffolds that implement the Spike developm
 | `pulumi-aws-s3-website-ts` | Static site hosting | Pulumi TypeScript |
 | `pulumi-aws-rds-ts` | RDS database instance | Pulumi TypeScript |
 
-### 📊 Monitoring & Observability (9 templates)
+### 📊 Monitoring & Observability (15+ templates)
 
 #### Logging & Metrics
 | Template | Description | Technology |
@@ -320,7 +320,7 @@ Spike templates are production-ready scaffolds that implement the Spike developm
 
 ## Template Structure
 
-Each Strike template follows a consistent JSON structure:
+Each Spike template follows a consistent JSON structure:
 
 ```json
 {
@@ -360,9 +360,9 @@ Each Strike template follows a consistent JSON structure:
 # Result: Applies react-hook-form-zod-login template
 ```
 
-### Advanced Strike Workflows
+### Advanced Spike Workflows
 ```bash
-# Complete Strike development cycle
+# Complete Spike development cycle
 /fl:implement --loop --wave-mode --delegate --until-perfect --ultrathink --all-mcp "ドラッグアンドドロップできるツリービュー"
 
 # Automatic workflow:
@@ -467,8 +467,8 @@ All Spike templates work with full SuperClaude parameter bypass:
 
 ---
 
-**Total Templates**: 194 production-ready scaffolds  
-**Total Lines**: 2,200+ lines of battle-tested configurations  
+**Total Templates**: 282 production-ready scaffolds  
+**Total Lines**: 3,500+ lines of battle-tested configurations  
 **Coverage**: 15+ technology stacks, 50+ frameworks and libraries  
 **Quality**: Enterprise-grade patterns with security and performance built-in
 
@@ -485,4 +485,4 @@ All Spike templates work with full SuperClaude parameter bypass:
 - **Infrastructure**: Docker Compose observability stacks (OpenTelemetry + Loki + Tempo, Prometheus + Grafana)
 - **Monitoring**: Node.js OpenTelemetry metrics/logs, Grafana dashboards, OpenAPI mocking
 - **Build Tools**: Nx monorepo, pnpm workspaces, Turborepo configurations
-- **Total Coverage**: 206 production-ready templates across all technology stacks
+- **Total Coverage**: 282 production-ready templates across all technology stacks

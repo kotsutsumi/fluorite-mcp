@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-route-try-catch-error-json",
+  "name": "Next.js Route try/catch Error JSON",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["api", "error"],
+  "description": "Demonstrate try/catch with JSON error structure.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/trycatch/route.ts", "template": "export async function GET(){ try{ throw new Error('boom'); } catch(e){ return new Response(JSON.stringify({ error:{ message: (e as Error).message } }), { status: 500, headers:{ 'content-type': 'application/json' } }); } }\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "nextauth-github-app-provider",
+  "name": "NextAuth GitHub App Provider",
+  "version": "1.0.0",
+  "stack": ["nextjs", "nextauth"],
+  "tags": ["auth", "oauth"],
+  "description": "Configure NextAuth with GitHub App provider (minimal).",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/auth/[...nextauth]/route.ts", "template": "import NextAuth from 'next-auth';\nimport GitHub from 'next-auth/providers/github';\nconst handler = NextAuth({ providers: [GitHub({ allowDangerousEmailAccountLinking: true })] });\nexport { handler as GET, handler as POST };\n" },
+    { "path": "{{app_name}}/.env.example", "template": "AUTH_GITHUB_ID=\nAUTH_GITHUB_SECRET=\nNEXTAUTH_URL=http://localhost:3000\nNEXTAUTH_SECRET=changeme\n" }
+  ],
+  "patches": []
+}
+
