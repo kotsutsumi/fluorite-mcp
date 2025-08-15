@@ -4,14 +4,14 @@
 [![Node.js Version](https://img.shields.io/node/v/fluorite-mcp.svg)](https://nodejs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
 
-**Fluorite MCP** は、ライブラリや UI コンポーネントの仕様を YAML/JSON で収集し、MCP (Model Context Protocol) で提供するサーバーです。Claude Code CLI にモダン開発ライブラリと10の主要プログラミング言語エコシステムの深い知識を提供し、より正確で実用的なコード生成を可能にします。
+**Fluorite MCP** は、ライブラリや UI コンポーネントの仕様を YAML/JSON で収集し、MCP (Model Context Protocol) で提供するサーバーです。Claude Code CLI にモダン開発ライブラリと11の主要プログラミング言語エコシステムの深い知識を提供し、より正確で実用的なコード生成を可能にします。
 
 ## 🚀 Why Fluorite MCP?
 
 Fluorite MCP transforms Claude Code CLI into an intelligent multi-platform development expert with:
 
-- **📚 Deep Library Knowledge**: Comprehensive specs for 80+ essential libraries
-- **🌐 Multi-Language Support**: 10 major programming language ecosystems
+- **📚 Deep Library Knowledge**: Comprehensive specs for 85+ essential libraries
+- **🌐 Multi-Language Support**: 11 major programming language ecosystems
 - **⚡ Instant Code Generation**: Production-ready code with correct imports
 - **🎯 Best Practices Built-in**: Security, performance, and patterns included
 - **🔄 Library Integration**: Understands how libraries work together
@@ -120,6 +120,15 @@ See [BENEFITS.md](./BENEFITS.md) for detailed advantages.
   - Background Jobs: Sidekiq, Resque, Delayed Job, GoodJob
   - Testing: RSpec, Capybara, Factory Bot, SimpleCov
   - Frontend: Hotwire (Turbo & Stimulus), React-Rails, Vue.js Rails
+
+### Real-Time Communication & Streaming
+- **WebRTC & Streaming** (`spec://webrtc-streaming-ecosystem`) - Comprehensive real-time media ecosystem
+  - WebRTC: PeerJS, simple-peer, SkyWay, mediasoup, Janus Gateway, Jitsi Meet
+  - Streaming Players: hls.js, Video.js, Shaka Player, dash.js, Clappr, ExoPlayer, AVPlayer
+  - Media Servers: Kurento, Ant Media Server, OvenMediaEngine, Wowza, Red5 Pro
+  - Streaming Platforms: Agora.io, Twilio, AWS IVS, AWS Chime SDK, Mux, Cloudflare Stream
+  - Processing Tools: FFmpeg, GStreamer, OBS Studio, Streamlink
+  - Low-Latency: LL-HLS, WebTransport, WebCodecs, QUIC/HTTP/3
 
 ## 🌐 Global Installation
 
