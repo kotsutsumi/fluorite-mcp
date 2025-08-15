@@ -1,0 +1,519 @@
+---
+name: Lua Ecosystem
+version: 1.0.0
+description: Complete Lua programming language ecosystem including runtimes, frameworks, and libraries
+category: programming-languages
+subcategory: scripting
+tags:
+  - lua
+  - embedded
+  - scripting
+  - game-development
+  - web-development
+
+core:
+  lua:
+    name: Lua
+    description: Lightweight, embeddable scripting language
+    homepage: https://www.lua.org
+    repository: https://github.com/lua/lua
+    current_version: "5.4.6"
+    features:
+      - Small footprint (~250KB)
+      - Fast execution
+      - Easy C API integration
+      - Dynamic typing
+      - Automatic memory management
+      - First-class functions
+      - Coroutines
+    use_cases:
+      - Embedded scripting
+      - Game development
+      - Configuration files
+      - Data processing
+      - Web applications
+
+  luajit:
+    name: LuaJIT
+    description: Just-In-Time Compiler for Lua
+    homepage: https://luajit.org
+    repository: https://github.com/LuaJIT/LuaJIT
+    version: "2.1"
+    features:
+      - JIT compilation
+      - FFI (Foreign Function Interface)
+      - 5-100x faster than standard Lua
+      - Compatible with Lua 5.1
+      - Trace compiler
+    use_cases:
+      - High-performance applications
+      - Game engines
+      - Network services
+      - Scientific computing
+
+  alternative_runtimes:
+    fengari:
+      name: Fengari
+      description: Lua VM for the browser
+      homepage: https://fengari.io
+      repository: https://github.com/fengari-lua/fengari
+      features:
+        - Run Lua in JavaScript
+        - Browser compatible
+        - Node.js support
+        - Lua 5.3 compatible
+
+    moonjit:
+      name: MoonJIT
+      description: LuaJIT fork with continued development
+      repository: https://github.com/moonjit/moonjit
+      features:
+        - Active development
+        - Additional optimizations
+        - Bug fixes
+        - New platforms support
+
+package_management:
+  luarocks:
+    name: LuaRocks
+    description: Package manager for Lua modules
+    homepage: https://luarocks.org
+    repository: https://github.com/luarocks/luarocks
+    features:
+      - Dependency management
+      - Package repository
+      - Build system
+      - Version management
+    commands:
+      install: luarocks install <package>
+      search: luarocks search <query>
+      list: luarocks list
+      remove: luarocks remove <package>
+
+game_development:
+  love2d:
+    name: LÖVE (Love2D)
+    description: 2D game framework for Lua
+    homepage: https://love2d.org
+    repository: https://github.com/love2d/love
+    version: "11.x"
+    features:
+      - 2D graphics
+      - Audio system
+      - Physics engine (Box2D)
+      - Filesystem abstraction
+      - Input handling
+      - Cross-platform
+    platforms:
+      - Windows
+      - macOS
+      - Linux
+      - iOS
+      - Android
+    modules:
+      - love.graphics
+      - love.audio
+      - love.physics
+      - love.filesystem
+      - love.event
+
+  defold:
+    name: Defold
+    description: Cross-platform game engine with Lua scripting
+    homepage: https://defold.com
+    repository: https://github.com/defold/defold
+    features:
+      - Visual editor
+      - Lua scripting
+      - 2D/3D support
+      - Native extensions
+      - Live reload
+    platforms:
+      - Mobile (iOS/Android)
+      - Desktop (Win/Mac/Linux)
+      - Web (HTML5)
+      - Consoles
+
+  roblox:
+    name: Roblox Luau
+    description: Roblox's Lua dialect for game scripting
+    homepage: https://luau-lang.org
+    features:
+      - Type annotations
+      - Performance optimizations
+      - Gradual typing
+      - Enhanced syntax
+    use_cases:
+      - Roblox game development
+      - User-generated content
+
+  cocos2dx_lua:
+    name: Cocos2d-x Lua
+    description: Lua bindings for Cocos2d-x game engine
+    homepage: https://www.cocos.com
+    features:
+      - Scene management
+      - Sprite rendering
+      - Animation system
+      - UI components
+      - Cross-platform
+
+web_frameworks:
+  openresty:
+    name: OpenResty
+    description: Nginx + LuaJIT web platform
+    homepage: https://openresty.org
+    repository: https://github.com/openresty/openresty
+    features:
+      - High-performance web server
+      - Lua scripting in Nginx
+      - Non-blocking I/O
+      - Built-in libraries
+      - Connection pooling
+    modules:
+      - ngx_lua
+      - lua-resty-core
+      - lua-resty-redis
+      - lua-resty-mysql
+      - lua-resty-websocket
+    use_cases:
+      - API gateways
+      - Web applications
+      - Microservices
+      - Load balancers
+      - CDN edge computing
+
+  lapis:
+    name: Lapis
+    description: Web framework for Lua and MoonScript
+    homepage: https://leafo.net/lapis
+    repository: https://github.com/leafo/lapis
+    features:
+      - MVC architecture
+      - Database ORM
+      - Migrations
+      - HTML templating
+      - URL routing
+    backends:
+      - OpenResty
+      - Nginx
+      - Apache (with mod_lua)
+    database_support:
+      - PostgreSQL
+      - MySQL
+      - SQLite
+
+  kong:
+    name: Kong
+    description: API Gateway built on OpenResty
+    homepage: https://konghq.com
+    repository: https://github.com/Kong/kong
+    features:
+      - API management
+      - Plugin system (Lua)
+      - Load balancing
+      - Authentication
+      - Rate limiting
+      - Analytics
+    plugin_development:
+      - Custom Lua plugins
+      - Request/response transformation
+      - Custom authentication
+      - Logging and monitoring
+
+  sailor:
+    name: Sailor
+    description: MVC web framework for Lua
+    homepage: https://sailorproject.org
+    repository: https://github.com/sailorproject/sailor
+    features:
+      - MVC pattern
+      - ORM (Object-Relational Mapping)
+      - Friendly URLs
+      - Validation
+      - Testing support
+
+libraries:
+  networking:
+    luasocket:
+      name: LuaSocket
+      description: Network support for Lua
+      repository: https://github.com/lunarmodules/luasocket
+      features:
+        - TCP/UDP sockets
+        - HTTP client
+        - SMTP support
+        - FTP support
+        - URL parsing
+
+    lua_resty_http:
+      name: lua-resty-http
+      description: HTTP client for OpenResty
+      repository: https://github.com/ledgetech/lua-resty-http
+      features:
+        - HTTP/HTTPS support
+        - Connection pooling
+        - Streaming
+        - WebSocket support
+
+  data_processing:
+    lua_cjson:
+      name: lua-cjson
+      description: Fast JSON encoding/decoding
+      repository: https://github.com/mpx/lua-cjson
+      features:
+        - High performance
+        - UTF-8 support
+        - Customizable encoding
+        - Null handling
+
+    luaxml:
+      name: LuaXML
+      description: XML parser for Lua
+      features:
+        - DOM-style parsing
+        - XPath support
+        - XML generation
+
+    lua_messagepack:
+      name: lua-MessagePack
+      description: MessagePack implementation
+      features:
+        - Binary serialization
+        - Compact format
+        - Cross-language support
+
+  system:
+    luaposix:
+      name: luaposix
+      description: POSIX library for Lua
+      repository: https://github.com/luaposix/luaposix
+      features:
+        - File system operations
+        - Process management
+        - Signal handling
+        - Time functions
+        - User/group management
+
+    luafilesystem:
+      name: LuaFileSystem
+      description: File system library
+      repository: https://github.com/lunarmodules/luafilesystem
+      features:
+        - Directory iteration
+        - File attributes
+        - Cross-platform
+        - Link handling
+
+  testing:
+    busted:
+      name: Busted
+      description: Unit testing framework
+      homepage: https://olivinelabs.com/busted
+      repository: https://github.com/Olivine-Labs/busted
+      features:
+        - BDD style
+        - Async testing
+        - Mocking/stubbing
+        - Coverage reports
+        - Multiple output formats
+
+    luaunit:
+      name: LuaUnit
+      description: Unit testing framework
+      repository: https://github.com/bluebird75/luaunit
+      features:
+        - xUnit style
+        - TAP output
+        - JUnit XML output
+        - Assertions library
+
+  utilities:
+    inspect:
+      name: inspect.lua
+      description: Human-readable table representations
+      repository: https://github.com/kikito/inspect.lua
+      features:
+        - Pretty printing
+        - Cycle detection
+        - Customizable output
+        - Metatable support
+
+    lume:
+      name: Lume
+      description: Collection of utility functions
+      repository: https://github.com/rxi/lume
+      features:
+        - Functional programming helpers
+        - Array operations
+        - Math utilities
+        - String manipulation
+        - Random functions
+
+    penlight:
+      name: Penlight
+      description: Comprehensive utility library
+      repository: https://github.com/lunarmodules/Penlight
+      features:
+        - File operations
+        - Functional programming
+        - Class system
+        - Configuration handling
+        - Testing utilities
+
+  database:
+    luasql:
+      name: LuaSQL
+      description: Database connectivity
+      repository: https://github.com/lunarmodules/luasql
+      supported_databases:
+        - MySQL
+        - PostgreSQL
+        - SQLite3
+        - ODBC
+        - Oracle
+
+    lua_resty_mysql:
+      name: lua-resty-mysql
+      description: MySQL driver for OpenResty
+      repository: https://github.com/openresty/lua-resty-mysql
+      features:
+        - Non-blocking
+        - Connection pooling
+        - Prepared statements
+
+    lua_resty_redis:
+      name: lua-resty-redis
+      description: Redis client for OpenResty
+      repository: https://github.com/openresty/lua-resty-redis
+      features:
+        - Pipeline support
+        - Connection pooling
+        - Pub/Sub
+        - Lua scripting
+
+other_lightweight_languages:
+  perl:
+    name: Perl
+    description: High-level programming language for text processing
+    homepage: https://www.perl.org
+    strengths:
+      - Text processing
+      - System administration
+      - Web development
+      - Bioinformatics
+      - ETL processes
+
+  tcl:
+    name: Tcl
+    description: Tool Command Language
+    homepage: https://www.tcl-lang.org
+    strengths:
+      - Embedded scripting
+      - Testing automation
+      - EDA tools
+      - Network programming
+
+  scheme_racket:
+    name: Scheme/Racket
+    description: Functional programming language
+    homepage: https://racket-lang.org
+    strengths:
+      - Education
+      - DSL development
+      - Rapid prototyping
+      - Language research
+
+  guile:
+    name: GNU Guile
+    description: GNU's extension language
+    homepage: https://www.gnu.org/software/guile
+    strengths:
+      - GNU project integration
+      - Emacs scripting
+      - System extension
+
+  mruby:
+    name: mruby
+    description: Lightweight Ruby implementation
+    homepage: https://mruby.org
+    strengths:
+      - Embedded systems
+      - IoT devices
+      - Game scripting
+      - Small footprint
+
+  janet:
+    name: Janet
+    description: Functional and imperative programming language
+    homepage: https://janet-lang.org
+    strengths:
+      - C integration
+      - Embedded scripting
+      - Systems programming
+      - Lightweight
+
+development_tools:
+  editors_and_ides:
+    - ZeroBrane Studio (Lua IDE)
+    - Visual Studio Code with Lua extensions
+    - IntelliJ IDEA with Lua plugin
+    - Sublime Text with Lua support
+    - Vim/Neovim with Lua support
+
+  debugging:
+    - MobDebug (remote debugger)
+    - LuaDebug
+    - strict.lua (global variable checker)
+    - Teal (typed Lua)
+
+  profiling:
+    - LuaProfiler
+    - ProFi (Pure Lua profiler)
+    - pepperfish profiler
+
+best_practices:
+  performance:
+    - Use local variables
+    - Avoid global access in loops
+    - Preallocate tables
+    - Use LuaJIT for performance-critical code
+    - Profile before optimizing
+
+  code_organization:
+    - Use modules for code organization
+    - Follow consistent naming conventions
+    - Document with LuaDoc
+    - Use linters (luacheck)
+    - Version control with git
+
+  error_handling:
+    - Use pcall/xpcall for error handling
+    - Implement proper logging
+    - Validate input data
+    - Handle nil values explicitly
+    - Use assertions for debugging
+
+  memory_management:
+    - Understand garbage collection
+    - Avoid circular references
+    - Use weak tables when appropriate
+    - Monitor memory usage
+    - Optimize table usage
+
+learning_resources:
+  official:
+    - Programming in Lua (book)
+    - Lua Reference Manual
+    - Lua Users Wiki
+
+  community:
+    - lua-users.org
+    - Lua mailing list
+    - Stack Overflow lua tag
+    - Reddit r/lua
+
+  tutorials:
+    - Learn Lua in 15 minutes
+    - Lua Tutorial on tutorialspoint
+    - Love2D tutorials for game development

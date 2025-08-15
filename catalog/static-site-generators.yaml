@@ -1,0 +1,407 @@
+---
+name: Static Site Generators
+version: 1.0.0
+description: Comprehensive static site generator ecosystem including VitePress, Docusaurus, Next.js, and more
+category: web-development
+subcategory: static-site-generators
+tags:
+  - ssg
+  - documentation
+  - blog
+  - markdown
+  - jamstack
+
+technologies:
+  vitepress:
+    name: VitePress
+    description: Vite + Vue powered static site generator optimized for documentation
+    homepage: https://vitepress.dev
+    repository: https://github.com/vuejs/vitepress
+    version: latest
+    ecosystem: vue
+    features:
+      - Fast HMR development with Vite
+      - Vue 3 powered theming system
+      - MDX-like component usage in Markdown
+      - Built-in search
+      - SSR/SSG dual mode support
+    use_cases:
+      - Documentation sites
+      - Technical blogs
+      - Product manuals
+      - API documentation
+    packages:
+      - name: vitepress
+        description: Core VitePress package
+      - name: "@vitepress/theme-default"
+        description: Default theme with customization options
+    plugins:
+      - markdown-it extensions
+      - mermaid diagrams
+      - search plugins
+      - PWA support
+
+  docusaurus:
+    name: Docusaurus
+    description: React-based static site generator focused on documentation
+    homepage: https://docusaurus.io
+    repository: https://github.com/facebook/docusaurus
+    version: 3.x
+    ecosystem: react
+    features:
+      - Multi-version documentation
+      - i18n support
+      - Plugin ecosystem
+      - MDX support
+      - Dark mode
+    use_cases:
+      - Project documentation
+      - Multi-version docs
+      - Internationalized sites
+      - Developer portals
+    packages:
+      - name: "@docusaurus/core"
+        description: Core Docusaurus package
+      - name: "@docusaurus/preset-classic"
+        description: Classic preset with common plugins
+
+  nextjs_static:
+    name: Next.js Static Export
+    description: React framework with static site generation capabilities
+    homepage: https://nextjs.org
+    repository: https://github.com/vercel/next.js
+    version: 14.x
+    ecosystem: react
+    features:
+      - ISR (Incremental Static Regeneration)
+      - SSG and SSR modes
+      - App Router with RSC
+      - Image optimization
+      - API routes
+    use_cases:
+      - Marketing sites
+      - E-commerce
+      - Blogs
+      - Corporate sites
+    packages:
+      - name: next
+        description: Next.js framework
+      - name: "@next/mdx"
+        description: MDX support for Next.js
+
+  nuxt_content:
+    name: Nuxt Content
+    description: Vue-based static site generation with file-based CMS
+    homepage: https://content.nuxt.com
+    repository: https://github.com/nuxt/content
+    version: 2.x
+    ecosystem: vue
+    features:
+      - File-based CMS
+      - Markdown as database
+      - Full-text search
+      - Code highlighting
+      - Vue components in Markdown
+    use_cases:
+      - Documentation
+      - Blogs
+      - Knowledge bases
+      - Marketing sites
+    packages:
+      - name: "@nuxt/content"
+        description: Nuxt Content module
+      - name: nuxt
+        description: Nuxt framework
+
+  astro:
+    name: Astro
+    description: Component-oriented static site builder with island architecture
+    homepage: https://astro.build
+    repository: https://github.com/withastro/astro
+    version: 4.x
+    ecosystem: agnostic
+    features:
+      - Island architecture
+      - Multi-framework support (React/Vue/Svelte)
+      - Partial hydration
+      - Zero JS by default
+      - Content collections
+    use_cases:
+      - Content sites
+      - Portfolios
+      - Landing pages
+      - Documentation
+    packages:
+      - name: astro
+        description: Astro core
+      - name: "@astrojs/react"
+        description: React integration
+      - name: "@astrojs/vue"
+        description: Vue integration
+
+  gatsby:
+    name: Gatsby
+    description: React-based static site generator with GraphQL data layer
+    homepage: https://www.gatsbyjs.com
+    repository: https://github.com/gatsbyjs/gatsby
+    version: 5.x
+    ecosystem: react
+    features:
+      - GraphQL data layer
+      - Plugin ecosystem
+      - Image optimization
+      - PWA support
+      - Incremental builds
+    use_cases:
+      - Blogs
+      - E-commerce
+      - Portfolio sites
+      - Documentation
+    packages:
+      - name: gatsby
+        description: Gatsby framework
+      - name: gatsby-cli
+        description: Gatsby CLI tools
+
+  hugo:
+    name: Hugo
+    description: Go-based ultra-fast static site generator
+    homepage: https://gohugo.io
+    repository: https://github.com/gohugoio/hugo
+    version: latest
+    ecosystem: go
+    features:
+      - Fastest build times
+      - No dependencies
+      - Multilingual support
+      - Custom output formats
+      - Taxonomies
+    use_cases:
+      - Large documentation sites
+      - Blogs
+      - Corporate sites
+      - CI/CD optimized builds
+    installation:
+      - brew install hugo
+      - snap install hugo
+      - choco install hugo
+
+  jekyll:
+    name: Jekyll
+    description: Ruby-based static site generator with GitHub Pages integration
+    homepage: https://jekyllrb.com
+    repository: https://github.com/jekyll/jekyll
+    version: 4.x
+    ecosystem: ruby
+    features:
+      - GitHub Pages native support
+      - Liquid templating
+      - Plugin system
+      - Collections
+      - Data files
+    use_cases:
+      - GitHub Pages sites
+      - Blogs
+      - Project sites
+      - Personal portfolios
+    packages:
+      - name: jekyll
+        description: Jekyll core
+      - name: github-pages
+        description: GitHub Pages gem
+
+  eleventy:
+    name: Eleventy (11ty)
+    description: Simpler static site generator with maximum flexibility
+    homepage: https://www.11ty.dev
+    repository: https://github.com/11ty/eleventy
+    version: 2.x
+    ecosystem: nodejs
+    features:
+      - Zero config
+      - Multiple template languages
+      - Data cascade
+      - Incremental builds
+      - No client-side JS by default
+    use_cases:
+      - Simple sites
+      - Blogs
+      - Documentation
+      - Portfolios
+    packages:
+      - name: "@11ty/eleventy"
+        description: Eleventy core
+
+documentation_tools:
+  mkdocs:
+    name: MkDocs
+    description: Python-based documentation site generator
+    homepage: https://www.mkdocs.org
+    repository: https://github.com/mkdocs/mkdocs
+    version: latest
+    ecosystem: python
+    features:
+      - Simple configuration
+      - Live reload
+      - Theme customization
+      - Plugin support
+    packages:
+      - name: mkdocs
+        description: MkDocs core
+      - name: mkdocs-material
+        description: Material Design theme
+      - name: mkdocs-material-extensions
+        description: Additional features
+
+  gitbook:
+    name: GitBook
+    description: SaaS documentation platform
+    homepage: https://www.gitbook.com
+    type: saas
+    features:
+      - WYSIWYG editor
+      - Version control
+      - API documentation
+      - Team collaboration
+      - Custom domains
+
+  slate:
+    name: Slate
+    description: Beautiful API documentation generator
+    homepage: https://github.com/slatedocs/slate
+    repository: https://github.com/slatedocs/slate
+    ecosystem: ruby
+    features:
+      - Clean API documentation
+      - Three-panel layout
+      - Code samples
+      - Search
+    use_cases:
+      - API documentation
+      - Technical references
+
+extensions_and_tools:
+  search:
+    algolia_docsearch:
+      name: Algolia DocSearch
+      description: Free search for documentation sites
+      homepage: https://docsearch.algolia.com
+      features:
+        - Instant search
+        - Typo tolerance
+        - Analytics
+        - Free for open source
+
+    pagefind:
+      name: Pagefind
+      description: Static search library
+      homepage: https://pagefind.app
+      features:
+        - Client-side search
+        - No external dependencies
+        - Multi-language support
+
+    lunr:
+      name: Lunr.js
+      description: Client-side full-text search
+      homepage: https://lunrjs.com
+      features:
+        - No server required
+        - Multi-language support
+        - Stemming
+
+  syntax_highlighting:
+    shiki:
+      name: Shiki
+      description: Beautiful syntax highlighter
+      homepage: https://shiki.matsu.io
+      features:
+        - TextMate grammar support
+        - VSCode themes
+        - Fast performance
+
+    prism:
+      name: Prism.js
+      description: Lightweight syntax highlighter
+      homepage: https://prismjs.com
+      features:
+        - Extensible
+        - Many languages
+        - Plugin system
+
+  diagrams:
+    mermaid:
+      name: Mermaid
+      description: Diagram and flowchart generator
+      homepage: https://mermaid.js.org
+      features:
+        - Flowcharts
+        - Sequence diagrams
+        - Gantt charts
+        - Git graphs
+
+    plantuml:
+      name: PlantUML
+      description: UML diagram generator
+      homepage: https://plantuml.com
+      features:
+        - UML diagrams
+        - Architecture diagrams
+        - Mind maps
+
+best_practices:
+  performance:
+    - Optimize images with responsive images
+    - Use static generation when possible
+    - Implement proper caching strategies
+    - Minimize JavaScript bundles
+    - Use CDN for assets
+
+  seo:
+    - Generate sitemaps
+    - Add meta tags
+    - Use structured data
+    - Implement Open Graph tags
+    - Create robots.txt
+
+  accessibility:
+    - Semantic HTML
+    - ARIA labels
+    - Keyboard navigation
+    - Color contrast
+    - Alt text for images
+
+  development:
+    - Use version control
+    - Automate deployments
+    - Set up CI/CD pipelines
+    - Monitor performance
+    - Regular dependency updates
+
+deployment_platforms:
+  - Vercel
+  - Netlify
+  - GitHub Pages
+  - Cloudflare Pages
+  - AWS Amplify
+  - Render
+  - Railway
+  - Fly.io
+
+comparison_matrix:
+  build_speed:
+    fastest: [hugo, eleventy]
+    fast: [vitepress, astro]
+    moderate: [nextjs, nuxt, jekyll]
+    slower: [gatsby, docusaurus]
+
+  learning_curve:
+    easiest: [jekyll, eleventy, vitepress]
+    moderate: [hugo, mkdocs, astro]
+    steeper: [nextjs, nuxt, gatsby, docusaurus]
+
+  ecosystem:
+    largest: [nextjs, gatsby]
+    large: [nuxt, docusaurus]
+    moderate: [astro, vitepress]
+    smaller: [hugo, jekyll, eleventy]

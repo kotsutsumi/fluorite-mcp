@@ -1,0 +1,840 @@
+---
+name: Ruby on Rails Ecosystem
+version: 1.0.0
+description: Complete Ruby language and Rails framework ecosystem with gems and tools
+category: web-development
+subcategory: full-stack
+tags:
+  - ruby
+  - rails
+  - mvc
+  - web-framework
+  - full-stack
+
+core:
+  ruby:
+    name: Ruby
+    description: Dynamic, object-oriented programming language focusing on simplicity and productivity
+    homepage: https://www.ruby-lang.org
+    repository: https://github.com/ruby/ruby
+    current_version: "3.3.0"
+    features:
+      - Object-oriented
+      - Dynamic typing
+      - Garbage collection
+      - Metaprogramming
+      - Blocks and iterators
+      - Multiple inheritance via mixins
+    philosophy:
+      - Developer happiness
+      - Convention over configuration
+      - DRY (Don't Repeat Yourself)
+      - MINASWAN (Matz is nice and so we are nice)
+
+  ruby_version_managers:
+    rbenv:
+      name: rbenv
+      description: Ruby version management tool
+      repository: https://github.com/rbenv/rbenv
+      features:
+        - Simple and predictable
+        - Shell integration
+        - Plugin system
+        - Per-project Ruby versions
+      commands:
+        install: rbenv install 3.3.0
+        use: rbenv local 3.3.0
+        list: rbenv versions
+
+    rvm:
+      name: RVM (Ruby Version Manager)
+      description: Ruby installation and version manager
+      homepage: https://rvm.io
+      features:
+        - Gemset management
+        - Ruby compilation
+        - Automatic switching
+        - System integration
+      commands:
+        install: rvm install 3.3.0
+        use: rvm use 3.3.0
+        list: rvm list
+
+  package_management:
+    bundler:
+      name: Bundler
+      description: Ruby dependency management
+      homepage: https://bundler.io
+      features:
+        - Dependency resolution
+        - Version locking
+        - Gemfile management
+        - Environment isolation
+      commands:
+        install: bundle install
+        update: bundle update
+        exec: bundle exec
+        add: bundle add <gem>
+
+    rubygems:
+      name: RubyGems
+      description: Ruby package repository
+      homepage: https://rubygems.org
+      features:
+        - Package hosting
+        - Version management
+        - Dependency tracking
+        - Security advisories
+
+rails_framework:
+  rails:
+    name: Ruby on Rails
+    description: Full-stack web application framework
+    homepage: https://rubyonrails.org
+    repository: https://github.com/rails/rails
+    current_version: "7.1"
+    components:
+      active_record:
+        description: ORM (Object-Relational Mapping)
+        features:
+          - Database abstraction
+          - Migrations
+          - Associations
+          - Validations
+          - Callbacks
+          - Query interface
+
+      action_pack:
+        description: Web request handling
+        components:
+          - Action Controller (MVC controller)
+          - Action View (view templates)
+          - Action Dispatch (routing)
+
+      active_job:
+        description: Background job framework
+        features:
+          - Queue abstraction
+          - Multiple backend support
+          - Retry logic
+          - Callbacks
+
+      action_cable:
+        description: WebSocket framework
+        features:
+          - Real-time features
+          - Channel subscriptions
+          - Broadcasting
+          - Connection management
+
+      active_storage:
+        description: File upload management
+        features:
+          - Cloud storage integration
+          - Image processing
+          - Direct uploads
+          - Variant generation
+
+      action_mailer:
+        description: Email framework
+        features:
+          - Template rendering
+          - Multipart emails
+          - Attachments
+          - Preview system
+
+      action_mailbox:
+        description: Inbound email routing
+        features:
+          - Email parsing
+          - Routing rules
+          - Processing pipeline
+
+      action_text:
+        description: Rich text content
+        features:
+          - Trix editor integration
+          - Image attachments
+          - Sanitization
+
+    commands:
+      new_app: rails new myapp
+      server: rails server
+      console: rails console
+      generate: rails generate
+      migrate: rails db:migrate
+      routes: rails routes
+
+  asset_management:
+    sprockets:
+      name: Sprockets
+      description: Asset pipeline for Rails
+      features:
+        - Asset compilation
+        - Fingerprinting
+        - Compression
+        - Concatenation
+
+    webpacker:
+      name: Webpacker (deprecated)
+      description: JavaScript asset bundling
+      replacement: jsbundling-rails
+
+    jsbundling_rails:
+      name: jsbundling-rails
+      description: JavaScript bundling for Rails
+      repository: https://github.com/rails/jsbundling-rails
+      bundlers:
+        - esbuild
+        - rollup
+        - webpack
+        - vite
+
+    cssbundling_rails:
+      name: cssbundling-rails
+      description: CSS bundling for Rails
+      repository: https://github.com/rails/cssbundling-rails
+      processors:
+        - tailwind
+        - bootstrap
+        - bulma
+        - postcss
+        - sass
+
+    importmap_rails:
+      name: importmap-rails
+      description: Import maps for Rails
+      repository: https://github.com/rails/importmap-rails
+      features:
+        - No build step
+        - ESM modules
+        - CDN integration
+        - Vendored packages
+
+authentication_authorization:
+  devise:
+    name: Devise
+    description: Flexible authentication solution
+    repository: https://github.com/heartcombo/devise
+    features:
+      - Database authentication
+      - OAuth support
+      - Password recovery
+      - Account confirmation
+      - Session management
+      - Remember me
+      - Account locking
+      - Trackable logins
+    modules:
+      - Database Authenticatable
+      - Registerable
+      - Recoverable
+      - Rememberable
+      - Validatable
+      - Confirmable
+      - Lockable
+      - Timeoutable
+      - Trackable
+      - Omniauthable
+
+  omniauth:
+    name: OmniAuth
+    description: Multi-provider authentication
+    repository: https://github.com/omniauth/omniauth
+    providers:
+      - Google
+      - Facebook
+      - Twitter
+      - GitHub
+      - LinkedIn
+      - SAML
+      - OAuth2 generic
+    features:
+      - Strategy pattern
+      - Middleware-based
+      - Provider abstraction
+
+  pundit:
+    name: Pundit
+    description: Minimal authorization system
+    repository: https://github.com/varvet/pundit
+    features:
+      - Policy objects
+      - Scope management
+      - Simple DSL
+      - Testing helpers
+
+  cancancan:
+    name: CanCanCan
+    description: Authorization library
+    repository: https://github.com/CanCanCommunity/cancancan
+    features:
+      - Ability definitions
+      - Role-based access
+      - Resource authorization
+      - View helpers
+
+database_orm:
+  active_record_gems:
+    pg:
+      name: pg
+      description: PostgreSQL adapter
+      features:
+        - Native bindings
+        - JSONB support
+        - Full-text search
+        - UUID support
+
+    mysql2:
+      name: mysql2
+      description: MySQL adapter
+      features:
+        - Fast performance
+        - Prepared statements
+        - Streaming
+
+    sqlite3:
+      name: sqlite3
+      description: SQLite adapter
+      features:
+        - Embedded database
+        - Zero configuration
+        - Development friendly
+
+  database_tools:
+    scenic:
+      name: Scenic
+      description: Database view management
+      repository: https://github.com/scenic-views/scenic
+      features:
+        - Versioned views
+        - Materialized views
+        - Migration integration
+
+    strong_migrations:
+      name: Strong Migrations
+      description: Safe database migrations
+      repository: https://github.com/ankane/strong_migrations
+      features:
+        - Migration safety checks
+        - Zero-downtime migrations
+        - Best practices enforcement
+
+    apartment:
+      name: Apartment
+      description: Multi-tenancy for Rails
+      repository: https://github.com/influitive/apartment
+      features:
+        - Schema separation
+        - Database separation
+        - Subdomain support
+
+    paranoia:
+      name: Paranoia
+      description: Soft delete for ActiveRecord
+      repository: https://github.com/rubysherpas/paranoia
+      features:
+        - Soft deletion
+        - Recovery
+        - Scopes
+
+performance_caching:
+  redis_gems:
+    redis:
+      name: redis-rb
+      description: Redis Ruby client
+      repository: https://github.com/redis/redis-rb
+      features:
+        - Connection pooling
+        - Pipelining
+        - Pub/Sub
+        - Lua scripting
+
+    redis_rails:
+      name: redis-rails
+      description: Redis stores for Rails
+      features:
+        - Cache store
+        - Session store
+        - HTTP cache store
+
+  background_jobs:
+    sidekiq:
+      name: Sidekiq
+      description: Background job processing
+      homepage: https://sidekiq.org
+      repository: https://github.com/sidekiq/sidekiq
+      features:
+        - Multi-threaded
+        - Redis-backed
+        - Web UI
+        - Scheduled jobs
+        - Retry mechanism
+        - Dead job queue
+      addons:
+        - sidekiq-cron
+        - sidekiq-unique-jobs
+        - sidekiq-failures
+
+    resque:
+      name: Resque
+      description: Redis-backed job queue
+      repository: https://github.com/resque/resque
+      features:
+        - Fork-based
+        - Web UI
+        - Plugin system
+        - Priority queues
+
+    delayed_job:
+      name: Delayed Job
+      description: Database-backed job queue
+      repository: https://github.com/collectiveidea/delayed_job
+      features:
+        - Database storage
+        - No additional dependencies
+        - ActiveRecord integration
+
+    good_job:
+      name: GoodJob
+      description: Postgres-based job queue
+      repository: https://github.com/bensheldon/good_job
+      features:
+        - Postgres LISTEN/NOTIFY
+        - Multithreaded
+        - Web dashboard
+        - Cron-like scheduling
+
+  monitoring:
+    rack_mini_profiler:
+      name: Rack Mini Profiler
+      description: Performance profiling
+      repository: https://github.com/MiniProfiler/rack-mini-profiler
+      features:
+        - Page speed badge
+        - Database query analysis
+        - Memory profiling
+        - Flamegraphs
+
+    bullet:
+      name: Bullet
+      description: N+1 query detection
+      repository: https://github.com/flyerhzm/bullet
+      features:
+        - N+1 detection
+        - Unused eager loading
+        - Counter cache suggestions
+        - Alert notifications
+
+api_development:
+  jbuilder:
+    name: Jbuilder
+    description: JSON DSL for APIs
+    repository: https://github.com/rails/jbuilder
+    features:
+      - Template-based
+      - Partial support
+      - Caching
+      - Key formatting
+
+  active_model_serializers:
+    name: ActiveModel::Serializers
+    description: JSON serialization
+    repository: https://github.com/rails-api/active_model_serializers
+    features:
+      - JSON API spec
+      - Adapter pattern
+      - Relationship handling
+      - Caching
+
+  grape:
+    name: Grape
+    description: REST API framework
+    repository: https://github.com/ruby-grape/grape
+    features:
+      - DSL for APIs
+      - Parameter validation
+      - Versioning
+      - Documentation generation
+      - Middleware support
+
+  graphql_ruby:
+    name: GraphQL Ruby
+    description: GraphQL implementation
+    repository: https://github.com/rmosolgo/graphql-ruby
+    features:
+      - Schema definition
+      - Query execution
+      - Subscriptions
+      - Batching
+      - Authorization
+
+testing:
+  rspec_rails:
+    name: RSpec Rails
+    description: BDD testing framework
+    repository: https://github.com/rspec/rspec-rails
+    features:
+      - Behavior-driven development
+      - Extensive matchers
+      - Mocking/stubbing
+      - Request specs
+      - View specs
+      - Helper specs
+
+  minitest:
+    name: Minitest
+    description: Rails default testing
+    features:
+      - Simple and fast
+      - Rails integration
+      - Assertions
+      - Mocking
+
+  capybara:
+    name: Capybara
+    description: Integration testing
+    repository: https://github.com/teamcapybara/capybara
+    features:
+      - Browser automation
+      - JavaScript testing
+      - Multiple drivers
+      - DSL for interactions
+
+  factory_bot_rails:
+    name: Factory Bot Rails
+    description: Test data generation
+    repository: https://github.com/thoughtbot/factory_bot_rails
+    features:
+      - Factory definitions
+      - Traits
+      - Sequences
+      - Associations
+      - Callbacks
+
+  faker:
+    name: Faker
+    description: Fake data generation
+    repository: https://github.com/faker-ruby/faker
+    features:
+      - Realistic data
+      - Multiple locales
+      - Various data types
+      - Customizable
+
+  vcr:
+    name: VCR
+    description: HTTP interaction recording
+    repository: https://github.com/vcr/vcr
+    features:
+      - Record HTTP interactions
+      - Replay in tests
+      - Multiple libraries support
+      - Cassette management
+
+  simplecov:
+    name: SimpleCov
+    description: Code coverage analysis
+    repository: https://github.com/simplecov-ruby/simplecov
+    features:
+      - Coverage reports
+      - HTML output
+      - Multiple formatters
+      - Threshold enforcement
+
+code_quality:
+  rubocop:
+    name: RuboCop
+    description: Ruby static code analyzer
+    repository: https://github.com/rubocop/rubocop
+    features:
+      - Style guide enforcement
+      - Auto-correction
+      - Custom cops
+      - Rails-specific cops
+    extensions:
+      - rubocop-rails
+      - rubocop-rspec
+      - rubocop-performance
+
+  brakeman:
+    name: Brakeman
+    description: Security vulnerability scanner
+    homepage: https://brakemanscanner.org
+    repository: https://github.com/presidentbeef/brakeman
+    features:
+      - Static analysis
+      - Security checks
+      - Rails-specific
+      - CI integration
+
+  reek:
+    name: Reek
+    description: Code smell detector
+    repository: https://github.com/troessner/reek
+    features:
+      - Code smell detection
+      - Configuration
+      - TODO comments
+      - Reporting
+
+file_upload:
+  active_storage:
+    name: Active Storage
+    description: Rails built-in file uploads
+    features:
+      - Cloud storage support (S3, GCS, Azure)
+      - Image variants
+      - Direct uploads
+      - Mirroring
+      - Analyzers
+
+  carrierwave:
+    name: CarrierWave
+    description: File upload solution
+    repository: https://github.com/carrierwaveuploader/carrierwave
+    features:
+      - Multiple storage backends
+      - Image processing
+      - Validations
+      - Versions
+
+  shrine:
+    name: Shrine
+    description: Modular file upload toolkit
+    repository: https://github.com/shrinerb/shrine
+    features:
+      - Plugin architecture
+      - Direct uploads
+      - Background processing
+      - Validation
+
+frontend_integration:
+  hotwire:
+    name: Hotwire
+    description: HTML-over-the-wire framework
+    homepage: https://hotwired.dev
+    components:
+      turbo:
+        description: Page acceleration
+        features:
+          - Turbo Drive
+          - Turbo Frames
+          - Turbo Streams
+          - Form submissions
+
+      stimulus:
+        description: JavaScript framework
+        features:
+          - HTML-driven
+          - Controller pattern
+          - Data attributes
+          - Lifecycle callbacks
+
+  react_rails:
+    name: React-Rails
+    description: React integration
+    repository: https://github.com/reactjs/react-rails
+    features:
+      - Server-side rendering
+      - Component generation
+      - Asset pipeline integration
+
+  vuejs_rails:
+    name: Vue.js Rails
+    description: Vue.js integration
+    features:
+      - Component management
+      - Asset pipeline
+      - Server-side rendering
+
+security:
+  rack_attack:
+    name: Rack::Attack
+    description: Request rate limiting
+    repository: https://github.com/rack/rack-attack
+    features:
+      - Rate limiting
+      - Throttling
+      - Blocking
+      - Safelisting
+      - Custom rules
+
+  secure_headers:
+    name: Secure Headers
+    description: Security headers management
+    repository: https://github.com/github/secure_headers
+    features:
+      - CSP management
+      - HSTS configuration
+      - X-Frame-Options
+      - X-XSS-Protection
+
+  devise_security:
+    name: Devise Security
+    description: Extra security for Devise
+    repository: https://github.com/devise-security/devise-security
+    features:
+      - Password expiration
+      - Session limits
+      - Password complexity
+      - Security questions
+
+monitoring_logging:
+  skylight:
+    name: Skylight
+    description: Application performance monitoring
+    homepage: https://www.skylight.io
+    features:
+      - Performance insights
+      - Endpoint analysis
+      - Database query analysis
+      - Background job monitoring
+
+  newrelic_rpm:
+    name: New Relic Ruby Agent
+    description: Application monitoring
+    features:
+      - APM
+      - Error tracking
+      - Custom metrics
+      - Distributed tracing
+
+  sentry_ruby:
+    name: Sentry Ruby
+    description: Error tracking
+    repository: https://github.com/getsentry/sentry-ruby
+    features:
+      - Error capture
+      - Performance monitoring
+      - Release tracking
+      - User feedback
+
+  lograge:
+    name: Lograge
+    description: Simplified Rails logging
+    repository: https://github.com/roidrage/lograge
+    features:
+      - Single-line logs
+      - JSON output
+      - Custom fields
+      - Reduced noise
+
+deployment_tools:
+  capistrano:
+    name: Capistrano
+    description: Remote deployment automation
+    homepage: https://capistranorb.com
+    repository: https://github.com/capistrano/capistrano
+    features:
+      - Multi-stage deployments
+      - Rollback support
+      - Task automation
+      - Plugin system
+
+  mina:
+    name: Mina
+    description: Fast deployment tool
+    repository: https://github.com/mina-deploy/mina
+    features:
+      - Single SSH session
+      - Fast deployments
+      - Simple configuration
+
+  kamal:
+    name: Kamal
+    description: Container deployment
+    repository: https://github.com/basecamp/kamal
+    features:
+      - Docker deployment
+      - Zero-downtime
+      - Multi-server
+      - Simple configuration
+
+development_tools:
+  pry:
+    name: Pry
+    description: Runtime developer console
+    repository: https://github.com/pry/pry
+    features:
+      - Runtime introspection
+      - Debugging
+      - Syntax highlighting
+      - Plugin system
+    plugins:
+      - pry-byebug
+      - pry-rails
+      - pry-doc
+
+  better_errors:
+    name: Better Errors
+    description: Better error pages
+    repository: https://github.com/BetterErrors/better_errors
+    features:
+      - Interactive console
+      - Variable inspection
+      - Stack trace
+
+  annotate:
+    name: Annotate
+    description: Schema documentation
+    repository: https://github.com/ctran/annotate_models
+    features:
+      - Model annotation
+      - Route annotation
+      - Schema information
+
+best_practices:
+  conventions:
+    - Follow Ruby style guide
+    - Use semantic versioning
+    - Write comprehensive tests
+    - Keep controllers thin
+    - Fat models, skinny controllers
+    - Service objects for complex logic
+    - Use concerns for shared functionality
+
+  performance:
+    - Use database indexes
+    - Implement caching strategies
+    - Optimize queries (avoid N+1)
+    - Use background jobs
+    - CDN for assets
+    - Database connection pooling
+
+  security:
+    - Keep dependencies updated
+    - Use strong parameters
+    - Implement CSRF protection
+    - Sanitize user input
+    - Use encrypted credentials
+    - Regular security audits
+
+  testing:
+    - Write tests first (TDD/BDD)
+    - Maintain high code coverage
+    - Test edge cases
+    - Use factories over fixtures
+    - Integration tests for critical paths
+
+learning_resources:
+  official:
+    - Ruby on Rails Guides
+    - Ruby Documentation
+    - Rails API Documentation
+
+  books:
+    - The Rails Way
+    - Agile Web Development with Rails
+    - Effective Testing with RSpec 3
+
+  courses:
+    - Rails Tutorial by Michael Hartl
+    - GoRails
+    - RailsCasts (archived)
+
+  community:
+    - Ruby on Rails Discuss
+    - Reddit r/rails
+    - Stack Overflow
+    - Ruby Weekly newsletter
