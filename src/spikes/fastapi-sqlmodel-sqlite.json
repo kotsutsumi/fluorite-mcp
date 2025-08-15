@@ -1,0 +1,23 @@
+{
+  "id": "fastapi-sqlmodel-sqlite",
+  "name": "FastAPI + SQLModel + SQLite",
+  "version": "1.0.0",
+  "stack": ["python", "fastapi", "sqlmodel"],
+  "tags": ["db", "sql", "sqlite"],
+  "description": "Add SQLModel with SQLite, auto-create tables, and simple CRUD route.",
+  "params": [
+    { "name": "project_name", "default": "fastapi-sqlmodel" }
+  ],
+  "files": [
+    {
+      "path": "{{project_name}}/requirements.txt",
+      "template": "fastapi\nuvicorn\nsqlmodel\nsqlalchemy\n"
+    },
+    {
+      "path": "{{project_name}}/main.py",
+      "template": "from typing import Optional\nfrom fastapi import FastAPI, HTTPException\nfrom sqlmodel import Field, SQLModel, Session, create_engine, select\n\nclass Item(SQLModel, table=True):\n    id: Optional[int] = Field(default=None, primary_key=True)\n    name: str\n\nengine = create_engine('sqlite:///database.db')\nSQLModel.metadata.create_all(engine)\n\napp = FastAPI()\n\n@app.post('/items', response_model=Item)\ndef create_item(item: Item):\n    with Session(engine) as session:\n        session.add(item)\n        session.commit()\n        session.refresh(item)\n        return item\n\n@app.get('/items/{item_id}', response_model=Item)\ndef get_item(item_id: int):\n    with Session(engine) as session:\n        item = session.get(Item, item_id)\n        if not item:\n            raise HTTPException(status_code=404, detail='Not found')\n        return item\n"
+    }
+  ],
+  "patches": []
+}
+

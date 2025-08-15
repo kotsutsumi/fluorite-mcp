@@ -10,6 +10,8 @@ jobs:
     permissions:
       contents: read
       id-token: write
+    env:
+      NODE_OPTIONS: "--max_old_space_size=6144"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

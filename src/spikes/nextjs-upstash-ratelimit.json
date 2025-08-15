@@ -1,0 +1,23 @@
+{
+  "id": "nextjs-upstash-ratelimit",
+  "name": "Next.js Rate Limit with Upstash",
+  "version": "1.0.0",
+  "stack": ["node", "nextjs", "upstash"],
+  "tags": ["ratelimit", "kv", "edge"],
+  "description": "Edge-friendly rate limiting using @upstash/ratelimit and @upstash/redis.",
+  "params": [
+    { "name": "app_name", "default": "next-app" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/app/api/limited/route.ts",
+      "template": "import { Ratelimit } from '@upstash/ratelimit';\nimport { Redis } from '@upstash/redis';\n\nexport const runtime = 'edge';\n\nconst redis = Redis.fromEnv();\nconst ratelimit = new Ratelimit({ redis, limiter: Ratelimit.slidingWindow(50, '1 m') });\n\nexport async function GET(request: Request) {\n  const ip = request.headers.get('x-forwarded-for') || '127.0.0.1';\n  const { success, remaining } = await ratelimit.limit(ip);\n  if (!success) return new Response('Too Many Requests', { status: 429 });\n  return new Response(JSON.stringify({ ok: true, remaining }), { headers: { 'content-type': 'application/json' } });\n}\n"
+    },
+    {
+      "path": "{{app_name}}/.env.example",
+      "template": "UPSTASH_REDIS_REST_URL=\nUPSTASH_REDIS_REST_TOKEN=\n"
+    }
+  ],
+  "patches": []
+}
+

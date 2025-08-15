@@ -1,0 +1,23 @@
+{
+  "id": "playwright-minimal",
+  "name": "Playwright Minimal E2E",
+  "version": "1.0.0",
+  "stack": ["node", "playwright"],
+  "tags": ["e2e", "test"],
+  "description": "Add a minimal Playwright test and npm scripts.",
+  "params": [
+    { "name": "app_name", "default": "web-app" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/package.json",
+      "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"scripts\": {\n    \"test:e2e\": \"playwright test\"\n  },\n  \"devDependencies\": {\n    \"@playwright/test\": \"latest\"\n  }\n}\n"
+    },
+    {
+      "path": "{{app_name}}/tests/example.spec.ts",
+      "template": "import { test, expect } from '@playwright/test';\n\ntest('has title', async ({ page }) => {\n  await page.goto('https://example.com');\n  await expect(page).toHaveTitle(/Example/);\n});\n"
+    }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,23 @@
+{
+  "id": "playwright-report-allure",
+  "name": "Playwright + Allure Report",
+  "version": "1.0.0",
+  "stack": ["node", "playwright"],
+  "tags": ["e2e", "report"],
+  "description": "Configure Allure reporter for Playwright tests.",
+  "params": [
+    { "name": "app_name", "default": "web-app" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/package.json",
+      "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"scripts\": {\n    \"test:e2e\": \"playwright test\",\n    \"report\": \"npx allure generate --clean ./allure-results && npx allure open\"\n  },\n  \"devDependencies\": {\n    \"@playwright/test\": \"latest\",\n    \"allure-playwright\": \"latest\"\n  }\n}\n"
+    },
+    {
+      "path": "{{app_name}}/playwright.config.ts",
+      "template": "import { defineConfig } from '@playwright/test';\nexport default defineConfig({\n  reporter: [['list'], ['allure-playwright']],\n});\n"
+    }
+  ],
+  "patches": []
+}
+

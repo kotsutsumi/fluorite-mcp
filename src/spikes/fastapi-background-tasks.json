@@ -1,0 +1,19 @@
+{
+  "id": "fastapi-background-tasks",
+  "name": "FastAPI Background Tasks",
+  "version": "1.0.0",
+  "stack": ["python", "fastapi"],
+  "tags": ["background", "tasks"],
+  "description": "Use FastAPI BackgroundTasks to run work after response.",
+  "params": [
+    { "name": "project_name", "default": "fastapi-bg" }
+  ],
+  "files": [
+    {
+      "path": "{{project_name}}/main.py",
+      "template": "from fastapi import FastAPI, BackgroundTasks\nimport time\n\napp = FastAPI()\n\ndef notify(email: str):\n    time.sleep(1)\n    print(f'notify {email}')\n\n@app.post('/send')\ndef send(email: str, bg: BackgroundTasks):\n    bg.add_task(notify, email)\n    return {'queued': True}\n"
+    }
+  ],
+  "patches": []
+}
+

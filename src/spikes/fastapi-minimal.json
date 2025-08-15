@@ -1,0 +1,28 @@
+{
+  "id": "fastapi-minimal",
+  "name": "FastAPI Minimal API",
+  "version": "1.0.0",
+  "stack": ["python", "fastapi"],
+  "tags": ["api", "http", "async"],
+  "description": "Create a minimal FastAPI app with a health endpoint and uvicorn runner.",
+  "params": [
+    { "name": "project_name", "required": false, "default": "fastapi-minimal" },
+    { "name": "port", "required": false, "default": "8000" }
+  ],
+  "files": [
+    {
+      "path": "{{project_name}}/main.py",
+      "template": "from fastapi import FastAPI\napp = FastAPI()\n\n@app.get(\"/health\")\ndef health():\n    return {\"status\": \"ok\"}\n\n@app.get(\"/\")\ndef root():\n    return {\"hello\": \"world\"}\n"
+    },
+    {
+      "path": "{{project_name}}/requirements.txt",
+      "template": "fastapi\nuvicorn\n"
+    },
+    {
+      "path": "{{project_name}}/run.sh",
+      "template": "#!/usr/bin/env bash\nuvicorn main:app --reload --port {{port}}\n"
+    }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,21 @@
+{
+  "id": "nextjs-edge-middleware",
+  "name": "Next.js Edge Middleware: Header Injector",
+  "version": "1.0.0",
+  "stack": ["node", "nextjs"],
+  "tags": ["edge", "middleware"],
+  "description": "Add a minimal middleware.ts to inject a custom header for all routes.",
+  "params": [
+    { "name": "app_name", "default": "next-app" },
+    { "name": "header_name", "default": "x-powered-by" },
+    { "name": "header_value", "default": "fluorite-spike" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/middleware.ts",
+      "template": "import type { NextRequest } from 'next/server';\nimport { NextResponse } from 'next/server';\n\nexport function middleware(_req: NextRequest) {\n  const res = NextResponse.next();\n  res.headers.set('{{header_name}}', '{{header_value}}');\n  return res;\n}\n\nexport const config = { matcher: '/:path*' };\n"
+    }
+  ],
+  "patches": []
+}
+

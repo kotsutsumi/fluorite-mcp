@@ -1,0 +1,19 @@
+{
+  "id": "playwright-docker-ci",
+  "name": "Playwright Docker CI (mcr image)",
+  "version": "1.0.0",
+  "stack": ["node", "playwright", "docker"],
+  "tags": ["ci", "docker"],
+  "description": "Run Playwright tests in official Docker image on CI.",
+  "params": [
+    { "name": "app_name", "default": "web-app" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/Dockerfile.playwright",
+      "template": "FROM mcr.microsoft.com/playwright:v1.46.0-jammy\nWORKDIR /app\nCOPY package.json package-lock.json* pnpm-lock.yaml* yarn.lock* ./\nRUN npm ci || true && pnpm i --frozen-lockfile || true && yarn --frozen-lockfile || true\nCOPY . .\nCMD [\"npx\", \"playwright\", \"test\"]\n"
+    }
+  ],
+  "patches": []
+}
+

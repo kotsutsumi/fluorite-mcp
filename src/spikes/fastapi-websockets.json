@@ -1,0 +1,23 @@
+{
+  "id": "fastapi-websockets",
+  "name": "FastAPI WebSockets Echo",
+  "version": "1.0.0",
+  "stack": ["python", "fastapi", "websockets"],
+  "tags": ["ws", "realtime"],
+  "description": "Add a WebSocket echo endpoint.",
+  "params": [
+    { "name": "project_name", "default": "fastapi-ws" }
+  ],
+  "files": [
+    {
+      "path": "{{project_name}}/requirements.txt",
+      "template": "fastapi\nuvicorn\n"
+    },
+    {
+      "path": "{{project_name}}/main.py",
+      "template": "from fastapi import FastAPI, WebSocket\napp = FastAPI()\n\n@app.websocket('/ws')\nasync def ws(ws: WebSocket):\n    await ws.accept()\n    try:\n      while True:\n        data = await ws.receive_text()\n        await ws.send_text(f'echo: {data}')\n    except Exception:\n      await ws.close()\n"
+    }
+  ],
+  "patches": []
+}
+

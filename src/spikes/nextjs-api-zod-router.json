@@ -1,0 +1,19 @@
+{
+  "id": "nextjs-api-zod-router",
+  "name": "Next.js API with Zod Validation",
+  "version": "1.0.0",
+  "stack": ["node", "nextjs", "zod"],
+  "tags": ["api", "validation"],
+  "description": "API Route handler with Zod schema validation for request and response.",
+  "params": [
+    { "name": "app_name", "default": "next-app" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/app/api/echo/route.ts",
+      "template": "import { z } from 'zod';\nconst Body = z.object({ message: z.string().min(1) });\nexport async function POST(req: Request) {\n  const json = await req.json().catch(() => ({}));\n  const parsed = Body.safeParse(json);\n  if (!parsed.success) {\n    return Response.json({ error: parsed.error.flatten() }, { status: 400 });\n  }\n  return Response.json({ ok: true, echo: parsed.data.message });\n}\n"
+    }
+  ],
+  "patches": []
+}
+

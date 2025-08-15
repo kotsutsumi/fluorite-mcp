@@ -1,0 +1,19 @@
+{
+  "id": "fastapi-openapi-tags",
+  "name": "FastAPI OpenAPI Tags & Metadata",
+  "version": "1.0.0",
+  "stack": ["python", "fastapi"],
+  "tags": ["openapi", "docs"],
+  "description": "Set OpenAPI metadata and tag endpoints.",
+  "params": [
+    { "name": "project_name", "default": "fastapi-openapi" }
+  ],
+  "files": [
+    {
+      "path": "{{project_name}}/main.py",
+      "template": "from fastapi import FastAPI\napp = FastAPI(\n  title='My API',\n  description='Demo of OpenAPI tags',\n  version='0.1.0',\n  openapi_tags=[{'name': 'health', 'description': 'Health checks'}]\n)\n\n@app.get('/health', tags=['health'])\ndef health():\n    return {'status': 'ok'}\n"
+    }
+  ],
+  "patches": []
+}
+

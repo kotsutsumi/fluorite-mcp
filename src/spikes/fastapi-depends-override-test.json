@@ -1,0 +1,23 @@
+{
+  "id": "fastapi-depends-override-test",
+  "name": "FastAPI Depends Override in Tests",
+  "version": "1.0.0",
+  "stack": ["python", "fastapi", "pytest"],
+  "tags": ["test", "di"],
+  "description": "Override Depends for testing with TestClient.",
+  "params": [
+    { "name": "project_name", "default": "fastapi-di-test" }
+  ],
+  "files": [
+    {
+      "path": "{{project_name}}/main.py",
+      "template": "from fastapi import FastAPI, Depends\n\napp = FastAPI()\n\nclass Service:\n    def msg(self): return 'real'\n\ndef get_service(): return Service()\n\n@app.get('/msg')\ndef get_msg(svc: Service = Depends(get_service)):\n    return {'msg': svc.msg()}\n"
+    },
+    {
+      "path": "{{project_name}}/tests/test_override.py",
+      "template": "from fastapi.testclient import TestClient\nfrom main import app, get_service\n\nclass Fake:\n    def msg(self): return 'fake'\n\napp.dependency_overrides[get_service] = lambda: Fake()\nclient = TestClient(app)\n\ndef test_msg_override():\n    r = client.get('/msg')\n    assert r.json()['msg'] == 'fake'\n"
+    }
+  ],
+  "patches": []
+}
+

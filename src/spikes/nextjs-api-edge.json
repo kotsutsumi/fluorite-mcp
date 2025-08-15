@@ -1,0 +1,19 @@
+{
+  "id": "nextjs-api-edge",
+  "name": "Next.js Edge Runtime API",
+  "version": "1.0.0",
+  "stack": ["node", "nextjs"],
+  "tags": ["api", "edge"],
+  "description": "Add an API Route using the Edge runtime.",
+  "params": [
+    { "name": "app_name", "default": "next-app" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/app/api/edge/route.ts",
+      "template": "export const runtime = 'edge';\nexport async function GET() { return Response.json({ runtime: 'edge' }); }\n"
+    }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,23 @@
+{
+  "id": "gha-release-drafter",
+  "name": "GitHub Actions: Release Drafter",
+  "version": "1.0.0",
+  "stack": ["github-actions"],
+  "tags": ["release", "changelog"],
+  "description": "Automate release notes with Release Drafter.",
+  "params": [
+    { "name": "app_name", "default": "repo" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/.github/release-drafter.yml",
+      "template": "name-template: 'v$NEXT_PATCH_VERSION'\nchange-template: '- $TITLE @$AUTHOR (#$NUMBER)'\ncategories:\n  - title: '🚀 Features'\n    labels: ['feature', 'enhancement']\n  - title: '🐛 Fixes'\n    labels: ['fix', 'bug']\n"
+    },
+    {
+      "path": "{{app_name}}/.github/workflows/release-drafter.yml",
+      "template": "name: Release Drafter\n\non:\n  push:\n    branches: [ main ]\n  pull_request:\n    types: [opened, reopened, synchronize]\n\njobs:\n  update_release_draft:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: release-drafter/release-drafter@v6\n        with:\n          config-name: release-drafter.yml\n        env:\n          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}\n"
+    }
+  ],
+  "patches": []
+}
+

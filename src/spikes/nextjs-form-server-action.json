@@ -1,0 +1,19 @@
+{
+  "id": "nextjs-form-server-action",
+  "name": "Next.js Form with Server Action",
+  "version": "1.0.0",
+  "stack": ["node", "nextjs", "react"],
+  "tags": ["form", "server-actions"],
+  "description": "App Router page demonstrating a form handled via Server Actions.",
+  "params": [
+    { "name": "app_name", "default": "next-app" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/app/contact/page.tsx",
+      "template": "export default function Page() {\n  async function submit(formData: FormData) {\n    'use server';\n    console.log('message:', formData.get('message'));\n  }\n  return (\n    <form action={submit}>\n      <textarea name=\"message\" placeholder=\"Your message\" />\n      <button type=\"submit\">Send</button>\n    </form>\n  );\n}\n"
+    }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,19 @@
+{
+  "id": "nextjs-route-params",
+  "name": "Next.js Route Handler with Params",
+  "version": "1.0.0",
+  "stack": ["node", "nextjs"],
+  "tags": ["api", "params"],
+  "description": "Add a dynamic API Route using app router: /api/users/[id]",
+  "params": [
+    { "name": "app_name", "default": "next-app" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/app/api/users/[id]/route.ts",
+      "template": "type Ctx = { params: { id: string } };\nexport async function GET(_req: Request, ctx: Ctx) {\n  return Response.json({ id: ctx.params.id });\n}\n"
+    }
+  ],
+  "patches": []
+}
+

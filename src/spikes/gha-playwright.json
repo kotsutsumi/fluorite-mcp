@@ -1,0 +1,19 @@
+{
+  "id": "gha-playwright",
+  "name": "GitHub Actions: Playwright E2E",
+  "version": "1.0.0",
+  "stack": ["github-actions", "playwright", "node"],
+  "tags": ["ci", "e2e", "browser"],
+  "description": "Add a workflow to run Playwright E2E tests with browsers installed.",
+  "params": [
+    { "name": "app_name", "default": "repo" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/.github/workflows/e2e.yml",
+      "template": "name: E2E\n\non:\n  workflow_dispatch:\n  push:\n    branches: [ main ]\n  pull_request:\n    branches: [ main ]\n\njobs:\n  e2e:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 20\n          cache: 'npm'\n      - run: npm ci\n      - run: npx playwright install --with-deps\n      - run: npm run test:e2e --silent\n        env:\n          CI: true\n"
+    }
+  ],
+  "patches": []
+}
+

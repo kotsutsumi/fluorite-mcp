@@ -1,0 +1,19 @@
+{
+  "id": "nextjs-api-hello",
+  "name": "Next.js API Route: /api/hello",
+  "version": "1.0.0",
+  "stack": ["node", "nextjs", "react"],
+  "tags": ["api", "route", "edge-ready"],
+  "description": "Add a minimal Next.js API Route at /api/hello with a JSON response.",
+  "params": [
+    { "name": "app_name", "required": false, "default": "next-app" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/app/api/hello/route.ts",
+      "template": "export async function GET() { return Response.json({ message: 'hello' }); }\n"
+    }
+  ],
+  "patches": []
+}
+

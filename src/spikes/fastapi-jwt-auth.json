@@ -1,0 +1,24 @@
+{
+  "id": "fastapi-jwt-auth",
+  "name": "FastAPI JWT Auth (minimal)",
+  "version": "1.0.0",
+  "stack": ["python", "fastapi", "jwt"],
+  "tags": ["auth", "jwt"],
+  "description": "Add a minimal JWT auth flow with login and protected route.",
+  "params": [
+    { "name": "project_name", "default": "fastapi-jwt" },
+    { "name": "secret", "default": "change-me" }
+  ],
+  "files": [
+    {
+      "path": "{{project_name}}/requirements.txt",
+      "template": "fastapi\nuvicorn\npyjwt\n"
+    },
+    {
+      "path": "{{project_name}}/main.py",
+      "template": "from fastapi import FastAPI, HTTPException, Depends, Header\nimport jwt\nfrom datetime import datetime, timedelta\n\nSECRET = '{{secret}}'\napp = FastAPI()\n\n@app.post('/login')\ndef login(username: str, password: str):\n    if not username or not password:\n        raise HTTPException(400, 'invalid credentials')\n    token = jwt.encode({ 'sub': username, 'exp': datetime.utcnow() + timedelta(hours=1) }, SECRET, algorithm='HS256')\n    return { 'access_token': token }\n\ndef auth(authorization: str | None = Header(default=None)):\n    if not authorization or not authorization.startswith('Bearer '):\n        raise HTTPException(401, 'missing token')\n    token = authorization.split(' ',1)[1]\n    try:\n        payload = jwt.decode(token, SECRET, algorithms=['HS256'])\n        return payload\n    except Exception as e:\n        raise HTTPException(401, 'invalid token')\n\n@app.get('/me')\ndef me(payload = Depends(auth)):\n    return { 'user': payload.get('sub') }\n"
+    }
+  ],
+  "patches": []
+}
+

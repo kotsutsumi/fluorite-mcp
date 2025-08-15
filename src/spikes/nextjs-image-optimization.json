@@ -1,0 +1,23 @@
+{
+  "id": "nextjs-image-optimization",
+  "name": "Next.js Image Optimization",
+  "version": "1.0.0",
+  "stack": ["node", "nextjs", "react"],
+  "tags": ["image", "optimization"],
+  "description": "Use next/image with a statically imported image.",
+  "params": [
+    { "name": "app_name", "default": "next-app" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/public/placeholder.png",
+      "template": ""
+    },
+    {
+      "path": "{{app_name}}/app/image-example/page.tsx",
+      "template": "import Image from 'next/image';\nimport pic from '../../public/placeholder.png';\nexport default function Page() {\n  return (<main><Image src={pic} alt=\"placeholder\" width={400} height={200} /></main>);\n}\n"
+    }
+  ],
+  "patches": []
+}
+

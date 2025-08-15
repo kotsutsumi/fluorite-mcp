@@ -1,0 +1,23 @@
+{
+  "id": "fastapi-dependency-injection",
+  "name": "FastAPI Dependency Injection (Config)",
+  "version": "1.0.0",
+  "stack": ["python", "fastapi"],
+  "tags": ["di", "config"],
+  "description": "Add a simple DI example with a config dependency.",
+  "params": [
+    { "name": "project_name", "default": "fastapi-di" }
+  ],
+  "files": [
+    {
+      "path": "{{project_name}}/config.py",
+      "template": "from dataclasses import dataclass\n\n@dataclass\nclass Settings:\n    app_name: str = 'fastapi-di'\n    debug: bool = True\n\nsettings = Settings()\n"
+    },
+    {
+      "path": "{{project_name}}/main.py",
+      "template": "from fastapi import FastAPI, Depends\nfrom config import settings, Settings\n\napp = FastAPI()\n\ndef get_settings() -> Settings:\n    return settings\n\n@app.get('/config')\ndef read_config(cfg: Settings = Depends(get_settings)):\n    return { 'app_name': cfg.app_name, 'debug': cfg.debug }\n"
+    }
+  ],
+  "patches": []
+}
+

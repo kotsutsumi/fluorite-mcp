@@ -24,6 +24,15 @@ import {
   type QuickValidateInput,
   type RealTimeValidationInput
 } from "./core/static-analysis-handlers.js";
+import {
+  handleDiscoverSpikesTool,
+  handlePreviewSpikeTool,
+  handleApplySpikeTool,
+  handleValidateSpikeTool,
+  handleExplainSpikeTool,
+  handleAutoSpikeTool,
+  type DiscoverInput
+} from "./core/spike-handlers.js";
 
 // Resolve package version from package.json at runtime
 function getPackageVersion(): string {
@@ -94,6 +103,94 @@ server.registerTool(
   }
 );
 
+// Spike tools: discover/auto/preview/apply/validate/explain
+server.registerTool(
+  "discover-spikes",
+  {
+    title: "Discover Spikes",
+    description: "自然言語クエリからスパイク候補を検索します",
+    inputSchema: {
+      query: z.string().optional().describe("Optional natural language query"),
+      limit: z.number().optional().describe("Limit number of results")
+    }
+  },
+  async (input) => {
+    return await handleDiscoverSpikesTool(input as DiscoverInput);
+  }
+);
+
+server.registerTool(
+  "auto-spike",
+  {
+    title: "Auto Spike Selector",
+    description: "自然言語要件から最適なスパイクを選定し、次アクションを提示します",
+    inputSchema: {
+      task: z.string().describe("Natural language task description"),
+      constraints: z.record(z.string()).optional().describe("Resolved parameters")
+    }
+  },
+  async (input) => {
+    return await handleAutoSpikeTool(input as any);
+  }
+);
+
+server.registerTool(
+  "preview-spike",
+  {
+    title: "Preview Spike",
+    description: "スパイク適用前に生成ファイルとパッチ差分をプレビュー",
+    inputSchema: {
+      id: z.string().describe("Spike id"),
+      params: z.record(z.string()).optional().describe("Template parameters")
+    }
+  },
+  async (input) => {
+    return await handlePreviewSpikeTool(input as any);
+  }
+);
+
+server.registerTool(
+  "apply-spike",
+  {
+    title: "Apply Spike",
+    description: "スパイクの差分適用プランを提示（現時点ではdiff返却のみ）",
+    inputSchema: {
+      id: z.string().describe("Spike id"),
+      params: z.record(z.string()).optional().describe("Template parameters"),
+      strategy: z.enum(['overwrite','three_way_merge','abort']).optional().describe("Conflict strategy")
+    }
+  },
+  async (input) => {
+    return await handleApplySpikeTool(input as any);
+  }
+);
+
+server.registerTool(
+  "validate-spike",
+  {
+    title: "Validate Spike",
+    description: "スパイク適用後の簡易検証（スタブ）",
+    inputSchema: {
+      id: z.string().describe("Spike id"),
+      params: z.record(z.string()).optional().describe("Template parameters")
+    }
+  },
+  async (input) => {
+    return await handleValidateSpikeTool(input as any);
+  }
+);
+
+server.registerTool(
+  "explain-spike",
+  {
+    title: "Explain Spike",
+    description: "スパイクの目的と構成を説明",
+    inputSchema: { id: z.string().describe("Spike id") }
+  },
+  async (input) => {
+    return await handleExplainSpikeTool(input as any);
+  }
+);
 server.registerTool(
   "catalog-stats",
   {
@@ -352,7 +449,8 @@ async function main() {
       availableTools: [
         'upsert-spec', 'list-specs', 'catalog-stats', 
         'self-test', 'performance-test', 'server-metrics',
-        'static-analysis', 'quick-validate', 'realtime-validation', 'get-validation-rules'
+        'static-analysis', 'quick-validate', 'realtime-validation', 'get-validation-rules',
+        'discover-spikes', 'auto-spike', 'preview-spike', 'apply-spike', 'validate-spike', 'explain-spike'
       ]
     });
     
@@ -364,6 +462,7 @@ async function main() {
     console.error("  - Spec Management: upsert-spec, list-specs, catalog-stats");
     console.error("  - Diagnostics: self-test, performance-test, server-metrics");
     console.error("  - Static Analysis: static-analysis, quick-validate, realtime-validation, get-validation-rules");
+    console.error("  - Spikes: discover-spikes, auto-spike, preview-spike, apply-spike, validate-spike, explain-spike");
     
     // Graceful shutdown handling
     process.on("SIGINT", async () => {

@@ -1,0 +1,19 @@
+{
+  "id": "playwright-trace-on-failure",
+  "name": "Playwright: Trace on Failure",
+  "version": "1.0.0",
+  "stack": ["node", "playwright"],
+  "tags": ["e2e", "trace"],
+  "description": "Enable trace collection on first retry and artifacts output.",
+  "params": [
+    { "name": "app_name", "default": "web-app" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/playwright.config.ts",
+      "template": "import { defineConfig, devices } from '@playwright/test';\nexport default defineConfig({\n  retries: 1,\n  use: {\n    trace: 'on-first-retry',\n    screenshot: 'only-on-failure',\n    video: 'retain-on-failure'\n  },\n  projects: [\n    { name: 'chromium', use: { ...devices['Desktop Chrome'] } }\n  ]\n});\n"
+    }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,19 @@
+{
+  "id": "fastapi-cors",
+  "name": "FastAPI CORS Middleware",
+  "version": "1.0.0",
+  "stack": ["python", "fastapi"],
+  "tags": ["cors", "middleware"],
+  "description": "Enable CORS with common defaults.",
+  "params": [
+    { "name": "project_name", "default": "fastapi-cors" }
+  ],
+  "files": [
+    {
+      "path": "{{project_name}}/main.py",
+      "template": "from fastapi import FastAPI\nfrom fastapi.middleware.cors import CORSMiddleware\n\napp = FastAPI()\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=['*'],\n    allow_credentials=True,\n    allow_methods=['*'],\n    allow_headers=['*'],\n)\n\n@app.get('/ping')\ndef ping():\n    return {'ok': True}\n"
+    }
+  ],
+  "patches": []
+}
+

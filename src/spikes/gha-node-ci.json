@@ -1,0 +1,19 @@
+{
+  "id": "gha-node-ci",
+  "name": "GitHub Actions: Node CI",
+  "version": "1.0.0",
+  "stack": ["github-actions", "node"],
+  "tags": ["ci", "matrix", "npm"],
+  "description": "Add a Node.js CI workflow with version matrix and cache.",
+  "params": [
+    { "name": "app_name", "default": "repo" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/.github/workflows/ci.yml",
+      "template": "name: CI\n\non:\n  push:\n    branches: [ main ]\n  pull_request:\n    branches: [ main ]\n\njobs:\n  build:\n    runs-on: ubuntu-latest\n    strategy:\n      matrix:\n        node-version: [18.x, 20.x]\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: \${{ matrix.node-version }}\n          cache: 'npm'\n      - run: npm ci\n      - run: npm run -s lint || echo 'no lint'\n      - run: npm test --silent || echo 'no tests'\n"
+    }
+  ],
+  "patches": []
+}
+

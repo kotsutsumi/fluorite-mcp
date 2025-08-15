@@ -1,0 +1,20 @@
+{
+  "id": "gha-monorepo-matrix",
+  "name": "GitHub Actions: Monorepo Matrix",
+  "version": "1.0.0",
+  "stack": ["github-actions"],
+  "tags": ["ci", "monorepo", "matrix"],
+  "description": "Run jobs per package in a monorepo using a matrix strategy.",
+  "params": [
+    { "name": "app_name", "default": "repo" },
+    { "name": "packages", "default": "packages/a,packages/b" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/.github/workflows/monorepo.yml",
+      "template": "name: Monorepo CI\n\non: [push, pull_request]\n\njobs:\n  build:\n    runs-on: ubuntu-latest\n    strategy:\n      matrix:\n        package: ['{{packages}}'.split(',')].flat()\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 20\n          cache: 'npm'\n      - run: npm ci\n      - name: Install deps\n        working-directory: \${{ matrix.package }}\n        run: npm ci || echo 'no package.json'\n      - name: Lint\n        working-directory: \${{ matrix.package }}\n        run: npm run -s lint || echo 'no lint'\n      - name: Test\n        working-directory: \${{ matrix.package }}\n        run: npm test --silent || echo 'no tests'\n"
+    }
+  ],
+  "patches": []
+}
+

@@ -87,6 +87,16 @@ Once connected to Claude Code CLI, Fluorite MCP automatically provides context:
 // Claude will use spec://spike-development-ecosystem
 ```
 
+### 🧪 Spikes (experimental)
+
+Template-driven spikes help LLMs reuse pre-vetted scaffolds instead of free-form generation.
+
+- Tools: `discover-spikes`, `auto-spike`, `preview-spike`, `apply-spike`, `validate-spike`, `explain-spike`.
+- Catalog: `src/spikes/*.json` with simple `{{var}}` templating.
+- Flow: `auto_spike(task)` → `preview_spike(id, params)` → `apply_spike` → `validate_spike` → `explain_spike`.
+
+Note: The server returns diffs/files; the client applies them.
+
 ### 📚 Documentation
 
 - [API Documentation](./API.md) - Complete API reference
@@ -203,6 +213,16 @@ Claude Code CLIに接続すると、Fluorite MCPが自動的にコンテキス�
 // ユーザー: "ドラッグ&ドロップ機能のスパイクを作成"
 // Claudeは spec://spike-development-ecosystem を使用
 ```
+
+### 🧪 Spikes（実験的）
+
+テンプレート化されたスパイクで、自由生成よりも再利用を優先できます。
+
+- ツール: `discover-spikes`, `auto-spike`, `preview-spike`, `apply-spike`, `validate-spike`, `explain-spike`
+- カタログ: `src/spikes/*.json`（`{{var}}`トークンをレンダリング）
+- 流れ: `auto_spike(task)` → `preview_spike(id, params)` → `apply_spike` → `validate_spike` → `explain_spike`
+
+注: サーバーは差分とファイルを返します（適用はクライアント側）。
 
 ### 📚 ドキュメント
 

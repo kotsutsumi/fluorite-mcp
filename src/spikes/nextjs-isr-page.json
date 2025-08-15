@@ -1,0 +1,20 @@
+{
+  "id": "nextjs-isr-page",
+  "name": "Next.js ISR Page (App Router)",
+  "version": "1.0.0",
+  "stack": ["node", "nextjs"],
+  "tags": ["isr", "ssg", "revalidate"],
+  "description": "Create a page.tsx with Incremental Static Regeneration using revalidate.",
+  "params": [
+    { "name": "app_name", "default": "next-app" },
+    { "name": "revalidate", "default": "60" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/app/isr/page.tsx",
+      "template": "export const revalidate = {{revalidate}};\nexport default async function Page() {\n  const time = new Date().toISOString();\n  return (<main>ISR example – built at {time}</main>);\n}\n"
+    }
+  ],
+  "patches": []
+}
+

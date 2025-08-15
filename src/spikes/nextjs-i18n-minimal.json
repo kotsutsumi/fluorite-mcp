@@ -1,0 +1,21 @@
+{
+  "id": "nextjs-i18n-minimal",
+  "name": "Next.js i18n Minimal Config",
+  "version": "1.0.0",
+  "stack": ["node", "nextjs"],
+  "tags": ["i18n", "config"],
+  "description": "Enable i18n in Next.js with two locales and default locale.",
+  "params": [
+    { "name": "app_name", "default": "next-app" },
+    { "name": "default_locale", "default": "en" },
+    { "name": "locales", "default": "en,ja" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/next.config.js",
+      "template": "/** @type {import('next').NextConfig} */\nconst nextConfig = {\n  i18n: {\n    locales: ['{{locales}}'.split(',')].flat(),\n    defaultLocale: '{{default_locale}}'\n  }\n};\nmodule.exports = nextConfig;\n"
+    }
+  ],
+  "patches": []
+}
+

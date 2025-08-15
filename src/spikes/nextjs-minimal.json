@@ -1,0 +1,28 @@
+{
+  "id": "nextjs-minimal",
+  "name": "Next.js Minimal SSR",
+  "version": "1.0.0",
+  "stack": ["node", "nextjs", "react"],
+  "tags": ["web", "ssr", "tsx"],
+  "description": "Add a minimal Next.js app structure with a root page and script.",
+  "params": [
+    { "name": "app_name", "required": false, "default": "next-app" },
+    { "name": "port", "required": false, "default": "3000" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/package.json",
+      "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"scripts\": {\n    \"dev\": \"next dev -p {{port}}\",\n    \"build\": \"next build\",\n    \"start\": \"next start -p {{port}}\"\n  },\n  \"dependencies\": {\n    \"next\": \"latest\",\n    \"react\": \"latest\",\n    \"react-dom\": \"latest\"\n  }\n}"
+    },
+    {
+      "path": "{{app_name}}/app/page.tsx",
+      "template": "export default function Page() { return <main>Hello Next.js</main>; }\n"
+    },
+    {
+      "path": "{{app_name}}/next.config.js",
+      "template": "/** @type {import('next').NextConfig} */\nconst nextConfig = {};\nmodule.exports = nextConfig;\n"
+    }
+  ],
+  "patches": []
+}
+

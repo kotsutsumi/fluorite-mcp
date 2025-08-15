@@ -1,0 +1,19 @@
+{
+  "id": "nextjs-env-zod-validate",
+  "name": "Next.js Env Validation with Zod",
+  "version": "1.0.0",
+  "stack": ["node", "nextjs", "zod"],
+  "tags": ["env", "validation"],
+  "description": "Validate environment variables using Zod schema.",
+  "params": [
+    { "name": "app_name", "default": "next-app" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/env.ts",
+      "template": "import { z } from 'zod';\nconst schema = z.object({\n  NODE_ENV: z.enum(['development','test','production']),\n  NEXT_PUBLIC_API_BASE: z.string().url().default('http://localhost:3000')\n});\nexport const env = schema.parse({\n  NODE_ENV: process.env.NODE_ENV,\n  NEXT_PUBLIC_API_BASE: process.env.NEXT_PUBLIC_API_BASE\n});\n"
+    }
+  ],
+  "patches": []
+}
+

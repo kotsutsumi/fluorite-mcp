@@ -1,0 +1,20 @@
+{
+  "id": "playwright-parallel-shards",
+  "name": "Playwright Parallel Shards (scripts)",
+  "version": "1.0.0",
+  "stack": ["node", "playwright"],
+  "tags": ["e2e", "parallel"],
+  "description": "Run Playwright tests in parallel shards via npm scripts.",
+  "params": [
+    { "name": "app_name", "default": "web-app" },
+    { "name": "shards", "default": "2" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/package.json",
+      "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"scripts\": {\n    \"test:e2e\": \"playwright test\",\n    \"test:e2e:shard1\": \"playwright test --shard=1/{{shards}}\",\n    \"test:e2e:shard2\": \"playwright test --shard=2/{{shards}}\"\n  },\n  \"devDependencies\": {\n    \"@playwright/test\": \"latest\"\n  }\n}\n"
+    }
+  ],
+  "patches": []
+}
+

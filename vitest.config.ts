@@ -34,8 +34,16 @@ export default defineConfig({
     pool: 'forks', // Use forks for better process isolation
     poolOptions: {
       forks: {
-        singleFork: true // Run tests sequentially for E2E stability
+        singleFork: true, // Run tests sequentially for E2E stability
+        maxForks: 1, // Limit concurrent processes
+        isolate: true // Ensure proper isolation
       }
-    }
+    },
+    // Memory optimization
+    clearMocks: true,
+    restoreMocks: true,
+    mockReset: true,
+    maxConcurrency: 1, // Run tests sequentially to reduce memory pressure
+    fileParallelism: false // Disable file parallelism
   }
 });

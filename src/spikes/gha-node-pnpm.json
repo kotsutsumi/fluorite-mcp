@@ -1,0 +1,19 @@
+{
+  "id": "gha-node-pnpm",
+  "name": "GitHub Actions: Node + pnpm Cache",
+  "version": "1.0.0",
+  "stack": ["github-actions", "node", "pnpm"],
+  "tags": ["ci", "cache"],
+  "description": "Setup Node with pnpm and effective cache.",
+  "params": [
+    { "name": "app_name", "default": "repo" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/.github/workflows/ci-pnpm.yml",
+      "template": "name: CI (pnpm)\n\non: [push, pull_request]\n\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: pnpm/action-setup@v4\n        with:\n          version: 9\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 20\n          cache: 'pnpm'\n      - run: pnpm install --frozen-lockfile\n      - run: pnpm -s lint || echo 'no lint'\n      - run: pnpm -s test || echo 'no tests'\n"
+    }
+  ],
+  "patches": []
+}
+

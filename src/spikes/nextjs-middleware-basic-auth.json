@@ -1,0 +1,21 @@
+{
+  "id": "nextjs-middleware-basic-auth",
+  "name": "Next.js Middleware Basic Auth",
+  "version": "1.0.0",
+  "stack": ["node", "nextjs"],
+  "tags": ["edge", "middleware", "auth"],
+  "description": "Edge middleware that prompts Basic Auth using provided credentials.",
+  "params": [
+    { "name": "app_name", "default": "next-app" },
+    { "name": "user", "default": "admin" },
+    { "name": "pass", "default": "password" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/middleware.ts",
+      "template": "import type { NextRequest } from 'next/server';\nimport { NextResponse } from 'next/server';\n\nexport function middleware(req: NextRequest) {\n  const expected = 'Basic ' + btoa('{{user}}:{{pass}}');\n  const auth = req.headers.get('authorization') || '';\n  if (auth !== expected) {\n    return new Response('Authentication required', { status: 401, headers: { 'WWW-Authenticate': 'Basic realm=\"Secure Area\"' } });\n  }\n  return NextResponse.next();\n}\n\nexport const config = { matcher: '/:path*' };\n"
+    }
+  ],
+  "patches": []
+}
+

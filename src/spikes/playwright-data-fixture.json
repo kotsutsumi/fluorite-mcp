@@ -1,0 +1,23 @@
+{
+  "id": "playwright-data-fixture",
+  "name": "Playwright Data Seeding Fixture",
+  "version": "1.0.0",
+  "stack": ["node", "playwright"],
+  "tags": ["e2e", "fixtures"],
+  "description": "Custom fixture to seed data before each test.",
+  "params": [
+    { "name": "app_name", "default": "web-app" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/tests/fixtures.ts",
+      "template": "import { test as base } from '@playwright/test';\nexport const test = base.extend({\n  seed: [async ({}, use) => {\n    // TODO: add seeding logic (API call/DB)\n    await use(undefined);\n  }, { auto: true }]\n});\nexport const expect = test.expect;\n"
+    },
+    {
+      "path": "{{app_name}}/tests/example.spec.ts",
+      "template": "import { test, expect } from './fixtures';\n\ntest('example with seed', async ({ page }) => {\n  await page.goto('https://example.com');\n  await expect(page).toHaveTitle(/Example/);\n});\n"
+    }
+  ],
+  "patches": []
+}
+

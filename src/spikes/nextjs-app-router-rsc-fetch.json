@@ -1,0 +1,21 @@
+{
+  "id": "nextjs-app-router-rsc-fetch",
+  "name": "Next.js RSC Fetch (App Router)",
+  "version": "1.0.0",
+  "stack": ["node", "nextjs", "react"],
+  "tags": ["rsc", "fetch", "ssr"],
+  "description": "Server Component that fetches data with revalidate in App Router.",
+  "params": [
+    { "name": "app_name", "default": "next-app" },
+    { "name": "endpoint", "default": "https://api.github.com/zen" },
+    { "name": "revalidate", "default": "60" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/app/fetch/page.tsx",
+      "template": "export const revalidate = {{revalidate}};\nexport default async function Page() {\n  const res = await fetch('{{endpoint}}', { next: { revalidate } });\n  const text = await res.text();\n  return (<main><pre>{text}</pre></main>);\n}\n"
+    }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,23 @@
+{
+  "id": "fastapi-logging-uvicorn",
+  "name": "FastAPI Logging (uvicorn + stdlib)",
+  "version": "1.0.0",
+  "stack": ["python", "fastapi"],
+  "tags": ["logging"],
+  "description": "Configure basic structured-like logging for FastAPI/uvicorn.",
+  "params": [
+    { "name": "project_name", "default": "fastapi-logging" }
+  ],
+  "files": [
+    {
+      "path": "{{project_name}}/logging_conf.py",
+      "template": "import logging\nimport sys\nFORMAT = '%(asctime)s %(levelname)s %(name)s %(message)s'\nhandler = logging.StreamHandler(sys.stdout)\nhandler.setFormatter(logging.Formatter(FORMAT))\nroot = logging.getLogger()\nroot.setLevel(logging.INFO)\nroot.handlers = [handler]\n"
+    },
+    {
+      "path": "{{project_name}}/main.py",
+      "template": "import logging\nfrom fastapi import FastAPI\nimport logging_conf  # noqa: F401 - apply handlers\nlogger = logging.getLogger('app')\napp = FastAPI()\n@app.get('/ping')\ndef ping():\n    logger.info('ping request')\n    return {'ok': True}\n"
+    }
+  ],
+  "patches": []
+}
+

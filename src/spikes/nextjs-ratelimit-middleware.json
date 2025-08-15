@@ -1,0 +1,20 @@
+{
+  "id": "nextjs-ratelimit-middleware",
+  "name": "Next.js Middleware: Simple Rate Limit",
+  "version": "1.0.0",
+  "stack": ["node", "nextjs"],
+  "tags": ["edge", "middleware", "ratelimit"],
+  "description": "In-memory token bucket style rate limit (demo-grade).",
+  "params": [
+    { "name": "app_name", "default": "next-app" },
+    { "name": "limit", "default": "60" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/middleware.ts",
+      "template": "import type { NextRequest } from 'next/server';\nimport { NextResponse } from 'next/server';\n\nconst buckets = new Map<string, { count: number; reset: number }>();\nconst WINDOW = 60_000;\nconst LIMIT = Number('{{limit}}');\n\nexport function middleware(req: NextRequest) {\n  const ip = req.ip || req.headers.get('x-forwarded-for') || 'anon';\n  const now = Date.now();\n  const b = buckets.get(ip) || { count: 0, reset: now + WINDOW };\n  if (now > b.reset) { b.count = 0; b.reset = now + WINDOW; }\n  b.count++;\n  buckets.set(ip, b);\n  if (b.count > LIMIT) {\n    return new Response('Too Many Requests', { status: 429 });\n  }\n  const res = NextResponse.next();\n  res.headers.set('x-ratelimit-remaining', String(Math.max(0, LIMIT - b.count)));\n  return res;\n}\n\nexport const config = { matcher: '/:path*' };\n"
+    }
+  ],
+  "patches": []
+}
+

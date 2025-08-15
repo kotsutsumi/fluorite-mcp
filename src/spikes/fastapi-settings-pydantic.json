@@ -1,0 +1,27 @@
+{
+  "id": "fastapi-settings-pydantic",
+  "name": "FastAPI Settings with pydantic-settings",
+  "version": "1.0.0",
+  "stack": ["python", "fastapi", "pydantic"],
+  "tags": ["config", "settings"],
+  "description": "Use pydantic-settings to manage app settings.",
+  "params": [
+    { "name": "project_name", "default": "fastapi-settings" }
+  ],
+  "files": [
+    {
+      "path": "{{project_name}}/requirements.txt",
+      "template": "fastapi\nuvicorn\npydantic\npydantic-settings\n"
+    },
+    {
+      "path": "{{project_name}}/settings.py",
+      "template": "from pydantic_settings import BaseSettings\nclass Settings(BaseSettings):\n    app_name: str = 'fastapi-settings'\n    debug: bool = True\nsettings = Settings()\n"
+    },
+    {
+      "path": "{{project_name}}/main.py",
+      "template": "from fastapi import FastAPI\nfrom settings import settings\napp = FastAPI()\n@app.get('/settings')\ndef get_settings():\n    return { 'app_name': settings.app_name, 'debug': settings.debug }\n"
+    }
+  ],
+  "patches": []
+}
+

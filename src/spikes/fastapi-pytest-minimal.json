@@ -1,0 +1,23 @@
+{
+  "id": "fastapi-pytest-minimal",
+  "name": "FastAPI + pytest Minimal",
+  "version": "1.0.0",
+  "stack": ["python", "fastapi", "pytest"],
+  "tags": ["test", "e2e"],
+  "description": "Add a minimal pytest for FastAPI app using httpx.",
+  "params": [
+    { "name": "project_name", "default": "fastapi-minimal" }
+  ],
+  "files": [
+    {
+      "path": "{{project_name}}/requirements-dev.txt",
+      "template": "pytest\nhttpx\n"
+    },
+    {
+      "path": "{{project_name}}/tests/test_app.py",
+      "template": "import pytest\nfrom fastapi.testclient import TestClient\nfrom main import app\n\nclient = TestClient(app)\n\ndef test_health():\n    r = client.get('/health')\n    assert r.status_code == 200\n    assert r.json().get('status') == 'ok'\n"
+    }
+  ],
+  "patches": []
+}
+
