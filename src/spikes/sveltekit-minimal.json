@@ -1,0 +1,15 @@
+{
+  "id": "sveltekit-minimal",
+  "name": "SvelteKit Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "sveltekit"],
+  "tags": ["spa", "ssr"],
+  "description": "Minimal SvelteKit files with a root page.",
+  "params": [{ "name": "app_name", "default": "svelte-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/routes/+page.svelte", "template": "<h1>Hello SvelteKit</h1>\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"dev\": \"svelte-kit dev\" } }\n" }
+  ],
+  "patches": []
+}
+

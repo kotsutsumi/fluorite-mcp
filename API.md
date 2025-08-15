@@ -4,7 +4,7 @@
 
 Fluorite MCP implements the Model Context Protocol (MCP) to provide library specifications, static analysis, and spike development tools to Claude Code CLI. This comprehensive API reference covers all available resources, tools, and integration patterns.
 
-**Version**: 0.8.2  
+**Version**: 0.9.1  
 **MCP Protocol**: 1.0.0  
 **Node.js**: 18.0+
 
@@ -68,6 +68,7 @@ spec://{library-identifier}
 | Library Specs | Individual library specifications | `spec://react-dnd-treeview` |
 | Ecosystem Specs | Comprehensive ecosystem specifications | `spec://spike-development-ecosystem` |
 | Starter Templates | Opinionated starter configurations | `spec://vercel-next-starter` |
+| SuperClaude Integration | Enhanced /fl: commands with Strike development | Enhanced via fluorite-mcp wrapper CLI |
 
 ### Fetching Resources
 
@@ -118,7 +119,7 @@ Lists all available specifications in the catalog.
       "category": "ui-components"
     }
   ],
-  "total": 82
+  "total": 87
 }
 ```
 
@@ -160,7 +161,7 @@ Displays catalog statistics for diagnostics.
 **Response:**
 ```json
 {
-  "totalSpecs": 82,
+  "totalSpecs": 87,
   "categories": {
     "ui-components": 15,
     "state-management": 8,
@@ -203,7 +204,7 @@ Runs performance tests on the MCP server.
     "catalog_load_time": "23ms",
     "resource_fetch_avg": "1.2ms",
     "memory_usage": "34MB",
-    "spec_count": 82
+    "spec_count": 87
   },
   "status": "optimal"
 }
@@ -1053,4 +1054,4 @@ Contact: [Discussions](https://github.com/kotsutsumi/fluorite-mcp/discussions) f
 
 ---
 
-*API Documentation v0.8.2 - Last updated: 2025-08-15*
+*API Documentation v0.9.1 - Last updated: 2025-08-15*

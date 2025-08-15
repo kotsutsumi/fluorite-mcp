@@ -1,0 +1,14 @@
+{
+  "id": "gha-release-please",
+  "name": "GitHub Actions: Release Please",
+  "version": "1.0.0",
+  "stack": ["github-actions", "release-please"],
+  "tags": ["release", "semver"],
+  "description": "Automate releases with Google Release Please.",
+  "params": [{ "name": "app_name", "default": "repo" }],
+  "files": [
+    { "path": "{{app_name}}/.github/workflows/release-please.yml", "template": "name: release-please\n\non:\n  push:\n    branches: [ main ]\n\njobs:\n  release-please:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: google-github-actions/release-please-action@v4\n        with:\n          release-type: node\n          package-name: repo\n" }
+  ],
+  "patches": []
+}
+

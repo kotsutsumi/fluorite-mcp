@@ -1,0 +1,16 @@
+{
+  "id": "react-zustand-counter",
+  "name": "React Zustand Counter",
+  "version": "1.0.0",
+  "stack": ["react", "zustand"],
+  "tags": ["state", "hooks"],
+  "description": "Minimal counter using Zustand store.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/store.ts", "template": "import { create } from 'zustand';\nexport const useCounter = create<{ n: number; inc(): void; dec(): void }>((set) => ({ n: 0, inc: () => set(s=>({n:s.n+1})), dec: () => set(s=>({n:s.n-1})) }));\n" },
+    { "path": "{{app_name}}/src/Counter.tsx", "template": "import React from 'react';\nimport { useCounter } from './store';\nexport function Counter(){ const { n, inc, dec } = useCounter(); return (<div><button onClick={dec}>-</button><span>{n}</span><button onClick={inc}>+</button></div>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"zustand\": \"latest\" }\n}\n" }
+  ],
+  "patches": []
+}
+

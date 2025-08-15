@@ -1,0 +1,16 @@
+{
+  "id": "react-i18next-minimal",
+  "name": "React i18next Minimal",
+  "version": "1.0.0",
+  "stack": ["react", "i18next"],
+  "tags": ["i18n"],
+  "description": "Minimal i18next setup with two locales.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/i18n.ts", "template": "import i18n from 'i18next';\nimport { initReactI18next } from 'react-i18next';\nconst resources = { en: { t: { hello: 'Hello' } }, ja: { t: { hello: 'こんにちは' } } };\ni18n.use(initReactI18next).init({ resources, lng: 'en', ns: ['t'] });\nexport default i18n;\n" },
+    { "path": "{{app_name}}/src/App.tsx", "template": "import React from 'react';\nimport './i18n';\nimport { useTranslation } from 'react-i18next';\nexport function App(){ const { t, i18n } = useTranslation('t'); return (<div><p>{t('hello')}</p><button onClick={()=>i18n.changeLanguage('ja')}>JA</button><button onClick={()=>i18n.changeLanguage('en')}>EN</button></div>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"i18next\": \"latest\", \"react-i18next\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

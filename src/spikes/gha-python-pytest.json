@@ -1,0 +1,14 @@
+{
+  "id": "gha-python-pytest",
+  "name": "GitHub Actions: Python Pytest",
+  "version": "1.0.0",
+  "stack": ["github-actions", "python"],
+  "tags": ["ci", "pytest"],
+  "description": "Run pytest with caching on CI.",
+  "params": [{ "name": "app_name", "default": "repo" }],
+  "files": [
+    { "path": "{{app_name}}/.github/workflows/pytest.yml", "template": "name: Pytest\n\non: [push, pull_request]\n\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-python@v5\n        with:\n          python-version: '3.11'\n          cache: 'pip'\n      - run: pip install -U pip pytest\n      - run: pytest -q\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,16 @@
+{
+  "id": "react-vite-minimal",
+  "name": "React + Vite Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "react", "vite"],
+  "tags": ["spa", "ts"],
+  "description": "Create a minimal React app with Vite (TypeScript).",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"scripts\": {\n    \"dev\": \"vite\",\n    \"build\": \"vite build\",\n    \"preview\": \"vite preview\"\n  },\n  \"dependencies\": {\n    \"react\": \"latest\",\n    \"react-dom\": \"latest\"\n  },\n  \"devDependencies\": {\n    \"vite\": \"latest\",\n    \"@types/react\": \"latest\",\n    \"@types/react-dom\": \"latest\",\n    \"typescript\": \"latest\"\n  }\n}\n" },
+    { "path": "{{app_name}}/index.html", "template": "<!doctype html><html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>React Vite</title></head><body><div id=\"root\"></div><script type=\"module\" src=\"/src/main.tsx\"></script></body></html>" },
+    { "path": "{{app_name}}/src/main.tsx", "template": "import React from 'react';\nimport { createRoot } from 'react-dom/client';\nfunction App(){ return <h1>Hello React + Vite</h1>; }\ncreateRoot(document.getElementById('root')!).render(<App />);\n" }
+  ],
+  "patches": []
+}
+

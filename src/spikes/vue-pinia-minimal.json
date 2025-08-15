@@ -1,0 +1,16 @@
+{
+  "id": "vue-pinia-minimal",
+  "name": "Vue 3 + Pinia Minimal",
+  "version": "1.0.0",
+  "stack": ["vue", "pinia"],
+  "tags": ["state"],
+  "description": "Minimal Pinia store and component example.",
+  "params": [{ "name": "app_name", "default": "vue-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/store.ts", "template": "import { createPinia, defineStore } from 'pinia';\nexport const pinia = createPinia();\nexport const useCounter = defineStore('counter', { state: ()=>({ n:0 }), actions: { inc(){ this.n++ } } });\n" },
+    { "path": "{{app_name}}/src/main.ts", "template": "import { createApp } from 'vue';\nimport { pinia, useCounter } from './store';\nconst App = { setup(){ const c = useCounter(); return { c }; }, template: '<button @click=\"c.inc()\">{{ c.n }}</button>' };\ncreateApp(App).use(pinia).mount('#app');\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"vue\": \"latest\", \"pinia\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

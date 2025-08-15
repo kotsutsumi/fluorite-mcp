@@ -1,0 +1,14 @@
+{
+  "id": "go-echo-minimal",
+  "name": "Go Echo Minimal API",
+  "version": "1.0.0",
+  "stack": ["go", "echo"],
+  "tags": ["api"],
+  "description": "Minimal Echo server with health route.",
+  "params": [{ "name": "project_name", "default": "echo-app" }],
+  "files": [
+    { "path": "{{project_name}}/main.go", "template": "package main\nimport (\n  \"github.com/labstack/echo/v4\"\n)\nfunc main(){ e := echo.New(); e.GET(\"/health\", func(c echo.Context) error { return c.JSON(200, map[string]string{\"status\": \"ok\"}) }); e.GET(\"/\", func(c echo.Context) error { return c.JSON(200, map[string]string{\"hello\": \"world\"}) }); e.Start(\":1323\") }\n" }
+  ],
+  "patches": []
+}
+

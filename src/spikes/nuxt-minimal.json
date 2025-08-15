@@ -1,0 +1,15 @@
+{
+  "id": "nuxt-minimal",
+  "name": "Nuxt 3 Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "nuxt"],
+  "tags": ["ssr", "spa"],
+  "description": "Minimal Nuxt 3 route and page.",
+  "params": [{ "name": "app_name", "default": "nuxt-app" }],
+  "files": [
+    { "path": "{{app_name}}/pages/index.vue", "template": "<template><h1>Hello Nuxt 3</h1></template>\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"dev\": \"nuxt dev\" } }\n" }
+  ],
+  "patches": []
+}
+

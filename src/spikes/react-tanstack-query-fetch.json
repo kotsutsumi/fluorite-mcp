@@ -1,0 +1,15 @@
+{
+  "id": "react-tanstack-query-fetch",
+  "name": "React TanStack Query Fetch",
+  "version": "1.0.0",
+  "stack": ["react", "tanstack-query"],
+  "tags": ["data", "fetch"],
+  "description": "Setup QueryClient and simple fetch example.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/query.tsx", "template": "import React from 'react';\nimport { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';\nconst qc = new QueryClient();\nfunction Data(){ const { data } = useQuery({ queryKey:['zen'], queryFn: async()=> fetch('https://api.github.com/zen').then(r=>r.text()) }); return <pre>{data}</pre>; }\nexport function App(){ return <QueryClientProvider client={qc}><Data/></QueryClientProvider>; }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@tanstack/react-query\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "gha-go-test",
+  "name": "GitHub Actions: Go Test",
+  "version": "1.0.0",
+  "stack": ["github-actions", "go"],
+  "tags": ["ci", "go"],
+  "description": "Run Go tests with module caching.",
+  "params": [{ "name": "app_name", "default": "repo" }],
+  "files": [
+    { "path": "{{app_name}}/.github/workflows/go.yml", "template": "name: Go\n\non: [push, pull_request]\n\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-go@v5\n        with:\n          go-version: '1.22'\n          cache: true\n      - run: go test ./...\n" }
+  ],
+  "patches": []
+}
+

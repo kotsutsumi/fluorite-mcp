@@ -1,0 +1,15 @@
+{
+  "id": "fastify-minimal",
+  "name": "Fastify Minimal API",
+  "version": "1.0.0",
+  "stack": ["node", "fastify"],
+  "tags": ["api"],
+  "description": "Minimal Fastify server with health route.",
+  "params": [{ "name": "app_name", "default": "fastify-app" }, { "name": "port", "default": "3000" }],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.mjs\" }, \"dependencies\": { \"fastify\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.mjs", "template": "import Fastify from 'fastify';\nconst app = Fastify();\napp.get('/health', async () => ({ status: 'ok' }));\napp.get('/', async () => ({ hello: 'world' }));\napp.listen({ port: {{port}} });\n" }
+  ],
+  "patches": []
+}
+

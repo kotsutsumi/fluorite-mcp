@@ -18,6 +18,7 @@ Complete documentation for Fluorite MCP - the comprehensive Model Context Protoc
 |----------|----------|---------|
 | **[Developer Guide](./developer.md)** | Contributors, Advanced Users | Architecture, contributing, plugins |
 | **[Template Creation](./template-creation.md)** | Template Authors | Creating custom templates and specs |
+| **[/fl: Commands](./fl-commands.md)** | SuperClaude Users | Enhanced fluorite-mcp with parameter bypass |
 | **[API Documentation](../API.md)** | Developers, Integrators | Complete technical reference |
 
 ### 🧪 Advanced Features
@@ -110,6 +111,7 @@ Documentation is updated with each release:
 | Integration | Guide Location |
 |-------------|----------------|
 | **Claude Code CLI** | [Getting Started](./getting-started.md), [Installation](./installation.md) |
+| **SuperClaude Integration** | [/fl: Commands](./fl-commands.md) |
 | **Custom Plugins** | [Developer Guide](./developer.md#plugin-development) |
 | **CI/CD Pipelines** | [Spike Templates](./spike-templates.md) |
 | **Team Workflows** | [Template Creation](./template-creation.md#team-distribution) |
@@ -177,4 +179,4 @@ This documentation is actively maintained:
 
 **Need help finding something?** Use the search functionality or ask in [GitHub Discussions](https://github.com/kotsutsumi/fluorite-mcp/discussions).
 
-*Documentation v0.8.2 - Last updated: 2025-08-15*
+*Documentation v0.9.1 - Last updated: 2025-08-15*

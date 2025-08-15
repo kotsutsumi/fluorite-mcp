@@ -1,0 +1,16 @@
+{
+  "id": "react-redux-toolkit-counter",
+  "name": "React Redux Toolkit Counter",
+  "version": "1.0.0",
+  "stack": ["react", "redux-toolkit"],
+  "tags": ["state", "redux"],
+  "description": "Counter slice with Redux Toolkit and a simple component.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/store.ts", "template": "import { configureStore, createSlice } from '@reduxjs/toolkit';\nconst slice = createSlice({ name: 'counter', initialState: { n: 0 }, reducers: { inc(s){s.n++}, dec(s){s.n--} } });\nexport const { inc, dec } = slice.actions;\nexport const store = configureStore({ reducer: { counter: slice.reducer } });\nexport type RootState = ReturnType<typeof store.getState>;\n" },
+    { "path": "{{app_name}}/src/Counter.tsx", "template": "import React from 'react';\nimport { useDispatch, useSelector } from 'react-redux';\nimport { inc, dec, RootState } from './store';\nexport function Counter(){ const n = useSelector((s:RootState)=>s.counter.n); const d=useDispatch(); return (<div><button onClick={()=>d(dec())}>-</button><span>{n}</span><button onClick={()=>d(inc())}>+</button></div>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@reduxjs/toolkit\": \"latest\", \"react-redux\": \"latest\" }\n}\n" }
+  ],
+  "patches": []
+}
+

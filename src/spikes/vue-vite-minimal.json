@@ -1,0 +1,16 @@
+{
+  "id": "vue-vite-minimal",
+  "name": "Vue 3 + Vite Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "vue", "vite"],
+  "tags": ["spa", "ts"],
+  "description": "Create a minimal Vue 3 app with Vite (TypeScript).",
+  "params": [{ "name": "app_name", "default": "vue-app" }],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"scripts\": { \"dev\": \"vite\", \"build\": \"vite build\", \"preview\": \"vite preview\" },\n  \"dependencies\": { \"vue\": \"latest\" },\n  \"devDependencies\": { \"vite\": \"latest\", \"@vitejs/plugin-vue\": \"latest\", \"typescript\": \"latest\" }\n}\n" },
+    { "path": "{{app_name}}/index.html", "template": "<!doctype html><html><body><div id=app></div><script type=module src=\"/src/main.ts\"></script></body></html>" },
+    { "path": "{{app_name}}/src/main.ts", "template": "import { createApp } from 'vue';\nconst App = { template: '<h1>Hello Vue + Vite</h1>' };\ncreateApp(App).mount('#app');\n" }
+  ],
+  "patches": []
+}
+

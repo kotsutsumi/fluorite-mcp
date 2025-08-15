@@ -1,0 +1,16 @@
+{
+  "id": "react-jotai-minimal",
+  "name": "React Jotai Minimal",
+  "version": "1.0.0",
+  "stack": ["react", "jotai"],
+  "tags": ["state"],
+  "description": "Minimal Jotai atom and component.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/atoms.ts", "template": "import { atom } from 'jotai';\nexport const msgAtom = atom('hello');\n" },
+    { "path": "{{app_name}}/src/Msg.tsx", "template": "import React from 'react';\nimport { useAtom } from 'jotai';\nimport { msgAtom } from './atoms';\nexport function Msg(){ const [msg,setMsg]=useAtom(msgAtom); return (<input value={msg} onChange={e=>setMsg(e.target.value)} />); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"jotai\": \"latest\" }\n}\n" }
+  ],
+  "patches": []
+}
+

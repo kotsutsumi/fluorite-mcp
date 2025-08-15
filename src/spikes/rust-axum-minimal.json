@@ -1,0 +1,15 @@
+{
+  "id": "rust-axum-minimal",
+  "name": "Rust Axum Minimal API",
+  "version": "1.0.0",
+  "stack": ["rust", "axum"],
+  "tags": ["api"],
+  "description": "Minimal Axum app with health route.",
+  "params": [{ "name": "project_name", "default": "axum-app" }],
+  "files": [
+    { "path": "{{project_name}}/src/main.rs", "template": "use axum::{routing::get, Router};\nuse std::net::SocketAddr;\n#[tokio::main]\nasync fn main(){ let app = Router::new().route(\"/health\", get(|| async { \"{\\\"status\\\":\\\"ok\\\"}\" })).route(\"/\", get(|| async { \"{\\\"hello\\\":\\\"world\\\"}\" })); let addr = SocketAddr::from(([127,0,0,1],3000)); axum::Server::bind(&addr).serve(app.into_make_service()).await.unwrap(); }\n" },
+    { "path": "{{project_name}}/Cargo.toml", "template": "[package]\nname = \"axum-app\"\nversion = \"0.1.0\"\nedition = \"2021\"\n\n[dependencies]\naxum = \"0.7\"\ntokio = { version = \"1\", features = [\"full\"] }\n" }
+  ],
+  "patches": []
+}
+

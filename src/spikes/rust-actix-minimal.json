@@ -1,0 +1,15 @@
+{
+  "id": "rust-actix-minimal",
+  "name": "Rust Actix-web Minimal API",
+  "version": "1.0.0",
+  "stack": ["rust", "actix-web"],
+  "tags": ["api"],
+  "description": "Minimal Actix-web app with health route.",
+  "params": [{ "name": "project_name", "default": "actix-app" }],
+  "files": [
+    { "path": "{{project_name}}/src/main.rs", "template": "use actix_web::{get, App, HttpResponse, HttpServer, Responder};\n#[get(\"/health\")] async fn health() -> impl Responder { HttpResponse::Ok().json(serde_json::json!({\"status\":\"ok\"})) }\n#[get(\"/\")] async fn root() -> impl Responder { HttpResponse::Ok().json(serde_json::json!({\"hello\":\"world\"})) }\n#[actix_web::main] async fn main() -> std::io::Result<()> { HttpServer::new(|| App::new().service(health).service(root)).bind((\"127.0.0.1\", 3000))?.run().await }\n" },
+    { "path": "{{project_name}}/Cargo.toml", "template": "[package]\nname = \"actix-app\"\nversion = \"0.1.0\"\nedition = \"2021\"\n\n[dependencies]\nactix-web = \"4\"\nserde = { version = \"1\", features=[\"derive\"] }\nserde_json = \"1\"\n" }
+  ],
+  "patches": []
+}
+

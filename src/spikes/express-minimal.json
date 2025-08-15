@@ -1,0 +1,14 @@
+{
+  "id": "express-minimal",
+  "name": "Express Minimal API",
+  "version": "1.0.0",
+  "stack": ["node", "express"],
+  "tags": ["api"],
+  "description": "Minimal Express server with one route.",
+  "params": [{ "name": "app_name", "default": "express-app" }, { "name": "port", "default": "3000" }],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst app = express();\napp.get('/health', (_req, res) => res.json({ status: 'ok' }));\napp.get('/', (_req, res) => res.json({ hello: 'world' }));\napp.listen({{port}}, () => console.log('listening on {{port}}'));\n" }
+  ],
+  "patches": []
+}

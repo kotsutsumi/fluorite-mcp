@@ -1,0 +1,14 @@
+{
+  "id": "go-gin-minimal",
+  "name": "Go Gin Minimal API",
+  "version": "1.0.0",
+  "stack": ["go", "gin"],
+  "tags": ["api"],
+  "description": "Minimal Gin server with health endpoint.",
+  "params": [{ "name": "project_name", "default": "gin-app" }],
+  "files": [
+    { "path": "{{project_name}}/main.go", "template": "package main\nimport (\n  \"github.com/gin-gonic/gin\"\n)\nfunc main(){ r := gin.Default(); r.GET(\"/health\", func(c *gin.Context){ c.JSON(200, gin.H{\"status\": \"ok\"}) }); r.GET(\"/\", func(c *gin.Context){ c.JSON(200, gin.H{\"hello\": \"world\"}) }); r.Run() }\n" }
+  ],
+  "patches": []
+}
+
