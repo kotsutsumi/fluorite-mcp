@@ -356,7 +356,7 @@ This static analysis system is specifically designed to enhance Claude Code's ca
 - [Next.js Documentation](https://nextjs.org/docs)
 - [TypeScript Handbook](https://www.typescriptlang.org/docs/)
 - [React Best Practices](https://react.dev/learn)
-- [MCP Protocol Documentation](https://modelcontextprotocol.org/)
+- [MCP Protocol Documentation](https://modelcontextprotocol.io/)
 
 ## 🤝 Contributing
 
