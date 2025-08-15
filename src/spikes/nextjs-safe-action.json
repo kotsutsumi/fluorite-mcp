@@ -1,0 +1,23 @@
+{
+  "id": "nextjs-safe-action",
+  "name": "Next.js next-safe-action Skeleton",
+  "version": "1.0.0",
+  "stack": ["node", "nextjs", "zod"],
+  "tags": ["server-actions", "validation"],
+  "description": "next-safe-actionの最小スケルトン（スキーマ定義と安全なServer Action）。",
+  "params": [
+    { "name": "app_name", "default": "next-app" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/lib/safe-action.ts",
+      "template": "import { z } from 'zod';\nexport const schema = z.object({ message: z.string().min(1) });\nexport async function echoAction(input: unknown) {\n  'use server';\n  const parsed = schema.parse(input);\n  return { ok: true, echo: parsed.message };\n}\n"
+    },
+    {
+      "path": "{{app_name}}/app/safe-action/page.tsx",
+      "template": "import { echoAction } from '../../lib/safe-action';\nexport default function Page() {\n  async function submit(formData: FormData) {\n    'use server';\n    await echoAction({ message: String(formData.get('message') || '') });\n  }\n  return (\n    <form action={submit}>\n      <input name=\"message\" placeholder=\"Message\" />\n      <button type=\"submit\">Send</button>\n    </form>\n  );\n}\n"
+    }
+  ],
+  "patches": []
+}
+

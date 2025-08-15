@@ -1,0 +1,19 @@
+{
+  "id": "gha-codeql-analysis",
+  "name": "GitHub Actions: CodeQL Analysis",
+  "version": "1.0.0",
+  "stack": ["github-actions", "security"],
+  "tags": ["security", "codeql"],
+  "description": "CodeQLによるセキュリティ解析ワークフロー。",
+  "params": [
+    { "name": "app_name", "default": "repo" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/.github/workflows/codeql.yml",
+      "template": "name: \"CodeQL\"\n\non:\n  push:\n    branches: [ main ]\n  pull_request:\n    branches: [ main ]\n  schedule:\n    - cron: '0 0 * * 0'\n\njobs:\n  analyze:\n    name: Analyze\n    runs-on: ubuntu-latest\n    permissions:\n      security-events: write\n      actions: read\n      contents: read\n    steps:\n      - name: Checkout repository\n        uses: actions/checkout@v4\n      - name: Initialize CodeQL\n        uses: github/codeql-action/init@v3\n        with:\n          languages: javascript\n      - name: Autobuild\n        uses: github/codeql-action/autobuild@v3\n      - name: Perform CodeQL Analysis\n        uses: github/codeql-action/analyze@v3\n        with:\n          category: \"/language:javascript\"\n"
+    }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,19 @@
+{
+  "id": "nextjs-file-upload-route",
+  "name": "Next.js File Upload Route",
+  "version": "1.0.0",
+  "stack": ["node", "nextjs"],
+  "tags": ["api", "upload", "multipart"],
+  "description": "multipart/form-dataでファイルを受け取るRoute Handlerの最小実装。",
+  "params": [
+    { "name": "app_name", "default": "next-app" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/app/api/upload/route.ts",
+      "template": "export async function POST(req: Request) {\n  const form = await req.formData();\n  const file = form.get('file');\n  if (!(file instanceof File)) {\n    return new Response('file is required', { status: 400 });\n  }\n  const arrayBuffer = await file.arrayBuffer();\n  const size = arrayBuffer.byteLength;\n  return Response.json({ name: file.name, type: file.type || 'application/octet-stream', size });\n}\n"
+    }
+  ],
+  "patches": []
+}
+

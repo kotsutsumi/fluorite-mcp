@@ -1,0 +1,18 @@
+{
+  "id": "fastapi-celery-skeleton",
+  "name": "FastAPI + Celery Skeleton",
+  "version": "1.0.0",
+  "stack": ["python", "fastapi", "celery"],
+  "tags": ["tasks", "async"],
+  "description": "Celeryタスク定義とFastAPIからのタスク投入の最小構成。",
+  "params": [
+    { "name": "project_name", "default": "fastapi-celery" }
+  ],
+  "files": [
+    { "path": "{{project_name}}/requirements.txt", "template": "fastapi\nuvicorn\ncelery\n" },
+    { "path": "{{project_name}}/celery_app.py", "template": "from celery import Celery\ncelery = Celery('app', broker='redis://localhost:6379/0')\n@celery.task\ndef add(x, y):\n    return x + y\n" },
+    { "path": "{{project_name}}/main.py", "template": "from fastapi import FastAPI\nfrom celery_app import add\napp = FastAPI()\n@app.post('/enqueue')\ndef enqueue(x: int, y: int):\n    task = add.delay(x, y)\n    return { 'task_id': task.id }\n" }
+  ],
+  "patches": []
+}
+

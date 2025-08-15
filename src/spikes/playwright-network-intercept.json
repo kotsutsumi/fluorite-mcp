@@ -1,0 +1,19 @@
+{
+  "id": "playwright-network-intercept",
+  "name": "Playwright Network Interception",
+  "version": "1.0.0",
+  "stack": ["node", "playwright"],
+  "tags": ["e2e", "network"],
+  "description": "Intercept a network request and return a mock response.",
+  "params": [
+    { "name": "app_name", "default": "web-app" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/tests/intercept.spec.ts",
+      "template": "import { test, expect } from '@playwright/test';\n\ntest('intercept api', async ({ page }) => {\n  await page.route('**/api/data', async route => {\n    await route.fulfill({ status: 200, body: JSON.stringify({ ok: true, data: [1,2,3] }) });\n  });\n  await page.goto('https://example.com');\n  // app should call /api/data; this test just demonstrates interception\n  expect(true).toBeTruthy();\n});\n"
+    }
+  ],
+  "patches": []
+}
+

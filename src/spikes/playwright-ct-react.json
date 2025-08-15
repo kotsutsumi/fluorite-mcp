@@ -1,0 +1,19 @@
+{
+  "id": "playwright-ct-react",
+  "name": "Playwright Component Tests (React)",
+  "version": "1.0.0",
+  "stack": ["node", "playwright", "react"],
+  "tags": ["ct", "component"],
+  "description": "Experimental CT for React components using Playwright.",
+  "params": [
+    { "name": "app_name", "default": "web-app" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"scripts\": {\n    \"test:ct\": \"playwright test -c playwright-ct.config.ts\"\n  },\n  \"devDependencies\": {\n    \"@playwright/experimental-ct-react\": \"latest\",\n    \"react\": \"latest\",\n    \"react-dom\": \"latest\"\n  }\n}\n" },
+    { "path": "{{app_name}}/playwright-ct.config.ts", "template": "import { defineConfig } from '@playwright/experimental-ct-react';\nexport default defineConfig({});\n" },
+    { "path": "{{app_name}}/src/Button.tsx", "template": "export function Button({ children }: { children: React.ReactNode }) { return <button>{children}</button>; }\n" },
+    { "path": "{{app_name}}/tests/Button.spec.tsx", "template": "import { test, expect } from '@playwright/experimental-ct-react';\nimport { Button } from '../src/Button';\n\ntest('renders', async ({ mount }) => {\n  const component = await mount(<Button>Click</Button>);\n  await expect(component).toContainText('Click');\n});\n" }
+  ],
+  "patches": []
+}
+

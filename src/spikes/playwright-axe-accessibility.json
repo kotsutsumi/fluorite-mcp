@@ -1,0 +1,17 @@
+{
+  "id": "playwright-axe-accessibility",
+  "name": "Playwright + Axe Accessibility",
+  "version": "1.0.0",
+  "stack": ["node", "playwright", "axe"],
+  "tags": ["a11y", "accessibility"],
+  "description": "Run axe-core accessibility checks in Playwright tests.",
+  "params": [
+    { "name": "app_name", "default": "web-app" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"scripts\": {\n    \"test:e2e\": \"playwright test\"\n  },\n  \"devDependencies\": {\n    \"@playwright/test\": \"latest\",\n    \"axe-core\": \"latest\",\n    \"@axe-core/playwright\": \"latest\"\n  }\n}\n" },
+    { "path": "{{app_name}}/tests/a11y.spec.ts", "template": "import { test, expect } from '@playwright/test';\nimport AxeBuilder from '@axe-core/playwright';\n\ntest('homepage has no a11y issues', async ({ page }) => {\n  await page.goto('https://example.com');\n  const results = await new AxeBuilder({ page }).analyze();\n  expect(results.violations).toEqual([]);\n});\n" }
+  ],
+  "patches": []
+}
+

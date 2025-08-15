@@ -1,0 +1,17 @@
+{
+  "id": "fastapi-pydantic-v2-models",
+  "name": "FastAPI + Pydantic v2 Models",
+  "version": "1.0.0",
+  "stack": ["python", "fastapi", "pydantic"],
+  "tags": ["models", "response"],
+  "description": "Pydantic v2のモデルとレスポンスモデルの最小例。",
+  "params": [
+    { "name": "project_name", "default": "fastapi-pv2" }
+  ],
+  "files": [
+    { "path": "{{project_name}}/requirements.txt", "template": "fastapi\nuvicorn\npydantic\n" },
+    { "path": "{{project_name}}/main.py", "template": "from typing import List\nfrom fastapi import FastAPI\nfrom pydantic import BaseModel\n\nclass Item(BaseModel):\n    id: int\n    name: str\n\napp = FastAPI()\n\n@app.get('/items', response_model=List[Item])\ndef get_items():\n    return [Item(id=1, name='one'), Item(id=2, name='two')]\n" }
+  ],
+  "patches": []
+}
+

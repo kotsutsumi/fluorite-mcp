@@ -1,0 +1,19 @@
+{
+  "id": "gha-pr-label-conditional",
+  "name": "GitHub Actions: PR Label Conditional Jobs",
+  "version": "1.0.0",
+  "stack": ["github-actions"],
+  "tags": ["ci", "labels", "conditional"],
+  "description": "PRのラベルに応じてジョブを実行する条件付きワークフロー。",
+  "params": [
+    { "name": "app_name", "default": "repo" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/.github/workflows/labels.yml",
+      "template": "name: Label Conditional\n\non: [pull_request]\n\njobs:\n  run-e2e-if-labeled:\n    if: contains(join(github.event.pull_request.labels.*.name, ','), 'e2e')\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - run: echo 'Running E2E because label e2e is set'\n  run-docs-if-labeled:\n    if: contains(join(github.event.pull_request.labels.*.name, ','), 'docs')\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - run: echo 'Docs job triggered by docs label'\n"
+    }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,19 @@
+{
+  "id": "gha-env-deploy-gates",
+  "name": "GitHub Actions: Env Deploy Gates",
+  "version": "1.0.0",
+  "stack": ["github-actions"],
+  "tags": ["deploy", "environments", "approval"],
+  "description": "Deploy to staging automatically and require approval for production.",
+  "params": [
+    { "name": "app_name", "default": "repo" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/.github/workflows/deploy.yml",
+      "template": "name: Deploy\n\non:\n  push:\n    branches: [ main ]\n\njobs:\n  deploy-staging:\n    runs-on: ubuntu-latest\n    environment: staging\n    steps:\n      - uses: actions/checkout@v4\n      - run: echo 'Deploying to staging...'\n  deploy-production:\n    runs-on: ubuntu-latest\n    needs: deploy-staging\n    environment: production\n    steps:\n      - uses: actions/checkout@v4\n      - run: echo 'Deploying to production...'\n"
+    }
+  ],
+  "patches": []
+}
+

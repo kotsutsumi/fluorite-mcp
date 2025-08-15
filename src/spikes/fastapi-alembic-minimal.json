@@ -1,0 +1,19 @@
+{
+  "id": "fastapi-alembic-minimal",
+  "name": "FastAPI + Alembic Minimal",
+  "version": "1.0.0",
+  "stack": ["python", "fastapi", "alembic", "sqlalchemy"],
+  "tags": ["db", "migrations"],
+  "description": "Alembic初期設定の最小スケルトン（SQLite）。",
+  "params": [
+    { "name": "project_name", "default": "fastapi-alembic" }
+  ],
+  "files": [
+    { "path": "{{project_name}}/requirements.txt", "template": "fastapi\nuvicorn\nsqlalchemy\nalembic\n" },
+    { "path": "{{project_name}}/alembic.ini", "template": "[alembic]\nscript_location = alembic\nsqlalchemy.url = sqlite:///./app.db\n" },
+    { "path": "{{project_name}}/alembic/env.py", "template": "from alembic import context\nfrom sqlalchemy import engine_from_config, pool\nfrom logging.config import fileConfig\nfrom pathlib import Path\nimport os\n\nconfig = context.config\nif config.config_file_name is not None:\n    fileConfig(config.config_file_name)\n\nsection = config.get_section(config.config_ini_section)\nurl = section.get('sqlalchemy.url', 'sqlite:///./app.db')\n\ndef run_migrations_offline():\n    context.configure(url=url, literal_binds=True)\n    with context.begin_transaction():\n        context.run_migrations()\n\ndef run_migrations_online():\n    connectable = engine_from_config(section, prefix='sqlalchemy.', poolclass=pool.NullPool)\n    with connectable.connect() as connection:\n        context.configure(connection=connection)\n        with context.begin_transaction():\n            context.run_migrations()\n\nif context.is_offline_mode():\n    run_migrations_offline()\nelse:\n    run_migrations_online()\n" },
+    { "path": "{{project_name}}/alembic/versions/.gitkeep", "template": "" }
+  ],
+  "patches": []
+}
+

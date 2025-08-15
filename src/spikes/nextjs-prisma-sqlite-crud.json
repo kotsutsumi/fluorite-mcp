@@ -1,0 +1,17 @@
+{
+  "id": "nextjs-prisma-sqlite-crud",
+  "name": "Next.js + Prisma (SQLite) CRUD",
+  "version": "1.0.0",
+  "stack": ["node", "nextjs", "prisma", "sqlite"],
+  "tags": ["db", "crud", "orm"],
+  "description": "Prisma schema (SQLite) と簡単なCRUD API Routeの最小構成。",
+  "params": [
+    { "name": "app_name", "default": "next-app" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/prisma/schema.prisma", "template": "generator client {\\n  provider = \"prisma-client-js\"\\n}\\n\\ndatasource db {\\n  provider = \"sqlite\"\\n  url      = \"file:./dev.db\"\\n}\\n\\nmodel Todo {\\n  id        Int      @id @default(autoincrement())\\n  title     String\\n  completed Boolean  @default(false)\\n  createdAt DateTime @default(now())\\n}" },
+    { "path": "{{app_name}}/app/api/todos/route.ts", "template": "import { PrismaClient } from '@prisma/client';\\nconst prisma = new PrismaClient();\\n\\nexport async function GET() {\\n  const todos = await prisma.todo.findMany({ orderBy: { id: 'desc' } });\\n  return Response.json(todos);\\n}\\n\\nexport async function POST(req: Request) {\\n  const { title } = await req.json();\\n  const todo = await prisma.todo.create({ data: { title } });\\n  return Response.json(todo, { status: 201 });\\n}" }
+  ],
+  "patches": []
+}
+

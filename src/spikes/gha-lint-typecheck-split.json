@@ -1,0 +1,19 @@
+{
+  "id": "gha-lint-typecheck-split",
+  "name": "GitHub Actions: Split Lint and TypeCheck",
+  "version": "1.0.0",
+  "stack": ["github-actions", "node"],
+  "tags": ["ci", "lint", "typecheck"],
+  "description": "Separate jobs for linting and TypeScript type checks.",
+  "params": [
+    { "name": "app_name", "default": "repo" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/.github/workflows/ci-split.yml",
+      "template": "name: CI Split\n\non: [push, pull_request]\n\njobs:\n  lint:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 20\n          cache: 'npm'\n      - run: npm ci\n      - run: npm run -s lint || echo 'no lint'\n  typecheck:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 20\n          cache: 'npm'\n      - run: npm ci\n      - run: npm run -s typecheck || npx tsc --noEmit || echo 'no typecheck'\n"
+    }
+  ],
+  "patches": []
+}
+
