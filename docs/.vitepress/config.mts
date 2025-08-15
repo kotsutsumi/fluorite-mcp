@@ -14,7 +14,6 @@ export default defineConfig({
     sidebar: {
       '/specs/': [
         { text: 'Intro', link: '/specs/' },
-        { text: 'React DnD TreeView', link: '/specs/react-dnd-treeview' },
         {
           text: '包括的エコシステム',
           collapsed: false,
@@ -34,6 +33,13 @@ export default defineConfig({
           collapsed: true,
           items: [
             { text: '7つの言語エコシステム', link: '/specs/langs' }
+          ]
+        },
+        {
+          text: 'UIコンポーネント',
+          collapsed: true,
+          items: [
+            { text: 'React DnD TreeView', link: '/specs/react-dnd-treeview' }
           ]
         }
       ]
