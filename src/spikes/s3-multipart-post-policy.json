@@ -1,0 +1,15 @@
+{
+  "id": "s3-multipart-post-policy",
+  "name": "S3 Multipart POST Policy",
+  "version": "1.0.0",
+  "stack": ["aws-s3"],
+  "tags": ["storage", "multipart"],
+  "description": "Generate a POST policy for S3 direct uploads.",
+  "params": [{ "name": "app_name", "default": "node-app" }],
+  "files": [
+    { "path": "{{app_name}}/policy.mjs", "template": "import crypto from 'node:crypto';\nconst policy = { expiration: new Date(Date.now()+5*60*1000).toISOString(), conditions: [{ bucket: process.env.S3_BUCKET }, ['starts-with', '$key', 'uploads/'], { acl:'public-read' }, ['content-length-range', 0, 10485760] ] };\nconst b64 = Buffer.from(JSON.stringify(policy)).toString('base64');\nconst sig = crypto.createHmac('sha1', process.env.AWS_SECRET_ACCESS_KEY).update(b64).digest('base64');\nconsole.log({ policy: b64, signature: sig, keyPrefix: 'uploads/' });\n" },
+    { "path": "{{app_name}}/.env.example", "template": "AWS_ACCESS_KEY_ID=\nAWS_SECRET_ACCESS_KEY=\nS3_BUCKET=\n" }
+  ],
+  "patches": []
+}
+

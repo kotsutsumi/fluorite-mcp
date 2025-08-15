@@ -1,0 +1,14 @@
+{
+  "id": "terraform-aws-elasticache-redis",
+  "name": "Terraform AWS ElastiCache Redis",
+  "version": "1.0.0",
+  "stack": ["terraform", "aws", "redis"],
+  "tags": ["iac", "cache"],
+  "description": "Minimal Redis cluster with security group.",
+  "params": [{ "name": "project_name", "default": "tf" }],
+  "files": [
+    { "path": "{{project_name}}/main.tf", "template": "provider \"aws\" { region = var.region }\nresource \"aws_security_group\" \"redis\" { name = \"redis-sg\" }\nresource \"aws_elasticache_subnet_group\" \"redis\" { name = \"redis-subnets\" subnet_ids = [] }\nresource \"aws_elasticache_cluster\" \"redis\" { cluster_id = \"redis-demo\" engine = \"redis\" node_type = \"cache.t2.micro\" num_cache_nodes = 1 subnet_group_name = aws_elasticache_subnet_group.redis.name security_group_ids = [aws_security_group.redis.id] }\nvariable \"region\" { default = \"us-east-1\" }\n" }
+  ],
+  "patches": []
+}
+

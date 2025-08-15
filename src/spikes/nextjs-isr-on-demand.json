@@ -1,0 +1,16 @@
+{
+  "id": "nextjs-isr-on-demand",
+  "name": "Next.js ISR On-Demand Revalidate",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["isr", "revalidate"],
+  "description": "On-demand revalidate a route using a secret.",
+  "params": [{ "name": "app_name", "default": "next-app" }, { "name": "secret", "default": "MY_SECRET" }],
+  "files": [
+    { "path": "{{app_name}}/app/page.tsx", "template": "export const revalidate = 60; export default async function Page(){ const t = new Date().toISOString(); return <main>Built at {t}</main>; }\n" },
+    { "path": "{{app_name}}/app/api/revalidate/route.ts", "template": "import { revalidatePath } from 'next/cache';\nexport async function POST(req: Request){ const { searchParams } = new URL(req.url); const token = searchParams.get('secret'); if(token !== process.env.REVALIDATE_SECRET) return new Response('forbidden', { status: 403 }); revalidatePath('/'); return Response.json({ revalidated: true }); }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "REVALIDATE_SECRET={{secret}}\n" }
+  ],
+  "patches": []
+}
+

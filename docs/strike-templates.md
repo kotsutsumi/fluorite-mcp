@@ -1,6 +1,6 @@
 # Strike Templates - Comprehensive Development Scaffolds
 
-Complete reference for fluorite-mcp's 184 Strike templates for rapid prototyping and development.
+Complete reference for fluorite-mcp's 194 Strike templates for rapid prototyping and development.
 
 ## Overview
 
@@ -10,7 +10,7 @@ Strike templates are production-ready scaffolds that implement the Strike develo
 
 ### 🌐 Frontend Frameworks (25 templates)
 
-#### Next.js Ecosystem (29 templates)
+#### Next.js Ecosystem (32 templates)
 | Template | Description | Use Case |
 |----------|-------------|----------|
 | `nextjs-minimal` | Basic SSR Next.js app with TypeScript | Starting point for any Next.js project |
@@ -22,6 +22,8 @@ Strike templates are production-ready scaffolds that implement the Strike develo
 | `nextjs-auth0-minimal` | Auth0 integration | Enterprise authentication |
 | `nextauth-github-provider` | GitHub OAuth authentication | Social login |
 | `nextauth-google-provider` | Google OAuth authentication | Social login |
+| `clerk-nextjs-minimal` | Clerk authentication | Modern auth platform |
+| `nextjs-supabase-auth` | Supabase authentication | BaaS authentication |
 | `nextjs-edge-middleware` | Edge middleware patterns | Request processing |
 | `nextjs-env-zod-validate` | Environment validation | Configuration management |
 | `nextjs-file-upload-route` | File upload handling | File management features |
@@ -39,6 +41,7 @@ Strike templates are production-ready scaffolds that implement the Strike develo
 | `nextjs-route-streaming` | Streaming API responses | Real-time data |
 | `nextjs-edge-fetch-cache` | Edge fetch cache control | Performance optimization |
 | `nextjs-route-error-retry` | Error handling with retry | Resilience patterns |
+| `nextjs-middleware-ab-test` | A/B testing middleware | Experimentation |
 | `nextjs-safe-action` | Type-safe server actions | Secure action handling |
 | `nextjs-supabase-client` | Supabase integration | Full-stack development |
 | `nextjs-upstash-ratelimit` | Upstash rate limiting | Distributed rate limiting |
@@ -145,7 +148,7 @@ Strike templates are production-ready scaffolds that implement the Strike develo
 | `playwright-report-allure` | Advanced reporting | Test result visualization |
 | `playwright-trace-on-failure` | Debug tracing | Test debugging |
 
-#### GitHub Actions CI/CD (16 templates)
+#### GitHub Actions CI/CD (18 templates)
 | Template | Description | Purpose |
 |----------|-------------|---------|
 | `gha-node-ci` | Node.js CI pipeline | Basic CI setup |
@@ -162,6 +165,8 @@ Strike templates are production-ready scaffolds that implement the Strike develo
 | `gha-release-drafter` | Release automation | Release management |
 | `gha-release-please` | Automated releases | Semantic versioning |
 | `gha-monorepo-matrix` | Monorepo CI | Multi-package testing |
+| `gha-monorepo-matrix-turbo-pnpm` | Turbo + pnpm monorepo | Modern monorepo CI |
+| `gha-e2e-pipeline` | End-to-end test pipeline | Complete CI/CD |
 | `gha-python-pytest` | Python testing | Python CI pipeline |
 | `gha-go-test` | Go testing | Go CI pipeline |
 | `gha-syft-sbom` | Software Bill of Materials | Security compliance |
@@ -199,7 +204,7 @@ Strike templates are production-ready scaffolds that implement the Strike develo
 | `dnd-kit-minimal` | Drag and drop interface | Modern DnD implementation |
 | `react-dnd-minimal` | React DnD implementation | Traditional DnD |
 
-### 🗄️ Data & State Management (15 templates)
+### 🗄️ Data & State Management (16 templates)
 
 #### Database Integration
 | Template | Description | Database |
@@ -222,7 +227,7 @@ Strike templates are production-ready scaffolds that implement the Strike develo
 | `node-kafkajs-producer-consumer` | Apache Kafka | Message streaming |
 | `nats-js-minimal` | NATS.js Pub/Sub | Lightweight messaging |
 
-### ☁️ Infrastructure & DevOps (18 templates)
+### ☁️ Infrastructure & DevOps (24 templates)
 
 #### Container & Orchestration
 | Template | Description | Technology |
@@ -230,19 +235,24 @@ Strike templates are production-ready scaffolds that implement the Strike develo
 | `dockerfile-next-standalone` | Next.js Docker image | Containerization |
 | `docker-compose-postgres` | PostgreSQL development | Local development |
 | `k8s-nextjs-deployment` | Kubernetes deployment | Container orchestration |
+| `k8s-ingress-cert-manager` | Ingress with TLS certificates | Kubernetes networking |
 
 #### Cloud Platforms
 | Template | Description | Provider |
 |----------|-------------|----------|
 | `cloudflare-workers-minimal` | Edge computing | Cloudflare Workers |
+| `cloudflare-r2-signed-url` | R2 storage signed URLs | Cloudflare R2 |
 | `vercel-json-minimal` | Vercel configuration | Serverless deployment |
 | `serverless-framework-lambda-ts` | AWS Lambda TypeScript | Serverless functions |
+| `s3-multipart-post-policy` | S3 multipart uploads | AWS S3 |
 
 #### Infrastructure as Code
 | Template | Description | Tool |
 |----------|-------------|------|
 | `terraform-aws-s3-cloudfront` | AWS CDN setup | Terraform |
+| `terraform-aws-elasticache-redis` | ElastiCache Redis cluster | Terraform |
 | `pulumi-aws-s3-website-ts` | Static site hosting | Pulumi TypeScript |
+| `pulumi-aws-rds-ts` | RDS database instance | Pulumi TypeScript |
 
 ### 📊 Monitoring & Observability (6 templates)
 
@@ -409,12 +419,12 @@ All Strike templates work with full SuperClaude parameter bypass:
 
 ---
 
-**Total Templates**: 184 production-ready scaffolds  
+**Total Templates**: 194 production-ready scaffolds  
 **Total Lines**: 2,200+ lines of battle-tested configurations  
 **Coverage**: 15+ technology stacks, 50+ frameworks and libraries  
 **Quality**: Enterprise-grade patterns with security and performance built-in
 
-### Latest Additions (v0.9.5)
+### Latest Additions (v0.9.6)
 - **shadcn/ui Components**: Tabs, Toast, and Dropdown components for Next.js
 - **MUI Grid**: Responsive layout system for Material-UI
 - **Radix UI**: Context Menu and Menubar components
@@ -425,7 +435,9 @@ All Strike templates work with full SuperClaude parameter bypass:
 - **Authentication**: NextAuth providers for GitHub and Google
 - **Cloud Storage**: Google Cloud Storage integration
 - **API Features**: Streaming responses and header management
-- **Total Coverage**: 184 production-ready templates across all stacks
-- **MUI Components**: Dialog and Stepper additions
-- **Radix UI**: Slider and Switch components
-- **Edge Runtime**: Cache control and error handling patterns
+- **Total Coverage**: 194 production-ready templates across all stacks
+- **Authentication**: Clerk and Supabase Auth integrations
+- **Infrastructure**: Kubernetes cert-manager, Pulumi RDS, Terraform ElastiCache
+- **Cloud Storage**: Cloudflare R2, S3 multipart uploads
+- **CI/CD**: Enhanced monorepo support with Turbo and pnpm
+- **Experimentation**: A/B testing middleware

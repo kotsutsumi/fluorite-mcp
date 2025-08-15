@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-route-formdata-upload",
+  "name": "Next.js Route: FormData File Save (Node runtime)",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["api", "upload"],
+  "description": "Save uploaded file to /tmp using formData (not Edge).",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/upload/save/route.ts", "template": "export const runtime = 'nodejs';\nimport { writeFile } from 'node:fs/promises';\nexport async function POST(req: Request){ const fd = await req.formData(); const f = fd.get('file'); if(!(f instanceof File)) return new Response('file required', { status: 400 }); const buf = Buffer.from(await f.arrayBuffer()); const p = '/tmp/' + f.name; await writeFile(p, buf); return Response.json({ saved: p, size: buf.length }); }\n" }
+  ],
+  "patches": []
+}
+

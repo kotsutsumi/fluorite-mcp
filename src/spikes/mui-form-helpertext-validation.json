@@ -1,0 +1,15 @@
+{
+  "id": "mui-form-helpertext-validation",
+  "name": "MUI Form HelperText Validation",
+  "version": "1.0.0",
+  "stack": ["react", "mui"],
+  "tags": ["forms", "validation"],
+  "description": "TextField with error state and helper text.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/MuiForm.tsx", "template": "import * as React from 'react';\nimport TextField from '@mui/material/TextField';\nimport Button from '@mui/material/Button';\nexport default function MuiForm(){ const [v,setV]=React.useState(''); const [err,setErr]=React.useState(''); return (<form onSubmit={e=>{e.preventDefault(); setErr(v.includes('@')?'':'Please enter an email');}}><TextField value={v} onChange={e=>setV(e.target.value)} label='Email' error={!!err} helperText={err||' '} /><Button type='submit'>Submit</Button></form>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@mui/material\": \"latest\", \"@emotion/react\": \"latest\", \"@emotion/styled\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

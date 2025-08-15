@@ -1,0 +1,15 @@
+{
+  "id": "pulumi-aws-rds-ts",
+  "name": "Pulumi AWS RDS (TS) Minimal",
+  "version": "1.0.0",
+  "stack": ["pulumi", "aws", "typescript"],
+  "tags": ["iac", "db"],
+  "description": "Create a minimal RDS instance (example).",
+  "params": [{ "name": "project_name", "default": "pulumi" }],
+  "files": [
+    { "path": "{{project_name}}/index.ts", "template": "import * as aws from '@pulumi/aws';\nconst subnet = new aws.ec2.DefaultSubnet('defaultSubnet', { availabilityZone: 'us-east-1a' });\nconst sg = new aws.ec2.SecurityGroup('db-sg', { ingress: [{ protocol: 'tcp', fromPort: 5432, toPort: 5432, cidrBlocks: ['0.0.0.0/0'] }] });\nconst db = new aws.rds.Instance('db', { engine: 'postgres', instanceClass: 'db.t3.micro', allocatedStorage: 20, username: 'postgres', password: 'postgrespostgres', skipFinalSnapshot: true, vpcSecurityGroupIds: [sg.id], dbSubnetGroupName: undefined });\nexport const endpoint = db.address;\n" },
+    { "path": "{{project_name}}/package.json", "template": "{ \"name\": \"pulumi-rds\", \"private\": true, \"dependencies\": { \"@pulumi/aws\": \"latest\", \"@pulumi/pulumi\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

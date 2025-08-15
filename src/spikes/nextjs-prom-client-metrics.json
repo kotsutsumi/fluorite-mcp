@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-prom-client-metrics",
+  "name": "Next.js prom-client /metrics Route",
+  "version": "1.0.0",
+  "stack": ["nextjs", "prometheus"],
+  "tags": ["metrics"],
+  "description": "Expose /api/metrics with prom-client (node runtime).",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/metrics/route.ts", "template": "export const runtime = 'nodejs';\nimport client from 'prom-client';\nconst registry = new client.Registry();\nclient.collectDefaultMetrics({ register: registry });\nexport async function GET(){ return new Response(await registry.metrics(), { headers:{ 'content-type': registry.contentType } }); }\n" }
+  ],
+  "patches": []
+}
+

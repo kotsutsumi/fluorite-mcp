@@ -1,0 +1,14 @@
+{
+  "id": "grafana-dashboard-minimal",
+  "name": "Grafana Dashboard JSON (Minimal)",
+  "version": "1.0.0",
+  "stack": ["grafana"],
+  "tags": ["dashboard"],
+  "description": "Minimal dashboard JSON with a single graph panel.",
+  "params": [{ "name": "project_name", "default": "grafana" }],
+  "files": [
+    { "path": "{{project_name}}/dashboard.json", "template": "{\n  \"title\": \"Demo\",\n  \"panels\": [\n    {\n      \"type\": \"graph\",\n      \"title\": \"CPU\",\n      \"targets\": [{ \"expr\": \"process_cpu_seconds_total\" }]\n    }\n  ]\n}\n" }
+  ],
+  "patches": []
+}
+

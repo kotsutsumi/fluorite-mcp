@@ -1,0 +1,14 @@
+{
+  "id": "gha-monorepo-matrix-turbo-pnpm",
+  "name": "GHA Monorepo Matrix + Turbo + pnpm",
+  "version": "1.0.0",
+  "stack": ["github-actions", "monorepo", "turbo", "pnpm"],
+  "tags": ["ci", "matrix"],
+  "description": "Matrix by package with pnpm and Turbo cache.",
+  "params": [{ "name": "repo_name", "default": "monorepo" }],
+  "files": [
+    { "path": "{{repo_name}}/.github/workflows/monorepo-matrix.yml", "template": "name: Monorepo Matrix\n\non: [push, pull_request]\n\njobs:\n  build:\n    runs-on: ubuntu-latest\n    strategy:\n      matrix:\n        pkg: ['packages/a', 'packages/b']\n    steps:\n      - uses: actions/checkout@v4\n      - uses: pnpm/action-setup@v4\n        with:\n          version: 9\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 20\n          cache: 'pnpm'\n      - run: pnpm install --frozen-lockfile\n      - run: npm i -g turbo\n      - run: turbo run build --filter=\${{ matrix.pkg }}\n        env:\n          TURBO_TOKEN: \${{ secrets.TURBO_TOKEN }}\n          TURBO_TEAM: \${{ secrets.TURBO_TEAM }}\n" }
+  ],
+  "patches": []
+}
+

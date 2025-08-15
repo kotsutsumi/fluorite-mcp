@@ -1,0 +1,15 @@
+{
+  "id": "radix-dropdown-menu-minimal",
+  "name": "Radix UI Dropdown Menu (React)",
+  "version": "1.0.0",
+  "stack": ["react", "radix-ui"],
+  "tags": ["ui", "menu"],
+  "description": "Minimal @radix-ui/react-dropdown-menu usage.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/DropdownMenuExample.tsx", "template": "import * as DM from '@radix-ui/react-dropdown-menu';\nexport default function Menu(){ return (<DM.Root><DM.Trigger>Open</DM.Trigger><DM.Portal><DM.Content><DM.Item>Item A</DM.Item><DM.Item>Item B</DM.Item></DM.Content></DM.Portal></DM.Root>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@radix-ui/react-dropdown-menu\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

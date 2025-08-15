@@ -1,0 +1,14 @@
+{
+  "id": "gha-e2e-pipeline",
+  "name": "GHA End-to-End Pipeline",
+  "version": "1.0.0",
+  "stack": ["github-actions"],
+  "tags": ["ci", "pipeline"],
+  "description": "Lint → Typecheck → Build → E2E pipeline with dependencies.",
+  "params": [{ "name": "app_name", "default": "repo" }],
+  "files": [
+    { "path": "{{app_name}}/.github/workflows/pipeline.yml", "template": "name: Pipeline\n\non: [push, pull_request]\n\njobs:\n  lint:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 20\n      - run: npm ci\n      - run: npm run -s lint || echo 'no lint'\n  typecheck:\n    runs-on: ubuntu-latest\n    needs: lint\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 20\n      - run: npm ci\n      - run: npm run -s typecheck || npx tsc --noEmit || echo 'no typecheck'\n  build:\n    runs-on: ubuntu-latest\n    needs: typecheck\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 20\n      - run: npm ci\n      - run: npm run -s build || echo 'no build'\n  e2e:\n    runs-on: ubuntu-latest\n    needs: build\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 20\n      - run: npm ci\n      - run: npm run -s test:e2e || echo 'no e2e'\n" }
+  ],
+  "patches": []
+}
+

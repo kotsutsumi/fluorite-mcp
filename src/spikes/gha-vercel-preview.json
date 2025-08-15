@@ -1,0 +1,14 @@
+{
+  "id": "gha-vercel-preview",
+  "name": "GHA Vercel Preview Deployment",
+  "version": "1.0.0",
+  "stack": ["github-actions", "vercel"],
+  "tags": ["preview", "deploy"],
+  "description": "Deploy preview to Vercel from PR.",
+  "params": [{ "name": "app_name", "default": "repo" }],
+  "files": [
+    { "path": "{{app_name}}/.github/workflows/vercel-preview.yml", "template": "name: Vercel Preview\n\non: [pull_request]\n\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: amondnet/vercel-action@v25\n        with:\n          vercel-token: ${{ secrets.VERCEL_TOKEN }}\n          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}\n          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}\n          working-directory: .\n          vercel-args: '--prebuilt'\n          alias-domains: ''\n" }
+  ],
+  "patches": []
+}
+

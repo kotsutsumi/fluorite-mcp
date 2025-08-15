@@ -1,0 +1,15 @@
+{
+  "id": "next-shadcn-combobox-async",
+  "name": "Next.js shadcn/ui Combobox (Async)",
+  "version": "1.0.0",
+  "stack": ["nextjs", "shadcn"],
+  "tags": ["ui", "combobox"],
+  "description": "Combobox that fetches options asynchronously.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/components/ui/combobox-async.tsx", "template": "import * as React from 'react';\nexport function ComboboxAsync(){ const [q,setQ]=React.useState(''); const [items,setItems]=React.useState<string[]>([]); React.useEffect(()=>{ const id=setTimeout(async()=>{ const res = await fetch('https://api.github.com/search/repositories?q=' + encodeURIComponent(q||'react')); const json = await res.json(); setItems((json.items||[]).slice(0,5).map((x:any)=>x.name)); }, 200); return ()=>clearTimeout(id); }, [q]); return (<div className='relative inline-block'><input className='border px-2 py-1' value={q} onChange={e=>setQ(e.target.value)} placeholder='Search repos...' />{items.length>0 && (<div className='absolute left-0 right-0 bg-white border shadow'>{items.map(i=>(<div key={i} className='px-2 py-1 hover:bg-gray-100' onMouseDown={()=>setQ(i)}>{i}</div>))}</div>)}</div>); }\n" },
+    { "path": "{{app_name}}/app/page.tsx", "template": "import { ComboboxAsync } from '../components/ui/combobox-async'; export default function Page(){ return <main className='p-6'><ComboboxAsync/></main>; }\n" }
+  ],
+  "patches": []
+}
+

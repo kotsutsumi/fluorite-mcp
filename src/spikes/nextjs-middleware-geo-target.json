@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-middleware-geo-target",
+  "name": "Next.js Middleware Geo/IP Targeting",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["middleware", "geo"],
+  "description": "Add headers for detected country (when available).",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/middleware.ts", "template": "import { NextResponse } from 'next/server';\nimport type { NextRequest } from 'next/server';\nexport function middleware(req: NextRequest){ const country = (req.geo?.country || 'UN'); const res = NextResponse.next(); res.headers.set('x-country', country); return res; }\nexport const config = { matcher: '/:path*' };\n" }
+  ],
+  "patches": []
+}
+

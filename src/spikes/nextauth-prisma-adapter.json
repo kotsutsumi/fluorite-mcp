@@ -1,0 +1,16 @@
+{
+  "id": "nextauth-prisma-adapter",
+  "name": "NextAuth + Prisma Adapter (Minimal)",
+  "version": "1.0.0",
+  "stack": ["nextjs", "nextauth", "prisma"],
+  "tags": ["auth", "db"],
+  "description": "Wire NextAuth to Prisma adapter with SQLite schema.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/prisma/schema.prisma", "template": "generator client { provider = \"prisma-client-js\" }\ndatasource db { provider = \"sqlite\" url = \"file:./dev.db\" }\nmodel Account { id String @id @default(cuid()) userId String type String provider String providerAccountId String refresh_token String? access_token String? expires_at Int? token_type String? scope String? id_token String? session_state String? user User @relation(fields: [userId], references: [id], onDelete: Cascade) @@unique([provider, providerAccountId]) }\nmodel Session { id String @id @default(cuid()) sessionToken String @unique userId String expires DateTime user User @relation(fields: [userId], references: [id], onDelete: Cascade) }\nmodel User { id String @id @default(cuid()) name String? email String? @unique emailVerified DateTime? image String? accounts Account[] sessions Session[] }\nmodel VerificationToken { identifier String token String @unique expires DateTime @@unique([identifier, token]) }\n" },
+    { "path": "{{app_name}}/app/api/auth/[...nextauth]/route.ts", "template": "import NextAuth from 'next-auth';\nimport Github from 'next-auth/providers/github';\nimport { PrismaAdapter } from '@auth/prisma-adapter';\nimport { PrismaClient } from '@prisma/client';\nconst prisma = new PrismaClient();\nconst handler = NextAuth({ adapter: PrismaAdapter(prisma), providers: [Github] });\nexport { handler as GET, handler as POST };\n" },
+    { "path": "{{app_name}}/.env.example", "template": "AUTH_GITHUB_ID=\nAUTH_GITHUB_SECRET=\nNEXTAUTH_SECRET=changeme\n" }
+  ],
+  "patches": []
+}
+
