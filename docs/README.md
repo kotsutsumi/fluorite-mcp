@@ -183,4 +183,4 @@ This documentation is actively maintained:
 
 **Need help finding something?** Use the search functionality or ask in [GitHub Discussions](https://github.com/kotsutsumi/fluorite-mcp/discussions).
 
-*Documentation v0.9.2 - Last updated: 2025-08-15*
+*Documentation v0.9.3 - Last updated: 2025-08-16*

@@ -4,7 +4,7 @@
 
 Fluorite MCP implements the Model Context Protocol (MCP) to provide library specifications, static analysis, and spike development tools to Claude Code CLI. This comprehensive API reference covers all available resources, tools, and integration patterns.
 
-**Version**: 0.9.2  
+**Version**: 0.9.3  
 **MCP Protocol**: 1.0.0  
 **Node.js**: 18.0+
 
@@ -1054,4 +1054,4 @@ Contact: [Discussions](https://github.com/kotsutsumi/fluorite-mcp/discussions) f
 
 ---
 
-*API Documentation v0.9.2 - Last updated: 2025-08-15*
+*API Documentation v0.9.3 - Last updated: 2025-08-16*
