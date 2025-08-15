@@ -1,0 +1,1878 @@
+name: "development-efficiency-dx-ecosystem"
+description: "開発効率・DXエコシステム - モノレポ管理、ビルド最適化、開発体験向上のための最先端ツールチェーン"
+keywords: ["DX", "Developer Experience", "Monorepo", "Build", "Toolchain", "Productivity", "Automation"]
+category: "developer-experience"
+maintainers: ["Nx", "Vercel", "Biomejs", "Storybook", "TypeScript"]
+
+# === モノレポ管理ツール ===
+monorepo_tools:
+  nx:
+    name: "nx"
+    description: "スマートで高速なモノレポ管理。インクリメンタルビルドとタスクオーケストレーション"
+    installation: "npx create-nx-workspace@latest myworkspace"
+    usage: |
+      # Nx Workspaceの作成
+      npx create-nx-workspace@latest myworkspace --preset=react-monorepo
+
+      # アプリケーション生成
+      nx g @nx/react:app my-app
+      nx g @nx/nest:app my-api
+      nx g @nx/next:app my-next-app
+
+      # ライブラリ生成
+      nx g @nx/react:lib shared-ui
+      nx g @nx/js:lib shared-utils
+      nx g @nx/node:lib shared-api
+
+      # プロジェクト構造の例
+      /*
+      myworkspace/
+      ├── apps/
+      │   ├── my-app/           # React アプリ
+      │   ├── my-api/           # NestJS API
+      │   └── my-next-app/      # Next.js アプリ
+      ├── libs/
+      │   ├── shared-ui/        # 共有UIコンポーネント
+      │   ├── shared-utils/     # 共有ユーティリティ
+      │   └── shared-api/       # 共有API型定義
+      ├── tools/
+      ├── nx.json
+      └── workspace.json
+      */
+
+      // nx.json設定
+      {
+        "extends": "nx/presets/npm.json",
+        "affected": {
+          "defaultBase": "main"
+        },
+        "targetDefaults": {
+          "build": {
+            "cache": true,
+            "dependsOn": ["^build"],
+            "inputs": ["production", "^production"]
+          },
+          "test": {
+            "cache": true,
+            "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
+          },
+          "lint": {
+            "cache": true,
+            "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
+          }
+        },
+        "namedInputs": {
+          "default": ["{projectRoot}/**/*", "sharedGlobals"],
+          "production": [
+            "default",
+            "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+            "!{projectRoot}/tsconfig.spec.json",
+            "!{projectRoot}/jest.config.[jt]s",
+            "!{projectRoot}/.eslintrc.json"
+          ],
+          "sharedGlobals": []
+        },
+        "generators": {
+          "@nx/react": {
+            "application": {
+              "style": "styled-components",
+              "linter": "eslint",
+              "bundler": "vite"
+            },
+            "component": {
+              "style": "styled-components"
+            },
+            "library": {
+              "style": "styled-components",
+              "linter": "eslint",
+              "unitTestRunner": "jest"
+            }
+          }
+        }
+      }
+
+      // プロジェクト実行コマンド
+      nx serve my-app                    # 開発サーバー起動
+      nx build my-app                    # プロダクションビルド
+      nx test my-app                     # テスト実行
+      nx lint my-app                     # リント実行
+
+      # 並列実行
+      nx run-many --target=build --projects=my-app,my-api
+      nx run-many --target=test --all
+
+      # 影響範囲分析（変更されたファイルのみ）
+      nx affected:build                  # 影響を受けるプロジェクトのみビルド
+      nx affected:test                   # 影響を受けるプロジェクトのみテスト
+      nx affected:lint                   # 影響を受けるプロジェクトのみリント
+
+      // カスタムExecutor作成
+      import { ExecutorContext } from '@nx/devkit';
+
+      export interface CustomExecutorOptions {
+        command: string;
+        args?: string[];
+        cwd?: string;
+      }
+
+      export default async function customExecutor(
+        options: CustomExecutorOptions,
+        context: ExecutorContext
+      ) {
+        const { spawn } = await import('child_process');
+        
+        return new Promise<{ success: boolean }>((resolve) => {
+          const child = spawn(options.command, options.args || [], {
+            cwd: options.cwd || context.root,
+            stdio: 'inherit',
+          });
+
+          child.on('close', (code) => {
+            resolve({ success: code === 0 });
+          });
+        });
+      }
+
+      // プロジェクト依存関係の可視化
+      nx graph                          # 依存関係グラフ表示
+      nx graph --affected               # 影響範囲のみ表示
+
+      // Nx Cloudでのキャッシュ共有
+      npx nx connect-to-nx-cloud        # Nx Cloud接続
+      # チーム間でビルドキャッシュを共有し、ビルド時間を大幅短縮
+
+      // カスタムジェネレーター作成
+      import { Tree, formatFiles, generateFiles } from '@nx/devkit';
+
+      export default async function customGenerator(tree: Tree, options: any) {
+        generateFiles(
+          tree,
+          joinPathFragments(__dirname, './files'),
+          options.directory,
+          {
+            ...options,
+            template: '',
+          }
+        );
+        
+        await formatFiles(tree);
+      }
+    features:
+      - "インクリメンタルビルド"
+      - "分散キャッシング"
+      - "依存関係分析"
+      - "並列タスク実行"
+      - "コード生成器"
+
+  turborepo:
+    name: "turborepo"
+    description: "Vercel製高速モノレポツール。リモートキャッシングとパイプライン最適化"
+    installation: "npx create-turbo@latest"
+    usage: |
+      # Turboプロジェクト作成
+      npx create-turbo@latest my-turbo-app
+      cd my-turbo-app
+
+      # プロジェクト構造
+      /*
+      my-turbo-app/
+      ├── apps/
+      │   ├── web/              # Next.js app
+      │   └── docs/             # Another Next.js app
+      ├── packages/
+      │   ├── ui/               # 共有UIライブラリ
+      │   ├── config/           # 共有設定
+      │   └── tsconfig/         # 共有TypeScript設定
+      ├── turbo.json
+      └── package.json
+      */
+
+      // turbo.json設定
+      {
+        "$schema": "https://turbo.build/schema.json",
+        "globalDependencies": ["**/.env.*local"],
+        "pipeline": {
+          "build": {
+            "dependsOn": ["^build"],
+            "outputs": [".next/**", "!.next/cache/**", "dist/**"],
+            "env": ["NODE_ENV"]
+          },
+          "test": {
+            "dependsOn": ["^build"],
+            "inputs": ["src/**/*.tsx", "src/**/*.ts", "test/**/*.ts", "test/**/*.tsx"]
+          },
+          "lint": {
+            "dependsOn": ["^build"],
+            "outputs": []
+          },
+          "dev": {
+            "cache": false,
+            "persistent": true
+          },
+          "clean": {
+            "cache": false
+          }
+        },
+        "remoteCache": {
+          "signature": true
+        }
+      }
+
+      // package.json scripts
+      {
+        "scripts": {
+          "build": "turbo run build",
+          "dev": "turbo run dev",
+          "lint": "turbo run lint",
+          "test": "turbo run test",
+          "clean": "turbo run clean",
+          "type-check": "turbo run type-check"
+        }
+      }
+
+      # Turboコマンド実行
+      turbo run build                    # 全プロジェクトビルド
+      turbo run build --filter=web       # 特定プロジェクトのみ
+      turbo run build --filter=...^web   # webの依存関係を含む
+      turbo run dev --parallel           # 並列実行
+
+      # リモートキャッシング設定
+      turbo login
+      turbo link
+
+      # 環境変数でのキャッシュ制御
+      TURBO_TOKEN=your_token turbo run build
+
+      // カスタムタスク設定例
+      {
+        "pipeline": {
+          "db:migrate": {
+            "cache": false,
+            "dependsOn": ["^build"]
+          },
+          "db:seed": {
+            "cache": false,
+            "dependsOn": ["db:migrate"]
+          },
+          "deploy": {
+            "cache": false,
+            "dependsOn": ["build", "test", "lint"]
+          },
+          "generate": {
+            "cache": false,
+            "outputs": ["src/generated/**"]
+          }
+        }
+      }
+
+      # フィルタリング例
+      turbo run test --filter=./packages/ui    # パス指定
+      turbo run build --filter=@myorg/*        # スコープ指定
+      turbo run lint --filter=[HEAD^1]         # Git commit指定
+      turbo run build --filter=!@myorg/admin   # 除外指定
+
+      // 共有設定パッケージ例
+      // packages/config/eslint-preset.js
+      module.exports = {
+        extends: ["next", "turbo", "prettier"],
+        rules: {
+          "@next/next/no-html-link-for-pages": "off",
+        },
+        parserOptions: {
+          babelOptions: {
+            presets: [require.resolve("next/babel")],
+          },
+        },
+      };
+
+      // packages/ui/package.json
+      {
+        "name": "@myorg/ui",
+        "version": "0.0.0",
+        "main": "./index.tsx",
+        "types": "./index.tsx",
+        "license": "MIT",
+        "scripts": {
+          "build": "tsup src/index.tsx --format esm,cjs --dts --external react",
+          "dev": "tsup src/index.tsx --format esm,cjs --watch --dts --external react",
+          "lint": "eslint \"**/*.ts*\"",
+          "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+        },
+        "devDependencies": {
+          "@myorg/config": "*",
+          "tsup": "^6.1.3",
+          "typescript": "^4.5.2"
+        },
+        "peerDependencies": {
+          "react": "*"
+        }
+      }
+    features:
+      - "高速インクリメンタルビルド"
+      - "リモートキャッシング"
+      - "並列タスク実行"
+      - "フィルタリング機能"
+      - "Vercel統合"
+
+# === 統合開発ツールチェーン ===
+integrated_toolchains:
+  biome:
+    name: "biome"
+    description: "Rust製統合開発ツール。リンター、フォーマッター、バンドラーを一つに統合"
+    installation: "npm install --save-dev @biomejs/biome"
+    usage: |
+      # Biome初期化
+      npx @biomejs/biome init
+
+      // biome.json設定
+      {
+        "$schema": "https://biomejs.dev/schemas/1.5.3/schema.json",
+        "organizeImports": {
+          "enabled": true
+        },
+        "linter": {
+          "enabled": true,
+          "rules": {
+            "recommended": true,
+            "complexity": {
+              "noExtraBooleanCast": "error",
+              "noMultipleSpacesInRegularExpressionLiterals": "error",
+              "noUselessCatch": "error",
+              "noUselessTypeConstraint": "error",
+              "noWith": "error"
+            },
+            "correctness": {
+              "noConstAssign": "error",
+              "noConstantCondition": "error",
+              "noEmptyCharacterClassInRegex": "error",
+              "noEmptyPattern": "error",
+              "noGlobalObjectCalls": "error",
+              "noInvalidConstructorSuper": "error",
+              "noInvalidNewBuiltin": "error",
+              "noNonoctalDecimalEscape": "error",
+              "noPrecisionLoss": "error",
+              "noSelfAssign": "error",
+              "noSetterReturn": "error",
+              "noSwitchDeclarations": "error",
+              "noUndeclaredVariables": "error",
+              "noUnreachable": "error",
+              "noUnreachableSuper": "error"
+            },
+            "style": {
+              "noArguments": "error",
+              "noVar": "error",
+              "useConst": "error",
+              "useTemplate": "error"
+            },
+            "suspicious": {
+              "noAsyncPromiseExecutor": "error",
+              "noCatchAssign": "error",
+              "noClassAssign": "error",
+              "noCompareNegZero": "error",
+              "noControlCharactersInRegex": "error",
+              "noDebugger": "error",
+              "noDuplicateCase": "error",
+              "noDuplicateClassMembers": "error",
+              "noDuplicateObjectKeys": "error",
+              "noDuplicateParameters": "error",
+              "noEmptyBlockStatements": "error",
+              "noExplicitAny": "error",
+              "noExtraNonNullAssertion": "error",
+              "noFallthroughSwitchClause": "error",
+              "noFunctionAssign": "error",
+              "noGlobalAssign": "error",
+              "noImportAssign": "error",
+              "noMisleadingCharacterClass": "error",
+              "noPrototypeBuiltins": "error",
+              "noRedeclare": "error",
+              "noShadowRestrictedNames": "error",
+              "noUnsafeDeclarationMerging": "error",
+              "noUnsafeNegation": "error",
+              "useGetterReturn": "error",
+              "useValidTypeof": "error"
+            }
+          }
+        },
+        "formatter": {
+          "enabled": true,
+          "formatWithErrors": false,
+          "indentStyle": "space",
+          "indentWidth": 2,
+          "lineWidth": 80,
+          "lineEnding": "lf",
+          "ignore": ["**/node_modules", "**/dist", "**/.next"]
+        },
+        "javascript": {
+          "formatter": {
+            "jsxQuoteStyle": "double",
+            "quoteProperties": "asNeeded",
+            "trailingComma": "es5",
+            "semicolons": "always",
+            "arrowParentheses": "always",
+            "bracketSpacing": true,
+            "bracketSameLine": false,
+            "quoteStyle": "double",
+            "attributePosition": "auto"
+          }
+        },
+        "overrides": [
+          {
+            "include": ["*.ts", "*.tsx"],
+            "linter": {
+              "rules": {
+                "style": {
+                  "noParameterAssign": "error"
+                },
+                "suspicious": {
+                  "noExplicitAny": "warn"
+                }
+              }
+            }
+          }
+        ],
+        "files": {
+          "ignoreUnknown": false,
+          "ignore": ["**/node_modules", "**/dist", "**/.git", "**/.next", "**/coverage"]
+        }
+      }
+
+      # Biomeコマンド
+      npx @biomejs/biome format .                    # フォーマット
+      npx @biomejs/biome format --write .            # フォーマット（書き込み）
+      npx @biomejs/biome lint .                      # リント
+      npx @biomejs/biome lint --apply .              # リント（自動修正）
+      npx @biomejs/biome check .                     # フォーマット＋リント
+      npx @biomejs/biome check --apply .             # フォーマット＋リント（自動修正）
+
+      // package.json scripts
+      {
+        "scripts": {
+          "format": "biome format --write .",
+          "lint": "biome lint .",
+          "lint:fix": "biome lint --apply .",
+          "check": "biome check .",
+          "check:fix": "biome check --apply ."
+        }
+      }
+
+      # CI/CD統合例
+      name: Biome
+      on: [push, pull_request]
+      jobs:
+        biome:
+          runs-on: ubuntu-latest
+          steps:
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                node-version: '18'
+            - run: npm ci
+            - run: npx @biomejs/biome ci .
+
+      // VSCode設定
+      // .vscode/settings.json
+      {
+        "editor.defaultFormatter": "biomejs.biome",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "quickfix.biome": true,
+          "source.organizeImports.biome": true
+        }
+      }
+
+      // ESLintからの移行
+      npx @biomejs/biome migrate eslint --write
+
+      // Prettierからの移行
+      npx @biomejs/biome migrate prettier --write
+    features:
+      - "超高速実行（Rust製）"
+      - "統合ツールチェーン"
+      - "ゼロ設定で開始可能"
+      - "VSCode拡張対応"
+      - "既存ツールからの移行支援"
+
+  rome:
+    name: "rome"
+    description: "Rustベースの統合開発ツール（Biomeの前身）"
+    installation: "npm install --save-dev rome"
+    usage: |
+      # Rome設定（参考）
+      // rome.json
+      {
+        "version": "12.1.3",
+        "root": true,
+        "linter": {
+          "enabled": true,
+          "rules": {
+            "recommended": true
+          }
+        },
+        "formatter": {
+          "enabled": true,
+          "formatWithErrors": false,
+          "indentStyle": "space",
+          "indentSize": 2,
+          "lineWidth": 80
+        }
+      }
+
+      # Romeコマンド
+      npx rome check .
+      npx rome format . --write
+      npx rome ci .
+
+      # Note: Romeは開発終了し、Biomeに移行されました
+    features:
+      - "高速実行"
+      - "統合ツールチェーン"
+      - "TypeScript対応"
+
+# === コード品質ツール ===
+code_quality_tools:
+  eslint:
+    name: "eslint"
+    description: "JavaScript/TypeScript向け静的解析ツール。プラグインエコシステム豊富"
+    installation: "npm install --save-dev eslint"
+    usage: |
+      # ESLint初期化
+      npx eslint --init
+
+      // .eslintrc.json設定例
+      {
+        "env": {
+          "browser": true,
+          "es2021": true,
+          "node": true
+        },
+        "extends": [
+          "eslint:recommended",
+          "@typescript-eslint/recommended",
+          "next/core-web-vitals",
+          "prettier"
+        ],
+        "parser": "@typescript-eslint/parser",
+        "parserOptions": {
+          "ecmaFeatures": {
+            "jsx": true
+          },
+          "ecmaVersion": "latest",
+          "sourceType": "module",
+          "project": "./tsconfig.json"
+        },
+        "plugins": [
+          "react",
+          "@typescript-eslint",
+          "import",
+          "jsx-a11y",
+          "react-hooks"
+        ],
+        "rules": {
+          // TypeScript
+          "@typescript-eslint/no-unused-vars": "error",
+          "@typescript-eslint/no-explicit-any": "warn",
+          "@typescript-eslint/explicit-function-return-type": "off",
+          "@typescript-eslint/explicit-module-boundary-types": "off",
+          "@typescript-eslint/no-empty-function": "off",
+          "@typescript-eslint/no-non-null-assertion": "warn",
+          
+          // React
+          "react/react-in-jsx-scope": "off",
+          "react/prop-types": "off",
+          "react/jsx-uses-react": "off",
+          "react/jsx-uses-vars": "error",
+          "react-hooks/rules-of-hooks": "error",
+          "react-hooks/exhaustive-deps": "warn",
+          
+          // Import
+          "import/order": [
+            "error",
+            {
+              "groups": [
+                "builtin",
+                "external",
+                "internal",
+                "parent",
+                "sibling",
+                "index"
+              ],
+              "newlines-between": "always",
+              "alphabetize": {
+                "order": "asc",
+                "caseInsensitive": true
+              }
+            }
+          ],
+          "import/no-duplicates": "error",
+          "import/no-unresolved": "error",
+          
+          // Accessibility
+          "jsx-a11y/anchor-is-valid": "error",
+          "jsx-a11y/alt-text": "error",
+          "jsx-a11y/aria-props": "error",
+          "jsx-a11y/aria-proptypes": "error",
+          "jsx-a11y/aria-unsupported-elements": "error",
+          "jsx-a11y/role-has-required-aria-props": "error",
+          "jsx-a11y/role-supports-aria-props": "error",
+          
+          // General
+          "no-console": "warn",
+          "no-debugger": "error",
+          "no-alert": "error",
+          "no-unused-vars": "off",
+          "prefer-const": "error",
+          "no-var": "error"
+        },
+        "settings": {
+          "react": {
+            "version": "detect"
+          },
+          "import/resolver": {
+            "typescript": {}
+          }
+        },
+        "overrides": [
+          {
+            "files": ["**/*.test.ts", "**/*.test.tsx"],
+            "env": {
+              "jest": true
+            },
+            "rules": {
+              "@typescript-eslint/no-explicit-any": "off"
+            }
+          }
+        ]
+      }
+
+      // カスタムESLintルール作成
+      module.exports = {
+        meta: {
+          type: "problem",
+          docs: {
+            description: "disallow usage of deprecated API",
+            category: "Best Practices",
+            recommended: false,
+          },
+          fixable: null,
+          schema: [],
+        },
+        create(context) {
+          return {
+            CallExpression(node) {
+              if (
+                node.callee.type === "MemberExpression" &&
+                node.callee.property.name === "deprecatedMethod"
+              ) {
+                context.report({
+                  node,
+                  message: "deprecatedMethod is deprecated, use newMethod instead",
+                });
+              }
+            },
+          };
+        },
+      };
+
+      # ESLintコマンド
+      npx eslint . --ext .js,.jsx,.ts,.tsx
+      npx eslint . --fix                       # 自動修正
+      npx eslint . --cache                     # キャッシュ使用
+      npx eslint . --max-warnings 0            # 警告もエラー扱い
+    features:
+      - "豊富なプラグインエコシステム"
+      - "カスタムルール作成可能"
+      - "自動修正機能"
+      - "設定の継承・拡張"
+      - "IDE統合"
+
+  prettier:
+    name: "prettier"
+    description: "コードフォーマッター。一貫したコードスタイルを自動適用"
+    installation: "npm install --save-dev prettier"
+    usage: |
+      // .prettierrc.json設定
+      {
+        "semi": true,
+        "trailingComma": "es5",
+        "singleQuote": true,
+        "printWidth": 80,
+        "tabWidth": 2,
+        "useTabs": false,
+        "bracketSpacing": true,
+        "bracketSameLine": false,
+        "arrowParens": "avoid",
+        "endOfLine": "lf",
+        "embeddedLanguageFormatting": "auto",
+        "htmlWhitespaceSensitivity": "css",
+        "insertPragma": false,
+        "jsxSingleQuote": true,
+        "proseWrap": "preserve",
+        "quoteProps": "as-needed",
+        "requirePragma": false,
+        "vueIndentScriptAndStyle": false
+      }
+
+      // .prettierignore
+      node_modules
+      dist
+      build
+      .next
+      coverage
+      *.min.js
+      *.min.css
+
+      # Prettierコマンド
+      npx prettier . --write                   # フォーマット実行
+      npx prettier . --check                   # フォーマットチェック
+      npx prettier . --list-different          # 差分表示
+
+      // ESLintとPrettierの統合
+      // .eslintrc.json
+      {
+        "extends": [
+          "eslint:recommended",
+          "prettier"  // ESLintのフォーマット関連ルールを無効化
+        ],
+        "plugins": [
+          "prettier"
+        ],
+        "rules": {
+          "prettier/prettier": "error"  // PrettierのエラーをESLintエラーとして表示
+        }
+      }
+
+      // package.json scripts
+      {
+        "scripts": {
+          "format": "prettier --write .",
+          "format:check": "prettier --check .",
+          "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+          "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
+        }
+      }
+
+      // VSCode設定
+      // .vscode/settings.json
+      {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "editor.formatOnPaste": true,
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": true
+        }
+      }
+    features:
+      - "ゼロ設定で開始可能"
+      - "多言語対応"
+      - "エディタ統合"
+      - "Git hooks統合"
+      - "CI/CD統合"
+
+# === Git Hooks & コミット規約 ===
+git_hooks_automation:
+  husky:
+    name: "husky"
+    description: "Git hooks管理ツール。コミット時の品質チェック自動化"
+    installation: "npm install --save-dev husky"
+    usage: |
+      # Husky初期化
+      npx husky-init && npm install
+
+      # Git hooks設定
+      npx husky add .husky/pre-commit "npm run lint"
+      npx husky add .husky/pre-commit "npm run test"
+      npx husky add .husky/pre-push "npm run build"
+
+      // package.json
+      {
+        "scripts": {
+          "prepare": "husky install",
+          "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+          "test": "jest",
+          "build": "tsc"
+        }
+      }
+
+      # .husky/pre-commit例
+      #!/usr/bin/env sh
+      . "$(dirname -- "$0")/_/husky.sh"
+
+      npm run lint
+      npm run type-check
+      npm run test -- --passWithNoTests
+
+      # .husky/commit-msg例
+      #!/usr/bin/env sh
+      . "$(dirname -- "$0")/_/husky.sh"
+
+      npx commitlint --edit $1
+
+      # .husky/pre-push例
+      #!/usr/bin/env sh
+      . "$(dirname -- "$0")/_/husky.sh"
+
+      npm run build
+      npm run test:e2e
+
+      // lint-stagedとの統合
+      // package.json
+      {
+        "lint-staged": {
+          "*.{js,jsx,ts,tsx}": [
+            "eslint --fix",
+            "prettier --write"
+          ],
+          "*.{json,md}": [
+            "prettier --write"
+          ]
+        }
+      }
+
+      # .husky/pre-commit (lint-staged版)
+      #!/usr/bin/env sh
+      . "$(dirname -- "$0")/_/husky.sh"
+
+      npx lint-staged
+    features:
+      - "Git hooks管理"
+      - "簡単な設定"
+      - "マルチプラットフォーム対応"
+      - "カスタムスクリプト実行"
+      - "チーム開発対応"
+
+  lefthook:
+    name: "lefthook"
+    description: "Go製高速Git hooks管理ツール。並列実行とファイルフィルタリング"
+    installation: "npm install --save-dev lefthook"
+    usage: |
+      # Lefthook初期化
+      npx lefthook install
+
+      // lefthook.yml設定
+      pre-commit:
+        parallel: true
+        commands:
+          lint:
+            glob: "*.{js,jsx,ts,tsx}"
+            run: npx eslint {staged_files}
+          format:
+            glob: "*.{js,jsx,ts,tsx,json,md}"
+            run: npx prettier --write {staged_files}
+          type-check:
+            run: npx tsc --noEmit
+          test:
+            glob: "*.{js,jsx,ts,tsx}"
+            run: npm run test -- --findRelatedTests {staged_files}
+
+      pre-push:
+        commands:
+          build:
+            run: npm run build
+          test-e2e:
+            run: npm run test:e2e
+
+      commit-msg:
+        commands:
+          commitlint:
+            run: npx commitlint --edit {1}
+
+      # 高度な設定例
+      pre-commit:
+        parallel: true
+        commands:
+          # ESLint（JS/TSファイルのみ）
+          eslint:
+            glob: "*.{js,jsx,ts,tsx}"
+            run: npx eslint --fix {staged_files}
+            stage_fixed: true
+
+          # Prettier（全ファイル）
+          prettier:
+            glob: "*.{js,jsx,ts,tsx,json,md,yml,yaml}"
+            run: npx prettier --write {staged_files}
+            stage_fixed: true
+
+          # 型チェック（TypeScriptプロジェクト全体）
+          typecheck:
+            files: git diff --name-only --cached
+            glob: "*.{ts,tsx}"
+            run: npx tsc --noEmit
+
+          # テスト（関連するテストのみ）
+          test:
+            glob: "*.{js,jsx,ts,tsx}"
+            run: npm run test -- --findRelatedTests {staged_files} --passWithNoTests
+
+          # スペルチェック
+          spellcheck:
+            glob: "*.{md,mdx}"
+            run: npx cspell {staged_files}
+
+      pre-push:
+        commands:
+          # ビルドチェック
+          build:
+            run: npm run build
+
+          # 全テスト実行
+          test-all:
+            run: npm run test -- --coverage
+
+          # E2Eテスト
+          e2e:
+            run: npm run test:e2e
+
+      # 条件付き実行
+      pre-commit:
+        commands:
+          docker-check:
+            files: git diff --name-only --cached
+            glob: "Dockerfile*"
+            run: docker build -t test-image .
+            fail_text: "Docker build failed"
+
+      # 並列実行制御
+      pre-commit:
+        piped: true  # 順次実行
+        commands:
+          first:
+            run: echo "First command"
+          second:
+            run: echo "Second command"
+
+      # カスタムスクリプト
+      scripts:
+        "lint-and-format.sh":
+          runner: bash
+      
+      pre-commit:
+        commands:
+          custom:
+            run: lint-and-format.sh {staged_files}
+    features:
+      - "高速並列実行"
+      - "柔軟なファイルフィルタリング"
+      - "設定の可読性"
+      - "クロスプラットフォーム"
+      - "豊富な変数サポート"
+
+  commitlint:
+    name: "commitlint"
+    description: "コミットメッセージ規約チェックツール。Conventional Commits対応"
+    installation: "npm install --save-dev @commitlint/cli @commitlint/config-conventional"
+    usage: |
+      // commitlint.config.js
+      module.exports = {
+        extends: ['@commitlint/config-conventional'],
+        rules: {
+          'type-enum': [
+            2,
+            'always',
+            [
+              'feat',     // 新機能
+              'fix',      // バグ修正
+              'docs',     // ドキュメント
+              'style',    // コードスタイル（機能に影響しない変更）
+              'refactor', // リファクタリング
+              'perf',     // パフォーマンス改善
+              'test',     // テスト
+              'chore',    // その他（ビルド、設定など）
+              'ci',       // CI設定
+              'build',    // ビルドシステム
+              'revert'    // コミット取り消し
+            ],
+          ],
+          'type-case': [2, 'always', 'lower-case'],
+          'type-empty': [2, 'never'],
+          'scope-case': [2, 'always', 'lower-case'],
+          'subject-case': [2, 'never', ['sentence-case', 'start-case', 'pascal-case', 'upper-case']],
+          'subject-empty': [2, 'never'],
+          'subject-full-stop': [2, 'never', '.'],
+          'header-max-length': [2, 'always', 72],
+          'body-leading-blank': [1, 'always'],
+          'body-max-line-length': [2, 'always', 100],
+          'footer-leading-blank': [1, 'always'],
+          'footer-max-line-length': [2, 'always', 100],
+        },
+      };
+
+      # コミットメッセージ例
+      feat(auth): add OAuth2 login support
+
+      Add support for OAuth2 authentication with Google and GitHub providers.
+      This allows users to sign in using their existing accounts.
+
+      BREAKING CHANGE: The previous login API has been deprecated.
+      Use the new /auth/oauth endpoint instead.
+
+      Closes #123
+
+      # Commitlintコマンド
+      echo "feat: add new feature" | npx commitlint
+      npx commitlint --from HEAD~1 --to HEAD --verbose
+
+      // カスタムルール作成
+      module.exports = {
+        extends: ['@commitlint/config-conventional'],
+        rules: {
+          // カスタムタイプ追加
+          'type-enum': [
+            2,
+            'always',
+            [
+              'feat', 'fix', 'docs', 'style', 'refactor', 
+              'perf', 'test', 'chore', 'ci', 'build', 'revert',
+              'hotfix',   // 緊急修正
+              'wip',      // 作業中
+              'config'    // 設定変更
+            ],
+          ],
+          // スコープを必須に
+          'scope-empty': [2, 'never'],
+          // 日本語件名許可
+          'subject-case': [0],
+          // カスタムスコープ制限
+          'scope-enum': [
+            2,
+            'always',
+            [
+              'frontend', 'backend', 'api', 'ui', 'auth', 
+              'db', 'config', 'docs', 'test', 'ci'
+            ],
+          ],
+        },
+      };
+
+      // Huskyとの統合
+      // .husky/commit-msg
+      #!/usr/bin/env sh
+      . "$(dirname -- "$0")/_/husky.sh"
+
+      npx commitlint --edit $1
+    features:
+      - "Conventional Commits対応"
+      - "カスタムルール作成"
+      - "Git hooks統合"
+      - "多言語対応"
+      - "CI/CD統合"
+
+# === バージョン管理・リリース ===
+version_release_management:
+  changesets:
+    name: "changesets"
+    description: "モノレポ対応バージョン管理・リリースツール。変更ログ自動生成"
+    installation: "npm install --save-dev @changesets/cli"
+    usage: |
+      # Changesets初期化
+      npx changeset init
+
+      // .changeset/config.json
+      {
+        "$schema": "https://unpkg.com/@changesets/config@3.0.0/schema.json",
+        "changelog": "@changesets/cli/changelog",
+        "commit": false,
+        "fixed": [],
+        "linked": [],
+        "access": "restricted",
+        "baseBranch": "main",
+        "updateInternalDependencies": "patch",
+        "ignore": ["@myorg/docs"]
+      }
+
+      # Changeset作成フロー
+      npx changeset                             # 変更記録作成
+      npx changeset version                     # バージョン更新
+      npx changeset publish                     # npm公開
+
+      // changesetファイル例
+      // .changeset/cool-feature.md
+      ---
+      "@myorg/ui": minor
+      "@myorg/utils": patch
+      ---
+
+      Add new Button component with accessibility improvements
+
+      - Added new Button component with ARIA support
+      - Fixed color contrast issues
+      - Updated utility functions for better TypeScript support
+
+      # package.json scripts統合
+      {
+        "scripts": {
+          "changeset": "changeset",
+          "version": "changeset version",
+          "release": "changeset publish",
+          "version:check": "changeset status --verbose"
+        }
+      }
+
+      # GitHub Actions統合
+      name: Release
+      on:
+        push:
+          branches:
+            - main
+      
+      jobs:
+        release:
+          runs-on: ubuntu-latest
+          steps:
+            - uses: actions/checkout@v3
+              with:
+                fetch-depth: 0
+            
+            - uses: actions/setup-node@v3
+              with:
+                node-version: 18
+                registry-url: 'https://registry.npmjs.org'
+            
+            - run: npm ci
+            - run: npm run build
+            - run: npm run test
+            
+            - name: Create Release Pull Request or Publish
+              id: changesets
+              uses: changesets/action@v1
+              with:
+                version: npm run version
+                publish: npm run release
+                commit: "chore: release packages"
+                title: "chore: release packages"
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+                NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      // 高度な設定例
+      {
+        "changelog": [
+          "@changesets/changelog-github",
+          {
+            "repo": "myorg/myrepo"
+          }
+        ],
+        "commit": true,
+        "fixed": [
+          ["@myorg/ui", "@myorg/theme"]
+        ],
+        "linked": [
+          ["@myorg/api", "@myorg/types"]
+        ],
+        "access": "public",
+        "baseBranch": "main",
+        "updateInternalDependencies": "patch",
+        "ignore": ["@myorg/docs", "@myorg/examples"],
+        "snapshot": {
+          "useCalculatedVersion": true,
+          "prereleaseTemplate": "{tag}-{datetime}"
+        }
+      }
+
+      # プリリリース
+      npx changeset pre enter rc               # rcモード開始
+      npx changeset                            # 変更記録
+      npx changeset version                    # プリリリースバージョン作成
+      npx changeset publish --tag rc           # プリリリース公開
+      npx changeset pre exit                   # rcモード終了
+    features:
+      - "モノレポ対応"
+      - "自動変更ログ生成"
+      - "GitHub Actions統合"
+      - "プリリリース対応"
+      - "依存関係自動更新"
+
+  semantic_release:
+    name: "semantic-release"
+    description: "コミットメッセージベースの自動バージョニング・リリース"
+    installation: "npm install --save-dev semantic-release"
+    usage: |
+      // .releaserc.json
+      {
+        "branches": [
+          "main",
+          {
+            "name": "develop",
+            "prerelease": "rc"
+          }
+        ],
+        "plugins": [
+          "@semantic-release/commit-analyzer",
+          "@semantic-release/release-notes-generator",
+          [
+            "@semantic-release/changelog",
+            {
+              "changelogFile": "CHANGELOG.md"
+            }
+          ],
+          "@semantic-release/npm",
+          [
+            "@semantic-release/git",
+            {
+              "assets": ["CHANGELOG.md", "package.json"],
+              "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+            }
+          ],
+          "@semantic-release/github"
+        ]
+      }
+
+      # GitHub Actions
+      name: Release
+      on:
+        push:
+          branches: [main]
+      
+      jobs:
+        release:
+          runs-on: ubuntu-latest
+          steps:
+            - uses: actions/checkout@v3
+              with:
+                persist-credentials: false
+            - uses: actions/setup-node@v3
+              with:
+                node-version: 18
+            - run: npm ci
+            - run: npm run build
+            - run: npm test
+            - name: Release
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+              run: npx semantic-release
+
+      // カスタムリリースルール
+      {
+        "plugins": [
+          [
+            "@semantic-release/commit-analyzer",
+            {
+              "preset": "conventionalcommits",
+              "releaseRules": [
+                {"type": "feat", "release": "minor"},
+                {"type": "fix", "release": "patch"},
+                {"type": "perf", "release": "patch"},
+                {"type": "docs", "release": false},
+                {"scope": "no-release", "release": false},
+                {"breaking": true, "release": "major"}
+              ]
+            }
+          ]
+        ]
+      }
+    features:
+      - "コミットベース自動リリース"
+      - "BREAKING CHANGE検出"
+      - "プラグインシステム"
+      - "マルチブランチ対応"
+      - "GitHub/GitLab統合"
+
+# === コンポーネント開発 ===
+component_development:
+  storybook:
+    name: "storybook"
+    description: "UIコンポーネント開発・テスト・ドキュメント化ツール"
+    installation: "npx storybook@latest init"
+    usage: |
+      # Storybook初期化
+      npx storybook@latest init
+
+      // Button.stories.ts
+      import type { Meta, StoryObj } from '@storybook/react';
+      import { Button } from './Button';
+
+      const meta: Meta<typeof Button> = {
+        title: 'UI/Button',
+        component: Button,
+        parameters: {
+          layout: 'centered',
+          docs: {
+            description: {
+              component: 'Primary button component with multiple variants'
+            }
+          }
+        },
+        tags: ['autodocs'],
+        argTypes: {
+          variant: {
+            control: { type: 'select' },
+            options: ['primary', 'secondary', 'danger'],
+            description: 'Button style variant'
+          },
+          size: {
+            control: { type: 'select' },
+            options: ['small', 'medium', 'large'],
+            description: 'Button size'
+          },
+          disabled: {
+            control: 'boolean',
+            description: 'Disable button interaction'
+          },
+          onClick: { action: 'clicked' }
+        }
+      };
+
+      export default meta;
+      type Story = StoryObj<typeof meta>;
+
+      export const Primary: Story = {
+        args: {
+          variant: 'primary',
+          children: 'Primary Button',
+        },
+      };
+
+      export const Secondary: Story = {
+        args: {
+          variant: 'secondary',
+          children: 'Secondary Button',
+        },
+      };
+
+      export const Danger: Story = {
+        args: {
+          variant: 'danger',
+          children: 'Danger Button',
+        },
+      };
+
+      export const AllSizes: Story = {
+        render: () => (
+          <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+            <Button size="small">Small</Button>
+            <Button size="medium">Medium</Button>
+            <Button size="large">Large</Button>
+          </div>
+        ),
+      };
+
+      export const WithInteraction: Story = {
+        args: {
+          variant: 'primary',
+          children: 'Click me',
+        },
+        play: async ({ canvasElement }) => {
+          const canvas = within(canvasElement);
+          const button = canvas.getByRole('button');
+          
+          await userEvent.click(button);
+          await expect(button).toHaveFocus();
+        },
+      };
+
+      // .storybook/main.ts
+      import type { StorybookConfig } from '@storybook/react-vite';
+
+      const config: StorybookConfig = {
+        stories: ['../src/**/*.stories.@(js|jsx|ts|tsx|mdx)'],
+        addons: [
+          '@storybook/addon-links',
+          '@storybook/addon-essentials',
+          '@storybook/addon-onboarding',
+          '@storybook/addon-interactions',
+          '@storybook/addon-docs',
+          '@storybook/addon-controls',
+          '@storybook/addon-viewport',
+          '@storybook/addon-backgrounds',
+          '@storybook/addon-a11y',
+          '@storybook/addon-design-tokens'
+        ],
+        framework: {
+          name: '@storybook/react-vite',
+          options: {},
+        },
+        docs: {
+          autodocs: 'tag',
+        },
+        typescript: {
+          check: false,
+          reactDocgen: 'react-docgen-typescript',
+          reactDocgenTypescriptOptions: {
+            shouldExtractLiteralValuesFromEnum: true,
+            propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
+          },
+        },
+      };
+
+      export default config;
+
+      // .storybook/preview.ts
+      import type { Preview } from '@storybook/react';
+      import '../src/styles/globals.css';
+
+      const preview: Preview = {
+        parameters: {
+          actions: { argTypesRegex: '^on[A-Z].*' },
+          controls: {
+            matchers: {
+              color: /(background|color)$/i,
+              date: /Date$/,
+            },
+          },
+          backgrounds: {
+            default: 'light',
+            values: [
+              { name: 'light', value: '#ffffff' },
+              { name: 'dark', value: '#333333' },
+            ],
+          },
+          viewport: {
+            viewports: {
+              mobile: {
+                name: 'Mobile',
+                styles: { width: '375px', height: '667px' },
+              },
+              tablet: {
+                name: 'Tablet',
+                styles: { width: '768px', height: '1024px' },
+              },
+              desktop: {
+                name: 'Desktop',
+                styles: { width: '1024px', height: '768px' },
+              },
+            },
+          },
+        },
+        decorators: [
+          (Story) => (
+            <div style={{ padding: '1rem' }}>
+              <Story />
+            </div>
+          ),
+        ],
+      };
+
+      export default preview;
+
+      # Storybookコマンド
+      npm run storybook                         # 開発サーバー起動
+      npm run build-storybook                   # 静的ビルド
+      npm run test-storybook                    # インタラクションテスト
+
+      // package.json scripts
+      {
+        "scripts": {
+          "storybook": "storybook dev -p 6006",
+          "build-storybook": "storybook build",
+          "test-storybook": "test-storybook",
+          "chromatic": "chromatic --exit-zero-on-changes"
+        }
+      }
+
+      # Chromatic（ビジュアルテスト）統合
+      npm install --save-dev chromatic
+      npx chromatic --project-token=your_token
+
+      // MDXドキュメント
+      // Design.stories.mdx
+      import { Meta } from '@storybook/addon-docs';
+
+      <Meta title="Design System/Introduction" />
+
+      # Design System
+
+      Welcome to our design system documentation.
+
+      ## Colors
+
+      Our color palette consists of:
+      - Primary: #007bff
+      - Secondary: #6c757d
+      - Success: #28a745
+
+      ## Typography
+
+      We use the following font sizes:
+      - Heading 1: 2rem
+      - Heading 2: 1.5rem
+      - Body: 1rem
+    features:
+      - "コンポーネント駆動開発"
+      - "インタラクションテスト"
+      - "アクセシビリティチェック"
+      - "ビジュアルテスト"
+      - "自動ドキュメント生成"
+
+# === TypeScript強化 ===
+typescript_enhancement:
+  typescript:
+    name: "typescript"
+    description: "静的型付けによる開発効率・品質向上"
+    installation: "npm install --save-dev typescript @types/node"
+    usage: |
+      // tsconfig.json（厳格設定）
+      {
+        "compilerOptions": {
+          "target": "ES2022",
+          "lib": ["ES2022", "DOM", "DOM.Iterable"],
+          "allowJs": true,
+          "skipLibCheck": true,
+          "strict": true,
+          "noEmit": true,
+          "esModuleInterop": true,
+          "module": "esnext",
+          "moduleResolution": "bundler",
+          "resolveJsonModule": true,
+          "isolatedModules": true,
+          "jsx": "preserve",
+          "incremental": true,
+          "plugins": [
+            {
+              "name": "next"
+            }
+          ],
+          "baseUrl": ".",
+          "paths": {
+            "@/*": ["./src/*"],
+            "@/components/*": ["./src/components/*"],
+            "@/utils/*": ["./src/utils/*"],
+            "@/types/*": ["./src/types/*"]
+          },
+          
+          // 厳格なチェック
+          "noUnusedLocals": true,
+          "noUnusedParameters": true,
+          "exactOptionalPropertyTypes": true,
+          "noImplicitReturns": true,
+          "noFallthroughCasesInSwitch": true,
+          "noUncheckedIndexedAccess": true,
+          "noImplicitOverride": true,
+          "allowUnusedLabels": false,
+          "allowUnreachableCode": false,
+          
+          // 高度な型チェック
+          "strictNullChecks": true,
+          "strictFunctionTypes": true,
+          "strictBindCallApply": true,
+          "strictPropertyInitialization": true,
+          "noImplicitAny": true,
+          "noImplicitThis": true,
+          "alwaysStrict": true
+        },
+        "include": [
+          "next-env.d.ts",
+          "**/*.ts",
+          "**/*.tsx",
+          ".next/types/**/*.ts"
+        ],
+        "exclude": ["node_modules", ".next", "dist", "build"]
+      }
+
+      // 高度な型定義例
+      // src/types/api.ts
+      export interface APIResponse<T> {
+        data: T;
+        success: boolean;
+        message?: string;
+        errors?: string[];
+      }
+
+      export interface User {
+        id: string;
+        name: string;
+        email: string;
+        role: 'admin' | 'user' | 'guest';
+        createdAt: Date;
+        profile?: UserProfile;
+      }
+
+      export interface UserProfile {
+        avatar?: string;
+        bio?: string;
+        location?: string;
+        website?: string;
+      }
+
+      // 条件付き型
+      export type ApiEndpoint<T extends string> = T extends 'users' 
+        ? '/api/users'
+        : T extends 'posts'
+        ? '/api/posts'
+        : never;
+
+      // ユーティリティ型
+      export type DeepPartial<T> = {
+        [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P];
+      };
+
+      export type RequiredField<T, K extends keyof T> = T & Required<Pick<T, K>>;
+
+      // 型ガード
+      export function isUser(obj: unknown): obj is User {
+        return (
+          typeof obj === 'object' &&
+          obj !== null &&
+          'id' in obj &&
+          'name' in obj &&
+          'email' in obj
+        );
+      }
+
+      // src/utils/api.ts
+      import { APIResponse, User } from '@/types/api';
+
+      export class APIClient {
+        private baseURL: string;
+
+        constructor(baseURL: string) {
+          this.baseURL = baseURL;
+        }
+
+        async request<T>(
+          endpoint: string,
+          options?: RequestInit
+        ): Promise<APIResponse<T>> {
+          const response = await fetch(`${this.baseURL}${endpoint}`, {
+            headers: {
+              'Content-Type': 'application/json',
+              ...options?.headers,
+            },
+            ...options,
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          return response.json();
+        }
+
+        async getUsers(): Promise<APIResponse<User[]>> {
+          return this.request<User[]>('/users');
+        }
+
+        async getUser(id: string): Promise<APIResponse<User>> {
+          return this.request<User>(`/users/${id}`);
+        }
+
+        async createUser(userData: Omit<User, 'id' | 'createdAt'>): Promise<APIResponse<User>> {
+          return this.request<User>('/users', {
+            method: 'POST',
+            body: JSON.stringify(userData),
+          });
+        }
+      }
+
+      // 型安全なReactコンポーネント
+      import { ReactNode, ComponentPropsWithoutRef } from 'react';
+
+      interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
+        variant?: 'primary' | 'secondary' | 'danger';
+        size?: 'small' | 'medium' | 'large';
+        loading?: boolean;
+        leftIcon?: ReactNode;
+        rightIcon?: ReactNode;
+      }
+
+      export function Button({
+        variant = 'primary',
+        size = 'medium',
+        loading = false,
+        leftIcon,
+        rightIcon,
+        children,
+        disabled,
+        className,
+        ...props
+      }: ButtonProps) {
+        return (
+          <button
+            className={`btn btn-${variant} btn-${size} ${className || ''}`}
+            disabled={disabled || loading}
+            {...props}
+          >
+            {loading ? (
+              <span>Loading...</span>
+            ) : (
+              <>
+                {leftIcon}
+                {children}
+                {rightIcon}
+              </>
+            )}
+          </button>
+        );
+      }
+
+      # TypeScriptコマンド
+      npx tsc --noEmit                          # 型チェックのみ
+      npx tsc --build                           # インクリメンタルビルド
+      npx tsc --watch                           # ウォッチモード
+
+      // package.json scripts
+      {
+        "scripts": {
+          "type-check": "tsc --noEmit",
+          "type-check:watch": "tsc --noEmit --watch",
+          "build": "tsc"
+        }
+      }
+    features:
+      - "静的型チェック"
+      - "インテリセンス強化"
+      - "リファクタリング支援"
+      - "コンパイル時エラー検出"
+      - "型安全なAPI呼び出し"
+
+# === 統合ワークフロー ===
+integrated_workflows:
+  ci_cd_optimization:
+    name: "CI/CD最適化パターン"
+    description: "GitHub Actions + キャッシング + 並列実行"
+    usage: |
+      # .github/workflows/ci.yml
+      name: CI
+      on:
+        push:
+          branches: [main, develop]
+        pull_request:
+          branches: [main]
+
+      jobs:
+        # 依存関係インストール（共通）
+        install:
+          runs-on: ubuntu-latest
+          outputs:
+            cache-key: ${{ steps.cache-key.outputs.key }}
+          steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                node-version: '18'
+                cache: 'npm'
+            
+            - id: cache-key
+              run: echo "key=node-modules-${{ hashFiles('package-lock.json') }}" >> $GITHUB_OUTPUT
+            
+            - name: Cache node modules
+              uses: actions/cache@v3
+              with:
+                path: node_modules
+                key: ${{ steps.cache-key.outputs.key }}
+            
+            - run: npm ci
+
+        # 並列実行ジョブ
+        lint:
+          needs: install
+          runs-on: ubuntu-latest
+          steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                node-version: '18'
+            
+            - name: Restore node modules
+              uses: actions/cache@v3
+              with:
+                path: node_modules
+                key: ${{ needs.install.outputs.cache-key }}
+            
+            - run: npm run lint
+
+        type-check:
+          needs: install
+          runs-on: ubuntu-latest
+          steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                node-version: '18'
+            
+            - name: Restore node modules
+              uses: actions/cache@v3
+              with:
+                path: node_modules
+                key: ${{ needs.install.outputs.cache-key }}
+            
+            - run: npm run type-check
+
+        test:
+          needs: install
+          runs-on: ubuntu-latest
+          strategy:
+            matrix:
+              node-version: [16, 18, 20]
+          steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                node-version: ${{ matrix.node-version }}
+            
+            - name: Restore node modules
+              uses: actions/cache@v3
+              with:
+                path: node_modules
+                key: ${{ needs.install.outputs.cache-key }}
+            
+            - run: npm test -- --coverage
+            
+            - name: Upload coverage
+              uses: codecov/codecov-action@v3
+              if: matrix.node-version == 18
+
+        build:
+          needs: [install, lint, type-check, test]
+          runs-on: ubuntu-latest
+          steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                node-version: '18'
+            
+            - name: Restore node modules
+              uses: actions/cache@v3
+              with:
+                path: node_modules
+                key: ${{ needs.install.outputs.cache-key }}
+            
+            - run: npm run build
+            
+            - name: Upload build artifacts
+              uses: actions/upload-artifact@v3
+              with:
+                name: build-files
+                path: dist/
+
+performance_optimization:
+  build_performance:
+    - "インクリメンタルビルド活用"
+    - "並列処理最大化"
+    - "キャッシュ戦略最適化"
+    - "不要な依存関係削減"
+    
+  development_performance:
+    - "HMR最適化"
+    - "型チェック分離"
+    - "リンター並列実行"
+    - "テスト分割実行"
+
+best_practices:
+  monorepo_management:
+    - "明確な依存関係管理"
+    - "共通設定の共有"
+    - "段階的移行戦略"
+    - "パフォーマンス監視"
+    
+  code_quality:
+    - "自動化可能なものは全て自動化"
+    - "早期フィードバックループ"
+    - "段階的品質向上"
+    - "チーム標準の徹底"
+    
+  developer_experience:
+    - "ワンコマンドセットアップ"
+    - "明確なエラーメッセージ"
+    - "包括的ドキュメント"
+    - "効率的なワークフロー"
+
+common_use_cases:
+  - "大規模モノレポ管理"
+  - "マイクロフロントエンド構築"
+  - "デザインシステム開発"
+  - "チーム開発標準化"
+  - "CI/CD パイプライン最適化"
+  - "コード品質自動化"
+  - "ドキュメント駆動開発"
+  - "リリース自動化"

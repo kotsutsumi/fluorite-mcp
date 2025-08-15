@@ -1,0 +1,2390 @@
+name: "data-processing-analytics-ecosystem"
+description: "データ処理・分析エコシステム - 高速データ処理、インメモリ分析、ストリーミング、可視化の最先端技術スタック"
+keywords: ["Data Processing", "Analytics", "Big Data", "Streaming", "Visualization", "DataFrame", "OLAP", "ETL"]
+category: "data-analytics"
+maintainers: ["DuckDB", "Polars", "Apache Foundation", "Observable", "Plotly"]
+
+# === 高速データ処理エンジン ===
+high_performance_engines:
+  duckdb:
+    name: "duckdb"
+    description: "インメモリ分析データベース。SQLiteのOLAP版として高速分析クエリを実行"
+    installation: "npm install duckdb"
+    usage: |
+      import Database from 'duckdb';
+
+      // DuckDB接続と基本操作
+      export class DuckDBAnalytics {
+        private db: Database.Database;
+
+        constructor() {
+          this.db = new Database.Database(':memory:');
+        }
+
+        async executeQuery(sql: string): Promise<any[]> {
+          return new Promise((resolve, reject) => {
+            this.db.all(sql, (err, result) => {
+              if (err) reject(err);
+              else resolve(result);
+            });
+          });
+        }
+
+        // CSVデータの高速読み込み
+        async loadCSV(tableName: string, filePath: string) {
+          const sql = `
+            CREATE TABLE ${tableName} AS 
+            SELECT * FROM read_csv_auto('${filePath}')
+          `;
+          await this.executeQuery(sql);
+        }
+
+        // Parquetファイル処理
+        async loadParquet(tableName: string, filePath: string) {
+          const sql = `
+            CREATE TABLE ${tableName} AS 
+            SELECT * FROM read_parquet('${filePath}')
+          `;
+          await this.executeQuery(sql);
+        }
+
+        // JSON データ処理
+        async loadJSON(tableName: string, filePath: string) {
+          const sql = `
+            CREATE TABLE ${tableName} AS 
+            SELECT * FROM read_json_auto('${filePath}')
+          `;
+          await this.executeQuery(sql);
+        }
+
+        // 高速集計分析
+        async performSalesAnalysis() {
+          const queries = {
+            // 売上総計
+            totalSales: `
+              SELECT 
+                SUM(amount) as total_sales,
+                COUNT(*) as transaction_count,
+                AVG(amount) as avg_transaction
+              FROM sales
+            `,
+            
+            // 月別売上トレンド
+            monthlySales: `
+              SELECT 
+                DATE_TRUNC('month', date) as month,
+                SUM(amount) as monthly_sales,
+                COUNT(*) as transaction_count
+              FROM sales 
+              GROUP BY DATE_TRUNC('month', date)
+              ORDER BY month
+            `,
+            
+            // 顧客セグメント分析
+            customerSegments: `
+              SELECT 
+                customer_id,
+                SUM(amount) as total_spent,
+                COUNT(*) as purchase_count,
+                AVG(amount) as avg_purchase,
+                CASE 
+                  WHEN SUM(amount) > 10000 THEN 'VIP'
+                  WHEN SUM(amount) > 5000 THEN 'Premium'
+                  WHEN SUM(amount) > 1000 THEN 'Regular'
+                  ELSE 'New'
+                END as segment
+              FROM sales 
+              GROUP BY customer_id
+            `,
+            
+            // 製品パフォーマンス
+            productPerformance: `
+              SELECT 
+                product_category,
+                product_name,
+                SUM(amount) as total_revenue,
+                COUNT(*) as units_sold,
+                RANK() OVER (PARTITION BY product_category ORDER BY SUM(amount) DESC) as rank_in_category
+              FROM sales 
+              GROUP BY product_category, product_name
+              ORDER BY total_revenue DESC
+            `
+          };
+
+          const results: Record<string, any[]> = {};
+          for (const [key, sql] of Object.entries(queries)) {
+            results[key] = await this.executeQuery(sql);
+          }
+          
+          return results;
+        }
+
+        // ウィンドウ関数による高度な分析
+        async performTimeSeriesAnalysis() {
+          const sql = `
+            SELECT 
+              date,
+              amount,
+              SUM(amount) OVER (
+                ORDER BY date 
+                ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+              ) as running_total,
+              AVG(amount) OVER (
+                ORDER BY date 
+                ROWS BETWEEN 6 PRECEDING AND CURRENT ROW
+              ) as moving_avg_7days,
+              LAG(amount, 1) OVER (ORDER BY date) as prev_day_amount,
+              (amount - LAG(amount, 1) OVER (ORDER BY date)) / LAG(amount, 1) OVER (ORDER BY date) * 100 as day_over_day_change
+            FROM daily_sales 
+            ORDER BY date
+          `;
+          
+          return await this.executeQuery(sql);
+        }
+
+        // 複雑なJOIN操作
+        async performCustomerAnalysis() {
+          const sql = `
+            WITH customer_metrics AS (
+              SELECT 
+                c.customer_id,
+                c.name,
+                c.registration_date,
+                COUNT(s.transaction_id) as purchase_count,
+                SUM(s.amount) as total_spent,
+                MAX(s.date) as last_purchase_date,
+                MIN(s.date) as first_purchase_date
+              FROM customers c
+              LEFT JOIN sales s ON c.customer_id = s.customer_id
+              GROUP BY c.customer_id, c.name, c.registration_date
+            ),
+            customer_rfm AS (
+              SELECT 
+                *,
+                DATEDIFF('day', last_purchase_date, CURRENT_DATE) as recency,
+                purchase_count as frequency,
+                total_spent as monetary
+              FROM customer_metrics
+            )
+            SELECT 
+              *,
+              NTILE(5) OVER (ORDER BY recency DESC) as recency_score,
+              NTILE(5) OVER (ORDER BY frequency) as frequency_score,
+              NTILE(5) OVER (ORDER BY monetary) as monetary_score
+            FROM customer_rfm
+            ORDER BY total_spent DESC
+          `;
+          
+          return await this.executeQuery(sql);
+        }
+
+        // 地理空間分析
+        async performGeospatialAnalysis() {
+          const sql = `
+            SELECT 
+              region,
+              COUNT(*) as store_count,
+              SUM(sales.amount) as total_sales,
+              AVG(sales.amount) as avg_sales_per_transaction,
+              ST_Centroid(ST_Union(ST_Point(stores.longitude, stores.latitude))) as region_center
+            FROM stores
+            JOIN sales ON stores.store_id = sales.store_id
+            GROUP BY region
+            ORDER BY total_sales DESC
+          `;
+          
+          return await this.executeQuery(sql);
+        }
+
+        // データエクスポート
+        async exportToCSV(tableName: string, outputPath: string) {
+          const sql = `
+            COPY (SELECT * FROM ${tableName}) 
+            TO '${outputPath}' 
+            (FORMAT CSV, HEADER)
+          `;
+          await this.executeQuery(sql);
+        }
+
+        async exportToParquet(tableName: string, outputPath: string) {
+          const sql = `
+            COPY (SELECT * FROM ${tableName}) 
+            TO '${outputPath}' 
+            (FORMAT PARQUET)
+          `;
+          await this.executeQuery(sql);
+        }
+
+        close() {
+          this.db.close();
+        }
+      }
+
+      // Python DuckDB使用例
+      /*
+      import duckdb
+      import pandas as pd
+
+      class DuckDBPythonAnalytics:
+          def __init__(self):
+              self.conn = duckdb.connect(':memory:')
+          
+          def load_dataframe(self, df: pd.DataFrame, table_name: str):
+              self.conn.register(table_name, df)
+          
+          def query_to_dataframe(self, sql: str) -> pd.DataFrame:
+              return self.conn.execute(sql).df()
+          
+          def analyze_sales_data(self, sales_df: pd.DataFrame):
+              self.load_dataframe(sales_df, 'sales')
+              
+              # 複雑な集計クエリ
+              result = self.query_to_dataframe("""
+                  SELECT 
+                      DATE_TRUNC('month', date) as month,
+                      product_category,
+                      SUM(amount) as total_sales,
+                      COUNT(*) as transaction_count,
+                      AVG(amount) as avg_transaction_amount,
+                      STDDEV(amount) as sales_stddev
+                  FROM sales
+                  WHERE date >= '2023-01-01'
+                  GROUP BY DATE_TRUNC('month', date), product_category
+                  ORDER BY month, total_sales DESC
+              """)
+              
+              return result
+      */
+    features:
+      - "高速OLAP処理"
+      - "SQL標準準拠"
+      - "列指向ストレージ"
+      - "並列クエリ実行"
+      - "豊富なデータ形式サポート"
+
+  polars:
+    name: "polars"
+    description: "Rust製高速データフレームライブラリ。Pandasより高速で安全なデータ処理"
+    installation: "pip install polars"
+    usage: |
+      import polars as pl
+      import numpy as np
+      from datetime import datetime, timedelta
+
+      class PolarsDataProcessor:
+          def __init__(self):
+              self.lazy_frames = {}
+          
+          def load_data_sources(self):
+              # CSV読み込み（遅延評価）
+              sales_lazy = pl.scan_csv("sales_data.csv")
+              customers_lazy = pl.scan_csv("customers.csv")
+              products_lazy = pl.scan_csv("products.csv")
+              
+              # Parquet読み込み（より高速）
+              transactions_lazy = pl.scan_parquet("transactions/*.parquet")
+              
+              return {
+                  'sales': sales_lazy,
+                  'customers': customers_lazy,
+                  'products': products_lazy,
+                  'transactions': transactions_lazy
+              }
+          
+          def perform_sales_analysis(self):
+              # 遅延評価でのクエリ構築
+              result = (
+                  pl.scan_csv("sales_data.csv")
+                  .with_columns([
+                      pl.col("date").str.strptime(pl.Date, "%Y-%m-%d"),
+                      pl.col("amount").cast(pl.Float64)
+                  ])
+                  .filter(pl.col("date") >= pl.date(2023, 1, 1))
+                  .with_columns([
+                      pl.col("date").dt.truncate("1mo").alias("month"),
+                      (pl.col("amount") * 1.1).alias("amount_with_tax")
+                  ])
+                  .group_by(["month", "product_category"])
+                  .agg([
+                      pl.col("amount").sum().alias("total_sales"),
+                      pl.col("amount").mean().alias("avg_sales"),
+                      pl.col("amount").std().alias("sales_std"),
+                      pl.col("customer_id").n_unique().alias("unique_customers"),
+                      pl.col("amount").quantile(0.95).alias("sales_95th_percentile")
+                  ])
+                  .sort(["month", "total_sales"], descending=[False, True])
+                  .collect()  # 実際の実行
+              )
+              
+              return result
+          
+          def customer_segmentation(self):
+              # RFM分析（Recency, Frequency, Monetary）
+              today = datetime.now().date()
+              
+              rfm_analysis = (
+                  pl.scan_csv("sales_data.csv")
+                  .with_columns([
+                      pl.col("date").str.strptime(pl.Date, "%Y-%m-%d"),
+                      pl.col("amount").cast(pl.Float64)
+                  ])
+                  .group_by("customer_id")
+                  .agg([
+                      (pl.lit(today) - pl.col("date").max()).dt.days().alias("recency"),
+                      pl.col("date").count().alias("frequency"),
+                      pl.col("amount").sum().alias("monetary")
+                  ])
+                  .with_columns([
+                      pl.col("recency").qcut(5, labels=["5", "4", "3", "2", "1"]).alias("R_score"),
+                      pl.col("frequency").qcut(5, labels=["1", "2", "3", "4", "5"]).alias("F_score"),
+                      pl.col("monetary").qcut(5, labels=["1", "2", "3", "4", "5"]).alias("M_score")
+                  ])
+                  .with_columns([
+                      (pl.col("R_score") + pl.col("F_score") + pl.col("M_score")).alias("RFM_score")
+                  ])
+                  .with_columns([
+                      pl.when(pl.col("RFM_score").is_in(["555", "554", "544", "545", "454", "455", "445"]))
+                      .then(pl.lit("Champions"))
+                      .when(pl.col("RFM_score").is_in(["543", "444", "435", "355", "354", "345", "344", "335"]))
+                      .then(pl.lit("Loyal Customers"))
+                      .when(pl.col("RFM_score").is_in(["512", "511", "422", "421", "412", "411", "311"]))
+                      .then(pl.lit("Potential Loyalists"))
+                      .when(pl.col("RFM_score").is_in(["533", "532", "531", "523", "522", "521", "515", "514", "513", "425", "424", "413", "414", "415", "315", "314", "313"]))
+                      .then(pl.lit("New Customers"))
+                      .when(pl.col("RFM_score").is_in(["155", "154", "144", "214", "215", "115", "114"]))
+                      .then(pl.lit("At Risk"))
+                      .when(pl.col("RFM_score").is_in(["155", "154", "144", "214", "215", "115", "114"]))
+                      .then(pl.lit("Cannot Lose Them"))
+                      .otherwise(pl.lit("Others"))
+                      .alias("customer_segment")
+                  ])
+                  .collect()
+              )
+              
+              return rfm_analysis
+          
+          def time_series_analysis(self):
+              # 時系列データの高度な分析
+              result = (
+                  pl.scan_csv("daily_sales.csv")
+                  .with_columns([
+                      pl.col("date").str.strptime(pl.Date, "%Y-%m-%d"),
+                      pl.col("sales").cast(pl.Float64)
+                  ])
+                  .sort("date")
+                  .with_columns([
+                      # 移動平均
+                      pl.col("sales").rolling_mean(window_size=7).alias("ma_7"),
+                      pl.col("sales").rolling_mean(window_size=30).alias("ma_30"),
+                      
+                      # 前日比
+                      (pl.col("sales") - pl.col("sales").shift(1)).alias("daily_change"),
+                      ((pl.col("sales") - pl.col("sales").shift(1)) / pl.col("sales").shift(1) * 100).alias("daily_change_pct"),
+                      
+                      # 累積合計
+                      pl.col("sales").cumsum().alias("cumulative_sales"),
+                      
+                      # 季節性分析
+                      pl.col("date").dt.month().alias("month"),
+                      pl.col("date").dt.day_of_week().alias("day_of_week"),
+                      
+                      # 異常値検出（Z-score）
+                      ((pl.col("sales") - pl.col("sales").mean()) / pl.col("sales").std()).alias("z_score")
+                  ])
+                  .with_columns([
+                      pl.when(pl.col("z_score").abs() > 2.5)
+                      .then(pl.lit(True))
+                      .otherwise(pl.lit(False))
+                      .alias("is_outlier")
+                  ])
+                  .collect()
+              )
+              
+              return result
+          
+          def cohort_analysis(self):
+              # コホート分析
+              cohort_data = (
+                  pl.scan_csv("sales_data.csv")
+                  .with_columns([
+                      pl.col("date").str.strptime(pl.Date, "%Y-%m-%d"),
+                      pl.col("amount").cast(pl.Float64)
+                  ])
+                  .group_by("customer_id")
+                  .agg([
+                      pl.col("date").min().alias("first_purchase_date"),
+                      pl.col("date").alias("purchase_dates"),
+                      pl.col("amount").alias("amounts")
+                  ])
+                  .with_columns([
+                      pl.col("first_purchase_date").dt.truncate("1mo").alias("cohort_month")
+                  ])
+                  .explode(["purchase_dates", "amounts"])
+                  .with_columns([
+                      pl.col("purchase_dates").dt.truncate("1mo").alias("purchase_month"),
+                      ((pl.col("purchase_dates").dt.year() - pl.col("first_purchase_date").dt.year()) * 12 + 
+                       (pl.col("purchase_dates").dt.month() - pl.col("first_purchase_date").dt.month())).alias("period_number")
+                  ])
+                  .group_by(["cohort_month", "period_number"])
+                  .agg([
+                      pl.col("customer_id").n_unique().alias("customers"),
+                      pl.col("amounts").sum().alias("revenue")
+                  ])
+                  .collect()
+              )
+              
+              return cohort_data
+          
+          def market_basket_analysis(self):
+              # マーケットバスケット分析
+              basket_data = (
+                  pl.scan_csv("transaction_items.csv")
+                  .group_by("transaction_id")
+                  .agg([
+                      pl.col("product_name").alias("products")
+                  ])
+                  .with_columns([
+                      pl.col("products").list.len().alias("basket_size")
+                  ])
+                  .filter(pl.col("basket_size") >= 2)  # 2つ以上の商品を含む取引のみ
+                  .collect()
+              )
+              
+              # 商品の共起回数計算
+              # より複雑な関連ルール分析はapyoriライブラリと組み合わせ
+              
+              return basket_data
+          
+          def performance_comparison(self):
+              # Polarsとpandasの性能比較例
+              import time
+              import pandas as pd
+              
+              # 大きなデータセット作成
+              n_rows = 1_000_000
+              data = {
+                  'id': range(n_rows),
+                  'category': np.random.choice(['A', 'B', 'C', 'D'], n_rows),
+                  'value': np.random.randn(n_rows),
+                  'date': pd.date_range('2020-01-01', periods=n_rows, freq='1H')
+              }
+              
+              # Pandas版
+              start_time = time.time()
+              df_pandas = pd.DataFrame(data)
+              result_pandas = (
+                  df_pandas
+                  .groupby(['category', df_pandas['date'].dt.date])
+                  .agg({'value': ['sum', 'mean', 'std']})
+                  .reset_index()
+              )
+              pandas_time = time.time() - start_time
+              
+              # Polars版
+              start_time = time.time()
+              df_polars = pl.DataFrame(data)
+              result_polars = (
+                  df_polars
+                  .group_by(['category', pl.col('date').dt.date()])
+                  .agg([
+                      pl.col('value').sum().alias('sum'),
+                      pl.col('value').mean().alias('mean'),
+                      pl.col('value').std().alias('std')
+                  ])
+              )
+              polars_time = time.time() - start_time
+              
+              print(f"Pandas time: {pandas_time:.2f} seconds")
+              print(f"Polars time: {polars_time:.2f} seconds")
+              print(f"Speedup: {pandas_time / polars_time:.2f}x")
+              
+              return result_polars
+
+      # Node.js Polars使用例
+      /*
+      import pl from 'nodejs-polars';
+
+      const df = pl.DataFrame({
+        'name': ['Alice', 'Bob', 'Charlie'],
+        'age': [25, 30, 35],
+        'city': ['NY', 'LA', 'Chicago']
+      });
+
+      const result = df
+        .filter(pl.col('age').gt(25))
+        .select(['name', 'city'])
+        .sort('name');
+
+      console.log(result.toString());
+      */
+    features:
+      - "メモリ効率的処理"
+      - "並列計算自動最適化"
+      - "遅延評価（Lazy Evaluation）"
+      - "型安全性"
+      - "SQL風API"
+
+  apache_arrow:
+    name: "apache-arrow"
+    description: "列指向インメモリフォーマット。言語間でのゼロコピーデータ交換"
+    installation: "pip install pyarrow"
+    usage: |
+      import pyarrow as pa
+      import pyarrow.compute as pc
+      import pyarrow.parquet as pq
+      import pyarrow.csv as csv
+      import pyarrow.flight as flight
+      import pandas as pd
+      import numpy as np
+
+      class ArrowDataProcessor:
+          def __init__(self):
+              self.tables = {}
+          
+          def create_arrow_table(self):
+              # Arrow Tableの作成
+              data = {
+                  'id': pa.array([1, 2, 3, 4, 5]),
+                  'name': pa.array(['Alice', 'Bob', 'Charlie', 'David', 'Eve']),
+                  'salary': pa.array([50000.0, 60000.0, 70000.0, 55000.0, 65000.0]),
+                  'department': pa.array(['Engineering', 'Sales', 'Engineering', 'Marketing', 'Engineering']),
+                  'hire_date': pa.array([
+                      '2020-01-15', '2019-03-20', '2021-06-10', 
+                      '2020-11-05', '2022-02-01'
+                  ], type=pa.date32())
+              }
+              
+              table = pa.table(data)
+              return table
+          
+          def efficient_csv_processing(self, file_path: str):
+              # CSV読み込み（Arrowネイティブ）
+              parse_options = csv.ParseOptions(delimiter=',')
+              read_options = csv.ReadOptions(
+                  use_threads=True,
+                  block_size=1024*1024,  # 1MB chunks
+                  autogenerate_column_names=False
+              )
+              convert_options = csv.ConvertOptions(
+                  check_utf8=False,
+                  strings_can_be_null=True,
+                  auto_dict_encode=True
+              )
+              
+              table = csv.read_csv(
+                  file_path,
+                  parse_options=parse_options,
+                  read_options=read_options,
+                  convert_options=convert_options
+              )
+              
+              return table
+          
+          def parquet_operations(self):
+              # Parquet読み書き
+              table = self.create_arrow_table()
+              
+              # Parquet書き込み
+              pq.write_table(table, 'employees.parquet')
+              
+              # Parquet読み込み
+              loaded_table = pq.read_table('employees.parquet')
+              
+              # 列選択読み込み
+              specific_columns = pq.read_table(
+                  'employees.parquet', 
+                  columns=['name', 'salary', 'department']
+              )
+              
+              # フィルタ付き読み込み
+              filtered_table = pq.read_table(
+                  'employees.parquet',
+                  filters=[('salary', '>', 55000)]
+              )
+              
+              return {
+                  'full': loaded_table,
+                  'columns': specific_columns,
+                  'filtered': filtered_table
+              }
+          
+          def compute_operations(self):
+              table = self.create_arrow_table()
+              
+              # 各種計算操作
+              results = {
+                  # 基本統計
+                  'salary_mean': pc.mean(table['salary']),
+                  'salary_sum': pc.sum(table['salary']),
+                  'salary_min': pc.min(table['salary']),
+                  'salary_max': pc.max(table['salary']),
+                  'salary_std': pc.stddev(table['salary']),
+                  
+                  # 条件フィルタ
+                  'high_earners': pc.filter(
+                      table, 
+                      pc.greater(table['salary'], 60000)
+                  ),
+                  
+                  # 文字列操作
+                  'name_upper': pc.ascii_upper(table['name']),
+                  'name_length': pc.string_length(table['name']),
+                  
+                  # 日付計算
+                  'days_since_hire': pc.days_between(
+                      table['hire_date'], 
+                      pa.scalar(pa.date32().wrap(pa.today()))
+                  ),
+                  
+                  # グループ集計
+                  'dept_salary_avg': pc.group_by(
+                      table, 
+                      ['department']
+                  ).aggregate([('salary', 'mean')])
+              }
+              
+              return results
+          
+          def zero_copy_pandas_integration(self):
+              # ArrowとPandasの効率的な変換
+              table = self.create_arrow_table()
+              
+              # Arrow → Pandas（ゼロコピー）
+              df = table.to_pandas(zero_copy_only=True)
+              
+              # Pandas → Arrow
+              table_from_pandas = pa.Table.from_pandas(df, preserve_index=False)
+              
+              # メモリ使用量比較
+              arrow_memory = table.nbytes
+              pandas_memory = df.memory_usage(deep=True).sum()
+              
+              return {
+                  'arrow_table': table,
+                  'pandas_df': df,
+                  'arrow_memory_mb': arrow_memory / 1024 / 1024,
+                  'pandas_memory_mb': pandas_memory / 1024 / 1024
+              }
+          
+          def streaming_processing(self):
+              # ストリーミング処理（大きなファイル用）
+              def process_batch(batch):
+                  # バッチごとの処理
+                  return pc.multiply(batch['salary'], 1.1)  # 10%昇給
+              
+              # バッチ処理
+              batch_reader = pq.ParquetFile('large_dataset.parquet').iter_batches(
+                  batch_size=1000
+              )
+              
+              processed_batches = []
+              for batch in batch_reader:
+                  processed_batch = process_batch(batch)
+                  processed_batches.append(processed_batch)
+              
+              # 結果を結合
+              result = pa.concat_arrays(processed_batches)
+              return result
+          
+          def memory_mapping(self, file_path: str):
+              # メモリマップ読み込み（超大容量ファイル用）
+              memory_map = pa.memory_map(file_path)
+              
+              # メモリマップからテーブル読み込み
+              table = pq.read_table(memory_map)
+              
+              return table
+          
+          def flight_server_example(self):
+              # Arrow Flight（高速データ転送）サーバー例
+              class FlightServer(flight.FlightServerBase):
+                  def __init__(self, location="grpc://0.0.0.0:8080"):
+                      super().__init__(location)
+                      self.flights = {}
+                  
+                  def list_flights(self, context, criteria):
+                      for key, table in self.flights.items():
+                          yield flight.FlightInfo(
+                              schema=table.schema,
+                              descriptor=flight.FlightDescriptor.for_path(key),
+                              endpoints=[
+                                  flight.FlightEndpoint(f"ticket_{key}", [location])
+                              ],
+                              total_records=len(table),
+                              total_bytes=table.nbytes
+                          )
+                  
+                  def do_put(self, context, descriptor, reader, writer):
+                      key = descriptor.path[0].decode()
+                      table = reader.read_all()
+                      self.flights[key] = table
+                  
+                  def do_get(self, context, ticket):
+                      key = ticket.ticket.decode()
+                      if key in self.flights:
+                          return flight.RecordBatchStream(self.flights[key])
+                      else:
+                          raise KeyError(f"Flight {key} not found")
+              
+              # サーバー起動例
+              # server = FlightServer()
+              # server.serve()
+              
+              return FlightServer
+          
+          def schema_evolution(self):
+              # スキーマ進化の処理
+              old_schema = pa.schema([
+                  pa.field('id', pa.int64()),
+                  pa.field('name', pa.string()),
+                  pa.field('salary', pa.float64())
+              ])
+              
+              new_schema = pa.schema([
+                  pa.field('id', pa.int64()),
+                  pa.field('name', pa.string()),
+                  pa.field('salary', pa.float64()),
+                  pa.field('department', pa.string()),  # 新しい列
+                  pa.field('bonus', pa.float64())       # 新しい列
+              ])
+              
+              # スキーマ互換性チェック
+              compatible = old_schema.equals(new_schema, check_metadata=False)
+              
+              # 安全な型変換
+              old_data = pa.table([
+                  [1, 2, 3],
+                  ['Alice', 'Bob', 'Charlie'],
+                  [50000.0, 60000.0, 70000.0]
+              ], schema=old_schema)
+              
+              # 新しいスキーマに適応
+              adapted_data = old_data.select(['id', 'name', 'salary']).add_column(
+                  3, 'department', pa.array(['Unknown'] * len(old_data))
+              ).add_column(
+                  4, 'bonus', pa.array([0.0] * len(old_data))
+              )
+              
+              return {
+                  'old_schema': old_schema,
+                  'new_schema': new_schema,
+                  'compatible': compatible,
+                  'adapted_data': adapted_data
+              }
+
+      // JavaScript Arrow使用例
+      /*
+      import { Table, readParquet, writeParquet } from 'apache-arrow';
+
+      // Parquet読み込み
+      const table = await readParquet('data.parquet');
+
+      // データフィルタリング
+      const filtered = table.filter(
+        row => row.get('salary') > 50000
+      );
+
+      // 集計操作
+      const totalSalary = table
+        .select(['salary'])
+        .scan((acc, batch) => {
+          return acc + batch.getChildAt(0).toArray().reduce((sum, val) => sum + val, 0);
+        }, 0);
+
+      console.log('Total salary:', totalSalary);
+      */
+    features:
+      - "ゼロコピーデータ交換"
+      - "列指向メモリレイアウト"
+      - "言語間互換性"
+      - "SIMD最適化"
+      - "ストリーミング処理"
+
+# === ストリーミングデータ処理 ===
+streaming_data_processing:
+  apache_kafka:
+    name: "apache-kafka"
+    description: "分散ストリーミングプラットフォーム。高スループットなリアルタイムデータ処理"
+    installation: "npm install kafkajs"
+    usage: |
+      import { Kafka, logLevel } from 'kafkajs';
+
+      // Kafka設定
+      export class KafkaDataStreaming {
+        private kafka: Kafka;
+        private producer: any;
+        private consumers: Map<string, any> = new Map();
+
+        constructor(brokers: string[] = ['localhost:9092']) {
+          this.kafka = new Kafka({
+            clientId: 'data-streaming-app',
+            brokers,
+            logLevel: logLevel.INFO,
+            retry: {
+              initialRetryTime: 100,
+              retries: 8
+            }
+          });
+        }
+
+        async initializeProducer() {
+          this.producer = this.kafka.producer({
+            maxInFlightRequests: 1,
+            idempotent: true,
+            transactionTimeout: 30000
+          });
+          
+          await this.producer.connect();
+        }
+
+        // リアルタイムイベント送信
+        async sendEvent(topic: string, event: any) {
+          if (!this.producer) {
+            await this.initializeProducer();
+          }
+
+          const message = {
+            partition: 0,
+            key: event.id || Date.now().toString(),
+            value: JSON.stringify({
+              ...event,
+              timestamp: new Date().toISOString(),
+              source: 'data-streaming-app'
+            }),
+            headers: {
+              'content-type': 'application/json',
+              'event-type': event.type || 'generic'
+            }
+          };
+
+          await this.producer.send({
+            topic,
+            messages: [message]
+          });
+        }
+
+        // バッチイベント送信
+        async sendBatchEvents(topic: string, events: any[]) {
+          const messages = events.map(event => ({
+            partition: this.getPartition(event),
+            key: event.id || Date.now().toString(),
+            value: JSON.stringify({
+              ...event,
+              timestamp: new Date().toISOString(),
+              batchId: this.generateBatchId()
+            })
+          }));
+
+          await this.producer.send({
+            topic,
+            messages
+          });
+        }
+
+        // ストリーミングデータ消費
+        async consumeStream(topic: string, groupId: string, processor: (message: any) => Promise<void>) {
+          const consumer = this.kafka.consumer({
+            groupId,
+            sessionTimeout: 30000,
+            rebalanceTimeout: 60000,
+            heartbeatInterval: 3000,
+            maxWaitTimeInMs: 5000,
+            allowAutoTopicCreation: true
+          });
+
+          await consumer.connect();
+          await consumer.subscribe({ topics: [topic], fromBeginning: false });
+
+          await consumer.run({
+            partitionsConsumedConcurrently: 3,
+            eachMessage: async ({ topic, partition, message }) => {
+              try {
+                const eventData = JSON.parse(message.value?.toString() || '{}');
+                
+                // メッセージ処理
+                await processor({
+                  topic,
+                  partition,
+                  offset: message.offset,
+                  key: message.key?.toString(),
+                  data: eventData,
+                  headers: message.headers,
+                  timestamp: message.timestamp
+                });
+
+                // 手動コミット（正確性重視の場合）
+                // await consumer.commitOffsets([{
+                //   topic,
+                //   partition,
+                //   offset: (parseInt(message.offset!) + 1).toString()
+                // }]);
+
+              } catch (error) {
+                console.error('Message processing error:', error);
+                // エラーハンドリング：Dead Letter Queue送信など
+                await this.sendToDeadLetterQueue(topic, message, error);
+              }
+            }
+          });
+
+          this.consumers.set(`${topic}-${groupId}`, consumer);
+        }
+
+        // リアルタイム分析パイプライン
+        async setupAnalyticsPipeline() {
+          const analyticsProcessor = async (message: any) => {
+            const { data } = message;
+            
+            // リアルタイム集計
+            await this.updateRealTimeMetrics(data);
+            
+            // 異常検知
+            const anomaly = await this.detectAnomaly(data);
+            if (anomaly) {
+              await this.sendEvent('alerts', {
+                type: 'anomaly_detected',
+                originalData: data,
+                anomalyScore: anomaly.score,
+                anomalyType: anomaly.type
+              });
+            }
+            
+            // ストリーミング集計
+            await this.updateStreamingAggregates(data);
+          };
+
+          // 複数ストリームの消費
+          await Promise.all([
+            this.consumeStream('user-events', 'analytics-group', analyticsProcessor),
+            this.consumeStream('transaction-events', 'analytics-group', analyticsProcessor),
+            this.consumeStream('sensor-data', 'analytics-group', analyticsProcessor)
+          ]);
+        }
+
+        // ストリーミング集計
+        private aggregationWindows = new Map();
+
+        async updateStreamingAggregates(data: any) {
+          const windowSize = 60000; // 1分ウィンドウ
+          const windowKey = Math.floor(Date.now() / windowSize) * windowSize;
+          
+          if (!this.aggregationWindows.has(windowKey)) {
+            this.aggregationWindows.set(windowKey, {
+              count: 0,
+              sum: 0,
+              values: [],
+              startTime: windowKey,
+              endTime: windowKey + windowSize
+            });
+          }
+
+          const window = this.aggregationWindows.get(windowKey);
+          window.count++;
+          window.sum += data.value || 0;
+          window.values.push(data.value || 0);
+
+          // ウィンドウ完了チェック
+          if (Date.now() > window.endTime) {
+            const result = {
+              window: windowKey,
+              count: window.count,
+              sum: window.sum,
+              average: window.sum / window.count,
+              min: Math.min(...window.values),
+              max: Math.max(...window.values),
+              std: this.calculateStandardDeviation(window.values)
+            };
+
+            // 集計結果を新しいトピックに送信
+            await this.sendEvent('aggregated-metrics', result);
+            
+            // 古いウィンドウを削除
+            this.aggregationWindows.delete(windowKey);
+          }
+        }
+
+        // 異常検知
+        async detectAnomaly(data: any): Promise<any> {
+          // 簡単なZ-score異常検知
+          const historicalData = await this.getHistoricalData(data.type, 100);
+          const mean = historicalData.reduce((sum, val) => sum + val, 0) / historicalData.length;
+          const std = this.calculateStandardDeviation(historicalData);
+          
+          const zScore = Math.abs((data.value - mean) / std);
+          
+          if (zScore > 3) {
+            return {
+              score: zScore,
+              type: 'statistical_outlier',
+              threshold: 3
+            };
+          }
+
+          return null;
+        }
+
+        // Kafka Streams風のストリーム処理
+        async createStreamProcessingTopology() {
+          // 入力ストリーム
+          const userEventsStream = this.createStream('user-events');
+          const transactionStream = this.createStream('transaction-events');
+
+          // ストリーム変換
+          const enrichedUserEvents = userEventsStream
+            .filter((event: any) => event.type === 'click')
+            .map((event: any) => ({
+              ...event,
+              enriched: true,
+              processedAt: new Date().toISOString()
+            }));
+
+          // ストリームジョイン
+          const joinedStream = this.joinStreams(
+            enrichedUserEvents,
+            transactionStream,
+            'userId',
+            30000 // 30秒ウィンドウ
+          );
+
+          // 出力
+          await this.writeStreamToTopic(joinedStream, 'enriched-events');
+        }
+
+        private createStream(topic: string) {
+          // 簡略化されたストリーム抽象化
+          return {
+            filter: (predicate: (event: any) => boolean) => ({
+              map: (transformer: (event: any) => any) => transformer
+            }),
+            map: (transformer: (event: any) => any) => transformer
+          };
+        }
+
+        private joinStreams(stream1: any, stream2: any, joinKey: string, windowMs: number) {
+          // ストリームジョインの簡略実装
+          return {};
+        }
+
+        private async writeStreamToTopic(stream: any, topic: string) {
+          // ストリーム結果をトピックに書き込み
+        }
+
+        // ユーティリティメソッド
+        private getPartition(event: any): number {
+          // パーティション戦略
+          return event.userId ? 
+            Math.abs(this.hashCode(event.userId)) % 3 : 0;
+        }
+
+        private hashCode(str: string): number {
+          let hash = 0;
+          for (let i = 0; i < str.length; i++) {
+            const char = str.charCodeAt(i);
+            hash = ((hash << 5) - hash) + char;
+            hash = hash & hash;
+          }
+          return hash;
+        }
+
+        private generateBatchId(): string {
+          return `batch_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+        }
+
+        private calculateStandardDeviation(values: number[]): number {
+          const mean = values.reduce((sum, val) => sum + val, 0) / values.length;
+          const squaredDiffs = values.map(val => Math.pow(val - mean, 2));
+          const avgSquaredDiff = squaredDiffs.reduce((sum, val) => sum + val, 0) / squaredDiffs.length;
+          return Math.sqrt(avgSquaredDiff);
+        }
+
+        private async getHistoricalData(type: string, count: number): Promise<number[]> {
+          // 実装：履歴データ取得
+          return Array.from({length: count}, () => Math.random() * 100);
+        }
+
+        private async updateRealTimeMetrics(data: any) {
+          // 実装：リアルタイムメトリクス更新
+        }
+
+        private async sendToDeadLetterQueue(topic: string, message: any, error: any) {
+          // 実装：エラーメッセージをDLQに送信
+        }
+
+        async cleanup() {
+          if (this.producer) {
+            await this.producer.disconnect();
+          }
+          
+          for (const consumer of this.consumers.values()) {
+            await consumer.disconnect();
+          }
+        }
+      }
+
+      // 使用例
+      const kafkaStreaming = new KafkaDataStreaming();
+
+      // イベント送信
+      await kafkaStreaming.sendEvent('user-events', {
+        id: 'user123',
+        type: 'page_view',
+        page: '/dashboard',
+        userId: 'user123',
+        sessionId: 'session456'
+      });
+
+      // ストリーミング処理開始
+      await kafkaStreaming.setupAnalyticsPipeline();
+    features:
+      - "高スループット配信"
+      - "分散処理"
+      - "耐障害性"
+      - "リアルタイムストリーミング"
+      - "スケーラブルアーキテクチャ"
+
+# === データ可視化 ===
+data_visualization:
+  d3js:
+    name: "d3.js"
+    description: "データドリブンな可視化ライブラリ。カスタム可視化の最強ツール"
+    installation: "npm install d3"
+    usage: |
+      import * as d3 from 'd3';
+
+      export class D3Visualizations {
+        private svg: d3.Selection<SVGSVGElement, unknown, HTMLElement, any>;
+        private width: number;
+        private height: number;
+        private margin = { top: 20, right: 30, bottom: 40, left: 40 };
+
+        constructor(container: string, width = 800, height = 600) {
+          this.width = width - this.margin.left - this.margin.right;
+          this.height = height - this.margin.top - this.margin.bottom;
+
+          this.svg = d3.select(container)
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height)
+            .append('g')
+            .attr('transform', `translate(${this.margin.left},${this.margin.top})`);
+        }
+
+        // インタラクティブな散布図
+        createScatterPlot(data: Array<{x: number, y: number, category: string, size: number}>) {
+          // スケール設定
+          const xScale = d3.scaleLinear()
+            .domain(d3.extent(data, d => d.x) as [number, number])
+            .range([0, this.width]);
+
+          const yScale = d3.scaleLinear()
+            .domain(d3.extent(data, d => d.y) as [number, number])
+            .range([this.height, 0]);
+
+          const colorScale = d3.scaleOrdinal(d3.schemeCategory10)
+            .domain([...new Set(data.map(d => d.category))]);
+
+          const sizeScale = d3.scaleSqrt()
+            .domain(d3.extent(data, d => d.size) as [number, number])
+            .range([3, 20]);
+
+          // 軸の作成
+          this.svg.append('g')
+            .attr('transform', `translate(0,${this.height})`)
+            .call(d3.axisBottom(xScale));
+
+          this.svg.append('g')
+            .call(d3.axisLeft(yScale));
+
+          // ツールチップ
+          const tooltip = d3.select('body').append('div')
+            .attr('class', 'tooltip')
+            .style('opacity', 0)
+            .style('position', 'absolute')
+            .style('background', 'rgba(0, 0, 0, 0.8)')
+            .style('color', 'white')
+            .style('padding', '8px')
+            .style('border-radius', '4px');
+
+          // データポイント
+          this.svg.selectAll('.dot')
+            .data(data)
+            .enter().append('circle')
+            .attr('class', 'dot')
+            .attr('cx', d => xScale(d.x))
+            .attr('cy', d => yScale(d.y))
+            .attr('r', d => sizeScale(d.size))
+            .style('fill', d => colorScale(d.category))
+            .style('opacity', 0.7)
+            .on('mouseover', function(event, d) {
+              d3.select(this)
+                .transition()
+                .duration(100)
+                .attr('r', sizeScale(d.size) * 1.5)
+                .style('opacity', 1);
+
+              tooltip.transition()
+                .duration(200)
+                .style('opacity', .9);
+              
+              tooltip.html(`
+                Category: ${d.category}<br/>
+                X: ${d.x}<br/>
+                Y: ${d.y}<br/>
+                Size: ${d.size}
+              `)
+                .style('left', (event.pageX + 10) + 'px')
+                .style('top', (event.pageY - 28) + 'px');
+            })
+            .on('mouseout', function(event, d) {
+              d3.select(this)
+                .transition()
+                .duration(100)
+                .attr('r', sizeScale(d.size))
+                .style('opacity', 0.7);
+
+              tooltip.transition()
+                .duration(500)
+                .style('opacity', 0);
+            });
+
+          // 凡例
+          const legend = this.svg.selectAll('.legend')
+            .data(colorScale.domain())
+            .enter().append('g')
+            .attr('class', 'legend')
+            .attr('transform', (d, i) => `translate(0,${i * 20})`);
+
+          legend.append('rect')
+            .attr('x', this.width - 18)
+            .attr('width', 18)
+            .attr('height', 18)
+            .style('fill', colorScale);
+
+          legend.append('text')
+            .attr('x', this.width - 24)
+            .attr('y', 9)
+            .attr('dy', '.35em')
+            .style('text-anchor', 'end')
+            .text(d => d);
+        }
+
+        // アニメーション付き棒グラフ
+        createAnimatedBarChart(data: Array<{category: string, value: number}>) {
+          const xScale = d3.scaleBand()
+            .domain(data.map(d => d.category))
+            .range([0, this.width])
+            .padding(0.1);
+
+          const yScale = d3.scaleLinear()
+            .domain([0, d3.max(data, d => d.value) as number])
+            .range([this.height, 0]);
+
+          // 軸
+          this.svg.append('g')
+            .attr('transform', `translate(0,${this.height})`)
+            .call(d3.axisBottom(xScale));
+
+          this.svg.append('g')
+            .call(d3.axisLeft(yScale));
+
+          // 棒グラフ
+          const bars = this.svg.selectAll('.bar')
+            .data(data)
+            .enter().append('rect')
+            .attr('class', 'bar')
+            .attr('x', d => xScale(d.category)!)
+            .attr('width', xScale.bandwidth())
+            .attr('y', this.height)
+            .attr('height', 0)
+            .style('fill', 'steelblue');
+
+          // アニメーション
+          bars.transition()
+            .duration(1000)
+            .delay((d, i) => i * 100)
+            .attr('y', d => yScale(d.value))
+            .attr('height', d => this.height - yScale(d.value));
+
+          // 値ラベル
+          this.svg.selectAll('.label')
+            .data(data)
+            .enter().append('text')
+            .attr('class', 'label')
+            .attr('x', d => xScale(d.category)! + xScale.bandwidth() / 2)
+            .attr('y', this.height)
+            .attr('text-anchor', 'middle')
+            .style('opacity', 0)
+            .text(d => d.value)
+            .transition()
+            .duration(1000)
+            .delay((d, i) => i * 100 + 500)
+            .attr('y', d => yScale(d.value) - 5)
+            .style('opacity', 1);
+        }
+
+        // 階層データの円形パッキング
+        createCirclePacking(data: any) {
+          const hierarchy = d3.hierarchy(data)
+            .sum(d => d.value)
+            .sort((a, b) => (b.value || 0) - (a.value || 0));
+
+          const pack = d3.pack()
+            .size([this.width, this.height])
+            .padding(3);
+
+          const root = pack(hierarchy);
+
+          const colorScale = d3.scaleSequential(d3.interpolateBlues)
+            .domain([0, root.height]);
+
+          const node = this.svg.selectAll('.node')
+            .data(root.descendants())
+            .enter().append('g')
+            .attr('class', 'node')
+            .attr('transform', d => `translate(${d.x},${d.y})`);
+
+          node.append('circle')
+            .attr('r', d => d.r)
+            .style('fill', d => colorScale(d.depth))
+            .style('stroke', '#fff')
+            .style('stroke-width', 2);
+
+          node.filter(d => !d.children)
+            .append('text')
+            .attr('dy', '0.3em')
+            .style('text-anchor', 'middle')
+            .style('font-size', d => Math.min(d.r / 3, 12) + 'px')
+            .text(d => d.data.name);
+        }
+
+        // リアルタイム更新可能な線グラフ
+        createRealTimeLineChart() {
+          const data: Array<{time: Date, value: number}> = [];
+          const maxDataPoints = 50;
+
+          const xScale = d3.scaleTime()
+            .range([0, this.width]);
+
+          const yScale = d3.scaleLinear()
+            .range([this.height, 0]);
+
+          const line = d3.line<{time: Date, value: number}>()
+            .x(d => xScale(d.time))
+            .y(d => yScale(d.value))
+            .curve(d3.curveMonotoneX);
+
+          const path = this.svg.append('path')
+            .attr('class', 'line')
+            .style('fill', 'none')
+            .style('stroke', 'steelblue')
+            .style('stroke-width', 2);
+
+          // 軸
+          const xAxis = this.svg.append('g')
+            .attr('class', 'x-axis')
+            .attr('transform', `translate(0,${this.height})`);
+
+          const yAxis = this.svg.append('g')
+            .attr('class', 'y-axis');
+
+          // データ更新関数
+          const updateChart = () => {
+            // 新しいデータポイント追加
+            data.push({
+              time: new Date(),
+              value: Math.random() * 100
+            });
+
+            // 古いデータを削除
+            if (data.length > maxDataPoints) {
+              data.shift();
+            }
+
+            // スケール更新
+            xScale.domain(d3.extent(data, d => d.time) as [Date, Date]);
+            yScale.domain(d3.extent(data, d => d.value) as [number, number]);
+
+            // 線グラフ更新
+            path.datum(data)
+              .transition()
+              .duration(500)
+              .attr('d', line);
+
+            // 軸更新
+            xAxis.transition()
+              .duration(500)
+              .call(d3.axisBottom(xScale).tickFormat(d3.timeFormat('%H:%M:%S')));
+
+            yAxis.transition()
+              .duration(500)
+              .call(d3.axisLeft(yScale));
+          };
+
+          // 定期更新開始
+          const interval = setInterval(updateChart, 1000);
+
+          return {
+            stop: () => clearInterval(interval),
+            addDataPoint: (value: number) => {
+              data.push({ time: new Date(), value });
+              updateChart();
+            }
+          };
+        }
+
+        // 地理データの可視化
+        createGeoVisualization(geoData: any, dataValues: Map<string, number>) {
+          const projection = d3.geoMercator()
+            .scale(200)
+            .center([0, 20])
+            .translate([this.width / 2, this.height / 2]);
+
+          const path = d3.geoPath().projection(projection);
+
+          const colorScale = d3.scaleSequential(d3.interpolateBlues)
+            .domain(d3.extent(Array.from(dataValues.values())) as [number, number]);
+
+          this.svg.selectAll('.country')
+            .data(geoData.features)
+            .enter().append('path')
+            .attr('class', 'country')
+            .attr('d', path)
+            .style('fill', d => {
+              const value = dataValues.get(d.properties.ISO_A3);
+              return value ? colorScale(value) : '#ccc';
+            })
+            .style('stroke', '#fff')
+            .style('stroke-width', 0.5)
+            .on('mouseover', function(event, d) {
+              const value = dataValues.get(d.properties.ISO_A3);
+              
+              d3.select(this)
+                .style('stroke', '#000')
+                .style('stroke-width', 2);
+
+              // ツールチップ表示
+              console.log(`${d.properties.NAME}: ${value || 'No data'}`);
+            })
+            .on('mouseout', function() {
+              d3.select(this)
+                .style('stroke', '#fff')
+                .style('stroke-width', 0.5);
+            });
+        }
+
+        clear() {
+          this.svg.selectAll('*').remove();
+        }
+      }
+
+      // 使用例
+      const viz = new D3Visualizations('#chart-container');
+
+      // 散布図データ
+      const scatterData = Array.from({length: 100}, () => ({
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        category: ['A', 'B', 'C'][Math.floor(Math.random() * 3)],
+        size: Math.random() * 50 + 10
+      }));
+
+      viz.createScatterPlot(scatterData);
+    features:
+      - "高度にカスタマイズ可能"
+      - "SVGベースの描画"
+      - "豊富なアニメーション"
+      - "データバインディング"
+      - "地理空間データ対応"
+
+  observable_plot:
+    name: "observable-plot"
+    description: "Observable製の文法ベース可視化ライブラリ。簡潔な記述で美しい図表"
+    installation: "npm install @observablehq/plot"
+    usage: |
+      import * as Plot from "@observablehq/plot";
+
+      export class ObservablePlotCharts {
+        
+        // 基本的な散布図
+        createScatterPlot(data: any[], container: string) {
+          const plot = Plot.plot({
+            title: "Sales Performance Analysis",
+            subtitle: "Revenue vs. Customer Count by Region",
+            width: 800,
+            height: 600,
+            grid: true,
+            color: { legend: true },
+            marks: [
+              Plot.dot(data, {
+                x: "revenue",
+                y: "customers",
+                fill: "region",
+                r: "profit_margin",
+                title: d => `${d.company}: $${d.revenue}K revenue, ${d.customers} customers`
+              }),
+              Plot.text(data, {
+                x: "revenue",
+                y: "customers",
+                text: "company",
+                dy: -10,
+                fontSize: 10,
+                fill: "black",
+                filter: d => d.revenue > 1000 // 大企業のみラベル表示
+              })
+            ]
+          });
+          
+          document.querySelector(container)?.appendChild(plot);
+          return plot;
+        }
+
+        // 複数系列の線グラフ
+        createMultiLineChart(data: any[], container: string) {
+          const plot = Plot.plot({
+            title: "Stock Price Trends",
+            width: 900,
+            height: 400,
+            x: { type: "time", label: "Date" },
+            y: { label: "Price ($)", grid: true },
+            color: { legend: true },
+            marks: [
+              // トレンドライン
+              Plot.line(data, {
+                x: "date",
+                y: "price",
+                stroke: "symbol",
+                strokeWidth: 2,
+                curve: "catmull-rom"
+              }),
+              // データポイント
+              Plot.dot(data, {
+                x: "date",
+                y: "price",
+                fill: "symbol",
+                r: 3,
+                opacity: 0.7
+              }),
+              // 移動平均
+              Plot.line(data, {
+                x: "date",
+                y: "moving_average",
+                stroke: "symbol",
+                strokeDasharray: "5,5",
+                opacity: 0.8
+              }),
+              // 価格レンジ
+              Plot.areaY(data, {
+                x: "date",
+                y1: "price_low",
+                y2: "price_high",
+                fill: "symbol",
+                opacity: 0.1
+              })
+            ]
+          });
+          
+          document.querySelector(container)?.appendChild(plot);
+          return plot;
+        }
+
+        // ヒートマップ
+        createHeatmap(data: any[], container: string) {
+          const plot = Plot.plot({
+            title: "Sales Heatmap by Day and Hour",
+            width: 800,
+            height: 400,
+            padding: 0.1,
+            x: { label: "Hour of Day" },
+            y: { label: "Day of Week" },
+            color: {
+              type: "sequential",
+              scheme: "Blues",
+              label: "Sales Volume",
+              legend: true
+            },
+            marks: [
+              Plot.cell(data, {
+                x: "hour",
+                y: "day_of_week",
+                fill: "sales_volume",
+                title: d => `${d.day_of_week} ${d.hour}:00 - ${d.sales_volume} sales`
+              }),
+              Plot.text(data, {
+                x: "hour",
+                y: "day_of_week",
+                text: "sales_volume",
+                fill: "white",
+                fontSize: 10
+              })
+            ]
+          });
+          
+          document.querySelector(container)?.appendChild(plot);
+          return plot;
+        }
+
+        // 箱ひげ図
+        createBoxPlot(data: any[], container: string) {
+          const plot = Plot.plot({
+            title: "Response Time Distribution by Service",
+            width: 600,
+            height: 400,
+            x: { label: "Service" },
+            y: { label: "Response Time (ms)", grid: true },
+            marks: [
+              // 箱ひげ図
+              Plot.boxY(data, {
+                x: "service",
+                y: "response_time",
+                fill: "service",
+                opacity: 0.7
+              }),
+              // 外れ値
+              Plot.dot(data, {
+                x: "service",
+                y: "response_time",
+                fill: "red",
+                r: 2,
+                filter: d => d.is_outlier
+              })
+            ]
+          });
+          
+          document.querySelector(container)?.appendChild(plot);
+          return plot;
+        }
+
+        // 階層データの Tree Map
+        createTreeMap(data: any[], container: string) {
+          const plot = Plot.plot({
+            title: "Market Share by Product Category",
+            width: 800,
+            height: 600,
+            color: { 
+              legend: true,
+              scheme: "Spectral"
+            },
+            marks: [
+              Plot.tree(data, {
+                path: "category",
+                value: "market_share",
+                fill: "growth_rate",
+                title: d => `${d.category}: ${d.market_share}% share, ${d.growth_rate}% growth`
+              })
+            ]
+          });
+          
+          document.querySelector(container)?.appendChild(plot);
+          return plot;
+        }
+
+        // インタラクティブなダッシュボード
+        createDashboard(salesData: any[], container: string) {
+          const dashboard = document.createElement('div');
+          dashboard.style.display = 'grid';
+          dashboard.style.gridTemplateColumns = '1fr 1fr';
+          dashboard.style.gap = '20px';
+          dashboard.style.padding = '20px';
+
+          // 売上トレンド
+          const salesTrend = Plot.plot({
+            title: "Monthly Sales Trend",
+            width: 400,
+            height: 300,
+            marks: [
+              Plot.lineY(salesData, {
+                x: "month",
+                y: "total_sales",
+                stroke: "steelblue",
+                strokeWidth: 3,
+                curve: "catmull-rom"
+              }),
+              Plot.areaY(salesData, {
+                x: "month",
+                y: "total_sales",
+                fill: "steelblue",
+                opacity: 0.2
+              })
+            ]
+          });
+
+          // 製品別売上
+          const productSales = Plot.plot({
+            title: "Sales by Product",
+            width: 400,
+            height: 300,
+            marks: [
+              Plot.barY(salesData, {
+                x: "product",
+                y: "sales",
+                fill: "product",
+                sort: { x: "y", reverse: true }
+              })
+            ]
+          });
+
+          // 地域別分析
+          const regionAnalysis = Plot.plot({
+            title: "Regional Performance",
+            width: 400,
+            height: 300,
+            marks: [
+              Plot.dot(salesData, {
+                x: "customers",
+                y: "revenue",
+                r: "growth_rate",
+                fill: "region",
+                title: d => `${d.region}: ${d.revenue}K revenue`
+              })
+            ]
+          });
+
+          // KPI サマリー
+          const kpiSummary = Plot.plot({
+            title: "Key Performance Indicators",
+            width: 400,
+            height: 300,
+            marks: [
+              Plot.barX(salesData, {
+                y: "kpi_name",
+                x: "kpi_value",
+                fill: d => d.kpi_value > d.target ? "green" : "red"
+              }),
+              Plot.text(salesData, {
+                y: "kpi_name",
+                x: "kpi_value",
+                text: d => `${d.kpi_value}${d.unit}`,
+                dx: 10
+              })
+            ]
+          });
+
+          dashboard.appendChild(salesTrend);
+          dashboard.appendChild(productSales);
+          dashboard.appendChild(regionAnalysis);
+          dashboard.appendChild(kpiSummary);
+
+          document.querySelector(container)?.appendChild(dashboard);
+          return dashboard;
+        }
+
+        // リアルタイム更新チャート
+        createRealTimeChart(container: string) {
+          let data: Array<{time: Date, value: number}> = [];
+          const maxPoints = 50;
+
+          const createChart = () => {
+            const plot = Plot.plot({
+              title: "Real-time Data Stream",
+              width: 800,
+              height: 300,
+              x: { type: "time", label: "Time" },
+              y: { label: "Value", grid: true },
+              marks: [
+                Plot.lineY(data, {
+                  x: "time",
+                  y: "value",
+                  stroke: "blue",
+                  strokeWidth: 2
+                }),
+                Plot.dot(data.slice(-5), { // 最新5ポイントをハイライト
+                  x: "time",
+                  y: "value",
+                  fill: "red",
+                  r: 4
+                })
+              ]
+            });
+            
+            const container_el = document.querySelector(container);
+            if (container_el) {
+              container_el.innerHTML = '';
+              container_el.appendChild(plot);
+            }
+          };
+
+          const addDataPoint = (value?: number) => {
+            data.push({
+              time: new Date(),
+              value: value ?? Math.random() * 100
+            });
+
+            if (data.length > maxPoints) {
+              data.shift();
+            }
+
+            createChart();
+          };
+
+          // 自動更新開始
+          const interval = setInterval(() => addDataPoint(), 1000);
+
+          return {
+            addDataPoint,
+            stop: () => clearInterval(interval),
+            clear: () => {
+              data = [];
+              createChart();
+            }
+          };
+        }
+
+        // 多次元データの可視化
+        createMultiDimensionalPlot(data: any[], container: string) {
+          const plot = Plot.plot({
+            title: "Multi-dimensional Business Analysis",
+            width: 900,
+            height: 600,
+            grid: true,
+            color: { legend: true },
+            r: { legend: true },
+            facet: {
+              data: data,
+              x: "quarter",
+              label: "Quarterly Analysis"
+            },
+            marks: [
+              Plot.dot(data, {
+                x: "marketing_spend",
+                y: "revenue",
+                r: "team_size",
+                fill: "department",
+                stroke: "black",
+                strokeWidth: 0.5,
+                title: d => `
+                  ${d.department} Q${d.quarter}
+                  Revenue: $${d.revenue}K
+                  Marketing: $${d.marketing_spend}K
+                  Team: ${d.team_size} people
+                  ROI: ${((d.revenue - d.marketing_spend) / d.marketing_spend * 100).toFixed(1)}%
+                `
+              }),
+              Plot.text(data, {
+                x: "marketing_spend",
+                y: "revenue",
+                text: "department_code",
+                dy: -15,
+                fontSize: 8
+              })
+            ]
+          });
+          
+          document.querySelector(container)?.appendChild(plot);
+          return plot;
+        }
+      }
+
+      // 使用例
+      const charts = new ObservablePlotCharts();
+
+      // サンプルデータ
+      const businessData = [
+        { region: "North", revenue: 1200, customers: 150, profit_margin: 0.25, company: "TechCorp" },
+        { region: "South", revenue: 800, customers: 120, profit_margin: 0.18, company: "DataInc" },
+        { region: "East", revenue: 1500, customers: 200, profit_margin: 0.30, company: "CloudTech" },
+        // ... more data
+      ];
+
+      charts.createScatterPlot(businessData, '#business-chart');
+    features:
+      - "文法ベースの簡潔な記述"
+      - "自動レイアウト最適化"
+      - "豊富なマーク種類"
+      - "レスポンシブデザイン"
+      - "Observable統合"
+
+# === データ変換・ETL ===
+data_transformation:
+  apache_airflow:
+    name: "apache-airflow"
+    description: "ワークフロー管理プラットフォーム。複雑なデータパイプラインの構築・監視"
+    installation: "pip install apache-airflow"
+    usage: |
+      from airflow import DAG
+      from airflow.operators.python import PythonOperator
+      from airflow.operators.bash import BashOperator
+      from airflow.providers.postgres.operators.postgres import PostgresOperator
+      from airflow.providers.http.sensors.http import HttpSensor
+      from datetime import datetime, timedelta
+      import pandas as pd
+      import requests
+
+      # DAG設定
+      default_args = {
+          'owner': 'data-team',
+          'depends_on_past': False,
+          'start_date': datetime(2023, 1, 1),
+          'email_on_failure': True,
+          'email_on_retry': False,
+          'retries': 3,
+          'retry_delay': timedelta(minutes=5),
+          'catchup': False
+      }
+
+      # メインDAG定義
+      dag = DAG(
+          'daily_sales_analytics_pipeline',
+          default_args=default_args,
+          description='Daily sales data processing and analytics',
+          schedule_interval='@daily',
+          max_active_runs=1,
+          tags=['sales', 'analytics', 'daily']
+      )
+
+      # データ抽出関数
+      def extract_sales_data(**context):
+          """外部APIからの売上データ抽出"""
+          execution_date = context['execution_date']
+          date_str = execution_date.strftime('%Y-%m-%d')
+          
+          # API呼び出し
+          api_url = f"https://api.example.com/sales?date={date_str}"
+          headers = {'Authorization': 'Bearer your_token'}
+          
+          response = requests.get(api_url, headers=headers)
+          response.raise_for_status()
+          
+          # データをS3に保存
+          data = response.json()
+          file_path = f"/tmp/raw_sales_{date_str}.json"
+          
+          with open(file_path, 'w') as f:
+              json.dump(data, f)
+          
+          # S3アップロード（実装省略）
+          # upload_to_s3(file_path, f"raw-data/sales/{date_str}/data.json")
+          
+          return file_path
+
+      def transform_sales_data(**context):
+          """データ変換・クリーニング"""
+          ti = context['task_instance']
+          file_path = ti.xcom_pull(task_ids='extract_sales_data')
+          
+          # データ読み込み
+          with open(file_path, 'r') as f:
+              raw_data = json.load(f)
+          
+          # DataFrame変換
+          df = pd.DataFrame(raw_data)
+          
+          # データクリーニング
+          df = df.dropna(subset=['customer_id', 'amount'])
+          df['amount'] = pd.to_numeric(df['amount'], errors='coerce')
+          df['transaction_date'] = pd.to_datetime(df['transaction_date'])
+          
+          # 異常値除去
+          Q1 = df['amount'].quantile(0.25)
+          Q3 = df['amount'].quantile(0.75)
+          IQR = Q3 - Q1
+          lower_bound = Q1 - 1.5 * IQR
+          upper_bound = Q3 + 1.5 * IQR
+          df = df[(df['amount'] >= lower_bound) & (df['amount'] <= upper_bound)]
+          
+          # 集計データ作成
+          daily_summary = df.groupby('product_category').agg({
+              'amount': ['sum', 'mean', 'count'],
+              'customer_id': 'nunique'
+          }).round(2)
+          
+          # 保存
+          execution_date = context['execution_date']
+          date_str = execution_date.strftime('%Y-%m-%d')
+          output_path = f"/tmp/processed_sales_{date_str}.csv"
+          daily_summary.to_csv(output_path)
+          
+          return output_path
+
+      def load_to_warehouse(**context):
+          """データウェアハウスへの読み込み"""
+          ti = context['task_instance']
+          file_path = ti.xcom_pull(task_ids='transform_sales_data')
+          
+          # データベース接続（実装省略）
+          # connection = get_warehouse_connection()
+          
+          df = pd.read_csv(file_path)
+          
+          # データベースに挿入
+          # df.to_sql('daily_sales_summary', connection, if_exists='append', index=False)
+          
+          return f"Loaded {len(df)} records to warehouse"
+
+      def send_analytics_report(**context):
+          """分析レポート送信"""
+          execution_date = context['execution_date']
+          date_str = execution_date.strftime('%Y-%m-%d')
+          
+          # レポート生成（実装省略）
+          report_data = generate_daily_report(date_str)
+          
+          # Slack通知
+          # send_slack_notification(f"Daily sales report for {date_str} completed")
+          
+          return "Report sent successfully"
+
+      # タスク定義
+      check_api_availability = HttpSensor(
+          task_id='check_api_availability',
+          http_conn_id='sales_api',
+          endpoint='health',
+          timeout=60,
+          poke_interval=30,
+          dag=dag
+      )
+
+      extract_task = PythonOperator(
+          task_id='extract_sales_data',
+          python_callable=extract_sales_data,
+          dag=dag
+      )
+
+      transform_task = PythonOperator(
+          task_id='transform_sales_data',
+          python_callable=transform_sales_data,
+          dag=dag
+      )
+
+      data_quality_check = BashOperator(
+          task_id='data_quality_check',
+          bash_command="""
+          python /opt/airflow/scripts/data_quality_check.py \
+          --file {{ ti.xcom_pull(task_ids='transform_sales_data') }} \
+          --date {{ ds }}
+          """,
+          dag=dag
+      )
+
+      load_task = PythonOperator(
+          task_id='load_to_warehouse',
+          python_callable=load_to_warehouse,
+          dag=dag
+      )
+
+      create_analytics_tables = PostgresOperator(
+          task_id='create_analytics_tables',
+          postgres_conn_id='analytics_db',
+          sql="""
+          CREATE TABLE IF NOT EXISTS daily_metrics AS
+          SELECT 
+              DATE('{{ ds }}') as report_date,
+              product_category,
+              total_sales,
+              avg_transaction,
+              transaction_count,
+              unique_customers
+          FROM daily_sales_summary
+          WHERE report_date = '{{ ds }}';
+          """,
+          dag=dag
+      )
+
+      send_report_task = PythonOperator(
+          task_id='send_analytics_report',
+          python_callable=send_analytics_report,
+          dag=dag
+      )
+
+      # 依存関係定義
+      check_api_availability >> extract_task >> transform_task >> data_quality_check
+      data_quality_check >> load_task >> create_analytics_tables >> send_report_task
+
+      # 分岐ワークフロー例
+      from airflow.operators.dummy import DummyOperator
+      from airflow.utils.trigger_rule import TriggerRule
+
+      # 条件分岐タスク
+      def check_data_volume(**context):
+          ti = context['task_instance']
+          file_path = ti.xcom_pull(task_ids='transform_sales_data')
+          
+          df = pd.read_csv(file_path)
+          return 'high_volume' if len(df) > 1000 else 'low_volume'
+
+      branch_task = PythonOperator(
+          task_id='check_data_volume',
+          python_callable=check_data_volume,
+          dag=dag
+      )
+
+      high_volume_processing = PythonOperator(
+          task_id='high_volume',
+          python_callable=lambda: print("Processing high volume data"),
+          dag=dag
+      )
+
+      low_volume_processing = PythonOperator(
+          task_id='low_volume',
+          python_callable=lambda: print("Processing low volume data"),
+          dag=dag
+      )
+
+      join_task = DummyOperator(
+          task_id='join_branches',
+          trigger_rule=TriggerRule.NONE_FAILED_MIN_ONE_SUCCESS,
+          dag=dag
+      )
+
+      # 分岐の依存関係
+      data_quality_check >> branch_task
+      branch_task >> [high_volume_processing, low_volume_processing]
+      [high_volume_processing, low_volume_processing] >> join_task
+      join_task >> load_task
+    features:
+      - "視覚的ワークフロー設計"
+      - "豊富なオペレーター"
+      - "スケジュール管理"
+      - "エラーハンドリング"
+      - "分散実行対応"
+
+# === 統合分析プラットフォーム ===
+integrated_analytics_platforms:
+  jupyter_lab:
+    name: "jupyter-lab"
+    description: "インタラクティブな分析環境。データサイエンスの統合開発環境"
+    installation: "pip install jupyterlab"
+    usage: |
+      # Jupyter Lab設定例
+      # jupyter_lab_config.py
+
+      c = get_config()
+
+      # サーバー設定
+      c.ServerApp.ip = '0.0.0.0'
+      c.ServerApp.port = 8888
+      c.ServerApp.open_browser = False
+      c.ServerApp.root_dir = '/workspace'
+
+      # セキュリティ設定
+      c.ServerApp.token = 'your-secure-token'
+      c.ServerApp.password = 'sha256:your-hashed-password'
+
+      # 拡張機能設定
+      c.ServerApp.jpserver_extensions = {
+          'jupyterlab': True,
+          'jupyter_server_proxy': True,
+          'jupyterlab_git': True
+      }
+
+      # Pythonでの分析例
+      """
+      # データ分析ノートブック例
+
+      import pandas as pd
+      import numpy as np
+      import matplotlib.pyplot as plt
+      import seaborn as sns
+      import plotly.express as px
+      import plotly.graph_objects as go
+      from sklearn.model_selection import train_test_split
+      from sklearn.ensemble import RandomForestRegressor
+      from sklearn.metrics import mean_squared_error, r2_score
+      import warnings
+      warnings.filterwarnings('ignore')
+
+      # データ読み込み
+      df = pd.read_csv('sales_data.csv')
+      display(df.head())
+
+      # 基本統計
+      print("データ形状:", df.shape)
+      display(df.describe())
+
+      # 欠損値チェック
+      missing_data = df.isnull().sum()
+      print("欠損値:")
+      display(missing_data[missing_data > 0])
+
+      # データ可視化
+      fig, axes = plt.subplots(2, 2, figsize=(15, 10))
+
+      # 売上分布
+      axes[0,0].hist(df['sales'], bins=50, alpha=0.7)
+      axes[0,0].set_title('Sales Distribution')
+      axes[0,0].set_xlabel('Sales Amount')
+
+      # 地域別売上
+      region_sales = df.groupby('region')['sales'].sum().sort_values(ascending=False)
+      axes[0,1].bar(region_sales.index, region_sales.values)
+      axes[0,1].set_title('Sales by Region')
+      axes[0,1].tick_params(axis='x', rotation=45)
+
+      # 時系列トレンド
+      df['date'] = pd.to_datetime(df['date'])
+      monthly_sales = df.groupby(df['date'].dt.to_period('M'))['sales'].sum()
+      axes[1,0].plot(monthly_sales.index.astype(str), monthly_sales.values)
+      axes[1,0].set_title('Monthly Sales Trend')
+      axes[1,0].tick_params(axis='x', rotation=45)
+
+      # 相関ヒートマップ
+      correlation_matrix = df.select_dtypes(include=[np.number]).corr()
+      sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', ax=axes[1,1])
+      axes[1,1].set_title('Correlation Matrix')
+
+      plt.tight_layout()
+      plt.show()
+
+      # インタラクティブ可視化
+      fig_interactive = px.scatter(
+          df, 
+          x='marketing_spend', 
+          y='sales',
+          color='region',
+          size='team_size',
+          hover_data=['product_category', 'month'],
+          title='Marketing Spend vs Sales by Region'
+      )
+      fig_interactive.show()
+
+      # 機械学習モデル
+      # 特徴量準備
+      features = ['marketing_spend', 'team_size', 'product_price', 'competition_score']
+      X = df[features]
+      y = df['sales']
+
+      # データ分割
+      X_train, X_test, y_train, y_test = train_test_split(
+          X, y, test_size=0.2, random_state=42
+      )
+
+      # モデル訓練
+      model = RandomForestRegressor(n_estimators=100, random_state=42)
+      model.fit(X_train, y_train)
+
+      # 予測
+      y_pred = model.predict(X_test)
+
+      # 評価
+      mse = mean_squared_error(y_test, y_pred)
+      r2 = r2_score(y_test, y_pred)
+
+      print(f"Mean Squared Error: {mse:.2f}")
+      print(f"R² Score: {r2:.2f}")
+
+      # 特徴量重要度
+      feature_importance = pd.DataFrame({
+          'feature': features,
+          'importance': model.feature_importances_
+      }).sort_values('importance', ascending=False)
+
+      plt.figure(figsize=(10, 6))
+      sns.barplot(data=feature_importance, x='importance', y='feature')
+      plt.title('Feature Importance')
+      plt.show()
+
+      # 予測結果の可視化
+      fig_pred = go.Figure()
+      fig_pred.add_trace(go.Scatter(
+          x=y_test, 
+          y=y_pred,
+          mode='markers',
+          name='Predictions',
+          text=[f'Actual: {a:.0f}<br>Predicted: {p:.0f}' for a, p in zip(y_test, y_pred)]
+      ))
+
+      # 理想線
+      min_val = min(y_test.min(), y_pred.min())
+      max_val = max(y_test.max(), y_pred.max())
+      fig_pred.add_trace(go.Scatter(
+          x=[min_val, max_val],
+          y=[min_val, max_val],
+          mode='lines',
+          name='Perfect Prediction',
+          line=dict(dash='dash', color='red')
+      ))
+
+      fig_pred.update_layout(
+          title='Actual vs Predicted Sales',
+          xaxis_title='Actual Sales',
+          yaxis_title='Predicted Sales'
+      )
+      fig_pred.show()
+      """
+
+      # Magic Commands例
+      """
+      # タイミング測定
+      %timeit df.groupby('region').sum()
+
+      # メモリ使用量測定
+      %memit large_dataframe.merge(another_dataframe)
+
+      # SQL実行
+      %sql SELECT * FROM sales_data WHERE region = 'North' LIMIT 10
+
+      # Bash コマンド実行
+      !pip install new-package
+      !ls -la /data/
+
+      # デバッグ
+      %debug  # エラー時のデバッグ
+
+      # プロファイリング
+      %prun expensive_function()
+
+      # 変数の詳細表示
+      %whos  # 全変数表示
+      %who_ls  # 変数一覧
+
+      # 外部スクリプト実行
+      %run analysis_script.py
+
+      # HTML表示
+      from IPython.display import HTML, display
+      display(HTML('<h2>Analysis Results</h2>'))
+      """
+    features:
+      - "インタラクティブ開発"
+      - "豊富な可視化"
+      - "Magic Commands"
+      - "拡張機能生態系"
+      - "共同作業対応"
+
+# === パフォーマンス最適化 ===
+performance_optimization:
+  query_optimization:
+    - "列指向ストレージ活用"
+    - "適切なインデックス設計"
+    - "パーティショニング戦略"
+    - "クエリ並列化"
+    
+  memory_management:
+    - "遅延評価の活用"
+    - "チャンク処理"
+    - "メモリマッピング"
+    - "ガベージコレクション調整"
+    
+  distributed_processing:
+    - "データローカリティ"
+    - "負荷分散"
+    - "ネットワーク最適化"
+    - "キャッシュ戦略"
+
+best_practices:
+  data_quality:
+    - "スキーマ検証"
+    - "データ型制約"
+    - "一意性チェック"
+    - "参照整合性"
+    
+  pipeline_design:
+    - "冪等性保証"
+    - "エラーハンドリング"
+    - "リトライ機構"
+    - "モニタリング統合"
+    
+  scalability:
+    - "水平スケーリング設計"
+    - "ボトルネック特定"
+    - "リソース監視"
+    - "容量計画"
+
+common_use_cases:
+  - "リアルタイム分析ダッシュボード"
+  - "大規模データETLパイプライン"
+  - "機械学習データ前処理"
+  - "ビジネスインテリジェンス"
+  - "ストリーミング異常検知"
+  - "地理空間データ分析"
+  - "時系列データ処理"
+  - "A/Bテスト分析基盤"

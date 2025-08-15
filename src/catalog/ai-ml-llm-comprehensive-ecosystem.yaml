@@ -1,0 +1,980 @@
+name: "ai-ml-llm-comprehensive-ecosystem"
+description: "AI/機械学習/LLM統合エコシステム - 現代的なAIアプリケーション開発のための包括的な技術スタック"
+keywords: ["AI", "ML", "LLM", "機械学習", "言語モデル", "推論", "トレーニング", "ベクターデータベース", "エンベディング"]
+category: "ai-ml-development"
+maintainers: ["AI/ML Community", "LangChain", "Hugging Face", "OpenAI", "Anthropic"]
+
+# === LLMアプリ構築フレームワーク ===
+frameworks:
+  langchain:
+    name: "langchain"
+    description: "LLMアプリ構築のための包括的フレームワーク。Node.js/Python対応でRAG、エージェント、チェーンを簡単に実装"
+    installation: "npm install langchain @langchain/openai @langchain/anthropic"
+    usage: |
+      // 基本的なLLMチェーン
+      import { ChatOpenAI } from '@langchain/openai';
+      import { PromptTemplate } from '@langchain/core/prompts';
+      import { StringOutputParser } from '@langchain/core/output_parsers';
+
+      const llm = new ChatOpenAI({
+        modelName: 'gpt-4',
+        temperature: 0.7,
+      });
+
+      const prompt = PromptTemplate.fromTemplate(
+        "あなたは{role}です。{question}について教えてください。"
+      );
+
+      const chain = prompt.pipe(llm).pipe(new StringOutputParser());
+
+      const result = await chain.invoke({
+        role: "プロフェッショナルな技術コンサルタント",
+        question: "TypeScriptのベストプラクティス"
+      });
+
+      // RAG実装例
+      import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
+      import { MemoryVectorStore } from 'langchain/vectorstores/memory';
+      import { OpenAIEmbeddings } from '@langchain/openai';
+
+      export class RAGService {
+        private vectorStore: MemoryVectorStore;
+
+        async setupRAG(documents: string[]) {
+          const splitter = new RecursiveCharacterTextSplitter({
+            chunkSize: 1000,
+            chunkOverlap: 200,
+          });
+
+          const splits = await splitter.splitDocuments(
+            documents.map(doc => ({ pageContent: doc, metadata: {} }))
+          );
+
+          this.vectorStore = await MemoryVectorStore.fromDocuments(
+            splits,
+            new OpenAIEmbeddings()
+          );
+        }
+
+        async queryWithContext(question: string) {
+          const relevantDocs = await this.vectorStore.similaritySearch(question, 3);
+          
+          const prompt = PromptTemplate.fromTemplate(`
+            コンテキスト: {context}
+            
+            質問: {question}
+            
+            上記のコンテキストを基に、質問に答えてください。
+          `);
+
+          const chain = prompt.pipe(llm).pipe(new StringOutputParser());
+
+          return await chain.invoke({
+            context: relevantDocs.map(doc => doc.pageContent).join('\n\n'),
+            question,
+          });
+        }
+      }
+    patterns:
+      - "チェーン構築パターン"
+      - "RAG実装パターン"
+      - "エージェント設計パターン"
+      - "メモリ管理パターン"
+
+  llamaindex:
+    name: "llamaindex"
+    description: "LLMアプリのためのデータフレームワーク。インデックス作成とクエリエンジンに特化"
+    installation: "pip install llama-index"
+    usage: |
+      # Python実装例
+      from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
+      from llama_index.core.node_parser import SentenceSplitter
+      from llama_index.llms.openai import OpenAI
+
+      class DocumentRAGSystem:
+          def __init__(self):
+              self.llm = OpenAI(model="gpt-4", temperature=0.1)
+              
+          def create_index_from_directory(self, directory_path: str):
+              # ドキュメント読み込み
+              documents = SimpleDirectoryReader(directory_path).load_data()
+              
+              # テキスト分割
+              parser = SentenceSplitter(chunk_size=1024, chunk_overlap=20)
+              nodes = parser.get_nodes_from_documents(documents)
+              
+              # インデックス作成
+              self.index = VectorStoreIndex(nodes)
+              return self.index
+              
+          def query(self, question: str):
+              query_engine = self.index.as_query_engine(llm=self.llm)
+              response = query_engine.query(question)
+              return response
+    patterns:
+      - "インデックス最適化パターン"
+      - "クエリエンジン設計パターン"
+
+  haystack:
+    name: "haystack"
+    description: "エンドツーエンドNLPパイプライン構築フレームワーク。検索とQAに特化"
+    installation: "pip install farm-haystack"
+    usage: |
+      from haystack import Pipeline
+      from haystack.components.retrievers import InMemoryEmbeddingRetriever
+      from haystack.components.generators import OpenAIGenerator
+      from haystack.components.embedders import OpenAIDocumentEmbedder, OpenAITextEmbedder
+
+      def create_rag_pipeline():
+          # RAGパイプライン構築
+          rag_pipeline = Pipeline()
+          
+          # コンポーネント追加
+          rag_pipeline.add_component("text_embedder", OpenAITextEmbedder())
+          rag_pipeline.add_component("retriever", InMemoryEmbeddingRetriever())
+          rag_pipeline.add_component("generator", OpenAIGenerator(model="gpt-4"))
+          
+          # 接続
+          rag_pipeline.connect("text_embedder.embedding", "retriever.query_embedding")
+          rag_pipeline.connect("retriever.documents", "generator.documents")
+          
+          return rag_pipeline
+
+# === LLM推論エンジン ===
+inference_engines:
+  llama_cpp:
+    name: "llama.cpp"
+    description: "LLaMA系モデルのC++実装。高速でメモリ効率的なローカル推論"
+    installation: "git clone https://github.com/ggerganov/llama.cpp && cd llama.cpp && make"
+    usage: |
+      // Node.js バインディング使用例
+      import { LlamaCpp } from 'node-llama-cpp';
+
+      export class LocalLLMService {
+        private llama: LlamaCpp;
+
+        async initialize(modelPath: string) {
+          this.llama = new LlamaCpp({
+            modelPath,
+            contextSize: 4096,
+            threads: 8,
+            temperature: 0.8,
+            topP: 0.9,
+          });
+
+          await this.llama.load();
+        }
+
+        async generateResponse(prompt: string): Promise<string> {
+          const response = await this.llama.generate(prompt, {
+            maxTokens: 512,
+            stop: ['\n\n', '###'],
+          });
+
+          return response.text;
+        }
+
+        async streamResponse(prompt: string, onToken: (token: string) => void) {
+          const stream = this.llama.createCompletion(prompt, {
+            maxTokens: 512,
+            stream: true,
+          });
+
+          for await (const chunk of stream) {
+            if (chunk.choices[0]?.delta?.content) {
+              onToken(chunk.choices[0].delta.content);
+            }
+          }
+        }
+      }
+
+      // Python実装例
+      from llama_cpp import Llama
+
+      class LocalLlamaService:
+          def __init__(self, model_path: str):
+              self.llm = Llama(
+                  model_path=model_path,
+                  n_ctx=4096,
+                  n_threads=8,
+                  verbose=False
+              )
+          
+          def generate(self, prompt: str, max_tokens: int = 512) -> str:
+              response = self.llm(
+                  prompt,
+                  max_tokens=max_tokens,
+                  temperature=0.8,
+                  top_p=0.9,
+                  stop=["</s>", "\n\n"]
+              )
+              return response['choices'][0]['text']
+    features:
+      - "GGML/GGUF形式サポート"
+      - "量子化モデル対応"
+      - "ストリーミング生成"
+      - "メモリ効率最適化"
+
+  vllm:
+    name: "vLLM"
+    description: "高速・効率的なLLM推論エンジン。スループット最適化とバッチ処理"
+    installation: "pip install vllm"
+    usage: |
+      from vllm import LLM, SamplingParams
+      import asyncio
+
+      class HighPerformanceLLMService:
+          def __init__(self, model_name: str = "microsoft/DialoGPT-medium"):
+              self.llm = LLM(
+                  model=model_name,
+                  tensor_parallel_size=1,
+                  gpu_memory_utilization=0.95,
+                  max_model_len=4096
+              )
+              
+          def batch_generate(self, prompts: list[str]) -> list[str]:
+              sampling_params = SamplingParams(
+                  temperature=0.8,
+                  top_p=0.95,
+                  max_tokens=512
+              )
+              
+              outputs = self.llm.generate(prompts, sampling_params)
+              return [output.outputs[0].text for output in outputs]
+          
+          async def serve_requests(self, request_queue):
+              # バッチ処理での効率化
+              batch_size = 32
+              batch = []
+              
+              while True:
+                  if len(batch) >= batch_size:
+                      responses = self.batch_generate([req.prompt for req in batch])
+                      for req, response in zip(batch, responses):
+                          await req.respond(response)
+                      batch = []
+                  
+                  await asyncio.sleep(0.01)
+    features:
+      - "動的バッチング"
+      - "KVキャッシュ最適化"
+      - "テンソル並列処理"
+      - "高スループット推論"
+
+  ollama:
+    name: "ollama"
+    description: "ローカルLLM実行の簡単なインターフェース。Docker風の使いやすさ"
+    installation: "curl -fsSL https://ollama.ai/install.sh | sh"
+    usage: |
+      // Node.js クライアント
+      import { Ollama } from 'ollama';
+
+      export class OllamaService {
+        private ollama: Ollama;
+
+        constructor() {
+          this.ollama = new Ollama({ host: 'http://localhost:11434' });
+        }
+
+        async pullModel(model: string) {
+          await this.ollama.pull({ model });
+        }
+
+        async generate(model: string, prompt: string) {
+          const response = await this.ollama.generate({
+            model,
+            prompt,
+            stream: false,
+          });
+
+          return response.response;
+        }
+
+        async *streamGenerate(model: string, prompt: string) {
+          const stream = await this.ollama.generate({
+            model,
+            prompt,
+            stream: true,
+          });
+
+          for await (const chunk of stream) {
+            yield chunk.response;
+          }
+        }
+
+        async chat(model: string, messages: Array<{role: string, content: string}>) {
+          const response = await this.ollama.chat({
+            model,
+            messages,
+          });
+
+          return response.message.content;
+        }
+      }
+
+      # Bash使用例
+      # モデルダウンロード
+      ollama pull llama2:7b
+      ollama pull codellama:13b
+
+      # 対話実行
+      ollama run llama2:7b "TypeScriptの型システムについて説明してください"
+
+      # REST API
+      curl http://localhost:11434/api/generate -d '{
+        "model": "llama2:7b",
+        "prompt": "プログラミングのベストプラクティスを教えて",
+        "stream": false
+      }'
+    features:
+      - "ワンコマンドモデル実行"
+      - "自動モデル管理"
+      - "REST API提供"
+      - "ストリーミング対応"
+
+# === エンベディング・ベクターデータベース ===
+vector_databases:
+  pinecone:
+    name: "pinecone"
+    description: "マネージドベクターデータベース。高速類似検索とスケーラビリティ"
+    installation: "npm install @pinecone-database/pinecone"
+    usage: |
+      import { Pinecone } from '@pinecone-database/pinecone';
+      import { OpenAIEmbeddings } from '@langchain/openai';
+
+      export class PineconeVectorStore {
+        private pc: Pinecone;
+        private embeddings: OpenAIEmbeddings;
+
+        constructor(apiKey: string) {
+          this.pc = new Pinecone({ apiKey });
+          this.embeddings = new OpenAIEmbeddings();
+        }
+
+        async createIndex(indexName: string, dimension: number = 1536) {
+          await this.pc.createIndex({
+            name: indexName,
+            dimension,
+            metric: 'cosine',
+            spec: {
+              serverless: {
+                cloud: 'aws',
+                region: 'us-east-1'
+              }
+            }
+          });
+        }
+
+        async upsertDocuments(indexName: string, documents: string[]) {
+          const index = this.pc.index(indexName);
+          
+          // エンベディング生成
+          const embeddings = await this.embeddings.embedDocuments(documents);
+          
+          // バッチでアップサート
+          const vectors = documents.map((doc, i) => ({
+            id: `doc-${i}`,
+            values: embeddings[i],
+            metadata: { text: doc }
+          }));
+
+          await index.upsert(vectors);
+        }
+
+        async similaritySearch(indexName: string, query: string, topK: number = 5) {
+          const index = this.pc.index(indexName);
+          const queryEmbedding = await this.embeddings.embedQuery(query);
+          
+          const results = await index.query({
+            vector: queryEmbedding,
+            topK,
+            includeMetadata: true
+          });
+
+          return results.matches?.map(match => ({
+            text: match.metadata?.text,
+            score: match.score
+          })) || [];
+        }
+      }
+
+  chroma:
+    name: "chroma"
+    description: "オープンソースエンベディングデータベース。ローカル開発に最適"
+    installation: "pip install chromadb"
+    usage: |
+      import chromadb
+      from chromadb.config import Settings
+
+      class ChromaVectorStore:
+          def __init__(self, persist_directory: str = "./chroma_db"):
+              self.client = chromadb.PersistentClient(
+                  path=persist_directory,
+                  settings=Settings(anonymized_telemetry=False)
+              )
+          
+          def create_collection(self, name: str, embedding_function=None):
+              return self.client.get_or_create_collection(
+                  name=name,
+                  embedding_function=embedding_function
+              )
+          
+          def add_documents(self, collection_name: str, documents: list[str], 
+                          ids: list[str] = None, metadatas: list[dict] = None):
+              collection = self.client.get_collection(collection_name)
+              
+              if ids is None:
+                  ids = [f"doc-{i}" for i in range(len(documents))]
+              
+              collection.add(
+                  documents=documents,
+                  ids=ids,
+                  metadatas=metadatas
+              )
+          
+          def query(self, collection_name: str, query_texts: list[str], n_results: int = 5):
+              collection = self.client.get_collection(collection_name)
+              
+              return collection.query(
+                  query_texts=query_texts,
+                  n_results=n_results
+              )
+
+      # 使用例
+      store = ChromaVectorStore()
+      collection = store.create_collection("technical_docs")
+
+      documents = [
+          "TypeScriptは静的型付けを提供するJavaScriptのスーパーセットです",
+          "Reactは宣言的なUIライブラリです",
+          "Node.jsはサーバーサイドJavaScript実行環境です"
+      ]
+
+      store.add_documents("technical_docs", documents)
+      results = store.query("technical_docs", ["JavaScriptについて"], n_results=2)
+
+  weaviate:
+    name: "weaviate"
+    description: "GraphQLベースのベクターデータベース。スキーマ管理と複雑なクエリ"
+    installation: "pip install weaviate-client"
+    usage: |
+      import weaviate
+      import weaviate.classes as wvc
+
+      class WeaviateVectorStore:
+          def __init__(self, url: str = "http://localhost:8080"):
+              self.client = weaviate.connect_to_local(host=url)
+          
+          def create_schema(self, class_name: str):
+              # スキーマ定義
+              collection = self.client.collections.create(
+                  name=class_name,
+                  vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai(),
+                  properties=[
+                      wvc.config.Property(
+                          name="content",
+                          data_type=wvc.config.DataType.TEXT,
+                          description="Document content"
+                      ),
+                      wvc.config.Property(
+                          name="title",
+                          data_type=wvc.config.DataType.TEXT,
+                          description="Document title"
+                      ),
+                  ]
+              )
+              return collection
+          
+          def add_object(self, class_name: str, properties: dict):
+              collection = self.client.collections.get(class_name)
+              return collection.data.insert(properties)
+          
+          def semantic_search(self, class_name: str, query: str, limit: int = 5):
+              collection = self.client.collections.get(class_name)
+              
+              response = collection.query.near_text(
+                  query=query,
+                  limit=limit,
+                  return_metadata=wvc.query.MetadataQuery(score=True)
+              )
+              
+              return [
+                  {
+                      "content": obj.properties["content"],
+                      "score": obj.metadata.score
+                  }
+                  for obj in response.objects
+              ]
+
+# === Hugging Face エコシステム ===
+huggingface:
+  transformers:
+    name: "transformers"
+    description: "最先端の自然言語処理ライブラリ。事前訓練済みモデルの簡単利用"
+    installation: "pip install transformers torch"
+    usage: |
+      from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM
+      import torch
+
+      class HuggingFaceService:
+          def __init__(self):
+              self.device = "cuda" if torch.cuda.is_available() else "cpu"
+          
+          def create_text_generator(self, model_name: str = "microsoft/DialoGPT-medium"):
+              return pipeline(
+                  "text-generation",
+                  model=model_name,
+                  device=0 if self.device == "cuda" else -1,
+                  torch_dtype=torch.float16 if self.device == "cuda" else torch.float32
+              )
+          
+          def create_qa_pipeline(self, model_name: str = "deepset/roberta-base-squad2"):
+              return pipeline(
+                  "question-answering",
+                  model=model_name,
+                  device=0 if self.device == "cuda" else -1
+              )
+          
+          def create_summarizer(self, model_name: str = "facebook/bart-large-cnn"):
+              return pipeline(
+                  "summarization",
+                  model=model_name,
+                  device=0 if self.device == "cuda" else -1
+              )
+
+      # 使用例
+      service = HuggingFaceService()
+
+      # テキスト生成
+      generator = service.create_text_generator()
+      result = generator("人工知能の未来は", max_length=100, do_sample=True)
+
+      # 質問応答
+      qa_pipeline = service.create_qa_pipeline()
+      answer = qa_pipeline(
+          question="機械学習とは何ですか？",
+          context="機械学習は人工知能の一分野で、コンピュータがデータから学習する技術です。"
+      )
+
+  datasets:
+    name: "datasets"
+    description: "大規模データセットの効率的な処理ライブラリ"
+    installation: "pip install datasets"
+    usage: |
+      from datasets import load_dataset, Dataset
+      import pandas as pd
+
+      class DatasetManager:
+          def load_huggingface_dataset(self, dataset_name: str, split: str = "train"):
+              return load_dataset(dataset_name, split=split)
+          
+          def create_custom_dataset(self, data: list[dict]):
+              return Dataset.from_list(data)
+          
+          def preprocess_text_dataset(self, dataset, tokenizer):
+              def tokenize_function(examples):
+                  return tokenizer(
+                      examples["text"],
+                      truncation=True,
+                      padding="max_length",
+                      max_length=512
+                  )
+              
+              return dataset.map(tokenize_function, batched=True)
+
+# === OpenAI/Anthropic統合 ===
+llm_apis:
+  openai:
+    name: "openai"
+    description: "OpenAI APIの公式SDKとGPTシリーズモデル統合"
+    installation: "npm install openai"
+    usage: |
+      import OpenAI from 'openai';
+
+      export class OpenAIService {
+        private openai: OpenAI;
+
+        constructor(apiKey: string) {
+          this.openai = new OpenAI({ apiKey });
+        }
+
+        async generateCompletion(prompt: string, model: string = 'gpt-4') {
+          const response = await this.openai.chat.completions.create({
+            model,
+            messages: [{ role: 'user', content: prompt }],
+            temperature: 0.7,
+            max_tokens: 1000,
+          });
+
+          return response.choices[0]?.message?.content || '';
+        }
+
+        async *streamCompletion(prompt: string, model: string = 'gpt-4') {
+          const stream = await this.openai.chat.completions.create({
+            model,
+            messages: [{ role: 'user', content: prompt }],
+            stream: true,
+            temperature: 0.7,
+          });
+
+          for await (const chunk of stream) {
+            const content = chunk.choices[0]?.delta?.content;
+            if (content) {
+              yield content;
+            }
+          }
+        }
+
+        async generateEmbedding(text: string, model: string = 'text-embedding-3-small') {
+          const response = await this.openai.embeddings.create({
+            model,
+            input: text,
+          });
+
+          return response.data[0].embedding;
+        }
+
+        async analyzeImage(imageUrl: string, prompt: string = "この画像を説明してください") {
+          const response = await this.openai.chat.completions.create({
+            model: 'gpt-4-vision-preview',
+            messages: [
+              {
+                role: 'user',
+                content: [
+                  { type: 'text', text: prompt },
+                  { type: 'image_url', image_url: { url: imageUrl } }
+                ]
+              }
+            ],
+            max_tokens: 1000,
+          });
+
+          return response.choices[0]?.message?.content || '';
+        }
+      }
+
+  anthropic:
+    name: "@anthropic-ai/sdk"
+    description: "Anthropic Claude APIの公式SDK"
+    installation: "npm install @anthropic-ai/sdk"
+    usage: |
+      import Anthropic from '@anthropic-ai/sdk';
+
+      export class AnthropicService {
+        private anthropic: Anthropic;
+
+        constructor(apiKey: string) {
+          this.anthropic = new Anthropic({ apiKey });
+        }
+
+        async generateMessage(prompt: string, model: string = 'claude-3-sonnet-20240229') {
+          const response = await this.anthropic.messages.create({
+            model,
+            max_tokens: 1024,
+            messages: [{ role: 'user', content: prompt }],
+          });
+
+          return response.content[0].type === 'text' ? response.content[0].text : '';
+        }
+
+        async *streamMessage(prompt: string, model: string = 'claude-3-sonnet-20240229') {
+          const stream = await this.anthropic.messages.create({
+            model,
+            max_tokens: 1024,
+            messages: [{ role: 'user', content: prompt }],
+            stream: true,
+          });
+
+          for await (const chunk of stream) {
+            if (chunk.type === 'content_block_delta' && chunk.delta.type === 'text_delta') {
+              yield chunk.delta.text;
+            }
+          }
+        }
+
+        async analyzeCode(code: string, language: string) {
+          const prompt = `以下の${language}コードを分析してください：
+
+\`\`\`${language}
+${code}
+\`\`\`
+
+分析項目：
+1. コードの機能
+2. 潜在的な問題
+3. 改善提案
+4. ベストプラクティス`;
+
+          return await this.generateMessage(prompt);
+        }
+      }
+
+# === AI開発ツール ===
+ai_tools:
+  instructor:
+    name: "instructor"
+    description: "構造化出力とスキーマ検証を提供するLLMラッパー"
+    installation: "pip install instructor"
+    usage: |
+      import instructor
+      from openai import OpenAI
+      from pydantic import BaseModel
+      from typing import List
+
+      # スキーマ定義
+      class UserInfo(BaseModel):
+          name: str
+          age: int
+          skills: List[str]
+          bio: str
+
+      class AnalysisResult(BaseModel):
+          summary: str
+          key_points: List[str]
+          confidence_score: float
+
+      class InstructorService:
+          def __init__(self, api_key: str):
+              self.client = instructor.patch(OpenAI(api_key=api_key))
+          
+          def extract_user_info(self, text: str) -> UserInfo:
+              return self.client.chat.completions.create(
+                  model="gpt-4",
+                  response_model=UserInfo,
+                  messages=[
+                      {"role": "user", "content": f"次のテキストからユーザー情報を抽出してください: {text}"}
+                  ]
+              )
+          
+          def analyze_document(self, document: str) -> AnalysisResult:
+              return self.client.chat.completions.create(
+                  model="gpt-4",
+                  response_model=AnalysisResult,
+                  messages=[
+                      {"role": "user", "content": f"この文書を分析してください: {document}"}
+                  ]
+              )
+
+      # 使用例
+      service = InstructorService("your-api-key")
+      
+      user_data = service.extract_user_info(
+          "田中太郎は30歳のソフトウェアエンジニアで、Python、JavaScript、機械学習が得意です。"
+      )
+      
+      print(f"名前: {user_data.name}, 年齢: {user_data.age}, スキル: {user_data.skills}")
+
+  guidance:
+    name: "guidance"
+    description: "プロンプトテンプレートと制御フローを提供するLLM制御ライブラリ"
+    installation: "pip install guidance"
+    usage: |
+      import guidance
+
+      # テンプレート定義
+      template = guidance('''
+      {{#system~}}
+      あなたは技術的な質問に答える専門家です。
+      {{~/system}}
+
+      {{#user~}}
+      {{question}}
+      {{~/user}}
+
+      {{#assistant~}}
+      {{gen 'answer' max_tokens=500 temperature=0.7}}
+      {{~/assistant}}
+
+      {{#user~}}
+      その答えを簡潔にまとめてください。
+      {{~/user}}
+
+      {{#assistant~}}
+      {{gen 'summary' max_tokens=200 temperature=0.3}}
+      {{~/assistant}}
+      ''')
+
+      # 実行
+      result = template(question="TypeScriptの型システムについて説明してください")
+      
+      print("詳細回答:", result['answer'])
+      print("要約:", result['summary'])
+
+      # 条件分岐テンプレート
+      classification_template = guidance('''
+      {{#system~}}
+      テキストをカテゴリ分類してください。
+      {{~/system}}
+
+      {{#user~}}
+      テキスト: {{text}}
+      
+      カテゴリ: {{#select 'category'}}技術{{or}}ビジネス{{or}}教育{{or}}その他{{/select}}
+      {{~/user}}
+
+      {{#assistant~}}
+      分類理由: {{gen 'reason' max_tokens=100}}
+      
+      {{#if (equal category "技術")}}
+      技術的詳細: {{gen 'technical_details' max_tokens=200}}
+      {{/if}}
+      {{~/assistant}}
+      ''')
+
+# === 統合パターン ===
+integration_patterns:
+  rag_pipeline:
+    name: "RAG統合パイプライン"
+    description: "LangChain + ベクターDB + LLMによる検索拡張生成"
+    usage: |
+      import { ChatOpenAI } from '@langchain/openai';
+      import { PineconeVectorStore } from './pinecone-service';
+      import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
+
+      export class RAGPipeline {
+        private llm: ChatOpenAI;
+        private vectorStore: PineconeVectorStore;
+        private splitter: RecursiveCharacterTextSplitter;
+
+        constructor(openaiApiKey: string, pineconeApiKey: string) {
+          this.llm = new ChatOpenAI({ 
+            openAIApiKey: openaiApiKey,
+            modelName: 'gpt-4',
+            temperature: 0 
+          });
+          
+          this.vectorStore = new PineconeVectorStore(pineconeApiKey);
+          
+          this.splitter = new RecursiveCharacterTextSplitter({
+            chunkSize: 1000,
+            chunkOverlap: 200,
+          });
+        }
+
+        async indexDocuments(indexName: string, documents: string[]) {
+          await this.vectorStore.createIndex(indexName);
+          await this.vectorStore.upsertDocuments(indexName, documents);
+        }
+
+        async query(indexName: string, question: string): Promise<string> {
+          // 関連文書を検索
+          const relevantDocs = await this.vectorStore.similaritySearch(
+            indexName, 
+            question, 
+            3
+          );
+
+          // コンテキストを構築
+          const context = relevantDocs
+            .map(doc => doc.text)
+            .join('\n\n');
+
+          // LLMに問い合わせ
+          const prompt = `
+            コンテキスト:
+            ${context}
+
+            質問: ${question}
+
+            上記のコンテキストを参考に、質問に答えてください。
+            コンテキストに関連する情報が無い場合は、その旨を伝えてください。
+          `;
+
+          const response = await this.llm.predict(prompt);
+          return response;
+        }
+      }
+
+  multi_modal_agent:
+    name: "マルチモーダルエージェント"
+    description: "テキスト・画像・音声を扱う統合AIエージェント"
+    usage: |
+      export class MultiModalAgent {
+        private textLLM: OpenAIService;
+        private visionLLM: OpenAIService;
+
+        constructor(apiKey: string) {
+          this.textLLM = new OpenAIService(apiKey);
+          this.visionLLM = new OpenAIService(apiKey);
+        }
+
+        async analyzeContent(content: {
+          text?: string;
+          imageUrl?: string;
+          prompt: string;
+        }) {
+          const results = [];
+
+          // テキスト分析
+          if (content.text) {
+            const textAnalysis = await this.textLLM.generateCompletion(
+              `${content.prompt}\n\nテキスト: ${content.text}`
+            );
+            results.push({ type: 'text', analysis: textAnalysis });
+          }
+
+          // 画像分析
+          if (content.imageUrl) {
+            const imageAnalysis = await this.visionLLM.analyzeImage(
+              content.imageUrl,
+              content.prompt
+            );
+            results.push({ type: 'image', analysis: imageAnalysis });
+          }
+
+          // 統合分析
+          if (results.length > 1) {
+            const combinedPrompt = `
+              以下の複数の分析結果を統合してください：
+              ${results.map((r, i) => `${r.type}分析${i + 1}: ${r.analysis}`).join('\n\n')}
+              
+              統合的な洞察を提供してください。
+            `;
+
+            const integrated = await this.textLLM.generateCompletion(combinedPrompt);
+            results.push({ type: 'integrated', analysis: integrated });
+          }
+
+          return results;
+        }
+      }
+
+best_practices:
+  performance_optimization:
+    - "バッチ処理による推論効率化"
+    - "KVキャッシュとアテンション最適化"
+    - "量子化とプルーニングによるモデル軽量化"
+    - "ストリーミング応答によるユーザー体験向上"
+    
+  cost_management:
+    - "プロンプトエンジニアリングによるトークン削減"
+    - "キャッシュ戦略による重複処理回避"
+    - "ローカルモデルとクラウドAPIの使い分け"
+    - "使用量監視とアラート設定"
+    
+  security_privacy:
+    - "APIキーの適切な管理"
+    - "データ匿名化と暗号化"
+    - "ローカル処理によるプライバシー保護"
+    - "出力フィルタリングとコンテンツ制御"
+
+deployment_patterns:
+  local_deployment:
+    - "Docker Composeによるオールインワン環境"
+    - "Kubernetesクラスターでのスケーラブル構成"
+    - "エッジデバイスでの軽量モデル実行"
+    
+  cloud_deployment:
+    - "サーバーレス関数でのイベント駆動処理"
+    - "コンテナオーケストレーションによる自動スケーリング"
+    - "マネージドサービスとの統合"
+
+common_use_cases:
+  - "文書要約と質問応答システム"
+  - "コード生成と解析ツール"
+  - "多言語翻訳と国際化"
+  - "画像キャプション生成"
+  - "音声からテキスト変換"
+  - "チャットボットと仮想アシスタント"
+  - "レコメンデーションシステム"
+  - "異常検知と予測分析"

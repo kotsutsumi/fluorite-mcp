@@ -1,0 +1,1747 @@
+name: "frontend-ui-innovation-ecosystem"
+description: "フロントエンドUI革新エコシステム - インタラクティブ、アニメーション、現代的なWebUI開発のための最先端技術スタック"
+keywords: ["React", "UI", "アニメーション", "インタラクティブ", "Canvas", "SVG", "3D", "Web Components", "Design System"]
+category: "frontend-ui-development"
+maintainers: ["React Community", "Framer", "tldraw", "Excalidraw", "shadcn"]
+
+# === インタラクティブ描画・キャンバス ===
+interactive_canvas:
+  tldraw:
+    name: "tldraw"
+    description: "インタラクティブな図形描画ライブラリ。無限キャンバス、コラボレーション機能内蔵"
+    installation: "npm install @tldraw/tldraw"
+    usage: |
+      import { Tldraw } from '@tldraw/tldraw'
+      import '@tldraw/tldraw/tldraw.css'
+
+      export function DrawingApp() {
+        return (
+          <div style={{ position: 'fixed', inset: 0 }}>
+            <Tldraw />
+          </div>
+        )
+      }
+
+      // カスタムシェイプと高度な使用法
+      import { createTLStore, defaultShapeUtils, TLRecord } from '@tldraw/tldraw'
+
+      export function AdvancedDrawingApp() {
+        const store = createTLStore({
+          shapeUtils: defaultShapeUtils,
+          initialData: {
+            // 初期データ設定
+          }
+        })
+
+        const handleMount = (editor: Editor) => {
+          // エディターのカスタマイズ
+          editor.createShape({
+            type: 'geo',
+            id: createShapeId(),
+            x: 100,
+            y: 100,
+            props: {
+              w: 200,
+              h: 100,
+              geo: 'rectangle',
+              color: 'blue',
+              fill: 'solid'
+            }
+          })
+        }
+
+        return (
+          <Tldraw
+            store={store}
+            onMount={handleMount}
+            components={{
+              Toolbar: CustomToolbar,
+              StylePanel: CustomStylePanel,
+            }}
+          />
+        )
+      }
+
+      // リアルタイムコラボレーション
+      import { useSync } from '@tldraw/sync'
+
+      export function CollaborativeDrawing() {
+        const store = useSync({
+          uri: 'ws://localhost:8080/collaboration',
+          roomId: 'drawing-room-123',
+        })
+
+        return (
+          <Tldraw store={store} />
+        )
+      }
+    features:
+      - "無限キャンバス"
+      - "リアルタイムコラボレーション"
+      - "カスタムシェイプ作成"
+      - "エクスポート機能（PNG、SVG、PDF）"
+      - "undo/redo システム"
+
+  excalidraw:
+    name: "excalidraw"
+    description: "手書き風図形描画ライブラリ。シンプルで美しいスケッチスタイル"
+    installation: "npm install @excalidraw/excalidraw"
+    usage: |
+      import { Excalidraw } from "@excalidraw/excalidraw";
+
+      export function SketchApp() {
+        return (
+          <div style={{ height: "500px" }}>
+            <Excalidraw />
+          </div>
+        );
+      }
+
+      // カスタム設定とイベントハンドリング
+      import { ExcalidrawElement, AppState } from "@excalidraw/excalidraw/types";
+
+      export function CustomSketchApp() {
+        const [excalidrawAPI, setExcalidrawAPI] = useState(null);
+
+        const handleChange = (
+          elements: readonly ExcalidrawElement[],
+          appState: AppState
+        ) => {
+          console.log("Elements:", elements);
+          console.log("AppState:", appState);
+        };
+
+        const insertText = () => {
+          if (excalidrawAPI) {
+            const textElement = {
+              type: "text",
+              x: 100,
+              y: 100,
+              width: 200,
+              height: 25,
+              text: "Hello Excalidraw!",
+              fontSize: 20,
+              fontFamily: 1,
+              textAlign: "left",
+              verticalAlign: "top",
+            };
+
+            excalidrawAPI.updateScene({
+              elements: [...excalidrawAPI.getSceneElements(), textElement],
+            });
+          }
+        };
+
+        return (
+          <div>
+            <button onClick={insertText}>テキスト挿入</button>
+            <div style={{ height: "500px" }}>
+              <Excalidraw
+                ref={(api) => setExcalidrawAPI(api)}
+                onChange={handleChange}
+                initialData={{
+                  elements: [],
+                  appState: { 
+                    viewBackgroundColor: "#ffffff",
+                    gridSize: null 
+                  },
+                }}
+                UIOptions={{
+                  canvasActions: {
+                    loadScene: false,
+                    saveScene: false,
+                    export: true,
+                    toggleTheme: true,
+                  },
+                }}
+              />
+            </div>
+          </div>
+        );
+      }
+
+      // ライブラリモードでの埋め込み
+      import { ExcalidrawEmbeddedComponent } from "@excalidraw/excalidraw";
+
+      export function EmbeddedSketch({ initialData, onChange }) {
+        return (
+          <ExcalidrawEmbeddedComponent
+            initialData={initialData}
+            onChange={onChange}
+            excalidrawAPI={(api) => {
+              // APIの保存
+            }}
+          />
+        );
+      }
+    features:
+      - "手書き風スタイル"
+      - "豊富な図形ライブラリ"
+      - "多言語対応"
+      - "オフライン対応"
+      - "リアルタイムコラボレーション"
+
+  react_flow:
+    name: "reactflow"
+    description: "ノードベースのフローチャート・ダイアグラムライブラリ"
+    installation: "npm install reactflow"
+    usage: |
+      import ReactFlow, {
+        Node,
+        Edge,
+        addEdge,
+        Background,
+        Controls,
+        MiniMap,
+        useNodesState,
+        useEdgesState,
+        useReactFlow,
+      } from 'reactflow';
+      import 'reactflow/dist/style.css';
+
+      const initialNodes: Node[] = [
+        {
+          id: '1',
+          type: 'input',
+          data: { label: 'スタート' },
+          position: { x: 250, y: 25 },
+        },
+        {
+          id: '2',
+          data: { label: 'プロセス1' },
+          position: { x: 100, y: 125 },
+        },
+        {
+          id: '3',
+          data: { label: 'プロセス2' },
+          position: { x: 400, y: 125 },
+        },
+        {
+          id: '4',
+          type: 'output',
+          data: { label: '完了' },
+          position: { x: 250, y: 250 },
+        },
+      ];
+
+      const initialEdges: Edge[] = [
+        { id: 'e1-2', source: '1', target: '2' },
+        { id: 'e1-3', source: '1', target: '3' },
+        { id: 'e2-4', source: '2', target: '4' },
+        { id: 'e3-4', source: '3', target: '4' },
+      ];
+
+      export function FlowChart() {
+        const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+        const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+        const { project } = useReactFlow();
+
+        const onConnect = useCallback(
+          (params) => setEdges((eds) => addEdge(params, eds)),
+          []
+        );
+
+        // カスタムノードタイプ
+        const CustomNode = ({ data }) => (
+          <div className="custom-node">
+            <div className="node-header">{data.title}</div>
+            <div className="node-content">{data.content}</div>
+            <Handle type="target" position={Position.Top} />
+            <Handle type="source" position={Position.Bottom} />
+          </div>
+        );
+
+        const nodeTypes = {
+          customNode: CustomNode,
+        };
+
+        return (
+          <div style={{ width: '100vw', height: '100vh' }}>
+            <ReactFlow
+              nodes={nodes}
+              edges={edges}
+              onNodesChange={onNodesChange}
+              onEdgesChange={onEdgesChange}
+              onConnect={onConnect}
+              nodeTypes={nodeTypes}
+              fitView
+            >
+              <Controls />
+              <MiniMap />
+              <Background variant="dots" gap={12} size={1} />
+            </ReactFlow>
+          </div>
+        );
+      }
+
+      // データフロー処理
+      export function DataFlowProcessor() {
+        const [nodes, setNodes] = useNodesState([]);
+        const [edges, setEdges] = useEdgesState([]);
+
+        const processDataFlow = async () => {
+          // トポロジカルソートでノード実行順序を決定
+          const sortedNodes = topologicalSort(nodes, edges);
+          
+          for (const node of sortedNodes) {
+            const result = await executeNode(node);
+            updateNodeData(node.id, result);
+          }
+        };
+
+        return (
+          <div>
+            <button onClick={processDataFlow}>フロー実行</button>
+            <ReactFlow
+              nodes={nodes}
+              edges={edges}
+              // ... その他の設定
+            />
+          </div>
+        );
+      }
+    features:
+      - "カスタムノードタイプ"
+      - "インタラクティブなエッジ"
+      - "ミニマップとコントロール"
+      - "レイアウト自動調整"
+      - "データフロー処理"
+
+# === アニメーションライブラリ ===
+animation_libraries:
+  framer_motion:
+    name: "framer-motion"
+    description: "Reactのための宣言的アニメーションライブラリ。物理エンジン内蔵"
+    installation: "npm install framer-motion"
+    usage: |
+      import { motion, AnimatePresence, useAnimation, useInView } from 'framer-motion';
+
+      // 基本アニメーション
+      export function BasicAnimation() {
+        return (
+          <motion.div
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 50 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="box"
+          >
+            アニメーション要素
+          </motion.div>
+        );
+      }
+
+      // レイアウトアニメーション
+      export function LayoutAnimation() {
+        const [isExpanded, setIsExpanded] = useState(false);
+
+        return (
+          <motion.div
+            layout
+            onClick={() => setIsExpanded(!isExpanded)}
+            className={`card ${isExpanded ? 'expanded' : ''}`}
+            transition={{ layout: { duration: 0.3 } }}
+          >
+            <motion.h2 layout="position">タイトル</motion.h2>
+            <AnimatePresence>
+              {isExpanded && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  展開されたコンテンツ
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        );
+      }
+
+      // スクロールトリガーアニメーション
+      export function ScrollAnimation() {
+        const ref = useRef(null);
+        const isInView = useInView(ref, { once: true });
+        const controls = useAnimation();
+
+        useEffect(() => {
+          if (isInView) {
+            controls.start({
+              opacity: 1,
+              y: 0,
+              transition: { duration: 0.8, ease: "easeOut" }
+            });
+          }
+        }, [isInView, controls]);
+
+        return (
+          <motion.div
+            ref={ref}
+            initial={{ opacity: 0, y: 100 }}
+            animate={controls}
+            className="scroll-item"
+          >
+            スクロールで表示
+          </motion.div>
+        );
+      }
+
+      // 複雑なアニメーションシーケンス
+      export function AnimationSequence() {
+        const controls = useAnimation();
+
+        const startSequence = async () => {
+          await controls.start({
+            scale: 1.2,
+            transition: { duration: 0.5 }
+          });
+          
+          await controls.start({
+            rotate: 360,
+            transition: { duration: 1 }
+          });
+          
+          await controls.start({
+            scale: 1,
+            rotate: 0,
+            transition: { duration: 0.5 }
+          });
+        };
+
+        return (
+          <div>
+            <button onClick={startSequence}>アニメーション開始</button>
+            <motion.div
+              animate={controls}
+              className="animated-element"
+            >
+              シーケンスアニメーション
+            </motion.div>
+          </div>
+        );
+      }
+
+      // 3Dアニメーション
+      export function ThreeDAnimation() {
+        return (
+          <motion.div
+            style={{
+              width: 200,
+              height: 200,
+              background: 'linear-gradient(45deg, #ff6b6b, #4ecdc4)',
+              borderRadius: 20,
+            }}
+            animate={{
+              rotateX: [0, 360],
+              rotateY: [0, 360],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            whileHover={{
+              scale: 1.1,
+              rotateX: 180,
+            }}
+          >
+            3D回転
+          </motion.div>
+        );
+      }
+    features:
+      - "宣言的アニメーション API"
+      - "レイアウトアニメーション"
+      - "ジェスチャー認識"
+      - "SVGアニメーション"
+      - "3D変換サポート"
+
+  react_spring:
+    name: "react-spring"
+    description: "物理ベースのアニメーションライブラリ。スプリング物理学による自然な動き"
+    installation: "npm install @react-spring/web"
+    usage: |
+      import {
+        useSpring,
+        animated,
+        useTransition,
+        useChain,
+        useSpringRef,
+        config,
+      } from '@react-spring/web';
+
+      // スプリングアニメーション
+      export function SpringAnimation() {
+        const [toggle, setToggle] = useState(false);
+
+        const springs = useSpring({
+          from: { x: 0, opacity: 0 },
+          to: { 
+            x: toggle ? 300 : 0,
+            opacity: toggle ? 1 : 0.5,
+          },
+          config: config.wobbly,
+        });
+
+        return (
+          <div>
+            <button onClick={() => setToggle(!toggle)}>トグル</button>
+            <animated.div
+              style={springs}
+              className="spring-box"
+            >
+              スプリングアニメーション
+            </animated.div>
+          </div>
+        );
+      }
+
+      // リスト遷移アニメーション
+      export function ListTransition() {
+        const [items, setItems] = useState([
+          { id: 1, text: 'アイテム1' },
+          { id: 2, text: 'アイテム2' },
+          { id: 3, text: 'アイテム3' },
+        ]);
+
+        const transitions = useTransition(items, {
+          from: { opacity: 0, transform: 'translate3d(-100px,0,0)' },
+          enter: { opacity: 1, transform: 'translate3d(0,0,0)' },
+          leave: { opacity: 0, transform: 'translate3d(100px,0,0)' },
+          keys: item => item.id,
+        });
+
+        const addItem = () => {
+          setItems(prev => [
+            ...prev,
+            { id: Date.now(), text: `アイテム${prev.length + 1}` }
+          ]);
+        };
+
+        const removeItem = (id) => {
+          setItems(prev => prev.filter(item => item.id !== id));
+        };
+
+        return (
+          <div>
+            <button onClick={addItem}>追加</button>
+            <div className="list">
+              {transitions((style, item) => (
+                <animated.div
+                  style={style}
+                  className="list-item"
+                  onClick={() => removeItem(item.id)}
+                >
+                  {item.text}
+                </animated.div>
+              ))}
+            </div>
+          </div>
+        );
+      }
+
+      // チェーンアニメーション
+      export function ChainAnimation() {
+        const [open, setOpen] = useState(false);
+
+        const springRef = useSpringRef();
+        const springs = useSpring({
+          ref: springRef,
+          width: open ? 300 : 80,
+          height: open ? 200 : 80,
+          config: config.stiff,
+        });
+
+        const transitionRef = useSpringRef();
+        const transitions = useTransition(open ? data : [], {
+          ref: transitionRef,
+          from: { opacity: 0, scale: 0 },
+          enter: { opacity: 1, scale: 1 },
+          leave: { opacity: 0, scale: 0 },
+        });
+
+        useChain(
+          open ? [springRef, transitionRef] : [transitionRef, springRef],
+          [0, open ? 0.1 : 0.6]
+        );
+
+        return (
+          <div>
+            <animated.div
+              style={springs}
+              className="chain-container"
+              onClick={() => setOpen(!open)}
+            >
+              {transitions((style, item) => (
+                <animated.div style={style}>
+                  {item}
+                </animated.div>
+              ))}
+            </animated.div>
+          </div>
+        );
+      }
+
+      // パララックススクロール
+      import { useScroll } from '@react-spring/web';
+
+      export function ParallaxScroll() {
+        const { scrollYProgress } = useScroll();
+
+        const backgroundY = useSpring({
+          y: scrollYProgress.to([0, 1], [0, -500]),
+        });
+
+        const textY = useSpring({
+          y: scrollYProgress.to([0, 1], [0, -200]),
+        });
+
+        return (
+          <div className="parallax-container">
+            <animated.div
+              style={{ transform: backgroundY.y.to(y => `translateY(${y}px)`) }}
+              className="parallax-bg"
+            />
+            <animated.div
+              style={{ transform: textY.y.to(y => `translateY(${y}px)`) }}
+              className="parallax-text"
+            >
+              パララックステキスト
+            </animated.div>
+          </div>
+        );
+      }
+    features:
+      - "物理ベースアニメーション"
+      - "リスト遷移"
+      - "チェーンアニメーション"
+      - "パララックス効果"
+      - "カスタムフック"
+
+  lottie_react:
+    name: "lottie-react"
+    description: "After Effectsアニメーションの再生。複雑なアニメーションを軽量で実現"
+    installation: "npm install lottie-react"
+    usage: |
+      import Lottie from 'lottie-react';
+      import animationData from './animations/loading.json';
+
+      // 基本的なLottieアニメーション
+      export function LottieAnimation() {
+        return (
+          <Lottie
+            animationData={animationData}
+            loop={true}
+            autoplay={true}
+            style={{ width: 300, height: 300 }}
+          />
+        );
+      }
+
+      // インタラクティブなLottieアニメーション
+      export function InteractiveLottie() {
+        const [lottieRef, setLottieRef] = useState(null);
+        const [isPaused, setIsPaused] = useState(false);
+
+        const togglePlayPause = () => {
+          if (lottieRef) {
+            isPaused ? lottieRef.play() : lottieRef.pause();
+            setIsPaused(!isPaused);
+          }
+        };
+
+        const handleComplete = () => {
+          console.log('アニメーション完了');
+        };
+
+        return (
+          <div>
+            <button onClick={togglePlayPause}>
+              {isPaused ? '再生' : '一時停止'}
+            </button>
+            <Lottie
+              lottieRef={setLottieRef}
+              animationData={animationData}
+              loop={false}
+              autoplay={true}
+              onComplete={handleComplete}
+              onLoopComplete={() => console.log('ループ完了')}
+              style={{ width: 400, height: 400 }}
+            />
+          </div>
+        );
+      }
+
+      // スクロール連動Lottieアニメーション
+      export function ScrollLottie() {
+        const lottieRef = useRef(null);
+        const containerRef = useRef(null);
+
+        useEffect(() => {
+          const handleScroll = () => {
+            if (lottieRef.current && containerRef.current) {
+              const rect = containerRef.current.getBoundingClientRect();
+              const scrollProgress = Math.max(0, Math.min(1, 
+                (window.innerHeight - rect.top) / (window.innerHeight + rect.height)
+              ));
+              
+              const frame = Math.floor(scrollProgress * (lottieRef.current.totalFrames - 1));
+              lottieRef.current.goToAndStop(frame, true);
+            }
+          };
+
+          window.addEventListener('scroll', handleScroll);
+          return () => window.removeEventListener('scroll', handleScroll);
+        }, []);
+
+        return (
+          <div ref={containerRef} className="scroll-lottie-container">
+            <Lottie
+              lottieRef={lottieRef}
+              animationData={animationData}
+              autoplay={false}
+              loop={false}
+            />
+          </div>
+        );
+      }
+
+      // マウスインタラクション連動
+      export function MouseInteractiveLottie() {
+        const lottieRef = useRef(null);
+        const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+        const handleMouseMove = (e) => {
+          const rect = e.currentTarget.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width;
+          const y = (e.clientY - rect.top) / rect.height;
+          
+          setMousePosition({ x, y });
+          
+          if (lottieRef.current) {
+            const frame = Math.floor(x * (lottieRef.current.totalFrames - 1));
+            lottieRef.current.goToAndStop(frame, true);
+          }
+        };
+
+        return (
+          <div 
+            onMouseMove={handleMouseMove}
+            className="mouse-interactive-lottie"
+          >
+            <Lottie
+              lottieRef={lottieRef}
+              animationData={animationData}
+              autoplay={false}
+              loop={false}
+              style={{
+                width: 500,
+                height: 500,
+                filter: `hue-rotate(${mousePosition.x * 360}deg)`
+              }}
+            />
+          </div>
+        );
+      }
+    features:
+      - "After Effects互換性"
+      - "軽量ベクターアニメーション"
+      - "インタラクティブ制御"
+      - "スクロール連動"
+      - "マルチプラットフォーム対応"
+
+  gsap:
+    name: "gsap"
+    description: "プロフェッショナルアニメーションライブラリ。高性能でタイムライン制御が可能"
+    installation: "npm install gsap"
+    usage: |
+      import { gsap } from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+      import { TextPlugin } from 'gsap/TextPlugin';
+
+      gsap.registerPlugin(ScrollTrigger, TextPlugin);
+
+      // 基本アニメーション
+      export function GSAPBasic() {
+        const elementRef = useRef(null);
+
+        useEffect(() => {
+          gsap.fromTo(elementRef.current, 
+            {
+              opacity: 0,
+              y: 100,
+              scale: 0.5
+            },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 1,
+              ease: "power2.out"
+            }
+          );
+        }, []);
+
+        return (
+          <div ref={elementRef} className="gsap-element">
+            GSAPアニメーション
+          </div>
+        );
+      }
+
+      // タイムラインアニメーション
+      export function GSAPTimeline() {
+        const containerRef = useRef(null);
+
+        useEffect(() => {
+          const tl = gsap.timeline({ repeat: -1, yoyo: true });
+
+          tl.to(".box1", { x: 100, duration: 1 })
+            .to(".box2", { y: 100, duration: 1 }, "-=0.5")
+            .to(".box3", { rotation: 360, duration: 1 }, "-=0.5");
+
+          return () => tl.kill();
+        }, []);
+
+        return (
+          <div ref={containerRef} className="timeline-container">
+            <div className="box1">Box 1</div>
+            <div className="box2">Box 2</div>
+            <div className="box3">Box 3</div>
+          </div>
+        );
+      }
+
+      // スクロールトリガー
+      export function GSAPScrollTrigger() {
+        const sectionsRef = useRef([]);
+
+        useEffect(() => {
+          sectionsRef.current.forEach((section, i) => {
+            gsap.fromTo(section, 
+              { 
+                opacity: 0, 
+                y: 100 
+              },
+              {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                scrollTrigger: {
+                  trigger: section,
+                  start: "top 80%",
+                  end: "bottom 20%",
+                  toggleActions: "play none none reverse",
+                  markers: false,
+                }
+              }
+            );
+          });
+
+          // パララックス効果
+          gsap.to(".parallax-bg", {
+            yPercent: -50,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".parallax-container",
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true
+            }
+          });
+
+        }, []);
+
+        return (
+          <div>
+            {[1, 2, 3, 4, 5].map((i) => (
+              <section
+                key={i}
+                ref={el => sectionsRef.current[i] = el}
+                className="scroll-section"
+              >
+                セクション {i}
+              </section>
+            ))}
+            <div className="parallax-container">
+              <div className="parallax-bg" />
+              <div className="parallax-content">
+                パララックスコンテンツ
+              </div>
+            </div>
+          </div>
+        );
+      }
+
+      // テキストアニメーション
+      export function GSAPTextAnimation() {
+        const textRef = useRef(null);
+
+        useEffect(() => {
+          const tl = gsap.timeline();
+
+          // 文字ごとのアニメーション
+          tl.from(".char", {
+            opacity: 0,
+            y: 50,
+            duration: 0.5,
+            stagger: 0.05,
+            ease: "back.out(1.7)"
+          });
+
+          // タイプライター効果
+          gsap.to(".typewriter", {
+            text: "こんにちは、GSAPの世界へようこそ！",
+            duration: 3,
+            ease: "none",
+            delay: 1
+          });
+
+        }, []);
+
+        // 文字を分割する関数
+        const splitText = (text) => {
+          return text.split('').map((char, i) => (
+            <span key={i} className="char">{char}</span>
+          ));
+        };
+
+        return (
+          <div>
+            <h1 ref={textRef}>
+              {splitText("アニメーションテキスト")}
+            </h1>
+            <p className="typewriter"></p>
+          </div>
+        );
+      }
+
+      // 物理シミュレーション
+      export function GSAPPhysics() {
+        const ballsRef = useRef([]);
+
+        useEffect(() => {
+          const balls = ballsRef.current;
+          
+          balls.forEach((ball, i) => {
+            gsap.set(ball, {
+              x: Math.random() * window.innerWidth,
+              y: Math.random() * window.innerHeight,
+            });
+
+            // 重力効果
+            gsap.to(ball, {
+              y: window.innerHeight + 100,
+              duration: 2 + Math.random() * 3,
+              ease: "power2.in",
+              repeat: -1,
+              delay: i * 0.1,
+              onComplete: () => {
+                gsap.set(ball, { y: -100 });
+              }
+            });
+
+            // 水平運動
+            gsap.to(ball, {
+              x: `+=${Math.random() * 200 - 100}`,
+              duration: 1 + Math.random() * 2,
+              ease: "sine.inOut",
+              repeat: -1,
+              yoyo: true,
+            });
+          });
+
+        }, []);
+
+        return (
+          <div className="physics-container">
+            {[...Array(20)].map((_, i) => (
+              <div
+                key={i}
+                ref={el => ballsRef.current[i] = el}
+                className="physics-ball"
+                style={{
+                  backgroundColor: `hsl(${i * 18}, 70%, 60%)`
+                }}
+              />
+            ))}
+          </div>
+        );
+      }
+    features:
+      - "高性能アニメーションエンジン"
+      - "タイムライン制御"
+      - "スクロールトリガー"
+      - "モーフィング・ワープ"
+      - "物理シミュレーション"
+
+# === コンポーネントライブラリ ===
+component_libraries:
+  shadcn_ui:
+    name: "shadcn/ui"
+    description: "コピペ可能なReactコンポーネント。Radix UI + Tailwind CSSベース"
+    installation: "npx shadcn-ui@latest init"
+    usage: |
+      // コンポーネント追加
+      npx shadcn-ui@latest add button
+      npx shadcn-ui@latest add dialog
+      npx shadcn-ui@latest add form
+
+      import { Button } from "@/components/ui/button"
+      import {
+        Dialog,
+        DialogContent,
+        DialogDescription,
+        DialogHeader,
+        DialogTitle,
+        DialogTrigger,
+      } from "@/components/ui/dialog"
+      import { Input } from "@/components/ui/input"
+      import { Label } from "@/components/ui/label"
+
+      export function ComponentExample() {
+        return (
+          <div className="space-y-4">
+            {/* ボタンバリエーション */}
+            <div className="flex space-x-2">
+              <Button variant="default">デフォルト</Button>
+              <Button variant="destructive">削除</Button>
+              <Button variant="outline">アウトライン</Button>
+              <Button variant="secondary">セカンダリ</Button>
+              <Button variant="ghost">ゴースト</Button>
+              <Button variant="link">リンク</Button>
+            </div>
+
+            {/* ダイアログ */}
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant="outline">ダイアログを開く</Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle>プロフィール編集</DialogTitle>
+                  <DialogDescription>
+                    プロフィール情報を変更できます。完了したら保存をクリックしてください。
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="grid gap-4 py-4">
+                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Label htmlFor="name" className="text-right">
+                      名前
+                    </Label>
+                    <Input id="name" value="田中太郎" className="col-span-3" />
+                  </div>
+                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Label htmlFor="username" className="text-right">
+                      ユーザー名
+                    </Label>
+                    <Input id="username" value="@tanaka" className="col-span-3" />
+                  </div>
+                </div>
+                <DialogFooter>
+                  <Button type="submit">保存</Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+          </div>
+        )
+      }
+
+      // フォーム例
+      import { zodResolver } from "@hookform/resolvers/zod"
+      import { useForm } from "react-hook-form"
+      import * as z from "zod"
+      import {
+        Form,
+        FormControl,
+        FormDescription,
+        FormField,
+        FormItem,
+        FormLabel,
+        FormMessage,
+      } from "@/components/ui/form"
+
+      const formSchema = z.object({
+        username: z.string().min(2, {
+          message: "ユーザー名は2文字以上で入力してください。",
+        }),
+        email: z.string().email({
+          message: "正しいメールアドレスを入力してください。",
+        }),
+      })
+
+      export function ProfileForm() {
+        const form = useForm<z.infer<typeof formSchema>>({
+          resolver: zodResolver(formSchema),
+          defaultValues: {
+            username: "",
+            email: "",
+          },
+        })
+
+        function onSubmit(values: z.infer<typeof formSchema>) {
+          console.log(values)
+        }
+
+        return (
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <FormField
+                control={form.control}
+                name="username"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>ユーザー名</FormLabel>
+                    <FormControl>
+                      <Input placeholder="ユーザー名を入力" {...field} />
+                    </FormControl>
+                    <FormDescription>
+                      これは公開表示名です。
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>メールアドレス</FormLabel>
+                    <FormControl>
+                      <Input placeholder="email@example.com" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button type="submit">送信</Button>
+            </form>
+          </Form>
+        )
+      }
+    features:
+      - "コピー&ペースト可能"
+      - "Radix UI ベース"
+      - "Tailwind CSS スタイリング"
+      - "TypeScript対応"
+      - "アクセシビリティ対応"
+
+  magic_ui:
+    name: "magicui"
+    description: "美しいReactコンポーネント。Tailwind CSSとFramer Motionベース"
+    installation: "npx magicui-cli add [component-name]"
+    usage: |
+      // アニメーション付きコンポーネント
+      import { AnimatedBeam } from "@/components/magicui/animated-beam";
+      import { BorderBeam } from "@/components/magicui/border-beam";
+      import { DotPattern } from "@/components/magicui/dot-pattern";
+      import { RetroGrid } from "@/components/magicui/retro-grid";
+
+      export function MagicUIShowcase() {
+        return (
+          <div className="relative overflow-hidden">
+            {/* ドットパターン背景 */}
+            <DotPattern
+              className="opacity-30"
+              width={20}
+              height={20}
+              cx={1}
+              cy={1}
+              cr={1}
+            />
+
+            {/* レトログリッド */}
+            <div className="relative h-96 bg-black rounded-lg overflow-hidden">
+              <RetroGrid />
+              <div className="relative z-10 flex items-center justify-center h-full">
+                <h2 className="text-white text-3xl font-bold">
+                  Retro Grid Background
+                </h2>
+              </div>
+            </div>
+
+            {/* アニメーションビーム */}
+            <div className="relative p-8">
+              <AnimatedBeam
+                className="h-1"
+                duration={3}
+                gradientColors={["#ff6b6b", "#4ecdc4", "#45b7d1"]}
+              />
+            </div>
+
+            {/* ボーダービーム */}
+            <div className="relative p-8">
+              <div className="relative rounded-lg bg-white p-8 shadow-lg">
+                <BorderBeam size={250} duration={12} delay={9} />
+                <h3 className="text-xl font-semibold">Border Beam Effect</h3>
+                <p className="text-gray-600 mt-2">
+                  美しいボーダーアニメーション効果
+                </p>
+              </div>
+            </div>
+          </div>
+        );
+      }
+
+      // テキストアニメーション
+      import { TextAnimate } from "@/components/magicui/text-animate";
+      import { TextShimmer } from "@/components/magicui/text-shimmer";
+      import { WordRotate } from "@/components/magicui/word-rotate";
+
+      export function TextAnimations() {
+        const words = ["美しい", "魅力的な", "インタラクティブな", "モダンな"];
+
+        return (
+          <div className="space-y-8 p-8">
+            <TextAnimate
+              text="アニメーション付きテキスト"
+              type="fadeInUp"
+              duration={0.5}
+              delay={0.1}
+            />
+
+            <TextShimmer className="text-4xl font-bold">
+              シマーエフェクト
+            </TextShimmer>
+
+            <div className="text-3xl font-bold">
+              <WordRotate
+                words={words}
+                className="text-blue-600"
+                duration={2000}
+              />
+              UIを作成
+            </div>
+          </div>
+        );
+      }
+
+      // インタラクティブコンポーネント
+      import { MagicCard } from "@/components/magicui/magic-card";
+      import { Sparkles } from "@/components/magicui/sparkles";
+      import { Meteors } from "@/components/magicui/meteors";
+
+      export function InteractiveComponents() {
+        return (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
+            <MagicCard className="cursor-pointer border-2 border-neutral-200 dark:border-neutral-800">
+              <div className="relative h-64 overflow-hidden">
+                <Meteors number={20} />
+                <div className="relative z-10 p-6">
+                  <h3 className="text-xl font-bold mb-2">Magic Card</h3>
+                  <p className="text-gray-600">
+                    ホバー時に美しいエフェクトが表示されます
+                  </p>
+                </div>
+              </div>
+            </MagicCard>
+
+            <div className="relative h-64 bg-black rounded-lg overflow-hidden">
+              <Sparkles
+                id="sparkles"
+                background="transparent"
+                minSize={0.6}
+                maxSize={1.4}
+                particleDensity={100}
+                className="w-full h-full"
+              />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <h3 className="text-white text-xl font-bold">
+                  Sparkles Effect
+                </h3>
+              </div>
+            </div>
+          </div>
+        );
+      }
+    features:
+      - "60+ プレミアムコンポーネント"
+      - "Framer Motion統合"
+      - "レスポンシブデザイン"
+      - "ダークモード対応"
+      - "コピー&ペースト可能"
+
+  aceternity_ui:
+    name: "aceternity-ui"
+    description: "プレミアムアニメーション付きReactコンポーネント"
+    installation: "npm install aceternity-ui"
+    usage: |
+      import {
+        BackgroundGradient,
+        CardBody,
+        CardContainer,
+        CardItem,
+      } from "@/components/ui/3d-card";
+      import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
+      import { LampContainer } from "@/components/ui/lamp";
+      import { SparklesCore } from "@/components/ui/sparkles";
+
+      // 3Dカード効果
+      export function ThreeDCardDemo() {
+        return (
+          <CardContainer className="inter-var">
+            <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border">
+              <CardItem
+                translateZ="50"
+                className="text-xl font-bold text-neutral-600 dark:text-white"
+              >
+                3D Card Effect
+              </CardItem>
+              <CardItem
+                as="p"
+                translateZ="60"
+                className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
+              >
+                マウスの動きに反応する3Dカード効果
+              </CardItem>
+              <CardItem translateZ="100" className="w-full mt-4">
+                <img
+                  src="/placeholder.jpg"
+                  height="1000"
+                  width="1000"
+                  className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
+                  alt="thumbnail"
+                />
+              </CardItem>
+              <div className="flex justify-between items-center mt-20">
+                <CardItem
+                  translateZ={20}
+                  as="button"
+                  className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
+                >
+                  今すぐ試す →
+                </CardItem>
+                <CardItem
+                  translateZ={20}
+                  as="button"
+                  className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
+                >
+                  サインアップ
+                </CardItem>
+              </div>
+            </CardBody>
+          </CardContainer>
+        );
+      }
+
+      // 無限スクロールカード
+      export function InfiniteMovingCardsDemo() {
+        const testimonials = [
+          {
+            quote: "素晴らしいUIライブラリです。開発効率が大幅に向上しました。",
+            name: "田中太郎",
+            title: "フロントエンドエンジニア",
+          },
+          // ... 他のテスティモニアル
+        ];
+
+        return (
+          <div className="h-[40rem] rounded-md flex flex-col antialiased bg-white dark:bg-black dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
+            <InfiniteMovingCards
+              items={testimonials}
+              direction="right"
+              speed="slow"
+            />
+          </div>
+        );
+      }
+
+      // ランプエフェクト
+      export function LampDemo() {
+        return (
+          <LampContainer>
+            <motion.h1
+              initial={{ opacity: 0.5, y: 100 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                delay: 0.3,
+                duration: 0.8,
+                ease: "easeInOut",
+              }}
+              className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
+            >
+              美しいランプエフェクト
+            </motion.h1>
+          </LampContainer>
+        );
+      }
+
+      // スパークルズ背景
+      export function SparklesDemo() {
+        return (
+          <div className="h-[40rem] relative w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
+            <div className="w-full absolute inset-0 h-screen">
+              <SparklesCore
+                id="tsparticlesfullpage"
+                background="transparent"
+                minSize={0.6}
+                maxSize={1.4}
+                particleDensity={100}
+                className="w-full h-full"
+                particleColor="#FFFFFF"
+              />
+            </div>
+            <h1 className="md:text-7xl text-3xl lg:text-6xl font-bold text-center text-white relative z-20">
+              Sparkles Background
+            </h1>
+          </div>
+        );
+      }
+    features:
+      - "60+ アニメーション付きコンポーネント"
+      - "3D効果とマイクロインタラクション"
+      - "モダンなデザインシステム"
+      - "高性能アニメーション"
+      - "Next.js最適化"
+
+# === 3Dグラフィック ===
+three_d_graphics:
+  three_js:
+    name: "three.js"
+    description: "ブラウザ向け3Dライブラリ。WebGLの抽象化レイヤー"
+    installation: "npm install three @types/three"
+    usage: |
+      import * as THREE from 'three';
+      import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+
+      export function ThreeJSScene() {
+        const mountRef = useRef(null);
+
+        useEffect(() => {
+          // シーン作成
+          const scene = new THREE.Scene();
+          scene.background = new THREE.Color(0x222222);
+
+          // カメラ作成
+          const camera = new THREE.PerspectiveCamera(
+            75,
+            window.innerWidth / window.innerHeight,
+            0.1,
+            1000
+          );
+          camera.position.z = 5;
+
+          // レンダラー作成
+          const renderer = new THREE.WebGLRenderer({ antialias: true });
+          renderer.setSize(window.innerWidth, window.innerHeight);
+          renderer.shadowMap.enabled = true;
+          renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+          // コントロール
+          const controls = new OrbitControls(camera, renderer.domElement);
+          controls.enableDamping = true;
+
+          // ライティング
+          const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
+          scene.add(ambientLight);
+
+          const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+          directionalLight.position.set(10, 10, 5);
+          directionalLight.castShadow = true;
+          scene.add(directionalLight);
+
+          // ジオメトリとマテリアル
+          const geometry = new THREE.BoxGeometry(1, 1, 1);
+          const material = new THREE.MeshPhongMaterial({ 
+            color: 0x00ff00,
+            shininess: 100 
+          });
+          const cube = new THREE.Mesh(geometry, material);
+          cube.castShadow = true;
+          scene.add(cube);
+
+          // 地面
+          const planeGeometry = new THREE.PlaneGeometry(20, 20);
+          const planeMaterial = new THREE.MeshPhongMaterial({ color: 0x999999 });
+          const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+          plane.rotation.x = -Math.PI / 2;
+          plane.position.y = -1;
+          plane.receiveShadow = true;
+          scene.add(plane);
+
+          // アニメーションループ
+          const animate = () => {
+            requestAnimationFrame(animate);
+            
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+            
+            controls.update();
+            renderer.render(scene, camera);
+          };
+
+          mountRef.current.appendChild(renderer.domElement);
+          animate();
+
+          // クリーンアップ
+          return () => {
+            if (mountRef.current) {
+              mountRef.current.removeChild(renderer.domElement);
+            }
+            geometry.dispose();
+            material.dispose();
+            renderer.dispose();
+          };
+        }, []);
+
+        return <div ref={mountRef} />;
+      }
+
+      // パーティクルシステム
+      export function ParticleSystem() {
+        const mountRef = useRef(null);
+
+        useEffect(() => {
+          const scene = new THREE.Scene();
+          const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+          const renderer = new THREE.WebGLRenderer();
+          renderer.setSize(window.innerWidth, window.innerHeight);
+
+          // パーティクル作成
+          const particleGeometry = new THREE.BufferGeometry();
+          const particleCount = 5000;
+
+          const posArray = new Float32Array(particleCount * 3);
+          for (let i = 0; i < particleCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 20;
+          }
+
+          particleGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+          const particleMaterial = new THREE.PointsMaterial({
+            size: 0.005,
+            color: 0x00ff88,
+          });
+
+          const particleMesh = new THREE.Points(particleGeometry, particleMaterial);
+          scene.add(particleMesh);
+
+          camera.position.z = 5;
+
+          const animate = () => {
+            requestAnimationFrame(animate);
+            
+            particleMesh.rotation.y += 0.002;
+            
+            renderer.render(scene, camera);
+          };
+
+          mountRef.current.appendChild(renderer.domElement);
+          animate();
+
+          return () => {
+            if (mountRef.current) {
+              mountRef.current.removeChild(renderer.domElement);
+            }
+            particleGeometry.dispose();
+            particleMaterial.dispose();
+            renderer.dispose();
+          };
+        }, []);
+
+        return <div ref={mountRef} />;
+      }
+    features:
+      - "WebGL抽象化"
+      - "豊富なジオメトリとマテリアル"
+      - "アニメーションシステム"
+      - "ポストプロセッシング"
+      - "VR/AR対応"
+
+  react_three_fiber:
+    name: "@react-three/fiber"
+    description: "React向けthree.jsレンダラー。宣言的3D開発"
+    installation: "npm install @react-three/fiber @react-three/drei"
+    usage: |
+      import { Canvas, useFrame, useLoader } from '@react-three/fiber';
+      import { OrbitControls, Text, Environment } from '@react-three/drei';
+      import { useRef } from 'react';
+
+      // 回転するボックス
+      function RotatingBox() {
+        const meshRef = useRef();
+
+        useFrame((state, delta) => {
+          meshRef.current.rotation.x += delta;
+          meshRef.current.rotation.y += delta * 0.5;
+        });
+
+        return (
+          <mesh ref={meshRef} position={[0, 0, 0]}>
+            <boxGeometry args={[1, 1, 1]} />
+            <meshStandardMaterial color="orange" />
+          </mesh>
+        );
+      }
+
+      // メインシーン
+      export function React3DScene() {
+        return (
+          <div style={{ width: '100vw', height: '100vh' }}>
+            <Canvas camera={{ position: [0, 0, 5] }}>
+              <ambientLight intensity={0.5} />
+              <pointLight position={[10, 10, 10]} />
+              
+              <RotatingBox />
+              
+              <Text
+                position={[0, 2, 0]}
+                fontSize={0.5}
+                color="white"
+                anchorX="center"
+                anchorY="middle"
+              >
+                React Three Fiber
+              </Text>
+              
+              <Environment preset="sunset" />
+              <OrbitControls />
+            </Canvas>
+          </div>
+        );
+      }
+
+      // インタラクティブな3Dシーン
+      import { useState } from 'react';
+      import { useSpring, animated } from '@react-spring/three';
+
+      function InteractiveBox() {
+        const [hovered, setHovered] = useState(false);
+        const [clicked, setClicked] = useState(false);
+
+        const { scale, color } = useSpring({
+          scale: clicked ? 1.5 : hovered ? 1.2 : 1,
+          color: clicked ? 'red' : hovered ? 'yellow' : 'orange',
+        });
+
+        return (
+          <animated.mesh
+            scale={scale}
+            onClick={() => setClicked(!clicked)}
+            onPointerOver={() => setHovered(true)}
+            onPointerOut={() => setHovered(false)}
+          >
+            <boxGeometry args={[1, 1, 1]} />
+            <animated.meshStandardMaterial color={color} />
+          </animated.mesh>
+        );
+      }
+
+      // 複雑な3Dシーン
+      export function Advanced3DScene() {
+        return (
+          <Canvas
+            camera={{ position: [0, 0, 10], fov: 60 }}
+            gl={{ antialias: true }}
+            dpr={[1, 2]}
+          >
+            <color attach="background" args={['#1a1a1a']} />
+            <fog attach="fog" args={['#1a1a1a', 10, 50]} />
+            
+            <ambientLight intensity={0.3} />
+            <directionalLight
+              position={[5, 5, 5]}
+              intensity={1}
+              castShadow
+              shadow-mapSize-width={2048}
+              shadow-mapSize-height={2048}
+            />
+            
+            <group>
+              {[...Array(50)].map((_, i) => (
+                <InteractiveBox
+                  key={i}
+                  position={[
+                    (Math.random() - 0.5) * 20,
+                    (Math.random() - 0.5) * 20,
+                    (Math.random() - 0.5) * 20,
+                  ]}
+                />
+              ))}
+            </group>
+            
+            <OrbitControls
+              enablePan={true}
+              enableZoom={true}
+              enableRotate={true}
+              dampingFactor={0.05}
+            />
+          </Canvas>
+        );
+      }
+    features:
+      - "React宣言的構文"
+      - "フレームベースアニメーション"
+      - "豊富なヘルパー（drei）"
+      - "TypeScript完全対応"
+      - "パフォーマンス最適化"
+
+# === 統合ワークフロー ===
+integration_workflows:
+  design_to_code:
+    name: "デザインからコードへのワークフロー"
+    description: "Figma → React コンポーネント自動生成"
+    tools: ["Figma Plugin", "shadcn/ui", "Framer Motion"]
+    
+  animation_pipeline:
+    name: "アニメーションパイプライン"
+    description: "After Effects → Lottie → React統合"
+    tools: ["After Effects", "Lottie", "lottie-react", "Framer Motion"]
+    
+  interactive_prototyping:
+    name: "インタラクティブプロトタイピング"
+    description: "高忠実度プロトタイプからプロダクションコード"
+    tools: ["tldraw", "React Flow", "GSAP", "Three.js"]
+
+# === パフォーマンス最適化 ===
+performance_optimization:
+  animation_performance:
+    - "transform/opacityプロパティ優先使用"
+    - "will-changeプロパティ適切な設定"
+    - "GPU加速の活用"
+    - "フレームレート監視"
+    
+  bundle_optimization:
+    - "Tree shakingによる不要コード除去"
+    - "Dynamic importによる遅延読み込み"
+    - "WebWorkerでのヘビー処理分離"
+    - "ServiceWorkerキャッシング"
+    
+  rendering_optimization:
+    - "React.memo/useMemoによる再描画最適化"
+    - "Intersection Observer活用"
+    - "Virtual scrolling実装"
+    - "Canvas offscreen rendering"
+
+best_practices:
+  accessibility:
+    - "ARIA属性の適切な使用"
+    - "キーボードナビゲーション対応"
+    - "画面リーダー対応"
+    - "カラーコントラスト確保"
+    
+  responsive_design:
+    - "モバイルファースト設計"
+    - "Flexbox/Grid レイアウト"
+    - "適応的画像配信"
+    - "タッチジェスチャー対応"
+    
+  cross_browser:
+    - "ベンダープレフィックス管理"
+    - "Polyfill適切な導入"
+    - "Feature detection実装"
+    - "Progressive enhancement"
+
+common_use_cases:
+  - "ランディングページアニメーション"
+  - "ダッシュボードUI構築"
+  - "インタラクティブデータ可視化"
+  - "ゲーミフィケーション要素"
+  - "3Dプロダクトショーケース"
+  - "リアルタイムコラボレーション"
+  - "デジタルアート作成"
+  - "教育的インタラクション"

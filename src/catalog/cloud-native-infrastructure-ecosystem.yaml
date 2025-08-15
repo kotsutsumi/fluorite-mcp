@@ -1,0 +1,1160 @@
+name: "cloud-native-infrastructure-ecosystem"
+description: "クラウドネイティブインフラエコシステム - コンテナ、オーケストレーション、Infrastructure as Code、観測可能性の統合技術スタック"
+keywords: ["Cloud Native", "Container", "Kubernetes", "Infrastructure", "DevOps", "Monitoring", "IaC", "Observability"]
+category: "infrastructure-devops"
+maintainers: ["Docker", "Kubernetes", "CNCF", "HashiCorp", "Prometheus"]
+
+# === コンテナ技術 ===
+containerization:
+  docker:
+    name: "docker"
+    description: "業界標準のコンテナプラットフォーム。アプリケーションの軽量化と移植性を実現"
+    installation: "curl -fsSL https://get.docker.com | sh"
+    usage: |
+      # Dockerfile例（Node.js アプリケーション）
+      FROM node:18-alpine AS builder
+
+      # 作業ディレクトリ設定
+      WORKDIR /app
+
+      # 依存関係ファイルをコピー
+      COPY package*.json ./
+
+      # 依存関係インストール
+      RUN npm ci --only=production && npm cache clean --force
+
+      # アプリケーションコードをコピー
+      COPY . .
+
+      # アプリケーションビルド
+      RUN npm run build
+
+      # プロダクション用のマルチステージビルド
+      FROM node:18-alpine AS production
+
+      # セキュリティ：非rootユーザー作成
+      RUN addgroup -g 1001 -S nodejs && \
+          adduser -S nextjs -u 1001
+
+      WORKDIR /app
+
+      # 必要なファイルのみコピー
+      COPY --from=builder /app/dist ./dist
+      COPY --from=builder /app/node_modules ./node_modules
+      COPY --from=builder /app/package.json ./package.json
+
+      # ファイル所有権変更
+      RUN chown -R nextjs:nodejs /app
+      USER nextjs
+
+      # ポート公開
+      EXPOSE 3000
+
+      # ヘルスチェック
+      HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+        CMD node healthcheck.js
+
+      # アプリケーション起動
+      CMD ["node", "dist/server.js"]
+
+      # Docker Compose例
+      version: '3.8'
+      services:
+        app:
+          build:
+            context: .
+            dockerfile: Dockerfile
+            target: production
+          ports:
+            - "3000:3000"
+          environment:
+            - NODE_ENV=production
+            - DATABASE_URL=${DATABASE_URL}
+          depends_on:
+            - database
+            - redis
+          restart: unless-stopped
+          volumes:
+            - logs:/app/logs
+          networks:
+            - app-network
+
+        database:
+          image: postgres:15-alpine
+          environment:
+            POSTGRES_DB: myapp
+            POSTGRES_USER: ${DB_USER}
+            POSTGRES_PASSWORD: ${DB_PASSWORD}
+          volumes:
+            - postgres_data:/var/lib/postgresql/data
+            - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+          ports:
+            - "5432:5432"
+          networks:
+            - app-network
+
+        redis:
+          image: redis:7-alpine
+          command: redis-server --appendonly yes
+          volumes:
+            - redis_data:/data
+          ports:
+            - "6379:6379"
+          networks:
+            - app-network
+
+        nginx:
+          image: nginx:alpine
+          ports:
+            - "80:80"
+            - "443:443"
+          volumes:
+            - ./nginx.conf:/etc/nginx/nginx.conf
+            - ./ssl:/etc/nginx/ssl
+          depends_on:
+            - app
+          networks:
+            - app-network
+
+      volumes:
+        postgres_data:
+        redis_data:
+        logs:
+
+      networks:
+        app-network:
+          driver: bridge
+
+      # 基本Dockerコマンド
+      # イメージビルド
+      docker build -t my-app:latest .
+
+      # コンテナ実行
+      docker run -d --name my-app -p 3000:3000 my-app:latest
+
+      # Compose起動
+      docker-compose up -d
+
+      # ログ確認
+      docker logs my-app -f
+
+      # コンテナ内でコマンド実行
+      docker exec -it my-app /bin/sh
+
+      # クリーンアップ
+      docker-compose down -v
+      docker system prune -a
+    features:
+      - "軽量コンテナ"
+      - "マルチステージビルド"
+      - "レイヤーキャッシング"
+      - "セキュリティスキャン"
+      - "マルチプラットフォーム"
+
+# === オーケストレーション ===
+orchestration:
+  kubernetes:
+    name: "kubernetes"
+    description: "コンテナオーケストレーションプラットフォーム。大規模なコンテナ化アプリケーションの管理"
+    installation: "curl -LO https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+    usage: |
+      # Deployment YAML
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: web-app
+        namespace: production
+        labels:
+          app: web-app
+          version: v1.0.0
+      spec:
+        replicas: 3
+        strategy:
+          type: RollingUpdate
+          rollingUpdate:
+            maxSurge: 1
+            maxUnavailable: 1
+        selector:
+          matchLabels:
+            app: web-app
+        template:
+          metadata:
+            labels:
+              app: web-app
+              version: v1.0.0
+          spec:
+            containers:
+            - name: web-app
+              image: myregistry/web-app:v1.0.0
+              ports:
+              - containerPort: 3000
+                name: http
+              env:
+              - name: NODE_ENV
+                value: "production"
+              - name: DATABASE_URL
+                valueFrom:
+                  secretKeyRef:
+                    name: database-secret
+                    key: url
+              resources:
+                requests:
+                  memory: "64Mi"
+                  cpu: "250m"
+                limits:
+                  memory: "128Mi"
+                  cpu: "500m"
+              livenessProbe:
+                httpGet:
+                  path: /health
+                  port: http
+                initialDelaySeconds: 30
+                periodSeconds: 10
+              readinessProbe:
+                httpGet:
+                  path: /ready
+                  port: http
+                initialDelaySeconds: 5
+                periodSeconds: 5
+              volumeMounts:
+              - name: app-config
+                mountPath: /app/config
+              - name: logs
+                mountPath: /app/logs
+            volumes:
+            - name: app-config
+              configMap:
+                name: web-app-config
+            - name: logs
+              emptyDir: {}
+            imagePullSecrets:
+            - name: registry-secret
+            nodeSelector:
+              kubernetes.io/os: linux
+            tolerations:
+            - key: "app"
+              operator: "Equal"
+              value: "web"
+              effect: "NoSchedule"
+
+      ---
+      # Service YAML
+      apiVersion: v1
+      kind: Service
+      metadata:
+        name: web-app-service
+        namespace: production
+      spec:
+        selector:
+          app: web-app
+        ports:
+        - name: http
+          port: 80
+          targetPort: 3000
+          protocol: TCP
+        type: ClusterIP
+
+      ---
+      # Ingress YAML
+      apiVersion: networking.k8s.io/v1
+      kind: Ingress
+      metadata:
+        name: web-app-ingress
+        namespace: production
+        annotations:
+          kubernetes.io/ingress.class: "nginx"
+          cert-manager.io/cluster-issuer: "letsencrypt-prod"
+          nginx.ingress.kubernetes.io/rate-limit: "100"
+          nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      spec:
+        tls:
+        - hosts:
+          - api.example.com
+          secretName: web-app-tls
+        rules:
+        - host: api.example.com
+          http:
+            paths:
+            - path: /
+              pathType: Prefix
+              backend:
+                service:
+                  name: web-app-service
+                  port:
+                    number: 80
+
+      ---
+      # ConfigMap YAML
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: web-app-config
+        namespace: production
+      data:
+        app.properties: |
+          log.level=info
+          cache.ttl=3600
+          feature.flag.new_ui=true
+        nginx.conf: |
+          server {
+            listen 80;
+            location / {
+              proxy_pass http://web-app-service;
+              proxy_set_header Host $host;
+              proxy_set_header X-Real-IP $remote_addr;
+            }
+          }
+
+      ---
+      # Secret YAML
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: database-secret
+        namespace: production
+      type: Opaque
+      data:
+        url: cG9zdGdyZXNxbDovL3VzZXI6cGFzc3dvcmRAaG9zdDo1NDMyL2RiZGF0YWJhc2U=
+
+      ---
+      # Horizontal Pod Autoscaler
+      apiVersion: autoscaling/v2
+      kind: HorizontalPodAutoscaler
+      metadata:
+        name: web-app-hpa
+        namespace: production
+      spec:
+        scaleTargetRef:
+          apiVersion: apps/v1
+          kind: Deployment
+          name: web-app
+        minReplicas: 3
+        maxReplicas: 10
+        metrics:
+        - type: Resource
+          resource:
+            name: cpu
+            target:
+              type: Utilization
+              averageUtilization: 70
+        - type: Resource
+          resource:
+            name: memory
+            target:
+              type: Utilization
+              averageUtilization: 80
+
+      # StatefulSet例（データベース）
+      apiVersion: apps/v1
+      kind: StatefulSet
+      metadata:
+        name: postgres
+        namespace: production
+      spec:
+        serviceName: postgres
+        replicas: 1
+        selector:
+          matchLabels:
+            app: postgres
+        template:
+          metadata:
+            labels:
+              app: postgres
+          spec:
+            containers:
+            - name: postgres
+              image: postgres:15
+              env:
+              - name: POSTGRES_DB
+                value: myapp
+              - name: POSTGRES_USER
+                valueFrom:
+                  secretKeyRef:
+                    name: postgres-secret
+                    key: username
+              - name: POSTGRES_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    name: postgres-secret
+                    key: password
+              ports:
+              - containerPort: 5432
+                name: postgres
+              volumeMounts:
+              - name: postgres-storage
+                mountPath: /var/lib/postgresql/data
+        volumeClaimTemplates:
+        - metadata:
+            name: postgres-storage
+          spec:
+            accessModes: ["ReadWriteOnce"]
+            storageClassName: "fast-ssd"
+            resources:
+              requests:
+                storage: 20Gi
+
+      # 基本kubectlコマンド
+      # リソース適用
+      kubectl apply -f deployment.yaml
+
+      # ポッド確認
+      kubectl get pods -n production
+
+      # ログ確認
+      kubectl logs -f deployment/web-app -n production
+
+      # ポート転送
+      kubectl port-forward service/web-app-service 8080:80 -n production
+
+      # スケーリング
+      kubectl scale deployment web-app --replicas=5 -n production
+
+      # リソース使用量確認
+      kubectl top pods -n production
+
+      # コンテナ内でコマンド実行
+      kubectl exec -it pod/web-app-xxx -n production -- /bin/sh
+    features:
+      - "自動スケーリング"
+      - "ローリングアップデート"
+      - "サービスディスカバリー"
+      - "設定管理"
+      - "ストレージオーケストレーション"
+
+  helm:
+    name: "helm"
+    description: "Kubernetesパッケージマネージャー。複雑なアプリケーションの管理を簡素化"
+    installation: "curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash"
+    usage: |
+      # Chart.yaml
+      apiVersion: v2
+      name: web-app
+      description: A Helm chart for web application
+      type: application
+      version: 1.0.0
+      appVersion: "1.0.0"
+      keywords:
+        - web
+        - application
+        - nodejs
+      home: https://github.com/example/web-app
+      sources:
+        - https://github.com/example/web-app
+      maintainers:
+        - name: DevOps Team
+          email: devops@example.com
+
+      # values.yaml
+      replicaCount: 3
+
+      image:
+        repository: myregistry/web-app
+        pullPolicy: IfNotPresent
+        tag: "1.0.0"
+
+      imagePullSecrets:
+        - name: registry-secret
+
+      nameOverride: ""
+      fullnameOverride: ""
+
+      service:
+        type: ClusterIP
+        port: 80
+        targetPort: 3000
+
+      ingress:
+        enabled: true
+        className: "nginx"
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+          nginx.ingress.kubernetes.io/rate-limit: "100"
+        hosts:
+          - host: api.example.com
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - secretName: web-app-tls
+            hosts:
+              - api.example.com
+
+      resources:
+        limits:
+          cpu: 500m
+          memory: 128Mi
+        requests:
+          cpu: 250m
+          memory: 64Mi
+
+      autoscaling:
+        enabled: true
+        minReplicas: 3
+        maxReplicas: 10
+        targetCPUUtilizationPercentage: 70
+        targetMemoryUtilizationPercentage: 80
+
+      nodeSelector: {}
+      tolerations: []
+      affinity: {}
+
+      config:
+        logLevel: info
+        cacheTTL: 3600
+        features:
+          newUI: true
+          betaFeatures: false
+
+      database:
+        host: postgres-service
+        port: 5432
+        name: myapp
+
+      # テンプレート例 (templates/deployment.yaml)
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: {{ include "web-app.fullname" . }}
+        labels:
+          {{- include "web-app.labels" . | nindent 4 }}
+      spec:
+        {{- if not .Values.autoscaling.enabled }}
+        replicas: {{ .Values.replicaCount }}
+        {{- end }}
+        selector:
+          matchLabels:
+            {{- include "web-app.selectorLabels" . | nindent 6 }}
+        template:
+          metadata:
+            annotations:
+              checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+            labels:
+              {{- include "web-app.selectorLabels" . | nindent 8 }}
+          spec:
+            {{- with .Values.imagePullSecrets }}
+            imagePullSecrets:
+              {{- toYaml . | nindent 8 }}
+            {{- end }}
+            containers:
+              - name: {{ .Chart.Name }}
+                image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+                imagePullPolicy: {{ .Values.image.pullPolicy }}
+                ports:
+                  - name: http
+                    containerPort: {{ .Values.service.targetPort }}
+                    protocol: TCP
+                livenessProbe:
+                  httpGet:
+                    path: /health
+                    port: http
+                  initialDelaySeconds: 30
+                  periodSeconds: 10
+                readinessProbe:
+                  httpGet:
+                    path: /ready
+                    port: http
+                  initialDelaySeconds: 5
+                  periodSeconds: 5
+                resources:
+                  {{- toYaml .Values.resources | nindent 12 }}
+                env:
+                  - name: NODE_ENV
+                    value: "production"
+                  - name: DATABASE_URL
+                    value: "postgresql://$(DB_USER):$(DB_PASSWORD)@{{ .Values.database.host }}:{{ .Values.database.port }}/{{ .Values.database.name }}"
+                  - name: DB_USER
+                    valueFrom:
+                      secretKeyRef:
+                        name: {{ include "web-app.fullname" . }}-db
+                        key: username
+                  - name: DB_PASSWORD
+                    valueFrom:
+                      secretKeyRef:
+                        name: {{ include "web-app.fullname" . }}-db
+                        key: password
+                volumeMounts:
+                  - name: config
+                    mountPath: /app/config
+            volumes:
+              - name: config
+                configMap:
+                  name: {{ include "web-app.fullname" . }}-config
+
+      # Helmコマンド
+      # Chart作成
+      helm create my-app
+
+      # 依存関係更新
+      helm dependency update
+
+      # インストール
+      helm install my-app ./web-app -n production --create-namespace
+
+      # アップグレード
+      helm upgrade my-app ./web-app -n production
+
+      # 値のオーバーライド
+      helm install my-app ./web-app \
+        --set replicaCount=5 \
+        --set image.tag=2.0.0 \
+        -n production
+
+      # values.yamlファイル指定
+      helm install my-app ./web-app -f values-prod.yaml -n production
+
+      # ドライラン
+      helm install my-app ./web-app --dry-run --debug -n production
+
+      # ロールバック
+      helm rollback my-app 1 -n production
+
+      # アンインストール
+      helm uninstall my-app -n production
+
+      # リポジトリ管理
+      helm repo add bitnami https://charts.bitnami.com/bitnami
+      helm repo update
+      helm search repo postgres
+    features:
+      - "テンプレートエンジン"
+      - "バージョン管理"
+      - "ロールバック機能"
+      - "依存関係管理"
+      - "値のカスタマイズ"
+
+# === Infrastructure as Code ===
+infrastructure_as_code:
+  terraform:
+    name: "terraform"
+    description: "HashiCorp製Infrastructure as Code。クラウドリソースの宣言的管理"
+    installation: "wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg"
+    usage: |
+      # main.tf
+      terraform {
+        required_version = ">= 1.0"
+        required_providers {
+          aws = {
+            source  = "hashicorp/aws"
+            version = "~> 5.0"
+          }
+          kubernetes = {
+            source  = "hashicorp/kubernetes"
+            version = "~> 2.0"
+          }
+        }
+        backend "s3" {
+          bucket = "my-terraform-state"
+          key    = "infrastructure/terraform.tfstate"
+          region = "us-west-2"
+        }
+      }
+
+      provider "aws" {
+        region = var.aws_region
+      }
+
+      # variables.tf
+      variable "aws_region" {
+        description = "AWS region"
+        type        = string
+        default     = "us-west-2"
+      }
+
+      variable "environment" {
+        description = "Environment name"
+        type        = string
+        validation {
+          condition     = contains(["dev", "staging", "prod"], var.environment)
+          error_message = "Environment must be dev, staging, or prod."
+        }
+      }
+
+      variable "cluster_name" {
+        description = "EKS cluster name"
+        type        = string
+      }
+
+      # VPC設定
+      module "vpc" {
+        source = "terraform-aws-modules/vpc/aws"
+        
+        name = "${var.cluster_name}-vpc"
+        cidr = "10.0.0.0/16"
+        
+        azs             = ["${var.aws_region}a", "${var.aws_region}b", "${var.aws_region}c"]
+        private_subnets = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
+        public_subnets  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
+        
+        enable_nat_gateway = true
+        enable_vpn_gateway = false
+        enable_dns_hostnames = true
+        enable_dns_support = true
+        
+        tags = {
+          Environment = var.environment
+          Terraform   = "true"
+          "kubernetes.io/cluster/${var.cluster_name}" = "shared"
+        }
+      }
+
+      # EKSクラスター
+      module "eks" {
+        source = "terraform-aws-modules/eks/aws"
+        
+        cluster_name    = var.cluster_name
+        cluster_version = "1.28"
+        
+        vpc_id     = module.vpc.vpc_id
+        subnet_ids = module.vpc.private_subnets
+        
+        cluster_endpoint_public_access = true
+        cluster_endpoint_private_access = true
+        
+        cluster_addons = {
+          coredns = {
+            most_recent = true
+          }
+          kube-proxy = {
+            most_recent = true
+          }
+          vpc-cni = {
+            most_recent = true
+          }
+          aws-ebs-csi-driver = {
+            most_recent = true
+          }
+        }
+        
+        eks_managed_node_groups = {
+          general = {
+            min_size     = 1
+            max_size     = 10
+            desired_size = 3
+            
+            instance_types = ["m5.large"]
+            capacity_type  = "ON_DEMAND"
+            
+            labels = {
+              Environment = var.environment
+              NodeGroup   = "general"
+            }
+            
+            tags = {
+              Environment = var.environment
+              Terraform   = "true"
+            }
+          }
+          
+          spot = {
+            min_size     = 0
+            max_size     = 5
+            desired_size = 2
+            
+            instance_types = ["m5.large", "m5.xlarge", "m4.large"]
+            capacity_type  = "SPOT"
+            
+            labels = {
+              Environment = var.environment
+              NodeGroup   = "spot"
+            }
+            
+            taints = {
+              dedicated = {
+                key    = "spot"
+                value  = "true"
+                effect = "NO_SCHEDULE"
+              }
+            }
+          }
+        }
+        
+        tags = {
+          Environment = var.environment
+          Terraform   = "true"
+        }
+      }
+
+      # RDS データベース
+      module "rds" {
+        source = "terraform-aws-modules/rds/aws"
+        
+        identifier = "${var.cluster_name}-postgres"
+        
+        engine            = "postgres"
+        engine_version    = "15.4"
+        instance_class    = "db.t3.micro"
+        allocated_storage = 20
+        storage_encrypted = true
+        
+        db_name  = "myapp"
+        username = "postgres"
+        password = random_password.rds_password.result
+        port     = "5432"
+        
+        vpc_security_group_ids = [aws_security_group.rds.id]
+        
+        maintenance_window = "Mon:00:00-Mon:03:00"
+        backup_window      = "03:00-06:00"
+        
+        backup_retention_period = 7
+        
+        subnet_group_name = module.vpc.database_subnet_group
+        family = "postgres15"
+        
+        deletion_protection = var.environment == "prod"
+        
+        tags = {
+          Environment = var.environment
+          Terraform   = "true"
+        }
+      }
+
+      # セキュリティグループ
+      resource "aws_security_group" "rds" {
+        name_prefix = "${var.cluster_name}-rds"
+        vpc_id      = module.vpc.vpc_id
+        
+        ingress {
+          from_port   = 5432
+          to_port     = 5432
+          protocol    = "tcp"
+          cidr_blocks = [module.vpc.vpc_cidr_block]
+        }
+        
+        egress {
+          from_port   = 0
+          to_port     = 0
+          protocol    = "-1"
+          cidr_blocks = ["0.0.0.0/0"]
+        }
+        
+        tags = {
+          Name        = "${var.cluster_name}-rds"
+          Environment = var.environment
+        }
+      }
+
+      # ランダムパスワード生成
+      resource "random_password" "rds_password" {
+        length  = 16
+        special = true
+      }
+
+      # AWS Systems Manager Parameter Store
+      resource "aws_ssm_parameter" "rds_password" {
+        name  = "/${var.environment}/${var.cluster_name}/rds/password"
+        type  = "SecureString"
+        value = random_password.rds_password.result
+        
+        tags = {
+          Environment = var.environment
+          Terraform   = "true"
+        }
+      }
+
+      # outputs.tf
+      output "cluster_endpoint" {
+        description = "Endpoint for EKS control plane"
+        value       = module.eks.cluster_endpoint
+      }
+
+      output "cluster_security_group_id" {
+        description = "Security group ids attached to the cluster control plane"
+        value       = module.eks.cluster_security_group_id
+      }
+
+      output "rds_endpoint" {
+        description = "RDS instance endpoint"
+        value       = module.rds.db_instance_endpoint
+        sensitive   = true
+      }
+
+      # terraform.tfvars
+      aws_region   = "us-west-2"
+      environment  = "production"
+      cluster_name = "my-app-cluster"
+
+      # Terraformコマンド
+      # 初期化
+      terraform init
+
+      # プラン確認
+      terraform plan
+
+      # 適用
+      terraform apply
+
+      # 破棄
+      terraform destroy
+
+      # フォーマット
+      terraform fmt
+
+      # 検証
+      terraform validate
+
+      # 状態確認
+      terraform state list
+      terraform state show aws_instance.example
+    features:
+      - "宣言的設定"
+      - "状態管理"
+      - "プロバイダーエコシステム"
+      - "モジュール再利用"
+      - "依存関係管理"
+
+# === 観測可能性・モニタリング ===
+observability_monitoring:
+  prometheus:
+    name: "prometheus"
+    description: "時系列データベース・モニタリングシステム。メトリクス収集と監視"
+    installation: "helm repo add prometheus-community https://prometheus-community.github.io/helm-charts"
+    usage: |
+      # prometheus.yml設定
+      global:
+        scrape_interval: 15s
+        evaluation_interval: 15s
+
+      rule_files:
+        - "alert_rules.yml"
+        - "recording_rules.yml"
+
+      alerting:
+        alertmanagers:
+          - static_configs:
+              - targets:
+                - alertmanager:9093
+
+      scrape_configs:
+        # Prometheus自体の監視
+        - job_name: 'prometheus'
+          static_configs:
+            - targets: ['localhost:9090']
+
+        # Node Exporter（システムメトリクス）
+        - job_name: 'node-exporter'
+          static_configs:
+            - targets: ['node-exporter:9100']
+
+        # アプリケーションメトリクス
+        - job_name: 'web-app'
+          kubernetes_sd_configs:
+            - role: pod
+          relabel_configs:
+            - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+              action: keep
+              regex: true
+            - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]
+              action: replace
+              target_label: __metrics_path__
+              regex: (.+)
+
+        # Kubernetes API Server
+        - job_name: 'kubernetes-apiservers'
+          kubernetes_sd_configs:
+            - role: endpoints
+              namespaces:
+                names:
+                - default
+          scheme: https
+          tls_config:
+            ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+          bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+          relabel_configs:
+            - source_labels: [__meta_kubernetes_namespace, __meta_kubernetes_service_name, __meta_kubernetes_endpoint_port_name]
+              action: keep
+              regex: default;kubernetes;https
+
+      # アラートルール例（alert_rules.yml）
+      groups:
+        - name: web-app-alerts
+          rules:
+            - alert: HighErrorRate
+              expr: rate(http_requests_total{status=~"5.."}[5m]) > 0.1
+              for: 5m
+              labels:
+                severity: warning
+              annotations:
+                summary: "High error rate detected"
+                description: "Error rate is {{ $value }} for {{ $labels.instance }}"
+
+            - alert: HighMemoryUsage
+              expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100 > 90
+              for: 10m
+              labels:
+                severity: critical
+              annotations:
+                summary: "High memory usage"
+                description: "Memory usage is above 90% on {{ $labels.instance }}"
+
+            - alert: DiskSpaceLow
+              expr: node_filesystem_avail_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"} * 100 < 10
+              for: 5m
+              labels:
+                severity: warning
+              annotations:
+                summary: "Low disk space"
+                description: "Disk space is below 10% on {{ $labels.instance }}"
+
+            - alert: PodCrashLooping
+              expr: rate(kube_pod_container_status_restarts_total[15m]) > 0
+              for: 5m
+              labels:
+                severity: critical
+              annotations:
+                summary: "Pod is crash looping"
+                description: "Pod {{ $labels.pod }} in namespace {{ $labels.namespace }} is crash looping"
+
+      # Node.js アプリケーションでのメトリクス実装
+      const express = require('express');
+      const prometheus = require('prom-client');
+
+      // メトリクス初期化
+      const register = prometheus.register;
+      prometheus.collectDefaultMetrics({ register });
+
+      // カスタムメトリクス
+      const httpRequestDuration = new prometheus.Histogram({
+        name: 'http_request_duration_seconds',
+        help: 'Duration of HTTP requests in seconds',
+        labelNames: ['method', 'route', 'status_code'],
+        buckets: [0.1, 0.3, 0.5, 0.7, 1, 3, 5, 7, 10]
+      });
+
+      const httpRequestsTotal = new prometheus.Counter({
+        name: 'http_requests_total',
+        help: 'Total number of HTTP requests',
+        labelNames: ['method', 'route', 'status_code']
+      });
+
+      const activeConnections = new prometheus.Gauge({
+        name: 'active_connections',
+        help: 'Number of active connections'
+      });
+
+      const businessMetrics = new prometheus.Counter({
+        name: 'business_events_total',
+        help: 'Total business events',
+        labelNames: ['event_type', 'status']
+      });
+
+      // ミドルウェア
+      function metricsMiddleware(req, res, next) {
+        const start = Date.now();
+        
+        activeConnections.inc();
+        
+        res.on('finish', () => {
+          const duration = (Date.now() - start) / 1000;
+          const route = req.route?.path || req.path;
+          
+          httpRequestDuration
+            .labels(req.method, route, res.statusCode)
+            .observe(duration);
+          
+          httpRequestsTotal
+            .labels(req.method, route, res.statusCode)
+            .inc();
+          
+          activeConnections.dec();
+        });
+        
+        next();
+      }
+
+      // Express設定
+      const app = express();
+      app.use(metricsMiddleware);
+
+      // メトリクスエンドポイント
+      app.get('/metrics', async (req, res) => {
+        res.set('Content-Type', register.contentType);
+        res.end(await register.metrics());
+      });
+
+      // ビジネスメトリクス例
+      app.post('/api/orders', (req, res) => {
+        try {
+          // 注文処理
+          const order = processOrder(req.body);
+          
+          // メトリクス記録
+          businessMetrics.labels('order_created', 'success').inc();
+          
+          res.json(order);
+        } catch (error) {
+          businessMetrics.labels('order_created', 'error').inc();
+          res.status(500).json({ error: error.message });
+        }
+      });
+
+      # PromQLクエリ例
+      # CPU使用率
+      100 - (avg by (instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100)
+
+      # エラー率
+      rate(http_requests_total{status=~"5.."}[5m]) / rate(http_requests_total[5m]) * 100
+
+      # 95パーセンタイルレスポンス時間
+      histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m]))
+
+      # メモリ使用率
+      (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100
+
+      # アクティブなポッド数
+      count(up{job="kubernetes-pods"} == 1)
+    features:
+      - "時系列データベース"
+      - "強力なクエリ言語（PromQL）"
+      - "アラート機能"
+      - "サービスディスカバリー"
+      - "豊富なエクスポーター"
+
+# === パフォーマンス最適化 ===
+performance_optimization:
+  container_optimization:
+    - "マルチステージビルド活用"
+    - "ベースイメージ最適化"
+    - "レイヤーキャッシング"
+    - "セキュリティスキャン"
+    
+  kubernetes_optimization:
+    - "リソース制限適切な設定"
+    - "ノードアフィニティ活用"
+    - "PodDisruptionBudget設定"
+    - "ネットワークポリシー実装"
+    
+  monitoring_optimization:
+    - "メトリクス粒度調整"
+    - "アラート閾値最適化"
+    - "データ保持期間設定"
+    - "クエリパフォーマンス向上"
+
+security_best_practices:
+  container_security:
+    - "非rootユーザー使用"
+    - "最小権限の原則"
+    - "脆弱性スキャン実装"
+    - "シークレット管理"
+    
+  kubernetes_security:
+    - "RBAC適切な設定"
+    - "NetworkPolicy実装"
+    - "PodSecurityPolicy使用"
+    - "監査ログ有効化"
+    
+  infrastructure_security:
+    - "プライベートサブネット使用"
+    - "セキュリティグループ最小化"
+    - "暗号化通信徹底"
+    - "定期的なセキュリティ監査"
+
+common_use_cases:
+  - "マイクロサービスアーキテクチャ"
+  - "スケーラブルWebアプリケーション"
+  - "CI/CDパイプライン構築"
+  - "マルチクラウド展開"
+  - "災害復旧システム"
+  - "リアルタイム監視システム"
+  - "セキュアなAPI基盤"
+  - "データ処理パイプライン"

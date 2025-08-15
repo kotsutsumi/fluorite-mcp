@@ -4,7 +4,7 @@ layout: home
 hero:
   name: "Fluorite MCP"
   text: "Multi-Platform Development Context"
-  tagline: "50+ ライブラリと7つのプログラミング言語エコシステムの深い知識をClaude Code CLIに提供"
+  tagline: "50+ ライブラリ、7つのプログラミング言語エコシステム、8つの包括的モダン技術エコシステムの深い知識をClaude Code CLIに提供"
   actions:
     - theme: brand
       text: はじめる
@@ -20,6 +20,9 @@ features:
   - icon: 🌐
     title: 多言語エコシステム
     details: Zig、Elixir、Go、Dart、Flutter、C#、Unityの7つの主要言語エコシステムをサポート
+  - icon: 🚀
+    title: 包括的モダン技術エコシステム
+    details: AI/ML・LLM、クラウドネイティブ、データ処理、モバイル開発など8つの包括的エコシステムをカバー
   - icon: ⚡
     title: 即座のコード生成
     details: プロダクションレディなコードを正しいインポートとベストプラクティスで生成
@@ -78,6 +81,33 @@ features:
 ### エンタープライズ・ゲーム開発
 - **C#** (`spec://csharp-ecosystem`) - エンタープライズアプリケーション開発
 - **Unity** (`spec://unity-ecosystem`) - プロフェッショナルゲーム開発
+
+## 🚀 包括的モダン技術エコシステム
+
+### AI/ML・LLM統合
+- **AI/ML・LLM包括エコシステム** (`spec://ai-ml-llm-comprehensive-ecosystem`) - LangChain、llama.cpp、vLLM、Ollama、ベクターデータベース、Hugging Face
+
+### モバイル開発
+- **Expo/React Native包括エコシステム** (`spec://expo-react-native-comprehensive-ecosystem`) - Expo Router、React Navigation、状態管理、パフォーマンス最適化
+- **ネイティブモバイル開発** (`spec://additional-modern-technologies-ecosystem`) - Swift/iOS、Kotlin/Android、プラットフォーム固有実装
+
+### フロントエンド・UI
+- **フロントエンドUI革新エコシステム** (`spec://frontend-ui-innovation-ecosystem`) - tldraw、Excalidraw、Framer Motion、Three.js、shadcn/ui
+
+### バックエンド・サーバーレス
+- **モダンバックエンド・サーバーレスエコシステム** (`spec://modern-backend-serverless-ecosystem`) - Bun、Deno、Hono、tRPC、エッジコンピューティング
+
+### 開発効率・DX
+- **開発効率・DXエコシステム** (`spec://development-efficiency-dx-ecosystem`) - Nx、Turborepo、Biome、Storybook、モノレポ管理
+
+### データ処理・分析
+- **データ処理・分析エコシステム** (`spec://data-processing-analytics-ecosystem`) - DuckDB、Polars、Apache Arrow、Kafka、D3.js
+
+### クラウドネイティブ・インフラ
+- **クラウドネイティブインフラエコシステム** (`spec://cloud-native-infrastructure-ecosystem`) - Docker、Kubernetes、Terraform、Prometheus、観測可能性
+
+### テスティング・データベース
+- **テスティング・データベース包括エコシステム** (`spec://additional-modern-technologies-ecosystem`) - Playwright、Jest、Prisma、Supabase、品質保証
 
 ## 🛠️ クイックスタート
 

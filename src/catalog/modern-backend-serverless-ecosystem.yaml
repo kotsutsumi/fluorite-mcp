@@ -1,0 +1,1866 @@
+name: "modern-backend-serverless-ecosystem"
+description: "モダンバックエンド・サーバーレスエコシステム - 高性能ランタイム、エッジコンピューティング、型安全APIの最先端技術スタック"
+keywords: ["Backend", "Serverless", "Edge", "TypeScript", "Performance", "API", "WebAssembly", "Runtime"]
+category: "backend-serverless-development"
+maintainers: ["Bun", "Deno", "Hono", "tRPC", "Fastify", "Serverless Community"]
+
+# === 次世代ランタイム ===
+next_generation_runtimes:
+  bun:
+    name: "bun"
+    description: "JavaScriptとTypeScript用の高速オールインワンランタイム。ビルド、テスト、パッケージ管理統合"
+    installation: "curl -fsSL https://bun.sh/install | bash"
+    usage: |
+      // Bunプロジェクト初期化
+      bun init
+      bun install
+
+      // 高速HTTPサーバー
+      import { serve } from "bun";
+
+      const server = serve({
+        port: 3000,
+        async fetch(req) {
+          const url = new URL(req.url);
+          
+          if (url.pathname === "/") {
+            return new Response("Hello from Bun!", {
+              headers: { "Content-Type": "text/plain" },
+            });
+          }
+          
+          if (url.pathname === "/api/users") {
+            return Response.json([
+              { id: 1, name: "Alice" },
+              { id: 2, name: "Bob" }
+            ]);
+          }
+          
+          return new Response("Not Found", { status: 404 });
+        },
+      });
+
+      console.log(`Server running on http://localhost:${server.port}`);
+
+      // WebSocketサーバー
+      const wsServer = serve({
+        port: 3001,
+        async fetch(req, server) {
+          const success = server.upgrade(req);
+          if (success) {
+            return undefined;
+          }
+          return new Response("Upgrade failed", { status: 500 });
+        },
+        websocket: {
+          message(ws, message) {
+            console.log(`Received: ${message}`);
+            ws.send(`Echo: ${message}`);
+          },
+          open(ws) {
+            console.log("WebSocket connection opened");
+            ws.send("Welcome to Bun WebSocket!");
+          },
+          close(ws, code, message) {
+            console.log("WebSocket connection closed");
+          },
+        },
+      });
+
+      // ファイル操作（高速I/O）
+      export class BunFileService {
+        async readLargeFile(path: string): Promise<string> {
+          const file = Bun.file(path);
+          return await file.text();
+        }
+
+        async writeFile(path: string, content: string): Promise<void> {
+          await Bun.write(path, content);
+        }
+
+        async processJSON(path: string): Promise<any> {
+          const file = Bun.file(path);
+          return await file.json();
+        }
+
+        async optimizedImageProcessing(imagePath: string): Promise<ArrayBuffer> {
+          const file = Bun.file(imagePath);
+          return await file.arrayBuffer();
+        }
+      }
+
+      // 高性能データベース操作
+      import { Database } from "bun:sqlite";
+
+      export class BunSQLiteService {
+        private db: Database;
+
+        constructor(path: string = ":memory:") {
+          this.db = new Database(path);
+          this.init();
+        }
+
+        private init() {
+          this.db.exec(`
+            CREATE TABLE IF NOT EXISTS users (
+              id INTEGER PRIMARY KEY AUTOINCREMENT,
+              name TEXT NOT NULL,
+              email TEXT UNIQUE NOT NULL,
+              created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+            )
+          `);
+        }
+
+        createUser(name: string, email: string) {
+          const query = this.db.query(`
+            INSERT INTO users (name, email) VALUES (?, ?) RETURNING *
+          `);
+          return query.get(name, email);
+        }
+
+        getUsers() {
+          const query = this.db.query("SELECT * FROM users");
+          return query.all();
+        }
+
+        getUserById(id: number) {
+          const query = this.db.query("SELECT * FROM users WHERE id = ?");
+          return query.get(id);
+        }
+
+        // 高性能バッチ処理
+        batchCreateUsers(users: Array<{ name: string; email: string }>) {
+          const insertStmt = this.db.prepare("INSERT INTO users (name, email) VALUES (?, ?)");
+          
+          const transaction = this.db.transaction((users) => {
+            for (const user of users) {
+              insertStmt.run(user.name, user.email);
+            }
+          });
+          
+          return transaction(users);
+        }
+      }
+
+      // Bun専用テスト
+      import { test, expect } from "bun:test";
+
+      test("fast arithmetic", () => {
+        expect(2 + 2).toBe(4);
+      });
+
+      test("async database operation", async () => {
+        const service = new BunSQLiteService();
+        const user = service.createUser("Test User", "test@example.com");
+        expect(user.name).toBe("Test User");
+      });
+    features:
+      - "3x高速起動時間"
+      - "内蔵SQLiteデータベース"
+      - "ネイティブWebSocketサポート"
+      - "Zero-configビルドツール"
+      - "内蔵テストランナー"
+
+  deno:
+    name: "deno"
+    description: "セキュアでモダンなJavaScript/TypeScriptランタイム。Web標準API完全対応"
+    installation: "curl -fsSL https://deno.land/install.sh | sh"
+    usage: |
+      // Deno HTTPサーバー
+      import { serve } from "https://deno.land/std@0.208.0/http/server.ts";
+      import { cors } from "https://deno.land/x/cors@v1.2.2/mod.ts";
+
+      interface User {
+        id: number;
+        name: string;
+        email: string;
+      }
+
+      const users: User[] = [
+        { id: 1, name: "Alice", email: "alice@example.com" },
+        { id: 2, name: "Bob", email: "bob@example.com" },
+      ];
+
+      const corsHeaders = cors({
+        origin: ["http://localhost:3000", "https://myapp.com"],
+        credentials: true,
+      });
+
+      async function handler(req: Request): Promise<Response> {
+        const url = new URL(req.url);
+        const method = req.method;
+
+        // CORS処理
+        if (method === "OPTIONS") {
+          return new Response(null, { status: 200, headers: corsHeaders });
+        }
+
+        // ルーティング
+        if (url.pathname === "/api/users" && method === "GET") {
+          return Response.json(users, { headers: corsHeaders });
+        }
+
+        if (url.pathname === "/api/users" && method === "POST") {
+          const body = await req.json();
+          const newUser: User = {
+            id: users.length + 1,
+            name: body.name,
+            email: body.email,
+          };
+          users.push(newUser);
+          
+          return Response.json(newUser, { 
+            status: 201, 
+            headers: corsHeaders 
+          });
+        }
+
+        if (url.pathname.startsWith("/api/users/") && method === "GET") {
+          const id = parseInt(url.pathname.split("/")[3]);
+          const user = users.find(u => u.id === id);
+          
+          if (!user) {
+            return Response.json({ error: "User not found" }, { 
+              status: 404, 
+              headers: corsHeaders 
+            });
+          }
+          
+          return Response.json(user, { headers: corsHeaders });
+        }
+
+        return Response.json({ error: "Not Found" }, { 
+          status: 404, 
+          headers: corsHeaders 
+        });
+      }
+
+      console.log("Server starting on http://localhost:8000");
+      await serve(handler, { port: 8000 });
+
+      // ファイルシステム操作
+      export class DenoFileService {
+        async readTextFile(path: string): Promise<string> {
+          return await Deno.readTextFile(path);
+        }
+
+        async writeTextFile(path: string, content: string): Promise<void> {
+          await Deno.writeTextFile(path, content);
+        }
+
+        async processDirectory(dirPath: string): Promise<string[]> {
+          const files: string[] = [];
+          
+          for await (const entry of Deno.readDir(dirPath)) {
+            if (entry.isFile) {
+              files.push(entry.name);
+            }
+          }
+          
+          return files;
+        }
+
+        async downloadFile(url: string, destination: string): Promise<void> {
+          const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+          }
+          
+          const file = await Deno.open(destination, { write: true, create: true });
+          await response.body?.pipeTo(file.writable);
+        }
+      }
+
+      // DenoのKVストレージ（サーバーレス対応）
+      export class DenoKVService {
+        private kv: Deno.Kv;
+
+        constructor() {
+          this.kv = await Deno.openKv();
+        }
+
+        async set(key: string[], value: any): Promise<void> {
+          await this.kv.set(key, value);
+        }
+
+        async get(key: string[]): Promise<any> {
+          const result = await this.kv.get(key);
+          return result.value;
+        }
+
+        async delete(key: string[]): Promise<void> {
+          await this.kv.delete(key);
+        }
+
+        async list(prefix: string[]): Promise<any[]> {
+          const entries = this.kv.list({ prefix });
+          const results = [];
+          
+          for await (const entry of entries) {
+            results.push(entry.value);
+          }
+          
+          return results;
+        }
+
+        // アトミック操作
+        async atomicUpdate(key: string[], updater: (value: any) => any): Promise<void> {
+          let result = await this.kv.get(key);
+          let value = result.value;
+          
+          const newValue = updater(value);
+          
+          const atomic = this.kv.atomic()
+            .check(result)
+            .set(key, newValue);
+            
+          const commitResult = await atomic.commit();
+          
+          if (!commitResult.ok) {
+            throw new Error("Atomic operation failed");
+          }
+        }
+      }
+
+      // Deno Deploy対応
+      export class DenoDeployService {
+        static async handleEdgeFunction(req: Request): Promise<Response> {
+          const url = new URL(req.url);
+          
+          // エッジでの位置情報取得
+          const country = req.headers.get("cf-ipcountry") || "unknown";
+          const region = req.headers.get("cf-region") || "unknown";
+          
+          if (url.pathname === "/api/edge-info") {
+            return Response.json({
+              country,
+              region,
+              timestamp: new Date().toISOString(),
+              edge: true,
+            });
+          }
+          
+          // 地域別レスポンス
+          if (url.pathname === "/api/localized") {
+            const localizedContent = this.getLocalizedContent(country);
+            return Response.json(localizedContent);
+          }
+          
+          return new Response("Not Found", { status: 404 });
+        }
+
+        private static getLocalizedContent(country: string) {
+          const content = {
+            "JP": { message: "こんにちは！", currency: "JPY" },
+            "US": { message: "Hello!", currency: "USD" },
+            "GB": { message: "Hello!", currency: "GBP" },
+          };
+          
+          return content[country] || content["US"];
+        }
+      }
+    features:
+      - "セキュリティファースト設計"
+      - "TypeScript標準サポート"
+      - "Web標準API準拠"
+      - "パーミッションシステム"
+      - "Deno Deploy統合"
+
+# === 高性能Webフレームワーク ===
+high_performance_frameworks:
+  hono:
+    name: "hono"
+    description: "超高速WebフレームワークでEdge Runtime対応。Cloudflare Workers、Bun、Deno対応"
+    installation: "npm install hono"
+    usage: |
+      import { Hono } from 'hono';
+      import { cors } from 'hono/cors';
+      import { logger } from 'hono/logger';
+      import { jwt } from 'hono/jwt';
+      import { zValidator } from '@hono/zod-validator';
+      import { z } from 'zod';
+
+      // 基本アプリケーション
+      const app = new Hono();
+
+      // ミドルウェア設定
+      app.use('*', logger());
+      app.use('*', cors({
+        origin: ['http://localhost:3000', 'https://myapp.com'],
+        credentials: true,
+      }));
+
+      // JWT認証ミドルウェア
+      app.use('/api/protected/*', jwt({
+        secret: 'your-secret-key',
+      }));
+
+      // バリデーションスキーマ
+      const userSchema = z.object({
+        name: z.string().min(1),
+        email: z.string().email(),
+        age: z.number().min(0).optional(),
+      });
+
+      const loginSchema = z.object({
+        email: z.string().email(),
+        password: z.string().min(6),
+      });
+
+      // ルート定義
+      app.get('/', (c) => {
+        return c.json({ message: 'Hello from Hono!' });
+      });
+
+      // バリデーション付きルート
+      app.post('/api/users', zValidator('json', userSchema), async (c) => {
+        const user = c.req.valid('json');
+        
+        // データベース保存処理（仮想）
+        const savedUser = {
+          id: Math.floor(Math.random() * 1000),
+          ...user,
+          createdAt: new Date().toISOString(),
+        };
+        
+        return c.json(savedUser, 201);
+      });
+
+      // 認証エンドポイント
+      app.post('/api/auth/login', zValidator('json', loginSchema), async (c) => {
+        const { email, password } = c.req.valid('json');
+        
+        // 認証処理（仮想）
+        if (email === 'admin@example.com' && password === 'password') {
+          const token = await sign({ email, role: 'admin' }, 'your-secret-key');
+          
+          return c.json({
+            token,
+            user: { email, role: 'admin' }
+          });
+        }
+        
+        return c.json({ error: 'Invalid credentials' }, 401);
+      });
+
+      // 保護されたルート
+      app.get('/api/protected/profile', async (c) => {
+        const payload = c.get('jwtPayload');
+        return c.json({
+          message: 'Protected route accessed',
+          user: payload,
+        });
+      });
+
+      // ファイルアップロード
+      app.post('/api/upload', async (c) => {
+        const body = await c.req.parseBody();
+        const file = body['file'] as File;
+        
+        if (!file) {
+          return c.json({ error: 'No file uploaded' }, 400);
+        }
+        
+        // ファイル処理
+        const buffer = await file.arrayBuffer();
+        const fileName = `uploads/${Date.now()}-${file.name}`;
+        
+        // クラウドストレージに保存（仮想）
+        const fileUrl = await uploadToCloudStorage(fileName, buffer);
+        
+        return c.json({
+          message: 'File uploaded successfully',
+          url: fileUrl,
+          size: buffer.byteLength,
+        });
+      });
+
+      // ストリーミングレスポンス
+      app.get('/api/stream', (c) => {
+        let counter = 0;
+        
+        const stream = new ReadableStream({
+          start(controller) {
+            const interval = setInterval(() => {
+              if (counter >= 10) {
+                controller.close();
+                clearInterval(interval);
+                return;
+              }
+              
+              const data = `data: ${JSON.stringify({ count: counter, timestamp: Date.now() })}\n\n`;
+              controller.enqueue(new TextEncoder().encode(data));
+              counter++;
+            }, 1000);
+          },
+        });
+        
+        return new Response(stream, {
+          headers: {
+            'Content-Type': 'text/plain; charset=utf-8',
+            'Cache-Control': 'no-cache',
+            'Connection': 'keep-alive',
+          },
+        });
+      });
+
+      // エラーハンドリング
+      app.onError((err, c) => {
+        console.error(`${err}`);
+        
+        if (err instanceof z.ZodError) {
+          return c.json({
+            error: 'Validation failed',
+            details: err.errors,
+          }, 400);
+        }
+        
+        return c.json({ error: 'Internal Server Error' }, 500);
+      });
+
+      // Cloudflare Workers対応
+      export default {
+        async fetch(request: Request, env: any, ctx: ExecutionContext) {
+          return app.fetch(request, env, ctx);
+        },
+      };
+
+      // Bun対応
+      export const bunServer = {
+        port: 3000,
+        fetch: app.fetch,
+      };
+
+      // Deno対応
+      Deno.serve(app.fetch);
+    features:
+      - "マルチランタイム対応"
+      - "TypeScript完全対応"
+      - "軽量・高速"
+      - "豊富なミドルウェア"
+      - "エッジコンピューティング最適化"
+
+  fastify:
+    name: "fastify"
+    description: "高性能Node.jsWebフレームワーク。JSONスキーマベースの高速処理"
+    installation: "npm install fastify"
+    usage: |
+      import Fastify from 'fastify';
+      import { Type, Static } from '@sinclair/typebox';
+
+      // Fastifyインスタンス作成
+      const fastify = Fastify({
+        logger: {
+          level: 'info',
+          transport: {
+            target: 'pino-pretty',
+            options: {
+              colorize: true
+            }
+          }
+        }
+      });
+
+      // プラグイン登録
+      await fastify.register(import('@fastify/cors'), {
+        origin: ['http://localhost:3000'],
+        credentials: true,
+      });
+
+      await fastify.register(import('@fastify/jwt'), {
+        secret: 'your-secret-key',
+      });
+
+      await fastify.register(import('@fastify/multipart'));
+
+      // TypeBoxスキーマ定義
+      const UserSchema = Type.Object({
+        id: Type.Optional(Type.Number()),
+        name: Type.String({ minLength: 1 }),
+        email: Type.String({ format: 'email' }),
+        age: Type.Optional(Type.Number({ minimum: 0 })),
+      });
+
+      const LoginSchema = Type.Object({
+        email: Type.String({ format: 'email' }),
+        password: Type.String({ minLength: 6 }),
+      });
+
+      type User = Static<typeof UserSchema>;
+      type LoginRequest = Static<typeof LoginSchema>;
+
+      // インメモリデータストア
+      const users: User[] = [
+        { id: 1, name: 'Alice', email: 'alice@example.com', age: 25 },
+        { id: 2, name: 'Bob', email: 'bob@example.com', age: 30 },
+      ];
+
+      // ルート定義
+      fastify.get('/', async (request, reply) => {
+        return { message: 'Hello from Fastify!' };
+      });
+
+      // ユーザー一覧取得
+      fastify.get('/api/users', {
+        schema: {
+          response: {
+            200: Type.Array(UserSchema)
+          }
+        }
+      }, async (request, reply) => {
+        return users;
+      });
+
+      // ユーザー詳細取得
+      fastify.get('/api/users/:id', {
+        schema: {
+          params: Type.Object({
+            id: Type.Number()
+          }),
+          response: {
+            200: UserSchema,
+            404: Type.Object({
+              error: Type.String()
+            })
+          }
+        }
+      }, async (request, reply) => {
+        const { id } = request.params as { id: number };
+        const user = users.find(u => u.id === id);
+        
+        if (!user) {
+          reply.code(404);
+          return { error: 'User not found' };
+        }
+        
+        return user;
+      });
+
+      // ユーザー作成
+      fastify.post('/api/users', {
+        schema: {
+          body: Type.Omit(UserSchema, ['id']),
+          response: {
+            201: UserSchema
+          }
+        }
+      }, async (request, reply) => {
+        const userData = request.body as Omit<User, 'id'>;
+        const newUser: User = {
+          id: Math.max(...users.map(u => u.id || 0)) + 1,
+          ...userData,
+        };
+        
+        users.push(newUser);
+        reply.code(201);
+        return newUser;
+      });
+
+      // 認証
+      fastify.post('/api/auth/login', {
+        schema: {
+          body: LoginSchema,
+          response: {
+            200: Type.Object({
+              token: Type.String(),
+              user: Type.Object({
+                email: Type.String(),
+                role: Type.String()
+              })
+            }),
+            401: Type.Object({
+              error: Type.String()
+            })
+          }
+        }
+      }, async (request, reply) => {
+        const { email, password } = request.body as LoginRequest;
+        
+        // 認証処理（簡易版）
+        if (email === 'admin@example.com' && password === 'password') {
+          const token = fastify.jwt.sign({ email, role: 'admin' });
+          
+          return {
+            token,
+            user: { email, role: 'admin' }
+          };
+        }
+        
+        reply.code(401);
+        return { error: 'Invalid credentials' };
+      });
+
+      // 保護されたルート
+      fastify.register(async function (fastify) {
+        await fastify.addHook('onRequest', async (request, reply) => {
+          try {
+            await request.jwtVerify();
+          } catch (err) {
+            reply.send(err);
+          }
+        });
+
+        fastify.get('/api/protected/profile', async (request, reply) => {
+          return {
+            message: 'Protected route accessed',
+            user: request.user,
+          };
+        });
+      });
+
+      // ファイルアップロード
+      fastify.post('/api/upload', async (request, reply) => {
+        const data = await request.file();
+        
+        if (!data) {
+          reply.code(400);
+          return { error: 'No file uploaded' };
+        }
+        
+        const buffer = await data.toBuffer();
+        const fileName = `uploads/${Date.now()}-${data.filename}`;
+        
+        // ファイル保存処理
+        // await fs.writeFile(fileName, buffer);
+        
+        return {
+          message: 'File uploaded successfully',
+          filename: data.filename,
+          size: buffer.length,
+        };
+      });
+
+      // サーバー起動
+      const start = async () => {
+        try {
+          await fastify.listen({ port: 3000, host: '0.0.0.0' });
+          console.log('Server is running on http://localhost:3000');
+        } catch (err) {
+          fastify.log.error(err);
+          process.exit(1);
+        }
+      };
+
+      start();
+
+      // WebSocket対応
+      await fastify.register(import('@fastify/websocket'));
+
+      fastify.register(async function (fastify) {
+        fastify.get('/ws', { websocket: true }, (connection, req) => {
+          connection.socket.on('message', message => {
+            console.log(`Received: ${message}`);
+            connection.socket.send(`Echo: ${message}`);
+          });
+          
+          connection.socket.send('Welcome to Fastify WebSocket!');
+        });
+      });
+    features:
+      - "高速JSONシリアライゼーション"
+      - "TypeBoxスキーマ検証"
+      - "豊富なプラグインエコシステム"
+      - "低オーバーヘッド"
+      - "TypeScript完全対応"
+
+# === 型安全API ===
+type_safe_apis:
+  trpc:
+    name: "trpc"
+    description: "エンドツーエンド型安全なAPI。TypeScriptでクライアント・サーバー間の型を共有"
+    installation: "npm install @trpc/server @trpc/client @trpc/react-query"
+    usage: |
+      // サーバーサイド設定
+      import { initTRPC, TRPCError } from '@trpc/server';
+      import { z } from 'zod';
+      import { createHTTPServer } from '@trpc/server/adapters/standalone';
+
+      // コンテキスト定義
+      interface Context {
+        user?: {
+          id: string;
+          email: string;
+          role: string;
+        };
+      }
+
+      const t = initTRPC.context<Context>().create();
+
+      // ミドルウェア
+      const isAuthenticated = t.middleware(({ ctx, next }) => {
+        if (!ctx.user) {
+          throw new TRPCError({ code: 'UNAUTHORIZED' });
+        }
+        return next({
+          ctx: {
+            user: ctx.user,
+          },
+        });
+      });
+
+      // プロシージャヘルパー
+      const publicProcedure = t.procedure;
+      const protectedProcedure = t.procedure.use(isAuthenticated);
+
+      // ルーター定義
+      const userRouter = t.router({
+        getAll: publicProcedure
+          .query(async () => {
+            // データベースから取得
+            return [
+              { id: '1', name: 'Alice', email: 'alice@example.com' },
+              { id: '2', name: 'Bob', email: 'bob@example.com' },
+            ];
+          }),
+
+        getById: publicProcedure
+          .input(z.object({ id: z.string() }))
+          .query(async ({ input }) => {
+            // データベースから特定ユーザー取得
+            const user = await findUserById(input.id);
+            if (!user) {
+              throw new TRPCError({ 
+                code: 'NOT_FOUND',
+                message: 'User not found' 
+              });
+            }
+            return user;
+          }),
+
+        create: protectedProcedure
+          .input(z.object({
+            name: z.string().min(1),
+            email: z.string().email(),
+          }))
+          .mutation(async ({ input, ctx }) => {
+            // 新規ユーザー作成
+            const newUser = await createUser({
+              ...input,
+              createdBy: ctx.user.id,
+            });
+            return newUser;
+          }),
+
+        update: protectedProcedure
+          .input(z.object({
+            id: z.string(),
+            name: z.string().min(1).optional(),
+            email: z.string().email().optional(),
+          }))
+          .mutation(async ({ input, ctx }) => {
+            const { id, ...updateData } = input;
+            
+            // 権限チェック
+            const existingUser = await findUserById(id);
+            if (existingUser.createdBy !== ctx.user.id && ctx.user.role !== 'admin') {
+              throw new TRPCError({ code: 'FORBIDDEN' });
+            }
+            
+            return await updateUser(id, updateData);
+          }),
+
+        delete: protectedProcedure
+          .input(z.object({ id: z.string() }))
+          .mutation(async ({ input, ctx }) => {
+            // 削除権限チェック
+            if (ctx.user.role !== 'admin') {
+              throw new TRPCError({ code: 'FORBIDDEN' });
+            }
+            
+            await deleteUser(input.id);
+            return { success: true };
+          }),
+      });
+
+      // メインルーター
+      const appRouter = t.router({
+        user: userRouter,
+        
+        auth: t.router({
+          login: publicProcedure
+            .input(z.object({
+              email: z.string().email(),
+              password: z.string().min(6),
+            }))
+            .mutation(async ({ input }) => {
+              const user = await authenticateUser(input.email, input.password);
+              if (!user) {
+                throw new TRPCError({ 
+                  code: 'UNAUTHORIZED',
+                  message: 'Invalid credentials' 
+                });
+              }
+              
+              const token = generateJWT(user);
+              return { token, user };
+            }),
+
+          me: protectedProcedure
+            .query(({ ctx }) => {
+              return ctx.user;
+            }),
+        }),
+
+        // リアルタイム機能（Subscription）
+        notifications: t.router({
+          subscribe: protectedProcedure
+            .subscription(({ ctx }) => {
+              return observable<{ message: string; timestamp: Date }>((emit) => {
+                // WebSocketまたはSSEによる通知
+                const unsubscribe = subscribeToNotifications(ctx.user.id, (notification) => {
+                  emit.next(notification);
+                });
+                
+                return unsubscribe;
+              });
+            }),
+        }),
+      });
+
+      export type AppRouter = typeof appRouter;
+
+      // HTTPサーバー起動
+      const server = createHTTPServer({
+        router: appRouter,
+        createContext: ({ req, res }) => {
+          // JWT検証など
+          const token = req.headers.authorization?.replace('Bearer ', '');
+          const user = token ? verifyJWT(token) : undefined;
+          
+          return { user };
+        },
+      });
+
+      server.listen(3000);
+
+      // クライアントサイド設定
+      import { createTRPCProxyClient, httpBatchLink } from '@trpc/client';
+      import type { AppRouter } from './server';
+
+      const trpc = createTRPCProxyClient<AppRouter>({
+        links: [
+          httpBatchLink({
+            url: 'http://localhost:3000',
+            headers: () => {
+              const token = localStorage.getItem('token');
+              return token ? { authorization: `Bearer ${token}` } : {};
+            },
+          }),
+        ],
+      });
+
+      // クライアントでの使用例
+      export class ApiService {
+        async getUsers() {
+          return await trpc.user.getAll.query();
+        }
+
+        async getUserById(id: string) {
+          return await trpc.user.getById.query({ id });
+        }
+
+        async createUser(userData: { name: string; email: string }) {
+          return await trpc.user.create.mutate(userData);
+        }
+
+        async login(credentials: { email: string; password: string }) {
+          const result = await trpc.auth.login.mutate(credentials);
+          localStorage.setItem('token', result.token);
+          return result;
+        }
+
+        async getCurrentUser() {
+          return await trpc.auth.me.query();
+        }
+
+        // リアルタイム通知購読
+        subscribeToNotifications(callback: (notification: any) => void) {
+          const subscription = trpc.notifications.subscribe.subscribe(undefined, {
+            onData: callback,
+            onError: (err) => console.error('Subscription error:', err),
+          });
+
+          return () => subscription.unsubscribe();
+        }
+      }
+
+      // React Queryとの統合
+      import { createTRPCReact } from '@trpc/react-query';
+
+      const trpcReact = createTRPCReact<AppRouter>();
+
+      // Reactコンポーネントでの使用
+      function UserList() {
+        const { data: users, isLoading, error } = trpcReact.user.getAll.useQuery();
+        const createUserMutation = trpcReact.user.create.useMutation();
+
+        const handleCreateUser = async (userData: { name: string; email: string }) => {
+          try {
+            await createUserMutation.mutateAsync(userData);
+            // クエリを無効化して再取得
+            trpcReact.useContext().user.getAll.invalidate();
+          } catch (error) {
+            console.error('Failed to create user:', error);
+          }
+        };
+
+        if (isLoading) return <div>Loading...</div>;
+        if (error) return <div>Error: {error.message}</div>;
+
+        return (
+          <div>
+            {users?.map(user => (
+              <div key={user.id}>{user.name} - {user.email}</div>
+            ))}
+          </div>
+        );
+      }
+    features:
+      - "完全な型安全性"
+      - "自動生成される型定義"
+      - "リアルタイム機能"
+      - "React Query統合"
+      - "ゼロランタイムオーバーヘッド"
+
+  graphql_yoga:
+    name: "graphql-yoga"
+    description: "モダンGraphQLサーバー。TypeScript、リアルタイム、ファイルアップロード対応"
+    installation: "npm install graphql-yoga graphql"
+    usage: |
+      import { createYoga, createSchema } from 'graphql-yoga';
+      import { createServer } from 'node:http';
+
+      // GraphQLスキーマ定義
+      const typeDefs = `
+        type User {
+          id: ID!
+          name: String!
+          email: String!
+          posts: [Post!]!
+          createdAt: String!
+        }
+
+        type Post {
+          id: ID!
+          title: String!
+          content: String!
+          author: User!
+          published: Boolean!
+          createdAt: String!
+        }
+
+        input CreateUserInput {
+          name: String!
+          email: String!
+        }
+
+        input CreatePostInput {
+          title: String!
+          content: String!
+          authorId: ID!
+          published: Boolean = false
+        }
+
+        type Query {
+          users: [User!]!
+          user(id: ID!): User
+          posts: [Post!]!
+          post(id: ID!): Post
+        }
+
+        type Mutation {
+          createUser(input: CreateUserInput!): User!
+          createPost(input: CreatePostInput!): Post!
+          updatePost(id: ID!, input: CreatePostInput!): Post!
+          deletePost(id: ID!): Boolean!
+        }
+
+        type Subscription {
+          postAdded: Post!
+          userAdded: User!
+        }
+      `;
+
+      // インメモリデータストア
+      const users = [
+        { id: '1', name: 'Alice', email: 'alice@example.com', createdAt: new Date().toISOString() },
+        { id: '2', name: 'Bob', email: 'bob@example.com', createdAt: new Date().toISOString() },
+      ];
+
+      const posts = [
+        { id: '1', title: 'GraphQL入門', content: 'GraphQLの基本について', authorId: '1', published: true, createdAt: new Date().toISOString() },
+        { id: '2', title: 'TypeScript活用法', content: 'TypeScriptのベストプラクティス', authorId: '2', published: false, createdAt: new Date().toISOString() },
+      ];
+
+      // PubSub（リアルタイム通信用）
+      import { createPubSub } from '@graphql-yoga/subscription';
+      const pubSub = createPubSub();
+
+      // リゾルバー定義
+      const resolvers = {
+        Query: {
+          users: () => users,
+          user: (_, { id }) => users.find(user => user.id === id),
+          posts: () => posts,
+          post: (_, { id }) => posts.find(post => post.id === id),
+        },
+
+        Mutation: {
+          createUser: (_, { input }) => {
+            const newUser = {
+              id: String(users.length + 1),
+              ...input,
+              createdAt: new Date().toISOString(),
+            };
+            users.push(newUser);
+            
+            // リアルタイム通知
+            pubSub.publish('USER_ADDED', { userAdded: newUser });
+            
+            return newUser;
+          },
+
+          createPost: (_, { input }) => {
+            const newPost = {
+              id: String(posts.length + 1),
+              ...input,
+              createdAt: new Date().toISOString(),
+            };
+            posts.push(newPost);
+            
+            // リアルタイム通知
+            pubSub.publish('POST_ADDED', { postAdded: newPost });
+            
+            return newPost;
+          },
+
+          updatePost: (_, { id, input }) => {
+            const postIndex = posts.findIndex(post => post.id === id);
+            if (postIndex === -1) {
+              throw new Error('Post not found');
+            }
+            
+            const updatedPost = { ...posts[postIndex], ...input };
+            posts[postIndex] = updatedPost;
+            
+            return updatedPost;
+          },
+
+          deletePost: (_, { id }) => {
+            const postIndex = posts.findIndex(post => post.id === id);
+            if (postIndex === -1) {
+              return false;
+            }
+            
+            posts.splice(postIndex, 1);
+            return true;
+          },
+        },
+
+        Subscription: {
+          postAdded: {
+            subscribe: () => pubSub.subscribe('POST_ADDED'),
+          },
+          userAdded: {
+            subscribe: () => pubSub.subscribe('USER_ADDED'),
+          },
+        },
+
+        // ネストしたリゾルバー
+        User: {
+          posts: (user) => posts.filter(post => post.authorId === user.id),
+        },
+
+        Post: {
+          author: (post) => users.find(user => user.id === post.authorId),
+        },
+      };
+
+      // GraphQL Yogaサーバー作成
+      const yoga = createYoga({
+        schema: createSchema({
+          typeDefs,
+          resolvers,
+        }),
+        context: ({ request }) => {
+          // 認証など
+          const token = request.headers.get('authorization')?.replace('Bearer ', '');
+          const user = token ? verifyJWT(token) : null;
+          
+          return {
+            user,
+            pubSub,
+          };
+        },
+        // CORS設定
+        cors: {
+          origin: ['http://localhost:3000'],
+          credentials: true,
+        },
+        // ファイルアップロード有効化
+        multipart: true,
+      });
+
+      // サーバー起動
+      const server = createServer(yoga);
+      server.listen(4000, () => {
+        console.log('GraphQL server is running on http://localhost:4000/graphql');
+      });
+
+      // クライアントサイド（Apollo Client）
+      import { ApolloClient, InMemoryCache, gql, useQuery, useMutation, useSubscription } from '@apollo/client';
+
+      const client = new ApolloClient({
+        uri: 'http://localhost:4000/graphql',
+        cache: new InMemoryCache(),
+      });
+
+      // クエリ定義
+      const GET_USERS = gql`
+        query GetUsers {
+          users {
+            id
+            name
+            email
+            posts {
+              id
+              title
+              published
+            }
+          }
+        }
+      `;
+
+      const CREATE_USER = gql`
+        mutation CreateUser($input: CreateUserInput!) {
+          createUser(input: $input) {
+            id
+            name
+            email
+            createdAt
+          }
+        }
+      `;
+
+      const POST_ADDED_SUBSCRIPTION = gql`
+        subscription PostAdded {
+          postAdded {
+            id
+            title
+            content
+            author {
+              name
+            }
+          }
+        }
+      `;
+
+      // Reactコンポーネントでの使用
+      function UserList() {
+        const { data, loading, error } = useQuery(GET_USERS);
+        const [createUser] = useMutation(CREATE_USER, {
+          refetchQueries: [{ query: GET_USERS }],
+        });
+
+        const handleCreateUser = async (userData) => {
+          try {
+            await createUser({ variables: { input: userData } });
+          } catch (error) {
+            console.error('Failed to create user:', error);
+          }
+        };
+
+        if (loading) return <div>Loading...</div>;
+        if (error) return <div>Error: {error.message}</div>;
+
+        return (
+          <div>
+            {data?.users.map(user => (
+              <div key={user.id}>
+                <h3>{user.name}</h3>
+                <p>{user.email}</p>
+                <p>Posts: {user.posts.length}</p>
+              </div>
+            ))}
+          </div>
+        );
+      }
+
+      // リアルタイム通知コンポーネント
+      function PostNotifications() {
+        const { data, loading } = useSubscription(POST_ADDED_SUBSCRIPTION);
+
+        if (loading) return <div>Waiting for new posts...</div>;
+
+        return (
+          <div>
+            {data && (
+              <div>
+                New post: "{data.postAdded.title}" by {data.postAdded.author.name}
+              </div>
+            )}
+          </div>
+        );
+      }
+    features:
+      - "モダンGraphQLサーバー"
+      - "リアルタイムサブスクリプション"
+      - "ファイルアップロード対応"
+      - "TypeScript完全対応"
+      - "Cloudflare Workers対応"
+
+# === サーバーレス・エッジコンピューティング ===
+serverless_edge:
+  cloudflare_workers:
+    name: "cloudflare-workers"
+    description: "エッジでのサーバーレス実行。世界200箇所のデータセンターで高速レスポンス"
+    installation: "npm install -g wrangler"
+    usage: |
+      // 基本Worker
+      export default {
+        async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+          const url = new URL(request.url);
+          
+          if (url.pathname === '/api/hello') {
+            return Response.json({
+              message: 'Hello from Cloudflare Worker!',
+              location: request.cf?.colo || 'unknown',
+              country: request.cf?.country || 'unknown',
+            });
+          }
+          
+          return new Response('Not Found', { status: 404 });
+        },
+      };
+
+      // KVストレージ使用
+      interface Env {
+        MY_KV: KVNamespace;
+        MY_BUCKET: R2Bucket;
+        SECRET_KEY: string;
+      }
+
+      export default {
+        async fetch(request: Request, env: Env): Promise<Response> {
+          const url = new URL(request.url);
+          
+          if (url.pathname === '/api/cache' && request.method === 'GET') {
+            const key = url.searchParams.get('key');
+            if (!key) {
+              return Response.json({ error: 'Key required' }, { status: 400 });
+            }
+            
+            const value = await env.MY_KV.get(key);
+            if (!value) {
+              return Response.json({ error: 'Not found' }, { status: 404 });
+            }
+            
+            return Response.json({ key, value });
+          }
+          
+          if (url.pathname === '/api/cache' && request.method === 'POST') {
+            const { key, value, ttl } = await request.json();
+            
+            await env.MY_KV.put(key, value, {
+              expirationTtl: ttl || 3600, // 1時間
+            });
+            
+            return Response.json({ success: true });
+          }
+          
+          // R2ストレージ（オブジェクトストレージ）
+          if (url.pathname === '/api/upload' && request.method === 'POST') {
+            const formData = await request.formData();
+            const file = formData.get('file') as File;
+            
+            if (!file) {
+              return Response.json({ error: 'No file' }, { status: 400 });
+            }
+            
+            const key = `uploads/${Date.now()}-${file.name}`;
+            await env.MY_BUCKET.put(key, file.stream());
+            
+            return Response.json({
+              message: 'File uploaded',
+              key,
+              size: file.size,
+            });
+          }
+          
+          return new Response('Not Found', { status: 404 });
+        },
+      };
+
+      // Durable Objects（ステートフル処理）
+      export class ChatRoom {
+        private sessions: WebSocket[] = [];
+        
+        constructor(
+          private state: DurableObjectState,
+          private env: Env
+        ) {}
+        
+        async fetch(request: Request): Promise<Response> {
+          if (request.headers.get('Upgrade') === 'websocket') {
+            const [client, server] = Object.values(new WebSocketPair());
+            
+            server.accept();
+            this.sessions.push(server);
+            
+            server.addEventListener('message', (event) => {
+              const message = JSON.parse(event.data);
+              this.broadcast({
+                type: 'message',
+                data: message,
+                timestamp: Date.now(),
+              });
+            });
+            
+            server.addEventListener('close', () => {
+              this.sessions = this.sessions.filter(s => s !== server);
+            });
+            
+            return new Response(null, { status: 101, webSocket: client });
+          }
+          
+          return new Response('WebSocket required', { status: 400 });
+        }
+        
+        private broadcast(message: any) {
+          const data = JSON.stringify(message);
+          this.sessions.forEach(session => {
+            try {
+              session.send(data);
+            } catch (error) {
+              // 切断されたセッションを削除
+              this.sessions = this.sessions.filter(s => s !== session);
+            }
+          });
+        }
+      }
+
+      // wrangler.toml設定
+      /*
+      name = "my-worker"
+      main = "src/index.ts"
+      compatibility_date = "2023-10-01"
+
+      [[kv_namespaces]]
+      binding = "MY_KV"
+      id = "your-kv-namespace-id"
+
+      [[r2_buckets]]
+      binding = "MY_BUCKET"
+      bucket_name = "my-bucket"
+
+      [durable_objects]
+      bindings = [
+        { name = "CHAT_ROOM", class_name = "ChatRoom" }
+      ]
+
+      [[migrations]]
+      tag = "v1"
+      new_classes = ["ChatRoom"]
+      */
+    features:
+      - "グローバルエッジネットワーク"
+      - "0msコールドスタート"
+      - "KV・R2ストレージ"
+      - "Durable Objects"
+      - "WebSocket対応"
+
+  vercel_functions:
+    name: "vercel-functions"
+    description: "Vercelサーバーレス関数。Node.js、Python、Go対応"
+    installation: "npm install -g vercel"
+    usage: |
+      // api/hello.ts
+      import { NextRequest, NextResponse } from 'next/server';
+
+      export async function GET(request: NextRequest) {
+        const searchParams = request.nextUrl.searchParams;
+        const name = searchParams.get('name') || 'World';
+        
+        return NextResponse.json({
+          message: `Hello, ${name}!`,
+          timestamp: new Date().toISOString(),
+        });
+      }
+
+      export async function POST(request: NextRequest) {
+        const body = await request.json();
+        
+        // データ処理
+        const result = await processData(body);
+        
+        return NextResponse.json(result);
+      }
+
+      // api/users/[id].ts
+      import { NextRequest, NextResponse } from 'next/server';
+
+      export async function GET(
+        request: NextRequest,
+        { params }: { params: { id: string } }
+      ) {
+        const id = params.id;
+        
+        try {
+          const user = await getUserById(id);
+          
+          if (!user) {
+            return NextResponse.json(
+              { error: 'User not found' },
+              { status: 404 }
+            );
+          }
+          
+          return NextResponse.json(user);
+        } catch (error) {
+          return NextResponse.json(
+            { error: 'Internal server error' },
+            { status: 500 }
+          );
+        }
+      }
+
+      // Edge Runtime使用
+      export const runtime = 'edge';
+
+      export async function GET(request: NextRequest) {
+        const geo = request.geo;
+        const ip = request.ip;
+        
+        return NextResponse.json({
+          country: geo?.country,
+          region: geo?.region,
+          city: geo?.city,
+          ip,
+          userAgent: request.headers.get('user-agent'),
+        });
+      }
+
+      // ミドルウェア（middleware.ts）
+      import { NextRequest, NextResponse } from 'next/server';
+      import { verifyJWT } from './lib/jwt';
+
+      export async function middleware(request: NextRequest) {
+        // API保護
+        if (request.nextUrl.pathname.startsWith('/api/protected/')) {
+          const token = request.headers.get('authorization')?.replace('Bearer ', '');
+          
+          if (!token || !await verifyJWT(token)) {
+            return NextResponse.json(
+              { error: 'Unauthorized' },
+              { status: 401 }
+            );
+          }
+        }
+        
+        // 地域制限
+        if (request.geo?.country === 'CN') {
+          return NextResponse.redirect(new URL('/blocked', request.url));
+        }
+        
+        // Rate limiting
+        const ip = request.ip;
+        const rateLimitKey = `rate_limit:${ip}`;
+        
+        // Redis等でレート制限チェック
+        const isRateLimited = await checkRateLimit(rateLimitKey);
+        if (isRateLimited) {
+          return NextResponse.json(
+            { error: 'Rate limit exceeded' },
+            { status: 429 }
+          );
+        }
+        
+        return NextResponse.next();
+      }
+
+      export const config = {
+        matcher: ['/api/:path*', '/admin/:path*'],
+      };
+
+      // vercel.json設定
+      /*
+      {
+        "functions": {
+          "api/heavy-computation.ts": {
+            "maxDuration": 60
+          }
+        },
+        "env": {
+          "DATABASE_URL": "@database_url",
+          "SECRET_KEY": "@secret_key"
+        },
+        "build": {
+          "env": {
+            "NODE_ENV": "production"
+          }
+        }
+      }
+      */
+    features:
+      - "自動スケーリング"
+      - "Edge Runtime対応"
+      - "グローバルCDN"
+      - "リアルタイム分析"
+      - "Git統合デプロイ"
+
+# === WebAssembly統合 ===
+webassembly_integration:
+  wasmtime:
+    name: "wasmtime"
+    description: "WebAssemblyランタイム。Rust、C++、Goコードの高速実行"
+    installation: "npm install @bytecodealliance/wasmtime"
+    usage: |
+      import { WebAssembly } from '@bytecodealliance/wasmtime';
+
+      // Rust -> WASM例
+      /*
+      // Rust code (lib.rs)
+      use wasm_bindgen::prelude::*;
+
+      #[wasm_bindgen]
+      extern "C" {
+          #[wasm_bindgen(js_namespace = console)]
+          fn log(s: &str);
+      }
+
+      #[wasm_bindgen]
+      pub fn greet(name: &str) {
+          log(&format!("Hello, {}!", name));
+      }
+
+      #[wasm_bindgen]
+      pub fn fibonacci(n: u32) -> u32 {
+          match n {
+              0 => 0,
+              1 => 1,
+              _ => fibonacci(n - 1) + fibonacci(n - 2),
+          }
+      }
+
+      #[wasm_bindgen]
+      pub struct Calculator {
+          value: f64,
+      }
+
+      #[wasm_bindgen]
+      impl Calculator {
+          #[wasm_bindgen(constructor)]
+          pub fn new() -> Calculator {
+              Calculator { value: 0.0 }
+          }
+
+          #[wasm_bindgen]
+          pub fn add(&mut self, other: f64) -> f64 {
+              self.value += other;
+              self.value
+          }
+
+          #[wasm_bindgen]
+          pub fn multiply(&mut self, other: f64) -> f64 {
+              self.value *= other;
+              self.value
+          }
+
+          #[wasm_bindgen(getter)]
+          pub fn value(&self) -> f64 {
+              self.value
+          }
+      }
+      */
+
+      // JavaScript/TypeScript統合
+      export class WasmService {
+        private wasmModule: any = null;
+
+        async loadModule(wasmPath: string) {
+          const wasmFile = await fetch(wasmPath);
+          const wasmBytes = await wasmFile.arrayBuffer();
+          
+          this.wasmModule = await WebAssembly.instantiate(wasmBytes, {
+            env: {
+              console_log: (ptr: number, len: number) => {
+                // メモリから文字列を読み取り
+                const memory = this.wasmModule.instance.exports.memory;
+                const buffer = new Uint8Array(memory.buffer, ptr, len);
+                const text = new TextDecoder().decode(buffer);
+                console.log(text);
+              }
+            }
+          });
+        }
+
+        // 高速数値計算
+        calculateFibonacci(n: number): number {
+          if (!this.wasmModule) {
+            throw new Error('WASM module not loaded');
+          }
+          
+          return this.wasmModule.instance.exports.fibonacci(n);
+        }
+
+        // 画像処理（例）
+        async processImage(imageData: ImageData): Promise<ImageData> {
+          if (!this.wasmModule) {
+            throw new Error('WASM module not loaded');
+          }
+
+          const { data, width, height } = imageData;
+          
+          // WASMメモリにデータをコピー
+          const inputPtr = this.wasmModule.instance.exports.alloc(data.length);
+          const memory = new Uint8Array(this.wasmModule.instance.exports.memory.buffer);
+          memory.set(data, inputPtr);
+          
+          // WASM関数呼び出し
+          const outputPtr = this.wasmModule.instance.exports.process_image(
+            inputPtr, 
+            width, 
+            height
+          );
+          
+          // 結果を取得
+          const processedData = new Uint8ClampedArray(
+            this.wasmModule.instance.exports.memory.buffer,
+            outputPtr,
+            data.length
+          );
+          
+          // メモリ解放
+          this.wasmModule.instance.exports.free(inputPtr);
+          this.wasmModule.instance.exports.free(outputPtr);
+          
+          return new ImageData(processedData, width, height);
+        }
+
+        // 暗号化処理
+        encrypt(data: string, key: string): string {
+          if (!this.wasmModule) {
+            throw new Error('WASM module not loaded');
+          }
+
+          const encoder = new TextEncoder();
+          const dataBytes = encoder.encode(data);
+          const keyBytes = encoder.encode(key);
+          
+          // WASMで暗号化
+          const encryptedPtr = this.wasmModule.instance.exports.encrypt(
+            dataBytes,
+            dataBytes.length,
+            keyBytes,
+            keyBytes.length
+          );
+          
+          // 結果を文字列に変換
+          const encryptedBytes = new Uint8Array(
+            this.wasmModule.instance.exports.memory.buffer,
+            encryptedPtr,
+            dataBytes.length
+          );
+          
+          return btoa(String.fromCharCode(...encryptedBytes));
+        }
+      }
+
+      // Node.js でのWASM使用
+      import fs from 'fs/promises';
+
+      export class NodeWasmService {
+        async loadAndRunWasm(wasmPath: string) {
+          const wasmBuffer = await fs.readFile(wasmPath);
+          
+          const wasmModule = await WebAssembly.instantiate(wasmBuffer, {
+            env: {
+              console_log: console.log,
+              performance_now: performance.now,
+            }
+          });
+          
+          // 重い計算をWASMで実行
+          const startTime = performance.now();
+          const result = wasmModule.instance.exports.heavy_computation(1000000);
+          const endTime = performance.now();
+          
+          console.log(`Result: ${result}, Time: ${endTime - startTime}ms`);
+          
+          return result;
+        }
+      }
+    features:
+      - "ネイティブ級パフォーマンス"
+      - "メモリ安全"
+      - "多言語対応"
+      - "サンドボックス実行"
+      - "ストリーミングコンパイル"
+
+# === パフォーマンス最適化 ===
+performance_optimization:
+  runtime_performance:
+    - "V8エンジン最適化パターン"
+    - "JITコンパイレーション活用"
+    - "メモリプール管理"
+    - "ガベージコレクション調整"
+    
+  api_optimization:
+    - "レスポンス圧縮（gzip、brotli）"
+    - "HTTP/2・HTTP/3対応"
+    - "エッジキャッシング戦略"
+    - "データベース接続プーリング"
+    
+  serverless_optimization:
+    - "コールドスタート最小化"
+    - "バンドルサイズ最適化"
+    - "メモリ使用量調整"
+    - "コネクション再利用"
+
+security_best_practices:
+  authentication:
+    - "JWT適切な実装"
+    - "OAuth 2.0/OpenID Connect"
+    - "パスワードハッシュ化（bcrypt、Argon2）"
+    - "レート制限実装"
+    
+  data_protection:
+    - "環境変数でのシークレット管理"
+    - "HTTPS強制"
+    - "CORS適切な設定"
+    - "SQLインジェクション対策"
+    
+  infrastructure_security:
+    - "最小権限の原則"
+    - "ログ監視・アラート"
+    - "依存関係脆弱性スキャン"
+    - "セキュリティヘッダー設定"
+
+deployment_patterns:
+  containerization:
+    - "Docker最適化"
+    - "マルチステージビルド"
+    - "軽量ベースイメージ"
+    - "セキュリティスキャン"
+    
+  orchestration:
+    - "Kubernetes対応"
+    - "ヘルスチェック実装"
+    - "ローリングアップデート"
+    - "オートスケーリング"
+    
+  monitoring:
+    - "メトリクス収集"
+    - "分散トレーシング"
+    - "ログ集約"
+    - "アラート設定"
+
+common_use_cases:
+  - "高速APIサーバー構築"
+  - "リアルタイム通信システム"
+  - "エッジコンピューティング"
+  - "マイクロサービス基盤"
+  - "サーバーレスアーキテクチャ"
+  - "WebAssembly活用アプリ"
+  - "グローバル配信システム"
+  - "高可用性バックエンド"

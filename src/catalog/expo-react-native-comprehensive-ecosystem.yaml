@@ -1,0 +1,1166 @@
+---
+id: "expo-react-native-comprehensive-ecosystem"
+name: "Expo & React Native Comprehensive Mobile Development Ecosystem"
+summary: "完全なExpo・React Nativeモバイル開発エコシステム。クロスプラットフォームアプリ開発の全領域をカバー"
+
+language:
+  name: "JavaScript/TypeScript"
+  features:
+    - "クロスプラットフォーム（iOS/Android/Web）対応"
+    - "ホットリロードによる高速開発サイクル"
+    - "ネイティブモジュールアクセス"
+    - "OTAアップデート対応"
+
+categories:
+  - mobile-development
+  - react-native
+  - expo
+  - cross-platform
+  - javascript
+  - typescript
+
+packages:
+  # Expo 公式/基盤パッケージ
+  expo:
+    name: "expo"
+    description: "Expo本体。プロジェクトのランタイム/ビルド環境"
+    installation: "npx create-expo-app@latest"
+    usage: |
+      # 新しいExpoプロジェクトの作成
+      npx create-expo-app@latest MyApp --template tabs
+
+      # 開発サーバー起動
+      npx expo start
+
+      # プラットフォーム別ビルド
+      npx expo build:ios
+      npx expo build:android
+    features:
+      - "統合開発環境"
+      - "ビルドとデプロイメント"
+      - "デバッグツール"
+      - "プレビューアプリ"
+    example: |
+      import { StatusBar } from 'expo-status-bar';
+      import { StyleSheet, Text, View } from 'react-native';
+
+      export default function App() {
+        return (
+          <View style={styles.container}>
+            <Text>Open up App.js to start working on your app!</Text>
+            <StatusBar style="auto" />
+          </View>
+        );
+      }
+
+      const styles = StyleSheet.create({
+        container: {
+          flex: 1,
+          backgroundColor: '#fff',
+          alignItems: 'center',
+          justifyContent: 'center',
+        },
+      });
+
+  expo-router:
+    name: "expo-router"
+    description: "ファイルベースルーティング。App Router風の構成が可能"
+    installation: "npx expo install expo-router"
+    usage: |
+      # app/_layout.tsx
+      import { Stack } from 'expo-router';
+
+      export default function RootLayout() {
+        return (
+          <Stack>
+            <Stack.Screen name="index" options={{ title: 'Home' }} />
+            <Stack.Screen name="profile" options={{ title: 'Profile' }} />
+          </Stack>
+        );
+      }
+
+      # app/index.tsx
+      import { Link } from 'expo-router';
+      import { View, Text } from 'react-native';
+
+      export default function HomePage() {
+        return (
+          <View>
+            <Text>Welcome to Home</Text>
+            <Link href="/profile">Go to Profile</Link>
+          </View>
+        );
+      }
+    features:
+      - "ファイルベースルーティング"
+      - "ネストしたレイアウト"
+      - "動的ルート"
+      - "型安全なナビゲーション"
+
+  expo-updates:
+    name: "expo-updates"
+    description: "アプリOTAアップデート（Over-The-Air更新）"
+    installation: "npx expo install expo-updates"
+    usage: |
+      import * as Updates from 'expo-updates';
+      import { Alert } from 'react-native';
+
+      export async function checkForUpdates() {
+        try {
+          const update = await Updates.checkForUpdateAsync();
+          if (update.isAvailable) {
+            await Updates.fetchUpdateAsync();
+            Alert.alert(
+              'Update Available',
+              'A new update is available. Restart the app to apply.',
+              [{ text: 'Restart', onPress: () => Updates.reloadAsync() }]
+            );
+          }
+        } catch (error) {
+          console.error('Error checking for updates:', error);
+        }
+      }
+    features:
+      - "自動アップデート確認"
+      - "段階的ロールアウト"
+      - "ロールバック機能"
+      - "アップデート統計"
+
+  expo-auth-session:
+    name: "expo-auth-session"
+    description: "OAuth2 / OpenID Connect 認証フロー"
+    installation: "npx expo install expo-auth-session expo-crypto"
+    usage: |
+      import * as AuthSession from 'expo-auth-session';
+      import * as WebBrowser from 'expo-web-browser';
+
+      WebBrowser.maybeCompleteAuthSession();
+
+      export function useGoogleAuth() {
+        const [request, response, promptAsync] = AuthSession.useAuthRequest(
+          {
+            clientId: 'YOUR_GOOGLE_CLIENT_ID',
+            scopes: ['openid', 'profile', 'email'],
+            redirectUri: AuthSession.makeRedirectUri({ useProxy: true }),
+          },
+          { authorizationEndpoint: 'https://accounts.google.com/oauth/authorize' }
+        );
+
+        React.useEffect(() => {
+          if (response?.type === 'success') {
+            const { authentication } = response;
+            // アクセストークンを使用してユーザー情報を取得
+          }
+        }, [response]);
+
+        return { request, promptAsync };
+      }
+    features:
+      - "OAuth2認証フロー"
+      - "PKCE対応"
+      - "リダイレクトURI管理"
+      - "トークン管理"
+
+  expo-secure-store:
+    name: "expo-secure-store"
+    description: "セキュアなキー値ストレージ"
+    installation: "npx expo install expo-secure-store"
+    usage: |
+      import * as SecureStore from 'expo-secure-store';
+
+      // 安全にデータを保存
+      export async function saveSecureData(key: string, value: string) {
+        try {
+          await SecureStore.setItemAsync(key, value);
+        } catch (error) {
+          console.error('Error saving secure data:', error);
+        }
+      }
+
+      // 安全にデータを取得
+      export async function getSecureData(key: string): Promise<string | null> {
+        try {
+          return await SecureStore.getItemAsync(key);
+        } catch (error) {
+          console.error('Error getting secure data:', error);
+          return null;
+        }
+      }
+
+      // トークン管理の例
+      export const tokenStorage = {
+        async setToken(token: string) {
+          await SecureStore.setItemAsync('authToken', token);
+        },
+        async getToken() {
+          return await SecureStore.getItemAsync('authToken');
+        },
+        async removeToken() {
+          await SecureStore.deleteItemAsync('authToken');
+        }
+      };
+    features:
+      - "iOS Keychain統合"
+      - "Android Keystore統合"
+      - "暗号化されたストレージ"
+      - "生体認証連携可能"
+
+  # React Native 基盤
+  react-native:
+    name: "react-native"
+    description: "React Native コアライブラリ"
+    installation: "npx @react-native-community/cli@latest init MyApp"
+    usage: |
+      import React from 'react';
+      import { View, Text, StyleSheet, ScrollView } from 'react-native';
+
+      const App = () => {
+        return (
+          <ScrollView style={styles.container}>
+            <View style={styles.section}>
+              <Text style={styles.title}>React Native App</Text>
+              <Text style={styles.description}>
+                Cross-platform mobile development with React
+              </Text>
+            </View>
+          </ScrollView>
+        );
+      };
+
+      const styles = StyleSheet.create({
+        container: {
+          flex: 1,
+          backgroundColor: '#f8f9fa',
+        },
+        section: {
+          padding: 20,
+          alignItems: 'center',
+        },
+        title: {
+          fontSize: 24,
+          fontWeight: 'bold',
+          color: '#333',
+          marginBottom: 10,
+        },
+        description: {
+          fontSize: 16,
+          color: '#666',
+          textAlign: 'center',
+        },
+      });
+
+      export default App;
+    features:
+      - "クロスプラットフォーム開発"
+      - "ネイティブコンポーネント"
+      - "JavaScript Bridge"
+      - "ホットリロード"
+
+  react-navigation:
+    name: "@react-navigation/native"
+    description: "React Native用ルーティング/ナビゲーション"
+    installation: "npm install @react-navigation/native @react-navigation/stack"
+    usage: |
+      import React from 'react';
+      import { NavigationContainer } from '@react-navigation/native';
+      import { createStackNavigator } from '@react-navigation/stack';
+      import { View, Text, Button } from 'react-native';
+
+      const Stack = createStackNavigator();
+
+      function HomeScreen({ navigation }) {
+        return (
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Text>Home Screen</Text>
+            <Button
+              title="Go to Details"
+              onPress={() => navigation.navigate('Details')}
+            />
+          </View>
+        );
+      }
+
+      function DetailsScreen() {
+        return (
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Text>Details Screen</Text>
+          </View>
+        );
+      }
+
+      export default function App() {
+        return (
+          <NavigationContainer>
+            <Stack.Navigator initialRouteName="Home">
+              <Stack.Screen name="Home" component={HomeScreen} />
+              <Stack.Screen name="Details" component={DetailsScreen} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        );
+      }
+    features:
+      - "スタックナビゲーション"
+      - "タブナビゲーション"
+      - "ドロワーナビゲーション"
+      - "ディープリンク対応"
+
+  react-native-reanimated:
+    name: "react-native-reanimated"
+    description: "高性能アニメーション"
+    installation: "npm install react-native-reanimated"
+    usage: |
+      import React from 'react';
+      import { View, Button } from 'react-native';
+      import Animated, {
+        useSharedValue,
+        useAnimatedStyle,
+        withSpring,
+        withTiming,
+      } from 'react-native-reanimated';
+
+      export default function AnimatedComponent() {
+        const translateX = useSharedValue(0);
+        const opacity = useSharedValue(1);
+
+        const animatedStyle = useAnimatedStyle(() => {
+          return {
+            transform: [{ translateX: translateX.value }],
+            opacity: opacity.value,
+          };
+        });
+
+        const moveRight = () => {
+          translateX.value = withSpring(translateX.value + 100);
+        };
+
+        const fadeToggle = () => {
+          opacity.value = withTiming(opacity.value === 1 ? 0.3 : 1);
+        };
+
+        return (
+          <View style={{ flex: 1, padding: 20 }}>
+            <Animated.View
+              style={[
+                { width: 100, height: 100, backgroundColor: 'blue' },
+                animatedStyle,
+              ]}
+            />
+            <Button title="Move Right" onPress={moveRight} />
+            <Button title="Fade Toggle" onPress={fadeToggle} />
+          </View>
+        );
+      }
+    features:
+      - "ネイティブスレッドアニメーション"
+      - "ジェスチャー連動"
+      - "インタラクティブアニメーション"
+      - "高フレームレート"
+
+  # 状態管理
+  redux-toolkit:
+    name: "@reduxjs/toolkit"
+    description: "大規模アプリ向けRedux状態管理"
+    installation: "npm install @reduxjs/toolkit react-redux"
+    usage: |
+      import { configureStore, createSlice } from '@reduxjs/toolkit';
+      import { Provider, useSelector, useDispatch } from 'react-redux';
+
+      // Slice定義
+      const counterSlice = createSlice({
+        name: 'counter',
+        initialState: {
+          value: 0
+        },
+        reducers: {
+          increment: (state) => {
+            state.value += 1;
+          },
+          decrement: (state) => {
+            state.value -= 1;
+          },
+          incrementByAmount: (state, action) => {
+            state.value += action.payload;
+          }
+        }
+      });
+
+      // Store設定
+      const store = configureStore({
+        reducer: {
+          counter: counterSlice.reducer
+        }
+      });
+
+      // Component
+      function Counter() {
+        const count = useSelector((state) => state.counter.value);
+        const dispatch = useDispatch();
+
+        return (
+          <View>
+            <Text>{count}</Text>
+            <Button title="+" onPress={() => dispatch(counterSlice.actions.increment())} />
+            <Button title="-" onPress={() => dispatch(counterSlice.actions.decrement())} />
+          </View>
+        );
+      }
+
+      // App
+      export default function App() {
+        return (
+          <Provider store={store}>
+            <Counter />
+          </Provider>
+        );
+      }
+    features:
+      - "Immer統合"
+      - "DevTools拡張"
+      - "RTK Query"
+      - "TypeScript完全対応"
+
+  tanstack-react-query:
+    name: "@tanstack/react-query"
+    description: "サーバー状態管理・データフェッチ"
+    installation: "npm install @tanstack/react-query"
+    usage: |
+      import React from 'react';
+      import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
+      import { View, Text, ActivityIndicator } from 'react-native';
+
+      const queryClient = new QueryClient();
+
+      async function fetchUser(userId: string) {
+        const response = await fetch(`/api/users/${userId}`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      }
+
+      function UserProfile({ userId }: { userId: string }) {
+        const { data: user, isLoading, error } = useQuery({
+          queryKey: ['user', userId],
+          queryFn: () => fetchUser(userId),
+          staleTime: 5 * 60 * 1000, // 5分間キャッシュ
+        });
+
+        if (isLoading) return <ActivityIndicator size="large" />;
+        if (error) return <Text>Error: {error.message}</Text>;
+
+        return (
+          <View>
+            <Text>{user.name}</Text>
+            <Text>{user.email}</Text>
+          </View>
+        );
+      }
+
+      export default function App() {
+        return (
+          <QueryClientProvider client={queryClient}>
+            <UserProfile userId="123" />
+          </QueryClientProvider>
+        );
+      }
+    features:
+      - "自動キャッシュ管理"
+      - "バックグラウンド更新"
+      - "楽観的更新"
+      - "無限スクロール対応"
+
+  # UIコンポーネント
+  react-native-paper:
+    name: "react-native-paper"
+    description: "Material Design コンポーネント"
+    installation: "npm install react-native-paper"
+    usage: |
+      import React from 'react';
+      import { Provider as PaperProvider, Card, Title, Paragraph, Button } from 'react-native-paper';
+      import { View } from 'react-native';
+
+      function MyCard() {
+        return (
+          <Card style={{ margin: 16 }}>
+            <Card.Content>
+              <Title>Card title</Title>
+              <Paragraph>Card content</Paragraph>
+            </Card.Content>
+            <Card.Actions>
+              <Button>Cancel</Button>
+              <Button>Ok</Button>
+            </Card.Actions>
+          </Card>
+        );
+      }
+
+      export default function App() {
+        return (
+          <PaperProvider>
+            <View style={{ flex: 1 }}>
+              <MyCard />
+            </View>
+          </PaperProvider>
+        );
+      }
+    features:
+      - "Material Design 3対応"
+      - "テーマカスタマイズ"
+      - "アクセシビリティ対応"
+      - "アニメーション内蔵"
+
+  react-native-svg:
+    name: "react-native-svg"
+    description: "SVG描画ライブラリ"
+    installation: "npm install react-native-svg"
+    usage: |
+      import React from 'react';
+      import Svg, { Circle, Rect, Path, G } from 'react-native-svg';
+      import { View } from 'react-native';
+
+      export default function SvgExample() {
+        return (
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Svg height="200" width="200" viewBox="0 0 200 200">
+              <G>
+                <Circle
+                  cx="100"
+                  cy="100"
+                  r="80"
+                  stroke="blue"
+                  strokeWidth="2"
+                  fill="lightblue"
+                />
+                <Rect
+                  x="70"
+                  y="70"
+                  width="60"
+                  height="60"
+                  stroke="red"
+                  strokeWidth="2"
+                  fill="pink"
+                />
+                <Path
+                  d="M 10 10 L 100 10 L 100 100 Z"
+                  fill="green"
+                  opacity="0.5"
+                />
+              </G>
+            </Svg>
+          </View>
+        );
+      }
+    features:
+      - "SVG要素の完全サポート"
+      - "アニメーション対応"
+      - "イベントハンドリング"
+      - "グラデーション・パターン"
+
+  # ネットワーク/データ
+  axios:
+    name: "axios"
+    description: "HTTPクライアント"
+    installation: "npm install axios"
+    usage: |
+      import axios from 'axios';
+      import { useState, useEffect } from 'react';
+
+      // APIクライアント設定
+      const apiClient = axios.create({
+        baseURL: 'https://api.example.com',
+        timeout: 10000,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      // インターセプター設定
+      apiClient.interceptors.request.use(
+        (config) => {
+          const token = getAuthToken();
+          if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+          }
+          return config;
+        },
+        (error) => Promise.reject(error)
+      );
+
+      // カスタムフック
+      export function useUser(userId: string) {
+        const [user, setUser] = useState(null);
+        const [loading, setLoading] = useState(true);
+        const [error, setError] = useState(null);
+
+        useEffect(() => {
+          const fetchUser = async () => {
+            try {
+              setLoading(true);
+              const response = await apiClient.get(`/users/${userId}`);
+              setUser(response.data);
+            } catch (err) {
+              setError(err);
+            } finally {
+              setLoading(false);
+            }
+          };
+
+          fetchUser();
+        }, [userId]);
+
+        return { user, loading, error };
+      }
+    features:
+      - "リクエスト/レスポンスインターセプター"
+      - "自動JSONパース"
+      - "タイムアウト管理"
+      - "キャンセレーション"
+
+  realm:
+    name: "realm"
+    description: "モバイル向けオブジェクトデータベース"
+    installation: "npm install realm"
+    usage: |
+      import Realm from 'realm';
+
+      // スキーマ定義
+      class Task extends Realm.Object {
+        static schema = {
+          name: 'Task',
+          properties: {
+            _id: 'objectId',
+            name: 'string',
+            completed: { type: 'bool', default: false },
+            createdAt: { type: 'date', default: Date },
+          },
+          primaryKey: '_id',
+        };
+      }
+
+      class User extends Realm.Object {
+        static schema = {
+          name: 'User',
+          properties: {
+            _id: 'objectId',
+            name: 'string',
+            tasks: 'Task[]',
+          },
+          primaryKey: '_id',
+        };
+      }
+
+      // データベース操作
+      export class TaskService {
+        constructor() {
+          this.realm = new Realm({
+            schema: [Task, User],
+            schemaVersion: 1,
+          });
+        }
+
+        getAllTasks() {
+          return this.realm.objects('Task').sorted('createdAt', true);
+        }
+
+        addTask(name: string) {
+          this.realm.write(() => {
+            this.realm.create('Task', {
+              _id: new Realm.BSON.ObjectId(),
+              name,
+              completed: false,
+              createdAt: new Date(),
+            });
+          });
+        }
+
+        toggleTask(taskId: string) {
+          const task = this.realm.objectForPrimaryKey('Task', taskId);
+          if (task) {
+            this.realm.write(() => {
+              task.completed = !task.completed;
+            });
+          }
+        }
+
+        deleteTask(taskId: string) {
+          const task = this.realm.objectForPrimaryKey('Task', taskId);
+          if (task) {
+            this.realm.write(() => {
+              this.realm.delete(task);
+            });
+          }
+        }
+      }
+    features:
+      - "オフライン対応"
+      - "リアルタイム同期"
+      - "ACID準拠"
+      - "暗号化サポート"
+
+  # 認証/セキュリティ
+  react-native-firebase-auth:
+    name: "@react-native-firebase/auth"
+    description: "Firebase認証"
+    installation: "npm install @react-native-firebase/app @react-native-firebase/auth"
+    usage: |
+      import auth from '@react-native-firebase/auth';
+      import { GoogleSignin } from '@react-native-google-signin/google-signin';
+
+      export class AuthService {
+        constructor() {
+          // Google Sign-In設定
+          GoogleSignin.configure({
+            webClientId: 'YOUR_WEB_CLIENT_ID',
+          });
+        }
+
+        // メール/パスワードサインアップ
+        async signUpWithEmail(email: string, password: string) {
+          try {
+            const userCredential = await auth().createUserWithEmailAndPassword(email, password);
+            return userCredential.user;
+          } catch (error) {
+            console.error('Sign up error:', error);
+            throw error;
+          }
+        }
+
+        // メール/パスワードサインイン
+        async signInWithEmail(email: string, password: string) {
+          try {
+            const userCredential = await auth().signInWithEmailAndPassword(email, password);
+            return userCredential.user;
+          } catch (error) {
+            console.error('Sign in error:', error);
+            throw error;
+          }
+        }
+
+        // Googleサインイン
+        async signInWithGoogle() {
+          try {
+            // Google認証を開始
+            const { idToken } = await GoogleSignin.signIn();
+            
+            // Firebaseクレデンシャルを作成
+            const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+            
+            // Firebaseにサインイン
+            const userCredential = await auth().signInWithCredential(googleCredential);
+            return userCredential.user;
+          } catch (error) {
+            console.error('Google sign in error:', error);
+            throw error;
+          }
+        }
+
+        // サインアウト
+        async signOut() {
+          try {
+            await auth().signOut();
+            await GoogleSignin.signOut();
+          } catch (error) {
+            console.error('Sign out error:', error);
+            throw error;
+          }
+        }
+
+        // 認証状態リスナー
+        onAuthStateChanged(callback: (user: any) => void) {
+          return auth().onAuthStateChanged(callback);
+        }
+      }
+    features:
+      - "多様な認証プロバイダー"
+      - "メール検証"
+      - "パスワードリセット"
+      - "匿名認証"
+
+  # テスト/品質
+  jest:
+    name: "jest"
+    description: "ユニットテストランナー"
+    installation: "npm install --save-dev jest @testing-library/react-native"
+    usage: |
+      // __tests__/utils.test.js
+      import { formatCurrency, validateEmail } from '../src/utils';
+
+      describe('Utility Functions', () => {
+        describe('formatCurrency', () => {
+          it('should format number as currency', () => {
+            expect(formatCurrency(1234.56)).toBe('$1,234.56');
+            expect(formatCurrency(0)).toBe('$0.00');
+          });
+
+          it('should handle negative numbers', () => {
+            expect(formatCurrency(-123.45)).toBe('-$123.45');
+          });
+        });
+
+        describe('validateEmail', () => {
+          it('should validate correct email addresses', () => {
+            expect(validateEmail('test@example.com')).toBe(true);
+            expect(validateEmail('user.name@domain.co.uk')).toBe(true);
+          });
+
+          it('should reject invalid email addresses', () => {
+            expect(validateEmail('invalid-email')).toBe(false);
+            expect(validateEmail('test@')).toBe(false);
+            expect(validateEmail('')).toBe(false);
+          });
+        });
+      });
+
+      // __tests__/components/Button.test.js
+      import React from 'react';
+      import { render, fireEvent } from '@testing-library/react-native';
+      import Button from '../src/components/Button';
+
+      describe('Button Component', () => {
+        it('renders correctly', () => {
+          const { getByText } = render(
+            <Button title="Test Button" onPress={() => {}} />
+          );
+          
+          expect(getByText('Test Button')).toBeTruthy();
+        });
+
+        it('calls onPress when pressed', () => {
+          const mockOnPress = jest.fn();
+          const { getByText } = render(
+            <Button title="Test Button" onPress={mockOnPress} />
+          );
+          
+          fireEvent.press(getByText('Test Button'));
+          expect(mockOnPress).toHaveBeenCalledTimes(1);
+        });
+
+        it('displays loading state', () => {
+          const { getByTestId } = render(
+            <Button title="Test Button" onPress={() => {}} loading={true} />
+          );
+          
+          expect(getByTestId('loading-indicator')).toBeTruthy();
+        });
+      });
+    features:
+      - "スナップショットテスト"
+      - "モック機能"
+      - "カバレッジレポート"
+      - "並列実行"
+
+  detox:
+    name: "detox"
+    description: "E2Eテストフレームワーク"
+    installation: "npm install --save-dev detox"
+    usage: |
+      // e2e/firstTest.e2e.js
+      describe('App E2E Tests', () => {
+        beforeAll(async () => {
+          await device.launchApp();
+        });
+
+        beforeEach(async () => {
+          await device.reloadReactNative();
+        });
+
+        it('should show home screen', async () => {
+          await expect(element(by.text('Welcome'))).toBeVisible();
+        });
+
+        it('should navigate to profile after tap', async () => {
+          await element(by.id('profile-button')).tap();
+          await expect(element(by.text('Profile Screen'))).toBeVisible();
+        });
+
+        it('should add new task', async () => {
+          await element(by.id('add-task-button')).tap();
+          await element(by.id('task-input')).typeText('New Task');
+          await element(by.id('save-button')).tap();
+          await expect(element(by.text('New Task'))).toBeVisible();
+        });
+
+        it('should handle pull to refresh', async () => {
+          await element(by.id('task-list')).swipe('down');
+          await expect(element(by.id('loading-indicator'))).toBeVisible();
+          await expect(element(by.id('loading-indicator'))).not.toBeVisible();
+        });
+
+        it('should delete task by swipe', async () => {
+          await element(by.text('New Task')).swipe('left');
+          await element(by.id('delete-button')).tap();
+          await expect(element(by.text('New Task'))).not.toBeVisible();
+        });
+      });
+
+      // detox.config.js
+      module.exports = {
+        testRunner: 'jest',
+        runnerConfig: 'e2e/config.json',
+        apps: {
+          'ios.debug': {
+            type: 'ios.app',
+            binaryPath: 'ios/build/Build/Products/Debug-iphonesimulator/MyApp.app',
+            build: 'xcodebuild -workspace ios/MyApp.xcworkspace -scheme MyApp -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build'
+          },
+          'android.debug': {
+            type: 'android.apk',
+            binaryPath: 'android/app/build/outputs/apk/debug/app-debug.apk',
+            build: 'cd android && ./gradlew assembleDebug'
+          }
+        },
+        devices: {
+          simulator: {
+            type: 'ios.simulator',
+            device: {
+              type: 'iPhone 14'
+            }
+          },
+          emulator: {
+            type: 'android.emulator',
+            device: {
+              avdName: 'Pixel_4_API_30'
+            }
+          }
+        },
+        configurations: {
+          'ios.sim.debug': {
+            device: 'simulator',
+            app: 'ios.debug'
+          },
+          'android.emu.debug': {
+            device: 'emulator',
+            app: 'android.debug'
+          }
+        }
+      };
+    features:
+      - "実機・シミュレーター対応"
+      - "ジェスチャーテスト"
+      - "デバイス操作"
+      - "並列実行"
+
+  # パフォーマンス/監視
+  sentry-react-native:
+    name: "@sentry/react-native"
+    description: "エラー監視・パフォーマンストレース"
+    installation: "npm install @sentry/react-native"
+    usage: |
+      import * as Sentry from '@sentry/react-native';
+
+      // Sentry初期化
+      Sentry.init({
+        dsn: 'YOUR_SENTRY_DSN',
+        environment: __DEV__ ? 'development' : 'production',
+        enableAutoSessionTracking: true,
+        tracesSampleRate: 1.0,
+        integrations: [
+          new Sentry.ReactNativeTracing({
+            routingInstrumentation: new Sentry.ReactNavigationInstrumentation(),
+          }),
+        ],
+      });
+
+      // カスタムエラーレポート
+      export function reportError(error: Error, context?: any) {
+        Sentry.withScope((scope) => {
+          if (context) {
+            scope.setContext('additional_info', context);
+          }
+          Sentry.captureException(error);
+        });
+      }
+
+      // パフォーマンス監視
+      export function trackPerformance(operationName: string) {
+        const transaction = Sentry.startTransaction({
+          name: operationName,
+          op: 'custom'
+        });
+
+        return {
+          finish: () => transaction.finish(),
+          setTag: (key: string, value: string) => transaction.setTag(key, value),
+          setData: (key: string, value: any) => transaction.setData(key, value),
+        };
+      }
+
+      // React Native Errorバウンダリ
+      const SentryErrorBoundary = Sentry.withErrorBoundary(
+        ({ children }) => children,
+        {
+          fallback: ({ error, resetError }) => (
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+              <Text>Something went wrong!</Text>
+              <Button title="Try again" onPress={resetError} />
+            </View>
+          )
+        }
+      );
+
+      export default Sentry.wrap(App);
+    features:
+      - "自動エラー収集"
+      - "パフォーマンス監視"
+      - "リリース追跡"
+      - "ユーザーフィードバック"
+
+best_practices:
+  project_structure: |
+    expo-app/
+    ├── app/                    # Expo Router (ファイルベースルーティング)
+    │   ├── (tabs)/             # タブナビゲーション
+    │   ├── _layout.tsx         # ルートレイアウト
+    │   └── index.tsx           # ホーム画面
+    ├── src/
+    │   ├── components/         # 再利用可能なコンポーネント
+    │   │   ├── ui/             # UIプリミティブ
+    │   │   └── forms/          # フォームコンポーネント
+    │   ├── hooks/              # カスタムフック
+    │   ├── services/           # API・ビジネスロジック
+    │   ├── utils/              # ユーティリティ関数
+    │   ├── types/              # TypeScript型定義
+    │   └── constants/          # 定数定義
+    ├── assets/                 # 画像・フォント等
+    ├── __tests__/              # テストファイル
+    └── e2e/                    # E2Eテスト
+
+  development_workflow: |
+    1. 開発環境セットアップ
+       - Expo CLI インストール
+       - 開発者ツール設定（VS Code拡張、ESLint、Prettier）
+       - デバイス・シミュレーター準備
+
+    2. プロジェクト作成
+       - `npx create-expo-app --template tabs`
+       - Git初期化、.gitignore設定
+       - 依存関係インストール
+
+    3. 開発サイクル
+       - ホットリロードでの高速開発
+       - Expo Go/Development buildでの実機テスト
+       - デバッグツール活用
+
+    4. テスト・品質保証
+       - ユニットテスト（Jest）
+       - E2Eテスト（Detox）
+       - パフォーマンス測定
+
+    5. デプロイメント
+       - EAS Buildでのビルド
+       - TestFlightやGoogle Play Consoleでのベータ配信
+       - OTAアップデートでの迅速な修正配信
+
+  performance_optimization: |
+    1. メモリ管理
+       - 大きな画像の最適化
+       - 不要なオブジェクトの適切な解放
+       - リスト仮想化の活用
+
+    2. ネットワーク最適化
+       - APIレスポンスのキャッシュ
+       - 画像の遅延読み込み
+       - オフライン対応
+
+    3. レンダリング最適化
+       - React.memo()の適切な使用
+       - useMemo、useCallbackの活用
+       - FlatList/SectionListの最適化
+
+    4. バンドルサイズ最適化
+       - 未使用コードの除去
+       - 動的インポート
+       - アセット最適化
+
+  security_guidelines: |
+    1. 認証・認可
+       - セキュアな認証フローの実装
+       - JWTの適切な管理
+       - 生体認証の活用
+
+    2. データ保護
+       - Secure Storeでの機密データ保存
+       - 通信の暗号化（HTTPS）
+       - ローカルデータベースの暗号化
+
+    3. アプリケーションセキュリティ
+       - コード難読化
+       - 証明書ピニング
+       - ランタイム保護
+
+platform_specific_considerations:
+  ios:
+    - "Human Interface Guidelines準拠"
+    - "App Store Review Guidelines対応"
+    - "iOS固有機能の活用（3D Touch、Shortcuts等）"
+  android:
+    - "Material Design原則の適用"
+    - "Android固有機能の活用（Back button、Intent等）"
+    - "多様な画面サイズ・密度への対応"
+
+integration_examples:
+  authentication_flow: |
+    // 完全な認証フロー実装例
+    import { useAuthContext } from '../contexts/AuthContext';
+    import { AuthService } from '../services/AuthService';
+    
+    export function useAuth() {
+      const { user, setUser } = useAuthContext();
+      const authService = new AuthService();
+      
+      const signIn = async (email: string, password: string) => {
+        try {
+          const user = await authService.signInWithEmail(email, password);
+          setUser(user);
+          // セキュアストレージにトークン保存
+          await SecureStore.setItemAsync('authToken', user.accessToken);
+        } catch (error) {
+          reportError(error, { context: 'signIn' });
+          throw error;
+        }
+      };
+      
+      const signOut = async () => {
+        await authService.signOut();
+        await SecureStore.deleteItemAsync('authToken');
+        setUser(null);
+      };
+      
+      return { user, signIn, signOut };
+    }
+
+  data_persistence: |
+    // オフライン対応データ管理
+    import { QueryClient } from '@tanstack/react-query';
+    import { persistQueryClient } from '@tanstack/react-query-persist-client-core';
+    import AsyncStorage from '@react-native-async-storage/async-storage';
+    
+    const queryClient = new QueryClient({
+      defaultOptions: {
+        queries: {
+          cacheTime: 1000 * 60 * 60 * 24, // 24時間
+          staleTime: 1000 * 60 * 5, // 5分
+        },
+      },
+    });
+    
+    // クエリキャッシュの永続化
+    persistQueryClient({
+      queryClient,
+      persister: AsyncStorage,
+    });
+
+resources:
+  official_documentation:
+    - "Expo Documentation: https://docs.expo.dev/"
+    - "React Native Documentation: https://reactnative.dev/docs/"
+    - "React Navigation: https://reactnavigation.org/"
+  community_resources:
+    - "Expo Examples: https://github.com/expo/examples"
+    - "React Native Community: https://github.com/react-native-community"
+    - "Awesome React Native: https://github.com/jondot/awesome-react-native"
+  tools_and_utilities:
+    - "Expo CLI: コマンドラインツール"
+    - "EAS: Expo Application Services"
+    - "Expo Go: 開発・テスト用アプリ"
+---

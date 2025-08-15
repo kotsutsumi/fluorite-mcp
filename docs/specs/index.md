@@ -91,18 +91,38 @@ Fluorite MCPが提供するライブラリ仕様の一覧です。これらの�
 - [C# エンタープライズ開発](./langs) - `spec://csharp-ecosystem`
 - [Unity ゲーム開発](./langs) - `spec://unity-ecosystem`
 
-### モバイル（Expo / React Native）
-- [Expo / React Native エコシステム](./expo-react-native) - `spec://expo-react-native-ecosystem`
- - [モバイルネイティブ（iOS/Android/KMM）](./mobile-native) - `spec://mobile-native-ecosystem`
+## 🚀 包括的エコシステム仕様
+
+### モバイル開発
+- [Expo / React Native 包括エコシステム](./expo-react-native-comprehensive) - `spec://expo-react-native-comprehensive-ecosystem`
+- [ネイティブモバイル開発（Swift/Kotlin）](./additional-modern-technologies) - `spec://additional-modern-technologies-ecosystem`
+- [モバイルネイティブ（iOS/Android/KMM）](./mobile-native) - `spec://mobile-native-ecosystem`
+
+### AI/ML・LLM統合
+- [AI/ML・LLM包括エコシステム](./ai-ml-llm-comprehensive) - `spec://ai-ml-llm-comprehensive-ecosystem`
+
+### フロントエンド・UI
+- [フロントエンドUI革新エコシステム](./frontend-ui-innovation) - `spec://frontend-ui-innovation-ecosystem`
+- [フロントエンド可視化/編集エコシステム](./frontend-visualization) - `spec://frontend-visualization-ecosystem`
+- [UI 品質向上（React/Vue）](./ui-component-quality) - `spec://ui-component-quality`
+
+### バックエンド・サーバーレス
+- [モダンバックエンド・サーバーレスエコシステム](./modern-backend-serverless) - `spec://modern-backend-serverless-ecosystem`
+
+### 開発効率・DX
+- [開発効率・DXエコシステム](./development-efficiency-dx) - `spec://development-efficiency-dx-ecosystem`
+
+### データ処理・分析
+- [データ処理・分析エコシステム](./data-processing-analytics) - `spec://data-processing-analytics-ecosystem`
+
+### クラウドネイティブ・インフラ
+- [クラウドネイティブインフラエコシステム](./cloud-native-infrastructure) - `spec://cloud-native-infrastructure-ecosystem`
+
+### テスティング・データベース・可視化
+- [テスティング・データベース・可視化エコシステム](./additional-modern-technologies) - `spec://additional-modern-technologies-ecosystem`
 
 ### モダンスタック横断
 - [モダンスタック横断カタログ](./modern-tech) - `spec://modern-tech-ecosystem`
-
-### 可視化・編集
-- [フロントエンド可視化/編集エコシステム](./frontend-visualization) - `spec://frontend-visualization-ecosystem`
-
-### UI 品質（React/Vue）
-- [UI 品質向上（React/Vue）](./ui-component-quality) - `spec://ui-component-quality`
 
 ## 🐳 監視 & 分析
 

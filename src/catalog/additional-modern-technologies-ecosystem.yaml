@@ -1,0 +1,1033 @@
+name: "additional-modern-technologies-ecosystem"
+description: "その他現代技術エコシステム - テスティング、データベース、モバイル開発、可視化・コラボレーションの統合技術スタック"
+keywords: ["Testing", "Database", "Mobile", "Visualization", "Collaboration", "Quality Assurance", "Native Development"]
+category: "comprehensive-modern-stack"
+maintainers: ["Playwright", "Jest", "Prisma", "Swift", "Kotlin", "React Flow", "TipTap"]
+
+# === テスティング・品質保証 ===
+testing_quality_assurance:
+  playwright:
+    name: "playwright"
+    description: "クロスブラウザE2Eテスト。Chrome、Firefox、Safari、Edgeでの自動テスト"
+    installation: "npm install @playwright/test"
+    usage: |
+      import { test, expect } from '@playwright/test';
+
+      // 基本的なE2Eテスト
+      test('homepage should load correctly', async ({ page }) => {
+        await page.goto('https://example.com');
+        
+        // タイトル確認
+        await expect(page).toHaveTitle(/Example Domain/);
+        
+        // 要素の存在確認
+        await expect(page.locator('h1')).toBeVisible();
+        await expect(page.locator('h1')).toContainText('Example Domain');
+      });
+
+      // フォームテスト
+      test('user registration flow', async ({ page }) => {
+        await page.goto('/register');
+        
+        // フォーム入力
+        await page.fill('[data-testid="email"]', 'test@example.com');
+        await page.fill('[data-testid="password"]', 'securePassword123');
+        await page.fill('[data-testid="confirmPassword"]', 'securePassword123');
+        
+        // 送信ボタンクリック
+        await page.click('[data-testid="submit-button"]');
+        
+        // 成功ページへのリダイレクト確認
+        await expect(page).toHaveURL('/welcome');
+        await expect(page.locator('[data-testid="welcome-message"]')).toBeVisible();
+      });
+
+      // APIテスト
+      test('API endpoints respond correctly', async ({ request }) => {
+        const response = await request.get('/api/users');
+        
+        expect(response.status()).toBe(200);
+        const users = await response.json();
+        expect(users).toHaveLength(3);
+        expect(users[0]).toHaveProperty('id');
+        expect(users[0]).toHaveProperty('name');
+      });
+
+      // マルチブラウザテスト設定
+      // playwright.config.ts
+      import { defineConfig, devices } from '@playwright/test';
+
+      export default defineConfig({
+        testDir: './tests',
+        fullyParallel: true,
+        forbidOnly: !!process.env.CI,
+        retries: process.env.CI ? 2 : 0,
+        workers: process.env.CI ? 1 : undefined,
+        reporter: [
+          ['html'],
+          ['json', { outputFile: 'test-results.json' }],
+          ['junit', { outputFile: 'test-results.xml' }]
+        ],
+        use: {
+          baseURL: 'http://localhost:3000',
+          trace: 'on-first-retry',
+          screenshot: 'only-on-failure',
+          video: 'retain-on-failure'
+        },
+        projects: [
+          {
+            name: 'chromium',
+            use: { ...devices['Desktop Chrome'] },
+          },
+          {
+            name: 'firefox',
+            use: { ...devices['Desktop Firefox'] },
+          },
+          {
+            name: 'webkit',
+            use: { ...devices['Desktop Safari'] },
+          },
+          {
+            name: 'Mobile Chrome',
+            use: { ...devices['Pixel 5'] },
+          },
+          {
+            name: 'Mobile Safari',
+            use: { ...devices['iPhone 12'] },
+          }
+        ],
+        webServer: {
+          command: 'npm run start',
+          url: 'http://localhost:3000',
+          reuseExistingServer: !process.env.CI
+        }
+      });
+    features:
+      - "マルチブラウザ対応"
+      - "自動スクリーンショット"
+      - "トレース機能"
+      - "並列実行"
+      - "CI/CD統合"
+
+  jest:
+    name: "jest"
+    description: "JavaScript/TypeScript用テスティングフレームワーク。スナップショット、モッキング対応"
+    installation: "npm install jest @types/jest"
+    usage: |
+      // 基本的な単体テスト
+      import { sum, multiply, validateEmail } from './utils';
+
+      describe('Math utilities', () => {
+        test('adds 1 + 2 to equal 3', () => {
+          expect(sum(1, 2)).toBe(3);
+        });
+
+        test('multiplies 3 * 4 to equal 12', () => {
+          expect(multiply(3, 4)).toBe(12);
+        });
+      });
+
+      // 非同期テスト
+      describe('API functions', () => {
+        test('fetchUser returns user data', async () => {
+          const user = await fetchUser(1);
+          expect(user).toHaveProperty('id', 1);
+          expect(user).toHaveProperty('name');
+        });
+
+        test('rejects with error for invalid ID', async () => {
+          await expect(fetchUser(-1)).rejects.toThrow('Invalid user ID');
+        });
+      });
+
+      // モッキング
+      jest.mock('./api');
+      import { getUserData } from './api';
+
+      describe('User service', () => {
+        beforeEach(() => {
+          jest.clearAllMocks();
+        });
+
+        test('processes user data correctly', async () => {
+          const mockUser = { id: 1, name: 'John Doe' };
+          (getUserData as jest.Mock).mockResolvedValue(mockUser);
+
+          const result = await processUser(1);
+          
+          expect(getUserData).toHaveBeenCalledWith(1);
+          expect(result).toEqual(expect.objectContaining({
+            id: 1,
+            displayName: 'John Doe'
+          }));
+        });
+      });
+
+      // React コンポーネントテスト
+      import { render, screen, fireEvent } from '@testing-library/react';
+      import '@testing-library/jest-dom';
+      import Button from './Button';
+
+      describe('Button component', () => {
+        test('renders with correct text', () => {
+          render(<Button>Click me</Button>);
+          expect(screen.getByRole('button')).toHaveTextContent('Click me');
+        });
+
+        test('calls onClick when clicked', () => {
+          const handleClick = jest.fn();
+          render(<Button onClick={handleClick}>Click me</Button>);
+          
+          fireEvent.click(screen.getByRole('button'));
+          expect(handleClick).toHaveBeenCalledTimes(1);
+        });
+
+        test('matches snapshot', () => {
+          const { container } = render(<Button variant="primary">Test</Button>);
+          expect(container.firstChild).toMatchSnapshot();
+        });
+      });
+    features:
+      - "ゼロ設定"
+      - "スナップショットテスト"
+      - "内蔵モッキング"
+      - "コードカバレッジ"
+      - "並列実行"
+
+# === データベース技術 ===
+database_technologies:
+  prisma:
+    name: "prisma"
+    description: "次世代ORM。型安全なデータベースアクセスとマイグレーション管理"
+    installation: "npm install prisma @prisma/client"
+    usage: |
+      // schema.prisma
+      generator client {
+        provider = "prisma-client-js"
+      }
+
+      datasource db {
+        provider = "postgresql"
+        url      = env("DATABASE_URL")
+      }
+
+      model User {
+        id        Int      @id @default(autoincrement())
+        email     String   @unique
+        name      String?
+        posts     Post[]
+        profile   Profile?
+        createdAt DateTime @default(now())
+        updatedAt DateTime @updatedAt
+
+        @@map("users")
+      }
+
+      model Profile {
+        id     Int     @id @default(autoincrement())
+        bio    String?
+        avatar String?
+        userId Int     @unique
+        user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+        @@map("profiles")
+      }
+
+      model Post {
+        id        Int      @id @default(autoincrement())
+        title     String
+        content   String?
+        published Boolean  @default(false)
+        authorId  Int
+        author    User     @relation(fields: [authorId], references: [id])
+        tags      Tag[]
+        createdAt DateTime @default(now())
+        updatedAt DateTime @updatedAt
+
+        @@map("posts")
+      }
+
+      model Tag {
+        id    Int    @id @default(autoincrement())
+        name  String @unique
+        posts Post[]
+
+        @@map("tags")
+      }
+
+      // TypeScript使用例
+      import { PrismaClient } from '@prisma/client';
+
+      const prisma = new PrismaClient();
+
+      export class UserService {
+        // ユーザー作成
+        async createUser(data: { email: string; name?: string }) {
+          return await prisma.user.create({
+            data,
+            include: {
+              profile: true,
+              posts: true
+            }
+          });
+        }
+
+        // 複雑なクエリ
+        async getUsersWithPosts(skip = 0, take = 10) {
+          return await prisma.user.findMany({
+            skip,
+            take,
+            include: {
+              posts: {
+                where: {
+                  published: true
+                },
+                orderBy: {
+                  createdAt: 'desc'
+                },
+                include: {
+                  tags: true
+                }
+              },
+              profile: true,
+              _count: {
+                select: {
+                  posts: true
+                }
+              }
+            }
+          });
+        }
+
+        // トランザクション
+        async transferPost(postId: number, newAuthorId: number) {
+          return await prisma.$transaction(async (tx) => {
+            const post = await tx.post.findUnique({
+              where: { id: postId }
+            });
+
+            if (!post) {
+              throw new Error('Post not found');
+            }
+
+            const newAuthor = await tx.user.findUnique({
+              where: { id: newAuthorId }
+            });
+
+            if (!newAuthor) {
+              throw new Error('New author not found');
+            }
+
+            return await tx.post.update({
+              where: { id: postId },
+              data: { authorId: newAuthorId }
+            });
+          });
+        }
+
+        // 集計クエリ
+        async getPostStats() {
+          const stats = await prisma.post.aggregate({
+            _count: {
+              id: true
+            },
+            _avg: {
+              id: true
+            },
+            where: {
+              published: true
+            }
+          });
+
+          const groupBy = await prisma.post.groupBy({
+            by: ['authorId'],
+            _count: {
+              id: true
+            },
+            having: {
+              id: {
+                _count: {
+                  gt: 1
+                }
+              }
+            }
+          });
+
+          return { stats, groupBy };
+        }
+      }
+
+      # Prismaコマンド
+      # マイグレーション作成
+      npx prisma migrate dev --name init
+
+      # スキーマ同期
+      npx prisma db push
+
+      # クライアント生成
+      npx prisma generate
+
+      # データベース可視化
+      npx prisma studio
+    features:
+      - "型安全なクエリ"
+      - "自動マイグレーション"
+      - "スキーマファースト"
+      - "GraphQL統合"
+      - "リアルタイム機能"
+
+  supabase:
+    name: "supabase"
+    description: "オープンソースFirebase代替。PostgreSQL、認証、リアルタイム機能を統合"
+    installation: "npm install @supabase/supabase-js"
+    usage: |
+      import { createClient } from '@supabase/supabase-js';
+
+      const supabaseUrl = 'https://your-project.supabase.co';
+      const supabaseKey = 'your-anon-key';
+      const supabase = createClient(supabaseUrl, supabaseKey);
+
+      export class SupabaseService {
+        // 認証
+        async signUp(email: string, password: string) {
+          const { data, error } = await supabase.auth.signUp({
+            email,
+            password
+          });
+          return { data, error };
+        }
+
+        async signIn(email: string, password: string) {
+          const { data, error } = await supabase.auth.signInWithPassword({
+            email,
+            password
+          });
+          return { data, error };
+        }
+
+        // データ操作
+        async getUsers() {
+          const { data, error } = await supabase
+            .from('users')
+            .select(`
+              *,
+              profiles (*),
+              posts (
+                *,
+                tags (*)
+              )
+            `);
+          return { data, error };
+        }
+
+        async createPost(post: { title: string; content: string; user_id: string }) {
+          const { data, error } = await supabase
+            .from('posts')
+            .insert(post)
+            .select();
+          return { data, error };
+        }
+
+        // リアルタイム購読
+        subscribeToMessages(callback: (payload: any) => void) {
+          return supabase
+            .channel('messages')
+            .on('postgres_changes', {
+              event: '*',
+              schema: 'public',
+              table: 'messages'
+            }, callback)
+            .subscribe();
+        }
+
+        // ファイルアップロード
+        async uploadFile(bucket: string, path: string, file: File) {
+          const { data, error } = await supabase.storage
+            .from(bucket)
+            .upload(path, file);
+          return { data, error };
+        }
+
+        // RPC関数呼び出し
+        async getPostStatistics() {
+          const { data, error } = await supabase
+            .rpc('get_post_statistics');
+          return { data, error };
+        }
+      }
+    features:
+      - "PostgreSQLベース"
+      - "リアルタイム機能"
+      - "認証システム"
+      - "ファイルストレージ"
+      - "エッジ関数"
+
+# === ネイティブモバイル開発 ===
+native_mobile_development:
+  swift_ios:
+    name: "swift"
+    description: "iOS/macOS開発言語。型安全で高性能なネイティブアプリ開発"
+    installation: "Xcode from Mac App Store"
+    usage: |
+      // SwiftUI基本例
+      import SwiftUI
+
+      struct ContentView: View {
+          @State private var name = ""
+          @State private var users: [User] = []
+          
+          var body: some View {
+              NavigationView {
+                  VStack(spacing: 20) {
+                      TextField("Enter name", text: $name)
+                          .textFieldStyle(RoundedBorderTextFieldStyle())
+                          .padding()
+                      
+                      Button("Add User") {
+                          addUser()
+                      }
+                      .disabled(name.isEmpty)
+                      
+                      List(users) { user in
+                          UserRow(user: user)
+                      }
+                  }
+                  .navigationTitle("Users")
+                  .onAppear {
+                      loadUsers()
+                  }
+              }
+          }
+          
+          private func addUser() {
+              let newUser = User(name: name)
+              users.append(newUser)
+              name = ""
+          }
+          
+          private func loadUsers() {
+              // API呼び出し例
+              UserService.shared.fetchUsers { result in
+                  DispatchQueue.main.async {
+                      switch result {
+                      case .success(let fetchedUsers):
+                          self.users = fetchedUsers
+                      case .failure(let error):
+                          print("Error: \(error)")
+                      }
+                  }
+              }
+          }
+      }
+
+      // モデル定義
+      struct User: Identifiable, Codable {
+          let id = UUID()
+          let name: String
+          let email: String?
+          let createdAt: Date
+      }
+
+      // ネットワークサービス
+      class UserService: ObservableObject {
+          static let shared = UserService()
+          
+          private let baseURL = "https://api.example.com"
+          
+          func fetchUsers(completion: @escaping (Result<[User], Error>) -> Void) {
+              guard let url = URL(string: "\(baseURL)/users") else {
+                  completion(.failure(URLError(.badURL)))
+                  return
+              }
+              
+              URLSession.shared.dataTask(with: url) { data, response, error in
+                  if let error = error {
+                      completion(.failure(error))
+                      return
+                  }
+                  
+                  guard let data = data else {
+                      completion(.failure(URLError(.badServerResponse)))
+                      return
+                  }
+                  
+                  do {
+                      let users = try JSONDecoder().decode([User].self, from: data)
+                      completion(.success(users))
+                  } catch {
+                      completion(.failure(error))
+                  }
+              }.resume()
+          }
+      }
+
+      // Core Data統合
+      import CoreData
+
+      class CoreDataManager: ObservableObject {
+          lazy var persistentContainer: NSPersistentContainer = {
+              let container = NSPersistentContainer(name: "DataModel")
+              container.loadPersistentStores { _, error in
+                  if let error = error {
+                      fatalError("Core Data error: \(error)")
+                  }
+              }
+              return container
+          }()
+          
+          var context: NSManagedObjectContext {
+              persistentContainer.viewContext
+          }
+          
+          func save() {
+              if context.hasChanges {
+                  try? context.save()
+              }
+          }
+      }
+    features:
+      - "型安全言語"
+      - "SwiftUI宣言的UI"
+      - "Core Data統合"
+      - "パフォーマンス最適化"
+      - "Apple エコシステム統合"
+
+  kotlin_android:
+    name: "kotlin"
+    description: "Android開発の公式言語。Javaと完全互換でより安全・簡潔なコード"
+    installation: "Android Studio with Kotlin support"
+    usage: |
+      // Jetpack Compose基本例
+      import androidx.compose.foundation.layout.*
+      import androidx.compose.foundation.lazy.LazyColumn
+      import androidx.compose.foundation.lazy.items
+      import androidx.compose.material3.*
+      import androidx.compose.runtime.*
+      import androidx.compose.ui.Modifier
+      import androidx.compose.ui.unit.dp
+
+      @Composable
+      fun UserListScreen(
+          viewModel: UserViewModel = hiltViewModel()
+      ) {
+          val users by viewModel.users.collectAsState()
+          val isLoading by viewModel.isLoading.collectAsState()
+          
+          Column(
+              modifier = Modifier
+                  .fillMaxSize()
+                  .padding(16.dp)
+          ) {
+              if (isLoading) {
+                  CircularProgressIndicator()
+              } else {
+                  LazyColumn(
+                      verticalArrangement = Arrangement.spacedBy(8.dp)
+                  ) {
+                      items(users) { user ->
+                          UserCard(user = user)
+                      }
+                  }
+              }
+          }
+      }
+
+      @Composable
+      fun UserCard(user: User) {
+          Card(
+              modifier = Modifier.fillMaxWidth(),
+              elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+          ) {
+              Column(
+                  modifier = Modifier.padding(16.dp)
+              ) {
+                  Text(
+                      text = user.name,
+                      style = MaterialTheme.typography.headlineSmall
+                  )
+                  Spacer(modifier = Modifier.height(4.dp))
+                  Text(
+                      text = user.email,
+                      style = MaterialTheme.typography.bodyMedium
+                  )
+              }
+          }
+      }
+
+      // ViewModel with Hilt DI
+      @HiltViewModel
+      class UserViewModel @Inject constructor(
+          private val userRepository: UserRepository
+      ) : ViewModel() {
+          
+          private val _users = MutableStateFlow<List<User>>(emptyList())
+          val users: StateFlow<List<User>> = _users.asStateFlow()
+          
+          private val _isLoading = MutableStateFlow(false)
+          val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
+          
+          init {
+              loadUsers()
+          }
+          
+          private fun loadUsers() {
+              viewModelScope.launch {
+                  _isLoading.value = true
+                  try {
+                      val result = userRepository.getUsers()
+                      _users.value = result
+                  } catch (e: Exception) {
+                      // Handle error
+                  } finally {
+                      _isLoading.value = false
+                  }
+              }
+          }
+      }
+
+      // Repository pattern with Room
+      @Entity(tableName = "users")
+      data class User(
+          @PrimaryKey val id: String,
+          val name: String,
+          val email: String,
+          val createdAt: Long
+      )
+
+      @Dao
+      interface UserDao {
+          @Query("SELECT * FROM users")
+          suspend fun getAllUsers(): List<User>
+          
+          @Insert(onConflict = OnConflictStrategy.REPLACE)
+          suspend fun insertUser(user: User)
+          
+          @Delete
+          suspend fun deleteUser(user: User)
+      }
+
+      @Database(
+          entities = [User::class],
+          version = 1,
+          exportSchema = false
+      )
+      abstract class AppDatabase : RoomDatabase() {
+          abstract fun userDao(): UserDao
+      }
+
+      // Repository implementation
+      @Singleton
+      class UserRepository @Inject constructor(
+          private val userDao: UserDao,
+          private val apiService: ApiService
+      ) {
+          suspend fun getUsers(): List<User> {
+              return try {
+                  val remoteUsers = apiService.getUsers()
+                  userDao.insertUsers(remoteUsers)
+                  remoteUsers
+              } catch (e: Exception) {
+                  userDao.getAllUsers()
+              }
+          }
+      }
+    features:
+      - "Null安全性"
+      - "Jetpack Compose"
+      - "Coroutines並行処理"
+      - "Room データベース"
+      - "Hilt依存性注入"
+
+# === データ可視化・コラボレーション ===
+visualization_collaboration:
+  react_flow:
+    name: "reactflow"
+    description: "ノードベースエディター・フローチャート作成。ドラッグ&ドロップでインタラクティブな図表"
+    installation: "npm install reactflow"
+    usage: |
+      import React, { useCallback } from 'react';
+      import ReactFlow, {
+        MiniMap,
+        Controls,
+        Background,
+        useNodesState,
+        useEdgesState,
+        addEdge,
+        ConnectionMode,
+      } from 'reactflow';
+      import 'reactflow/dist/style.css';
+
+      const initialNodes = [
+        {
+          id: '1',
+          type: 'input',
+          data: { label: 'Start' },
+          position: { x: 250, y: 25 },
+        },
+        {
+          id: '2',
+          data: { label: 'Process Data' },
+          position: { x: 100, y: 125 },
+        },
+        {
+          id: '3',
+          data: { label: 'Decision Point' },
+          position: { x: 250, y: 125 },
+        },
+        {
+          id: '4',
+          type: 'output',
+          data: { label: 'End' },
+          position: { x: 250, y: 250 },
+        },
+      ];
+
+      const initialEdges = [
+        { id: 'e1-2', source: '1', target: '2' },
+        { id: 'e1-3', source: '1', target: '3' },
+        { id: 'e2-4', source: '2', target: '4' },
+        { id: 'e3-4', source: '3', target: '4' },
+      ];
+
+      export default function FlowChart() {
+        const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+        const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+
+        const onConnect = useCallback(
+          (params) => setEdges((eds) => addEdge(params, eds)),
+          [setEdges]
+        );
+
+        return (
+          <div style={{ width: '100vw', height: '100vh' }}>
+            <ReactFlow
+              nodes={nodes}
+              edges={edges}
+              onNodesChange={onNodesChange}
+              onEdgesChange={onEdgesChange}
+              onConnect={onConnect}
+              connectionMode={ConnectionMode.Loose}
+              fitView
+            >
+              <Controls />
+              <MiniMap />
+              <Background variant="dots" gap={12} size={1} />
+            </ReactFlow>
+          </div>
+        );
+      }
+
+      // カスタムノード作成
+      import { Handle, Position } from 'reactflow';
+
+      function CustomNode({ data, isConnectable }) {
+        return (
+          <div className="custom-node">
+            <Handle
+              type="target"
+              position={Position.Top}
+              isConnectable={isConnectable}
+            />
+            <div>
+              <label htmlFor="text">{data.label}</label>
+            </div>
+            <Handle
+              type="source"
+              position={Position.Bottom}
+              isConnectable={isConnectable}
+            />
+          </div>
+        );
+      }
+
+      const nodeTypes = {
+        customNode: CustomNode,
+      };
+    features:
+      - "ドラッグ&ドロップ"
+      - "カスタムノード作成"
+      - "ズーム・パン操作"
+      - "ミニマップ表示"
+      - "データフロー処理"
+
+  tiptap:
+    name: "tiptap"
+    description: "ヘッドレスリッチテキストエディター。ProseMirrorベースで高度にカスタマイズ可能"
+    installation: "npm install @tiptap/react @tiptap/pm @tiptap/starter-kit"
+    usage: |
+      import { useEditor, EditorContent } from '@tiptap/react';
+      import StarterKit from '@tiptap/starter-kit';
+      import { Color } from '@tiptap/extension-color';
+      import TextStyle from '@tiptap/extension-text-style';
+      import Image from '@tiptap/extension-image';
+      import Link from '@tiptap/extension-link';
+
+      const TiptapEditor = () => {
+        const editor = useEditor({
+          extensions: [
+            StarterKit,
+            TextStyle,
+            Color.configure({ types: [TextStyle.name] }),
+            Image,
+            Link.configure({
+              openOnClick: false,
+            }),
+          ],
+          content: '<p>Start writing...</p>',
+          onUpdate: ({ editor }) => {
+            const html = editor.getHTML();
+            console.log('Content updated:', html);
+          },
+        });
+
+        if (!editor) {
+          return null;
+        }
+
+        return (
+          <div className="editor-container">
+            <MenuBar editor={editor} />
+            <EditorContent editor={editor} />
+          </div>
+        );
+      };
+
+      // メニューバーコンポーネント
+      const MenuBar = ({ editor }) => {
+        if (!editor) {
+          return null;
+        }
+
+        return (
+          <div className="menu-bar">
+            <button
+              onClick={() => editor.chain().focus().toggleBold().run()}
+              disabled={!editor.can().chain().focus().toggleBold().run()}
+              className={editor.isActive('bold') ? 'is-active' : ''}
+            >
+              Bold
+            </button>
+            <button
+              onClick={() => editor.chain().focus().toggleItalic().run()}
+              disabled={!editor.can().chain().focus().toggleItalic().run()}
+              className={editor.isActive('italic') ? 'is-active' : ''}
+            >
+              Italic
+            </button>
+            <button
+              onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+              className={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''}
+            >
+              H1
+            </button>
+            <button
+              onClick={() => editor.chain().focus().toggleBulletList().run()}
+              className={editor.isActive('bulletList') ? 'is-active' : ''}
+            >
+              Bullet List
+            </button>
+            <button
+              onClick={() => {
+                const url = window.prompt('URL');
+                if (url) {
+                  editor.chain().focus().setLink({ href: url }).run();
+                }
+              }}
+            >
+              Add Link
+            </button>
+            <input
+              type="color"
+              onInput={event => editor.chain().focus().setColor(event.target.value).run()}
+              value={editor.getAttributes('textStyle').color || '#000000'}
+            />
+          </div>
+        );
+      };
+
+      // 高度な機能: コラボレーション
+      import { useCallback } from 'react';
+      import Collaboration from '@tiptap/extension-collaboration';
+      import CollaborationCursor from '@tiptap/extension-collaboration-cursor';
+      import * as Y from 'yjs';
+      import { WebrtcProvider } from 'y-webrtc';
+
+      const CollaborativeEditor = () => {
+        const ydoc = new Y.Doc();
+        const provider = new WebrtcProvider('tiptap-collaboration-example', ydoc);
+
+        const editor = useEditor({
+          extensions: [
+            StarterKit.configure({
+              history: false,
+            }),
+            Collaboration.configure({
+              document: ydoc,
+            }),
+            CollaborationCursor.configure({
+              provider: provider,
+              user: {
+                name: 'Current User',
+                color: '#f783ac',
+              },
+            }),
+          ],
+        });
+
+        return <EditorContent editor={editor} />;
+      };
+    features:
+      - "ヘッドレス設計"
+      - "拡張システム"
+      - "リアルタイムコラボレーション"
+      - "カスタムノード作成"
+      - "ProseMirror統合"
+
+# === パフォーマンス最適化 ===
+performance_optimization:
+  testing_optimization:
+    - "並列テスト実行"
+    - "スマートテスト選択"
+    - "テストキャッシング"
+    - "フレークテスト排除"
+    
+  database_optimization:
+    - "クエリ最適化"
+    - "インデックス戦略"
+    - "コネクションプーリング"
+    - "キャッシュ層導入"
+    
+  mobile_optimization:
+    - "バンドルサイズ最適化"
+    - "レイジーローディング"
+    - "メモリ管理"
+    - "ネットワーク効率化"
+
+best_practices:
+  testing_best_practices:
+    - "テストピラミッド構築"
+    - "テストデータ管理"
+    - "CI/CD統合"
+    - "カバレッジ目標設定"
+    
+  database_best_practices:
+    - "正規化vs非正規化"
+    - "セキュリティ対策"
+    - "バックアップ戦略"
+    - "スケーリング設計"
+    
+  mobile_best_practices:
+    - "ユーザビリティ優先"
+    - "プラットフォーム準拠"
+    - "セキュリティ実装"
+    - "アクセシビリティ対応"
+
+common_use_cases:
+  - "エンタープライズ業務アプリ"
+  - "リアルタイムコラボレーション"
+  - "データドリブンダッシュボード"
+  - "モバイルファーストアプリ"
+  - "可視化・ワークフローツール"
+  - "コンテンツ管理システム"
+  - "ソーシャルプラットフォーム"
+  - "Eコマースプラットフォーム"
