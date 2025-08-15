@@ -1,0 +1,721 @@
+name: Spike Development Ecosystem
+version: 1.0.0
+description: |
+  アジャイル開発におけるスパイク（Spike Solution）開発をサポートする包括的エコシステム。
+  特定機能の検証・試作を独立環境で行い、本体への統合を効率化するツールセット。
+category: development-methodology
+subcategory: spike-development
+tags:
+  - spike
+  - proof-of-concept
+  - rapid-prototyping
+  - feature-isolation
+  - agile-development
+  - experimental-development
+
+overview: |
+  スパイク開発は、未知の技術や複雑な機能を本体から切り離して検証する手法です。
+  このエコシステムは、独立したプロトタイプ環境の構築から本体への統合まで、
+  スパイク開発の全プロセスをサポートします。
+
+core_concepts:
+  spike_definition:
+    description: |
+      スパイク（Spike Solution）は、技術的な不確実性を解消するための時間制限付き実験です。
+      本番品質のコードではなく、学習と検証が主目的となります。
+    characteristics:
+      - 時間制限がある（通常1-3日）
+      - 完成度より学習を優先
+      - 使い捨てコードも許容
+      - リスクの早期発見
+      - 技術的実現可能性の検証
+
+  when_to_use_spike:
+    technical_uncertainty:
+      - 新しいライブラリやフレームワークの評価
+      - 複雑なアルゴリズムの実装可能性
+      - パフォーマンス要件の達成可能性
+    user_experience:
+      - 新しいUIパターンの検証
+      - ユーザビリティの実験
+      - インタラクションの実現可能性
+
+tools:
+  # ===== 高速プロトタイピング環境 =====
+  
+  vite:
+    name: Vite
+    description: 高速な開発サーバーとビルドツール、スパイク開発に最適
+    homepage: https://vitejs.dev/
+    repository: https://github.com/vitejs/vite
+    language: TypeScript
+    spike_benefits:
+      - 即座にプロジェクト開始（npm create vite@latest）
+      - ホットモジュールリプレースメント（HMR）
+      - 最小限の設定で動作
+      - React/Vue/Vanilla対応
+    spike_setup: |
+      # 30秒でスパイクプロジェクト作成
+      npm create vite@latest spike-dragdrop -- --template react-ts
+      cd spike-dragdrop
+      npm install
+      npm run dev
+    best_practices:
+      - テンプレート活用で初期設定削減
+      - 本番ビルドは考慮しない
+      - 依存関係は最小限に
+
+  stackblitz:
+    name: StackBlitz
+    description: ブラウザ内で動作する完全なNode.js開発環境
+    homepage: https://stackblitz.com/
+    language: JavaScript/TypeScript
+    spike_benefits:
+      - インストール不要で即座に開始
+      - URLで共有可能
+      - フォークして派生実験
+      - 本番環境に近い動作
+    use_cases:
+      - チーム間での迅速な検証共有
+      - 複数パターンの並行実験
+      - 環境構築なしでの実験
+    example_url: https://stackblitz.com/edit/react-dnd-treeview-spike
+
+  codesandbox:
+    name: CodeSandbox
+    description: オンラインコードエディタとプロトタイピング環境
+    homepage: https://codesandbox.io/
+    language: JavaScript/TypeScript
+    spike_benefits:
+      - テンプレートから即座に開始
+      - リアルタイムコラボレーション
+      - npm依存関係の自動解決
+      - デプロイプレビュー
+    templates:
+      - React TypeScript
+      - Vue 3
+      - Next.js
+      - Node.js Express
+
+  # ===== UIコンポーネントスパイク =====
+
+  storybook:
+    name: Storybook
+    description: UIコンポーネントの独立開発・テスト環境
+    homepage: https://storybook.js.org/
+    repository: https://github.com/storybookjs/storybook
+    language: JavaScript/TypeScript
+    spike_usage:
+      description: コンポーネントを独立して開発・検証
+      benefits:
+        - アプリケーション全体から切り離して開発
+        - 様々な状態やプロップスの組み合わせをテスト
+        - インタラクションテスト
+        - ドキュメント自動生成
+    spike_workflow: |
+      # コンポーネントスパイクの作成
+      npx storybook@latest init
+      
+      # DnDツリーコンポーネントのストーリー
+      export default {
+        title: 'Spike/DragDropTree',
+        component: DragDropTree,
+      }
+      
+      export const Default = {
+        args: {
+          items: mockTreeData
+        }
+      }
+      
+      export const WithDragInProgress = {
+        play: async ({ canvasElement }) => {
+          // ドラッグ操作のシミュレーション
+        }
+      }
+
+  react_dnd:
+    name: React DnD
+    description: React用の複雑なドラッグ&ドロップインタラクション
+    homepage: https://react-dnd.github.io/react-dnd/
+    repository: https://github.com/react-dnd/react-dnd
+    language: TypeScript
+    spike_example: |
+      // スパイク: ツリー構造のDnD実装検証
+      import { useDrag, useDrop } from 'react-dnd'
+      
+      function TreeNodeSpike({ node, onMove }) {
+        const [{ isDragging }, drag] = useDrag({
+          type: 'TREE_NODE',
+          item: { id: node.id },
+          collect: (monitor) => ({
+            isDragging: monitor.isDragging()
+          })
+        })
+        
+        const [{ isOver }, drop] = useDrop({
+          accept: 'TREE_NODE',
+          drop: (item) => onMove(item.id, node.id),
+          collect: (monitor) => ({
+            isOver: monitor.isOver()
+          })
+        })
+        
+        return (
+          <div ref={(el) => { drag(el); drop(el) }}>
+            {/* 最小限の実装で動作検証 */}
+          </div>
+        )
+      }
+
+  framer_motion:
+    name: Framer Motion
+    description: React用の宣言的アニメーションライブラリ
+    homepage: https://www.framer.com/motion/
+    repository: https://github.com/framer/motion
+    language: TypeScript
+    spike_usage:
+      - ドラッグジェスチャーの実装
+      - アニメーション付きリスト並び替え
+      - スムーズな状態遷移
+    spike_example: |
+      // スパイク: ドラッグ可能なリスト
+      <Reorder.Group values={items} onReorder={setItems}>
+        {items.map(item => (
+          <Reorder.Item key={item} value={item}>
+            {item}
+          </Reorder.Item>
+        ))}
+      </Reorder.Group>
+
+  # ===== データ管理スパイク =====
+
+  zustand:
+    name: Zustand
+    description: 軽量な状態管理、スパイクに最適
+    homepage: https://zustand-demo.pmnd.rs/
+    repository: https://github.com/pmndrs/zustand
+    language: TypeScript
+    spike_benefits:
+      - ボイラープレート最小
+      - 設定不要で即使用可能
+      - TypeScript完全対応
+      - DevTools統合
+    spike_example: |
+      // スパイク用の簡易ストア
+      const useTreeStore = create((set) => ({
+        nodes: [],
+        moveNode: (nodeId, targetId) => set(state => {
+          // 検証用の最小実装
+          return { nodes: reorderNodes(state.nodes, nodeId, targetId) }
+        })
+      }))
+
+  jotai:
+    name: Jotai
+    description: アトミックな状態管理
+    homepage: https://jotai.org/
+    repository: https://github.com/pmndrs/jotai
+    language: TypeScript
+    spike_usage:
+      - 局所的な状態管理の実験
+      - コンポーネント間の状態共有検証
+      - 非同期状態の管理
+
+  # ===== モックデータ・API =====
+
+  msw:
+    name: Mock Service Worker
+    description: APIモッキングでバックエンド不要の開発
+    homepage: https://mswjs.io/
+    repository: https://github.com/mswjs/msw
+    language: TypeScript
+    spike_benefits:
+      - バックエンドなしで完全な動作検証
+      - ネットワークレベルでのモック
+      - 実際のAPIと同じ挙動
+    spike_setup: |
+      // スパイク用モックAPI
+      import { setupWorker, rest } from 'msw'
+      
+      const worker = setupWorker(
+        rest.get('/api/tree', (req, res, ctx) => {
+          return res(ctx.json(mockTreeData))
+        }),
+        rest.post('/api/tree/move', (req, res, ctx) => {
+          // 移動操作のモック
+          return res(ctx.json({ success: true }))
+        })
+      )
+      
+      worker.start()
+
+  faker:
+    name: Faker.js
+    description: リアルなテストデータ生成
+    homepage: https://fakerjs.dev/
+    repository: https://github.com/faker-js/faker
+    language: TypeScript
+    spike_usage:
+      - 大量のテストデータ生成
+      - エッジケースの検証
+      - パフォーマンステスト用データ
+    example: |
+      // ツリー構造のモックデータ生成
+      const generateTreeData = (depth = 3) => ({
+        id: faker.string.uuid(),
+        name: faker.commerce.department(),
+        children: depth > 0 
+          ? Array.from({ length: faker.number.int({ min: 1, max: 5 }) })
+              .map(() => generateTreeData(depth - 1))
+          : []
+      })
+
+  # ===== 統合ツール =====
+
+  plop:
+    name: Plop
+    description: マイクロジェネレーター、スパイクから本体への移行自動化
+    homepage: https://plopjs.com/
+    repository: https://github.com/plopjs/plop
+    language: JavaScript
+    integration_workflow:
+      description: スパイクから本体への統合を自動化
+      steps:
+        - スパイクコードから必要部分を抽出
+        - 本体のコード規約に合わせて変換
+        - テストとドキュメントの生成
+        - 本体への配置
+    plop_template: |
+      // plopfile.js - スパイク統合ジェネレーター
+      module.exports = function (plop) {
+        plop.setGenerator('integrate-spike', {
+          description: 'スパイクを本体に統合',
+          prompts: [
+            {
+              type: 'input',
+              name: 'spikePath',
+              message: 'スパイクプロジェクトのパス'
+            },
+            {
+              type: 'input',
+              name: 'componentName',
+              message: '統合するコンポーネント名'
+            }
+          ],
+          actions: [
+            {
+              type: 'add',
+              path: 'src/components/{{componentName}}/index.tsx',
+              templateFile: 'templates/component.hbs'
+            },
+            {
+              type: 'add',
+              path: 'src/components/{{componentName}}/{{componentName}}.test.tsx',
+              templateFile: 'templates/test.hbs'
+            }
+          ]
+        })
+      }
+
+  hygen:
+    name: Hygen
+    description: 高速なコードジェネレーター
+    homepage: http://www.hygen.io/
+    repository: https://github.com/jondot/hygen
+    language: JavaScript
+    spike_integration:
+      - テンプレートベースの統合
+      - 対話的なプロンプト
+      - 条件分岐のサポート
+
+  # ===== テスト・検証 =====
+
+  playwright:
+    name: Playwright
+    description: E2Eテストでスパイクの動作検証
+    homepage: https://playwright.dev/
+    repository: https://github.com/microsoft/playwright
+    language: TypeScript
+    spike_validation: |
+      // スパイクの動作検証
+      test('ドラッグ&ドロップが動作する', async ({ page }) => {
+        await page.goto('http://localhost:5173')
+        
+        const source = page.locator('[data-node-id="1"]')
+        const target = page.locator('[data-node-id="3"]')
+        
+        await source.dragTo(target)
+        
+        // 順序が変わったことを確認
+        await expect(page.locator('[data-node-id="1"]'))
+          .toHaveAttribute('data-position', '3')
+      })
+
+  vitest:
+    name: Vitest
+    description: 高速なユニットテスト
+    homepage: https://vitest.dev/
+    repository: https://github.com/vitest-dev/vitest
+    language: TypeScript
+    spike_testing:
+      - ロジックの検証
+      - エッジケースの確認
+      - パフォーマンス測定
+
+  # ===== バージョン管理・実験管理 =====
+
+  git_worktree:
+    name: Git Worktree
+    description: 複数の作業ツリーで並行実験
+    documentation: https://git-scm.com/docs/git-worktree
+    spike_workflow: |
+      # スパイク用の独立したワークツリー作成
+      git worktree add ../spike-dnd-tree spike/dnd-tree
+      cd ../spike-dnd-tree
+      
+      # スパイクの実装
+      npm create vite@latest . -- --template react-ts
+      # ... 実装 ...
+      
+      # 成功したら本体にマージ
+      git checkout main
+      git merge spike/dnd-tree
+
+  git_submodule:
+    name: Git Submodule
+    description: スパイクプロジェクトを独立管理
+    documentation: https://git-scm.com/book/en/v2/Git-Tools-Submodules
+    usage:
+      - スパイクを別リポジトリとして管理
+      - 成功したスパイクのみ統合
+      - 履歴の保持
+
+workflows:
+  spike_development_cycle:
+    name: スパイク開発サイクル
+    phases:
+      planning:
+        description: スパイクの計画
+        activities:
+          - 不確実性の特定
+          - タイムボックスの設定（1-3日）
+          - 成功基準の定義
+          - 必要最小限の要件定義
+        
+      setup:
+        description: 環境構築
+        activities:
+          - Viteで即座にプロジェクト作成
+          - 必要最小限の依存関係追加
+          - モックデータの準備
+          - 開発サーバー起動
+        
+      implementation:
+        description: 実装
+        principles:
+          - 完璧を求めない
+          - 動作確認を優先
+          - ハードコーディングも許容
+          - リファクタリングは後回し
+        tools:
+          - Storybook（独立開発）
+          - MSW（APIモック）
+          - React DnD（機能実装）
+        
+      validation:
+        description: 検証
+        activities:
+          - 基本動作の確認
+          - パフォーマンスの測定
+          - 技術的実現可能性の評価
+          - 統合の難易度評価
+        
+      decision:
+        description: 判断
+        outcomes:
+          success:
+            - 本体への統合準備
+            - コードのクリーンアップ
+            - テストの追加
+            - ドキュメント作成
+          failure:
+            - 学んだことの文書化
+            - 代替案の検討
+            - 次のスパイクの計画
+          needs_more_investigation:
+            - 追加スパイクの計画
+            - 別アプローチの試行
+        
+      integration:
+        description: 本体への統合
+        steps:
+          extract:
+            description: 必要なコードの抽出
+            tools:
+              - Plop（自動生成）
+              - Hygen（テンプレート適用）
+          adapt:
+            description: 本体の規約に適合
+            activities:
+              - コーディング規約の適用
+              - 型定義の追加
+              - エラーハンドリング
+              - ログの追加
+          test:
+            description: 統合テスト
+            tools:
+              - Vitest（ユニットテスト）
+              - Playwright（E2Eテスト）
+          document:
+            description: ドキュメント化
+            outputs:
+              - 使用方法
+              - API仕様
+              - 設定オプション
+
+  parallel_spikes:
+    name: 並行スパイク戦略
+    description: 複数のアプローチを同時に試す
+    approach:
+      setup:
+        - Git worktreeで複数環境準備
+        - 各環境で異なるアプローチ実装
+        - StackBlitzで共有・レビュー
+      comparison:
+        - パフォーマンス比較
+        - 実装の複雑さ比較
+        - 保守性の評価
+      selection:
+        - 最適なアプローチの選択
+        - ハイブリッドアプローチの検討
+
+templates:
+  minimal_spike_react:
+    name: 最小React TypeScriptスパイク
+    structure: |
+      spike-feature/
+      ├── package.json
+      ├── tsconfig.json
+      ├── vite.config.ts
+      ├── index.html
+      └── src/
+          ├── main.tsx
+          ├── App.tsx
+          ├── components/
+          │   └── Feature.tsx
+          └── mocks/
+              └── handlers.ts
+    
+    package_json: |
+      {
+        "name": "spike-feature",
+        "private": true,
+        "type": "module",
+        "scripts": {
+          "dev": "vite",
+          "build": "vite build",
+          "preview": "vite preview"
+        },
+        "dependencies": {
+          "react": "^18.2.0",
+          "react-dom": "^18.2.0"
+        },
+        "devDependencies": {
+          "@types/react": "^18.2.0",
+          "@types/react-dom": "^18.2.0",
+          "@vitejs/plugin-react": "^4.0.0",
+          "typescript": "^5.0.0",
+          "vite": "^5.0.0"
+        }
+      }
+
+  drag_drop_spike:
+    name: ドラッグ&ドロップツリースパイク
+    description: 階層構造のドラッグ&ドロップ実装検証
+    dependencies:
+      - react-dnd
+      - react-dnd-html5-backend
+      - immer（状態更新）
+    key_files:
+      TreeNode.tsx: ドラッグ可能なノード
+      TreeContainer.tsx: ドロップゾーン管理
+      useTreeDnD.ts: ドラッグ&ドロップロジック
+      treeUtils.ts: ツリー操作ユーティリティ
+
+best_practices:
+  time_management:
+    - タイムボックスを厳守（最大3日）
+    - 延長が必要なら別スパイクとして計画
+    - 毎日の進捗確認
+  
+  code_quality:
+    - 本番品質は求めない
+    - 動作確認を最優先
+    - コメントで意図を明確に
+    - TODO/FIXMEの活用
+  
+  documentation:
+    - 学んだことを必ず記録
+    - 失敗も貴重な情報
+    - スクリーンショット/動画の活用
+    - 判断の根拠を明記
+  
+  isolation:
+    - 本体から完全に独立
+    - 最小限の依存関係
+    - モックデータの使用
+    - 環境変数で切り替え可能に
+  
+  evaluation_criteria:
+    technical:
+      - 実装の難易度
+      - パフォーマンス
+      - スケーラビリティ
+      - 保守性
+    user_experience:
+      - 使いやすさ
+      - レスポンシブ性
+      - アクセシビリティ
+    integration:
+      - 統合の容易さ
+      - 既存コードへの影響
+      - 必要な変更量
+
+anti_patterns:
+  over_engineering:
+    description: スパイクで過度に作り込む
+    problems:
+      - 時間の無駄
+      - 本質的な検証の遅延
+      - 決定の先送り
+    solution: MVPに徹する
+  
+  production_mindset:
+    description: 本番品質を求める
+    problems:
+      - 検証速度の低下
+      - 不要な最適化
+      - 柔軟性の欠如
+    solution: 「動けば良い」精神
+  
+  no_documentation:
+    description: 結果を記録しない
+    problems:
+      - 知識の喪失
+      - 同じ失敗の繰り返し
+      - 判断根拠の不明確化
+    solution: 簡潔でも必ず記録
+
+integration_patterns:
+  component_extraction:
+    description: スパイクからコンポーネントを抽出
+    steps:
+      1_identify:
+        - 再利用可能な部分の特定
+        - 依存関係の整理
+        - インターフェースの定義
+      2_refactor:
+        - ハードコーディングの除去
+        - プロップス化
+        - 型定義の追加
+      3_test:
+        - ユニットテスト追加
+        - Storybook story作成
+        - スナップショットテスト
+      4_integrate:
+        - 本体へのコピー
+        - import pathの調整
+        - 既存コードとの接続
+  
+  gradual_migration:
+    description: 段階的な移行
+    approach:
+      - フィーチャーフラグで制御
+      - A/Bテストの実施
+      - 段階的なロールアウト
+      - ロールバック可能な設計
+
+learning_resources:
+  articles:
+    - title: "Agile Spikes Explained"
+      url: "https://www.agilealliance.org/glossary/spike"
+      description: スパイクの概念と実践
+    
+    - title: "Spike Solutions in Scrum"
+      url: "https://www.scrum.org/resources/what-is-a-spike"
+      description: Scrumにおけるスパイクの位置づけ
+  
+  books:
+    - title: "Extreme Programming Explained"
+      author: "Kent Beck"
+      relevance: スパイクの起源と哲学
+    
+    - title: "The Lean Startup"
+      author: "Eric Ries"
+      relevance: 実験的アプローチの重要性
+  
+  tools_comparison:
+    online_editors:
+      stackblitz:
+        pros:
+          - Node.js完全対応
+          - オフライン動作
+          - VS Code統合
+        cons:
+          - 初回読み込みが遅い
+        best_for: フルスタックスパイク
+      
+      codesandbox:
+        pros:
+          - 豊富なテンプレート
+          - コラボレーション機能
+          - デプロイプレビュー
+        cons:
+          - 無料版の制限
+        best_for: フロントエンドスパイク
+      
+      codepen:
+        pros:
+          - 即座に開始
+          - シンプル
+          - 埋め込み可能
+        cons:
+          - npm非対応
+        best_for: 簡単なUIスパイク
+
+success_metrics:
+  technical_validation:
+    - 機能が動作するか
+    - パフォーマンス要件を満たすか
+    - スケール可能か
+    - セキュリティ要件を満たすか
+  
+  feasibility_assessment:
+    - 実装にかかる時間
+    - 必要なスキルセット
+    - 依存関係の複雑さ
+    - メンテナンスコスト
+  
+  user_value:
+    - ユーザー体験の向上度
+    - ビジネス価値
+    - 差別化要因
+    - ROI
+
+future_considerations:
+  ai_assisted_spikes:
+    description: AI/LLMを活用したスパイク開発
+    possibilities:
+      - コード生成による高速化
+      - 複数パターンの自動生成
+      - 最適解の提案
+      - 統合コードの自動生成
+  
+  automated_evaluation:
+    description: スパイクの自動評価
+    metrics:
+      - パフォーマンステスト自動実行
+      - コード品質の自動評価
+      - セキュリティスキャン
+      - アクセシビリティチェック

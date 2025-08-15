@@ -92,6 +92,17 @@ See [BENEFITS.md](./BENEFITS.md) for detailed advantages.
   - Infrastructure: OpenShift, Rancher, Portainer for container management
   - IoT Integration: Node-RED, MQTT brokers for IoT device connectivity
 
+### Development Methodology
+- **Spike Development Ecosystem** (`spec://spike-development-ecosystem`) - Agile spike solution methodology and tools
+  - Rapid Prototyping: Vite, StackBlitz, CodeSandbox for instant project creation
+  - Component Isolation: Storybook for independent UI development and testing
+  - Interaction Testing: React DnD, Framer Motion for drag-and-drop and animation prototypes
+  - Mock Development: MSW for API mocking, Faker.js for test data generation
+  - State Management: Zustand, Jotai for minimal-setup state management
+  - Integration Tools: Plop, Hygen for automated spike-to-production code generation
+  - Parallel Experiments: Git Worktree for concurrent approach testing
+  - Validation: Playwright, Vitest for spike verification and acceptance testing
+
 ## 🌐 Language Ecosystems
 
 ### System Programming

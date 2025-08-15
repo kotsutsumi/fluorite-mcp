@@ -114,6 +114,7 @@ Fluorite MCPが提供するライブラリ仕様の一覧です。これらの�
 
 ### 開発効率・DX
 - [開発効率・DXエコシステム](./development-efficiency-dx) - `spec://development-efficiency-dx-ecosystem`
+- [スパイク開発エコシステム](./spike-development) - `spec://spike-development-ecosystem`
 
 ### データ処理・分析
 - [データ処理・分析エコシステム](./data-processing-analytics) - `spec://data-processing-analytics-ecosystem`

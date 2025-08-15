@@ -1,0 +1,58 @@
+id: "spike-development"
+name: "スパイク（Spike Solution）開発ガイド"
+homepage: "https://martinfowler.com/bliki/SpikeSolution.html"
+summary: "本体とは別に“特定機能だけ”を切り出して素早く検証する小規模アプリ（スパイク）の進め方と命名/配置/移植手順。余計な前提を避け、学びを最短で得て本線へ取り込みます。"
+concept:
+  meaning: "未知の技術/実装方針を短期間で試作・検証するための小規模実装。完成度ではなく“学び/検証結果”が主目的。"
+  examples:
+    - "ドラッグ&ドロップツリー（@minoru/react-dnd-treeview）だけを別Viteアプリで試す"
+    - "WebAuthn/Passkeys のサインインだけを最小 UI で検証"
+    - "mediasoup SFU への接続と映像1枚描画だけを試す"
+policy:
+  - "本体から切り離す（依存/設定/ルーティングを持ち込まない）"
+  - "目的を1つに絞る（成功条件を1～3項目で事前定義）"
+  - "最小の依存だけを入れる（UI/状態/ルータは必要な分だけ）"
+  - "計測/所感/課題をREADMEに残す（コードより学びが成果）"
+layout:
+  dir: "spikes/<feature>-spike/"
+  includes:
+    - "README.md（目的/成功条件/観察結果/次アクション）"
+    - "package.json（独立） / vite.config.ts / tsconfig.json"
+    - "src/main.tsx / src/App.tsx（最小UI）"
+  exclude_from_main:
+    - "ビルド/テストの対象外にする場合、ルートのツール設定で `spikes/**` を除外"
+workflow:
+  steps:
+    - "計画: 目的/成功条件/制約/時間箱（例: 半日）を README に記す"
+    - "実装: 最小スコープで作る（ハードコードOK・設計は捨てやすく）"
+    - "観察: スクショ/動画/GIF と数値（fps/遅延/サイズ）を残す"
+    - "要約: 本線へ取り込む可否・採用ライブラリ・落とし穴・TODO を列挙"
+    - "移植: 本体の `src/` に抽出・再設計し、PRで取り込む（スパイクは保存か破棄）"
+acceptance:
+  success:
+    - "再現手順がREADMEに記載されている（npm i → npm run dev など）"
+    - "学び（数行～数十行）が明文化されている（パフォーマンス/可用性/API制約）"
+    - "本線への反映方針（採用/保留/代替案）が示されている"
+templates:
+  create_vite_react: |
+    # 新規スパイク作成例（React + Vite）
+    cd spikes
+    npm create vite@latest drag-tree-spike -- --template react-ts
+    cd drag-tree-spike && npm i
+  dnd_tree_minoru: |
+    # ドラッグ&ドロップツリーの最小検証
+    npm i @minoru/react-dnd-treeview react-dnd react-dnd-html5-backend
+    # src/App.tsx（一例）
+    import { Tree, NodeModel } from '@minoru/react-dnd-treeview'
+    const data: NodeModel[] = [ { id:1, parent:0, text:'Root', droppable:true } ]
+    export default () => (
+      <Tree tree={data} rootId={0} render={(n)=> <div>{n.text}</div>} onDrop={console.log} />
+    )
+notes:
+  - "スパイクのコミットは `chore(spike): ...` などで区別（ヒストリから検索しやすく）"
+  - "PRは“成果物の要約”を重視（コード差分より観察結果/採用可否）"
+bestPractices:
+  - "時間箱（Timebox）を守る：深追いせず学びを最大化"
+  - "依存は最小：捨てる前提で導入コストを抑える"
+  - "本線取り込み時は命名/責務/テストを整え直す（スパイクは投げ込み禁止）"
+lastReviewed: "2025-08-15"
