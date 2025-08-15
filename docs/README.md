@@ -25,7 +25,8 @@ Complete documentation for Fluorite MCP - the comprehensive Model Context Protoc
 
 | Feature | Guide | Description |
 |---------|-------|-------------|
-| **Spike Templates** | **[Spike Templates Guide](./spike-templates.md)** | Rapid prototyping with 1000+ templates |
+| **Strike Templates** | **[Strike Templates Guide](./strike-templates.md)** | 110+ production-ready development scaffolds |
+| **Spike Templates** | **[Legacy Spike Templates](./spike-templates.md)** | Legacy rapid prototyping system |
 | **Static Analysis** | **[API Documentation](../API.md#static-analysis)** | Framework-specific code analysis |
 | **Custom Integrations** | **[Developer Guide](./developer.md#plugin-development)** | Building custom plugins and extensions |
 
@@ -44,7 +45,8 @@ Complete documentation for Fluorite MCP - the comprehensive Model Context Protoc
 1. **Start Here**: [Getting Started Guide](./getting-started.md)
 2. **Install**: Follow the [Installation Guide](./installation.md)
 3. **Learn Commands**: Review [Command Reference](./commands.md)
-4. **Try Spikes**: Explore [Spike Templates](./spike-templates.md)
+4. **Explore Templates**: Browse [Strike Templates](./strike-templates.md)
+5. **Try Spikes**: Explore [Legacy Spike Templates](./spike-templates.md)
 
 ### For Developers
 
@@ -94,7 +96,8 @@ Documentation is updated with each release:
 |-------|----------|
 | **Library Specifications** | 90+ libraries with complete usage patterns |
 | **Static Analysis** | 50+ validation rules across frameworks |
-| **Spike Templates** | 1000+ templates for rapid prototyping |
+| **Strike Templates** | 110+ production scaffolds for rapid development |
+| **Spike Templates** | Legacy template system |
 | **Natural Language** | How Claude automatically uses Fluorite MCP |
 
 ### Technical Details
@@ -112,8 +115,9 @@ Documentation is updated with each release:
 |-------------|----------------|
 | **Claude Code CLI** | [Getting Started](./getting-started.md), [Installation](./installation.md) |
 | **SuperClaude Integration** | [/fl: Commands](./fl-commands.md) |
+| **Strike Development** | [Strike Templates](./strike-templates.md) |
 | **Custom Plugins** | [Developer Guide](./developer.md#plugin-development) |
-| **CI/CD Pipelines** | [Spike Templates](./spike-templates.md) |
+| **CI/CD Pipelines** | [Strike Templates - CI/CD Section](./strike-templates.md#testing--quality-15-templates) |
 | **Team Workflows** | [Template Creation](./template-creation.md#team-distribution) |
 
 ## 🚀 Quick Reference
@@ -168,9 +172,9 @@ This documentation is actively maintained:
 
 ## 📊 Documentation Metrics
 
-- **Total Pages**: 8 comprehensive guides
-- **Code Examples**: 100+ working examples  
-- **Cross-References**: 200+ internal links
+- **Total Pages**: 9 comprehensive guides
+- **Code Examples**: 100+ working examples + 110+ Strike templates
+- **Cross-References**: 250+ internal links
 - **Languages**: English and Japanese
 - **Update Frequency**: Every release
 - **Community Contributions**: Welcome and encouraged
@@ -179,4 +183,4 @@ This documentation is actively maintained:
 
 **Need help finding something?** Use the search functionality or ask in [GitHub Discussions](https://github.com/kotsutsumi/fluorite-mcp/discussions).
 
-*Documentation v0.9.1 - Last updated: 2025-08-15*
+*Documentation v0.9.2 - Last updated: 2025-08-15*

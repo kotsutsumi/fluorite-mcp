@@ -9,9 +9,27 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Specs', link: '/specs/' }
+      { text: 'Getting Started', link: '/getting-started' },
+      { text: 'Strike Templates', link: '/strike-templates' },
+      { text: 'Specs', link: '/specs/' },
+      { text: 'API', link: '/API' }
     ],
     sidebar: {
+      '/': [
+        {
+          text: 'Documentation',
+          items: [
+            { text: 'Overview', link: '/' },
+            { text: 'Getting Started', link: '/getting-started' },
+            { text: 'Installation', link: '/installation' },
+            { text: 'Commands', link: '/commands' },
+            { text: '/fl: Commands', link: '/fl-commands' },
+            { text: 'Strike Templates', link: '/strike-templates' },
+            { text: 'Developer Guide', link: '/developer' },
+            { text: 'API Reference', link: '/API' }
+          ]
+        }
+      ],
       '/specs/': [
         { text: 'Intro', link: '/specs/' },
         {
@@ -39,7 +57,15 @@ export default defineConfig({
           text: 'UIコンポーネント',
           collapsed: true,
           items: [
-            { text: 'React DnD TreeView', link: '/specs/react-dnd-treeview' }
+            { text: 'React DnD TreeView', link: '/specs/react-dnd-treeview' },
+            { text: 'UIコンポーネント品質', link: '/specs/ui-component-quality' }
+          ]
+        },
+        {
+          text: 'Strike開発',
+          collapsed: false,
+          items: [
+            { text: 'Strike開発エコシステム', link: '/specs/spike-development' }
           ]
         }
       ]

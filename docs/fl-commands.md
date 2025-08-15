@@ -99,10 +99,11 @@ Users receive enhanced capabilities without awareness:
 - Error prediction engine
 - Performance optimization suggestions
 
-### Spike Templates
-- 1000+ pre-built scaffolds
+### Strike Templates
+- 110+ production-ready scaffolds
+- 15+ technology stacks covered
 - Natural language template discovery
-- Rapid prototyping capabilities
+- Strike development workflow integration
 
 ## Examples
 
@@ -149,4 +150,7 @@ fluorite-mcp setup
 
 ---
 
-For complete documentation, see [API Documentation](../API.md) and [Commands Reference](./commands.md).
+For complete documentation, see:
+- **[Strike Templates Catalog](./strike-templates.md)** - Complete 110+ template reference
+- **[API Documentation](../API.md)** - Technical API reference
+- **[Commands Reference](./commands.md)** - Standard command documentation
