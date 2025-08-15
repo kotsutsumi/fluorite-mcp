@@ -1,0 +1,15 @@
+{
+  "id": "nextauth-google-provider",
+  "name": "NextAuth Google Provider",
+  "version": "1.0.0",
+  "stack": ["nextjs", "nextauth"],
+  "tags": ["auth"],
+  "description": "Configure NextAuth with Google provider (App Router).",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/auth/[...nextauth]/route.ts", "template": "import NextAuth from 'next-auth';\nimport Google from 'next-auth/providers/google';\nconst handler = NextAuth({ providers: [Google] });\nexport { handler as GET, handler as POST };\n" },
+    { "path": "{{app_name}}/.env.example", "template": "AUTH_GOOGLE_ID=\nAUTH_GOOGLE_SECRET=\nNEXTAUTH_URL=http://localhost:3000\nNEXTAUTH_SECRET=replace-with-strong-secret\n" }
+  ],
+  "patches": []
+}
+

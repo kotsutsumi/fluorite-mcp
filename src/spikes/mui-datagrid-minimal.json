@@ -1,0 +1,15 @@
+{
+  "id": "mui-datagrid-minimal",
+  "name": "MUI X DataGrid Minimal",
+  "version": "1.0.0",
+  "stack": ["react", "mui"],
+  "tags": ["table", "grid"],
+  "description": "Community DataGrid with minimal columns/rows.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/DataGridExample.tsx", "template": "import * as React from 'react';\nimport { DataGrid, GridColDef } from '@mui/x-data-grid';\nconst rows = [{ id: 1, col1: 'Hello', col2: 'World' }];\nconst columns: GridColDef[] = [{ field: 'col1', headerName: 'Col1', width: 150 }, { field: 'col2', headerName: 'Col2', width: 150 }];\nexport default function Grid(){ return <div style={{ height: 300, width: 320 }}><DataGrid rows={rows} columns={columns} /></div>; }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@mui/material\": \"latest\", \"@mui/x-data-grid\": \"latest\", \"@emotion/react\": \"latest\", \"@emotion/styled\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "next-shadcn-dialog",
+  "name": "Next.js shadcn/ui Dialog",
+  "version": "1.0.0",
+  "stack": ["nextjs", "shadcn"],
+  "tags": ["ui", "dialog"],
+  "description": "Simple modal dialog using utility classes (shadcn style).",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/components/ui/dialog.tsx", "template": "import * as React from 'react';\nexport function Dialog(){ const [o,setO]=React.useState(false); return (<div><button className='border px-2 py-1' onClick={()=>setO(true)}>Open</button>{o&&(<div className='fixed inset-0 grid place-items-center bg-black/40'><div className='bg-white p-4 rounded shadow w-80'><h2 className='font-bold mb-2'>Title</h2><p>Body</p><div className='text-right mt-4'><button className='border px-2 py-1' onClick={()=>setO(false)}>Close</button></div></div></div>)}</div>); }\n" },
+    { "path": "{{app_name}}/app/page.tsx", "template": "import { Dialog } from '../components/ui/dialog';\nexport default function Page(){ return <main className='p-6'><Dialog/></main>; }\n" }
+  ],
+  "patches": []
+}
+

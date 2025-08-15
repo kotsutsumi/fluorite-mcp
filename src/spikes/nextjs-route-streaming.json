@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-route-streaming",
+  "name": "Next.js Route Handler Streaming",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["api", "streaming"],
+  "description": "Stream a text response using ReadableStream.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/stream/route.ts", "template": "export async function GET(){ const encoder = new TextEncoder(); const stream = new ReadableStream({ start(controller){ let i=0; const id=setInterval(()=>{ controller.enqueue(encoder.encode('chunk '+(++i)+'\n')); if(i>=5){ clearInterval(id); controller.close(); } }, 100); } }); return new Response(stream, { headers:{ 'content-type':'text/plain; charset=utf-8' } }); }\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "radix-accordion-minimal",
+  "name": "Radix UI Accordion (React)",
+  "version": "1.0.0",
+  "stack": ["react", "radix-ui"],
+  "tags": ["ui", "accordion"],
+  "description": "Minimal @radix-ui/react-accordion usage.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/AccordionExample.tsx", "template": "import * as Accordion from '@radix-ui/react-accordion';\nexport default function Acc(){ return (<Accordion.Root type='single' collapsible><Accordion.Item value='a'><Accordion.Header><Accordion.Trigger>Item A</Accordion.Trigger></Accordion.Header><Accordion.Content>Content A</Accordion.Content></Accordion.Item></Accordion.Root>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@radix-ui/react-accordion\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

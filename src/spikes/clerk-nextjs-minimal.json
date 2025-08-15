@@ -1,0 +1,16 @@
+{
+  "id": "clerk-nextjs-minimal",
+  "name": "Clerk + Next.js Minimal",
+  "version": "1.0.0",
+  "stack": ["nextjs", "clerk"],
+  "tags": ["auth"],
+  "description": "Initialize Clerk middleware and add SignIn component.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/middleware.ts", "template": "export { authMiddleware as middleware } from '@clerk/nextjs';\nexport const config = { matcher: ['/((?!_next|.*\\.\\\\\\..*).*)'] };\n" },
+    { "path": "{{app_name}}/app/sign-in/page.tsx", "template": "import { SignIn } from '@clerk/nextjs'; export default function Page(){ return <SignIn/> }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=\nCLERK_SECRET_KEY=\n" }
+  ],
+  "patches": []
+}
+

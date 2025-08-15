@@ -1,0 +1,15 @@
+{
+  "id": "nextauth-github-provider",
+  "name": "NextAuth GitHub Provider",
+  "version": "1.0.0",
+  "stack": ["nextjs", "nextauth"],
+  "tags": ["auth"],
+  "description": "Configure NextAuth with GitHub provider (App Router).",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/auth/[...nextauth]/route.ts", "template": "import NextAuth from 'next-auth';\nimport GitHub from 'next-auth/providers/github';\nconst handler = NextAuth({ providers: [GitHub] });\nexport { handler as GET, handler as POST };\n" },
+    { "path": "{{app_name}}/.env.example", "template": "AUTH_GITHUB_ID=\nAUTH_GITHUB_SECRET=\nNEXTAUTH_URL=http://localhost:3000\nNEXTAUTH_SECRET=replace-with-strong-secret\n" }
+  ],
+  "patches": []
+}
+

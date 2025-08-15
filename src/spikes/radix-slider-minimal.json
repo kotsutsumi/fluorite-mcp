@@ -1,0 +1,15 @@
+{
+  "id": "radix-slider-minimal",
+  "name": "Radix UI Slider (React)",
+  "version": "1.0.0",
+  "stack": ["react", "radix-ui"],
+  "tags": ["ui", "slider"],
+  "description": "Minimal @radix-ui/react-slider usage.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/SliderExample.tsx", "template": "import * as Slider from '@radix-ui/react-slider';\nexport default function S(){ return (<Slider.Root defaultValue={[50]} max={100} step={1} className='w-64 h-5'><Slider.Track className='bg-gray-200 h-1 rounded'><Slider.Range className='bg-black h-1 rounded'/></Slider.Track><Slider.Thumb className='block w-3 h-3 bg-black rounded-full'/></Slider.Root>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@radix-ui/react-slider\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

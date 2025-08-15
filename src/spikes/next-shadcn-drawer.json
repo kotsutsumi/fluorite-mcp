@@ -1,0 +1,15 @@
+{
+  "id": "next-shadcn-drawer",
+  "name": "Next.js shadcn/ui Drawer",
+  "version": "1.0.0",
+  "stack": ["nextjs", "shadcn"],
+  "tags": ["ui", "drawer"],
+  "description": "Bottom drawer panel with utility classes.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/components/ui/drawer.tsx", "template": "import * as React from 'react';\nexport function Drawer(){ const [o,setO]=React.useState(false); return (<div><button className='border px-2 py-1' onClick={()=>setO(true)}>Open</button>{o&&(<div className='fixed inset-0 bg-black/30' onClick={()=>setO(false)}><div className='fixed left-0 right-0 bottom-0 bg-white p-4 rounded-t-lg shadow-2xl min-h-[30vh]' onClick={e=>e.stopPropagation()}><div className='text-right'><button className='border px-2 py-1' onClick={()=>setO(false)}>Close</button></div><div>Drawer content</div></div></div>)}</div>); }\n" },
+    { "path": "{{app_name}}/app/page.tsx", "template": "import { Drawer } from '../components/ui/drawer';\nexport default function Page(){ return <main className='p-6'><Drawer/></main>; }\n" }
+  ],
+  "patches": []
+}
+

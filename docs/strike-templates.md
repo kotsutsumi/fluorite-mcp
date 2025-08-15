@@ -1,6 +1,6 @@
 # Strike Templates - Comprehensive Development Scaffolds
 
-Complete reference for fluorite-mcp's 159 Strike templates for rapid prototyping and development.
+Complete reference for fluorite-mcp's 184 Strike templates for rapid prototyping and development.
 
 ## Overview
 
@@ -10,7 +10,7 @@ Strike templates are production-ready scaffolds that implement the Strike develo
 
 ### 🌐 Frontend Frameworks (25 templates)
 
-#### Next.js Ecosystem (18 templates)
+#### Next.js Ecosystem (29 templates)
 | Template | Description | Use Case |
 |----------|-------------|----------|
 | `nextjs-minimal` | Basic SSR Next.js app with TypeScript | Starting point for any Next.js project |
@@ -20,6 +20,8 @@ Strike templates are production-ready scaffolds that implement the Strike develo
 | `nextjs-api-zod-router` | Type-safe API with Zod validation | Robust API development |
 | `nextjs-auth-nextauth-credentials` | Complete authentication flow | User management systems |
 | `nextjs-auth0-minimal` | Auth0 integration | Enterprise authentication |
+| `nextauth-github-provider` | GitHub OAuth authentication | Social login |
+| `nextauth-google-provider` | Google OAuth authentication | Social login |
 | `nextjs-edge-middleware` | Edge middleware patterns | Request processing |
 | `nextjs-env-zod-validate` | Environment validation | Configuration management |
 | `nextjs-file-upload-route` | File upload handling | File management features |
@@ -32,6 +34,11 @@ Strike templates are production-ready scaffolds that implement the Strike develo
 | `nextjs-ratelimit-middleware` | Rate limiting implementation | API protection |
 | `nextjs-route-params` | Dynamic route handling | URL parameter processing |
 | `nextjs-s3-presigned-upload` | AWS S3 file uploads | Cloud file storage |
+| `nextjs-gcs-signed-url` | Google Cloud Storage uploads | GCS integration |
+| `nextjs-route-headers-cookies` | Headers and cookies handling | API utilities |
+| `nextjs-route-streaming` | Streaming API responses | Real-time data |
+| `nextjs-edge-fetch-cache` | Edge fetch cache control | Performance optimization |
+| `nextjs-route-error-retry` | Error handling with retry | Resilience patterns |
 | `nextjs-safe-action` | Type-safe server actions | Secure action handling |
 | `nextjs-supabase-client` | Supabase integration | Full-stack development |
 | `nextjs-upstash-ratelimit` | Upstash rate limiting | Distributed rate limiting |
@@ -42,6 +49,7 @@ Strike templates are production-ready scaffolds that implement the Strike develo
 | `react-vite-minimal` | React + Vite TypeScript starter | React, Vite, TypeScript |
 | `react-hook-form-zod-login` | Form validation with Zod | React Hook Form, Zod |
 | `react-hook-form-yup-login` | Form validation with Yup | React Hook Form, Yup |
+| `react-hook-form-valibot-login` | Form validation with Valibot | React Hook Form, Valibot |
 | `react-i18next-minimal` | Internationalization | i18next |
 | `react-intl-minimal` | React Intl internationalization | React Intl |
 | `react-jotai-minimal` | Atomic state management | Jotai |
@@ -66,6 +74,12 @@ Strike templates are production-ready scaffolds that implement the Strike develo
 | `next-shadcn-tabs` | Next.js shadcn/ui Tabs | Tab navigation component |
 | `next-shadcn-toast` | Next.js shadcn/ui Toast | Toast notification component |
 | `next-shadcn-dropdown` | Next.js shadcn/ui Dropdown | Dropdown menu component |
+| `next-shadcn-dialog` | Next.js shadcn/ui Dialog | Modal dialog component |
+| `next-shadcn-drawer` | Next.js shadcn/ui Drawer | Bottom drawer panel |
+| `next-shadcn-sheet` | Next.js shadcn/ui Sheet | Side sheet panel |
+| `next-shadcn-avatar-badge` | Next.js shadcn/ui Avatar + Badge | Avatar with status |
+| `next-shadcn-combobox` | Next.js shadcn/ui Combobox | Searchable select |
+| `next-shadcn-select` | Next.js shadcn/ui Select | Dropdown select |
 
 ### 🚀 Backend Frameworks (25 templates)
 
@@ -153,7 +167,7 @@ Strike templates are production-ready scaffolds that implement the Strike develo
 | `gha-syft-sbom` | Software Bill of Materials | Security compliance |
 | `gha-zap-baseline` | OWASP ZAP security testing | Security testing |
 
-### 🎨 UI Components & Libraries (21 templates)
+### 🎨 UI Components & Libraries (33 templates)
 
 #### Component Libraries
 | Template | Description | Library |
@@ -161,11 +175,17 @@ Strike templates are production-ready scaffolds that implement the Strike develo
 | `mui-react-minimal` | Material-UI components | Google Material Design |
 | `mui-react-hook-form` | MUI + React Hook Form | Form integration |
 | `mui-grid-minimal` | MUI Grid layout system | Responsive layouts |
+| `mui-datagrid-minimal` | MUI X DataGrid | Advanced data tables |
+| `mui-dialog-minimal` | MUI Dialog | Modal dialogs |
+| `mui-stepper-minimal` | MUI Stepper | Multi-step forms |
 | `radix-ui-dialog-minimal` | Radix UI dialog component | Accessible primitives |
 | `radix-popover-minimal` | Radix UI Popover | Floating UI element |
 | `radix-tooltip-minimal` | Radix UI Tooltip | Contextual information |
 | `radix-contextmenu-minimal` | Radix UI Context Menu | Right-click menus |
 | `radix-menubar-minimal` | Radix UI Menubar | Application menu bars |
+| `radix-accordion-minimal` | Radix UI Accordion | Collapsible content panels |
+| `radix-slider-minimal` | Radix UI Slider | Range input control |
+| `radix-switch-minimal` | Radix UI Switch | Toggle switch control |
 | `headlessui-dialog-minimal` | Headless UI components | Unstyled components |
 | `tanstack-table-react-minimal` | Data table implementation | TanStack Table |
 | `tanstack-table-sorting` | TanStack Table with sorting | Advanced table features |
@@ -389,17 +409,23 @@ All Strike templates work with full SuperClaude parameter bypass:
 
 ---
 
-**Total Templates**: 159 production-ready scaffolds  
+**Total Templates**: 184 production-ready scaffolds  
 **Total Lines**: 2,200+ lines of battle-tested configurations  
 **Coverage**: 15+ technology stacks, 50+ frameworks and libraries  
 **Quality**: Enterprise-grade patterns with security and performance built-in
 
-### Latest Additions (v0.9.4)
+### Latest Additions (v0.9.5)
 - **shadcn/ui Components**: Tabs, Toast, and Dropdown components for Next.js
 - **MUI Grid**: Responsive layout system for Material-UI
 - **Radix UI**: Context Menu and Menubar components
 - **TanStack Table**: Grouping and row selection features
 - **Prisma**: Compound unique indexes and performance optimization
 - **TypeORM**: CLI migration generation
-- **Enhanced UI Library**: Now 21 UI component templates
-- **Database Tooling**: 15 data management templates
+- **Enhanced UI Library**: Now 26 UI component templates
+- **Authentication**: NextAuth providers for GitHub and Google
+- **Cloud Storage**: Google Cloud Storage integration
+- **API Features**: Streaming responses and header management
+- **Total Coverage**: 184 production-ready templates across all stacks
+- **MUI Components**: Dialog and Stepper additions
+- **Radix UI**: Slider and Switch components
+- **Edge Runtime**: Cache control and error handling patterns

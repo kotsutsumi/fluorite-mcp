@@ -1,0 +1,15 @@
+{
+  "id": "radix-switch-minimal",
+  "name": "Radix UI Switch (React)",
+  "version": "1.0.0",
+  "stack": ["react", "radix-ui"],
+  "tags": ["ui", "switch"],
+  "description": "Minimal @radix-ui/react-switch usage.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/SwitchExample.tsx", "template": "import * as Switch from '@radix-ui/react-switch';\nexport default function Sw(){ return (<label className='flex items-center gap-2'>Dark<Switch.Root className='w-10 h-5 bg-gray-300 rounded-full data-[state=checked]:bg-black'><Switch.Thumb className='block w-4 h-4 bg-white rounded-full translate-x-1 data-[state=checked]:translate-x-5 transition' /></Switch.Root></label>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@radix-ui/react-switch\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-route-headers-cookies",
+  "name": "Next.js Route Headers & Cookies",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["api", "headers", "cookies"],
+  "description": "Demonstrate reading headers and setting cookies in Route Handler.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/cookies/route.ts", "template": "import { cookies, headers } from 'next/headers';\nexport async function GET(){ const h = headers(); const ua = h.get('user-agent')||''; cookies().set('visited','1',{ httpOnly:true, path:'/' }); return Response.json({ ua }); }\n" }
+  ],
+  "patches": []
+}
+

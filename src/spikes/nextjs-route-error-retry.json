@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-route-error-retry",
+  "name": "Next.js Route Error + Retry-After",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["api", "retry"],
+  "description": "Return 503 with Retry-After header for temporary errors.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/retry/route.ts", "template": "export async function GET(){ return new Response(JSON.stringify({ error: 'try again later' }), { status: 503, headers:{ 'content-type':'application/json', 'retry-after':'30' } }); }\n" }
+  ],
+  "patches": []
+}
+

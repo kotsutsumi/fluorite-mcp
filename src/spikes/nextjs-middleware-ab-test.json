@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-middleware-ab-test",
+  "name": "Next.js Middleware A/B Test",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["middleware", "experiment"],
+  "description": "Middleware that splits traffic by cookie for A/B testing.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/middleware.ts", "template": "import { NextResponse } from 'next/server';\nimport type { NextRequest } from 'next/server';\nexport function middleware(req: NextRequest){ const cookie = req.cookies.get('variant')?.value || (Math.random()<0.5?'A':'B'); const res = NextResponse.next(); res.cookies.set('variant', cookie, { path:'/' }); res.headers.set('x-variant', cookie); return res; }\nexport const config = { matcher: '/:path*' };\n" }
+  ],
+  "patches": []
+}
+

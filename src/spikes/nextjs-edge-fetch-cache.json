@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-edge-fetch-cache",
+  "name": "Next.js Edge Fetch Cache Control",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["edge", "cache"],
+  "description": "Edge runtime route that controls fetch cache and revalidate.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/edge-cache/route.ts", "template": "export const runtime = 'edge';\nexport const revalidate = 60;\nexport async function GET(){ const r = await fetch('https://api.github.com/zen', { cache: 'force-cache', next: { revalidate } }); const t = await r.text(); return new Response(t, { headers:{ 'content-type':'text/plain' } }); }\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "mui-dialog-minimal",
+  "name": "MUI Dialog Minimal",
+  "version": "1.0.0",
+  "stack": ["react", "mui"],
+  "tags": ["ui", "dialog"],
+  "description": "Open/close a modal dialog with MUI.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/DialogExample.tsx", "template": "import * as React from 'react';\nimport { Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@mui/material';\nexport default function Dx(){ const [o,setO]=React.useState(false); return (<div><Button variant='outlined' onClick={()=>setO(true)}>Open</Button><Dialog open={o} onClose={()=>setO(false)}><DialogTitle>Title</DialogTitle><DialogContent>Body</DialogContent><DialogActions><Button onClick={()=>setO(false)}>Close</Button></DialogActions></Dialog></div>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@mui/material\": \"latest\", \"@emotion/react\": \"latest\", \"@emotion/styled\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

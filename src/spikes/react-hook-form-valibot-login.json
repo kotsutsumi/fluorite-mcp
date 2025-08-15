@@ -1,0 +1,15 @@
+{
+  "id": "react-hook-form-valibot-login",
+  "name": "RHF + Valibot Login",
+  "version": "1.0.0",
+  "stack": ["react", "react-hook-form", "valibot"],
+  "tags": ["forms", "validation"],
+  "description": "Login form validated with Valibot.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/LoginValibot.tsx", "template": "import React from 'react';\nimport { useForm } from 'react-hook-form';\nimport { object, string, minLength, email, safeParse } from 'valibot';\nconst schema = object({ email: string([email()]), password: string([minLength(6)]) });\nexport function LoginValibot(){ const { register, handleSubmit, formState:{errors}, setError } = useForm();\n  return (<form onSubmit={handleSubmit((data)=>{ const r = safeParse(schema, data); if(!r.success){ r.issues.forEach(i=>setError(i.path[0] as any, { message: i.message })); return; } console.log(data); })}><input placeholder='email' {...register('email')} />{errors.email?.message as any}<input placeholder='password' type='password' {...register('password')} />{errors.password?.message as any}<button>Login</button></form>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"react-hook-form\": \"latest\", \"valibot\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

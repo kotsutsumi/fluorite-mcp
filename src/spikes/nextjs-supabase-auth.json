@@ -1,0 +1,16 @@
+{
+  "id": "nextjs-supabase-auth",
+  "name": "Next.js Supabase Auth Minimal",
+  "version": "1.0.0",
+  "stack": ["nextjs", "supabase"],
+  "tags": ["auth"],
+  "description": "Sign in with password using Supabase client (server action).",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/lib/supabase.ts", "template": "import { createClient } from '@supabase/supabase-js';\nexport const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);\n" },
+    { "path": "{{app_name}}/app/login/page.tsx", "template": "import { supabase } from '../../lib/supabase';\nexport default function Page(){\n  async function login(formData: FormData){ 'use server'; const email=String(formData.get('email')||''); const password=String(formData.get('password')||''); await supabase.auth.signInWithPassword({ email, password }); }\n  return (<form action={login}><input name='email' placeholder='email' /><input name='password' type='password' placeholder='password' /><button>Login</button></form>); }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "NEXT_PUBLIC_SUPABASE_URL=\nNEXT_PUBLIC_SUPABASE_ANON_KEY=\n" }
+  ],
+  "patches": []
+}
+

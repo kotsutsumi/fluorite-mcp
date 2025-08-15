@@ -1,0 +1,15 @@
+{
+  "id": "mui-stepper-minimal",
+  "name": "MUI Stepper Minimal",
+  "version": "1.0.0",
+  "stack": ["react", "mui"],
+  "tags": ["ui", "stepper"],
+  "description": "Linear stepper with three steps.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/StepperExample.tsx", "template": "import * as React from 'react';\nimport { Stepper, Step, StepLabel, Button } from '@mui/material';\nconst steps = ['One','Two','Three'];\nexport default function StepperExample(){ const [active, setActive] = React.useState(0); return (<div><Stepper activeStep={active}>{steps.map(s=>(<Step key={s}><StepLabel>{s}</StepLabel></Step>))}</Stepper><div className='mt-2'><Button disabled={active===0} onClick={()=>setActive(a=>a-1)}>Back</Button><Button disabled={active===steps.length-1} onClick={()=>setActive(a=>a+1)}>Next</Button></div></div>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@mui/material\": \"latest\", \"@emotion/react\": \"latest\", \"@emotion/styled\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

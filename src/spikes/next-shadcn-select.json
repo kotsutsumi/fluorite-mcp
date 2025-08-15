@@ -1,0 +1,15 @@
+{
+  "id": "next-shadcn-select",
+  "name": "Next.js shadcn/ui Select",
+  "version": "1.0.0",
+  "stack": ["nextjs", "shadcn"],
+  "tags": ["ui", "select"],
+  "description": "Simple select styled with utility classes.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/components/ui/select.tsx", "template": "export function Select(){ return (<select className='border rounded px-2 py-1'><option value='a'>A</option><option value='b'>B</option></select>); }\n" },
+    { "path": "{{app_name}}/app/page.tsx", "template": "import { Select } from '../components/ui/select'; export default function Page(){ return <main className='p-6'><Select/></main>; }\n" }
+  ],
+  "patches": []
+}
+
