@@ -1,0 +1,15 @@
+{
+  "id": "mui-grid-minimal",
+  "name": "MUI Grid Minimal",
+  "version": "1.0.0",
+  "stack": ["react", "mui"],
+  "tags": ["ui", "layout"],
+  "description": "Basic layout using MUI Grid container/items.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/GridExample.tsx", "template": "import * as React from 'react';\nimport Grid from '@mui/material/Grid';\nimport Paper from '@mui/material/Paper';\nexport function GridExample(){ return (<Grid container spacing={2}><Grid item xs={8}><Paper sx={{p:2}}>Main</Paper></Grid><Grid item xs={4}><Paper sx={{p:2}}>Side</Paper></Grid></Grid>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@mui/material\": \"latest\", \"@emotion/react\": \"latest\", \"@emotion/styled\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

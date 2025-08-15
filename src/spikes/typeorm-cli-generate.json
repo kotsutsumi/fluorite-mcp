@@ -1,0 +1,15 @@
+{
+  "id": "typeorm-cli-generate",
+  "name": "TypeORM CLI Generate Migration",
+  "version": "1.0.0",
+  "stack": ["typeorm"],
+  "tags": ["db", "migrate"],
+  "description": "Configure CLI to generate migrations from changes.",
+  "params": [{ "name": "app_name", "default": "typeorm-app" }],
+  "files": [
+    { "path": "{{app_name}}/data-source.ts", "template": "import 'reflect-metadata';\nimport { DataSource } from 'typeorm';\nexport default new DataSource({ type: 'sqlite', database: 'db.sqlite', entities: ['src/entity/*.ts'], migrations: ['src/migration/*.ts'], synchronize: false });\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"migration:gen\": \"typeorm-ts-node-commonjs migration:generate src/migration/auto\" }, \"devDependencies\": { \"typeorm\": \"latest\", \"ts-node\": \"latest\", \"reflect-metadata\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

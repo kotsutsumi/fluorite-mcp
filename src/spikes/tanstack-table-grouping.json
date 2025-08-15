@@ -1,0 +1,15 @@
+{
+  "id": "tanstack-table-grouping",
+  "name": "TanStack Table Grouping (React)",
+  "version": "1.0.0",
+  "stack": ["react", "tanstack-table"],
+  "tags": ["table", "grouping"],
+  "description": "Group rows by a column.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/TableGrouping.tsx", "template": "import * as React from 'react';\nimport { useReactTable, getCoreRowModel, getGroupedRowModel, createColumnHelper, flexRender } from '@tanstack/react-table';\nconst ch = createColumnHelper<{ id:number; group:string; name:string }>();\nconst columns = [ ch.group({ header:'Group', id:'group', columns: [ ch.accessor('group',{ header:'Group' }), ch.accessor('name',{ header:'Name' }) ] }) ];\nconst data = [{id:1,group:'G1',name:'A'},{id:2,group:'G1',name:'B'},{id:3,group:'G2',name:'C'}];\nexport function TableGrouping(){ const table = useReactTable({ data, columns, getCoreRowModel:getCoreRowModel(), getGroupedRowModel:getGroupedRowModel() });\n  return (<table><thead>{table.getHeaderGroups().map(hg=>(<tr key={hg.id}>{hg.headers.map(h=>(<th key={h.id}>{flexRender(h.column.columnDef.header, h.getContext())}</th>))}</tr>))}</thead><tbody>{table.getRowModel().rows.map(r=>(<tr key={r.id}>{r.getVisibleCells().map(c=>(<td key={c.id}>{flexRender(c.column.columnDef.cell??((ctx)=>ctx.getValue() as any), c.getContext())}</td>))}</tr>))}</tbody></table>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@tanstack/react-table\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

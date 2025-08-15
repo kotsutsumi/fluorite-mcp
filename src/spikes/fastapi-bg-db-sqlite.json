@@ -1,0 +1,15 @@
+{
+  "id": "fastapi-bg-db-sqlite",
+  "name": "FastAPI BackgroundTask Writes SQLite",
+  "version": "1.0.0",
+  "stack": ["python", "fastapi", "sqlite"],
+  "tags": ["background", "db"],
+  "description": "Background task that writes to SQLite after response.",
+  "params": [{ "name": "project_name", "default": "fastapi-bg-db" }],
+  "files": [
+    { "path": "{{project_name}}/requirements.txt", "template": "fastapi\nuvicorn\nsqlite3-binary\n" },
+    { "path": "{{project_name}}/main.py", "template": "from fastapi import FastAPI, BackgroundTasks\nimport sqlite3\napp = FastAPI()\nconn = sqlite3.connect('app.db', check_same_thread=False)\nconn.execute('CREATE TABLE IF NOT EXISTS logs(msg TEXT)')\n\ndef write_log(msg: str):\n    conn.execute('INSERT INTO logs(msg) VALUES (?)', (msg,))\n    conn.commit()\n\n@app.post('/submit')\ndef submit(msg: str, bg: BackgroundTasks):\n    bg.add_task(write_log, msg)\n    return {'queued': True}\n" }
+  ],
+  "patches": []
+}
+

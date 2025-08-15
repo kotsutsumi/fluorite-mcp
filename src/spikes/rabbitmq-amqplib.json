@@ -1,0 +1,16 @@
+{
+  "id": "rabbitmq-amqplib",
+  "name": "RabbitMQ amqplib Pub/Sub",
+  "version": "1.0.0",
+  "stack": ["node", "rabbitmq"],
+  "tags": ["mq"],
+  "description": "Publish and consume messages with amqplib.",
+  "params": [{ "name": "app_name", "default": "rmq-app" }],
+  "files": [
+    { "path": "{{app_name}}/pub.mjs", "template": "import amqplib from 'amqplib';\nconst conn = await amqplib.connect('amqp://localhost');\nconst ch = await conn.createChannel();\nawait ch.assertQueue('q');\nch.sendToQueue('q', Buffer.from('hello'));\nawait ch.close(); await conn.close();\n" },
+    { "path": "{{app_name}}/sub.mjs", "template": "import amqplib from 'amqplib';\nconst conn = await amqplib.connect('amqp://localhost');\nconst ch = await conn.createChannel();\nawait ch.assertQueue('q');\nch.consume('q', m=>{ if(m){ console.log(m.content.toString()); ch.ack(m); } });\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"amqplib\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

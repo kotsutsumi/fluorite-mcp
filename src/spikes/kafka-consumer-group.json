@@ -1,0 +1,16 @@
+{
+  "id": "kafka-consumer-group",
+  "name": "KafkaJS Consumer Group Basics",
+  "version": "1.0.0",
+  "stack": ["node", "kafka"],
+  "tags": ["mq", "consumer-group"],
+  "description": "Start consumers in a group and demonstrate processing.",
+  "params": [{ "name": "app_name", "default": "kafka-app" }],
+  "files": [
+    { "path": "{{app_name}}/consumerA.mjs", "template": "import { Kafka } from 'kafkajs'; const kafka = new Kafka({ clientId:'demo', brokers:['localhost:9092'] }); const c = kafka.consumer({ groupId:'g' }); await c.connect(); await c.subscribe({ topic:'demo' }); await c.run({ eachMessage: async ({ message }) => console.log('A', message.value?.toString()) });\n" },
+    { "path": "{{app_name}}/consumerB.mjs", "template": "import { Kafka } from 'kafkajs'; const kafka = new Kafka({ clientId:'demo', brokers:['localhost:9092'] }); const c = kafka.consumer({ groupId:'g' }); await c.connect(); await c.subscribe({ topic:'demo' }); await c.run({ eachMessage: async ({ message }) => console.log('B', message.value?.toString()) });\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"kafkajs\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

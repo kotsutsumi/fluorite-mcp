@@ -1,0 +1,14 @@
+{
+  "id": "prisma-indexes",
+  "name": "Prisma Indexes",
+  "version": "1.0.0",
+  "stack": ["prisma"],
+  "tags": ["db", "index"],
+  "description": "Add single-column and composite indexes.",
+  "params": [{ "name": "app_name", "default": "prisma-app" }],
+  "files": [
+    { "path": "{{app_name}}/prisma/schema.prisma", "template": "generator client { provider = \"prisma-client-js\" }\ndatasource db { provider = \"sqlite\" url = \"file:./dev.db\" }\nmodel Log { id Int @id @default(autoincrement()) level String @default(\"info\") ts DateTime @default(now()) message String @@index([level]) @@index([level, ts]) }\n" }
+  ],
+  "patches": []
+}
+

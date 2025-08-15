@@ -1,0 +1,15 @@
+{
+  "id": "node-otel-metrics-logs",
+  "name": "Node OpenTelemetry Metrics + Logs",
+  "version": "1.0.0",
+  "stack": ["node", "opentelemetry"],
+  "tags": ["otel", "metrics", "logs"],
+  "description": "Export logs/metrics to OTLP HTTP using SDK.",
+  "params": [{ "name": "app_name", "default": "otel-node" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { logs, metrics } from '@opentelemetry/api';\nimport { MeterProvider } from '@opentelemetry/sdk-metrics';\nimport { LoggerProvider } from '@opentelemetry/sdk-logs';\nimport { OTLPMetricExporter } from '@opentelemetry/exporter-metrics-otlp-http';\nimport { OTLPLogExporter } from '@opentelemetry/exporter-logs-otlp-http';\nconst meterProvider = new MeterProvider({});\nmeterProvider.addMetricReader(new (class { constructor(){ this.exporter=new OTLPMetricExporter(); } async collect(){} })());\nconst counter = meterProvider.getMeter('demo').createCounter('requests'); counter.add(1);\nconst loggerProvider = new LoggerProvider();\nconst logger = loggerProvider.getLogger('demo');\nlogger.emit({ body: 'started' });\nconsole.log('otel emitted');\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@opentelemetry/api\": \"latest\", \"@opentelemetry/sdk-metrics\": \"latest\", \"@opentelemetry/sdk-logs\": \"latest\", \"@opentelemetry/exporter-logs-otlp-http\": \"latest\", \"@opentelemetry/exporter-metrics-otlp-http\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

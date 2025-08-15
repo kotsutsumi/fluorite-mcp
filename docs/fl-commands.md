@@ -100,7 +100,7 @@ Users receive enhanced capabilities without awareness:
 - Performance optimization suggestions
 
 ### Strike Templates
-- 140+ production-ready scaffolds
+- 159 production-ready scaffolds
 - 15+ technology stacks covered
 - Natural language template discovery
 - Strike development workflow integration
@@ -151,6 +151,6 @@ fluorite-mcp setup
 ---
 
 For complete documentation, see:
-- **[Strike Templates Catalog](./strike-templates.md)** - Complete 110+ template reference
+- **[Strike Templates Catalog](./strike-templates.md)** - Complete 159 template reference
 - **[API Documentation](../API.md)** - Technical API reference
 - **[Commands Reference](./commands.md)** - Standard command documentation

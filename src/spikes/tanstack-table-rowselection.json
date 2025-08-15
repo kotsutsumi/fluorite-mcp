@@ -1,0 +1,15 @@
+{
+  "id": "tanstack-table-rowselection",
+  "name": "TanStack Table Row Selection (React)",
+  "version": "1.0.0",
+  "stack": ["react", "tanstack-table"],
+  "tags": ["table", "selection"],
+  "description": "Add checkbox selection column and state.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/TableRowSelection.tsx", "template": "import * as React from 'react';\nimport { useReactTable, getCoreRowModel, flexRender, createColumnHelper } from '@tanstack/react-table';\nconst data = [{id:1,name:'A'},{id:2,name:'B'}];\nconst ch = createColumnHelper<{ id:number; name:string }>();\nconst base = [ ch.accessor('id',{ header:'ID' }), ch.accessor('name',{ header:'Name' }) ];\nexport function TableRowSelection(){ const [rowSelection,setRowSelection]=React.useState({}); const table = useReactTable({ data, columns: base, state:{rowSelection}, onRowSelectionChange:setRowSelection, getCoreRowModel: getCoreRowModel(), enableRowSelection:true });\n  return (<table><thead>{table.getHeaderGroups().map(hg=>(<tr key={hg.id}>{hg.headers.map(h=>(<th key={h.id}>{flexRender(h.column.columnDef.header, h.getContext())}</th>))}</tr>))}</thead><tbody>{table.getRowModel().rows.map(r=>(<tr key={r.id} onClick={()=>r.toggleSelected()} style={{background:r.getIsSelected()?'#eef':''}}>{r.getVisibleCells().map(c=>(<td key={c.id}>{flexRender(c.column.columnDef.cell, c.getContext())}</td>))}</tr>))}</tbody></table>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@tanstack/react-table\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

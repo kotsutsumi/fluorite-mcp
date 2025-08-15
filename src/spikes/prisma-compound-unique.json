@@ -1,0 +1,15 @@
+{
+  "id": "prisma-compound-unique",
+  "name": "Prisma Compound Unique",
+  "version": "1.0.0",
+  "stack": ["prisma"],
+  "tags": ["db", "index"],
+  "description": "Define a compound unique index and create sample data.",
+  "params": [{ "name": "app_name", "default": "prisma-app" }],
+  "files": [
+    { "path": "{{app_name}}/prisma/schema.prisma", "template": "generator client { provider = \"prisma-client-js\" }\ndatasource db { provider = \"sqlite\" url = \"file:./dev.db\" }\nmodel Pair { a Int b Int @@id([a,b]) }\n" },
+    { "path": "{{app_name}}/seed.mjs", "template": "import { PrismaClient } from '@prisma/client'; const p = new PrismaClient(); await p.pair.create({ data:{ a:1,b:2 } }); console.log('ok'); await p.$disconnect();\n" }
+  ],
+  "patches": []
+}
+

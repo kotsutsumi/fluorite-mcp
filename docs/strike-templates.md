@@ -1,6 +1,6 @@
 # Strike Templates - Comprehensive Development Scaffolds
 
-Complete reference for fluorite-mcp's 140+ Strike templates for rapid prototyping and development.
+Complete reference for fluorite-mcp's 159 Strike templates for rapid prototyping and development.
 
 ## Overview
 
@@ -8,9 +8,9 @@ Strike templates are production-ready scaffolds that implement the Strike develo
 
 ## Template Categories
 
-### 🌐 Frontend Frameworks (23 templates)
+### 🌐 Frontend Frameworks (25 templates)
 
-#### Next.js Ecosystem (16 templates)
+#### Next.js Ecosystem (18 templates)
 | Template | Description | Use Case |
 |----------|-------------|----------|
 | `nextjs-minimal` | Basic SSR Next.js app with TypeScript | Starting point for any Next.js project |
@@ -63,6 +63,9 @@ Strike templates are production-ready scaffolds that implement the Strike develo
 | `sveltekit-minimal` | SvelteKit application | Svelte + Kit |
 | `next-tailwind-setup` | Next.js + Tailwind CSS setup | Styling framework |
 | `next-shadcn-setup` | Next.js shadcn/ui Setup | Modern UI components |
+| `next-shadcn-tabs` | Next.js shadcn/ui Tabs | Tab navigation component |
+| `next-shadcn-toast` | Next.js shadcn/ui Toast | Toast notification component |
+| `next-shadcn-dropdown` | Next.js shadcn/ui Dropdown | Dropdown menu component |
 
 ### 🚀 Backend Frameworks (25 templates)
 
@@ -150,19 +153,24 @@ Strike templates are production-ready scaffolds that implement the Strike develo
 | `gha-syft-sbom` | Software Bill of Materials | Security compliance |
 | `gha-zap-baseline` | OWASP ZAP security testing | Security testing |
 
-### 🎨 UI Components & Libraries (16 templates)
+### 🎨 UI Components & Libraries (21 templates)
 
 #### Component Libraries
 | Template | Description | Library |
 |----------|-------------|---------|
 | `mui-react-minimal` | Material-UI components | Google Material Design |
 | `mui-react-hook-form` | MUI + React Hook Form | Form integration |
+| `mui-grid-minimal` | MUI Grid layout system | Responsive layouts |
 | `radix-ui-dialog-minimal` | Radix UI dialog component | Accessible primitives |
 | `radix-popover-minimal` | Radix UI Popover | Floating UI element |
 | `radix-tooltip-minimal` | Radix UI Tooltip | Contextual information |
+| `radix-contextmenu-minimal` | Radix UI Context Menu | Right-click menus |
+| `radix-menubar-minimal` | Radix UI Menubar | Application menu bars |
 | `headlessui-dialog-minimal` | Headless UI components | Unstyled components |
 | `tanstack-table-react-minimal` | Data table implementation | TanStack Table |
 | `tanstack-table-sorting` | TanStack Table with sorting | Advanced table features |
+| `tanstack-table-grouping` | TanStack Table with grouping | Row grouping |
+| `tanstack-table-rowselection` | TanStack Table with selection | Checkbox selection |
 | `ag-grid-react-minimal` | Enterprise data grid | AG Grid |
 
 #### Interactive Components
@@ -171,14 +179,17 @@ Strike templates are production-ready scaffolds that implement the Strike develo
 | `dnd-kit-minimal` | Drag and drop interface | Modern DnD implementation |
 | `react-dnd-minimal` | React DnD implementation | Traditional DnD |
 
-### 🗄️ Data & State Management (12 templates)
+### 🗄️ Data & State Management (15 templates)
 
 #### Database Integration
 | Template | Description | Database |
 |----------|-------------|----------|
 | `docker-compose-postgres` | PostgreSQL with Docker | Development database |
 | `prisma-postgres-migrate` | Prisma + Postgres migrations | Database schema management |
+| `prisma-compound-unique` | Prisma compound unique indexes | Multi-column uniqueness |
+| `prisma-indexes` | Prisma index optimization | Performance indexes |
 | `typeorm-postgres-minimal` | TypeORM + Postgres | Enterprise ORM |
+| `typeorm-cli-generate` | TypeORM CLI migrations | Schema migration generation |
 | `sqlite-wal-config` | SQLite WAL configuration | High-performance SQLite |
 | `node-redis-cache` | Redis caching | In-memory cache |
 | `node-bullmq-queue` | BullMQ job queue | Task processing |
@@ -314,9 +325,9 @@ Each Strike template follows a consistent JSON structure:
 ## Template Discovery
 
 ### By Technology Stack
-- **React**: 10 templates for SPA development
-- **Next.js**: 15 templates for full-stack applications
-- **FastAPI**: 18 templates for Python APIs
+- **React**: 11 templates for SPA development
+- **Next.js**: 26 templates for full-stack applications (including shadcn/ui)
+- **FastAPI**: 21 templates for Python APIs
 - **Vue/Nuxt**: 3 templates for Vue.js ecosystem
 - **Go**: 3 templates for high-performance backends
 - **Rust**: 2 templates for systems programming
@@ -378,7 +389,17 @@ All Strike templates work with full SuperClaude parameter bypass:
 
 ---
 
-**Total Templates**: 140+ production-ready scaffolds  
-**Total Lines**: 2,100+ lines of battle-tested configurations  
+**Total Templates**: 159 production-ready scaffolds  
+**Total Lines**: 2,200+ lines of battle-tested configurations  
 **Coverage**: 15+ technology stacks, 50+ frameworks and libraries  
 **Quality**: Enterprise-grade patterns with security and performance built-in
+
+### Latest Additions (v0.9.4)
+- **shadcn/ui Components**: Tabs, Toast, and Dropdown components for Next.js
+- **MUI Grid**: Responsive layout system for Material-UI
+- **Radix UI**: Context Menu and Menubar components
+- **TanStack Table**: Grouping and row selection features
+- **Prisma**: Compound unique indexes and performance optimization
+- **TypeORM**: CLI migration generation
+- **Enhanced UI Library**: Now 21 UI component templates
+- **Database Tooling**: 15 data management templates

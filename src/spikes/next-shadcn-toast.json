@@ -1,0 +1,15 @@
+{
+  "id": "next-shadcn-toast",
+  "name": "Next.js shadcn/ui Toast",
+  "version": "1.0.0",
+  "stack": ["nextjs", "shadcn"],
+  "tags": ["ui", "toast"],
+  "description": "Simple toast using React state (utility classes).",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/components/ui/toast.tsx", "template": "import * as React from 'react';\nexport function ToastDemo(){ const [msg,setMsg]=React.useState<string|undefined>(); return (<div><button className='border px-2 py-1' onClick={()=>setMsg('Saved!')}>Show Toast</button>{msg && <div className='fixed bottom-4 right-4 bg-black text-white px-3 py-2 rounded' onAnimationEnd={()=>setTimeout(()=>setMsg(undefined),1500)}>{msg}</div>}</div>); }\n" },
+    { "path": "{{app_name}}/app/page.tsx", "template": "import { ToastDemo } from '../components/ui/toast';\nexport default function Page(){ return <main className='p-6'><ToastDemo/></main>; }\n" }
+  ],
+  "patches": []
+}
+

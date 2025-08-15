@@ -1,0 +1,15 @@
+{
+  "id": "radix-menubar-minimal",
+  "name": "Radix UI Menubar (React)",
+  "version": "1.0.0",
+  "stack": ["react", "radix-ui"],
+  "tags": ["ui", "menubar"],
+  "description": "Minimal @radix-ui/react-menubar usage.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/MenubarExample.tsx", "template": "import * as Menubar from '@radix-ui/react-menubar';\nexport default function Menu(){ return (<Menubar.Root><Menubar.Menu><Menubar.Trigger>File</Menubar.Trigger><Menubar.Portal><Menubar.Content><Menubar.Item>New</Menubar.Item><Menubar.Item>Open</Menubar.Item></Menubar.Content></Menubar.Portal></Menubar.Menu></Menubar.Root>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@radix-ui/react-menubar\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

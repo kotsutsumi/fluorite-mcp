@@ -1,0 +1,15 @@
+{
+  "id": "radix-contextmenu-minimal",
+  "name": "Radix UI ContextMenu (React)",
+  "version": "1.0.0",
+  "stack": ["react", "radix-ui"],
+  "tags": ["ui", "contextmenu"],
+  "description": "Minimal @radix-ui/react-context-menu usage.",
+  "params": [{ "name": "app_name", "default": "react-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/ContextMenuExample.tsx", "template": "import * as CM from '@radix-ui/react-context-menu';\nexport default function Ctx(){ return (<CM.Root><CM.Trigger asChild><div style={{border:'1px dashed',padding:20}}>Right click me</div></CM.Trigger><CM.Portal><CM.Content><CM.Item>Copy</CM.Item><CM.Item>Paste</CM.Item></CM.Content></CM.Portal></CM.Root>); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@radix-ui/react-context-menu\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

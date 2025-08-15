@@ -1,0 +1,15 @@
+{
+  "id": "docker-compose-otel-loki-tempo",
+  "name": "Docker Compose: OTEL Collector + Loki + Tempo",
+  "version": "1.0.0",
+  "stack": ["docker", "otel", "grafana"],
+  "tags": ["observability"],
+  "description": "Compose stack for otel-collector, Loki (logs), Tempo (traces).",
+  "params": [{ "name": "project_name", "default": "obs" }],
+  "files": [
+    { "path": "{{project_name}}/docker-compose.yml", "template": "version: '3.9'\nservices:\n  otel:\n    image: otel/opentelemetry-collector\n    volumes: [ './otel-config.yaml:/etc/otelcol/config.yaml' ]\n    ports: [ '4318:4318' ]\n  loki:\n    image: grafana/loki:2.9.0\n    ports: [ '3100:3100' ]\n  tempo:\n    image: grafana/tempo:latest\n    ports: [ '3200:3200' ]\n" },
+    { "path": "{{project_name}}/otel-config.yaml", "template": "receivers:\n  otlp: { protocols: { http: {} } }\nexporters:\n  logging: {}\n  otlphttp/loki: { endpoint: http://loki:3100/otlp }\n  otlphttp/tempo: { endpoint: http://tempo:3200 }\nservice:\n  pipelines:\n    traces: { receivers: [otlp], exporters: [logging, otlphttp/tempo] }\n    logs: { receivers: [otlp], exporters: [logging, otlphttp/loki] }\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,16 @@
+{
+  "id": "redis-pubsub-ioredis",
+  "name": "Redis Pub/Sub with ioredis",
+  "version": "1.0.0",
+  "stack": ["node", "redis"],
+  "tags": ["pubsub"],
+  "description": "Publish and subscribe with ioredis.",
+  "params": [{ "name": "app_name", "default": "redis-app" }],
+  "files": [
+    { "path": "{{app_name}}/pub.mjs", "template": "import Redis from 'ioredis'; const r = new Redis(); await r.publish('ch', 'hello'); await r.quit();\n" },
+    { "path": "{{app_name}}/sub.mjs", "template": "import Redis from 'ioredis'; const r = new Redis(); await r.subscribe('ch'); r.on('message', (_c,m)=>console.log(m));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"ioredis\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+
