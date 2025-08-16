@@ -21,6 +21,7 @@ Fluorite MCP is a comprehensive Model Context Protocol server that enhances Clau
 - **🎯 Zero Learning Curve**: Works with natural language—no new syntax or commands to learn  
 - **💎 Production Quality**: Every output follows industry best practices and includes proper TypeScript types
 - **🔧 Framework Native**: Deep integration with modern frameworks (Next.js, React, FastAPI, Vue, and more)
+- **🧠 Intelligent Learning**: Rust-based memory engine with ML-powered continuous improvement
 
 ### Immediate Benefits
 1. **Eliminate Boilerplate**: Never write setup code again
@@ -61,6 +62,16 @@ Professional-grade tooling that scales with your team:
 - **💎 Production Quality**: Every generated component includes TypeScript definitions, accessibility features, and comprehensive error handling
 - **📏 Consistent Standards**: Enforced coding patterns ensure maintainable, scalable codebases
 - **🔧 IDE Integration**: Seamless integration with Claude Code CLI and modern development environments
+
+### 🧠 Intelligent Memory Engine (New!)
+Advanced Rust-based learning system that evolves continuously:
+
+- **🦀 High-Performance Architecture**: Rust memory engine with parallel I/O and chunk-based storage
+- **🤖 ML-Powered Learning**: PyO3 integration for Python ML models with CPU-optimized inference
+- **🔄 Continuous Evolution**: Automated crawling of technical blogs to learn new patterns
+- **📊 Performance Tracking**: Real-time metrics showing accuracy improvements and processing speeds
+- **🎯 Pattern Recognition**: Learns from technical documentation and best practices
+- **⚡ Auto-Generated Templates**: Creates new spike templates from learned patterns
 
 ## 🚀 Getting Started
 
@@ -405,6 +416,9 @@ fluorite-mcp --self-test
 
 # Instant project analysis
 fluorite-mcp --static-analysis --project-path . --framework auto-detect
+
+# Start continuous evolution (optional)
+~/fluorite-evolve-config.sh  # Configure and start learning system
 ```
 
 ### **Code Analysis & Validation**
@@ -450,6 +464,23 @@ npm run fluorite:analyze && npm run build
 
 # Real-time validation
 fluorite-mcp --realtime-validation --file src/components/Form.tsx --watch-mode
+```
+
+### **Continuous Evolution System**
+```bash
+# Configure and start the evolution system
+~/fluorite-evolve-config.sh
+
+# Evolution modes:
+# - Normal Mode: Learn every hour (production)
+# - Fast Mode: Learn every 5 minutes (testing)
+# - Overnight Mode: Learn every 30 minutes (sleep time)
+
+# Monitor evolution progress
+tail -f ~/tmp/fluorite-evolution/logs/evolution-$(date +%Y%m%d).log
+
+# View performance improvements
+cat /Users/sware/Projects/github.com/kotsutsumi/fluorite-mcp/METRICS.md
 ```
 
 ### **Framework-Specific Examples**
@@ -557,12 +588,19 @@ fluorite-mcp/                    # Enterprise MCP server
 ├── 📁 src/catalog/             # Library specifications (87+ YAML files)
 ├── 📁 src/core/                # Core MCP functionality & analysis engine
 ├── 📁 src/spikes/              # Spike template ecosystem (385+ templates)
+├── 📁 memory-engine/           # Rust-based intelligent memory system
+│   ├── 📁 fluorite-memory/     # Core chunk storage implementation
+│   ├── 📁 fluorite-ml/         # ML integration with PyO3
+│   ├── 📁 fluorite-bridge/     # Node.js N-API bridge
+│   └── 📁 fluorite-learner/    # Learning pipeline
+├── 📁 performance-reports/     # Auto-generated performance metrics
 ├── 📁 docs/                    # VitePress documentation site
 │   ├── 📁 specs/               # Specification documentation
 │   ├── 📁 architecture/        # Technical architecture docs
 │   └── 📁 guides/              # User and developer guides
 ├── 📁 dist/                    # Compiled production artifacts
 ├── 📄 API.md                   # Complete API reference
+├── 📄 METRICS.md               # Real-time performance metrics
 └── 📄 package.json             # Enterprise package configuration
 ```
 

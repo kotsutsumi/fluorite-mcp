@@ -1,0 +1,19 @@
+{
+  "name": "laravel-pattern-2025-08-16-7",
+  "description": "Laravel Service Pattern",
+  "category": "auto-generated",
+  "frameworks": [
+    "laravel"
+  ],
+  "template": "\n<?php\n// Laravel Pattern from stackoverflow\nnamespace App\\Services;\n\nclass APIService {\n    public function processRequest($data) {\n        return Cache::remember('key', 3600, function() use ($data) {\n            return $this->transform($data);\n        });\n    }\n}\n            ",
+  "metadata": {
+    "source": "stackoverflow",
+    "quality_score": 1,
+    "generated_at": "2025-08-16T23:25:50.106Z",
+    "tags": [
+      "laravel",
+      "api",
+      "cache"
+    ]
+  }
+}

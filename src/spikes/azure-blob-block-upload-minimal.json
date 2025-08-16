@@ -1,0 +1,15 @@
+{
+  "id": "azure-blob-block-upload-minimal",
+  "name": "Azure Blob Block アップロード",
+  "version": "1.0.0",
+  "stack": ["azure", "blob", "node"],
+  "tags": ["storage"],
+  "description": "BlockBlobClientで文字列をアップロード（簡易）。",
+  "params": [ { "name": "app_name", "default": "azure-blob-upload" }, { "name": "container", "default": "public" }, { "name": "blob", "default": "hello.txt" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node up.js\" }, \"dependencies\": { \"@azure/storage-blob\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/up.js", "template": "const { BlobServiceClient } = require('@azure/storage-blob');\n(async () => { const bsc = BlobServiceClient.fromConnectionString(process.env.AZURE_STORAGE_CONNECTION_STRING||''); const container = bsc.getContainerClient('{{container}}'); await container.createIfNotExists(); const block = container.getBlockBlobClient('{{blob}}'); await block.upload('hello', 5); console.log('uploaded'); })();\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "fast-csv-parse-minimal",
+  "name": "fast-csv でCSVパース",
+  "version": "1.0.0",
+  "stack": ["node", "csv"],
+  "tags": ["data"],
+  "description": "fast-csv で CSV をストリームパース。",
+  "params": [ { "name": "app_name", "default": "fast-csv-parse" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node parse.js\" }, \"dependencies\": { \"fast-csv\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/parse.js", "template": "const fs = require('fs');\nconst { parse } = require('@fast-csv/parse');\nfs.createReadStream('data.csv').pipe(parse({ headers: true })).on('data', r => console.log(r)).on('end', ()=>console.log('done'));\n" }
+  ],
+  "patches": []
+}
+

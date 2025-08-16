@@ -1,0 +1,15 @@
+{
+  "id": "aws-kinesis-put-records-minimal",
+  "name": "AWS Kinesis PutRecords 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "kinesis", "node"],
+  "tags": ["stream"],
+  "description": "Kinesis ストリームに PutRecords を送信。",
+  "params": [ { "name": "app_name", "default": "kinesis-put" }, { "name": "stream", "default": "events" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node send.js\" }, \"dependencies\": { \"@aws-sdk/client-kinesis\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/send.js", "template": "const { KinesisClient, PutRecordsCommand } = require('@aws-sdk/client-kinesis');\nconst k = new KinesisClient({});\n(async () => { const r = await k.send(new PutRecordsCommand({ StreamName: '{{stream}}', Records: [{ Data: Buffer.from('hello'), PartitionKey: 'p1' }] })); console.log(r); })();\n" }
+  ],
+  "patches": []
+}
+

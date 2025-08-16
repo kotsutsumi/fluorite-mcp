@@ -1,0 +1,15 @@
+{
+  "id": "gcs-signed-put-url-minimal",
+  "name": "GCS Signed PUT URL 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "storage", "node"],
+  "tags": ["storage", "upload"],
+  "description": "GCS の署名付き PUT URL を生成。",
+  "params": [ { "name": "app_name", "default": "gcs-put-url" }, { "name": "bucket", "default": "my-bucket" }, { "name": "file", "default": "upload.bin" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node url.js\" }, \"dependencies\": { \"@google-cloud/storage\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/url.js", "template": "const { Storage } = require('@google-cloud/storage');\nconst storage = new Storage();\n(async ()=>{ const [url] = await storage.bucket('{{bucket}}').file('{{file}}').getSignedUrl({ action: 'write', version: 'v4', expires: Date.now()+3600_000, contentType: 'application/octet-stream' }); console.log(url); })();\n" }
+  ],
+  "patches": []
+}
+

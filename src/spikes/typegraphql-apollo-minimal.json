@@ -1,0 +1,16 @@
+{
+  "id": "typegraphql-apollo-minimal",
+  "name": "TypeGraphQL + Apollo (TS)",
+  "version": "1.0.0",
+  "stack": ["node", "graphql", "typegraphql", "typescript"],
+  "tags": ["api", "graphql"],
+  "description": "TypeGraphQL schema with Apollo Server.",
+  "params": [ { "name": "app_name", "default": "tgraphql-app" }, { "name": "port", "default": "4000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"start\": \"node --loader ts-node/esm src/index.ts\" },\n  \"dependencies\": { \"type-graphql\": \"latest\", \"graphql\": \"latest\", \"@apollo/server\": \"latest\" },\n  \"devDependencies\": { \"typescript\": \"^5\", \"ts-node\": \"^10\" }\n}\n" },
+    { "path": "{{app_name}}/tsconfig.json", "template": "{ \"compilerOptions\": { \"module\": \"es2022\", \"target\": \"es2022\", \"moduleResolution\": \"bundler\", \"experimentalDecorators\": true, \"emitDecoratorMetadata\": true, \"strict\": true } }\n" },
+    { "path": "{{app_name}}/src/index.ts", "template": "import 'reflect-metadata';\nimport { buildSchema, Resolver, Query } from 'type-graphql';\nimport { ApolloServer } from '@apollo/server';\nimport { startStandaloneServer } from '@apollo/server/standalone';\n@Resolver()\nclass HelloResolver { @Query(() => String) hello() { return 'world'; } }\nconst schema = await buildSchema({ resolvers: [HelloResolver] });\nconst server = new ApolloServer({ schema });\nstartStandaloneServer(server, { listen: { port: Number('{{port}}') } }).then(({ url }) => console.log('🚀', url));\n" }
+  ],
+  "patches": []
+}
+

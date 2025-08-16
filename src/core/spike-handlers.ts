@@ -35,7 +35,9 @@ export async function handleDiscoverSpikesTool(input: DiscoverInput = {}): Promi
     const offset = input.offset || 0;
     
     // Load only metadata for efficiency
-    const metadata = await loadSpikeMetadataBatch(allIds, limit * 2, offset, DEFAULT_SPIKE_CONFIG); // Load a bit more for scoring
+    const multEnv = process.env.FLUORITE_SPIKE_METADATA_MULTIPLIER;
+    const mult = (() => { const n = multEnv ? parseInt(multEnv, 10) : 2; return Number.isNaN(n) ? 2 : Math.max(1, Math.min(5, n)); })();
+    const metadata = await loadSpikeMetadataBatch(allIds, limit * mult, offset, DEFAULT_SPIKE_CONFIG); // Load a bit more for scoring
     
     const items: { id: string; name?: string; stack?: string[]; tags?: string[]; score: number }[] = [];
     for (const meta of metadata) {

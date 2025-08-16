@@ -1,0 +1,15 @@
+{
+  "id": "express-brute-minimal",
+  "name": "express-brute 最小",
+  "version": "1.0.0",
+  "stack": ["express", "security"],
+  "tags": ["security"],
+  "description": "ログイン等のブルートフォース対策用ミドルウェア（最小）。",
+  "params": [ { "name": "app_name", "default": "express-brute" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"express-brute\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst ExpressBrute = require('express-brute');\nconst store = new ExpressBrute.MemoryStore();\nconst brute = new ExpressBrute(store);\nconst app = express();\napp.post('/login', brute.prevent, (_req,res)=>res.send('ok'));\napp.listen(Number('{{port}}'));\n" }
+  ],
+  "patches": []
+}
+

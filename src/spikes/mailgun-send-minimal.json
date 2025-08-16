@@ -1,0 +1,15 @@
+{
+  "id": "mailgun-send-minimal",
+  "name": "Mailgun 送信 最小",
+  "version": "1.0.0",
+  "stack": ["node", "mailgun"],
+  "tags": ["email"],
+  "description": "mailgun.js でメール送信（APIキー要）。",
+  "params": [ { "name": "app_name", "default": "mailgun-send" }, { "name": "domain", "default": "sandbox.mailgun.org" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node send.js\" }, \"dependencies\": { \"mailgun.js\": \"latest\", \"form-data\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/send.js", "template": "const formData = require('form-data');\nconst Mailgun = require('mailgun.js');\nconst mg = new Mailgun(formData).client({ username: 'api', key: process.env.MAILGUN_API_KEY||'' });\n(async () => { const r = await mg.messages.create('{{domain}}', { from: 'no-reply@example.com', to: ['user@example.com'], subject: 'Hello', text: 'Hello Mailgun' }); console.log(r.id); })();\n" }
+  ],
+  "patches": []
+}
+

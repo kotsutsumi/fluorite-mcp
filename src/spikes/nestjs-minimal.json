@@ -1,0 +1,21 @@
+{
+  "id": "nestjs-minimal",
+  "name": "NestJS Minimal API (TS)",
+  "version": "1.0.0",
+  "stack": ["node", "nestjs", "typescript"],
+  "tags": ["api"],
+  "description": "Minimal NestJS app with one controller.",
+  "params": [
+    { "name": "app_name", "default": "nestjs-app" },
+    { "name": "port", "default": "3000" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"start\": \"node --loader ts-node/esm src/main.ts\" },\n  \"dependencies\": { \"@nestjs/common\": \"latest\", \"@nestjs/core\": \"latest\", \"reflect-metadata\": \"latest\", \"rxjs\": \"latest\" },\n  \"devDependencies\": { \"ts-node\": \"^10\", \"typescript\": \"^5\" }\n}\n" },
+    { "path": "{{app_name}}/tsconfig.json", "template": "{ \"compilerOptions\": { \"module\": \"es2022\", \"target\": \"es2022\", \"moduleResolution\": \"bundler\", \"experimentalDecorators\": true, \"emitDecoratorMetadata\": true, \"strict\": true, \"esModuleInterop\": true } }\n" },
+    { "path": "{{app_name}}/src/app.controller.ts", "template": "import { Controller, Get } from '@nestjs/common';\n@Controller()\nexport class AppController {\n  @Get('health') health() { return { status: 'ok' }; }\n  @Get() hello() { return { hello: 'world' }; }\n}\n" },
+    { "path": "{{app_name}}/src/app.module.ts", "template": "import { Module } from '@nestjs/common';\nimport { AppController } from './app.controller';\n@Module({ controllers: [AppController] })\nexport class AppModule {}\n" },
+    { "path": "{{app_name}}/src/main.ts", "template": "import 'reflect-metadata';\nimport { NestFactory } from '@nestjs/core';\nimport { AppModule } from './app.module';\nconst port = Number('{{port}}');\n(async () => {\n  const app = await NestFactory.create(AppModule, { logger: ['log','warn','error'] });\n  await app.listen(port);\n  console.log('listening on', port);\n})();\n" }
+  ],
+  "patches": []
+}
+

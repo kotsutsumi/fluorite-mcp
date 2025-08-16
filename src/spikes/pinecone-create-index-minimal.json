@@ -1,0 +1,20 @@
+{
+  "id": "pinecone-create-index-minimal",
+  "name": "Pinecone Create Index (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "pinecone"],
+  "tags": ["vector", "index"],
+  "description": "Create a Pinecone index with default dimension 3 (demo).",
+  "params": [
+    { "name": "app_name", "default": "pinecone-create-index" },
+    { "name": "index_name", "default": "docs" },
+    { "name": "dimension", "default": "3" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { Pinecone } from '@pinecone-database/pinecone';\nconst pc = new Pinecone({ apiKey: process.env.PINECONE_API_KEY });\nconst name = process.env.PINECONE_INDEX || '{{index_name}}';\nconst dim = Number(process.env.PINECONE_DIM || '{{dimension}}');\ntry { await pc.createIndex({ name, dimension: dim, metric: 'cosine' }); console.log('created', name); } catch (e) { console.log('create failed', e?.message); }\nconsole.log(await pc.listIndexes());\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@pinecone-database/pinecone\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "PINECONE_API_KEY=...\nPINECONE_INDEX={{index_name}}\nPINECONE_DIM={{dimension}}\n" }
+  ],
+  "patches": []
+}
+

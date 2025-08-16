@@ -1,0 +1,22 @@
+{
+  "id": "typeorm-mysql-minimal",
+  "name": "TypeORM + MySQL Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "typeorm", "mysql"],
+  "tags": ["db"],
+  "description": "TypeORM connection to MySQL with one entity (JS runtime).",
+  "params": [
+    { "name": "app_name", "default": "typeorm-app" },
+    { "name": "mysql_host", "default": "localhost" },
+    { "name": "mysql_port", "default": "3306" },
+    { "name": "mysql_user", "default": "root" },
+    { "name": "mysql_password", "default": "password" },
+    { "name": "mysql_db", "default": "test" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"typeorm\": \"latest\", \"mysql2\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const { DataSource, EntitySchema } = require('typeorm');\nconst AppDataSource = new DataSource({ type: 'mysql', host: '{{mysql_host}}', port: parseInt('{{mysql_port}}',10), username: '{{mysql_user}}', password: '{{mysql_password}}', database: '{{mysql_db}}', entities: [new EntitySchema({ name: 'User', columns: { id: { type: Number, primary: true, generated: true }, name: { type: String } } })], synchronize: true });\n(async () => {\n  await AppDataSource.initialize();\n  const repo = AppDataSource.getRepository('User');\n  await repo.save({ name: 'Alice' });\n  const count = await repo.count();\n  console.log('User count', count);\n  await AppDataSource.destroy();\n})();\n" }
+  ],
+  "patches": []
+}
+

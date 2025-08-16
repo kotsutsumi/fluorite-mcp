@@ -1,0 +1,18 @@
+{
+  "id": "sentence-transformers-python-minimal",
+  "name": "Sentence-Transformers Embeddings (Python)",
+  "version": "1.0.0",
+  "stack": ["python", "embeddings"],
+  "tags": ["embeddings"],
+  "description": "Embed texts with sentence-transformers and print vector dims.",
+  "params": [
+    { "name": "app_name", "default": "sentence-transformers-py" },
+    { "name": "model", "default": "sentence-transformers/all-MiniLM-L6-v2" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/main.py", "template": "from sentence_transformers import SentenceTransformer\nmodel = SentenceTransformer('${model}')\nemb = model.encode(['hello world', 'fluorite mcp'])\nprint(len(emb[0]))\n" },
+    { "path": "{{app_name}}/requirements.txt", "template": "sentence-transformers\n" }
+  ],
+  "patches": []
+}
+

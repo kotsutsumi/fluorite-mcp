@@ -1,0 +1,15 @@
+{
+  "id": "astro-minimal",
+  "name": "Astro Minimal Site",
+  "version": "1.0.0",
+  "stack": ["astro", "vite"],
+  "tags": ["frontend"],
+  "description": "Minimal Astro project with one page.",
+  "params": [ { "name": "app_name", "default": "astro-site" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"dev\": \"astro dev\", \"build\": \"astro build\", \"preview\": \"astro preview\" },\n  \"dependencies\": { \"astro\": \"^4\" }\n}\n" },
+    { "path": "{{app_name}}/src/pages/index.astro", "template": "---\nconst title = 'Hello Astro';\n---\n<html>\n  <head><title>{title}</title></head>\n  <body>\n    <h1>{title}</h1>\n  </body>\n</html>\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "aws-stepfunctions-start-execution-minimal",
+  "name": "AWS Step Functions StartExecution",
+  "version": "1.0.0",
+  "stack": ["aws", "stepfunctions", "node"],
+  "tags": ["orchestration"],
+  "description": "StateMachine の StartExecution を実行。",
+  "params": [ { "name": "app_name", "default": "sfn-start" }, { "name": "state_machine_arn", "default": "arn:aws:states:us-east-1:123456789012:stateMachine:demo" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@aws-sdk/client-sfn\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const { SFNClient, StartExecutionCommand } = require('@aws-sdk/client-sfn');\nconst sfn = new SFNClient({});\n(async () => { const r = await sfn.send(new StartExecutionCommand({ stateMachineArn: '{{state_machine_arn}}', input: JSON.stringify({ hello: 'world' }) })); console.log(r.executionArn); })();\n" }
+  ],
+  "patches": []
+}
+

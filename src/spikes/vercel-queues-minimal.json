@@ -1,0 +1,15 @@
+{
+  "id": "vercel-queues-minimal",
+  "name": "Vercel Queues 最小",
+  "version": "1.0.0",
+  "stack": ["vercel", "queues"],
+  "tags": ["serverless", "messaging"],
+  "description": "Vercel Queues で enqueue/consumer の最小例（概念サンプル）。",
+  "params": [ { "name": "app_name", "default": "vercel-queues" } ],
+  "files": [
+    { "path": "{{app_name}}/api/enqueue.ts", "template": "export const config = { runtime: 'edge' };\nexport default async function handler() { /* 実際は Vercel Queues SDK を使用 */ return new Response(JSON.stringify({ enqueued: true }), { headers: { 'content-type': 'application/json' } }); }\n" },
+    { "path": "{{app_name}}/README.md", "template": "Vercel プロジェクト設定で Queues を有効化してください（このテンプレは概念サンプルです）。\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "fastify-ajv-schema-validation-minimal",
+  "name": "Fastify AJV スキーマ検証",
+  "version": "1.0.0",
+  "stack": ["fastify", "ajv", "node"],
+  "tags": ["validation"],
+  "description": "Fastify のスキーマでボディ検証。",
+  "params": [ { "name": "app_name", "default": "fastify-ajv" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"fastify\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const Fastify = require('fastify');\nconst app = Fastify();\napp.post('/echo', { schema: { body: { type: 'object', required: ['name'], properties: { name: { type: 'string' } } } } }, async (req,res)=>({ name: req.body.name }));\napp.listen({ port: Number('{{port}}') });\n" }
+  ],
+  "patches": []
+}
+

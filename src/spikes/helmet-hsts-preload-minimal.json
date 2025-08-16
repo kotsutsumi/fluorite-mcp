@@ -1,0 +1,15 @@
+{
+  "id": "helmet-hsts-preload-minimal",
+  "name": "Helmet HSTS Preload",
+  "version": "1.0.0",
+  "stack": ["node", "express", "helmet"],
+  "tags": ["security"],
+  "description": "Helmet で HSTS + preload/sincludeSubDomains 設定。",
+  "params": [ { "name": "app_name", "default": "helmet-hsts" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"helmet\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst helmet = require('helmet');\nconst app = express();\napp.use(helmet.hsts({ maxAge: 15552000, includeSubDomains: true, preload: true }));\napp.get('/', (_req,res)=>res.send('ok'));\napp.listen(Number('{{port}}'), ()=>console.log('listening'));\n" }
+  ],
+  "patches": []
+}
+

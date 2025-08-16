@@ -1,0 +1,14 @@
+{
+  "id": "cloudflare-r2-post-policy-minimal",
+  "name": "Cloudflare R2 Post Policy",
+  "version": "1.0.0",
+  "stack": ["cloudflare", "r2"],
+  "tags": ["storage"],
+  "description": "R2 の POST ポリシーでクライアント直アップロード（概念）。",
+  "params": [ { "name": "app_name", "default": "r2-post-policy" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "R2 POST ポリシー生成はアカウント/バケット設定と署名鍵が必要です。\n" }
+  ],
+  "patches": []
+}
+

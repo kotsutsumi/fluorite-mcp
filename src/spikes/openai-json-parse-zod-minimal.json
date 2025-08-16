@@ -1,0 +1,18 @@
+{
+  "id": "openai-json-parse-zod-minimal",
+  "name": "OpenAI JSON Mode + Zod Parse (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "openai", "zod"],
+  "tags": ["llm", "json", "validation"],
+  "description": "Use JSON mode and validate the response with Zod schema.",
+  "params": [
+    { "name": "app_name", "default": "openai-json-zod" },
+    { "name": "openai_model", "default": "gpt-4o-mini" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import OpenAI from 'openai';\nimport { z } from 'zod';\nconst client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst schema = z.object({ greeting: z.string() });\nconst res = await client.chat.completions.create({ model: '{{openai_model}}', response_format: { type: 'json_object' }, messages: [{ role: 'user', content: 'Return {\\"greeting\\": \\\"hello\\\"} as JSON' }] });\nconst data = JSON.parse(res.choices?.[0]?.message?.content || '{}');\nconsole.log(schema.parse(data));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"openai\": \"latest\", \"zod\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

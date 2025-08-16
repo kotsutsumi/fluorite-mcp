@@ -1,0 +1,15 @@
+{
+  "id": "graphql-helix-minimal",
+  "name": "GraphQL Helix Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "graphql", "helix"],
+  "tags": ["api", "graphql"],
+  "description": "Minimal GraphQL server using GraphQL Helix over Express.",
+  "params": [ { "name": "app_name", "default": "helix-server" }, { "name": "port", "default": "4000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"graphql\": \"latest\", \"@graphql-yoga/typed-event-target\": \"latest\", \"graphql-helix\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst { getGraphQLParameters, processRequest, renderGraphiQL, shouldRenderGraphiQL } = require('graphql-helix');\nconst { buildSchema } = require('graphql');\nconst app = express();\nconst schema = buildSchema('type Query { hello: String }');\nconst rootValue = { hello: () => 'world' };\napp.use('/graphql', express.json(), async (req, res) => {\n  if (shouldRenderGraphiQL(req)) { res.send(renderGraphiQL({ endpoint: '/graphql' })); return; }\n  const { operationName, query, variables } = getGraphQLParameters(req);\n  const result = await processRequest({ operationName, query, variables, request: req, schema, rootValue });\n  result.type === 'RESPONSE' ? res.status(result.status).json(result.payload) : res.end();\n});\napp.listen({{port}}, () => console.log('listening on {{port}}'));\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,17 @@
+{
+  "id": "chromadb-python-minimal",
+  "name": "ChromaDB Minimal (Python)",
+  "version": "1.0.0",
+  "stack": ["python", "chromadb"],
+  "tags": ["vector", "database"],
+  "description": "Create a collection, insert, and query with ChromaDB (Python).",
+  "params": [
+    { "name": "app_name", "default": "chromadb-app" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/main.py", "template": "from chromadb import Client\nclient = Client()\ncol = client.create_collection('docs')\ncol.add(\n    ids=['1', '2'],\n    documents=['hello world', 'fluorite mcp']\n)\nres = col.query(query_texts=['hello'], n_results=2)\nprint(res)\n" },
+    { "path": "{{app_name}}/requirements.txt", "template": "chromadb>=0.5.0\n" }
+  ],
+  "patches": []
+}
+

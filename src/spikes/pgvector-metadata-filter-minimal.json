@@ -1,0 +1,18 @@
+{
+  "id": "pgvector-metadata-filter-minimal",
+  "name": "pgvector + metadata filter (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "postgres", "pgvector"],
+  "tags": ["vector", "filter"],
+  "description": "Store text with tags and filter via SQL WHERE alongside vector distance.",
+  "params": [
+    { "name": "app_name", "default": "pgvector-meta-filter" },
+    { "name": "database_url", "default": "postgres://postgres:postgres@localhost:5432/postgres" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import pg from 'pg';\nconst client = new pg.Client({ connectionString: process.env.DATABASE_URL || '{{database_url}}' });\nawait client.connect();\nawait client.query('CREATE EXTENSION IF NOT EXISTS vector');\nawait client.query('CREATE TABLE IF NOT EXISTS items (id serial primary key, tag text, embedding vector(3), text text)');\nawait client.query('TRUNCATE items');\nawait client.query(`INSERT INTO items (tag, embedding, text) VALUES ('a', ARRAY[0.1,0.2,0.3], 'hello'), ('b', ARRAY[0.2,0.1,0.25], 'fluorite')`);\nconst { rows } = await client.query(`SELECT text, embedding <=> ARRAY[0.1,0.2,0.3] as dist FROM items WHERE tag = 'a' ORDER BY dist ASC LIMIT 2`);\nconsole.log(rows.map(r => r.text));\nawait client.end();\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"pg\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

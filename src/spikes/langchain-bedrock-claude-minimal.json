@@ -1,0 +1,18 @@
+{
+  "id": "langchain-bedrock-claude-minimal",
+  "name": "LangChain + Bedrock Claude Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "langchain", "aws", "bedrock"],
+  "tags": ["llm", "langchain"],
+  "description": "Invoke Anthropic Claude on Bedrock via LangChain community provider.",
+  "params": [
+    { "name": "app_name", "default": "lc-bedrock-claude" },
+    { "name": "aws_region", "default": "us-east-1" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "process.env.AWS_REGION = process.env.AWS_REGION || '{{aws_region}}';\nimport { ChatBedrockConverse } from '@langchain/community/chat_models/bedrock_converse';\nconst llm = new ChatBedrockConverse({ model: 'anthropic.claude-3-5-sonnet-20240620-v1:0' });\nconst res = await llm.invoke('Say hello');\nconsole.log(res?.content);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@langchain/community\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

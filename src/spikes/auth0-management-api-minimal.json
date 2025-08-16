@@ -1,0 +1,14 @@
+{
+  "id": "auth0-management-api-minimal",
+  "name": "Auth0 Management API 最小",
+  "version": "1.0.0",
+  "stack": ["node", "auth0"],
+  "tags": ["auth"],
+  "description": "Auth0 管理APIにアクセス（トークン取得前提）。",
+  "params": [ { "name": "app_name", "default": "auth0-mgmt" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "管理者トークンを取得して /api/v2/users 等を呼び出してください（ここでは概念）。\n" }
+  ],
+  "patches": []
+}
+

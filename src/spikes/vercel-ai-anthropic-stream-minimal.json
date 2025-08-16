@@ -1,0 +1,18 @@
+{
+  "id": "vercel-ai-anthropic-stream-minimal",
+  "name": "Vercel AI SDK + Anthropic Streaming (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "vercel-ai", "anthropic"],
+  "tags": ["llm", "stream"],
+  "description": "Stream text with the Vercel AI SDK using Anthropic provider.",
+  "params": [
+    { "name": "app_name", "default": "vercel-ai-anthropic-stream" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { createAnthropic } from '@ai-sdk/anthropic';\nimport { streamText } from 'ai';\nconst anthropic = createAnthropic({ apiKey: process.env.ANTHROPIC_API_KEY });\nconst result = await streamText({ model: anthropic('claude-3-5-sonnet-20240620'), prompt: 'Stream a short hello' });\nfor await (const part of result.textStream) { process.stdout.write(part); }\nconsole.log();\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@ai-sdk/anthropic\": \"latest\", \"ai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "ANTHROPIC_API_KEY=sk-ant-...\n" }
+  ],
+  "patches": []
+}
+

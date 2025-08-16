@@ -1,24 +1,12 @@
 # Getting Started with Fluorite MCP
 
-Welcome to Fluorite MCP! This guide will help you quickly set up and start using Fluorite MCP with Claude Code CLI to enhance your development workflow with comprehensive library knowledge, static analysis, and spike-driven development.
+Welcome to Fluorite MCP! This guide will help you quickly set up and start using Fluorite MCP with Claude Code CLI. For a detailed overview of what Fluorite MCP is, please see our [Introduction](./introduction.md).
 
 ## 📖 Table of Contents
 
-- [What is Fluorite MCP?](#what-is-fluorite-mcp)
 - [Quick Start (5 minutes)](#quick-start-5-minutes)
-- [Understanding Key Features](#understanding-key-features)
 - [Your First Commands](#your-first-commands)
 - [Next Steps](#next-steps)
-
-## What is Fluorite MCP?
-
-Fluorite MCP is a Model Context Protocol (MCP) server that enhances Claude Code CLI with:
-
-- **📚 87+ Library Specifications**: Deep knowledge of modern web development libraries
-- **🌍 12+ Language Ecosystems**: From TypeScript to Rust, covering all major platforms
-- **🧪 385+ Production Templates**: Pre-built patterns for rapid prototyping
-- **🔍 Static Analysis**: 50+ validation rules for Next.js, React, Vue
-- **🤖 Error Prediction**: AI-powered pattern matching to prevent runtime errors
 
 ## Quick Start (5 minutes)
 
@@ -53,57 +41,6 @@ Create a modern React data table with sorting and filtering using TypeScript
 ```
 
 Claude will automatically use Fluorite MCP's knowledge of TanStack Table, TypeScript patterns, and best practices to generate production-ready code!
-
-## Understanding Key Features
-
-### 1. Automatic Library Knowledge
-
-When you mention any supported library, Claude automatically accesses the relevant specification:
-
-**Example Libraries**:
-- UI Components: shadcn/ui, Radix UI, Material-UI
-- State Management: Zustand, Jotai, TanStack Query
-- Forms: react-hook-form, Zod validation
-- Data Tables: AG Grid, TanStack Table
-- Authentication: NextAuth.js, Clerk, Supabase
-
-### 2. Static Analysis & Error Prediction
-
-Fluorite MCP includes intelligent code analysis:
-
-```bash
-# Static analysis is automatically applied when Claude analyzes your code
-# Detects 50+ common issues in Next.js, React, and Vue
-```
-
-**Common Issues Detected**:
-- Client hooks in Server Components
-- Hydration mismatches
-- Missing dependencies
-- Type safety violations
-- Performance anti-patterns
-
-### 3. Spike-Driven Development
-
-Quick prototyping with pre-built templates:
-
-**Available Template Categories**:
-- **Next.js**: Minimal apps, API routes, authentication
-- **FastAPI**: REST APIs, database integration, auth
-- **GitHub Actions**: CI/CD workflows, testing pipelines
-- **Playwright**: Testing configurations, accessibility
-
-### 4. Comprehensive Ecosystems
-
-Access to complete development ecosystems:
-
-**Language Ecosystems**:
-- TypeScript/JavaScript (Web development)
-- Python (FastAPI, Django, Data Science)
-- Rust (Systems programming, Tauri)
-- Go (High-performance backends)
-- Ruby (Rails development)
-- And 7 more...
 
 ## Your First Commands
 

@@ -1,0 +1,15 @@
+{
+  "id": "zod-express-validator-minimal",
+  "name": "Zod + Express バリデーション",
+  "version": "1.0.0",
+  "stack": ["express", "zod"],
+  "tags": ["validation"],
+  "description": "Zod でボディを検証。",
+  "params": [ { "name": "app_name", "default": "zod-express" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node index.mjs\" }, \"dependencies\": { \"express\": \"latest\", \"zod\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.mjs", "template": "import express from 'express';\nimport { z } from 'zod';\nconst app = express();\napp.use(express.json());\nconst Body = z.object({ name: z.string() });\napp.post('/echo', (req,res)=>{ const r = Body.safeParse(req.body); if (!r.success) return res.status(400).json({ error: r.error.message }); res.json(r.data); });\napp.listen(Number('{{port}}'));\n" }
+  ],
+  "patches": []
+}
+

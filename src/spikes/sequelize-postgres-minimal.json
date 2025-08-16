@@ -1,0 +1,18 @@
+{
+  "id": "sequelize-postgres-minimal",
+  "name": "Sequelize + Postgres Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "sequelize", "postgres"],
+  "tags": ["db"],
+  "description": "Sequelize connection to Postgres with one model.",
+  "params": [
+    { "name": "app_name", "default": "sequelize-app" },
+    { "name": "pg_uri", "default": "postgres://postgres:postgres@localhost:5432/postgres" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"sequelize\": \"latest\", \"pg\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const { Sequelize, DataTypes } = require('sequelize');\nconst sequelize = new Sequelize('{{pg_uri}}', { logging: false });\nconst Item = sequelize.define('Item', { name: DataTypes.STRING });\n(async () => {\n  await sequelize.authenticate();\n  await sequelize.sync();\n  await Item.create({ name: 'hello' });\n  const count = await Item.count();\n  console.log('Item count', count);\n  await sequelize.close();\n})();\n" }
+  ],
+  "patches": []
+}
+

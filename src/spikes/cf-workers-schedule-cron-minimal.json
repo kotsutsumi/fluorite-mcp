@@ -1,0 +1,15 @@
+{
+  "id": "cf-workers-schedule-cron-minimal",
+  "name": "Cloudflare Workers Schedule (CRON) 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare", "workers"],
+  "tags": ["serverless", "schedule"],
+  "description": "Wrangler のスケジュール（CRON）で実行されるハンドラ最小。",
+  "params": [ { "name": "app_name", "default": "cf-schedule" } ],
+  "files": [
+    { "path": "{{app_name}}/worker.js", "template": "export default { async scheduled(_event, _env, _ctx) { console.log('tick'); } };\n" },
+    { "path": "{{app_name}}/README.md", "template": "wrangler.toml の [triggers] に crons を設定してください。\n" }
+  ],
+  "patches": []
+}
+

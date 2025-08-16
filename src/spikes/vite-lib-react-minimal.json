@@ -1,0 +1,16 @@
+{
+  "id": "vite-lib-react-minimal",
+  "name": "Vite React Library Minimal",
+  "version": "1.0.0",
+  "stack": ["react", "vite", "typescript"],
+  "tags": ["build"],
+  "description": "Vite library mode for a React component.",
+  "params": [ { "name": "app_name", "default": "vite-react-lib" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"main\": \"dist/index.js\", \"module\": \"dist/index.es.js\", \"types\": \"dist/index.d.ts\", \"scripts\": { \"build\": \"vite build\" }, \"dependencies\": { \"react\": \"^18\" }, \"devDependencies\": { \"vite\": \"^5\", \"typescript\": \"^5\", \"@types/react\": \"^18\" } }\n" },
+    { "path": "{{app_name}}/vite.config.ts", "template": "import { defineConfig } from 'vite';\nimport path from 'path';\nexport default defineConfig({ build: { lib: { entry: path.resolve(__dirname, 'src/index.tsx'), name: 'MyLib', fileName: 'index' }, rollupOptions: { external: ['react'] } } });\n" },
+    { "path": "{{app_name}}/src/index.tsx", "template": "import React from 'react';\nexport const Button: React.FC<{ label: string }> = ({ label }) => <button>{label}</button>;\n" }
+  ],
+  "patches": []
+}
+

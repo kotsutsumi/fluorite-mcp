@@ -1,0 +1,18 @@
+{
+  "id": "deno-oak-minimal",
+  "name": "Deno Oak Minimal",
+  "version": "1.0.0",
+  "stack": ["deno", "oak"],
+  "tags": ["api"],
+  "description": "Minimal Deno Oak server with two routes.",
+  "params": [
+    { "name": "app_name", "default": "oak-app" },
+    { "name": "port", "default": "8000" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/main.ts", "template": "import { Application, Router } from 'https://deno.land/x/oak/mod.ts';\nconst app = new Application();\nconst router = new Router();\nrouter.get('/health', (ctx) => { ctx.response.body = { status: 'ok' }; });\nrouter.get('/', (ctx) => { ctx.response.body = { hello: 'world' }; });\napp.use(router.routes());\napp.use(router.allowedMethods());\nawait app.listen({ port: {{port}} });\n" },
+    { "path": "{{app_name}}/README.md", "template": "# Deno Oak Minimal\n\nRun with: deno run --allow-net main.ts\n" }
+  ],
+  "patches": []
+}
+

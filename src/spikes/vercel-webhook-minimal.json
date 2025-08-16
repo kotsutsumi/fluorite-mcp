@@ -1,0 +1,14 @@
+{
+  "id": "vercel-webhook-minimal",
+  "name": "Vercel Webhook Minimal",
+  "version": "1.0.0",
+  "stack": ["vercel", "edge", "webhook"],
+  "tags": ["serverless"],
+  "description": "Vercel Edge Runtime で Webhook 受信。",
+  "params": [ { "name": "app_name", "default": "vercel-webhook" } ],
+  "files": [
+    { "path": "{{app_name}}/api/webhook.ts", "template": "export const config = { runtime: 'edge' };\nexport default async function handler(req: Request) { const body = await req.text(); return new Response(JSON.stringify({ ok: true, len: body.length }), { headers: { 'content-type': 'application/json' } }); }\n" }
+  ],
+  "patches": []
+}
+

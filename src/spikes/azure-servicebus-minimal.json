@@ -1,0 +1,15 @@
+{
+  "id": "azure-servicebus-minimal",
+  "name": "Azure Service Bus Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "azure"],
+  "tags": ["messaging"],
+  "description": "Send and receive a message using Azure Service Bus.",
+  "params": [ { "name": "app_name", "default": "asb-demo" }, { "name": "connection_string", "default": "Endpoint=sb://..." }, { "name": "queue", "default": "demo" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@azure/service-bus\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const { ServiceBusClient } = require('@azure/service-bus');\nconst conn = '{{connection_string}}';\nconst queue = '{{queue}}';\n(async () => {\n  const sb = new ServiceBusClient(conn);\n  const sender = sb.createSender(queue);\n  await sender.sendMessages({ body: 'hello' });\n  const receiver = sb.createReceiver(queue, { subQueueType: 'none' });\n  const msgs = await receiver.receiveMessages(1, { maxWaitTimeInMs: 1000 });\n  console.log('received', msgs[0]?.body);\n  await receiver.close(); await sender.close(); await sb.close();\n})();\n" }
+  ],
+  "patches": []
+}
+

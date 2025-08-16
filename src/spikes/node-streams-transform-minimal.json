@@ -1,0 +1,14 @@
+{
+  "id": "node-streams-transform-minimal",
+  "name": "Node.js Streams Transform 最小",
+  "version": "1.0.0",
+  "stack": ["node"],
+  "tags": ["streams"],
+  "description": "Transform ストリームの最小例。",
+  "params": [ { "name": "app_name", "default": "streams-transform" } ],
+  "files": [
+    { "path": "{{app_name}}/index.js", "template": "const { Transform } = require('stream');\nconst upper = new Transform({ transform(chunk, _enc, cb){ cb(null, String(chunk).toUpperCase()); } });\nprocess.stdin.pipe(upper).pipe(process.stdout);\n" }
+  ],
+  "patches": []
+}
+

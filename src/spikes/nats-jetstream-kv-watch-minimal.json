@@ -1,0 +1,15 @@
+{
+  "id": "nats-jetstream-kv-watch-minimal",
+  "name": "NATS JetStream KV Watch 最小",
+  "version": "1.0.0",
+  "stack": ["nats", "node"],
+  "tags": ["messaging"],
+  "description": "JetStream KV を watch して更新を受け取る。",
+  "params": [ { "name": "app_name", "default": "nats-kv-watch" }, { "name": "server", "default": "nats://127.0.0.1:4222" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node watch.js\" }, \"dependencies\": { \"nats\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/watch.js", "template": "const { connect } = require('nats');\n(async ()=>{ const nc = await connect({ servers: '{{server}}' }); const js = await nc.jetstream(); const kv = await js.views.kv('config'); const w = await kv.watch(); (async ()=>{ for await (const e of w) console.log('kv', e.key); })(); await kv.put('hello', Buffer.from('world')); })();\n" }
+  ],
+  "patches": []
+}
+

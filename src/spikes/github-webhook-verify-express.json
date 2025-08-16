@@ -1,0 +1,15 @@
+{
+  "id": "github-webhook-verify-express",
+  "name": "GitHub Webhook 署名検証 (Express)",
+  "version": "1.0.0",
+  "stack": ["express", "github"],
+  "tags": ["webhook", "security"],
+  "description": "X-Hub-Signature-256 の検証（HMAC-SHA256）。",
+  "params": [ { "name": "app_name", "default": "github-webhook" }, { "name": "port", "default": "3000" }, { "name": "secret", "default": "devsecret" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst crypto = require('crypto');\nconst app = express();\napp.use(express.json({ verify: (req, res, buf) => { req.rawBody = buf; } }));\napp.post('/webhook', (req,res) => { const sig = req.headers['x-hub-signature-256']; const h = 'sha256=' + crypto.createHmac('sha256', '{{secret}}').update(req.rawBody).digest('hex'); if (!crypto.timingSafeEqual(Buffer.from(h), Buffer.from(sig))) return res.status(401).send('invalid'); res.send('ok'); });\napp.listen(Number('{{port}}'), ()=>console.log('listening'));\n" }
+  ],
+  "patches": []
+}
+

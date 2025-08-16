@@ -1,0 +1,18 @@
+{
+  "id": "transformers-textgen-python-minimal",
+  "name": "HuggingFace Transformers TextGen (Python)",
+  "version": "1.0.0",
+  "stack": ["python", "transformers"],
+  "tags": ["llm", "local"],
+  "description": "Run a tiny local text-generation model using transformers pipeline.",
+  "params": [
+    { "name": "app_name", "default": "transformers-textgen" },
+    { "name": "model", "default": "sshleifer/tiny-gpt2" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/main.py", "template": "from transformers import pipeline\npipe = pipeline('text-generation', model='${model}')\nprint(pipe('Hello', max_new_tokens=10)[0]['generated_text'])\n" },
+    { "path": "{{app_name}}/requirements.txt", "template": "transformers\ntorch\n" }
+  ],
+  "patches": []
+}
+

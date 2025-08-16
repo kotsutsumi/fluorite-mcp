@@ -1,0 +1,19 @@
+{
+  "id": "milvus-upsert-query-minimal",
+  "name": "Milvus List Collections (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "milvus"],
+  "tags": ["vector", "database"],
+  "description": "Connect to Milvus and list collections (requires running Milvus).",
+  "params": [
+    { "name": "app_name", "default": "milvus-minimal-app" },
+    { "name": "milvus_address", "default": "localhost:19530" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { MilvusClient } from '@zilliz/milvus2-sdk-node';\nconst client = new MilvusClient({ address: process.env.MILVUS_ADDRESS || '{{milvus_address}}' });\nconst res = await client.showCollections();\nconsole.log(res);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@zilliz/milvus2-sdk-node\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "MILVUS_ADDRESS=localhost:19530\n" }
+  ],
+  "patches": []
+}
+

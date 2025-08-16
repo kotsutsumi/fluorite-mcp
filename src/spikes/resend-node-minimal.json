@@ -1,0 +1,16 @@
+{
+  "id": "resend-node-minimal",
+  "name": "Resend Email Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "resend"],
+  "tags": ["email"],
+  "description": "Send an email using Resend API.",
+  "params": [ { "name": "app_name", "default": "resend-mail" }, { "name": "from", "default": "Acme <onboarding@resend.dev>" }, { "name": "to", "default": "user@example.com" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node send.js\" }, \"dependencies\": { \"resend\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/send.js", "template": "const { Resend } = require('resend');\nconst resend = new Resend(process.env.RESEND_API_KEY);\n(async () => {\n  const r = await resend.emails.send({ from: '{{from}}', to: '{{to}}', subject: 'Hello', text: 'Hello from Resend' });\n  console.log('id', r.id);\n})();\n" },
+    { "path": "{{app_name}}/README.md", "template": "Export RESEND_API_KEY before running.\n" }
+  ],
+  "patches": []
+}
+

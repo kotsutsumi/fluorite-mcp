@@ -1,0 +1,19 @@
+{
+  "id": "redis-redisearch-vector-minimal",
+  "name": "Redis RediSearch Vector kNN (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "redis"],
+  "tags": ["vector", "redisearch"],
+  "description": "Create HNSW vector index in Redis, add docs, and run kNN search.",
+  "params": [
+    { "name": "app_name", "default": "redis-vector" },
+    { "name": "redis_url", "default": "redis://localhost:6379" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { createClient } from 'redis';\nconst client = createClient({ url: process.env.REDIS_URL || '{{redis_url}}' });\nawait client.connect();\n// Create index (keyspace: doc:*) with HNSW vector field 'vec' (FLOAT32, 3 dims)\ntry {\n  await client.sendCommand(['FT.CREATE','idx','ON','HASH','PREFIX','1','doc:','SCHEMA','text','TEXT','vec','VECTOR','HNSW','6','TYPE','FLOAT32','DIM','3','DISTANCE_METRIC','L2']);\n} catch (e) { /* might exist */ }\n// Add two docs with 3-dim vectors\nawait client.hSet('doc:1', { text: 'hello world', vec: Buffer.from(new Float32Array([0.1,0.2,0.3]).buffer) });\nawait client.hSet('doc:2', { text: 'fluorite', vec: Buffer.from(new Float32Array([0.2,0.1,0.25]).buffer) });\n// kNN search for nearest neighbors to [0.1,0.2,0.3]\nconst qv = Buffer.from(new Float32Array([0.1,0.2,0.3]).buffer);\nconst res = await client.sendCommand(['FT.SEARCH','idx','*=>[KNN','2','@vec','$BINARY_VECTOR'] , 'PARAMS','2','BINARY_VECTOR', qv, 'RETURN','1','text','SORTBY','__vec_score','DIALECT','2']);\nconsole.log(res);\nawait client.quit();\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"redis\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "REDIS_URL={{redis_url}}\n" }
+  ],
+  "patches": []
+}
+

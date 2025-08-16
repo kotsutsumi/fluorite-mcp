@@ -1,0 +1,16 @@
+{
+  "id": "twilio-sms-minimal",
+  "name": "TwilioでSMS送信",
+  "version": "1.0.0",
+  "stack": ["node", "twilio"],
+  "tags": ["sms"],
+  "description": "Twilio SDKでSMS送信（SID/トークン要）。",
+  "params": [ { "name": "app_name", "default": "twilio-sms" }, { "name": "from", "default": "+15005550006" }, { "name": "to", "default": "+15555550123" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node send.js\" }, \"dependencies\": { \"twilio\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/send.js", "template": "const twilio = require('twilio');\nconst client = twilio(process.env.TWILIO_SID||'', process.env.TWILIO_TOKEN||'');\n(async () => { const r = await client.messages.create({ body: 'Hello', from: '{{from}}', to: '{{to}}' }); console.log(r.sid); })();\n" },
+    { "path": "{{app_name}}/README.md", "template": "TWILIO_SID / TWILIO_TOKEN を環境変数に設定して実行してください。\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "node-worker-threads-minimal",
+  "name": "Node.js Worker Threads 最小",
+  "version": "1.0.0",
+  "stack": ["node"],
+  "tags": ["concurrency"],
+  "description": "worker_threads を使った最小サンプル。",
+  "params": [ { "name": "app_name", "default": "workers-demo" } ],
+  "files": [
+    { "path": "{{app_name}}/index.js", "template": "const { Worker, isMainThread, parentPort } = require('worker_threads');\nif (isMainThread) { const w = new Worker(__filename); w.on('message', m=>console.log('from worker', m)); } else { parentPort.postMessage('hello'); }\n" }
+  ],
+  "patches": []
+}
+

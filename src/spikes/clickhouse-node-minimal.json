@@ -1,0 +1,15 @@
+{
+  "id": "clickhouse-node-minimal",
+  "name": "ClickHouse Node クライアント",
+  "version": "1.0.0",
+  "stack": ["node", "clickhouse"],
+  "tags": ["analytics", "db"],
+  "description": "ClickHouse に接続して簡単なクエリを実行。",
+  "params": [ { "name": "app_name", "default": "clickhouse-demo" }, { "name": "host", "default": "http://localhost:8123" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@clickhouse/client\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const { createClient } = require('@clickhouse/client');\nconst ch = createClient({ host: '{{host}}' });\n(async () => { await ch.query({ query: `CREATE TABLE IF NOT EXISTS logs (m String) ENGINE = Memory` }); await ch.insert({ table: 'logs', values: [{ m: 'hello' }] }); const rows = await ch.query({ query: `SELECT count() c FROM logs`, format: 'JSONEachRow' }).then(r=>r.json()); console.log(rows); })();\n" }
+  ],
+  "patches": []
+}
+

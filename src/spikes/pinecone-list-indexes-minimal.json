@@ -1,0 +1,18 @@
+{
+  "id": "pinecone-list-indexes-minimal",
+  "name": "Pinecone List Indexes (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "pinecone"],
+  "tags": ["vector", "inspect"],
+  "description": "List Pinecone indexes in the current project.",
+  "params": [
+    { "name": "app_name", "default": "pinecone-list-indexes" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { Pinecone } from '@pinecone-database/pinecone';\nconst pc = new Pinecone({ apiKey: process.env.PINECONE_API_KEY });\nconst indexes = await pc.listIndexes();\nnconsole.log(indexes);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@pinecone-database/pinecone\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "PINECONE_API_KEY=...\n" }
+  ],
+  "patches": []
+}
+

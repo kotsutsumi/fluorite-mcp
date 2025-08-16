@@ -1,0 +1,16 @@
+{
+  "id": "trpc-fastify-minimal",
+  "name": "tRPC + Fastify Minimal (TS)",
+  "version": "1.0.0",
+  "stack": ["node", "trpc", "fastify", "typescript"],
+  "tags": ["api"],
+  "description": "Fastify server with tRPC router using zod.",
+  "params": [ { "name": "app_name", "default": "trpc-fastify" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"start\": \"node --loader ts-node/esm src/index.ts\" },\n  \"dependencies\": { \"@trpc/server\": \"latest\", \"zod\": \"latest\", \"fastify\": \"latest\" },\n  \"devDependencies\": { \"typescript\": \"^5\", \"ts-node\": \"^10\" }\n}\n" },
+    { "path": "{{app_name}}/tsconfig.json", "template": "{ \"compilerOptions\": { \"module\": \"es2022\", \"target\": \"es2022\", \"moduleResolution\": \"bundler\", \"strict\": true } }\n" },
+    { "path": "{{app_name}}/src/index.ts", "template": "import Fastify from 'fastify';\nimport { initTRPC } from '@trpc/server';\nimport { fastifyTRPCPlugin } from '@trpc/server/adapters/fastify';\nimport { z } from 'zod';\nconst t = initTRPC.create();\nconst appRouter = t.router({\n  hello: t.procedure.input(z.object({ name: z.string().default('world') }).optional()).query(({ input }) => ({ hello: input?.name ?? 'world' }))\n});\nconst fastify = Fastify();\nawait fastify.register(fastifyTRPCPlugin, { prefix: '/trpc', trpcOptions: { router: appRouter } });\nawait fastify.listen({ port: Number('{{port}}') });\nconsole.log('listening on {{port}}');\nexport type AppRouter = typeof appRouter;\n" }
+  ],
+  "patches": []
+}
+

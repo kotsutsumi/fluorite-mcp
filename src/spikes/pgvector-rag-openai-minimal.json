@@ -1,0 +1,19 @@
+{
+  "id": "pgvector-rag-openai-minimal",
+  "name": "RAG: OpenAI + pgvector (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "postgres", "pgvector", "openai"],
+  "tags": ["rag", "vector"],
+  "description": "Embed with OpenAI, store in Postgres pgvector, then similarity search.",
+  "params": [
+    { "name": "app_name", "default": "rag-pgvector" },
+    { "name": "database_url", "default": "postgres://postgres:postgres@localhost:5432/postgres" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import OpenAI from 'openai';\nimport pg from 'pg';\nconst openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst client = new pg.Client({ connectionString: process.env.DATABASE_URL || '{{database_url}}' });\nawait client.connect();\nawait client.query('CREATE EXTENSION IF NOT EXISTS vector');\nawait client.query('CREATE TABLE IF NOT EXISTS chunks (id serial primary key, embedding vector(1536), text text)');\nawait client.query('TRUNCATE chunks');\nconst docs = ['hello world', 'fluorite mcp spike'];\nconst emb = await openai.embeddings.create({ model: 'text-embedding-3-small', input: docs });\nfor (let i = 0; i < docs.length; i++) {\n  await client.query('INSERT INTO chunks (embedding, text) VALUES ($1, $2)', [emb.data[i].embedding, docs[i]]);\n}\nconst q = emb.data[0].embedding;\nconst { rows } = await client.query('SELECT text, embedding <=> $1 as dist FROM chunks ORDER BY dist ASC LIMIT 2', [q]);\nconsole.log(rows.map(r => r.text));\nawait client.end();\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"openai\": \"latest\", \"pg\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\nDATABASE_URL=postgres://postgres:postgres@localhost:5432/postgres\n" }
+  ],
+  "patches": []
+}
+

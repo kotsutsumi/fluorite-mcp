@@ -1,0 +1,15 @@
+{
+  "id": "hono-minimal",
+  "name": "Hono Minimal API",
+  "version": "1.0.0",
+  "stack": ["node", "hono"],
+  "tags": ["api"],
+  "description": "Minimal Hono server with health + hello.",
+  "params": [ { "name": "app_name", "default": "hono-app" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"scripts\": { \"start\": \"node index.mjs\" }, \"dependencies\": { \"hono\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.mjs", "template": "import { Hono } from 'hono';\nimport { serve } from '@hono/node-server';\nconst app = new Hono();\napp.get('/health', c => c.json({ status: 'ok' }));\napp.get('/', c => c.json({ hello: 'world' }));\nserve({ fetch: app.fetch, port: Number('{{port}}') });\n" }
+  ],
+  "patches": []
+}
+

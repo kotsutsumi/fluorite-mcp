@@ -1,0 +1,15 @@
+{
+  "id": "drizzle-postgres-minimal",
+  "name": "Drizzle ORM + Postgres Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "drizzle", "postgres"],
+  "tags": ["db"],
+  "description": "Drizzle ORM with node-postgres client.",
+  "params": [ { "name": "app_name", "default": "drizzle-pg" }, { "name": "pg_uri", "default": "postgres://postgres:postgres@localhost:5432/postgres" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"start\": \"node index.mjs\" },\n  \"dependencies\": { \"drizzle-orm\": \"latest\", \"pg\": \"latest\" }\n}\n" },
+    { "path": "{{app_name}}/index.mjs", "template": "import pkg from 'pg';\nimport { drizzle } from 'drizzle-orm/node-postgres';\nconst { Client } = pkg;\nconst client = new Client({ connectionString: '{{pg_uri}}' });\nawait client.connect();\nconst db = drizzle(client);\nawait client.query('CREATE TABLE IF NOT EXISTS items (id serial primary key, name text)');\nawait client.query(`INSERT INTO items(name) VALUES('hello')`);\nconst res = await client.query('SELECT count(*) FROM items');\nconsole.log('Item count', res.rows[0].count);\nawait client.end();\n" }
+  ],
+  "patches": []
+}
+

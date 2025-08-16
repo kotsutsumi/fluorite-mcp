@@ -1,0 +1,15 @@
+{
+  "id": "cookie-session-express-minimal",
+  "name": "cookie-session + Express 最小",
+  "version": "1.0.0",
+  "stack": ["express", "session"],
+  "tags": ["session"],
+  "description": "cookie-session で署名付きセッション。",
+  "params": [ { "name": "app_name", "default": "cookie-session" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"cookie-session\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst cookieSession = require('cookie-session');\nconst app = express();\napp.use(cookieSession({ name: 's', keys: ['dev'] }));\napp.get('/', (req,res)=>{ req.session.count = (req.session.count||0)+1; res.json({ count: req.session.count }); });\napp.listen(Number('{{port}}'));\n" }
+  ],
+  "patches": []
+}
+

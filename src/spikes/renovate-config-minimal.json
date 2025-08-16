@@ -1,0 +1,14 @@
+{
+  "id": "renovate-config-minimal",
+  "name": "Renovate Config Minimal",
+  "version": "1.0.0",
+  "stack": ["renovate"],
+  "tags": ["deps"],
+  "description": "Basic Renovate configuration.",
+  "params": [ { "name": "app_name", "default": "renovate-config" } ],
+  "files": [
+    { "path": "{{app_name}}/renovate.json", "template": "{ \"extends\": [\"config:base\"], \"labels\": [\"dependencies\"] }\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "socketio-redis-adapter-minimal",
+  "name": "Socket.IO Redis Adapter Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "socket.io", "redis"],
+  "tags": ["realtime"],
+  "description": "Socket.IO server using Redis adapter (single node demo).",
+  "params": [ { "name": "app_name", "default": "sio-redis" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"socket.io\": \"latest\", \"ioredis\": \"latest\", \"@socket.io/redis-adapter\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const { createAdapter } = require('@socket.io/redis-adapter');\nconst { createClient } = require('ioredis');\nconst { Server } = require('socket.io');\nconst io = new Server(Number('{{port}}'));\n(async () => {\n  const pub = new (createClient).constructor();\n  const sub = new (createClient).constructor();\n  io.adapter(createAdapter(pub, sub));\n  io.on('connection', s => s.on('echo', m => s.emit('echo', m)));\n  console.log('socket.io on {{port}}');\n})();\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "pdf-lib-generate-minimal",
+  "name": "pdf-lib でPDF生成",
+  "version": "1.0.0",
+  "stack": ["node", "pdf"],
+  "tags": ["pdf"],
+  "description": "pdf-libを使って簡単なPDFを生成。",
+  "params": [ { "name": "app_name", "default": "pdf-lib-demo" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node make.js\" }, \"dependencies\": { \"pdf-lib\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/make.js", "template": "const { PDFDocument, StandardFonts, rgb } = require('pdf-lib');\nconst fs = require('fs');\n(async () => {\n  const doc = await PDFDocument.create();\n  const page = doc.addPage([400, 200]);\n  const font = await doc.embedFont(StandardFonts.Helvetica);\n  page.drawText('Hello PDF', { x: 50, y: 150, size: 24, font, color: rgb(0,0.53,0.71) });\n  const bytes = await doc.save();\n  fs.writeFileSync('hello.pdf', bytes);\n  console.log('generated hello.pdf');\n})();\n" }
+  ],
+  "patches": []
+}
+

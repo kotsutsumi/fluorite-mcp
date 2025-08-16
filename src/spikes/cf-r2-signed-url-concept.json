@@ -1,0 +1,14 @@
+{
+  "id": "cf-r2-signed-url-concept",
+  "name": "Cloudflare R2 署名URL（概念）",
+  "version": "1.0.0",
+  "stack": ["cloudflare", "r2"],
+  "tags": ["storage"],
+  "description": "R2 はS3互換署名URLが利用可能。設定手順の概念README。",
+  "params": [ { "name": "app_name", "default": "r2-signed-concept" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "Cloudflare R2 でS3互換の署名付きURLを発行するには、S3 SDK に R2 のエンドポイント/認証情報を設定してください。\n" }
+  ],
+  "patches": []
+}
+

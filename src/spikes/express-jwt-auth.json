@@ -1,0 +1,19 @@
+{
+  "id": "express-jwt-auth",
+  "name": "Express JWT Auth Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "express", "jwt"],
+  "tags": ["auth"],
+  "description": "Express server issuing and verifying JWTs.",
+  "params": [
+    { "name": "app_name", "default": "express-jwt" },
+    { "name": "port", "default": "3000" },
+    { "name": "jwt_secret", "default": "devsecret" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"jsonwebtoken\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst jwt = require('jsonwebtoken');\nconst app = express();\napp.use(express.json());\napp.post('/login', (req, res) => { const token = jwt.sign({ sub: 'user1' }, '{{jwt_secret}}', { expiresIn: '1h' }); res.json({ token }); });\napp.get('/profile', (req, res) => { const auth = req.headers.authorization||''; const token = auth.replace('Bearer ', ''); try { const payload = jwt.verify(token, '{{jwt_secret}}'); res.json({ user: payload.sub }); } catch(e){ res.status(401).json({ error: 'unauthorized' }); } });\napp.get('/health', (_req, res) => res.json({ status: 'ok' }));\napp.listen({{port}}, () => console.log('listening on {{port}}'));\n" }
+  ],
+  "patches": []
+}
+

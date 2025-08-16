@@ -1,0 +1,15 @@
+{
+  "id": "rate-limit-redis-express",
+  "name": "Rate Limit Redis + Express",
+  "version": "1.0.0",
+  "stack": ["node", "express", "redis"],
+  "tags": ["security"],
+  "description": "rate-limiter-flexible + ioredis で分散レート制御。",
+  "params": [ { "name": "app_name", "default": "rl-redis" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"ioredis\": \"latest\", \"rate-limiter-flexible\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst Redis = require('ioredis');\nconst { RateLimiterRedis } = require('rate-limiter-flexible');\nconst redis = new Redis();\nconst limiter = new RateLimiterRedis({ storeClient: redis, points: 10, duration: 60 });\nconst app = express();\napp.use(async (req,res,next)=>{ try { await limiter.consume(req.ip); next(); } catch { res.status(429).send('Too Many Requests'); } });\napp.get('/', (_req,res)=>res.json({ ok: true }));\napp.listen(Number('{{port}}'), ()=>console.log('listening on {{port}}'));\n" }
+  ],
+  "patches": []
+}
+

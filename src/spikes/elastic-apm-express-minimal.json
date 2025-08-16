@@ -1,0 +1,16 @@
+{
+  "id": "elastic-apm-express-minimal",
+  "name": "Elastic APM + Express 最小",
+  "version": "1.0.0",
+  "stack": ["node", "express", "elastic-apm"],
+  "tags": ["apm"],
+  "description": "Elastic APM Node Agent を Express に適用。",
+  "params": [ { "name": "app_name", "default": "apm-express" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"NODE_OPTIONS='-r elastic-apm-node/start' node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"elastic-apm-node\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst app = express();\napp.get('/', (_req,res)=>res.json({ ok:true }));\napp.listen(Number('{{port}}'), ()=>console.log('listening on {{port}}'));\n" },
+    { "path": "{{app_name}}/README.md", "template": "APM サーバー URL 等の環境変数を設定してください（ELASTIC_APM_SERVER_URL など）。\n" }
+  ],
+  "patches": []
+}
+

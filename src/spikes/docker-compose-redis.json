@@ -1,0 +1,14 @@
+{
+  "id": "docker-compose-redis",
+  "name": "Docker Compose - Redis",
+  "version": "1.0.0",
+  "stack": ["docker", "redis"],
+  "tags": ["infra", "docker"],
+  "description": "Minimal docker-compose for Redis and redis-commander.",
+  "params": [ { "name": "app_name", "default": "redis-stack" } ],
+  "files": [
+    { "path": "{{app_name}}/docker-compose.yml", "template": "version: '3.9'\nservices:\n  redis:\n    image: redis:7-alpine\n    ports: ['6379:6379']\n  redis-commander:\n    image: rediscommander/redis-commander:latest\n    environment:\n      - REDIS_HOSTS=local:redis:6379\n    ports: ['8081:8081']\n    depends_on: [redis]\n" }
+  ],
+  "patches": []
+}
+

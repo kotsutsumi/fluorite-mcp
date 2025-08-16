@@ -1,0 +1,18 @@
+{
+  "id": "gpt-tokenizer-count-minimal",
+  "name": "Token Count with gpt-tokenizer (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "tokenizer"],
+  "tags": ["tokens"],
+  "description": "Count tokens for a string using gpt-tokenizer.",
+  "params": [
+    { "name": "app_name", "default": "gpt-tokenizer-count" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { encode } from 'gpt-tokenizer';\nconst text = process.env.TEXT || 'hello world';\nconst ids = encode(text);\nconsole.log('tokens=', ids.length);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"gpt-tokenizer\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "TEXT=hello world\n" }
+  ],
+  "patches": []
+}
+

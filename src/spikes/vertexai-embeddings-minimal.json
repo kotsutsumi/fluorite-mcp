@@ -1,0 +1,20 @@
+{
+  "id": "vertexai-embeddings-minimal",
+  "name": "Vertex AI Embeddings Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "gcp", "vertexai"],
+  "tags": ["embeddings"],
+  "description": "Generate text embeddings with Vertex AI embeddings API.",
+  "params": [
+    { "name": "app_name", "default": "vertexai-embeddings" },
+    { "name": "gcp_project_id", "default": "your-gcp-project" },
+    { "name": "gcp_location", "default": "us-central1" },
+    { "name": "embedding_model", "default": "text-embedding-004" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { VertexAI } from '@google-cloud/vertexai';\nconst v = new VertexAI({ project: process.env.GCP_PROJECT_ID || '{{gcp_project_id}}', location: process.env.GCP_LOCATION || '{{gcp_location}}' });\nconst model = v.getGenerativeModel({ model: process.env.VERTEX_EMBED_MODEL || '{{embedding_model}}' });\nconst res = await model.embedContent({ content: { parts: [{ text: 'hello world' }] } });\nconsole.log(res?.embedding?.values?.length);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@google-cloud/vertexai\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

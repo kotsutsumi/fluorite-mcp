@@ -1,0 +1,16 @@
+{
+  "id": "gcp-pubsub-push-verify-express",
+  "name": "GCP Pub/Sub Push 検証 (Express)",
+  "version": "1.0.0",
+  "stack": ["express", "gcp"],
+  "tags": ["webhook"],
+  "description": "Pub/Sub Push メッセージの検証（JWT via Google）。",
+  "params": [ { "name": "app_name", "default": "pubsub-push" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst app = express();\napp.use(express.json());\napp.post('/push', (req,res)=>{ /* x-goog-token を検証（Google 公開鍵/JWT）*/ res.send('ok'); });\napp.listen(Number('{{port}}'));\n" },
+    { "path": "{{app_name}}/README.md", "template": "Google の JWT 署名検証手順に従って x-goog-token を検証してください。\n" }
+  ],
+  "patches": []
+}
+

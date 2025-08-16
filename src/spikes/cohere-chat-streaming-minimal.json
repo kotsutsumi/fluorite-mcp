@@ -1,0 +1,19 @@
+{
+  "id": "cohere-chat-streaming-minimal",
+  "name": "Cohere Chat Streaming (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "cohere"],
+  "tags": ["llm", "stream"],
+  "description": "Stream chat tokens from Cohere using SDK streaming.",
+  "params": [
+    { "name": "app_name", "default": "cohere-stream-app" },
+    { "name": "cohere_model", "default": "command-r" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { CohereClient } from 'cohere-ai';\nconst cohere = new CohereClient({ token: process.env.COHERE_API_KEY });\nconst stream = await cohere.chatStream({ model: '{{cohere_model}}', message: 'Stream a short hello' });\nfor await (const event of stream) {\n  if (event.eventType === 'text-generation') process.stdout.write(event.text || '');\n}\nconsole.log();\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"cohere-ai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "COHERE_API_KEY=...\n" }
+  ],
+  "patches": []
+}
+

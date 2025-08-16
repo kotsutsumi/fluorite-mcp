@@ -1,0 +1,15 @@
+{
+  "id": "helmet-csp-strict",
+  "name": "Express Helmet CSP Strict",
+  "version": "1.0.0",
+  "stack": ["node", "express", "helmet"],
+  "tags": ["security"],
+  "description": "Express with strict Content-Security-Policy via helmet.",
+  "params": [ { "name": "app_name", "default": "helmet-csp" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"helmet\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst helmet = require('helmet');\nconst app = express();\napp.use(helmet.contentSecurityPolicy({ directives: { defaultSrc: [\"'self'\"], imgSrc: [\"'self'\", 'data:'], scriptSrc: [\"'self'\"], styleSrc: [\"'self'\"], objectSrc: [\"'none'\"] } }));\napp.get('/', (_req, res) => res.send('<h1>Hello</h1>'));\napp.listen(Number('{{port}}'), () => console.log('CSP strict on {{port}}'));\n" }
+  ],
+  "patches": []
+}
+

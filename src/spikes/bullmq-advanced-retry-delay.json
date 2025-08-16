@@ -1,0 +1,15 @@
+{
+  "id": "bullmq-advanced-retry-delay",
+  "name": "BullMQ 高度なリトライ/ディレイ",
+  "version": "1.0.0",
+  "stack": ["node", "bullmq", "redis"],
+  "tags": ["queue"],
+  "description": "BullMQで遅延・リトライ・バックオフ設定を実演。",
+  "params": [ { "name": "app_name", "default": "bullmq-adv" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"bullmq\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const { Queue, Worker, QueueScheduler } = require('bullmq');\nconst queueName = 'jobs';\nnew QueueScheduler(queueName);\nconst q = new Queue(queueName);\nnew Worker(queueName, async (job) => { if (!job.attemptsMade) throw new Error('fail once'); return 'ok'; });\n(async () => { await q.add('task', { t: Date.now() }, { delay: 1000, attempts: 2, backoff: { type: 'exponential', delay: 500 } }); console.log('enqueued'); })();\n" }
+  ],
+  "patches": []
+}
+

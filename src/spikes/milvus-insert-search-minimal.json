@@ -1,0 +1,20 @@
+{
+  "id": "milvus-insert-search-minimal",
+  "name": "Milvus Insert + Search (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "milvus"],
+  "tags": ["vector", "insert"],
+  "description": "Insert vectors into a Milvus collection and run a search.",
+  "params": [
+    { "name": "app_name", "default": "milvus-insert-search" },
+    { "name": "milvus_address", "default": "localhost:19530" },
+    { "name": "collection_name", "default": "documents" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { MilvusClient, MetricType } from '@zilliz/milvus2-sdk-node';\nconst client = new MilvusClient({ address: process.env.MILVUS_ADDRESS || '{{milvus_address}}' });\nconst name = process.env.MILVUS_COLLECTION || '{{collection_name}}';\nawait client.insert({ collection_name: name, fields_data: [{ text: 'hello world', embedding: [0.1,0.2,0.3] }, { text: 'fluorite', embedding: [0.2,0.1,0.25] }] });\nawait client.loadCollection({ collection_name: name });\nconst res = await client.search({ collection_name: name, vector: [[0.1,0.2,0.3]], anns_field: 'embedding', metric_type: MetricType.L2, output_fields: ['text'], limit: 2 });\nconsole.log(res?.results);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@zilliz/milvus2-sdk-node\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "MILVUS_ADDRESS=localhost:19530\nMILVUS_COLLECTION={{collection_name}}\n" }
+  ],
+  "patches": []
+}
+

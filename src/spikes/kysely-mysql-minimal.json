@@ -1,0 +1,15 @@
+{
+  "id": "kysely-mysql-minimal",
+  "name": "Kysely + MySQL 最小",
+  "version": "1.0.0",
+  "stack": ["kysely", "mysql", "node"],
+  "tags": ["db"],
+  "description": "Kysely で MySQL に接続する最小例。",
+  "params": [ { "name": "app_name", "default": "kysely-mysql" }, { "name": "mysql_uri", "default": "mysql://root:password@localhost:3306/test" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node index.mjs\" }, \"dependencies\": { \"kysely\": \"latest\", \"mysql2\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.mjs", "template": "import { Kysely, MysqlDialect } from 'kysely';\nimport mysql from 'mysql2/promise';\nconst db = new Kysely({ dialect: new MysqlDialect({ pool: mysql.createPool('{{mysql_uri}}') }) });\nawait db.executeQuery({ sql: 'CREATE TABLE IF NOT EXISTS items (id int auto_increment primary key, name varchar(255))', parameters: [] });\nawait db.executeQuery({ sql: `INSERT INTO items(name) VALUES('hello')`, parameters: [] });\nconst r = await db.executeQuery({ sql: 'SELECT count(*) c FROM items', parameters: [] });\nconsole.log(r.rows);\nprocess.exit(0);\n" }
+  ],
+  "patches": []
+}
+

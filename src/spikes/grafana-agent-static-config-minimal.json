@@ -1,0 +1,14 @@
+{
+  "id": "grafana-agent-static-config-minimal",
+  "name": "Grafana Agent Static Config",
+  "version": "1.0.0",
+  "stack": ["grafana", "agent"],
+  "tags": ["observability"],
+  "description": "Grafana Agent の静的コンフィグ例（Prom/Logs/Tracesの雛形）。",
+  "params": [ { "name": "app_name", "default": "grafana-agent" } ],
+  "files": [
+    { "path": "{{app_name}}/agent.yaml", "template": "server:\n  log_level: info\nprometheus:\n  global: { scrape_interval: 15s }\n  configs:\n    - name: default\n      scrape_configs: []\nlogs: { configs: [] }\ntraces: { configs: [] }\n" }
+  ],
+  "patches": []
+}
+

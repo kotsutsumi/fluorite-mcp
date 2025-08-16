@@ -1,0 +1,14 @@
+{
+  "id": "tsoa-express-minimal",
+  "name": "tsoa + Express 最小",
+  "version": "1.0.0",
+  "stack": ["tsoa", "express", "typescript"],
+  "tags": ["openapi", "router"],
+  "description": "tsoa を使った OpenAPI 生成 + ルーティング雛形（概念）。",
+  "params": [ { "name": "app_name", "default": "tsoa-express" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "tsoa の設定 (tsoa.json) とコントローラ定義を用いて OpenAPI を生成し、ルータを構築します。本テンプレは概念説明です。\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "fastify-s3-sign-part",
+  "name": "Fastify S3 マルチパート SignPart",
+  "version": "1.0.0",
+  "stack": ["fastify", "aws"],
+  "tags": ["upload", "s3"],
+  "description": "署名付き Part PUT 用 URL を返すエンドポイント（簡易）。",
+  "params": [ { "name": "app_name", "default": "fastify-sign-part" }, { "name": "bucket", "default": "my-bucket" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"fastify\": \"latest\", \"@aws-sdk/client-s3\": \"latest\", \"@aws-sdk/s3-request-presigner\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const Fastify = require('fastify');\nconst { S3Client, UploadPartCommand } = require('@aws-sdk/client-s3');\nconst { getSignedUrl } = require('@aws-sdk/s3-request-presigner');\nconst s3 = new S3Client({});\nconst app = Fastify();\napp.get('/sign', async (req,res)=>{ const { uploadId, partNumber } = req.query; const url = await getSignedUrl(s3, new UploadPartCommand({ Bucket: '{{bucket}}', Key: 'upload.bin', UploadId: uploadId, PartNumber: Number(partNumber) }), { expiresIn: 900 }); res.send({ url }); });\napp.listen({ port: Number('{{port}}') });\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "pino-redaction-minimal",
+  "name": "Pino Redaction 最小",
+  "version": "1.0.0",
+  "stack": ["pino", "node"],
+  "tags": ["logging"],
+  "description": "pino の redact オプションで機密情報をマスク。",
+  "params": [ { "name": "app_name", "default": "pino-redact" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node index.mjs\" }, \"dependencies\": { \"pino\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.mjs", "template": "import pino from 'pino';\nconst logger = pino({ redact: ['password', 'token'] });\nlogger.info({ user: 'a', password: 'secret' }, 'masked');\n" }
+  ],
+  "patches": []
+}
+

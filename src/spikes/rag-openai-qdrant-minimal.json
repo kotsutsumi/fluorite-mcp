@@ -1,0 +1,20 @@
+{
+  "id": "rag-openai-qdrant-minimal",
+  "name": "RAG: OpenAI + Qdrant (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "openai", "qdrant"],
+  "tags": ["rag", "vector"],
+  "description": "Embed with OpenAI, upsert to Qdrant, then search and print payloads.",
+  "params": [
+    { "name": "app_name", "default": "rag-openai-qdrant" },
+    { "name": "qdrant_url", "default": "http://localhost:6333" },
+    { "name": "qdrant_collection", "default": "documents" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import OpenAI from 'openai';\nimport { QdrantClient } from '@qdrant/js-client-rest';\nconst openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst client = new QdrantClient({ url: process.env.QDRANT_URL || '{{qdrant_url}}' });\nconst collection = process.env.QDRANT_COLLECTION || '{{qdrant_collection}}';\nconst docs = ['hello world', 'fluorite mcp spike'];\nconst emb = await openai.embeddings.create({ model: 'text-embedding-3-small', input: docs });\nconst points = emb.data.map((d, i) => ({ id: String(i+1), vector: d.embedding, payload: { text: docs[i] } }));\nawait client.upsert(collection, { points });\nconst res = await client.search(collection, { vector: emb.data[0].embedding, limit: 2 });\nconsole.log(res.map(p => p.payload?.text));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"openai\": \"latest\", \"@qdrant/js-client-rest\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\nQDRANT_URL=http://localhost:6333\nQDRANT_COLLECTION={{qdrant_collection}}\n" }
+  ],
+  "patches": []
+}
+

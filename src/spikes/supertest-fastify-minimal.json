@@ -1,0 +1,15 @@
+{
+  "id": "supertest-fastify-minimal",
+  "name": "Supertest + Fastify 最小",
+  "version": "1.0.0",
+  "stack": ["fastify", "supertest", "node"],
+  "tags": ["test"],
+  "description": "Supertest で Fastify のエンドポイントをテスト。",
+  "params": [ { "name": "app_name", "default": "supertest-fastify" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"test\": \"node test.mjs\" }, \"dependencies\": { \"fastify\": \"latest\", \"supertest\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/test.mjs", "template": "import Fastify from 'fastify';\nimport request from 'supertest';\nconst app = Fastify();\napp.get('/hello', async ()=>({ hello: 'world' }));\nconst res = await request(app.server).get('/hello');\nconsole.log(res.status, res.body.hello);\n" }
+  ],
+  "patches": []
+}
+

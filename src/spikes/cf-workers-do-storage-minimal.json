@@ -1,0 +1,15 @@
+{
+  "id": "cf-workers-do-storage-minimal",
+  "name": "Durable Objects Storage 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare", "workers", "durable-objects"],
+  "tags": ["serverless"],
+  "description": "state.storage を用いた DO のカウンタ保存。",
+  "params": [ { "name": "app_name", "default": "cf-do-storage" } ],
+  "files": [
+    { "path": "{{app_name}}/worker.js", "template": "export class Counter {\n  constructor(state) { this.state = state; }\n  async fetch() { const v = (await this.state.storage.get('v')) || 0; const next = v + 1; await this.state.storage.put('v', next); return new Response(JSON.stringify({ value: next }), { headers: { 'content-type': 'application/json' } }); }\n}\nexport default {\n  async fetch(_req, env) { const id = env.COUNTER.idFromName('a'); const obj = env.COUNTER.get(id); return obj.fetch('https://dummy'); }\n};\n" },
+    { "path": "{{app_name}}/README.md", "template": "wrangler.toml で durable_objects と binding `COUNTER` を設定してください。\n" }
+  ],
+  "patches": []
+}
+

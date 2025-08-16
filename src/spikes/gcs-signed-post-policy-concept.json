@@ -1,0 +1,14 @@
+{
+  "id": "gcs-signed-post-policy-concept",
+  "name": "GCS Signed POST Policy（概念）",
+  "version": "1.0.0",
+  "stack": ["gcp", "storage"],
+  "tags": ["storage"],
+  "description": "GCS の署名付きPOSTポリシー生成に関する概念説明。",
+  "params": [ { "name": "app_name", "default": "gcs-post-policy" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "GCS の Signed POST Policy は署名鍵とポリシーを生成し、フォーム経由で直接アップロードします。本テンプレは手順の概説です。\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "joi-validation-express-minimal",
+  "name": "Joi バリデーション + Express",
+  "version": "1.0.0",
+  "stack": ["node", "express", "joi"],
+  "tags": ["validation"],
+  "description": "Joi でリクエストボディを検証。",
+  "params": [ { "name": "app_name", "default": "joi-express" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"joi\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst Joi = require('joi');\nconst app = express();\napp.use(express.json());\napp.post('/echo', (req,res)=>{ const schema = Joi.object({ name: Joi.string().required() }); const { error, value } = schema.validate(req.body); if (error) return res.status(400).json({ error: error.message }); res.json({ name: value.name }); });\napp.listen(Number('{{port}}'), ()=>console.log('listening on {{port}}'));\n" }
+  ],
+  "patches": []
+}
+

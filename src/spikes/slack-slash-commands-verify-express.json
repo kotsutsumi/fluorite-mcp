@@ -1,0 +1,16 @@
+{
+  "id": "slack-slash-commands-verify-express",
+  "name": "Slack Slash Commands 検証 (Express)",
+  "version": "1.0.0",
+  "stack": ["express", "slack"],
+  "tags": ["webhook", "security"],
+  "description": "Slack 署名 (X-Slack-Signature) 検証の最小例。",
+  "params": [ { "name": "app_name", "default": "slack-slash" }, { "name": "port", "default": "3000" }, { "name": "signing_secret", "default": "secret" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst crypto = require('crypto');\nconst app = express();\napp.use(express.urlencoded({ extended: true }));\napp.post('/slack', (req,res)=>{ const ts = req.headers['x-slack-request-timestamp']; const sig = req.headers['x-slack-signature']; const base = `v0:${ts}:${new URLSearchParams(req.body).toString()}`; const h = 'v0=' + crypto.createHmac('sha256', '{{signing_secret}}').update(base).digest('hex'); if (!crypto.timingSafeEqual(Buffer.from(h), Buffer.from(sig))) return res.status(401).send('invalid'); res.send('ok'); });\napp.listen(Number('{{port}}'), ()=>console.log('listening'));\n" },
+    { "path": "{{app_name}}/README.md", "template": "URL エンコードされたボディを元に署名計算する点に注意。リプレイ対策としてタイムスタンプ検証も行ってください。\n" }
+  ],
+  "patches": []
+}
+

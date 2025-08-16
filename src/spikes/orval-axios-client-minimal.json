@@ -1,0 +1,16 @@
+{
+  "id": "orval-axios-client-minimal",
+  "name": "Orval Axios クライアント生成",
+  "version": "1.0.0",
+  "stack": ["openapi", "axios", "typescript"],
+  "tags": ["codegen"],
+  "description": "Orval で axios クライアントを生成する最小構成。",
+  "params": [ { "name": "app_name", "default": "orval-axios" } ],
+  "files": [
+    { "path": "{{app_name}}/openapi.yaml", "template": "openapi: 3.0.0\ninfo: { title: API, version: '1.0.0' }\npaths: { /hello: { get: { responses: { '200': { description: ok } } } } }\n" },
+    { "path": "{{app_name}}/orval.config.cjs", "template": "module.exports = { api: { input: './openapi.yaml', output: { client: 'axios', target: './src/client.ts' } } };\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"gen\": \"orval --config orval.config.cjs\" }, \"devDependencies\": { \"orval\": \"^6\" } }\n" }
+  ],
+  "patches": []
+}
+

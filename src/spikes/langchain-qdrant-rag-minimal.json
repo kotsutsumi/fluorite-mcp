@@ -1,0 +1,20 @@
+{
+  "id": "langchain-qdrant-rag-minimal",
+  "name": "LangChain RAG with Qdrant (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "langchain", "qdrant", "openai"],
+  "tags": ["rag", "langchain"],
+  "description": "Use LangChain + OpenAI embeddings with Qdrant vector store for similarity search.",
+  "params": [
+    { "name": "app_name", "default": "lc-qdrant-rag" },
+    { "name": "qdrant_url", "default": "http://localhost:6333" },
+    { "name": "qdrant_collection", "default": "documents" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { OpenAIEmbeddings } from '@langchain/openai';\nimport { QdrantVectorStore } from '@langchain/qdrant';\nconst embeddings = new OpenAIEmbeddings({ apiKey: process.env.OPENAI_API_KEY });\nconst store = await QdrantVectorStore.fromTexts(['hello world', 'fluorite mcp spike'], [{ id: '1' }, { id: '2' }], embeddings, {\n  url: process.env.QDRANT_URL || '{{qdrant_url}}',\n  collectionName: process.env.QDRANT_COLLECTION || '{{qdrant_collection}}'\n});\nconst res = await store.similaritySearch('fluorite', 2);\nconsole.log(res.map(r => r.pageContent));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@langchain/openai\": \"latest\", \"@langchain/qdrant\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\nQDRANT_URL=http://localhost:6333\nQDRANT_COLLECTION={{qdrant_collection}}\n" }
+  ],
+  "patches": []
+}
+

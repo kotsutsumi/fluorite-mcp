@@ -1,0 +1,14 @@
+{
+  "id": "aws-s3-select-object-concept",
+  "name": "S3 Select Object（概念）",
+  "version": "1.0.0",
+  "stack": ["aws", "s3"],
+  "tags": ["storage"],
+  "description": "S3 Select で CSV/JSON をフィルタ取得する手順（概念）。",
+  "params": [ { "name": "app_name", "default": "s3-select" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "S3 SelectObjectContent API を利用して CSV/JSON の一部を抽出できます（概念）。\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "lambda-edge-viewer-request-minimal",
+  "name": "Lambda@Edge Viewer Request Minimal",
+  "version": "1.0.0",
+  "stack": ["aws", "cloudfront", "lambda@edge"],
+  "tags": ["serverless"],
+  "description": "CloudFront Viewer Request イベントでヘッダ追加する最小例。",
+  "params": [ { "name": "app_name", "default": "lambda-edge-vr" } ],
+  "files": [
+    { "path": "{{app_name}}/index.js", "template": "exports.handler = async (event) => { const req = event.Records[0].cf.request; req.headers['x-powered-by'] = [{ key: 'X-Powered-By', value: 'fluorite' }]; return req; };\n" },
+    { "path": "{{app_name}}/README.md", "template": "Lambda@Edge 用に N. Virginia (us-east-1) にデプロイしてください。\n" }
+  ],
+  "patches": []
+}
+

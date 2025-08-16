@@ -1,0 +1,15 @@
+{
+  "id": "sharp-watermark-overlay-minimal",
+  "name": "sharp 透かし合成 最小",
+  "version": "1.0.0",
+  "stack": ["sharp", "node"],
+  "tags": ["media"],
+  "description": "overlayWith で透かし合成（簡易）。",
+  "params": [ { "name": "app_name", "default": "sharp-watermark" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node wm.js\" }, \"dependencies\": { \"sharp\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/wm.js", "template": "const sharp = require('sharp');\n(async ()=>{ const base = Buffer.alloc(100); const wm = Buffer.alloc(10); const out = await sharp(base).composite([{ input: wm, gravity: 'southeast' }]).png().toBuffer(); console.log('bytes', out.length); })();\n" }
+  ],
+  "patches": []
+}
+

@@ -107,13 +107,24 @@ export async function ensureSpikeDirectory(cfg: SpikeCatalogConfig = DEFAULT_SPI
 export async function listSpikeIds(filter?: string, cfg: SpikeCatalogConfig = DEFAULT_SPIKE_CONFIG): Promise<string[]> {
   await ensureSpikeDirectory(cfg);
   const entries = await readdir(path.resolve(cfg.baseDir));
-  const ids = entries
+  let ids = entries
     .filter(f => f.endsWith('.json'))
     .map(f => f.replace(/\.json$/i, ''))
     .sort();
-  if (!filter) return ids;
-  const re = new RegExp(filter, 'i');
-  return ids.filter(id => re.test(id));
+
+  if (filter) {
+    const re = new RegExp(filter, 'i');
+    ids = ids.filter(id => re.test(id));
+  }
+
+  // Optional: limit how many spikes we expose (helps tests reduce memory usage)
+  const limEnv = process.env.FLUORITE_SPIKE_LIST_LIMIT;
+  const limit = limEnv ? parseInt(limEnv, 10) : NaN;
+  if (!Number.isNaN(limit) && limit > 0) {
+    ids = ids.slice(0, limit);
+  }
+
+  return ids;
 }
 
 export async function loadSpike(id: string, cfg: SpikeCatalogConfig = DEFAULT_SPIKE_CONFIG): Promise<SpikeSpec> {

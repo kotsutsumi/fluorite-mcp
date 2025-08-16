@@ -1,0 +1,18 @@
+{
+  "id": "koa-minimal",
+  "name": "Koa Minimal API",
+  "version": "1.0.0",
+  "stack": ["node", "koa"],
+  "tags": ["api"],
+  "description": "Minimal Koa server with health route.",
+  "params": [
+    { "name": "app_name", "default": "koa-app" },
+    { "name": "port", "default": "3000" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"koa\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const Koa = require('koa');\nconst app = new Koa();\napp.use(async (ctx, next) => { if (ctx.path === '/health') { ctx.body = { status: 'ok' }; return; } await next(); });\napp.use(async (ctx) => { ctx.body = { hello: 'world' }; });\napp.listen({{port}}, () => console.log('listening on {{port}}'));\n" }
+  ],
+  "patches": []
+}
+

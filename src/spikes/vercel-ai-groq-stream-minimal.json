@@ -1,0 +1,18 @@
+{
+  "id": "vercel-ai-groq-stream-minimal",
+  "name": "Vercel AI SDK + Groq Streaming (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "vercel-ai", "groq"],
+  "tags": ["llm", "stream"],
+  "description": "Stream text with the Vercel AI SDK using Groq provider.",
+  "params": [
+    { "name": "app_name", "default": "vercel-ai-groq-stream" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { createGroq } from '@ai-sdk/groq';\nimport { streamText } from 'ai';\nconst groq = createGroq({ apiKey: process.env.GROQ_API_KEY });\nconst result = await streamText({ model: groq('llama-3.1-8b-instant'), prompt: 'Stream a short hello' });\nfor await (const part of result.textStream) { process.stdout.write(part); }\nconsole.log();\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@ai-sdk/groq\": \"latest\", \"ai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "GROQ_API_KEY=gsk_...\n" }
+  ],
+  "patches": []
+}
+

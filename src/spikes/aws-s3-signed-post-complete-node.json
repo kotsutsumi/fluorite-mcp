@@ -1,0 +1,15 @@
+{
+  "id": "aws-s3-signed-post-complete-node",
+  "name": "AWS S3 Signed POST Policy 完全雛形",
+  "version": "1.0.0",
+  "stack": ["aws", "s3", "node"],
+  "tags": ["storage", "upload"],
+  "description": "S3 の Signed POST Policy を生成し、フォーム項目例を出力（署名は概念）。",
+  "params": [ { "name": "app_name", "default": "s3-post-complete" }, { "name": "bucket", "default": "my-bucket" } ],
+  "files": [
+    { "path": "{{app_name}}/policy.js", "template": "const policy = { expiration: new Date(Date.now()+3600_000).toISOString(), conditions: [{ bucket: '{{bucket}}' }, ['starts-with', '$key', 'uploads/'], ['content-length-range', 0, 10485760] ] }; console.log(Buffer.from(JSON.stringify(policy)).toString('base64'));\n" },
+    { "path": "{{app_name}}/README.md", "template": "実運用では署名付き POST の policy, x-amz-credential, x-amz-algorithm, x-amz-date, x-amz-signature を返却してください。\n" }
+  ],
+  "patches": []
+}
+

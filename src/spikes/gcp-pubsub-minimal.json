@@ -1,0 +1,16 @@
+{
+  "id": "gcp-pubsub-minimal",
+  "name": "GCP Pub/Sub Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "gcp"],
+  "tags": ["messaging"],
+  "description": "Publish and pull a Pub/Sub message.",
+  "params": [ { "name": "app_name", "default": "pubsub-demo" }, { "name": "topic", "default": "demo-topic" }, { "name": "subscription", "default": "demo-sub" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@google-cloud/pubsub\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const { PubSub } = require('@google-cloud/pubsub');\nconst pubsub = new PubSub();\n(async () => {\n  const topicName = '{{topic}}';\n  const subName = '{{subscription}}';\n  const [topic] = await pubsub.topic(topicName).get({ autoCreate: true });\n  const [sub] = await topic.createSubscription(subName).catch(async e => { if (e.code === 6) return [pubsub.subscription(subName)]; throw e; });\n  await topic.publishMessage({ data: Buffer.from('hello') });\n  const [msgs] = await sub.pull({ maxMessages: 1 });\n  if (msgs.receivedMessages?.length) {\n    console.log('received', msgs.receivedMessages[0].message.data.toString());\n  }\n})();\n" },
+    { "path": "{{app_name}}/README.md", "template": "Requires GOOGLE_APPLICATION_CREDENTIALS set for local dev.\n" }
+  ],
+  "patches": []
+}
+

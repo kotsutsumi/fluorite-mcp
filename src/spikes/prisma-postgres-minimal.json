@@ -1,0 +1,16 @@
+{
+  "id": "prisma-postgres-minimal",
+  "name": "Prisma + Postgres 最小",
+  "version": "1.0.0",
+  "stack": ["node", "prisma", "postgres"],
+  "tags": ["db"],
+  "description": "Prisma で Postgres に接続（schema と簡易スクリプト）。",
+  "params": [ { "name": "app_name", "default": "prisma-pg" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"scripts\": { \"postinstall\": \"prisma generate\", \"seed\": \"node script.js\" },\n  \"dependencies\": { \"@prisma/client\": \"latest\" },\n  \"devDependencies\": { \"prisma\": \"latest\" }\n}\n" },
+    { "path": "{{app_name}}/prisma/schema.prisma", "template": "generator client { provider = \"prisma-client-js\" }\ndatasource db { provider = \"postgresql\" url = \"postgresql://postgres:postgres@localhost:5432/postgres\" }\nmodel Item { id Int @id @default(autoincrement()) name String }\n" },
+    { "path": "{{app_name}}/script.js", "template": "const { PrismaClient } = require('@prisma/client');\nconst prisma = new PrismaClient();\n(async () => { await prisma.item.create({ data: { name: 'hello' } }); console.log('count', await prisma.item.count()); await prisma.$disconnect(); })();\n" }
+  ],
+  "patches": []
+}
+

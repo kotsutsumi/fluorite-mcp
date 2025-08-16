@@ -1,0 +1,15 @@
+{
+  "id": "prometheus-histogram-express-minimal",
+  "name": "Prometheus Histogram (Express)",
+  "version": "1.0.0",
+  "stack": ["express", "prometheus"],
+  "tags": ["observability"],
+  "description": "ヒストグラムでレスポンスタイム計測。",
+  "params": [ { "name": "app_name", "default": "prom-hist" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"prom-client\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst client = require('prom-client');\nconst app = express();\nconst h = new client.Histogram({ name: 'http_request_duration_seconds', help: 'duration', buckets: [0.05,0.1,0.25,0.5,1,2] });\napp.use((req,res,next)=>{ const end = h.startTimer(); res.on('finish', ()=>end()); next(); });\napp.get('/', (_req,res)=>res.send('ok'));\napp.get('/metrics', async (_req,res)=>{ res.set('Content-Type', client.register.contentType); res.end(await client.register.metrics()); });\napp.listen(Number('{{port}}'));\n" }
+  ],
+  "patches": []
+}
+

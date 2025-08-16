@@ -1,0 +1,19 @@
+{
+  "id": "bun-elysia-minimal",
+  "name": "Bun Elysia Minimal",
+  "version": "1.0.0",
+  "stack": ["bun", "elysia"],
+  "tags": ["api"],
+  "description": "Minimal Elysia server on Bun runtime.",
+  "params": [
+    { "name": "app_name", "default": "elysia-app" },
+    { "name": "port", "default": "3000" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"bun run index.ts\" }, \"devDependencies\": {}, \"dependencies\": { \"elysia\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.ts", "template": "import { Elysia } from 'elysia';\nconst app = new Elysia()\n  .get('/health', () => ({ status: 'ok' }))\n  .get('/', () => ({ hello: 'world' }))\n  .listen({{port}});\nconsole.log('listening on', app.server?.port);\n" },
+    { "path": "{{app_name}}/README.md", "template": "# Bun Elysia Minimal\n\nRun with: bun run index.ts\n" }
+  ],
+  "patches": []
+}
+

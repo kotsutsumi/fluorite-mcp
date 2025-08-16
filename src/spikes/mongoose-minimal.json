@@ -1,0 +1,18 @@
+{
+  "id": "mongoose-minimal",
+  "name": "Mongoose Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "mongodb", "mongoose"],
+  "tags": ["db"],
+  "description": "Minimal Mongoose connection and simple model.",
+  "params": [
+    { "name": "app_name", "default": "mongoose-app" },
+    { "name": "mongo_uri", "default": "mongodb://localhost:27017/test" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"mongoose\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const mongoose = require('mongoose');\nconst uri = '{{mongo_uri}}';\nconst User = mongoose.model('User', new mongoose.Schema({ name: String }));\n(async () => {\n  await mongoose.connect(uri);\n  console.log('Connected');\n  const u = await User.create({ name: 'Alice' });\n  console.log('Inserted', u.name);\n  const count = await User.countDocuments();\n  console.log('User count', count);\n  await mongoose.disconnect();\n})();\n" }
+  ],
+  "patches": []
+}
+

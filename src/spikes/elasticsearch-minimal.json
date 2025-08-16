@@ -1,0 +1,15 @@
+{
+  "id": "elasticsearch-minimal",
+  "name": "Elasticsearch Minimal",
+  "version": "1.0.0",
+  "stack": ["elasticsearch", "node"],
+  "tags": ["search"],
+  "description": "Index a document and search it.",
+  "params": [ { "name": "app_name", "default": "es-app" }, { "name": "node_url", "default": "http://localhost:9200" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"@elastic/elasticsearch\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const { Client } = require('@elastic/elasticsearch');\nconst client = new Client({ node: '{{node_url}}' });\n(async () => {\n  await client.index({ index: 'docs', id: '1', document: { title: 'hello' } });\n  await client.indices.refresh({ index: 'docs' });\n  const result = await client.search({ index: 'docs', query: { match: { title: 'hello' } } });\n  console.log('hits', result.hits.hits.length);\n})();\n" }
+  ],
+  "patches": []
+}
+

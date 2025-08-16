@@ -1,0 +1,19 @@
+{
+  "id": "pinecone-delete-by-id-minimal",
+  "name": "Pinecone Delete by ID (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "pinecone"],
+  "tags": ["vector", "delete"],
+  "description": "Delete vectors by ID from a Pinecone index.",
+  "params": [
+    { "name": "app_name", "default": "pinecone-delete-app" },
+    { "name": "pinecone_index", "default": "docs" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { Pinecone } from '@pinecone-database/pinecone';\nconst pc = new Pinecone({ apiKey: process.env.PINECONE_API_KEY });\nconst index = pc.Index(process.env.PINECONE_INDEX || '{{pinecone_index}}');\nawait index.deleteMany(['1','2']);\nconsole.log('Deleted ids 1,2');\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@pinecone-database/pinecone\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "PINECONE_API_KEY=...\nPINECONE_INDEX={{pinecone_index}}\n" }
+  ],
+  "patches": []
+}
+

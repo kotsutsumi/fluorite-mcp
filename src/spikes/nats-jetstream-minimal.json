@@ -1,0 +1,15 @@
+{
+  "id": "nats-jetstream-minimal",
+  "name": "NATS JetStream Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "nats"],
+  "tags": ["messaging"],
+  "description": "Publish + consume using NATS JetStream (js).",
+  "params": [ { "name": "app_name", "default": "nats-js" }, { "name": "server", "default": "nats://127.0.0.1:4222" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"nats\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const { connect, StringCodec } = require('nats');\n(async () => {\n  const nc = await connect({ servers: '{{server}}' });\n  const js = await nc.jetstream();\n  const sc = StringCodec();\n  await js.publish('events.demo', sc.encode('hello'));\n  const sub = await js.subscribe('events.*');\n  for await (const m of sub) { console.log('got', sc.decode(m.data)); break; }\n  await nc.drain();\n})();\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,16 @@
+{
+  "id": "posthog-node-minimal",
+  "name": "PostHog Node 送信",
+  "version": "1.0.0",
+  "stack": ["node", "posthog"],
+  "tags": ["analytics"],
+  "description": "PostHog にイベント送信（APIキー要）。",
+  "params": [ { "name": "app_name", "default": "posthog-demo" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node send.js\" }, \"dependencies\": { \"posthog-node\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/send.js", "template": "const { PostHog } = require('posthog-node');\nconst ph = new PostHog(process.env.POSTHOG_API_KEY||'', { host: process.env.POSTHOG_HOST||'https://app.posthog.com' });\n(async () => { await ph.capture({ event: 'test', distinctId: 'user1' }); await ph.shutdown(); console.log('sent'); })();\n" },
+    { "path": "{{app_name}}/README.md", "template": "POSTHOG_API_KEY を設定してください。\n" }
+  ],
+  "patches": []
+}
+

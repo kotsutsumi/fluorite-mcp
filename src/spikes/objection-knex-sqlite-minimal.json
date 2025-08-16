@@ -1,0 +1,15 @@
+{
+  "id": "objection-knex-sqlite-minimal",
+  "name": "Objection.js + Knex + SQLite",
+  "version": "1.0.0",
+  "stack": ["node", "objection", "knex", "sqlite"],
+  "tags": ["db"],
+  "description": "Objection ORM with SQLite using Knex.",
+  "params": [ { "name": "app_name", "default": "objection-sqlite" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node index.mjs\" }, \"dependencies\": { \"objection\": \"latest\", \"knex\": \"latest\", \"sqlite3\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.mjs", "template": "import { Model, knex as kx } from 'objection';\nimport sqlite3 from 'sqlite3';\nimport knexLib from 'knex';\nconst knex = knexLib({ client: 'sqlite3', connection: { filename: 'app.db' }, useNullAsDefault: true });\nModel.knex(knex);\nclass User extends Model { static get tableName() { return 'users'; } }\nawait knex.schema.createTableIfNotExists('users', t => { t.increments('id'); t.string('name'); });\nawait User.query().insert({ name: 'Alice' });\nconsole.log('count', await User.query().resultSize());\nawait knex.destroy();\n" }
+  ],
+  "patches": []
+}
+

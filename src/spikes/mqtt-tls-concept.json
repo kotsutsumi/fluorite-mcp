@@ -1,0 +1,14 @@
+{
+  "id": "mqtt-tls-concept",
+  "name": "MQTT TLS（概念）",
+  "version": "1.0.0",
+  "stack": ["mqtt"],
+  "tags": ["messaging", "security"],
+  "description": "MQTT over TLS の設定と証明書配置（概念）。",
+  "params": [ { "name": "app_name", "default": "mqtt-tls" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "ブローカーおよびクライアント双方で TLS 証明書/鍵を設定し、ポート8883で接続します。本テンプレは概念説明です。\n" }
+  ],
+  "patches": []
+}
+

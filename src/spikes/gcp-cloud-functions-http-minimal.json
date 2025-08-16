@@ -1,0 +1,15 @@
+{
+  "id": "gcp-cloud-functions-http-minimal",
+  "name": "GCP Cloud Functions HTTP Minimal",
+  "version": "1.0.0",
+  "stack": ["gcp", "cloud-functions", "node"],
+  "tags": ["serverless"],
+  "description": "Google Cloud Functions (HTTP) の最小例。",
+  "params": [ { "name": "app_name", "default": "gcf-http" } ],
+  "files": [
+    { "path": "{{app_name}}/index.js", "template": "exports.helloHttp = (req, res) => { res.json({ hello: 'gcf' }); };\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"main\": \"index.js\" }\n" }
+  ],
+  "patches": []
+}
+

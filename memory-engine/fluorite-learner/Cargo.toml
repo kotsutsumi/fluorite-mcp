@@ -1,0 +1,32 @@
+[package]
+name = "fluorite-learner"
+version = "0.1.0"
+edition = "2021"
+description = "Learning pipeline for Spike template analysis and pattern extraction"
+authors = ["Fluorite MCP Team"]
+
+[dependencies]
+# Core dependencies
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+uuid = { workspace = true }
+chrono = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+
+# Memory engine
+fluorite-memory = { path = "../fluorite-memory" }
+
+# File processing
+walkdir = "2.4"
+regex = "1.10"
+
+# Utilities
+dashmap = { workspace = true }
+rayon = { workspace = true }
+
+[dev-dependencies]
+tokio-test = "0.4"
+tempfile = "3.8"

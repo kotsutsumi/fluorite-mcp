@@ -1,0 +1,15 @@
+{
+  "id": "nodemailer-smtp-minimal",
+  "name": "Nodemailer SMTP 最小",
+  "version": "1.0.0",
+  "stack": ["node", "email"],
+  "tags": ["email"],
+  "description": "SMTP サーバーに接続してメール送信（開発用）。",
+  "params": [ { "name": "app_name", "default": "smtp-mail" }, { "name": "host", "default": "localhost" }, { "name": "port", "default": "1025" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node send.js\" }, \"dependencies\": { \"nodemailer\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/send.js", "template": "const nodemailer = require('nodemailer');\n(async () => { const transport = nodemailer.createTransport({ host: '{{host}}', port: Number('{{port}}'), secure: false }); const info = await transport.sendMail({ from: 'no-reply@example.com', to: 'user@example.com', subject: 'Hello', text: 'Hello SMTP' }); console.log(info.messageId); })();\n" }
+  ],
+  "patches": []
+}
+

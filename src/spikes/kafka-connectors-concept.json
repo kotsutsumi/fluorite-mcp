@@ -1,0 +1,14 @@
+{
+  "id": "kafka-connectors-concept",
+  "name": "Kafka Connect（概念）",
+  "version": "1.0.0",
+  "stack": ["kafka"],
+  "tags": ["messaging"],
+  "description": "Kafka Connect の Source/Sink Connector 概要。",
+  "params": [ { "name": "app_name", "default": "kafka-connect" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "Kafka Connect の構築・コネクタデプロイ・設定は Kafka Connect REST API で行います。本テンプレは概念説明です。\n" }
+  ],
+  "patches": []
+}
+

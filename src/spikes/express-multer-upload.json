@@ -1,0 +1,15 @@
+{
+  "id": "express-multer-upload",
+  "name": "Express Multer Upload",
+  "version": "1.0.0",
+  "stack": ["node", "express", "multer"],
+  "tags": ["upload"],
+  "description": "Express file upload with multer.",
+  "params": [ { "name": "app_name", "default": "express-upload" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"multer\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst multer = require('multer');\nconst upload = multer({ dest: 'uploads/' });\nconst app = express();\napp.post('/upload', upload.single('file'), (req, res) => res.json({ file: req.file?.originalname }));\napp.get('/health', (_req, res) => res.json({ status: 'ok' }));\napp.listen(Number('{{port}}'), () => console.log('listening on {{port}}'));\n" }
+  ],
+  "patches": []
+}
+

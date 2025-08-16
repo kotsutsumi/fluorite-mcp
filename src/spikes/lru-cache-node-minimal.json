@@ -1,0 +1,15 @@
+{
+  "id": "lru-cache-node-minimal",
+  "name": "lru-cache 最小例",
+  "version": "1.0.0",
+  "stack": ["node", "cache"],
+  "tags": ["cache"],
+  "description": "lru-cache でメモリキャッシュ。",
+  "params": [ { "name": "app_name", "default": "lru-cache-demo" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"lru-cache\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const LRU = require('lru-cache');\nconst cache = new LRU({ max: 100 });\ncache.set('k','v');\nconsole.log(cache.get('k'));\n" }
+  ],
+  "patches": []
+}
+

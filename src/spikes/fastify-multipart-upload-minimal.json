@@ -1,0 +1,15 @@
+{
+  "id": "fastify-multipart-upload-minimal",
+  "name": "Fastify multipart アップロード",
+  "version": "1.0.0",
+  "stack": ["fastify", "node"],
+  "tags": ["upload"],
+  "description": "@fastify/multipart でファイルアップロード（最小）。",
+  "params": [ { "name": "app_name", "default": "fastify-multipart" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"fastify\": \"latest\", \"@fastify/multipart\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const Fastify = require('fastify');\nconst mp = require('@fastify/multipart');\nconst app = Fastify();\napp.register(mp);\napp.post('/upload', async (req,res)=>{ const p = await req.file(); const chunks=[]; for await (const c of p.file) chunks.push(c); res.send({ filename: p.filename, bytes: Buffer.concat(chunks).length }); });\napp.listen({ port: Number('{{port}}') });\n" }
+  ],
+  "patches": []
+}
+

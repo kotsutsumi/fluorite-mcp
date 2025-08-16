@@ -1,0 +1,15 @@
+{
+  "id": "pnpm-publish-workspace-minimal",
+  "name": "pnpm workspace publish 最小",
+  "version": "1.0.0",
+  "stack": ["pnpm", "monorepo"],
+  "tags": ["repo", "ci"],
+  "description": "pnpm -r publish を使うワークスペース雛形（概念）。",
+  "params": [ { "name": "app_name", "default": "pnpm-publish" } ],
+  "files": [
+    { "path": "{{app_name}}/pnpm-workspace.yaml", "template": "packages:\n  - packages/*\n" },
+    { "path": "{{app_name}}/packages/a/package.json", "template": "{ \"name\": \"a\", \"version\": \"0.0.0\", \"publishConfig\": { \"access\": \"public\" } }\n" }
+  ],
+  "patches": []
+}
+

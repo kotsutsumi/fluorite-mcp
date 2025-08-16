@@ -1,0 +1,19 @@
+{
+  "id": "anthropic-messages-minimal",
+  "name": "Anthropic Messages (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "anthropic"],
+  "tags": ["llm", "chat"],
+  "description": "Minimal Anthropic Messages API usage with official SDK.",
+  "params": [
+    { "name": "app_name", "default": "anthropic-messages-app" },
+    { "name": "anthropic_model", "default": "claude-3-5-sonnet-20240620" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import Anthropic from '@anthropic-ai/sdk';\nconst client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });\nconst msg = await client.messages.create({\n  model: '{{anthropic_model}}',\n  max_tokens: 128,\n  messages: [{ role: 'user', content: 'Say hello' }]\n});\nconst first = Array.isArray(msg.content) ? msg.content[0] : undefined;\nconsole.log(first?.text ?? JSON.stringify(msg));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@anthropic-ai/sdk\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "ANTHROPIC_API_KEY=sk-ant-...\n" }
+  ],
+  "patches": []
+}
+

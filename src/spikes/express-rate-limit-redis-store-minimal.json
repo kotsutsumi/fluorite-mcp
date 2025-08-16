@@ -1,0 +1,15 @@
+{
+  "id": "express-rate-limit-redis-store-minimal",
+  "name": "Express Rate Limit + Redis Store",
+  "version": "1.0.0",
+  "stack": ["express", "redis"],
+  "tags": ["security"],
+  "description": "express-rate-limit + rate-limit-redis で分散レート制御。",
+  "params": [ { "name": "app_name", "default": "express-rl-redis" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"express-rate-limit\": \"latest\", \"ioredis\": \"latest\", \"rate-limit-redis\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst rateLimit = require('express-rate-limit');\nconst Redis = require('ioredis');\nconst RedisStore = require('rate-limit-redis');\nconst app = express();\nconst store = new RedisStore({ sendCommand: (...args)=>client.call(...args) });\nconst client = new Redis();\napp.use(rateLimit({ windowMs: 60_000, max: 60, store }));\napp.get('/', (_req,res)=>res.json({ ok: true }));\napp.listen(Number('{{port}}'));\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "unleash-client-minimal",
+  "name": "Unleash フラグクライアント",
+  "version": "1.0.0",
+  "stack": ["node", "feature-flags"],
+  "tags": ["flags"],
+  "description": "Unleashクライアントでフラグ判定を行う最小例。",
+  "params": [ { "name": "app_name", "default": "unleash-demo" }, { "name": "url", "default": "http://localhost:4242/api" }, { "name": "token", "default": "default:development.unleash-insecure-api-token" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"unleash-client\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const { initialize } = require('unleash-client');\nconst unleash = initialize({ url: '{{url}}', appName: 'demo', instanceId: 'local', customHeaders: { Authorization: '{{token}}' } });\nunleash.on('ready', () => { console.log('flag', unleash.isEnabled('my-feature')); process.exit(0); });\n" }
+  ],
+  "patches": []
+}
+

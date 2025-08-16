@@ -1,0 +1,16 @@
+{
+  "id": "cypress-minimal",
+  "name": "Cypress E2E Minimal",
+  "version": "1.0.0",
+  "stack": ["cypress", "javascript"],
+  "tags": ["test", "e2e"],
+  "description": "Cypress minimal project with one spec.",
+  "params": [ { "name": "app_name", "default": "cypress-e2e" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"test\": \"cypress run\" }, \"devDependencies\": { \"cypress\": \"^13\" } }\n" },
+    { "path": "{{app_name}}/cypress/e2e/spec.cy.js", "template": "describe('example', () => { it('works', () => { expect(true).to.eq(true); }); });\n" },
+    { "path": "{{app_name}}/cypress.config.js", "template": "export default { e2e: { baseUrl: 'http://localhost:3000' } };\n" }
+  ],
+  "patches": []
+}
+

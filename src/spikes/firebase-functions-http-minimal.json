@@ -1,0 +1,14 @@
+{
+  "id": "firebase-functions-http-minimal",
+  "name": "Firebase Functions HTTP 最小",
+  "version": "1.0.0",
+  "stack": ["firebase", "functions"],
+  "tags": ["serverless"],
+  "description": "Firebase Functions のHTTPハンドラー最小。",
+  "params": [ { "name": "app_name", "default": "fb-func" } ],
+  "files": [
+    { "path": "{{app_name}}/index.js", "template": "const functions = require('firebase-functions');\nexports.hello = functions.https.onRequest((_req, res)=> res.json({ hello: 'world' }));\n" }
+  ],
+  "patches": []
+}
+

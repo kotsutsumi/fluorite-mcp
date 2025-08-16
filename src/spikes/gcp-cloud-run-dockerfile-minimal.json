@@ -1,0 +1,16 @@
+{
+  "id": "gcp-cloud-run-dockerfile-minimal",
+  "name": "GCP Cloud Run Dockerfile 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "cloud-run", "docker"],
+  "tags": ["serverless"],
+  "description": "Cloud Run 用の超最小 Node Dockerfile + サーバ。",
+  "params": [ { "name": "app_name", "default": "cloud-run" } ],
+  "files": [
+    { "path": "{{app_name}}/Dockerfile", "template": "FROM node:20-alpine\nWORKDIR /app\nCOPY package*.json ./\nRUN npm ci --omit=dev || true\nCOPY . .\nENV PORT=8080\nCMD [\"node\", \"server.js\"]\n" },
+    { "path": "{{app_name}}/server.js", "template": "const http = require('http');\nconst port = process.env.PORT||8080;\nhttp.createServer((_,res)=>{ res.setHeader('content-type','application/json'); res.end(JSON.stringify({ ok:true })); }).listen(port, ()=>console.log('listening', port));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"cloud-run\", \"private\": true }\n" }
+  ],
+  "patches": []
+}
+

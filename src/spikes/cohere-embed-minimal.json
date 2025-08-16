@@ -1,0 +1,19 @@
+{
+  "id": "cohere-embed-minimal",
+  "name": "Cohere Embeddings (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "cohere"],
+  "tags": ["embeddings"],
+  "description": "Generate embeddings with Cohere Embed API.",
+  "params": [
+    { "name": "app_name", "default": "cohere-embed-app" },
+    { "name": "cohere_embed_model", "default": "embed-english-v3.0" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { CohereClient } from 'cohere-ai';\nconst cohere = new CohereClient({ token: process.env.COHERE_API_KEY });\nconst out = await cohere.embed({\n  model: '{{cohere_embed_model}}',\n  input: ['hello world', 'fluorite mcp']\n});\nconsole.log(out.embeddings?.[0]?.length);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"cohere-ai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "COHERE_API_KEY=...\n" }
+  ],
+  "patches": []
+}
+

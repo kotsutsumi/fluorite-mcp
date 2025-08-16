@@ -1,0 +1,15 @@
+{
+  "id": "kafkajs-advanced-patterns",
+  "name": "KafkaJS 応用パターン",
+  "version": "1.0.0",
+  "stack": ["node", "kafkajs"],
+  "tags": ["messaging"],
+  "description": "KafkaJS でパーティション/グループ/リトライの基本設定。",
+  "params": [ { "name": "app_name", "default": "kafkajs-adv" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"kafkajs\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const { Kafka } = require('kafkajs');\nconst kafka = new Kafka({ clientId: 'demo', brokers: ['localhost:9092'] });\nconst producer = kafka.producer();\nconst consumer = kafka.consumer({ groupId: 'demo-group' });\n(async () => {\n  await producer.connect(); await consumer.connect();\n  await consumer.subscribe({ topic: 'events', fromBeginning: true });\n  consumer.run({ eachMessage: async ({ message }) => console.log('msg', message.value?.toString()) });\n  await producer.send({ topic: 'events', messages: [{ value: 'hello' }] });\n})();\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,17 @@
+{
+  "id": "chromadb-node-minimal",
+  "name": "ChromaDB Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "chromadb"],
+  "tags": ["vector", "database"],
+  "description": "Create a collection, add, and query with ChromaDB (Node).",
+  "params": [
+    { "name": "app_name", "default": "chromadb-node" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { ChromaClient } from 'chromadb';\nconst client = new ChromaClient();\nconst col = await client.createCollection({ name: 'docs' });\nawait col.add({ ids: ['1','2'], documents: ['hello world', 'fluorite mcp'] });\nconst res = await col.query({ queryTexts: ['hello'], nResults: 2 });\nconsole.log(res);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"chromadb\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "axios-retry-minimal",
+  "name": "Axios Retry 最小",
+  "version": "1.0.0",
+  "stack": ["node", "axios"],
+  "tags": ["http", "retry"],
+  "description": "axios-retry を使ったリトライ。",
+  "params": [ { "name": "app_name", "default": "axios-retry" }, { "name": "url", "default": "https://example.com/404" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"axios\": \"latest\", \"axios-retry\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const axios = require('axios');\nconst axiosRetry = require('axios-retry');\naxiosRetry(axios, { retries: 3, retryDelay: axiosRetry.exponentialDelay });\n(async () => { try { const r = await axios.get('{{url}}'); console.log(r.status); } catch(e){ console.log('failed after retries'); } })();\n" }
+  ],
+  "patches": []
+}
+

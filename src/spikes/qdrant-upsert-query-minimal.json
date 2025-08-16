@@ -1,0 +1,20 @@
+{
+  "id": "qdrant-upsert-query-minimal",
+  "name": "Qdrant Upsert + Query (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "qdrant"],
+  "tags": ["vector", "database"],
+  "description": "Upsert a point and search in Qdrant collection.",
+  "params": [
+    { "name": "app_name", "default": "qdrant-minimal-app" },
+    { "name": "qdrant_url", "default": "http://localhost:6333" },
+    { "name": "qdrant_collection", "default": "documents" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { QdrantClient } from '@qdrant/js-client-rest';\nconst client = new QdrantClient({ url: process.env.QDRANT_URL || '{{qdrant_url}}', apiKey: process.env.QDRANT_API_KEY });\nconst collection = process.env.QDRANT_COLLECTION || '{{qdrant_collection}}';\nawait client.upsert(collection, { points: [{ id: '1', vector: [0.1,0.2,0.3], payload: { text: 'hello world' } }] });\nconst res = await client.search(collection, { vector: [0.1,0.2,0.3], limit: 3 });\nconsole.log(res.map(p => p.payload?.text));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@qdrant/js-client-rest\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "QDRANT_URL=http://localhost:6333\nQDRANT_API_KEY=\nQDRANT_COLLECTION={{qdrant_collection}}\n" }
+  ],
+  "patches": []
+}
+

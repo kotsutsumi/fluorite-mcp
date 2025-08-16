@@ -1,0 +1,15 @@
+{
+  "id": "cf-workers-d1-minimal",
+  "name": "Cloudflare D1 Minimal",
+  "version": "1.0.0",
+  "stack": ["cloudflare", "workers", "d1"],
+  "tags": ["serverless", "db"],
+  "description": "D1 データベースに対する最小のクエリ例。",
+  "params": [ { "name": "app_name", "default": "cf-d1" } ],
+  "files": [
+    { "path": "{{app_name}}/worker.js", "template": "export default {\n  async fetch(_req, env) {\n    await env.DB.exec(`CREATE TABLE IF NOT EXISTS items (id integer primary key, name text)`);\n    await env.DB.exec(`INSERT INTO items(name) VALUES('hello')`);\n    const { results } = await env.DB.prepare('SELECT count(*) as c FROM items').all();\n    return new Response(JSON.stringify({ count: results?.[0]?.c }), { headers: { 'content-type': 'application/json' } });\n  }\n};\n" },
+    { "path": "{{app_name}}/README.md", "template": "wrangler.tomlで `d1_databases` に DB を定義して `DB` としてバインドしてください。\n" }
+  ],
+  "patches": []
+}
+

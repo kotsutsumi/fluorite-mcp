@@ -1,0 +1,22 @@
+{
+  "id": "cohere-rerank-minimal",
+  "name": "Cohere Rerank Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "cohere"],
+  "tags": ["rerank", "rag"],
+  "description": "Use Cohere Rerank on a small document set.",
+  "params": [
+    { "name": "app_name", "default": "cohere-rerank-app" },
+    { "name": "cohere_rerank_model", "default": "rerank-english-v3.0" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/index.mjs",
+      "template": "import { CohereClient } from 'cohere-ai';\nconst cohere = new CohereClient({ token: process.env.COHERE_API_KEY });\nconst docs = ['hello world', 'fluorite mcp server', 'vector search'];\nconst out = await cohere.rerank({\n  model: '{{cohere_rerank_model}}',\n  query: 'fluorite',\n  documents: docs\n});\nconsole.log(out.results?.map(r => ({ idx: r.index, score: r.relevance_score })));\n"
+    },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"cohere-ai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "COHERE_API_KEY=...\n" }
+  ],
+  "patches": []
+}
+

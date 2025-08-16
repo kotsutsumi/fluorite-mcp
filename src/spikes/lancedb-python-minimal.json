@@ -1,0 +1,17 @@
+{
+  "id": "lancedb-python-minimal",
+  "name": "LanceDB Minimal (Python)",
+  "version": "1.0.0",
+  "stack": ["python", "lancedb"],
+  "tags": ["vector", "database"],
+  "description": "Create a LanceDB table, add rows, and search by vector in Python.",
+  "params": [
+    { "name": "app_name", "default": "lancedb-py" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/main.py", "template": "import lancedb\ndb = lancedb.connect('.lancedb')\ntbl = db.create_table('docs', data=[{ 'vector':[0.1,0.2,0.3], 'text':'hello' }, { 'vector':[0.2,0.1,0.25], 'text':'fluorite' }])\nres = tbl.search([0.1,0.2,0.3]).limit(2).to_list()\nprint([r['text'] for r in res])\n" },
+    { "path": "{{app_name}}/requirements.txt", "template": "lancedb\n" }
+  ],
+  "patches": []
+}
+

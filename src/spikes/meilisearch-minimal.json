@@ -1,0 +1,15 @@
+{
+  "id": "meilisearch-minimal",
+  "name": "Meilisearch Minimal",
+  "version": "1.0.0",
+  "stack": ["meilisearch", "node"],
+  "tags": ["search"],
+  "description": "Create an index and add documents.",
+  "params": [ { "name": "app_name", "default": "meili-app" }, { "name": "host", "default": "http://localhost:7700" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"meilisearch\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const { MeiliSearch } = require('meilisearch');\nconst client = new MeiliSearch({ host: '{{host}}' });\n(async () => {\n  const index = await client.getOrCreateIndex('movies', { primaryKey: 'id' });\n  await index.addDocuments([{ id: 1, title: 'Inception' }]);\n  const search = await index.search('incep');\n  console.log('hits', search.hits.length);\n})();\n" }
+  ],
+  "patches": []
+}
+

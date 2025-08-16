@@ -1,0 +1,14 @@
+{
+  "id": "redis-cluster-rate-limit-minimal",
+  "name": "Redis Cluster レート制御",
+  "version": "1.0.0",
+  "stack": ["node", "redis", "cluster"],
+  "tags": ["throttle"],
+  "description": "ioredis Cluster を使った rate-limiter-flexible の利用（概念）。",
+  "params": [ { "name": "app_name", "default": "rl-redis-cluster" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "ioredis Cluster で rate-limiter-flexible を使う場合、Cluster インスタンスを storeClient に渡します。構成はクラスタ環境依存です。\n" }
+  ],
+  "patches": []
+}
+

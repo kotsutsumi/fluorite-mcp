@@ -1,0 +1,20 @@
+{
+  "id": "qdrant-update-payload-minimal",
+  "name": "Qdrant Update Payload (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "qdrant"],
+  "tags": ["vector", "update"],
+  "description": "Update payload (metadata) for existing points in Qdrant.",
+  "params": [
+    { "name": "app_name", "default": "qdrant-update-payload" },
+    { "name": "qdrant_url", "default": "http://localhost:6333" },
+    { "name": "qdrant_collection", "default": "documents" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { QdrantClient } from '@qdrant/js-client-rest';\nconst client = new QdrantClient({ url: process.env.QDRANT_URL || '{{qdrant_url}}' });\nconst collection = process.env.QDRANT_COLLECTION || '{{qdrant_collection}}';\nawait client.setPayload(collection, { payload: { tag: 'updated' }, points: ['1','2'] });\nconsole.log('Payload updated for 1,2');\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@qdrant/js-client-rest\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "QDRANT_URL=http://localhost:6333\nQDRANT_COLLECTION={{qdrant_collection}}\n" }
+  ],
+  "patches": []
+}
+

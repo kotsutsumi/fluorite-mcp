@@ -1,0 +1,14 @@
+{
+  "id": "gha-semantic-release-minimal",
+  "name": "GHA Semantic Release Minimal",
+  "version": "1.0.0",
+  "stack": ["github-actions", "semantic-release"],
+  "tags": ["ci"],
+  "description": "GitHub Actions workflow to run semantic-release on main.",
+  "params": [ { "name": "app_name", "default": "semantic-release" } ],
+  "files": [
+    { "path": "{{app_name}}/.github/workflows/release.yml", "template": "name: Release\non:\n  push:\n    branches: [main]\njobs:\n  release:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 18\n      - run: npm ci\n      - run: npx semantic-release\n        env:\n          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n" }
+  ],
+  "patches": []
+}
+

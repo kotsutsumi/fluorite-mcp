@@ -1,0 +1,15 @@
+{
+  "id": "vercel-edge-function-minimal",
+  "name": "Vercel Edge Function Minimal",
+  "version": "1.0.0",
+  "stack": ["vercel", "edge", "node"],
+  "tags": ["serverless"],
+  "description": "Vercel Edge Function の最小例。",
+  "params": [ { "name": "app_name", "default": "vercel-edge" } ],
+  "files": [
+    { "path": "{{app_name}}/api/hello.ts", "template": "export const config = { runtime: 'edge' };\nexport default async function handler() { return new Response(JSON.stringify({ hello: 'edge' }), { headers: { 'content-type': 'application/json' } }); }\n" },
+    { "path": "{{app_name}}/README.md", "template": "Vercelにデプロイ後、`/api/hello` を参照。\n" }
+  ],
+  "patches": []
+}
+

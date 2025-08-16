@@ -1,0 +1,15 @@
+{
+  "id": "playwright-screenshot-minimal",
+  "name": "Playwright スクリーンショット",
+  "version": "1.0.0",
+  "stack": ["node", "playwright"],
+  "tags": ["browser"],
+  "description": "指定URLのスクリーンショットを撮る。",
+  "params": [ { "name": "app_name", "default": "playwright-ss" }, { "name": "url", "default": "https://example.com" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"playwright\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const { chromium } = require('playwright');\n(async () => { const browser = await chromium.launch(); const page = await browser.newPage(); await page.goto('{{url}}'); await page.screenshot({ path: 'shot.png' }); await browser.close(); console.log('saved shot.png'); })();\n" }
+  ],
+  "patches": []
+}
+

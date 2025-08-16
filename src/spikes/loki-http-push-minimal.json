@@ -1,0 +1,15 @@
+{
+  "id": "loki-http-push-minimal",
+  "name": "Loki HTTP Push 最小",
+  "version": "1.0.0",
+  "stack": ["loki", "node"],
+  "tags": ["observability"],
+  "description": "Loki の /loki/api/v1/push にログを送信（簡易）。",
+  "params": [ { "name": "app_name", "default": "loki-push" }, { "name": "endpoint", "default": "http://localhost:3100" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node push.js\" }, \"dependencies\": { \"node-fetch\": \"^3\" } }\n" },
+    { "path": "{{app_name}}/push.js", "template": "import fetch from 'node-fetch';\nconst body = { streams: [{ stream: { app: 'demo' }, values: [[ String(Date.now()*1e6), 'hello loki' ]] }] };\nconst res = await fetch('{{endpoint}}/loki/api/v1/push', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });\nconsole.log(res.status);\n" }
+  ],
+  "patches": []
+}
+

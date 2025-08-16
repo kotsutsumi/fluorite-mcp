@@ -1,0 +1,16 @@
+{
+  "id": "azure-blob-sas-minimal",
+  "name": "Azure Blob SAS URL 最小",
+  "version": "1.0.0",
+  "stack": ["azure", "blob", "node"],
+  "tags": ["storage"],
+  "description": "Azure Blob の SAS URL を生成。",
+  "params": [ { "name": "app_name", "default": "azure-blob-sas" }, { "name": "container", "default": "public" }, { "name": "blob", "default": "hello.txt" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@azure/storage-blob\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const { BlobSASPermissions, generateBlobSASQueryParameters, StorageSharedKeyCredential } = require('@azure/storage-blob');\nconst { BlobServiceClient } = require('@azure/storage-blob');\nconst accountName = process.env.AZURE_STORAGE_ACCOUNT||'';\nconst accountKey = process.env.AZURE_STORAGE_KEY||'';\nconst creds = new StorageSharedKeyCredential(accountName, accountKey);\nconst expiry = new Date(Date.now() + 3600_000);\nconst sas = generateBlobSASQueryParameters({ containerName: '{{container}}', blobName: '{{blob}}', permissions: BlobSASPermissions.parse('r'), expiresOn: expiry }, creds).toString();\nconst url = `https://${accountName}.blob.core.windows.net/{{container}}/{{blob}}?${sas}`;\nconsole.log(url);\n" },
+    { "path": "{{app_name}}/README.md", "template": "AZURE_STORAGE_ACCOUNT / AZURE_STORAGE_KEY を設定してください。\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "aws-ssm-parameter-get-minimal",
+  "name": "AWS SSM Parameter Get 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "ssm"],
+  "tags": ["config"],
+  "description": "SSM Parameter Store からパラメータ取得。",
+  "params": [ { "name": "app_name", "default": "ssm-get" }, { "name": "name", "default": "/app/config" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node get.js\" }, \"dependencies\": { \"@aws-sdk/client-ssm\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/get.js", "template": "const { SSMClient, GetParameterCommand } = require('@aws-sdk/client-ssm');\nconst ssm = new SSMClient({});\n(async () => { const r = await ssm.send(new GetParameterCommand({ Name: '{{name}}', WithDecryption: true })); console.log(r.Parameter?.Value); })();\n" }
+  ],
+  "patches": []
+}
+

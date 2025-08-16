@@ -1,0 +1,14 @@
+{
+  "id": "rabbitmq-delayed-message-concept",
+  "name": "RabbitMQ Delayed Message（概念）",
+  "version": "1.0.0",
+  "stack": ["rabbitmq"],
+  "tags": ["messaging"],
+  "description": "Delayed Message Exchange プラグインの概要と設定（概念）。",
+  "params": [ { "name": "app_name", "default": "rabbitmq-delayed" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "Delayed Message Exchange プラグインを有効化し、x-delayed-message タイプのエクスチェンジで x-delay ヘッダを使います。\n" }
+  ],
+  "patches": []
+}
+

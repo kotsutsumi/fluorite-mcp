@@ -1,0 +1,14 @@
+{
+  "id": "aws-lambda-eventbridge-schedule-concept",
+  "name": "Lambda + EventBridge スケジュール（概念）",
+  "version": "1.0.0",
+  "stack": ["aws", "eventbridge", "lambda"],
+  "tags": ["serverless", "schedule"],
+  "description": "EventBridge の rate/cron で Lambda を起動する構成（概念）。",
+  "params": [ { "name": "app_name", "default": "lambda-schedule" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "EventBridge ルールでスケジュールを定義し、ターゲットに Lambda を設定します（権限付与が必要）。\n" }
+  ],
+  "patches": []
+}
+

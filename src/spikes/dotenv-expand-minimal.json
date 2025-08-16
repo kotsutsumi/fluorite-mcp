@@ -1,0 +1,16 @@
+{
+  "id": "dotenv-expand-minimal",
+  "name": "dotenv-expand 最小",
+  "version": "1.0.0",
+  "stack": ["node", "dotenv"],
+  "tags": ["config"],
+  "description": "dotenv と dotenv-expand で変数展開。",
+  "params": [ { "name": "app_name", "default": "dotenv-expand" } ],
+  "files": [
+    { "path": "{{app_name}}/.env", "template": "PORT=3000\nURL=http://localhost:${PORT}\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"dotenv\": \"latest\", \"dotenv-expand\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const dotenv = require('dotenv');\nconst expand = require('dotenv-expand');\nexpand.expand(dotenv.config());\nconsole.log(process.env.URL);\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "dockerfile-node-multistage-minimal",
+  "name": "Dockerfile Node マルチステージ",
+  "version": "1.0.0",
+  "stack": ["docker", "node"],
+  "tags": ["docker"],
+  "description": "Node.js のマルチステージビルド最小。",
+  "params": [ { "name": "app_name", "default": "node-ms" } ],
+  "files": [
+    { "path": "{{app_name}}/Dockerfile", "template": "# build\nFROM node:20-alpine AS build\nWORKDIR /app\nCOPY package*.json ./\nRUN npm ci\nCOPY . .\nRUN npm run build || true\n# runtime\nFROM node:20-alpine\nWORKDIR /app\nCOPY --from=build /app .\nCMD [\"node\", \"index.js\"]\n" },
+    { "path": "{{app_name}}/index.js", "template": "console.log('hello multi-stage');\n" }
+  ],
+  "patches": []
+}
+

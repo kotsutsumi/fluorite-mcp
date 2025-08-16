@@ -1,0 +1,14 @@
+{
+  "id": "gha-concurrency-cancel-minimal",
+  "name": "GHA concurrency cancel-in-progress",
+  "version": "1.0.0",
+  "stack": ["github-actions"],
+  "tags": ["ci"],
+  "description": "同一グループのジョブを前回分キャンセル（最小）。",
+  "params": [ { "name": "app_name", "default": "gha-concurrency" } ],
+  "files": [
+    { "path": "{{app_name}}/.github/workflows/ci.yml", "template": "name: CI\non: [push]\nconcurrency:\n  group: ${{ github.ref }}\n  cancel-in-progress: true\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - run: echo build\n" }
+  ],
+  "patches": []
+}
+

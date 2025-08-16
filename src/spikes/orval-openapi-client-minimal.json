@@ -1,0 +1,16 @@
+{
+  "id": "orval-openapi-client-minimal",
+  "name": "Orval でOpenAPIクライアント生成",
+  "version": "1.0.0",
+  "stack": ["openapi", "typescript"],
+  "tags": ["codegen"],
+  "description": "Orval を使って型安全なクライアント生成。",
+  "params": [ { "name": "app_name", "default": "orval-client" } ],
+  "files": [
+    { "path": "{{app_name}}/openapi.yaml", "template": "openapi: 3.0.0\ninfo: { title: API, version: '1.0.0' }\npaths:\n  /hello:\n    get:\n      responses:\n        '200': { description: ok }\n" },
+    { "path": "{{app_name}}/orval.config.cjs", "template": "module.exports = { petstore: { input: './openapi.yaml', output: { client: 'fetch', target: './src/client.ts' } } };\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"gen\": \"orval --config orval.config.cjs\" }, \"devDependencies\": { \"orval\": \"^6\" } }\n" }
+  ],
+  "patches": []
+}
+

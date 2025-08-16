@@ -1,0 +1,15 @@
+{
+  "id": "knex-postgres-minimal",
+  "name": "Knex + Postgres Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "knex", "postgres"],
+  "tags": ["db"],
+  "description": "Knex connection to Postgres with simple migration inline.",
+  "params": [ { "name": "app_name", "default": "knex-pg" }, { "name": "pg_uri", "default": "postgres://postgres:postgres@localhost:5432/postgres" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"knex\": \"latest\", \"pg\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const knex = require('knex')({ client: 'pg', connection: '{{pg_uri}}' });\n(async () => {\n  const exists = await knex.schema.hasTable('items');\n  if (!exists) { await knex.schema.createTable('items', t => { t.increments('id'); t.string('name'); }); }\n  await knex('items').insert({ name: 'hello' });\n  const count = await knex('items').count('* as c');\n  console.log('Item count', count[0].c);\n  await knex.destroy();\n})();\n" }
+  ],
+  "patches": []
+}
+

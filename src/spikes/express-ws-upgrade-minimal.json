@@ -1,0 +1,15 @@
+{
+  "id": "express-ws-upgrade-minimal",
+  "name": "Express + ws Upgrade 最小",
+  "version": "1.0.0",
+  "stack": ["express", "ws"],
+  "tags": ["realtime"],
+  "description": "Express で ws を使って Upgrade 接続（最小）。",
+  "params": [ { "name": "app_name", "default": "express-ws" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node server.js\" }, \"dependencies\": { \"express\": \"latest\", \"ws\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/server.js", "template": "const http = require('http');\nconst express = require('express');\nconst WebSocket = require('ws');\nconst app = express();\nconst server = http.createServer(app);\nconst wss = new WebSocket.Server({ server });\nwss.on('connection', (ws)=> ws.on('message', (m)=> ws.send(m)));\nserver.listen(Number('{{port}}'), ()=>console.log('listening'));\n" }
+  ],
+  "patches": []
+}
+

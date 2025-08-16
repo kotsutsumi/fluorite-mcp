@@ -1,0 +1,16 @@
+{
+  "id": "openapi-enforcer-express-minimal",
+  "name": "openapi-enforcer + Express",
+  "version": "1.0.0",
+  "stack": ["node", "express", "openapi"],
+  "tags": ["validation"],
+  "description": "openapi-enforcer-middleware でリクエスト/レスポンス検証。",
+  "params": [ { "name": "app_name", "default": "openapi-enforcer" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/openapi.yaml", "template": "openapi: 3.0.0\ninfo: { title: API, version: '1.0.0' }\npaths:\n  /echo:\n    post:\n      requestBody:\n        required: true\n        content:\n          application/json:\n            schema:\n              type: object\n              properties: { name: { type: string } }\n              required: [name]\n      responses:\n        '200': { description: ok }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"openapi-enforcer-middleware\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst { Enforcer } = require('openapi-enforcer');\nconst { middleware } = require('openapi-enforcer-middleware');\nconst app = express();\napp.use(express.json());\n(async () => { const enforcer = await Enforcer('./openapi.yaml'); app.use(middleware(enforcer)); app.post('/echo', (req,res)=>res.json({ name: req.body.name })); app.use((err,_req,res,_next)=>res.status(err.statusCode||500).json({ error: err.message })); app.listen(Number('{{port}}'), ()=>console.log('listening')); })();\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "express-slow-down-minimal",
+  "name": "express-slow-down 最小",
+  "version": "1.0.0",
+  "stack": ["express", "security"],
+  "tags": ["security"],
+  "description": "express-slow-down で段階的遅延。",
+  "params": [ { "name": "app_name", "default": "express-slow" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"express-slow-down\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst slowDown = require('express-slow-down');\nconst app = express();\napp.use(slowDown({ windowMs: 60_000, delayAfter: 20, delayMs: 500 }));\napp.get('/', (_req,res)=>res.json({ ok: true }));\napp.listen(Number('{{port}}'));\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "openapi-generator-typescript-fetch-minimal",
+  "name": "openapi-generator (TS Fetch クライアント)",
+  "version": "1.0.0",
+  "stack": ["openapi", "typescript"],
+  "tags": ["codegen"],
+  "description": "OpenAPI Generator で TypeScript-Fetch クライアントを生成。",
+  "params": [ { "name": "app_name", "default": "openapi-gen-tsf" } ],
+  "files": [
+    { "path": "{{app_name}}/openapi.yaml", "template": "openapi: 3.0.0\ninfo: { title: API, version: '1.0.0' }\npaths:\n  /ping:\n    get:\n      responses:\n        '200': { description: ok }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"gen\": \"openapi-generator-cli generate -g typescript-fetch -i openapi.yaml -o client\" }, \"devDependencies\": { \"@openapitools/openapi-generator-cli\": \"^2\" } }\n" }
+  ],
+  "patches": []
+}
+

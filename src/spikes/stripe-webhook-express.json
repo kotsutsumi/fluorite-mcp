@@ -1,0 +1,19 @@
+{
+  "id": "stripe-webhook-express",
+  "name": "Stripe Webhook (Express)",
+  "version": "1.0.0",
+  "stack": ["node", "express", "stripe"],
+  "tags": ["payments"],
+  "description": "Express server with Stripe webhook signature verification.",
+  "params": [
+    { "name": "app_name", "default": "stripe-webhook" },
+    { "name": "port", "default": "3000" },
+    { "name": "webhook_secret", "default": "whsec_..." }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"stripe\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst Stripe = require('stripe');\nconst stripe = Stripe();\nconst app = express();\napp.post('/webhook', express.raw({ type: 'application/json' }), (req, res) => {\n  const sig = req.headers['stripe-signature'];\n  try {\n    const event = stripe.webhooks.constructEvent(req.body, sig, '{{webhook_secret}}');\n    console.log('Event type', event.type);\n    res.json({ received: true });\n  } catch (err) {\n    console.error('Invalid signature', err.message);\n    res.status(400).send('Invalid signature');\n  }\n});\napp.get('/health', (_req, res) => res.json({ status: 'ok' }));\napp.listen({{port}}, () => console.log('listening on {{port}}'));\n" }
+  ],
+  "patches": []
+}
+

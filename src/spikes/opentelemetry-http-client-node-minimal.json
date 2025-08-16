@@ -1,0 +1,15 @@
+{
+  "id": "opentelemetry-http-client-node-minimal",
+  "name": "OpenTelemetry HTTP Client (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "opentelemetry"],
+  "tags": ["observability"],
+  "description": "Node HTTP クライアントの自動計装最小例。",
+  "params": [ { "name": "app_name", "default": "otel-http-client" }, { "name": "url", "default": "https://example.com" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"scripts\": { \"start\": \"node index.js\" },\n  \"dependencies\": { \"@opentelemetry/sdk-node\": \"latest\", \"@opentelemetry/auto-instrumentations-node\": \"latest\" }\n}\n" },
+    { "path": "{{app_name}}/index.js", "template": "const { NodeSDK } = require('@opentelemetry/sdk-node');\nconst { getNodeAutoInstrumentations } = require('@opentelemetry/auto-instrumentations-node');\nconst https = require('https');\nconst sdk = new NodeSDK({ instrumentations: [getNodeAutoInstrumentations()] });\nsdk.start();\nhttps.get('{{url}}', (res)=>{ console.log('status', res.statusCode); res.resume(); });\nsetTimeout(()=> sdk.shutdown().then(()=>process.exit(0)), 1000);\n" }
+  ],
+  "patches": []
+}
+

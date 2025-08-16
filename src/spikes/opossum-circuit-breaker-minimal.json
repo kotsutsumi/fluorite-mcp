@@ -1,0 +1,15 @@
+{
+  "id": "opossum-circuit-breaker-minimal",
+  "name": "opossum サーキットブレーカー",
+  "version": "1.0.0",
+  "stack": ["node", "opossum"],
+  "tags": ["resilience"],
+  "description": "opossum で関数をブレーカー化。",
+  "params": [ { "name": "app_name", "default": "opossum-demo" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"opossum\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const CircuitBreaker = require('opossum');\nlet n=0;\nconst unstable = async () => { if (n++%2===0) throw new Error('boom'); return 'ok'; };\nconst breaker = new CircuitBreaker(unstable, { timeout: 1000, errorThresholdPercentage: 50, volumeThreshold: 1 });\nbreaker.on('open', ()=>console.log('open')); breaker.on('halfOpen', ()=>console.log('halfOpen')); breaker.on('close', ()=>console.log('close'));\n(async ()=>{ for(let i=0;i<5;i++){ try { console.log(await breaker.fire()); } catch(e){ console.log('fail'); } } })();\n" }
+  ],
+  "patches": []
+}
+

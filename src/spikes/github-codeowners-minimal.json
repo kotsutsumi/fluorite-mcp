@@ -1,0 +1,14 @@
+{
+  "id": "github-codeowners-minimal",
+  "name": "GitHub CODEOWNERS 最小",
+  "version": "1.0.0",
+  "stack": ["github"],
+  "tags": ["repo"],
+  "description": "CODEOWNERS の最小例。",
+  "params": [ { "name": "app_name", "default": "codeowners" } ],
+  "files": [
+    { "path": "{{app_name}}/.github/CODEOWNERS", "template": "* @org/owners\n" }
+  ],
+  "patches": []
+}
+

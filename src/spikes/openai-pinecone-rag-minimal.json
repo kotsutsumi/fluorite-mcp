@@ -1,0 +1,20 @@
+{
+  "id": "openai-pinecone-rag-minimal",
+  "name": "RAG: OpenAI Embeddings + Pinecone Query",
+  "version": "1.0.0",
+  "stack": ["node", "openai", "pinecone"],
+  "tags": ["rag", "vector"],
+  "description": "Generate embeddings with OpenAI, upsert to Pinecone, and query for nearest neighbors.",
+  "params": [
+    { "name": "app_name", "default": "rag-openai-pinecone" },
+    { "name": "pinecone_index", "default": "docs" },
+    { "name": "openai_embed_model", "default": "text-embedding-3-small" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import OpenAI from 'openai';\nimport { Pinecone } from '@pinecone-database/pinecone';\nconst openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst pc = new Pinecone({ apiKey: process.env.PINECONE_API_KEY });\nconst index = pc.Index(process.env.PINECONE_INDEX || '{{pinecone_index}}');\nconst docs = ['hello world', 'fluorite mcp spike'];\nconst emb = await openai.embeddings.create({ model: '{{openai_embed_model}}', input: docs });\nconst upserts = emb.data.map((d, i) => ({ id: String(i+1), values: d.embedding, metadata: { text: docs[i] } }));\nawait index.upsert(upserts);\nconst query = await index.query({ topK: 3, vector: emb.data[0].embedding, includeMetadata: true });\nconsole.log(query.matches?.map(m => m.metadata?.text));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"openai\": \"latest\", \"@pinecone-database/pinecone\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\nPINECONE_API_KEY=...\nPINECONE_INDEX={{pinecone_index}}\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "github-actions-docker-cache-minimal",
+  "name": "GHA Docker Build Cache 最小",
+  "version": "1.0.0",
+  "stack": ["github-actions", "docker"],
+  "tags": ["ci"],
+  "description": "actions/cache を使わない docker/build-push-action の BuildKit キャッシュ。",
+  "params": [ { "name": "app_name", "default": "gha-docker-cache" } ],
+  "files": [
+    { "path": "{{app_name}}/.github/workflows/build.yml", "template": "name: Build\non: [push]\njobs:\n  docker:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: docker/setup-buildx-action@v3\n      - uses: docker/build-push-action@v6\n        with:\n          context: .\n          push: false\n          tags: user/app:latest\n          cache-from: type=gha\n          cache-to: type=gha,mode=max\n" }
+  ],
+  "patches": []
+}
+

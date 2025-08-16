@@ -1,0 +1,15 @@
+{
+  "id": "mqttjs-pubsub-minimal",
+  "name": "mqtt.js Pub/Sub 最小",
+  "version": "1.0.0",
+  "stack": ["mqtt", "node"],
+  "tags": ["messaging"],
+  "description": "mqtt.js でブローカに接続して Pub/Sub。",
+  "params": [ { "name": "app_name", "default": "mqtt-demo" }, { "name": "url", "default": "mqtt://localhost:1883" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"mqtt\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const mqtt = require('mqtt');\nconst client = mqtt.connect('{{url}}');\nclient.on('connect', ()=>{ client.subscribe('demo'); client.publish('demo', 'hello'); });\nclient.on('message', (t, m)=> console.log(t, m.toString()));\n" }
+  ],
+  "patches": []
+}
+

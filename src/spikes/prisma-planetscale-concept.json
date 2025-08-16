@@ -1,0 +1,14 @@
+{
+  "id": "prisma-planetscale-concept",
+  "name": "Prisma + PlanetScale（概念）",
+  "version": "1.0.0",
+  "stack": ["prisma", "mysql", "planetscale"],
+  "tags": ["db"],
+  "description": "Prisma で PlanetScale を使う際の概念メモ。",
+  "params": [ { "name": "app_name", "default": "prisma-pscale" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "Prisma + PlanetScale は prisma generate 後、専用接続/SSL設定を使います。本テンプレは概念説明です。\n" }
+  ],
+  "patches": []
+}
+

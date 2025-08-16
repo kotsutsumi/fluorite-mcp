@@ -1,0 +1,14 @@
+{
+  "id": "drizzle-planetscale-minimal",
+  "name": "Drizzle + PlanetScale 最小",
+  "version": "1.0.0",
+  "stack": ["node", "drizzle", "mysql"],
+  "tags": ["db"],
+  "description": "Drizzle を PlanetScale MySQL に接続（概念）。",
+  "params": [ { "name": "app_name", "default": "drizzle-pscale" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "PlanetScale 接続には専用の接続文字列/SSL設定が必要です。本テンプレは概念説明です。\n" }
+  ],
+  "patches": []
+}
+

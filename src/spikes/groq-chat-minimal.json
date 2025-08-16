@@ -1,0 +1,19 @@
+{
+  "id": "groq-chat-minimal",
+  "name": "Groq Chat (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "groq"],
+  "tags": ["llm", "chat"],
+  "description": "Minimal Groq Chat Completions with groq-sdk.",
+  "params": [
+    { "name": "app_name", "default": "groq-chat-app" },
+    { "name": "groq_model", "default": "llama-3.1-8b-instant" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import Groq from 'groq-sdk';\nconst groq = new Groq({ apiKey: process.env.GROQ_API_KEY });\nconst res = await groq.chat.completions.create({\n  model: '{{groq_model}}',\n  messages: [{ role: 'user', content: 'Say hello' }],\n});\nconsole.log(res.choices?.[0]?.message?.content);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"groq-sdk\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "GROQ_API_KEY=gsk_...\n" }
+  ],
+  "patches": []
+}
+

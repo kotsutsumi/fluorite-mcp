@@ -1,0 +1,19 @@
+{
+  "id": "mistralai-chat-minimal",
+  "name": "Mistral Chat (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "mistral"],
+  "tags": ["llm", "chat"],
+  "description": "Minimal chat completion with Mistral AI SDK.",
+  "params": [
+    { "name": "app_name", "default": "mistral-chat-app" },
+    { "name": "mistral_model", "default": "open-mistral-7b" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { Mistral } from '@mistralai/mistralai';\nconst client = new Mistral({ apiKey: process.env.MISTRAL_API_KEY });\nconst res = await client.chat.complete({\n  model: '{{mistral_model}}',\n  messages: [{ role: 'user', content: 'Say hello' }],\n});\nconsole.log(res.choices?.[0]?.message?.content || JSON.stringify(res));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@mistralai/mistralai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "MISTRAL_API_KEY=...\n" }
+  ],
+  "patches": []
+}
+

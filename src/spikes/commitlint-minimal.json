@@ -1,0 +1,14 @@
+{
+  "id": "commitlint-minimal",
+  "name": "Commitlint Minimal",
+  "version": "1.0.0",
+  "stack": ["commitlint"],
+  "tags": ["git"],
+  "description": "Basic commitlint configuration for conventional commits.",
+  "params": [ { "name": "app_name", "default": "commitlint-config" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"devDependencies\": { \"@commitlint/cli\": \"^19\", \"@commitlint/config-conventional\": \"^19\" }, \"commitlint\": { \"extends\": [\"@commitlint/config-conventional\"] } }\n" }
+  ],
+  "patches": []
+}
+

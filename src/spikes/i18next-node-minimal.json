@@ -1,0 +1,15 @@
+{
+  "id": "i18next-node-minimal",
+  "name": "i18next Node Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "i18next"],
+  "tags": ["i18n"],
+  "description": "Minimal i18next usage in Node.js with JSON resources.",
+  "params": [ { "name": "app_name", "default": "i18n-node" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"i18next\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const i18next = require('i18next');\n(async () => {\n  await i18next.init({ lng: 'en', resources: { en: { translation: { hello: 'Hello' } }, ja: { translation: { hello: 'こんにちは' } } } });\n  console.log('EN:', i18next.t('hello'));\n  await i18next.changeLanguage('ja');\n  console.log('JA:', i18next.t('hello'));\n})();\n" }
+  ],
+  "patches": []
+}
+

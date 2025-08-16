@@ -1,0 +1,15 @@
+{
+  "id": "kafkajs-manual-commit-minimal",
+  "name": "KafkaJS Manual Commit 最小",
+  "version": "1.0.0",
+  "stack": ["kafkajs", "node"],
+  "tags": ["messaging"],
+  "description": "KafkaJS で eachMessage + 手動コミット（最小）。",
+  "params": [ { "name": "app_name", "default": "kafka-manual" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"kafkajs\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const { Kafka } = require('kafkajs');\nconst kafka = new Kafka({ clientId: 'demo', brokers: ['localhost:9092'] });\nconst consumer = kafka.consumer({ groupId: 'g1' });\n(async ()=>{ await consumer.connect(); await consumer.subscribe({ topic: 'events', fromBeginning: true }); await consumer.run({ autoCommit: false, eachMessage: async ({ topic, partition, message, heartbeat, pause }) => { console.log('msg', message.value?.toString()); await consumer.commitOffsets([{ topic, partition, offset: (Number(message.offset)+1).toString() }]); await heartbeat(); } }); })();\n" }
+  ],
+  "patches": []
+}
+

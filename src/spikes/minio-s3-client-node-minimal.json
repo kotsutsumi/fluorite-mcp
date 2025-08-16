@@ -1,0 +1,15 @@
+{
+  "id": "minio-s3-client-node-minimal",
+  "name": "MinIO S3 クライアント (Node)",
+  "version": "1.0.0",
+  "stack": ["minio", "s3", "node"],
+  "tags": ["storage"],
+  "description": "MinIO に S3 互換クライアントで接続。",
+  "params": [ { "name": "app_name", "default": "minio-s3" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"aws-sdk\": \"^2\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const AWS = require('aws-sdk');\nconst s3 = new AWS.S3({ endpoint: 'http://127.0.0.1:9000', s3ForcePathStyle: true, accessKeyId: process.env.MINIO_ACCESS_KEY||'minioadmin', secretAccessKey: process.env.MINIO_SECRET_KEY||'minioadmin' });\n(async () => { const r = await s3.listBuckets().promise(); console.log(r.Buckets?.length); })();\n" }
+  ],
+  "patches": []
+}
+

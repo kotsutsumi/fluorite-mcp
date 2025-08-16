@@ -1,0 +1,15 @@
+{
+  "id": "stripe-payment-intents-minimal",
+  "name": "Stripe PaymentIntents 最小",
+  "version": "1.0.0",
+  "stack": ["node", "stripe"],
+  "tags": ["payments"],
+  "description": "PaymentIntent の作成（サーバ側）。",
+  "params": [ { "name": "app_name", "default": "stripe-pi" }, { "name": "amount", "default": "1000" }, { "name": "currency", "default": "usd" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node create.js\" }, \"dependencies\": { \"stripe\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/create.js", "template": "const stripe = require('stripe')();\n(async () => { const pi = await stripe.paymentIntents.create({ amount: Number('{{amount}}'), currency: '{{currency}}' }); console.log(pi.id); })();\n" }
+  ],
+  "patches": []
+}
+

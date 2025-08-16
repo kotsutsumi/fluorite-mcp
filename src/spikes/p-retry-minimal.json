@@ -1,0 +1,15 @@
+{
+  "id": "p-retry-minimal",
+  "name": "p-retry 最小",
+  "version": "1.0.0",
+  "stack": ["node", "retry"],
+  "tags": ["retry"],
+  "description": "p-retry を使った関数のリトライ。",
+  "params": [ { "name": "app_name", "default": "p-retry-demo" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"p-retry\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const pRetry = require('p-retry');\nlet n = 0;\nconst task = async () => { if (n++ < 2) throw new Error('no'); return 'ok'; };\n(async () => { const r = await pRetry(task, { retries: 3 }); console.log(r); })();\n" }
+  ],
+  "patches": []
+}
+

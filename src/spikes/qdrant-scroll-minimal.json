@@ -1,0 +1,20 @@
+{
+  "id": "qdrant-scroll-minimal",
+  "name": "Qdrant Scroll Points (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "qdrant"],
+  "tags": ["vector", "scroll"],
+  "description": "Scroll through Qdrant points with limit and pagination.",
+  "params": [
+    { "name": "app_name", "default": "qdrant-scroll" },
+    { "name": "qdrant_url", "default": "http://localhost:6333" },
+    { "name": "qdrant_collection", "default": "documents" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { QdrantClient } from '@qdrant/js-client-rest';\nconst client = new QdrantClient({ url: process.env.QDRANT_URL || '{{qdrant_url}}' });\nconst collection = process.env.QDRANT_COLLECTION || '{{qdrant_collection}}';\nlet next = null;\nconst out = [];\nfor (let i = 0; i < 3; i++) {\n  const res = await client.scroll(collection, { limit: 2, with_payload: true, offset: next?.offset, page: next?.page });\n  out.push(...(res.points || []));\n  if (!res.next_page_offset) break;\n  next = { offset: res.next_page_offset, page: (next?.page || 1) + 1 };\n}\nconsole.log(out.length);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@qdrant/js-client-rest\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "QDRANT_URL=http://localhost:6333\nQDRANT_COLLECTION={{qdrant_collection}}\n" }
+  ],
+  "patches": []
+}
+

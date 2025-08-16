@@ -1,0 +1,15 @@
+{
+  "id": "puppeteer-pdf-generate",
+  "name": "PuppeteerでページをPDF化",
+  "version": "1.0.0",
+  "stack": ["node", "puppeteer"],
+  "tags": ["pdf", "browser"],
+  "description": "Puppeteerで任意URLをPDF出力。",
+  "params": [ { "name": "app_name", "default": "puppeteer-pdf" }, { "name": "url", "default": "https://example.com" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"puppeteer\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const puppeteer = require('puppeteer');\n(async () => { const browser = await puppeteer.launch(); const page = await browser.newPage(); await page.goto('{{url}}'); await page.pdf({ path: 'page.pdf', format: 'A4' }); await browser.close(); console.log('saved page.pdf'); })();\n" }
+  ],
+  "patches": []
+}
+

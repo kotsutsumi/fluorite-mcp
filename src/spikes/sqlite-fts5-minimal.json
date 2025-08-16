@@ -1,0 +1,15 @@
+{
+  "id": "sqlite-fts5-minimal",
+  "name": "SQLite FTS5 最小",
+  "version": "1.0.0",
+  "stack": ["sqlite", "node"],
+  "tags": ["db", "search"],
+  "description": "FTS5 仮想テーブルで全文検索（簡易）。",
+  "params": [ { "name": "app_name", "default": "sqlite-fts5" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.mjs\" }, \"dependencies\": { \"better-sqlite3\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.mjs", "template": "import Database from 'better-sqlite3';\nconst db = new Database('app.db');\ndb.exec('CREATE VIRTUAL TABLE IF NOT EXISTS docs USING fts5(content)');\ndb.exec(\"INSERT INTO docs(content) VALUES ('hello world')\");\nconst rows = db.prepare(`SELECT rowid, content FROM docs WHERE docs MATCH 'hello'`).all();\nconsole.log(rows.length);\n" }
+  ],
+  "patches": []
+}
+

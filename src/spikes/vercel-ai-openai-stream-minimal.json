@@ -1,0 +1,18 @@
+{
+  "id": "vercel-ai-openai-stream-minimal",
+  "name": "Vercel AI SDK + OpenAI Streaming (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "vercel-ai", "openai"],
+  "tags": ["llm", "stream"],
+  "description": "Stream text with the Vercel AI SDK using OpenAI provider.",
+  "params": [
+    { "name": "app_name", "default": "vercel-ai-openai-stream" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { createOpenAI } from '@ai-sdk/openai';\nimport { streamText } from 'ai';\nconst openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst result = await streamText({ model: openai('gpt-4o-mini'), prompt: 'Stream a short hello' });\nfor await (const part of result.textStream) { process.stdout.write(part); }\nconsole.log();\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@ai-sdk/openai\": \"latest\", \"ai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" }
+  ],
+  "patches": []
+}
+

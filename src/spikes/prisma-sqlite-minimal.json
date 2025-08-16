@@ -1,0 +1,16 @@
+{
+  "id": "prisma-sqlite-minimal",
+  "name": "Prisma + SQLite Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "prisma", "sqlite"],
+  "tags": ["db"],
+  "description": "Prisma schema and script for SQLite.",
+  "params": [ { "name": "app_name", "default": "prisma-sqlite" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"scripts\": { \"postinstall\": \"prisma generate\", \"seed\": \"node script.js\" },\n  \"dependencies\": { \"@prisma/client\": \"latest\" },\n  \"devDependencies\": { \"prisma\": \"latest\" }\n}\n" },
+    { "path": "{{app_name}}/prisma/schema.prisma", "template": "generator client { provider = \"prisma-client-js\" }\ndatasource db { provider = \"sqlite\" url = \"file:dev.db\" }\nmodel User { id Int @id @default(autoincrement()) name String }\n" },
+    { "path": "{{app_name}}/script.js", "template": "const { PrismaClient } = require('@prisma/client');\nconst prisma = new PrismaClient();\n(async () => {\n  await prisma.user.create({ data: { name: 'Alice' } });\n  console.log('User count', await prisma.user.count());\n  await prisma.$disconnect();\n})();\n" }
+  ],
+  "patches": []
+}
+

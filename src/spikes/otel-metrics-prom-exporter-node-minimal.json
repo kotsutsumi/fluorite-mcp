@@ -1,0 +1,14 @@
+{
+  "id": "otel-metrics-prom-exporter-node-minimal",
+  "name": "OTel Metrics Prom Exporter (Node)",
+  "version": "1.0.0",
+  "stack": ["opentelemetry", "prometheus", "node"],
+  "tags": ["observability"],
+  "description": "OTel の Prometheus Exporter でメトリクス公開（概念）。",
+  "params": [ { "name": "app_name", "default": "otel-prom" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "@opentelemetry/exporter-prometheus を利用してメトリクスを公開します（実装は概説）。\n" }
+  ],
+  "patches": []
+}
+

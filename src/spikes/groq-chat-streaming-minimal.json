@@ -1,0 +1,19 @@
+{
+  "id": "groq-chat-streaming-minimal",
+  "name": "Groq Chat Streaming (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "groq"],
+  "tags": ["llm", "stream"],
+  "description": "Stream chat tokens from Groq with groq-sdk.",
+  "params": [
+    { "name": "app_name", "default": "groq-stream-app" },
+    { "name": "groq_model", "default": "llama-3.1-8b-instant" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import Groq from 'groq-sdk';\nconst groq = new Groq({ apiKey: process.env.GROQ_API_KEY });\nconst stream = await groq.chat.completions.create({\n  model: '{{groq_model}}',\n  stream: true,\n  messages: [{ role: 'user', content: 'Stream a short hello' }],\n});\nfor await (const part of stream) {\n  process.stdout.write(part.choices?.[0]?.delta?.content || '');\n}\nconsole.log();\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"groq-sdk\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "GROQ_API_KEY=gsk_...\n" }
+  ],
+  "patches": []
+}
+

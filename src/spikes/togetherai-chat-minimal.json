@@ -1,0 +1,19 @@
+{
+  "id": "togetherai-chat-minimal",
+  "name": "Together AI Chat (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "together"],
+  "tags": ["llm", "chat"],
+  "description": "Minimal chat completion using Together AI REST.",
+  "params": [
+    { "name": "app_name", "default": "togetherai-chat-app" },
+    { "name": "together_model", "default": "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "const res = await fetch('https://api.together.xyz/v1/chat/completions', {\n  method: 'POST',\n  headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${process.env.TOGETHER_API_KEY}` },\n  body: JSON.stringify({\n    model: process.env.TOGETHER_MODEL || '{{together_model}}',\n    messages: [{ role: 'user', content: 'Say hello' }],\n    stream: false\n  })\n});\nconst json = await res.json();\nconsole.log(json.choices?.[0]?.message?.content);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "TOGETHER_API_KEY=...\nTOGETHER_MODEL={{together_model}}\n" }
+  ],
+  "patches": []
+}
+

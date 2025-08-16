@@ -1,0 +1,15 @@
+{
+  "id": "bottleneck-rate-limit-minimal",
+  "name": "Bottleneck レート制御",
+  "version": "1.0.0",
+  "stack": ["node", "bottleneck"],
+  "tags": ["throttle"],
+  "description": "Bottleneckで処理の同時実行数を制御。",
+  "params": [ { "name": "app_name", "default": "bottleneck-demo" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"bottleneck\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const Bottleneck = require('bottleneck');\nconst limiter = new Bottleneck({ maxConcurrent: 2, minTime: 200 });\nconst task = (i) => new Promise(r => setTimeout(() => { console.log('done', i); r(); }, 300));\nfor (let i=0;i<5;i++) limiter.schedule(() => task(i));\n" }
+  ],
+  "patches": []
+}
+

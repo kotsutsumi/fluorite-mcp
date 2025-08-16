@@ -1,0 +1,14 @@
+{
+  "id": "gcs-signed-post-policy-node",
+  "name": "GCS Signed POST Policy (Node)",
+  "version": "1.0.0",
+  "stack": ["gcp", "storage", "node"],
+  "tags": ["storage", "upload"],
+  "description": "GCS の Signed POST Policy をNodeで生成（簡易）。",
+  "params": [ { "name": "app_name", "default": "gcs-post-policy-node" }, { "name": "bucket", "default": "my-bucket" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "@google-cloud/storage の generateSignedPostPolicyV4 を使用してください。ここでは手順の概説です。\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "aws-kms-sign-verify-minimal",
+  "name": "AWS KMS 署名/検証 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "kms", "node"],
+  "tags": ["security"],
+  "description": "KMS で署名/検証（キー事前作成前提）。",
+  "params": [ { "name": "app_name", "default": "kms-sign" }, { "name": "key_id", "default": "arn:aws:kms:us-east-1:123456789012:key/abc" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@aws-sdk/client-kms\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const { KMSClient, SignCommand, VerifyCommand } = require('@aws-sdk/client-kms');\nconst kms = new KMSClient({});\n(async ()=>{ const msg = Buffer.from('hello'); const s = await kms.send(new SignCommand({ KeyId: '{{key_id}}', Message: msg, SigningAlgorithm: 'RSASSA_PKCS1_V1_5_SHA_256', MessageType: 'RAW' })); const v = await kms.send(new VerifyCommand({ KeyId: '{{key_id}}', Message: msg, Signature: s.Signature, SigningAlgorithm: 'RSASSA_PKCS1_V1_5_SHA_256', MessageType: 'RAW' })); console.log('valid', v.SignatureValid); })();\n" }
+  ],
+  "patches": []
+}
+

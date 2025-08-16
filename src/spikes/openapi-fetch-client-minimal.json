@@ -1,0 +1,15 @@
+{
+  "id": "openapi-fetch-client-minimal",
+  "name": "openapi-fetch クライアント最小",
+  "version": "1.0.0",
+  "stack": ["openapi", "typescript"],
+  "tags": ["codegen"],
+  "description": "openapi-fetch を使った型安全なクライアントの雛形。",
+  "params": [ { "name": "app_name", "default": "openapi-fetch" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"dependencies\": { \"openapi-fetch\": \"^0.11.3\" } }\n" },
+    { "path": "{{app_name}}/index.mjs", "template": "import createClient from 'openapi-fetch';\nconst client = createClient({ baseUrl: 'https://example.com', schema: { /* 実運用ではスキーマを投入 */ } });\nconsole.log('client ready');\n" }
+  ],
+  "patches": []
+}
+

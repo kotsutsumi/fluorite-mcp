@@ -1,0 +1,15 @@
+{
+  "id": "aws-s3-presigned-put-minimal",
+  "name": "AWS S3 署名付きPUT 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "s3", "node"],
+  "tags": ["storage"],
+  "description": "AWS SDK v3 でS3の署名付きPUT URLを発行。",
+  "params": [ { "name": "app_name", "default": "s3-presigned-put" }, { "name": "bucket", "default": "my-bucket" }, { "name": "key", "default": "upload.bin" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node url.js\" }, \"dependencies\": { \"@aws-sdk/client-s3\": \"latest\", \"@aws-sdk/s3-request-presigner\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/url.js", "template": "const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');\nconst { getSignedUrl } = require('@aws-sdk/s3-request-presigner');\n(async () => { const s3 = new S3Client({}); const url = await getSignedUrl(s3, new PutObjectCommand({ Bucket: '{{bucket}}', Key: '{{key}}' }), { expiresIn: 900 }); console.log(url); })();\n" }
+  ],
+  "patches": []
+}
+

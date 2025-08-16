@@ -1,0 +1,17 @@
+{
+  "id": "node-config-minimal",
+  "name": "node-config 最小",
+  "version": "1.0.0",
+  "stack": ["node", "config"],
+  "tags": ["config"],
+  "description": "node-config を用いた環境別設定。",
+  "params": [ { "name": "app_name", "default": "node-config" } ],
+  "files": [
+    { "path": "{{app_name}}/config/default.json", "template": "{ \"port\": 3000 }\n" },
+    { "path": "{{app_name}}/config/production.json", "template": "{ \"port\": 8080 }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"config\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const config = require('config');\nconsole.log('port', config.get('port'));\n" }
+  ],
+  "patches": []
+}
+

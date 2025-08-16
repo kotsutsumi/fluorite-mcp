@@ -1,0 +1,15 @@
+{
+  "id": "helmet-coop-coep-minimal",
+  "name": "Helmet COOP/COEP 最小",
+  "version": "1.0.0",
+  "stack": ["express", "helmet"],
+  "tags": ["security"],
+  "description": "Cross-Origin-Opener-Policy / Cross-Origin-Embedder-Policy を付与。",
+  "params": [ { "name": "app_name", "default": "helmet-coop-coep" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"helmet\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst helmet = require('helmet');\nconst app = express();\napp.use(helmet.crossOriginOpenerPolicy({ policy: 'same-origin' }));\napp.use(helmet.crossOriginEmbedderPolicy());\napp.get('/', (_req,res)=>res.send('ok'));\napp.listen(Number('{{port}}'));\n" }
+  ],
+  "patches": []
+}
+

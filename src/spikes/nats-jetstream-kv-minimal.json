@@ -1,0 +1,15 @@
+{
+  "id": "nats-jetstream-kv-minimal",
+  "name": "NATS JetStream Key-Value 最小",
+  "version": "1.0.0",
+  "stack": ["nats", "node"],
+  "tags": ["messaging"],
+  "description": "JetStream KV を作成して put/get。",
+  "params": [ { "name": "app_name", "default": "nats-kv" }, { "name": "server", "default": "nats://127.0.0.1:4222" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"nats\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const { connect } = require('nats');\n(async ()=>{ const nc = await connect({ servers: '{{server}}' }); const js = await nc.jetstream(); const kv = await js.views.kv('config'); await kv.put('hello', Buffer.from('world')); const v = await kv.get('hello'); console.log(v.string()); await nc.drain(); })();\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "pino-loki-transport-minimal",
+  "name": "pino-loki Transport 最小",
+  "version": "1.0.0",
+  "stack": ["pino", "loki", "node"],
+  "tags": ["observability"],
+  "description": "pino-loki を使って Loki へログ転送（最小）。",
+  "params": [ { "name": "app_name", "default": "pino-loki" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"scripts\": { \"start\": \"node index.mjs\" }, \"dependencies\": { \"pino\": \"latest\", \"pino-loki\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.mjs", "template": "import pino from 'pino';\nimport loki from 'pino-loki';\nconst logger = pino(loki({ batching: false, host: process.env.LOKI_URL||'http://localhost:3100' }));\nlogger.info('hello loki');\n" }
+  ],
+  "patches": []
+}
+

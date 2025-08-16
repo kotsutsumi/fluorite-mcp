@@ -1,0 +1,16 @@
+{
+  "id": "bree-jobs-minimal",
+  "name": "Bree ジョブスケジューラ",
+  "version": "1.0.0",
+  "stack": ["node", "bree"],
+  "tags": ["schedule"],
+  "description": "Breeでワーカー型ジョブを実行。",
+  "params": [ { "name": "app_name", "default": "bree-jobs" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node index.mjs\" }, \"dependencies\": { \"bree\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/jobs/hello.js", "template": "module.exports = () => { console.log('hello from job'); };\n" },
+    { "path": "{{app_name}}/index.mjs", "template": "import Bree from 'bree';\nconst bree = new Bree({ jobs: [{ name: 'hello', interval: '1m' }] });\nawait bree.start();\nconsole.log('bree started');\n" }
+  ],
+  "patches": []
+}
+

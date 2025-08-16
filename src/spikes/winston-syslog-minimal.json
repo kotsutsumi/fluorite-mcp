@@ -1,0 +1,15 @@
+{
+  "id": "winston-syslog-minimal",
+  "name": "Winston Syslog 出力",
+  "version": "1.0.0",
+  "stack": ["node", "winston"],
+  "tags": ["logging"],
+  "description": "winston-syslog で syslog へ出力（ローカル依存）。",
+  "params": [ { "name": "app_name", "default": "winston-syslog" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node log.js\" }, \"dependencies\": { \"winston\": \"latest\", \"winston-syslog\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/log.js", "template": "const winston = require('winston');\nrequire('winston-syslog');\nconst logger = winston.createLogger({ transports: [new winston.transports.Syslog()] });\nlogger.info('hello syslog');\n" }
+  ],
+  "patches": []
+}
+

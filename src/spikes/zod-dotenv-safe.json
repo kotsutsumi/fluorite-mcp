@@ -1,0 +1,16 @@
+{
+  "id": "zod-dotenv-safe",
+  "name": "Zod + dotenv-safe",
+  "version": "1.0.0",
+  "stack": ["node", "zod"],
+  "tags": ["config"],
+  "description": "Validate environment variables using Zod and dotenv.",
+  "params": [ { "name": "app_name", "default": "zod-env" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"zod\": \"latest\", \"dotenv\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "PORT=3000\nNODE_ENV=development\n" },
+    { "path": "{{app_name}}/index.js", "template": "import { config } from 'dotenv';\nimport { z } from 'zod';\nconfig();\nconst Env = z.object({ PORT: z.coerce.number().default(3000), NODE_ENV: z.enum(['development','test','production']).default('development') });\nconst env = Env.parse(process.env);\nconsole.log('env', env);\n" }
+  ],
+  "patches": []
+}
+

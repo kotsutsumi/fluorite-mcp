@@ -1,0 +1,20 @@
+{
+  "id": "vertexai-gemini-chat-minimal",
+  "name": "Vertex AI Gemini Chat (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "gcp", "vertexai"],
+  "tags": ["llm", "chat"],
+  "description": "Generate content with Vertex AI Gemini model using @google-cloud/vertexai.",
+  "params": [
+    { "name": "app_name", "default": "vertexai-gemini-chat" },
+    { "name": "gcp_project_id", "default": "your-gcp-project" },
+    { "name": "gcp_location", "default": "us-central1" },
+    { "name": "vertex_model", "default": "gemini-1.5-flash" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { VertexAI } from '@google-cloud/vertexai';\nconst vertex = new VertexAI({ project: process.env.GCP_PROJECT_ID || '{{gcp_project_id}}', location: process.env.GCP_LOCATION || '{{gcp_location}}' });\nconst model = vertex.getGenerativeModel({ model: process.env.VERTEX_MODEL || '{{vertex_model}}' });\nconst res = await model.generateContent({ contents: [{ role: 'user', parts: [{ text: 'Say hello' }] }] });\nconsole.log(res.response?.candidates?.[0]?.content?.parts?.[0]?.text);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@google-cloud/vertexai\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

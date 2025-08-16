@@ -1,0 +1,16 @@
+{
+  "id": "fastify-prisma-sqlite-minimal",
+  "name": "Fastify + Prisma + SQLite",
+  "version": "1.0.0",
+  "stack": ["node", "fastify", "prisma", "sqlite"],
+  "tags": ["api", "db"],
+  "description": "Fastify API with Prisma (SQLite) demo endpoint.",
+  "params": [ { "name": "app_name", "default": "fastify-prisma" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"scripts\": { \"start\": \"node index.js\", \"postinstall\": \"prisma generate\" },\n  \"dependencies\": { \"fastify\": \"latest\", \"@prisma/client\": \"latest\" },\n  \"devDependencies\": { \"prisma\": \"latest\" }\n}\n" },
+    { "path": "{{app_name}}/prisma/schema.prisma", "template": "generator client { provider = \"prisma-client-js\" }\ndatasource db { provider = \"sqlite\" url = \"file:dev.db\" }\nmodel Item { id Int @id @default(autoincrement()) name String }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const Fastify = require('fastify');\nconst { PrismaClient } = require('@prisma/client');\nconst prisma = new PrismaClient();\nconst app = Fastify();\napp.get('/health', async () => ({ status: 'ok' }));\napp.get('/items', async () => { await prisma.item.create({ data: { name: 'hello' } }); return { count: await prisma.item.count() }; });\napp.listen({ port: Number('{{port}}') }, () => console.log('listening on {{port}}'));\n" }
+  ],
+  "patches": []
+}
+

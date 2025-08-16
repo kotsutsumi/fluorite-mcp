@@ -1,0 +1,16 @@
+{
+  "id": "aws-s3-signed-post-policy-node",
+  "name": "AWS S3 Signed POST Policy (Node)",
+  "version": "1.0.0",
+  "stack": ["aws", "s3", "node"],
+  "tags": ["storage", "upload"],
+  "description": "S3 のブラウザ直アップロード用 Signed POST Policy を生成（簡易）。",
+  "params": [ { "name": "app_name", "default": "s3-post-policy" }, { "name": "bucket", "default": "my-bucket" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node policy.js\" }, \"dependencies\": { \"aws4\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/policy.js", "template": "const crypto = require('crypto');\nconst policy = { expiration: new Date(Date.now()+3600_000).toISOString(), conditions: [{ bucket: '{{bucket}}' }, ['starts-with', '$key', ''], ['content-length-range', 0, 10485760] ] };\nconst policyB64 = Buffer.from(JSON.stringify(policy)).toString('base64');\n// 署名はAWS認証情報から計算する必要があります（ここでは概念）。\nconsole.log({ policy: policyB64 });\n" },
+    { "path": "{{app_name}}/README.md", "template": "実運用では AWS 認証情報で署名（HMAC-SHA256）を行い、policy, x-amz-signature 等を返してください。\n" }
+  ],
+  "patches": []
+}
+

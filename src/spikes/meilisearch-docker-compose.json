@@ -1,0 +1,14 @@
+{
+  "id": "meilisearch-docker-compose",
+  "name": "Meilisearch Docker Compose",
+  "version": "1.0.0",
+  "stack": ["docker", "meilisearch"],
+  "tags": ["infra", "docker"],
+  "description": "Meilisearch の開発用コンテナ。",
+  "params": [ { "name": "app_name", "default": "meili-stack" } ],
+  "files": [
+    { "path": "{{app_name}}/docker-compose.yml", "template": "version: '3.9'\nservices:\n  meili:\n    image: getmeili/meilisearch:latest\n    environment:\n      - MEILI_NO_ANALYTICS=true\n    ports: ['7700:7700']\n    command: ['meilisearch', '--env=development']\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,16 @@
+{
+  "id": "zodios-client-minimal",
+  "name": "Zodios クライアント最小",
+  "version": "1.0.0",
+  "stack": ["typescript", "zod", "zodios"],
+  "tags": ["api"],
+  "description": "Zodiosで型安全なAPIクライアント定義。",
+  "params": [ { "name": "app_name", "default": "zodios-client" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"build\": \"tsc\" }, \"dependencies\": { \"zod\": \"latest\", \"@zodios/core\": \"latest\" }, \"devDependencies\": { \"typescript\": \"^5\" } }\n" },
+    { "path": "{{app_name}}/tsconfig.json", "template": "{ \"compilerOptions\": { \"target\": \"ES2020\", \"module\": \"ES2020\", \"strict\": true, \"moduleResolution\": \"bundler\" } }\n" },
+    { "path": "{{app_name}}/index.ts", "template": "import { makeApi, Zodios } from '@zodios/core';\nimport { z } from 'zod';\nconst api = makeApi([{ method: 'get', path: '/hello', response: z.object({ hello: z.string() }) }]);\nconst client = new Zodios('https://example.com', api);\nconsole.log('client ready');\n" }
+  ],
+  "patches": []
+}
+

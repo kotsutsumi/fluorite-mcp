@@ -1,0 +1,14 @@
+{
+  "id": "azure-blob-userdelegation-sas-minimal",
+  "name": "Azure Blob User Delegation SAS",
+  "version": "1.0.0",
+  "stack": ["azure", "blob"],
+  "tags": ["storage"],
+  "description": "ユーザーデリゲーションキーを用いたSAS生成（概念）。",
+  "params": [ { "name": "app_name", "default": "azure-ud-sas" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "User Delegation SAS は Azure AD 認証が必要です。本テンプレは概念説明です。\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "helmet-csp-report-to-minimal",
+  "name": "Helmet CSP Report-To",
+  "version": "1.0.0",
+  "stack": ["express", "helmet"],
+  "tags": ["security"],
+  "description": "CSP に report-to を付与しレポート受け取り。",
+  "params": [ { "name": "app_name", "default": "csp-report-to" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"helmet\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst helmet = require('helmet');\nconst app = express();\napp.use(express.json({ type: ['application/csp-report','application/reports+json','application/json'] }));\napp.use(helmet.contentSecurityPolicy({ useDefaults: true, directives: { reportTo: 'csp-endpoint' } }));\napp.use(helmet.expectCt({ enforce: true, maxAge: 86400 }));\napp.post('/csp-report', (req,res)=>{ console.log('report', req.body); res.sendStatus(204); });\napp.get('/', (_req,res)=>res.send('<h1>Hello</h1>'));\napp.listen(Number('{{port}}'));\n" }
+  ],
+  "patches": []
+}
+

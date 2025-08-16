@@ -1,0 +1,14 @@
+{
+  "id": "vercel-blob-upload-signed-url-minimal",
+  "name": "Vercel Blob 署名URL 最小",
+  "version": "1.0.0",
+  "stack": ["vercel", "blob"],
+  "tags": ["storage", "upload"],
+  "description": "Vercel Blob で署名URLを発行（概念）。",
+  "params": [ { "name": "app_name", "default": "vercel-blob" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "@vercel/blob のドキュメントに従い、サーバ側で一時URLを発行してブラウザ直アップロードします。\n" }
+  ],
+  "patches": []
+}
+

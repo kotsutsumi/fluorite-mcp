@@ -1,0 +1,81 @@
+[package]
+name = "fluorite-ml"
+version = "0.1.0"
+edition = "2021"
+description = "CPU-only machine learning integration for Fluorite memory engine"
+license = "MIT"
+
+[dependencies]
+# Core ML and ONNX Runtime
+ort = { version = "2.0", features = ["copy-dylibs", "load-dynamic"] }
+candle-core = { version = "0.4", features = ["mkl"] }
+candle-nn = "0.4"
+candle-transformers = "0.4"
+tokenizers = "0.15"
+
+# Linear algebra and numerics
+ndarray = "0.15"
+nalgebra = "0.32"
+linfa = "0.7"
+linfa-linear = "0.7"
+linfa-clustering = "0.7"
+
+# Text processing and embeddings
+# Note: These would be used in a real implementation
+# sentence-transformers = "0.1"
+# text-embeddings = "0.1" 
+# fastembed = "3.0"
+
+# Python integration for ML models
+pyo3 = { version = "0.21", features = ["auto-initialize", "extension-module"] }
+pyo3-asyncio = { version = "0.21", features = ["tokio-runtime"] }
+numpy = "0.21"
+
+# Serialization and data handling
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+bincode = "1.3"
+
+# Async and concurrency
+tokio = { version = "1.0", features = ["full"] }
+rayon = "1.8"
+futures = "0.3"
+
+# Error handling and utilities
+anyhow = "1.0"
+thiserror = "1.0"
+tracing = "0.1"
+uuid = { version = "1.0", features = ["v4"] }
+
+# Memory management
+memmap2 = "0.9"
+lru = "0.12"
+
+# Mathematics and statistics
+statrs = "0.16"
+rand = "0.8"
+rand_distr = "0.4"
+
+# Additional utilities
+num_cpus = "1.16"
+
+# Optional features for different model backends
+[features]
+default = ["onnx"]
+onnx = ["ort"]
+candle = ["candle-core", "candle-nn", "candle-transformers"]
+huggingface = ["tokenizers"]
+# sentence-transformers = ["fastembed"]
+
+[dev-dependencies]
+tokio-test = "0.4"
+tempfile = "3.8"
+criterion = "0.5"
+
+[[bench]]
+name = "embedding_benchmark"
+harness = false
+
+[[bench]]  
+name = "similarity_benchmark"
+harness = false

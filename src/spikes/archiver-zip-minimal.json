@@ -1,0 +1,15 @@
+{
+  "id": "archiver-zip-minimal",
+  "name": "archiver でZIP生成",
+  "version": "1.0.0",
+  "stack": ["node", "archive"],
+  "tags": ["archive"],
+  "description": "archiver を使ってZIPファイルを生成。",
+  "params": [ { "name": "app_name", "default": "archiver-zip" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node zip.js\" }, \"dependencies\": { \"archiver\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/zip.js", "template": "const fs = require('fs');\nconst archiver = require('archiver');\nconst out = fs.createWriteStream('out.zip');\nconst archive = archiver('zip');\narchive.pipe(out);\narchive.append('hello world', { name: 'hello.txt' });\narchive.finalize().then(()=>console.log('created out.zip'));\n" }
+  ],
+  "patches": []
+}
+

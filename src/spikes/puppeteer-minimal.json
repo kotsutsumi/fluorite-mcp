@@ -1,0 +1,15 @@
+{
+  "id": "puppeteer-minimal",
+  "name": "Puppeteer Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "puppeteer"],
+  "tags": ["browser"],
+  "description": "Launch Chromium and grab page title.",
+  "params": [ { "name": "app_name", "default": "puppeteer-demo" }, { "name": "url", "default": "https://example.com" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"puppeteer\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const puppeteer = require('puppeteer');\n(async () => { const browser = await puppeteer.launch(); const page = await browser.newPage(); await page.goto('{{url}}'); console.log(await page.title()); await browser.close(); })();\n" }
+  ],
+  "patches": []
+}
+

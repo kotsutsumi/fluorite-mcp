@@ -1,0 +1,15 @@
+{
+  "id": "aws-sqs-minimal",
+  "name": "AWS SQS Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "aws"],
+  "tags": ["messaging"],
+  "description": "Send and receive a message using AWS SDK v3 SQS.",
+  "params": [ { "name": "app_name", "default": "sqs-demo" }, { "name": "queue_url", "default": "https://sqs.us-east-1.amazonaws.com/123456789012/demo" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@aws-sdk/client-sqs\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const { SQSClient, SendMessageCommand, ReceiveMessageCommand, DeleteMessageCommand } = require('@aws-sdk/client-sqs');\nconst client = new SQSClient({});\nconst QueueUrl = '{{queue_url}}';\n(async () => {\n  await client.send(new SendMessageCommand({ QueueUrl, MessageBody: 'hello' }));\n  const r = await client.send(new ReceiveMessageCommand({ QueueUrl, MaxNumberOfMessages: 1, WaitTimeSeconds: 1 }));\n  const m = r.Messages?.[0];\n  console.log('received', m?.Body);\n  if (m) await client.send(new DeleteMessageCommand({ QueueUrl, ReceiptHandle: m.ReceiptHandle }));\n})();\n" }
+  ],
+  "patches": []
+}
+

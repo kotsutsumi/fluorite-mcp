@@ -1,0 +1,16 @@
+{
+  "id": "vitest-supertest-express-minimal",
+  "name": "Vitest + Supertest + Express",
+  "version": "1.0.0",
+  "stack": ["node", "vitest", "express"],
+  "tags": ["test"],
+  "description": "Vitest で Supertest を用いたHTTPテスト。",
+  "params": [ { "name": "app_name", "default": "vitest-supertest" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"test\": \"vitest run\" },\n  \"dependencies\": { \"express\": \"latest\", \"supertest\": \"latest\" },\n  \"devDependencies\": { \"vitest\": \"^1\" }\n}\n" },
+    { "path": "{{app_name}}/app.mjs", "template": "import express from 'express';\nconst app = express();\napp.get('/hello', (_req,res)=>res.json({ hello: 'world' }));\nexport default app;\n" },
+    { "path": "{{app_name}}/app.test.mjs", "template": "import { describe, it, expect } from 'vitest';\nimport request from 'supertest';\nimport app from './app.mjs';\n\ndescribe('app', () => {\n  it('hello', async () => {\n    const res = await request(app).get('/hello');\n    expect(res.statusCode).toBe(200);\n    expect(res.body.hello).toBe('world');\n  });\n});\n" }
+  ],
+  "patches": []
+}
+

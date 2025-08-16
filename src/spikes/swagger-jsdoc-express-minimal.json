@@ -1,0 +1,15 @@
+{
+  "id": "swagger-jsdoc-express-minimal",
+  "name": "swagger-jsdoc + swagger-ui-express",
+  "version": "1.0.0",
+  "stack": ["node", "express", "openapi"],
+  "tags": ["docs"],
+  "description": "JSDocコメントからOpenAPIを生成してUI提供。",
+  "params": [ { "name": "app_name", "default": "swagger-jsdoc" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"swagger-jsdoc\": \"latest\", \"swagger-ui-express\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst swaggerUi = require('swagger-ui-express');\nconst swaggerJSDoc = require('swagger-jsdoc');\nconst app = express();\n/**\n * @openapi\n * /hello:\n *   get:\n *     responses:\n *       200:\n *         description: ok\n */\nconst spec = swaggerJSDoc({ definition: { openapi: '3.0.0', info: { title: 'Demo', version: '1.0.0' } }, apis: [__filename] });\napp.use('/docs', swaggerUi.serve, swaggerUi.setup(spec));\napp.get('/hello', (_req,res)=>res.json({ hello: 'world' }));\napp.listen(Number('{{port}}'), () => console.log('docs at /docs'));\n" }
+  ],
+  "patches": []
+}
+

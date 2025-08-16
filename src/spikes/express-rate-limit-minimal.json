@@ -1,0 +1,15 @@
+{
+  "id": "express-rate-limit-minimal",
+  "name": "Express Rate Limit Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "express"],
+  "tags": ["security"],
+  "description": "Express with express-rate-limit middleware.",
+  "params": [ { "name": "app_name", "default": "express-rl" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"express-rate-limit\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst rateLimit = require('express-rate-limit');\nconst app = express();\napp.use(rateLimit({ windowMs: 60_000, max: 60 }));\napp.get('/health', (_req, res) => res.json({ status: 'ok' }));\napp.get('/', (_req, res) => res.json({ hello: 'world' }));\napp.listen(Number('{{port}}'), () => console.log('listening on {{port}}'));\n" }
+  ],
+  "patches": []
+}
+

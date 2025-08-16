@@ -1,0 +1,16 @@
+{
+  "id": "remix-minimal",
+  "name": "Remix Minimal App",
+  "version": "1.0.0",
+  "stack": ["remix", "react"],
+  "tags": ["frontend", "fullstack"],
+  "description": "Minimal Remix app with a root route.",
+  "params": [ { "name": "app_name", "default": "remix-app" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"scripts\": { \"dev\": \"remix dev\", \"build\": \"remix build\", \"start\": \"remix-serve build\" },\n  \"dependencies\": { \"@remix-run/node\": \"^2\", \"@remix-run/react\": \"^2\", \"isbot\": \"^5\", \"react\": \"^18\", \"react-dom\": \"^18\" },\n  \"devDependencies\": { \"@remix-run/dev\": \"^2\" }\n}\n" },
+    { "path": "{{app_name}}/app/root.tsx", "template": "import { Links, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';\nexport default function App() {\n  return (<html lang=\"en\"><head><Meta /><Links /></head><body><Outlet /><ScrollRestoration /><Scripts /></body></html>);\n}\n" },
+    { "path": "{{app_name}}/app/routes/_index.tsx", "template": "export default function Index() { return <h1>Hello Remix</h1>; }\n" } 
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,16 @@
+{
+  "id": "sendgrid-email-minimal",
+  "name": "SendGrid でメール送信",
+  "version": "1.0.0",
+  "stack": ["node", "sendgrid"],
+  "tags": ["email"],
+  "description": "SendGrid SDKでメール送信（APIキー要）。",
+  "params": [ { "name": "app_name", "default": "sendgrid-mail" }, { "name": "from", "default": "no-reply@example.com" }, { "name": "to", "default": "user@example.com" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node send.js\" }, \"dependencies\": { \"@sendgrid/mail\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/send.js", "template": "const sg = require('@sendgrid/mail');\nsg.setApiKey(process.env.SENDGRID_API_KEY||'');\n(async () => { const r = await sg.send({ to: '{{to}}', from: '{{from}}', subject: 'Hello', text: 'Hello from SendGrid' }); console.log(r[0].statusCode); })();\n" },
+    { "path": "{{app_name}}/README.md", "template": "SENDGRID_API_KEY を環境変数に設定して実行してください。\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "gha-matrix-node-versions-minimal",
+  "name": "GHA Matrix Node バージョン",
+  "version": "1.0.0",
+  "stack": ["github-actions"],
+  "tags": ["ci"],
+  "description": "複数 Node.js バージョンでマトリクス実行。",
+  "params": [ { "name": "app_name", "default": "gha-matrix-node" } ],
+  "files": [
+    { "path": "{{app_name}}/.github/workflows/ci.yml", "template": "name: CI\non: [push]\njobs:\n  test:\n    runs-on: ubuntu-latest\n    strategy:\n      matrix:\n        node: [18, 20, 22]\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: ${{ matrix.node }}\n      - run: node -v\n" }
+  ],
+  "patches": []
+}
+

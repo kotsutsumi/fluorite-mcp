@@ -1,0 +1,15 @@
+{
+  "id": "mongo-change-streams-minimal",
+  "name": "Mongo Change Streams 最小",
+  "version": "1.0.0",
+  "stack": ["mongodb", "node"],
+  "tags": ["db"],
+  "description": "Change Streams を購読する最小例。",
+  "params": [ { "name": "app_name", "default": "mongo-cs" }, { "name": "mongo_uri", "default": "mongodb://localhost:27017/test" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"mongodb\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const { MongoClient } = require('mongodb');\n(async () => { const c = await MongoClient.connect('{{mongo_uri}}'); const db = c.db(); const coll = db.collection('items'); const cs = coll.watch(); cs.on('change', ev => console.log('change', ev.operationType)); await coll.insertOne({ name: 'hello' }); setTimeout(()=>c.close(), 1000); })();\n" }
+  ],
+  "patches": []
+}
+

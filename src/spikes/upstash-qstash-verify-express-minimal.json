@@ -1,0 +1,14 @@
+{
+  "id": "upstash-qstash-verify-express-minimal",
+  "name": "Upstash QStash 検証 (Express)",
+  "version": "1.0.0",
+  "stack": ["upstash", "express"],
+  "tags": ["webhook", "security"],
+  "description": "QStash 署名検証（概念）。",
+  "params": [ { "name": "app_name", "default": "qstash-verify" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "@upstash/qstash の SDK を用い、X-Upstash-Signature を検証してください（ここでは概念）。\n" }
+  ],
+  "patches": []
+}
+

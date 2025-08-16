@@ -1,0 +1,15 @@
+{
+  "id": "aws-lambda-node-minimal",
+  "name": "AWS Lambda Node.js Minimal",
+  "version": "1.0.0",
+  "stack": ["aws", "lambda", "node"],
+  "tags": ["serverless"],
+  "description": "最小のAWS Lambda (Node.js) ハンドラーとローカル実行用README。",
+  "params": [ { "name": "app_name", "default": "lambda-node" } ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "export const handler = async (event) => { return { statusCode: 200, body: JSON.stringify({ hello: 'world', event }) }; };\n" },
+    { "path": "{{app_name}}/README.md", "template": "# AWS Lambda Node.js Minimal\n\n- ハンドラー: index.mjs の `handler`\n- デプロイ: zip化してアップロード、またはSAM/Serverless Frameworkを使用\n" }
+  ],
+  "patches": []
+}
+

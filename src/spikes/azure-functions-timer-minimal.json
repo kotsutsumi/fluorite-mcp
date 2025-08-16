@@ -1,0 +1,15 @@
+{
+  "id": "azure-functions-timer-minimal",
+  "name": "Azure Functions Timer 最小",
+  "version": "1.0.0",
+  "stack": ["azure", "functions"],
+  "tags": ["serverless", "schedule"],
+  "description": "Timer トリガーの最小関数。",
+  "params": [ { "name": "app_name", "default": "az-func-timer" } ],
+  "files": [
+    { "path": "{{app_name}}/TimerTrigger/index.js", "template": "module.exports = async function (context, myTimer) { context.log('tick'); };\n" },
+    { "path": "{{app_name}}/TimerTrigger/function.json", "template": "{ \"bindings\": [ { \"name\": \"myTimer\", \"type\": \"timerTrigger\", \"direction\": \"in\", \"schedule\": \"0 */5 * * * *\" } ] }\n" }
+  ],
+  "patches": []
+}
+

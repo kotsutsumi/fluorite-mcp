@@ -1,0 +1,16 @@
+{
+  "id": "paddle-webhook-verify-express",
+  "name": "Paddle Webhook 検証 (Express)",
+  "version": "1.0.0",
+  "stack": ["express", "paddle"],
+  "tags": ["payments", "webhook"],
+  "description": "Paddle Webhook の署名検証（概念）。",
+  "params": [ { "name": "app_name", "default": "paddle-webhook" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst crypto = require('crypto');\nconst app = express();\napp.use(express.urlencoded({ extended: true }));\napp.post('/paddle', (req,res)=>{ /* req.body から署名文字列を構築し、public_key で検証（Paddle手順）*/ res.send('ok'); });\napp.listen(Number('{{port}}'));\n" },
+    { "path": "{{app_name}}/README.md", "template": "Paddle 公開鍵による検証手順に従って署名検証を実装してください。\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "tsup-lib-minimal",
+  "name": "tsup Library Minimal",
+  "version": "1.0.0",
+  "stack": ["typescript", "tsup"],
+  "tags": ["build"],
+  "description": "Minimal TS library build with tsup.",
+  "params": [ { "name": "app_name", "default": "tsup-lib" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"main\": \"dist/index.js\",\n  \"types\": \"dist/index.d.ts\",\n  \"scripts\": { \"build\": \"tsup src/index.ts --dts\" },\n  \"devDependencies\": { \"tsup\": \"^8\", \"typescript\": \"^5\" }\n}\n" },
+    { "path": "{{app_name}}/src/index.ts", "template": "export const hello = (name: string) => `hello ${name}`;\n" }
+  ],
+  "patches": []
+}
+

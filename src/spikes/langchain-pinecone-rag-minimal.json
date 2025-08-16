@@ -1,0 +1,19 @@
+{
+  "id": "langchain-pinecone-rag-minimal",
+  "name": "LangChain RAG with Pinecone (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "langchain", "pinecone", "openai"],
+  "tags": ["rag", "langchain"],
+  "description": "Minimal RAG: embed via OpenAI and store/query via Pinecone using LangChain integrations.",
+  "params": [
+    { "name": "app_name", "default": "lc-pinecone-rag" },
+    { "name": "pinecone_index", "default": "docs" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { OpenAIEmbeddings } from '@langchain/openai';\nimport { Pinecone } from '@pinecone-database/pinecone';\nimport { PineconeStore } from '@langchain/pinecone';\nimport { ChatOpenAI } from '@langchain/openai';\nconst embeddings = new OpenAIEmbeddings({ apiKey: process.env.OPENAI_API_KEY });\nconst pc = new Pinecone({ apiKey: process.env.PINECONE_API_KEY });\nconst index = pc.Index(process.env.PINECONE_INDEX || '{{pinecone_index}}');\nconst store = await PineconeStore.fromTexts(['hello world', 'fluorite mcp spike'], [{ id: '1' }, { id: '2' }], embeddings, { pineconeIndex: index });\nconst results = await store.similaritySearch('fluorite', 2);\nconst llm = new ChatOpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst answer = await llm.invoke(`Answer using context: ${results.map(r=>r.pageContent).join(' | ')}`);\nconsole.log(answer.content);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@langchain/openai\": \"latest\", \"@langchain/pinecone\": \"latest\", \"@pinecone-database/pinecone\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\nPINECONE_API_KEY=...\nPINECONE_INDEX={{pinecone_index}}\n" }
+  ],
+  "patches": []
+}
+

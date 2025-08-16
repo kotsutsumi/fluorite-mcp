@@ -1,0 +1,15 @@
+{
+  "id": "redisjson-minimal",
+  "name": "RedisJSON 最小",
+  "version": "1.0.0",
+  "stack": ["redis", "node"],
+  "tags": ["db"],
+  "description": "RedisJSON で JSON ドキュメントを set/get。",
+  "params": [ { "name": "app_name", "default": "redisjson-demo" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"ioredis\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const Redis = require('ioredis');\nconst r = new Redis();\n(async () => { await r.call('JSON.SET', 'doc', '$', JSON.stringify({ hello: 'world' })); const v = await r.call('JSON.GET', 'doc', '$'); console.log(v); await r.quit(); })();\n" }
+  ],
+  "patches": []
+}
+

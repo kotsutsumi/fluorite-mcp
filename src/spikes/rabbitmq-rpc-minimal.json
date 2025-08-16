@@ -1,0 +1,15 @@
+{
+  "id": "rabbitmq-rpc-minimal",
+  "name": "RabbitMQ RPC パターン 最小",
+  "version": "1.0.0",
+  "stack": ["rabbitmq", "node"],
+  "tags": ["messaging"],
+  "description": "amqplib で RPC（req/reply）最小例。",
+  "params": [ { "name": "app_name", "default": "rabbitmq-rpc" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node rpc.js\" }, \"dependencies\": { \"amqplib\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/rpc.js", "template": "const amqp = require('amqplib');\n(async ()=>{ const conn = await amqp.connect('amqp://localhost'); const ch = await conn.createChannel(); const q = await ch.assertQueue('', { exclusive: true }); const corr = String(Date.now()); ch.consume(q.queue, msg=>{ if (msg.properties.correlationId === corr) { console.log(msg.content.toString()); process.exit(0); } }, { noAck: true }); ch.sendToQueue('rpc_queue', Buffer.from('hello'), { correlationId: corr, replyTo: q.queue }); })();\n" }
+  ],
+  "patches": []
+}
+

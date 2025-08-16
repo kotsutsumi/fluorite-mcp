@@ -519,7 +519,7 @@ const memoryCache = new Map<string, CacheEntry>();
 const diskCache = path.join(config.baseDir, '.cache');
 
 // L3: Network cache (cold data)
-const networkCache = 'https://cache.fluorite-mcp.com';
+const networkCache = '/api/cache'; // Local cache endpoint
 ```
 
 #### Cache Configuration

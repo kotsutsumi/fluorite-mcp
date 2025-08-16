@@ -10,7 +10,7 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Getting Started', link: '/getting-started' },
-      { text: 'Spike Templates', link: '/spike-templates' },
+      { text: 'Spike-Driven Development', link: '/spike-templates' },
       { text: 'Specs', link: '/specs/' },
       { text: 'API', link: '/API' }
     ],
@@ -20,12 +20,13 @@ export default defineConfig({
           text: 'Documentation',
           items: [
             { text: 'Overview', link: '/' },
+            { text: 'Introduction', link: '/introduction' },
             { text: 'Getting Started', link: '/getting-started' },
             { text: 'Installation', link: '/installation' },
             { text: 'Commands', link: '/commands' },
             { text: '/fl: Commands', link: '/fl-commands' },
             { text: '/fl: Commands Detailed', link: '/fl-commands-detailed' },
-            { text: 'Spike Templates', link: '/spike-templates' },
+            { text: 'Spike-Driven Development', link: '/spike-templates' },
             { text: 'Developer Guide', link: '/developer' },
             { text: 'API Reference', link: '/API' }
           ]

@@ -1,0 +1,15 @@
+{
+  "id": "rabbitmq-priority-queue-minimal",
+  "name": "RabbitMQ プライオリティキュー",
+  "version": "1.0.0",
+  "stack": ["node", "rabbitmq"],
+  "tags": ["messaging"],
+  "description": "優先度キュー（x-max-priority）を使用する最小例。",
+  "params": [ { "name": "app_name", "default": "rabbit-priority" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"amqplib\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const amqp = require('amqplib');\n(async () => { const conn = await amqp.connect('amqp://localhost'); const ch = await conn.createChannel(); const q = 'prio'; await ch.assertQueue(q, { durable: false, arguments: { 'x-max-priority': 10 } }); ch.sendToQueue(q, Buffer.from('low'), { priority: 1 }); ch.sendToQueue(q, Buffer.from('high'), { priority: 9 }); ch.consume(q, msg => { console.log('got', msg.content.toString()); ch.ack(msg); }); })();\n" }
+  ],
+  "patches": []
+}
+

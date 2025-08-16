@@ -1,0 +1,14 @@
+{
+  "id": "drizzle-postgres-migrations-concept",
+  "name": "Drizzle Postgres マイグレーション（概念）",
+  "version": "1.0.0",
+  "stack": ["drizzle", "postgres"],
+  "tags": ["db"],
+  "description": "Drizzle Kit を用いたマイグレーションの概略。",
+  "params": [ { "name": "app_name", "default": "drizzle-migrations" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "Drizzle Kit の設定とコマンド (drizzle-kit generate/ push) を用います。本テンプレは概念説明です。\n" }
+  ],
+  "patches": []
+}
+

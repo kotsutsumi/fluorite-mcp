@@ -1,0 +1,14 @@
+{
+  "id": "drizzle-sqlite-migrations-concept",
+  "name": "Drizzle SQLite マイグレーション（概念）",
+  "version": "1.0.0",
+  "stack": ["drizzle", "sqlite"],
+  "tags": ["db"],
+  "description": "Drizzle Kit で SQLite マイグレーションを行う概略。",
+  "params": [ { "name": "app_name", "default": "drizzle-sqlite-mig" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "drizzle-kit で schema から SQL を生成し、sqlite に適用します。本テンプレは概念説明です。\n" }
+  ],
+  "patches": []
+}
+

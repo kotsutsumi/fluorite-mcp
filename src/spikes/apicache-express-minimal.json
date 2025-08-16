@@ -1,0 +1,15 @@
+{
+  "id": "apicache-express-minimal",
+  "name": "apicache + Express",
+  "version": "1.0.0",
+  "stack": ["node", "express", "cache"],
+  "tags": ["cache"],
+  "description": "apicacheでHTTPレスポンスをキャッシュ。",
+  "params": [ { "name": "app_name", "default": "apicache-demo" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"apicache\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst apicache = require('apicache');\nconst app = express();\nconst cache = apicache.middleware;\napp.get('/now', cache('10 seconds'), (_req,res)=> res.json({ now: Date.now() }));\napp.listen(Number('{{port}}'), ()=> console.log('listening on {{port}}'));\n" }
+  ],
+  "patches": []
+}
+

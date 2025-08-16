@@ -1,0 +1,16 @@
+{
+  "id": "gcp-storage-signed-url-minimal",
+  "name": "GCS サインドURL 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "storage", "node"],
+  "tags": ["storage"],
+  "description": "Google Cloud Storage の署名付きURLを発行。",
+  "params": [ { "name": "app_name", "default": "gcs-signed" }, { "name": "bucket", "default": "my-bucket" }, { "name": "file", "default": "hello.txt" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@google-cloud/storage\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const { Storage } = require('@google-cloud/storage');\nconst storage = new Storage();\n(async () => { const [url] = await storage.bucket('{{bucket}}').file('{{file}}').getSignedUrl({ action: 'read', expires: Date.now() + 3600_000 }); console.log(url); })();\n" },
+    { "path": "{{app_name}}/README.md", "template": "GOOGLE_APPLICATION_CREDENTIALS を設定してください。\n" }
+  ],
+  "patches": []
+}
+

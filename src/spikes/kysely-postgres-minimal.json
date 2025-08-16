@@ -1,0 +1,15 @@
+{
+  "id": "kysely-postgres-minimal",
+  "name": "Kysely + Postgres 最小",
+  "version": "1.0.0",
+  "stack": ["node", "kysely", "postgres"],
+  "tags": ["db"],
+  "description": "Kysely で Postgres に接続し簡易クエリ。",
+  "params": [ { "name": "app_name", "default": "kysely-pg" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node index.mjs\" }, \"dependencies\": { \"kysely\": \"latest\", \"pg\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.mjs", "template": "import { Kysely, PostgresDialect } from 'kysely';\nimport pkg from 'pg';\nconst db = new Kysely({ dialect: new PostgresDialect({ pool: new pkg.Pool({ connectionString: 'postgres://postgres:postgres@localhost:5432/postgres' }) }) });\nawait db.executeQuery({ sql: 'CREATE TABLE IF NOT EXISTS items (id serial primary key, name text)', parameters: [] });\nawait db.executeQuery({ sql: `INSERT INTO items(name) VALUES('hello')`, parameters: [] });\nconst res = await db.executeQuery({ sql: 'SELECT count(*)::int as c FROM items', parameters: [] });\nconsole.log(res.rows);\nprocess.exit(0);\n" }
+  ],
+  "patches": []
+}
+

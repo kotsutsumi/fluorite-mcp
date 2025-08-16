@@ -1,0 +1,19 @@
+{
+  "id": "nodemailer-ses-minimal",
+  "name": "Nodemailer + SES Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "ses", "email"],
+  "tags": ["email"],
+  "description": "Send an email using Nodemailer with SES transport.",
+  "params": [
+    { "name": "app_name", "default": "ses-mailer" },
+    { "name": "from", "default": "no-reply@example.com" },
+    { "name": "to", "default": "user@example.com" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node send.js\" }, \"dependencies\": { \"nodemailer\": \"latest\", \"@aws-sdk/client-ses\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/send.js", "template": "const nodemailer = require('nodemailer');\nconst { SESClient } = require('@aws-sdk/client-ses');\nconst ses = new SESClient({});\n(async () => {\n  const transport = nodemailer.createTransport({ SES: { ses, aws: { SendEmailCommand: undefined } } });\n  const info = await transport.sendMail({ from: '{{from}}', to: '{{to}}', subject: 'Hello', text: 'Hello from SES' });\n  console.log('Message sent', info.messageId);\n})();\n" }
+  ],
+  "patches": []
+}
+

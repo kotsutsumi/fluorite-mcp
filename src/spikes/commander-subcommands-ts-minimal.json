@@ -1,0 +1,15 @@
+{
+  "id": "commander-subcommands-ts-minimal",
+  "name": "Commander サブコマンド（TS）",
+  "version": "1.0.0",
+  "stack": ["typescript", "commander"],
+  "tags": ["cli"],
+  "description": "Commander.js のサブコマンドを TypeScript で記述（最小）。",
+  "params": [ { "name": "app_name", "default": "cmd-ts" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"start\": \"node --loader ts-node/esm src/cli.ts\" },\n  \"dependencies\": { \"commander\": \"latest\" },\n  \"devDependencies\": { \"typescript\": \"^5\", \"ts-node\": \"^10\" }\n}\n" },
+    { "path": "{{app_name}}/src/cli.ts", "template": "import { Command } from 'commander';\nconst program = new Command();\nprogram.name('tool');\nprogram.command('hello').option('-n, --name <name>', 'name', 'world').action((o)=>console.log('hello', o.name));\nprogram.parse();\n" }
+  ],
+  "patches": []
+}
+

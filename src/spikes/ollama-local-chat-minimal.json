@@ -1,0 +1,19 @@
+{
+  "id": "ollama-local-chat-minimal",
+  "name": "Ollama Local Chat (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "ollama"],
+  "tags": ["llm", "local"],
+  "description": "Call a local Ollama server via HTTP for chat.",
+  "params": [
+    { "name": "app_name", "default": "ollama-chat-app" },
+    { "name": "ollama_url", "default": "http://localhost:11434" },
+    { "name": "ollama_model", "default": "llama3" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "const res = await fetch('{{ollama_url}}/api/chat', {\n  method: 'POST',\n  headers: { 'Content-Type': 'application/json' },\n  body: JSON.stringify({\n    model: '{{ollama_model}}',\n    messages: [{ role: 'user', content: 'Say hello' }],\n    stream: false\n  })\n});\nconst json = await res.json();\nconsole.log(json.message?.content || JSON.stringify(json));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true }\n" }
+  ],
+  "patches": []
+}
+

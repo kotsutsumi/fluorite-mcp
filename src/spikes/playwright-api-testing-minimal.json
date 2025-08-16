@@ -1,0 +1,15 @@
+{
+  "id": "playwright-api-testing-minimal",
+  "name": "Playwright API テスト最小",
+  "version": "1.0.0",
+  "stack": ["node", "playwright"],
+  "tags": ["test"],
+  "description": "Playwright の APIRequestContext を用いたAPIテスト。",
+  "params": [ { "name": "app_name", "default": "pw-api" }, { "name": "url", "default": "https://example.com" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node test.js\" }, \"dependencies\": { \"playwright\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/test.js", "template": "const { request } = require('playwright');\n(async () => { const ctx = await request.newContext(); const r = await ctx.get('{{url}}'); console.log('status', r.status()); await ctx.dispose(); })();\n" }
+  ],
+  "patches": []
+}
+

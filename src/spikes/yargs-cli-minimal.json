@@ -1,0 +1,17 @@
+{
+  "id": "yargs-cli-minimal",
+  "name": "Yargs CLI Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "cli"],
+  "tags": ["cli"],
+  "description": "Minimal CLI using yargs with one command.",
+  "params": [
+    { "name": "app_name", "default": "yargs-cli" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"bin\": { \"{{app_name}}\": \"index.js\" }, \"private\": true, \"scripts\": { \"start\": \"node index.js --help\" }, \"dependencies\": { \"yargs\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "#!/usr/bin/env node\nrequire('yargs')(process.argv.slice(2))\n  .scriptName('{{app_name}}')\n  .command('hello [name]', 'Print hello', y=> y.positional('name', { type: 'string', default: 'world' }), argv => {\n    console.log(`hello ${argv.name}`);\n  })\n  .demandCommand()\n  .help()\n  .parse();\n" }
+  ],
+  "patches": []
+}
+

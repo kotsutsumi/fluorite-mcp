@@ -1,0 +1,15 @@
+{
+  "id": "playwright-file-upload-minimal",
+  "name": "Playwright ファイルアップロード最小",
+  "version": "1.0.0",
+  "stack": ["playwright", "node"],
+  "tags": ["test"],
+  "description": "Playwright で input[type=file] にファイルを設定。",
+  "params": [ { "name": "app_name", "default": "pw-upload" }, { "name": "url", "default": "http://localhost:3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node test.js\" }, \"dependencies\": { \"playwright\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/test.js", "template": "const { chromium } = require('playwright');\n(async ()=>{ const b = await chromium.launch(); const p = await b.newPage(); await p.goto('{{url}}'); const f = await p.$('input[type=file]'); await f.setInputFiles({ name: 'hello.txt', mimeType: 'text/plain', buffer: Buffer.from('hello') }); console.log('done'); await b.close(); })();\n" }
+  ],
+  "patches": []
+}
+

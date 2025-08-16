@@ -1,0 +1,19 @@
+{
+  "id": "pinecone-update-metadata-minimal",
+  "name": "Pinecone Update Metadata (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "pinecone"],
+  "tags": ["vector", "update"],
+  "description": "Update metadata for an existing Pinecone vector.",
+  "params": [
+    { "name": "app_name", "default": "pinecone-update-metadata" },
+    { "name": "pinecone_index", "default": "docs" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { Pinecone } from '@pinecone-database/pinecone';\nconst pc = new Pinecone({ apiKey: process.env.PINECONE_API_KEY });\nconst index = pc.Index(process.env.PINECONE_INDEX || '{{pinecone_index}}');\nawait index.upsert([{ id: '1', values: [0.1,0.2,0.3], metadata: { tag: 'a' } }]);\nawait index.update({ id: '1', setMetadata: { tag: 'updated' } });\nconst res = await index.query({ vector: [0.1,0.2,0.3], topK: 1, includeMetadata: true });\nconsole.log(res.matches?.[0]?.metadata);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@pinecone-database/pinecone\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "PINECONE_API_KEY=...\nPINECONE_INDEX={{pinecone_index}}\n" }
+  ],
+  "patches": []
+}
+

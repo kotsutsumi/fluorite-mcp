@@ -1,0 +1,14 @@
+{
+  "id": "openapi-zod-client-minimal",
+  "name": "openapi-zod-client 最小",
+  "version": "1.0.0",
+  "stack": ["openapi", "zod", "typescript"],
+  "tags": ["codegen"],
+  "description": "OpenAPI から Zod クライアント生成（概念）。",
+  "params": [ { "name": "app_name", "default": "oaz-client" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "openapi-zod-client を用いて zod スキーマとクライアントを生成します（概念）。\n" }
+  ],
+  "patches": []
+}
+

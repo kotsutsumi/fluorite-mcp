@@ -1,0 +1,14 @@
+{
+  "id": "sequelize-read-replica-config-minimal",
+  "name": "Sequelize 読み取りレプリカ設定 最小",
+  "version": "1.0.0",
+  "stack": ["sequelize", "node"],
+  "tags": ["db"],
+  "description": "Sequelize の read/write レプリカ設定（概念）。",
+  "params": [ { "name": "app_name", "default": "sequelize-replica" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "Sequelize では replication オプションで read/write 接続を設定可能です（概念）。\n" }
+  ],
+  "patches": []
+}
+

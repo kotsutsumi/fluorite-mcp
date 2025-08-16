@@ -1,0 +1,15 @@
+{
+  "id": "aws-cloudwatch-logs-put-minimal",
+  "name": "AWS CloudWatch Logs put 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "cloudwatch", "node"],
+  "tags": ["observability"],
+  "description": "putLogEvents によるログ送信（単純化）。",
+  "params": [ { "name": "app_name", "default": "cwl-put" }, { "name": "group", "default": "app" }, { "name": "stream", "default": "demo" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node put.js\" }, \"dependencies\": { \"@aws-sdk/client-cloudwatch-logs\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/put.js", "template": "const { CloudWatchLogsClient, PutLogEventsCommand, CreateLogGroupCommand, CreateLogStreamCommand } = require('@aws-sdk/client-cloudwatch-logs');\nconst cwl = new CloudWatchLogsClient({});\n(async ()=>{ try{ await cwl.send(new CreateLogGroupCommand({ logGroupName: '{{group}}' })); }catch{} try{ await cwl.send(new CreateLogStreamCommand({ logGroupName: '{{group}}', logStreamName: '{{stream}}' })); }catch{} const r = await cwl.send(new PutLogEventsCommand({ logGroupName: '{{group}}', logStreamName: '{{stream}}', logEvents: [{ timestamp: Date.now(), message: 'hello' }] })); console.log(Boolean(r.nextSequenceToken)); })();\n" }
+  ],
+  "patches": []
+}
+

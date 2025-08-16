@@ -1,0 +1,21 @@
+{
+  "id": "rag-openai-weaviate-minimal",
+  "name": "RAG: OpenAI + Weaviate (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "openai", "weaviate"],
+  "tags": ["rag", "vector"],
+  "description": "Embed with OpenAI, upsert to Weaviate (no vectorizer), run nearVector query, then print docs.",
+  "params": [
+    { "name": "app_name", "default": "rag-openai-weaviate" },
+    { "name": "weaviate_host", "default": "localhost:8080" },
+    { "name": "weaviate_scheme", "default": "http" },
+    { "name": "class_name", "default": "Document" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import OpenAI from 'openai';\nimport weaviate from 'weaviate-ts-client';\nconst openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst client = weaviate.client({ scheme: process.env.WEAVIATE_SCHEME || '{{weaviate_scheme}}', host: process.env.WEAVIATE_HOST || '{{weaviate_host}}' });\nconst docs = ['hello world', 'fluorite mcp spike'];\nconst emb = await openai.embeddings.create({ model: 'text-embedding-3-small', input: docs });\nconst vecs = emb.data.map(d => d.embedding);\n// Upsert (assumes class without auto vectorizer)\nfor (let i = 0; i < docs.length; i++) {\n  await client.data.creator().withClassName(process.env.WEAVIATE_CLASS || '{{class_name}}').withProperties({ text: docs[i] }).withVector(vecs[i]).do();\n}\nconst res = await client.graphql.get().withClassName(process.env.WEAVIATE_CLASS || '{{class_name}}').withNearVector({ vector: vecs[0] }).withLimit(2).do();\nconsole.log(JSON.stringify(res, null, 2));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"openai\": \"latest\", \"weaviate-ts-client\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\nWEAVIATE_SCHEME=http\nWEAVIATE_HOST=localhost:8080\nWEAVIATE_CLASS=Document\n" }
+  ],
+  "patches": []
+}
+

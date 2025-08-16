@@ -1,0 +1,18 @@
+{
+  "id": "cohere-classify-minimal",
+  "name": "Cohere Classify Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "cohere"],
+  "tags": ["classification"],
+  "description": "Classify inputs with Cohere Classify endpoint.",
+  "params": [
+    { "name": "app_name", "default": "cohere-classify" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { CohereClient } from 'cohere-ai';\nconst cohere = new CohereClient({ token: process.env.COHERE_API_KEY });\nconst res = await cohere.classify({\n  inputs: ['I love this', 'This is bad'],\n  examples: [\n    { text: 'I like it', label: 'positive' },\n    { text: 'I hate it', label: 'negative' }\n  ]\n});\nconsole.log(res.classifications?.map(c => c.prediction));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"cohere-ai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "COHERE_API_KEY=...\n" }
+  ],
+  "patches": []
+}
+

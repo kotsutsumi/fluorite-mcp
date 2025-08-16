@@ -1,0 +1,22 @@
+{
+  "id": "google-gemini-json-minimal",
+  "name": "Google Gemini JSON Output (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "gemini"],
+  "tags": ["llm", "json"],
+  "description": "Prompt Gemini to return a small JSON object and parse it.",
+  "params": [
+    { "name": "app_name", "default": "gemini-json" },
+    { "name": "gemini_model", "default": "gemini-1.5-flash" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/index.mjs",
+      "template": "import { GoogleGenerativeAI } from '@google/generative-ai';\nconst genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);\nconst model = genAI.getGenerativeModel({ model: '{{gemini_model}}' });\nconst res = await model.generateContent('Return {\\"greeting\\": \\\"hello\\\"} as JSON');\nconst text = res.response.text();\nconsole.log(JSON.parse(text));\n"
+    },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@google/generative-ai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "GOOGLE_API_KEY=...\n" }
+  ],
+  "patches": []
+}
+

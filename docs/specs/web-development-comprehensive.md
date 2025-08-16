@@ -434,8 +434,6 @@ mqttClient.on('message', (topic, message) => {
 
 ### コミュニティ・情報収集
 - [GitHub](https://github.com/) - オープンソースプロジェクト参加
-- [Stack Overflow](https://stackoverflow.com/) - 技術Q&Aプラットフォーム
-- [Dev.to](https://dev.to/) - 開発者ブログ・記事プラットフォーム
 - [Discord/Slack コミュニティ](https://discord.com/) - リアルタイム技術討論
 
 ---

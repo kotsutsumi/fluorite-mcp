@@ -1,0 +1,14 @@
+{
+  "id": "temporal-worker-minimal",
+  "name": "Temporal Worker 最小",
+  "version": "1.0.0",
+  "stack": ["node", "temporal"],
+  "tags": ["workflow"],
+  "description": "Temporal のワーカー/クライアント最小サンプル（概念）。",
+  "params": [ { "name": "app_name", "default": "temporal-demo" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "Temporal サーバーが必要です。このテンプレは概念サンプルです。\n" }
+  ],
+  "patches": []
+}
+

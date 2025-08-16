@@ -1,0 +1,14 @@
+{
+  "id": "docker-compose-elk-stack",
+  "name": "Docker Compose - ELK Stack",
+  "version": "1.0.0",
+  "stack": ["docker", "elasticsearch", "kibana", "logstash"],
+  "tags": ["infra", "docker"],
+  "description": "Elasticsearch + Kibana + Logstash の開発用スタック（簡易）。",
+  "params": [ { "name": "app_name", "default": "elk-stack" } ],
+  "files": [
+    { "path": "{{app_name}}/docker-compose.yml", "template": "version: '3.9'\nservices:\n  elastic:\n    image: docker.elastic.co/elasticsearch/elasticsearch:8.14.0\n    environment: [\"discovery.type=single-node\", \"xpack.security.enabled=false\"]\n    ports: ['9200:9200']\n  kibana:\n    image: docker.elastic.co/kibana/kibana:8.14.0\n    environment: [\"ELASTICSEARCH_HOSTS=http://elastic:9200\"]\n    ports: ['5601:5601']\n    depends_on: [elastic]\n  logstash:\n    image: docker.elastic.co/logstash/logstash:8.14.0\n    ports: ['5044:5044']\n    depends_on: [elastic]\n" }
+  ],
+  "patches": []
+}
+

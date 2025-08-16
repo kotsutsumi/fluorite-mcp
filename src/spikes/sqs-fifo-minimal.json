@@ -1,0 +1,15 @@
+{
+  "id": "sqs-fifo-minimal",
+  "name": "SQS FIFO 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "sqs"],
+  "tags": ["messaging"],
+  "description": "SQS FIFO でメッセージ送受信（GroupId/MessageDeduplicationId）。",
+  "params": [ { "name": "app_name", "default": "sqs-fifo" }, { "name": "queue_url", "default": "https://sqs.us-east-1.amazonaws.com/123456789012/demo.fifo" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@aws-sdk/client-sqs\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const { SQSClient, SendMessageCommand, ReceiveMessageCommand } = require('@aws-sdk/client-sqs');\nconst client = new SQSClient({});\n(async () => {\n  await client.send(new SendMessageCommand({ QueueUrl: '{{queue_url}}', MessageBody: 'hello', MessageGroupId: 'g1', MessageDeduplicationId: String(Date.now()) }));\n  const r = await client.send(new ReceiveMessageCommand({ QueueUrl: '{{queue_url}}', MaxNumberOfMessages: 1, WaitTimeSeconds: 1 }));\n  console.log(r.Messages?.[0]?.Body);\n})();\n" }
+  ],
+  "patches": []
+}
+

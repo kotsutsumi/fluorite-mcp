@@ -1,0 +1,15 @@
+{
+  "id": "sqs-worker-long-polling-minimal",
+  "name": "SQS ワーカー（ロングポーリング）",
+  "version": "1.0.0",
+  "stack": ["aws", "sqs"],
+  "tags": ["worker"],
+  "description": "SQS のロングポーリングでメッセージ処理。",
+  "params": [ { "name": "app_name", "default": "sqs-worker" }, { "name": "queue_url", "default": "https://sqs.us-east-1.amazonaws.com/123456789012/demo" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node worker.js\" }, \"dependencies\": { \"@aws-sdk/client-sqs\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/worker.js", "template": "const { SQSClient, ReceiveMessageCommand, DeleteMessageCommand } = require('@aws-sdk/client-sqs');\nconst sqs = new SQSClient({});\n(async () => { while (true) { const r = await sqs.send(new ReceiveMessageCommand({ QueueUrl: '{{queue_url}}', MaxNumberOfMessages: 1, WaitTimeSeconds: 20 })); const m = r.Messages?.[0]; if (m) { console.log('msg', m.Body); await sqs.send(new DeleteMessageCommand({ QueueUrl: '{{queue_url}}', ReceiptHandle: m.ReceiptHandle })); } } })();\n" }
+  ],
+  "patches": []
+}
+

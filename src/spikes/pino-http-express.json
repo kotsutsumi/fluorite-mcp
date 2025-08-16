@@ -1,0 +1,15 @@
+{
+  "id": "pino-http-express",
+  "name": "Pino HTTP Logger (Express)",
+  "version": "1.0.0",
+  "stack": ["node", "express", "pino"],
+  "tags": ["logging"],
+  "description": "Express with pino-http request logging.",
+  "params": [ { "name": "app_name", "default": "pino-http" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"pino\": \"latest\", \"pino-http\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst pino = require('pino');\nconst pinoHttp = require('pino-http');\nconst logger = pino({ transport: { target: 'pino-pretty', options: { colorize: true } } });\nconst app = express();\napp.use(pinoHttp({ logger }));\napp.get('/health', (_req, res) => res.json({ status: 'ok' }));\napp.get('/', (_req, res) => res.json({ hello: 'world' }));\napp.listen({{port}}, () => logger.info('listening on %d', {{port}}));\n" }
+  ],
+  "patches": []
+}
+

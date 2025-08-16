@@ -1,0 +1,15 @@
+{
+  "id": "celebrate-joi-express-minimal",
+  "name": "celebrate + Joi + Express",
+  "version": "1.0.0",
+  "stack": ["express", "joi", "celebrate"],
+  "tags": ["validation"],
+  "description": "celebrate で Joi バリデーションを実装。",
+  "params": [ { "name": "app_name", "default": "celebrate-express" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"celebrate\": \"latest\", \"joi\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst { celebrate, Joi, errors } = require('celebrate');\nconst app = express();\napp.use(express.json());\napp.post('/echo', celebrate({ body: Joi.object({ name: Joi.string().required() }) }), (req,res)=>res.json({ name: req.body.name }));\napp.use(errors());\napp.listen(Number('{{port}}'));\n" }
+  ],
+  "patches": []
+}
+

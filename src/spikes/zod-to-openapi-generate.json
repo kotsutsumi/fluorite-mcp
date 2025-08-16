@@ -1,0 +1,15 @@
+{
+  "id": "zod-to-openapi-generate",
+  "name": "zod-to-openapi 生成 最小",
+  "version": "1.0.0",
+  "stack": ["typescript", "zod"],
+  "tags": ["openapi", "codegen"],
+  "description": "Zod スキーマから OpenAPI を生成。",
+  "params": [ { "name": "app_name", "default": "zod-to-openapi" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"gen\": \"node gen.mjs\" },\n  \"dependencies\": { \"zod\": \"latest\", \"zod-to-openapi\": \"latest\" }\n}\n" },
+    { "path": "{{app_name}}/gen.mjs", "template": "import { z } from 'zod';\nimport { OpenAPIRegistry, OpenApiGeneratorV3 } from 'zod-to-openapi';\nconst registry = new OpenAPIRegistry();\nconst Hello = z.object({ hello: z.string() });\nregistry.register('Hello', Hello);\nconst generator = new OpenApiGeneratorV3(registry.definitions);\nconsole.log(JSON.stringify(generator.generateDocument({ openapi: '3.0.0', info: { title: 'API', version: '1.0.0' }, paths: {} }), null, 2));\n" }
+  ],
+  "patches": []
+}
+

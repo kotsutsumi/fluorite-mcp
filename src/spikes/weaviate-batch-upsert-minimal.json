@@ -1,0 +1,21 @@
+{
+  "id": "weaviate-batch-upsert-minimal",
+  "name": "Weaviate Batch Upsert (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "weaviate"],
+  "tags": ["vector", "ingest"],
+  "description": "Batch upsert objects into a Weaviate class.",
+  "params": [
+    { "name": "app_name", "default": "weaviate-batch-app" },
+    { "name": "weaviate_host", "default": "localhost:8080" },
+    { "name": "weaviate_scheme", "default": "http" },
+    { "name": "class_name", "default": "Document" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import weaviate from 'weaviate-ts-client';\nconst client = weaviate.client({ scheme: process.env.WEAVIATE_SCHEME || '{{weaviate_scheme}}', host: process.env.WEAVIATE_HOST || '{{weaviate_host}}' });\nawait client.batch.objectsBatcher()\n  .withObject({ class: process.env.WEAVIATE_CLASS || '{{class_name}}', properties: { text: 'hello world' } })\n  .withObject({ class: process.env.WEAVIATE_CLASS || '{{class_name}}', properties: { text: 'fluorite mcp' } })\n  .do();\nconsole.log('Batch upsert done');\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"weaviate-ts-client\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "WEAVIATE_SCHEME=http\nWEAVIATE_HOST=localhost:8080\nWEAVIATE_CLASS={{class_name}}\n" }
+  ],
+  "patches": []
+}
+

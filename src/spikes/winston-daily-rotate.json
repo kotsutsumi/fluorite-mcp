@@ -1,0 +1,17 @@
+{
+  "id": "winston-daily-rotate",
+  "name": "Winston Daily Rotate",
+  "version": "1.0.0",
+  "stack": ["node", "winston"],
+  "tags": ["logging"],
+  "description": "Winston logger with daily rotate file transport.",
+  "params": [
+    { "name": "app_name", "default": "winston-app" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"winston\": \"latest\", \"winston-daily-rotate-file\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const winston = require('winston');\nconst DailyRotateFile = require('winston-daily-rotate-file');\nconst transport = new DailyRotateFile({ filename: 'logs/app-%DATE%.log', datePattern: 'YYYY-MM-DD', zippedArchive: true, maxFiles: '14d' });\nconst logger = winston.createLogger({ level: 'info', transports: [new winston.transports.Console(), transport] });\nlogger.info('hello world');\nlogger.error('something went wrong');\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "vercel-middleware-basic-auth-minimal",
+  "name": "Vercel Middleware Basic Auth 最小",
+  "version": "1.0.0",
+  "stack": ["vercel", "edge"],
+  "tags": ["security"],
+  "description": "Vercel Middleware で Basic 認証を実装（最小）。",
+  "params": [ { "name": "app_name", "default": "vercel-mw-basic" } ],
+  "files": [
+    { "path": "{{app_name}}/middleware.ts", "template": "import { NextResponse } from 'next/server';\nexport function middleware(req: Request) {\n  const auth = req.headers.get('authorization')||'';\n  const expect = 'Basic ' + Buffer.from('user:pass').toString('base64');\n  if (auth !== expect) return new NextResponse('Unauthorized', { status: 401, headers: { 'WWW-Authenticate': 'Basic realm=\\\"Secure\\\"' } });\n  return NextResponse.next();\n}\n" }
+  ],
+  "patches": []
+}
+

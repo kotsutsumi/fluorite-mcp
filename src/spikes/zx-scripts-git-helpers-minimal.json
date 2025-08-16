@@ -1,0 +1,15 @@
+{
+  "id": "zx-scripts-git-helpers-minimal",
+  "name": "zx スクリプト Git ヘルパー",
+  "version": "1.0.0",
+  "stack": ["zx", "git"],
+  "tags": ["scripting"],
+  "description": "zx で git の簡易ヘルパーコマンドを実行。",
+  "params": [ { "name": "app_name", "default": "zx-git" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"scripts\": { \"start\": \"zx script.mjs\" }, \"dependencies\": { \"zx\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/script.mjs", "template": "#!/usr/bin/env zx\nimport { $ } from 'zx';\nawait $`git status`;\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,20 @@
+{
+  "id": "ollama-embeddings-minimal",
+  "name": "Ollama Embeddings (Local, Node)",
+  "version": "1.0.0",
+  "stack": ["node", "ollama"],
+  "tags": ["embeddings", "local"],
+  "description": "Generate embeddings from a local Ollama server via REST.",
+  "params": [
+    { "name": "app_name", "default": "ollama-embed" },
+    { "name": "ollama_url", "default": "http://localhost:11434" },
+    { "name": "embed_model", "default": "nomic-embed-text" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "const res = await fetch('{{ollama_url}}/api/embeddings', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ model: process.env.OLLAMA_EMBED_MODEL || '{{embed_model}}', prompt: 'hello world' }) });\nconst json = await res.json();\nconsole.log(Array.isArray(json?.embedding) ? json.embedding.length : json);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OLLAMA_EMBED_MODEL={{embed_model}}\nOLLAMA_URL={{ollama_url}}\n" }
+  ],
+  "patches": []
+}
+

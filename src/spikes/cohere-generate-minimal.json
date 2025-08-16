@@ -1,0 +1,19 @@
+{
+  "id": "cohere-generate-minimal",
+  "name": "Cohere Generate (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "cohere"],
+  "tags": ["llm", "text"],
+  "description": "Minimal text generation with Cohere SDK.",
+  "params": [
+    { "name": "app_name", "default": "cohere-generate-app" },
+    { "name": "cohere_model", "default": "command-r" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { CohereClient } from 'cohere-ai';\nconst cohere = new CohereClient({ token: process.env.COHERE_API_KEY });\nconst resp = await cohere.generate({ model: '{{cohere_model}}', prompt: 'Say hello' });\nconsole.log(resp.text);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"cohere-ai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "COHERE_API_KEY=...\n" }
+  ],
+  "patches": []
+}
+

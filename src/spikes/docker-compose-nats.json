@@ -1,0 +1,14 @@
+{
+  "id": "docker-compose-nats",
+  "name": "Docker Compose - NATS",
+  "version": "1.0.0",
+  "stack": ["docker", "nats"],
+  "tags": ["infra", "docker"],
+  "description": "単一ノードNATSサーバー。",
+  "params": [ { "name": "app_name", "default": "nats-stack" } ],
+  "files": [
+    { "path": "{{app_name}}/docker-compose.yml", "template": "version: '3.9'\nservices:\n  nats:\n    image: nats:2-alpine\n    command: ['-js']\n    ports: ['4222:4222','8222:8222']\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "husky-lint-staged-minimal",
+  "name": "Husky + lint-staged Minimal",
+  "version": "1.0.0",
+  "stack": ["husky", "lint-staged"],
+  "tags": ["git"],
+  "description": "Pre-commit hook using husky + lint-staged.",
+  "params": [ { "name": "app_name", "default": "husky-setup" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"prepare\": \"husky\" }, \"devDependencies\": { \"husky\": \"^9\", \"lint-staged\": \"^15\" }, \"lint-staged\": { \"*.{js,ts,tsx}\": \"eslint --fix\" } }\n" },
+    { "path": "{{app_name}}/.husky/pre-commit", "template": "#!/bin/sh\n. \\`dirname $0\\`/_/husky.sh\n\nnpx lint-staged\n" }
+  ],
+  "patches": []
+}
+

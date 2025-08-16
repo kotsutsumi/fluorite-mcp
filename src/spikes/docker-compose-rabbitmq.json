@@ -1,0 +1,14 @@
+{
+  "id": "docker-compose-rabbitmq",
+  "name": "Docker Compose - RabbitMQ",
+  "version": "1.0.0",
+  "stack": ["docker", "rabbitmq"],
+  "tags": ["infra", "docker"],
+  "description": "RabbitMQ with management UI.",
+  "params": [ { "name": "app_name", "default": "rabbitmq-stack" } ],
+  "files": [
+    { "path": "{{app_name}}/docker-compose.yml", "template": "version: '3.9'\nservices:\n  rabbitmq:\n    image: rabbitmq:3-management\n    ports: ['5672:5672','15672:15672']\n" }
+  ],
+  "patches": []
+}
+

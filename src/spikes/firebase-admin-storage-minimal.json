@@ -1,0 +1,15 @@
+{
+  "id": "firebase-admin-storage-minimal",
+  "name": "Firebase Admin Storage 最小",
+  "version": "1.0.0",
+  "stack": ["firebase", "storage"],
+  "tags": ["storage"],
+  "description": "firebase-admin で Cloud Storage にアップロード（要認証情報）。",
+  "params": [ { "name": "app_name", "default": "fb-admin-storage" }, { "name": "bucket", "default": "my-bucket" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node up.js\" }, \"dependencies\": { \"firebase-admin\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/up.js", "template": "const admin = require('firebase-admin');\nadmin.initializeApp({ credential: admin.credential.applicationDefault(), storageBucket: '{{bucket}}' });\n(async () => { const b = admin.storage().bucket(); const f = b.file('hello.txt'); await f.save('hello'); console.log('uploaded'); })();\n" }
+  ],
+  "patches": []
+}
+

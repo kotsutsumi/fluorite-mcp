@@ -1,0 +1,14 @@
+{
+  "id": "drizzle-postgres-kit-config-concept",
+  "name": "Drizzle Kit Postgres 設定（概念）",
+  "version": "1.0.0",
+  "stack": ["drizzle", "postgres"],
+  "tags": ["db"],
+  "description": "drizzle.config.ts の記述例（概念）。",
+  "params": [ { "name": "app_name", "default": "drizzle-kit-pg" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "drizzle.config.ts に dialect: 'pg', schema: './src/schema.ts', out: './drizzle' などを設定します（概念）。\n" }
+  ],
+  "patches": []
+}
+

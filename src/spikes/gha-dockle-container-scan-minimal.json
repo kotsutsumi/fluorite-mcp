@@ -1,0 +1,14 @@
+{
+  "id": "gha-dockle-container-scan-minimal",
+  "name": "GHA Dockle コンテナスキャン",
+  "version": "1.0.0",
+  "stack": ["github-actions", "dockle"],
+  "tags": ["ci", "security"],
+  "description": "Dockle でコンテナイメージをスキャン（簡易）。",
+  "params": [ { "name": "app_name", "default": "gha-dockle" } ],
+  "files": [
+    { "path": "{{app_name}}/.github/workflows/scan.yml", "template": "name: Scan\non: [push]\njobs:\n  dockle:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - run: |\n          curl -L https://github.com/goodwithtech/dockle/releases/latest/download/dockle_Linux-64bit.tar.gz | tar zx\n          ./dockle --version\n          ./dockle alpine:latest\n" }
+  ],
+  "patches": []
+}
+

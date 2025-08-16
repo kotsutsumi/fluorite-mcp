@@ -1,0 +1,19 @@
+{
+  "id": "perplexity-chat-minimal",
+  "name": "Perplexity Chat (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "perplexity"],
+  "tags": ["llm", "chat"],
+  "description": "Minimal chat completion using Perplexity REST API.",
+  "params": [
+    { "name": "app_name", "default": "perplexity-chat-app" },
+    { "name": "pplx_model", "default": "llama-3.1-sonar-small-128k-online" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "const res = await fetch('https://api.perplexity.ai/chat/completions', {\n  method: 'POST',\n  headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${process.env.PPLX_API_KEY}` },\n  body: JSON.stringify({\n    model: process.env.PPLX_MODEL || '{{pplx_model}}',\n    messages: [{ role: 'user', content: 'Say hello' }]\n  })\n});\nconst json = await res.json();\nconsole.log(json.choices?.[0]?.message?.content);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "PPLX_API_KEY=...\nPPLX_MODEL={{pplx_model}}\n" }
+  ],
+  "patches": []
+}
+

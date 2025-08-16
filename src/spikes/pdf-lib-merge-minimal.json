@@ -1,0 +1,15 @@
+{
+  "id": "pdf-lib-merge-minimal",
+  "name": "pdf-lib PDF マージ",
+  "version": "1.0.0",
+  "stack": ["node", "pdf"],
+  "tags": ["pdf"],
+  "description": "pdf-lib で2つのPDFを結合（デモ）。",
+  "params": [ { "name": "app_name", "default": "pdf-merge" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node merge.js\" }, \"dependencies\": { \"pdf-lib\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/merge.js", "template": "const { PDFDocument } = require('pdf-lib');\n(async () => { const a = await PDFDocument.create(); a.addPage(); const b = await PDFDocument.create(); b.addPage(); const out = await PDFDocument.create(); const [aBytes,bBytes] = [await a.save(), await b.save()]; const aDoc = await PDFDocument.load(aBytes); const bDoc = await PDFDocument.load(bBytes); const [aPage] = await out.copyPages(aDoc, [0]); const [bPage] = await out.copyPages(bDoc, [0]); out.addPage(aPage); out.addPage(bPage); const bytes = await out.save(); console.log('merged bytes', bytes.length); })();\n" }
+  ],
+  "patches": []
+}
+

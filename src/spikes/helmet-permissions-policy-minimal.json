@@ -1,0 +1,15 @@
+{
+  "id": "helmet-permissions-policy-minimal",
+  "name": "Helmet Permissions-Policy 最小",
+  "version": "1.0.0",
+  "stack": ["express", "helmet"],
+  "tags": ["security"],
+  "description": "Permissions-Policy を設定する最小例。",
+  "params": [ { "name": "app_name", "default": "helmet-permissions" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"helmet\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst helmet = require('helmet');\nconst app = express();\napp.use(helmet({ permissionsPolicy: { features: { geolocation: [\"'self'\"], microphone: [\"'none'\"] } } }));\napp.get('/', (_req,res)=>res.send('ok'));\napp.listen(Number('{{port}}'));\n" }
+  ],
+  "patches": []
+}
+

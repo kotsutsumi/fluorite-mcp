@@ -1,0 +1,16 @@
+{
+  "id": "nestjs-graphql-minimal",
+  "name": "NestJS GraphQL 最小",
+  "version": "1.0.0",
+  "stack": ["nestjs", "graphql", "typescript"],
+  "tags": ["api", "graphql"],
+  "description": "NestJS の GraphQL (code-first) 最小例。",
+  "params": [ { "name": "app_name", "default": "nestjs-graphql" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"start\": \"node --loader ts-node/esm src/main.ts\" },\n  \"dependencies\": { \"@nestjs/common\": \"latest\", \"@nestjs/core\": \"latest\", \"@nestjs/graphql\": \"latest\", \"graphql\": \"latest\", \"reflect-metadata\": \"latest\" },\n  \"devDependencies\": { \"ts-node\": \"^10\", \"typescript\": \"^5\" }\n}\n" },
+    { "path": "{{app_name}}/tsconfig.json", "template": "{ \"compilerOptions\": { \"module\": \"es2022\", \"target\": \"es2022\", \"moduleResolution\": \"bundler\", \"experimentalDecorators\": true, \"emitDecoratorMetadata\": true, \"strict\": true } }\n" },
+    { "path": "{{app_name}}/src/main.ts", "template": "import 'reflect-metadata';\nimport { Module } from '@nestjs/common';\nimport { NestFactory } from '@nestjs/core';\nimport { GraphQLModule } from '@nestjs/graphql';\nimport { Resolver, Query } from '@nestjs/graphql';\n@Resolver() class HelloResolver { @Query(() => String) hello(){ return 'world'; } }\n@Module({ imports: [GraphQLModule.forRoot({ autoSchemaFile: true })], providers: [HelloResolver] }) class AppModule {}\n(async () => { const app = await NestFactory.create(AppModule); await app.listen(Number('{{port}}')); })();\n" }
+  ],
+  "patches": []
+}
+

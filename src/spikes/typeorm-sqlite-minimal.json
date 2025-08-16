@@ -1,0 +1,15 @@
+{
+  "id": "typeorm-sqlite-minimal",
+  "name": "TypeORM + SQLite Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "typeorm", "sqlite"],
+  "tags": ["db"],
+  "description": "TypeORM with SQLite using EntitySchema.",
+  "params": [ { "name": "app_name", "default": "typeorm-sqlite" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"typeorm\": \"latest\", \"sqlite3\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const { DataSource, EntitySchema } = require('typeorm');\nconst AppDataSource = new DataSource({ type: 'sqlite', database: 'app.db', entities: [new EntitySchema({ name: 'Note', columns: { id: { type: Number, primary: true, generated: true }, title: { type: String } } })], synchronize: true });\n(async () => {\n  await AppDataSource.initialize();\n  const repo = AppDataSource.getRepository('Note');\n  await repo.save({ title: 'hello' });\n  console.log('Note count', await repo.count());\n  await AppDataSource.destroy();\n})();\n" }
+  ],
+  "patches": []
+}
+

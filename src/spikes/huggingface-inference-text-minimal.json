@@ -1,0 +1,19 @@
+{
+  "id": "huggingface-inference-text-minimal",
+  "name": "Hugging Face Inference Text (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "huggingface"],
+  "tags": ["llm", "inference"],
+  "description": "Text generation via Hugging Face Inference API (REST).",
+  "params": [
+    { "name": "app_name", "default": "hf-inference-text" },
+    { "name": "model", "default": "gpt2" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "const url = `https://api-inference.huggingface.co/models/${process.env.HF_MODEL || '{{model}}'}`;\nconst res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${process.env.HF_TOKEN}` }, body: JSON.stringify({ inputs: 'Say hello' }) });\nconst json = await res.json();\nconsole.log(JSON.stringify(json));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "HF_TOKEN=...\nHF_MODEL={{model}}\n" }
+  ],
+  "patches": []
+}
+

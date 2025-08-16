@@ -1,0 +1,14 @@
+{
+  "id": "aws-lambda-sqs-trigger-minimal",
+  "name": "AWS Lambda SQS Trigger 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "lambda", "sqs"],
+  "tags": ["serverless"],
+  "description": "SQS イベントを受け取る Lambda ハンドラー（最小）。",
+  "params": [ { "name": "app_name", "default": "lambda-sqs" } ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "export const handler = async (event) => { for (const r of event.Records||[]) console.log('msg', r.body); return {}; };\n" }
+  ],
+  "patches": []
+}
+

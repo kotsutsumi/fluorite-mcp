@@ -1,0 +1,15 @@
+{
+  "id": "pino-http-request-id-minimal",
+  "name": "pino-http リクエストID",
+  "version": "1.0.0",
+  "stack": ["node", "pino", "express"],
+  "tags": ["logging"],
+  "description": "pino-http の genReqId でリクエストIDを付与。",
+  "params": [ { "name": "app_name", "default": "pino-reqid" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"pino\": \"latest\", \"pino-http\": \"latest\", \"uuid\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst pino = require('pino');\nconst pinoHttp = require('pino-http');\nconst { v4: uuid } = require('uuid');\nconst logger = pino();\nconst app = express();\napp.use(pinoHttp({ logger, genReqId: () => uuid() }));\napp.get('/', (_req,res)=>res.json({ ok: true }));\napp.listen(Number('{{port}}'), ()=>logger.info('listening on %d', {{port}}));\n" }
+  ],
+  "patches": []
+}
+

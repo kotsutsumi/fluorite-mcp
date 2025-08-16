@@ -1,0 +1,15 @@
+{
+  "id": "hpp-express-minimal",
+  "name": "hpp (HTTP Param Pollution) 対策",
+  "version": "1.0.0",
+  "stack": ["express", "hpp"],
+  "tags": ["security"],
+  "description": "hpp ミドルウェアの最小例。",
+  "params": [ { "name": "app_name", "default": "hpp-express" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"hpp\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst hpp = require('hpp');\nconst app = express();\napp.use(hpp());\napp.get('/', (req,res)=>res.json({ query: req.query }));\napp.listen(Number('{{port}}'));\n" }
+  ],
+  "patches": []
+}
+

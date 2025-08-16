@@ -1,0 +1,18 @@
+{
+  "id": "langchain-openai-basic-minimal",
+  "name": "LangChain + OpenAI Basic (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "langchain", "openai"],
+  "tags": ["llm", "langchain"],
+  "description": "Call OpenAI via LangChain LLM interface with a simple prompt.",
+  "params": [
+    { "name": "app_name", "default": "lc-openai-basic" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { ChatOpenAI } from '@langchain/openai';\nconst llm = new ChatOpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst res = await llm.invoke('Say hello');\nconsole.log(res?.content);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@langchain/openai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" }
+  ],
+  "patches": []
+}
+

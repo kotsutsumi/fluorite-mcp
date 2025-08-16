@@ -1,0 +1,19 @@
+{
+  "id": "pgvector-node-minimal",
+  "name": "pgvector + node-postgres Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "postgres", "pgvector"],
+  "tags": ["vector", "database"],
+  "description": "Create extension/table and run a simple vector similarity query using pg and pgvector.",
+  "params": [
+    { "name": "app_name", "default": "pgvector-app" },
+    { "name": "database_url", "default": "postgres://postgres:postgres@localhost:5432/postgres" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import pg from 'pg';\nconst client = new pg.Client({ connectionString: process.env.DATABASE_URL || '{{database_url}}' });\nawait client.connect();\nawait client.query('CREATE EXTENSION IF NOT EXISTS vector');\nawait client.query('CREATE TABLE IF NOT EXISTS items (id serial PRIMARY KEY, embedding vector(3), text text)');\nawait client.query('TRUNCATE items');\nawait client.query('INSERT INTO items (embedding, text) VALUES ($1, $2), ($3, $4)', [[0.1,0.2,0.3], 'hello', [0.15,0.2,0.25], 'fluorite']);\nconst { rows } = await client.query('SELECT text, embedding <=> $1 AS dist FROM items ORDER BY dist ASC LIMIT 2', [[0.1,0.2,0.3]]);\nconsole.log(rows);\nawait client.end();\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"pg\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "DATABASE_URL=postgres://postgres:postgres@localhost:5432/postgres\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,17 @@
+{
+  "id": "faiss-python-minimal",
+  "name": "FAISS Minimal (Python)",
+  "version": "1.0.0",
+  "stack": ["python", "faiss"],
+  "tags": ["vector", "index"],
+  "description": "Create a FAISS index, add vectors, and run a search.",
+  "params": [
+    { "name": "app_name", "default": "faiss-py" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/main.py", "template": "import faiss, numpy as np\nx = np.array([[0.1,0.2,0.3],[0.2,0.1,0.25]], dtype='float32')\nindex = faiss.IndexFlatL2(3)\nindex.add(x)\nD,I = index.search(np.array([[0.1,0.2,0.3]], dtype='float32'), 2)\nprint(I.tolist())\n" },
+    { "path": "{{app_name}}/requirements.txt", "template": "faiss-cpu\nnumpy\n" }
+  ],
+  "patches": []
+}
+

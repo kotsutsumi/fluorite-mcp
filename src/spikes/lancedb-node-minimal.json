@@ -1,0 +1,17 @@
+{
+  "id": "lancedb-node-minimal",
+  "name": "LanceDB Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "lancedb"],
+  "tags": ["vector", "database"],
+  "description": "Create a LanceDB table, add rows, and search by vector.",
+  "params": [
+    { "name": "app_name", "default": "lancedb-node" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { connect } from '@lancedb/lancedb';\nconst db = await connect('./.lancedb');\nconst table = await db.createTable('docs', [{ vector: [0.1,0.2,0.3], text: 'hello' }, { vector: [0.2,0.1,0.25], text: 'fluorite' }]);\nconst res = await table.search([0.1,0.2,0.3]).limit(2).toArray();\nconsole.log(res.map(r => r.text));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@lancedb/lancedb\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,18 @@
+{
+  "id": "vercel-ai-cohere-stream-minimal",
+  "name": "Vercel AI SDK + Cohere Streaming (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "vercel-ai", "cohere"],
+  "tags": ["llm", "stream"],
+  "description": "Stream text with the Vercel AI SDK using Cohere provider.",
+  "params": [
+    { "name": "app_name", "default": "vercel-ai-cohere-stream" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { createCohere } from '@ai-sdk/cohere';\nimport { streamText } from 'ai';\nconst cohere = createCohere({ apiKey: process.env.COHERE_API_KEY });\nconst result = await streamText({ model: cohere('command-r'), prompt: 'Stream a short hello' });\nfor await (const part of result.textStream) { process.stdout.write(part); }\nconsole.log();\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@ai-sdk/cohere\": \"latest\", \"ai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "COHERE_API_KEY=...\n" }
+  ],
+  "patches": []
+}
+

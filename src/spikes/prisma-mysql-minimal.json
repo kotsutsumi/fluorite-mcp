@@ -1,0 +1,15 @@
+{
+  "id": "prisma-mysql-minimal",
+  "name": "Prisma + MySQL 最小",
+  "version": "1.0.0",
+  "stack": ["node", "prisma", "mysql"],
+  "tags": ["db"],
+  "description": "Prisma で MySQL に接続する最小スキーマ。",
+  "params": [ { "name": "app_name", "default": "prisma-mysql" } ],
+  "files": [
+    { "path": "{{app_name}}/prisma/schema.prisma", "template": "generator client { provider = \"prisma-client-js\" }\ndatasource db { provider = \"mysql\" url = \"mysql://root:password@localhost:3306/test\" }\nmodel Item { id Int @id @default(autoincrement()) name String }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"postinstall\": \"prisma generate\" }, \"dependencies\": { \"@prisma/client\": \"latest\" }, \"devDependencies\": { \"prisma\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

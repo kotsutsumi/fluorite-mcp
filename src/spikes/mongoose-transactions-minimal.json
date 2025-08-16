@@ -1,0 +1,15 @@
+{
+  "id": "mongoose-transactions-minimal",
+  "name": "Mongoose トランザクション",
+  "version": "1.0.0",
+  "stack": ["node", "mongoose"],
+  "tags": ["db"],
+  "description": "セッションを用いたトランザクションの最小例。",
+  "params": [ { "name": "app_name", "default": "mongoose-tx" }, { "name": "mongo_uri", "default": "mongodb://localhost:27017/test" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"mongoose\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const mongoose = require('mongoose');\nconst User = mongoose.model('User', new mongoose.Schema({ name: String }));\n(async () => { await mongoose.connect('{{mongo_uri}}'); const session = await mongoose.startSession(); session.startTransaction(); try { await User.create([{ name: 'tx' }], { session }); await session.commitTransaction(); console.log('committed'); } catch(e){ await session.abortTransaction(); console.error('aborted'); } finally { session.endSession(); await mongoose.disconnect(); } })();\n" }
+  ],
+  "patches": []
+}
+

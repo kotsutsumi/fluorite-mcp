@@ -1,0 +1,15 @@
+{
+  "id": "bull-board-express-minimal",
+  "name": "Bull Board + Express 最小",
+  "version": "1.0.0",
+  "stack": ["node", "bullmq", "express"],
+  "tags": ["queue", "ui"],
+  "description": "BullMQ のUI (bull-board) を Express に統合。",
+  "params": [ { "name": "app_name", "default": "bull-board" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"bullmq\": \"latest\", \"@bull-board/express\": \"latest\", \"express\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst { Queue } = require('bullmq');\nconst { createBullBoard } = require('@bull-board/api');\nconst { BullMQAdapter } = require('@bull-board/api/bullMQAdapter');\nconst { router } = require('@bull-board/express');\nconst q = new Queue('jobs');\nconst { addQueue, removeQueue, setQueues } = createBullBoard([{ queue: new BullMQAdapter(q) }]);\nconst app = express();\napp.use('/ui', router);\napp.listen(Number('{{port}}'), ()=>console.log('UI on /ui'));\n" }
+  ],
+  "patches": []
+}
+

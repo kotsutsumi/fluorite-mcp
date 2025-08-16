@@ -1,0 +1,15 @@
+{
+  "id": "koa-cors-minimal",
+  "name": "Koa CORS 最小",
+  "version": "1.0.0",
+  "stack": ["koa", "cors"],
+  "tags": ["security"],
+  "description": "@koa/cors で CORS 設定。",
+  "params": [ { "name": "app_name", "default": "koa-cors" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"koa\": \"latest\", \"@koa/cors\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const Koa = require('koa');\nconst cors = require('@koa/cors');\nconst app = new Koa();\napp.use(cors());\napp.use(async (ctx)=> { ctx.body = { ok: true }; });\napp.listen(Number('{{port}}'));\n" }
+  ],
+  "patches": []
+}
+

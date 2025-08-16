@@ -1,0 +1,15 @@
+{
+  "id": "vercel-postgres-node-minimal",
+  "name": "Vercel Postgres Node 最小",
+  "version": "1.0.0",
+  "stack": ["vercel", "postgres"],
+  "tags": ["db"],
+  "description": "@vercel/postgres クライアントの最小利用例。",
+  "params": [ { "name": "app_name", "default": "vercel-pg" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node index.mjs\" }, \"dependencies\": { \"@vercel/postgres\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.mjs", "template": "import { sql } from '@vercel/postgres';\nconst r = await sql`select 1 as x`;\nconsole.log(r.rows);\n" }
+  ],
+  "patches": []
+}
+

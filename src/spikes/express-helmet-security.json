@@ -1,0 +1,15 @@
+{
+  "id": "express-helmet-security",
+  "name": "Express Helmet Security",
+  "version": "1.0.0",
+  "stack": ["node", "express", "helmet"],
+  "tags": ["security"],
+  "description": "Express server with helmet and sensible defaults.",
+  "params": [ { "name": "app_name", "default": "helmet-secure" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"helmet\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst helmet = require('helmet');\nconst app = express();\napp.use(helmet({ contentSecurityPolicy: false }));\napp.get('/health', (_req, res) => res.json({ status: 'ok' }));\napp.get('/', (_req, res) => res.json({ hello: 'world' }));\napp.listen(Number('{{port}}'), () => console.log('listening on {{port}}'));\n" }
+  ],
+  "patches": []
+}
+

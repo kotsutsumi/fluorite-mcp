@@ -1,0 +1,16 @@
+{
+  "id": "rollup-lib-minimal",
+  "name": "Rollup Library Minimal",
+  "version": "1.0.0",
+  "stack": ["typescript", "rollup"],
+  "tags": ["build"],
+  "description": "Minimal TS library build with Rollup.",
+  "params": [ { "name": "app_name", "default": "rollup-lib" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"main\": \"dist/index.cjs\",\n  \"module\": \"dist/index.mjs\",\n  \"types\": \"dist/index.d.ts\",\n  \"scripts\": { \"build\": \"rollup -c\" },\n  \"devDependencies\": { \"rollup\": \"^4\", \"typescript\": \"^5\", \"@rollup/plugin-typescript\": \"^11\" }\n}\n" },
+    { "path": "{{app_name}}/rollup.config.mjs", "template": "import typescript from '@rollup/plugin-typescript';\nexport default { input: 'src/index.ts', output: [{ file: 'dist/index.mjs', format: 'esm' }, { file: 'dist/index.cjs', format: 'cjs' }], plugins: [typescript()] };\n" },
+    { "path": "{{app_name}}/src/index.ts", "template": "export const add = (a: number, b: number) => a + b;\n" }
+  ],
+  "patches": []
+}
+

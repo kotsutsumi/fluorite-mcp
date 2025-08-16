@@ -1,0 +1,15 @@
+{
+  "id": "jose-jwk-ec-sign-verify",
+  "name": "jose JWK EC(ECDSA) 署名/検証",
+  "version": "1.0.0",
+  "stack": ["node", "jose"],
+  "tags": ["security", "auth"],
+  "description": "EC キー（P-256）で JWT を署名/検証する最小例。",
+  "params": [ { "name": "app_name", "default": "jose-jwk-ec" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"scripts\": { \"start\": \"node index.mjs\" }, \"dependencies\": { \"jose\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.mjs", "template": "import { generateKeyPair, SignJWT, jwtVerify } from 'jose';\nconst { privateKey, publicKey } = await generateKeyPair('ES256');\nconst token = await new SignJWT({ sub: 'user1' }).setProtectedHeader({ alg: 'ES256' }).sign(privateKey);\nconst { payload } = await jwtVerify(token, publicKey);\nconsole.log('sub', payload.sub, 'alg', 'ES256');\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "sns-sqs-redrive-policy-concept",
+  "name": "SNS/SQS Redrive Policy（概念）",
+  "version": "1.0.0",
+  "stack": ["aws", "sns", "sqs"],
+  "tags": ["messaging"],
+  "description": "SQS に Redrive Policy（DLQ）を設定して再配信する構成の概念説明。",
+  "params": [ { "name": "app_name", "default": "sns-sqs-redrive" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "DLQ (dead-letter queue) を設定し、maxReceiveCount を超えたメッセージを DLQ に送り、再処理時にソースへ戻すフローを構築します。\n" }
+  ],
+  "patches": []
+}
+

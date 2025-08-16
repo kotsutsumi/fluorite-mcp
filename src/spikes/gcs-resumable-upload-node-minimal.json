@@ -1,0 +1,15 @@
+{
+  "id": "gcs-resumable-upload-node-minimal",
+  "name": "GCS Resumable Upload（Node）最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "storage", "node"],
+  "tags": ["storage", "upload"],
+  "description": "GCS のリジューム可能アップロード開始（最小）。",
+  "params": [ { "name": "app_name", "default": "gcs-resumable" }, { "name": "bucket", "default": "my-bucket" }, { "name": "file", "default": "hello.txt" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node up.js\" }, \"dependencies\": { \"@google-cloud/storage\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/up.js", "template": "const { Storage } = require('@google-cloud/storage');\nconst storage = new Storage();\n(async ()=>{ const f = storage.bucket('{{bucket}}').file('{{file}}'); const [sessionUrl] = await f.createResumableUpload(); console.log(sessionUrl); })();\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "zx-release-tag-script-minimal",
+  "name": "zx リリースタグ スクリプト",
+  "version": "1.0.0",
+  "stack": ["zx", "git"],
+  "tags": ["scripting"],
+  "description": "zx でバージョンタグ付けの最小スクリプト。",
+  "params": [ { "name": "app_name", "default": "zx-release" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"scripts\": { \"start\": \"zx tag.mjs\" }, \"dependencies\": { \"zx\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/tag.mjs", "template": "#!/usr/bin/env zx\nimport { $ } from 'zx';\nconst v = process.argv[2]||'v0.0.1';\nawait $`git tag ${v}`;\nawait $`git push origin ${v}`;\n" }
+  ],
+  "patches": []
+}
+

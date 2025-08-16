@@ -1,0 +1,15 @@
+{
+  "id": "segment-analytics-node-minimal",
+  "name": "Segment analytics-node 最小",
+  "version": "1.0.0",
+  "stack": ["segment", "analytics"],
+  "tags": ["analytics"],
+  "description": "analytics-node でイベント送信。",
+  "params": [ { "name": "app_name", "default": "segment-node" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node send.js\" }, \"dependencies\": { \"analytics-node\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/send.js", "template": "const Analytics = require('analytics-node');\nconst analytics = new Analytics(process.env.SEGMENT_WRITE_KEY||'');\nanalytics.track({ event: 'Test Event', userId: 'user1' });\nanalytics.flush(()=> console.log('sent'));\n" }
+  ],
+  "patches": []
+}
+

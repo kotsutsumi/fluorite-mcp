@@ -1,0 +1,16 @@
+{
+  "id": "pnpm-monorepo-two-packages-minimal",
+  "name": "pnpm monorepo 2パッケージ最小",
+  "version": "1.0.0",
+  "stack": ["pnpm", "monorepo"],
+  "tags": ["repo"],
+  "description": "pnpm-workspace.yaml と2パッケージ構成の雛形。",
+  "params": [ { "name": "app_name", "default": "pnpm-mono" } ],
+  "files": [
+    { "path": "{{app_name}}/pnpm-workspace.yaml", "template": "packages:\n  - packages/*\n" },
+    { "path": "{{app_name}}/packages/a/package.json", "template": "{ \"name\": \"a\", \"version\": \"0.0.0\" }\n" },
+    { "path": "{{app_name}}/packages/b/package.json", "template": "{ \"name\": \"b\", \"version\": \"0.0.0\" }\n" }
+  ],
+  "patches": []
+}
+

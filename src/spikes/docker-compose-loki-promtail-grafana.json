@@ -1,0 +1,14 @@
+{
+  "id": "docker-compose-loki-promtail-grafana",
+  "name": "Docker Compose - Loki/Promtail/Grafana",
+  "version": "1.0.0",
+  "stack": ["docker", "grafana", "loki"],
+  "tags": ["infra", "docker"],
+  "description": "Loki + Promtail + Grafana のログ観測スタック（簡易）。",
+  "params": [ { "name": "app_name", "default": "loki-stack" } ],
+  "files": [
+    { "path": "{{app_name}}/docker-compose.yml", "template": "version: '3.9'\nservices:\n  loki:\n    image: grafana/loki:2.9.0\n    ports: ['3100:3100']\n  promtail:\n    image: grafana/promtail:2.9.0\n    command: ['-config.file=/etc/promtail/config.yml']\n  grafana:\n    image: grafana/grafana:10.4.0\n    ports: ['3000:3000']\n    depends_on: [loki]\n" }
+  ],
+  "patches": []
+}
+

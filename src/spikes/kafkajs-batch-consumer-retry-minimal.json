@@ -1,0 +1,15 @@
+{
+  "id": "kafkajs-batch-consumer-retry-minimal",
+  "name": "KafkaJS バッチ消費 + リトライ",
+  "version": "1.0.0",
+  "stack": ["kafkajs", "node"],
+  "tags": ["messaging"],
+  "description": "KafkaJS で eachBatch によるバッチ処理と簡易リトライ。",
+  "params": [ { "name": "app_name", "default": "kafka-batch" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"kafkajs\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const { Kafka } = require('kafkajs');\nconst kafka = new Kafka({ clientId: 'demo', brokers: ['localhost:9092'] });\nconst consumer = kafka.consumer({ groupId: 'g1' });\n(async () => { await consumer.connect(); await consumer.subscribe({ topic: 'events', fromBeginning: true }); await consumer.run({ eachBatch: async ({ batch, resolveOffset, heartbeat }) => { for (const msg of batch.messages) { try { console.log('msg', msg.value?.toString()); resolveOffset(msg.offset); await heartbeat(); } catch(e){ console.error('retry needed'); } } } }); })();\n" }
+  ],
+  "patches": []
+}
+

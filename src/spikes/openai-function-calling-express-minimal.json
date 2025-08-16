@@ -1,0 +1,25 @@
+{
+  "id": "openai-function-calling-express-minimal",
+  "name": "OpenAI Tool Calls + Express (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "openai", "express"],
+  "tags": ["llm", "tools"],
+  "description": "Demonstrates function/tool calling with the OpenAI SDK and a trivial Express route.",
+  "params": [
+    { "name": "app_name", "default": "openai-tool-express" },
+    { "name": "openai_model", "default": "gpt-4o-mini" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/index.mjs",
+      "template": "import OpenAI from 'openai';\nimport express from 'express';\nconst client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst app = express();\napp.get('/time', (_req, res) => { res.json({ now: new Date().toISOString() }); });\napp.listen(3000, async () => {\n  console.log('Server on http://localhost:3000');\n  const response = await client.chat.completions.create({\n    model: '{{openai_model}}',\n    messages: [{ role: 'user', content: 'What time is it? Use the tool.' }],\n    tools: [{\n      type: 'function',\n      function: { name: 'get_time', description: 'Get the current time', parameters: { type: 'object', properties: {}, required: [] } }\n    }]\n  });\n  console.log(JSON.stringify(response, null, 2));\n});\n"
+    },
+    {
+      "path": "{{app_name}}/package.json",
+      "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"openai\": \"latest\", \"express\": \"latest\" } }\n"
+    },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" }
+  ],
+  "patches": []
+}
+

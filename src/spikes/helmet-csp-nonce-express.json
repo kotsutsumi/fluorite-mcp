@@ -1,0 +1,15 @@
+{
+  "id": "helmet-csp-nonce-express",
+  "name": "Helmet CSP Nonce (Express)",
+  "version": "1.0.0",
+  "stack": ["node", "express", "helmet"],
+  "tags": ["security"],
+  "description": "Helmet で CSP に nonce を付与する例。",
+  "params": [ { "name": "app_name", "default": "helmet-csp-nonce" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"helmet\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst helmet = require('helmet');\nconst app = express();\napp.use((req,res,next)=>{ res.locals.nonce = Buffer.from(Date.now().toString()).toString('base64'); next(); });\napp.use(helmet({ contentSecurityPolicy: { useDefaults: true, directives: { scriptSrc: [\"'self'\", (req,res) => `'nonce-${res.locals.nonce}'` ] } } }));\napp.get('/', (req,res)=> res.send(`<script nonce=\"${res.locals.nonce}\">console.log('ok')</script>`));\napp.listen(Number('{{port}}'), ()=>console.log('listening on {{port}}'));\n" }
+  ],
+  "patches": []
+}
+

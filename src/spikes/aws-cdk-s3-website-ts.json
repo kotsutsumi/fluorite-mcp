@@ -1,0 +1,19 @@
+{
+  "id": "aws-cdk-s3-website-ts",
+  "name": "AWS CDK S3 Static Website (TS)",
+  "version": "1.0.0",
+  "stack": ["aws", "cdk", "typescript"],
+  "tags": ["infra", "iac"],
+  "description": "CDK app provisioning S3 website bucket with public read (demo).",
+  "params": [
+    { "name": "app_name", "default": "cdk-s3-website" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"scripts\": { \"build\": \"tsc\", \"cdk\": \"cdk\" },\n  \"devDependencies\": { \"typescript\": \"^5\", \"ts-node\": \"^10\" },\n  \"dependencies\": { \"aws-cdk-lib\": \"latest\", \"constructs\": \"^10\" }\n}\n" },
+    { "path": "{{app_name}}/tsconfig.json", "template": "{ \"compilerOptions\": { \"target\": \"ES2020\", \"module\": \"commonjs\", \"strict\": true, \"esModuleInterop\": true, \"outDir\": \"dist\" } }\n" },
+    { "path": "{{app_name}}/bin/app.ts", "template": "#!/usr/bin/env node\nimport 'source-map-support/register';\nimport { App, Stack, CfnOutput } from 'aws-cdk-lib';\nimport { Bucket, BlockPublicAccess } from 'aws-cdk-lib/aws-s3';\nconst app = new App();\nconst stack = new Stack(app, 'S3Website');\nconst bucket = new Bucket(stack, 'WebsiteBucket', { websiteIndexDocument: 'index.html', publicReadAccess: true, blockPublicAccess: BlockPublicAccess.BLOCK_ACLS });\nnew CfnOutput(stack, 'BucketName', { value: bucket.bucketName });\n" },
+    { "path": "{{app_name}}/README.md", "template": "# CDK S3 Website\n\nInstall CDK & deploy:\n\n- npm i\n- npx cdk synth\n- npx cdk deploy\n" }
+  ],
+  "patches": []
+}
+

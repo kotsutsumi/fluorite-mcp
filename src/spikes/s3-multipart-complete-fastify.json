@@ -1,0 +1,15 @@
+{
+  "id": "s3-multipart-complete-fastify",
+  "name": "Fastify S3 マルチパート Complete",
+  "version": "1.0.0",
+  "stack": ["fastify", "aws"],
+  "tags": ["upload", "s3"],
+  "description": "CompleteMultipartUpload を行うエンドポイント（簡易）。",
+  "params": [ { "name": "app_name", "default": "fastify-mpu-complete" }, { "name": "bucket", "default": "my-bucket" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"fastify\": \"latest\", \"@aws-sdk/client-s3\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const Fastify = require('fastify');\nconst { S3Client, CompleteMultipartUploadCommand } = require('@aws-sdk/client-s3');\nconst s3 = new S3Client({});\nconst app = Fastify();\napp.post('/complete', async (req,res)=>{ const body = await req.body; const out = await s3.send(new CompleteMultipartUploadCommand({ Bucket: '{{bucket}}', Key: 'upload.bin', UploadId: body.uploadId, MultipartUpload: { Parts: body.parts } })); res.send(out); });\napp.listen({ port: Number('{{port}}') });\n" }
+  ],
+  "patches": []
+}
+

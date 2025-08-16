@@ -1,0 +1,20 @@
+{
+  "id": "svelte-vite-tailwind-minimal",
+  "name": "Svelte + Vite + Tailwind Minimal",
+  "version": "1.0.0",
+  "stack": ["svelte", "vite", "tailwindcss"],
+  "tags": ["frontend"],
+  "description": "Minimal Svelte + Vite app with Tailwind configured.",
+  "params": [ { "name": "app_name", "default": "svelte-vite-tw" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"dev\": \"vite\", \"build\": \"vite build\", \"preview\": \"vite preview\" }, \"dependencies\": { \"svelte\": \"^4\" }, \"devDependencies\": { \"@sveltejs/vite-plugin-svelte\": \"^3\", \"tailwindcss\": \"^3\", \"vite\": \"^5\" } }\n" },
+    { "path": "{{app_name}}/index.html", "template": "<!doctype html><html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>Svelte + TW</title><script type=\"module\" src=\"/src/main.js\"></script></head><body class=\"p-4\"><div id=\"app\"></div></body></html>\n" },
+    { "path": "{{app_name}}/src/main.js", "template": "import App from './App.svelte';\nnew App({ target: document.getElementById('app') });\n" },
+    { "path": "{{app_name}}/src/App.svelte", "template": "<script>let msg = 'Hello Svelte + Tailwind';</script>\n<h1 class=\"text-2xl text-blue-600\">{msg}</h1>\n" },
+    { "path": "{{app_name}}/tailwind.config.js", "template": "export default { content: ['./index.html','./src/**/*.{svelte,js,ts}'], theme: { extend: {} }, plugins: [] };\n" },
+    { "path": "{{app_name}}/postcss.config.js", "template": "export default { plugins: { tailwindcss: {}, autoprefixer: {} } };\n" },
+    { "path": "{{app_name}}/src/style.css", "template": "@tailwind base;@tailwind components;@tailwind utilities;\n" }
+  ],
+  "patches": []
+}
+

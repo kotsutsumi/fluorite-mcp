@@ -1,0 +1,14 @@
+{
+  "id": "aws-lambda-alb-target-minimal",
+  "name": "AWS Lambda ALB ターゲット 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "lambda", "alb"],
+  "tags": ["serverless"],
+  "description": "ALB の Lambda ターゲットとして動作する最小ハンドラー（multi-value headers）。",
+  "params": [ { "name": "app_name", "default": "lambda-alb" } ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "export const handler = async () => ({ statusCode: 200, statusDescription: '200 OK', isBase64Encoded: false, headers: { 'content-type': 'application/json' }, body: JSON.stringify({ ok: true }) });\n" }
+  ],
+  "patches": []
+}
+

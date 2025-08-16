@@ -1,0 +1,14 @@
+{
+  "id": "cloudflare-pages-functions-minimal",
+  "name": "Cloudflare Pages Functions 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare", "pages"],
+  "tags": ["serverless"],
+  "description": "Pages Functions の最小ハンドラー。",
+  "params": [ { "name": "app_name", "default": "cf-pages-func" } ],
+  "files": [
+    { "path": "{{app_name}}/functions/hello.js", "template": "export function onRequest() { return new Response(JSON.stringify({ hello: 'world' }), { headers: { 'content-type': 'application/json' } }); }\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,30 @@
+{
+  "id": "langchain-weaviate-rag-minimal",
+  "name": "LangChain RAG with Weaviate (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "langchain", "weaviate", "openai"],
+  "tags": ["rag", "langchain"],
+  "description": "Use LangChain + OpenAI embeddings with Weaviate vector store for similarity search.",
+  "params": [
+    { "name": "app_name", "default": "lc-weaviate-rag" },
+    { "name": "weaviate_host", "default": "localhost:8080" },
+    { "name": "weaviate_scheme", "default": "http" },
+    { "name": "class_name", "default": "Document" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/index.mjs",
+      "template": "import { OpenAIEmbeddings } from '@langchain/openai';\nimport weaviate, { ApiKey } from 'weaviate-ts-client';\nimport { WeaviateStore } from '@langchain/weaviate';\nconst client = weaviate.client({ scheme: process.env.WEAVIATE_SCHEME || '{{weaviate_scheme}}', host: process.env.WEAVIATE_HOST || '{{weaviate_host}}', apiKey: process.env.WEAVIATE_API_KEY ? new ApiKey(process.env.WEAVIATE_API_KEY) : undefined });\nconst embeddings = new OpenAIEmbeddings({ apiKey: process.env.OPENAI_API_KEY });\nconst store = await WeaviateStore.fromTexts(['hello world', 'fluorite mcp spike'], [{ id: '1' }, { id: '2' }], embeddings, { client, indexName: process.env.WEAVIATE_CLASS || '{{class_name}}' });\nconst res = await store.similaritySearch('fluorite', 2);\nconsole.log(res.map(r => r.pageContent));\n"
+    },
+    {
+      "path": "{{app_name}}/package.json",
+      "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@langchain/openai\": \"latest\", \"@langchain/weaviate\": \"latest\", \"weaviate-ts-client\": \"latest\" } }\n"
+    },
+    {
+      "path": "{{app_name}}/.env.example",
+      "template": "OPENAI_API_KEY=sk-...\nWEAVIATE_SCHEME=http\nWEAVIATE_HOST=localhost:8080\nWEAVIATE_API_KEY=\nWEAVIATE_CLASS=Document\n"
+    }
+  ],
+  "patches": []
+}
+

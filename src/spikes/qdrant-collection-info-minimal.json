@@ -1,0 +1,20 @@
+{
+  "id": "qdrant-collection-info-minimal",
+  "name": "Qdrant Collection Info (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "qdrant"],
+  "tags": ["vector", "inspect"],
+  "description": "Retrieve Qdrant collection info/statistics.",
+  "params": [
+    { "name": "app_name", "default": "qdrant-collection-info" },
+    { "name": "qdrant_url", "default": "http://localhost:6333" },
+    { "name": "qdrant_collection", "default": "documents" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { QdrantClient } from '@qdrant/js-client-rest';\nconst client = new QdrantClient({ url: process.env.QDRANT_URL || '{{qdrant_url}}' });\nconst info = await client.getCollection(process.env.QDRANT_COLLECTION || '{{qdrant_collection}}');\nconsole.log(info);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@qdrant/js-client-rest\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "QDRANT_URL=http://localhost:6333\nQDRANT_COLLECTION={{qdrant_collection}}\n" }
+  ],
+  "patches": []
+}
+

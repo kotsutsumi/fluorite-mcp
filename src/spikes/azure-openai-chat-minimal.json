@@ -1,0 +1,21 @@
+{
+  "id": "azure-openai-chat-minimal",
+  "name": "Azure OpenAI Chat (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "azure", "openai"],
+  "tags": ["llm", "chat"],
+  "description": "Chat completion with Azure OpenAI REST endpoint.",
+  "params": [
+    { "name": "app_name", "default": "azure-openai-chat" },
+    { "name": "endpoint", "default": "https://YOUR-RESOURCE.openai.azure.com" },
+    { "name": "deployment", "default": "gpt-4o-mini" },
+    { "name": "api_version", "default": "2024-06-01" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "const url = `${process.env.AZURE_OPENAI_ENDPOINT || '{{endpoint}}'}/openai/deployments/${process.env.AZURE_OPENAI_DEPLOYMENT || '{{deployment}}'}/chat/completions?api-version=${process.env.AZURE_OPENAI_API_VERSION || '{{api_version}}'}`;\nconst res = await fetch(url, {\n  method: 'POST',\n  headers: { 'Content-Type': 'application/json', 'api-key': process.env.AZURE_OPENAI_API_KEY },\n  body: JSON.stringify({\n    messages: [{ role: 'user', content: 'Say hello' }]\n  })\n});\nconst json = await res.json();\nconsole.log(json.choices?.[0]?.message?.content);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "AZURE_OPENAI_ENDPOINT={{endpoint}}\nAZURE_OPENAI_DEPLOYMENT={{deployment}}\nAZURE_OPENAI_API_VERSION={{api_version}}\nAZURE_OPENAI_API_KEY=...\n" }
+  ],
+  "patches": []
+}
+

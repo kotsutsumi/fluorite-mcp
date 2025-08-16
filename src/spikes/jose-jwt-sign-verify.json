@@ -1,0 +1,15 @@
+{
+  "id": "jose-jwt-sign-verify",
+  "name": "jose で JWT 署名/検証",
+  "version": "1.0.0",
+  "stack": ["node", "jose"],
+  "tags": ["security", "auth"],
+  "description": "jose ライブラリで HS256 による署名/検証。",
+  "params": [ { "name": "app_name", "default": "jose-jwt" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node index.mjs\" }, \"dependencies\": { \"jose\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.mjs", "template": "import { SignJWT, jwtVerify } from 'jose';\nconst secret = new TextEncoder().encode('secret');\nconst token = await new SignJWT({ sub: 'user1' }).setProtectedHeader({ alg: 'HS256' }).setExpirationTime('1h').sign(secret);\nconst { payload } = await jwtVerify(token, secret);\nconsole.log('sub', payload.sub);\n" }
+  ],
+  "patches": []
+}
+

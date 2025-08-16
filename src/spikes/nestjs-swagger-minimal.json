@@ -1,0 +1,16 @@
+{
+  "id": "nestjs-swagger-minimal",
+  "name": "NestJS + Swagger 最小",
+  "version": "1.0.0",
+  "stack": ["nestjs", "typescript", "swagger"],
+  "tags": ["api", "docs"],
+  "description": "NestJS に Swagger (OpenAPI) を組み込む最小例。",
+  "params": [ { "name": "app_name", "default": "nestjs-swagger" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"start\": \"node --loader ts-node/esm src/main.ts\" },\n  \"dependencies\": { \"@nestjs/common\": \"latest\", \"@nestjs/core\": \"latest\", \"@nestjs/swagger\": \"latest\", \"reflect-metadata\": \"latest\", \"rxjs\": \"latest\" },\n  \"devDependencies\": { \"ts-node\": \"^10\", \"typescript\": \"^5\" }\n}\n" },
+    { "path": "{{app_name}}/tsconfig.json", "template": "{ \"compilerOptions\": { \"module\": \"es2022\", \"target\": \"es2022\", \"moduleResolution\": \"bundler\", \"experimentalDecorators\": true, \"emitDecoratorMetadata\": true, \"strict\": true } }\n" },
+    { "path": "{{app_name}}/src/main.ts", "template": "import 'reflect-metadata';\nimport { NestFactory } from '@nestjs/core';\nimport { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';\nimport { Module, Controller, Get } from '@nestjs/common';\n@Controller() class AppController { @Get('health') health(){ return { status: 'ok' }; } }\n@Module({ controllers: [AppController] }) class AppModule {}\n(async () => {\n  const app = await NestFactory.create(AppModule);\n  const config = new DocumentBuilder().setTitle('API').setVersion('1.0.0').build();\n  const doc = SwaggerModule.createDocument(app, config);\n  SwaggerModule.setup('docs', app, doc);\n  await app.listen(Number('{{port}}'));\n})();\n" }
+  ],
+  "patches": []
+}
+

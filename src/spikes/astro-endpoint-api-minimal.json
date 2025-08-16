@@ -1,0 +1,15 @@
+{
+  "id": "astro-endpoint-api-minimal",
+  "name": "Astro Endpoint API 最小",
+  "version": "1.0.0",
+  "stack": ["astro", "vite"],
+  "tags": ["frontend", "api"],
+  "description": "Astro の API Endpoint 最小（/src/pages/api/hello.ts）。",
+  "params": [ { "name": "app_name", "default": "astro-api" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"dev\": \"astro dev\" },\n  \"dependencies\": { \"astro\": \"^4\" }\n}\n" },
+    { "path": "{{app_name}}/src/pages/api/hello.ts", "template": "import type { APIRoute } from 'astro';\nexport const get: APIRoute = async () => { return new Response(JSON.stringify({ hello: 'world' }), { headers: { 'content-type': 'application/json' } }); };\n" }
+  ],
+  "patches": []
+}
+

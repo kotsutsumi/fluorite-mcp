@@ -1,0 +1,15 @@
+{
+  "id": "solidstart-minimal",
+  "name": "SolidStart Minimal",
+  "version": "1.0.0",
+  "stack": ["solidstart", "solid"],
+  "tags": ["frontend"],
+  "description": "Minimal SolidStart app with one route.",
+  "params": [ { "name": "app_name", "default": "solidstart-app" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"dev\": \"solid-start dev\", \"build\": \"solid-start build\", \"start\": \"solid-start start\" },\n  \"dependencies\": { \"solid-js\": \"^1\", \"solid-start\": \"^1\" }\n}\n" },
+    { "path": "{{app_name}}/src/routes/index.tsx", "template": "export default function Home() { return <h1>Hello SolidStart</h1>; }\n" }
+  ],
+  "patches": []
+}
+

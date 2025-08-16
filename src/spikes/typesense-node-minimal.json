@@ -1,0 +1,15 @@
+{
+  "id": "typesense-node-minimal",
+  "name": "Typesense Node クライアント",
+  "version": "1.0.0",
+  "stack": ["node", "typesense"],
+  "tags": ["search"],
+  "description": "Typesense に接続しドキュメント追加・検索。",
+  "params": [ { "name": "app_name", "default": "typesense-demo" }, { "name": "host", "default": "http://localhost:8108" }, { "name": "api_key", "default": "xyz" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"typesense\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const Typesense = require('typesense');\nconst client = new Typesense.Client({ nodes: [{ host: '{{host}}'.replace('http://','').replace('https://',''), port: 8108, protocol: 'http' }], apiKey: '{{api_key}}' });\n(async () => {\n  await client.collections('movies').create({ name: 'movies', fields: [{ name: 'id', type: 'string' }, { name: 'title', type: 'string' }] }).catch(()=>{});\n  await client.collections('movies').documents().create({ id: '1', title: 'Inception' });\n  const r = await client.collections('movies').documents().search({ q: 'incep', query_by: 'title' });\n  console.log('hits', r.hits?.length);\n})();\n" }
+  ],
+  "patches": []
+}
+

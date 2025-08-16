@@ -1,0 +1,15 @@
+{
+  "id": "drizzle-mysql-minimal",
+  "name": "Drizzle ORM + MySQL 最小",
+  "version": "1.0.0",
+  "stack": ["node", "drizzle", "mysql"],
+  "tags": ["db"],
+  "description": "Drizzle ORM を MySQL2 クライアントで使用。",
+  "params": [ { "name": "app_name", "default": "drizzle-mysql" }, { "name": "mysql_uri", "default": "mysql://root:password@localhost:3306/test" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"start\": \"node index.mjs\" },\n  \"dependencies\": { \"drizzle-orm\": \"latest\", \"mysql2\": \"latest\" }\n}\n" },
+    { "path": "{{app_name}}/index.mjs", "template": "import mysql from 'mysql2/promise';\nimport { drizzle } from 'drizzle-orm/mysql2';\nconst pool = mysql.createPool('{{mysql_uri}}');\nconst db = drizzle(pool);\nawait db.execute(`CREATE TABLE IF NOT EXISTS items (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255))`);\nawait db.execute(`INSERT INTO items(name) VALUES('hello')`);\nconst [rows] = await db.execute(`SELECT COUNT(*) as c FROM items`);\nconsole.log(rows);\nprocess.exit(0);\n" }
+  ],
+  "patches": []
+}
+

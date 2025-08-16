@@ -1,0 +1,15 @@
+{
+  "id": "postgres-listen-notify-minimal",
+  "name": "Postgres LISTEN/NOTIFY 最小",
+  "version": "1.0.0",
+  "stack": ["node", "postgres"],
+  "tags": ["db"],
+  "description": "pg クライアントで LISTEN/NOTIFY を受信。",
+  "params": [ { "name": "app_name", "default": "pg-notify" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node listen.js\" }, \"dependencies\": { \"pg\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/listen.js", "template": "const { Client } = require('pg');\n(async () => { const c = new Client({ connectionString: 'postgres://postgres:postgres@localhost:5432/postgres' }); await c.connect(); await c.query('LISTEN events'); c.on('notification', (msg) => console.log('got', msg.payload)); console.log('listening events'); })();\n" }
+  ],
+  "patches": []
+}
+

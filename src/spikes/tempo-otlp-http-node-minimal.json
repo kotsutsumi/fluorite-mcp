@@ -1,0 +1,14 @@
+{
+  "id": "tempo-otlp-http-node-minimal",
+  "name": "Tempo OTLP/HTTP Node 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry", "tempo", "node"],
+  "tags": ["observability"],
+  "description": "OTLP/HTTP でトレースを Tempo へ送信（概念）。",
+  "params": [ { "name": "app_name", "default": "tempo-otlp-http" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "@opentelemetry/exporter-trace-otlp-http を使って Tempo へ送信します。本テンプレは手順概説です。\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,19 @@
+{
+  "id": "mongoose-crud-example",
+  "name": "Mongoose CRUD Example (Express)",
+  "version": "1.0.0",
+  "stack": ["node", "express", "mongoose"],
+  "tags": ["api", "db"],
+  "description": "Express API with CRUD endpoints backed by Mongoose.",
+  "params": [
+    { "name": "app_name", "default": "mongoose-crud" },
+    { "name": "port", "default": "3000" },
+    { "name": "mongo_uri", "default": "mongodb://localhost:27017/app" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"mongoose\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst mongoose = require('mongoose');\nconst app = express();\napp.use(express.json());\nconst uri = '{{mongo_uri}}';\nconst Task = mongoose.model('Task', new mongoose.Schema({ title: String }));\n(async () => { await mongoose.connect(uri); })().catch(console.error);\napp.get('/health', (_req, res) => res.json({ status: 'ok' }));\napp.get('/tasks', async (_req, res) => res.json(await Task.find()));\napp.post('/tasks', async (req, res) => res.json(await Task.create({ title: req.body.title||'new' })));\napp.delete('/tasks/:id', async (req, res) => { await Task.findByIdAndDelete(req.params.id); res.json({ ok: true }); });\napp.listen({{port}}, () => console.log('listening on {{port}}'));\n" }
+  ],
+  "patches": []
+}
+

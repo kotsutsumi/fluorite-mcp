@@ -1,0 +1,16 @@
+{
+  "id": "cf-workers-queues-minimal",
+  "name": "Cloudflare Workers Queues 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare", "workers", "queues"],
+  "tags": ["serverless", "messaging"],
+  "description": "Workers Queues にメッセージを送受信する最小例。",
+  "params": [ { "name": "app_name", "default": "cf-queues" } ],
+  "files": [
+    { "path": "{{app_name}}/producer.js", "template": "export default {\n  async fetch(_req, env) {\n    await env.MY_QUEUE.send({ hello: 'world', at: Date.now() });\n    return new Response('enqueued');\n  }\n};\n" },
+    { "path": "{{app_name}}/consumer.js", "template": "export default {\n  async queue(batch, env) {\n    for (const msg of batch.messages) { console.log('message', msg.body); }\n  }\n};\n" },
+    { "path": "{{app_name}}/README.md", "template": "wrangler.toml で queues { binding = \"MY_QUEUE\" } を設定し、consumer を登録してください。\n" }
+  ],
+  "patches": []
+}
+

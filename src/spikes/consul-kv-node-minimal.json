@@ -1,0 +1,15 @@
+{
+  "id": "consul-kv-node-minimal",
+  "name": "HashiCorp Consul KV 最小",
+  "version": "1.0.0",
+  "stack": ["node", "consul"],
+  "tags": ["config"],
+  "description": "consul で KV read/write（最小）。",
+  "params": [ { "name": "app_name", "default": "consul-kv" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"consul\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const consul = require('consul')();\n(async ()=>{ await consul.kv.set('app/hello', 'world'); const r = await consul.kv.get('app/hello'); console.log(r?.Value?.toString()); })();\n" }
+  ],
+  "patches": []
+}
+

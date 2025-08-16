@@ -1,0 +1,15 @@
+{
+  "id": "sharp-exif-orient-minimal",
+  "name": "sharp EXIF 自動回転",
+  "version": "1.0.0",
+  "stack": ["node", "sharp"],
+  "tags": ["media"],
+  "description": "EXIF Orientation に従って自動回転。",
+  "params": [ { "name": "app_name", "default": "sharp-exif" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node rotate.js\" }, \"dependencies\": { \"sharp\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/rotate.js", "template": "const sharp = require('sharp');\n(async () => { const input = Buffer.alloc(100); const out = await sharp(input).rotate().toBuffer(); console.log('bytes', out.length); })();\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,16 @@
+{
+  "id": "js-yaml-config-minimal",
+  "name": "js-yaml 設定読み込み",
+  "version": "1.0.0",
+  "stack": ["node", "yaml"],
+  "tags": ["config"],
+  "description": "js-yaml で YAML 設定を読み込む最小例。",
+  "params": [ { "name": "app_name", "default": "js-yaml-config" } ],
+  "files": [
+    { "path": "{{app_name}}/config.yaml", "template": "port: 3000\nname: app\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node read.js\" }, \"dependencies\": { \"js-yaml\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/read.js", "template": "const fs = require('fs');\nconst yaml = require('js-yaml');\nconst cfg = yaml.load(fs.readFileSync('config.yaml','utf8'));\nconsole.log(cfg);\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,16 @@
+{
+  "id": "express-openapi-validator-minimal",
+  "name": "Express OpenAPI Validator Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "express", "openapi"],
+  "tags": ["api", "validation"],
+  "description": "Express with request/response validation via express-openapi-validator.",
+  "params": [ { "name": "app_name", "default": "eov-app" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"express-openapi-validator\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/openapi.yaml", "template": "openapi: 3.0.0\ninfo:\n  title: EOV Demo\n  version: 1.0.0\npaths:\n  /echo:\n    post:\n      requestBody:\n        required: true\n        content:\n          application/json:\n            schema:\n              type: object\n              properties:\n                name:\n                  type: string\n              required: [name]\n      responses:\n        '200':\n          description: ok\n          content:\n            application/json:\n              schema:\n                type: object\n                properties:\n                  name:\n                    type: string\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst { OpenApiValidator } = require('express-openapi-validator');\nconst path = require('path');\nconst app = express();\napp.use(express.json());\nconst spec = path.join(__dirname, 'openapi.yaml');\nnew OpenApiValidator({ apiSpec: spec }).install(app).then(() => {\n  app.post('/echo', (req, res) => res.json({ name: req.body.name }));\n  app.use((err, _req, res, _next) => { res.status(err.status || 500).json({ error: err.message, errors: err.errors }); });\n  app.listen(Number('{{port}}'), () => console.log('listening on {{port}}'));\n});\n" }
+  ],
+  "patches": []
+}
+

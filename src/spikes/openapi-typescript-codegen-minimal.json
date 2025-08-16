@@ -1,0 +1,15 @@
+{
+  "id": "openapi-typescript-codegen-minimal",
+  "name": "openapi-typescript で型生成",
+  "version": "1.0.0",
+  "stack": ["openapi", "typescript"],
+  "tags": ["codegen"],
+  "description": "openapi-typescript を使い型定義を生成する最小構成。",
+  "params": [ { "name": "app_name", "default": "openapi-tygen" } ],
+  "files": [
+    { "path": "{{app_name}}/openapi.json", "template": "{ \"openapi\": \"3.0.0\", \"info\": { \"title\": \"API\", \"version\": \"1.0.0\" }, \"paths\": { \"/ping\": { \"get\": { \"responses\": { \"200\": { \"description\": \"ok\" } } } } } }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"gen\": \"openapi-typescript openapi.json -o types.d.ts\" }, \"devDependencies\": { \"openapi-typescript\": \"^7\" } }\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "agenda-mongodb-minimal",
+  "name": "Agenda + MongoDB ジョブ",
+  "version": "1.0.0",
+  "stack": ["node", "agenda", "mongodb"],
+  "tags": ["schedule"],
+  "description": "AgendaでMongoDBを使ったジョブ管理。",
+  "params": [ { "name": "app_name", "default": "agenda-jobs" }, { "name": "mongo_uri", "default": "mongodb://localhost:27017/agenda" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"agenda\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const Agenda = require('agenda');\nconst agenda = new Agenda({ db: { address: '{{mongo_uri}}' } });\nagenda.define('hello job', async () => { console.log('hello agenda'); });\n(async () => { await agenda.start(); await agenda.every('1 minute', 'hello job'); console.log('agenda started'); })();\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,18 @@
+{
+  "id": "openai-embeddings-minimal",
+  "name": "OpenAI Embeddings (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "openai"],
+  "tags": ["embeddings"],
+  "description": "Generate embeddings using OpenAI Embeddings API.",
+  "params": [
+    { "name": "app_name", "default": "openai-embeddings-app" },
+    { "name": "openai_embed_model", "default": "text-embedding-3-small" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import OpenAI from 'openai';\nconst client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst out = await client.embeddings.create({\n  model: '{{openai_embed_model}}',\n  input: ['hello world', 'fluorite mcp']\n});\nconsole.log('dims=', out.data[0].embedding.length);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"openai\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

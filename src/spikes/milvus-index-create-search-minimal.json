@@ -1,0 +1,23 @@
+{
+  "id": "milvus-index-create-search-minimal",
+  "name": "Milvus Create Index + Search (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "milvus"],
+  "tags": ["vector", "index"],
+  "description": "Create IVF_FLAT index and perform a simple search.",
+  "params": [
+    { "name": "app_name", "default": "milvus-index-search" },
+    { "name": "milvus_address", "default": "localhost:19530" },
+    { "name": "collection_name", "default": "documents" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/index.mjs",
+      "template": "import { MilvusClient, IndexType, MetricType } from '@zilliz/milvus2-sdk-node';\nconst client = new MilvusClient({ address: process.env.MILVUS_ADDRESS || '{{milvus_address}}' });\nconst name = process.env.MILVUS_COLLECTION || '{{collection_name}}';\nawait client.createIndex({\n  collection_name: name,\n  field_name: 'embedding',\n  index_type: IndexType.IVF_FLAT,\n  metric_type: MetricType.L2,\n  params: { nlist: '16' }\n});\nawait client.loadCollection({ collection_name: name });\nconst res = await client.search({\n  collection_name: name,\n  vector: [[0.1,0.2,0.3]],\n  output_fields: ['text'],\n  anns_field: 'embedding',\n  metric_type: MetricType.L2,\n  params: { nprobe: '8' },\n  limit: 3\n});\nconsole.log(res?.results);\n"
+    },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@zilliz/milvus2-sdk-node\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "MILVUS_ADDRESS=localhost:19530\nMILVUS_COLLECTION={{collection_name}}\n" }
+  ],
+  "patches": []
+}
+

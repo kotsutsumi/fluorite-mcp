@@ -25,3 +25,8 @@ async function cleanupTestCatalog() {
     // Ignore if directory doesn't exist
   }
 }
+
+// Constrain spike listing during tests to reduce memory usage
+if (!process.env.FLUORITE_SPIKE_LIST_LIMIT) {
+  process.env.FLUORITE_SPIKE_LIST_LIMIT = '80';
+}

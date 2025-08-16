@@ -1,0 +1,20 @@
+{
+  "id": "langchain-milvus-rag-minimal",
+  "name": "LangChain RAG with Milvus (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "langchain", "milvus", "openai"],
+  "tags": ["rag", "langchain"],
+  "description": "Use LangChain + OpenAI embeddings with Milvus vector store for similarity search.",
+  "params": [
+    { "name": "app_name", "default": "lc-milvus-rag" },
+    { "name": "milvus_address", "default": "localhost:19530" },
+    { "name": "collection", "default": "documents" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { OpenAIEmbeddings } from '@langchain/openai';\nimport { Milvus } from '@langchain/community/vectorstores/milvus';\nconst embeddings = new OpenAIEmbeddings({ apiKey: process.env.OPENAI_API_KEY });\nconst store = await Milvus.fromTexts(['hello world', 'fluorite mcp spike'], [{ id: '1' }, { id: '2' }], embeddings, {\n  address: process.env.MILVUS_ADDRESS || '{{milvus_address}}',\n  collectionName: process.env.MILVUS_COLLECTION || '{{collection}}'\n});\nconst res = await store.similaritySearch('fluorite', 2);\nconsole.log(res.map(r => r.pageContent));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@langchain/openai\": \"latest\", \"@langchain/community\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\nMILVUS_ADDRESS=localhost:19530\nMILVUS_COLLECTION={{collection}}\n" }
+  ],
+  "patches": []
+}
+

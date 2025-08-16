@@ -1,0 +1,14 @@
+{
+  "id": "docker-compose-elasticsearch",
+  "name": "Docker Compose - Elasticsearch",
+  "version": "1.0.0",
+  "stack": ["docker", "elasticsearch"],
+  "tags": ["infra", "docker"],
+  "description": "Single-node Elasticsearch for dev.",
+  "params": [ { "name": "app_name", "default": "es-stack" } ],
+  "files": [
+    { "path": "{{app_name}}/docker-compose.yml", "template": "version: '3.9'\nservices:\n  es:\n    image: docker.elastic.co/elasticsearch/elasticsearch:8.14.0\n    environment:\n      - discovery.type=single-node\n      - xpack.security.enabled=false\n    ports: ['9200:9200']\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "redisbloom-minimal",
+  "name": "RedisBloom 最小",
+  "version": "1.0.0",
+  "stack": ["redis", "node"],
+  "tags": ["db"],
+  "description": "RedisBloom の BF.ADD/BF.EXISTS のデモ。",
+  "params": [ { "name": "app_name", "default": "redisbloom-demo" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"ioredis\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const Redis = require('ioredis');\nconst r = new Redis();\n(async () => { await r.call('BF.ADD', 'seen', 'foo'); const e = await r.call('BF.EXISTS', 'seen', 'foo'); console.log('exists', e); await r.quit(); })();\n" }
+  ],
+  "patches": []
+}
+

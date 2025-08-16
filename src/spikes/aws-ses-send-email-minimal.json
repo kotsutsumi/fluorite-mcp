@@ -1,0 +1,15 @@
+{
+  "id": "aws-ses-send-email-minimal",
+  "name": "AWS SES SendEmail 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "ses", "node"],
+  "tags": ["email"],
+  "description": "SES v3 SDK でメール送信（検証済みドメイン/アドレスが必要）。",
+  "params": [ { "name": "app_name", "default": "ses-send" }, { "name": "from", "default": "no-reply@example.com" }, { "name": "to", "default": "user@example.com" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node send.js\" }, \"dependencies\": { \"@aws-sdk/client-ses\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/send.js", "template": "const { SESClient, SendEmailCommand } = require('@aws-sdk/client-ses');\nconst ses = new SESClient({});\n(async () => { const r = await ses.send(new SendEmailCommand({ Source: '{{from}}', Destination: { ToAddresses: ['{{to}}'] }, Message: { Subject: { Data: 'Hello' }, Body: { Text: { Data: 'Hello SES' } } } })); console.log(r.MessageId); })();\n" }
+  ],
+  "patches": []
+}
+

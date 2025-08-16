@@ -1,0 +1,22 @@
+{
+  "id": "openai-audio-transcribe-minimal",
+  "name": "OpenAI Audio Transcription (Whisper)",
+  "version": "1.0.0",
+  "stack": ["node", "openai"],
+  "tags": ["audio", "transcribe"],
+  "description": "Transcribe an audio file using OpenAI audio.transcriptions API.",
+  "params": [
+    { "name": "app_name", "default": "openai-transcribe" },
+    { "name": "audio_file", "default": "audio.m4a" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/index.mjs",
+      "template": "import OpenAI from 'openai';\nimport fs from 'node:fs';\nconst client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst resp = await client.audio.transcriptions.create({\n  model: 'gpt-4o-transcribe',\n  file: fs.createReadStream(process.env.AUDIO_FILE || '{{audio_file}}')\n});\nconsole.log(resp.text);\n"
+    },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"openai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\nAUDIO_FILE={{audio_file}}\n" }
+  ],
+  "patches": []
+}
+

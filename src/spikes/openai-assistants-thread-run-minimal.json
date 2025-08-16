@@ -1,0 +1,19 @@
+{
+  "id": "openai-assistants-thread-run-minimal",
+  "name": "OpenAI Assistants API: Create Thread + Run",
+  "version": "1.0.0",
+  "stack": ["node", "openai"],
+  "tags": ["assistants", "llm"],
+  "description": "Create a new thread, add a message, and start a run with an Assistant.",
+  "params": [
+    { "name": "app_name", "default": "openai-assistants-app" },
+    { "name": "assistant_id", "default": "asst_..." }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import OpenAI from 'openai';\nconst openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst thread = await openai.beta.threads.create();\nawait openai.beta.threads.messages.create(thread.id, { role: 'user', content: 'Say hello' });\nconst run = await openai.beta.threads.runs.create(thread.id, { assistant_id: process.env.OPENAI_ASSISTANT_ID || '{{assistant_id}}' });\nconsole.log({ threadId: thread.id, runId: run.id });\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"openai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\nOPENAI_ASSISTANT_ID=asst_...\n" }
+  ],
+  "patches": []
+}
+

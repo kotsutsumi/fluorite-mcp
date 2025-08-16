@@ -1,0 +1,19 @@
+{
+  "id": "openai-moderations-minimal",
+  "name": "OpenAI Moderations Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "openai"],
+  "tags": ["moderation", "safety"],
+  "description": "Check text with OpenAI Moderations API and print categories.",
+  "params": [
+    { "name": "app_name", "default": "openai-moderations" },
+    { "name": "text", "default": "I will say hello politely." }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import OpenAI from 'openai';\nconst openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst input = process.env.TEXT || '{{text}}';\nconst res = await openai.moderations.create({ model: 'omni-moderation-latest', input });\nconsole.log(JSON.stringify(res.results?.[0]?.categories, null, 2));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"openai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\nTEXT=I will say hello politely.\n" }
+  ],
+  "patches": []
+}
+

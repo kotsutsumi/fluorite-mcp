@@ -1,0 +1,14 @@
+{
+  "id": "gha-npm-publish-minimal",
+  "name": "GHA npm publish 最小",
+  "version": "1.0.0",
+  "stack": ["github-actions", "npm"],
+  "tags": ["ci"],
+  "description": "GitHub Actions で npm publish を実行する最小ワークフロー。",
+  "params": [ { "name": "app_name", "default": "gha-npm-publish" } ],
+  "files": [
+    { "path": "{{app_name}}/.github/workflows/publish.yml", "template": "name: Publish\non: { workflow_dispatch: {} }\njobs:\n  publish:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 20\n          registry-url: 'https://registry.npmjs.org'\n      - run: npm publish\n        env:\n          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}\n" }
+  ],
+  "patches": []
+}
+

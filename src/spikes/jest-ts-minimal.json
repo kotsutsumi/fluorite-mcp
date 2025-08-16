@@ -1,0 +1,18 @@
+{
+  "id": "jest-ts-minimal",
+  "name": "Jest TS Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "jest", "typescript"],
+  "tags": ["test"],
+  "description": "Minimal TypeScript project tested with Jest.",
+  "params": [ { "name": "app_name", "default": "jest-ts" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"test\": \"node --experimental-vm-modules node_modules/jest/bin/jest.js\", \"build\": \"tsc\" },\n  \"devDependencies\": { \"typescript\": \"^5\", \"jest\": \"^29\", \"ts-jest\": \"^29\" }\n}\n" },
+    { "path": "{{app_name}}/jest.config.js", "template": "export default { preset: 'ts-jest', testEnvironment: 'node', transform: { '^.+\\\\.tsx?$': ['ts-jest', {}] } };\n" },
+    { "path": "{{app_name}}/tsconfig.json", "template": "{ \"compilerOptions\": { \"target\": \"ES2020\", \"module\": \"ESNext\", \"strict\": true, \"esModuleInterop\": true, \"outDir\": \"dist\" } }\n" },
+    { "path": "{{app_name}}/src/sum.ts", "template": "export const sum = (a: number, b: number) => a + b;\n" },
+    { "path": "{{app_name}}/test/sum.test.ts", "template": "import { sum } from '../src/sum';\ntest('adds numbers', () => { expect(sum(1,2)).toBe(3); });\n" }
+  ],
+  "patches": []
+}
+

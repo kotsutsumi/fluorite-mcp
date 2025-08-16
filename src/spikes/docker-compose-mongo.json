@@ -1,0 +1,14 @@
+{
+  "id": "docker-compose-mongo",
+  "name": "Docker Compose - MongoDB",
+  "version": "1.0.0",
+  "stack": ["docker", "mongodb"],
+  "tags": ["infra", "docker"],
+  "description": "Minimal docker-compose for MongoDB + Mongo Express.",
+  "params": [ { "name": "app_name", "default": "mongo-stack" } ],
+  "files": [
+    { "path": "{{app_name}}/docker-compose.yml", "template": "version: '3.9'\nservices:\n  mongo:\n    image: mongo:6\n    ports: ['27017:27017']\n    environment:\n      - MONGO_INITDB_ROOT_USERNAME=root\n      - MONGO_INITDB_ROOT_PASSWORD=example\n  mongo-express:\n    image: mongo-express:latest\n    ports: ['8081:8081']\n    environment:\n      - ME_CONFIG_MONGODB_ADMINUSERNAME=root\n      - ME_CONFIG_MONGODB_ADMINPASSWORD=example\n      - ME_CONFIG_MONGODB_URL=mongodb://root:example@mongo:27017/\n    depends_on: [mongo]\n" }
+  ],
+  "patches": []
+}
+

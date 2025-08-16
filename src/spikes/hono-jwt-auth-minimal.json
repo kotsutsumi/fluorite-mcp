@@ -1,0 +1,15 @@
+{
+  "id": "hono-jwt-auth-minimal",
+  "name": "Hono + JWT 認証 最小",
+  "version": "1.0.0",
+  "stack": ["hono", "node", "jwt"],
+  "tags": ["auth"],
+  "description": "Hono で Bearer JWT を検証する最小例。",
+  "params": [ { "name": "app_name", "default": "hono-jwt" }, { "name": "port", "default": "3000" }, { "name": "jwt_secret", "default": "devsecret" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"scripts\": { \"start\": \"node index.mjs\" }, \"dependencies\": { \"hono\": \"latest\", \"jose\": \"latest\", \"@hono/node-server\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.mjs", "template": "import { Hono } from 'hono';\nimport { serve } from '@hono/node-server';\nimport { jwtVerify } from 'jose';\nconst app = new Hono();\napp.get('/me', async c => { const auth = c.req.header('authorization')||''; const token = auth.replace('Bearer ',''); try { const { payload } = await jwtVerify(token, new TextEncoder().encode('{{jwt_secret}}')); return c.json({ sub: payload.sub||'unknown' }); } catch { return c.json({ error: 'unauthorized' }, 401); } });\nserve({ fetch: app.fetch, port: Number('{{port}}') });\n" }
+  ],
+  "patches": []
+}
+

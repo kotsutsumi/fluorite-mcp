@@ -1,0 +1,15 @@
+{
+  "id": "pm2-ecosystem-config",
+  "name": "PM2 Ecosystem Config",
+  "version": "1.0.0",
+  "stack": ["node", "pm2"],
+  "tags": ["ops"],
+  "description": "Basic PM2 ecosystem file for a Node app.",
+  "params": [ { "name": "app_name", "default": "pm2-app" } ],
+  "files": [
+    { "path": "{{app_name}}/ecosystem.config.js", "template": "module.exports = { apps: [{ name: 'app', script: 'index.js', instances: 1, autorestart: true, watch: false, env: { NODE_ENV: 'production' } }] };\n" },
+    { "path": "{{app_name}}/README.md", "template": "# PM2 Ecosystem\n\npm2 start ecosystem.config.js\n" }
+  ],
+  "patches": []
+}
+

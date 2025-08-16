@@ -1,0 +1,15 @@
+{
+  "id": "esbuild-ts-lib-minimal",
+  "name": "esbuild TS ライブラリ最小",
+  "version": "1.0.0",
+  "stack": ["typescript", "esbuild"],
+  "tags": ["build"],
+  "description": "esbuild でTSライブラリをビルド。",
+  "params": [ { "name": "app_name", "default": "esbuild-lib" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"main\": \"dist/index.js\",\n  \"scripts\": { \"build\": \"esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js\" },\n  \"devDependencies\": { \"esbuild\": \"^0.21.0\", \"typescript\": \"^5\" }\n}\n" },
+    { "path": "{{app_name}}/src/index.ts", "template": "export const mul = (a: number, b: number) => a * b;\n" }
+  ],
+  "patches": []
+}
+

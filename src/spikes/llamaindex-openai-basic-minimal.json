@@ -1,0 +1,18 @@
+{
+  "id": "llamaindex-openai-basic-minimal",
+  "name": "LlamaIndex + OpenAI Basic (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "llamaindex", "openai"],
+  "tags": ["llm", "llamaindex"],
+  "description": "Initialize LlamaIndex and call OpenAI via default LLM settings.",
+  "params": [
+    { "name": "app_name", "default": "llamaindex-openai-basic" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { Settings, DirectLLM } from 'llamaindex';\nimport OpenAI from 'openai';\nSettings.llm = new DirectLLM(new OpenAI({ apiKey: process.env.OPENAI_API_KEY }));\nconst res = await Settings.llm.complete({ prompt: 'Say hello' });\nconsole.log(res?.text ?? JSON.stringify(res));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"llamaindex\": \"latest\", \"openai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" }
+  ],
+  "patches": []
+}
+

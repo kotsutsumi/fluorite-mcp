@@ -1,0 +1,15 @@
+{
+  "id": "hcaptcha-verify-express",
+  "name": "hCaptcha 検証 (Express)",
+  "version": "1.0.0",
+  "stack": ["express", "hcaptcha"],
+  "tags": ["security"],
+  "description": "hCaptcha のサーバ側検証。",
+  "params": [ { "name": "app_name", "default": "hcaptcha-verify" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"node-fetch\": \"^3\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "import express from 'express';\nimport fetch from 'node-fetch';\nconst app = express();\napp.use(express.json());\napp.post('/verify', async (req,res)=>{ const token = req.body?.token; const r = await fetch('https://hcaptcha.com/siteverify', { method: 'POST', headers: { 'content-type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams({ secret: process.env.HCAPTCHA_SECRET||'', response: token }) }); const data = await r.json(); res.json(data); });\napp.listen(Number('{{port}}'));\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "cloudfront-signed-cookies-concept",
+  "name": "CloudFront 署名Cookie（概念）",
+  "version": "1.0.0",
+  "stack": ["aws", "cloudfront"],
+  "tags": ["security"],
+  "description": "CloudFront の Signed Cookies 設定と署名生成手順（概念）。",
+  "params": [ { "name": "app_name", "default": "cf-signed-cookies" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "CloudFront の署名付きCookieはキーペアとポリシーが必要です。本テンプレは手順の概説です。\n" }
+  ],
+  "patches": []
+}
+

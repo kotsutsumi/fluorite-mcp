@@ -1,0 +1,15 @@
+{
+  "id": "remix-zod-loader-action-minimal",
+  "name": "Remix Loader/Action + Zod",
+  "version": "1.0.0",
+  "stack": ["remix", "react", "zod"],
+  "tags": ["frontend", "validation"],
+  "description": "Remix の loader/action で Zod 検証（最小）。",
+  "params": [ { "name": "app_name", "default": "remix-zod" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"scripts\": { \"dev\": \"remix dev\" },\n  \"dependencies\": { \"@remix-run/node\": \"^2\", \"@remix-run/react\": \"^2\", \"react\": \"^18\", \"react-dom\": \"^18\", \"zod\": \"latest\" },\n  \"devDependencies\": { \"@remix-run/dev\": \"^2\" }\n}\n" },
+    { "path": "{{app_name}}/app/routes/_index.tsx", "template": "import { json, type LoaderFunctionArgs, type ActionFunctionArgs } from '@remix-run/node';\nimport { useLoaderData, Form } from '@remix-run/react';\nimport { z } from 'zod';\nexport async function loader({}: LoaderFunctionArgs){ return json({ hello: 'world' }); }\nexport async function action({ request }: ActionFunctionArgs){ const form = await request.formData(); const name = String(form.get('name')||''); const Body = z.object({ name: z.string().min(1) }); const r = Body.safeParse({ name }); return json({ ok: r.success }); }\nexport default function Index(){ const data = useLoaderData<typeof loader>(); return (<div><h1>{data.hello}</h1><Form method=\"post\"><input name=\"name\" /><button>send</button></Form></div>); }\n" }
+  ],
+  "patches": []
+}
+

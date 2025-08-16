@@ -1,0 +1,16 @@
+{
+  "id": "swagger-ui-express-minimal",
+  "name": "Swagger UI Express Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "express", "openapi"],
+  "tags": ["api", "docs"],
+  "description": "Serve a small OpenAPI spec via swagger-ui-express.",
+  "params": [ { "name": "app_name", "default": "swagger-ui" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"swagger-ui-express\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/openapi.json", "template": "{ \n  \"openapi\": \"3.0.0\",\n  \"info\": { \"title\": \"Demo API\", \"version\": \"1.0.0\" },\n  \"paths\": { \"/hello\": { \"get\": { \"responses\": { \"200\": { \"description\": \"ok\" } } } } }\n}\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst swaggerUi = require('swagger-ui-express');\nconst spec = require('./openapi.json');\nconst app = express();\napp.use('/docs', swaggerUi.serve, swaggerUi.setup(spec));\napp.get('/hello', (_req, res) => res.json({ hello: 'world' }));\napp.listen(Number('{{port}}'), () => console.log('docs at /docs'));\n" }
+  ],
+  "patches": []
+}
+

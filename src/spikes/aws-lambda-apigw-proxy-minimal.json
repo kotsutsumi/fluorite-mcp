@@ -1,0 +1,14 @@
+{
+  "id": "aws-lambda-apigw-proxy-minimal",
+  "name": "AWS Lambda API Gateway Proxy 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "lambda", "apigw"],
+  "tags": ["serverless"],
+  "description": "API Gateway のプロキシ統合イベントに応答する最小ハンドラー。",
+  "params": [ { "name": "app_name", "default": "lambda-apigw" } ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "export const handler = async (event) => { return { statusCode: 200, headers: { 'content-type': 'application/json' }, body: JSON.stringify({ path: event.path, ok: true }) }; };\n" }
+  ],
+  "patches": []
+}
+

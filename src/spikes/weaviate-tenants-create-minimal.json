@@ -1,0 +1,22 @@
+{
+  "id": "weaviate-tenants-create-minimal",
+  "name": "Weaviate Multi-tenancy: Create Tenant (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "weaviate"],
+  "tags": ["vector", "tenancy"],
+  "description": "Create a tenant for a multi-tenant Weaviate class.",
+  "params": [
+    { "name": "app_name", "default": "weaviate-tenant-create" },
+    { "name": "weaviate_host", "default": "localhost:8080" },
+    { "name": "weaviate_scheme", "default": "http" },
+    { "name": "class_name", "default": "Document" },
+    { "name": "tenant_name", "default": "tenantA" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import weaviate from 'weaviate-ts-client';\nconst client = weaviate.client({ scheme: process.env.WEAVIATE_SCHEME || '{{weaviate_scheme}}', host: process.env.WEAVIATE_HOST || '{{weaviate_host}}' });\nawait client.tenants.creator().withClassName(process.env.WEAVIATE_CLASS || '{{class_name}}').withTenants([{ name: process.env.WEAVIATE_TENANT || '{{tenant_name}}' }]).do();\nconsole.log('Tenant created');\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"weaviate-ts-client\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "WEAVIATE_SCHEME=http\nWEAVIATE_HOST=localhost:8080\nWEAVIATE_CLASS=Document\nWEAVIATE_TENANT={{tenant_name}}\n" }
+  ],
+  "patches": []
+}
+

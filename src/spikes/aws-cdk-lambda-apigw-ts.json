@@ -1,0 +1,19 @@
+{
+  "id": "aws-cdk-lambda-apigw-ts",
+  "name": "AWS CDK Lambda + API Gateway (TS)",
+  "version": "1.0.0",
+  "stack": ["aws", "cdk", "typescript"],
+  "tags": ["infra", "iac"],
+  "description": "CDK app deploying a simple Lambda behind API Gateway.",
+  "params": [
+    { "name": "app_name", "default": "cdk-lambda-apigw" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"scripts\": { \"build\": \"tsc\", \"cdk\": \"cdk\" },\n  \"devDependencies\": { \"typescript\": \"^5\", \"ts-node\": \"^10\" },\n  \"dependencies\": { \"aws-cdk-lib\": \"latest\", \"constructs\": \"^10\" }\n}\n" },
+    { "path": "{{app_name}}/tsconfig.json", "template": "{ \"compilerOptions\": { \"target\": \"ES2020\", \"module\": \"commonjs\", \"strict\": true, \"esModuleInterop\": true, \"outDir\": \"dist\" } }\n" },
+    { "path": "{{app_name}}/bin/app.ts", "template": "#!/usr/bin/env node\nimport { App, Stack } from 'aws-cdk-lib';\nimport { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';\nimport { Runtime } from 'aws-cdk-lib/aws-lambda';\nimport { LambdaRestApi } from 'aws-cdk-lib/aws-apigateway';\nconst app = new App();\nconst stack = new Stack(app, 'LambdaApi');\nconst fn = new NodejsFunction(stack, 'HelloFn', { entry: 'lambda/handler.ts', runtime: Runtime.NODEJS_18_X });\nnew LambdaRestApi(stack, 'HttpApi', { handler: fn });\n" },
+    { "path": "{{app_name}}/lambda/handler.ts", "template": "export const handler = async () => ({ statusCode: 200, body: JSON.stringify({ hello: 'world' }) });\n" }
+  ],
+  "patches": []
+}
+

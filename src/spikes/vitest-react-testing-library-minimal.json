@@ -1,0 +1,16 @@
+{
+  "id": "vitest-react-testing-library-minimal",
+  "name": "Vitest + React Testing Library",
+  "version": "1.0.0",
+  "stack": ["vitest", "react", "typescript"],
+  "tags": ["test"],
+  "description": "React コンポーネントの最小テスト。",
+  "params": [ { "name": "app_name", "default": "vitest-rtl" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"test\": \"vitest run\" },\n  \"dependencies\": { \"react\": \"^18\", \"react-dom\": \"^18\" },\n  \"devDependencies\": { \"vitest\": \"^1\", \"@testing-library/react\": \"^14\", \"@types/react\": \"^18\" }\n}\n" },
+    { "path": "{{app_name}}/src/Button.tsx", "template": "import React from 'react';\nexport const Button: React.FC<{ label: string }> = ({ label }) => <button>{label}</button>;\n" },
+    { "path": "{{app_name}}/test/Button.test.tsx", "template": "import { describe, it, expect } from 'vitest';\nimport { render, screen } from '@testing-library/react';\nimport { Button } from '../src/Button';\n\ndescribe('Button', () => { it('renders', () => { render(<Button label='Hello' />); expect(screen.getByText('Hello')).toBeTruthy(); }); });\n" }
+  ],
+  "patches": []
+}
+

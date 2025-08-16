@@ -1,0 +1,15 @@
+{
+  "id": "node-cron-minimal",
+  "name": "node-cron スケジューラ",
+  "version": "1.0.0",
+  "stack": ["node", "cron"],
+  "tags": ["schedule"],
+  "description": "node-cronによる1分毎ジョブ実行。",
+  "params": [ { "name": "app_name", "default": "node-cron-job" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"node-cron\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const cron = require('node-cron');\ncron.schedule('* * * * *', () => console.log('tick', new Date().toISOString()));\n" }
+  ],
+  "patches": []
+}
+

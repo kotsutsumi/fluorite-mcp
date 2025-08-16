@@ -1,0 +1,14 @@
+{
+  "id": "aws-lambda-dynamodb-streams-minimal",
+  "name": "AWS Lambda DynamoDB Streams 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "lambda", "dynamodb"],
+  "tags": ["serverless"],
+  "description": "DynamoDB Streams を受け取る Lambda の最小例。",
+  "params": [ { "name": "app_name", "default": "lambda-ddb-streams" } ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "export const handler = async (event) => { console.log('records', (event.Records||[]).length); return {}; };\n" }
+  ],
+  "patches": []
+}
+

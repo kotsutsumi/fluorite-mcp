@@ -1,0 +1,15 @@
+{
+  "id": "upstash-redis-ratelimit-minimal",
+  "name": "Upstash Redis Rate Limit",
+  "version": "1.0.0",
+  "stack": ["upstash", "redis", "node"],
+  "tags": ["throttle"],
+  "description": "@upstash/ratelimit の最小利用例。",
+  "params": [ { "name": "app_name", "default": "upstash-rl" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@upstash/redis\": \"latest\", \"@upstash/ratelimit\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const { Ratelimit } = require('@upstash/ratelimit');\nconst { Redis } = require('@upstash/redis');\nconst rl = new Ratelimit({ redis: Redis.fromEnv(), limiter: Ratelimit.fixedWindow(5, '60 s') });\n(async () => { const r = await rl.limit('user:1'); console.log(r); })();\n" }
+  ],
+  "patches": []
+}
+

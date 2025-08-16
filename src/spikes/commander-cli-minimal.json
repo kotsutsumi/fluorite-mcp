@@ -1,0 +1,17 @@
+{
+  "id": "commander-cli-minimal",
+  "name": "Commander.js CLI Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "cli"],
+  "tags": ["cli"],
+  "description": "Minimal CLI using commander.js with one command.",
+  "params": [
+    { "name": "app_name", "default": "commander-cli" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"bin\": { \"{{app_name}}\": \"index.js\" }, \"private\": true, \"scripts\": { \"start\": \"node index.js --help\" }, \"dependencies\": { \"commander\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "#!/usr/bin/env node\nconst { program } = require('commander');\nprogram\n  .name('{{app_name}}')\n  .description('A minimal CLI powered by commander.js')\n  .version('1.0.0');\nprogram\n  .command('hello')\n  .description('Print hello')\n  .option('-n, --name <name>', 'name', 'world')\n  .action(opts => console.log(`hello ${opts.name}`));\nprogram.parse();\n" }
+  ],
+  "patches": []
+}
+

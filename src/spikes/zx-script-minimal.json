@@ -1,0 +1,15 @@
+{
+  "id": "zx-script-minimal",
+  "name": "zx Script Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "zx"],
+  "tags": ["scripting"],
+  "description": "Google zx script example.",
+  "params": [ { "name": "app_name", "default": "zx-script" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"zx script.mjs\" }, \"dependencies\": { \"zx\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/script.mjs", "template": "#!/usr/bin/env zx\nimport { $ } from 'zx';\nawait $`echo hello`;\n" }
+  ],
+  "patches": []
+}
+

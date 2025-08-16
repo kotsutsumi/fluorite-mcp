@@ -1,0 +1,15 @@
+{
+  "id": "azure-blob-sas-generate-node",
+  "name": "Azure Blob SAS 生成 (Node)",
+  "version": "1.0.0",
+  "stack": ["azure", "blob", "node"],
+  "tags": ["storage"],
+  "description": "StorageSharedKeyCredential を用いた SAS 生成の完全例。",
+  "params": [ { "name": "app_name", "default": "azure-sas-gen" }, { "name": "container", "default": "public" }, { "name": "blob", "default": "hello.txt" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node gen.js\" }, \"dependencies\": { \"@azure/storage-blob\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/gen.js", "template": "const { BlobSASPermissions, generateBlobSASQueryParameters, StorageSharedKeyCredential } = require('@azure/storage-blob');\nconst accountName = process.env.AZURE_STORAGE_ACCOUNT||'';\nconst accountKey = process.env.AZURE_STORAGE_KEY||'';\nconst creds = new StorageSharedKeyCredential(accountName, accountKey);\nconst expiry = new Date(Date.now()+3600_000);\nconst sas = generateBlobSASQueryParameters({ containerName: '{{container}}', blobName: '{{blob}}', permissions: BlobSASPermissions.parse('r'), expiresOn: expiry }, creds).toString();\nconsole.log(`https://${accountName}.blob.core.windows.net/{{container}}/{{blob}}?${sas}`);\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "docker-compose-minio",
+  "name": "Docker Compose - MinIO S3",
+  "version": "1.0.0",
+  "stack": ["docker", "minio"],
+  "tags": ["infra", "s3"],
+  "description": "MinIO single-node S3-compatible storage.",
+  "params": [ { "name": "app_name", "default": "minio-stack" } ],
+  "files": [
+    { "path": "{{app_name}}/docker-compose.yml", "template": "version: '3.9'\nservices:\n  minio:\n    image: minio/minio:latest\n    command: server /data --console-address \\\":9001\\\"\n    environment:\n      - MINIO_ROOT_USER=minioadmin\n      - MINIO_ROOT_PASSWORD=minioadmin\n    ports: ['9000:9000','9001:9001']\n    volumes:\n      - ./data:/data\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "date-fns-format-minimal",
+  "name": "date-fns format 最小",
+  "version": "1.0.0",
+  "stack": ["node", "date-fns"],
+  "tags": ["utils"],
+  "description": "date-fns で日時をフォーマット。",
+  "params": [ { "name": "app_name", "default": "date-fns-format" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"date-fns\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const { format } = require('date-fns');\nconsole.log(format(new Date(), 'yyyy-MM-dd HH:mm:ss'));\n" }
+  ],
+  "patches": []
+}
+

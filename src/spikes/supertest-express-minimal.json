@@ -1,0 +1,16 @@
+{
+  "id": "supertest-express-minimal",
+  "name": "Supertest + Express 最小",
+  "version": "1.0.0",
+  "stack": ["node", "express", "jest"],
+  "tags": ["test"],
+  "description": "Supertest で簡易HTTPテスト。",
+  "params": [ { "name": "app_name", "default": "supertest-express" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"test\": \"node test.mjs\" },\n  \"dependencies\": { \"express\": \"latest\", \"supertest\": \"latest\" }\n}\n" },
+    { "path": "{{app_name}}/app.mjs", "template": "import express from 'express';\nconst app = express();\napp.get('/hello', (_req,res)=>res.json({ hello: 'world' }));\nexport default app;\n" },
+    { "path": "{{app_name}}/test.mjs", "template": "import request from 'supertest';\nimport app from './app.mjs';\nconst res = await request(app).get('/hello');\nconsole.log('status', res.status, 'body', res.body);\n" }
+  ],
+  "patches": []
+}
+

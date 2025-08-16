@@ -1,0 +1,15 @@
+{
+  "id": "passport-jwt-express-minimal",
+  "name": "Passport-JWT + Express",
+  "version": "1.0.0",
+  "stack": ["node", "express", "passport"],
+  "tags": ["auth"],
+  "description": "passport-jwt でJWT認証する最小例。",
+  "params": [ { "name": "app_name", "default": "passport-jwt" }, { "name": "port", "default": "3000" }, { "name": "jwt_secret", "default": "devsecret" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"passport\": \"latest\", \"passport-jwt\": \"latest\", \"jsonwebtoken\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst jwt = require('jsonwebtoken');\nconst passport = require('passport');\nconst { Strategy: JwtStrategy, ExtractJwt } = require('passport-jwt');\npassport.use(new JwtStrategy({ secretOrKey: '{{jwt_secret}}', jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken() }, (payload, done) => done(null, { sub: payload.sub })));\nconst app = express();\napp.use(passport.initialize());\napp.get('/token', (_req,res)=> res.json({ token: jwt.sign({ sub: 'user1' }, '{{jwt_secret}}') }));\napp.get('/me', passport.authenticate('jwt', { session: false }), (req,res)=> res.json({ user: req.user }));\napp.listen(Number('{{port}}'), ()=>console.log('listening on {{port}}'));\n" }
+  ],
+  "patches": []
+}
+

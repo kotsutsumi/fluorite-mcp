@@ -1,0 +1,15 @@
+{
+  "id": "dockerfile-node-alpine",
+  "name": "Dockerfile Node Alpine",
+  "version": "1.0.0",
+  "stack": ["docker", "node"],
+  "tags": ["docker"],
+  "description": "Minimal Dockerfile for Node.js on Alpine.",
+  "params": [ { "name": "app_name", "default": "node-alpine" } ],
+  "files": [
+    { "path": "{{app_name}}/Dockerfile", "template": "FROM node:18-alpine\nWORKDIR /app\nCOPY package*.json ./\nRUN npm ci --only=production\nCOPY . .\nCMD [\"node\", \"index.js\"]\n" },
+    { "path": "{{app_name}}/index.js", "template": "console.log('hello from node alpine');\n" }
+  ],
+  "patches": []
+}
+

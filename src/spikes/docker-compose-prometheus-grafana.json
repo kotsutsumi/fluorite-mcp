@@ -1,0 +1,15 @@
+{
+  "id": "docker-compose-prometheus-grafana",
+  "name": "Docker Compose - Prometheus + Grafana",
+  "version": "1.0.0",
+  "stack": ["docker", "prometheus", "grafana"],
+  "tags": ["infra", "docker"],
+  "description": "Prometheus と Grafana の簡易スタック。",
+  "params": [ { "name": "app_name", "default": "prom-grafana" } ],
+  "files": [
+    { "path": "{{app_name}}/docker-compose.yml", "template": "version: '3.9'\nservices:\n  prom:\n    image: prom/prometheus:latest\n    volumes: ['./prometheus.yml:/etc/prometheus/prometheus.yml']\n    ports: ['9090:9090']\n  grafana:\n    image: grafana/grafana:10.4.0\n    ports: ['3000:3000']\n    depends_on: [prom]\n" },
+    { "path": "{{app_name}}/prometheus.yml", "template": "global:\n  scrape_interval: 15s\nscrape_configs: []\n" }
+  ],
+  "patches": []
+}
+

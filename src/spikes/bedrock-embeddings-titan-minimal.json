@@ -1,0 +1,19 @@
+{
+  "id": "bedrock-embeddings-titan-minimal",
+  "name": "AWS Bedrock Titan Embeddings (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "aws", "bedrock"],
+  "tags": ["embeddings"],
+  "description": "Generate embeddings with Amazon Titan via Bedrock Runtime.",
+  "params": [
+    { "name": "app_name", "default": "bedrock-embed-titan" },
+    { "name": "aws_region", "default": "us-east-1" },
+    { "name": "titan_model", "default": "amazon.titan-embed-text-v1" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { BedrockRuntimeClient, InvokeModelCommand } from '@aws-sdk/client-bedrock-runtime';\nconst client = new BedrockRuntimeClient({ region: process.env.AWS_REGION || '{{aws_region}}' });\nconst body = { inputText: 'hello world' };\nconst cmd = new InvokeModelCommand({ modelId: process.env.TITAN_MODEL || '{{titan_model}}', body: JSON.stringify(body), contentType: 'application/json', accept: 'application/json' });\nconst resp = await client.send(cmd);\nconsole.log(new TextDecoder().decode(resp.body));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@aws-sdk/client-bedrock-runtime\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

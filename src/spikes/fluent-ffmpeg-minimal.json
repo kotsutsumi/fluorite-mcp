@@ -1,0 +1,15 @@
+{
+  "id": "fluent-ffmpeg-minimal",
+  "name": "fluent-ffmpeg 最小",
+  "version": "1.0.0",
+  "stack": ["node", "ffmpeg"],
+  "tags": ["media"],
+  "description": "fluent-ffmpeg で動画情報の取得（ffmpeg が必要）。",
+  "params": [ { "name": "app_name", "default": "ffmpeg-demo" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node info.js\" }, \"dependencies\": { \"fluent-ffmpeg\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/info.js", "template": "const ffmpeg = require('fluent-ffmpeg');\nffmpeg.getAvailableFormats((err, formats) => { if (err) return console.error(err); console.log('formats', Object.keys(formats).length); });\n" }
+  ],
+  "patches": []
+}
+

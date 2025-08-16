@@ -1,0 +1,15 @@
+{
+  "id": "azure-blob-copy-from-url-minimal",
+  "name": "Azure Blob Copy From URL 最小",
+  "version": "1.0.0",
+  "stack": ["azure", "blob", "node"],
+  "tags": ["storage"],
+  "description": "URL から Blob へコピーする最小例（SAS/公開URL前提）。",
+  "params": [ { "name": "app_name", "default": "azure-copy-url" }, { "name": "container", "default": "public" }, { "name": "blob", "default": "remote.bin" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node copy.js\" }, \"dependencies\": { \"@azure/storage-blob\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/copy.js", "template": "const { BlobServiceClient } = require('@azure/storage-blob');\nconst url = process.env.SOURCE_URL||'https://example.com/file.bin';\n(async ()=>{ const bsc = BlobServiceClient.fromConnectionString(process.env.AZURE_STORAGE_CONNECTION_STRING||''); const container = bsc.getContainerClient('{{container}}'); await container.createIfNotExists(); const blob = container.getBlockBlobClient('{{blob}}'); const res = await blob.syncCopyFromURL(url); console.log(Boolean(res.copyId)); })();\n" }
+  ],
+  "patches": []
+}
+

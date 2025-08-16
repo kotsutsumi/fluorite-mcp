@@ -1,6 +1,39 @@
+# Spike-Driven Development with Fluorite MCP
+
+Spike-driven development is a practice from Agile and Extreme Programming (XP) for reducing risk and uncertainty in a project. This page explains the concept and how you can leverage Fluorite MCP's extensive template library to conduct effective "spikes."
+
+## What is a Spike?
+
+A **Spike** is a time-boxed experiment (typically 1-3 days) designed to answer a specific question or resolve a technical uncertainty. The goal is not to produce production-quality code, but to gain knowledge and validate an approach.
+
+You should use a Spike when you face uncertainty, such as:
+
+-   **Evaluating new technology**: "Can we use `react-dnd` for our complex tree view?"
+-   **Verifying technical feasibility**: "Is it possible to achieve real-time updates with WebSockets for 1,000 concurrent users?"
+-   **Exploring complex logic**: "What's the best way to implement this custom validation algorithm?"
+-   **Validating user experience**: "Will this new drag-and-drop interaction feel intuitive to users?"
+
+## How Fluorite MCP Accelerates Spike Development
+
+The typical Spike development cycle involves planning, environment setup, implementation, validation, and a final decision. Fluorite MCP dramatically accelerates the **environment setup** and **implementation** phases.
+
+Instead of spending hours scaffolding a new project, installing dependencies, and writing boilerplate, you can use a Spike Template to get a working, isolated prototype in seconds.
+
+-   **Instant Environment**: Start a new Vite or Next.js project instantly.
+-   **Best Practices Included**: Templates come with production-ready patterns for authentication, database integration, testing, and more.
+-   **Focus on the Experiment**: Spend your valuable time on the core uncertainty you're trying to resolve, not on setup.
+
+---
+
 # Spike Templates - Comprehensive Development Scaffolds
 
-Complete reference for fluorite-mcp's 385 Spike templates for rapid prototyping and development.
+Note: The spike catalog is continuously expanded. Use the server tools to discover and preview the latest templates:
+
+- Discover: `discover-spikes { query?: string, limit?: number }`
+- Preview: `preview-spike { id, params? }`
+- Apply: `apply-spike { id, params?, strategy? }`
+
+Tip: Filter by keywords like "s3", "openapi", "nestjs", "kafka", "prometheus", "redis" to quickly find relevant templates. The current repository includes hundreds of templates across serverless, web frameworks, storage, messaging, observability, CI/CD, and security.
 
 ## Overview
 

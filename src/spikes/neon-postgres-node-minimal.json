@@ -1,0 +1,14 @@
+{
+  "id": "neon-postgres-node-minimal",
+  "name": "Neon Postgres Node 最小",
+  "version": "1.0.0",
+  "stack": ["node", "postgres", "neon"],
+  "tags": ["db"],
+  "description": "Neon Serverless Postgres に接続（概念）。",
+  "params": [ { "name": "app_name", "default": "neon-pg" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "接続には Neon の接続文字列が必要です。pg / neon ドライバを利用します。\n" }
+  ],
+  "patches": []
+}
+

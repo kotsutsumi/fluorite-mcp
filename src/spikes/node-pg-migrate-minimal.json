@@ -1,0 +1,15 @@
+{
+  "id": "node-pg-migrate-minimal",
+  "name": "node-pg-migrate 最小",
+  "version": "1.0.0",
+  "stack": ["node", "postgres", "migrate"],
+  "tags": ["db"],
+  "description": "node-pg-migrate の最小セットアップ。",
+  "params": [ { "name": "app_name", "default": "pg-migrate" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"scripts\": { \"migrate\": \"node-pg-migrate -d postgres://postgres:postgres@localhost:5432/postgres\" },\n  \"devDependencies\": { \"node-pg-migrate\": \"^7\" }\n}\n" },
+    { "path": "{{app_name}}/migrations/1680000000000_init.js", "template": "exports.shorthands = undefined;\nexports.up = (pgm) => { pgm.createTable('items', { id: 'id', name: { type: 'text' } }); };\nexports.down = (pgm) => { pgm.dropTable('items'); };\n" }
+  ],
+  "patches": []
+}
+

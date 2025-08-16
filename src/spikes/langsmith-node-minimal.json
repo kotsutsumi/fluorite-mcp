@@ -1,0 +1,17 @@
+{
+  "id": "langsmith-node-minimal",
+  "name": "LangSmith Tracing Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "observability", "langsmith"],
+  "tags": ["observability", "tracing"],
+  "description": "Configure LangSmith client and log a minimal run.",
+  "params": [
+    { "name": "app_name", "default": "langsmith-minimal" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "process.env.LANGSMITH_TRACING_V2 = 'true';\nprocess.env.LANGSMITH_ENDPOINT = process.env.LANGSMITH_ENDPOINT || 'https://api.smith.langchain.com';\nconsole.log('LangSmith tracing enabled.');\n" },
+    { "path": "{{app_name}}/README.md", "template": "# LangSmith minimal\n\nSet LANGSMITH_API_KEY and run to enable tracing in LangChain apps.\n" }
+  ],
+  "patches": []
+}
+

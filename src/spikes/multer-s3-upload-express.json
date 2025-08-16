@@ -1,0 +1,15 @@
+{
+  "id": "multer-s3-upload-express",
+  "name": "Express Multer S3 Upload",
+  "version": "1.0.0",
+  "stack": ["node", "express", "aws"],
+  "tags": ["upload", "s3"],
+  "description": "Upload files directly to S3 using multer-s3.",
+  "params": [ { "name": "app_name", "default": "multer-s3" }, { "name": "port", "default": "3000" }, { "name": "bucket", "default": "my-bucket" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"multer\": \"latest\", \"multer-s3\": \"latest\", \"@aws-sdk/client-s3\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst multer = require('multer');\nconst multerS3 = require('multer-s3');\nconst { S3Client } = require('@aws-sdk/client-s3');\nconst s3 = new S3Client({});\nconst upload = multer({ storage: multerS3({ s3, bucket: '{{bucket}}', metadata: (_req, file, cb) => cb(null, { fieldName: file.fieldname }), key: (_req, file, cb) => cb(null, file.originalname) }) });\nconst app = express();\napp.post('/upload', upload.single('file'), (req, res) => res.json({ key: req.file.key }));\napp.listen(Number('{{port}}'), () => console.log('listening on {{port}}'));\n" }
+  ],
+  "patches": []
+}
+

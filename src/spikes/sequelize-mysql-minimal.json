@@ -1,0 +1,18 @@
+{
+  "id": "sequelize-mysql-minimal",
+  "name": "Sequelize + MySQL Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "sequelize", "mysql"],
+  "tags": ["db"],
+  "description": "Sequelize connection to MySQL with one model.",
+  "params": [
+    { "name": "app_name", "default": "sequelize-mysql" },
+    { "name": "mysql_uri", "default": "mysql://root:password@localhost:3306/test" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"sequelize\": \"latest\", \"mysql2\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const { Sequelize, DataTypes } = require('sequelize');\nconst sequelize = new Sequelize('{{mysql_uri}}', { logging: false });\nconst User = sequelize.define('User', { name: DataTypes.STRING });\n(async () => {\n  await sequelize.authenticate();\n  await sequelize.sync();\n  await User.create({ name: 'Alice' });\n  console.log('User count', await User.count());\n  await sequelize.close();\n})();\n" }
+  ],
+  "patches": []
+}
+

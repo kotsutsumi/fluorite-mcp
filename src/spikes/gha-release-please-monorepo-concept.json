@@ -1,0 +1,14 @@
+{
+  "id": "gha-release-please-monorepo-concept",
+  "name": "Release Please Monorepo（概念）",
+  "version": "1.0.0",
+  "stack": ["github-actions", "release-please"],
+  "tags": ["ci"],
+  "description": "Release Please のモノレポ設定はルートと各パッケージ設定が必要（概念）。",
+  "params": [ { "name": "app_name", "default": "gha-release-please-mono" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "Release Please の monorepo 設定は release-please-config.json と manifest を利用します。本テンプレは概念説明です。\n" }
+  ],
+  "patches": []
+}
+

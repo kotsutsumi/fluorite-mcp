@@ -1,0 +1,21 @@
+{
+  "id": "llamaindex-weaviate-basic-minimal",
+  "name": "LlamaIndex + Weaviate Basic (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "llamaindex", "weaviate", "openai"],
+  "tags": ["llm", "llamaindex", "vector"],
+  "description": "Initialize LlamaIndex and store/query docs in Weaviate (manual vectors).",
+  "params": [
+    { "name": "app_name", "default": "llamaindex-weaviate-basic" },
+    { "name": "weaviate_host", "default": "localhost:8080" },
+    { "name": "weaviate_scheme", "default": "http" },
+    { "name": "class_name", "default": "Document" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { Settings } from 'llamaindex';\nimport OpenAI from 'openai';\nimport weaviate from 'weaviate-ts-client';\nSettings.llm = undefined; // Not needed for this minimal vector store example\nconst openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst client = weaviate.client({ scheme: process.env.WEAVIATE_SCHEME || '{{weaviate_scheme}}', host: process.env.WEAVIATE_HOST || '{{weaviate_host}}' });\nconst docs = ['hello world', 'fluorite mcp spike'];\nconst emb = await openai.embeddings.create({ model: 'text-embedding-3-small', input: docs });\nfor (let i = 0; i < docs.length; i++) {\n  await client.data.creator().withClassName(process.env.WEAVIATE_CLASS || '{{class_name}}').withProperties({ text: docs[i] }).withVector(emb.data[i].embedding).do();\n}\nconst res = await client.graphql.get().withClassName(process.env.WEAVIATE_CLASS || '{{class_name}}').withNearVector({ vector: emb.data[0].embedding }).withLimit(2).do();\nconsole.log(JSON.stringify(res, null, 2));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"llamaindex\": \"latest\", \"openai\": \"latest\", \"weaviate-ts-client\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\nWEAVIATE_SCHEME=http\nWEAVIATE_HOST=localhost:8080\nWEAVIATE_CLASS=Document\n" }
+  ],
+  "patches": []
+}
+

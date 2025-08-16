@@ -1,0 +1,25 @@
+{
+  "id": "openai-chat-streaming-minimal",
+  "name": "OpenAI Chat Streaming (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "openai"],
+  "tags": ["llm", "stream"],
+  "description": "Stream chat tokens using the OpenAI SDK and print chunks.",
+  "params": [
+    { "name": "app_name", "default": "openai-chat-stream" },
+    { "name": "openai_model", "default": "gpt-4o-mini" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/index.mjs",
+      "template": "import OpenAI from 'openai';\nconst client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst stream = await client.chat.completions.create({\n  model: '{{openai_model}}',\n  stream: true,\n  messages: [{ role: 'user', content: 'Stream a short hello' }],\n});\nfor await (const part of stream) {\n  process.stdout.write(part.choices?.[0]?.delta?.content || '');\n}\nconsole.log();\n"
+    },
+    {
+      "path": "{{app_name}}/package.json",
+      "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"openai\": \"latest\" } }\n"
+    },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" }
+  ],
+  "patches": []
+}
+

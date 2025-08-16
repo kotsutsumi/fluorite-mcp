@@ -1,0 +1,14 @@
+{
+  "id": "jest-ts-isolated-modules-minimal",
+  "name": "Jest TS isolatedModules 最小",
+  "version": "1.0.0",
+  "stack": ["jest", "typescript"],
+  "tags": ["test"],
+  "description": "Jest + ts-jest + isolatedModules の最小設定（概念）。",
+  "params": [ { "name": "app_name", "default": "jest-iso" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "ts-jest の diagnostics で isolatedModules を有効にする等の設定例（概念）。\n" }
+  ],
+  "patches": []
+}
+

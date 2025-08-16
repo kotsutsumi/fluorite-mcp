@@ -1,0 +1,15 @@
+{
+  "id": "postmark-email-minimal",
+  "name": "Postmark 送信 最小",
+  "version": "1.0.0",
+  "stack": ["node", "postmark"],
+  "tags": ["email"],
+  "description": "postmark でメール送信（APIトークン要）。",
+  "params": [ { "name": "app_name", "default": "postmark-send" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node send.js\" }, \"dependencies\": { \"postmark\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/send.js", "template": "const { ServerClient } = require('postmark');\nconst client = new ServerClient(process.env.POSTMARK_API_TOKEN||'');\n(async () => { const r = await client.sendEmail({ From: 'no-reply@example.com', To: 'user@example.com', Subject: 'Hello', TextBody: 'Hello Postmark' }); console.log(r.Message); })();\n" }
+  ],
+  "patches": []
+}
+

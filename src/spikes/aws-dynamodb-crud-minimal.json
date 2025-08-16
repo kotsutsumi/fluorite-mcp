@@ -1,0 +1,15 @@
+{
+  "id": "aws-dynamodb-crud-minimal",
+  "name": "AWS DynamoDB CRUD 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "dynamodb", "node"],
+  "tags": ["db"],
+  "description": "DynamoDB テーブルに put/get の最小例。",
+  "params": [ { "name": "app_name", "default": "ddb-crud" }, { "name": "table", "default": "items" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@aws-sdk/client-dynamodb\": \"latest\", \"@aws-sdk/lib-dynamodb\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const { DynamoDBClient } = require('@aws-sdk/client-dynamodb');\nconst { DynamoDBDocumentClient, PutCommand, GetCommand } = require('@aws-sdk/lib-dynamodb');\nconst ddb = DynamoDBDocumentClient.from(new DynamoDBClient({}));\n(async () => { await ddb.send(new PutCommand({ TableName: '{{table}}', Item: { id: '1', name: 'hello' } })); const r = await ddb.send(new GetCommand({ TableName: '{{table}}', Key: { id: '1' } })); console.log(r.Item); })();\n" }
+  ],
+  "patches": []
+}
+

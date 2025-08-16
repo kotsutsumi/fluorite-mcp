@@ -1,0 +1,14 @@
+{
+  "id": "gha-changed-files-conditional-minimal",
+  "name": "GHA 変更ファイルで条件分岐",
+  "version": "1.0.0",
+  "stack": ["github-actions"],
+  "tags": ["ci"],
+  "description": "dorny/paths-filter で差分に応じてジョブ実行を分岐。",
+  "params": [ { "name": "app_name", "default": "gha-paths-filter" } ],
+  "files": [
+    { "path": "{{app_name}}/.github/workflows/ci.yml", "template": "name: CI\non: [pull_request]\njobs:\n  filter:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - id: filter\n        uses: dorny/paths-filter@v3\n        with:\n          filters: |\n            js:\n              - 'src/**/*.js'\n            docs:\n              - 'docs/**'\n      - name: Build JS\n        if: steps.filter.outputs.js == 'true'\n        run: echo build js\n      - name: Check docs\n        if: steps.filter.outputs.docs == 'true'\n        run: echo check docs\n" }
+  ],
+  "patches": []
+}
+

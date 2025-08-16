@@ -1,0 +1,15 @@
+{
+  "id": "vault-kv-node-minimal",
+  "name": "HashiCorp Vault KV 最小",
+  "version": "1.0.0",
+  "stack": ["node", "vault"],
+  "tags": ["secrets"],
+  "description": "node-vault で KV に set/get（トークン要）。",
+  "params": [ { "name": "app_name", "default": "vault-kv" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"node-vault\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const vault = require('node-vault')({ endpoint: process.env.VAULT_ADDR||'http://127.0.0.1:8200', token: process.env.VAULT_TOKEN||'' });\n(async ()=>{ await vault.write('secret/data/demo', { data: { hello: 'world' } }); const r = await vault.read('secret/data/demo'); console.log(r.data.data); })();\n" }
+  ],
+  "patches": []
+}
+

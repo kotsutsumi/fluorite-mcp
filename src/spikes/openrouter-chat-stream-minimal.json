@@ -1,0 +1,19 @@
+{
+  "id": "openrouter-chat-stream-minimal",
+  "name": "OpenRouter Chat Streaming (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "openrouter"],
+  "tags": ["llm", "stream", "router"],
+  "description": "Stream chat completions via OpenRouter API using fetch.",
+  "params": [
+    { "name": "app_name", "default": "openrouter-chat-stream" },
+    { "name": "model", "default": "mistralai/mistral-7b-instruct" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {\n  method: 'POST',\n  headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}` },\n  body: JSON.stringify({ model: process.env.OPENROUTER_MODEL || '{{model}}', messages: [{ role: 'user', content: 'Stream a short hello' }], stream: true })\n});\nfor await (const chunk of res.body) { process.stdout.write(new TextDecoder().decode(chunk)); }\nconsole.log();\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENROUTER_API_KEY=...\nOPENROUTER_MODEL={{model}}\n" }
+  ],
+  "patches": []
+}
+

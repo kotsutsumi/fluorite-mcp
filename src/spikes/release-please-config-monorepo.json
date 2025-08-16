@@ -1,0 +1,15 @@
+{
+  "id": "release-please-config-monorepo",
+  "name": "Release Please Monorepo 設定",
+  "version": "1.0.0",
+  "stack": ["release-please"],
+  "tags": ["ci"],
+  "description": "monorepo 用の release-please-config と manifest の雛形。",
+  "params": [ { "name": "app_name", "default": "release-please-mono" } ],
+  "files": [
+    { "path": "{{app_name}}/release-please-config.json", "template": "{ \"bootstrap-sha\": \"HEAD\", \"packages\": { \"packages/a\": {}, \"packages/b\": {} } }\n" },
+    { "path": "{{app_name}}/release-please-manifest.json", "template": "{ \"packages/a\": \"0.0.0\", \"packages/b\": \"0.0.0\" }\n" }
+  ],
+  "patches": []
+}
+

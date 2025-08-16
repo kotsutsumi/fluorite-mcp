@@ -1,0 +1,14 @@
+{
+  "id": "supabase-edge-function-minimal",
+  "name": "Supabase Edge Function 最小",
+  "version": "1.0.0",
+  "stack": ["supabase", "functions"],
+  "tags": ["serverless"],
+  "description": "Supabase Edge Functions の最小例（Deno）。",
+  "params": [ { "name": "app_name", "default": "supabase-func" } ],
+  "files": [
+    { "path": "{{app_name}}/index.ts", "template": "export const serve = (req: Request) => new Response(JSON.stringify({ hello: 'world' }), { headers: { 'content-type': 'application/json' } });\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "express-session-redis-minimal",
+  "name": "Express Session + Redis",
+  "version": "1.0.0",
+  "stack": ["express", "redis"],
+  "tags": ["session"],
+  "description": "connect-redis を用いたセッションストア（最小）。",
+  "params": [ { "name": "app_name", "default": "session-redis" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"express-session\": \"latest\", \"connect-redis\": \"latest\", \"ioredis\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst session = require('express-session');\nconst RedisStore = require('connect-redis').default;\nconst Redis = require('ioredis');\nconst app = express();\nconst redis = new Redis();\napp.use(session({ store: new RedisStore({ client: redis }), secret: 'dev', resave: false, saveUninitialized: false }));\napp.get('/', (req,res)=>{ req.session.count = (req.session.count||0)+1; res.json({ count: req.session.count }); });\napp.listen(Number('{{port}}'));\n" }
+  ],
+  "patches": []
+}
+

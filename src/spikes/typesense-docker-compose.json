@@ -1,0 +1,14 @@
+{
+  "id": "typesense-docker-compose",
+  "name": "Typesense Docker Compose",
+  "version": "1.0.0",
+  "stack": ["docker", "typesense"],
+  "tags": ["infra", "docker"],
+  "description": "Typesense の開発用コンテナ。",
+  "params": [ { "name": "app_name", "default": "typesense-stack" } ],
+  "files": [
+    { "path": "{{app_name}}/docker-compose.yml", "template": "version: '3.9'\nservices:\n  typesense:\n    image: typesense/typesense:latest\n    environment:\n      - TYPESENSE_API_KEY=xyz\n      - TYPESENSE_DATA_DIR=/data\n    ports: ['8108:8108']\n    volumes:\n      - ./data:/data\n" }
+  ],
+  "patches": []
+}
+

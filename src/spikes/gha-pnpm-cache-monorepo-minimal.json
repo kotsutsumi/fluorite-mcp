@@ -1,0 +1,14 @@
+{
+  "id": "gha-pnpm-cache-monorepo-minimal",
+  "name": "GHA pnpm cache（monorepo）最小",
+  "version": "1.0.0",
+  "stack": ["github-actions", "pnpm"],
+  "tags": ["ci"],
+  "description": "pnpm のモノレポキャッシュ例（最小）。",
+  "params": [ { "name": "app_name", "default": "gha-pnpm-cache" } ],
+  "files": [
+    { "path": "{{app_name}}/.github/workflows/ci.yml", "template": "name: CI\non: [push]\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: pnpm/action-setup@v4\n        with: { version: 8 }\n      - uses: actions/setup-node@v4\n        with: { node-version: 20, cache: 'pnpm' }\n      - run: pnpm install --frozen-lockfile\n      - run: pnpm -r build || true\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "express-csurf-csrf-minimal",
+  "name": "Express + csurf (CSRF対策)",
+  "version": "1.0.0",
+  "stack": ["node", "express", "csrf"],
+  "tags": ["security"],
+  "description": "csurf ミドルウェアで CSRF 対策の最小例。",
+  "params": [ { "name": "app_name", "default": "csurf-app" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"csurf\": \"latest\", \"cookie-parser\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst cookieParser = require('cookie-parser');\nconst csurf = require('csurf');\nconst app = express();\napp.use(cookieParser());\napp.use(csurf({ cookie: true }));\napp.get('/form', (req,res)=> res.send(`<form method=\"POST\" action=\"/submit\"><input type=\"hidden\" name=\"_csrf\" value=\"${req.csrfToken()}\"><button>send</button></form>`));\napp.post('/submit', (req,res)=> res.send('ok'));\napp.listen(Number('{{port}}'), ()=>console.log('listening'));\n" }
+  ],
+  "patches": []
+}
+

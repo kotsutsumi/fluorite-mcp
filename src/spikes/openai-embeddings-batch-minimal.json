@@ -1,0 +1,18 @@
+{
+  "id": "openai-embeddings-batch-minimal",
+  "name": "OpenAI Embeddings Batch Input (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "openai"],
+  "tags": ["embeddings"],
+  "description": "Create embeddings for a batch of texts and print dimensions.",
+  "params": [
+    { "name": "app_name", "default": "openai-embeddings-batch" },
+    { "name": "openai_embed_model", "default": "text-embedding-3-small" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import OpenAI from 'openai';\nconst client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst inputs = ['hello', 'fluorite', 'mcp'];\nconst out = await client.embeddings.create({ model: '{{openai_embed_model}}', input: inputs });\nconsole.log(out.data.map(d => d.embedding.length));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"openai\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

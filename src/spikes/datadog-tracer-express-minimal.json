@@ -1,0 +1,16 @@
+{
+  "id": "datadog-tracer-express-minimal",
+  "name": "Datadog Tracer + Express 最小",
+  "version": "1.0.0",
+  "stack": ["node", "express", "datadog"],
+  "tags": ["apm"],
+  "description": "dd-trace を Express に適用。",
+  "params": [ { "name": "app_name", "default": "dd-trace-express" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node -r dd-trace/init index.js\" }, \"dependencies\": { \"express\": \"latest\", \"dd-trace\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst app = express();\napp.get('/', (_req,res)=>res.json({ ok:true }));\napp.listen(Number('{{port}}'), ()=>console.log('listening on {{port}}'));\n" },
+    { "path": "{{app_name}}/README.md", "template": "Datadog エージェント宛ての環境変数を設定してください。\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "docker-compose-grafana-tempo-minimal",
+  "name": "Docker Compose - Grafana + Tempo",
+  "version": "1.0.0",
+  "stack": ["docker", "grafana", "tempo"],
+  "tags": ["infra", "docker"],
+  "description": "Grafana と Tempo の簡易コンテナスタック（概念）。",
+  "params": [ { "name": "app_name", "default": "grafana-tempo" } ],
+  "files": [
+    { "path": "{{app_name}}/docker-compose.yml", "template": "version: '3.9'\nservices:\n  tempo:\n    image: grafana/tempo:latest\n    ports: ['3200:3200']\n  grafana:\n    image: grafana/grafana:10.4.0\n    ports: ['3000:3000']\n    depends_on: [tempo]\n" }
+  ],
+  "patches": []
+}
+

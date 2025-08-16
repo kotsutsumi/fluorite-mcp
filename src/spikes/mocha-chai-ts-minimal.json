@@ -1,0 +1,15 @@
+{
+  "id": "mocha-chai-ts-minimal",
+  "name": "Mocha + Chai + TS 最小",
+  "version": "1.0.0",
+  "stack": ["mocha", "chai", "typescript"],
+  "tags": ["test"],
+  "description": "Mocha + Chai の最小 TS テスト。",
+  "params": [ { "name": "app_name", "default": "mocha-chai-ts" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"test\": \"mocha -r ts-node/register test/**/*.ts\" },\n  \"devDependencies\": { \"mocha\": \"^10\", \"chai\": \"^4\", \"typescript\": \"^5\", \"ts-node\": \"^10\" }\n}\n" },
+    { "path": "{{app_name}}/test/sample.ts", "template": "import { expect } from 'chai';\ndescribe('sample', ()=>{ it('ok', ()=>{ expect(1+2).to.equal(3); }); });\n" }
+  ],
+  "patches": []
+}
+

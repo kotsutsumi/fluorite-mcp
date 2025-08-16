@@ -1,0 +1,19 @@
+{
+  "id": "pinecone-filter-query-minimal",
+  "name": "Pinecone Filtered Query (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "pinecone"],
+  "tags": ["vector", "filter"],
+  "description": "Query Pinecone index with metadata filter conditions.",
+  "params": [
+    { "name": "app_name", "default": "pinecone-filter-query" },
+    { "name": "pinecone_index", "default": "docs" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { Pinecone } from '@pinecone-database/pinecone';\nconst pc = new Pinecone({ apiKey: process.env.PINECONE_API_KEY });\nconst index = pc.Index(process.env.PINECONE_INDEX || '{{pinecone_index}}');\nawait index.upsert([{ id: '1', values: [0.1,0.2,0.3], metadata: { tag: 'a', text: 'hello' } }, { id: '2', values: [0.2,0.1,0.25], metadata: { tag: 'b', text: 'fluorite' } }]);\nconst res = await index.query({ vector: [0.1,0.2,0.3], topK: 3, includeMetadata: true, filter: { tag: { $eq: 'a' } } });\nconsole.log(res.matches?.map(m => m.metadata?.text));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@pinecone-database/pinecone\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "PINECONE_API_KEY=...\nPINECONE_INDEX={{pinecone_index}}\n" }
+  ],
+  "patches": []
+}
+

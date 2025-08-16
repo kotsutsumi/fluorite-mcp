@@ -1,0 +1,21 @@
+{
+  "id": "qdrant-collection-create-minimal",
+  "name": "Qdrant Create Collection (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "qdrant"],
+  "tags": ["vector", "schema"],
+  "description": "Create a Qdrant collection with a given vector size.",
+  "params": [
+    { "name": "app_name", "default": "qdrant-create-collection" },
+    { "name": "qdrant_url", "default": "http://localhost:6333" },
+    { "name": "qdrant_collection", "default": "documents" },
+    { "name": "vector_size", "default": "3" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { QdrantClient } from '@qdrant/js-client-rest';\nconst client = new QdrantClient({ url: process.env.QDRANT_URL || '{{qdrant_url}}' });\nconst collection = process.env.QDRANT_COLLECTION || '{{qdrant_collection}}';\nconst size = Number(process.env.QDRANT_VECTOR_SIZE || '{{vector_size}}');\nawait client.createCollection(collection, { vectors: { size, distance: 'Cosine' } });\nconsole.log('Created collection', collection);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@qdrant/js-client-rest\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "QDRANT_URL=http://localhost:6333\nQDRANT_COLLECTION={{qdrant_collection}}\nQDRANT_VECTOR_SIZE={{vector_size}}\n" }
+  ],
+  "patches": []
+}
+

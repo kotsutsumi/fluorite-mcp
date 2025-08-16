@@ -1,0 +1,16 @@
+{
+  "id": "eslint-prettier-config",
+  "name": "ESLint + Prettier Config",
+  "version": "1.0.0",
+  "stack": ["eslint", "prettier", "typescript"],
+  "tags": ["lint", "format"],
+  "description": "Shared ESLint + Prettier base configuration for TS/JS.",
+  "params": [ { "name": "app_name", "default": "lint-config" } ],
+  "files": [
+    { "path": "{{app_name}}/.eslintrc.cjs", "template": "module.exports = {\n  root: true,\n  env: { node: true, es6: true },\n  parser: '@typescript-eslint/parser',\n  plugins: ['@typescript-eslint'],\n  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'prettier'],\n};\n" },
+    { "path": "{{app_name}}/.prettierrc", "template": "{ \"singleQuote\": true, \"semi\": true, \"trailingComma\": \"all\" }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"devDependencies\": { \"eslint\": \"^9\", \"prettier\": \"^3\", \"@typescript-eslint/parser\": \"^7\", \"@typescript-eslint/eslint-plugin\": \"^7\" } }\n" }
+  ],
+  "patches": []
+}
+

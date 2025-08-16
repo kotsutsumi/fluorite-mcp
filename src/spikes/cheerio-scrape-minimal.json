@@ -1,0 +1,15 @@
+{
+  "id": "cheerio-scrape-minimal",
+  "name": "Cheerioでスクレイピング",
+  "version": "1.0.0",
+  "stack": ["node", "scraping"],
+  "tags": ["scraping"],
+  "description": "Cheerioでページからタイトル抽出。",
+  "params": [ { "name": "app_name", "default": "cheerio-scrape" }, { "name": "url", "default": "https://example.com" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node scrape.js\" }, \"dependencies\": { \"cheerio\": \"latest\", \"got\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/scrape.js", "template": "const got = require('got');\nconst cheerio = require('cheerio');\n(async () => { const html = await got('{{url}}').text(); const $ = cheerio.load(html); console.log('title:', $('title').text()); })();\n" }
+  ],
+  "patches": []
+}
+

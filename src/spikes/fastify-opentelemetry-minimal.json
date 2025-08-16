@@ -1,0 +1,16 @@
+{
+  "id": "fastify-opentelemetry-minimal",
+  "name": "Fastify OpenTelemetry Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "fastify", "opentelemetry"],
+  "tags": ["observability"],
+  "description": "Fastify app with basic OpenTelemetry setup (console).",
+  "params": [ { "name": "app_name", "default": "fastify-otel" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"scripts\": { \"start\": \"node index.js\" },\n  \"dependencies\": { \"fastify\": \"latest\", \"@opentelemetry/api\": \"latest\", \"@opentelemetry/sdk-node\": \"latest\", \"@opentelemetry/auto-instrumentations-node\": \"latest\" }\n}\n" },
+    { "path": "{{app_name}}/otel.js", "template": "const { NodeSDK } = require('@opentelemetry/sdk-node');\nconst { getNodeAutoInstrumentations } = require('@opentelemetry/auto-instrumentations-node');\nconst sdk = new NodeSDK({ instrumentations: [getNodeAutoInstrumentations()] });\nsdk.start();\n" },
+    { "path": "{{app_name}}/index.js", "template": "require('./otel');\nconst Fastify = require('fastify');\nconst app = Fastify();\napp.get('/health', async () => ({ status: 'ok' }));\napp.get('/', async () => ({ hello: 'world' }));\napp.listen({ port: Number('{{port}}') }, () => console.log('listening on {{port}}'));\n" }
+  ],
+  "patches": []
+}
+

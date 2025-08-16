@@ -1,0 +1,15 @@
+{
+  "id": "fastify-cors-minimal",
+  "name": "Fastify CORS 最小",
+  "version": "1.0.0",
+  "stack": ["node", "fastify"],
+  "tags": ["security"],
+  "description": "@fastify/cors を用いた CORS 設定の最小例。",
+  "params": [ { "name": "app_name", "default": "fastify-cors" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"fastify\": \"latest\", \"@fastify/cors\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const Fastify = require('fastify');\nconst cors = require('@fastify/cors');\nconst app = Fastify();\napp.register(cors, { origin: true });\napp.get('/', async ()=>({ ok: true }));\napp.listen({ port: Number('{{port}}') }, ()=>console.log('listening'));\n" }
+  ],
+  "patches": []
+}
+

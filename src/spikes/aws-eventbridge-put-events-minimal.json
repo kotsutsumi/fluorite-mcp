@@ -1,0 +1,15 @@
+{
+  "id": "aws-eventbridge-put-events-minimal",
+  "name": "AWS EventBridge PutEvents 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "eventbridge", "node"],
+  "tags": ["events"],
+  "description": "EventBridge にカスタムイベントを送信。",
+  "params": [ { "name": "app_name", "default": "eb-put" }, { "name": "bus_name", "default": "default" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node send.js\" }, \"dependencies\": { \"@aws-sdk/client-eventbridge\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/send.js", "template": "const { EventBridgeClient, PutEventsCommand } = require('@aws-sdk/client-eventbridge');\nconst eb = new EventBridgeClient({});\n(async () => { const r = await eb.send(new PutEventsCommand({ Entries: [{ EventBusName: '{{bus_name}}', Source: 'app.demo', DetailType: 'demo', Detail: JSON.stringify({ hello: 'world' }) }] })); console.log(r); })();\n" }
+  ],
+  "patches": []
+}
+

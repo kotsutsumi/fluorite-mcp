@@ -1,0 +1,16 @@
+{
+  "id": "node-grpc-js-minimal",
+  "name": "gRPC Node.js Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "grpc"],
+  "tags": ["rpc"],
+  "description": "Minimal gRPC server using @grpc/grpc-js.",
+  "params": [ { "name": "app_name", "default": "grpc-node" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node server.js\" }, \"dependencies\": { \"@grpc/grpc-js\": \"latest\", \"@grpc/proto-loader\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/proto/hello.proto", "template": "syntax = \"proto3\";\npackage demo;\nservice Greeter { rpc SayHello (HelloRequest) returns (HelloReply) {} }\nmessage HelloRequest { string name = 1; }\nmessage HelloReply { string message = 1; }\n" },
+    { "path": "{{app_name}}/server.js", "template": "const grpc = require('@grpc/grpc-js');\nconst loader = require('@grpc/proto-loader');\nconst pkgDef = loader.loadSync(__dirname + '/proto/hello.proto');\nconst proto = grpc.loadPackageDefinition(pkgDef).demo;\nfunction sayHello(call, callback) { callback(null, { message: 'Hello ' + call.request.name }); }\nconst server = new grpc.Server();\nserver.addService(proto.Greeter.service, { SayHello: sayHello });\nserver.bindAsync('0.0.0.0:50051', grpc.ServerCredentials.createInsecure(), () => { server.start(); console.log('gRPC listening'); });\n" }
+  ],
+  "patches": []
+}
+

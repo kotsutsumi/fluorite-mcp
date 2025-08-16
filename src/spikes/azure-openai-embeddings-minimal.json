@@ -1,0 +1,21 @@
+{
+  "id": "azure-openai-embeddings-minimal",
+  "name": "Azure OpenAI Embeddings (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "azure", "openai"],
+  "tags": ["embeddings"],
+  "description": "Create embeddings via Azure OpenAI REST endpoint.",
+  "params": [
+    { "name": "app_name", "default": "azure-openai-embeddings" },
+    { "name": "endpoint", "default": "https://YOUR-RESOURCE.openai.azure.com" },
+    { "name": "deployment", "default": "text-embedding-3-small" },
+    { "name": "api_version", "default": "2024-06-01" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "const url = `${process.env.AZURE_OPENAI_ENDPOINT || '{{endpoint}}'}/openai/deployments/${process.env.AZURE_OPENAI_EMBED_DEPLOYMENT || '{{deployment}}'}/embeddings?api-version=${process.env.AZURE_OPENAI_API_VERSION || '{{api_version}}'}`;\nconst res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json', 'api-key': process.env.AZURE_OPENAI_API_KEY }, body: JSON.stringify({ input: ['hello world'] }) });\nconst json = await res.json();\nconsole.log(json.data?.[0]?.embedding?.length);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "AZURE_OPENAI_ENDPOINT={{endpoint}}\nAZURE_OPENAI_EMBED_DEPLOYMENT={{deployment}}\nAZURE_OPENAI_API_VERSION={{api_version}}\nAZURE_OPENAI_API_KEY=...\n" }
+  ],
+  "patches": []
+}
+

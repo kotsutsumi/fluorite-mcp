@@ -1,0 +1,19 @@
+{
+  "id": "replicate-text-generation-minimal",
+  "name": "Replicate Text Generation (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "replicate"],
+  "tags": ["llm", "inference"],
+  "description": "Generate text using Replicate REST API.",
+  "params": [
+    { "name": "app_name", "default": "replicate-text-gen" },
+    { "name": "model", "default": "meta/llama-2-7b-chat" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "const res = await fetch('https://api.replicate.com/v1/predictions', {\n  method: 'POST',\n  headers: { 'Content-Type': 'application/json', 'Authorization': `Token ${process.env.REPLICATE_API_TOKEN}` },\n  body: JSON.stringify({ version: process.env.REPLICATE_MODEL || '{{model}}', input: { prompt: 'Say hello' } })\n});\nconst json = await res.json();\nconsole.log(JSON.stringify(json, null, 2));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "REPLICATE_API_TOKEN=...\nREPLICATE_MODEL={{model}}\n" }
+  ],
+  "patches": []
+}
+

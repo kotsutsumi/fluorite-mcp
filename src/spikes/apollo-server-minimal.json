@@ -1,0 +1,18 @@
+{
+  "id": "apollo-server-minimal",
+  "name": "Apollo Server Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "graphql", "apollo"],
+  "tags": ["api", "graphql"],
+  "description": "Minimal Apollo GraphQL server with a hello query.",
+  "params": [
+    { "name": "app_name", "default": "apollo-server" },
+    { "name": "port", "default": "4000" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"@apollo/server\": \"latest\", \"graphql\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const { ApolloServer } = require('@apollo/server');\nconst { startStandaloneServer } = require('@apollo/server/standalone');\nconst typeDefs = `type Query { hello: String }`;\nconst resolvers = { Query: { hello: () => 'world' } };\nconst server = new ApolloServer({ typeDefs, resolvers });\nstartStandaloneServer(server, { listen: { port: {{port}} } }).then(({ url }) => {\n  console.log('🚀 Server ready at', url);\n});\n" }
+  ],
+  "patches": []
+}
+

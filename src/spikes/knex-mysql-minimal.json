@@ -1,0 +1,15 @@
+{
+  "id": "knex-mysql-minimal",
+  "name": "Knex + MySQL 最小",
+  "version": "1.0.0",
+  "stack": ["node", "knex", "mysql"],
+  "tags": ["db"],
+  "description": "Knex で MySQL に接続し簡易テーブル操作。",
+  "params": [ { "name": "app_name", "default": "knex-mysql" }, { "name": "mysql_uri", "default": "mysql://root:password@localhost:3306/test" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"knex\": \"latest\", \"mysql2\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const knex = require('knex')({ client: 'mysql2', connection: '{{mysql_uri}}' });\n(async () => { const exists = await knex.schema.hasTable('items'); if (!exists) { await knex.schema.createTable('items', t=>{ t.increments('id'); t.string('name'); }); } await knex('items').insert({ name: 'hello' }); const [{ c }] = await knex('items').count({ c: '*' }); console.log('count', c); await knex.destroy(); })();\n" }
+  ],
+  "patches": []
+}
+

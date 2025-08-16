@@ -1,0 +1,15 @@
+{
+  "id": "drizzle-sqlite-minimal",
+  "name": "Drizzle ORM + SQLite Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "drizzle", "sqlite"],
+  "tags": ["db"],
+  "description": "Drizzle ORM with SQLite using better-sqlite3.",
+  "params": [ { "name": "app_name", "default": "drizzle-sqlite" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"start\": \"node index.mjs\" },\n  \"dependencies\": { \"drizzle-orm\": \"latest\", \"better-sqlite3\": \"latest\" }\n}\n" },
+    { "path": "{{app_name}}/index.mjs", "template": "import Database from 'better-sqlite3';\nimport { drizzle } from 'drizzle-orm/better-sqlite3';\nimport { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core';\nconst db = drizzle(new Database('app.db'));\nconst users = sqliteTable('users', { id: integer('id').primaryKey({ autoIncrement: true }), name: text('name') });\nawait db.run(db.dialect.sql`CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)`);\nawait db.insert(users).values({ name: 'Alice' });\nconst rows = await db.select().from(users);\nconsole.log('rows', rows.length);\n" }
+  ],
+  "patches": []
+}
+

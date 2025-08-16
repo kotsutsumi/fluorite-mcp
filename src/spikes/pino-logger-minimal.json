@@ -1,0 +1,17 @@
+{
+  "id": "pino-logger-minimal",
+  "name": "Pino Logger Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "pino"],
+  "tags": ["logging"],
+  "description": "Minimal Pino logger with pretty transport in dev.",
+  "params": [
+    { "name": "app_name", "default": "pino-app" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"pino\": \"latest\", \"pino-pretty\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "import pino from 'pino';\nconst logger = pino(process.env.NODE_ENV==='production'? {} : { transport: { target: 'pino-pretty', options: { colorize: true } } });\nlogger.info('hello world');\nlogger.warn({ foo: 'bar' }, 'structured log');\n" }
+  ],
+  "patches": []
+}
+

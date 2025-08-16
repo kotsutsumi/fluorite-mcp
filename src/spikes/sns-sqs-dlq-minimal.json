@@ -1,0 +1,16 @@
+{
+  "id": "sns-sqs-dlq-minimal",
+  "name": "SNS → SQS + DLQ 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "sns", "sqs"],
+  "tags": ["messaging"],
+  "description": "SNS トピック → SQS キュー（DLQ想定）の最小送信例。",
+  "params": [ { "name": "app_name", "default": "sns-sqs-dlq" }, { "name": "topic_arn", "default": "arn:aws:sns:us-east-1:123456789012:demo" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node send.js\" }, \"dependencies\": { \"@aws-sdk/client-sns\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/send.js", "template": "const { SNSClient, PublishCommand } = require('@aws-sdk/client-sns');\nconst sns = new SNSClient({});\n(async () => { await sns.send(new PublishCommand({ TopicArn: '{{topic_arn}}', Message: 'hello' })); console.log('published'); })();\n" },
+    { "path": "{{app_name}}/README.md", "template": "SQS と DLQ の購読/ポリシー設定は AWS 側で行ってください（本テンプレは送信サイドのみ）。\n" }
+  ],
+  "patches": []
+}
+

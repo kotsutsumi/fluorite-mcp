@@ -1,0 +1,14 @@
+{
+  "id": "aws-lambda-s3-trigger-minimal",
+  "name": "AWS Lambda S3 Trigger 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "lambda", "s3"],
+  "tags": ["serverless"],
+  "description": "S3 PutObject イベントを受ける Lambda ハンドラーの最小例。",
+  "params": [ { "name": "app_name", "default": "lambda-s3" } ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "export const handler = async (event) => { const rec = event.Records?.[0]; console.log('s3', rec?.s3?.object?.key); return { statusCode: 200 }; };\n" }
+  ],
+  "patches": []
+}
+

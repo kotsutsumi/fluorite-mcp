@@ -1,0 +1,15 @@
+{
+  "id": "cf-workers-kv-minimal",
+  "name": "Cloudflare Workers KV Minimal",
+  "version": "1.0.0",
+  "stack": ["cloudflare", "workers", "kv"],
+  "tags": ["serverless"],
+  "description": "KV に put/get する最小のWorkersスクリプト。",
+  "params": [ { "name": "app_name", "default": "cf-kv" } ],
+  "files": [
+    { "path": "{{app_name}}/worker.js", "template": "export default {\n  async fetch(_req, env) {\n    await env.MY_KV.put('key', 'value');\n    const v = await env.MY_KV.get('key');\n    return new Response(JSON.stringify({ v }), { headers: { 'content-type': 'application/json' } });\n  }\n};\n" },
+    { "path": "{{app_name}}/README.md", "template": "wrangler.tomlで `kv_namespaces` に MY_KV をバインドしてください。\n" }
+  ],
+  "patches": []
+}
+

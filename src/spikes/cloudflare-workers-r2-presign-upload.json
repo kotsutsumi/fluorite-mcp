@@ -1,0 +1,14 @@
+{
+  "id": "cloudflare-workers-r2-presign-upload",
+  "name": "Workers で R2 署名発行",
+  "version": "1.0.0",
+  "stack": ["cloudflare", "workers", "r2"],
+  "tags": ["storage", "upload"],
+  "description": "Workers 内で R2 直アップロード用の署名データを返す（概念）。",
+  "params": [ { "name": "app_name", "default": "r2-presign" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "R2 へのブラウザ直アップロードは POST Policy か PUT 署名URLで行い、Workers 側で一時署名を生成して返す実装が一般的です。\n" }
+  ],
+  "patches": []
+}
+

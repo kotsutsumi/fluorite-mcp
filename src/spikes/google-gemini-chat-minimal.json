@@ -1,0 +1,19 @@
+{
+  "id": "google-gemini-chat-minimal",
+  "name": "Google Gemini Chat (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "gemini"],
+  "tags": ["llm", "chat"],
+  "description": "Minimal text generation with Google Generative AI (Gemini).",
+  "params": [
+    { "name": "app_name", "default": "gemini-chat-app" },
+    { "name": "gemini_model", "default": "gemini-1.5-flash" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { GoogleGenerativeAI } from '@google/generative-ai';\nconst genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);\nconst model = genAI.getGenerativeModel({ model: '{{gemini_model}}' });\nconst res = await model.generateContent('Say hello');\nconsole.log(res.response.text());\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@google/generative-ai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "GOOGLE_API_KEY=...\n" }
+  ],
+  "patches": []
+}
+

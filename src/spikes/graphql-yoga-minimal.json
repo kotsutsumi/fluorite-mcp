@@ -1,0 +1,18 @@
+{
+  "id": "graphql-yoga-minimal",
+  "name": "GraphQL Yoga Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "graphql", "yoga"],
+  "tags": ["api", "graphql"],
+  "description": "Minimal GraphQL Yoga server.",
+  "params": [
+    { "name": "app_name", "default": "yoga-server" },
+    { "name": "port", "default": "4000" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"graphql\": \"latest\", \"graphql-yoga\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const { createYoga, createSchema } = require('graphql-yoga');\nconst http = require('http');\nconst yoga = createYoga({ schema: createSchema({ typeDefs: `type Query { hello: String }`, resolvers: { Query: { hello: () => 'world' } } }) });\nhttp.createServer(yoga).listen({{port}}, () => console.log('Yoga running on', {{port}}));\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,47 @@
+[package]
+name = "fluorite-bridge"
+version = "0.1.0"
+edition = "2021"
+description = "Node.js bridge for Fluorite memory engine integration"
+license = "MIT"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+# Core dependencies
+fluorite-memory = { path = "../fluorite-memory" }
+fluorite-learner = { path = "../fluorite-learner" }
+fluorite-ml = { path = "../fluorite-ml" }
+
+# Node.js integration
+napi = { version = "2.16", features = ["napi8", "serde-json", "tokio_rt"] }
+napi-derive = "2.16"
+
+# Async runtime
+tokio = { workspace = true }
+
+# Serialization
+serde = { workspace = true }
+serde_json = { workspace = true }
+
+# Error handling
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+
+# Logging
+tracing = { workspace = true }
+
+# Additional utilities
+uuid = { workspace = true }
+chrono = { workspace = true }
+
+[build-dependencies]
+napi-build = "2.1"
+
+[dev-dependencies]
+tokio-test = "0.4"
+
+[package.metadata.napi]
+name = "fluorite-bridge"
+triples = ["x86_64-apple-darwin", "aarch64-apple-darwin", "x86_64-pc-windows-msvc", "x86_64-unknown-linux-gnu"]

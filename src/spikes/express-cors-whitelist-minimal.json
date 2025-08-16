@@ -1,0 +1,15 @@
+{
+  "id": "express-cors-whitelist-minimal",
+  "name": "Express CORS ホワイトリスト",
+  "version": "1.0.0",
+  "stack": ["express", "cors"],
+  "tags": ["security"],
+  "description": "cors ミドルウェアで Origin ホワイトリスト。",
+  "params": [ { "name": "app_name", "default": "cors-whitelist" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\", \"cors\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst cors = require('cors');\nconst whitelist = ['https://example.com'];\nconst app = express();\napp.use(cors({ origin: (o, cb) => { if (!o || whitelist.includes(o)) cb(null, true); else cb(new Error('blocked')); } }));\napp.get('/', (_req,res)=>res.json({ ok: true }));\napp.listen(Number('{{port}}'));\n" }
+  ],
+  "patches": []
+}
+

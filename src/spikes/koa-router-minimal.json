@@ -1,0 +1,15 @@
+{
+  "id": "koa-router-minimal",
+  "name": "Koa Router Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "koa"],
+  "tags": ["api"],
+  "description": "Koa with @koa/router and two routes.",
+  "params": [ { "name": "app_name", "default": "koa-router-app" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"koa\": \"latest\", \"@koa/router\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const Koa = require('koa');\nconst Router = require('@koa/router');\nconst app = new Koa();\nconst router = new Router();\nrouter.get('/health', (ctx) => { ctx.body = { status: 'ok' }; });\nrouter.get('/', (ctx) => { ctx.body = { hello: 'world' }; });\napp.use(router.routes());\napp.listen(Number('{{port}}'), () => console.log('listening on {{port}}'));\n" }
+  ],
+  "patches": []
+}
+

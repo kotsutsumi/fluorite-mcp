@@ -1,0 +1,16 @@
+{
+  "id": "aws-sns-http-subscription-verify-express",
+  "name": "AWS SNS HTTP 購読検証 (Express)",
+  "version": "1.0.0",
+  "stack": ["aws", "sns", "express"],
+  "tags": ["webhook"],
+  "description": "SNS HTTP/HTTPS サブスクリプションの確認エンドポイント（概念）。",
+  "params": [ { "name": "app_name", "default": "sns-verify" }, { "name": "port", "default": "3000" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"express\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const express = require('express');\nconst app = express();\napp.use(express.json());\napp.post('/sns', (req,res)=>{ const type = req.headers['x-amz-sns-message-type']; if (type === 'SubscriptionConfirmation') { /* SubscribeURL に GET する */ console.log('confirm', req.body.SubscribeURL); } else if (type === 'Notification') { console.log('message', req.body.Message); } res.send('ok'); });\napp.listen(Number('{{port}}'), ()=>console.log('listening'));\n" },
+    { "path": "{{app_name}}/README.md", "template": "実運用では SNS 署名検証を行ってください（署名ヘッダ/証明書URL経由）。\n" }
+  ],
+  "patches": []
+}
+

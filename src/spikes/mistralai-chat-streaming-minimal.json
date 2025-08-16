@@ -1,0 +1,19 @@
+{
+  "id": "mistralai-chat-streaming-minimal",
+  "name": "Mistral Chat Streaming (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "mistral"],
+  "tags": ["llm", "stream"],
+  "description": "Stream chat tokens with @mistralai/mistralai.",
+  "params": [
+    { "name": "app_name", "default": "mistral-stream-app" },
+    { "name": "mistral_model", "default": "open-mistral-7b" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { Mistral } from '@mistralai/mistralai';\nconst client = new Mistral({ apiKey: process.env.MISTRAL_API_KEY });\nconst stream = await client.chat.stream({ model: '{{mistral_model}}', messages: [{ role: 'user', content: 'Stream a short hello' }] });\nfor await (const part of stream) {\n  if (part?.choices?.[0]?.delta?.content) process.stdout.write(part.choices[0].delta.content);\n}\nconsole.log();\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@mistralai/mistralai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "MISTRAL_API_KEY=...\n" }
+  ],
+  "patches": []
+}
+

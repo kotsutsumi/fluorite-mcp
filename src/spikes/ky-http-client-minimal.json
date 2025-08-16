@@ -1,0 +1,15 @@
+{
+  "id": "ky-http-client-minimal",
+  "name": "ky HTTP クライアント最小",
+  "version": "1.0.0",
+  "stack": ["node", "ky"],
+  "tags": ["http"],
+  "description": "ky を使った簡易HTTPクライアント。",
+  "params": [ { "name": "app_name", "default": "ky-client" }, { "name": "url", "default": "https://example.com" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.mjs\" }, \"dependencies\": { \"ky\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.mjs", "template": "import ky from 'ky';\nconst r = await ky.get('{{url}}');\nconsole.log('status', r.status);\n" }
+  ],
+  "patches": []
+}
+

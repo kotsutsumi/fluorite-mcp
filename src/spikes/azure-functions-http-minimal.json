@@ -1,0 +1,15 @@
+{
+  "id": "azure-functions-http-minimal",
+  "name": "Azure Functions HTTP Minimal",
+  "version": "1.0.0",
+  "stack": ["azure", "functions", "node"],
+  "tags": ["serverless"],
+  "description": "Azure Functions (HTTPトリガー) の最小例。",
+  "params": [ { "name": "app_name", "default": "az-func" } ],
+  "files": [
+    { "path": "{{app_name}}/HttpTrigger/index.js", "template": "module.exports = async function (context, req) { context.res = { status: 200, body: { hello: 'azure-functions' } }; };\n" },
+    { "path": "{{app_name}}/HttpTrigger/function.json", "template": "{ \"bindings\": [ { \"authLevel\": \"anonymous\", \"type\": \"httpTrigger\", \"direction\": \"in\", \"name\": \"req\", \"methods\": [\"get\"] }, { \"type\": \"http\", \"direction\": \"out\", \"name\": \"res\" } ] }\n" }
+  ],
+  "patches": []
+}
+

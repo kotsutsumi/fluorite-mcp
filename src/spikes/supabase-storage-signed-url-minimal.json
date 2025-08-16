@@ -1,0 +1,15 @@
+{
+  "id": "supabase-storage-signed-url-minimal",
+  "name": "Supabase Storage 署名URL",
+  "version": "1.0.0",
+  "stack": ["supabase", "storage"],
+  "tags": ["storage"],
+  "description": "Supabase ストレージでサインドURL発行（サービスキー要）。",
+  "params": [ { "name": "app_name", "default": "supabase-storage" }, { "name": "bucket", "default": "public" }, { "name": "path", "default": "hello.txt" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node url.js\" }, \"dependencies\": { \"@supabase/supabase-js\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/url.js", "template": "const { createClient } = require('@supabase/supabase-js');\nconst supabase = createClient(process.env.SUPABASE_URL||'', process.env.SUPABASE_SERVICE_KEY||'');\n(async () => { const { data, error } = await supabase.storage.from('{{bucket}}').createSignedUrl('{{path}}', 60); console.log(data, error); })();\n" }
+  ],
+  "patches": []
+}
+

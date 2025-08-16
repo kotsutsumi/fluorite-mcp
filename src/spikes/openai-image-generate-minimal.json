@@ -1,0 +1,19 @@
+{
+  "id": "openai-image-generate-minimal",
+  "name": "OpenAI Image Generate (DALL·E) (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "openai"],
+  "tags": ["image", "generation"],
+  "description": "Generate an image with OpenAI Images API and print URL.",
+  "params": [
+    { "name": "app_name", "default": "openai-image-app" },
+    { "name": "prompt", "default": "A cute robot waving" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import OpenAI from 'openai';\nconst openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst img = await openai.images.generate({ prompt: process.env.IMG_PROMPT || '{{prompt}}', size: '512x512' });\nconsole.log(img.data?.[0]?.url);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"openai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\nIMG_PROMPT=A cute robot waving\n" }
+  ],
+  "patches": []
+}
+

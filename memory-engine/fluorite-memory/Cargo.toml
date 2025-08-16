@@ -1,0 +1,31 @@
+[package]
+name = "fluorite-memory"
+version = "0.1.0"
+edition = "2021"
+description = "Core memory storage engine for fluorite-mcp with hybrid disk/memory system"
+authors = ["Fluorite MCP Team"]
+
+[dependencies]
+# Core dependencies
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+uuid = { workspace = true }
+chrono = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+
+# Storage and indexing
+sled = { workspace = true }
+tantivy = { workspace = true }
+bincode = { workspace = true }
+lz4_flex = { workspace = true }
+
+# Utilities
+dashmap = { workspace = true }
+parking_lot = { workspace = true }
+
+[dev-dependencies]
+tokio-test = "0.4"
+tempfile = "3.8"

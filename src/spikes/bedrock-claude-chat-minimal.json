@@ -1,0 +1,19 @@
+{
+  "id": "bedrock-claude-chat-minimal",
+  "name": "AWS Bedrock Claude Chat (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "aws", "bedrock"],
+  "tags": ["llm", "chat"],
+  "description": "Invoke an Anthropic Claude model via AWS Bedrock Runtime.",
+  "params": [
+    { "name": "app_name", "default": "bedrock-claude-chat" },
+    { "name": "bedrock_model", "default": "anthropic.claude-3-5-sonnet-20240620-v1:0" },
+    { "name": "aws_region", "default": "us-east-1" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { BedrockRuntimeClient, InvokeModelCommand } from '@aws-sdk/client-bedrock-runtime';\nconst client = new BedrockRuntimeClient({ region: process.env.AWS_REGION || '{{aws_region}}' });\nconst body = {\n  messages: [{ role: 'user', content: [{ type: 'text', text: 'Say hello' }] }],\n  max_tokens: 128\n};\nconst cmd = new InvokeModelCommand({\n  modelId: process.env.BEDROCK_MODEL || '{{bedrock_model}}',\n  body: JSON.stringify(body),\n  contentType: 'application/json',\n  accept: 'application/json'\n});\nconst resp = await client.send(cmd);\nconsole.log(new TextDecoder().decode(resp.body));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@aws-sdk/client-bedrock-runtime\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "aws-sns-publish-minimal",
+  "name": "AWS SNS Publish Minimal",
+  "version": "1.0.0",
+  "stack": ["aws", "sns", "node"],
+  "tags": ["messaging"],
+  "description": "SNS トピックにメッセージを publish。",
+  "params": [ { "name": "app_name", "default": "sns-pub" }, { "name": "topic_arn", "default": "arn:aws:sns:us-east-1:123456789012:demo" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node send.js\" }, \"dependencies\": { \"@aws-sdk/client-sns\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/send.js", "template": "const { SNSClient, PublishCommand } = require('@aws-sdk/client-sns');\nconst sns = new SNSClient({});\n(async () => { const r = await sns.send(new PublishCommand({ TopicArn: '{{topic_arn}}', Message: 'hello' })); console.log(r.MessageId); })();\n" }
+  ],
+  "patches": []
+}
+

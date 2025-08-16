@@ -1,0 +1,15 @@
+{
+  "id": "ioredis-streams-consumer-group-minimal",
+  "name": "ioredis Streams Consumer Group",
+  "version": "1.0.0",
+  "stack": ["node", "redis"],
+  "tags": ["stream"],
+  "description": "Redis Streams のコンシューマグループ最小例。",
+  "params": [ { "name": "app_name", "default": "redis-streams" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"ioredis\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const Redis = require('ioredis');\nconst redis = new Redis();\n(async () => { const stream = 'mystream'; const group = 'g1'; const consumer = 'c1'; try { await redis.xgroup('CREATE', stream, group, '$', 'MKSTREAM'); } catch(e){} await redis.xadd(stream, '*', 'm', 'hello'); while (true) { const res = await redis.xreadgroup('GROUP', group, consumer, 'COUNT', 1, 'BLOCK', 1000, 'STREAMS', stream, '>'); if (res) { for (const [, msgs] of res) { for (const [id, arr] of msgs) { console.log('msg', id, arr); await redis.xack(stream, group, id); } } } } })();\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,18 @@
+{
+  "id": "fastify-websocket-minimal",
+  "name": "Fastify WebSocket Minimal",
+  "version": "1.0.0",
+  "stack": ["node", "fastify", "websocket"],
+  "tags": ["realtime"],
+  "description": "Fastify server with websocket echo route.",
+  "params": [
+    { "name": "app_name", "default": "fastify-ws" },
+    { "name": "port", "default": "3000" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node index.js\" }, \"dependencies\": { \"fastify\": \"latest\", \"@fastify/websocket\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/index.js", "template": "const Fastify = require('fastify');\nconst websocket = require('@fastify/websocket');\nconst app = Fastify();\napp.register(websocket);\napp.get('/health', async () => ({ status: 'ok' }));\napp.get('/ws', { websocket: true }, (connection /* SocketStream */) => {\n  connection.socket.on('message', message => connection.socket.send(message));\n});\napp.listen({ port: {{port}} }, (err, addr) => { if (err) throw err; console.log('listening on', addr); });\n" }
+  ],
+  "patches": []
+}
+
