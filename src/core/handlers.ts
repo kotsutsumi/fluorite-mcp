@@ -17,15 +17,50 @@ const diagnosticLogger = createLogger('diagnostic', 'handlers');
  */
 
 /**
- * Get MIME type for file extension
+ * Determines the appropriate MIME type for a given file extension.
+ * Used for proper content type headers in MCP resource responses.
+ * 
+ * @param extension - File extension including the dot (e.g., ".json", ".yaml")
+ * @returns MIME type string ("application/json" for .json, "text/yaml" for others)
+ * 
+ * @example
+ * ```typescript
+ * const jsonType = getMimeType(".json");
+ * // Returns: "application/json"
+ * 
+ * const yamlType = getMimeType(".yaml");
+ * // Returns: "text/yaml"
+ * ```
  */
 export function getMimeType(extension: string): string {
   return extension === ".json" ? "application/json" : "text/yaml";
 }
 
 /**
- * Handle spec resource requests
- * Implements: spec://{pkg}
+ * Handles MCP resource requests for package specifications.
+ * Implements the spec://{pkg} URI scheme for the MCP protocol.
+ * Returns specification content with appropriate MIME type metadata.
+ * 
+ * @param pkg - Package name string or array (uses first element if array)
+ * @param config - Optional catalog configuration for file locations
+ * @returns MCP-compliant resource response with content and metadata
+ * 
+ * @throws Never throws - errors are returned as content for MCP compatibility
+ * 
+ * @example
+ * ```typescript
+ * // Single package request
+ * const response = await handleSpecResource("react");
+ * // Returns: { contents: [{ uri: "spec://react", text: "...", mimeType: "text/yaml" }] }
+ * 
+ * // Array input (uses first element)
+ * const response2 = await handleSpecResource(["@types/node", "unused"]);
+ * // Returns specification for "@types/node"
+ * 
+ * // Error case (package not found)
+ * const errorResponse = await handleSpecResource("non-existent");
+ * // Returns: { contents: [{ uri: "spec://non-existent", text: "Package specification not found: non-existent" }] }
+ * ```
  */
 export async function handleSpecResource(
   pkg: string | string[],
@@ -87,13 +122,47 @@ export async function handleSpecResource(
 }
 
 /**
- * Handle upsert-spec tool requests
+ * Input parameters for the upsert-spec MCP tool.
+ * Used to add or update package specifications in the catalog.
  */
 export interface UpsertSpecInput {
+  /** Package name (will be sanitized for filesystem safety) */
   pkg: string;
+  /** Specification content (YAML, JSON, or any text format) */
   yaml: string;
 }
 
+/**
+ * Handles MCP tool requests for upserting (creating or updating) package specifications.
+ * Saves the specification content to the catalog as a YAML file.
+ * 
+ * @param input - Object containing package name and specification content
+ * @param config - Optional catalog configuration for file locations and limits
+ * @returns MCP-compliant tool response with success message or error details
+ * 
+ * @example
+ * ```typescript
+ * // Create new specification
+ * const response = await handleUpsertSpecTool({
+ *   pkg: "my-package",
+ *   yaml: "name: my-package\nversion: 1.0.0\ndescription: A sample package"
+ * });
+ * // Returns: { content: [{ type: "text", text: "Successfully saved specification for 'my-package' to: /path/to/my-package.yaml" }] }
+ * 
+ * // Update existing specification
+ * const updateResponse = await handleUpsertSpecTool({
+ *   pkg: "@scope/package",
+ *   yaml: JSON.stringify({ name: "@scope/package", version: "2.0.0" })
+ * });
+ * 
+ * // Error case (content too large)
+ * const errorResponse = await handleUpsertSpecTool({
+ *   pkg: "huge-package",
+ *   yaml: "x".repeat(2 * 1024 * 1024) // 2MB content
+ * });
+ * // Returns: { content: [{ type: "text", text: "Content too large: ..." }], isError: true }
+ * ```
+ */
 export async function handleUpsertSpecTool(
   input: UpsertSpecInput,
   config: CatalogConfig = DEFAULT_CONFIG
@@ -146,12 +215,41 @@ export async function handleUpsertSpecTool(
 }
 
 /**
- * Handle list-specs tool requests
+ * Input parameters for the list-specs MCP tool.
+ * Used to list and filter package specifications in the catalog.
  */
 export interface ListSpecsInput {
+  /** Optional regex pattern to filter package names (case-insensitive) */
   filter?: string;
 }
 
+/**
+ * Handles MCP tool requests for listing package specifications with optional filtering.
+ * Returns a formatted list of all matching specifications in the catalog.
+ * 
+ * @param input - Object containing optional filter pattern
+ * @param config - Optional catalog configuration for file locations
+ * @returns MCP-compliant tool response with formatted specification list
+ * 
+ * @example
+ * ```typescript
+ * // List all specifications
+ * const response = await handleListSpecsTool({});
+ * // Returns: { content: [{ type: "text", text: "Found 5 specification(s):\n\n@types/node\nreact\nvue\nwebpack\neslint" }] }
+ * 
+ * // Filter by pattern
+ * const reactResponse = await handleListSpecsTool({ filter: "react" });
+ * // Returns specifications matching "react" (react, react-dom, react-router, etc.)
+ * 
+ * // Filter by scope
+ * const typesResponse = await handleListSpecsTool({ filter: "^@types" });
+ * // Returns only scoped @types packages
+ * 
+ * // No matches
+ * const emptyResponse = await handleListSpecsTool({ filter: "nonexistent" });
+ * // Returns: { content: [{ type: "text", text: "No specifications found matching filter: \"nonexistent\"" }] }
+ * ```
+ */
 export async function handleListSpecsTool(
   input: ListSpecsInput = {},
   config: CatalogConfig = DEFAULT_CONFIG
@@ -221,7 +319,30 @@ export async function handleListSpecsTool(
 }
 
 /**
- * Handle catalog-stats tool requests (bonus diagnostic tool)
+ * Handles MCP tool requests for catalog statistics and diagnostic information.
+ * Provides comprehensive metadata about the catalog contents and status.
+ * 
+ * @param config - Optional catalog configuration for directory location
+ * @returns MCP-compliant tool response with detailed catalog statistics
+ * 
+ * @example
+ * ```typescript
+ * const response = await handleCatalogStatsTool();
+ * // Returns formatted statistics including:
+ * // - Total specification count
+ * // - Breakdown by file extension (.yaml, .json, .yml)
+ * // - Catalog directory path
+ * // - Last updated timestamp (if available)
+ * 
+ * // Example response text:
+ * // "Catalog Statistics:
+ * //  • Total specifications: 87
+ * //  • YAML files (.yaml): 82
+ * //  • JSON files (.json): 5
+ * //  • YML files (.yml): 0
+ * //  • Catalog path: /absolute/path/to/catalog
+ * //  • Last updated: 2024-12-15T10:30:00.000Z"
+ * ```
  */
 export async function handleCatalogStatsTool(
   config: CatalogConfig = DEFAULT_CONFIG
@@ -277,7 +398,37 @@ export async function handleCatalogStatsTool(
 }
 
 /**
- * Self-test function that exercises all handlers
+ * Comprehensive self-test that exercises all MCP handlers and core functionality.
+ * Creates a temporary test specification, performs all operations, and cleans up.
+ * Used for health checks and system validation.
+ * 
+ * @param config - Optional catalog configuration for test execution
+ * @returns true if all tests pass, false if any test fails
+ * 
+ * @example
+ * ```typescript
+ * // Run comprehensive self-test
+ * const passed = await runSelfTest();
+ * if (passed) {
+ *   console.log("All systems operational");
+ * } else {
+ *   console.error("System health check failed");
+ * }
+ * 
+ * // Test with custom configuration
+ * const customPassed = await runSelfTest({
+ *   ...DEFAULT_CONFIG,
+ *   baseDir: "./test-catalog"
+ * });
+ * ```
+ * 
+ * **Test Coverage:**
+ * 1. list-specs (empty catalog)
+ * 2. upsert-spec (create test package)
+ * 3. spec resource (read test package)
+ * 4. list-specs with filter (find test package)
+ * 5. catalog-stats (verify statistics)
+ * 6. Cleanup (delete test package)
  */
 export async function runSelfTest(config: CatalogConfig = DEFAULT_CONFIG): Promise<boolean> {
   const testPkg = "@fluorite-test/self-test";

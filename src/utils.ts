@@ -1,5 +1,12 @@
 /**
- * Utility functions for fluorite-mcp server
+ * Legacy utility functions for fluorite-mcp server
+ * 
+ * @deprecated Most functions in this module have been superseded by more
+ * advanced implementations in the core modules. Use the catalog and handlers
+ * modules for new development.
+ * 
+ * @see {@link ./core/catalog.js} - For file system operations
+ * @see {@link ./core/handlers.js} - For MCP protocol utilities
  */
 
 import { readFile, writeFile, readdir, mkdir, access, stat } from "node:fs/promises";
@@ -34,6 +41,12 @@ export const CONFIG: ServerConfig = {
 
 /**
  * Sanitize package name for safe file system usage
+ * 
+ * @deprecated Use `sanitizePackageName` from `./core/catalog.js` instead.
+ * This function is maintained for backward compatibility but lacks the advanced
+ * configuration options available in the catalog implementation.
+ * 
+ * @see {@link ./core/catalog.js#sanitizePackageName}
  */
 export const sanitizePackageName = (pkg: string): string => {
   if (typeof pkg !== "string" || !pkg.trim()) {
@@ -56,6 +69,12 @@ export const sanitizePackageName = (pkg: string): string => {
 
 /**
  * Ensure catalog directory exists
+ * 
+ * @deprecated Use `ensureCatalogDirectory` from `./core/catalog.js` instead.
+ * This function uses hardcoded configuration while the catalog version supports
+ * configurable directory paths and advanced error handling.
+ * 
+ * @see {@link ./core/catalog.js#ensureCatalogDirectory}
  */
 export const ensureCatalogDirectory = async (): Promise<void> => {
   const catalogPath = path.resolve(CONFIG.CATALOG_DIR);
@@ -75,6 +94,12 @@ export const ensureCatalogDirectory = async (): Promise<void> => {
 
 /**
  * Validate file size before processing
+ * 
+ * @deprecated Use `validateFileSize` from `./core/catalog.js` instead.
+ * This function uses hardcoded limits while the catalog version supports
+ * configurable size limits and enhanced validation.
+ * 
+ * @see {@link ./core/catalog.js#validateFileSize}
  */
 export const validateFileSize = async (filePath: string): Promise<void> => {
   try {
@@ -172,6 +197,12 @@ export const listCatalogFiles = async (filter?: string): Promise<string[]> => {
 
 /**
  * Get MIME type for file extension
+ * 
+ * @deprecated Use `getMimeType` from `./core/handlers.js` instead.
+ * This function is maintained for backward compatibility but the handlers
+ * version is the canonical implementation used by the MCP protocol.
+ * 
+ * @see {@link ./core/handlers.js#getMimeType}
  */
 export const getMimeType = (extension: string): string => {
   return extension === ".json" ? "application/json" : "text/yaml";

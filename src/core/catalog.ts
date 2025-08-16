@@ -25,7 +25,22 @@ export const DEFAULT_CONFIG: CatalogConfig = {
 } as const;
 
 /**
- * Sanitize package name for safe filesystem usage
+ * Sanitizes a package name for safe filesystem usage by replacing invalid characters
+ * and enforcing length limits. Handles npm-style scoped packages and special characters.
+ * 
+ * @param pkg - The package name to sanitize (e.g., "@mui/x-data-grid", "react-router-dom")
+ * @param config - Optional catalog configuration for validation limits
+ * @returns The sanitized package name safe for filesystem usage (e.g., "@mui__x-data-grid")
+ * @throws {ValidationError} When package name is empty, not a string, or exceeds length limits
+ * 
+ * @example
+ * ```typescript
+ * const safe = sanitizePackageName("@tanstack/react-query");
+ * // Returns: "@tanstack__react-query"
+ * 
+ * const invalid = sanitizePackageName("package/with/special!chars");
+ * // Returns: "package__with__special_chars"
+ * ```
  */
 export function sanitizePackageName(pkg: string, config: CatalogConfig = DEFAULT_CONFIG): string {
   if (typeof pkg !== "string" || !pkg.trim()) {
@@ -47,7 +62,20 @@ export function sanitizePackageName(pkg: string, config: CatalogConfig = DEFAULT
 }
 
 /**
- * Ensure catalog directory exists
+ * Ensures the catalog directory exists, creating it recursively if needed.
+ * This function is idempotent and safe to call multiple times.
+ * 
+ * @param config - Optional catalog configuration containing the base directory path
+ * @throws {FileSystemError} When directory creation fails due to permissions or disk space
+ * 
+ * @example
+ * ```typescript
+ * await ensureCatalogDirectory();
+ * // Ensures ./src/catalog directory exists
+ * 
+ * await ensureCatalogDirectory({ ...DEFAULT_CONFIG, baseDir: "./custom-catalog" });
+ * // Ensures ./custom-catalog directory exists
+ * ```
  */
 export async function ensureCatalogDirectory(config: CatalogConfig = DEFAULT_CONFIG): Promise<void> {
   const catalogPath = path.resolve(config.baseDir);
@@ -66,7 +94,22 @@ export async function ensureCatalogDirectory(config: CatalogConfig = DEFAULT_CON
 }
 
 /**
- * Validate file size
+ * Validates that a file's size is within the configured limits.
+ * Non-existent files are considered valid (useful for pre-write validation).
+ * 
+ * @param filePath - Absolute or relative path to the file to validate
+ * @param config - Optional catalog configuration containing the maximum file size limit
+ * @throws {ValidationError} When file exists and exceeds the maximum size limit
+ * @throws {FileSystemError} When file system operations fail (excluding ENOENT)
+ * 
+ * @example
+ * ```typescript
+ * await validateFileSize("./spec.yaml");
+ * // Validates spec.yaml is under 1MB (default limit)
+ * 
+ * await validateFileSize("./large-spec.yaml", { ...DEFAULT_CONFIG, maxFileSize: 5 * 1024 * 1024 });
+ * // Validates with custom 5MB limit
+ * ```
  */
 export async function validateFileSize(filePath: string, config: CatalogConfig = DEFAULT_CONFIG): Promise<void> {
   try {
@@ -89,7 +132,26 @@ export async function validateFileSize(filePath: string, config: CatalogConfig =
 }
 
 /**
- * Read package specification from catalog
+ * Reads a package specification from the catalog, trying multiple file extensions.
+ * Automatically skips empty files and returns the first valid specification found.
+ * 
+ * @param pkg - The package name to read (will be sanitized automatically)
+ * @param config - Optional catalog configuration for file locations and extensions
+ * @returns The raw specification content as a string
+ * @throws {FileSystemError} When no specification file is found or reading fails
+ * @throws {ValidationError} When file size validation fails
+ * 
+ * @example
+ * ```typescript
+ * const spec = await readSpec("@types/node");
+ * // Searches for @types__node.yaml, @types__node.yml, @types__node.json
+ * // Returns the content of the first existing, non-empty file
+ * 
+ * const customSpec = await readSpec("my-package", {
+ *   ...DEFAULT_CONFIG,
+ *   supportedExtensions: [".json", ".yaml"]
+ * });
+ * ```
  */
 export async function readSpec(pkg: string, config: CatalogConfig = DEFAULT_CONFIG): Promise<string> {
   const safe = sanitizePackageName(pkg, config);
@@ -122,7 +184,29 @@ export async function readSpec(pkg: string, config: CatalogConfig = DEFAULT_CONF
 }
 
 /**
- * Write package specification to catalog
+ * Writes a package specification to the catalog as a YAML file.
+ * Automatically creates the catalog directory if it doesn't exist.
+ * 
+ * @param pkg - The package name (will be sanitized for filesystem safety)
+ * @param content - The specification content to write (YAML, JSON, or any text)
+ * @param config - Optional catalog configuration for file location and size limits
+ * @returns The absolute path to the written file
+ * @throws {ValidationError} When content exceeds maximum file size or package name is invalid
+ * @throws {FileSystemError} When directory creation or file writing fails
+ * 
+ * @example
+ * ```typescript
+ * const filePath = await writeSpec("react", `
+ * name: react
+ * version: 18.2.0
+ * description: A JavaScript library for building user interfaces
+ * `);
+ * // Writes to ./src/catalog/react.yaml
+ * // Returns: "/absolute/path/to/src/catalog/react.yaml"
+ * 
+ * const scopedPath = await writeSpec("@types/node", nodeTypeSpec);
+ * // Writes to ./src/catalog/@types__node.yaml
+ * ```
  */
 export async function writeSpec(
   pkg: string, 
@@ -152,7 +236,25 @@ export async function writeSpec(
 }
 
 /**
- * List all package specifications in catalog
+ * Lists all package specifications in the catalog, with optional filtering.
+ * Returns package names in their original format (unsanitized).
+ * 
+ * @param filter - Optional regex pattern to filter package names (case-insensitive)
+ * @param config - Optional catalog configuration for directory and file extensions
+ * @returns Array of package names sorted alphabetically, with original scoped naming
+ * @throws {FileSystemError} When catalog directory cannot be read
+ * 
+ * @example
+ * ```typescript
+ * const allSpecs = await listSpecs();
+ * // Returns: ["@types/node", "react", "vue", "webpack"]
+ * 
+ * const reactSpecs = await listSpecs("react");
+ * // Returns: ["react", "react-dom", "react-router"]
+ * 
+ * const scopedSpecs = await listSpecs("^@types");
+ * // Returns: ["@types/node", "@types/react"]
+ * ```
  */
 export async function listSpecs(
   filter?: string, 
@@ -184,7 +286,25 @@ export async function listSpecs(
 }
 
 /**
- * Get file extension for package name
+ * Determines the file extension of an existing package specification.
+ * Checks all supported extensions and returns the first match found.
+ * 
+ * @param pkg - The package name to check (will be sanitized automatically)
+ * @param config - Optional catalog configuration for file extensions and location
+ * @returns The file extension including the dot (e.g., ".yaml", ".json") or null if not found
+ * 
+ * @example
+ * ```typescript
+ * const ext = await getSpecExtension("react");
+ * // Returns: ".yaml" (if react.yaml exists)
+ * // Returns: ".json" (if only react.json exists)
+ * // Returns: null (if no react specification exists)
+ * 
+ * // Useful for determining file format before reading
+ * if (await getSpecExtension("@types/node") === ".json") {
+ *   const spec = JSON.parse(await readSpec("@types/node"));
+ * }
+ * ```
  */
 export async function getSpecExtension(
   pkg: string, 
@@ -207,7 +327,26 @@ export async function getSpecExtension(
 }
 
 /**
- * Delete package specification from catalog
+ * Deletes a package specification from the catalog.
+ * Attempts to delete files with all supported extensions.
+ * 
+ * @param pkg - The package name to delete (will be sanitized automatically)
+ * @param config - Optional catalog configuration for file extensions and location
+ * @returns true if a file was deleted, false if no specification was found
+ * @throws {FileSystemError} When file deletion fails (excluding file not found)
+ * 
+ * @example
+ * ```typescript
+ * const deleted = await deleteSpec("old-package");
+ * if (deleted) {
+ *   console.log("Package specification removed");
+ * } else {
+ *   console.log("Package specification not found");
+ * }
+ * 
+ * // Safe to call on non-existent packages
+ * await deleteSpec("non-existent-package"); // Returns false, no error
+ * ```
  */
 export async function deleteSpec(
   pkg: string, 
@@ -238,7 +377,31 @@ export async function deleteSpec(
 }
 
 /**
- * Check if package specification exists
+ * Checks if a package specification exists in the catalog.
+ * This is a convenience function that wraps getSpecExtension.
+ * 
+ * @param pkg - The package name to check (will be sanitized automatically)
+ * @param config - Optional catalog configuration for file extensions and location
+ * @returns true if any specification file exists, false otherwise
+ * 
+ * @example
+ * ```typescript
+ * if (await specExists("react")) {
+ *   const spec = await readSpec("react");
+ *   // Process the specification
+ * } else {
+ *   console.log("React specification not found");
+ * }
+ * 
+ * // Useful for conditional operations
+ * const packages = ["react", "vue", "angular"];
+ * const existing = await Promise.all(
+ *   packages.map(async pkg => ({
+ *     name: pkg,
+ *     exists: await specExists(pkg)
+ *   }))
+ * );
+ * ```
  */
 export async function specExists(
   pkg: string, 
@@ -253,15 +416,45 @@ export async function specExists(
 }
 
 /**
- * Get catalog statistics
+ * Comprehensive statistics about the catalog contents and status.
+ * Includes total counts, breakdown by file extension, and metadata.
  */
 export interface CatalogStats {
+  /** Total number of specification files in the catalog */
   totalSpecs: number;
+  /** Count of specifications grouped by file extension */
   specsByExtension: Record<string, number>;
+  /** Absolute path to the catalog directory */
   catalogPath: string;
+  /** Last modification time of the catalog directory, if available */
   lastUpdated?: Date;
 }
 
+/**
+ * Generates comprehensive statistics about the catalog contents and status.
+ * Provides detailed breakdown of specifications by file type and metadata.
+ * 
+ * @param config - Optional catalog configuration for directory location and file extensions
+ * @returns Detailed statistics object with counts, paths, and timestamps
+ * @throws {FileSystemError} When catalog directory cannot be accessed or read
+ * 
+ * @example
+ * ```typescript
+ * const stats = await getCatalogStats();
+ * console.log(`Total specifications: ${stats.totalSpecs}`);
+ * console.log(`YAML files: ${stats.specsByExtension[".yaml"]}`);
+ * console.log(`JSON files: ${stats.specsByExtension[".json"]}`);
+ * console.log(`Catalog location: ${stats.catalogPath}`);
+ * 
+ * if (stats.lastUpdated) {
+ *   console.log(`Last updated: ${stats.lastUpdated.toISOString()}`);
+ * }
+ * 
+ * // Monitor catalog growth over time
+ * const hourlyStats = await getCatalogStats();
+ * // Store for trend analysis
+ * ```
+ */
 export async function getCatalogStats(
   config: CatalogConfig = DEFAULT_CONFIG
 ): Promise<CatalogStats> {
