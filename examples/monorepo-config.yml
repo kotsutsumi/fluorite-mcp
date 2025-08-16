@@ -1,0 +1,413 @@
+# Fluorite MCP Monorepo Configuration Example
+# Comprehensive setup for large-scale monorepo with multiple teams and frameworks
+
+monorepo:
+  name: "Enterprise Platform"
+  type: "nx-workspace"  # or "lerna", "pnpm-workspace", "turborepo"
+  scale: "enterprise"
+  setup_date: "2025-08-16"
+  
+  # Repository structure definition
+  structure:
+    apps:
+      web-customer:
+        team: "customer-experience" 
+        framework: "nextjs"
+        path: "apps/web-customer"
+        criticality: "high"
+        users: 100000
+        deployment_frequency: "daily"
+        
+      web-admin:
+        team: "admin-tools"
+        framework: "nextjs"
+        path: "apps/web-admin"
+        criticality: "medium"
+        users: 500
+        deployment_frequency: "weekly"
+        
+      mobile-app:
+        team: "mobile"
+        framework: "react-native"
+        path: "apps/mobile-app"
+        criticality: "high"
+        users: 50000
+        deployment_frequency: "bi-weekly"
+        
+      docs-site:
+        team: "documentation"
+        framework: "vitepress"
+        path: "apps/docs"
+        criticality: "low"
+        users: 1000
+        deployment_frequency: "continuous"
+        
+    services:
+      user-service:
+        team: "identity"
+        framework: "fastapi"
+        path: "services/user-service"
+        criticality: "critical"
+        dependencies: ["auth-service", "database"]
+        
+      product-service:
+        team: "catalog"
+        framework: "fastapi"
+        path: "services/product-service"
+        criticality: "high"
+        dependencies: ["database", "search-service"]
+        
+      order-service:
+        team: "fulfillment"
+        framework: "fastapi"
+        path: "services/order-service"
+        criticality: "critical"
+        dependencies: ["user-service", "product-service", "payment-service"]
+        
+      payment-service:
+        team: "payments"
+        framework: "fastapi"
+        path: "services/payment-service"
+        criticality: "critical"
+        compliance: ["pci-dss", "sox"]
+        dependencies: ["user-service"]
+        
+      notification-service:
+        team: "communications"
+        framework: "nodejs"
+        path: "services/notification-service"
+        criticality: "medium"
+        dependencies: ["user-service", "queue-service"]
+        
+    packages:
+      ui-components:
+        team: "design-system"
+        framework: "react"
+        path: "packages/ui-components"
+        consumers: ["web-customer", "web-admin", "mobile-app"]
+        
+      shared-types:
+        team: "platform"
+        framework: "typescript"
+        path: "packages/shared-types"
+        consumers: ["all"]
+        
+      api-client:
+        team: "platform"
+        framework: "typescript"
+        path: "packages/api-client"
+        consumers: ["web-customer", "web-admin", "mobile-app"]
+        
+      shared-utils:
+        team: "platform"
+        framework: "typescript"
+        path: "packages/shared-utils"
+        consumers: ["all"]
+
+# Team configuration and responsibilities
+teams:
+  customer-experience:
+    lead: "alice@company.com"
+    members: 12
+    focus: ["frontend", "ux", "performance", "accessibility"]
+    frameworks: ["nextjs", "react"]
+    quality_standards:
+      error_threshold: 0
+      warning_threshold: 5
+      coverage_threshold: 85
+      performance_budget: "strict"
+    
+  admin-tools:
+    lead: "bob@company.com"
+    members: 8
+    focus: ["frontend", "admin-interfaces", "data-visualization"]
+    frameworks: ["nextjs", "react"]
+    quality_standards:
+      error_threshold: 1
+      warning_threshold: 10
+      coverage_threshold: 75
+    
+  mobile:
+    lead: "charlie@company.com"
+    members: 10
+    focus: ["mobile", "react-native", "performance"]
+    frameworks: ["react-native", "expo"]
+    quality_standards:
+      error_threshold: 2
+      warning_threshold: 8
+      coverage_threshold: 80
+    
+  identity:
+    lead: "diana@company.com"
+    members: 6
+    focus: ["authentication", "security", "privacy"]
+    frameworks: ["fastapi", "python"]
+    compliance: ["gdpr", "ccpa", "hipaa"]
+    quality_standards:
+      error_threshold: 0
+      warning_threshold: 2
+      coverage_threshold: 95
+      security_scan: "required"
+    
+  catalog:
+    lead: "eve@company.com"
+    members: 8
+    focus: ["product-data", "search", "recommendations"]
+    frameworks: ["fastapi", "elasticsearch", "ml"]
+    quality_standards:
+      error_threshold: 0
+      warning_threshold: 5
+      coverage_threshold: 85
+    
+  fulfillment:
+    lead: "frank@company.com"
+    members: 10
+    focus: ["order-processing", "inventory", "logistics"]
+    frameworks: ["fastapi", "python"]
+    quality_standards:
+      error_threshold: 0
+      warning_threshold: 3
+      coverage_threshold: 90
+    
+  payments:
+    lead: "grace@company.com"
+    members: 6
+    focus: ["payments", "security", "compliance"]
+    frameworks: ["fastapi", "python"]
+    compliance: ["pci-dss", "sox"]
+    quality_standards:
+      error_threshold: 0
+      warning_threshold: 0
+      coverage_threshold: 98
+      security_scan: "continuous"
+      compliance_check: "required"
+    
+  design-system:
+    lead: "henry@company.com"
+    members: 4
+    focus: ["ui-components", "design-tokens", "accessibility"]
+    frameworks: ["react", "storybook"]
+    quality_standards:
+      error_threshold: 0
+      warning_threshold: 3
+      coverage_threshold: 90
+      accessibility_compliance: "wcag-aa"
+
+# Quality gates and validation rules
+quality_gates:
+  global:
+    error_threshold: 5
+    warning_threshold: 25
+    coverage_threshold: 80
+    security_scan: "required"
+    performance_check: "required"
+    
+  per_criticality:
+    critical:
+      error_threshold: 0
+      warning_threshold: 0
+      coverage_threshold: 95
+      security_scan: "continuous"
+      compliance_check: "required"
+      
+    high:
+      error_threshold: 0
+      warning_threshold: 2
+      coverage_threshold: 85
+      security_scan: "daily"
+      
+    medium:
+      error_threshold: 2
+      warning_threshold: 10
+      coverage_threshold: 70
+      security_scan: "weekly"
+      
+    low:
+      error_threshold: 5
+      warning_threshold: 20
+      coverage_threshold: 60
+      security_scan: "monthly"
+
+# Analysis configuration
+analysis:
+  parallel_processing: true
+  max_workers: 16
+  cache_strategy: "distributed"
+  cache_ttl: 3600
+  
+  scheduling:
+    real_time: ["critical", "high"]
+    hourly: ["medium"]
+    daily: ["low"]
+    
+  custom_rules:
+    enabled:
+      - team-naming-convention
+      - monorepo-dependency-rules
+      - cross-team-api-contracts
+      - security-compliance
+      - performance-standards
+      
+  ignore_patterns:
+    global:
+      - "**/node_modules/**"
+      - "**/dist/**"
+      - "**/build/**"
+      - "**/.next/**"
+      - "**/__pycache__/**"
+      - "**/coverage/**"
+      - "**/*.test.ts"
+      - "**/*.spec.ts"
+    
+# Cross-team collaboration rules
+collaboration:
+  api_contracts:
+    format: "openapi-3.0"
+    validation: "required"
+    versioning: "semantic"
+    breaking_change_approval: "required"
+    
+  dependency_management:
+    shared_dependencies: "centralized"
+    version_alignment: "required"
+    security_updates: "automatic"
+    
+  code_sharing:
+    shared_packages: "required-approval"
+    cross_team_changes: "review-required"
+    breaking_changes: "rfc-process"
+    
+  communication:
+    daily_updates: true
+    weekly_sync: true
+    monthly_architecture_review: true
+    quarterly_dependency_review: true
+
+# Deployment and release management
+deployment:
+  strategy: "service-mesh"
+  environments: ["development", "staging", "production"]
+  
+  promotion_rules:
+    development:
+      auto_deploy: true
+      quality_gate: "basic"
+      
+    staging:
+      auto_deploy: false
+      quality_gate: "standard"
+      approval_required: true
+      
+    production:
+      auto_deploy: false
+      quality_gate: "strict"
+      approval_required: true
+      rollback_strategy: "blue-green"
+
+# Monitoring and observability
+monitoring:
+  metrics:
+    code_quality: "daily"
+    security_scan: "continuous"
+    performance: "real-time"
+    dependency_health: "weekly"
+    
+  alerting:
+    quality_regression: "immediate"
+    security_vulnerability: "immediate"
+    performance_degradation: "5min"
+    dependency_issues: "daily"
+    
+  reporting:
+    team_dashboards: true
+    executive_summary: "weekly"
+    compliance_reports: "monthly"
+    
+# Integration with external tools
+integrations:
+  ci_cd: "github-actions"
+  issue_tracking: "linear"
+  communication: "slack"
+  documentation: "notion"
+  monitoring: "datadog"
+  
+  slack_channels:
+    general: "#fluorite-monorepo"
+    alerts: "#fluorite-alerts"
+    releases: "#fluorite-releases"
+    
+# Performance optimization
+performance:
+  caching:
+    analysis_cache: true
+    template_cache: true
+    dependency_cache: true
+    
+  resource_limits:
+    memory_per_worker: "2GB"
+    timeout_per_analysis: "300s"
+    max_concurrent_analyses: 8
+    
+  optimization:
+    incremental_analysis: true
+    smart_diffing: true
+    parallel_execution: true
+
+# Security configuration
+security:
+  compliance_frameworks:
+    - "gdpr"
+    - "ccpa"
+    - "pci-dss"
+    - "sox"
+    - "hipaa"
+    
+  vulnerability_scanning:
+    frequency: "continuous"
+    severity_threshold: "medium"
+    auto_fix: "low-risk"
+    
+  secret_scanning:
+    enabled: true
+    patterns: ["api-keys", "passwords", "tokens"]
+    exclusions: ["test-fixtures"]
+
+# Usage examples and common commands
+usage_examples:
+  daily_workflow:
+    - "fluorite-mcp --static-analysis --monorepo-mode --changed-only"
+    - "fluorite-mcp --team-report --team customer-experience"
+    - "fluorite-mcp --cross-team-impact-analysis"
+    
+  team_specific:
+    frontend_teams:
+      - "fluorite-mcp --static-analysis --framework nextjs --focus performance"
+      - "fluorite-mcp --accessibility-check --wcag-level aa"
+      
+    backend_teams:
+      - "fluorite-mcp --static-analysis --framework fastapi --focus security"
+      - "fluorite-mcp --api-contract-validation"
+      
+    platform_teams:
+      - "fluorite-mcp --dependency-analysis --cross-team-impact"
+      - "fluorite-mcp --shared-package-usage-report"
+      
+  release_management:
+    - "fluorite-mcp --release-readiness-check --service order-service"
+    - "fluorite-mcp --breaking-change-analysis --since last-release"
+    - "fluorite-mcp --deployment-validation --environment production"
+
+# Onboarding checklist for new team members
+onboarding:
+  setup_steps:
+    - "Install Fluorite MCP: npm install -g fluorite-mcp"
+    - "Configure team settings: fluorite-mcp --setup-team $TEAM_NAME"
+    - "Run initial analysis: fluorite-mcp --onboarding-scan"
+    - "Join team Slack channels"
+    - "Review team quality standards"
+    
+  learning_resources:
+    - "Team-specific documentation in docs/teams/$TEAM_NAME/"
+    - "Fluorite MCP getting started guide"
+    - "Monorepo architecture overview"
+    - "Quality standards and compliance requirements"

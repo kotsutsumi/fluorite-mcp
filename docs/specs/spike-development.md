@@ -57,13 +57,13 @@ function DragDropTreeSpike() {
     { id: 2, name: "Node 2", children: [] }
   ];
   
-  // TODO: 本番では設定可能にする
+  // Note: Make configurable in production
   const MAX_DEPTH = 3;
   
-  // FIXME: エラーハンドリングは後で
+  // Note: Add error handling in production version
   const handleDrop = (source, target) => {
     console.log('Dropped!', source, target);
-    // 最小限の実装で動作を確認
+    // Minimal implementation for functionality verification
   };
   
   return <TreeView data={mockData} onDrop={handleDrop} />;
@@ -81,7 +81,7 @@ test('ドラッグ&ドロップが機能する', async ({ page }) => {
   
   await node1.dragTo(node2);
   
-  // 位置が入れ替わったことを確認
+  // Verify that positions have been swapped
   await expect(node2).toBeAbove(node1);
 });
 ```
@@ -93,14 +93,14 @@ test('ドラッグ&ドロップが機能する', async ({ page }) => {
 
 ### 6. 統合フェーズ
 ```javascript
-// Plopで本体への統合を自動化
+// Automate integration into main codebase with Plop
 module.exports = function (plop) {
   plop.setGenerator('integrate-spike', {
-    description: 'スパイクを本体に統合',
+    description: 'Integrate spike into main codebase',
     prompts: [{
       type: 'input',
       name: 'spikePath',
-      message: 'スパイクのパス'
+      message: 'Spike path'
     }],
     actions: [{
       type: 'add',
@@ -115,14 +115,14 @@ module.exports = function (plop) {
 
 ### Step 1: プロジェクト作成
 ```bash
-# Viteで即座に開始
+# Start immediately with Vite
 npm create vite@latest spike-dnd-tree -- --template react-ts
 cd spike-dnd-tree
 npm install react-dnd react-dnd-html5-backend
 npm run dev
 ```
 
-### Step 2: 最小実装
+### Step 2: Minimal Implementation
 ```typescript
 // src/components/TreeNode.tsx
 import { useDrag, useDrop } from 'react-dnd';
@@ -149,7 +149,7 @@ export function TreeNode({ node, onMove }) {
 }
 ```
 
-### Step 3: Storybookで独立検証
+### Step 3: Independent Verification with Storybook
 ```typescript
 // TreeNode.stories.tsx
 export default {
@@ -165,27 +165,27 @@ export const Default = {
 
 export const Dragging = {
   play: async ({ canvasElement }) => {
-    // ドラッグ中の状態をシミュレート
+    // Simulate dragging state
   }
 };
 ```
 
-### Step 4: MSWでAPIモック
+### Step 4: API Mocking with MSW
 ```typescript
 // src/mocks/handlers.ts
 import { rest } from 'msw';
 
 export const handlers = [
   rest.post('/api/tree/move', (req, res, ctx) => {
-    // バックエンドなしで動作確認
+    // Verify functionality without backend
     return res(ctx.json({ success: true }));
   })
 ];
 ```
 
-### Step 5: 本体への統合
+### Step 5: Integration into Main Codebase
 ```typescript
-// 成功したスパイクを本体用にリファクタリング
+// Refactor successful spike for production use
 export interface TreeNodeProps {
   node: TreeNodeData;
   onMove?: (sourceId: string, targetId: string) => void;
@@ -201,8 +201,8 @@ export const TreeNode: React.FC<TreeNodeProps> = ({
   maxDepth = Infinity,
   className
 }) => {
-  // プロダクション品質のコード
-  // エラーハンドリング、アクセシビリティ、パフォーマンス最適化を追加
+  // Production-quality code
+  // Add error handling, accessibility, and performance optimizations
 };
 ```
 
@@ -235,18 +235,18 @@ export const TreeNode: React.FC<TreeNodeProps> = ({
 複数のアプローチを同時に検証する場合:
 
 ```bash
-# Git Worktreeで並行実験
+# Parallel experiments with Git Worktree
 git worktree add ../spike-approach-1 spike/approach1
 git worktree add ../spike-approach-2 spike/approach2
 
-# 各環境で異なる実装を試す
+# Try different implementations in each environment
 cd ../spike-approach-1
 npm create vite@latest . -- --template react-ts
-# React DnDで実装
+# Implement with React DnD
 
 cd ../spike-approach-2  
 npm create vite@latest . -- --template vue-ts
-# Vue Draggableで実装
+# Implement with Vue Draggable
 ```
 
 ## ✅ ベストプラクティス

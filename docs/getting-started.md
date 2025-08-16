@@ -16,7 +16,7 @@ Fluorite MCP is a Model Context Protocol (MCP) server that enhances Claude Code 
 
 - **📚 87+ Library Specifications**: Deep knowledge of modern web development libraries
 - **🌍 12+ Language Ecosystems**: From TypeScript to Rust, covering all major platforms
-- **🧪 282+ Production Templates**: Pre-built patterns for rapid prototyping
+- **🧪 385+ Production Templates**: Pre-built patterns for rapid prototyping
 - **🔍 Static Analysis**: 50+ validation rules for Next.js, React, Vue
 - **🤖 Error Prediction**: AI-powered pattern matching to prevent runtime errors
 

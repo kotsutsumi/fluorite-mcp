@@ -90,7 +90,7 @@ Users receive enhanced capabilities without awareness:
 ## Integration with Fluorite-MCP
 
 ### Library Specifications
-- 90+ libraries with complete usage patterns
+- 87+ libraries with complete usage patterns
 - Framework expertise for Next.js, React, Vue, FastAPI
 - Best practices built into generated code
 
@@ -151,6 +151,6 @@ fluorite-mcp setup
 ---
 
 For complete documentation, see:
-- **[Spike Templates Catalog](./spike-templates.md)** - Complete 206 template reference
+- **[Spike Templates Catalog](./spike-templates.md)** - Complete 385 template reference
 - **[API Documentation](../API.md)** - Technical API reference
 - **[Commands Reference](./commands.md)** - Standard command documentation

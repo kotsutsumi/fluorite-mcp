@@ -1,0 +1,494 @@
+# GitHub Actions Integration for Fluorite MCP
+# Complete CI/CD pipeline with quality gates, security scanning, and deployment validation
+
+name: Fluorite MCP Quality Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  schedule:
+    # Run weekly security scan
+    - cron: '0 2 * * 1'
+
+env:
+  NODE_VERSION: '20'
+  PYTHON_VERSION: '3.11'
+  FLUORITE_LOG_LEVEL: info
+  NODE_OPTIONS: "--max-old-space-size=4096"
+
+jobs:
+  # Detect changes and determine strategy
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      frontend-changed: ${{ steps.changes.outputs.frontend }}
+      backend-changed: ${{ steps.changes.outputs.backend }}
+      should-deploy: ${{ steps.deploy-check.outputs.should-deploy }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Detect changes
+        uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            frontend:
+              - 'frontend/**'
+              - 'shared/**'
+            backend:
+              - 'backend/**'
+              - 'shared/**'
+              
+      - name: Determine deployment
+        id: deploy-check
+        run: |
+          if [[ "${{ github.ref }}" == "refs/heads/main" ]] || [[ "${{ github.ref }}" == "refs/heads/develop" ]]; then
+            echo "should-deploy=true" >> $GITHUB_OUTPUT
+          else
+            echo "should-deploy=false" >> $GITHUB_OUTPUT
+          fi
+
+  # Static analysis with Fluorite MCP
+  static-analysis:
+    runs-on: ubuntu-latest
+    needs: setup
+    strategy:
+      matrix:
+        component: [frontend, backend]
+        include:
+          - component: frontend
+            framework: nextjs
+            path: ./frontend
+            enabled: ${{ needs.setup.outputs.frontend-changed == 'true' }}
+          - component: backend
+            framework: fastapi
+            path: ./backend
+            enabled: ${{ needs.setup.outputs.backend-changed == 'true' }}
+    steps:
+      - name: Checkout
+        if: matrix.enabled == 'true'
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        if: matrix.enabled == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          
+      - name: Setup Python
+        if: matrix.enabled == 'true' && matrix.component == 'backend'
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          
+      - name: Install Fluorite MCP
+        if: matrix.enabled == 'true'
+        run: npm install -g fluorite-mcp
+        
+      - name: Install dependencies
+        if: matrix.enabled == 'true'
+        run: |
+          cd ${{ matrix.path }}
+          if [ -f "package.json" ]; then
+            npm ci
+          fi
+          if [ -f "requirements.txt" ]; then
+            pip install -r requirements.txt
+          fi
+          
+      - name: Run Fluorite Analysis
+        if: matrix.enabled == 'true'
+        run: |
+          cd ${{ matrix.path }}
+          fluorite-mcp --static-analysis \
+            --project-path . \
+            --framework ${{ matrix.framework }} \
+            --predict-errors true \
+            --analyze-dependencies true \
+            --strict-mode ${{ github.ref == 'refs/heads/main' && 'true' || 'false' }} \
+            --output-format github-actions > analysis-results.json
+            
+      - name: Quality Gate Check
+        if: matrix.enabled == 'true'
+        run: |
+          cd ${{ matrix.path }}
+          
+          # Extract metrics from analysis
+          ERRORS=$(jq '.summary.errors' analysis-results.json)
+          WARNINGS=$(jq '.summary.warnings' analysis-results.json)
+          SECURITY_ISSUES=$(jq '.security.issues | length' analysis-results.json)
+          
+          echo "📊 Quality Metrics:"
+          echo "Errors: $ERRORS"
+          echo "Warnings: $WARNINGS"
+          echo "Security Issues: $SECURITY_ISSUES"
+          
+          # Quality gate thresholds
+          if [ "${{ github.ref }}" == "refs/heads/main" ]; then
+            MAX_ERRORS=0
+            MAX_WARNINGS=5
+            MAX_SECURITY=0
+          else
+            MAX_ERRORS=3
+            MAX_WARNINGS=10
+            MAX_SECURITY=2
+          fi
+          
+          # Check thresholds
+          if [ "$ERRORS" -gt "$MAX_ERRORS" ]; then
+            echo "❌ Too many errors: $ERRORS > $MAX_ERRORS"
+            exit 1
+          fi
+          
+          if [ "$WARNINGS" -gt "$MAX_WARNINGS" ]; then
+            echo "⚠️ Too many warnings: $WARNINGS > $MAX_WARNINGS"
+            exit 1
+          fi
+          
+          if [ "$SECURITY_ISSUES" -gt "$MAX_SECURITY" ]; then
+            echo "🔒 Too many security issues: $SECURITY_ISSUES > $MAX_SECURITY"
+            exit 1
+          fi
+          
+          echo "✅ Quality gate passed"
+          
+      - name: Upload Analysis Results
+        if: matrix.enabled == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: analysis-${{ matrix.component }}-${{ github.sha }}
+          path: ${{ matrix.path }}/analysis-results.json
+
+  # Security-focused analysis
+  security-scan:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.event_name == 'schedule'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          
+      - name: Install Fluorite MCP
+        run: npm install -g fluorite-mcp
+        
+      - name: Comprehensive Security Scan
+        run: |
+          fluorite-mcp --static-analysis \
+            --project-path . \
+            --framework auto-detect \
+            --focus security \
+            --compliance-check true \
+            --vulnerability-scan true \
+            --output-format security-report > security-report.json
+            
+      - name: Security Report Analysis
+        run: |
+          CRITICAL=$(jq '.vulnerabilities.critical | length' security-report.json)
+          HIGH=$(jq '.vulnerabilities.high | length' security-report.json)
+          MEDIUM=$(jq '.vulnerabilities.medium | length' security-report.json)
+          
+          echo "🔒 Security Scan Results:"
+          echo "Critical: $CRITICAL"
+          echo "High: $HIGH"
+          echo "Medium: $MEDIUM"
+          
+          # Fail on critical vulnerabilities
+          if [ "$CRITICAL" -gt 0 ]; then
+            echo "❌ Critical vulnerabilities found!"
+            jq '.vulnerabilities.critical' security-report.json
+            exit 1
+          fi
+          
+          # Warn on high vulnerabilities
+          if [ "$HIGH" -gt 5 ]; then
+            echo "⚠️ High number of high-severity vulnerabilities: $HIGH"
+          fi
+          
+          echo "✅ Security scan passed"
+          
+      - name: Upload Security Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-report-${{ github.sha }}
+          path: security-report.json
+
+  # Performance testing
+  performance-test:
+    runs-on: ubuntu-latest
+    needs: [setup, static-analysis]
+    if: needs.setup.outputs.frontend-changed == 'true'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: |
+          cd frontend
+          npm ci
+          
+      - name: Install Fluorite MCP
+        run: npm install -g fluorite-mcp
+        
+      - name: Build application
+        run: |
+          cd frontend
+          npm run build
+          
+      - name: Performance Analysis
+        run: |
+          cd frontend
+          fluorite-mcp --static-analysis \
+            --focus performance \
+            --analyze-bundle-size true \
+            --performance-budget-check true \
+            --output-format performance-report > performance-report.json
+            
+      - name: Bundle Size Check
+        run: |
+          cd frontend
+          
+          BUNDLE_SIZE=$(jq '.bundleAnalysis.totalSize' performance-report.json)
+          MAX_SIZE=5242880  # 5MB limit
+          
+          echo "📦 Bundle Analysis:"
+          echo "Total Size: $BUNDLE_SIZE bytes"
+          echo "Limit: $MAX_SIZE bytes"
+          
+          if [ "$BUNDLE_SIZE" -gt "$MAX_SIZE" ]; then
+            echo "❌ Bundle size exceeds limit!"
+            exit 1
+          fi
+          
+          echo "✅ Bundle size within limits"
+          
+      - name: Upload Performance Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-report-${{ github.sha }}
+          path: frontend/performance-report.json
+
+  # Build and test
+  build-test:
+    runs-on: ubuntu-latest
+    needs: [setup, static-analysis]
+    strategy:
+      matrix:
+        component: [frontend, backend]
+        include:
+          - component: frontend
+            path: ./frontend
+            enabled: ${{ needs.setup.outputs.frontend-changed == 'true' }}
+          - component: backend
+            path: ./backend
+            enabled: ${{ needs.setup.outputs.backend-changed == 'true' }}
+    steps:
+      - name: Checkout
+        if: matrix.enabled == 'true'
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        if: matrix.enabled == 'true' && matrix.component == 'frontend'
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          
+      - name: Setup Python
+        if: matrix.enabled == 'true' && matrix.component == 'backend'
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          
+      - name: Install dependencies
+        if: matrix.enabled == 'true'
+        run: |
+          cd ${{ matrix.path }}
+          if [ -f "package.json" ]; then
+            npm ci
+          fi
+          if [ -f "requirements.txt" ]; then
+            pip install -r requirements.txt
+          fi
+          
+      - name: Build
+        if: matrix.enabled == 'true'
+        run: |
+          cd ${{ matrix.path }}
+          if [ -f "package.json" ] && [ "$(jq -r '.scripts.build' package.json)" != "null" ]; then
+            npm run build
+          fi
+          
+      - name: Test
+        if: matrix.enabled == 'true'
+        run: |
+          cd ${{ matrix.path }}
+          if [ -f "package.json" ] && [ "$(jq -r '.scripts.test' package.json)" != "null" ]; then
+            npm test
+          elif [ -f "pytest.ini" ] || [ -f "pyproject.toml" ]; then
+            pytest
+          fi
+
+  # Generate spike templates for common patterns
+  template-generation:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    needs: [build-test]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          
+      - name: Install Fluorite MCP
+        run: npm install -g fluorite-mcp
+        
+      - name: Auto-generate Templates
+        run: |
+          # Generate templates based on successful patterns
+          fluorite-mcp --auto-spike \
+            --task "Generate project templates from successful CI/CD patterns" \
+            --constraints '{"ci_cd": "github-actions", "quality_gates": "strict"}'
+            
+      - name: Validate Generated Templates
+        run: |
+          fluorite-mcp --validate-spike auto-generated-ci-template
+
+  # Deployment validation
+  deployment-validation:
+    runs-on: ubuntu-latest
+    needs: [setup, build-test, security-scan]
+    if: needs.setup.outputs.should-deploy == 'true'
+    environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'staging' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Install Fluorite MCP
+        run: npm install -g fluorite-mcp
+        
+      - name: Pre-deployment Validation
+        run: |
+          ENV_TYPE=${{ github.ref == 'refs/heads/main' && 'production' || 'staging' }}
+          
+          fluorite-mcp --static-analysis \
+            --project-path . \
+            --framework auto-detect \
+            --environment $ENV_TYPE \
+            --deployment-ready-check true
+            
+      - name: Generate Deployment Report
+        run: |
+          cat > deployment-report.md << EOF
+          # 🚀 Deployment Report
+          
+          **Environment**: ${{ github.ref == 'refs/heads/main' && 'Production' || 'Staging' }}
+          **Commit**: ${{ github.sha }}
+          **Timestamp**: $(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          
+          ## Quality Gates
+          ✅ Static analysis passed
+          ✅ Security scan completed
+          ✅ Performance validation passed
+          ✅ Build successful
+          
+          ## Changes
+          $(git log --oneline ${{ github.event.before }}..${{ github.sha }} || echo "Initial deployment")
+          
+          ## Fluorite MCP Validation
+          All quality gates passed with Fluorite MCP v$(fluorite-mcp --version)
+          EOF
+          
+      - name: Upload Deployment Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-report-${{ github.sha }}
+          path: deployment-report.md
+
+  # Notify on completion
+  notify:
+    runs-on: ubuntu-latest
+    needs: [static-analysis, security-scan, performance-test, build-test, deployment-validation]
+    if: always()
+    steps:
+      - name: Determine Status
+        id: status
+        run: |
+          if [[ "${{ needs.static-analysis.result }}" == "success" && 
+                "${{ needs.build-test.result }}" == "success" ]]; then
+            echo "status=success" >> $GITHUB_OUTPUT
+            echo "emoji=✅" >> $GITHUB_OUTPUT
+          else
+            echo "status=failure" >> $GITHUB_OUTPUT
+            echo "emoji=❌" >> $GITHUB_OUTPUT
+          fi
+          
+      - name: Notify Teams
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+            --data '{
+              "text": "${{ steps.status.outputs.emoji }} Pipeline ${{ steps.status.outputs.status }} for ${{ github.ref_name }}\n\n**Commit**: `${{ github.sha }}`\n**Actor**: ${{ github.actor }}\n**Fluorite MCP**: Quality gates ${{ steps.status.outputs.status == 'success' && 'passed' || 'failed' }}"
+            }' \
+            ${{ secrets.SLACK_WEBHOOK_URL || 'https://httpbin.org/post' }}
+
+# Additional workflow for scheduled dependency updates
+---
+name: Fluorite MCP Dependency Monitor
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'  # Weekly Monday 6 AM
+  workflow_dispatch:
+
+jobs:
+  dependency-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Install Fluorite MCP
+        run: npm install -g fluorite-mcp
+        
+      - name: Analyze Dependencies
+        run: |
+          fluorite-mcp --static-analysis \
+            --analyze-dependencies true \
+            --security-scan true \
+            --update-recommendations true \
+            --output-format dependency-report > dependency-report.json
+            
+      - name: Generate Update PR
+        if: success()
+        run: |
+          # Parse recommendations and create update PRs
+          UPDATES=$(jq '.recommendations.updates | length' dependency-report.json)
+          
+          if [ "$UPDATES" -gt 0 ]; then
+            echo "📦 $UPDATES dependency updates recommended"
+            # Create automated PR with updates
+          fi

@@ -1,6 +1,6 @@
 # Spike Templates - Comprehensive Development Scaffolds
 
-Complete reference for fluorite-mcp's 282 Spike templates for rapid prototyping and development.
+Complete reference for fluorite-mcp's 385 Spike templates for rapid prototyping and development.
 
 ## Overview
 
@@ -467,12 +467,12 @@ All Spike templates work with full SuperClaude parameter bypass:
 
 ---
 
-**Total Templates**: 282 production-ready scaffolds  
+**Total Templates**: 385 production-ready scaffolds  
 **Total Lines**: 3,500+ lines of battle-tested configurations  
 **Coverage**: 15+ technology stacks, 50+ frameworks and libraries  
 **Quality**: Enterprise-grade patterns with security and performance built-in
 
-### Latest Additions (v0.9.7)
+### Latest Additions (v0.11.0)
 - **Quality & Security**: OpenAPI contract testing, secret detection, vulnerability scanning
 - **GitHub Actions**: Artifact upload, Cloudflare Pages preview, CloudFront invalidation, Snyk scanning, Turborepo cache
 - **Next.js Components**: shadcn/ui Badge and async Combobox components
@@ -485,4 +485,4 @@ All Spike templates work with full SuperClaude parameter bypass:
 - **Infrastructure**: Docker Compose observability stacks (OpenTelemetry + Loki + Tempo, Prometheus + Grafana)
 - **Monitoring**: Node.js OpenTelemetry metrics/logs, Grafana dashboards, OpenAPI mocking
 - **Build Tools**: Nx monorepo, pnpm workspaces, Turborepo configurations
-- **Total Coverage**: 282 production-ready templates across all technology stacks
+- **Total Coverage**: 385 production-ready templates across all technology stacks

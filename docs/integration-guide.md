@@ -2,6 +2,8 @@
 
 Comprehensive guide for integrating Fluorite MCP with development workflows, CI/CD pipelines, and custom applications.
 
+> **🎯 Quick Links**: For detailed real-world scenarios and examples, see [Use Cases & Examples Guide](./use-cases-examples.md)
+
 ## 📖 Table of Contents
 
 - [Claude Code CLI Integration](#claude-code-cli-integration)
@@ -2652,6 +2654,540 @@ groups:
 
 ---
 
+## Quick Integration Examples
+
+### 5-Minute Team Setup
+
+**Scenario**: Get a small development team up and running with Fluorite MCP in 5 minutes.
+
+```bash
+#!/bin/bash
+# quick-team-setup.sh
+
+echo "🚀 5-Minute Fluorite MCP Team Setup"
+echo "=================================="
+
+# 1. Install for team lead
+npm install -g fluorite-mcp
+claude mcp add fluorite -- fluorite-mcp-server
+
+# 2. Verify installation
+echo "✅ Testing installation..."
+fluorite-mcp --self-test
+
+# 3. Create team configuration
+mkdir -p .fluorite
+cat > .fluorite/team-config.yml << EOF
+team:
+  name: "Development Team"
+  size: "small"
+  
+frameworks:
+  primary: ["nextjs", "react"]
+  
+quality_gates:
+  error_threshold: 3
+  warning_threshold: 10
+EOF
+
+# 4. Test with sample project
+echo "🧪 Testing with sample component..."
+echo 'import React from "react"; export const Button = () => <button>Click me</button>;' > sample.tsx
+
+# Use Claude Code CLI to analyze
+echo "Sample analysis result:"
+claude-code "Analyze this React component for best practices and suggest improvements" < sample.tsx
+
+echo "✅ Setup complete! Share these commands with your team:"
+echo "  npm install -g fluorite-mcp"
+echo "  claude mcp add fluorite -- fluorite-mcp-server"
+```
+
+### Instant Project Analysis
+
+**Scenario**: Quickly analyze any project for issues and improvements.
+
+```bash
+# instant-analysis.sh
+#!/bin/bash
+
+PROJECT_PATH=${1:-.}
+FRAMEWORK=${2:-auto-detect}
+
+echo "🔍 Instant Project Analysis"
+echo "=========================="
+echo "Path: $PROJECT_PATH"
+echo "Framework: $FRAMEWORK"
+echo ""
+
+# Quick validation
+fluorite-mcp --static-analysis \
+  --project-path "$PROJECT_PATH" \
+  --framework "$FRAMEWORK" \
+  --max-issues 20 \
+  --output-format summary
+
+echo ""
+echo "📊 Performance test:"
+time fluorite-mcp --performance-test
+
+echo ""
+echo "💡 To see full analysis, run:"
+echo "  fluorite-mcp --static-analysis --project-path \"$PROJECT_PATH\" --framework \"$FRAMEWORK\""
+```
+
+### Spike Template Discovery
+
+**Scenario**: Find and apply the perfect template for your project quickly.
+
+```javascript
+// quick-spike-finder.js
+const { FluoriteIntegration } = require('./lib/fluorite-integration');
+
+async function quickSpikeFinder(userQuery) {
+  const fluorite = new FluoriteIntegration();
+  await fluorite.initialize();
+  
+  console.log(`🔍 Finding templates for: "${userQuery}"`);
+  
+  // Discover templates
+  const templates = await fluorite.discoverSpikes(userQuery);
+  
+  if (templates.length === 0) {
+    console.log('❌ No templates found. Try a broader search term.');
+    return;
+  }
+  
+  console.log(`✅ Found ${templates.length} templates:`);
+  
+  templates.slice(0, 5).forEach((template, index) => {
+    console.log(`${index + 1}. 🔐 ${template.id}`);
+    console.log(`   📝 ${template.description}`);
+    console.log(`   🏗️ Stack: ${template.stack.join(', ')}`);
+    console.log('');
+  });
+  
+  // Auto-select best match
+  const recommendation = await fluorite.autoSelectSpike(userQuery);
+  
+  if (recommendation.selectedTemplate) {
+    console.log(`🎯 Best match: ${recommendation.selectedTemplate}`);
+    console.log(`📊 Confidence: ${Math.round(recommendation.confidence * 100)}%`);
+    console.log(`💭 Reasoning: ${recommendation.reasoning}`);
+    
+    console.log('\n🚀 To apply this template, run:');
+    console.log(`fluorite-mcp --apply-spike ${recommendation.selectedTemplate}`);
+  }
+}
+
+// Usage examples
+if (require.main === module) {
+  const query = process.argv[2] || 'React form with validation';
+  quickSpikeFinder(query).catch(console.error);
+}
+
+// Run with: node quick-spike-finder.js "Next.js API with authentication"
+```
+
+### Common Integration Patterns
+
+#### Pattern 1: Pre-commit Hook
+```bash
+#!/bin/sh
+# .git/hooks/pre-commit
+
+echo "🔍 Running Fluorite MCP pre-commit checks..."
+
+# Get staged files
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(ts|tsx|js|jsx|vue|py)$')
+
+if [ -z "$STAGED_FILES" ]; then
+  echo "✅ No relevant files to check"
+  exit 0
+fi
+
+# Quick validation
+fluorite-mcp --quick-validate \
+  --files "$STAGED_FILES" \
+  --framework auto-detect \
+  --fast-mode
+
+if [ $? -ne 0 ]; then
+  echo "❌ Pre-commit validation failed. Please fix issues before committing."
+  exit 1
+fi
+
+echo "✅ Pre-commit validation passed"
+```
+
+#### Pattern 2: VS Code Task
+```json
+// .vscode/tasks.json
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Fluorite: Analyze Current File",
+      "type": "shell",
+      "command": "fluorite-mcp",
+      "args": [
+        "--quick-validate",
+        "--file", "${file}",
+        "--framework", "auto-detect"
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Fluorite: Project Analysis",
+      "type": "shell",
+      "command": "fluorite-mcp",
+      "args": [
+        "--static-analysis",
+        "--project-path", "${workspaceFolder}",
+        "--framework", "auto-detect"
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Fluorite: Apply Spike Template",
+      "type": "shell",
+      "command": "fluorite-mcp",
+      "args": [
+        "--discover-spikes",
+        "--query", "${input:spikeQuery}"
+      ],
+      "group": "build"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "spikeQuery",
+      "description": "What kind of template are you looking for?",
+      "default": "React component",
+      "type": "promptString"
+    }
+  ]
+}
+```
+
+#### Pattern 3: Package.json Scripts
+```json
+{
+  "scripts": {
+    "fluorite:analyze": "fluorite-mcp --static-analysis --project-path . --framework auto-detect",
+    "fluorite:validate": "fluorite-mcp --quick-validate --framework auto-detect",
+    "fluorite:performance": "fluorite-mcp --performance-test",
+    "fluorite:health": "fluorite-mcp --self-test",
+    "fluorite:spikes": "fluorite-mcp --discover-spikes",
+    "precommit": "fluorite-mcp --quick-validate --staged-files",
+    "prebuild": "npm run fluorite:validate",
+    "test:quality": "npm run fluorite:analyze && npm run test"
+  }
+}
+```
+
+## Framework-Specific Integration Examples
+
+### Next.js Integration
+
+```typescript
+// next.config.js enhancement
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // ... existing config
+  
+  webpack: (config, { dev, isServer }) => {
+    if (dev && !isServer) {
+      // Add Fluorite MCP development integration
+      config.plugins.push(
+        new (class FluoriteMCPPlugin {
+          apply(compiler) {
+            compiler.hooks.afterCompile.tap('FluoriteMCP', (compilation) => {
+              // Run quick validation on changed files
+              const changedFiles = Array.from(compilation.fileDependencies)
+                .filter(file => file.includes('/src/') && file.match(/\.(ts|tsx|js|jsx)$/));
+              
+              if (changedFiles.length > 0) {
+                // Background validation (non-blocking)
+                setImmediate(() => {
+                  import('./tools/fluorite-validator').then(({ validateFiles }) => {
+                    validateFiles(changedFiles).catch(console.error);
+                  });
+                });
+              }
+            });
+          }
+        })()
+      );
+    }
+    
+    return config;
+  }
+};
+
+module.exports = nextConfig;
+```
+
+### React Development
+
+```typescript
+// tools/react-dev-integration.ts
+import { FluoriteIntegration } from './fluorite-integration';
+
+export class ReactDevIntegration {
+  private fluorite: FluoriteIntegration;
+  
+  constructor() {
+    this.fluorite = new FluoriteIntegration();
+  }
+  
+  async setupDevelopmentMode() {
+    await this.fluorite.initialize();
+    
+    // Watch for component changes
+    if (process.env.NODE_ENV === 'development') {
+      this.watchComponentChanges();
+    }
+  }
+  
+  private watchComponentChanges() {
+    const chokidar = require('chokidar');
+    
+    chokidar.watch('src/**/*.{tsx,jsx}').on('change', async (filePath) => {
+      console.log(`🔍 Validating ${filePath}...`);
+      
+      try {
+        const validation = await this.fluorite.validateCode(
+          require('fs').readFileSync(filePath, 'utf8'),
+          'tsx',
+          'react'
+        );
+        
+        if (!validation.valid) {
+          console.warn(`⚠️ Issues found in ${filePath}:`);
+          validation.issues.forEach(issue => {
+            console.warn(`  - ${issue.message}`);
+          });
+        }
+      } catch (error) {
+        console.error(`❌ Validation failed for ${filePath}:`, error.message);
+      }
+    });
+  }
+}
+
+// Auto-initialize in development
+if (process.env.NODE_ENV === 'development') {
+  const integration = new ReactDevIntegration();
+  integration.setupDevelopmentMode();
+}
+```
+
+### FastAPI Integration
+
+```python
+# tools/fastapi_fluorite_integration.py
+import asyncio
+import subprocess
+import json
+from typing import Dict, List
+from fastapi import FastAPI, BackgroundTasks
+from watchdog.observers import Observer
+from watchdog.events import FileSystemEventHandler
+
+class FluoriteFileHandler(FileSystemEventHandler):
+    def __init__(self, app: FastAPI):
+        self.app = app
+        
+    def on_modified(self, event):
+        if event.is_directory:
+            return
+            
+        if event.src_path.endswith('.py'):
+            # Run validation in background
+            asyncio.create_task(self.validate_file(event.src_path))
+    
+    async def validate_file(self, file_path: str):
+        try:
+            # Run Fluorite MCP validation
+            result = subprocess.run([
+                'fluorite-mcp', '--quick-validate',
+                '--file', file_path,
+                '--language', 'python',
+                '--framework', 'fastapi'
+            ], capture_output=True, text=True)
+            
+            if result.returncode != 0:
+                print(f"⚠️ Validation issues in {file_path}:")
+                print(result.stdout)
+                
+        except Exception as e:
+            print(f"❌ Validation failed for {file_path}: {e}")
+
+def setup_fluorite_integration(app: FastAPI):
+    """Setup Fluorite MCP integration for FastAPI development"""
+    
+    if not app.debug:
+        return
+    
+    # Watch for file changes
+    event_handler = FluoriteFileHandler(app)
+    observer = Observer()
+    observer.schedule(event_handler, path='.', recursive=True)
+    observer.start()
+    
+    @app.on_event("startup")
+    async def startup_validation():
+        print("🔍 Running startup validation with Fluorite MCP...")
+        
+        try:
+            result = subprocess.run([
+                'fluorite-mcp', '--static-analysis',
+                '--project-path', '.',
+                '--framework', 'fastapi',
+                '--max-issues', '10'
+            ], capture_output=True, text=True)
+            
+            if result.returncode == 0:
+                print("✅ Startup validation passed")
+            else:
+                print("⚠️ Validation issues found:")
+                print(result.stdout)
+                
+        except Exception as e:
+            print(f"❌ Startup validation failed: {e}")
+    
+    @app.on_event("shutdown")
+    def shutdown_cleanup():
+        observer.stop()
+        observer.join()
+
+# Usage in main.py
+from fastapi import FastAPI
+from tools.fastapi_fluorite_integration import setup_fluorite_integration
+
+app = FastAPI()
+
+# Setup Fluorite integration in development
+if __name__ == "__main__":
+    import os
+    if os.getenv("ENV") == "development":
+        setup_fluorite_integration(app)
+```
+
+## Troubleshooting Common Integration Issues
+
+### Issue 1: Claude Code CLI Connection Problems
+
+**Symptoms**: "Server not found" or connection timeout errors
+
+**Diagnosis**:
+```bash
+# Check MCP server registration
+claude mcp list | grep fluorite
+
+# Check server status
+claude mcp status fluorite
+
+# Test server directly
+fluorite-mcp --self-test
+
+# Check logs
+claude mcp logs fluorite --tail 50
+```
+
+**Solutions**:
+```bash
+# Remove and re-add server
+claude mcp remove fluorite
+claude mcp add fluorite -- fluorite-mcp-server
+
+# Check for port conflicts
+lsof -i :3000
+
+# Verify Node.js version
+node --version  # Should be >= 18.0
+
+# Check permissions
+ls -la $(which fluorite-mcp-server)
+```
+
+### Issue 2: Performance Problems
+
+**Symptoms**: Slow analysis, high memory usage, timeouts
+
+**Diagnosis**:
+```bash
+# Check system resources
+top -p $(pgrep fluorite-mcp)
+
+# Monitor memory usage
+watch -n 5 'ps aux | grep fluorite-mcp'
+
+# Check analysis performance
+time fluorite-mcp --performance-test
+```
+
+**Solutions**:
+```bash
+# Increase memory allocation
+export NODE_OPTIONS="--max-old-space-size=4096"
+
+# Enable caching
+export FLUORITE_ENABLE_CACHE=true
+export FLUORITE_CACHE_TTL=3600
+
+# Optimize for your framework
+export FLUORITE_PRIMARY_FRAMEWORK=nextjs
+
+# Exclude large directories
+export FLUORITE_IGNORE_PATTERNS="node_modules/**,dist/**,build/**"
+```
+
+### Issue 3: False Positives in Analysis
+
+**Symptoms**: Incorrect error reports, warnings for valid code
+
+**Solutions**:
+```bash
+# Update to latest version
+npm update -g fluorite-mcp
+
+# Configure custom rules
+cat > .fluorite.json << EOF
+{
+  "rules": {
+    "react-hooks-dependencies": "warning",
+    "nextjs-client-server-boundary": "error"
+  },
+  "ignorePatterns": [
+    "**/*.test.ts",
+    "**/legacy/**"
+  ],
+  "framework": "nextjs",
+  "strictMode": false
+}
+EOF
+
+# Disable specific rules temporarily
+export FLUORITE_DISABLED_RULES="rule-id-1,rule-id-2"
+```
+
+---
+
 This comprehensive integration guide provides detailed patterns for integrating Fluorite MCP across development workflows, CI/CD pipelines, team collaboration, and enterprise deployment scenarios. Each section includes practical examples and production-ready configurations that can be adapted to specific organizational needs.
 
-*Integration Guide v0.10.0 - Last updated: 2025-08-15*
+*Integration Guide v0.11.0 - Last updated: December 2024*

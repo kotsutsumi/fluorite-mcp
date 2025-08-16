@@ -1,0 +1,303 @@
+{
+  "name": "Fluorite MCP VS Code Integration",
+  "description": "Complete VS Code configuration for Fluorite MCP development workflow",
+  "version": "1.0.0",
+  
+  "tasks": {
+    "description": "Add to .vscode/tasks.json",
+    "configuration": {
+      "version": "2.0.0",
+      "tasks": [
+        {
+          "label": "Fluorite: Analyze Current File",
+          "type": "shell",
+          "command": "fluorite-mcp",
+          "args": [
+            "--quick-validate",
+            "--file", "${file}",
+            "--framework", "auto-detect"
+          ],
+          "group": "build",
+          "presentation": {
+            "echo": true,
+            "reveal": "always",
+            "focus": false,
+            "panel": "shared"
+          },
+          "problemMatcher": {
+            "owner": "fluorite",
+            "fileLocation": ["relative", "${workspaceFolder}"],
+            "pattern": {
+              "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+              "file": 1,
+              "line": 2,
+              "column": 3,
+              "severity": 4,
+              "message": 5
+            }
+          }
+        },
+        {
+          "label": "Fluorite: Project Analysis",
+          "type": "shell",
+          "command": "fluorite-mcp",
+          "args": [
+            "--static-analysis",
+            "--project-path", "${workspaceFolder}",
+            "--framework", "auto-detect",
+            "--output-format", "vscode"
+          ],
+          "group": "build",
+          "presentation": {
+            "echo": true,
+            "reveal": "always",
+            "focus": true,
+            "panel": "new"
+          },
+          "problemMatcher": "fluorite"
+        },
+        {
+          "label": "Fluorite: Performance Analysis",
+          "type": "shell",
+          "command": "fluorite-mcp",
+          "args": [
+            "--static-analysis",
+            "--focus", "performance",
+            "--project-path", "${workspaceFolder}",
+            "--framework", "auto-detect"
+          ],
+          "group": "test"
+        },
+        {
+          "label": "Fluorite: Security Analysis",
+          "type": "shell",
+          "command": "fluorite-mcp",
+          "args": [
+            "--static-analysis",
+            "--focus", "security",
+            "--project-path", "${workspaceFolder}",
+            "--framework", "auto-detect"
+          ],
+          "group": "test"
+        },
+        {
+          "label": "Fluorite: Discover Templates",
+          "type": "shell",
+          "command": "fluorite-mcp",
+          "args": [
+            "--discover-spikes",
+            "--query", "${input:spikeQuery}",
+            "--limit", "10"
+          ],
+          "group": "build",
+          "presentation": {
+            "echo": true,
+            "reveal": "always",
+            "focus": true,
+            "panel": "new"
+          }
+        },
+        {
+          "label": "Fluorite: Apply Template",
+          "type": "shell",
+          "command": "fluorite-mcp",
+          "args": [
+            "--apply-spike", "${input:templateId}",
+            "--params", "${input:templateParams}"
+          ],
+          "group": "build"
+        },
+        {
+          "label": "Fluorite: Health Check",
+          "type": "shell",
+          "command": "fluorite-mcp",
+          "args": ["--self-test"],
+          "group": "test",
+          "presentation": {
+            "echo": true,
+            "reveal": "silent",
+            "focus": false,
+            "panel": "shared"
+          }
+        }
+      ],
+      "inputs": [
+        {
+          "id": "spikeQuery",
+          "description": "What kind of template are you looking for?",
+          "default": "React component",
+          "type": "promptString"
+        },
+        {
+          "id": "templateId",
+          "description": "Template ID to apply",
+          "type": "promptString"
+        },
+        {
+          "id": "templateParams",
+          "description": "Template parameters (JSON format)",
+          "default": "{}",
+          "type": "promptString"
+        }
+      ]
+    }
+  },
+  
+  "settings": {
+    "description": "Add to .vscode/settings.json",
+    "configuration": {
+      "fluorite.enableRealTimeValidation": true,
+      "fluorite.framework": "auto-detect",
+      "fluorite.analysisLevel": "standard",
+      "fluorite.autoFixEnabled": true,
+      "fluorite.customRules": [
+        "team-naming-convention",
+        "accessibility-compliance",
+        "performance-optimization"
+      ],
+      "fluorite.excludePatterns": [
+        "**/*.test.ts",
+        "**/*.spec.ts",
+        "**/node_modules/**",
+        "**/dist/**",
+        "**/build/**"
+      ],
+      "fluorite.notifications": {
+        "showSuccessMessages": true,
+        "showWarningMessages": true,
+        "showErrorMessages": true
+      },
+      "fluorite.performance": {
+        "enableCaching": true,
+        "cacheTimeout": 3600,
+        "maxMemoryUsage": "2GB"
+      }
+    }
+  },
+  
+  "keybindings": {
+    "description": "Add to .vscode/keybindings.json",
+    "configuration": [
+      {
+        "key": "ctrl+shift+f",
+        "command": "workbench.action.tasks.runTask",
+        "args": "Fluorite: Analyze Current File",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "ctrl+shift+p",
+        "command": "workbench.action.tasks.runTask",
+        "args": "Fluorite: Project Analysis"
+      },
+      {
+        "key": "ctrl+shift+t",
+        "command": "workbench.action.tasks.runTask",
+        "args": "Fluorite: Discover Templates"
+      }
+    ]
+  },
+  
+  "snippets": {
+    "description": "Add to .vscode/fluorite.code-snippets",
+    "configuration": {
+      "Fluorite Quick Validate": {
+        "scope": "shellscript,bash",
+        "prefix": "fluorite-validate",
+        "body": [
+          "fluorite-mcp --quick-validate --file ${1:filename} --framework ${2:auto-detect}"
+        ],
+        "description": "Quick file validation with Fluorite MCP"
+      },
+      "Fluorite Project Analysis": {
+        "scope": "shellscript,bash",
+        "prefix": "fluorite-analyze",
+        "body": [
+          "fluorite-mcp --static-analysis --project-path ${1:.} --framework ${2:auto-detect} --focus ${3:all}"
+        ],
+        "description": "Full project analysis with Fluorite MCP"
+      },
+      "Fluorite Template Discovery": {
+        "scope": "shellscript,bash",
+        "prefix": "fluorite-discover",
+        "body": [
+          "fluorite-mcp --discover-spikes --query \"${1:search query}\" --limit ${2:10}"
+        ],
+        "description": "Discover spike templates"
+      },
+      "Fluorite Template Apply": {
+        "scope": "shellscript,bash",
+        "prefix": "fluorite-apply",
+        "body": [
+          "fluorite-mcp --apply-spike ${1:template-id} --params '${2:{\"param\": \"value\"}}'"
+        ],
+        "description": "Apply spike template"
+      }
+    }
+  },
+  
+  "extensions": {
+    "description": "Recommended extensions for Fluorite MCP workflow",
+    "recommendations": [
+      "ms-python.python",
+      "ms-vscode.vscode-typescript-next",
+      "bradlc.vscode-tailwindcss",
+      "esbenp.prettier-vscode",
+      "ms-vscode.vscode-json",
+      "redhat.vscode-yaml",
+      "ms-vscode.vscode-eslint"
+    ]
+  },
+  
+  "workspace": {
+    "description": "Multi-root workspace configuration for teams",
+    "configuration": {
+      "folders": [
+        {
+          "name": "Frontend",
+          "path": "./frontend"
+        },
+        {
+          "name": "Backend",
+          "path": "./backend"
+        },
+        {
+          "name": "Shared",
+          "path": "./shared"
+        }
+      ],
+      "settings": {
+        "fluorite.enableRealTimeValidation": true,
+        "fluorite.framework": "auto-detect",
+        "fluorite.multiProject": true,
+        "fluorite.projectMappings": {
+          "frontend": {
+            "framework": "nextjs",
+            "includePatterns": ["src/**/*.ts", "src/**/*.tsx"],
+            "excludePatterns": ["**/*.test.*"]
+          },
+          "backend": {
+            "framework": "fastapi",
+            "includePatterns": ["**/*.py"],
+            "excludePatterns": ["**/__pycache__/**"]
+          }
+        }
+      }
+    }
+  },
+  
+  "usage_examples": {
+    "daily_workflow": [
+      "1. Open project in VS Code",
+      "2. Press Ctrl+Shift+F to analyze current file",
+      "3. Press Ctrl+Shift+P for full project analysis",
+      "4. Press Ctrl+Shift+T to discover templates",
+      "5. Use Command Palette > Fluorite tasks for specific operations"
+    ],
+    "team_setup": [
+      "1. Share .vscode/ folder with team",
+      "2. Install recommended extensions",
+      "3. Configure team-specific settings",
+      "4. Set up git hooks for pre-commit validation"
+    ]
+  }
+}

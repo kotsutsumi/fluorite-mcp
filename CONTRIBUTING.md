@@ -310,6 +310,29 @@ Contributors are recognized in:
 - GitHub contributors page
 - Release notes
 
+## Contributing by Category
+
+### Specifications
+
+Contributing library specifications helps developers discover and use libraries effectively. Create YAML specification files following our format in the `catalog/` directory. Each specification should include comprehensive usage examples, best practices, and proper attribution.
+
+### Ecosystems
+
+Language ecosystem contributions expand multi-language support for Fluorite MCP. Contribute by:
+- Adding new language-specific catalogs
+- Expanding existing ecosystem coverage  
+- Creating cross-language integration patterns
+- Documenting language-specific best practices
+
+### Docs
+
+Documentation contributions enhance developer experience and adoption. Help by:
+- Improving existing documentation clarity
+- Adding missing examples and tutorials
+- Translating documentation to other languages
+- Creating beginner-friendly guides
+- Fixing documentation bugs and broken links
+
 ## License
 
 By contributing, you agree that your contributions will be licensed under the MIT License.

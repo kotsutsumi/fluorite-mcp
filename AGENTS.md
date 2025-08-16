@@ -16,7 +16,7 @@
 - `npm start`: Run compiled server from `dist/`
 - `npm test`: Build then run all tests
 - `npm run test:unit` / `npm run test:e2e` / `npm run test:coverage`: Focused runs
-- Quick CLI add (Claude Code): `claude mcp add fluorite -- fluorite-mcp`
+- Quick CLI add (Claude Code): `claude mcp add fluorite -- fluorite-mcp-server`
 
 ## Coding Style & Naming Conventions
 - Language: TypeScript (ES2022 modules, strict mode)

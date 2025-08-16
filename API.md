@@ -6,7 +6,9 @@ Fluorite MCP implements the Model Context Protocol (MCP) to provide library spec
 
 **Version**: 0.11.0  
 **MCP Protocol**: 1.0.0  
-**Node.js**: 18.0+
+**Node.js**: 18.0+  
+**Spike Templates**: 385+  
+**Catalog Specifications**: 87+
 
 ## Table of Contents
 
@@ -26,20 +28,24 @@ Fluorite MCP implements the Model Context Protocol (MCP) to provide library spec
 
 | Tool | Purpose | Parameters | Response Type |
 |------|---------|------------|---------------|
+| **Specification Management** ||||
 | `list-specs` | List specifications | `filter?` | Specification list |
 | `upsert-spec` | Add/update spec | `pkg`, `yaml` | Operation result |
 | `catalog-stats` | Catalog statistics | None | Statistics object |
+| **Diagnostics & Monitoring** ||||
 | `self-test` | Health check | None | Test results |
 | `performance-test` | Performance metrics | None | Performance data |
 | `server-metrics` | Server observability | None | Metrics object |
-| `static-analysis` | Code analysis | `projectPath`, options | Analysis results |
-| `quick-validate` | Code validation | `code`, `language` | Validation results |
-| `realtime-validation` | File validation | `file`, options | Validation results |
-| `get-validation-rules` | List rules | None | Available rules |
-| `discover-spikes` | Find templates | `query?`, `limit?` | Template list |
-| `auto-spike` | Smart template selection | `task` | Best match |
+| **Static Analysis & Validation** ||||
+| `static-analysis` | Comprehensive code analysis | `projectPath`, `framework?`, options | Analysis results |
+| `quick-validate` | Code snippet validation | `code`, `language?`, `framework?` | Validation results |
+| `realtime-validation` | File validation | `file`, `framework?`, options | Validation results |
+| `get-validation-rules` | List available rules | None | Available rules |
+| **Spike Templates** ||||
+| `discover-spikes` | Find templates | `query?`, `limit?`, `offset?` | Template list |
+| `auto-spike` | Smart template selection | `task`, `constraints?` | Best match |
 | `preview-spike` | Template preview | `id`, `params?` | Template details |
-| `apply-spike` | Apply template | `id`, `params?` | Application plan |
+| `apply-spike` | Apply template | `id`, `params?`, `strategy?` | Application plan |
 | `validate-spike` | Validate application | `id`, `params?` | Validation results |
 | `explain-spike` | Template details | `id` | Template info |
 
@@ -68,7 +74,7 @@ spec://{library-identifier}
 | Library Specs | Individual library specifications | `spec://react-dnd-treeview` |
 | Ecosystem Specs | Comprehensive ecosystem specifications | `spec://spike-development-ecosystem` |
 | Starter Templates | Opinionated starter configurations | `spec://vercel-next-starter` |
-| SuperClaude Integration | Enhanced /fl: commands with Strike development | Enhanced via fluorite-mcp wrapper CLI |
+| SuperClaude Integration | Enhanced /fl: commands with Spike development | Enhanced via fluorite-mcp wrapper CLI |
 
 ### Fetching Resources
 
@@ -235,15 +241,21 @@ Displays server observability metrics.
 
 ### 7. static-analysis
 
-Performs comprehensive static analysis on code.
+Performs comprehensive static analysis on code with framework-specific rules and error prediction.
 
 **Parameters:**
 ```typescript
 {
-  projectPath: string      // Path to project directory
-  framework?: string       // Framework type (nextjs|vue|react)
-  predictErrors?: boolean  // Enable error prediction
-  analyzeDependencies?: boolean  // Analyze dependencies
+  projectPath: string            // Project root directory path
+  targetFiles?: string[]         // Specific files to analyze
+  framework?: "nextjs" | "react" | "vue"  // Target framework
+  strictMode?: boolean           // Enable strict validation mode
+  maxIssues?: number            // Maximum issues to report
+  enabledRules?: string[]       // Specific rules to enable
+  disabledRules?: string[]      // Specific rules to disable
+  autoFix?: boolean             // Generate auto-fix suggestions
+  analyzeDependencies?: boolean // Analyze dependencies
+  predictErrors?: boolean       // Enable error prediction
 }
 ```
 
@@ -292,10 +304,10 @@ Validates code snippets without file system access.
 **Parameters:**
 ```typescript
 {
-  code: string          // Code to validate
-  language: string      // Language (ts|tsx|js|jsx|vue)
-  framework?: string    // Framework context
-  fileName?: string     // Optional file name for context
+  code: string                                    // Code to validate
+  language?: "typescript" | "javascript" | "jsx" | "tsx"  // Code language
+  framework?: string                              // Framework context
+  fileName?: string                               // Optional file name for context
 }
 ```
 
@@ -500,7 +512,18 @@ Fluorite MCP provides comprehensive static analysis capabilities for modern web 
 
 ### Error Prediction Engine
 
-The error prediction system uses pattern matching to identify potential runtime issues:
+The enhanced error prediction system uses machine learning patterns and framework-specific heuristics to identify potential runtime issues before they occur:
+
+#### Prediction Types
+
+- **HydrationError**: SSR/client-side rendering mismatches
+- **MemoryLeak**: Event listeners, subscriptions not cleaned up
+- **PerformanceIssue**: Inefficient rendering patterns
+- **SecurityVulnerability**: Potential XSS, injection risks
+- **AccessibilityViolation**: WCAG compliance issues
+- **TypeScript**: Type safety violations at runtime
+
+#### Enhanced Response Format
 
 ```json
 {
@@ -508,20 +531,71 @@ The error prediction system uses pattern matching to identify potential runtime 
     {
       "type": "HydrationError",
       "probability": 0.85,
+      "confidence": "high",
       "description": "Date.now() will cause hydration mismatch",
       "file": "components/ServerTime.tsx",
       "line": 12,
-      "suggestion": "Use useEffect to update client-side time"
+      "column": 15,
+      "severity": "error",
+      "suggestion": "Use useEffect to update client-side time",
+      "autoFixAvailable": true,
+      "category": "nextjs-hydration",
+      "ruleId": "nextjs-ssr-client-mismatch"
     },
     {
       "type": "MemoryLeak",
       "probability": 0.72,
+      "confidence": "medium",
       "description": "Event listener not cleaned up",
       "file": "hooks/useWindowResize.ts",
       "line": 8,
-      "suggestion": "Return cleanup function from useEffect"
+      "column": 10,
+      "severity": "warning",
+      "suggestion": "Return cleanup function from useEffect",
+      "autoFixAvailable": true,
+      "category": "react-lifecycle",
+      "ruleId": "react-effect-cleanup"
     }
   ]
+}
+```
+
+### Auto-Fix Capabilities
+
+The static analysis engine can generate automatic fixes for common issues:
+
+#### Supported Auto-Fixes
+
+- **Import Statements**: Add missing imports
+- **Hook Dependencies**: Fix useEffect dependency arrays
+- **TypeScript**: Add type annotations
+- **Accessibility**: Add ARIA attributes
+- **Performance**: Optimize rendering patterns
+- **Security**: Sanitize user inputs
+
+#### Auto-Fix Response
+
+```json
+{
+  "autoFixes": {
+    "components/Button.tsx": [
+      {
+        "line": 12,
+        "column": 5,
+        "type": "insert",
+        "content": "import { useState } from 'react';\n",
+        "description": "Add missing React import"
+      },
+      {
+        "line": 25,
+        "column": 15,
+        "type": "replace", 
+        "oldContent": "[]",
+        "newContent": "[count, setCount]",
+        "description": "Fix useEffect dependencies"
+      }
+    ]
+  }
 }
 ```
 
@@ -590,26 +664,61 @@ Each spike template follows this JSON format:
 }
 ```
 
-### Available Template Categories
+### Available Template Categories (385+ Total)
 
-#### Web Frameworks (30+ templates)
+#### Web Frameworks (150+ templates)
 
-- **Next.js**: SSR apps, API routes, middleware, authentication
-- **React**: Components, hooks, contexts, testing
-- **Vue**: Composition API, components, routing
-- **Fastapi**: REST APIs, authentication, database integration
+- **Next.js (80+ templates)**: SSR apps, API routes, middleware, authentication, file uploads, multipart handling, edge functions, caching, forms, image optimization
+- **React (25+ templates)**: Components, hooks, contexts, testing, state management (Jotai, Zustand, Redux Toolkit), internationalization
+- **Vue (10+ templates)**: Composition API, components, routing, Pinia state management
+- **FastAPI (30+ templates)**: REST APIs, authentication, database integration, WebSockets, background tasks, OpenAPI, dependency injection
+- **Express (15+ templates)**: Minimal setups, security, middleware, authentication, rate limiting
+- **Cloudflare Workers (10+ templates)**: Edge functions, R2 storage, KV operations
+- **Other Frameworks**: Fastify, Hapi, Koa, NestJS, SvelteKit, Nuxt
 
-#### Testing & Quality (15+ templates)
+#### UI Component Libraries (40+ templates)
 
-- **Playwright**: E2E tests, accessibility, visual regression
+- **Shadcn/ui**: Alerts, dialogs, forms, navigation, data display components
+- **Material-UI (MUI)**: Data grids, forms, navigation, themes, React Hook Form integration
+- **Radix UI**: Accessible primitives, overlays, navigation, form controls
+- **Headless UI**: Framework-agnostic components
+
+#### Testing & Quality (25+ templates)
+
+- **Playwright**: E2E tests, accessibility, visual regression, Docker CI, parallel execution
 - **Vitest**: Unit tests, component testing, mocking
+- **Jest**: TypeScript testing, OpenAPI validation
 - **Cypress**: Integration testing, custom commands
+- **Pytest**: FastAPI testing, fixtures
 
-#### DevOps & CI/CD (10+ templates)
+#### Database & ORM (20+ templates)
 
-- **GitHub Actions**: CI pipelines, deployment, security scans
-- **Docker**: Containerization, multi-stage builds
-- **Deployment**: Vercel, Netlify, AWS configurations
+- **Prisma**: PostgreSQL, SQLite, MongoDB, migrations, transactions
+- **Drizzle**: PostgreSQL, SQLite configurations
+- **TypeORM**: MySQL, PostgreSQL, SQLite, migrations
+- **Sequelize**: MySQL, PostgreSQL configurations
+- **Mongoose**: MongoDB CRUD operations
+
+#### DevOps & CI/CD (60+ templates)
+
+- **GitHub Actions (35+ templates)**: CI pipelines, deployment, security scans, monorepo matrix builds, E2E testing, composite actions
+- **Docker**: Containerization, multi-stage builds, compose configurations
+- **Infrastructure**: Terraform (AWS), Pulumi, Kubernetes deployments
+- **Monitoring**: OpenTelemetry, Prometheus, Grafana dashboards
+- **Security**: Secrets scanning, dependency review, SAST tools
+
+#### Cloud Services (30+ templates)
+
+- **AWS**: S3, Lambda, CloudFront, SQS integrations
+- **Google Cloud**: Storage, Pub/Sub, signed URLs
+- **Cloudflare**: Workers, R2, KV storage
+- **Authentication**: Auth0, Clerk, NextAuth.js with various providers
+
+#### Development Tools (20+ templates)
+
+- **Build Tools**: Turbo, pnpm workspaces, Nx monorepos
+- **Linting**: ESLint, Prettier configurations
+- **Package Management**: Serverless Framework, PM2 ecosystems
 
 ### Template Parameters
 
@@ -666,18 +775,40 @@ const autoSelected = await client.callTool('auto-spike', {
 
 ### Using with Claude Code CLI
 
-1. **Installation**
-   ```bash
-   npm i -g fluorite-mcp
-   claude mcp add fluorite -- fluorite-mcp
-   ```
+The fluorite-mcp CLI provides SuperClaude integration and local development commands.
 
-2. **Basic Usage**
-   When using Claude Code, specifications are automatically available:
-   ```
-   User: "Create a drag and drop tree component"
-   Claude: [Accesses spec://react-dnd-treeview automatically]
-   ```
+#### Available CLI Commands
+
+```bash
+# Install globally
+npm i -g fluorite-mcp
+
+# Configure with Claude Code
+claude mcp add fluorite -- fluorite-mcp
+
+# CLI Commands
+fluorite-mcp setup              # Setup SuperClaude integration
+fluorite-mcp version            # Show version information
+fluorite-mcp fl-help [command]  # Show fluorite command help
+```
+
+#### SuperClaude /fl: Commands
+
+Fluorite extends SuperClaude with enhanced `/fl:` commands:
+
+- `/fl:build` - Enhanced project building with spike templates
+- `/fl:implement` - Feature implementation with template support
+- `/fl:analyze` - Static analysis with framework detection
+- `/fl:design` - Design orchestration with templates
+- `/fl:improve` - Code enhancement with optimizations
+- `/fl:spike [operation]` - Direct spike template operations
+
+#### Basic Usage
+When using Claude Code, specifications are automatically available:
+```
+User: "Create a drag and drop tree component"
+Claude: [Accesses spec://react-dnd-treeview automatically]
+```
 
 ### Programmatic Usage
 
@@ -771,9 +902,12 @@ try {
 
 - **Startup Time**: < 100ms
 - **Resource Fetch**: ~1ms average
-- **Static Analysis**: 1-10ms per file
-- **Memory Usage**: ~34MB active
+- **Static Analysis**: 1-10ms per file (up to 1000 files)
+- **Spike Operations**: 5-50ms depending on template complexity
+- **Memory Usage**: ~34MB active (up to 100MB under load)
 - **Max Spec Size**: 1MB per specification
+- **Catalog Size**: 87 specifications, 385+ spike templates
+- **Concurrent Operations**: 100+ resource fetches, 20 spike operations
 
 ### Optimization Tips
 
@@ -981,11 +1115,12 @@ export FLUORITE_ANALYSIS_CONCURRENCY=20
 
 ### MCP Protocol Compatibility
 
-| Fluorite MCP Version | MCP Protocol | Claude Code CLI | Node.js |
-|---------------------|--------------|-----------------|---------|
-| 0.8.x | 1.0.0 | Latest | 18.0+ |
-| 0.7.x | 0.9.x | 0.5+ | 18.0+ |
-| 0.6.x | 0.8.x | 0.4+ | 16.0+ |
+| Fluorite MCP Version | MCP Protocol | Claude Code CLI | Node.js | Features |
+|---------------------|--------------|-----------------|---------|----------|
+| 0.11.x | 1.0.0 | Latest | 18.0+ | Full feature set |
+| 0.10.x | 1.0.0 | Latest | 18.0+ | Static analysis |
+| 0.9.x | 1.0.0 | Latest | 18.0+ | Spike templates |
+| 0.8.x | 1.0.0 | Latest | 18.0+ | Core functionality |
 
 ### API Versioning
 
@@ -1054,4 +1189,4 @@ Contact: [Discussions](https://github.com/kotsutsumi/fluorite-mcp/discussions) f
 
 ---
 
-*API Documentation v0.9.7 - Last updated: 2025-08-15*
+*API Documentation v0.11.0 - Last updated: December 2024*

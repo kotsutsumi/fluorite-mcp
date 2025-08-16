@@ -142,7 +142,7 @@ Configure Vitest with React Testing Library for component testing
 
 ## Library Specifications
 
-Access detailed specifications for 90+ libraries using natural language or direct references.
+Access detailed specifications for 87+ libraries using natural language or direct references.
 
 ### Core Libraries
 

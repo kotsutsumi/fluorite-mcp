@@ -49,7 +49,7 @@ Prevent issues before they occur with intelligent analysis:
 ### 🧪 Accelerated Development with Spike Templates
 Bridge the gap between idea and implementation:
 
-- **🏭 282+ Production Templates**: Battle-tested scaffolds for authentication, APIs, testing, and deployment
+- **🏭 385+ Production Templates**: Battle-tested scaffolds for authentication, APIs, testing, and deployment
 - **🗣️ Natural Language Interface**: Describe features in plain English—no complex syntax to learn
 - **🎯 Intelligent Selection**: AI-powered template matching based on your project context and requirements
 - **🔄 Iterative Refinement**: Built-in quality validation and improvement loops
@@ -187,7 +187,7 @@ Fluorite MCP bridges the gap between natural language requirements and productio
 
 Transform ideas into working prototypes in minutes with our comprehensive template ecosystem:
 
-#### **282+ Production-Ready Templates**
+#### **385+ Production-Ready Templates**
 
 | **Category** | **Templates** | **Key Features** | **Time Savings** |
 |--------------|---------------|------------------|------------------|
@@ -310,7 +310,7 @@ Join our mission to democratize professional development patterns:
 | **📚 Library Specifications** | Help developers discover and use libraries effectively | [Specification Guide](./CONTRIBUTING.md#specifications) | Listed in contributors, library attribution |
 | **🧪 Spike Templates** | Accelerate prototyping across the ecosystem | [Template Creation Guide](./docs/template-creation.md) | Template attribution, featured examples |
 | **🌍 Language Ecosystems** | Expand multi-language support | [Ecosystem Guide](./CONTRIBUTING.md#ecosystems) | Ecosystem maintainer recognition |
-| **🔍 Static Analysis Rules** | Improve code quality and error prevention | [Analysis Rules Guide](./docs/developer.md#rules) | Quality improvement impact metrics |
+| **🔍 Static Analysis Rules** | Improve code quality and error prevention | [Analysis Rules Guide](./docs/developer.md#creating-custom-specifications) | Quality improvement impact metrics |
 | **📖 Documentation** | Enhance developer experience and adoption | [Documentation Guide](./CONTRIBUTING.md#docs) | Documentation contributor badge |
 
 ---
@@ -385,7 +385,7 @@ claude --list-mcps
 | **Library Coverage** | 87+ specifications | 100% production-tested | Leading in MCP ecosystem |
 | **Language Ecosystems** | 12+ comprehensive | Full-stack coverage | Most comprehensive available |
 | **Static Analysis Rules** | 50+ framework-specific | Zero false positives | Advanced error prediction |
-| **Template Ecosystem** | 282+ production templates | Enterprise-grade quality | Largest collection |
+| **Template Ecosystem** | 385+ production templates | Enterprise-grade quality | Largest collection |
 | **Documentation Quality** | 100+ pages, searchable | Professional technical writing | Award-winning clarity |
 
 ### **Developer Impact Metrics**
@@ -393,6 +393,137 @@ claude --list-mcps
 - **🐛 Error Reduction**: 85% fewer runtime errors through predictive analysis
 - **📚 Learning Acceleration**: 70% faster library adoption and best practice implementation
 - **🏆 Code Quality**: 95% adherence to framework conventions and security standards
+
+## 🎯 Practical Usage Examples
+
+### **Quick Start for Teams**
+```bash
+# 5-minute team setup
+npm install -g fluorite-mcp
+claude mcp add fluorite -- fluorite-mcp-server
+fluorite-mcp --self-test
+
+# Instant project analysis
+fluorite-mcp --static-analysis --project-path . --framework auto-detect
+```
+
+### **Code Analysis & Validation**
+```bash
+# Comprehensive project analysis with error prediction
+fluorite-mcp --static-analysis --project-path /my/project --framework nextjs --predict-errors
+
+# Quick validation during development  
+fluorite-mcp --quick-validate --file src/components/Button.tsx --framework react
+
+# Security-focused analysis
+fluorite-mcp --static-analysis --focus security --compliance-check
+
+# Performance analysis
+fluorite-mcp --static-analysis --focus performance --analyze-bundle-size
+```
+
+### **Spike Template System**
+```bash
+# Discover templates for your needs
+fluorite-mcp --discover-spikes --query "React form validation"
+
+# Auto-select and apply template based on natural language
+fluorite-mcp --auto-spike --task "Create authentication system" --framework nextjs
+
+# Apply specific template with parameters
+fluorite-mcp --apply-spike nextjs-auth-nextauth-credentials --params '{"app_name":"MyApp"}'
+
+# Preview template before applying
+fluorite-mcp --preview-spike fastapi-jwt-auth --params '{"project_name":"MyAPI"}'
+```
+
+### **Development Workflow Integration**
+```bash
+# Pre-commit hook integration
+git add -A && fluorite-mcp --quick-validate --staged-files
+
+# CI/CD pipeline integration
+fluorite-mcp --static-analysis --framework auto-detect --max-issues 0
+
+# Development workflow with npm scripts
+npm run fluorite:analyze && npm run build
+
+# Real-time validation
+fluorite-mcp --realtime-validation --file src/components/Form.tsx --watch-mode
+```
+
+### **Framework-Specific Examples**
+
+#### **Next.js Development**
+```bash
+# Next.js app with authentication
+fluorite-mcp --auto-spike --task "Create Next.js app with NextAuth and Prisma"
+
+# Analyze Next.js specific issues
+fluorite-mcp --static-analysis --framework nextjs --enabled-rules nextjs-hydration,nextjs-server-components
+```
+
+#### **React Development**
+```bash
+# React component with form validation
+fluorite-mcp --auto-spike --task "Create React form with React Hook Form and Zod validation"
+
+# React performance analysis
+fluorite-mcp --static-analysis --framework react --focus performance --enabled-rules react-hooks-deps
+```
+
+#### **FastAPI Development**
+```bash
+# FastAPI with JWT auth and database
+fluorite-mcp --auto-spike --task "Create FastAPI with JWT authentication and PostgreSQL"
+
+# Python code analysis
+fluorite-mcp --static-analysis --framework fastapi --language python --focus security
+```
+
+### **Team Collaboration Examples**
+```json
+// .vscode/tasks.json - VS Code integration
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Fluorite: Analyze Current File",
+      "type": "shell",
+      "command": "fluorite-mcp",
+      "args": ["--quick-validate", "--file", "${file}", "--framework", "auto-detect"]
+    },
+    {
+      "label": "Fluorite: Discover Templates",
+      "type": "shell",
+      "command": "fluorite-mcp",
+      "args": ["--discover-spikes", "--query", "${input:spikeQuery}"]
+    }
+  ]
+}
+```
+
+```json
+// package.json - npm scripts integration
+{
+  "scripts": {
+    "fluorite:analyze": "fluorite-mcp --static-analysis --project-path . --framework auto-detect",
+    "fluorite:validate": "fluorite-mcp --quick-validate --framework auto-detect",
+    "fluorite:spikes": "fluorite-mcp --discover-spikes",
+    "precommit": "fluorite-mcp --quick-validate --staged-files",
+    "prebuild": "npm run fluorite:validate"
+  }
+}
+```
+
+> **📚 More Examples**: For comprehensive real-world scenarios including:
+> - Team development workflows with startup, enterprise, and multi-vendor setups
+> - Advanced CI/CD integration patterns with blue-green deployments
+> - IDE and editor integrations (VS Code, Cursor, etc.)
+> - Large-scale monorepo management strategies
+> - Production troubleshooting and performance monitoring
+> 
+> See our detailed [**Use Cases & Examples Guide**](./docs/use-cases-examples.md)
 
 ## 🏗️ Technical Architecture
 
@@ -408,7 +539,7 @@ graph TB
     
     D --> H[87+ YAML Specifications]
     E --> I[50+ Validation Rules]
-    F --> J[282+ Production Templates]
+    F --> J[385+ Production Templates]
     G --> K[Framework-Native Output]
     
     H --> L[TypeScript/JavaScript]
@@ -425,7 +556,7 @@ graph TB
 fluorite-mcp/                    # Enterprise MCP server
 ├── 📁 src/catalog/             # Library specifications (87+ YAML files)
 ├── 📁 src/core/                # Core MCP functionality & analysis engine
-├── 📁 src/spikes/              # Spike template ecosystem (282+ templates)
+├── 📁 src/spikes/              # Spike template ecosystem (385+ templates)
 ├── 📁 docs/                    # VitePress documentation site
 │   ├── 📁 specs/               # Specification documentation
 │   ├── 📁 architecture/        # Technical architecture docs

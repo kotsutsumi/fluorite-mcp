@@ -649,28 +649,211 @@ rm ~/.fluorite.json
 rm ~/.fluorite/logs/*
 ```
 
+## Real-World Troubleshooting Examples
+
+### Issue: Team Member Can't Connect to MCP Server
+
+**Scenario**: New team member follows setup but gets "Server not found" errors.
+
+**Common Causes & Solutions**:
+
+```bash
+# 1. Check if they have the correct Node.js version
+node --version  # Should be >= 18.0
+
+# 2. Verify global npm installation location
+npm config get prefix
+ls -la $(npm config get prefix)/bin/fluorite-mcp*
+
+# 3. Check Claude Code CLI installation
+claude --version
+
+# 4. Re-register the server
+claude mcp remove fluorite
+claude mcp add fluorite -- fluorite-mcp-server
+claude mcp status fluorite
+
+# 5. Test with direct command
+fluorite-mcp --self-test
+```
+
+**Prevention**: Use the [team setup script](../examples/quick-start-team.sh) for consistent installation.
+
+### Issue: Analysis Takes Too Long on Large Codebase
+
+**Scenario**: Monorepo with 100+ files, analysis takes >5 minutes.
+
+**Optimization Steps**:
+
+```bash
+# 1. Enable parallel processing
+export FLUORITE_ANALYSIS_CONCURRENCY=8
+
+# 2. Exclude unnecessary directories
+export FLUORITE_IGNORE_PATTERNS="node_modules/**,dist/**,build/**,.next/**"
+
+# 3. Use incremental analysis
+fluorite-mcp --static-analysis --incremental --changed-only
+
+# 4. Increase memory allocation
+export NODE_OPTIONS="--max-old-space-size=8192"
+
+# 5. Enable caching
+export FLUORITE_ENABLE_CACHE=true
+export FLUORITE_CACHE_TTL=7200
+
+# 6. Framework-specific optimization
+export FLUORITE_PRIMARY_FRAMEWORK=nextjs
+```
+
+**For Enterprise Monorepos**:
+```bash
+# Use monorepo-specific analysis
+fluorite-mcp --static-analysis --monorepo-mode --team-parallel
+
+# Example configuration from examples/monorepo-config.yml
+analysis:
+  parallel_processing: true
+  max_workers: 16
+  cache_strategy: "distributed"
+```
+
+### Issue: False Positives in CI/CD Pipeline
+
+**Scenario**: CI pipeline fails with warnings about valid code patterns.
+
+**Solution Strategy**:
+
+```bash
+# 1. Create project-specific configuration
+cat > .fluorite.json << EOF
+{
+  "framework": "nextjs",
+  "rules": {
+    "react-hooks-dependencies": "warning",
+    "nextjs-client-server-boundary": "error"
+  },
+  "ignorePatterns": [
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    "**/legacy/**",
+    "**/generated/**"
+  ],
+  "customRules": {
+    "team-naming-convention": true,
+    "project-specific-patterns": true
+  }
+}
+EOF
+
+# 2. Adjust CI thresholds by environment
+# In .github/workflows/ci.yml:
+if [ "${{ github.ref }}" == "refs/heads/main" ]; then
+  MAX_ERRORS=0
+  MAX_WARNINGS=3
+else
+  MAX_ERRORS=2
+  MAX_WARNINGS=10
+fi
+
+# 3. Use staged analysis for faster feedback
+fluorite-mcp --quick-validate --staged-files --framework auto-detect
+```
+
+### Issue: Memory Leak in Long-Running Analysis
+
+**Scenario**: Fluorite MCP process consumes increasing memory over time.
+
+**Diagnosis & Fix**:
+
+```bash
+# 1. Monitor memory usage
+watch -n 5 'ps aux | grep fluorite-mcp'
+
+# 2. Check for memory leaks
+node --expose-gc fluorite-mcp --performance-test
+
+# 3. Implement memory limits
+export NODE_OPTIONS="--max-old-space-size=4096 --gc-interval=100"
+
+# 4. Enable automatic cleanup
+export FLUORITE_AUTO_CLEANUP=true
+export FLUORITE_CLEANUP_INTERVAL=300000  # 5 minutes
+
+# 5. Use process restart in long-running environments
+# In crontab:
+0 */6 * * * claude mcp restart fluorite
+```
+
+### Issue: Template Application Fails in Production
+
+**Scenario**: Spike templates work locally but fail in production environment.
+
+**Debugging Steps**:
+
+```bash
+# 1. Check production environment differences
+echo "NODE_ENV: $NODE_ENV"
+echo "Working directory: $(pwd)"
+echo "Permissions: $(ls -la)"
+
+# 2. Preview template before applying
+fluorite-mcp --preview-spike template-id --params '{"env":"production"}'
+
+# 3. Validate template parameters
+fluorite-mcp --explain-spike template-id
+
+# 4. Apply with explicit strategy
+fluorite-mcp --apply-spike template-id \
+  --strategy overwrite \
+  --validate true \
+  --backup true
+
+# 5. Check for conflicts
+fluorite-mcp --apply-spike template-id --strategy three_way_merge
+```
+
 ## Getting Help
 
 ### Collect Diagnostic Information
 
 ```bash
-# Generate diagnostic report
+# Generate comprehensive diagnostic report
 cat > diagnostic-report.txt << EOF
 === System Information ===
 OS: $(uname -a)
 Node.js: $(node --version)
 npm: $(npm --version)
+Shell: $SHELL
+User: $(whoami)
 
 === Fluorite MCP Information ===
 Version: $(fluorite-mcp --version)
-Status: $(claude mcp status fluorite)
+Installation Path: $(which fluorite-mcp)
+Server Status: $(claude mcp status fluorite 2>&1)
+
+=== Environment Variables ===
+NODE_OPTIONS: $NODE_OPTIONS
+FLUORITE_LOG_LEVEL: $FLUORITE_LOG_LEVEL
+FLUORITE_CACHE_TTL: $FLUORITE_CACHE_TTL
+
+=== Performance Test ===
+$(fluorite-mcp --performance-test 2>&1)
 
 === Self-Test Results ===
-$(fluorite-mcp --self-test)
+$(fluorite-mcp --self-test 2>&1)
 
 === Recent Logs ===
 $(tail -50 ~/.fluorite/logs/fluorite.log 2>/dev/null || echo "No logs found")
+
+=== Git Status (if applicable) ===
+$(git status --porcelain 2>/dev/null || echo "Not a git repository")
+
+=== Project Structure ===
+$(find . -name "package.json" -o -name "requirements.txt" -o -name "*.config.*" | head -10)
 EOF
+
+echo "Diagnostic report saved to diagnostic-report.txt"
 ```
 
 ### Report Issues
