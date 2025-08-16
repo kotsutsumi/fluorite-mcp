@@ -5,13 +5,43 @@ import { createLogger } from './logger.js';
 
 const logger = createLogger('vue-analyzer', 'fluorite-mcp');
 
+/**
+ * Vue.js-specific static analyzer that validates Vue 3 Composition API patterns,
+ * component best practices, template syntax, and performance optimizations.
+ * Implements comprehensive validation rules for Vue applications.
+ * 
+ * @example
+ * ```typescript
+ * const analyzer = new VueAnalyzer();
+ * const rules = analyzer.getRules();
+ * console.log(rules.length); // Number of Vue validation rules
+ * ```
+ */
 export class VueAnalyzer {
   private rules: ValidationRule[] = [];
 
+  /**
+   * Creates a new Vue analyzer instance and initializes all validation rules.
+   * Rules include Composition API validation, component patterns, template syntax,
+   * lifecycle hooks, and performance optimization checks.
+   */
   constructor() {
     this.initializeRules();
   }
 
+  /**
+   * Initializes all Vue validation rules including:
+   * - Vue 3 Composition API best practices
+   * - Setup function validation and return patterns
+   * - Reactive data mutation detection
+   * - Ref and reactive object usage patterns
+   * - Template syntax validation
+   * - Component lifecycle hooks
+   * - Performance optimization opportunities
+   * - Vue-specific security patterns
+   * 
+   * @private
+   */
   private initializeRules(): void {
     // Vue 3 Composition API validation
     this.rules.push({
@@ -621,6 +651,39 @@ export class VueAnalyzer {
     });
   }
 
+  /**
+   * Returns all Vue validation rules for integration with the static analyzer.
+   * These rules can be added to a StaticAnalyzer instance to enable Vue-specific
+   * validation capabilities for Vue 3 applications and components.
+   * 
+   * @returns Array of validation rules for Vue applications including:
+   *   - Vue 3 Composition API validation and best practices
+   *   - Template syntax validation and directive usage
+   *   - Props validation and mutation detection
+   *   - Reactivity system validation and optimization
+   *   - Lifecycle hooks validation and API mixing prevention
+   *   - Performance optimization detection
+   *   - Vue Router navigation and guard validation
+   *   - Vuex/Pinia store usage patterns
+   *   - Security best practices and XSS prevention
+   * 
+   * @example
+   * ```typescript
+   * const vueAnalyzer = new VueAnalyzer();
+   * const staticAnalyzer = new StaticAnalyzer();
+   * 
+   * // Add all Vue rules to the static analyzer
+   * vueAnalyzer.getRules().forEach(rule => {
+   *   staticAnalyzer.addRule(rule);
+   * });
+   * 
+   * // Now the analyzer can validate Vue components
+   * const results = await staticAnalyzer.analyze({
+   *   projectPath: './vue-project',
+   *   framework: 'vue'
+   * });
+   * ```
+   */
   public getRules(): ValidationRule[] {
     return this.rules;
   }

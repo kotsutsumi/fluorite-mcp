@@ -3,13 +3,44 @@ import { createLogger } from './logger.js';
 
 const logger = createLogger('react-analyzer', 'fluorite-mcp');
 
+/**
+ * React-specific static analyzer that validates React component patterns, hooks usage,
+ * performance optimizations, security practices, and testing patterns. Implements
+ * comprehensive validation rules for React applications.
+ * 
+ * @example
+ * ```typescript
+ * const analyzer = new ReactAnalyzer();
+ * const rules = analyzer.getRules();
+ * console.log(rules.length); // Number of React validation rules
+ * ```
+ */
 export class ReactAnalyzer {
   private rules: ValidationRule[] = [];
 
+  /**
+   * Creates a new React analyzer instance and initializes all validation rules.
+   * Rules include hooks validation, state management, performance optimization,
+   * component best practices, security checks, and testing patterns.
+   */
   constructor() {
     this.initializeRules();
   }
 
+  /**
+   * Initializes all React validation rules including:
+   * - React Hooks rules of hooks validation
+   * - useEffect dependencies and cleanup validation
+   * - State management patterns and mutation detection
+   * - Performance optimization opportunities
+   * - Component best practices and naming conventions
+   * - Context API usage patterns
+   * - Form handling validation
+   * - Security vulnerability detection
+   * - Testing pattern validation
+   * 
+   * @private
+   */
   private initializeRules(): void {
     // React Hooks Rules
     this.rules.push({
@@ -642,6 +673,20 @@ export class ReactAnalyzer {
     });
   }
 
+  /**
+   * Returns all React validation rules for integration with the static analyzer.
+   * These rules can be added to a StaticAnalyzer instance to enable React-specific
+   * validation capabilities.
+   * 
+   * @returns Array of validation rules for React applications
+   * 
+   * @example
+   * ```typescript
+   * const reactAnalyzer = new ReactAnalyzer();
+   * const staticAnalyzer = new StaticAnalyzer();
+   * reactAnalyzer.getRules().forEach(rule => staticAnalyzer.addRule(rule));
+   * ```
+   */
   public getRules(): ValidationRule[] {
     return this.rules;
   }

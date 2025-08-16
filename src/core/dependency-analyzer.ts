@@ -21,15 +21,56 @@ export interface ModuleResolution {
   suggestions?: string[];
 }
 
+/**
+ * Comprehensive dependency analyzer that detects, analyzes, and resolves various
+ * dependency-related issues in JavaScript/TypeScript projects. Provides insights
+ * into version conflicts, security vulnerabilities, missing dependencies,
+ * circular dependencies, and peer dependency problems.
+ * 
+ * Features:
+ * - Missing dependency detection from import statements
+ * - Version conflict analysis with framework compatibility matrices
+ * - Security vulnerability scanning against known CVE database
+ * - Peer dependency validation and resolution suggestions
+ * - Circular dependency detection using graph analysis
+ * - Duplicate package identification across dependency types
+ * - Module resolution and path validation
+ * 
+ * @example
+ * ```typescript
+ * const analyzer = new DependencyAnalyzer();
+ * 
+ * // Analyze all dependency issues in a project
+ * const issues = await analyzer.analyzeDependencies({
+ *   projectPath: './my-project',
+ *   dependencies: { 'react': '^17.0.0', 'lodash': '^4.17.0' },
+ *   devDependencies: { '@types/react': '^17.0.0' }
+ * });
+ * 
+ * console.log(issues.length); // Number of dependency issues found
+ * ```
+ */
 export class DependencyAnalyzer {
   private knownIssues: Map<string, DependencyIssue[]> = new Map();
   private compatibilityMatrix: Map<string, Map<string, string>> = new Map();
 
+  /**
+   * Creates a new DependencyAnalyzer instance and initializes known issue
+   * databases and framework compatibility matrices. Sets up vulnerability
+   * tracking and version compatibility rules for popular frameworks.
+   */
   constructor() {
     this.initializeKnownIssues();
     this.initializeCompatibilityMatrix();
   }
 
+  /**
+   * Initializes the known issues database with framework-specific compatibility
+   * problems and their resolutions. Maintains a mapping of framework versions
+   * to their common dependency issues and recommended fixes.
+   * 
+   * @private
+   */
   private initializeKnownIssues(): void {
     // Next.js specific issues
     this.knownIssues.set('next@13', [
@@ -67,6 +108,13 @@ export class DependencyAnalyzer {
     ]);
   }
 
+  /**
+   * Initializes the framework compatibility matrix with version requirements
+   * for major frameworks and their dependencies. Used to detect version
+   * conflicts and compatibility issues during dependency analysis.
+   * 
+   * @private
+   */
   private initializeCompatibilityMatrix(): void {
     // Next.js compatibility
     const nextCompat = new Map<string, string>();
@@ -83,6 +131,45 @@ export class DependencyAnalyzer {
     this.compatibilityMatrix.set('next@13', next13Compat);
   }
 
+  /**
+   * Performs comprehensive dependency analysis across multiple domains including
+   * missing dependencies, version conflicts, security vulnerabilities, peer
+   * dependencies, circular dependencies, and duplicate packages.
+   * 
+   * @param context - Analysis context containing project information
+   * @param context.projectPath - Root directory of the project
+   * @param context.targetFiles - Array of files to analyze for imports
+   * @param context.dependencies - Production dependencies from package.json
+   * @param context.devDependencies - Development dependencies from package.json
+   * @param context.framework - Target framework for compatibility checking
+   * @returns Promise resolving to array of dependency analysis results
+   * 
+   * Analysis includes:
+   * - **Missing Dependencies**: Scans import statements for undeclared packages
+   * - **Version Conflicts**: Validates framework compatibility requirements
+   * - **Security Vulnerabilities**: Checks against known CVE database
+   * - **Peer Dependencies**: Validates peer dependency requirements
+   * - **Circular Dependencies**: Detects import cycles using graph analysis
+   * - **Duplicate Packages**: Identifies packages in multiple dependency types
+   * 
+   * @example
+   * ```typescript
+   * const context = {
+   *   projectPath: './my-react-app',
+   *   targetFiles: ['./src/index.tsx', './src/App.tsx'],
+   *   dependencies: { 'react': '^17.0.0', 'lodash': '^4.17.0' },
+   *   devDependencies: { '@types/react': '^17.0.0' },
+   *   framework: 'react'
+   * };
+   * 
+   * const analyzer = new DependencyAnalyzer();
+   * const results = await analyzer.analyzeDependencies(context);
+   * 
+   * // Filter by severity
+   * const criticalIssues = results.filter(r => r.severity === 'error');
+   * const securityIssues = results.filter(r => r.category === 'security');
+   * ```
+   */
   public async analyzeDependencies(context: AnalysisContext): Promise<AnalysisResult[]> {
     const results: AnalysisResult[] = [];
 
@@ -364,6 +451,34 @@ export class DependencyAnalyzer {
     return results;
   }
 
+  /**
+   * Resolves module paths and validates their availability in the project's
+   * node_modules directory. Provides resolution status and installation
+   * suggestions for missing modules.
+   * 
+   * @param context - Analysis context with project path information
+   * @param context.projectPath - Root directory to search for node_modules
+   * @param modules - Array of module names to resolve
+   * @returns Promise resolving to array of module resolution results
+   * 
+   * @example
+   * ```typescript
+   * const analyzer = new DependencyAnalyzer();
+   * const context = { projectPath: './my-project' };
+   * const modules = ['react', 'lodash', 'nonexistent-package'];
+   * 
+   * const resolutions = await analyzer.resolveModules(context, modules);
+   * 
+   * resolutions.forEach(res => {
+   *   if (res.resolved) {
+   *     console.log(`✅ ${res.module} found at ${res.path}`);
+   *   } else {
+   *     console.log(`❌ ${res.module}: ${res.error}`);
+   *     console.log(`   Suggestions: ${res.suggestions?.join(', ')}`);
+   *   }
+   * });
+   * ```
+   */
   public async resolveModules(context: AnalysisContext, modules: string[]): Promise<ModuleResolution[]> {
     const resolutions: ModuleResolution[] = [];
     
@@ -418,6 +533,39 @@ export class DependencyAnalyzer {
     return 0;
   }
 
+  /**
+   * Returns validation rules for integration with the static analyzer.
+   * Provides a single comprehensive rule that performs all dependency
+   * analysis functions when executed by the static analyzer.
+   * 
+   * @returns Array containing the dependency analysis validation rule
+   * 
+   * The returned rule performs:
+   * - Missing dependency detection from import/require statements
+   * - Version conflict analysis against framework compatibility matrices
+   * - Security vulnerability scanning for known CVEs
+   * - Peer dependency validation and missing peer detection
+   * - Circular dependency detection using graph traversal
+   * - Duplicate package identification across dependency types
+   * 
+   * @example
+   * ```typescript
+   * const depAnalyzer = new DependencyAnalyzer();
+   * const staticAnalyzer = new StaticAnalyzer();
+   * 
+   * // Add dependency analysis to static analyzer
+   * depAnalyzer.getRules().forEach(rule => {
+   *   staticAnalyzer.addRule(rule);
+   * });
+   * 
+   * // Now dependency issues will be included in analysis
+   * const results = await staticAnalyzer.analyze({
+   *   projectPath: './my-project',
+   *   dependencies: packageJson.dependencies,
+   *   devDependencies: packageJson.devDependencies
+   * });
+   * ```
+   */
   public getRules(): ValidationRule[] {
     return [
       {

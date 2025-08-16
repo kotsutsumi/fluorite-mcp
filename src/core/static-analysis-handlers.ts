@@ -20,7 +20,20 @@ import * as path from 'path';
 
 const logger = createLogger('static-analysis-handlers', 'fluorite-mcp');
 
-// Helper function to recursively find project files
+/**
+ * Recursively discovers project files for static analysis, excluding common
+ * build directories and including only relevant source file extensions.
+ * 
+ * @param dirPath - Root directory path to search from
+ * @param files - Accumulator array for discovered files (used internally for recursion)
+ * @returns Promise resolving to array of file paths suitable for analysis
+ * 
+ * @example
+ * ```typescript
+ * const files = await findProjectFiles('./src');
+ * console.log(files); // ['./src/index.ts', './src/components/Button.tsx']
+ * ```
+ */
 async function findProjectFiles(dirPath: string, files: string[] = []): Promise<string[]> {
   const excludeDirs = new Set(['node_modules', 'dist', 'build', '.next', '.git', 'coverage']);
   const includeExtensions = new Set(['.ts', '.tsx', '.js', '.jsx']);
@@ -78,6 +91,35 @@ export interface RealTimeValidationInput {
   watchMode?: boolean;
 }
 
+/**
+ * Handles comprehensive static analysis tool requests with framework-specific rules,
+ * error prediction, and dependency analysis. Provides detailed reports with
+ * auto-fix suggestions and performance metrics.
+ * 
+ * @param input - Configuration object for static analysis
+ * @param input.projectPath - Root directory of the project to analyze
+ * @param input.targetFiles - Optional array of specific files to analyze
+ * @param input.framework - Target framework (nextjs, react, vue) for specialized rules
+ * @param input.enabledRules - Array of specific rule IDs to enable
+ * @param input.disabledRules - Array of specific rule IDs to disable
+ * @param input.strictMode - Enable strict validation mode (default: true)
+ * @param input.autoFix - Generate auto-fix suggestions (default: false)
+ * @param input.predictErrors - Enable error prediction analysis (default: true)
+ * @param input.analyzeDependencies - Include dependency analysis (default: true)
+ * @param input.maxIssues - Maximum number of issues to report (default: 1000)
+ * @returns Promise resolving to tool call result with analysis report and metadata
+ * 
+ * @example
+ * ```typescript
+ * const result = await handleStaticAnalysisTool({
+ *   projectPath: './my-project',
+ *   framework: 'nextjs',
+ *   strictMode: true,
+ *   predictErrors: true
+ * });
+ * console.log(result.metadata.issuesFound); // Number of issues detected
+ * ```
+ */
 export async function handleStaticAnalysisTool(input: StaticAnalysisInput): Promise<ToolCallResult> {
   const startTime = Date.now();
   
@@ -220,6 +262,27 @@ export async function handleStaticAnalysisTool(input: StaticAnalysisInput): Prom
   }
 }
 
+/**
+ * Handles quick validation of code snippets without requiring a full project context.
+ * Creates temporary files for analysis and provides rapid feedback for development workflows.
+ * 
+ * @param input - Quick validation configuration
+ * @param input.code - Source code string to validate
+ * @param input.language - Programming language (typescript, javascript, jsx, tsx)
+ * @param input.framework - Target framework for specialized validation rules
+ * @param input.fileName - Optional filename for context (affects rule selection)
+ * @returns Promise resolving to validation results with concise issue reporting
+ * 
+ * @example
+ * ```typescript
+ * const result = await handleQuickValidateTool({
+ *   code: 'const x = useState();',
+ *   language: 'tsx',
+ *   framework: 'react'
+ * });
+ * console.log(result.metadata.valid); // false - missing React import
+ * ```
+ */
 export async function handleQuickValidateTool(input: QuickValidateInput): Promise<ToolCallResult> {
   try {
     logger.info('Quick validation requested', {
@@ -335,6 +398,28 @@ export async function handleQuickValidateTool(input: QuickValidateInput): Promis
   }
 }
 
+/**
+ * Handles real-time validation for live development environments with optimized
+ * performance and minimal latency. Uses fast-running rules and limits issue count
+ * for responsive IDE integration.
+ * 
+ * @param input - Real-time validation configuration
+ * @param input.file - File path to validate
+ * @param input.content - Optional file content (if not provided, reads from disk)
+ * @param input.framework - Target framework for specialized rules
+ * @param input.watchMode - Enable watch mode for continuous validation
+ * @returns Promise resolving to real-time validation status and diagnostics
+ * 
+ * @example
+ * ```typescript
+ * const result = await handleRealTimeValidationTool({
+ *   file: './src/components/Button.tsx',
+ *   framework: 'react',
+ *   watchMode: true
+ * });
+ * console.log(result.metadata.status); // 'pass' or 'fail'
+ * ```
+ */
 export async function handleRealTimeValidationTool(input: RealTimeValidationInput): Promise<ToolCallResult> {
   try {
     logger.info('Real-time validation requested', {
@@ -442,6 +527,20 @@ export async function handleRealTimeValidationTool(input: RealTimeValidationInpu
   }
 }
 
+/**
+ * Retrieves comprehensive list of all available validation rules across all analyzers
+ * including framework-specific rules, built-in static analysis rules, and dependency
+ * analysis rules. Useful for rule discovery and configuration.
+ * 
+ * @returns Promise resolving to tool result with complete rule catalog
+ * 
+ * @example
+ * ```typescript
+ * const result = await handleGetValidationRulesTool();
+ * console.log(result.metadata.totalRules); // Total number of available rules
+ * console.log(result.metadata.rules); // Array of rule objects with metadata
+ * ```
+ */
 export async function handleGetValidationRulesTool(): Promise<ToolCallResult> {
   try {
     const analyzer = new StaticAnalyzer();

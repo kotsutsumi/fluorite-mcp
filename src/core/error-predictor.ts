@@ -28,15 +28,73 @@ export interface ErrorPattern {
   frameworks?: string[];
 }
 
+/**
+ * Advanced error prediction engine that uses pattern matching and machine learning-inspired
+ * techniques to predict potential runtime, build-time, and test-time errors before they occur.
+ * Analyzes code patterns, historical error data, and framework-specific common issues.
+ * 
+ * Features:
+ * - **Pattern-Based Detection**: 13+ error pattern categories including hydration errors,
+ *   memory leaks, race conditions, and TypeScript issues
+ * - **Framework-Specific Rules**: Specialized patterns for Next.js, React, and general JavaScript
+ * - **Historical Analysis**: Adjusts prediction probabilities based on historical error frequencies
+ * - **Multi-Phase Prediction**: Predicts errors across build, runtime, and test phases
+ * - **Detailed Prevention**: Provides specific prevention strategies for each predicted error
+ * - **Integration Ready**: Converts predictions to standard AnalysisResult format
+ * 
+ * @example
+ * ```typescript
+ * const errorPredictor = new ErrorPredictor();
+ * 
+ * // Predict errors in a project
+ * const predictions = await errorPredictor.predictErrors({
+ *   projectPath: './my-nextjs-app',
+ *   targetFiles: ['./src/pages/index.tsx', './src/components/Header.tsx'],
+ *   framework: 'nextjs'
+ * });
+ * 
+ * // Filter high-risk predictions
+ * const highRisk = predictions.filter(p => p.probability > 0.7);
+ * console.log(`${highRisk.length} high-risk errors predicted`);
+ * 
+ * // Generate comprehensive report
+ * const report = await errorPredictor.generatePredictionReport(predictions);
+ * console.log(report);
+ * 
+ * // Convert for static analyzer integration
+ * const analysisResults = errorPredictor.convertToAnalysisResults(predictions);
+ * ```
+ */
 export class ErrorPredictor {
   private patterns: ErrorPattern[] = [];
   private historicalErrors: Map<string, number> = new Map();
 
+  /**
+   * Creates a new ErrorPredictor instance and initializes error pattern database
+   * and historical error frequency data. Sets up 13+ error detection patterns
+   * covering common JavaScript, TypeScript, React, and Next.js issues.
+   */
   constructor() {
     this.initializePatterns();
     this.initializeHistoricalData();
   }
 
+  /**
+   * Initializes the comprehensive error pattern database with 13+ detection patterns
+   * covering framework-specific issues, memory leaks, type errors, and build problems.
+   * Each pattern includes detection logic, probability calculation, and prevention strategies.
+   * 
+   * Pattern categories:
+   * - **Hydration Errors**: Next.js server/client rendering mismatches
+   * - **Type Errors**: Undefined access, unsafe assertions
+   * - **Memory Leaks**: Uncleaned timers and event listeners
+   * - **Async Issues**: Race conditions, async component errors
+   * - **Build Errors**: Import resolution, module conflicts
+   * - **API Errors**: CORS, environment variables
+   * - **Performance**: Infinite loops, unoptimized patterns
+   * 
+   * @private
+   */
   private initializePatterns(): void {
     // Next.js hydration errors
     this.patterns.push({
@@ -282,6 +340,21 @@ export class ErrorPredictor {
     });
   }
 
+  /**
+   * Initializes historical error frequency data based on common JavaScript/TypeScript
+   * error patterns observed in production applications. Used to adjust prediction
+   * probabilities based on real-world error occurrence rates.
+   * 
+   * Historical data includes:
+   * - **TypeError**: 35% of runtime errors (most common)
+   * - **ReferenceError**: 25% of runtime errors
+   * - **SyntaxError**: 15% of build-time errors
+   * - **HydrationError**: 10% of Next.js specific errors
+   * - **ModuleNotFoundError**: 10% of build-time errors
+   * - **RangeError**: 5% of runtime errors
+   * 
+   * @private
+   */
   private initializeHistoricalData(): void {
     // Common error patterns from historical data
     this.historicalErrors.set('TypeError', 0.35);
@@ -292,6 +365,59 @@ export class ErrorPredictor {
     this.historicalErrors.set('ModuleNotFoundError', 0.1);
   }
 
+  /**
+   * Performs comprehensive error prediction analysis across all target files using
+   * pattern matching, historical data, and framework-specific rules. Predicts potential
+   * runtime, build-time, and test-time errors with probability scores and prevention strategies.
+   * 
+   * @param context - Analysis context containing project information
+   * @param context.targetFiles - Array of file paths to analyze for error patterns
+   * @param context.framework - Target framework for framework-specific pattern filtering
+   * @param context.projectPath - Project root directory for context-aware analysis
+   * @returns Promise resolving to array of predicted errors with probability scores
+   * 
+   * Prediction process:
+   * 1. **Pattern Matching**: Applies 13+ error detection patterns to each file
+   * 2. **Framework Filtering**: Uses only relevant patterns for the target framework
+   * 3. **Location Detection**: Identifies line numbers and positions for regex matches
+   * 4. **Historical Adjustment**: Adjusts probabilities based on historical error rates
+   * 5. **Priority Sorting**: Sorts by runtime phase (build > test > runtime) and probability
+   * 
+   * @example
+   * ```typescript
+   * const errorPredictor = new ErrorPredictor();
+   * 
+   * // Comprehensive project analysis
+   * const context = {
+   *   projectPath: './my-react-app',
+   *   targetFiles: [
+   *     './src/components/UserProfile.tsx',
+   *     './src/pages/dashboard.tsx',
+   *     './src/utils/api.ts'
+   *   ],
+   *   framework: 'nextjs'
+   * };
+   * 
+   * const predictions = await errorPredictor.predictErrors(context);
+   * 
+   * // Filter by risk level
+   * const critical = predictions.filter(p => p.probability > 0.8);
+   * const high = predictions.filter(p => p.probability > 0.7 && p.probability <= 0.8);
+   * const medium = predictions.filter(p => p.probability >= 0.4 && p.probability <= 0.7);
+   * 
+   * console.log(`Critical: ${critical.length}, High: ${high.length}, Medium: ${medium.length}`);
+   * 
+   * // Analyze by runtime phase
+   * const buildErrors = predictions.filter(p => p.runtime === 'build');
+   * const runtimeErrors = predictions.filter(p => p.runtime === 'runtime');
+   * 
+   * // Get prevention strategies
+   * predictions.forEach(pred => {
+   *   console.log(`${pred.type}: ${pred.message}`);
+   *   console.log(`Prevention: ${pred.prevention}`);
+   * });
+   * ```
+   */
   public async predictErrors(context: AnalysisContext): Promise<PredictedError[]> {
     const predictions: PredictedError[] = [];
     const startTime = Date.now();
@@ -364,6 +490,49 @@ export class ErrorPredictor {
     return predictions;
   }
 
+  /**
+   * Generates a comprehensive, human-readable error prediction report with
+   * risk categorization, prevention strategies, and expected stack traces.
+   * 
+   * @param predictions - Array of predicted errors from predictErrors method
+   * @returns Promise resolving to formatted report string with visual indicators
+   * 
+   * Report includes:
+   * - **Summary Statistics**: Total predictions, risk level distribution
+   * - **Phase Grouping**: Errors grouped by build/test/runtime phases
+   * - **Risk Indicators**: Color-coded risk levels (🔴 high, 🟡 medium, 🟢 low)
+   * - **Prevention Strategies**: Specific remediation advice for each prediction
+   * - **Expected Stack Traces**: Anticipated error messages for easier debugging
+   * 
+   * @example
+   * ```typescript
+   * const predictions = await errorPredictor.predictErrors(context);
+   * const report = await errorPredictor.generatePredictionReport(predictions);
+   * 
+   * console.log(report);
+   * // Output:
+   * // 🔮 Error Prediction Report
+   * // ==================================================
+   * // 
+   * // 📊 Summary:
+   * //   • Total Predictions: 5
+   * //   • High Risk (>70%): 2
+   * //   • Medium Risk (40-70%): 2
+   * //   • Low Risk (<40%): 1
+   * // 
+   * // ⚠️ Predicted Errors:
+   * // 
+   * // 🕐 BUILD Phase:
+   * //   🔴 ModuleNotFoundError (85% probability)
+   * //      📝 Deep relative imports may fail
+   * //      📄 src/components/Button.tsx:15
+   * //      💡 Prevention: Use absolute imports or path aliases
+   * //      🔍 Expected: Module not found: Can't resolve
+   * 
+   * // Write report to file
+   * await fs.writeFile('./error-predictions.txt', report);
+   * ```
+   */
   public async generatePredictionReport(predictions: PredictedError[]): Promise<string> {
     const report = [
       '🔮 Error Prediction Report',
@@ -415,6 +584,53 @@ export class ErrorPredictor {
     return report.join('\n');
   }
 
+  /**
+   * Converts predicted errors to standard AnalysisResult format for integration
+   * with static analyzers and other analysis tools. Maps prediction data to
+   * the common analysis result interface with appropriate severity levels.
+   * 
+   * @param predictions - Array of predicted errors to convert
+   * @returns Array of AnalysisResult objects compatible with static analyzer
+   * 
+   * Conversion logic:
+   * - **Severity Mapping**: >70% = error, 40-70% = warning, <40% = info
+   * - **Message Format**: Includes error type, message, and probability percentage
+   * - **Location Preservation**: Maintains file path and line number information
+   * - **Prevention Integration**: Maps prevention strategies to suggestion field
+   * - **Confidence Scoring**: Preserves original probability as confidence value
+   * 
+   * @example
+   * ```typescript
+   * const predictions = await errorPredictor.predictErrors(context);
+   * const analysisResults = errorPredictor.convertToAnalysisResults(predictions);
+   * 
+   * // Integrate with static analyzer
+   * const staticAnalyzer = new StaticAnalyzer();
+   * const allResults = [
+   *   ...await staticAnalyzer.analyze(context),
+   *   ...analysisResults
+   * ];
+   * 
+   * // Filter by severity
+   * const errors = analysisResults.filter(r => r.severity === 'error');
+   * const warnings = analysisResults.filter(r => r.severity === 'warning');
+   * 
+   * // Generate unified report
+   * const report = await staticAnalyzer.generateReport(allResults);
+   * 
+   * // Example converted result:
+   * // {
+   * //   severity: 'error',
+   * //   category: 'nextjs',
+   * //   message: 'HydrationError: Potential hydration mismatch detected (85% probability)',
+   * //   file: './src/components/ServerTime.tsx',
+   * //   line: 12,
+   * //   suggestion: 'Use useEffect for client-only code or ensure consistent server/client rendering',
+   * //   confidence: 0.85,
+   * //   rule: 'error-prediction'
+   * // }
+   * ```
+   */
   public convertToAnalysisResults(predictions: PredictedError[]): AnalysisResult[] {
     return predictions.map(pred => ({
       severity: pred.probability > 0.7 ? 'error' : pred.probability > 0.4 ? 'warning' : 'info',

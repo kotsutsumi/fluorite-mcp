@@ -9,6 +9,30 @@ import { SuperClaudeCommands } from '../data/superclaude-commands.js';
 
 const execAsync = promisify(exec);
 
+/**
+ * CLI command for setting up fluorite-mcp integration with Claude Code CLI.
+ * Configures MCP server registration, creates fluorite command files, and
+ * establishes the complete development workflow integration.
+ * 
+ * Features:
+ * - Detects Claude Code CLI installation and version
+ * - Registers fluorite-mcp as an MCP server
+ * - Creates fluorite command configurations (/fl: commands)
+ * - Updates Claude commands configuration
+ * - Verifies complete installation setup
+ * 
+ * @example
+ * ```bash
+ * # Basic setup
+ * fluorite setup
+ * 
+ * # Force setup even if already configured
+ * fluorite setup --force
+ * 
+ * # Preview setup without making changes
+ * fluorite setup --dry-run
+ * ```
+ */
 export const setupCommand = new Command('setup')
   .description('Setup fluorite-mcp with Claude Code CLI')
   .option('--force', 'Force setup even if already configured')
@@ -81,6 +105,21 @@ export const setupCommand = new Command('setup')
   });
 
 
+/**
+ * Creates fluorite command files in the Claude CLI commands directory.
+ * Generates markdown files for each SuperClaude command with fluorite enhancements,
+ * including spike template integration and token optimization capabilities.
+ * 
+ * @private
+ * @returns Promise that resolves when all command files are created
+ * 
+ * @example
+ * Creates files like:
+ * - ~/.claude/commands/fl/build.md
+ * - ~/.claude/commands/fl/implement.md
+ * - ~/.claude/commands/fl/analyze.md
+ * - ~/.claude/commands/fl/help.md
+ */
 async function createFluoriteCommands(): Promise<void> {
   // Create ~/.claude/commands/fl/ directory for slash commands
   const flCommandsDir = path.join(ClaudePaths.claudeDir, 'commands', 'fl');
@@ -178,6 +217,21 @@ All \`/fl:\` commands are enhanced versions of SuperClaude \`/sc:\` commands wit
   await fs.writeFile(helpFilePath, helpContent, 'utf8');
 }
 
+/**
+ * Maps fluorite command names to their required Claude Code tools.
+ * Defines which tools each command needs for proper execution,
+ * enabling fine-grained permission control in the CLI environment.
+ * 
+ * @private
+ * @param commandName - The fluorite command name (e.g., 'build', 'implement')
+ * @returns Array of tool names required for the command
+ * 
+ * @example
+ * ```typescript
+ * const tools = getToolsForCommand('build');
+ * console.log(tools); // ['Read', 'Bash', 'Glob', 'TodoWrite', 'Edit', 'MultiEdit', 'Task']
+ * ```
+ */
 function getToolsForCommand(commandName: string): string[] {
   const toolMap: { [key: string]: string[] } = {
     'build': ['Read', 'Bash', 'Glob', 'TodoWrite', 'Edit', 'MultiEdit', 'Task'],
@@ -201,6 +255,20 @@ function getToolsForCommand(commandName: string): string[] {
   return toolMap[commandName] || ['Read', 'TodoWrite'];
 }
 
+/**
+ * Provides human-readable descriptions for common CLI flags used in
+ * fluorite commands. Used for generating comprehensive command documentation.
+ * 
+ * @private
+ * @param flag - The CLI flag (e.g., '--framework', '--optimize')
+ * @returns Human-readable description of the flag's purpose
+ * 
+ * @example
+ * ```typescript
+ * const desc = getFlagDescription('--framework');
+ * console.log(desc); // 'Target framework or technology stack'
+ * ```
+ */
 function getFlagDescription(flag: string): string {
   const descriptions: { [key: string]: string } = {
     '--framework': 'Target framework or technology stack',
@@ -221,6 +289,21 @@ function getFlagDescription(flag: string): string {
   return descriptions[flag] || 'Command flag';
 }
 
+/**
+ * Generates example usage strings for fluorite commands to include in
+ * command documentation. Provides realistic examples that demonstrate
+ * common use cases and flag combinations.
+ * 
+ * @private
+ * @param commandName - The fluorite command name
+ * @returns Example usage string with common flags and arguments
+ * 
+ * @example
+ * ```typescript
+ * const example = getExampleUsage('implement');
+ * console.log(example); // '"user authentication system" --type feature --test'
+ * ```
+ */
 function getExampleUsage(commandName: string): string {
   const examples: { [key: string]: string } = {
     'build': '--framework react --optimize',
@@ -244,6 +327,20 @@ function getExampleUsage(commandName: string): string {
 }
 
 
+/**
+ * Updates the Claude CLI COMMANDS.md file with fluorite command definitions.
+ * Adds comprehensive documentation for fluorite commands and their integration
+ * with SuperClaude framework, including command mapping and processing pipeline.
+ * 
+ * @private
+ * @param force - If true, overwrites existing fluorite commands section
+ * @returns Promise that resolves when COMMANDS.md is updated
+ * 
+ * @example
+ * ```typescript
+ * await updateClaudeCommands(true); // Force update existing commands
+ * ```
+ */
 async function updateClaudeCommands(force: boolean): Promise<void> {
   const commandsPath = ClaudePaths.commandsFile;
   
@@ -317,6 +414,22 @@ Fluorite commands are processed through \`${executorPath}\` which:
   await fs.writeFile(commandsPath, commandsContent, 'utf8');
 }
 
+/**
+ * Verifies that fluorite-mcp setup completed successfully by checking
+ * for required configuration files, command files, and MCP server connectivity.
+ * Provides comprehensive validation of the entire installation.
+ * 
+ * @private
+ * @param dryRun - If true, performs validation checks without actual verification
+ * @returns Promise that resolves when verification is complete
+ * @throws Error if critical setup components are missing
+ * 
+ * @example
+ * ```typescript
+ * await verifyInstallation(false); // Full verification
+ * await verifyInstallation(true);  // Dry run mode
+ * ```
+ */
 async function verifyInstallation(dryRun: boolean): Promise<void> {
   if (dryRun) {
     console.log('📋 Would verify fluorite-mcp installation');
