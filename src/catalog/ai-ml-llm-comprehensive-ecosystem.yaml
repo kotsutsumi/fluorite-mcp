@@ -224,7 +224,7 @@ inference_engines:
       import asyncio
 
       class HighPerformanceLLMService:
-          def __init__(self, model_name: str = "microsoft/DialoGPT-medium"):
+          def __init__(self, model_name: str = "dialog-gpt-medium"):
               self.llm = LLM(
                   model=model_name,
                   tensor_parallel_size=1,
@@ -520,7 +520,7 @@ huggingface:
           def __init__(self):
               self.device = "cuda" if torch.cuda.is_available() else "cpu"
           
-          def create_text_generator(self, model_name: str = "microsoft/DialoGPT-medium"):
+          def create_text_generator(self, model_name: str = "dialog-gpt-medium"):
               return pipeline(
                   "text-generation",
                   model=model_name,
@@ -535,7 +535,7 @@ huggingface:
                   device=0 if self.device == "cuda" else -1
               )
           
-          def create_summarizer(self, model_name: str = "facebook/bart-large-cnn"):
+          def create_summarizer(self, model_name: str = "bart-large-cnn"):
               return pipeline(
                   "summarization",
                   model=model_name,

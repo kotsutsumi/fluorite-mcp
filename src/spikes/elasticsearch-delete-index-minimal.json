@@ -1,0 +1,16 @@
+{
+  "id": "elasticsearch-delete-index-minimal",
+  "name": "Elasticsearch Delete Index Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "elasticsearch"],
+  "tags": ["delete"],
+  "description": "Delete an Elasticsearch index by name.",
+  "params": [{ "name": "app_name", "default": "es-delete-index" }, { "name": "es_node", "default": "http://localhost:9200" }, { "name": "index_name", "default": "docs" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { Client } from '@elastic/elasticsearch';\nconst client = new Client({ node: process.env.ES_NODE || '{{es_node}}' });\ntry { const res = await client.indices.delete({ index: process.env.ES_INDEX || '{{index_name}}' }); console.log(res.body || res); } catch (e) { console.log('delete failed', e?.message); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@elastic/elasticsearch\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "ES_NODE={{es_node}}\nES_INDEX={{index_name}}\n" }
+  ],
+  "patches": []
+}
+

@@ -98,8 +98,7 @@ const japaneseSidebar = {
       collapsed: false,
       items: [
         { text: 'スパイクテンプレートガイド', link: '/ja/spike-templates' },
-        { text: 'テンプレート作成', link: '/ja/template-creation' },
-        { text: '静的解析', link: '/ja/static-analysis' }
+        { text: 'テンプレート作成', link: '/ja/template-creation' }
       ]
     },
     {
@@ -107,9 +106,11 @@ const japaneseSidebar = {
       collapsed: false,
       items: [
         { text: '開発者ガイド', link: '/ja/developer' },
-        { text: 'アーキテクチャ', link: '/ja/architecture' },
+        { text: 'アーキテクチャサマリー', link: '/ARCHITECTURE_SUMMARY.ja' },
+        { text: 'アーキテクチャドキュメント', link: '/ja/architecture/' },
         { text: '統合ガイド', link: '/ja/integration-guide' },
         { text: 'パフォーマンス', link: '/ja/performance' },
+        { text: '静的解析', link: '/ja/static-analysis' },
         { text: '関数リファレンス', link: '/function-reference.ja' }
       ]
     },

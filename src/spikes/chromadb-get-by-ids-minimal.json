@@ -1,0 +1,15 @@
+{
+  "id": "chromadb-get-by-ids-minimal",
+  "name": "ChromaDB Get by IDs Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "chromadb"],
+  "tags": ["vector", "get"],
+  "description": "Get documents from ChromaDB collection by ids.",
+  "params": [{ "name": "app_name", "default": "chromadb-get-ids" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { ChromaClient } from 'chromadb';\nconst client = new ChromaClient();\nconst col = await client.getOrCreateCollection({ name: 'docs' });\nawait col.add({ ids: ['1','2'], documents: ['hello','fluorite'] });\nconst res = await col.get({ ids: ['1','2'] });\nconsole.log(res.documents);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"chromadb\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

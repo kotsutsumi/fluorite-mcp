@@ -1,0 +1,16 @@
+{
+  "id": "redis-redisearch-delete-index-minimal",
+  "name": "Redis RediSearch Delete Index Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "redis"],
+  "tags": ["redisearch", "delete"],
+  "description": "Drop a RediSearch index by name.",
+  "params": [{ "name": "app_name", "default": "redis-ft-drop" }, { "name": "redis_url", "default": "redis://localhost:6379" }, { "name": "index_name", "default": "idx" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { createClient } from 'redis';\nconst client = createClient({ url: process.env.REDIS_URL || '{{redis_url}}' });\nawait client.connect();\ntry { await client.sendCommand(['FT.DROPINDEX', process.env.REDIS_INDEX || '{{index_name}}']); console.log('dropped'); } catch (e) { console.log('drop failed', e?.message); }\nawait client.quit();\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"redis\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "REDIS_URL={{redis_url}}\nREDIS_INDEX={{index_name}}\n" }
+  ],
+  "patches": []
+}
+

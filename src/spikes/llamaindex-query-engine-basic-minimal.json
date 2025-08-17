@@ -1,0 +1,15 @@
+{
+  "id": "llamaindex-query-engine-basic-minimal",
+  "name": "LlamaIndex Query Engine Basic (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "llamaindex"],
+  "tags": ["llm", "llamaindex"],
+  "description": "Create a simple LlamaIndex query engine over in-memory docs.",
+  "params": [{ "name": "app_name", "default": "llamaindex-qe-basic" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { VectorStoreIndex, SimpleDocument } from 'llamaindex';\nconst docs = [new SimpleDocument({ text: 'fluorite mcp serves spikes' })];\nconst index = await VectorStoreIndex.fromDocuments(docs);\nconst qe = index.asQueryEngine();\nconst res = await qe.query('What does fluorite mcp serve?');\nconsole.log(String(res));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"llamaindex\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

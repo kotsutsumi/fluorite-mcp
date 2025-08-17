@@ -1,0 +1,16 @@
+{
+  "id": "openai-json-guard-parse-minimal",
+  "name": "OpenAI JSON Guard Parse Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "openai"],
+  "tags": ["llm", "json"],
+  "description": "Request JSON and guard-parse with try/catch fallback.",
+  "params": [{ "name": "app_name", "default": "openai-json-guard" }, { "name": "openai_model", "default": "gpt-4o-mini" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import OpenAI from 'openai';\nconst client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst res = await client.chat.completions.create({ model: '{{openai_model}}', messages: [{ role: 'user', content: 'Return {\\"greeting\\": \\\"hello\\\"} as JSON only.' }] });\nconst text = res.choices?.[0]?.message?.content || '';\ntry { console.log(JSON.parse(text)); } catch { console.log('fallback:', text); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"openai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" } 
+  ],
+  "patches": []
+}
+

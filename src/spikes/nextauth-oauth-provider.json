@@ -1,0 +1,14 @@
+{
+  "id": "nextauth-oauth-provider",
+  "name": "NextAuth OAuth Provider (Minimal)",
+  "version": "1.0.0",
+  "stack": ["nextjs", "nextauth"],
+  "tags": ["auth", "oauth"],
+  "description": "Configure NextAuth with OAuth provider.",
+  "params": [{ "name": "app_name", "default": "next-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/api/auth/[...nextauth]/route.ts", "template": "import NextAuth from 'next-auth';\nimport OAuthProvider from 'next-auth/providers/oauth';\nconst handler = NextAuth({ providers: [OAuthProvider] });\nexport { handler as GET, handler as POST };\n" },
+    { "path": "{{app_name}}/.env.example", "template": "AUTH_OAUTH_ID=\nAUTH_OAUTH_SECRET=\nNEXTAUTH_URL=http://localhost:3000\nNEXTAUTH_SECRET=changeme\n" }
+  ],
+  "patches": []
+}

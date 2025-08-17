@@ -1,0 +1,16 @@
+{
+  "id": "pinecone-delete-index-minimal",
+  "name": "Pinecone Delete Index Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "pinecone"],
+  "tags": ["vector", "delete"],
+  "description": "Delete a Pinecone index by name.",
+  "params": [{ "name": "app_name", "default": "pinecone-delete-index" }, { "name": "index_name", "default": "docs" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { Pinecone } from '@pinecone-database/pinecone';\nconst pc = new Pinecone({ apiKey: process.env.PINECONE_API_KEY });\ntry { await pc.deleteIndex(process.env.PINECONE_INDEX || '{{index_name}}'); console.log('deleted'); } catch (e) { console.log('delete failed', e?.message); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@pinecone-database/pinecone\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "PINECONE_API_KEY=...\nPINECONE_INDEX={{index_name}}\n" }
+  ],
+  "patches": []
+}
+

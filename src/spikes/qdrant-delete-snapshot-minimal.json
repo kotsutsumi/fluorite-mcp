@@ -1,0 +1,16 @@
+{
+  "id": "qdrant-delete-snapshot-minimal",
+  "name": "Qdrant Delete Snapshot Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "qdrant"],
+  "tags": ["snapshot", "delete"],
+  "description": "Delete a snapshot file for a Qdrant collection (provide snapshot name).",
+  "params": [{ "name": "app_name", "default": "qdrant-delete-snapshot" }, { "name": "qdrant_url", "default": "http://localhost:6333" }, { "name": "qdrant_collection", "default": "documents" }, { "name": "snapshot", "default": "snapshot_name" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { QdrantClient } from '@qdrant/js-client-rest';\nconst client = new QdrantClient({ url: process.env.QDRANT_URL || '{{qdrant_url}}' });\nawait client.deleteSnapshot(process.env.QDRANT_COLLECTION || '{{qdrant_collection}}', process.env.QDRANT_SNAPSHOT || '{{snapshot}}');\nconsole.log('deleted');\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@qdrant/js-client-rest\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "QDRANT_URL=http://localhost:6333\nQDRANT_COLLECTION={{qdrant_collection}}\nQDRANT_SNAPSHOT={{snapshot}}\n" }
+  ],
+  "patches": []
+}
+

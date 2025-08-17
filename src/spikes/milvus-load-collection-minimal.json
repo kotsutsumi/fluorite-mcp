@@ -1,0 +1,16 @@
+{
+  "id": "milvus-load-collection-minimal",
+  "name": "Milvus Load Collection Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "milvus"],
+  "tags": ["vector", "load"],
+  "description": "Load a Milvus collection into memory.",
+  "params": [{ "name": "app_name", "default": "milvus-load-collection" }, { "name": "milvus_address", "default": "localhost:19530" }, { "name": "collection_name", "default": "documents" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { MilvusClient } from '@zilliz/milvus2-sdk-node';\nconst client = new MilvusClient({ address: process.env.MILVUS_ADDRESS || '{{milvus_address}}' });\nawait client.loadCollection({ collection_name: process.env.MILVUS_COLLECTION || '{{collection_name}}' });\nconsole.log('Loaded');\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@zilliz/milvus2-sdk-node\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "MILVUS_ADDRESS=localhost:19530\nMILVUS_COLLECTION={{collection_name}}\n" }
+  ],
+  "patches": []
+}
+
