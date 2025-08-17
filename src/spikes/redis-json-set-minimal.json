@@ -1,0 +1,13 @@
+{
+  "id": "redis-json-set-minimal",
+  "name": "RedisJSON SET 最小",
+  "version": "1.0.0",
+  "stack": ["redis", "node"],
+  "tags": ["cache"],
+  "description": "RedisJSON モジュールに対する JSON.SET/GET の最小例",
+  "params": [ { "name": "key", "default": "doc:1" } ],
+  "files": [
+    { "path": "redis/json.js", "template": "const Redis = require('ioredis');\nconst r = new Redis(process.env.REDIS_URL);\n(async () => {\n  const key = process.env.REDIS_KEY || '{{key}}';\n  await r.call('JSON.SET', key, '$', JSON.stringify({ msg: 'hello' }));\n  const val = await r.call('JSON.GET', key, '$');\n  console.log(val && JSON.parse(val));\n  process.exit(0);\n})();\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "elasticsearch-ingest-pipeline-minimal",
+  "name": "Elasticsearch Ingest Pipeline 最小",
+  "version": "1.0.0",
+  "stack": ["elasticsearch", "node"],
+  "tags": ["search", "ingest"],
+  "description": "Elasticsearch の Ingest Pipeline 作成の最小例",
+  "params": [ { "name": "pipeline_id", "default": "my-pipeline" } ],
+  "files": [
+    { "path": "es/pipeline.json", "template": "{\n  \"description\": \"set timestamp\",\n  \"processors\": [\n    { \"set\": { \"field\": \"@timestamp\", \"value\": \"{{'{{'}}_ingest.timestamp{{'}}'}}\" } }\n  ]\n}\n" },
+    { "path": "es/create-pipeline.js", "template": "const { Client } = require('@elastic/elasticsearch');\nconst client = new Client({ node: process.env.ELASTIC_URL || 'http://localhost:9200' });\n(async () => {\n  const id = process.env.ELASTIC_PIPELINE || '{{pipeline_id}}';\n  const body = require('./pipeline.json');\n  await client.ingest.putPipeline({ id, body });\n  console.log('pipeline created');\n})();\n" }
+  ]
+}
+

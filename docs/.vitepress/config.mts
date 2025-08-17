@@ -45,17 +45,27 @@ const englishSidebar = {
       items: [
         { text: 'Spike Templates Guide', link: '/spike-templates' },
         { text: 'Template Creation', link: '/template-creation' },
-        { text: 'Static Analysis', link: '/STATIC_ANALYSIS' }
+        { text: 'Static Analysis', link: '/STATIC_ANALYSIS' },
+        { text: 'Performance Optimization', link: '/performance' }
+      ]
+    },
+    {
+      text: '🔧 Integration & API',
+      collapsed: false,
+      items: [
+        { text: 'Integration Guide', link: '/integration-guide' },
+        { text: 'API Reference', link: '/API' },
+        { text: 'Function Reference', link: '/function-reference' }
       ]
     },
     {
       text: '🛠️ Developer Resources',
-      collapsed: false,
+      collapsed: true,
       items: [
         { text: 'Developer Guide', link: '/developer' },
         { 
           text: 'Architecture',
-          collapsed: false,
+          collapsed: true,
           items: [
             { text: 'Overview', link: '/architecture/' },
             { text: 'Fluorite Wrapper Design', link: '/architecture/fluorite-wrapper-design' },
@@ -66,10 +76,7 @@ const englishSidebar = {
             { text: 'Testing Strategy', link: '/architecture/testing-strategy' },
             { text: 'Deployment Plan', link: '/architecture/deployment-plan' }
           ]
-        },
-        { text: 'Integration Guide', link: '/integration-guide' },
-        { text: 'Performance', link: '/performance' },
-        { text: 'Function Reference', link: '/function-reference' }
+        }
       ]
     },
     {
@@ -77,8 +84,8 @@ const englishSidebar = {
       collapsed: true,
       items: [
         { text: 'Troubleshooting', link: '/troubleshooting' },
-        { text: 'API Reference', link: '/API' },
-        { text: 'GitHub Issues', link: 'https://github.com/kotsutsumi/fluorite-mcp/issues' }
+        { text: 'GitHub Issues', link: 'https://github.com/kotsutsumi/fluorite-mcp/issues' },
+        { text: 'GitHub Discussions', link: 'https://github.com/kotsutsumi/fluorite-mcp/discussions' }
       ]
     }
   ]
@@ -122,8 +129,16 @@ const japaneseSidebar = {
       items: [
         { text: '機能の詳細解説', link: '/ja/features' },
         { text: 'スパイクテンプレート詳細', link: '/ja/spike-templates-detailed' },
-        { text: 'パフォーマンス最適化', link: '/ja/performance' },
-        { text: '統合ガイド', link: '/ja/integration-guide' }
+        { text: 'パフォーマンス最適化', link: '/ja/performance' }
+      ]
+    },
+    {
+      text: '🔧 統合・API',
+      collapsed: false,
+      items: [
+        { text: '統合ガイド', link: '/ja/integration-guide' },
+        { text: 'APIリファレンス', link: '/ja/API' },
+        { text: '関数リファレンス', link: '/function-reference.ja' }
       ]
     },
     {
@@ -145,8 +160,7 @@ const japaneseSidebar = {
             { text: 'テスト戦略', link: '/ja/architecture/testing-strategy' },
             { text: 'デプロイ計画', link: '/ja/architecture/deployment-plan' }
           ]
-        },
-        { text: '関数リファレンス', link: '/function-reference.ja' }
+        }
       ]
     },
     {
@@ -165,7 +179,6 @@ const japaneseSidebar = {
       collapsed: true,
       items: [
         { text: 'トラブルシューティング', link: '/ja/troubleshooting' },
-        { text: 'APIリファレンス', link: '/API' },
         { text: 'GitHub Issues', link: 'https://github.com/kotsutsumi/fluorite-mcp/issues' },
         { text: 'コミュニティ', link: 'https://github.com/kotsutsumi/fluorite-mcp/discussions' }
       ]

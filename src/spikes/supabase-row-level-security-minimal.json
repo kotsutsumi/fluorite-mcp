@@ -1,0 +1,13 @@
+{
+  "id": "supabase-row-level-security-minimal",
+  "name": "Supabase RLS ポリシー 最小",
+  "version": "1.0.0",
+  "stack": ["supabase", "postgres"],
+  "tags": ["security", "policy"],
+  "description": "Row Level Security とポリシー定義の最小例 (SQL)",
+  "params": [ { "name": "table", "default": "notes" } ],
+  "files": [
+    { "path": "supabase/rls.sql", "template": "-- Enable RLS and allow users to access only their rows\nalter table {{table}} enable row level security;\ncreate policy \"own_rows_select\" on {{table}} for select using (auth.uid() = user_id);\ncreate policy \"own_rows_insert\" on {{table}} for insert with check (auth.uid() = user_id);\n" }
+  ]
+}
+

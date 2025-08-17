@@ -1,0 +1,13 @@
+{
+  "id": "typeorm-entity-minimal",
+  "name": "TypeORM エンティティ 最小",
+  "version": "1.0.0",
+  "stack": ["node", "typeorm", "typescript"],
+  "tags": ["orm"],
+  "description": "単純な TypeORM エンティティ定義の最小例",
+  "params": [ { "name": "app_name", "default": "typeorm-app" } ],
+  "files": [
+    { "path": "{{app_name}}/src/entity/User.ts", "template": "import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';\n\n@Entity()\nexport class User {\n  @PrimaryGeneratedColumn() id!: number;\n  @Column({ unique: true }) email!: string;\n  @Column({ nullable: true }) name?: string;\n}\n" }
+  ]
+}
+

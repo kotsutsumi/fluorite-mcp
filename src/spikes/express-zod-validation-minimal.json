@@ -1,0 +1,13 @@
+{
+  "id": "express-zod-validation-minimal",
+  "name": "Express + Zod バリデーション 最小",
+  "version": "1.0.0",
+  "stack": ["node", "express", "zod"],
+  "tags": ["api", "validation"],
+  "description": "Express ルートで Zod によるリクエストボディ検証を行う最小例",
+  "params": [ { "name": "app_name", "default": "express-zod" } ],
+  "files": [
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst { z } = require('zod');\nconst app = express();\napp.use(express.json());\n\nconst schema = z.object({ name: z.string().min(1), age: z.number().int().nonnegative() });\n\napp.post('/users', (req, res) => {\n  const parsed = schema.safeParse(req.body);\n  if (!parsed.success) {\n    return res.status(400).json({ error: parsed.error.flatten() });\n  }\n  res.json({ ok: true, user: parsed.data });\n});\n\napp.listen(3000, () => console.log('listening on http://localhost:3000'));\n" }
+  ]
+}
+

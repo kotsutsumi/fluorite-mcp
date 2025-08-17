@@ -1,0 +1,13 @@
+{
+  "id": "mysql2-connection-pool-minimal",
+  "name": "mysql2 コネクションプール 最小",
+  "version": "1.0.0",
+  "stack": ["node", "mysql2"],
+  "tags": ["db"],
+  "description": "mysql2/promise のプールでのクエリ実行最小例",
+  "params": [ { "name": "app_name", "default": "mysql-app" } ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import mysql from 'mysql2/promise';\nconst pool = mysql.createPool({ uri: process.env.DATABASE_URL });\nconst [rows] = await pool.query('SELECT 1 + 1 AS two');\nconsole.log(rows[0]);\nawait pool.end();\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "kysely-query-builder-minimal",
+  "name": "Kysely クエリビルダ 最小",
+  "version": "1.0.0",
+  "stack": ["node", "kysely", "postgres"],
+  "tags": ["orm", "sql"],
+  "description": "Kysely を使った型安全なクエリの最小例",
+  "params": [ { "name": "app_name", "default": "kysely-app" } ],
+  "files": [
+    { "path": "{{app_name}}/index.ts", "template": "import { Kysely, PostgresDialect, sql } from 'kysely';\nimport { Pool } from 'pg';\ninterface DB { users: { id: number; name: string | null } }\nconst db = new Kysely<DB>({ dialect: new PostgresDialect({ pool: new Pool({ connectionString: process.env.DATABASE_URL }) }) });\n(async () => {\n  await sql`create table if not exists users(id serial primary key, name text)`.execute(db);\n  await db.insertInto('users').values({ name: 'Alice' }).execute();\n  const rows = await db.selectFrom('users').selectAll().execute();\n  console.log(rows);\n  await db.destroy();\n})();\n" }
+  ]
+}
+

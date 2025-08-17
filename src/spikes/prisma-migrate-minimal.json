@@ -1,0 +1,14 @@
+{
+  "id": "prisma-migrate-minimal",
+  "name": "Prisma Migrate 最小",
+  "version": "1.0.0",
+  "stack": ["node", "prisma", "postgres"],
+  "tags": ["orm", "migration"],
+  "description": "Prisma schema と簡単なモデル、migrate コマンド実行のための最小構成",
+  "params": [ { "name": "app_name", "default": "prisma-app" } ],
+  "files": [
+    { "path": "{{app_name}}/prisma/schema.prisma", "template": "generator client {\n  provider = \"prisma-client-js\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id        Int      @id @default(autoincrement())\n  email     String   @unique\n  name      String?\n  createdAt DateTime @default(now())\n}\n" },
+    { "path": "{{app_name}}/README.md", "template": "# Prisma Migrate Minimal\n\n1. Set DATABASE_URL in .env\n2. Run: npx prisma migrate dev --name init\n3. Generate: npx prisma generate\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "sequelize-model-minimal",
+  "name": "Sequelize モデル 最小",
+  "version": "1.0.0",
+  "stack": ["node", "sequelize"],
+  "tags": ["orm"],
+  "description": "Sequelize v6 のモデル定義と初期化の最小例",
+  "params": [ { "name": "app_name", "default": "sequelize-app" } ],
+  "files": [
+    { "path": "{{app_name}}/models/user.js", "template": "const { DataTypes } = require('sequelize');\n\nmodule.exports = (sequelize) => {\n  const User = sequelize.define('User', {\n    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },\n    email: { type: DataTypes.STRING, unique: true, allowNull: false },\n    name: { type: DataTypes.STRING }\n  });\n  return User;\n};\n" },
+    { "path": "{{app_name}}/index.js", "template": "const { Sequelize } = require('sequelize');\nconst defineUser = require('./models/user');\nconst sequelize = new Sequelize(process.env.DATABASE_URL, { dialect: 'postgres', logging: false });\n(async () => {\n  const User = defineUser(sequelize);\n  await sequelize.sync();\n  const u = await User.create({ email: 'a@example.com', name: 'Alice' });\n  console.log(u.toJSON());\n  await sequelize.close();\n})();\n" }
+  ]
+}
+

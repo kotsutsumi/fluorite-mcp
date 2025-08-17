@@ -1,0 +1,13 @@
+{
+  "id": "cloudflare-workers-fetch-minimal",
+  "name": "Cloudflare Workers fetch 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare", "workers"],
+  "tags": ["edge"],
+  "description": "Cloudflare Workers の fetch ハンドラ最小例",
+  "params": [ { "name": "app_name", "default": "cf-worker" } ],
+  "files": [
+    { "path": "{{app_name}}/src/index.ts", "template": "export default {\n  async fetch(_req: Request): Promise<Response> {\n    return new Response('hello worker');\n  }\n};\n" }
+  ]
+}
+

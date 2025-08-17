@@ -1,0 +1,13 @@
+{
+  "id": "cloudflare-kv-minimal",
+  "name": "Cloudflare KV 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare", "kv"],
+  "tags": ["edge", "cache"],
+  "description": "Workers から KV に get/put する最小例",
+  "params": [ { "name": "namespace", "default": "MY_KV" } ],
+  "files": [
+    { "path": "cf/kv.ts", "template": "export default {\n  async fetch(_req: Request, env: any) {\n    await env.{{namespace}}.put('greeting', 'hello');\n    const v = await env.{{namespace}}.get('greeting');\n    return new Response(v || '');\n  }\n};\n" }
+  ]
+}
+

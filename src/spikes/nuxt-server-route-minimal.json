@@ -1,0 +1,13 @@
+{
+  "id": "nuxt-server-route-minimal",
+  "name": "Nuxt 3 Server Route 最小",
+  "version": "1.0.0",
+  "stack": ["nuxt", "nitro", "typescript"],
+  "tags": ["api"],
+  "description": "Nuxt 3 の server/api ルートの最小例",
+  "params": [ { "name": "app_name", "default": "nuxt-app" } ],
+  "files": [
+    { "path": "{{app_name}}/server/api/hello.get.ts", "template": "export default defineEventHandler(() => {\n  return { message: 'hello from nuxt' };\n});\n" }
+  ]
+}
+

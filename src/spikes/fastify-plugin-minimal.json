@@ -1,0 +1,14 @@
+{
+  "id": "fastify-plugin-minimal",
+  "name": "Fastify プラグイン 最小",
+  "version": "1.0.0",
+  "stack": ["node", "fastify"],
+  "tags": ["api", "plugin"],
+  "description": "fastify-plugin を用いた簡単なプラグイン作成と登録",
+  "params": [ { "name": "app_name", "default": "fastify-app" } ],
+  "files": [
+    { "path": "{{app_name}}/plugin.js", "template": "const fp = require('fastify-plugin');\nmodule.exports = fp(async function (fastify) {\n  fastify.decorate('hello', () => 'world');\n});\n" },
+    { "path": "{{app_name}}/server.js", "template": "const Fastify = require('fastify');\nconst plugin = require('./plugin');\nconst app = Fastify();\napp.register(plugin);\napp.get('/hello', (req, reply) => reply.send({ hello: app.hello() }));\napp.listen({ port: 3000 });\n" }
+  ]
+}
+

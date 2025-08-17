@@ -1,0 +1,13 @@
+{
+  "id": "hapi-route-minimal",
+  "name": "hapi ルート 最小",
+  "version": "1.0.0",
+  "stack": ["node", "hapi"],
+  "tags": ["api"],
+  "description": "@hapi/hapi を使った最小サーバとルート",
+  "params": [ { "name": "app_name", "default": "hapi-app" } ],
+  "files": [
+    { "path": "{{app_name}}/server.js", "template": "const Hapi = require('@hapi/hapi');\n(async () => {\n  const server = Hapi.server({ port: 3000 });\n  server.route({ method: 'GET', path: '/hello', handler: () => ({ message: 'hello' }) });\n  await server.start();\n  console.log('Server running at:', server.info.uri);\n})();\n" }
+  ]
+}
+

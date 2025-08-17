@@ -1,0 +1,14 @@
+{
+  "id": "redis-ioredis-streams-minimal",
+  "name": "ioredis Streams 最小",
+  "version": "1.0.0",
+  "stack": ["redis", "node"],
+  "tags": ["queue"],
+  "description": "ioredis で XADD/XREADGROUP を行う最小例",
+  "params": [ { "name": "stream", "default": "events" } ],
+  "files": [
+    { "path": "redis/producer.js", "template": "const Redis = require('ioredis');\nconst r = new Redis(process.env.REDIS_URL);\n(async () => {\n  await r.xadd(process.env.REDIS_STREAM || '{{stream}}', '*', 'message', 'hello');\n  console.log('xadd');\n  process.exit(0);\n})();\n" },
+    { "path": "redis/consumer.js", "template": "const Redis = require('ioredis');\nconst r = new Redis(process.env.REDIS_URL);\n(async () => {\n  const stream = process.env.REDIS_STREAM || '{{stream}}';\n  await r.xgroup('CREATE', stream, 'g1', '$', 'MKSTREAM');\n  while (true) {\n    const resp = await r.xreadgroup('GROUP', 'g1', 'c1', 'COUNT', 1, 'BLOCK', 2000, 'STREAMS', stream, '>');\n    if (resp) console.log(resp);\n  }\n})();\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "drizzle-orm-migration-minimal",
+  "name": "Drizzle ORM マイグレーション 最小",
+  "version": "1.0.0",
+  "stack": ["node", "drizzle", "postgres"],
+  "tags": ["orm", "migration"],
+  "description": "Drizzle ORM のスキーマとマイグレーション実行のための最小構成",
+  "params": [ { "name": "app_name", "default": "drizzle-app" } ],
+  "files": [
+    { "path": "{{app_name}}/src/schema.ts", "template": "import { pgTable, serial, varchar } from 'drizzle-orm/pg-core';\nexport const users = pgTable('users', {\n  id: serial('id').primaryKey(),\n  name: varchar('name', { length: 256 })\n});\n" },
+    { "path": "{{app_name}}/README.md", "template": "# Drizzle Minimal\n\n- Define schema in src/schema.ts\n- Run migrations with drizzle-kit (see docs).\n" }
+  ]
+}
+

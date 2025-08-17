@@ -1,0 +1,14 @@
+{
+  "id": "lucia-auth-sveltekit-minimal",
+  "name": "Lucia 認証 SvelteKit 最小",
+  "version": "1.0.0",
+  "stack": ["sveltekit", "lucia"],
+  "tags": ["auth"],
+  "description": "Lucia の SvelteKit アダプタ設定と保護されたルートの最小例",
+  "params": [ { "name": "app_name", "default": "svelte-app" } ],
+  "files": [
+    { "path": "{{app_name}}/src/lib/server/lucia.ts", "template": "import { lucia } from 'lucia';\nimport { sveltekit } from 'lucia/middleware';\nexport const auth = lucia({ middleware: sveltekit(), env: 'DEV' });\nexport type Auth = typeof auth;\n" },
+    { "path": "{{app_name}}/src/routes/+layout.server.ts", "template": "import type { LayoutServerLoad } from './$types';\nimport { auth } from '$lib/server/lucia';\nexport const load: LayoutServerLoad = async ({ locals }) => {\n  const session = await auth.validateRequest(locals);\n  return { user: session?.user ?? null };\n};\n" }
+  ]
+}
+

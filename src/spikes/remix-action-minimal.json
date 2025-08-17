@@ -1,0 +1,13 @@
+{
+  "id": "remix-action-minimal",
+  "name": "Remix Action 最小",
+  "version": "1.0.0",
+  "stack": ["remix", "typescript"],
+  "tags": ["web", "form"],
+  "description": "Remix の loader と action の最小例",
+  "params": [ { "name": "app_name", "default": "remix-app" } ],
+  "files": [
+    { "path": "{{app_name}}/app/routes/contact.tsx", "template": "import { json, type ActionFunctionArgs, type LoaderFunctionArgs } from '@remix-run/node';\nimport { Form, useLoaderData } from '@remix-run/react';\n\nexport async function loader(_args: LoaderFunctionArgs) {\n  return json({ message: 'hello' });\n}\n\nexport async function action({ request }: ActionFunctionArgs) {\n  const form = await request.formData();\n  return json({ ok: true, name: form.get('name') });\n}\n\nexport default function Contact() {\n  const data = useLoaderData<typeof loader>();\n  return (<div>\n    <p>{data.message}</p>\n    <Form method=\"post\">\n      <input name=\"name\" />\n      <button type=\"submit\">Send</button>\n    </Form>\n  </div>);\n}\n" }
+  ]
+}
+

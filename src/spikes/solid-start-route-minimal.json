@@ -1,0 +1,13 @@
+{
+  "id": "solid-start-route-minimal",
+  "name": "SolidStart Route 最小",
+  "version": "1.0.0",
+  "stack": ["solidstart", "typescript"],
+  "tags": ["web", "api"],
+  "description": "SolidStart の API ルート最小例",
+  "params": [ { "name": "app_name", "default": "solid-app" } ],
+  "files": [
+    { "path": "{{app_name}}/src/routes/api/hello.ts", "template": "import type { APIEvent } from 'solid-start';\nexport function GET(_event: APIEvent) {\n  return new Response(JSON.stringify({ message: 'hello' }), { headers: { 'Content-Type': 'application/json' } });\n}\n" }
+  ]
+}
+

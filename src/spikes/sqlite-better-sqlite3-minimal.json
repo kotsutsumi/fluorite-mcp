@@ -1,0 +1,13 @@
+{
+  "id": "sqlite-better-sqlite3-minimal",
+  "name": "better-sqlite3 最小",
+  "version": "1.0.0",
+  "stack": ["node", "sqlite"],
+  "tags": ["db"],
+  "description": "better-sqlite3 を用いた同期型 SQLite 操作の最小例",
+  "params": [ { "name": "db_file", "default": "app.db" } ],
+  "files": [
+    { "path": "sqlite/index.js", "template": "const Database = require('better-sqlite3');\nconst db = new Database(process.env.SQLITE_FILE || '{{db_file}}');\ndb.prepare('create table if not exists users(id integer primary key, name text)').run();\ndb.prepare('insert into users(name) values (?)').run('Alice');\nconsole.log(db.prepare('select * from users').all());\n" }
+  ]
+}
+

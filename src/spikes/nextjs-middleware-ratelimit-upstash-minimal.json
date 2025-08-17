@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-middleware-ratelimit-upstash-minimal",
+  "name": "Next.js Middleware + Upstash RateLimit",
+  "version": "1.0.0",
+  "stack": ["nextjs", "edge", "upstash"],
+  "tags": ["middleware", "ratelimit"],
+  "description": "Next.js middleware で @upstash/ratelimit を使ったレート制限の最小例",
+  "params": [ { "name": "app_name", "default": "next-app" } ],
+  "files": [
+    { "path": "{{app_name}}/middleware.ts", "template": "import { NextResponse } from 'next/server';\nimport { Ratelimit } from '@upstash/ratelimit';\nimport { Redis } from '@upstash/redis';\n\nconst ratelimit = new Ratelimit({\n  redis: Redis.fromEnv(),\n  limiter: Ratelimit.slidingWindow(10, '10 s')\n});\n\nexport async function middleware(req: Request) {\n  const ip = req.headers.get('x-forwarded-for') ?? '127.0.0.1';\n  const { success } = await ratelimit.limit(`mw:${ip}`);\n  if (!success) return new NextResponse('Too Many Requests', { status: 429 });\n  return NextResponse.next();\n}\n" }
+  ]
+}
+

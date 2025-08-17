@@ -1,0 +1,13 @@
+{
+  "id": "clerk-auth-nextjs-minimal",
+  "name": "Clerk 認証 Next.js 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "clerk"],
+  "tags": ["auth"],
+  "description": "@clerk/nextjs を用いたサインイン検証の最小例",
+  "params": [ { "name": "app_name", "default": "next-app" } ],
+  "files": [
+    { "path": "{{app_name}}/app/api/me/route.ts", "template": "import { auth } from '@clerk/nextjs';\nexport async function GET() {\n  const { userId } = auth();\n  if (!userId) return new Response('Unauthorized', { status: 401 });\n  return Response.json({ userId });\n}\n" }
+  ]
+}
+

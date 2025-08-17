@@ -1,0 +1,16 @@
+{
+  "id": "qdrant-vector-upsert-minimal",
+  "name": "Qdrant ベクター upsert 最小",
+  "version": "1.0.0",
+  "stack": ["node", "qdrant"],
+  "tags": ["vector", "search"],
+  "description": "qdrant-client を用いたコレクション作成と upsert の最小例",
+  "params": [
+    { "name": "app_name", "default": "qdrant-app" },
+    { "name": "collection", "default": "docs" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.js", "template": "const { QdrantClient } = require('qdrant-node');\n(async () => {\n  const client = new QdrantClient({ url: process.env.QDRANT_URL || 'http://localhost:6333' });\n  const collection = process.env.QDRANT_COLLECTION || '{{collection}}';\n  await client.recreateCollection(collection, { vectors: { size: 3, distance: 'Cosine' } });\n  await client.upsert(collection, { points: [{ id: 1, vector: [0.1,0.2,0.3], payload: { text: 'hello' } }] });\n  console.log('upserted');\n})();\n" }
+  ]
+}
+

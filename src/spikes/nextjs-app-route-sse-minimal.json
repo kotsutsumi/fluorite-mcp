@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-app-route-sse-minimal",
+  "name": "Next.js App Router SSE 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "edge", "sse"],
+  "tags": ["web", "api"],
+  "description": "App Router の Route Handler で Server-Sent Events を返す最小例",
+  "params": [ { "name": "app_name", "default": "next-app" } ],
+  "files": [
+    { "path": "{{app_name}}/app/api/stream/route.ts", "template": "export const runtime = 'edge';\n\nexport async function GET() {\n  const encoder = new TextEncoder();\n  const stream = new ReadableStream({\n    start(controller) {\n      controller.enqueue(encoder.encode('data: hello\\n\\n'));\n      controller.close();\n    }\n  });\n  return new Response(stream, { headers: { 'Content-Type': 'text/event-stream' } });\n}\n" }
+  ]
+}
+

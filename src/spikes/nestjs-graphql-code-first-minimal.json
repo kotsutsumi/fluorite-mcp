@@ -1,0 +1,14 @@
+{
+  "id": "nestjs-graphql-code-first-minimal",
+  "name": "NestJS GraphQL Code-first 最小",
+  "version": "1.0.0",
+  "stack": ["nestjs", "graphql", "typescript"],
+  "tags": ["api", "graphql"],
+  "description": "NestJS の code-first GraphQL でクエリ/型/リゾルバを最小実装",
+  "params": [ { "name": "app_name", "default": "nestjs-gql" } ],
+  "files": [
+    { "path": "{{app_name}}/src/app.module.ts", "template": "import { Module } from '@nestjs/common';\nimport { GraphQLModule } from '@nestjs/graphql';\nimport { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';\nimport { HelloResolver } from './hello.resolver';\n\n@Module({\n  imports: [\n    GraphQLModule.forRoot<ApolloDriverConfig>({\n      driver: ApolloDriver,\n      autoSchemaFile: true,\n    }),\n  ],\n  providers: [HelloResolver],\n})\nexport class AppModule {}\n" },
+    { "path": "{{app_name}}/src/hello.resolver.ts", "template": "import { Query, Resolver, ObjectType, Field } from '@nestjs/graphql';\n\n@ObjectType()\nclass Hello {\n  @Field() message!: string;\n}\n\n@Resolver(() => Hello)\nexport class HelloResolver {\n  @Query(() => Hello)\n  hello(): Hello {\n    return { message: 'Hello GraphQL' };\n  }\n}\n" }
+  ]
+}
+

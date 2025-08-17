@@ -1,0 +1,14 @@
+{
+  "id": "opensearch-index-mapping-minimal",
+  "name": "OpenSearch インデックス/マッピング 最小",
+  "version": "1.0.0",
+  "stack": ["opensearch", "node"],
+  "tags": ["search"],
+  "description": "OpenSearch クライアントでのインデックス作成とマッピングの最小例",
+  "params": [ { "name": "index_name", "default": "docs" } ],
+  "files": [
+    { "path": "opensearch/index.json", "template": "{\n  \"settings\": { \"number_of_shards\": 1 },\n  \"mappings\": {\n    \"properties\": {\n      \"title\": { \"type\": \"text\" },\n      \"tags\": { \"type\": \"keyword\" }\n    }\n  }\n}\n" },
+    { "path": "opensearch/create-index.js", "template": "const { Client } = require('@opensearch-project/opensearch');\nconst client = new Client({ node: process.env.OPENSEARCH_URL || 'http://localhost:9200' });\n(async () => {\n  const index = process.env.OPENSEARCH_INDEX || '{{index_name}}';\n  const body = require('./index.json');\n  await client.indices.create({ index, body }, { ignore: [400] });\n  console.log('created');\n})();\n" }
+  ]
+}
+

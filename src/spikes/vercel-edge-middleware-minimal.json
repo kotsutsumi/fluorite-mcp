@@ -1,0 +1,13 @@
+{
+  "id": "vercel-edge-middleware-minimal",
+  "name": "Vercel Edge Middleware 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "vercel", "edge"],
+  "tags": ["middleware"],
+  "description": "Next.js の middleware.ts で応答を書き換える最小例",
+  "params": [ { "name": "app_name", "default": "next-app" } ],
+  "files": [
+    { "path": "{{app_name}}/middleware.ts", "template": "import { NextResponse } from 'next/server';\nexport function middleware() {\n  const res = NextResponse.next();\n  res.headers.set('x-powered-by', 'fluorite');\n  return res;\n}\n" }
+  ]
+}
+

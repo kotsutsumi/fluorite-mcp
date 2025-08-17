@@ -1,0 +1,13 @@
+{
+  "id": "upstash-redis-rate-limit-minimal",
+  "name": "Upstash Redis RateLimit 最小",
+  "version": "1.0.0",
+  "stack": ["upstash", "redis", "node"],
+  "tags": ["ratelimit"],
+  "description": "@upstash/ratelimit を使った簡単なトークン制限の最小例",
+  "params": [ { "name": "identifier", "default": "user:123" } ],
+  "files": [
+    { "path": "upstash/limit.mjs", "template": "import { Ratelimit } from '@upstash/ratelimit';\nimport { Redis } from '@upstash/redis';\nconst ratelimit = new Ratelimit({ redis: Redis.fromEnv(), limiter: Ratelimit.fixedWindow(5, '10 s') });\nconst id = process.env.RATE_ID || '{{identifier}}';\nconsole.log(await ratelimit.limit(id));\n" }
+  ]
+}
+

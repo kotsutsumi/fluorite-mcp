@@ -1,0 +1,13 @@
+{
+  "id": "cloudflare-durable-object-minimal",
+  "name": "Cloudflare Durable Object 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare", "workers"],
+  "tags": ["edge", "state"],
+  "description": "Durable Object の最小クラスとルーティング",
+  "params": [ { "name": "class_name", "default": "Counter" } ],
+  "files": [
+    { "path": "cf/do.ts", "template": "export class {{class_name}} {\n  state: DurableObjectState;\n  constructor(state: DurableObjectState) { this.state = state; }\n  async fetch() {\n    const n = (await this.state.storage.get('n')) || 0;\n    await this.state.storage.put('n', n + 1);\n    return new Response(String(n + 1));\n  }\n}\nexport default {\n  async fetch(req: Request, env: any) {\n    const id = env.{{class_name}}.idFromName('a');\n    const obj = env.{{class_name}}.get(id);\n    return obj.fetch(req);\n  }\n};\n" }
+  ]
+}
+

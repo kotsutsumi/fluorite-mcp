@@ -1,0 +1,13 @@
+{
+  "id": "rabbitmq-consumer-node-minimal",
+  "name": "RabbitMQ コンシューマ 最小",
+  "version": "1.0.0",
+  "stack": ["node", "rabbitmq"],
+  "tags": ["messaging"],
+  "description": "amqplib を使ったキューの購読最小例",
+  "params": [ { "name": "queue", "default": "jobs" } ],
+  "files": [
+    { "path": "rabbitmq/consumer.js", "template": "const amqp = require('amqplib');\n(async () => {\n  const conn = await amqp.connect(process.env.AMQP_URL || 'amqp://localhost');\n  const ch = await conn.createChannel();\n  const q = process.env.AMQP_QUEUE || '{{queue}}';\n  await ch.assertQueue(q, { durable: false });\n  ch.consume(q, msg => { console.log('received', msg.content.toString()); ch.ack(msg); });\n})();\n" }
+  ]
+}
+

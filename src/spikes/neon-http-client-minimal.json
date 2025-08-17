@@ -1,0 +1,13 @@
+{
+  "id": "neon-http-client-minimal",
+  "name": "Neon Serverless Postgres 最小",
+  "version": "1.0.0",
+  "stack": ["neon", "postgres", "node"],
+  "tags": ["db"],
+  "description": "@neondatabase/serverless を用いた HTTP ベースの接続最小例",
+  "params": [ { "name": "app_name", "default": "neon-app" } ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { neon } from '@neondatabase/serverless';\nconst sql = neon(process.env.DATABASE_URL);\nconsole.log(await sql`select now() as now`);\n" }
+  ]
+}
+

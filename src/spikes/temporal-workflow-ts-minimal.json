@@ -1,0 +1,15 @@
+{
+  "id": "temporal-workflow-ts-minimal",
+  "name": "Temporal Workflow TypeScript 最小",
+  "version": "1.0.0",
+  "stack": ["temporal", "typescript", "node"],
+  "tags": ["workflow"],
+  "description": "Temporal のワークフロー/アクティビティ/ワーカーの最小構成",
+  "params": [ { "name": "app_name", "default": "temporal-app" } ],
+  "files": [
+    { "path": "{{app_name}}/src/workflows/hello.ts", "template": "import { proxyActivities } from '@temporalio/workflow';\nconst { greet } = proxyActivities<{ greet(name: string): Promise<string> }>({ startToCloseTimeout: '1 minute' });\nexport async function helloWorkflow(name: string): Promise<string> {\n  return await greet(name);\n}\n" },
+    { "path": "{{app_name}}/src/activities.ts", "template": "export async function greet(name: string) { return `Hello, ${name}`; }\n" },
+    { "path": "{{app_name}}/src/worker.ts", "template": "import { Worker } from '@temporalio/worker';\n(async () => {\n  const worker = await Worker.create({\n    workflowsPath: require.resolve('./workflows/hello'),\n    activities: require('./activities')\n  });\n  await worker.run();\n})();\n" }
+  ]
+}
+

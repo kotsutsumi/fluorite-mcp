@@ -1,0 +1,13 @@
+{
+  "id": "netlify-function-minimal",
+  "name": "Netlify Functions 最小",
+  "version": "1.0.0",
+  "stack": ["netlify", "functions"],
+  "tags": ["serverless"],
+  "description": "Netlify Functions での HTTP ハンドラ最小例",
+  "params": [ { "name": "fn_name", "default": "hello" } ],
+  "files": [
+    { "path": "netlify/functions/{{fn_name}}.js", "template": "exports.handler = async () => ({ statusCode: 200, body: 'hello' });\n" }
+  ]
+}
+

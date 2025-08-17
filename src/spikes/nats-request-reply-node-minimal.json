@@ -1,0 +1,14 @@
+{
+  "id": "nats-request-reply-node-minimal",
+  "name": "NATS リクエスト/リプライ 最小",
+  "version": "1.0.0",
+  "stack": ["node", "nats"],
+  "tags": ["messaging"],
+  "description": "nats.js を用いた request/reply の最小例",
+  "params": [ { "name": "subject", "default": "hello" } ],
+  "files": [
+    { "path": "nats/replier.js", "template": "const { connect, StringCodec } = require('nats');\n(async () => {\n  const nc = await connect({ servers: process.env.NATS_URL || 'nats://localhost:4222' });\n  const sc = StringCodec();\n  const subj = process.env.NATS_SUBJECT || '{{subject}}';\n  const sub = nc.subscribe(subj, { callback: (err, msg) => { if (err) return; msg.respond(sc.encode('world')); } });\n  console.log('replier started');\n})();\n" },
+    { "path": "nats/requester.js", "template": "const { connect, StringCodec } = require('nats');\n(async () => {\n  const nc = await connect({ servers: process.env.NATS_URL || 'nats://localhost:4222' });\n  const sc = StringCodec();\n  const subj = process.env.NATS_SUBJECT || '{{subject}}';\n  const m = await nc.request(subj, sc.encode('hello'), { timeout: 1000 });\n  console.log('reply', sc.decode(m.data));\n  await nc.drain();\n})();\n" }
+  ]
+}
+

@@ -1,0 +1,16 @@
+{
+  "id": "gcp-pubsub-publish-minimal",
+  "name": "GCP Pub/Sub Publish 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "pubsub", "node"],
+  "tags": ["messaging"],
+  "description": "@google-cloud/pubsub を使ったトピックへの publish 最小例",
+  "params": [
+    { "name": "app_name", "default": "pubsub-app" },
+    { "name": "topic", "default": "events" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/publish.mjs", "template": "import { PubSub } from '@google-cloud/pubsub';\nconst pubsub = new PubSub();\nconst topic = pubsub.topic(process.env.PUBSUB_TOPIC || '{{topic}}');\nconst messageId = await topic.publishMessage({ json: { hello: 'world' } });\nconsole.log('published', messageId);\n" }
+  ]
+}
+

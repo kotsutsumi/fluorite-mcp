@@ -1,0 +1,16 @@
+{
+  "id": "pinecone-upsert-minimal",
+  "name": "Pinecone Upsert 最小",
+  "version": "1.0.0",
+  "stack": ["pinecone", "node"],
+  "tags": ["vector"],
+  "description": "@pinecone-database/client を用いた upsert の最小例",
+  "params": [
+    { "name": "app_name", "default": "pinecone-app" },
+    { "name": "index_name", "default": "my-index" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { Pinecone } from '@pinecone-database/pinecone';\nconst pc = new Pinecone({ apiKey: process.env.PINECONE_API_KEY });\nconst index = pc.index(process.env.PINECONE_INDEX || '{{index_name}}');\nawait index.upsert([{ id: '1', values: [0.1,0.2,0.3], metadata: { text: 'hello' } }]);\nconsole.log('upserted');\n" }
+  ]
+}
+

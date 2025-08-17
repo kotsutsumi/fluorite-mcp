@@ -1,0 +1,13 @@
+{
+  "id": "weaviate-class-schema-minimal",
+  "name": "Weaviate クラススキーマ作成 最小",
+  "version": "1.0.0",
+  "stack": ["weaviate", "schema"],
+  "tags": ["vector", "search"],
+  "description": "Weaviate のクラススキーマ定義の最小例",
+  "params": [ { "name": "class_name", "default": "Article" } ],
+  "files": [
+    { "path": "weaviate/schema.json", "template": "{\n  \"class\": \"{{class_name}}\",\n  \"vectorizer\": \"text2vec-openai\",\n  \"properties\": [\n    { \"name\": \"title\", \"dataType\": [\"text\"] },\n    { \"name\": \"content\", \"dataType\": [\"text\"] }\n  ]\n}\n" }
+  ]
+}
+

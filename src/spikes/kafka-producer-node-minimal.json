@@ -1,0 +1,13 @@
+{
+  "id": "kafka-producer-node-minimal",
+  "name": "KafkaJS プロデューサ 最小",
+  "version": "1.0.0",
+  "stack": ["node", "kafkajs"],
+  "tags": ["messaging"],
+  "description": "kafkajs を用いたメッセージ送信の最小例",
+  "params": [ { "name": "topic", "default": "events" } ],
+  "files": [
+    { "path": "kafka/producer.js", "template": "const { Kafka } = require('kafkajs');\nconst kafka = new Kafka({ clientId: 'app', brokers: (process.env.KAFKA_BROKERS||'localhost:9092').split(',') });\n(async () => {\n  const p = kafka.producer();\n  await p.connect();\n  await p.send({ topic: process.env.KAFKA_TOPIC || '{{topic}}', messages: [{ value: 'hello' }] });\n  await p.disconnect();\n  console.log('sent');\n})();\n" }
+  ]
+}
+

@@ -30,7 +30,6 @@ Accuracy Improvement
 
 - **Total Spike Templates**:      830
 - **Auto-Generated Templates**:        0
-- **Learning Sources**: 5 (various technical documentation platforms)
 
 ## 💡 Key Benefits
 
