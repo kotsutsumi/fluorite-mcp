@@ -1,0 +1,14 @@
+{
+  "id": "honeycomb-libhoney-minimal",
+  "name": "Honeycomb libhoney 最小",
+  "version": "1.0.0",
+  "stack": ["node", "honeycomb"],
+  "tags": ["observability"],
+  "description": "libhoney-js でイベント送信",
+  "params": [ { "name": "app_name", "default": "honeycomb-libhoney" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"libhoney\": \"^4\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const Libhoney = require('libhoney');\nconst hny = new Libhoney({ writeKey: process.env.HONEYCOMB_KEY, dataset: 'test' });\nconst ev = hny.newEvent(); ev.add({ hello: 'world' }); ev.send();\nconsole.log('sent');\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "prefect-flow-minimal",
+  "name": "Prefect Flow 最小",
+  "version": "1.0.0",
+  "stack": ["python", "prefect"],
+  "tags": ["orchestration"],
+  "description": "Prefect 2 Flow の最小例",
+  "params": [ { "name": "app_name", "default": "prefect-flow" } ],
+  "files": [
+    { "path": "{{app_name}}/requirements.txt", "template": "prefect\n" },
+    { "path": "{{app_name}}/flow.py", "template": "from prefect import flow\n@flow\ndef hello():\n    print('Hello, Prefect')\nif __name__=='__main__':\n    hello()\n" }
+  ]
+}
+

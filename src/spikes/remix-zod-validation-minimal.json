@@ -1,0 +1,12 @@
+{
+  "id": "remix-zod-validation-minimal",
+  "name": "Remix Zod バリデーション 最小",
+  "version": "1.0.0",
+  "stack": ["remix", "zod"],
+  "tags": ["frontend"],
+  "description": "Remix action で Zod 検証",
+  "files": [
+    { "path": "app/routes/contact.tsx", "template": "import { json, type ActionFunctionArgs } from '@remix-run/node';\nimport { z } from 'zod';\nconst schema = z.object({ email: z.string().email() });\nexport async function action({ request }: ActionFunctionArgs){ const fd = await request.formData(); const obj = Object.fromEntries(fd); const v = schema.safeParse(obj); if(!v.success) return json({ ok:false }, { status:422 }); return json({ ok:true }); }\nexport default function Page(){ return null }\n" }
+  ]
+}
+

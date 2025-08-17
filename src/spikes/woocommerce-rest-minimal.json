@@ -1,0 +1,14 @@
+{
+  "id": "woocommerce-rest-minimal",
+  "name": "WooCommerce REST 最小",
+  "version": "1.0.0",
+  "stack": ["node", "woocommerce"],
+  "tags": ["commerce"],
+  "description": "@woocommerce/woocommerce-rest-api で製品一覧",
+  "params": [ { "name": "app_name", "default": "woocommerce-rest" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"type\":\"module\",\"scripts\":{\"start\":\"node run.js\"},\"dependencies\":{\"@woocommerce/woocommerce-rest-api\":\"^1\"}}\n" },
+    { "path": "{{app_name}}/run.js", "template": "import WooCommerceRestApi from '@woocommerce/woocommerce-rest-api';\nconst api = new WooCommerceRestApi({ url: process.env.WC_URL, consumerKey: process.env.WC_KEY, consumerSecret: process.env.WC_SECRET, version: 'wc/v3' });\nconst r = await api.get('products', { per_page: 1 });\nconsole.log(r.status);\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "google-vision-labels-minimal",
+  "name": "Google Vision ラベル検出 最小",
+  "version": "1.0.0",
+  "stack": ["node", "google"],
+  "tags": ["vision"],
+  "description": "@google-cloud/vision で画像ラベル検出",
+  "params": [ { "name": "app_name", "default": "g-vision-labels" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@google-cloud/vision\": \"^4\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import vision from '@google-cloud/vision';\nconst client = new vision.ImageAnnotatorClient();\nconst [res] = await client.labelDetection('https://via.placeholder.com/256');\nconsole.log(res.labelAnnotations?.map(l=>l.description));\n" }
+  ]
+}
+

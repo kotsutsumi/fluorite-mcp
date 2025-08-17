@@ -1,0 +1,14 @@
+{
+  "id": "aws-timestream-write-minimal",
+  "name": "AWS Timestream Write 最小",
+  "version": "1.0.0",
+  "stack": ["node", "aws"],
+  "tags": ["timeseries"],
+  "description": "@aws-sdk/client-timestream-write で書き込み",
+  "params": [ { "name": "app_name", "default": "aws-timestream-write" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node write.js\" }, \"dependencies\": { \"@aws-sdk/client-timestream-write\": \"^3\" } }\n" },
+    { "path": "{{app_name}}/write.js", "template": "import { TimestreamWriteClient } from '@aws-sdk/client-timestream-write';\nconst c = new TimestreamWriteClient({});\nconsole.log('Initialize and call WriteRecords with real DB/table');\n" }
+  ]
+}
+

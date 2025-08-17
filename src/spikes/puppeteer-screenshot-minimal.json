@@ -1,0 +1,14 @@
+{
+  "id": "puppeteer-screenshot-minimal",
+  "name": "Puppeteer スクショ 最小",
+  "version": "1.0.0",
+  "stack": ["node", "puppeteer"],
+  "tags": ["browser", "automation"],
+  "description": "Puppeteer でページのスクリーンショット",
+  "params": [ { "name": "app_name", "default": "puppeteer-ss" }, { "name": "url", "default": "https://example.com" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"puppeteer\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import puppeteer from 'puppeteer';\nconst url = process.env.URL || '{{url}}';\nconst browser = await puppeteer.launch();\nconst page = await browser.newPage();\nawait page.goto(url);\nawait page.screenshot({ path: 'page.png' });\nawait browser.close();\nconsole.log('Saved page.png');\n" }
+  ]
+}
+

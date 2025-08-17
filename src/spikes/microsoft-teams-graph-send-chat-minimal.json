@@ -1,0 +1,14 @@
+{
+  "id": "microsoft-teams-graph-send-chat-minimal",
+  "name": "Microsoft Teams Graph 送信 最小",
+  "version": "1.0.0",
+  "stack": ["node", "microsoft-graph"],
+  "tags": ["chat"],
+  "description": "Microsoft Graph SDK で Teams チャット送信",
+  "params": [ { "name": "app_name", "default": "teams-graph-send" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@microsoft/microsoft-graph-client\": \"^3\", \"isomorphic-fetch\": \"^3\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { Client } from '@microsoft/microsoft-graph-client';\nimport 'isomorphic-fetch';\nconst client = Client.init({ authProvider: done => done(null, process.env.MS_GRAPH_TOKEN) });\nconsole.log('Use client.api(/chats/{id}/messages).post(...)');\n" }
+  ]
+}
+

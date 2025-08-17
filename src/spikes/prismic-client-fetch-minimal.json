@@ -1,0 +1,14 @@
+{
+  "id": "prismic-client-fetch-minimal",
+  "name": "Prismic Client fetch 最小",
+  "version": "1.0.0",
+  "stack": ["node", "prismic"],
+  "tags": ["cms"],
+  "description": "@prismicio/client でドキュメント取得",
+  "params": [ { "name": "app_name", "default": "prismic-fetch" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"type\":\"module\",\"scripts\":{\"start\":\"node run.js\"},\"dependencies\":{\"@prismicio/client\":\"^7\"}}\n" },
+    { "path": "{{app_name}}/run.js", "template": "import * as prismic from '@prismicio/client';\nconst client = prismic.createClient(process.env.PRISMIC_REPO, { accessToken: process.env.PRISMIC_TOKEN });\nconst docs = await client.getAll({ pageSize: 1 });\nconsole.log(docs.length);\n" }
+  ]
+}
+

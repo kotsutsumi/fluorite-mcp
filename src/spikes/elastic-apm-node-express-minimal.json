@@ -1,0 +1,14 @@
+{
+  "id": "elastic-apm-node-express-minimal",
+  "name": "Elastic APM Node + Express 最小",
+  "version": "1.0.0",
+  "stack": ["node", "elastic-apm"],
+  "tags": ["observability"],
+  "description": "elastic-apm-node エージェント初期化",
+  "params": [ { "name": "app_name", "default": "elastic-apm-express" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"scripts\": { \"start\": \"node -r elastic-apm-node/start server.js\" },\n  \"dependencies\": { \"elastic-apm-node\": \"^4\", \"express\": \"^4\" }\n}\n" },
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express'); const app = express(); app.get('/', (_req,res)=>res.send('ok')); app.listen(3000);\n" }
+  ]
+}
+

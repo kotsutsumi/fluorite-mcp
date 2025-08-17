@@ -1,0 +1,11 @@
+{
+  "id": "google-calendar-webhook-concept",
+  "name": "Google Calendar Webhook (概念)",
+  "version": "1.0.0",
+  "stack": ["google", "webhook"],
+  "tags": ["calendar"],
+  "description": "Channels.watch を用いた webhook 設定の概念",
+  "params": [ { "name": "app_name", "default": "gcal-webhook" } ],
+  "files": [ { "path": "{{app_name}}/README.md", "template": "# Google Calendar Webhook\nSet up channels.watch and webhook endpoint.\n" } ]
+}
+

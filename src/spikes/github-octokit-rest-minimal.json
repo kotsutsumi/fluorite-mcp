@@ -1,0 +1,18 @@
+{
+  "id": "github-octokit-rest-minimal",
+  "name": "GitHub Octokit REST 最小",
+  "version": "1.0.0",
+  "stack": ["node", "github"],
+  "tags": ["github", "api"],
+  "description": "@octokit/rest でリポジトリを取得",
+  "params": [
+    { "name": "app_name", "default": "octokit-rest" },
+    { "name": "owner", "default": "octocat" },
+    { "name": "repo", "default": "Hello-World" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@octokit/rest\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { Octokit } from '@octokit/rest';\nconst octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });\nconst { data } = await octokit.repos.get({ owner: process.env.OWNER || '{{owner}}', repo: process.env.REPO || '{{repo}}' });\nconsole.log(data.full_name);\n" }
+  ]
+}
+

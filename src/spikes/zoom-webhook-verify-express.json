@@ -1,0 +1,14 @@
+{
+  "id": "zoom-webhook-verify-express",
+  "name": "Zoom Webhook 署名検証 (Express)",
+  "version": "1.0.0",
+  "stack": ["node", "express", "zoom"],
+  "tags": ["webhook"],
+  "description": "Zoom Webhook の x-zm-signature 検証スケルトン",
+  "params": [ { "name": "app_name", "default": "zoom-webhook" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node server.js\" }, \"dependencies\": { \"express\": \"^4\" } }\n" },
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst crypto = require('crypto');\nconst app = express();\napp.use(express.json({ type: '*/*' }));\napp.post('/zoom', (req, res) => {\n  const secret = process.env.ZOOM_WEBHOOK_SECRET || 'secret';\n  const ts = req.headers['x-zm-request-timestamp'];\n  const sig = req.headers['x-zm-signature'];\n  const msg = `v0:${ts}:${JSON.stringify(req.body)}`;\n  const mySig = 'v0=' + crypto.createHmac('sha256', secret).update(msg).digest('hex');\n  res.status(sig === mySig ? 200 : 401).send('ok');\n});\napp.listen(3000, () => console.log('listening'));\n" }
+  ]
+}
+

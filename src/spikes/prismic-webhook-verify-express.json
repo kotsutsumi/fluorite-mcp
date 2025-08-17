@@ -1,0 +1,14 @@
+{
+  "id": "prismic-webhook-verify-express",
+  "name": "Prismic Webhook 検証 (Express)",
+  "version": "1.0.0",
+  "stack": ["node", "express", "prismic"],
+  "tags": ["webhook"],
+  "description": "Prismic 署名検証の最小例",
+  "params": [ { "name": "app_name", "default": "prismic-webhook" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"scripts\":{\"start\":\"node server.js\"},\"dependencies\":{\"express\":\"^4\",\"crypto-js\":\"^4\"}}\n" },
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst crypto = require('crypto');\nconst app = express();\napp.use(express.raw({ type: '*/*' }));\napp.post('/prismic', (req,res)=>{ const sig = req.headers['x-prismic-signature']; const h = crypto.createHmac('sha1', process.env.PRISMIC_SECRET).update(req.body).digest('hex'); res.status(sig===h?200:401).send('ok'); });\napp.listen(3000, ()=>console.log('listening'));\n" }
+  ]
+}
+

@@ -1,0 +1,16 @@
+{
+  "id": "elasticsearch-update-by-query-minimal",
+  "name": "Elasticsearch Update By Query Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "elasticsearch"],
+  "tags": ["update"],
+  "description": "Update documents matching a query using updateByQuery.",
+  "params": [{ "name": "app_name", "default": "es-update-by-query" }, { "name": "es_node", "default": "http://localhost:9200" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { Client } from '@elastic/elasticsearch';\nconst client = new Client({ node: process.env.ES_NODE || '{{es_node}}' });\nconst index = 'docs';\ntry { await client.indices.create({ index }); } catch {}\nawait client.index({ index, document: { text: 'hello', tag: 'a' } });\nawait client.indices.refresh({ index });\nconst upd = await client.updateByQuery({ index, script: { source: 'ctx._source.tag = \'updated\'' }, query: { term: { tag: 'a' } } });\nconsole.log(upd.updated || 0);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@elastic/elasticsearch\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "ES_NODE={{es_node}}\n" } 
+  ],
+  "patches": []
+}
+

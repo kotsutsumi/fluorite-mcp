@@ -1,0 +1,16 @@
+{
+  "id": "openai-function-two-step-minimal",
+  "name": "OpenAI Function Calling Two-Step Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "openai"],
+  "tags": ["llm", "tools"],
+  "description": "Call a tool then send a follow-up message with the tool result.",
+  "params": [{ "name": "app_name", "default": "openai-two-step" }, { "name": "openai_model", "default": "gpt-4o-mini" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import OpenAI from 'openai';\nconst client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst tools = [{ type: 'function', function: { name: 'get_time', description: 'Get current time', parameters: { type: 'object', properties: {} } } }];\nconst m1 = await client.chat.completions.create({ model: '{{openai_model}}', messages: [{ role: 'user', content: 'What time is it? Use the tool.' }], tools });\nconst m2 = await client.chat.completions.create({ model: '{{openai_model}}', messages: [{ role: 'user', content: 'What time is it? Use the tool.' }, { role: 'tool', content: '12:34', name: 'get_time' }], tools });\nconsole.log(m2.choices?.[0]?.message?.content);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"openai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" } 
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "neo4j-node-minimal",
+  "name": "Neo4j Node 最小",
+  "version": "1.0.0",
+  "stack": ["node", "neo4j"],
+  "tags": ["graph"],
+  "description": "neo4j-driver でクエリ",
+  "params": [ { "name": "app_name", "default": "neo4j-min" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"neo4j-driver\": \"^5\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import neo4j from 'neo4j-driver';\nconst d = neo4j.driver(process.env.NEO4J_URI, neo4j.auth.basic(process.env.NEO4J_USER, process.env.NEO4J_PASS));\nconst s = d.session();\ntry { const r = await s.run('RETURN 1 as x'); console.log(r.records[0].get('x')); } finally { await s.close(); await d.close(); }\n" }
+  ]
+}
+

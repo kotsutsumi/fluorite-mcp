@@ -1,0 +1,14 @@
+{
+  "id": "gcp-bigtable-minimal",
+  "name": "GCP Bigtable 最小",
+  "version": "1.0.0",
+  "stack": ["node", "gcp"],
+  "tags": ["bigtable"],
+  "description": "@google-cloud/bigtable でテーブル一覧",
+  "params": [ { "name": "app_name", "default": "gcp-bigtable" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node list.js\" }, \"dependencies\": { \"@google-cloud/bigtable\": \"^5\" } }\n" },
+    { "path": "{{app_name}}/list.js", "template": "const { Bigtable } = require('@google-cloud/bigtable');\nconst bt = new Bigtable();\n(async () => { const [instances] = await bt.getInstances(); console.log(instances.map(i=>i.id)); })();\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "drive-resumable-upload-minimal",
+  "name": "Google Drive Resumable Upload 最小",
+  "version": "1.0.0",
+  "stack": ["node", "googleapis"],
+  "tags": ["drive"],
+  "description": "Resumable アップロードの雛形",
+  "params": [ { "name": "app_name", "default": "drive-resume" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node upload.js\" }, \"dependencies\": { \"googleapis\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/upload.js", "template": "import { google } from 'googleapis';\nconsole.log('Use drive.files.create with uploadType=resumable flow');\n" }
+  ]
+}
+

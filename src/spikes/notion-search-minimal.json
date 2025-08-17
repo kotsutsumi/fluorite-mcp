@@ -1,0 +1,14 @@
+{
+  "id": "notion-search-minimal",
+  "name": "Notion 検索 最小",
+  "version": "1.0.0",
+  "stack": ["node", "notion"],
+  "tags": ["notion"],
+  "description": "Notion API の search を叩く",
+  "params": [ { "name": "app_name", "default": "notion-search" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@notionhq/client\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { Client } from '@notionhq/client';\nconst notion = new Client({ auth: process.env.NOTION_TOKEN });\nconst res = await notion.search({ query: 'hello', page_size: 1 });\nconsole.log(res.results.length);\n" }
+  ]
+}
+

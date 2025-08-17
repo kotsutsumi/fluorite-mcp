@@ -1,0 +1,14 @@
+{
+  "id": "twilio-whatsapp-minimal",
+  "name": "Twilio WhatsApp 送信 最小",
+  "version": "1.0.0",
+  "stack": ["node", "twilio"],
+  "tags": ["chat"],
+  "description": "twilio SDK で WhatsApp メッセージ送信",
+  "params": [ { "name": "app_name", "default": "twilio-whatsapp" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node send.js\" }, \"dependencies\": { \"twilio\": \"^4\" } }\n" },
+    { "path": "{{app_name}}/send.js", "template": "const twilio = require('twilio');\nconst c = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);\nconsole.log('Use c.messages.create({ from: \"whatsapp:+1...\", to: \"whatsapp:+81...\", body: \"hello\" })');\n" }
+  ]
+}
+

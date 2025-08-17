@@ -1,0 +1,14 @@
+{
+  "id": "trello-api-minimal",
+  "name": "Trello API 最小",
+  "version": "1.0.0",
+  "stack": ["node", "trello"],
+  "tags": ["pm"],
+  "description": "Trello REST API でボード一覧",
+  "params": [ { "name": "app_name", "default": "trello-api" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"type\":\"module\",\"scripts\":{\"start\":\"node run.js\"},\"dependencies\":{\"node-fetch\":\"^3\"}}\n" },
+    { "path": "{{app_name}}/run.js", "template": "import fetch from 'node-fetch';\nconst url = `https://api.trello.com/1/members/me/boards?key=${process.env.TRELLO_KEY}&token=${process.env.TRELLO_TOKEN}`;\nconst r = await fetch(url);\nconsole.log(r.status);\n" }
+  ]
+}
+

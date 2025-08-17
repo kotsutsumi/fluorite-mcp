@@ -1,0 +1,14 @@
+{
+  "id": "discord-bot-python-discordpy-minimal",
+  "name": "Discord Bot (discord.py, Python) 最小",
+  "version": "1.0.0",
+  "stack": ["python", "discord"],
+  "tags": ["bot"],
+  "description": "discord.py による最小ボット",
+  "params": [ { "name": "app_name", "default": "discordpy-bot" }, { "name": "bot_token", "default": "DISCORD_BOT_TOKEN" } ],
+  "files": [
+    { "path": "{{app_name}}/requirements.txt", "template": "discord.py\n" },
+    { "path": "{{app_name}}/bot.py", "template": "import os\nimport discord\nTOKEN = os.getenv('BOT_TOKEN', '{{bot_token}}')\nclient = discord.Client(intents=discord.Intents.all())\n@client.event\nasync def on_ready():\n    print('Bot ready')\n@client.event\nasync def on_message(message):\n    if message.author.bot: return\n    await message.channel.send('Hello!')\nclient.run(TOKEN)\n" }
+  ]
+}
+

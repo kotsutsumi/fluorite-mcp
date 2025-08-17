@@ -1,0 +1,14 @@
+{
+  "id": "contentful-management-create-entry-minimal",
+  "name": "Contentful Management Entry作成 最小",
+  "version": "1.0.0",
+  "stack": ["node", "contentful"],
+  "tags": ["cms"],
+  "description": "contentful-management でエントリ作成",
+  "params": [ { "name": "app_name", "default": "contentful-management" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"type\":\"module\",\"scripts\":{\"start\":\"node run.js\"},\"dependencies\":{\"contentful-management\":\"^11\"}}\n" },
+    { "path": "{{app_name}}/run.js", "template": "import contentful from 'contentful-management';\nconst client = contentful.createClient({ accessToken: process.env.CTF_MANAGEMENT_TOKEN });\nconst space = await client.getSpace(process.env.CTF_SPACE);\nconst env = await space.getEnvironment('master');\nconsole.log('Ready to create an entry in env', env.sys.id);\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "arangodb-js-minimal",
+  "name": "ArangoDB JS 最小",
+  "version": "1.0.0",
+  "stack": ["node", "arangodb"],
+  "tags": ["db"],
+  "description": "arangojs でドキュメント CRUD",
+  "params": [ { "name": "app_name", "default": "arangojs-min" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"arangojs\": \"^8\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { Database } from 'arangojs';\nconst db = new Database({ url: process.env.ARANGO_URL || 'http://localhost:8529' });\ndb.useDatabase(process.env.ARANGO_DB || '_system');\ndb.useBasicAuth(process.env.ARANGO_USER || 'root', process.env.ARANGO_PASS || '');\nconst col = db.collection('items');\nawait col.create(true);\nawait col.save({ _key: '1', name: 'Alice' });\nconst c = await col.count();\nconsole.log(c.count);\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "dagster-schedule-minimal",
+  "name": "Dagster Schedule 最小",
+  "version": "1.0.0",
+  "stack": ["python", "dagster"],
+  "tags": ["orchestration"],
+  "description": "Dagster のスケジュール定義最小例",
+  "params": [ { "name": "app_name", "default": "dagster-schedule" } ],
+  "files": [
+    { "path": "{{app_name}}/requirements.txt", "template": "dagster\n" },
+    { "path": "{{app_name}}/defs.py", "template": "from dagster import job, op, ScheduleDefinition, Definitions\n@op\ndef hello_op(): print('hello')\n@job\ndef hello_job(): hello_op()\nschedules=[ScheduleDefinition(job=hello_job, cron_schedule='@daily')]\nDefs=Definitions(jobs=[hello_job], schedules=schedules)\n" }
+  ]
+}
+

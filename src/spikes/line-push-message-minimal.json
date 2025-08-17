@@ -1,0 +1,14 @@
+{
+  "id": "line-push-message-minimal",
+  "name": "LINE Push Message 最小",
+  "version": "1.0.0",
+  "stack": ["node", "line"],
+  "tags": ["chat"],
+  "description": "line sdk で Push メッセージ",
+  "params": [ { "name": "app_name", "default": "line-push" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node send.js\" }, \"dependencies\": { \"@line/bot-sdk\": \"^9\" } }\n" },
+    { "path": "{{app_name}}/send.js", "template": "import { Client } from '@line/bot-sdk';\nconst client = new Client({ channelAccessToken: process.env.LINE_CHANNEL_TOKEN });\nconsole.log('Use client.pushMessage(userId, message)');\n" }
+  ]
+}
+

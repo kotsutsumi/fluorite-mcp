@@ -1,0 +1,14 @@
+{
+  "id": "mssql-node-minimal",
+  "name": "MSSQL Node 最小",
+  "version": "1.0.0",
+  "stack": ["node", "mssql"],
+  "tags": ["db"],
+  "description": "mssql パッケージで SQL Server 接続",
+  "params": [ { "name": "app_name", "default": "mssql-min" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"mssql\": \"^10\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const sql = require('mssql');\n(async () => { try { await sql.connect('Server=localhost;Database=master;User Id=sa;Password=YourStrong!Passw0rd;Encrypt=false'); const r = await sql.query`select 1 as x`; console.log(r.recordset); } catch(e){ console.log('Provide real connection'); } })();\n" }
+  ]
+}
+

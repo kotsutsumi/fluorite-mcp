@@ -1,0 +1,14 @@
+{
+  "id": "oracle-db-node-minimal",
+  "name": "OracleDB Node 最小",
+  "version": "1.0.0",
+  "stack": ["node", "oracledb"],
+  "tags": ["db"],
+  "description": "oracledb ドライバで接続 (要クライアント)",
+  "params": [ { "name": "app_name", "default": "oracledb-min" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"oracledb\": \"^6\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const oracledb = require('oracledb');\n(async () => { console.log('Use oracledb.getConnection with proper creds'); })();\n" }
+  ]
+}
+

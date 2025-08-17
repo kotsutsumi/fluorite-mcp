@@ -1,0 +1,14 @@
+{
+  "id": "aws-cognito-admin-create-user-minimal",
+  "name": "AWS Cognito AdminCreateUser 最小",
+  "version": "1.0.0",
+  "stack": ["node", "aws"],
+  "tags": ["auth"],
+  "description": "@aws-sdk/client-cognito-identity-provider でユーザー作成",
+  "params": [ { "name": "app_name", "default": "aws-cognito-admin" }, { "name": "user_pool_id", "default": "USER_POOL_ID" }, { "name": "email", "default": "user@example.com" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@aws-sdk/client-cognito-identity-provider\": \"^3\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { CognitoIdentityProviderClient, AdminCreateUserCommand } from '@aws-sdk/client-cognito-identity-provider';\nconst c = new CognitoIdentityProviderClient({});\nconst cmd = new AdminCreateUserCommand({ UserPoolId: process.env.COG_USER_POOL || '{{user_pool_id}}', Username: process.env.COG_USER || '{{email}}', UserAttributes: [{ Name: 'email', Value: process.env.COG_USER || '{{email}}' }] });\ntry { const r = await c.send(cmd); console.log(!!r.User); } catch(e){ console.log('Requires valid pool'); }\n" }
+  ]
+}
+

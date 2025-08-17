@@ -1,0 +1,12 @@
+{
+  "id": "react-query-basic-minimal",
+  "name": "React Query 基本 最小",
+  "version": "1.0.0",
+  "stack": ["react", "ts"],
+  "tags": ["frontend"],
+  "description": "@tanstack/react-query の基本 useQuery",
+  "files": [
+    { "path": "src/App.tsx", "template": "import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';\nconst qc = new QueryClient();\nfunction Hello(){ const { data } = useQuery({ queryKey:['hi'], queryFn: async()=> 'hello' }); return <div>{data}</div>; }\nexport default function App(){ return <QueryClientProvider client={qc}><Hello/></QueryClientProvider>; }\n" }
+  ]
+}
+

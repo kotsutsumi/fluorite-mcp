@@ -1,0 +1,18 @@
+{
+  "id": "discord-bot-discordjs-minimal",
+  "name": "Discord Bot (discord.js) 最小",
+  "version": "1.0.0",
+  "stack": ["node", "discord", "discord.js"],
+  "tags": ["bot", "chat"],
+  "description": "discord.js での最小ボット実装",
+  "params": [
+    { "name": "app_name", "default": "discordjs-bot" },
+    { "name": "bot_token", "default": "DISCORD_BOT_TOKEN" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"start\": \"node bot.js\" },\n  \"dependencies\": { \"discord.js\": \"latest\" }\n}\n" },
+    { "path": "{{app_name}}/bot.js", "template": "import { Client, GatewayIntentBits } from 'discord.js';\nconst client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });\nclient.on('ready', () => console.log('Bot ready'));\nclient.on('messageCreate', (m) => { if (!m.author.bot) m.reply('Hello! You said: ' + m.content); });\nclient.login(process.env.BOT_TOKEN || '{{bot_token}}');\n" }
+  ],
+  "patches": []
+}
+

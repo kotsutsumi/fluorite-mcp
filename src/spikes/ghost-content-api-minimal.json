@@ -1,0 +1,14 @@
+{
+  "id": "ghost-content-api-minimal",
+  "name": "Ghost Content API 最小",
+  "version": "1.0.0",
+  "stack": ["node", "ghost"],
+  "tags": ["cms"],
+  "description": "@tryghost/content-api で記事取得",
+  "params": [ { "name": "app_name", "default": "ghost-content" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"type\":\"module\",\"scripts\":{\"start\":\"node run.js\"},\"dependencies\":{\"@tryghost/content-api\":\"^1\"}}\n" },
+    { "path": "{{app_name}}/run.js", "template": "import GhostContentAPI from '@tryghost/content-api';\nconst api = new GhostContentAPI({ url: process.env.GHOST_URL, key: process.env.GHOST_CONTENT_KEY, version: 'v5.0' });\nconst posts = await api.posts.browse({ limit: 1 });\nconsole.log(posts.length);\n" }
+  ]
+}
+

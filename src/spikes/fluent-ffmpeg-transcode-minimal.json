@@ -1,0 +1,14 @@
+{
+  "id": "fluent-ffmpeg-transcode-minimal",
+  "name": "fluent-ffmpeg トランスコード 最小",
+  "version": "1.0.0",
+  "stack": ["node", "ffmpeg"],
+  "tags": ["media"],
+  "description": "fluent-ffmpeg で簡易変換 (ffmpeg 必須)",
+  "params": [ { "name": "app_name", "default": "ffmpeg-transcode" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"fluent-ffmpeg\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const ffmpeg = require('fluent-ffmpeg');\nffmpeg('input.mp4').output('out.mp4').on('end', ()=>console.log('done')).run();\n" }
+  ]
+}
+

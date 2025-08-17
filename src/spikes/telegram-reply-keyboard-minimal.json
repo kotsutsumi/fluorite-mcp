@@ -1,0 +1,14 @@
+{
+  "id": "telegram-reply-keyboard-minimal",
+  "name": "Telegram Reply Keyboard 最小",
+  "version": "1.0.0",
+  "stack": ["node", "grammy"],
+  "tags": ["bot"],
+  "description": "grammY のキーボード UI",
+  "params": [ { "name": "app_name", "default": "tg-keyboard" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node bot.js\" }, \"dependencies\": { \"grammy\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/bot.js", "template": "import { Bot, Keyboard } from 'grammy';\nconst bot = new Bot(process.env.BOT_TOKEN);\nbot.command('start', ctx => ctx.reply('Choose', { reply_markup: new Keyboard().text('A').text('B').resized() }));\nbot.hears(['A','B'], ctx => ctx.reply('ok'));\nbot.start();\n" }
+  ]
+}
+

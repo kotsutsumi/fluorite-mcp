@@ -1,0 +1,14 @@
+{
+  "id": "saleor-graphql-minimal",
+  "name": "Saleor GraphQL 最小",
+  "version": "1.0.0",
+  "stack": ["node", "saleor"],
+  "tags": ["commerce"],
+  "description": "Saleor GraphQL API へクエリ",
+  "params": [ { "name": "app_name", "default": "saleor-graphql" }, { "name": "url", "default": "https://demo.saleor.io/graphql/" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"type\":\"module\",\"scripts\":{\"start\":\"node run.js\"},\"dependencies\":{\"graphql-request\":\"^7\"}}\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { GraphQLClient, gql } from 'graphql-request';\nconst client = new GraphQLClient(process.env.SALEOR_URL || '{{url}}');\nconst q = gql`{ shop { name } }`;\nconst r = await client.request(q);\nconsole.log(!!r.shop.name);\n" }
+  ]
+}
+

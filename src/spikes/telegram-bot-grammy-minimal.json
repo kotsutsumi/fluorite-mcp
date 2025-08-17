@@ -1,0 +1,18 @@
+{
+  "id": "telegram-bot-grammy-minimal",
+  "name": "Telegram Bot (grammY) 最小",
+  "version": "1.0.0",
+  "stack": ["node", "telegram", "grammy"],
+  "tags": ["bot", "chat"],
+  "description": "Telegram ボットを grammY で最小実装",
+  "params": [
+    { "name": "app_name", "default": "tg-grammy-bot" },
+    { "name": "bot_token", "default": "TELEGRAM_BOT_TOKEN" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"start\": \"node bot.js\" },\n  \"dependencies\": { \"grammy\": \"latest\" }\n}\n" },
+    { "path": "{{app_name}}/bot.js", "template": "import { Bot } from 'grammy';\nconst bot = new Bot(process.env.BOT_TOKEN || '{{bot_token}}');\nbot.command('start', ctx => ctx.reply('Hello from grammY!'));\nbot.on('message:text', ctx => ctx.reply('You said: ' + ctx.message.text));\nbot.start();\nconsole.log('Bot started');\n" }
+  ],
+  "patches": []
+}
+

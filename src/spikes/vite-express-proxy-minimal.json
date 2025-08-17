@@ -1,0 +1,12 @@
+{
+  "id": "vite-express-proxy-minimal",
+  "name": "Vite 開発サーバープロキシ 最小",
+  "version": "1.0.0",
+  "stack": ["vite"],
+  "tags": ["frontend"],
+  "description": "Vite の devServer で Express へプロキシ",
+  "files": [
+    { "path": "vite.config.ts", "template": "import { defineConfig } from 'vite';\nexport default defineConfig({ server: { proxy: { '/api': 'http://localhost:3000' } } });\n" }
+  ]
+}
+

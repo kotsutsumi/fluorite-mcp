@@ -1,0 +1,14 @@
+{
+  "id": "digitalocean-spaces-s3-minimal",
+  "name": "DigitalOcean Spaces S3 互換 最小",
+  "version": "1.0.0",
+  "stack": ["node", "s3"],
+  "tags": ["storage"],
+  "description": "AWS SDK v3 で Spaces にアクセス",
+  "params": [ { "name": "app_name", "default": "do-spaces" }, { "name": "endpoint", "default": "https://nyc3.digitaloceanspaces.com" }, { "name": "bucket", "default": "my-bucket" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@aws-sdk/client-s3\": \"^3\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { S3Client, ListObjectsV2Command } from '@aws-sdk/client-s3';\nconst s3 = new S3Client({ endpoint: process.env.SPACES_ENDPOINT || '{{endpoint}}', forcePathStyle: false, region: 'us-east-1', credentials: { accessKeyId: process.env.SPACES_KEY || 'KEY', secretAccessKey: process.env.SPACES_SECRET || 'SECRET' } });\nconst res = await s3.send(new ListObjectsV2Command({ Bucket: process.env.SPACES_BUCKET || '{{bucket}}' }));\nconsole.log(res.Contents?.length || 0);\n" }
+  ]
+}
+

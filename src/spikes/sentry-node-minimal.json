@@ -1,0 +1,14 @@
+{
+  "id": "sentry-node-minimal",
+  "name": "Sentry Node 最小",
+  "version": "1.0.0",
+  "stack": ["node", "sentry"],
+  "tags": ["observability"],
+  "description": "@sentry/node の最小初期化",
+  "params": [ { "name": "app_name", "default": "sentry-node" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@sentry/node\": \"^8\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const Sentry = require('@sentry/node');\nSentry.init({ dsn: process.env.SENTRY_DSN });\nSentry.captureMessage('hello');\nconsole.log('sent');\n" }
+  ]
+}
+

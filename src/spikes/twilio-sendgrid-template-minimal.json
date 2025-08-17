@@ -1,0 +1,14 @@
+{
+  "id": "twilio-sendgrid-template-minimal",
+  "name": "SendGrid テンプレート送信 最小",
+  "version": "1.0.0",
+  "stack": ["node", "sendgrid"],
+  "tags": ["email"],
+  "description": "公式 SDK で Dynamic Template を使用",
+  "params": [ { "name": "app_name", "default": "sendgrid-template" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node send.js\" }, \"dependencies\": { \"@sendgrid/mail\": \"^8\" } }\n" },
+    { "path": "{{app_name}}/send.js", "template": "const sg = require('@sendgrid/mail');\nsg.setApiKey(process.env.SENDGRID_API_KEY);\nconsole.log('Use sg.send with templateId and dynamic_template_data');\n" }
+  ]
+}
+

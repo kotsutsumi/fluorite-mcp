@@ -1,0 +1,17 @@
+{
+  "id": "google-calendar-create-event-minimal",
+  "name": "Google Calendar イベント作成 最小",
+  "version": "1.0.0",
+  "stack": ["node", "googleapis"],
+  "tags": ["google", "calendar"],
+  "description": "Calendar API でイベントを作成",
+  "params": [
+    { "name": "app_name", "default": "g-calendar-event" },
+    { "name": "calendar_id", "default": "primary" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node create.js\" }, \"dependencies\": { \"googleapis\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/create.js", "template": "import { google } from 'googleapis';\nconst auth = new google.auth.GoogleAuth({ scopes: ['https://www.googleapis.com/auth/calendar'] });\nconst calendar = google.calendar({ version: 'v3', auth });\nconst start = new Date(Date.now() + 3600e3).toISOString();\nconst end = new Date(Date.now() + 7200e3).toISOString();\nconst res = await calendar.events.insert({ calendarId: process.env.CALENDAR_ID || '{{calendar_id}}', requestBody: { summary: 'Test Event', start: { dateTime: start }, end: { dateTime: end } } });\nconsole.log('Event id:', res.data.id);\n" }
+  ]
+}
+

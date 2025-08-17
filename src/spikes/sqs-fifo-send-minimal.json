@@ -1,0 +1,14 @@
+{
+  "id": "sqs-fifo-send-minimal",
+  "name": "AWS SQS FIFO 送信 最小",
+  "version": "1.0.0",
+  "stack": ["node", "aws"],
+  "tags": ["queue"],
+  "description": "SQS FIFO キューへのメッセージ送信",
+  "params": [ { "name": "app_name", "default": "sqs-fifo" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node send.js\" }, \"dependencies\": { \"@aws-sdk/client-sqs\": \"^3\" } }\n" },
+    { "path": "{{app_name}}/send.js", "template": "import { SQSClient, SendMessageCommand } from '@aws-sdk/client-sqs';\nconst c = new SQSClient({});\nconsole.log('Use SendMessageCommand with MessageGroupId/MessageDeduplicationId');\n" }
+  ]
+}
+

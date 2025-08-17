@@ -1,0 +1,12 @@
+{
+  "id": "nextjs-route-handler-zod-minimal",
+  "name": "Next.js Route Handler + Zod 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "zod"],
+  "tags": ["frontend"],
+  "description": "Route Handler POST で Zod バリデーション",
+  "files": [
+    { "path": "app/api/submit/route.ts", "template": "import { z } from 'zod';\nconst schema = z.object({ name: z.string() });\nexport async function POST(req: Request){ const body = await req.json(); const parsed = schema.safeParse(body); if(!parsed.success) return new Response('Invalid', { status: 422 }); return new Response('OK'); }\n" }
+  ]
+}
+

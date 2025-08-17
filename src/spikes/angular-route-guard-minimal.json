@@ -1,0 +1,12 @@
+{
+  "id": "angular-route-guard-minimal",
+  "name": "Angular Route Guard 最小",
+  "version": "1.0.0",
+  "stack": ["angular"],
+  "tags": ["frontend", "auth"],
+  "description": "CanActivate ガードの最小例",
+  "files": [
+    { "path": "src/app/auth.guard.ts", "template": "import { Injectable } from '@angular/core';\nimport { CanActivate } from '@angular/router';\n@Injectable({ providedIn: 'root' })\nexport class AuthGuard implements CanActivate { canActivate(){ return true; } }\n" }
+  ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "id": "datadog-otel-exporter-minimal",
+  "name": "Datadog OTEL Exporter 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry", "datadog"],
+  "tags": ["observability"],
+  "description": "OTLP/HTTP を Datadog intake に送る設定例",
+  "files": [ { "path": "README.md", "template": "Set OTEL_EXPORTER_OTLP_ENDPOINT to Datadog and DD_API_KEY header.\n" } ]
+}
+

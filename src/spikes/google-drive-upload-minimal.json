@@ -1,0 +1,18 @@
+{
+  "id": "google-drive-upload-minimal",
+  "name": "Google Drive アップロード 最小",
+  "version": "1.0.0",
+  "stack": ["node", "googleapis"],
+  "tags": ["google", "drive"],
+  "description": "googleapis で Drive にファイルアップロード",
+  "params": [
+    { "name": "app_name", "default": "g-drive-upload" },
+    { "name": "filename", "default": "hello.txt" },
+    { "name": "mime", "default": "text/plain" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node upload.js\" }, \"dependencies\": { \"googleapis\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/upload.js", "template": "import { google } from 'googleapis';\nimport fs from 'node:fs';\nconst auth = new google.auth.GoogleAuth({ scopes: ['https://www.googleapis.com/auth/drive.file'] });\nconst drive = google.drive({ version: 'v3', auth });\nconst fileName = process.env.FILE || '{{filename}}';\nfs.writeFileSync(fileName, 'Hello Drive');\nconst res = await drive.files.create({ requestBody: { name: fileName, mimeType: process.env.MIME || '{{mime}}' }, media: { mimeType: process.env.MIME || '{{mime}}', body: fs.createReadStream(fileName) } });\nconsole.log('Uploaded id:', res.data.id);\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "go-fiber-minimal",
+  "name": "Go Fiber 最小",
+  "version": "1.0.0",
+  "stack": ["go", "fiber"],
+  "tags": ["web"],
+  "description": "gofiber で最小 HTTP サーバー",
+  "params": [ { "name": "app_name", "default": "go-fiber-min" } ],
+  "files": [
+    { "path": "{{app_name}}/go.mod", "template": "module example.com/{{app_name}}\n\ngo 1.22\n\nrequire github.com/gofiber/fiber/v2 v2.52.0\n" },
+    { "path": "{{app_name}}/main.go", "template": "package main\nimport (\n\t\"github.com/gofiber/fiber/v2\"\n)\nfunc main(){ app := fiber.New(); app.Get(\"/\", func(c *fiber.Ctx) error { return c.SendString(\"Hello Fiber\") }); app.Listen(\":3000\") }\n" }
+  ]}
+

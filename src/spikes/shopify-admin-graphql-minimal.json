@@ -1,0 +1,14 @@
+{
+  "id": "shopify-admin-graphql-minimal",
+  "name": "Shopify Admin GraphQL 最小",
+  "version": "1.0.0",
+  "stack": ["node", "shopify"],
+  "tags": ["commerce"],
+  "description": "Admin GraphQL API を呼び出し",
+  "params": [ { "name": "app_name", "default": "shopify-admin-graphql" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"type\":\"module\",\"scripts\":{\"start\":\"node run.js\"},\"dependencies\":{\"graphql-request\":\"^7\"}}\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { GraphQLClient, gql } from 'graphql-request';\nconst url = `https://${process.env.SHOPIFY_SHOP}/admin/api/2024-07/graphql.json`;\nconst client = new GraphQLClient(url, { headers: { 'X-Shopify-Access-Token': process.env.SHOPIFY_TOKEN } });\nconst q = gql`{ shop { name } }`;\ntry { const r = await client.request(q); console.log(r.shop.name); } catch(e){ console.log('Provide valid creds'); }\n" }
+  ]
+}
+

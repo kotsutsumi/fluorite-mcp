@@ -1,0 +1,14 @@
+{
+  "id": "slack-web-api-post-message-minimal",
+  "name": "Slack Web API postMessage 最小",
+  "version": "1.0.0",
+  "stack": ["node", "slack"],
+  "tags": ["chat"],
+  "description": "@slack/web-api でメッセージ送信",
+  "params": [ { "name": "app_name", "default": "slack-post" }, { "name": "channel", "default": "#general" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node send.js\" }, \"dependencies\": { \"@slack/web-api\": \"^7\" } }\n" },
+    { "path": "{{app_name}}/send.js", "template": "import { WebClient } from '@slack/web-api';\nconst client = new WebClient(process.env.SLACK_TOKEN);\nconst res = await client.chat.postMessage({ channel: process.env.SLACK_CHANNEL || '{{channel}}', text: 'Hello from Fluorite spike!' });\nconsole.log('ts:', res.ts);\n" }
+  ]
+}
+

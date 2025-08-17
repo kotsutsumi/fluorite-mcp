@@ -1,0 +1,16 @@
+{
+  "id": "anthropic-structured-json-minimal",
+  "name": "Anthropic Structured JSON (Prompted) Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "anthropic"],
+  "tags": ["llm", "json"],
+  "description": "Prompt Claude to emit strict JSON and guard-parse.",
+  "params": [{ "name": "app_name", "default": "anthropic-json" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import Anthropic from '@anthropic-ai/sdk';\nconst client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });\nconst msg = await client.messages.create({ model: 'claude-3-5-sonnet-20240620', max_tokens: 128, messages: [{ role: 'user', content: 'Return {\\"greeting\\": \\\"hello\\\"} as JSON only.' }] });\nconst text = Array.isArray(msg.content) ? msg.content[0]?.text || '' : JSON.stringify(msg);\ntry { console.log(JSON.parse(text)); } catch { console.log(text); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@anthropic-ai/sdk\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "ANTHROPIC_API_KEY=sk-ant-...\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "notion-blocks-append-minimal",
+  "name": "Notion Blocks 追加 最小",
+  "version": "1.0.0",
+  "stack": ["node", "notion"],
+  "tags": ["notion"],
+  "description": "notion.blocks.children.append の雛形",
+  "params": [ { "name": "app_name", "default": "notion-blocks-append" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@notionhq/client\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { Client } from '@notionhq/client';\nconst notion = new Client({ auth: process.env.NOTION_TOKEN });\nconsole.log('Use notion.blocks.children.append({ block_id, children })');\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "xml2js-parse-minimal",
+  "name": "xml2js パース 最小",
+  "version": "1.0.0",
+  "stack": ["node"],
+  "tags": ["xml"],
+  "description": "xml2js で XML を JSON 化",
+  "params": [ { "name": "app_name", "default": "xml2js-parse" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"xml2js\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const { parseStringPromise } = require('xml2js');\n(async () => { const xml = '<root><x>1</x></root>'; const out = await parseStringPromise(xml); console.log(out); })();\n" }
+  ]
+}
+

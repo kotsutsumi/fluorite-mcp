@@ -1,0 +1,16 @@
+{
+  "id": "pgvector-ivfflat-cosine-minimal",
+  "name": "pgvector IVFFlat + Cosine Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "postgres", "pgvector"],
+  "tags": ["vector", "index"],
+  "description": "Create IVFFlat index using cosine ops and search by cosine similarity.",
+  "params": [{ "name": "app_name", "default": "pgvector-ivfflat-cos" }, { "name": "database_url", "default": "postgres://postgres:postgres@localhost:5432/postgres" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import pg from 'pg';\nconst client = new pg.Client({ connectionString: process.env.DATABASE_URL || '{{database_url}}' });\nawait client.connect();\nawait client.query('CREATE EXTENSION IF NOT EXISTS vector');\nawait client.query('DROP TABLE IF EXISTS items');\nawait client.query('CREATE TABLE items (id serial primary key, embedding vector(3), text text)');\nawait client.query('INSERT INTO items (embedding, text) VALUES ($1,$2),($3,$4)', [[0.1,0.2,0.3], 'hello', [0.2,0.1,0.25], 'fluorite']);\nawait client.query('CREATE INDEX IF NOT EXISTS items_embedding_idx ON items USING ivfflat (embedding vector_cosine_ops) WITH (lists = 8)');\nconst { rows } = await client.query('SELECT text, 1 - (embedding <#> $1) AS cosine_sim FROM items ORDER BY cosine_sim DESC LIMIT 2', [[0.1,0.2,0.3]]);\nconsole.log(rows.map(r => r.text));\nawait client.end();\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"pg\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "DATABASE_URL=postgres://postgres:postgres@localhost:5432/postgres\n" } 
+  ],
+  "patches": []
+}
+

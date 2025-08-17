@@ -1,0 +1,16 @@
+{
+  "id": "langchain-self-query-retriever-chroma-minimal",
+  "name": "LangChain Self-Query Retriever + Chroma Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "langchain", "chroma", "openai"],
+  "tags": ["rag", "self-query"],
+  "description": "Use Self-Query Retriever to parse filters from natural language and query Chroma.",
+  "params": [{ "name": "app_name", "default": "lc-self-query-chroma" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { SelfQueryRetriever } from 'langchain/retrievers/self_query';\nimport { OpenAIEmbeddings, ChatOpenAI } from '@langchain/openai';\nimport { Chroma } from '@langchain/community/vectorstores/chroma';\nconst llm = new ChatOpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst embeddings = new OpenAIEmbeddings({ apiKey: process.env.OPENAI_API_KEY });\nconst store = await Chroma.fromTexts(['hello world', 'fluorite mcp spike'], [{ tag: 'a' }, { tag: 'b' }], embeddings, { collectionName: 'docs-selfq' });\nconst retriever = SelfQueryRetriever.fromLLM({ llm, vectorStore: store, documentContents: 'text', attributeInfo: [{ name: 'tag', type: 'string', description: 'a label' }] });\nconst res = await retriever.getRelevantDocuments('find docs with tag b');\nconsole.log(res.map(r=>r.pageContent));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@langchain/openai\": \"latest\", \"@langchain/community\": \"latest\", \"langchain\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" } 
+  ],
+  "patches": []
+}
+

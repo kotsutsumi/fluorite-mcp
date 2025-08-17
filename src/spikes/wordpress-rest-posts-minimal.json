@@ -1,0 +1,14 @@
+{
+  "id": "wordpress-rest-posts-minimal",
+  "name": "WordPress REST Posts 最小",
+  "version": "1.0.0",
+  "stack": ["node", "wordpress"],
+  "tags": ["cms"],
+  "description": "WP REST API で posts を取得",
+  "params": [ { "name": "app_name", "default": "wp-rest-posts" }, { "name": "url", "default": "https://wordpress.org/news/wp-json/wp/v2/posts" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"type\":\"module\",\"scripts\":{\"start\":\"node run.js\"},\"dependencies\":{\"node-fetch\":\"^3\"}}\n" },
+    { "path": "{{app_name}}/run.js", "template": "import fetch from 'node-fetch';\nconst r = await fetch(process.env.WP_POSTS_URL || '{{url}}');\nconst j = await r.json();\nconsole.log(Array.isArray(j));\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "jaeger-exporter-traces-minimal",
+  "name": "Jaeger Exporter Traces 最小",
+  "version": "1.0.0",
+  "stack": ["node", "opentelemetry"],
+  "tags": ["otel"],
+  "description": "@opentelemetry/exporter-jaeger の最小例",
+  "params": [ { "name": "app_name", "default": "otel-jaeger" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"start\": \"node tracer.js\" },\n  \"dependencies\": { \"@opentelemetry/sdk-node\": \"^0.52.1\", \"@opentelemetry/exporter-jaeger\": \"^0.52.1\" }\n}\n" },
+    { "path": "{{app_name}}/tracer.js", "template": "import { NodeSDK } from '@opentelemetry/sdk-node';\nimport { JaegerExporter } from '@opentelemetry/exporter-jaeger';\nconst sdk = new NodeSDK({ traceExporter: new JaegerExporter({ endpoint: process.env.JAEGER_ENDPOINT }) });\nawait sdk.start();\nconsole.log('jaeger exporter initialized');\nawait sdk.shutdown();\n" }
+  ]
+}
+

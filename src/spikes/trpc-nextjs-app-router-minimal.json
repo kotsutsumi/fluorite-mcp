@@ -1,0 +1,12 @@
+{
+  "id": "trpc-nextjs-app-router-minimal",
+  "name": "tRPC Next.js App Router 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "trpc"],
+  "tags": ["frontend"],
+  "description": "App Router での tRPC ルータ定義雛形",
+  "files": [
+    { "path": "src/server/routers/_app.ts", "template": "import { initTRPC } from '@trpc/server';\nconst t = initTRPC.create();\nexport const appRouter = t.router({ hello: t.procedure.query(()=> 'world') });\nexport type AppRouter = typeof appRouter;\n" }
+  ]
+}
+

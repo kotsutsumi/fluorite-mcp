@@ -1,0 +1,14 @@
+{
+  "id": "clickup-tasks-list-minimal",
+  "name": "ClickUp タスク一覧 最小",
+  "version": "1.0.0",
+  "stack": ["node", "clickup"],
+  "tags": ["pm"],
+  "description": "ClickUp API でタスク一覧",
+  "params": [ { "name": "app_name", "default": "clickup-list" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"type\":\"module\",\"scripts\":{\"start\":\"node run.js\"},\"dependencies\":{\"node-fetch\":\"^3\"}}\n" },
+    { "path": "{{app_name}}/run.js", "template": "import fetch from 'node-fetch';\nconst r = await fetch('https://api.clickup.com/api/v2/team', { headers: { Authorization: process.env.CLICKUP_TOKEN } });\nconsole.log(r.status);\n" }
+  ]
+}
+

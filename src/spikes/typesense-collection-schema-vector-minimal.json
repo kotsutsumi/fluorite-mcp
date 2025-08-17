@@ -1,0 +1,14 @@
+{
+  "id": "typesense-collection-schema-vector-minimal",
+  "name": "Typesense ベクター対応スキーマ 最小",
+  "version": "1.0.0",
+  "stack": ["node", "typesense"],
+  "tags": ["search"],
+  "description": "Typesense のベクターフィールドを含むスキーマ作成",
+  "params": [ { "name": "app_name", "default": "typesense-vector-schema" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node create.js\" }, \"dependencies\": { \"typesense\": \"^2\" } }\n" },
+    { "path": "{{app_name}}/create.js", "template": "import Typesense from 'typesense';\nconst c = new Typesense.Client({ nodes: [{ host: 'localhost', port: 8108, protocol: 'http' }], apiKey: process.env.TYPESENSE_KEY });\nawait c.collections().create({ name: 'docs', fields: [{ name:'id', type:'string' }, { name:'title', type:'string' }, { name:'vec', type:'float[]', num_dim: 3 }] });\nconsole.log('created');\n" }
+  ]
+}
+

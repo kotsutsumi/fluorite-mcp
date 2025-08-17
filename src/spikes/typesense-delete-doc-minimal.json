@@ -1,0 +1,16 @@
+{
+  "id": "typesense-delete-doc-minimal",
+  "name": "Typesense Delete Document Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "typesense"],
+  "tags": ["delete"],
+  "description": "Delete a single document by id in Typesense.",
+  "params": [{ "name": "app_name", "default": "typesense-delete-doc" }, { "name": "typesense_nodes", "default": "http://localhost:8108" }, { "name": "api_key", "default": "xyz" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import Typesense from 'typesense';\nconst client = new Typesense.Client({ nodes: [{ host: (process.env.TS_NODE||'{{typesense_nodes}}').replace('http://','').replace('https://','').split(':')[0], port: Number((process.env.TS_NODE||'{{typesense_nodes}}').split(':')[2]||8108), protocol: (process.env.TS_NODE||'{{typesense_nodes}}').startsWith('https')?'https':'http' }], apiKey: process.env.TS_API_KEY || '{{api_key}}', connectionTimeoutSeconds: 2 });\ntry { await client.collections('docs').delete(); } catch {}\nawait client.collections().create({ name: 'docs', fields: [{ name: 'id', type: 'string' }, { name: 'text', type: 'string' }] });\nawait client.documents('docs').create({ id: '1', text: 'hello' });\nawait client.documents('docs').delete('1');\nconsole.log('deleted 1');\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"typesense\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "TS_NODE={{typesense_nodes}}\nTS_API_KEY={{api_key}}\n" } 
+  ],
+  "patches": []
+}
+

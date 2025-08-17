@@ -1,0 +1,14 @@
+{
+  "id": "weaviate-aggregate-groupby-concept",
+  "name": "Weaviate Aggregate GroupBy Concept (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "weaviate"],
+  "tags": ["aggregate", "concept"],
+  "description": "Conceptual example: groupBy on a property and count per group.",
+  "params": [{ "name": "app_name", "default": "weaviate-agg-groupby" }],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "# Weaviate Aggregation GroupBy (Concept)\n\nUse GraphQL aggregate with groupBy:\n\n```graphql\n{\n  Aggregate {\n    Document (groupBy: [\"tag\"]) {\n      groupedBy { value path }\n      meta { count }\n    }\n  }\n}\n```\n" }
+  ],
+  "patches": []
+}
+

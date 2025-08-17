@@ -1,0 +1,14 @@
+{
+  "id": "line-messaging-reply-minimal",
+  "name": "LINE Messaging API Reply 最小",
+  "version": "1.0.0",
+  "stack": ["node", "line"],
+  "tags": ["chat"],
+  "description": "line sdk で reply メッセージ",
+  "params": [ { "name": "app_name", "default": "line-reply" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@line/bot-sdk\": \"^9\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { Client } from '@line/bot-sdk';\nconst client = new Client({ channelAccessToken: process.env.LINE_CHANNEL_TOKEN });\nconsole.log('Use client.replyMessage(replyToken, message) in webhook handler');\n" }
+  ]
+}
+

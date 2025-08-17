@@ -1,0 +1,14 @@
+{
+  "id": "opentelemetry-node-otlp-exporter-minimal",
+  "name": "OpenTelemetry Node OTLP Exporter 最小",
+  "version": "1.0.0",
+  "stack": ["node", "opentelemetry"],
+  "tags": ["otel"],
+  "description": "@opentelemetry/sdk-node + OTLP Trace Exporter",
+  "params": [ { "name": "app_name", "default": "otel-otlp" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node tracer.js\" }, \"dependencies\": { \"@opentelemetry/sdk-node\": \"^0.52.1\", \"@opentelemetry/exporter-trace-otlp-http\": \"^0.52.1\" } }\n" },
+    { "path": "{{app_name}}/tracer.js", "template": "import { NodeSDK } from '@opentelemetry/sdk-node';\nimport { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';\nconst sdk = new NodeSDK({ traceExporter: new OTLPTraceExporter({ url: process.env.OTLP_URL }) });\nawait sdk.start();\nconsole.log('OTLP exporter initialized');\nawait sdk.shutdown();\n" }
+  ]
+}
+

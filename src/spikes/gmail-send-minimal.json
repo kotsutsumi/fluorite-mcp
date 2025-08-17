@@ -1,0 +1,14 @@
+{
+  "id": "gmail-send-minimal",
+  "name": "Gmail 送信 最小",
+  "version": "1.0.0",
+  "stack": ["node", "googleapis"],
+  "tags": ["email"],
+  "description": "gmail.users.messages.send でメール送信 (概念)",
+  "params": [ { "name": "app_name", "default": "gmail-send" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"type\":\"module\",\"scripts\":{\"start\":\"node send.js\"},\"dependencies\":{\"googleapis\":\"latest\"}}\n" },
+    { "path": "{{app_name}}/send.js", "template": "import { google } from 'googleapis';\nconst auth = new google.auth.GoogleAuth({ scopes: ['https://www.googleapis.com/auth/gmail.send'] });\nconst gmail = google.gmail({ version: 'v1', auth });\nconsole.log('Call gmail.users.messages.send with raw RFC822');\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "vite-pwa-plugin-minimal",
+  "name": "Vite PWA プラグイン 最小",
+  "version": "1.0.0",
+  "stack": ["vite"],
+  "tags": ["frontend"],
+  "description": "vite-plugin-pwa の最小設定",
+  "files": [
+    { "path": "vite.config.ts", "template": "import { defineConfig } from 'vite';\nimport { VitePWA } from 'vite-plugin-pwa';\nexport default defineConfig({ plugins: [VitePWA({ registerType: 'autoUpdate' })] });\n" }
+  ]
+}
+

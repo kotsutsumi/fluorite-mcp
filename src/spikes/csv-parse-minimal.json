@@ -1,0 +1,14 @@
+{
+  "id": "csv-parse-minimal",
+  "name": "csv-parse 最小",
+  "version": "1.0.0",
+  "stack": ["node"],
+  "tags": ["csv"],
+  "description": "csv-parse で CSV を読み込み",
+  "params": [ { "name": "app_name", "default": "csv-parse" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"csv-parse\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const { parse } = require('csv-parse/sync');\nconst input = 'name,age\\nAlice,30\\nBob,40';\nconst out = parse(input, { columns: true });\nconsole.log(out);\n" }
+  ]
+}
+

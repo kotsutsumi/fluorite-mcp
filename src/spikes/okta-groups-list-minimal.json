@@ -1,0 +1,14 @@
+{
+  "id": "okta-groups-list-minimal",
+  "name": "Okta Groups 一覧 最小",
+  "version": "1.0.0",
+  "stack": ["node", "okta"],
+  "tags": ["auth"],
+  "description": "Okta グループ一覧取得",
+  "params": [ { "name": "app_name", "default": "okta-groups" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@okta/okta-sdk-nodejs\": \"^7\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import okta from '@okta/okta-sdk-nodejs';\nconst client = new okta.Client({ orgUrl: process.env.OKTA_ORG, token: process.env.OKTA_TOKEN });\nconsole.log('Use client.listGroups()');\n" }
+  ]
+}
+

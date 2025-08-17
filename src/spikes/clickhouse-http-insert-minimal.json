@@ -1,0 +1,14 @@
+{
+  "id": "clickhouse-http-insert-minimal",
+  "name": "ClickHouse HTTP Insert 最小",
+  "version": "1.0.0",
+  "stack": ["node", "clickhouse"],
+  "tags": ["db"],
+  "description": "HTTP インターフェースで INSERT",
+  "params": [ { "name": "app_name", "default": "clickhouse-http" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"type\":\"module\",\"scripts\":{\"start\":\"node run.js\"},\"dependencies\":{\"node-fetch\":\"^3\"}}\n" },
+    { "path": "{{app_name}}/run.js", "template": "import fetch from 'node-fetch';\nconsole.log('POST to ClickHouse /?query=INSERT ... with data');\n" }
+  ]
+}
+

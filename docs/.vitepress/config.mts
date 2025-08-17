@@ -100,7 +100,8 @@ const japaneseSidebar = {
         { text: '機能ドキュメント', link: '/ja/features' },
         { text: 'スパイクテンプレートガイド', link: '/ja/spike-templates' },
         { text: 'スパイクテンプレート詳細', link: '/ja/spike-templates-detailed' },
-        { text: 'テンプレート作成', link: '/ja/template-creation' }
+        { text: 'テンプレート作成', link: '/ja/template-creation' },
+        { text: '静的解析', link: '/ja/static-analysis' }
       ]
     },
     {

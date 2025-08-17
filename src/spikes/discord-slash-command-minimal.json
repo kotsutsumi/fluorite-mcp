@@ -1,0 +1,14 @@
+{
+  "id": "discord-slash-command-minimal",
+  "name": "Discord Slash Command 最小",
+  "version": "1.0.0",
+  "stack": ["node", "discord"],
+  "tags": ["bot"],
+  "description": "discord.js で簡易 Slash Command",
+  "params": [ { "name": "app_name", "default": "discord-slash" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"type\":\"module\",\"scripts\":{\"start\":\"node bot.js\"},\"dependencies\":{\"discord.js\":\"latest\"}}\n" },
+    { "path": "{{app_name}}/bot.js", "template": "import { Client, GatewayIntentBits, REST, Routes, SlashCommandBuilder } from 'discord.js';\nconst client = new Client({ intents: [GatewayIntentBits.Guilds] });\nclient.once('ready', ()=>console.log('ready'));\nclient.on('interactionCreate', async i => { if (!i.isChatInputCommand()) return; if (i.commandName==='ping') await i.reply('pong'); });\nconst rest = new REST({ version: '10' }).setToken(process.env.BOT_TOKEN);\nawait rest.put(Routes.applicationCommands(process.env.APP_ID), { body: [ new SlashCommandBuilder().setName('ping').setDescription('Ping').toJSON() ] });\nclient.login(process.env.BOT_TOKEN);\n" }
+  ]
+}
+

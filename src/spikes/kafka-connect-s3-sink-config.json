@@ -1,0 +1,12 @@
+{
+  "id": "kafka-connect-s3-sink-config",
+  "name": "Kafka Connect S3 Sink 設定",
+  "version": "1.0.0",
+  "stack": ["kafka"],
+  "tags": ["data"],
+  "description": "S3 Sink コネクタ設定 JSON 雛形",
+  "files": [
+    { "path": "connector.json", "template": "{\n  \"name\": \"s3-sink\",\n  \"config\": {\n    \"connector.class\": \"io.confluent.connect.s3.S3SinkConnector\",\n    \"tasks.max\": \"1\",\n    \"topics\": \"events\",\n    \"s3.bucket.name\": \"my-bucket\",\n    \"s3.region\": \"us-east-1\",\n    \"format.class\": \"io.confluent.connect.s3.format.json.JsonFormat\"\n  }\n}\n" }
+  ]
+}
+

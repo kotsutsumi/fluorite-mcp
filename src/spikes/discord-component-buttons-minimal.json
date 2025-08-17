@@ -1,0 +1,14 @@
+{
+  "id": "discord-component-buttons-minimal",
+  "name": "Discord コンポーネントボタン 最小",
+  "version": "1.0.0",
+  "stack": ["node", "discord.js"],
+  "tags": ["bot"],
+  "description": "discord.js のボタン UI 応答",
+  "params": [ { "name": "app_name", "default": "discord-buttons" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"type\":\"module\",\"scripts\":{\"start\":\"node bot.js\"},\"dependencies\":{\"discord.js\":\"latest\"}}\n" },
+    { "path": "{{app_name}}/bot.js", "template": "import { Client, GatewayIntentBits, ActionRowBuilder, ButtonBuilder, ButtonStyle, Events } from 'discord.js';\nconst c = new Client({ intents: [GatewayIntentBits.Guilds] });\nc.on('ready', ()=>console.log('ready'));\nc.on(Events.InteractionCreate, async i=>{ if(!i.isButton()) return; await i.reply('clicked'); });\n// Register a message with button in your flow\nc.login(process.env.BOT_TOKEN);\n" }
+  ]
+}
+

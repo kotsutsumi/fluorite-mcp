@@ -1,0 +1,18 @@
+{
+  "id": "google-sheets-read-minimal",
+  "name": "Google Sheets 読み取り 最小",
+  "version": "1.0.0",
+  "stack": ["node", "googleapis"],
+  "tags": ["google", "sheets"],
+  "description": "googleapis を用いたシート読み取り",
+  "params": [
+    { "name": "app_name", "default": "g-sheets-read" },
+    { "name": "sheet_id", "default": "SHEET_ID" },
+    { "name": "range", "default": "Sheet1!A1:B5" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node read.js\" }, \"dependencies\": { \"googleapis\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/read.js", "template": "import { google } from 'googleapis';\nconst auth = new google.auth.GoogleAuth({ scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'] });\nconst sheets = google.sheets({ version: 'v4', auth });\nconst res = await sheets.spreadsheets.values.get({ spreadsheetId: process.env.SHEET_ID || '{{sheet_id}}', range: process.env.SHEET_RANGE || '{{range}}' });\nconsole.log(res.data.values || []);\n" }
+  ]
+}
+

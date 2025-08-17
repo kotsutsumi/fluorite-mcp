@@ -1,0 +1,14 @@
+{
+  "id": "snowflake-node-minimal",
+  "name": "Snowflake Node 最小",
+  "version": "1.0.0",
+  "stack": ["node", "snowflake"],
+  "tags": ["db"],
+  "description": "snowflake-sdk でクエリ",
+  "params": [ { "name": "app_name", "default": "snowflake-min" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"snowflake-sdk\": \"^1\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const snowflake = require('snowflake-sdk');\nconsole.log('Use snowflake.createConnection and connect with creds');\n" }
+  ]
+}
+

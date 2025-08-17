@@ -1,0 +1,12 @@
+{
+  "id": "remix-session-cookie-minimal",
+  "name": "Remix Cookie セッション 最小",
+  "version": "1.0.0",
+  "stack": ["remix"],
+  "tags": ["frontend", "auth"],
+  "description": "createCookieSessionStorage の最小例",
+  "files": [
+    { "path": "app/session.server.ts", "template": "import { createCookieSessionStorage } from '@remix-run/node';\nexport const sessionStorage = createCookieSessionStorage({ cookie: { name: 'sid', secrets: ['s'], sameSite: 'lax' } });\n" }
+  ]
+}
+

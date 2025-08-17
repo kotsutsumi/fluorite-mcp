@@ -1,0 +1,14 @@
+{
+  "id": "redshift-data-api-minimal",
+  "name": "Amazon Redshift Data API 最小",
+  "version": "1.0.0",
+  "stack": ["node", "aws"],
+  "tags": ["db"],
+  "description": "@aws-sdk/client-redshift-data でクエリ",
+  "params": [ { "name": "app_name", "default": "redshift-data" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@aws-sdk/client-redshift-data\": \"^3\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { RedshiftDataClient } from '@aws-sdk/client-redshift-data';\nconst c = new RedshiftDataClient({});\nconsole.log('Use c.send(ExecuteStatementCommand)');\n" }
+  ]
+}
+

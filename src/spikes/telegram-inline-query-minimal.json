@@ -1,0 +1,14 @@
+{
+  "id": "telegram-inline-query-minimal",
+  "name": "Telegram Inline Query 最小",
+  "version": "1.0.0",
+  "stack": ["node", "grammy"],
+  "tags": ["bot"],
+  "description": "grammY の inlineQuery ハンドラ",
+  "params": [ { "name": "app_name", "default": "tg-inline" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node bot.js\" }, \"dependencies\": { \"grammy\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/bot.js", "template": "import { Bot, InlineKeyboard } from 'grammy';\nconst bot = new Bot(process.env.BOT_TOKEN);\nbot.on('inline_query', async (ctx) => { await ctx.answerInlineQuery([{ type:'article', id:'1', title:'Hello', input_message_content:{ message_text:'Hello' } }]); });\nbot.start();\n" }
+  ]
+}
+

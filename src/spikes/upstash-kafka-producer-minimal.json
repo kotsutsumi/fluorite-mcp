@@ -1,0 +1,14 @@
+{
+  "id": "upstash-kafka-producer-minimal",
+  "name": "Upstash Kafka Producer 最小",
+  "version": "1.0.0",
+  "stack": ["node", "kafka"],
+  "tags": ["kafka"],
+  "description": "@upstash/kafka でメッセージを送信",
+  "params": [ { "name": "app_name", "default": "upstash-kafka" }, { "name": "topic", "default": "events" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node produce.js\" }, \"dependencies\": { \"@upstash/kafka\": \"^1\" } }\n" },
+    { "path": "{{app_name}}/produce.js", "template": "import { Kafka } from '@upstash/kafka';\nconst kafka = new Kafka({ url: process.env.UPSTASH_KAFKA_REST_URL, username: process.env.UPSTASH_KAFKA_USERNAME, password: process.env.UPSTASH_KAFKA_PASSWORD });\nconst p = kafka.producer();\nawait p.produce(process.env.KAFKA_TOPIC || '{{topic}}', { value: 'hello' });\nconsole.log('sent');\n" }
+  ]
+}
+

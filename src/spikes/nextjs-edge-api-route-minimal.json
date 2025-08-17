@@ -1,0 +1,12 @@
+{
+  "id": "nextjs-edge-api-route-minimal",
+  "name": "Next.js Edge API Route 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["frontend"],
+  "description": "Edge Runtime での API Route サンプル",
+  "files": [
+    { "path": "app/api/edge/route.ts", "template": "export const runtime = 'edge';\nexport async function GET(){ return new Response('Hello Edge'); }\n" }
+  ]
+}
+

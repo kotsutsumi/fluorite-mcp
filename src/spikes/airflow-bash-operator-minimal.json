@@ -1,0 +1,13 @@
+{
+  "id": "airflow-bash-operator-minimal",
+  "name": "Airflow BashOperator 最小",
+  "version": "1.0.0",
+  "stack": ["python", "airflow"],
+  "tags": ["orchestration"],
+  "description": "BashOperator を使った最小 DAG",
+  "params": [ { "name": "app_name", "default": "airflow-bash" } ],
+  "files": [
+    { "path": "{{app_name}}/dags/bash_example.py", "template": "from airflow import DAG\nfrom airflow.operators.bash import BashOperator\nfrom datetime import datetime\nwith DAG('bash_example', start_date=datetime(2024,1,1), schedule=None, catchup=False) as dag:\n    BashOperator(task_id='echo', bash_command='echo hello')\n" }
+  ]
+}
+

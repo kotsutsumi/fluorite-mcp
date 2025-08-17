@@ -1,0 +1,14 @@
+{
+  "id": "passport-google-oauth20-express-minimal",
+  "name": "Passport Google OAuth2 (Express) 最小",
+  "version": "1.0.0",
+  "stack": ["node", "passport", "express"],
+  "tags": ["auth"],
+  "description": "passport-google-oauth20 による最小ログイン",
+  "params": [ { "name": "app_name", "default": "passport-google" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"scripts\":{\"start\":\"node server.js\"},\"dependencies\":{\"express\":\"^4\",\"passport\":\"^0.7\",\"passport-google-oauth20\":\"^2\",\"express-session\":\"^1\"}}\n" },
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst session = require('express-session');\nconst passport = require('passport');\nconst GoogleStrategy = require('passport-google-oauth20').Strategy;\npassport.use(new GoogleStrategy({ clientID: process.env.GOOGLE_ID, clientSecret: process.env.GOOGLE_SECRET, callbackURL: '/auth/google/callback' }, (_a,_b,done)=>done(null,{id:'user'})));\npassport.serializeUser((u,done)=>done(null,u));\npassport.deserializeUser((u,done)=>done(null,u));\nconst app = express();\napp.use(session({ secret:'s', resave:false, saveUninitialized:false }));\napp.use(passport.initialize());\napp.use(passport.session());\napp.get('/auth/google', passport.authenticate('google', { scope: ['email','profile'] }));\napp.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/' }), (_req,res)=>res.send('ok'));\napp.listen(3000, ()=>console.log('listening'));\n" }
+  ]
+}
+

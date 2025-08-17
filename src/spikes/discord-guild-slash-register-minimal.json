@@ -1,0 +1,14 @@
+{
+  "id": "discord-guild-slash-register-minimal",
+  "name": "Discord Guild Slash 登録 最小",
+  "version": "1.0.0",
+  "stack": ["node", "discord.js"],
+  "tags": ["bot"],
+  "description": "特定ギルドに Slash コマンドを登録",
+  "params": [ { "name": "app_name", "default": "discord-guild-slash" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"type\":\"module\",\"scripts\":{\"start\":\"node register.js\"},\"dependencies\":{\"discord.js\":\"latest\"}}\n" },
+    { "path": "{{app_name}}/register.js", "template": "import { REST, Routes, SlashCommandBuilder } from 'discord.js';\nconst rest = new REST({ version: '10' }).setToken(process.env.BOT_TOKEN);\nawait rest.put(Routes.applicationGuildCommands(process.env.APP_ID, process.env.GUILD_ID), { body: [ new SlashCommandBuilder().setName('hi').setDescription('Hello').toJSON() ] });\nconsole.log('registered');\n" }
+  ]
+}
+

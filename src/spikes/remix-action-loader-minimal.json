@@ -1,0 +1,12 @@
+{
+  "id": "remix-action-loader-minimal",
+  "name": "Remix action/loader 最小",
+  "version": "1.0.0",
+  "stack": ["remix"],
+  "tags": ["frontend"],
+  "description": "Remix の loader/action スケルトン",
+  "files": [
+    { "path": "app/routes/_index.tsx", "template": "import { json, type ActionFunctionArgs, type LoaderFunctionArgs } from '@remix-run/node';\nexport async function loader(_args: LoaderFunctionArgs){ return json({ hello: 'world' }); }\nexport async function action(_args: ActionFunctionArgs){ return json({ ok: true }); }\nexport default function Index(){ return null }\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "prometheus-client-node-histogram-minimal",
+  "name": "Prometheus client-node ヒストグラム 最小",
+  "version": "1.0.0",
+  "stack": ["node", "prometheus"],
+  "tags": ["metrics"],
+  "description": "prom-client のヒストグラム計測",
+  "params": [ { "name": "app_name", "default": "prom-hist" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"prom-client\": \"^15\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const client = require('prom-client');\nconst h = new client.Histogram({ name:'latency', help:'latency', buckets: [0.01,0.1,0.5,1,2] });\nh.observe(0.2);\nconsole.log('observed');\n" }
+  ]
+}
+

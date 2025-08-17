@@ -1,0 +1,14 @@
+{
+  "id": "bigcommerce-rest-get-products-minimal",
+  "name": "BigCommerce REST 製品取得 最小",
+  "version": "1.0.0",
+  "stack": ["node", "bigcommerce"],
+  "tags": ["commerce"],
+  "description": "BigCommerce REST API で製品一覧",
+  "params": [ { "name": "app_name", "default": "bigc-products" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"type\":\"module\",\"scripts\":{\"start\":\"node run.js\"},\"dependencies\":{\"node-fetch\":\"^3\"}}\n" },
+    { "path": "{{app_name}}/run.js", "template": "import fetch from 'node-fetch';\nconst url = `https://api.bigcommerce.com/stores/${process.env.BIGC_STORE_HASH}/v3/catalog/products`;\nconst r = await fetch(url, { headers: { 'X-Auth-Token': process.env.BIGC_TOKEN, 'Accept': 'application/json' } });\nconsole.log(r.status);\n" }
+  ]
+}
+

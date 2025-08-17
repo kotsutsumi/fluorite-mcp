@@ -1,0 +1,18 @@
+{
+  "id": "notion-database-query-minimal",
+  "name": "Notion DB クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["node", "notion"],
+  "tags": ["notion", "api"],
+  "description": "@notionhq/client でデータベースをクエリ",
+  "params": [
+    { "name": "app_name", "default": "notion-db-query" },
+    { "name": "notion_token", "default": "NOTION_TOKEN" },
+    { "name": "database_id", "default": "YOUR_DATABASE_ID" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@notionhq/client\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { Client } from '@notionhq/client';\nconst notion = new Client({ auth: process.env.NOTION_TOKEN || '{{notion_token}}' });\nconst dbId = process.env.NOTION_DB || '{{database_id}}';\nconst res = await notion.databases.query({ database_id: dbId });\nconsole.log('Results:', res.results.length);\n" }
+  ]
+}
+

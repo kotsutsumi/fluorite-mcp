@@ -1,0 +1,14 @@
+{
+  "id": "jose-jwt-sign-verify-minimal",
+  "name": "jose JWT 署名/検証 最小",
+  "version": "1.0.0",
+  "stack": ["node", "jose"],
+  "tags": ["auth"],
+  "description": "jose で JWT を署名・検証",
+  "params": [ { "name": "app_name", "default": "jose-jwt" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"jose\": \"^5\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { SignJWT, jwtVerify } from 'jose';\nconst key = new TextEncoder().encode('secret');\nconst jwt = await new SignJWT({ sub:'1' }).setProtectedHeader({ alg:'HS256' }).sign(key);\nconst { payload } = await jwtVerify(jwt, key);\nconsole.log(!!payload.sub);\n" }
+  ]
+}
+

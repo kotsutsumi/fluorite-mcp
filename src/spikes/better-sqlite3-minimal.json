@@ -1,0 +1,14 @@
+{
+  "id": "better-sqlite3-minimal",
+  "name": "better-sqlite3 最小",
+  "version": "1.0.0",
+  "stack": ["node", "sqlite"],
+  "tags": ["db"],
+  "description": "better-sqlite3 で同期クエリ",
+  "params": [ { "name": "app_name", "default": "btr-sqlite3" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"better-sqlite3\": \"^9\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const Database = require('better-sqlite3');\nconst db = new Database(':memory:');\nconst row = db.prepare('SELECT 1 as x').get();\nconsole.log(row.x);\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "slack-incoming-webhook-minimal",
+  "name": "Slack Incoming Webhook 最小",
+  "version": "1.0.0",
+  "stack": ["node", "slack"],
+  "tags": ["chat"],
+  "description": "Incoming Webhook で簡易メッセージ送信",
+  "params": [ { "name": "app_name", "default": "slack-incoming" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"type\":\"module\",\"scripts\":{\"start\":\"node send.js\"},\"dependencies\":{\"node-fetch\":\"^3\"}}\n" },
+    { "path": "{{app_name}}/send.js", "template": "import fetch from 'node-fetch';\nawait fetch(process.env.SLACK_WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text: 'Hello Slack' }) });\nconsole.log('sent');\n" }
+  ]
+}
+

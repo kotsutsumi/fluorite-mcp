@@ -1,0 +1,14 @@
+{
+  "id": "electron-app-minimal",
+  "name": "Electron アプリ 最小",
+  "version": "1.0.0",
+  "stack": ["electron"],
+  "tags": ["desktop"],
+  "description": "Electron 最小ウィンドウ",
+  "params": [ { "name": "app_name", "default": "electron-min" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"main\": \"main.js\",\n  \"scripts\": { \"start\": \"electron .\" },\n  \"devDependencies\": { \"electron\": \"latest\" }\n}\n" },
+    { "path": "{{app_name}}/main.js", "template": "const { app, BrowserWindow } = require('electron');\nfunction createWindow(){ const w = new BrowserWindow({ width: 800, height: 600 }); w.loadURL('data:text/html,<h1>Hello Electron</h1>'); }\napp.whenReady().then(createWindow);\n" }
+  ]
+}
+

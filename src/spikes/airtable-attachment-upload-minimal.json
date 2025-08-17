@@ -1,0 +1,14 @@
+{
+  "id": "airtable-attachment-upload-minimal",
+  "name": "Airtable 添付アップロード 最小",
+  "version": "1.0.0",
+  "stack": ["node", "airtable"],
+  "tags": ["db"],
+  "description": "Airtable 添付フィールドに URL 添付",
+  "params": [ { "name": "app_name", "default": "airtable-attach" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"airtable\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import Airtable from 'airtable';\nconst base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE_ID);\nconsole.log('Use create/update with attachment URLs');\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "stripe-connect-onboarding-minimal",
+  "name": "Stripe Connect Onboarding 最小",
+  "version": "1.0.0",
+  "stack": ["node", "stripe"],
+  "tags": ["payments"],
+  "description": "Stripe Connect アカウントとオンボーディングリンク",
+  "params": [ { "name": "app_name", "default": "stripe-connect" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"stripe\": \"^16\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import Stripe from 'stripe';\nconst stripe = new Stripe(process.env.STRIPE_SECRET_KEY);\nconst acct = await stripe.accounts.create({ type: 'express' });\nconst link = await stripe.accountLinks.create({ account: acct.id, refresh_url: 'https://example.com/refresh', return_url: 'https://example.com/return', type: 'account_onboarding' });\nconsole.log('Onboarding URL:', link.url);\n" }
+  ]
+}
+

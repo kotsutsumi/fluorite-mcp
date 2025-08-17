@@ -1,0 +1,15 @@
+{
+  "id": "expo-react-native-minimal",
+  "name": "Expo React Native 最小",
+  "version": "1.0.0",
+  "stack": ["expo", "react-native", "js"],
+  "tags": ["mobile"],
+  "description": "Expo 管理プロジェクトの最小ファイル",
+  "params": [ { "name": "app_name", "default": "expo-min" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"main\": \"index.js\",\n  \"dependencies\": { \"expo\": \"latest\", \"react\": \"latest\", \"react-native\": \"latest\" },\n  \"scripts\": { \"start\": \"expo start\" }\n}\n" },
+    { "path": "{{app_name}}/App.js", "template": "import { Text, View } from 'react-native';\nexport default function App(){ return <View style={{flex:1,alignItems:'center',justifyContent:'center'}}><Text>Hello Expo</Text></View>; }\n" },
+    { "path": "{{app_name}}/index.js", "template": "import { registerRootComponent } from 'expo';\nimport App from './App';\nregisterRootComponent(App);\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "kafka-connect-connector-config-minimal",
+  "name": "Kafka Connect Connector 設定 最小",
+  "version": "1.0.0",
+  "stack": ["kafka"],
+  "tags": ["data"],
+  "description": "Kafka Connect コネクタ設定 JSON の雛形",
+  "files": [
+    { "path": "connector.json", "template": "{\n  \"name\": \"my-connector\",\n  \"config\": {\n    \"connector.class\": \"FileStreamSource\",\n    \"tasks.max\": \"1\",\n    \"file\": \"/tmp/input.txt\",\n    \"topic\": \"connect-test\"\n  }\n}\n" }
+  ]
+}
+

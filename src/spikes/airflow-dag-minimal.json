@@ -1,0 +1,13 @@
+{
+  "id": "airflow-dag-minimal",
+  "name": "Airflow DAG 最小",
+  "version": "1.0.0",
+  "stack": ["python", "airflow"],
+  "tags": ["orchestration"],
+  "description": "Airflow DAG の最小サンプル",
+  "params": [ { "name": "app_name", "default": "airflow-dag" } ],
+  "files": [
+    { "path": "{{app_name}}/dags/example_dag.py", "template": "from airflow import DAG\nfrom airflow.operators.empty import EmptyOperator\nfrom datetime import datetime\nwith DAG('example', start_date=datetime(2024,1,1), schedule='@daily', catchup=False) as dag:\n    EmptyOperator(task_id='start')\n" }
+  ]
+}
+

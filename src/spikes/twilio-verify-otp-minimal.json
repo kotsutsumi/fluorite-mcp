@@ -1,0 +1,14 @@
+{
+  "id": "twilio-verify-otp-minimal",
+  "name": "Twilio Verify OTP 最小",
+  "version": "1.0.0",
+  "stack": ["node", "twilio"],
+  "tags": ["auth"],
+  "description": "Verify API で OTP 検証",
+  "params": [ { "name": "app_name", "default": "twilio-verify" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"twilio\": \"^4\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const twilio = require('twilio');\nconst c = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);\nconsole.log('Use c.verify.v2.services(SID).verifications.create / verificationChecks.create');\n" }
+  ]
+}
+

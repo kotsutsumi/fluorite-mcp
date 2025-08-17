@@ -1,0 +1,12 @@
+{
+  "id": "nextjs-middleware-auth-guard-minimal",
+  "name": "Next.js Middleware Auth Guard 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["frontend", "auth"],
+  "description": "/protected 以下をミドルウェアでガード",
+  "files": [
+    { "path": "middleware.ts", "template": "import { NextResponse } from 'next/server';\nexport function middleware(req: Request){ const url = new URL(req.url); if(url.pathname.startsWith('/protected')){ const authed = false; if(!authed) return NextResponse.redirect(new URL('/login', url)); } return NextResponse.next(); }\nexport const config = { matcher: ['/protected/:path*'] };\n" }
+  ]
+}
+

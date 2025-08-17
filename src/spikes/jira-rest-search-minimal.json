@@ -1,0 +1,14 @@
+{
+  "id": "jira-rest-search-minimal",
+  "name": "Jira REST 検索 最小",
+  "version": "1.0.0",
+  "stack": ["node", "jira"],
+  "tags": ["pm"],
+  "description": "jira.js で課題検索",
+  "params": [ { "name": "app_name", "default": "jira-search" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"type\":\"module\",\"scripts\":{\"start\":\"node run.js\"},\"dependencies\":{\"jira.js\":\"^4\"}}\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { Version3Client } from 'jira.js';\nconst client = new Version3Client({ host: process.env.JIRA_HOST, authentication: { basic: { email: process.env.JIRA_EMAIL, apiToken: process.env.JIRA_TOKEN } } });\nconst res = await client.issueSearch.searchForIssuesUsingJql({ jql: 'ORDER BY created DESC', maxResults: 1 });\nconsole.log(res.total >= 0);\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "cassandra-driver-minimal",
+  "name": "Cassandra ドライバ 最小",
+  "version": "1.0.0",
+  "stack": ["node", "cassandra"],
+  "tags": ["db"],
+  "description": "cassandra-driver でクエリ",
+  "params": [ { "name": "app_name", "default": "cassandra-min" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"cassandra-driver\": \"^4\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const { Client } = require('cassandra-driver');\nconst client = new Client({ contactPoints: ['127.0.0.1'], localDataCenter: 'datacenter1' });\n(async () => { try { await client.connect(); const rs = await client.execute('SELECT release_version FROM system.local'); console.log(rs.rows[0]); } finally { await client.shutdown(); } })();\n" }
+  ]
+}
+

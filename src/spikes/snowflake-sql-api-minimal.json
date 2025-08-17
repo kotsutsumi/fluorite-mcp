@@ -1,0 +1,14 @@
+{
+  "id": "snowflake-sql-api-minimal",
+  "name": "Snowflake SQL API 最小",
+  "version": "1.0.0",
+  "stack": ["node", "snowflake"],
+  "tags": ["db"],
+  "description": "REST SQL API へ呼び出し",
+  "params": [ { "name": "app_name", "default": "snowflake-sqlapi" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"type\":\"module\",\"scripts\":{\"start\":\"node run.js\"},\"dependencies\":{\"node-fetch\":\"^3\"}}\n" },
+    { "path": "{{app_name}}/run.js", "template": "import fetch from 'node-fetch';\nconsole.log('POST to /queries/v1/query-request with JWT auth');\n" }
+  ]
+}
+

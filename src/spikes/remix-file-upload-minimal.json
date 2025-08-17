@@ -1,0 +1,12 @@
+{
+  "id": "remix-file-upload-minimal",
+  "name": "Remix ファイルアップロード 最小",
+  "version": "1.0.0",
+  "stack": ["remix"],
+  "tags": ["frontend"],
+  "description": "Remix action で multipart/form-data 受信",
+  "files": [
+    { "path": "app/routes/upload.tsx", "template": "import { json, unstable_parseMultipartFormData, type ActionFunctionArgs } from '@remix-run/node';\nexport async function action({ request }: ActionFunctionArgs){ const form = await unstable_parseMultipartFormData(request, async ({ stream })=>{ /* consume */ }); return json({ ok:true }); }\nexport default function Page(){ return null }\n" }
+  ]
+}
+

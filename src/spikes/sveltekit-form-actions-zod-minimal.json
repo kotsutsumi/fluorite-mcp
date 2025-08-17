@@ -1,0 +1,12 @@
+{
+  "id": "sveltekit-form-actions-zod-minimal",
+  "name": "SvelteKit form actions + Zod 最小",
+  "version": "1.0.0",
+  "stack": ["sveltekit", "zod"],
+  "tags": ["frontend"],
+  "description": "Zod でフォーム検証する +page.server.ts",
+  "files": [
+    { "path": "+page.server.ts", "template": "import { z } from 'zod';\nconst schema = z.object({ email: z.string().email() });\nexport const actions = { default: async ({ request }) => { const data = Object.fromEntries(await request.formData()); const v = schema.safeParse(data); if(!v.success) return { ok:false }; return { ok:true }; } };\n" }
+  ]
+}
+

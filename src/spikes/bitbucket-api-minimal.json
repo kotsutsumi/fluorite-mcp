@@ -1,0 +1,17 @@
+{
+  "id": "bitbucket-api-minimal",
+  "name": "Bitbucket API 最小",
+  "version": "1.0.0",
+  "stack": ["node", "bitbucket"],
+  "tags": ["bitbucket", "api"],
+  "description": "bitbucket パッケージでワークスペースリポジトリを一覧",
+  "params": [
+    { "name": "app_name", "default": "bitbucket-api" },
+    { "name": "workspace", "default": "your-workspace" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"bitbucket\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { Bitbucket } from 'bitbucket';\nconst client = new Bitbucket({ auth: { username: process.env.BB_USER, password: process.env.BB_APP_PASS } });\nconst ws = process.env.BB_WORKSPACE || '{{workspace}}';\nconst res = await client.repositories.list({ workspace: ws });\nconsole.log('Repos:', res.data.values?.length || 0);\n" }
+  ]
+}
+

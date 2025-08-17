@@ -1,0 +1,14 @@
+{
+  "id": "aws-appsync-graphql-minimal",
+  "name": "AWS AppSync GraphQL 最小",
+  "version": "1.0.0",
+  "stack": ["node", "aws", "graphql"],
+  "tags": ["graphql"],
+  "description": "x-api-key で AppSync GraphQL 実行",
+  "params": [ { "name": "app_name", "default": "aws-appsync" }, { "name": "endpoint", "default": "APPSYNC_URL" }, { "name": "api_key", "default": "APPSYNC_API_KEY" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"graphql-request\": \"^7\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { GraphQLClient, gql } from 'graphql-request';\nconst client = new GraphQLClient(process.env.APPSYNC_URL || '{{endpoint}}', { headers: { 'x-api-key': process.env.APPSYNC_API_KEY || '{{api_key}}' } });\nconst q = gql`query { __typename }`;\nconst res = await client.request(q);\nconsole.log(res);\n" }
+  ]
+}
+

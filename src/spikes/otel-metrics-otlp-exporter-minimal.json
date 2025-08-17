@@ -1,0 +1,14 @@
+{
+  "id": "otel-metrics-otlp-exporter-minimal",
+  "name": "OpenTelemetry Metrics OTLP Exporter 最小",
+  "version": "1.0.0",
+  "stack": ["node", "opentelemetry"],
+  "tags": ["otel"],
+  "description": "@opentelemetry/sdk-metrics + OTLP HTTP Exporter",
+  "params": [ { "name": "app_name", "default": "otel-metrics" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node metrics.js\" }, \"dependencies\": { \"@opentelemetry/sdk-metrics\": \"^0.52.1\", \"@opentelemetry/exporter-metrics-otlp-http\": \"^0.52.1\" } }\n" },
+    { "path": "{{app_name}}/metrics.js", "template": "import { MeterProvider } from '@opentelemetry/sdk-metrics';\nimport { OTLPMetricExporter } from '@opentelemetry/exporter-metrics-otlp-http';\nconst exporter = new OTLPMetricExporter({ url: process.env.OTLP_URL });\nconst mp = new MeterProvider({ readers: [ new (await import('@opentelemetry/sdk-metrics')).PeriodicExportingMetricReader({ exporter, exportIntervalMillis: 1000 }) ] });\nconst meter = mp.getMeter('demo');\nconst counter = meter.createCounter('demo_counter');\ncounter.add(1);\nconsole.log('metric recorded');\n" }
+  ]
+}
+

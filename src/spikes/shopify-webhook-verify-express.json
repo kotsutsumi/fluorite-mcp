@@ -1,0 +1,14 @@
+{
+  "id": "shopify-webhook-verify-express",
+  "name": "Shopify Webhook 署名検証 (Express)",
+  "version": "1.0.0",
+  "stack": ["node", "express", "shopify"],
+  "tags": ["webhook"],
+  "description": "Shopify HMAC 署名検証の最小例",
+  "params": [ { "name": "app_name", "default": "shopify-webhook" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"scripts\":{\"start\":\"node server.js\"},\"dependencies\":{\"express\":\"^4\"}}\n" },
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst crypto = require('crypto');\nconst app = express();\napp.use(express.raw({ type: '*/*' }));\napp.post('/webhook', (req, res) => {\n  const hmac = req.headers['x-shopify-hmac-sha256'];\n  const digest = crypto.createHmac('sha256', process.env.SHOPIFY_WEBHOOK_SECRET).update(req.body).digest('base64');\n  res.status(hmac === digest ? 200 : 401).send('ok');\n});\napp.listen(3000, () => console.log('listening'));\n" }
+  ]
+}
+

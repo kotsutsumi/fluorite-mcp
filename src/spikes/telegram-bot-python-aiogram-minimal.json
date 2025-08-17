@@ -1,0 +1,14 @@
+{
+  "id": "telegram-bot-python-aiogram-minimal",
+  "name": "Telegram Bot (aiogram, Python) 最小",
+  "version": "1.0.0",
+  "stack": ["python", "telegram", "aiogram"],
+  "tags": ["bot", "chat"],
+  "description": "Python aiogram による最小ボット",
+  "params": [ { "name": "app_name", "default": "aiogram-bot" }, { "name": "bot_token", "default": "TELEGRAM_BOT_TOKEN" } ],
+  "files": [
+    { "path": "{{app_name}}/requirements.txt", "template": "aiogram\n" },
+    { "path": "{{app_name}}/bot.py", "template": "import os\nfrom aiogram import Bot, Dispatcher, executor, types\nBOT_TOKEN = os.getenv('BOT_TOKEN', '{{bot_token}}')\nbot = Bot(token=BOT_TOKEN)\ndp = Dispatcher(bot)\n@dp.message_handler(commands=['start'])\nasync def start(m: types.Message):\n    await m.reply('Hello from aiogram!')\nif __name__ == '__main__':\n    executor.start_polling(dp)\n" }
+  ]
+}
+

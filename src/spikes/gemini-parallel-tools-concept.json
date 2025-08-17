@@ -1,0 +1,14 @@
+{
+  "id": "gemini-parallel-tools-concept",
+  "name": "Gemini Parallel Tools Concept (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "gemini"],
+  "tags": ["tools", "concept"],
+  "description": "Conceptual notes for parallel tool responses using Gemini (SDK support may vary).",
+  "params": [{ "name": "app_name", "default": "gemini-parallel-tools" }],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "# Gemini Parallel Tools (Concept)\n\n- Define tool set: get_time, get_date.\n- Ask model to decide which tool(s) to call.\n- Process tool call results and send follow-up message.\n- Aggregate responses.\n\nNote: Parallel tool calls depend on SDK features; implement sequentially if unsupported.\n" }
+  ],
+  "patches": []
+}
+

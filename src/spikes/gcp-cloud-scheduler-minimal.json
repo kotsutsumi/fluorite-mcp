@@ -1,0 +1,14 @@
+{
+  "id": "gcp-cloud-scheduler-minimal",
+  "name": "GCP Cloud Scheduler 最小",
+  "version": "1.0.0",
+  "stack": ["node", "gcp"],
+  "tags": ["cron"],
+  "description": "googleapis で Cloud Scheduler ジョブ作成",
+  "params": [ { "name": "app_name", "default": "gcp-scheduler" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node create.js\" }, \"dependencies\": { \"googleapis\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/create.js", "template": "import { google } from 'googleapis';\nconst auth = new google.auth.GoogleAuth({ scopes: ['https://www.googleapis.com/auth/cloud-platform'] });\nconst sched = google.cloudscheduler({ version: 'v1', auth });\nconsole.log('Create a job with sched.projects.locations.jobs...');\n" }
+  ]
+}
+

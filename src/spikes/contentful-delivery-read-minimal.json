@@ -1,0 +1,14 @@
+{
+  "id": "contentful-delivery-read-minimal",
+  "name": "Contentful Delivery 読み取り 最小",
+  "version": "1.0.0",
+  "stack": ["node", "contentful"],
+  "tags": ["cms"],
+  "description": "contentful SDK で Delivery API から取得",
+  "params": [ { "name": "app_name", "default": "contentful-delivery" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"type\":\"module\",\"scripts\":{\"start\":\"node run.js\"},\"dependencies\":{\"contentful\":\"^10\"}}\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { createClient } from 'contentful';\nconst client = createClient({ space: process.env.CTF_SPACE, accessToken: process.env.CTF_DELIVERY_TOKEN });\nconst res = await client.getEntries({ limit: 1 });\nconsole.log(res.items.length);\n" }
+  ]
+}
+

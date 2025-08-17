@@ -1,0 +1,14 @@
+{
+  "id": "contentful-graphql-fetch-minimal",
+  "name": "Contentful GraphQL fetch 最小",
+  "version": "1.0.0",
+  "stack": ["node", "contentful"],
+  "tags": ["cms"],
+  "description": "Contentful GraphQL エンドポイントへクエリ",
+  "params": [ { "name": "app_name", "default": "contentful-graphql" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"type\":\"module\",\"scripts\":{\"start\":\"node run.js\"},\"dependencies\":{\"graphql-request\":\"^7\"}}\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { GraphQLClient, gql } from 'graphql-request';\nconst url = `https://graphql.contentful.com/content/v1/spaces/${process.env.CTF_SPACE}`;\nconst client = new GraphQLClient(url, { headers: { Authorization: `Bearer ${process.env.CTF_DELIVERY_TOKEN}` } });\nconst q = gql`{ __typename }`;\ntry { const r = await client.request(q); console.log(Object.keys(r).length>=0); } catch(e){ console.log('Provide valid tokens'); }\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "woocommerce-webhook-verify-express",
+  "name": "WooCommerce Webhook 署名検証 (Express)",
+  "version": "1.0.0",
+  "stack": ["node", "express", "woocommerce"],
+  "tags": ["webhook"],
+  "description": "WooCommerce Webhook の HMAC 署名検証",
+  "params": [ { "name": "app_name", "default": "woo-webhook" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"scripts\":{\"start\":\"node server.js\"},\"dependencies\":{\"express\":\"^4\"}}\n" },
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst crypto = require('crypto');\nconst app = express();\napp.use(express.raw({ type: '*/*' }));\napp.post('/woo', (req, res) => {\n  const sig = req.headers['x-wc-webhook-signature'];\n  const h = crypto.createHmac('sha256', process.env.WC_WEBHOOK_SECRET).update(req.body).digest('base64');\n  res.status(sig === h ? 200 : 401).send('ok');\n});\napp.listen(3000, ()=>console.log('listening'));\n" }
+  ]
+}
+

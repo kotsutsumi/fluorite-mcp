@@ -1,0 +1,14 @@
+{
+  "id": "selenium-webdriver-minimal",
+  "name": "Selenium WebDriver 最小",
+  "version": "1.0.0",
+  "stack": ["node", "selenium"],
+  "tags": ["browser", "automation"],
+  "description": "selenium-webdriver の最小例",
+  "params": [ { "name": "app_name", "default": "selenium-min" }, { "name": "url", "default": "https://example.com" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.mjs\" }, \"dependencies\": { \"selenium-webdriver\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.mjs", "template": "import { Builder, By } from 'selenium-webdriver';\nconst driver = await new Builder().forBrowser('chrome').build();\ntry {\n  await driver.get(process.env.URL || '{{url}}');\n  const title = await driver.getTitle();\n  console.log('Title:', title);\n} finally { await driver.quit(); }\n" }
+  ]
+}
+

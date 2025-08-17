@@ -1,0 +1,14 @@
+{
+  "id": "slack-events-api-verify-express",
+  "name": "Slack Events API 署名検証 (Express)",
+  "version": "1.0.0",
+  "stack": ["node", "slack", "express"],
+  "tags": ["webhook"],
+  "description": "Slack 署名 (v0=) 検証の雛形",
+  "params": [ { "name": "app_name", "default": "slack-events" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node server.js\" }, \"dependencies\": { \"express\": \"^4\" } }\n" },
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst crypto = require('crypto');\nconst app = express();\napp.use(express.raw({ type: '*/*' }));\napp.post('/slack', (req,res)=>{ const ts = req.headers['x-slack-request-timestamp']; const sig = req.headers['x-slack-signature']; const base = `v0:${ts}:${req.body}`; const my = 'v0=' + crypto.createHmac('sha256', process.env.SLACK_SIGNING_SECRET).update(base).digest('hex'); res.status(sig===my?200:401).send('ok'); });\napp.listen(3000, ()=>console.log('listening'));\n" }
+  ]
+}
+

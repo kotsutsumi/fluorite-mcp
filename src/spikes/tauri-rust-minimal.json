@@ -1,0 +1,14 @@
+{
+  "id": "tauri-rust-minimal",
+  "name": "Tauri (Rust) 最小",
+  "version": "1.0.0",
+  "stack": ["rust", "tauri"],
+  "tags": ["desktop"],
+  "description": "Tauri 風の Rust 最小スケルトン (参考)",
+  "params": [ { "name": "app_name", "default": "tauri-rust-min" } ],
+  "files": [
+    { "path": "{{app_name}}/Cargo.toml", "template": "[package]\nname = \"{{app_name}}\"\nversion = \"0.1.0\"\nedition = \"2021\"\n\n[dependencies]\n" },
+    { "path": "{{app_name}}/src/main.rs", "template": "fn main() { println!(\"Hello, Tauri-ish!\"); }\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "teams-incoming-webhook-minimal",
+  "name": "Teams Incoming Webhook 最小",
+  "version": "1.0.0",
+  "stack": ["node", "teams"],
+  "tags": ["chat"],
+  "description": "Teams の Incoming Webhook にカード送信",
+  "params": [ { "name": "app_name", "default": "teams-webhook" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"type\":\"module\",\"scripts\":{\"start\":\"node send.js\"},\"dependencies\":{\"node-fetch\":\"^3\"}}\n" },
+    { "path": "{{app_name}}/send.js", "template": "import fetch from 'node-fetch';\nawait fetch(process.env.TEAMS_WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text: 'Hello Teams' }) });\nconsole.log('sent');\n" }
+  ]
+}
+

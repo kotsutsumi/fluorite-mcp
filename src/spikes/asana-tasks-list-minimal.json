@@ -1,0 +1,14 @@
+{
+  "id": "asana-tasks-list-minimal",
+  "name": "Asana タスク一覧 最小",
+  "version": "1.0.0",
+  "stack": ["node", "asana"],
+  "tags": ["pm"],
+  "description": "asana SDK でタスク一覧",
+  "params": [ { "name": "app_name", "default": "asana-list" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"scripts\":{\"start\":\"node run.js\"},\"dependencies\":{\"asana\":\"^3\"}}\n" },
+    { "path": "{{app_name}}/run.js", "template": "const asana = require('asana');\nconst client = asana.Client.create().useAccessToken(process.env.ASANA_TOKEN);\n(async () => { const me = await client.users.me(); console.log(me.name); })();\n" }
+  ]
+}
+

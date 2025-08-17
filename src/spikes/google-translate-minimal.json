@@ -1,0 +1,14 @@
+{
+  "id": "google-translate-minimal",
+  "name": "Google 翻訳 API 最小",
+  "version": "1.0.0",
+  "stack": ["node", "google"],
+  "tags": ["nlp"],
+  "description": "@google-cloud/translate v2 で翻訳",
+  "params": [ { "name": "app_name", "default": "g-translate" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@google-cloud/translate\": \"^7\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { v2 as Translate } from '@google-cloud/translate';\nconst translate = new Translate.Translate();\nconst [res] = await translate.translate('Hello', 'ja');\nconsole.log(res);\n" }
+  ]
+}
+

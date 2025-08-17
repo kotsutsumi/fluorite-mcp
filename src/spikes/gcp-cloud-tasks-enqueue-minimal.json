@@ -1,0 +1,14 @@
+{
+  "id": "gcp-cloud-tasks-enqueue-minimal",
+  "name": "GCP Cloud Tasks enqueue 最小",
+  "version": "1.0.0",
+  "stack": ["node", "gcp"],
+  "tags": ["queue"],
+  "description": "@google-cloud/tasks でジョブ投入",
+  "params": [ { "name": "app_name", "default": "gcp-tasks" }, { "name": "queue", "default": "default" }, { "name": "location", "default": "us-central1" }, { "name": "project", "default": "YOUR_PROJECT" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node enqueue.js\" }, \"dependencies\": { \"@google-cloud/tasks\": \"^4\" } }\n" },
+    { "path": "{{app_name}}/enqueue.js", "template": "import { CloudTasksClient } from '@google-cloud/tasks';\nconst client = new CloudTasksClient();\nconst parent = client.queuePath(process.env.GCP_PROJECT || '{{project}}', process.env.GCP_LOCATION || '{{location}}', process.env.GCP_QUEUE || '{{queue}}');\nconst [res] = await client.createTask({ parent, task: { httpRequest: { httpMethod: 'POST', url: 'https://example.com/hook' } } });\nconsole.log('Task name:', res.name);\n" }
+  ]
+}
+

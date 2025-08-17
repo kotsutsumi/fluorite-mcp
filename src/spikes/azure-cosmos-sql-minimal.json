@@ -1,0 +1,14 @@
+{
+  "id": "azure-cosmos-sql-minimal",
+  "name": "Azure Cosmos (SQL) 最小",
+  "version": "1.0.0",
+  "stack": ["node", "azure"],
+  "tags": ["cosmos"],
+  "description": "@azure/cosmos でアイテム作成とクエリ",
+  "params": [ { "name": "app_name", "default": "az-cosmos-sql" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@azure/cosmos\": \"^4\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { CosmosClient } from '@azure/cosmos';\nconst client = new CosmosClient({ endpoint: process.env.COSMOS_ENDPOINT, key: process.env.COSMOS_KEY });\nconst { database } = await client.databases.createIfNotExists({ id: 'db' });\nconst { container } = await database.containers.createIfNotExists({ id: 'items', partitionKey: { kind:'Hash', paths:['/id'] } });\nawait container.items.create({ id: '1', name: 'Alice' });\nconst { resources } = await container.items.query('SELECT * FROM c').fetchAll();\nconsole.log(resources.length);\n" }
+  ]
+}
+

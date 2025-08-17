@@ -1,0 +1,14 @@
+{
+  "id": "django-minimal",
+  "name": "Django 最小 (project skel)",
+  "version": "1.0.0",
+  "stack": ["python", "django"],
+  "tags": ["web"],
+  "description": "Django プロジェクト作成の最小スケルトン (参考)",
+  "params": [ { "name": "app_name", "default": "django-min" } ],
+  "files": [
+    { "path": "{{app_name}}/requirements.txt", "template": "Django\n" },
+    { "path": "{{app_name}}/manage.py", "template": "#!/usr/bin/env python3\nprint('Run django-admin startproject then manage.py')\n" }
+  ]
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "otel-node-auto-instrumentation-minimal",
+  "name": "OTel Node 自動計装 最小",
+  "version": "1.0.0",
+  "stack": ["node", "opentelemetry"],
+  "tags": ["otel"],
+  "description": "@opentelemetry/auto-instrumentations-node の雛形",
+  "params": [ { "name": "app_name", "default": "otel-auto-node" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"start\": \"node -r ./tracer.js server.js\" },\n  \"dependencies\": { \"@opentelemetry/auto-instrumentations-node\": \"^0.52.1\", \"@opentelemetry/sdk-node\": \"^0.52.1\", \"@opentelemetry/exporter-trace-otlp-http\": \"^0.52.1\", \"express\": \"^4\" }\n}\n" },
+    { "path": "{{app_name}}/tracer.js", "template": "import { NodeSDK } from '@opentelemetry/sdk-node';\nimport { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';\nimport { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';\nconst sdk = new NodeSDK({ traceExporter: new OTLPTraceExporter({ url: process.env.OTLP_URL }), instrumentations: [getNodeAutoInstrumentations()] });\nsdk.start();\n" },
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express'); const app = express(); app.get('/', (_req,res)=>res.send('ok')); app.listen(3000);\n" }
+  ]
+}
+

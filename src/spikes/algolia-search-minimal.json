@@ -1,0 +1,19 @@
+{
+  "id": "algolia-search-minimal",
+  "name": "Algolia 検索 最小",
+  "version": "1.0.0",
+  "stack": ["node", "algolia"],
+  "tags": ["search"],
+  "description": "algoliasearch で簡単検索",
+  "params": [
+    { "name": "app_name", "default": "algolia-search" },
+    { "name": "app_id", "default": "ALGOLIA_APP_ID" },
+    { "name": "api_key", "default": "ALGOLIA_API_KEY" },
+    { "name": "index", "default": "movies" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node search.js\" }, \"dependencies\": { \"algoliasearch\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/search.js", "template": "import algoliasearch from 'algoliasearch';\nconst client = algoliasearch(process.env.ALGOLIA_APP_ID || '{{app_id}}', process.env.ALGOLIA_API_KEY || '{{api_key}}');\nconst index = client.initIndex(process.env.ALGOLIA_INDEX || '{{index}}');\nconst res = await index.search('star');\nconsole.log(res.hits.length);\n" }
+  ]
+}
+

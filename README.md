@@ -68,7 +68,7 @@ Advanced Rust-based learning system that evolves continuously:
 
 - **🦀 High-Performance Architecture**: Rust memory engine with parallel I/O and chunk-based storage
 - **🤖 ML-Powered Learning**: PyO3 integration for Python ML models with CPU-optimized inference
-- **🔄 Continuous Evolution**: Automated crawling of technical blogs to learn new patterns
+- **🔄 Continuous Evolution**: Self-improving pattern recognition and template optimization
 - **📊 Performance Tracking**: Real-time metrics showing accuracy improvements and processing speeds
 - **🎯 Pattern Recognition**: Learns from technical documentation and best practices
 - **⚡ Auto-Generated Templates**: Creates new spike templates from learned patterns

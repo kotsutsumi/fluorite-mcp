@@ -1,0 +1,14 @@
+{
+  "id": "winston-loki-transport-minimal",
+  "name": "Winston Loki Transport 最小",
+  "version": "1.0.0",
+  "stack": ["node", "winston", "loki"],
+  "tags": ["observability"],
+  "description": "winston-loki で Loki へログ送信",
+  "params": [ { "name": "app_name", "default": "winston-loki" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"winston\": \"^3\", \"winston-loki\": \"^6\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const winston = require('winston');\nconst LokiTransport = require('winston-loki');\nconst logger = winston.createLogger({ transports: [ new LokiTransport({ host: process.env.LOKI_URL }) ] });\nlogger.info('hello');\n" }
+  ]
+}
+

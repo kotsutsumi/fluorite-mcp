@@ -1,0 +1,14 @@
+{
+  "id": "memcached-node-minimal",
+  "name": "Memcached Node 最小",
+  "version": "1.0.0",
+  "stack": ["node", "memcached"],
+  "tags": ["cache"],
+  "description": "memjs で Memcached にアクセス",
+  "params": [ { "name": "app_name", "default": "memcached-min" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"memjs\": \"^1\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const memjs = require('memjs');\nconst mc = memjs.Client.create(process.env.MEMCACHED_URL || 'localhost:11211');\nmc.set('k', 'v');\nmc.get('k', (err, v)=> console.log(v?.toString()));\n" }
+  ]
+}
+

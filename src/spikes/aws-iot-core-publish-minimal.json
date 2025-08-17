@@ -1,0 +1,14 @@
+{
+  "id": "aws-iot-core-publish-minimal",
+  "name": "AWS IoT Core Publish 最小",
+  "version": "1.0.0",
+  "stack": ["node", "aws"],
+  "tags": ["iot"],
+  "description": "IoT Data Plane でトピックに publish",
+  "params": [ { "name": "app_name", "default": "aws-iot-publish" }, { "name": "topic", "default": "test/topic" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@aws-sdk/client-iot-data-plane\": \"^3\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { IoTDataPlaneClient, PublishCommand } from '@aws-sdk/client-iot-data-plane';\nconst c = new IoTDataPlaneClient({ endpoint: process.env.IOT_ENDPOINT });\ntry { await c.send(new PublishCommand({ topic: process.env.IOT_TOPIC || '{{topic}}', payload: new TextEncoder().encode('hello') })); console.log('published'); } catch(e){ console.log('Provide endpoint'); }\n" }
+  ]
+}
+

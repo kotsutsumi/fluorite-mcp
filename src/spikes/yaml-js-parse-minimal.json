@@ -1,0 +1,14 @@
+{
+  "id": "yaml-js-parse-minimal",
+  "name": "yaml パース 最小",
+  "version": "1.0.0",
+  "stack": ["node"],
+  "tags": ["yaml"],
+  "description": "yaml パッケージで YAML を読み込み",
+  "params": [ { "name": "app_name", "default": "yaml-parse" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"yaml\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const YAML = require('yaml');\nconst doc = YAML.parse('name: Alice');\nconsole.log(doc);\n" }
+  ]
+}
+

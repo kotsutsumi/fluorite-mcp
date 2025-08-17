@@ -1,0 +1,14 @@
+{
+  "id": "azure-cosmos-mongo-minimal",
+  "name": "Azure Cosmos (Mongo API) 最小",
+  "version": "1.0.0",
+  "stack": ["node", "azure", "mongodb"],
+  "tags": ["cosmos", "mongo"],
+  "description": "Cosmos Mongo API (mongodb ドライバ) の最小例",
+  "params": [ { "name": "app_name", "default": "az-cosmos-mongo" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"mongodb\": \"^6\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const { MongoClient } = require('mongodb');\nconst uri = process.env.MONGO_URI;\n(async () => { const c = new MongoClient(uri); await c.connect(); const col = c.db('db').collection('items'); await col.insertOne({ _id: '1', name: 'Alice' }); const count = await col.countDocuments(); console.log(count); await c.close(); })();\n" }
+  ]
+}
+

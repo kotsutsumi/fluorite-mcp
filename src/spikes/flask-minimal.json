@@ -1,0 +1,14 @@
+{
+  "id": "flask-minimal",
+  "name": "Flask 最小",
+  "version": "1.0.0",
+  "stack": ["python", "flask"],
+  "tags": ["web"],
+  "description": "Flask の最小アプリ",
+  "params": [ { "name": "app_name", "default": "flask-min" } ],
+  "files": [
+    { "path": "{{app_name}}/requirements.txt", "template": "Flask\n" },
+    { "path": "{{app_name}}/app.py", "template": "from flask import Flask\napp = Flask(__name__)\n@app.get('/')\ndef hello():\n    return 'Hello Flask'\nif __name__ == '__main__':\n    app.run()\n" }
+  ]
+}
+

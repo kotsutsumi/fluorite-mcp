@@ -1,15 +1,14 @@
 {
   "id": "pdfkit-generate-minimal",
-  "name": "PDFKit で PDF 生成",
+  "name": "PDFKit 生成 最小",
   "version": "1.0.0",
   "stack": ["node", "pdf"],
   "tags": ["pdf"],
-  "description": "PDFKit を用いた簡単な PDF 出力。",
-  "params": [ { "name": "app_name", "default": "pdfkit-demo" } ],
+  "description": "PDFKit で PDF を生成",
+  "params": [ { "name": "app_name", "default": "pdfkit-min" } ],
   "files": [
     { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node make.js\" }, \"dependencies\": { \"pdfkit\": \"latest\" } }\n" },
-    { "path": "{{app_name}}/make.js", "template": "const PDFDocument = require('pdfkit');\nconst fs = require('fs');\nconst doc = new PDFDocument();\ndoc.pipe(fs.createWriteStream('out.pdf'));\ndoc.fontSize(24).text('Hello PDFKit');\ndoc.end();\nconsole.log('generated out.pdf');\n" }
-  ],
-  "patches": []
+    { "path": "{{app_name}}/make.js", "template": "const PDFDocument = require('pdfkit');\nconst fs = require('fs');\nconst doc = new PDFDocument();\ndoc.pipe(fs.createWriteStream('out.pdf'));\ndoc.fontSize(24).text('Hello PDFKit');\ndoc.end();\nconsole.log('out.pdf created');\n" }
+  ]
 }
 

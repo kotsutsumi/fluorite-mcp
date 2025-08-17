@@ -1,0 +1,14 @@
+{
+  "id": "gcp-bigquery-query-minimal",
+  "name": "GCP BigQuery クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["node", "gcp"],
+  "tags": ["bigquery"],
+  "description": "@google-cloud/bigquery でクエリ実行",
+  "params": [ { "name": "app_name", "default": "gcp-bq" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node query.js\" }, \"dependencies\": { \"@google-cloud/bigquery\": \"^7\" } }\n" },
+    { "path": "{{app_name}}/query.js", "template": "const { BigQuery } = require('@google-cloud/bigquery');\nconst bq = new BigQuery();\n(async () => { const [rows] = await bq.query('SELECT 1 as x'); console.log(rows); })();\n" }
+  ]
+}
+

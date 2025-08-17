@@ -1,0 +1,14 @@
+{
+  "id": "dagster-job-minimal",
+  "name": "Dagster Job 最小",
+  "version": "1.0.0",
+  "stack": ["python", "dagster"],
+  "tags": ["orchestration"],
+  "description": "Dagster job の最小例",
+  "params": [ { "name": "app_name", "default": "dagster-job" } ],
+  "files": [
+    { "path": "{{app_name}}/requirements.txt", "template": "dagster\n" },
+    { "path": "{{app_name}}/job.py", "template": "from dagster import job, op\n@op\ndef hello_op():\n    print('Hello Dagster')\n@job\ndef hello_job():\n    hello_op()\n" }
+  ]
+}
+

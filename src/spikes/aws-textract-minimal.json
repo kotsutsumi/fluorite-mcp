@@ -1,0 +1,14 @@
+{
+  "id": "aws-textract-minimal",
+  "name": "AWS Textract 最小",
+  "version": "1.0.0",
+  "stack": ["node", "aws"],
+  "tags": ["ocr"],
+  "description": "@aws-sdk/client-textract でテキスト抽出",
+  "params": [ { "name": "app_name", "default": "aws-textract" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@aws-sdk/client-textract\": \"^3\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { TextractClient, DetectDocumentTextCommand } from '@aws-sdk/client-textract';\nconst c = new TextractClient({});\nconst cmd = new DetectDocumentTextCommand({ Document: { Bytes: new Uint8Array(Buffer.from('')) } });\ntry { const r = await c.send(cmd); console.log(!!r.Blocks); } catch(e){ console.log('Provide real image bytes'); }\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "notion-page-update-minimal",
+  "name": "Notion ページ更新 最小",
+  "version": "1.0.0",
+  "stack": ["node", "notion"],
+  "tags": ["notion"],
+  "description": "Notion ページのプロパティ更新",
+  "params": [ { "name": "app_name", "default": "notion-update" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@notionhq/client\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { Client } from '@notionhq/client';\nconst notion = new Client({ auth: process.env.NOTION_TOKEN });\nconsole.log('Call notion.pages.update({ page_id, properties })');\n" }
+  ]
+}
+

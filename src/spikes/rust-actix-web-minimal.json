@@ -1,0 +1,14 @@
+{
+  "id": "rust-actix-web-minimal",
+  "name": "Rust Actix-web 最小",
+  "version": "1.0.0",
+  "stack": ["rust", "actix"],
+  "tags": ["web"],
+  "description": "actix-web で最小 HTTP サーバー",
+  "params": [ { "name": "app_name", "default": "actix-min" } ],
+  "files": [
+    { "path": "{{app_name}}/Cargo.toml", "template": "[package]\nname=\"{{app_name}}\"\nversion=\"0.1.0\"\nedition=\"2021\"\n\n[dependencies]\nactix-web=\"4\"\n" },
+    { "path": "{{app_name}}/src/main.rs", "template": "use actix_web::{get, App, HttpServer, Responder};\n#[get(\"/\")] async fn hello() -> impl Responder { \"Hello Actix\" }\n#[actix_web::main] async fn main() -> std::io::Result<()> { HttpServer::new(|| App::new().service(hello)).bind((\"0.0.0.0\", 3000))?.run().await }\n" }
+  ]
+}
+

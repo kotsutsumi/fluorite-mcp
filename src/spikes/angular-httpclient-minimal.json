@@ -1,0 +1,12 @@
+{
+  "id": "angular-httpclient-minimal",
+  "name": "Angular HttpClient 最小",
+  "version": "1.0.0",
+  "stack": ["angular"],
+  "tags": ["frontend"],
+  "description": "Angular HttpClient の最小サービス",
+  "files": [
+    { "path": "src/app/api.service.ts", "template": "import { Injectable } from '@angular/core';\nimport { HttpClient } from '@angular/common/http';\n@Injectable({ providedIn: 'root' })\nexport class ApiService {\n  constructor(private http: HttpClient){}\n  hello(){ return this.http.get('/api/hello'); }\n}\n" }
+  ]
+}
+

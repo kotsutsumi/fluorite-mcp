@@ -1,0 +1,14 @@
+{
+  "id": "strapi-rest-collection-get-minimal",
+  "name": "Strapi REST Collection 取得 最小",
+  "version": "1.0.0",
+  "stack": ["node", "strapi"],
+  "tags": ["cms"],
+  "description": "Strapi REST からコレクション取得",
+  "params": [ { "name": "app_name", "default": "strapi-rest-get" }, { "name": "url", "default": "http://localhost:1337/api/articles" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"type\":\"module\",\"scripts\":{\"start\":\"node run.js\"},\"dependencies\":{\"node-fetch\":\"^3\"}}\n" },
+    { "path": "{{app_name}}/run.js", "template": "import fetch from 'node-fetch';\nconst url = process.env.STRAPI_URL || '{{url}}';\nconst r = await fetch(url);\nconsole.log(r.status);\n" }
+  ]
+}
+

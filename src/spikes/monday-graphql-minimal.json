@@ -1,0 +1,14 @@
+{
+  "id": "monday-graphql-minimal",
+  "name": "monday.com GraphQL 最小",
+  "version": "1.0.0",
+  "stack": ["node", "monday"],
+  "tags": ["pm"],
+  "description": "monday GraphQL API を叩く",
+  "params": [ { "name": "app_name", "default": "monday-graphql" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"type\":\"module\",\"scripts\":{\"start\":\"node run.js\"},\"dependencies\":{\"graphql-request\":\"^7\"}}\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { GraphQLClient, gql } from 'graphql-request';\nconst client = new GraphQLClient('https://api.monday.com/v2', { headers: { Authorization: process.env.MONDAY_TOKEN } });\nconst q = gql`{ me { name } }`;\ntry { const res = await client.request(q); console.log(!!res.me.name); } catch(e){ console.log('auth required'); }\n" }
+  ]
+}
+

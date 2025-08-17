@@ -1,0 +1,14 @@
+{
+  "id": "strapi-auth-local-login-minimal",
+  "name": "Strapi ローカル認証ログイン 最小",
+  "version": "1.0.0",
+  "stack": ["node", "strapi"],
+  "tags": ["cms", "auth"],
+  "description": "Strapi /auth/local で JWT を取得",
+  "params": [ { "name": "app_name", "default": "strapi-login" }, { "name": "url", "default": "http://localhost:1337/api/auth/local" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"type\":\"module\",\"scripts\":{\"start\":\"node login.js\"},\"dependencies\":{\"node-fetch\":\"^3\"}}\n" },
+    { "path": "{{app_name}}/login.js", "template": "import fetch from 'node-fetch';\nconst r = await fetch(process.env.STRAPI_LOGIN_URL || '{{url}}', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ identifier: 'user', password: 'pass' }) });\nconsole.log(r.status);\n" }
+  ]
+}
+

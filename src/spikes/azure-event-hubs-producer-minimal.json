@@ -1,0 +1,14 @@
+{
+  "id": "azure-event-hubs-producer-minimal",
+  "name": "Azure Event Hubs Producer 最小",
+  "version": "1.0.0",
+  "stack": ["node", "azure"],
+  "tags": ["event"],
+  "description": "@azure/event-hubs でイベント送信",
+  "params": [ { "name": "app_name", "default": "az-eventhubs" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node send.js\" }, \"dependencies\": { \"@azure/event-hubs\": \"^5\" } }\n" },
+    { "path": "{{app_name}}/send.js", "template": "import { EventHubProducerClient } from '@azure/event-hubs';\nconst client = new EventHubProducerClient(process.env.EVENTHUB_CONN, process.env.EVENTHUB_NAME);\nconst batch = await client.createBatch();\nbatch.tryAdd({ body: { hello: 'world' } });\nawait client.sendBatch(batch);\nawait client.close();\nconsole.log('sent');\n" }
+  ]
+}
+

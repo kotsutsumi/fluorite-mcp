@@ -1,0 +1,14 @@
+{
+  "id": "ksqldb-rest-query-minimal",
+  "name": "ksqlDB REST クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["node", "ksqldb"],
+  "tags": ["stream"],
+  "description": "ksqlDB REST API へクエリ",
+  "params": [ { "name": "app_name", "default": "ksqldb-rest" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"type\":\"module\",\"scripts\":{\"start\":\"node run.js\"},\"dependencies\":{\"node-fetch\":\"^3\"}}\n" },
+    { "path": "{{app_name}}/run.js", "template": "import fetch from 'node-fetch';\nconsole.log('POST to /query endpoint with SQL');\n" }
+  ]
+}
+

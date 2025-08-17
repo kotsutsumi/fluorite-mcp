@@ -1,0 +1,14 @@
+{
+  "id": "linear-graphql-minimal",
+  "name": "Linear GraphQL 最小",
+  "version": "1.0.0",
+  "stack": ["node", "linear"],
+  "tags": ["pm"],
+  "description": "Linear GraphQL API にクエリ",
+  "params": [ { "name": "app_name", "default": "linear-graphql" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"type\":\"module\",\"scripts\":{\"start\":\"node run.js\"},\"dependencies\":{\"graphql-request\":\"^7\"}}\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { GraphQLClient, gql } from 'graphql-request';\nconst client = new GraphQLClient('https://api.linear.app/graphql', { headers: { Authorization: process.env.LINEAR_API_KEY } });\nconst q = gql`{ viewer { name } }`;\ntry { const r = await client.request(q); console.log(!!r.viewer.name); } catch(e){ console.log('Provide valid api key'); }\n" }
+  ]
+}
+

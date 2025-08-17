@@ -1,0 +1,16 @@
+{
+  "id": "langchain-self-query-retriever-weaviate-minimal",
+  "name": "LangChain Self-Query Retriever + Weaviate Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "langchain", "weaviate", "openai"],
+  "tags": ["rag", "self-query"],
+  "description": "Parse filters from natural language and query Weaviate via LangChain.",
+  "params": [{ "name": "app_name", "default": "lc-self-query-weaviate" }, { "name": "weaviate_host", "default": "localhost:8080" }, { "name": "weaviate_scheme", "default": "http" }, { "name": "class_name", "default": "Document" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import weaviate from 'weaviate-ts-client';\nimport { SelfQueryRetriever } from 'langchain/retrievers/self_query';\nimport { WeaviateStore } from '@langchain/weaviate';\nimport { OpenAIEmbeddings, ChatOpenAI } from '@langchain/openai';\nconst client = weaviate.client({ scheme: process.env.WEAVIATE_SCHEME || '{{weaviate_scheme}}', host: process.env.WEAVIATE_HOST || '{{weaviate_host}}' });\nconst embeddings = new OpenAIEmbeddings({ apiKey: process.env.OPENAI_API_KEY });\nconst store = await WeaviateStore.fromTexts(['hello world', 'fluorite mcp spike'], [{ tag: 'a' }, { tag: 'b' }], embeddings, { client, indexName: process.env.WEAVIATE_CLASS || '{{class_name}}' });\nconst retriever = SelfQueryRetriever.fromLLM({ llm: new ChatOpenAI({ apiKey: process.env.OPENAI_API_KEY }), vectorStore: store, documentContents: 'text', attributeInfo: [{ name: 'tag', type: 'string', description: 'label' }] });\nconst res = await retriever.getRelevantDocuments('find docs with tag a');\nconsole.log(res.map(r=>r.pageContent));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@langchain/openai\": \"latest\", \"@langchain/weaviate\": \"latest\", \"langchain\": \"latest\", \"weaviate-ts-client\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\nWEAVIATE_SCHEME=http\nWEAVIATE_HOST=localhost:8080\nWEAVIATE_CLASS=Document\n" }
+  ],
+  "patches": []
+}
+

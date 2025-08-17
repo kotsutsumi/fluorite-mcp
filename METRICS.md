@@ -45,8 +45,8 @@ Using Fluorite MCP provides:
 ## 🔄 Continuous Evolution
 
 This system evolves automatically:
-- Crawls technical blogs every hour
-- Learns from new patterns
+- Analyzes internal pattern improvements continuously
+- Learns from successful implementations
 - Improves accuracy with each evolution
 - Updates documentation automatically
 

@@ -1,0 +1,14 @@
+{
+  "id": "influxdb-write-minimal",
+  "name": "InfluxDB Write 最小",
+  "version": "1.0.0",
+  "stack": ["node", "influx"],
+  "tags": ["timeseries"],
+  "description": "@influxdata/influxdb-client でポイント書き込み",
+  "params": [ { "name": "app_name", "default": "influx-write" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node write.js\" }, \"dependencies\": { \"@influxdata/influxdb-client\": \"^1\" } }\n" },
+    { "path": "{{app_name}}/write.js", "template": "import { InfluxDB, Point } from '@influxdata/influxdb-client';\nconst db = new InfluxDB({ url: process.env.INFLUX_URL, token: process.env.INFLUX_TOKEN });\nconst w = db.getWriteApi(process.env.INFLUX_ORG, process.env.INFLUX_BUCKET);\nw.writePoint(new Point('cpu').floatField('usage', 0.5));\nawait w.close();\nconsole.log('written');\n" }
+  ]
+}
+

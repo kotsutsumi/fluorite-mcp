@@ -1,0 +1,14 @@
+{
+  "id": "meilisearch-settings-synonyms-minimal",
+  "name": "Meilisearch 同義語設定 最小",
+  "version": "1.0.0",
+  "stack": ["node", "meilisearch"],
+  "tags": ["search"],
+  "description": "meilisearch で synonyms 設定",
+  "params": [ { "name": "app_name", "default": "meili-synonyms" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node set.js\" }, \"dependencies\": { \"meilisearch\": \"^0.37\" } }\n" },
+    { "path": "{{app_name}}/set.js", "template": "import { MeiliSearch } from 'meilisearch';\nconst c = new MeiliSearch({ host: process.env.MEILI_HOST, apiKey: process.env.MEILI_KEY });\nawait c.index('movies').updateSettings({ synonyms: { film: ['movie'] } });\nconsole.log('updated');\n" }
+  ]
+}
+

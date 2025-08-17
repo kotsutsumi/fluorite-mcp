@@ -1,0 +1,19 @@
+{
+  "id": "airtable-crud-minimal",
+  "name": "Airtable CRUD 最小",
+  "version": "1.0.0",
+  "stack": ["node", "airtable"],
+  "tags": ["db", "api"],
+  "description": "Airtable ベースにレコードを作成・一覧する最小例",
+  "params": [
+    { "name": "app_name", "default": "airtable-crud" },
+    { "name": "api_key", "default": "AIRTABLE_API_KEY" },
+    { "name": "base_id", "default": "AIRTABLE_BASE_ID" },
+    { "name": "table_name", "default": "Tasks" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"airtable\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import Airtable from 'airtable';\nconst apiKey = process.env.AIRTABLE_API_KEY || '{{api_key}}';\nconst base = new Airtable({ apiKey }).base(process.env.AIRTABLE_BASE_ID || '{{base_id}}');\nconst table = process.env.AIRTABLE_TABLE || '{{table_name}}';\nawait base(table).create([{ fields: { Name: 'Hello' } }]);\nconst res = await base(table).select({ maxRecords: 5 }).all();\nconsole.log('Fetched', res.length);\n" }
+  ]
+}
+

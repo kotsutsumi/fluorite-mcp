@@ -1,0 +1,14 @@
+{
+  "id": "azure-cognitive-vision-minimal",
+  "name": "Azure Cognitive Vision 最小",
+  "version": "1.0.0",
+  "stack": ["node", "azure"],
+  "tags": ["vision"],
+  "description": "Computer Vision API でラベル検出",
+  "params": [ { "name": "app_name", "default": "az-vision" }, { "name": "endpoint", "default": "AZURE_VISION_ENDPOINT" }, { "name": "key", "default": "AZURE_VISION_KEY" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@azure/cognitiveservices-computervision\": \"^8\", \"@azure/ms-rest-js\": \"^2\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const { ComputerVisionClient } = require('@azure/cognitiveservices-computervision');\nconst { CognitiveServicesCredentials } = require('@azure/ms-rest-js');\nconst client = new ComputerVisionClient(new CognitiveServicesCredentials(process.env.AZURE_VISION_KEY || '{{key}}'), process.env.AZURE_VISION_ENDPOINT || '{{endpoint}}');\n(async () => { const res = await client.analyzeImage('https://via.placeholder.com/256', { visualFeatures: ['Tags'] }); console.log(res.tags?.map(t=>t.name)); })();\n" }
+  ]
+}
+

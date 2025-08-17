@@ -1,0 +1,14 @@
+{
+  "id": "sanity-client-fetch-minimal",
+  "name": "Sanity クライアント fetch 最小",
+  "version": "1.0.0",
+  "stack": ["node", "sanity"],
+  "tags": ["cms"],
+  "description": "@sanity/client で GROQ クエリ",
+  "params": [ { "name": "app_name", "default": "sanity-fetch" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"type\":\"module\",\"scripts\":{\"start\":\"node run.js\"},\"dependencies\":{\"@sanity/client\":\"^6\"}}\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { createClient } from '@sanity/client';\nconst client = createClient({ projectId: process.env.SANITY_PROJECT, dataset: 'production', apiVersion: '2024-01-01', useCdn: true });\nconst data = await client.fetch('*[0..0]');\nconsole.log(Array.isArray(data));\n" }
+  ]
+}
+

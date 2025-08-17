@@ -1,0 +1,14 @@
+{
+  "id": "duckdb-node-minimal",
+  "name": "DuckDB Node 最小",
+  "version": "1.0.0",
+  "stack": ["node", "duckdb"],
+  "tags": ["db"],
+  "description": "duckdb npm でクエリ実行",
+  "params": [ { "name": "app_name", "default": "duckdb-min" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"duckdb\": \"^1\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const duckdb = require('duckdb');\nconst db = new duckdb.Database(':memory:');\ndb.all('SELECT 1 as x', (e, r)=>{ console.log(r); });\n" }
+  ]
+}
+

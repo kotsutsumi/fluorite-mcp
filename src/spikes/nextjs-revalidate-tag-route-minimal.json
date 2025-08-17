@@ -1,0 +1,12 @@
+{
+  "id": "nextjs-revalidate-tag-route-minimal",
+  "name": "Next.js revalidateTag Route 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["frontend"],
+  "description": "Route Handler で revalidateTag を呼ぶ",
+  "files": [
+    { "path": "app/api/revalidate/route.ts", "template": "import { revalidateTag } from 'next/cache';\nexport async function POST(){ revalidateTag('list'); return new Response('ok'); }\n" }
+  ]
+}
+

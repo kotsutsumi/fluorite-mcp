@@ -1,0 +1,14 @@
+{
+  "id": "couchdb-nano-minimal",
+  "name": "CouchDB nano 最小",
+  "version": "1.0.0",
+  "stack": ["node", "couchdb"],
+  "tags": ["db"],
+  "description": "nano で CouchDB に接続",
+  "params": [ { "name": "app_name", "default": "couchdb-nano" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"nano\": \"^10\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const nano = require('nano')(process.env.COUCH_URL || 'http://admin:password@localhost:5984');\n(async () => { const db = nano.db.use('test'); try { await db.insert({ _id:'1', name:'Alice' }); const doc = await db.get('1'); console.log(doc.name); } catch(e){ console.log('Ensure DB exists'); } })();\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "google-drive-permissions-add-minimal",
+  "name": "Google Drive 権限追加 最小",
+  "version": "1.0.0",
+  "stack": ["node", "googleapis"],
+  "tags": ["google", "drive"],
+  "description": "drive.permissions.create の呼び出し例",
+  "params": [ { "name": "app_name", "default": "g-drive-perm" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node perm.js\" }, \"dependencies\": { \"googleapis\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/perm.js", "template": "import { google } from 'googleapis';\nconst auth = new google.auth.GoogleAuth({ scopes: ['https://www.googleapis.com/auth/drive'] });\nconst drive = google.drive({ version: 'v3', auth });\nconsole.log('Call drive.permissions.create({ fileId, requestBody: { role, type, emailAddress } })');\n" }
+  ]
+}
+

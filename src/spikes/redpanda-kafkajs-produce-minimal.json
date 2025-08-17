@@ -1,0 +1,14 @@
+{
+  "id": "redpanda-kafkajs-produce-minimal",
+  "name": "Redpanda (KafkaJS) Produce 最小",
+  "version": "1.0.0",
+  "stack": ["node", "kafka", "redpanda"],
+  "tags": ["stream"],
+  "description": "Redpanda に KafkaJS で送信",
+  "params": [ { "name": "app_name", "default": "redpanda-kafkajs" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"kafkajs\": \"^2\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { Kafka } from 'kafkajs';\nconst kafka = new Kafka({ clientId: 'demo', brokers: [process.env.KAFKA_BROKER||'localhost:9092'] });\nconst p = kafka.producer();\nawait p.connect();\nawait p.send({ topic: 'events', messages:[{ value:'hello' }] });\nawait p.disconnect();\nconsole.log('sent');\n" }
+  ]
+}
+

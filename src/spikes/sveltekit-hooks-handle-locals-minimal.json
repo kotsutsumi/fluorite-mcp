@@ -1,0 +1,12 @@
+{
+  "id": "sveltekit-hooks-handle-locals-minimal",
+  "name": "SvelteKit hooks handle/locals 最小",
+  "version": "1.0.0",
+  "stack": ["sveltekit"],
+  "tags": ["frontend"],
+  "description": "hooks.server.ts で locals を設定",
+  "files": [
+    { "path": "src/hooks.server.ts", "template": "export const handle = async ({ event, resolve }) => { event.locals.user = null; return resolve(event); };\n" }
+  ]
+}
+

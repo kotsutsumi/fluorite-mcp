@@ -1,0 +1,15 @@
+{
+  "id": "chromadb-where-or-filter-minimal",
+  "name": "ChromaDB where OR Filter Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "chromadb"],
+  "tags": ["filter"],
+  "description": "Use where with $or to combine conditions.",
+  "params": [{ "name": "app_name", "default": "chromadb-where-or" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { ChromaClient } from 'chromadb';\nconst client = new ChromaClient();\nconst col = await client.getOrCreateCollection({ name: 'docs' });\nawait col.add({ ids: ['1','2','3'], documents: ['hello','fluorite','world'], metadatas: [{ tag: 'a' }, { tag: 'b' }, { tag: 'c' }] });\nconst res = await col.query({ queryTexts: ['hello'], nResults: 3, where: { $or: [{ tag: 'a' }, { tag: 'c' }] } });\nconsole.log(res);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"chromadb\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

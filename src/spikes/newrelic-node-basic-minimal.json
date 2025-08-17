@@ -1,0 +1,15 @@
+{
+  "id": "newrelic-node-basic-minimal",
+  "name": "New Relic Node 最小",
+  "version": "1.0.0",
+  "stack": ["node", "newrelic"],
+  "tags": ["observability"],
+  "description": "newrelic エージェント初期化の最小例",
+  "params": [ { "name": "app_name", "default": "newrelic-node" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node -r newrelic server.js\" }, \"dependencies\": { \"newrelic\": \"^11\", \"express\": \"^4\" } }\n" },
+    { "path": "{{app_name}}/newrelic.js", "template": "exports.config = { app_name: ['demo'], license_key: 'REPLACE_WITH_KEY', logging: { level: 'info' } };\n" },
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express'); const app = express(); app.get('/', (_req,res)=>res.send('ok')); app.listen(3000);\n" }
+  ]
+}
+

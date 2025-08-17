@@ -1,0 +1,14 @@
+{
+  "id": "passport-oauth2-github-express-minimal",
+  "name": "Passport OAuth2 GitHub (Express) 最小",
+  "version": "1.0.0",
+  "stack": ["node", "passport", "express"],
+  "tags": ["auth"],
+  "description": "passport-github2 を用いた最小ログイン",
+  "params": [ { "name": "app_name", "default": "passport-github" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"scripts\":{\"start\":\"node server.js\"},\"dependencies\":{\"express\":\"^4\",\"passport\":\"^0.7\",\"passport-github2\":\"^0.1.12\",\"express-session\":\"^1\"}}\n" },
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst session = require('express-session');\nconst passport = require('passport');\nconst GitHubStrategy = require('passport-github2');\npassport.use(new GitHubStrategy({ clientID: process.env.GH_CLIENT, clientSecret: process.env.GH_SECRET, callbackURL: '/auth/github/callback' }, (_a,_b,done)=>done(null,{id:'user'})));\npassport.serializeUser((u,done)=>done(null,u));\npassport.deserializeUser((u,done)=>done(null,u));\nconst app = express();\napp.use(session({ secret:'s', resave:false, saveUninitialized:false }));\napp.use(passport.initialize());\napp.use(passport.session());\napp.get('/auth/github', passport.authenticate('github', { scope: ['user:email'] }));\napp.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/' }), (_req,res)=>res.send('ok'));\napp.listen(3000, ()=>console.log('listening'));\n" }
+  ]
+}
+

@@ -1,0 +1,17 @@
+{
+  "id": "gitlab-api-minimal",
+  "name": "GitLab API 最小",
+  "version": "1.0.0",
+  "stack": ["node", "gitlab"],
+  "tags": ["gitlab", "api"],
+  "description": "gitlab パッケージでプロジェクト一覧を取得",
+  "params": [
+    { "name": "app_name", "default": "gitlab-api" },
+    { "name": "host", "default": "https://gitlab.com" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"gitlab\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { Gitlab } from 'gitlab';\nconst api = new Gitlab({ host: process.env.GITLAB_HOST || '{{host}}', token: process.env.GITLAB_TOKEN });\nconst projects = await api.Projects.all({ maxPages: 1 });\nconsole.log('Projects fetched:', projects.length);\n" }
+  ]
+}
+

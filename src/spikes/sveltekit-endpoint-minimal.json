@@ -1,0 +1,12 @@
+{
+  "id": "sveltekit-endpoint-minimal",
+  "name": "SvelteKit エンドポイント 最小",
+  "version": "1.0.0",
+  "stack": ["sveltekit"],
+  "tags": ["frontend"],
+  "description": "+server.ts の最小例",
+  "files": [
+    { "path": "src/routes/api/hello/+server.ts", "template": "export const GET = async () => new Response('Hello SvelteKit');\n" }
+  ]
+}
+

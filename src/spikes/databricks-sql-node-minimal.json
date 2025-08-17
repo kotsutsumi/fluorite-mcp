@@ -1,0 +1,14 @@
+{
+  "id": "databricks-sql-node-minimal",
+  "name": "Databricks SQL Node 最小",
+  "version": "1.0.0",
+  "stack": ["node", "databricks"],
+  "tags": ["data"],
+  "description": "@databricks/sql でクエリ",
+  "params": [ { "name": "app_name", "default": "databricks-sql" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@databricks/sql\": \"^1\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "console.log('Initialize databricks/sql client and run a query');\n" }
+  ]
+}
+

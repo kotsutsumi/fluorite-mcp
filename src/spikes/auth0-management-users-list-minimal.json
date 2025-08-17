@@ -1,0 +1,14 @@
+{
+  "id": "auth0-management-users-list-minimal",
+  "name": "Auth0 Management Users 一覧 最小",
+  "version": "1.0.0",
+  "stack": ["node", "auth0"],
+  "tags": ["auth"],
+  "description": "auth0 Management API でユーザー一覧",
+  "params": [ { "name": "app_name", "default": "auth0-users" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"auth0\": \"^4\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { ManagementClient } from 'auth0';\nconst mgmt = new ManagementClient({ domain: process.env.AUTH0_DOMAIN, clientId: process.env.AUTH0_CLIENT_ID, clientSecret: process.env.AUTH0_CLIENT_SECRET });\nconsole.log('Use mgmt.users.getAll()');\n" }
+  ]
+}
+
