@@ -34,7 +34,7 @@ const englishSidebar = {
       collapsed: false,
       items: [
         { text: '🧪 Spike Templates (1,842+)', link: '/spike-templates' },
-        { text: '🔍 Static Analysis & Validation', link: '/STATIC_ANALYSIS' },
+        { text: '🔍 Static Analysis & Validation', link: '/static-analysis' },
         { text: '📚 Library Specifications (86+)', link: '/specs/' },
         { text: '🎯 /fl: Command Integration', link: '/fl-commands' },
         { text: '⚡ Performance Optimization', link: '/performance' }
