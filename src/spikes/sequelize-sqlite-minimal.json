@@ -1,0 +1,13 @@
+{
+  "id": "sequelize-sqlite-minimal",
+  "name": "Sequelize SQLite 最小",
+  "version": "1.0.0",
+  "stack": ["sequelize", "sqlite"],
+  "tags": ["db"],
+  "description": "Sequelize で SQLite 接続",
+  "params": [ ],
+  "files": [
+    { "path": "sequelize/sqlite.js", "template": "const { Sequelize } = require('sequelize');\nconst sequelize = new Sequelize('sqlite::memory:');\n(async()=>{ await sequelize.authenticate(); console.log('ok'); await sequelize.close(); })();\n" }
+  ]
+}
+

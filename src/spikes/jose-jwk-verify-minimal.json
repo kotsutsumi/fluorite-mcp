@@ -1,0 +1,13 @@
+{
+  "id": "jose-jwk-verify-minimal",
+  "name": "jose JWK 検証 最小",
+  "version": "1.0.0",
+  "stack": ["jose", "node"],
+  "tags": ["security"],
+  "description": "jose で JWK による JWT 検証",
+  "params": [ ],
+  "files": [
+    { "path": "crypto/jwk-verify.mjs", "template": "import { jwtVerify, importJWK } from 'jose';\nconst jwk = { kty: 'oct', k: 'hJtXIZ2uSN5kbQfbtTNWbg' };\nconst key = await importJWK(jwk, 'HS256');\ntry { console.log(await jwtVerify('token', key)); } catch(e){ console.log('invalid'); }\n" }
+  ]
+}
+

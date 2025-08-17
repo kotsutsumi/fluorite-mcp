@@ -1,0 +1,13 @@
+{
+  "id": "postgres-partitioned-table-minimal",
+  "name": "Postgres パーティションテーブル 最小",
+  "version": "1.0.0",
+  "stack": ["postgres"],
+  "tags": ["db"],
+  "description": "範囲パーティションの最小 SQL",
+  "params": [ ],
+  "files": [
+    { "path": "postgres/partition.sql", "template": "create table if not exists items(id int, created date) partition by range (created);\ncreate table if not exists items_2024 partition of items for values from ('2024-01-01') to ('2025-01-01');\n" }
+  ]
+}
+

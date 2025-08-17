@@ -1,0 +1,13 @@
+{
+  "id": "aws-elb-target-group-register-minimal",
+  "name": "AWS ELB TargetGroup 登録 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "elbv2"],
+  "tags": ["network"],
+  "description": "ELBv2 のターゲット登録最小例",
+  "params": [ { "name": "tgArn", "default": "arn:aws:elasticloadbalancing:..." } ],
+  "files": [
+    { "path": "aws/elbv2-register.mjs", "template": "import { ElasticLoadBalancingV2Client, RegisterTargetsCommand } from '@aws-sdk/client-elastic-load-balancing-v2';\nconst elb = new ElasticLoadBalancingV2Client({});\nawait elb.send(new RegisterTargetsCommand({ TargetGroupArn: process.env.TG_ARN || '{{tgArn}}', Targets: [{ Id: 'i-123' }] }));\nconsole.log('registered');\n" }
+  ]
+}
+

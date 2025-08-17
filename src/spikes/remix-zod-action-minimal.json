@@ -1,0 +1,13 @@
+{
+  "id": "remix-zod-action-minimal",
+  "name": "Remix Zod Action 最小",
+  "version": "1.0.0",
+  "stack": ["remix", "zod"],
+  "tags": ["web"],
+  "description": "Remix の action で Zod 検証",
+  "params": [ ],
+  "files": [
+    { "path": "remix/app/routes/form.tsx", "template": "import { json, type ActionFunctionArgs } from '@remix-run/node';\nimport { Form } from '@remix-run/react';\nimport { z } from 'zod';\nexport async function action({ request }: ActionFunctionArgs){ const s=z.object({ name:z.string() }); const f=await request.formData(); const r=s.safeParse({ name: f.get('name') }); if(!r.success) return json({ ok:false }, { status: 400 }); return json({ ok:true }); }\nexport default function(){ return <Form method=\"post\"><input name=\"name\"/><button>Send</button></Form>; }\n" }
+  ]
+}
+

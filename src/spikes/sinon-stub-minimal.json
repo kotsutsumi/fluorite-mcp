@@ -1,0 +1,13 @@
+{
+  "id": "sinon-stub-minimal",
+  "name": "Sinon スタブ 最小",
+  "version": "1.0.0",
+  "stack": ["sinon", "node"],
+  "tags": ["test"],
+  "description": "sinon で関数スタブ",
+  "params": [ ],
+  "files": [
+    { "path": "test/sinon.js", "template": "const sinon = require('sinon');\nconst obj = { add: (a,b)=> a+b };\nconst s = sinon.stub(obj, 'add').returns(42);\nconsole.log(obj.add(1,2)); s.restore();\n" }
+  ]
+}
+

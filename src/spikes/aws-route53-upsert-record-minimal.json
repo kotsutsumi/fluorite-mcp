@@ -1,0 +1,13 @@
+{
+  "id": "aws-route53-upsert-record-minimal",
+  "name": "AWS Route53 レコード UPSERT 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "route53"],
+  "tags": ["dns"],
+  "description": "ChangeResourceRecordSets UPSERT の最小例",
+  "params": [ { "name": "zoneId", "default": "Z123" }, { "name": "name", "default": "example.com." } ],
+  "files": [
+    { "path": "aws/route53-upsert.mjs", "template": "import { Route53Client, ChangeResourceRecordSetsCommand } from '@aws-sdk/client-route-53';\nconst r53 = new Route53Client({});\nawait r53.send(new ChangeResourceRecordSetsCommand({ HostedZoneId: process.env.ZONE || '{{zoneId}}', ChangeBatch: { Changes: [{ Action: 'UPSERT', ResourceRecordSet: { Name: process.env.NAME || '{{name}}', Type: 'A', TTL: 60, ResourceRecords: [{ Value: '1.2.3.4' }] } }] } }));\nconsole.log('upserted');\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "gcp-firestore-backup-export-concept",
+  "name": "GCP Firestore Export コンセプト",
+  "version": "1.0.0",
+  "stack": ["gcp", "firestore"],
+  "tags": ["backup"],
+  "description": "gcloud Firestore export コマンド例のテンプレート",
+  "params": [ { "name": "bucket", "default": "gs://my-backup" } ],
+  "files": [
+    { "path": "firestore/export.txt", "template": "gcloud firestore export {{bucket}} --async\n" }
+  ]
+}
+

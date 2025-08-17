@@ -1,0 +1,13 @@
+{
+  "id": "etcd3-get-put-minimal",
+  "name": "etcd3 GET/PUT 最小",
+  "version": "1.0.0",
+  "stack": ["etcd3", "node"],
+  "tags": ["config"],
+  "description": "etcd3 で put/get",
+  "params": [ ],
+  "files": [
+    { "path": "etcd/index.mjs", "template": "import { Etcd3 } from 'etcd3';\nconst c = new Etcd3();\nawait c.put('hello').value('world');\nconsole.log(await c.get('hello').string());\n" }
+  ]
+}
+

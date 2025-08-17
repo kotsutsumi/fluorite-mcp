@@ -1,0 +1,13 @@
+{
+  "id": "opensearch-knn-index-minimal",
+  "name": "OpenSearch k-NN インデックス 最小",
+  "version": "1.0.0",
+  "stack": ["opensearch", "knn"],
+  "tags": ["vector"],
+  "description": "k-NN プラグインを用いたインデックス設定",
+  "params": [ { "name": "index", "default": "vectors" } ],
+  "files": [
+    { "path": "opensearch/knn.json", "template": "{ \n  \"settings\": { \"index.knn\": true },\n  \"mappings\": { \"properties\": { \"embedding\": { \"type\": \"knn_vector\", \"dimension\": 3 } } }\n}\n" }
+  ]
+}
+

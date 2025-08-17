@@ -1,0 +1,13 @@
+{
+  "id": "k6-http-smoke-minimal",
+  "name": "k6 HTTP スモーク 最小",
+  "version": "1.0.0",
+  "stack": ["k6"],
+  "tags": ["load-test"],
+  "description": "k6 の最小 HTTP スモークテスト",
+  "params": [ ],
+  "files": [
+    { "path": "k6/smoke.js", "template": "import http from 'k6/http';\nimport { sleep } from 'k6';\nexport default function () { http.get('https://example.com'); sleep(1); }\n" }
+  ]
+}
+

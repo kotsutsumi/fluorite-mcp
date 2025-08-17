@@ -1,0 +1,13 @@
+{
+  "id": "bun-elysia-route-minimal",
+  "name": "Bun Elysia ルート 最小",
+  "version": "1.0.0",
+  "stack": ["bun", "elysia"],
+  "tags": ["web"],
+  "description": "Elysia フレームワークの最小ルート",
+  "params": [ { "name": "app_name", "default": "elysia-app" } ],
+  "files": [
+    { "path": "{{app_name}}/index.ts", "template": "import { Elysia } from 'elysia';\nnew Elysia().get('/hello', () => ({ message: 'hello' })).listen(3000);\n" }
+  ]
+}
+

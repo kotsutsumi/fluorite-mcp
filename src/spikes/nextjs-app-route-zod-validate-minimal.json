@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-app-route-zod-validate-minimal",
+  "name": "Next.js App Route Zod 検証 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "zod"],
+  "tags": ["api"],
+  "description": "App Router の Route Handler で Zod 検証",
+  "params": [ { "name": "app_name", "default": "next-app" } ],
+  "files": [
+    { "path": "{{app_name}}/app/api/hello/route.ts", "template": "import { z } from 'zod';\nconst schema = z.object({ name: z.string() });\nexport async function POST(req: Request){ const body = await req.json(); const r = schema.safeParse(body); if(!r.success) return new Response('bad', { status: 400 }); return Response.json({ ok: true, name: r.data.name }); }\n" }
+  ]
+}
+

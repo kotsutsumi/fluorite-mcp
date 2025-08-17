@@ -1,0 +1,13 @@
+{
+  "id": "jest-msw-setup-minimal",
+  "name": "Jest + MSW セットアップ 最小",
+  "version": "1.0.0",
+  "stack": ["jest", "msw"],
+  "tags": ["test"],
+  "description": "Jest で MSW を使う最小セットアップ",
+  "params": [ ],
+  "files": [
+    { "path": "jest.setup.ts", "template": "import { setupServer } from 'msw/node';\nconst server = setupServer();\nbeforeAll(()=> server.listen());\nafterEach(()=> server.resetHandlers());\nafterAll(()=> server.close());\n" }
+  ]
+}
+

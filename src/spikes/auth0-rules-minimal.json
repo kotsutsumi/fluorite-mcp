@@ -1,0 +1,13 @@
+{
+  "id": "auth0-rules-minimal",
+  "name": "Auth0 Rules 最小",
+  "version": "1.0.0",
+  "stack": ["auth0"],
+  "tags": ["auth"],
+  "description": "Auth0 Rule の雛形",
+  "params": [ ],
+  "files": [
+    { "path": "auth0/rule.js", "template": "function userMetadataRule(user, context, callback){ user.app_metadata = user.app_metadata || {}; callback(null, user, context); }\nmodule.exports = userMetadataRule;\n" }
+  ]
+}
+

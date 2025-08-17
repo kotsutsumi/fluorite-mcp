@@ -1,0 +1,13 @@
+{
+  "id": "openpolicyagent-rego-policy-minimal",
+  "name": "OPA Rego Policy 最小",
+  "version": "1.0.0",
+  "stack": ["opa", "rego"],
+  "tags": ["policy"],
+  "description": "Rego ポリシーの最小例",
+  "params": [ ],
+  "files": [
+    { "path": "opa/policy.rego", "template": "package example\nallow { input.role == \"admin\" }\n" }
+  ]
+}
+

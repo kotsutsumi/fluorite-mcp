@@ -1,0 +1,13 @@
+{
+  "id": "kubernetes-hpa-minimal",
+  "name": "Kubernetes HPA 最小",
+  "version": "1.0.0",
+  "stack": ["kubernetes", "yaml"],
+  "tags": ["k8s"],
+  "description": "autoscaling/v2 HPA の最小",
+  "params": [ ],
+  "files": [
+    { "path": "k8s/hpa.yaml", "template": "apiVersion: autoscaling/v2\nkind: HorizontalPodAutoscaler\nmetadata: { name: app }\nspec:\n  scaleTargetRef: { apiVersion: apps/v1, kind: Deployment, name: app }\n  minReplicas: 1\n  maxReplicas: 3\n  metrics: [{ type: Resource, resource: { name: cpu, target: { type: Utilization, averageUtilization: 50 } } }]\n" }
+  ]
+}
+

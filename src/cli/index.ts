@@ -3,6 +3,7 @@ import { Command } from 'commander';
 import { setupCommand } from './commands/setup.js';
 import { versionCommand } from './commands/version.js';
 import { flHelpCommand } from './commands/fl-help.js';
+import { initCommand } from './commands/init.js';
 import { getPackageVersion } from '../utils.js';
 
 const program = new Command();
@@ -16,6 +17,7 @@ program
 program.addCommand(setupCommand);
 program.addCommand(versionCommand);
 program.addCommand(flHelpCommand);
+program.addCommand(initCommand);
 
 // Parse command line arguments
 program.parse();

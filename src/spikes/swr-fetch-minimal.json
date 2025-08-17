@@ -1,0 +1,13 @@
+{
+  "id": "swr-fetch-minimal",
+  "name": "SWR fetch 最小",
+  "version": "1.0.0",
+  "stack": ["swr", "react"],
+  "tags": ["data"],
+  "description": "swr の最小 useSWR",
+  "params": [ ],
+  "files": [
+    { "path": "react/SWR.tsx", "template": "import useSWR from 'swr';\nconst fetcher = (u: string) => fetch(u).then(r=>r.text());\nexport default function App(){ const { data } = useSWR('https://example.com', fetcher); return <div>{data}</div>; }\n" }
+  ]
+}
+

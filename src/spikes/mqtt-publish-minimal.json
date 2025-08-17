@@ -1,0 +1,13 @@
+{
+  "id": "mqtt-publish-minimal",
+  "name": "MQTT.js パブリッシュ 最小",
+  "version": "1.0.0",
+  "stack": ["mqtt", "node"],
+  "tags": ["messaging"],
+  "description": "publish のみの最小例",
+  "params": [ { "name": "topic", "default": "events" } ],
+  "files": [
+    { "path": "mqtt/pub.js", "template": "const mqtt = require('mqtt');\nconst c = mqtt.connect(process.env.MQTT_URL||'mqtt://localhost:1883');\nc.on('connect', ()=> c.publish(process.env.MQTT_TOPIC||'{{topic}}', 'hello', {}, ()=> process.exit(0)));\n" }
+  ]
+}
+

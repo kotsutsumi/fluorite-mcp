@@ -1,0 +1,13 @@
+{
+  "id": "aws-kinesis-analytics-sql-concept",
+  "name": "AWS Kinesis Analytics SQL コンセプト",
+  "version": "1.0.0",
+  "stack": ["aws", "kinesis-analytics"],
+  "tags": ["stream"],
+  "description": "Kinesis Analytics の SQL テンプレート",
+  "params": [ ],
+  "files": [
+    { "path": "aws/analytics.sql", "template": "-- SELECT STREAM * FROM source\n" }
+  ]
+}
+

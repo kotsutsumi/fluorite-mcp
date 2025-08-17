@@ -1,0 +1,13 @@
+{
+  "id": "bcrypt-hash-verify-minimal",
+  "name": "bcrypt ハッシュ/検証 最小",
+  "version": "1.0.0",
+  "stack": ["bcrypt", "node"],
+  "tags": ["security"],
+  "description": "bcrypt でハッシュ/比較",
+  "params": [ ],
+  "files": [
+    { "path": "crypto/bcrypt.js", "template": "const bcrypt = require('bcrypt');\n(async()=>{ const h = await bcrypt.hash('secret', 10); console.log(h, await bcrypt.compare('secret', h)); })();\n" }
+  ]
+}
+

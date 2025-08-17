@@ -1,0 +1,13 @@
+{
+  "id": "kubernetes-configmap-minimal",
+  "name": "Kubernetes ConfigMap 最小",
+  "version": "1.0.0",
+  "stack": ["kubernetes", "yaml"],
+  "tags": ["k8s"],
+  "description": "v1 ConfigMap の最小",
+  "params": [ ],
+  "files": [
+    { "path": "k8s/configmap.yaml", "template": "apiVersion: v1\nkind: ConfigMap\nmetadata: { name: app }\ndata: { KEY: VALUE }\n" }
+  ]
+}
+

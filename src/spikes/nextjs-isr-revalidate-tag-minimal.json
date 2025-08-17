@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-isr-revalidate-tag-minimal",
+  "name": "Next.js ISR revalidateTag 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["web"],
+  "description": "revalidateTag の呼び出し最小例",
+  "params": [ { "name": "app_name", "default": "next-app" } ],
+  "files": [
+    { "path": "{{app_name}}/app/actions.ts", "template": "'use server';\nimport { revalidateTag } from 'next/cache';\nexport async function refresh(){ revalidateTag('posts'); }\n" }
+  ]
+}
+

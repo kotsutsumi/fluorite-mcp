@@ -1,0 +1,13 @@
+{
+  "id": "sentry-js-browser-minimal",
+  "name": "Sentry JS Browser 最小",
+  "version": "1.0.0",
+  "stack": ["sentry", "browser"],
+  "tags": ["observability"],
+  "description": "@sentry/browser 初期化の最小",
+  "params": [ ],
+  "files": [
+    { "path": "sentry/browser.js", "template": "import * as Sentry from '@sentry/browser';\nSentry.init({ dsn: '' });\n" }
+  ]
+}
+

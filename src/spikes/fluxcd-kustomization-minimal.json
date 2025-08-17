@@ -1,0 +1,13 @@
+{
+  "id": "fluxcd-kustomization-minimal",
+  "name": "FluxCD Kustomization 最小",
+  "version": "1.0.0",
+  "stack": ["fluxcd", "kubernetes"],
+  "tags": ["k8s"],
+  "description": "Kustomization CR の最小例",
+  "params": [ { "name": "name", "default": "web" } ],
+  "files": [
+    { "path": "k8s/kustomization.yaml", "template": "apiVersion: kustomize.toolkit.fluxcd.io/v1\nkind: Kustomization\nmetadata:\n  name: {{name}}\nspec:\n  interval: 10m\n  path: ./deploy\n  prune: true\n  sourceRef:\n    kind: GitRepository\n    name: repo\n" }
+  ]
+}
+

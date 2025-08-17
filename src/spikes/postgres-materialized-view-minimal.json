@@ -1,0 +1,13 @@
+{
+  "id": "postgres-materialized-view-minimal",
+  "name": "Postgres マテビュー 最小",
+  "version": "1.0.0",
+  "stack": ["postgres"],
+  "tags": ["db"],
+  "description": "マテリアライズドビューの作成/更新 SQL",
+  "params": [ ],
+  "files": [
+    { "path": "postgres/mview.sql", "template": "create materialized view if not exists mv as select 1 as x;\nrefresh materialized view mv;\n" }
+  ]
+}
+

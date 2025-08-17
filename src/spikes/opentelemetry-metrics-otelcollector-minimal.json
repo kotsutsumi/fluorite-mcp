@@ -1,0 +1,13 @@
+{
+  "id": "opentelemetry-metrics-otelcollector-minimal",
+  "name": "OTel Metrics -> Collector 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry", "metrics"],
+  "tags": ["observability"],
+  "description": "OTLP/HTTP メトリクス出力",
+  "params": [ ],
+  "files": [
+    { "path": "otel/metrics.mjs", "template": "import { MeterProvider } from '@opentelemetry/sdk-metrics';\nimport { OTLPMetricExporter } from '@opentelemetry/exporter-metrics-otlp-http';\nconst mp = new MeterProvider({});\nmp.addMetricReader(new (class {\n  exporter = new OTLPMetricExporter();\n  collect(){}\n  forceFlush(){}\n  shutdown(){}\n})());\n" }
+  ]
+}
+

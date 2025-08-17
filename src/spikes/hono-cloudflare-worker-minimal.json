@@ -1,0 +1,13 @@
+{
+  "id": "hono-cloudflare-worker-minimal",
+  "name": "Hono Cloudflare Worker 最小",
+  "version": "1.0.0",
+  "stack": ["hono", "cloudflare"],
+  "tags": ["edge"],
+  "description": "Hono を Cloudflare Workers で動かす最小例",
+  "params": [ { "name": "app_name", "default": "hono-worker" } ],
+  "files": [
+    { "path": "{{app_name}}/src/worker.ts", "template": "import { Hono } from 'hono';\nconst app = new Hono();\napp.get('/', (c) => c.text('hello hono'));\nexport default { fetch: app.fetch };\n" }
+  ]
+}
+

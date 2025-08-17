@@ -1,0 +1,13 @@
+{
+  "id": "pactflow-publish-contract-minimal",
+  "name": "PactFlow 契約公開 最小",
+  "version": "1.0.0",
+  "stack": ["pactflow"],
+  "tags": ["contract-test"],
+  "description": "PactFlow へ pact を公開",
+  "params": [ ],
+  "files": [
+    { "path": "pact/publish.txt", "template": "pact-broker publish pacts --consumer-app-version $(git rev-parse --short HEAD) --branch main\n" }
+  ]
+}
+

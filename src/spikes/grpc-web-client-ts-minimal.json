@@ -1,0 +1,13 @@
+{
+  "id": "grpc-web-client-ts-minimal",
+  "name": "gRPC-Web クライアント TS 最小",
+  "version": "1.0.0",
+  "stack": ["grpc-web", "typescript"],
+  "tags": ["rpc", "web"],
+  "description": "grpc-web クライアントの最小呼び出しスケルトン",
+  "params": [ { "name": "app_name", "default": "grpc-web" } ],
+  "files": [
+    { "path": "{{app_name}}/client.ts", "template": "// import { GreeterClient } from './gen/greeter_pb_service';\n// const client = new GreeterClient('http://localhost:8080');\n// client.sayHello({ name: 'world' }, (err, resp) => console.log(err, resp));\n" }
+  ]
+}
+

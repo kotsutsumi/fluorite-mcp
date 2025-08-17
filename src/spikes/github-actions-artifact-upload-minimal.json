@@ -1,0 +1,13 @@
+{
+  "id": "github-actions-artifact-upload-minimal",
+  "name": "GitHub Actions アーティファクト アップロード 最小",
+  "version": "1.0.0",
+  "stack": ["github-actions", "yaml"],
+  "tags": ["ci"],
+  "description": "actions/upload-artifact の使用例",
+  "params": [ ],
+  "files": [
+    { "path": ".github/workflows/artifact.yml", "template": "name: artifact\non: [push]\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - run: echo hello > out.txt\n      - uses: actions/upload-artifact@v4\n        with:\n          name: out\n          path: out.txt\n" }
+  ]
+}
+

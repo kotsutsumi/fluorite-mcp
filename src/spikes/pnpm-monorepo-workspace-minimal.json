@@ -1,0 +1,13 @@
+{
+  "id": "pnpm-monorepo-workspace-minimal",
+  "name": "pnpm ワークスペース 最小",
+  "version": "1.0.0",
+  "stack": ["pnpm"],
+  "tags": ["build"],
+  "description": "pnpm-workspace.yaml の最小",
+  "params": [ ],
+  "files": [
+    { "path": "pnpm-workspace.yaml", "template": "packages:\n  - packages/*\n" }
+  ]
+}
+

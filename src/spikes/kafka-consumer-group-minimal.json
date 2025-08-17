@@ -1,0 +1,13 @@
+{
+  "id": "kafka-consumer-group-minimal",
+  "name": "KafkaJS コンシューマグループ 最小",
+  "version": "1.0.0",
+  "stack": ["kafkajs", "node"],
+  "tags": ["messaging"],
+  "description": "consumer group で購読",
+  "params": [ { "name": "topic", "default": "events" } ],
+  "files": [
+    { "path": "kafka/consumer.js", "template": "const { Kafka } = require('kafkajs');\nconst kafka = new Kafka({ clientId: 'app', brokers: (process.env.KAFKA_BROKERS||'localhost:9092').split(',') });\n(async()=>{ const c = kafka.consumer({ groupId: 'g1' }); await c.connect(); await c.subscribe({ topic: process.env.KAFKA_TOPIC||'{{topic}}', fromBeginning: true }); await c.run({ eachMessage: async ({ message })=> console.log(message.value?.toString()) }); })();\n" }
+  ]
+}
+

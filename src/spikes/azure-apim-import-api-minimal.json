@@ -1,0 +1,13 @@
+{
+  "id": "azure-apim-import-api-minimal",
+  "name": "Azure API Management Import 最小",
+  "version": "1.0.0",
+  "stack": ["azure", "apim"],
+  "tags": ["api"],
+  "description": "az apim api import のテンプレート",
+  "params": [ ],
+  "files": [
+    { "path": "azure/apim.txt", "template": "az apim api import --resource-group rg --service-name apim --path hello --specification-format OpenApiJson --specification-path openapi.json\n" }
+  ]
+}
+

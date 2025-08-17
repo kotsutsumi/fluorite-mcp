@@ -1,0 +1,13 @@
+{
+  "id": "husky-precommit-minimal",
+  "name": "Husky pre-commit 最小",
+  "version": "1.0.0",
+  "stack": ["husky"],
+  "tags": ["ci"],
+  "description": "pre-commit フックの雛形",
+  "params": [ ],
+  "files": [
+    { "path": ".husky/pre-commit", "template": "#!/bin/sh\n. \"$(dirname \"$0\")/_/husky.sh\nnpm test\n" }
+  ]
+}
+

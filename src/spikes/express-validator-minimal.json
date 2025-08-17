@@ -1,0 +1,13 @@
+{
+  "id": "express-validator-minimal",
+  "name": "express-validator 最小",
+  "version": "1.0.0",
+  "stack": ["express", "express-validator"],
+  "tags": ["validation"],
+  "description": "express-validator を使ったリクエスト検証",
+  "params": [ { "name": "app_name", "default": "express-app" } ],
+  "files": [
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst { body, validationResult } = require('express-validator');\nconst app = express();\napp.use(express.json());\napp.post('/users', body('email').isEmail(), (req,res)=>{ const e=validationResult(req); if(!e.isEmpty()) return res.status(400).json(e.array()); res.json({ ok: true }); });\napp.listen(3000);\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "oclif-cli-command-minimal",
+  "name": "oclif CLI コマンド 最小",
+  "version": "1.0.0",
+  "stack": ["oclif", "typescript"],
+  "tags": ["cli"],
+  "description": "oclif コマンドの最小スケルトン",
+  "params": [ { "name": "pkg", "default": "mycli" } ],
+  "files": [
+    { "path": "{{pkg}}/src/commands/hello.ts", "template": "import { Command } from '@oclif/core';\nexport default class Hello extends Command { async run(){ this.log('hello'); } }\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "hashicorp-consul-template-concept",
+  "name": "consul-template コンセプト",
+  "version": "1.0.0",
+  "stack": ["consul", "template"],
+  "tags": ["config"],
+  "description": "consul-template の設定例 (概念)",
+  "params": [ ],
+  "files": [
+    { "path": "consul/template.hcl", "template": "template {\n  source = \"config.tmpl\"\n  destination = \"/etc/config\"\n}\n" }
+  ]
+}
+

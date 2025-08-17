@@ -1,0 +1,13 @@
+{
+  "id": "react-query-fetch-minimal",
+  "name": "React Query fetch 最小",
+  "version": "1.0.0",
+  "stack": ["react-query", "react"],
+  "tags": ["data"],
+  "description": "@tanstack/react-query の最小 useQuery",
+  "params": [ ],
+  "files": [
+    { "path": "react/Query.tsx", "template": "import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';\nconst qc = new QueryClient();\nfunction Hello(){ const { data } = useQuery({ queryKey: ['hello'], queryFn: () => fetch('https://example.com').then(r=>r.text()) }); return <div>{data}</div>; }\nexport default function App(){ return <QueryClientProvider client={qc}><Hello /></QueryClientProvider>; }\n" }
+  ]
+}
+

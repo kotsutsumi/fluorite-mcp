@@ -1,0 +1,13 @@
+{
+  "id": "lint-staged-config-minimal",
+  "name": "lint-staged 設定 最小",
+  "version": "1.0.0",
+  "stack": ["lint-staged"],
+  "tags": ["ci"],
+  "description": "lint-staged の最小設定",
+  "params": [ ],
+  "files": [
+    { "path": ".lintstagedrc.json", "template": "{ \"*.{ts,tsx,js}\": \"eslint --fix\" }\n" }
+  ]
+}
+

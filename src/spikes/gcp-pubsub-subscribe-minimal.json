@@ -1,0 +1,13 @@
+{
+  "id": "gcp-pubsub-subscribe-minimal",
+  "name": "GCP Pub/Sub Subscribe 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "pubsub"],
+  "tags": ["messaging"],
+  "description": "@google-cloud/pubsub でサブスクリプション購読",
+  "params": [ { "name": "sub", "default": "sub" } ],
+  "files": [
+    { "path": "gcp/sub.mjs", "template": "import { PubSub } from '@google-cloud/pubsub';\nconst ps = new PubSub();\nps.subscription(process.env.SUB || '{{sub}}').on('message', m=> console.log(m.data.toString()));\n" }
+  ]
+}
+

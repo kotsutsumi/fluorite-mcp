@@ -1,0 +1,13 @@
+{
+  "id": "zodios-express-minimal",
+  "name": "Zodios + Express 最小",
+  "version": "1.0.0",
+  "stack": ["zodios", "express", "zod"],
+  "tags": ["api"],
+  "description": "@zodios/express で型安全なルートを定義する最小例",
+  "params": [ { "name": "app_name", "default": "zodios-app" } ],
+  "files": [
+    { "path": "{{app_name}}/server.ts", "template": "import express from 'express';\nimport { makeApi, z } from '@zodios/core';\nimport { createZodiosRouter } from '@zodios/express';\nconst api = makeApi([{ method: 'get', path: '/hello', response: z.object({ message: z.string() }) }]);\nconst router = createZodiosRouter(api);\nrouter.get('/hello', (_req, res) => res.json({ message: 'hello' }));\nconst app = express();\napp.use(router);\napp.listen(3000);\n" }
+  ]
+}
+

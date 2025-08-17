@@ -1,0 +1,13 @@
+{
+  "id": "meilisearch-index-doc-minimal",
+  "name": "Meilisearch ドキュメント追加 最小",
+  "version": "1.0.0",
+  "stack": ["meilisearch", "node"],
+  "tags": ["search"],
+  "description": "meilisearch でインデックス作成とドキュメント追加",
+  "params": [ { "name": "index", "default": "books" } ],
+  "files": [
+    { "path": "meilisearch/index.mjs", "template": "import { MeiliSearch } from 'meilisearch';\nconst client = new MeiliSearch({ host: process.env.MEILI_URL || 'http://127.0.0.1:7700' });\nconst idx = await client.getOrCreateIndex(process.env.MEILI_INDEX || '{{index}}');\nawait idx.addDocuments([{ id: 1, title: 'Hello' }]);\nconsole.log('indexed');\n" }
+  ]
+}
+

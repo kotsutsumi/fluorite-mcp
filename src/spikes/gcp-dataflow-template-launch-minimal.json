@@ -1,0 +1,13 @@
+{
+  "id": "gcp-dataflow-template-launch-minimal",
+  "name": "GCP Dataflow Template Launch 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "dataflow"],
+  "tags": ["etl"],
+  "description": "Dataflow テンプレートの起動",
+  "params": [ ],
+  "files": [
+    { "path": "gcp/dataflow.txt", "template": "gcloud dataflow jobs run job --gcs-location gs://templates/latest/Word_Count\n" }
+  ]
+}
+

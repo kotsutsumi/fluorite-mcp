@@ -1,0 +1,13 @@
+{
+  "id": "dockerfile-node-alpine-minimal",
+  "name": "Dockerfile Node Alpine 最小",
+  "version": "1.0.0",
+  "stack": ["docker"],
+  "tags": ["container"],
+  "description": "Node:alpine ベースの最小 Dockerfile",
+  "params": [ ],
+  "files": [
+    { "path": "Dockerfile", "template": "FROM node:18-alpine\nWORKDIR /app\nCOPY . .\nRUN npm ci --only=production || true\nCMD [\"node\", \"index.js\"]\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "azure-log-analytics-query-minimal",
+  "name": "Azure Log Analytics クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["azure", "log-analytics"],
+  "tags": ["observability"],
+  "description": "@azure/monitor-query で logs query",
+  "params": [ ],
+  "files": [
+    { "path": "azure/loganalytics.mjs", "template": "import { LogsQueryClient, Durations } from '@azure/monitor-query';\nimport { DefaultAzureCredential } from '@azure/identity';\nconst c = new LogsQueryClient(new DefaultAzureCredential());\nconsole.log(await c.queryWorkspace(process.env.WS_ID||'workspace-id', 'AppTraces | take 1', { duration: Durations.FiveMinutes }));\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "adonis-route-minimal",
+  "name": "AdonisJS ルート 最小",
+  "version": "1.0.0",
+  "stack": ["adonis", "node"],
+  "tags": ["web"],
+  "description": "AdonisJS のルート定義スニペット",
+  "params": [ ],
+  "files": [
+    { "path": "adonis/start/routes.ts", "template": "import Route from '@ioc:Adonis/Core/Route';\nRoute.get('/hello', async () => { return { ok: true }; });\n" }
+  ]
+}
+

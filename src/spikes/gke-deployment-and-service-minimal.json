@@ -1,0 +1,13 @@
+{
+  "id": "gke-deployment-and-service-minimal",
+  "name": "GKE Deployment + Service 最小",
+  "version": "1.0.0",
+  "stack": ["gke", "kubernetes"],
+  "tags": ["k8s"],
+  "description": "GKE 用の Deployment と Service マニフェスト",
+  "params": [ { "name": "name", "default": "app" } ],
+  "files": [
+    { "path": "gke/deploy.yaml", "template": "apiVersion: apps/v1\nkind: Deployment\nmetadata: { name: {{name}} }\nspec: { replicas: 1, selector: { matchLabels: { app: {{name}} } }, template: { metadata: { labels: { app: {{name}} } }, spec: { containers: [ { name: app, image: nginx:alpine } ] } } }\n---\napiVersion: v1\nkind: Service\nmetadata: { name: {{name}} }\nspec: { type: ClusterIP, selector: { app: {{name}} }, ports: [ { port: 80, targetPort: 80 } ] }\n" }
+  ]
+}
+

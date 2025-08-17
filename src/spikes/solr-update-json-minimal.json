@@ -1,0 +1,13 @@
+{
+  "id": "solr-update-json-minimal",
+  "name": "Solr JSON Update 最小",
+  "version": "1.0.0",
+  "stack": ["solr", "curl"],
+  "tags": ["search"],
+  "description": "Solr の JSON Update API 呼び出し例",
+  "params": [ { "name": "core", "default": "gettingstarted" } ],
+  "files": [
+    { "path": "solr/update.txt", "template": "curl 'http://localhost:8983/solr/{{core}}/update?commit=true' -H 'Content-Type: application/json' -d '[{"id":"1","title":"Hello"}]'\n" }
+  ]
+}
+

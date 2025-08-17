@@ -1,0 +1,13 @@
+{
+  "id": "node-worker-threads-pool-minimal",
+  "name": "Node worker_threads プール 最小",
+  "version": "1.0.0",
+  "stack": ["node"],
+  "tags": ["concurrency"],
+  "description": "worker_threads を使った簡易プール",
+  "params": [ ],
+  "files": [
+    { "path": "workers/pool.js", "template": "const { Worker } = require('worker_threads');\nfunction run(task) { return new Promise((res) => { const w = new Worker('module.exports=parentPort.on(\'message\', n=>{parentPort.postMessage(n*n)})', { eval: true }); w.on('message', res); w.postMessage(task); }); }\n(async()=>{ console.log(await Promise.all([1,2,3].map(run))); })();\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "aws-sns-publish-json-minimal",
+  "name": "AWS SNS JSON Publish 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "sns"],
+  "tags": ["events"],
+  "description": "JSON メッセージの publish",
+  "params": [ { "name": "topicArn", "default": "arn:aws:sns:us-east-1:123:topic" } ],
+  "files": [
+    { "path": "aws/sns-publish.mjs", "template": "import { SNSClient, PublishCommand } from '@aws-sdk/client-sns';\nconst c = new SNSClient({});\nawait c.send(new PublishCommand({ TopicArn: process.env.TOPIC_ARN || '{{topicArn}}', Message: JSON.stringify({ hello: 'world' }) }));\nconsole.log('ok');\n" }
+  ]
+}
+

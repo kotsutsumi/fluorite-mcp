@@ -1,0 +1,13 @@
+{
+  "id": "github-actions-reusable-workflow-minimal",
+  "name": "GitHub Actions 再利用ワークフロー 最小",
+  "version": "1.0.0",
+  "stack": ["github-actions", "yaml"],
+  "tags": ["ci"],
+  "description": "再利用可能ワークフローの呼び出し例",
+  "params": [ ],
+  "files": [
+    { "path": ".github/workflows/caller.yml", "template": "name: caller\non: [push]\njobs:\n  use-workflow:\n    uses: org/repo/.github/workflows/reusable.yml@v1\n    with:\n      name: hello\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "github-app-webhook-express-minimal",
+  "name": "GitHub App Webhook Express 最小",
+  "version": "1.0.0",
+  "stack": ["github", "express", "node"],
+  "tags": ["webhook"],
+  "description": "GitHub Webhook (sha256) 検証付き Express 受信",
+  "params": [ { "name": "app_name", "default": "gh-webhook" } ],
+  "files": [
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst crypto = require('crypto');\nconst app = express();\napp.use(express.json({ type: '*/*' }));\napp.post('/webhook', (req, res) => {\n  const sig = req.headers['x-hub-signature-256'];\n  const h = 'sha256=' + crypto.createHmac('sha256', process.env.GITHUB_WEBHOOK_SECRET || 'secret').update(JSON.stringify(req.body)).digest('hex');\n  if (sig !== h) return res.status(401).send('invalid');\n  res.send('ok');\n});\napp.listen(3000);\n" }
+  ]
+}
+

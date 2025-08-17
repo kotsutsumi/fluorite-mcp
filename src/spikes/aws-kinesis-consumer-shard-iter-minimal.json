@@ -1,0 +1,13 @@
+{
+  "id": "aws-kinesis-consumer-shard-iter-minimal",
+  "name": "AWS Kinesis ShardIterator コンシューマ 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "kinesis"],
+  "tags": ["stream"],
+  "description": "GetShardIterator + GetRecords で消費",
+  "params": [ { "name": "stream", "default": "events" }, { "name": "shardId", "default": "shardId-000000000000" } ],
+  "files": [
+    { "path": "aws/kinesis-consume.mjs", "template": "import { KinesisClient, GetShardIteratorCommand, GetRecordsCommand } from '@aws-sdk/client-kinesis';\nconst c = new KinesisClient({});\nconst it = await c.send(new GetShardIteratorCommand({ StreamName: process.env.STREAM || '{{stream}}', ShardId: process.env.SHARD || '{{shardId}}', ShardIteratorType: 'LATEST' }));\nconst r = await c.send(new GetRecordsCommand({ ShardIterator: it.ShardIterator }));\nconsole.log((r.Records||[]).length);\n" }
+  ]
+}
+

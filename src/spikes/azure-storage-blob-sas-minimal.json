@@ -1,0 +1,13 @@
+{
+  "id": "azure-storage-blob-sas-minimal",
+  "name": "Azure Blob SAS 最小",
+  "version": "1.0.0",
+  "stack": ["azure", "storage-blob", "node"],
+  "tags": ["cloud"],
+  "description": "@azure/storage-blob での SAS 生成最小例",
+  "params": [ { "name": "container", "default": "public" }, { "name": "blob", "default": "hello.txt" } ],
+  "files": [
+    { "path": "azure/sas.mjs", "template": "import { BlobSASPermissions, generateBlobSASQueryParameters, SASProtocol, StorageSharedKeyCredential } from '@azure/storage-blob';\nconst account = process.env.AZURE_ACCOUNT;\nconst key = process.env.AZURE_KEY;\nconst cred = new StorageSharedKeyCredential(account, key);\nconst sas = generateBlobSASQueryParameters({ containerName: process.env.AZURE_CONTAINER || '{{container}}', blobName: process.env.AZURE_BLOB || '{{blob}}', permissions: BlobSASPermissions.parse('r'), startsOn: new Date(), expiresOn: new Date(Date.now()+3600000), protocol: SASProtocol.Https }, cred).toString();\nconsole.log(sas);\n" }
+  ]
+}
+

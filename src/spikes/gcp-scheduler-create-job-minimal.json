@@ -1,0 +1,13 @@
+{
+  "id": "gcp-scheduler-create-job-minimal",
+  "name": "GCP Cloud Scheduler Job 作成 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "scheduler"],
+  "tags": ["scheduler"],
+  "description": "@google-cloud/scheduler でジョブ作成の最小例",
+  "params": [ { "name": "project", "default": "my-proj" }, { "name": "location", "default": "us-central1" } ],
+  "files": [
+    { "path": "gcp/scheduler.mjs", "template": "import { CloudSchedulerClient } from '@google-cloud/scheduler';\nconst cs = new CloudSchedulerClient();\nconst parent = cs.locationPath(process.env.PROJECT || '{{project}}', process.env.LOC || '{{location}}');\nawait cs.createJob({ parent, job: { name: parent + '/jobs/hello', schedule: '*/5 * * * *', httpTarget: { uri: 'https://example.com', httpMethod: 'GET' } } });\nconsole.log('created');\n" }
+  ]
+}
+

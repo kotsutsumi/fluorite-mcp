@@ -1,0 +1,13 @@
+{
+  "id": "aws-sfn-state-machine-yaml-concept",
+  "name": "AWS Step Functions StateMachine YAML コンセプト",
+  "version": "1.0.0",
+  "stack": ["aws", "stepfunctions", "yaml"],
+  "tags": ["workflow"],
+  "description": "状態機械の最小 YAML テンプレート",
+  "params": [ { "name": "name", "default": "MyStateMachine" } ],
+  "files": [
+    { "path": "sfn/state-machine.yaml", "template": "Comment: minimal\nStartAt: Start\nStates:\n  Start:\n    Type: Pass\n    End: true\n" }
+  ]
+}
+

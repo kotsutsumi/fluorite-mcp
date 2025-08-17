@@ -1,0 +1,13 @@
+{
+  "id": "grafana-dashboard-json-minimal",
+  "name": "Grafana Dashboard JSON 最小",
+  "version": "1.0.0",
+  "stack": ["grafana", "json"],
+  "tags": ["observability"],
+  "description": "Grafana ダッシュボードの最小 JSON",
+  "params": [ { "name": "title", "default": "My Dashboard" } ],
+  "files": [
+    { "path": "grafana/dashboard.json", "template": "{ \n  \"title\": \"{{title}}\", \n  \"panels\": [], \n  \"schemaVersion\": 39, \n  \"version\": 1 \n}\n" }
+  ]
+}
+

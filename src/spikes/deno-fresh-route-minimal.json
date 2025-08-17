@@ -1,0 +1,13 @@
+{
+  "id": "deno-fresh-route-minimal",
+  "name": "Deno Fresh ルート 最小",
+  "version": "1.0.0",
+  "stack": ["deno", "fresh"],
+  "tags": ["web"],
+  "description": "Fresh の island でのルート最小例",
+  "params": [ ],
+  "files": [
+    { "path": "fresh/routes/hello.tsx", "template": "import { HandlerContext } from '$fresh/server.ts';\nexport const handler = (_req: Request, _ctx: HandlerContext) => new Response('hello');\n" }
+  ]
+}
+

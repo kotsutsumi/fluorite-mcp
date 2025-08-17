@@ -1,0 +1,13 @@
+{
+  "id": "opentelemetry-node-tracing-minimal",
+  "name": "OpenTelemetry Node Tracing 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry", "node"],
+  "tags": ["observability"],
+  "description": "OTLP エクスポータを使った最小のトレーシング初期化",
+  "params": [ { "name": "serviceName", "default": "app" } ],
+  "files": [
+    { "path": "otel/tracing.mjs", "template": "import { NodeSDK } from '@opentelemetry/sdk-node';\nimport { Resource } from '@opentelemetry/resources';\nimport { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';\nimport { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';\nconst sdk = new NodeSDK({\n  resource: new Resource({ [SemanticResourceAttributes.SERVICE_NAME]: process.env.OTEL_SERVICE_NAME || '{{serviceName}}' }),\n  traceExporter: new OTLPTraceExporter(),\n});\nsdk.start();\n" }
+  ]
+}
+

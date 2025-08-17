@@ -1,0 +1,13 @@
+{
+  "id": "opa-gatekeeper-constraint-minimal",
+  "name": "OPA Gatekeeper Constraint 最小",
+  "version": "1.0.0",
+  "stack": ["opa", "kubernetes"],
+  "tags": ["policy"],
+  "description": "Gatekeeper Constraint の最小 YAML",
+  "params": [ ],
+  "files": [
+    { "path": "opa/constraint.yaml", "template": "apiVersion: constraints.gatekeeper.sh/v1beta1\nkind: K8sRequiredLabels\nmetadata:\n  name: must-have-app\nspec:\n  match: { kinds: [ { apiGroups: ['*'], kinds: ['Deployment'] } ] }\n  parameters: { labels: ['app'] }\n" }
+  ]
+}
+

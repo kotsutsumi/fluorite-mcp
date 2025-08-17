@@ -1,0 +1,13 @@
+{
+  "id": "protobufjs-encode-decode-minimal",
+  "name": "protobufjs エンコード/デコード 最小",
+  "version": "1.0.0",
+  "stack": ["protobufjs", "node"],
+  "tags": ["serialization"],
+  "description": "protobufjs/light でのメッセージ定義/操作",
+  "params": [ ],
+  "files": [
+    { "path": "proto/index.js", "template": "const protobuf = require('protobufjs/light');\nconst { Type, Field } = protobuf;\nconst Msg = new Type('Msg').add(new Field('id', 1, 'int32')).add(new Field('name', 2, 'string'));\nconst buf = Msg.encode({ id: 1, name: 'Alice' }).finish();\nconsole.log(Msg.decode(buf));\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "neo4j-graphql-ogm-minimal",
+  "name": "Neo4j GraphQL OGM 最小",
+  "version": "1.0.0",
+  "stack": ["neo4j", "graphql"],
+  "tags": ["db", "graphql"],
+  "description": "@neo4j/graphql-ogm を使った最小スキーマ",
+  "params": [ ],
+  "files": [
+    { "path": "neo4j/ogm.ts", "template": "import { OGM } from '@neo4j/graphql-ogm';\nconst typeDefs = /* GraphQL */`type User { id: ID! name: String }`;\nconst ogm = new OGM({ typeDefs, driver: undefined as any });\nconsole.log(!!ogm);\n" }
+  ]
+}
+

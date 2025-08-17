@@ -1,0 +1,13 @@
+{
+  "id": "drizzle-kit-config-minimal",
+  "name": "drizzle-kit 設定 最小",
+  "version": "1.0.0",
+  "stack": ["drizzle"],
+  "tags": ["orm"],
+  "description": "drizzle.config.ts の最小例",
+  "params": [ ],
+  "files": [
+    { "path": "drizzle.config.ts", "template": "import { defineConfig } from 'drizzle-kit';\nexport default defineConfig({ schema: './src/schema.ts', out: './drizzle' });\n" }
+  ]
+}
+

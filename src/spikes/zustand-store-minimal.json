@@ -1,0 +1,13 @@
+{
+  "id": "zustand-store-minimal",
+  "name": "Zustand ストア 最小",
+  "version": "1.0.0",
+  "stack": ["react", "zustand"],
+  "tags": ["state"],
+  "description": "Zustand の最小ストア",
+  "params": [ ],
+  "files": [
+    { "path": "state/store.ts", "template": "import { create } from 'zustand';\nexport const useStore = create<{ count: number; inc: () => void }>((set) => ({ count: 0, inc: () => set(s => ({ count: s.count + 1 })) }));\n" }
+  ]
+}
+

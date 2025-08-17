@@ -1,0 +1,13 @@
+{
+  "id": "gcp-firestore-onwrite-trigger-minimal",
+  "name": "GCP Firestore onWrite トリガ 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "functions"],
+  "tags": ["serverless"],
+  "description": "Firestore onWrite トリガ (概念)",
+  "params": [ ],
+  "files": [
+    { "path": "gcp/firestore.js", "template": "// exports.onWrite = functions.firestore.document('items/{id}').onWrite((change, ctx)=>{});\n" }
+  ]
+}
+

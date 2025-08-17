@@ -1,0 +1,13 @@
+{
+  "id": "gcp-cloud-build-trigger-minimal",
+  "name": "GCP Cloud Build Trigger 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "cloud-build"],
+  "tags": ["ci"],
+  "description": "Cloud Build トリガ作成 YAML",
+  "params": [ ],
+  "files": [
+    { "path": "gcp/cloudbuild.yaml", "template": "steps:\n  - name: gcr.io/cloud-builders/npm\n    args: ['--version']\n" }
+  ]
+}
+

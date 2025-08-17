@@ -1,0 +1,13 @@
+{
+  "id": "jenkinsfile-pipeline-minimal",
+  "name": "Jenkinsfile Pipeline 最小",
+  "version": "1.0.0",
+  "stack": ["jenkins", "groovy"],
+  "tags": ["ci"],
+  "description": "Declarative Pipeline の最小 Jenkinsfile",
+  "params": [ ],
+  "files": [
+    { "path": "Jenkinsfile", "template": "pipeline { agent any; stages { stage('Build') { steps { sh 'node -v' } } } }\n" }
+  ]
+}
+

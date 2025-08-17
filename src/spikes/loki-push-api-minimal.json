@@ -1,0 +1,13 @@
+{
+  "id": "loki-push-api-minimal",
+  "name": "Loki Push API 最小",
+  "version": "1.0.0",
+  "stack": ["loki", "node"],
+  "tags": ["observability"],
+  "description": "Loki の /loki/api/v1/push へログ送信",
+  "params": [ ],
+  "files": [
+    { "path": "log/loki.mjs", "template": "const body = { streams: [{ stream: { level: 'info' }, values: [[`${Date.now()}000000`, 'hello']] }] };\nawait fetch('http://localhost:3100/loki/api/v1/push', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });\nconsole.log('sent');\n" }
+  ]
+}
+

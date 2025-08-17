@@ -1,0 +1,13 @@
+{
+  "id": "aws-batch-submit-array-job-minimal",
+  "name": "AWS Batch Array Job 提出 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "batch"],
+  "tags": ["batch"],
+  "description": "Batch の SubmitJob (arrayProperties) 実行",
+  "params": [ { "name": "jobQueue", "default": "default" }, { "name": "jobDefinition", "default": "my-job:1" } ],
+  "files": [
+    { "path": "aws/batch-array.mjs", "template": "import { BatchClient, SubmitJobCommand } from '@aws-sdk/client-batch';\nconst c = new BatchClient({});\nconst r = await c.send(new SubmitJobCommand({ jobName: 'job', jobQueue: process.env.JOB_QUEUE || '{{jobQueue}}', jobDefinition: process.env.JOB_DEF || '{{jobDefinition}}', arrayProperties: { size: 10 } }));\nconsole.log(r.jobId);\n" }
+  ]
+}
+

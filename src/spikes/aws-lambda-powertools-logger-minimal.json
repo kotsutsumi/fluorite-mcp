@@ -1,0 +1,13 @@
+{
+  "id": "aws-lambda-powertools-logger-minimal",
+  "name": "AWS Lambda Powertools Logger 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "lambda", "powertools"],
+  "tags": ["observability"],
+  "description": "@aws-lambda-powertools/logger を使った構造化ログ",
+  "params": [ { "name": "fn_name", "default": "handler" } ],
+  "files": [
+    { "path": "lambda/{{fn_name}}.mjs", "template": "import { Logger } from '@aws-lambda-powertools/logger';\nconst logger = new Logger({ serviceName: 'app' });\nexport const handler = async (event) => { logger.info('received', { event }); return { statusCode: 200, body: 'ok' }; };\n" }
+  ]
+}
+

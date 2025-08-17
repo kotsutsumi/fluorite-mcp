@@ -1,0 +1,13 @@
+{
+  "id": "duckdb-node-query-minimal",
+  "name": "DuckDB Node クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["duckdb", "node"],
+  "tags": ["db"],
+  "description": "duckdb npm でクエリ実行",
+  "params": [ ],
+  "files": [
+    { "path": "duckdb/query.js", "template": "const duckdb = require('duckdb');\nconst db = new duckdb.Database(':memory:');\ndb.all('select 1 as x', (e, rows)=> { console.log(rows); });\n" }
+  ]
+}
+

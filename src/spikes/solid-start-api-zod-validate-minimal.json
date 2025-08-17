@@ -1,0 +1,13 @@
+{
+  "id": "solid-start-api-zod-validate-minimal",
+  "name": "SolidStart API Zod 検証 最小",
+  "version": "1.0.0",
+  "stack": ["solidstart", "zod"],
+  "tags": ["api"],
+  "description": "SolidStart API で Zod 検証",
+  "params": [ ],
+  "files": [
+    { "path": "solid/api/hello.ts", "template": "import { z } from 'zod';\nexport const POST = async ({ request }: any) => { const s=z.object({ name:z.string() }); const b=await request.json(); const r=s.safeParse(b); if(!r.success) return new Response('bad',{status:400}); return Response.json({ ok:true }); };\n" }
+  ]
+}
+

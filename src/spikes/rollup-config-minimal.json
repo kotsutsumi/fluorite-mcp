@@ -1,0 +1,13 @@
+{
+  "id": "rollup-config-minimal",
+  "name": "Rollup 設定 最小",
+  "version": "1.0.0",
+  "stack": ["rollup"],
+  "tags": ["build"],
+  "description": "rollup.config.mjs の最小例",
+  "params": [ ],
+  "files": [
+    { "path": "rollup.config.mjs", "template": "export default { input: 'index.js', output: { dir: 'dist' } };\n" }
+  ]
+}
+

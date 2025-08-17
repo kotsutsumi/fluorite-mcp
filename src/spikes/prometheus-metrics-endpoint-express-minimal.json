@@ -1,0 +1,13 @@
+{
+  "id": "prometheus-metrics-endpoint-express-minimal",
+  "name": "Prometheus /metrics Express 最小",
+  "version": "1.0.0",
+  "stack": ["prometheus", "express", "node"],
+  "tags": ["observability"],
+  "description": "prom-client のメトリクスを /metrics で返す最小例",
+  "params": [ { "name": "app_name", "default": "metrics-app" } ],
+  "files": [
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst client = require('prom-client');\nconst app = express();\nconst counter = new client.Counter({ name: 'hits_total', help: 'hits' });\napp.get('/', (_req, res) => { counter.inc(); res.send('ok'); });\napp.get('/metrics', async (_req, res) => { res.set('Content-Type', client.register.contentType); res.send(await client.register.metrics()); });\napp.listen(3000);\n" }
+  ]
+}
+

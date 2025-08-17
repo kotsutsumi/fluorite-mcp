@@ -1,0 +1,13 @@
+{
+  "id": "postgres-trigger-minimal",
+  "name": "Postgres トリガ 最小",
+  "version": "1.0.0",
+  "stack": ["postgres"],
+  "tags": ["db"],
+  "description": "トリガ関数とトリガの最小 SQL",
+  "params": [ ],
+  "files": [
+    { "path": "postgres/trigger.sql", "template": "create table if not exists logs(id serial primary key, msg text);\ncreate or replace function log_insert() returns trigger language plpgsql as $$ begin insert into logs(msg) values ('insert'); return NEW; end; $$;\ncreate trigger t after insert on logs for each row execute function log_insert();\n" }
+  ]
+}
+

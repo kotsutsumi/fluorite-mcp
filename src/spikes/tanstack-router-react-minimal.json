@@ -1,0 +1,13 @@
+{
+  "id": "tanstack-router-react-minimal",
+  "name": "TanStack Router React 最小",
+  "version": "1.0.0",
+  "stack": ["tanstack-router", "react"],
+  "tags": ["web"],
+  "description": "@tanstack/react-router の最小設定",
+  "params": [ ],
+  "files": [
+    { "path": "react/Router.tsx", "template": "import { createRootRoute, createRoute, createRouter, RouterProvider } from '@tanstack/react-router';\nconst rootRoute = createRootRoute();\nconst indexRoute = createRoute({ getParentRoute: () => rootRoute, path: '/', component: () => <div>home</div> });\nconst router = createRouter({ routeTree: rootRoute.addChildren([indexRoute]) });\nexport default function App(){ return <RouterProvider router={router} /> }\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "cloudflare-d1-sql-minimal",
+  "name": "Cloudflare D1 SQL 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare", "d1"],
+  "tags": ["db"],
+  "description": "D1 バインディングで SQL 実行",
+  "params": [ { "name": "db", "default": "DB" } ],
+  "files": [
+    { "path": "cf/d1.ts", "template": "export default {\n  async fetch(_req: Request, env: any) {\n    const r = await env.{{db}}.prepare('select 1 as x').first();\n    return Response.json(r);\n  }\n};\n" }
+  ]
+}
+

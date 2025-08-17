@@ -1,0 +1,13 @@
+{
+  "id": "pact-consumer-minimal",
+  "name": "Pact Consumer 最小",
+  "version": "1.0.0",
+  "stack": ["pact", "jest"],
+  "tags": ["contract-test"],
+  "description": "@pact-foundation/pact のコンシューマテスト最小例",
+  "params": [ { "name": "app_name", "default": "pact" } ],
+  "files": [
+    { "path": "{{app_name}}/consumer.test.js", "template": "const { Pact } = require('@pact-foundation/pact');\nconst path = require('path');\nconst provider = new Pact({ consumer: 'web', provider: 'api', dir: path.resolve(__dirname, 'pacts') });\ntest('contract', async () => {\n  await provider.setup();\n  await provider.addInteraction({ state: 'user exists', uponReceiving: 'a request', withRequest: { method: 'GET', path: '/user' }, willRespondWith: { status: 200, body: { id: 1 } } });\n  // call provider.mockService.baseUrl() here\n  await provider.verify();\n  await provider.finalize();\n});\n" }
+  ]
+}
+

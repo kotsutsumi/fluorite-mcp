@@ -1,0 +1,13 @@
+{
+  "id": "graphql-request-query-minimal",
+  "name": "graphql-request クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["graphql-request", "node"],
+  "tags": ["graphql"],
+  "description": "graphql-request での最小クエリ",
+  "params": [ ],
+  "files": [
+    { "path": "graphql/request.mjs", "template": "import { request, gql } from 'graphql-request';\nconst q = gql`query { __typename }`;\nconsole.log(await request('http://localhost:4000/graphql', q));\n" }
+  ]
+}
+

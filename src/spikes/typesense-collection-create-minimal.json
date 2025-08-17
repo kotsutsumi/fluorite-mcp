@@ -1,0 +1,13 @@
+{
+  "id": "typesense-collection-create-minimal",
+  "name": "Typesense コレクション作成 最小",
+  "version": "1.0.0",
+  "stack": ["typesense", "node"],
+  "tags": ["search"],
+  "description": "typesense-js でコレクション作成",
+  "params": [ { "name": "collection", "default": "books" } ],
+  "files": [
+    { "path": "typesense/create.mjs", "template": "import Typesense from 'typesense';\nconst client = new Typesense.Client({ nodes: [{ host: 'localhost', port: 8108, protocol: 'http' }], apiKey: process.env.TYPESENSE_API_KEY || 'xyz' });\nawait client.collections().create({ name: process.env.TYPESENSE_COLLECTION || '{{collection}}', fields: [{ name: 'title', type: 'string' }] });\nconsole.log('created');\n" }
+  ]
+}
+

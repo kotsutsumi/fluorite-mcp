@@ -1,0 +1,13 @@
+{
+  "id": "swagger-jsdoc-generate-minimal",
+  "name": "swagger-jsdoc 生成 最小",
+  "version": "1.0.0",
+  "stack": ["swagger-jsdoc", "node"],
+  "tags": ["docs"],
+  "description": "swagger-jsdoc で OpenAPI を生成",
+  "params": [ ],
+  "files": [
+    { "path": "docs/swagger.mjs", "template": "import swaggerJSDoc from 'swagger-jsdoc';\nconst spec = swaggerJSDoc({ definition: { openapi: '3.0.0', info: { title: 'API', version: '1.0.0' } }, apis: [] });\nconsole.log(JSON.stringify(spec));\n" }
+  ]
+}
+

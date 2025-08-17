@@ -1,0 +1,13 @@
+{
+  "id": "stripe-webhook-verify-express-minimal",
+  "name": "Stripe Webhook 検証 Express 最小",
+  "version": "1.0.0",
+  "stack": ["stripe", "express"],
+  "tags": ["payment"],
+  "description": "Stripe 署名検証の最小 Express 例",
+  "params": [ { "name": "app_name", "default": "stripe-app" } ],
+  "files": [
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst Stripe = require('stripe');\nconst stripe = new Stripe(process.env.STRIPE_API_KEY);\nconst app = express();\napp.post('/webhook', express.raw({ type: 'application/json' }), (req,res)=>{\n  const sig = req.headers['stripe-signature'];\n  try { stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET); res.send('ok'); }\n  catch(e){ res.status(400).send('invalid'); }\n});\napp.listen(3000);\n" }
+  ]
+}
+

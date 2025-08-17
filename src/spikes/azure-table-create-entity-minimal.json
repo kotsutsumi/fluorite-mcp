@@ -1,0 +1,13 @@
+{
+  "id": "azure-table-create-entity-minimal",
+  "name": "Azure Table Entity 追加 最小",
+  "version": "1.0.0",
+  "stack": ["azure", "table"],
+  "tags": ["db"],
+  "description": "@azure/data-tables でエンティティ作成",
+  "params": [ { "name": "table", "default": "items" } ],
+  "files": [
+    { "path": "azure/table.mjs", "template": "import { TableClient } from '@azure/data-tables';\nconst client = TableClient.fromConnectionString(process.env.AZURE_TABLES_CS, process.env.TABLE || '{{table}}');\nawait client.createTable();\nawait client.createEntity({ partitionKey: 'p1', rowKey: '1', name: 'Alice' });\nconsole.log('ok');\n" }
+  ]
+}
+

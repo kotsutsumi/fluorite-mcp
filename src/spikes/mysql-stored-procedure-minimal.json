@@ -1,0 +1,13 @@
+{
+  "id": "mysql-stored-procedure-minimal",
+  "name": "MySQL ストアドプロシージャ 最小",
+  "version": "1.0.0",
+  "stack": ["mysql"],
+  "tags": ["db"],
+  "description": "MySQL のストアドプロシージャ作成 SQL",
+  "params": [ ],
+  "files": [
+    { "path": "mysql/proc.sql", "template": "delimiter //\ncreate procedure hello() begin select 'hello'; end //\ndelimiter ;\n" }
+  ]
+}
+

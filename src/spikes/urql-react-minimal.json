@@ -1,0 +1,13 @@
+{
+  "id": "urql-react-minimal",
+  "name": "urql React 最小",
+  "version": "1.0.0",
+  "stack": ["urql", "react"],
+  "tags": ["graphql", "ui"],
+  "description": "urql Provider と useQuery",
+  "params": [ ],
+  "files": [
+    { "path": "react/Urql.tsx", "template": "import { createClient, Provider, useQuery } from 'urql';\nconst client = createClient({ url: '/graphql' });\nconst Query = `query{ __typename }`;\nfunction Hello(){ const [{ data }] = useQuery({ query: Query }); return <pre>{JSON.stringify(data)}</pre>; }\nexport default function App(){ return <Provider value={client}><Hello/></Provider>; }\n" }
+  ]
+}
+

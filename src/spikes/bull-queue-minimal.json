@@ -1,0 +1,13 @@
+{
+  "id": "bull-queue-minimal",
+  "name": "Bull Queue 最小",
+  "version": "1.0.0",
+  "stack": ["bull", "redis"],
+  "tags": ["queue"],
+  "description": "bull でのキュー登録",
+  "params": [ ],
+  "files": [
+    { "path": "queue/bull.js", "template": "const Queue = require('bull');\nconst q = new Queue('jobs', process.env.REDIS_URL||'redis://127.0.0.1:6379');\nq.add({ a: 1 });\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "typeorm-migration-minimal",
+  "name": "TypeORM マイグレーション 最小",
+  "version": "1.0.0",
+  "stack": ["typeorm", "typescript"],
+  "tags": ["orm", "migration"],
+  "description": "TypeORM の Migration クラス最小",
+  "params": [ ],
+  "files": [
+    { "path": "src/migration/1700000000000-Init.ts", "template": "import { MigrationInterface, QueryRunner } from 'typeorm';\nexport class Init1700000000000 implements MigrationInterface {\n  async up(q: QueryRunner){ await q.query('select 1'); }\n  async down(_q: QueryRunner){}\n}\n" }
+  ]
+}
+

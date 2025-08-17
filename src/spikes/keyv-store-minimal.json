@@ -1,0 +1,13 @@
+{
+  "id": "keyv-store-minimal",
+  "name": "Keyv ストア 最小",
+  "version": "1.0.0",
+  "stack": ["keyv", "node"],
+  "tags": ["cache"],
+  "description": "Keyv で Key-Value 保存",
+  "params": [ ],
+  "files": [
+    { "path": "cache/keyv.mjs", "template": "import Keyv from 'keyv';\nconst kv = new Keyv();\nawait kv.set('x', 1);\nconsole.log(await kv.get('x'));\n" }
+  ]
+}
+

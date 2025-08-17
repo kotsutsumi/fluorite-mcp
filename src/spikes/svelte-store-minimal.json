@@ -1,0 +1,13 @@
+{
+  "id": "svelte-store-minimal",
+  "name": "Svelte ストア 最小",
+  "version": "1.0.0",
+  "stack": ["svelte"],
+  "tags": ["state"],
+  "description": "Svelte の writable ストア",
+  "params": [ ],
+  "files": [
+    { "path": "svelte/store.ts", "template": "import { writable } from 'svelte/store';\nexport const count = writable(0);\n" }
+  ]
+}
+

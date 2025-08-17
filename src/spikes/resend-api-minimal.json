@@ -1,0 +1,13 @@
+{
+  "id": "resend-api-minimal",
+  "name": "Resend API 送信 最小",
+  "version": "1.0.0",
+  "stack": ["resend", "node"],
+  "tags": ["email"],
+  "description": "@resend/node を使ったメール送信",
+  "params": [ { "name": "to", "default": "user@example.com" } ],
+  "files": [
+    { "path": "email/send.mjs", "template": "import { Resend } from 'resend';\nconst resend = new Resend(process.env.RESEND_API_KEY);\nawait resend.emails.send({ from: 'noreply@example.com', to: process.env.TO || '{{to}}', subject: 'Hello', html: '<p>Hello</p>' });\n" }
+  ]
+}
+

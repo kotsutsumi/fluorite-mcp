@@ -1,0 +1,13 @@
+{
+  "id": "cypress-e2e-minimal",
+  "name": "Cypress E2E 最小",
+  "version": "1.0.0",
+  "stack": ["cypress", "typescript"],
+  "tags": ["test"],
+  "description": "Cypress の最小テスト",
+  "params": [ ],
+  "files": [
+    { "path": "cypress/e2e/spec.cy.ts", "template": "describe('sample', () => { it('visits', () => { cy.visit('https://example.com'); cy.contains('Example'); }); });\n" }
+  ]
+}
+

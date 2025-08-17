@@ -1,0 +1,13 @@
+{
+  "id": "aws-cloudfront-signed-url-minimal",
+  "name": "AWS CloudFront 署名URL 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "cloudfront"],
+  "tags": ["cdn"],
+  "description": "cloudfront-key-pair で署名付きURL生成 (概念)",
+  "params": [ ],
+  "files": [
+    { "path": "aws/cloudfront.txt", "template": "# Generate signed URL using CloudFront key pair\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "fastify-zod-schema-minimal",
+  "name": "Fastify Zod スキーマ 最小",
+  "version": "1.0.0",
+  "stack": ["fastify", "zod"],
+  "tags": ["api"],
+  "description": "fastify-type-provider-zod を使ったスキーマ",
+  "params": [ ],
+  "files": [
+    { "path": "fastify/server.ts", "template": "import Fastify from 'fastify';\nimport { serializerCompiler, validatorCompiler, type ZodTypeProvider } from 'fastify-type-provider-zod';\nimport { z } from 'zod';\nconst app = Fastify().withTypeProvider<ZodTypeProvider>();\napp.setValidatorCompiler(validatorCompiler);\napp.setSerializerCompiler(serializerCompiler);\napp.route({ method: 'POST', url: '/hello', schema: { body: z.object({ name: z.string() }), response: { 200: z.object({ ok: z.boolean() }) } }, handler: (req, reply) => reply.send({ ok: true }) });\napp.listen({ port: 3000 });\n" }
+  ]
+}
+

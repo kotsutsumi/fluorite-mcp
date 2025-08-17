@@ -1,0 +1,13 @@
+{
+  "id": "undici-fetch-minimal",
+  "name": "undici fetch 最小",
+  "version": "1.0.0",
+  "stack": ["undici", "node"],
+  "tags": ["http"],
+  "description": "undici fetch を使う",
+  "params": [ ],
+  "files": [
+    { "path": "http/undici.mjs", "template": "import { fetch } from 'undici';\nconsole.log((await fetch('https://example.com')).status);\n" }
+  ]
+}
+

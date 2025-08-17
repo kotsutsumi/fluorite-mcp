@@ -1,0 +1,13 @@
+{
+  "id": "pulumi-aws-lambda-minimal",
+  "name": "Pulumi AWS Lambda 最小",
+  "version": "1.0.0",
+  "stack": ["pulumi", "typescript", "aws"],
+  "tags": ["iac"],
+  "description": "Pulumi で Lambda",
+  "params": [ { "name": "app_name", "default": "infra" } ],
+  "files": [
+    { "path": "{{app_name}}/lambda.ts", "template": "import * as aws from '@pulumi/aws';\nconst role = new aws.iam.Role('r', { assumeRolePolicy: aws.iam.assumeRolePolicyForPrincipal({ Service: 'lambda.amazonaws.com' }) });\nnew aws.lambda.Function('fn', { role: role.arn, runtime: 'nodejs18.x', handler: 'index.handler', code: new aws.s3.BucketObjectv2('code',{ bucket: 'b', content: 'x' }).bucket });\n" }
+  ]
+}
+

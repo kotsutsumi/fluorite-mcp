@@ -1,0 +1,13 @@
+{
+  "id": "nuxt-auth-middleware-minimal",
+  "name": "Nuxt 認証ミドルウェア 最小",
+  "version": "1.0.0",
+  "stack": ["nuxt", "typescript"],
+  "tags": ["auth"],
+  "description": "Nuxt で簡易認証ミドルウェア",
+  "params": [ ],
+  "files": [
+    { "path": "nuxt/middleware/auth.ts", "template": "export default defineNuxtRouteMiddleware((_to,_from)=>{ /* if(!isLoggedIn) return navigateTo('/login') */ });\n" }
+  ]
+}
+

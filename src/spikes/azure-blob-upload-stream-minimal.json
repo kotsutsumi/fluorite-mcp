@@ -1,0 +1,13 @@
+{
+  "id": "azure-blob-upload-stream-minimal",
+  "name": "Azure Blob アップロード ストリーム 最小",
+  "version": "1.0.0",
+  "stack": ["azure", "storage-blob"],
+  "tags": ["storage"],
+  "description": "BlockBlobClient#uploadStream でアップロード",
+  "params": [ ],
+  "files": [
+    { "path": "azure/blob-upload.mjs", "template": "import { BlobServiceClient } from '@azure/storage-blob';\nconst svc = BlobServiceClient.fromConnectionString(process.env.AZURE_BLOB_CS);\nconst c = svc.getContainerClient('public');\nconst b = c.getBlockBlobClient('hello.txt');\nawait b.uploadData(new TextEncoder().encode('hello'));\nconsole.log('ok');\n" }
+  ]
+}
+

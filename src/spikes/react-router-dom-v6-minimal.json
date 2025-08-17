@@ -1,0 +1,13 @@
+{
+  "id": "react-router-dom-v6-minimal",
+  "name": "React Router v6 最小",
+  "version": "1.0.0",
+  "stack": ["react-router-dom", "react"],
+  "tags": ["web"],
+  "description": "createBrowserRouter の最小",
+  "params": [ ],
+  "files": [
+    { "path": "react/RouterV6.tsx", "template": "import { createBrowserRouter, RouterProvider } from 'react-router-dom';\nconst router = createBrowserRouter([{ path: '/', element: <div>home</div> }]);\nexport default function App(){ return <RouterProvider router={router}/> }\n" }
+  ]
+}
+

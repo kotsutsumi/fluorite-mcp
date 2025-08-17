@@ -1,0 +1,13 @@
+{
+  "id": "nx-workspace-minimal",
+  "name": "Nx Workspace 設定 最小",
+  "version": "1.0.0",
+  "stack": ["nx"],
+  "tags": ["build"],
+  "description": "nx.json の最小",
+  "params": [ ],
+  "files": [
+    { "path": "nx.json", "template": "{ \"npmScope\": \"app\", \"affected\": { \"defaultBase\": \"main\" } }\n" }
+  ]
+}
+

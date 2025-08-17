@@ -1,0 +1,13 @@
+{
+  "id": "temporal-workflow-signal-minimal",
+  "name": "Temporal Workflow Signal 最小",
+  "version": "1.0.0",
+  "stack": ["temporal", "typescript"],
+  "tags": ["workflow"],
+  "description": "Workflow シグナルの最小例",
+  "params": [ ],
+  "files": [
+    { "path": "temporal/workflows/signal.ts", "template": "import { defineSignal } from '@temporalio/workflow';\nexport const ping = defineSignal('ping');\nexport async function wf(){ /* wait for ping */ }\n" }
+  ]
+}
+

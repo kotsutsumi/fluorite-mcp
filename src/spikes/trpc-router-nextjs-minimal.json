@@ -1,0 +1,14 @@
+{
+  "id": "trpc-router-nextjs-minimal",
+  "name": "tRPC Next.js API 最小",
+  "version": "1.0.0",
+  "stack": ["trpc", "nextjs", "typescript"],
+  "tags": ["api"],
+  "description": "Next.js API Routes で @trpc/server/adapters/next を使う最小例",
+  "params": [ { "name": "app_name", "default": "next-app" } ],
+  "files": [
+    { "path": "{{app_name}}/pages/api/trpc/[trpc].ts", "template": "import { createNextApiHandler } from '@trpc/server/adapters/next';\nimport { router } from '../../../server/router';\nexport default createNextApiHandler({ router });\n" },
+    { "path": "{{app_name}}/server/router.ts", "template": "export * from '../../trpc-app/src/router';\n" }
+  ]
+}
+

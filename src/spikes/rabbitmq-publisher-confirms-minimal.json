@@ -1,0 +1,13 @@
+{
+  "id": "rabbitmq-publisher-confirms-minimal",
+  "name": "RabbitMQ Publisher Confirms 最小",
+  "version": "1.0.0",
+  "stack": ["rabbitmq", "node"],
+  "tags": ["messaging"],
+  "description": "ConfirmChannel で publish 確認",
+  "params": [ { "name": "queue", "default": "jobs" } ],
+  "files": [
+    { "path": "rabbitmq/publish-confirm.js", "template": "const amqp = require('amqplib');\n(async()=>{ const conn = await amqp.connect(process.env.AMQP_URL||'amqp://localhost'); const ch = await conn.createConfirmChannel(); const q = process.env.AMQP_QUEUE||'{{queue}}'; await ch.assertQueue(q); ch.sendToQueue(q, Buffer.from('hello'), {}, (err)=>{ console.log('sent', !err); process.exit(0); }); })();\n" }
+  ]
+}
+

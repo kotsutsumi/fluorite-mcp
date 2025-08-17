@@ -1,0 +1,13 @@
+{
+  "id": "redux-toolkit-slice-minimal",
+  "name": "Redux Toolkit Slice 最小",
+  "version": "1.0.0",
+  "stack": ["redux-toolkit", "typescript"],
+  "tags": ["state"],
+  "description": "RTK の slice 最小例",
+  "params": [ ],
+  "files": [
+    { "path": "state/counterSlice.ts", "template": "import { createSlice } from '@reduxjs/toolkit';\nexport const counterSlice = createSlice({ name: 'counter', initialState: { value: 0 }, reducers: { inc: (s) => { s.value++; } } });\nexport const { inc } = counterSlice.actions;\nexport default counterSlice.reducer;\n" }
+  ]
+}
+

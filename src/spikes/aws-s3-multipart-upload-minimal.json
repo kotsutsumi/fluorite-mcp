@@ -1,0 +1,13 @@
+{
+  "id": "aws-s3-multipart-upload-minimal",
+  "name": "AWS S3 マルチパートアップロード 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "s3"],
+  "tags": ["storage"],
+  "description": "S3 マルチパートアップロードを @aws-sdk/lib-storage で実施",
+  "params": [ { "name": "bucket", "default": "my-bucket" }, { "name": "key", "default": "big.bin" } ],
+  "files": [
+    { "path": "aws/s3-multipart.mjs", "template": "import { S3Client } from '@aws-sdk/client-s3';\nimport { Upload } from '@aws-sdk/lib-storage';\nconst client = new S3Client({});\nconst u = new Upload({ client, params: { Bucket: process.env.BUCKET || '{{bucket}}', Key: process.env.KEY || '{{key}}', Body: Buffer.alloc(5*1024*1024) } });\nu.on('httpUploadProgress', (p) => console.log(p));\nawait u.done();\n" }
+  ]
+}
+

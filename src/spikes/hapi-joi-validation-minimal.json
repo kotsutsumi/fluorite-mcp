@@ -1,0 +1,13 @@
+{
+  "id": "hapi-joi-validation-minimal",
+  "name": "hapi + Joi バリデーション 最小",
+  "version": "1.0.0",
+  "stack": ["hapi", "joi"],
+  "tags": ["validation"],
+  "description": "Joi スキーマでのリクエスト検証",
+  "params": [ ],
+  "files": [
+    { "path": "hapi/server.js", "template": "const Hapi = require('@hapi/hapi');\nconst Joi = require('joi');\n(async () => {\n  const server = Hapi.server({ port: 3000 });\n  server.route({ method: 'POST', path: '/hello', options: { validate: { payload: Joi.object({ name: Joi.string().required() }) } }, handler: (req,h)=>h.response({ ok: true }) });\n  await server.start();\n})();\n" }
+  ]
+}
+

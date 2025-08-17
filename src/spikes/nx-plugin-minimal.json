@@ -1,0 +1,14 @@
+{
+  "id": "nx-plugin-minimal",
+  "name": "Nx プラグイン 最小",
+  "version": "1.0.0",
+  "stack": ["nx", "typescript"],
+  "tags": ["build", "plugin"],
+  "description": "Nx のジェネレータ最小スケルトン",
+  "params": [ { "name": "pkg", "default": "my-plugin" } ],
+  "files": [
+    { "path": "packages/{{pkg}}/src/generators/hello/schema.json", "template": "{ \n  \"$schema\": \"http://json-schema.org/schema\",\n  \"title\": \"hello\",\n  \"type\": \"object\",\n  \"properties\": { \"name\": { \"type\": \"string\" } }\n}\n" },
+    { "path": "packages/{{pkg}}/src/generators/hello/generator.ts", "template": "import { Tree, formatFiles } from '@nx/devkit';\nexport default async function generator(tree: Tree) { tree.write('HELLO', 'world'); await formatFiles(tree); }\n" }
+  ]
+}
+

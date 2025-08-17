@@ -1,0 +1,13 @@
+{
+  "id": "kubernetes-deployment-manifest-minimal",
+  "name": "Kubernetes Deployment 最小",
+  "version": "1.0.0",
+  "stack": ["kubernetes", "yaml"],
+  "tags": ["k8s"],
+  "description": "apps/v1 Deployment の最小マニフェスト",
+  "params": [ { "name": "name", "default": "web" }, { "name": "image", "default": "nginx:alpine" } ],
+  "files": [
+    { "path": "k8s/deployment.yaml", "template": "apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: {{name}}\nspec:\n  replicas: 1\n  selector:\n    matchLabels:\n      app: {{name}}\n  template:\n    metadata:\n      labels:\n        app: {{name}}\n    spec:\n      containers:\n        - name: app\n          image: {{image}}\n          ports:\n            - containerPort: 80\n" }
+  ]
+}
+

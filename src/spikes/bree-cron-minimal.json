@@ -1,0 +1,13 @@
+{
+  "id": "bree-cron-minimal",
+  "name": "Bree Cron 最小",
+  "version": "1.0.0",
+  "stack": ["bree", "node"],
+  "tags": ["scheduler"],
+  "description": "bree での cron 実行",
+  "params": [ ],
+  "files": [
+    { "path": "jobs/bree.js", "template": "const Bree = require('bree');\nnew Bree({ jobs: [{ name: 'say', interval: '1s', worker: { workerData: 'hi' } }] }).start();\n" }
+  ]
+}
+

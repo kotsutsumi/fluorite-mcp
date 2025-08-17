@@ -1,0 +1,13 @@
+{
+  "id": "aws-s3-presigned-url-minimal",
+  "name": "AWS S3 署名付きURL 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "s3", "node"],
+  "tags": ["cloud"],
+  "description": "@aws-sdk での getSignedUrl の最小例",
+  "params": [ { "name": "bucket", "default": "my-bucket" }, { "name": "key", "default": "hello.txt" } ],
+  "files": [
+    { "path": "aws/s3-presign.mjs", "template": "import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3';\nimport { getSignedUrl } from '@aws-sdk/s3-request-presigner';\nconst client = new S3Client({ region: process.env.AWS_REGION || 'us-east-1' });\nconst url = await getSignedUrl(client, new GetObjectCommand({ Bucket: process.env.BUCKET || '{{bucket}}', Key: process.env.KEY || '{{key}}' }), { expiresIn: 900 });\nconsole.log(url);\n" }
+  ]
+}
+

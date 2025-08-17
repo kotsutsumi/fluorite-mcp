@@ -1,0 +1,13 @@
+{
+  "id": "aws-lambda-layers-minimal",
+  "name": "AWS Lambda Layers 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "lambda"],
+  "tags": ["serverless"],
+  "description": "Lambda Layers の作成/利用 (概念)",
+  "params": [ ],
+  "files": [
+    { "path": "aws/layers.txt", "template": "# zip layer content and publish layer version\n" }
+  ]
+}
+

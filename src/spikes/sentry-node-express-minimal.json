@@ -1,0 +1,13 @@
+{
+  "id": "sentry-node-express-minimal",
+  "name": "Sentry Node + Express 最小",
+  "version": "1.0.0",
+  "stack": ["sentry", "express"],
+  "tags": ["observability"],
+  "description": "@sentry/node を Express に組み込む最小例",
+  "params": [ { "name": "app_name", "default": "sentry-app" } ],
+  "files": [
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst Sentry = require('@sentry/node');\nSentry.init({ dsn: process.env.SENTRY_DSN || '' });\nconst app = express();\napp.use(Sentry.Handlers.requestHandler());\napp.get('/error', () => { throw new Error('boom'); });\napp.use(Sentry.Handlers.errorHandler());\napp.listen(3000);\n" }
+  ]
+}
+

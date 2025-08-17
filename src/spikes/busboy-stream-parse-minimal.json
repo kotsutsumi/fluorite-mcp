@@ -1,0 +1,13 @@
+{
+  "id": "busboy-stream-parse-minimal",
+  "name": "busboy ストリーム解析 最小",
+  "version": "1.0.0",
+  "stack": ["busboy", "node"],
+  "tags": ["file"],
+  "description": "busboy で multipart/form-data をストリーム処理",
+  "params": [ ],
+  "files": [
+    { "path": "upload/busboy.js", "template": "const http = require('http');\nconst Busboy = require('busboy');\nhttp.createServer((req,res)=>{ if(req.method==='POST'){ const bb=new Busboy({ headers:req.headers }); bb.on('file',(_n,_f,filename)=>console.log(filename)); req.pipe(bb); bb.on('finish',()=>res.end('ok')); } else { res.end('post'); } }).listen(3000);\n" }
+  ]
+}
+

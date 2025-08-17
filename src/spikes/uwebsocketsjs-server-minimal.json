@@ -1,0 +1,13 @@
+{
+  "id": "uwebsocketsjs-server-minimal",
+  "name": "uWebSockets.js サーバ 最小",
+  "version": "1.0.0",
+  "stack": ["uwebsockets.js"],
+  "tags": ["realtime"],
+  "description": "uWebSockets.js での最小 HTTP/WS サーバ",
+  "params": [ ],
+  "files": [
+    { "path": "uws/server.js", "template": "const uWS = require('uWebSockets.js');\nuWS.App().get('/', (res, req) => { res.end('ok'); }).ws('/*', { message: (ws, msg)=>{} }).listen(3000, ()=>{});\n" }
+  ]
+}
+

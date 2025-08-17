@@ -1,0 +1,13 @@
+{
+  "id": "express-fileupload-minimal",
+  "name": "express-fileupload 最小",
+  "version": "1.0.0",
+  "stack": ["express", "express-fileupload"],
+  "tags": ["file"],
+  "description": "express-fileupload でアップロード",
+  "params": [ { "name": "app_name", "default": "upload-app" } ],
+  "files": [
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst fileUpload = require('express-fileupload');\nconst app = express();\napp.use(fileUpload());\napp.post('/upload', (req,res)=> res.json({ names: Object.keys(req.files||{}) }));\napp.listen(3000);\n" }
+  ]
+}
+

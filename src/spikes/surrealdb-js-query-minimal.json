@@ -1,0 +1,13 @@
+{
+  "id": "surrealdb-js-query-minimal",
+  "name": "SurrealDB JS クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["surrealdb", "node"],
+  "tags": ["db"],
+  "description": "surrealdb.js で簡単な SQL クエリ",
+  "params": [ ],
+  "files": [
+    { "path": "surreal/query.mjs", "template": "import { Surreal } from 'surrealdb.js';\nconst db = new Surreal('http://127.0.0.1:8000/rpc');\nawait db.signin({ user: 'root', pass: 'root' });\nawait db.use({ ns: 'test', db: 'test' });\nconsole.log(await db.query('RETURN 1'));\n" }
+  ]
+}
+

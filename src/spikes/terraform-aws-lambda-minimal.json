@@ -1,0 +1,13 @@
+{
+  "id": "terraform-aws-lambda-minimal",
+  "name": "Terraform AWS Lambda 最小",
+  "version": "1.0.0",
+  "stack": ["terraform", "aws"],
+  "tags": ["iac"],
+  "description": "aws_lambda_function の最小",
+  "params": [ ],
+  "files": [
+    { "path": "tf/lambda.tf", "template": "resource \"aws_lambda_function\" \"fn\" { function_name = \"fn\" runtime = \"nodejs18.x\" role = aws_iam_role.r.arn handler = \"index.handler\" filename = \"fn.zip\" }\nresource \"aws_iam_role\" \"r\" { name = \"r\" assume_role_policy = data.aws_iam_policy_document.assume.json }\ndata \"aws_iam_policy_document\" \"assume\" { statement { actions=[\"sts:AssumeRole\"], principals { type=\"Service\" identifiers=[\"lambda.amazonaws.com\"] } } }\n" }
+  ]
+}
+

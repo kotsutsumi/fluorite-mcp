@@ -1,0 +1,13 @@
+{
+  "id": "redisearch-create-index-minimal",
+  "name": "RediSearch インデックス作成 最小",
+  "version": "1.0.0",
+  "stack": ["redisearch", "redis"],
+  "tags": ["search"],
+  "description": "FT.CREATE でインデックス作成",
+  "params": [ { "name": "index", "default": "idx" } ],
+  "files": [
+    { "path": "redis/search.txt", "template": "FT.CREATE {{index}} ON HASH PREFIX 1 doc: SCHEMA title TEXT content TEXT\n" }
+  ]
+}
+

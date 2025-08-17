@@ -1,0 +1,13 @@
+{
+  "id": "aws-firehose-put-record-minimal",
+  "name": "AWS Firehose PutRecord 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "firehose"],
+  "tags": ["stream"],
+  "description": "Firehose デリバリストリームに PutRecord",
+  "params": [ { "name": "stream", "default": "logs" } ],
+  "files": [
+    { "path": "aws/firehose.mjs", "template": "import { FirehoseClient, PutRecordCommand } from '@aws-sdk/client-firehose';\nconst c = new FirehoseClient({});\nawait c.send(new PutRecordCommand({ DeliveryStreamName: process.env.FIREHOSE || '{{stream}}', Record: { Data: new TextEncoder().encode('hello\n') } }));\nconsole.log('ok');\n" }
+  ]
+}
+

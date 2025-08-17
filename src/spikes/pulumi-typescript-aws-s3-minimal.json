@@ -1,0 +1,13 @@
+{
+  "id": "pulumi-typescript-aws-s3-minimal",
+  "name": "Pulumi TypeScript AWS S3 最小",
+  "version": "1.0.0",
+  "stack": ["pulumi", "typescript", "aws"],
+  "tags": ["iac"],
+  "description": "Pulumi TypeScript で S3 バケット作成の最小例",
+  "params": [ { "name": "app_name", "default": "infra" } ],
+  "files": [
+    { "path": "{{app_name}}/index.ts", "template": "import * as aws from '@pulumi/aws';\nconst bucket = new aws.s3.Bucket('bucket');\nexport const bucketName = bucket.id;\n" }
+  ]
+}
+

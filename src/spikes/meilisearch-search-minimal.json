@@ -1,0 +1,13 @@
+{
+  "id": "meilisearch-search-minimal",
+  "name": "Meilisearch 検索 最小",
+  "version": "1.0.0",
+  "stack": ["meilisearch", "node"],
+  "tags": ["search"],
+  "description": "meilisearch で search 実行",
+  "params": [ { "name": "index", "default": "books" } ],
+  "files": [
+    { "path": "meilisearch/search.mjs", "template": "import { MeiliSearch } from 'meilisearch';\nconst c = new MeiliSearch({ host: process.env.MEILI_URL || 'http://127.0.0.1:7700' });\nconsole.log(await c.index(process.env.MEILI_INDEX || '{{index}}').search('Hello'));\n" }
+  ]
+}
+

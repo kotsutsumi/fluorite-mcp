@@ -1,0 +1,13 @@
+{
+  "id": "eslint-config-ts-minimal",
+  "name": "ESLint 設定 TS 最小",
+  "version": "1.0.0",
+  "stack": ["eslint", "typescript"],
+  "tags": ["lint"],
+  "description": "TypeScript 向け ESLint の最小設定",
+  "params": [ ],
+  "files": [
+    { "path": ".eslintrc.cjs", "template": "module.exports = { parser: '@typescript-eslint/parser', plugins: ['@typescript-eslint'], extends: ['eslint:recommended','plugin:@typescript-eslint/recommended'] };\n" }
+  ]
+}
+

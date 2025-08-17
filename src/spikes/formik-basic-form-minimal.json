@@ -1,0 +1,13 @@
+{
+  "id": "formik-basic-form-minimal",
+  "name": "Formik 基本フォーム 最小",
+  "version": "1.0.0",
+  "stack": ["formik", "react"],
+  "tags": ["form"],
+  "description": "Formik の最小フォーム",
+  "params": [ ],
+  "files": [
+    { "path": "react/Formik.tsx", "template": "import { Formik, Form, Field } from 'formik';\nexport default function App(){ return <Formik initialValues={{ name:'' }} onSubmit={()=>{}}><Form><Field name='name'/><button>OK</button></Form></Formik>; }\n" }
+  ]
+}
+

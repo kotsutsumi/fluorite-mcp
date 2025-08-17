@@ -1,0 +1,13 @@
+{
+  "id": "cloudflare-kv-namespace-bindings-minimal",
+  "name": "Cloudflare KV 名前空間バインディング 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare", "kv"],
+  "tags": ["edge"],
+  "description": "wrangler.toml の KV バインディング",
+  "params": [ ],
+  "files": [
+    { "path": "cf/wrangler.toml", "template": "kv_namespaces = [{ binding = 'MY_KV', id = 'xxx' }]\n" }
+  ]
+}
+

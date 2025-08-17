@@ -1,0 +1,13 @@
+{
+  "id": "azure-app-config-get-minimal",
+  "name": "Azure App Configuration 取得 最小",
+  "version": "1.0.0",
+  "stack": ["azure", "app-config"],
+  "tags": ["config"],
+  "description": "@azure/app-configuration で設定値を取得",
+  "params": [ { "name": "key", "default": "hello" } ],
+  "files": [
+    { "path": "azure/appconfig.mjs", "template": "import { AppConfigurationClient } from '@azure/app-configuration';\nconst c = new AppConfigurationClient(process.env.AZURE_APPCONFIG_CS);\nconst r = await c.getConfigurationSetting({ key: process.env.AZURE_APP_KEY || '{{key}}' });\nconsole.log(r.value);\n" }
+  ]
+}
+

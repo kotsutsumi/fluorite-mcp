@@ -1,0 +1,13 @@
+{
+  "id": "mqttjs-subscribe-minimal",
+  "name": "MQTT.js サブスクライブ 最小",
+  "version": "1.0.0",
+  "stack": ["mqtt", "node"],
+  "tags": ["messaging"],
+  "description": "mqtt に接続して subscribe",
+  "params": [ { "name": "topic", "default": "sensors/#" } ],
+  "files": [
+    { "path": "mqtt/sub.js", "template": "const mqtt = require('mqtt');\nconst c = mqtt.connect(process.env.MQTT_URL || 'mqtt://localhost:1883');\nc.on('connect', ()=> c.subscribe(process.env.MQTT_TOPIC || '{{topic}}'));\nc.on('message', (_t, m)=> console.log(m.toString()));\n" }
+  ]
+}
+

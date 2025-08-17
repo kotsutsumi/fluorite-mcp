@@ -1,0 +1,13 @@
+{
+  "id": "aws-textract-analyze-document-minimal",
+  "name": "AWS Textract AnalyzeDocument 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "textract", "node"],
+  "tags": ["ocr"],
+  "description": "Textract の AnalyzeDocument 実行最小例",
+  "params": [ { "name": "bucket", "default": "my-bucket" }, { "name": "key", "default": "doc.png" } ],
+  "files": [
+    { "path": "aws/textract.mjs", "template": "import { TextractClient, AnalyzeDocumentCommand } from '@aws-sdk/client-textract';\nconst client = new TextractClient({ region: process.env.AWS_REGION || 'us-east-1' });\nconst out = await client.send(new AnalyzeDocumentCommand({ Document: { S3Object: { Bucket: process.env.BUCKET || '{{bucket}}', Name: process.env.KEY || '{{key}}' } }, FeatureTypes: ['TABLES','FORMS'] }));\nconsole.log((out.Blocks||[]).length);\n" }
+  ]
+}
+

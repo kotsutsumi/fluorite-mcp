@@ -1,0 +1,14 @@
+{
+  "id": "openapi-backend-router-minimal",
+  "name": "openapi-backend ルーター 最小",
+  "version": "1.0.0",
+  "stack": ["openapi-backend", "express"],
+  "tags": ["api"],
+  "description": "OpenAPI spec に基づくルーティング",
+  "params": [ ],
+  "files": [
+    { "path": "openapi/spec.json", "template": "{ \"openapi\": \"3.0.0\", \"info\": { \"title\": \"API\", \"version\": \"1.0.0\" }, \"paths\": { \"/hello\": { \"get\": { \"operationId\": \"hello\", \"responses\": { \"200\": { \"description\": \"ok\" } } } } } }\n" },
+    { "path": "openapi/server.js", "template": "const express = require('express');\nconst OpenAPIBackend = require('openapi-backend').default;\nconst api = new OpenAPIBackend({ definition: require('./spec.json') });\napi.register('hello', (c, req, res)=> res.json({ message: 'hello' }));\napi.init();\nconst app = express();\napp.use((req,res)=> api.handleRequest(req, req, res));\napp.listen(3000);\n" }
+  ]
+}
+

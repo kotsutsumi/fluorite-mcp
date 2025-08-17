@@ -1,0 +1,13 @@
+{
+  "id": "svelte-action-minimal",
+  "name": "Svelte Action 最小",
+  "version": "1.0.0",
+  "stack": ["svelte"],
+  "tags": ["ui"],
+  "description": "Svelte アクションのスニペット",
+  "params": [ ],
+  "files": [
+    { "path": "svelte/useFocus.ts", "template": "export function useFocus(node: HTMLElement){ node.focus(); return { destroy(){} }; }\n" }
+  ]
+}
+

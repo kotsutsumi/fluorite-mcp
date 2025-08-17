@@ -1,0 +1,13 @@
+{
+  "id": "pact-broker-docker-compose-minimal",
+  "name": "Pact Broker docker-compose 最小",
+  "version": "1.0.0",
+  "stack": ["docker-compose"],
+  "tags": ["contract-test"],
+  "description": "Pact Broker を docker-compose で起動",
+  "params": [ ],
+  "files": [
+    { "path": "docker-compose.yml", "template": "version: '3.8'\nservices:\n  pact-broker:\n    image: pactfoundation/pact-broker\n    environment: [ PACT_BROKER_LOG_LEVEL=INFO ]\n    ports: [ '9292:9292' ]\n" }
+  ]
+}
+

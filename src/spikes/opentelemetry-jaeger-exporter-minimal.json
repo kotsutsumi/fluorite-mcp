@@ -1,0 +1,13 @@
+{
+  "id": "opentelemetry-jaeger-exporter-minimal",
+  "name": "OTel Jaeger Exporter 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry", "jaeger"],
+  "tags": ["observability"],
+  "description": "@opentelemetry/exporter-jaeger を使った簡易初期化",
+  "params": [ ],
+  "files": [
+    { "path": "otel/jaeger.mjs", "template": "import { NodeSDK } from '@opentelemetry/sdk-node';\nimport { JaegerExporter } from '@opentelemetry/exporter-jaeger';\nconst sdk = new NodeSDK({ traceExporter: new JaegerExporter() });\nsdk.start();\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "clerk-webhooks-verify-minimal",
+  "name": "Clerk Webhooks 検証 最小",
+  "version": "1.0.0",
+  "stack": ["clerk", "webhook"],
+  "tags": ["auth"],
+  "description": "Clerk Webhook の署名検証",
+  "params": [ ],
+  "files": [
+    { "path": "clerk/webhook.mjs", "template": "import { Webhook } from 'svix';\nconst w = new Webhook(process.env.CLERK_WEBHOOK_SECRET || 'secret');\ntry { console.log(!!w.verify('body', { 'svix-signature': 't=0,v1=...' })); } catch(e){ console.log('invalid'); }\n" }
+  ]
+}
+

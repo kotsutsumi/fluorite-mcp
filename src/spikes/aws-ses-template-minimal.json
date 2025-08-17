@@ -1,0 +1,13 @@
+{
+  "id": "aws-ses-template-minimal",
+  "name": "AWS SES Template 送信 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "ses"],
+  "tags": ["email"],
+  "description": "SES のテンプレートメール送信",
+  "params": [ { "name": "template", "default": "Welcome" } ],
+  "files": [
+    { "path": "aws/ses-template.mjs", "template": "import { SESClient, SendTemplatedEmailCommand } from '@aws-sdk/client-ses';\nconst client = new SESClient({});\nawait client.send(new SendTemplatedEmailCommand({ Source: 'noreply@example.com', Destination: { ToAddresses: [process.env.TO||'user@example.com'] }, Template: process.env.TEMPLATE || '{{template}}', TemplateData: JSON.stringify({ name: 'User' }) }));\nconsole.log('sent');\n" }
+  ]
+}
+

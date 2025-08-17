@@ -1,0 +1,13 @@
+{
+  "id": "aws-sqs-send-message-minimal",
+  "name": "AWS SQS 送信 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "sqs", "node"],
+  "tags": ["queue"],
+  "description": "SQS にメッセージを送信する最小例",
+  "params": [ { "name": "queueUrl", "default": "https://sqs.us-east-1.amazonaws.com/123/queue" } ],
+  "files": [
+    { "path": "aws/sqs-send.mjs", "template": "import { SQSClient, SendMessageCommand } from '@aws-sdk/client-sqs';\nconst client = new SQSClient({ region: process.env.AWS_REGION || 'us-east-1' });\nconst out = await client.send(new SendMessageCommand({ QueueUrl: process.env.SQS_URL || '{{queueUrl}}', MessageBody: 'hello' }));\nconsole.log(out.MessageId);\n" }
+  ]
+}
+

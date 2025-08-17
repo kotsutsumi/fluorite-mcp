@@ -1,0 +1,13 @@
+{
+  "id": "k6-websocket-minimal",
+  "name": "k6 WebSocket 最小",
+  "version": "1.0.0",
+  "stack": ["k6"],
+  "tags": ["load-test"],
+  "description": "k6 の WebSocket 接続スクリプト",
+  "params": [ ],
+  "files": [
+    { "path": "k6/ws.js", "template": "import ws from 'k6/ws';\nexport default function(){ ws.connect('ws://localhost:8080', (socket)=>{ socket.on('open', ()=> socket.send('hello')); }); }\n" }
+  ]
+}
+

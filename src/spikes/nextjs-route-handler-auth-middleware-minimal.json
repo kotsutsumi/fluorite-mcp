@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-route-handler-auth-middleware-minimal",
+  "name": "Next.js Route Handler 認証MW 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "middleware"],
+  "tags": ["auth"],
+  "description": "middleware で簡易認証 → RouteHandler",
+  "params": [ { "name": "app_name", "default": "next-app" } ],
+  "files": [
+    { "path": "{{app_name}}/middleware.ts", "template": "import { NextResponse } from 'next/server';\nexport function middleware(req: Request){ const auth=req.headers.get('authorization'); if(!auth) return new NextResponse('unauthorized',{status:401}); return NextResponse.next(); }\n" },
+    { "path": "{{app_name}}/app/api/hello/route.ts", "template": "export async function GET(){ return Response.json({ ok: true }); }\n" }
+  ]
+}
+

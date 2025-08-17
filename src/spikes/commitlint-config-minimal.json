@@ -1,0 +1,13 @@
+{
+  "id": "commitlint-config-minimal",
+  "name": "commitlint 設定 最小",
+  "version": "1.0.0",
+  "stack": ["commitlint"],
+  "tags": ["ci"],
+  "description": "commitlint の最小設定",
+  "params": [ ],
+  "files": [
+    { "path": "commitlint.config.cjs", "template": "module.exports = { extends: ['@commitlint/config-conventional'] };\n" }
+  ]
+}
+

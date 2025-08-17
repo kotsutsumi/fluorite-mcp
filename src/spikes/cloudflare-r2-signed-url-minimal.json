@@ -1,0 +1,13 @@
+{
+  "id": "cloudflare-r2-signed-url-minimal",
+  "name": "Cloudflare R2 署名URL 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare", "r2"],
+  "tags": ["storage"],
+  "description": "R2 オブジェクトの署名URL (概念)",
+  "params": [ ],
+  "files": [
+    { "path": "cf/r2-signed.txt", "template": "# Generate signed URL using S3-compatible SDK with R2\n" }
+  ]
+}
+

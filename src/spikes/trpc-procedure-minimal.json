@@ -1,0 +1,13 @@
+{
+  "id": "trpc-procedure-minimal",
+  "name": "tRPC プロシージャ 最小",
+  "version": "1.0.0",
+  "stack": ["trpc", "typescript", "zod"],
+  "tags": ["api"],
+  "description": "tRPC v10 の最小ルーターとクエリ/ミューテーション",
+  "params": [ { "name": "app_name", "default": "trpc-app" } ],
+  "files": [
+    { "path": "{{app_name}}/src/router.ts", "template": "import { initTRPC } from '@trpc/server';\nimport { z } from 'zod';\nconst t = initTRPC.create();\nexport const router = t.router({\n  hello: t.procedure.input(z.object({ name: z.string().default('world') })).query(({ input }) => ({ message: `hello ${input.name}` })),\n  add: t.procedure.input(z.object({ a: z.number(), b: z.number() })).mutation(({ input }) => input.a + input.b),\n});\nexport type AppRouter = typeof router;\n" }
+  ]
+}
+

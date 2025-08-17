@@ -1,0 +1,13 @@
+{
+  "id": "turbo-config-minimal",
+  "name": "Turborepo 設定 最小",
+  "version": "1.0.0",
+  "stack": ["turbo"],
+  "tags": ["build"],
+  "description": "turbo.json の最小",
+  "params": [ ],
+  "files": [
+    { "path": "turbo.json", "template": "{ \"pipeline\": { \"build\": { \"outputs\": [\"dist/**\"] } } }\n" }
+  ]
+}
+

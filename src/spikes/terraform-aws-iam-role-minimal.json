@@ -1,0 +1,13 @@
+{
+  "id": "terraform-aws-iam-role-minimal",
+  "name": "Terraform AWS IAM ロール 最小",
+  "version": "1.0.0",
+  "stack": ["terraform", "aws"],
+  "tags": ["iac"],
+  "description": "aws_iam_role の最小",
+  "params": [ ],
+  "files": [
+    { "path": "tf/role.tf", "template": "resource \"aws_iam_role\" \"r\" { name = \"app\" assume_role_policy = data.aws_iam_policy_document.assume.json }\ndata \"aws_iam_policy_document\" \"assume\" { statement { actions=[\"sts:AssumeRole\"], principals { type=\"Service\" identifiers=[\"ec2.amazonaws.com\"] } } }\n" }
+  ]
+}
+

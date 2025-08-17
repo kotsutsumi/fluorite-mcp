@@ -1,0 +1,13 @@
+{
+  "id": "sveltekit-endpoint-zod-validate-minimal",
+  "name": "SvelteKit エンドポイント Zod 検証 最小",
+  "version": "1.0.0",
+  "stack": ["sveltekit", "zod"],
+  "tags": ["api"],
+  "description": "SvelteKit エンドポイントで Zod 検証",
+  "params": [ ],
+  "files": [
+    { "path": "sveltekit/src/routes/api/hello/+server.ts", "template": "import { z } from 'zod';\nexport async function POST({ request }){ const schema = z.object({ name: z.string() }); const b = await request.json(); const r = schema.safeParse(b); if(!r.success) return new Response('bad',{status:400}); return Response.json({ ok: true }); }\n" }
+  ]
+}
+

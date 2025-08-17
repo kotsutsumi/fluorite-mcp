@@ -1,0 +1,13 @@
+{
+  "id": "azure-service-bus-receive-minimal",
+  "name": "Azure Service Bus 受信 最小",
+  "version": "1.0.0",
+  "stack": ["azure", "service-bus"],
+  "tags": ["queue"],
+  "description": "@azure/service-bus でメッセージ受信",
+  "params": [ { "name": "queue", "default": "jobs" } ],
+  "files": [
+    { "path": "azure/servicebus-recv.mjs", "template": "import { ServiceBusClient } from '@azure/service-bus';\nconst sb = new ServiceBusClient(process.env.SB_CONNECTION_STRING);\nconst receiver = sb.createReceiver(process.env.SB_QUEUE || '{{queue}}');\nreceiver.subscribe({ processMessage: async (m)=> console.log(m.body), processError: console.error });\n" }
+  ]
+}
+

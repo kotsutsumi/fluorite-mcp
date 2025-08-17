@@ -1,0 +1,13 @@
+{
+  "id": "gcp-functions-storage-trigger-minimal",
+  "name": "GCP Functions Storage トリガ 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "functions"],
+  "tags": ["serverless"],
+  "description": "Storage finalize トリガの雛形",
+  "params": [ ],
+  "files": [
+    { "path": "gcp/functions.js", "template": "exports.onFile = (event, context) => { console.log(event.name); };\n" }
+  ]
+}
+

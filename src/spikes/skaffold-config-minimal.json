@@ -1,0 +1,13 @@
+{
+  "id": "skaffold-config-minimal",
+  "name": "Skaffold 設定 最小",
+  "version": "1.0.0",
+  "stack": ["skaffold", "yaml"],
+  "tags": ["dev"],
+  "description": "skaffold.yaml の最小",
+  "params": [ ],
+  "files": [
+    { "path": "skaffold.yaml", "template": "apiVersion: skaffold/v4beta6\nkind: Config\nmetadata: { name: app }\n" }
+  ]
+}
+

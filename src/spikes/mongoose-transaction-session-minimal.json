@@ -1,0 +1,13 @@
+{
+  "id": "mongoose-transaction-session-minimal",
+  "name": "Mongoose トランザクション セッション 最小",
+  "version": "1.0.0",
+  "stack": ["mongoose", "node"],
+  "tags": ["db"],
+  "description": "Mongoose セッションの開始/コミット",
+  "params": [ ],
+  "files": [
+    { "path": "mongoose/tx.js", "template": "const mongoose = require('mongoose');\n(async()=>{ await mongoose.connect(process.env.MONGODB_URI); const s = await mongoose.startSession(); s.startTransaction(); await s.commitTransaction(); s.endSession(); })();\n" }
+  ]
+}
+

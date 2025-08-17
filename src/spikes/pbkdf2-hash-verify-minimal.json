@@ -1,0 +1,13 @@
+{
+  "id": "pbkdf2-hash-verify-minimal",
+  "name": "PBKDF2 ハッシュ/検証 最小",
+  "version": "1.0.0",
+  "stack": ["node", "crypto"],
+  "tags": ["security"],
+  "description": "crypto.pbkdf2Sync によるハッシュ/検証",
+  "params": [ ],
+  "files": [
+    { "path": "crypto/pbkdf2.js", "template": "const { pbkdf2Sync, randomBytes, timingSafeEqual } = require('node:crypto');\nconst salt = randomBytes(16);\nconst hash = pbkdf2Sync('secret', salt, 310000, 32, 'sha256');\nconsole.log(hash.toString('hex'), salt.toString('hex'));\nconsole.log(timingSafeEqual(hash, pbkdf2Sync('secret', salt, 310000, 32, 'sha256')));\n" }
+  ]
+}
+

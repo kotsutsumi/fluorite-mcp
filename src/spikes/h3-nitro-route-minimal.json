@@ -1,0 +1,13 @@
+{
+  "id": "h3-nitro-route-minimal",
+  "name": "h3/Nitro ルート 最小",
+  "version": "1.0.0",
+  "stack": ["h3", "nitro"],
+  "tags": ["api"],
+  "description": "h3 のルートハンドラ最小例",
+  "params": [ ],
+  "files": [
+    { "path": "nitro/server/api/hello.ts", "template": "import { defineEventHandler } from 'h3';\nexport default defineEventHandler(() => ({ message: 'hello' }));\n" }
+  ]
+}
+

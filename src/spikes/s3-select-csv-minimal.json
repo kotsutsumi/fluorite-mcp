@@ -1,0 +1,13 @@
+{
+  "id": "s3-select-csv-minimal",
+  "name": "S3 Select CSV 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "s3"],
+  "tags": ["storage"],
+  "description": "S3 Select (CSV) の最小実行",
+  "params": [ { "name": "bucket", "default": "my-bucket" }, { "name": "key", "default": "data.csv" } ],
+  "files": [
+    { "path": "aws/s3-select.mjs", "template": "import { S3Client, SelectObjectContentCommand } from '@aws-sdk/client-s3';\nconst s3 = new S3Client({});\nconst out = await s3.send(new SelectObjectContentCommand({ Bucket: process.env.BUCKET || '{{bucket}}', Key: process.env.KEY || '{{key}}', ExpressionType: 'SQL', Expression: 'select * from s3object s limit 1', InputSerialization: { CSV: { FileHeaderInfo: 'NONE' } }, OutputSerialization: { JSON: {} } }));\nconsole.log(!!out.Payload);\n" }
+  ]
+}
+

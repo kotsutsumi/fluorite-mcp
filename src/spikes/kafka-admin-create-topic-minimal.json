@@ -1,0 +1,13 @@
+{
+  "id": "kafka-admin-create-topic-minimal",
+  "name": "KafkaJS Admin トピック作成 最小",
+  "version": "1.0.0",
+  "stack": ["kafkajs", "node"],
+  "tags": ["messaging"],
+  "description": "kafkajs Admin でトピック作成",
+  "params": [ { "name": "topic", "default": "events" } ],
+  "files": [
+    { "path": "kafka/admin.js", "template": "const { Kafka } = require('kafkajs');\nconst kafka = new Kafka({ clientId: 'app', brokers: (process.env.KAFKA_BROKERS||'localhost:9092').split(',') });\n(async()=>{ const admin = kafka.admin(); await admin.connect(); await admin.createTopics({ topics: [{ topic: process.env.KAFKA_TOPIC || '{{topic}}' }] }); await admin.disconnect(); })();\n" }
+  ]
+}
+

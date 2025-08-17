@@ -1,0 +1,13 @@
+{
+  "id": "parquetjs-write-minimal",
+  "name": "parquetjs 書き込み 最小",
+  "version": "1.0.0",
+  "stack": ["parquetjs", "node"],
+  "tags": ["data"],
+  "description": "parquetjs-lite で Parquet ファイルを書き出し",
+  "params": [ ],
+  "files": [
+    { "path": "data/parquet.js", "template": "const parquet = require('parquetjs-lite');\n(async () => {\n  const schema = new parquet.ParquetSchema({ name: { type: 'UTF8' } });\n  const writer = await parquet.ParquetWriter.openFile(schema, 'out.parquet');\n  await writer.appendRow({ name: 'Alice' });\n  await writer.close();\n})();\n" }
+  ]
+}
+

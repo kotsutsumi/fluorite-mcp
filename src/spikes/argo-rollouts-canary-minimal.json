@@ -1,0 +1,13 @@
+{
+  "id": "argo-rollouts-canary-minimal",
+  "name": "Argo Rollouts Canary 最小",
+  "version": "1.0.0",
+  "stack": ["argo-rollouts", "kubernetes"],
+  "tags": ["k8s"],
+  "description": "Canary Strategy の最小 Rollout マニフェスト",
+  "params": [ { "name": "name", "default": "web" } ],
+  "files": [
+    { "path": "k8s/rollout.yaml", "template": "apiVersion: argoproj.io/v1alpha1\nkind: Rollout\nmetadata:\n  name: {{name}}\nspec:\n  replicas: 1\n  selector: { matchLabels: { app: {{name}} } }\n  template:\n    metadata: { labels: { app: {{name}} } }\n    spec:\n      containers: [ { name: app, image: nginx:alpine } ]\n  strategy:\n    canary:\n      steps: [ { setWeight: 20 }, { pause: {} }, { setWeight: 50 } ]\n" }
+  ]
+}
+

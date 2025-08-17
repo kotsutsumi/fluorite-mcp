@@ -1,0 +1,13 @@
+{
+  "id": "gcp-bigtable-read-row-minimal",
+  "name": "GCP Bigtable ReadRow 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "bigtable"],
+  "tags": ["db"],
+  "description": "@google-cloud/bigtable で readRows",
+  "params": [ { "name": "instance", "default": "test" }, { "name": "table", "default": "items" } ],
+  "files": [
+    { "path": "gcp/bigtable.mjs", "template": "import { Bigtable } from '@google-cloud/bigtable';\nconst bt = new Bigtable();\nconst t = bt.instance(process.env.BT_INST||'{{instance}}').table(process.env.BT_TABLE||'{{table}}');\nconsole.log(await t.readRows({ limit: 1 }));\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "azure-appinsights-track-minimal",
+  "name": "Azure AppInsights track 最小",
+  "version": "1.0.0",
+  "stack": ["azure", "appinsights"],
+  "tags": ["observability"],
+  "description": "applicationinsights で trackEvent",
+  "params": [ ],
+  "files": [
+    { "path": "azure/appinsights.js", "template": "const appInsights = require('applicationinsights');\nappInsights.setup(process.env.APPINSIGHTS_CONNECTION_STRING).start();\nappInsights.defaultClient.trackEvent({ name: 'hello' });\n" }
+  ]
+}
+

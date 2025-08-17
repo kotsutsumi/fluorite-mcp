@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-app-router-auth-middleware-edge-minimal",
+  "name": "Next.js App Router 認証MW Edge 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "edge"],
+  "tags": ["auth"],
+  "description": "Edge Middleware で簡易認証",
+  "params": [ { "name": "app_name", "default": "next-app" } ],
+  "files": [
+    { "path": "{{app_name}}/middleware.ts", "template": "export const config = { matcher: ['/protected/:path*'] };\nimport { NextResponse } from 'next/server';\nexport function middleware(req: Request){ if(!req.headers.get('authorization')) return new NextResponse('unauthorized',{status:401}); return NextResponse.next(); }\n" }
+  ]
+}
+

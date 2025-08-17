@@ -1,0 +1,13 @@
+{
+  "id": "docker-compose-postgres-app-minimal",
+  "name": "docker-compose Postgres+App 最小",
+  "version": "1.0.0",
+  "stack": ["docker-compose"],
+  "tags": ["container"],
+  "description": "Postgres とアプリの最小 compose",
+  "params": [ ],
+  "files": [
+    { "path": "docker-compose.yml", "template": "version: '3.8'\nservices:\n  db:\n    image: postgres:15\n    environment: [ POSTGRES_PASSWORD=pass ]\n  app:\n    build: .\n    environment: [ DATABASE_URL=postgres://postgres:pass@db:5432/postgres ]\n    depends_on: [ db ]\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "aws-cloudwatch-put-metric-data-minimal",
+  "name": "AWS CloudWatch PutMetricData 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "cloudwatch"],
+  "tags": ["observability"],
+  "description": "CloudWatch メトリクス送信の最小例",
+  "params": [ { "name": "ns", "default": "App/Metrics" }, { "name": "metric", "default": "Hits" } ],
+  "files": [
+    { "path": "aws/metrics.mjs", "template": "import { CloudWatchClient, PutMetricDataCommand } from '@aws-sdk/client-cloudwatch';\nconst cw = new CloudWatchClient({});\nawait cw.send(new PutMetricDataCommand({ Namespace: process.env.NS || '{{ns}}', MetricData: [{ MetricName: process.env.METRIC || '{{metric}}', Value: 1 }] }));\nconsole.log('sent');\n" }
+  ]
+}
+

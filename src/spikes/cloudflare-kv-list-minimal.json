@@ -1,0 +1,13 @@
+{
+  "id": "cloudflare-kv-list-minimal",
+  "name": "Cloudflare KV List 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare", "kv"],
+  "tags": ["edge"],
+  "description": "KV 名前空間のキー一覧",
+  "params": [ { "name": "namespace", "default": "MY_KV" } ],
+  "files": [
+    { "path": "cf/kv-list.ts", "template": "export default {\n  async fetch(_req: Request, env: any) {\n    const keys = await env.{{namespace}}.list();\n    return Response.json(keys);\n  }\n};\n" }
+  ]
+}
+

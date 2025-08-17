@@ -1,0 +1,13 @@
+{
+  "id": "jaeger-client-node-minimal",
+  "name": "jaeger-client Node 最小",
+  "version": "1.0.0",
+  "stack": ["jaeger", "node"],
+  "tags": ["observability"],
+  "description": "jaeger-client でスパン送信",
+  "params": [ ],
+  "files": [
+    { "path": "otel/jaeger-client.js", "template": "const initTracer = require('jaeger-client').initTracer;\nconst tracer = initTracer({ serviceName: 'app' }, {});\nconst span = tracer.startSpan('hello');\nspan.finish();\ntracer.close(() => process.exit(0));\n" }
+  ]
+}
+

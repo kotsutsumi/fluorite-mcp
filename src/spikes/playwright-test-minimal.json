@@ -1,0 +1,13 @@
+{
+  "id": "playwright-test-minimal",
+  "name": "Playwright テスト 最小",
+  "version": "1.0.0",
+  "stack": ["playwright", "typescript"],
+  "tags": ["test"],
+  "description": "@playwright/test を用いた最小の E2E テスト",
+  "params": [ { "name": "app_name", "default": "e2e" } ],
+  "files": [
+    { "path": "{{app_name}}/example.spec.ts", "template": "import { test, expect } from '@playwright/test';\ntest('has title', async ({ page }) => {\n  await page.goto('https://example.com');\n  await expect(page).toHaveTitle(/Example/);\n});\n" }
+  ]
+}
+

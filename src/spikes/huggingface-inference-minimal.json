@@ -1,0 +1,13 @@
+{
+  "id": "huggingface-inference-minimal",
+  "name": "HuggingFace Inference 最小",
+  "version": "1.0.0",
+  "stack": ["huggingface", "node"],
+  "tags": ["ai"],
+  "description": "Inference API の最小呼び出し",
+  "params": [ { "name": "model", "default": "distilbert-base-uncased" } ],
+  "files": [
+    { "path": "ai/hf.mjs", "template": "const res = await fetch('https://api-inference.huggingface.co/models/{{model}}', { method: 'POST', headers: { 'Authorization': `Bearer ${process.env.HF_API_KEY}` }, body: JSON.stringify({ inputs: 'Hello' }) });\nconsole.log(await res.json());\n" }
+  ]
+}
+

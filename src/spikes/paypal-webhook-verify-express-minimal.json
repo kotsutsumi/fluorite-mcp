@@ -1,0 +1,13 @@
+{
+  "id": "paypal-webhook-verify-express-minimal",
+  "name": "PayPal Webhook 検証 Express 最小",
+  "version": "1.0.0",
+  "stack": ["paypal", "express"],
+  "tags": ["payment"],
+  "description": "PayPal Webhook の検証 (概念)",
+  "params": [ { "name": "app_name", "default": "paypal-app" } ],
+  "files": [
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst app = express();\napp.post('/webhook', express.json(), (_req,res)=> res.send('ok'));\napp.listen(3000);\n" }
+  ]
+}
+

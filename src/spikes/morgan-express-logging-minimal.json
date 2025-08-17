@@ -1,0 +1,13 @@
+{
+  "id": "morgan-express-logging-minimal",
+  "name": "Morgan Express ロギング 最小",
+  "version": "1.0.0",
+  "stack": ["morgan", "express"],
+  "tags": ["logging"],
+  "description": "morgan で HTTP ログ",
+  "params": [ ],
+  "files": [
+    { "path": "log/server.js", "template": "const express = require('express');\nconst morgan = require('morgan');\nconst app = express();\napp.use(morgan('combined'));\napp.get('/', (_req,res)=>res.send('ok'));\napp.listen(3000);\n" }
+  ]
+}
+

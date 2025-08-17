@@ -1,0 +1,13 @@
+{
+  "id": "zod-openapi-schema-minimal",
+  "name": "Zod から OpenAPI 生成 最小",
+  "version": "1.0.0",
+  "stack": ["zod", "openapi", "typescript"],
+  "tags": ["schema"],
+  "description": "zod-to-openapi による OpenAPI 生成",
+  "params": [ ],
+  "files": [
+    { "path": "schema/zod-openapi.ts", "template": "import { z } from 'zod';\nimport { OpenAPIRegistry, OpenApiGeneratorV3 } from '@asteasolutions/zod-to-openapi';\nconst registry = new OpenAPIRegistry();\nconst User = registry.register('User', z.object({ id: z.number(), name: z.string() }));\nconst generator = new OpenApiGeneratorV3(registry.definitions);\nconsole.log(JSON.stringify(generator.generateDocument({ openapi: '3.0.0', info: { title: 'API', version: '1.0.0' }, paths: {} }), null, 2));\n" }
+  ]
+}
+

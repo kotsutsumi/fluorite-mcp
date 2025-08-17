@@ -1,0 +1,13 @@
+{
+  "id": "swc-config-minimal",
+  "name": "SWC 設定 最小",
+  "version": "1.0.0",
+  "stack": ["swc"],
+  "tags": ["build"],
+  "description": ".swcrc の最小設定",
+  "params": [ ],
+  "files": [
+    { "path": ".swcrc", "template": "{ \"jsc\": { \"target\": \"es2022\" } }\n" }
+  ]
+}
+

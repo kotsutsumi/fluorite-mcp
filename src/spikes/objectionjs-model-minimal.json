@@ -1,0 +1,13 @@
+{
+  "id": "objectionjs-model-minimal",
+  "name": "Objection.js モデル 最小",
+  "version": "1.0.0",
+  "stack": ["objection", "knex"],
+  "tags": ["orm"],
+  "description": "Objection.js のモデル定義最小",
+  "params": [ ],
+  "files": [
+    { "path": "objection/model.js", "template": "const { Model } = require('objection');\nclass User extends Model { static get tableName(){ return 'users'; } }\nconsole.log(User.tableName);\n" }
+  ]
+}
+

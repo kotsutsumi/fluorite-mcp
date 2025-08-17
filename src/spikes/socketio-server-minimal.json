@@ -1,0 +1,13 @@
+{
+  "id": "socketio-server-minimal",
+  "name": "Socket.IO サーバ 最小",
+  "version": "1.0.0",
+  "stack": ["socket.io", "node"],
+  "tags": ["realtime"],
+  "description": "socket.io の最小サーバ",
+  "params": [ ],
+  "files": [
+    { "path": "socketio/server.js", "template": "const { Server } = require('socket.io');\nconst io = new Server(3000, { cors: { origin: '*' } });\nio.on('connection', (s) => s.emit('hello', 'world'));\n" }
+  ]
+}
+

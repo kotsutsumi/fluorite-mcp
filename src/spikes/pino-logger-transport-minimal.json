@@ -1,0 +1,13 @@
+{
+  "id": "pino-logger-transport-minimal",
+  "name": "Pino ロガー + トランスポート 最小",
+  "version": "1.0.0",
+  "stack": ["pino", "node"],
+  "tags": ["logging"],
+  "description": "pino.transport を使った出力",
+  "params": [ ],
+  "files": [
+    { "path": "log/pino.js", "template": "import pino from 'pino';\nconst logger = pino(pino.transport({ target: 'pino-pretty' }));\nlogger.info('hello');\n" }
+  ]
+}
+

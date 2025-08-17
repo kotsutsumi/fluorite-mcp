@@ -1,0 +1,13 @@
+{
+  "id": "mikrorm-entity-minimal",
+  "name": "MikroORM エンティティ 最小",
+  "version": "1.0.0",
+  "stack": ["mikroorm", "typescript"],
+  "tags": ["orm"],
+  "description": "MikroORM のエンティティ定義最小",
+  "params": [ ],
+  "files": [
+    { "path": "mikroorm/User.ts", "template": "import { Entity, PrimaryKey, Property } from '@mikro-orm/core';\n@Entity()\nexport class User { @PrimaryKey() id!: number; @Property() name!: string; }\n" }
+  ]
+}
+

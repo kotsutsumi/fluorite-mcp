@@ -1,0 +1,13 @@
+{
+  "id": "nats-jetstream-publish-minimal",
+  "name": "NATS JetStream Publish 最小",
+  "version": "1.0.0",
+  "stack": ["nats", "jetstream"],
+  "tags": ["messaging"],
+  "description": "nats.js で JetStream publish",
+  "params": [ { "name": "subject", "default": "events" } ],
+  "files": [
+    { "path": "nats/js-pub.js", "template": "const { connect, StringCodec } = require('nats');\n(async()=>{ const nc = await connect({ servers: process.env.NATS_URL || 'nats://localhost:4222' }); const jsm = await nc.jetstreamManager(); try{ await jsm.streams.add({ name: 'S', subjects: [process.env.NATS_SUBJECT||'{{subject}}'] }); }catch{} const js = nc.jetstream(); const sc = StringCodec(); await js.publish(process.env.NATS_SUBJECT||'{{subject}}', sc.encode('hello')); await nc.drain(); })();\n" }
+  ]
+}
+

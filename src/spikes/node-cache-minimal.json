@@ -1,0 +1,13 @@
+{
+  "id": "node-cache-minimal",
+  "name": "node-cache 最小",
+  "version": "1.0.0",
+  "stack": ["node-cache", "node"],
+  "tags": ["cache"],
+  "description": "node-cache のシンプル使用",
+  "params": [ ],
+  "files": [
+    { "path": "cache/node-cache.js", "template": "const NodeCache = require('node-cache');\nconst c = new NodeCache();\nc.set('x', 1, 10);\nconsole.log(c.get('x'));\n" }
+  ]
+}
+

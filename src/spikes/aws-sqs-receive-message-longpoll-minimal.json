@@ -1,0 +1,13 @@
+{
+  "id": "aws-sqs-receive-message-longpoll-minimal",
+  "name": "AWS SQS ReceiveMessage Long Poll 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "sqs"],
+  "tags": ["queue"],
+  "description": "長ポーリングでメッセージ受信",
+  "params": [ { "name": "queueUrl", "default": "https://sqs.us-east-1.amazonaws.com/123/queue" } ],
+  "files": [
+    { "path": "aws/sqs-recv.mjs", "template": "import { SQSClient, ReceiveMessageCommand, DeleteMessageCommand } from '@aws-sdk/client-sqs';\nconst c = new SQSClient({});\nconst q = process.env.SQS_URL || '{{queueUrl}}';\nconst r = await c.send(new ReceiveMessageCommand({ QueueUrl: q, WaitTimeSeconds: 20, MaxNumberOfMessages: 1 }));\nif(r.Messages?.[0]){ await c.send(new DeleteMessageCommand({ QueueUrl: q, ReceiptHandle: r.Messages[0].ReceiptHandle })); }\nconsole.log(r.Messages?.length||0);\n" }
+  ]
+}
+

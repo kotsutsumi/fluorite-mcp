@@ -1,0 +1,13 @@
+{
+  "id": "pre-commit-config-minimal",
+  "name": "pre-commit config 最小",
+  "version": "1.0.0",
+  "stack": ["pre-commit", "yaml"],
+  "tags": ["ci"],
+  "description": "pre-commit の最小 .pre-commit-config.yaml",
+  "params": [ ],
+  "files": [
+    { "path": ".pre-commit-config.yaml", "template": "repos:\n  - repo: https://github.com/pre-commit/pre-commit-hooks\n    rev: v4.5.0\n    hooks:\n      - id: end-of-file-fixer\n" }
+  ]
+}
+

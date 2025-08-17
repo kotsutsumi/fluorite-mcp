@@ -1,0 +1,13 @@
+{
+  "id": "solid-signal-store-minimal",
+  "name": "Solid Signal/Store 最小",
+  "version": "1.0.0",
+  "stack": ["solid"],
+  "tags": ["state"],
+  "description": "createSignal/createStore の基本",
+  "params": [ ],
+  "files": [
+    { "path": "solid/state.ts", "template": "import { createSignal } from 'solid-js';\nexport function useCounter(){ const [n, setN] = createSignal(0); const inc = () => setN(n()+1); return { n, inc }; }\n" }
+  ]
+}
+

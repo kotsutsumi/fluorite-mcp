@@ -1,0 +1,13 @@
+{
+  "id": "deno-kv-minimal",
+  "name": "Deno KV 最小",
+  "version": "1.0.0",
+  "stack": ["deno", "kv"],
+  "tags": ["db"],
+  "description": "Deno KV の get/set 最小例",
+  "params": [ ],
+  "files": [
+    { "path": "deno/kv.ts", "template": "const kv = await Deno.openKv();\nawait kv.set(['greeting'], 'hello');\nconsole.log((await kv.get(['greeting'])).value);\n" }
+  ]
+}
+

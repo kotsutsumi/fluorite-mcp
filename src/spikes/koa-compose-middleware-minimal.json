@@ -1,0 +1,13 @@
+{
+  "id": "koa-compose-middleware-minimal",
+  "name": "Koa compose ミドルウェア 最小",
+  "version": "1.0.0",
+  "stack": ["koa", "node"],
+  "tags": ["api"],
+  "description": "koa-compose を使ったミドルウェア合成",
+  "params": [ ],
+  "files": [
+    { "path": "koa/server.js", "template": "const Koa = require('koa');\nconst compose = require('koa-compose');\nconst app = new Koa();\nconst mw = compose([(ctx, next)=>{ ctx.set('x-one','1'); return next(); }, (ctx)=>{ ctx.body = 'ok'; }]);\napp.use(mw);\napp.listen(3000);\n" }
+  ]
+}
+

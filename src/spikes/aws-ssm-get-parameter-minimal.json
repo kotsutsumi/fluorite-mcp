@@ -1,0 +1,13 @@
+{
+  "id": "aws-ssm-get-parameter-minimal",
+  "name": "AWS SSM パラメータ取得 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "ssm", "node"],
+  "tags": ["config"],
+  "description": "SSM Parameter Store の取得最小例",
+  "params": [ { "name": "name", "default": "/app/config" } ],
+  "files": [
+    { "path": "aws/ssm-get.mjs", "template": "import { SSMClient, GetParameterCommand } from '@aws-sdk/client-ssm';\nconst client = new SSMClient({ region: process.env.AWS_REGION || 'us-east-1' });\nconst out = await client.send(new GetParameterCommand({ Name: process.env.SSM_NAME || '{{name}}', WithDecryption: true }));\nconsole.log(out.Parameter?.Value);\n" }
+  ]
+}
+

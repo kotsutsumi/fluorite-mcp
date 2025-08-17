@@ -1,0 +1,13 @@
+{
+  "id": "node-stream-pipeline-minimal",
+  "name": "Node stream.pipeline 最小",
+  "version": "1.0.0",
+  "stack": ["node", "streams"],
+  "tags": ["io"],
+  "description": "stream.pipeline の最小例",
+  "params": [ ],
+  "files": [
+    { "path": "streams/pipeline.js", "template": "const { pipeline, Readable, Writable } = require('node:stream');\npipeline(Readable.from(['a','b']), new Writable({ write(c,_e,cb){ process.stdout.write(String(c)); cb(); } }), (e)=>console.log('done', !!e));\n" }
+  ]
+}
+

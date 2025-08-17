@@ -1,0 +1,13 @@
+{
+  "id": "kafka-transactions-producer-minimal",
+  "name": "KafkaJS トランザクション Producer 最小",
+  "version": "1.0.0",
+  "stack": ["kafkajs", "node"],
+  "tags": ["messaging"],
+  "description": "Transactional producer の概念",
+  "params": [ { "name": "topic", "default": "events" } ],
+  "files": [
+    { "path": "kafka/tx.js", "template": "const { Kafka } = require('kafkajs');\nconst kafka = new Kafka({ clientId: 'app', brokers: (process.env.BROKERS||'localhost:9092').split(',') });\n(async()=>{ const p = kafka.producer({ transactionalId: 'tx1' }); await p.connect(); const tx = await p.transaction(); await tx.send({ topic: process.env.TOPIC||'{{topic}}', messages: [{ value: 'hello' }] }); await tx.commit(); await p.disconnect(); })();\n" }
+  ]
+}
+

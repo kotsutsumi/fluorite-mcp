@@ -1,0 +1,13 @@
+{
+  "id": "eggjs-controller-minimal",
+  "name": "Egg.js コントローラ 最小",
+  "version": "1.0.0",
+  "stack": ["egg", "node"],
+  "tags": ["web"],
+  "description": "Egg.js のコントローラ最小例",
+  "params": [ { "name": "app_name", "default": "egg-app" } ],
+  "files": [
+    { "path": "{{app_name}}/app/controller/home.js", "template": "const Controller = require('egg').Controller;\nclass HomeController extends Controller { async index(){ this.ctx.body = 'hi'; } }\nmodule.exports = HomeController;\n" }
+  ]
+}
+

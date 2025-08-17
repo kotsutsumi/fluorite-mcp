@@ -1,0 +1,13 @@
+{
+  "id": "remix-loader-json-minimal",
+  "name": "Remix loader JSON 最小",
+  "version": "1.0.0",
+  "stack": ["remix"],
+  "tags": ["web"],
+  "description": "Remix loader で JSON を返す",
+  "params": [ ],
+  "files": [
+    { "path": "remix/app/routes/data.tsx", "template": "import { json } from '@remix-run/node';\nexport async function loader(){ return json({ ok: true }); }\nexport default function(){ return <div>data</div>; }\n" }
+  ]
+}
+

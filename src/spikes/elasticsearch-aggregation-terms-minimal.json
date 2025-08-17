@@ -1,0 +1,13 @@
+{
+  "id": "elasticsearch-aggregation-terms-minimal",
+  "name": "Elasticsearch Terms 集計 最小",
+  "version": "1.0.0",
+  "stack": ["elasticsearch", "node"],
+  "tags": ["search"],
+  "description": "terms アグリゲーションの最小例",
+  "params": [ { "name": "index", "default": "docs" } ],
+  "files": [
+    { "path": "es/agg.js", "template": "const { Client } = require('@elastic/elasticsearch');\nconst c = new Client({ node: process.env.ELASTIC_URL || 'http://localhost:9200' });\n(async()=>{ console.log(await c.search({ index: process.env.ELASTIC_INDEX || '{{index}}', size: 0, aggs: { tags: { terms: { field: 'tags.keyword' } } } })); })();\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "hono-basic-route-minimal",
+  "name": "Hono 基本ルート 最小",
+  "version": "1.0.0",
+  "stack": ["hono", "typescript"],
+  "tags": ["web"],
+  "description": "Hono での基本的な GET ルート",
+  "params": [ { "name": "app_name", "default": "hono-app" } ],
+  "files": [
+    { "path": "{{app_name}}/src/index.ts", "template": "import { Hono } from 'hono';\nconst app = new Hono();\napp.get('/hello', (c) => c.json({ message: 'hello' }));\nexport default app;\n" }
+  ]
+}
+

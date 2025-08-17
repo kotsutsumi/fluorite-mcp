@@ -1,0 +1,13 @@
+{
+  "id": "agenda-job-minimal",
+  "name": "Agenda Job 最小",
+  "version": "1.0.0",
+  "stack": ["agenda", "mongodb"],
+  "tags": ["scheduler"],
+  "description": "Agenda job の最小登録",
+  "params": [ ],
+  "files": [
+    { "path": "jobs/agenda.js", "template": "const Agenda = require('agenda');\nconst agenda = new Agenda({ db: { address: process.env.MONGO_URL||'mongodb://127.0.0.1/agenda' } });\nagenda.define('hello', async ()=>{});\n(async()=>{ await agenda.start(); await agenda.now('hello'); })();\n" }
+  ]
+}
+

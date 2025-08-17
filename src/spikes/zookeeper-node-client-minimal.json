@@ -1,0 +1,13 @@
+{
+  "id": "zookeeper-node-client-minimal",
+  "name": "Zookeeper Node クライアント 最小",
+  "version": "1.0.0",
+  "stack": ["zookeeper", "node"],
+  "tags": ["coordination"],
+  "description": "node-zookeeper-client の getData",
+  "params": [ ],
+  "files": [
+    { "path": "zk/get.js", "template": "const zookeeper = require('node-zookeeper-client');\nconst client = zookeeper.createClient(process.env.ZK || 'localhost:2181');\nclient.once('connected', ()=> client.getData('/', (e,_s,data)=>{ console.log(String(data||'')); client.close(); }));\nclient.connect();\n" }
+  ]
+}
+

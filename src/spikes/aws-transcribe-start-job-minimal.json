@@ -1,0 +1,13 @@
+{
+  "id": "aws-transcribe-start-job-minimal",
+  "name": "AWS Transcribe StartJob 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "transcribe", "node"],
+  "tags": ["speech"],
+  "description": "Transcribe のジョブ起動最小例",
+  "params": [ { "name": "jobName", "default": "sample-job" }, { "name": "mediaUri", "default": "s3://bucket/audio.mp3" } ],
+  "files": [
+    { "path": "aws/transcribe.mjs", "template": "import { TranscribeClient, StartTranscriptionJobCommand } from '@aws-sdk/client-transcribe';\nconst client = new TranscribeClient({ region: process.env.AWS_REGION || 'us-east-1' });\nconst out = await client.send(new StartTranscriptionJobCommand({ TranscriptionJobName: process.env.JOB || '{{jobName}}', Media: { MediaFileUri: process.env.URI || '{{mediaUri}}' }, LanguageCode: 'en-US' }));\nconsole.log(out.TranscriptionJob?.TranscriptionJobName);\n" }
+  ]
+}
+

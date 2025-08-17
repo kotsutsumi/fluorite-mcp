@@ -1,0 +1,13 @@
+{
+  "id": "sendgrid-mail-minimal",
+  "name": "SendGrid メール送信 最小",
+  "version": "1.0.0",
+  "stack": ["sendgrid", "node"],
+  "tags": ["email"],
+  "description": "@sendgrid/mail でメール送信",
+  "params": [ { "name": "to", "default": "user@example.com" } ],
+  "files": [
+    { "path": "email/sendgrid.mjs", "template": "import sg from '@sendgrid/mail';\nsg.setApiKey(process.env.SENDGRID_API_KEY);\nawait sg.send({ to: process.env.TO || '{{to}}', from: 'noreply@example.com', subject: 'Hello', text: 'Hello' });\n" }
+  ]
+}
+

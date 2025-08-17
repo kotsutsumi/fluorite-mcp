@@ -1,0 +1,13 @@
+{
+  "id": "aws-eventbridge-put-rule-minimal",
+  "name": "AWS EventBridge ルール作成 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "eventbridge"],
+  "tags": ["events"],
+  "description": "PutRule の最小例",
+  "params": [ { "name": "name", "default": "daily" } ],
+  "files": [
+    { "path": "aws/eb-rule.mjs", "template": "import { EventBridgeClient, PutRuleCommand } from '@aws-sdk/client-eventbridge';\nconst eb = new EventBridgeClient({});\nawait eb.send(new PutRuleCommand({ Name: process.env.RULE || '{{name}}', ScheduleExpression: 'rate(1 day)' }));\nconsole.log('rule created');\n" }
+  ]
+}
+

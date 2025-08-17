@@ -1,0 +1,13 @@
+{
+  "id": "objection-sqlite-minimal",
+  "name": "Objection SQLite 最小",
+  "version": "1.0.0",
+  "stack": ["objection", "sqlite"],
+  "tags": ["orm"],
+  "description": "Objection + SQLite の初期化",
+  "params": [ ],
+  "files": [
+    { "path": "objection/sqlite.js", "template": "const Knex = require('knex');\nconst { Model } = require('objection');\nconst knex = Knex({ client: 'sqlite3', connection: { filename: ':memory:' }, useNullAsDefault: true });\nModel.knex(knex);\nconsole.log('ok');\n" }
+  ]
+}
+

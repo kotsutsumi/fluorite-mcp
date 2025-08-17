@@ -1,0 +1,13 @@
+{
+  "id": "react-hook-form-zod-minimal",
+  "name": "React Hook Form + Zod 最小",
+  "version": "1.0.0",
+  "stack": ["react-hook-form", "zod"],
+  "tags": ["form"],
+  "description": "RHF と @hookform/resolvers/zod の最小",
+  "params": [ ],
+  "files": [
+    { "path": "react/Form.tsx", "template": "import { useForm } from 'react-hook-form';\nimport { z } from 'zod';\nimport { zodResolver } from '@hookform/resolvers/zod';\nconst schema = z.object({ name: z.string() });\nexport default function Form(){ const { register, handleSubmit } = useForm({ resolver: zodResolver(schema) }); return <form onSubmit={handleSubmit(()=>{})}><input {...register('name')} /><button>OK</button></form>; }\n" }
+  ]
+}
+

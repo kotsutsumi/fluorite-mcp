@@ -1,0 +1,13 @@
+{
+  "id": "helmet-hsts-minimal",
+  "name": "Helmet HSTS 最小",
+  "version": "1.0.0",
+  "stack": ["helmet", "express"],
+  "tags": ["security"],
+  "description": "helmet.hsts() の最小設定",
+  "params": [ { "name": "app_name", "default": "express-app" } ],
+  "files": [
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst helmet = require('helmet');\nconst app = express();\napp.use(helmet.hsts());\napp.get('/', (_req,res)=>res.send('ok'));\napp.listen(3000);\n" }
+  ]
+}
+

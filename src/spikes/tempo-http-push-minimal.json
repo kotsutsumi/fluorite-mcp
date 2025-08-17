@@ -1,0 +1,13 @@
+{
+  "id": "tempo-http-push-minimal",
+  "name": "Grafana Tempo HTTP Push 最小",
+  "version": "1.0.0",
+  "stack": ["tempo", "otel"],
+  "tags": ["observability"],
+  "description": "Tempo HTTP push によるトレース送信の概念",
+  "params": [ ],
+  "files": [
+    { "path": "otel/tempo.txt", "template": "# Send OTLP/HTTP traces to Tempo endpoint\ncurl -X POST http://localhost:4318/v1/traces -H 'Content-Type: application/json' -d '{"resourceSpans":[]}'\n" }
+  ]
+}
+

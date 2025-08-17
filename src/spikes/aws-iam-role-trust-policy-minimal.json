@@ -1,0 +1,13 @@
+{
+  "id": "aws-iam-role-trust-policy-minimal",
+  "name": "AWS IAM ロール信頼ポリシー 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "iam"],
+  "tags": ["security"],
+  "description": "IAM ロールの信頼ポリシー JSON",
+  "params": [ { "name": "role", "default": "app-role" } ],
+  "files": [
+    { "path": "aws/role-trust.json", "template": "{ \n  \"Version\": \"2012-10-17\",\n  \"Statement\": [ { \"Effect\": \"Allow\", \"Principal\": { \"Service\": \"lambda.amazonaws.com\" }, \"Action\": \"sts:AssumeRole\" } ]\n}\n" }
+  ]
+}
+

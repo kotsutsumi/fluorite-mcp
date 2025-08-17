@@ -1,0 +1,13 @@
+{
+  "id": "esbuild-script-minimal",
+  "name": "esbuild スクリプト 最小",
+  "version": "1.0.0",
+  "stack": ["esbuild", "node"],
+  "tags": ["build"],
+  "description": "esbuild のビルドスクリプト",
+  "params": [ ],
+  "files": [
+    { "path": "build/esbuild.mjs", "template": "import * as esbuild from 'esbuild';\nawait esbuild.build({ entryPoints: ['src/index.ts'], bundle: true, outfile: 'dist/index.js' });\n" }
+  ]
+}
+

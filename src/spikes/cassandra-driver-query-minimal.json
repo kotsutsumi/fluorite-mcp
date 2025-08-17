@@ -1,0 +1,13 @@
+{
+  "id": "cassandra-driver-query-minimal",
+  "name": "Cassandra Driver クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["cassandra", "node"],
+  "tags": ["db"],
+  "description": "cassandra-driver を用いたクエリ実行",
+  "params": [ { "name": "keyspace", "default": "ks1" } ],
+  "files": [
+    { "path": "cassandra/index.js", "template": "const { Client } = require('cassandra-driver');\nconst client = new Client({ contactPoints: (process.env.CASSANDRA_HOSTS||'127.0.0.1').split(','), localDataCenter: 'datacenter1', keyspace: process.env.KEYSPACE || '{{keyspace}}' });\n(async () => {\n  await client.connect();\n  const res = await client.execute('SELECT now() FROM system.local');\n  console.log(res.rows[0]);\n  await client.shutdown();\n})();\n" }
+  ]
+}
+

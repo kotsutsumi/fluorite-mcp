@@ -1,0 +1,13 @@
+{
+  "id": "typesense-search-minimal",
+  "name": "Typesense 検索 最小",
+  "version": "1.0.0",
+  "stack": ["typesense", "node"],
+  "tags": ["search"],
+  "description": "Typesense の search 呼び出し",
+  "params": [ { "name": "collection", "default": "books" } ],
+  "files": [
+    { "path": "typesense/search.mjs", "template": "import Typesense from 'typesense';\nconst client = new Typesense.Client({ nodes: [{ host:'localhost',port:8108,protocol:'http'}], apiKey: process.env.TYPESENSE_API_KEY||'xyz' });\nconsole.log(await client.collections(process.env.COLLECTION||'{{collection}}').documents().search({ q: 'hello', query_by: 'title' }));\n" }
+  ]
+}
+

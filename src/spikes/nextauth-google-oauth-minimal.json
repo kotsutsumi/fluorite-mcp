@@ -1,0 +1,13 @@
+{
+  "id": "nextauth-google-oauth-minimal",
+  "name": "NextAuth Google OAuth 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "next-auth"],
+  "tags": ["auth"],
+  "description": "Google Provider を使った NextAuth 設定",
+  "params": [ { "name": "app_name", "default": "next-app" } ],
+  "files": [
+    { "path": "{{app_name}}/pages/api/auth/[...nextauth].ts", "template": "import NextAuth from 'next-auth';\nimport GoogleProvider from 'next-auth/providers/google';\nexport default NextAuth({ providers: [GoogleProvider({ clientId: process.env.GOOGLE_ID||'', clientSecret: process.env.GOOGLE_SECRET||'' })] });\n" }
+  ]
+}
+

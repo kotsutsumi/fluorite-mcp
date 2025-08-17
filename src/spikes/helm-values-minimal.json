@@ -1,0 +1,13 @@
+{
+  "id": "helm-values-minimal",
+  "name": "Helm values.yaml 最小",
+  "version": "1.0.0",
+  "stack": ["helm", "yaml"],
+  "tags": ["k8s"],
+  "description": "values.yaml の雛形",
+  "params": [ ],
+  "files": [
+    { "path": "charts/app/values.yaml", "template": "replicaCount: 1\nimage: nginx:alpine\n" }
+  ]
+}
+

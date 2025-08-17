@@ -1,0 +1,13 @@
+{
+  "id": "gitlab-ci-minimal",
+  "name": "GitLab CI 最小",
+  "version": "1.0.0",
+  "stack": ["gitlab-ci", "yaml"],
+  "tags": ["ci"],
+  "description": "GitLab CI の最小 .gitlab-ci.yml",
+  "params": [ ],
+  "files": [
+    { "path": ".gitlab-ci.yml", "template": "stages: [build]\nbuild:\n  stage: build\n  script: echo hello\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "js-yaml-load-dump-minimal",
+  "name": "js-yaml load/dump 最小",
+  "version": "1.0.0",
+  "stack": ["js-yaml", "node"],
+  "tags": ["data"],
+  "description": "js-yaml による YAML の読み書き最小例",
+  "params": [ ],
+  "files": [
+    { "path": "yaml/example.js", "template": "const yaml = require('js-yaml');\nconst doc = yaml.load('a: 1');\nconsole.log(doc);\nconsole.log(yaml.dump({ b: 2 }));\n" }
+  ]
+}
+

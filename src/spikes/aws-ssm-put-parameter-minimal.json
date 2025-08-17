@@ -1,0 +1,12 @@
+{
+  "id": "aws-ssm-put-parameter-minimal",
+  "name": "AWS SSM PutParameter 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "ssm"],
+  "tags": ["config"],
+  "description": "SSM パラメータ登録の最小例",
+  "params": [ { "name": "name", "default": "/app/config" }, { "name": "value", "default": "hello" } ],
+  "files": [
+    { "path": "aws/ssm-put.mjs", "template": "import { SSMClient, PutParameterCommand } from '@aws-sdk/client-ssm';\nconst c = new SSMClient({});\nawait c.send(new PutParameterCommand({ Name: process.env.NAME || '{{name}}', Value: process.env.VALUE || '{{value}}', Type: 'String', Overwrite: true }));\nconsole.log('ok');\n" }
+  ]}
+

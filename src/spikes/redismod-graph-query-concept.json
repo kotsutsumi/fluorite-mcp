@@ -1,0 +1,13 @@
+{
+  "id": "redismod-graph-query-concept",
+  "name": "RedisGraph クエリ コンセプト",
+  "version": "1.0.0",
+  "stack": ["redisgraph", "redis"],
+  "tags": ["graph"],
+  "description": "GRAPH.QUERY の概念コマンド",
+  "params": [ ],
+  "files": [
+    { "path": "redis/graph.txt", "template": "GRAPH.QUERY g \"RETURN 1\"\n" }
+  ]
+}
+

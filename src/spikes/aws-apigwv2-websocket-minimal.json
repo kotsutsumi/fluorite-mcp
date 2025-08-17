@@ -1,0 +1,13 @@
+{
+  "id": "aws-apigwv2-websocket-minimal",
+  "name": "AWS API GW v2 WebSocket 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "apigatewayv2"],
+  "tags": ["websocket", "infra"],
+  "description": "API Gateway v2 WebSocket のルート定義例 (CloudFormation JSON)",
+  "params": [ { "name": "apiName", "default": "ws-api" } ],
+  "files": [
+    { "path": "aws/apigwv2-websocket.json", "template": "{\n  \"Resources\": {\n    \"Api\": {\n      \"Type\": \"AWS::ApiGatewayV2::Api\",\n      \"Properties\": { \"Name\": \"{{apiName}}\", \"ProtocolType\": \"WEBSOCKET\", \"RouteSelectionExpression\": \"$request.body.action\" }\n    }\n  }\n}\n" }
+  ]
+}
+

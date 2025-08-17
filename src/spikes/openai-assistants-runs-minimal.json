@@ -1,0 +1,13 @@
+{
+  "id": "openai-assistants-runs-minimal",
+  "name": "OpenAI Assistants Runs 最小",
+  "version": "1.0.0",
+  "stack": ["openai", "node"],
+  "tags": ["ai"],
+  "description": "Assistants v2 Runs の最小呼び出し",
+  "params": [ ],
+  "files": [
+    { "path": "ai/openai-assistants.mjs", "template": "// Create assistant, thread, and run via REST\nconst headers = { 'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`, 'Content-Type': 'application/json' };\nconst a = await fetch('https://api.openai.com/v1/assistants', { method: 'POST', headers, body: JSON.stringify({ name: 'helper', model: 'gpt-4o-mini' }) }).then(r=>r.json());\nconst t = await fetch('https://api.openai.com/v1/threads', { method: 'POST', headers }).then(r=>r.json());\nconst run = await fetch(`https://api.openai.com/v1/threads/${t.id}/runs`, { method: 'POST', headers, body: JSON.stringify({ assistant_id: a.id }) }).then(r=>r.json());\nconsole.log(run.id);\n" }
+  ]
+}
+

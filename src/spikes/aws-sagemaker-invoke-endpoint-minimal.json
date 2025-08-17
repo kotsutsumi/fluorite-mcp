@@ -1,0 +1,13 @@
+{
+  "id": "aws-sagemaker-invoke-endpoint-minimal",
+  "name": "AWS SageMaker InvokeEndpoint 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "sagemaker"],
+  "tags": ["ml"],
+  "description": "SageMaker エンドポイント呼び出し",
+  "params": [ { "name": "endpoint", "default": "my-endpoint" } ],
+  "files": [
+    { "path": "aws/sagemaker-invoke.mjs", "template": "import { SageMakerRuntimeClient, InvokeEndpointCommand } from '@aws-sdk/client-sagemaker-runtime';\nconst c = new SageMakerRuntimeClient({});\nconst r = await c.send(new InvokeEndpointCommand({ EndpointName: process.env.ENDPOINT || '{{endpoint}}', Body: new TextEncoder().encode('hello') }));\nconsole.log(!!r.Body);\n" }
+  ]
+}
+

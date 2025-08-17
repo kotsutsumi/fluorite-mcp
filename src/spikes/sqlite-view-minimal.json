@@ -1,0 +1,13 @@
+{
+  "id": "sqlite-view-minimal",
+  "name": "SQLite VIEW 最小",
+  "version": "1.0.0",
+  "stack": ["sqlite"],
+  "tags": ["db"],
+  "description": "SQLite のビュー作成 SQL",
+  "params": [ ],
+  "files": [
+    { "path": "sqlite/view.sql", "template": "create table if not exists users(id integer, name text);\ncreate view if not exists v_users as select * from users;\n" }
+  ]
+}
+

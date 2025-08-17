@@ -1,0 +1,14 @@
+{
+  "id": "storybook-react-story-minimal",
+  "name": "Storybook React Story 最小",
+  "version": "1.0.0",
+  "stack": ["storybook", "react", "typescript"],
+  "tags": ["ui", "docs"],
+  "description": "React コンポーネントの最小 Story",
+  "params": [ { "name": "app_name", "default": "ui-app" } ],
+  "files": [
+    { "path": "{{app_name}}/src/Button.tsx", "template": "export function Button({ label }: { label: string }) { return <button>{label}</button>; }\n" },
+    { "path": "{{app_name}}/src/Button.stories.tsx", "template": "import type { Meta, StoryObj } from '@storybook/react';\nimport { Button } from './Button';\nconst meta: Meta<typeof Button> = { component: Button };\nexport default meta;\nexport const Primary: StoryObj<typeof Button> = { args: { label: 'Hello' } };\n" }
+  ]
+}
+

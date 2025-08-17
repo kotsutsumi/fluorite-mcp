@@ -1,0 +1,13 @@
+{
+  "id": "aws-ec2-start-stop-instances-minimal",
+  "name": "AWS EC2 起動/停止 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "ec2", "node"],
+  "tags": ["compute"],
+  "description": "EC2 のインスタンスを起動/停止する最小例",
+  "params": [ { "name": "instanceId", "default": "i-123" } ],
+  "files": [
+    { "path": "aws/ec2-start-stop.mjs", "template": "import { EC2Client, StartInstancesCommand, StopInstancesCommand } from '@aws-sdk/client-ec2';\nconst client = new EC2Client({ region: process.env.AWS_REGION || 'us-east-1' });\nif (process.argv[2] === 'start') console.log(await client.send(new StartInstancesCommand({ InstanceIds: [process.env.INSTANCE_ID || '{{instanceId}}'] })));\nelse console.log(await client.send(new StopInstancesCommand({ InstanceIds: [process.env.INSTANCE_ID || '{{instanceId}}'] })));\n" }
+  ]
+}
+

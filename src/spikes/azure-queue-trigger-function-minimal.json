@@ -1,0 +1,13 @@
+{
+  "id": "azure-queue-trigger-function-minimal",
+  "name": "Azure Queue Trigger Function 最小",
+  "version": "1.0.0",
+  "stack": ["azure", "functions"],
+  "tags": ["serverless"],
+  "description": "Queue Trigger の function.json",
+  "params": [ ],
+  "files": [
+    { "path": "azure/function.json", "template": "{ \n  \"bindings\": [ { \n    \"name\": \"msg\", \n    \"type\": \"queueTrigger\", \n    \"direction\": \"in\", \n    \"queueName\": \"jobs\" \n  } ] \n}\n" }
+  ]
+}
+

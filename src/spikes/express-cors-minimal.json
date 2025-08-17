@@ -1,0 +1,13 @@
+{
+  "id": "express-cors-minimal",
+  "name": "Express CORS 最小",
+  "version": "1.0.0",
+  "stack": ["express", "cors"],
+  "tags": ["api", "security"],
+  "description": "cors ミドルウェアの最小設定",
+  "params": [ { "name": "app_name", "default": "express-app" } ],
+  "files": [
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst cors = require('cors');\nconst app = express();\napp.use(cors());\napp.get('/hello', (_req,res)=>res.json({ ok: true }));\napp.listen(3000);\n" }
+  ]
+}
+

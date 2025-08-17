@@ -1,0 +1,13 @@
+{
+  "id": "changesets-config-minimal",
+  "name": "Changesets 設定 最小",
+  "version": "1.0.0",
+  "stack": ["changesets"],
+  "tags": ["release"],
+  "description": ".changeset/config.json の最小",
+  "params": [ ],
+  "files": [
+    { "path": ".changeset/config.json", "template": "{ \"changelog\": [\"@changesets/changelog-github\", {\"repo\": \"org/repo\"}], \"commit\": false, \"access\": \"public\" }\n" }
+  ]
+}
+

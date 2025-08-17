@@ -1,0 +1,13 @@
+{
+  "id": "axios-interceptor-retry-minimal",
+  "name": "Axios インターセプタ リトライ 最小",
+  "version": "1.0.0",
+  "stack": ["axios", "node"],
+  "tags": ["http"],
+  "description": "Axios で簡易リトライインターセプタ",
+  "params": [ ],
+  "files": [
+    { "path": "http/axios-retry.js", "template": "const axios = require('axios');\nconst client = axios.create();\nclient.interceptors.response.use(undefined, async (err)=>{ err.config.__r=(err.config.__r||0)+1; if(err.config.__r<3) return client(err.config); throw err; });\nclient.get('https://example.com').then(r=>console.log(r.status));\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "helm-chart-minimal",
+  "name": "Helm Chart 最小",
+  "version": "1.0.0",
+  "stack": ["helm", "kubernetes"],
+  "tags": ["k8s", "packaging"],
+  "description": "Chart.yaml と Deployment テンプレートの最小構成",
+  "params": [ { "name": "chart", "default": "my-chart" } ],
+  "files": [
+    { "path": "charts/{{chart}}/Chart.yaml", "template": "apiVersion: v2\nname: {{chart}}\nversion: 0.1.0\n" },
+    { "path": "charts/{{chart}}/templates/deployment.yaml", "template": "apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: {{`{{ .Chart.Name }}`}}\nspec:\n  replicas: 1\n  selector:\n    matchLabels:\n      app: {{`{{ .Chart.Name }}`}}\n  template:\n    metadata:\n      labels:\n        app: {{`{{ .Chart.Name }}`}}\n    spec:\n      containers:\n        - name: app\n          image: nginx:alpine\n          ports:\n            - containerPort: 80\n" }
+  ]
+}
+

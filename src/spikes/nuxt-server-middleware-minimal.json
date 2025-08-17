@@ -1,0 +1,13 @@
+{
+  "id": "nuxt-server-middleware-minimal",
+  "name": "Nuxt サーバミドルウェア 最小",
+  "version": "1.0.0",
+  "stack": ["nuxt"],
+  "tags": ["middleware"],
+  "description": "Nuxt server middleware を追加",
+  "params": [ ],
+  "files": [
+    { "path": "nuxt/server/middleware/hello.ts", "template": "export default defineEventHandler((event)=>{ event.node.res.setHeader('x-hello','1'); });\n" }
+  ]
+}
+

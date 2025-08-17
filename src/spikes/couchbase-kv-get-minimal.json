@@ -1,0 +1,13 @@
+{
+  "id": "couchbase-kv-get-minimal",
+  "name": "Couchbase KV GET 最小",
+  "version": "1.0.0",
+  "stack": ["couchbase", "node"],
+  "tags": ["db"],
+  "description": "couchbase Node SDK で KV get",
+  "params": [ ],
+  "files": [
+    { "path": "couchbase/get.mjs", "template": "import couchbase from 'couchbase';\nconst cluster = await couchbase.connect('couchbase://localhost', { username: 'Administrator', password: 'password' });\nconst bucket = cluster.bucket('default');\nconst coll = bucket.defaultCollection();\ntry { console.log(await coll.get('doc')); } catch(e){ console.log('not found'); }\nawait cluster.close();\n" }
+  ]
+}
+

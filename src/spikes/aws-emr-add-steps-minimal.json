@@ -1,0 +1,13 @@
+{
+  "id": "aws-emr-add-steps-minimal",
+  "name": "AWS EMR AddSteps 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "emr"],
+  "tags": ["bigdata"],
+  "description": "EMR クラスタにステップ追加",
+  "params": [ { "name": "clusterId", "default": "j-XXXX" } ],
+  "files": [
+    { "path": "aws/emr-steps.mjs", "template": "import { EMRClient, AddJobFlowStepsCommand } from '@aws-sdk/client-emr';\nconst c = new EMRClient({});\nawait c.send(new AddJobFlowStepsCommand({ JobFlowId: process.env.CLUSTER || '{{clusterId}}', Steps: [{ Name: 'List', ActionOnFailure: 'CONTINUE', HadoopJarStep: { Jar: 'command-runner.jar', Args: ['bash','-lc','ls'] } }] }));\nconsole.log('added');\n" }
+  ]
+}
+

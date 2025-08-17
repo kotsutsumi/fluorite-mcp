@@ -1,0 +1,13 @@
+{
+  "id": "koa-bodyparser-minimal",
+  "name": "Koa bodyparser 最小",
+  "version": "1.0.0",
+  "stack": ["koa", "node"],
+  "tags": ["api"],
+  "description": "koa-bodyparser を使った JSON 受信",
+  "params": [ ],
+  "files": [
+    { "path": "koa/server.js", "template": "const Koa = require('koa');\nconst body = require('koa-bodyparser');\nconst app = new Koa();\napp.use(body());\napp.use(ctx=>{ ctx.body = ctx.request.body || {}; });\napp.listen(3000);\n" }
+  ]
+}
+

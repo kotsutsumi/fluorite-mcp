@@ -1,0 +1,13 @@
+{
+  "id": "stripe-checkout-session-minimal",
+  "name": "Stripe Checkout セッション 最小",
+  "version": "1.0.0",
+  "stack": ["stripe", "node"],
+  "tags": ["payment"],
+  "description": "checkout.sessions.create の最小例",
+  "params": [ { "name": "priceId", "default": "price_123" } ],
+  "files": [
+    { "path": "stripe/checkout.mjs", "template": "import Stripe from 'stripe';\nconst stripe = new Stripe(process.env.STRIPE_API_KEY);\nconst session = await stripe.checkout.sessions.create({ mode: 'payment', line_items: [{ price: process.env.PRICE_ID || '{{priceId}}', quantity: 1 }], success_url: 'https://example.com/s', cancel_url: 'https://example.com/c' });\nconsole.log(session.id);\n" }
+  ]
+}
+

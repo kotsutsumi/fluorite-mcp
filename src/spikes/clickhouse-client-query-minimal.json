@@ -1,0 +1,13 @@
+{
+  "id": "clickhouse-client-query-minimal",
+  "name": "ClickHouse クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["clickhouse", "node"],
+  "tags": ["db"],
+  "description": "@clickhouse/client での単純クエリ",
+  "params": [ ],
+  "files": [
+    { "path": "clickhouse/query.mjs", "template": "import { createClient } from '@clickhouse/client';\nconst client = createClient({ host: process.env.CLICKHOUSE_URL || 'http://localhost:8123' });\nconsole.log(await client.query({ query: 'select 1 as x' }).then(r => r.json()));\n" }
+  ]
+}
+

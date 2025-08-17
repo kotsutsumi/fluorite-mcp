@@ -1,0 +1,13 @@
+{
+  "id": "aws-dynamodb-partiql-minimal",
+  "name": "AWS DynamoDB PartiQL 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "dynamodb"],
+  "tags": ["db"],
+  "description": "@aws-sdk/client-dynamodb の ExecuteStatement を使った PartiQL",
+  "params": [ { "name": "table", "default": "items" } ],
+  "files": [
+    { "path": "dynamo/partiql.mjs", "template": "import { DynamoDBClient, ExecuteStatementCommand } from '@aws-sdk/client-dynamodb';\nconst client = new DynamoDBClient({});\nawait client.send(new ExecuteStatementCommand({ Statement: `INSERT INTO {{table}} value {'id':'1','name':'Alice'}` }));\nconst r = await client.send(new ExecuteStatementCommand({ Statement: `SELECT * FROM {{table}}` }));\nconsole.log(r.Items);\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "node-child-process-spawn-minimal",
+  "name": "Node child_process.spawn 最小",
+  "version": "1.0.0",
+  "stack": ["node"],
+  "tags": ["os"],
+  "description": "spawn を使った外部コマンド実行",
+  "params": [ ],
+  "files": [
+    { "path": "os/spawn.js", "template": "const { spawn } = require('node:child_process');\nconst p = spawn('echo', ['hello']);\np.stdout.pipe(process.stdout);\n" }
+  ]
+}
+

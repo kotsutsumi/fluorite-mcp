@@ -1,0 +1,13 @@
+{
+  "id": "feathersjs-service-minimal",
+  "name": "FeathersJS サービス 最小",
+  "version": "1.0.0",
+  "stack": ["feathers", "node"],
+  "tags": ["api"],
+  "description": "Feathers サービス登録スニペット",
+  "params": [ ],
+  "files": [
+    { "path": "feathers/app.js", "template": "const feathers = require('@feathersjs/feathers');\nconst express = require('@feathersjs/express');\nconst app = express(feathers());\napp.use('/messages', { async find(){ return [{ text: 'hello' }]; } });\napp.listen(3030);\n" }
+  ]
+}
+

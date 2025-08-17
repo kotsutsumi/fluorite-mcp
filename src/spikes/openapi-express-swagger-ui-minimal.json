@@ -1,0 +1,14 @@
+{
+  "id": "openapi-express-swagger-ui-minimal",
+  "name": "Express + Swagger UI 最小",
+  "version": "1.0.0",
+  "stack": ["express", "openapi"],
+  "tags": ["api", "docs"],
+  "description": "swagger-ui-express で OpenAPI JSON を配信する最小例",
+  "params": [ { "name": "app_name", "default": "express-app" } ],
+  "files": [
+    { "path": "{{app_name}}/openapi.json", "template": "{ \n  \"openapi\": \"3.0.0\", \n  \"info\": { \"title\": \"API\", \"version\": \"1.0.0\" },\n  \"paths\": { \"/hello\": { \"get\": { \"responses\": { \"200\": { \"description\": \"ok\" } } } } }\n}\n" },
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst swaggerUi = require('swagger-ui-express');\nconst spec = require('./openapi.json');\nconst app = express();\napp.use('/docs', swaggerUi.serve, swaggerUi.setup(spec));\napp.get('/hello', (_req, res) => res.json({ message: 'hello' }));\napp.listen(3000);\n" }
+  ]
+}
+

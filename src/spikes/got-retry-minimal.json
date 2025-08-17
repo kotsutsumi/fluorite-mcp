@@ -1,0 +1,13 @@
+{
+  "id": "got-retry-minimal",
+  "name": "got リトライ 最小",
+  "version": "1.0.0",
+  "stack": ["got", "node"],
+  "tags": ["http"],
+  "description": "got のリトライ設定",
+  "params": [ ],
+  "files": [
+    { "path": "http/got.mjs", "template": "import got from 'got';\nconsole.log(await got('https://example.com', { retry: { limit: 2 } }).text());\n" }
+  ]
+}
+

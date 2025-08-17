@@ -1,0 +1,13 @@
+{
+  "id": "vue3-composable-minimal",
+  "name": "Vue 3 Composable 最小",
+  "version": "1.0.0",
+  "stack": ["vue", "typescript"],
+  "tags": ["web"],
+  "description": "Vue 3 の composable 最小例",
+  "params": [ ],
+  "files": [
+    { "path": "vue/useCounter.ts", "template": "import { ref } from 'vue';\nexport function useCounter(){ const n = ref(0); const inc = () => n.value++; return { n, inc }; }\n" }
+  ]
+}
+

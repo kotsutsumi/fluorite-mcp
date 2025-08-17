@@ -1,0 +1,13 @@
+{
+  "id": "azure-event-grid-subscribe-minimal",
+  "name": "Azure Event Grid Subscribe 最小",
+  "version": "1.0.0",
+  "stack": ["azure", "event-grid"],
+  "tags": ["events"],
+  "description": "Event Grid サブスクリプション作成コマンド",
+  "params": [ ],
+  "files": [
+    { "path": "azure/eg.txt", "template": "az eventgrid event-subscription create --name sub --source-resource-id /subscriptions/... --endpoint https://example.com\n" }
+  ]
+}
+

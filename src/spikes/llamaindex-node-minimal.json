@@ -1,0 +1,13 @@
+{
+  "id": "llamaindex-node-minimal",
+  "name": "LlamaIndex Node 最小",
+  "version": "1.0.0",
+  "stack": ["llamaindex", "node"],
+  "tags": ["ai"],
+  "description": "llamaindex でシンプルな問い合わせ",
+  "params": [ ],
+  "files": [
+    { "path": "ai/llamaindex.mjs", "template": "import { VectorStoreIndex, SimpleDocument } from 'llamaindex';\nconst doc = new SimpleDocument({ text: 'hello world' });\nconst index = await VectorStoreIndex.fromDocuments([doc]);\nconsole.log(await (await index.asQueryEngine()).query('hello?'));\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "vitest-setup-minimal",
+  "name": "Vitest セットアップ 最小",
+  "version": "1.0.0",
+  "stack": ["vitest", "typescript"],
+  "tags": ["test"],
+  "description": "vitest.config.ts とセットアップファイルの最小例",
+  "params": [ ],
+  "files": [
+    { "path": "vitest.config.ts", "template": "import { defineConfig } from 'vitest/config';\nexport default defineConfig({ test: { setupFiles: ['./vitest.setup.ts'] } });\n" },
+    { "path": "vitest.setup.ts", "template": "// setup hooks here\n" }
+  ]
+}
+

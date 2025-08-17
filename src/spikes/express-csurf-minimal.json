@@ -1,0 +1,13 @@
+{
+  "id": "express-csurf-minimal",
+  "name": "Express csurf 最小",
+  "version": "1.0.0",
+  "stack": ["express", "csurf"],
+  "tags": ["security"],
+  "description": "csurf による CSRF トークン検証",
+  "params": [ { "name": "app_name", "default": "express-app" } ],
+  "files": [
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst csurf = require('csurf');\nconst cookieParser = require('cookie-parser');\nconst app = express();\napp.use(cookieParser());\napp.use(csurf({ cookie: true }));\napp.get('/form', (req,res)=> res.send(`<form method=\\"POST\\"><input type=\\"hidden\\" name=\\"_csrf\\" value=\\"${req.csrfToken()}\\"/><button>Send</button></form>`));\napp.post('/form', (_req,res)=> res.send('ok'));\napp.listen(3000);\n" }
+  ]
+}
+

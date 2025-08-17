@@ -1,0 +1,13 @@
+{
+  "id": "node-fetch-retry-minimal",
+  "name": "node-fetch リトライ 最小",
+  "version": "1.0.0",
+  "stack": ["node", "fetch"],
+  "tags": ["http"],
+  "description": "fetch をラップした単純なリトライ",
+  "params": [ ],
+  "files": [
+    { "path": "http/retry.js", "template": "async function get(url, n=3){ for(let i=0;i<n;i++){ const r=await fetch(url); if(r.ok) return r; } throw new Error('failed'); }\nget('https://example.com').then(r=>r.text()).then(console.log);\n" }
+  ]
+}
+

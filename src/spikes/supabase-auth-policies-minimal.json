@@ -1,0 +1,13 @@
+{
+  "id": "supabase-auth-policies-minimal",
+  "name": "Supabase Auth ポリシー 最小",
+  "version": "1.0.0",
+  "stack": ["supabase", "postgres"],
+  "tags": ["security"],
+  "description": "認証ユーザ向け RLS ポリシー SQL",
+  "params": [ { "name": "table", "default": "profiles" } ],
+  "files": [
+    { "path": "supabase/auth.sql", "template": "alter table {{table}} enable row level security;\ncreate policy \"own\" on {{table}} for select using (auth.uid() = id);\n" }
+  ]
+}
+

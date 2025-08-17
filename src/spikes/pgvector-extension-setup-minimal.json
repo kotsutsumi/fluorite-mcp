@@ -1,0 +1,13 @@
+{
+  "id": "pgvector-extension-setup-minimal",
+  "name": "pgvector 拡張セットアップ 最小",
+  "version": "1.0.0",
+  "stack": ["postgres", "pgvector"],
+  "tags": ["vector"],
+  "description": "pgvector 拡張有効化とテーブル作成 SQL",
+  "params": [ { "name": "table", "default": "embeddings" } ],
+  "files": [
+    { "path": "postgres/pgvector.sql", "template": "create extension if not exists vector;\ncreate table if not exists {{table}}(id serial primary key, v vector(3));\ninsert into {{table}}(v) values ('[0.1,0.2,0.3]');\n" }
+  ]
+}
+

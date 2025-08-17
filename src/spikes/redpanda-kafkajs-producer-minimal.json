@@ -1,0 +1,13 @@
+{
+  "id": "redpanda-kafkajs-producer-minimal",
+  "name": "Redpanda + KafkaJS Producer 最小",
+  "version": "1.0.0",
+  "stack": ["redpanda", "kafkajs"],
+  "tags": ["messaging"],
+  "description": "Redpanda でも動作する KafkaJS 送信",
+  "params": [ { "name": "topic", "default": "events" } ],
+  "files": [
+    { "path": "redpanda/producer.js", "template": "const { Kafka } = require('kafkajs');\nconst kafka = new Kafka({ clientId: 'app', brokers: (process.env.BROKERS||'localhost:9092').split(',') });\n(async()=>{ const p = kafka.producer(); await p.connect(); await p.send({ topic: process.env.TOPIC || '{{topic}}', messages:[{ value: 'hello' }] }); await p.disconnect(); })();\n" }
+  ]
+}
+

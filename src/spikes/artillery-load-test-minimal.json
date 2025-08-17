@@ -1,0 +1,13 @@
+{
+  "id": "artillery-load-test-minimal",
+  "name": "Artillery 負荷試験 最小",
+  "version": "1.0.0",
+  "stack": ["artillery", "yaml"],
+  "tags": ["load-test"],
+  "description": "Artillery の最小シナリオ",
+  "params": [ ],
+  "files": [
+    { "path": "load/artillery.yml", "template": "config: { target: 'https://example.com' }\nscenarios: [{ flow: [{ get: { url: '/' } }] }]\n" }
+  ]
+}
+

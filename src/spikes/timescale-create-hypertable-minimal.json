@@ -1,0 +1,13 @@
+{
+  "id": "timescale-create-hypertable-minimal",
+  "name": "TimescaleDB ハイパーテーブル作成 最小",
+  "version": "1.0.0",
+  "stack": ["timescale", "postgres"],
+  "tags": ["db"],
+  "description": "TimescaleDB 拡張の有効化とハイパーテーブル作成 SQL",
+  "params": [ { "name": "table", "default": "metrics" }, { "name": "time", "default": "time" } ],
+  "files": [
+    { "path": "timescale/setup.sql", "template": "create extension if not exists timescaledb;\ncreate table if not exists {{table}}({{time}} timestamptz not null, value double precision);\nselect create_hypertable('{{table}}','{{time}}', if_not_exists => true);\n" }
+  ]
+}
+

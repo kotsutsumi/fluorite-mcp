@@ -1,0 +1,13 @@
+{
+  "id": "arangojs-query-minimal",
+  "name": "ArangoJS クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["arango", "node"],
+  "tags": ["db"],
+  "description": "arangojs を使った AQL クエリ",
+  "params": [ ],
+  "files": [
+    { "path": "arango/query.mjs", "template": "import { Database, aql } from 'arangojs';\nconst db = new Database({ url: process.env.ARANGO_URL || 'http://127.0.0.1:8529' });\ndb.useDatabase('_system');\nconsole.log(await db.query(aql`RETURN 1`).then(c=>c.next()));\n" }
+  ]
+}
+

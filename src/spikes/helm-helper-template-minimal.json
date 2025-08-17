@@ -1,0 +1,13 @@
+{
+  "id": "helm-helper-template-minimal",
+  "name": "Helm _helpers.tpl 最小",
+  "version": "1.0.0",
+  "stack": ["helm"],
+  "tags": ["k8s"],
+  "description": "_helpers.tpl の雛形",
+  "params": [ ],
+  "files": [
+    { "path": "charts/app/templates/_helpers.tpl", "template": "{{ define \"app.fullname\" }}{{ .Chart.Name }}{{ end }}\n" }
+  ]
+}
+

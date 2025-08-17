@@ -1,0 +1,13 @@
+{
+  "id": "openai-chat-completions-minimal",
+  "name": "OpenAI Chat Completions 最小",
+  "version": "1.0.0",
+  "stack": ["openai", "node"],
+  "tags": ["ai"],
+  "description": "OpenAI Chat Completions API の最小例",
+  "params": [ { "name": "model", "default": "gpt-4o-mini" } ],
+  "files": [
+    { "path": "ai/openai-chat.mjs", "template": "const r = await fetch('https://api.openai.com/v1/chat/completions', { method: 'POST', headers: { 'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ model: '{{model}}', messages: [{ role: 'user', content: 'Say hello' }] }) });\nconsole.log(await r.json());\n" }
+  ]
+}
+

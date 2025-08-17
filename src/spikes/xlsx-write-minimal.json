@@ -1,0 +1,13 @@
+{
+  "id": "xlsx-write-minimal",
+  "name": "xlsx 書き込み 最小",
+  "version": "1.0.0",
+  "stack": ["xlsx", "node"],
+  "tags": ["data"],
+  "description": "xlsx パッケージで Excel 書き出し",
+  "params": [ ],
+  "files": [
+    { "path": "data/xlsx.js", "template": "const XLSX = require('xlsx');\nconst wb = XLSX.utils.book_new();\nconst ws = XLSX.utils.aoa_to_sheet([['name'], ['Alice']]);\nXLSX.utils.book_append_sheet(wb, ws, 'Sheet1');\nXLSX.writeFile(wb, 'out.xlsx');\n" }
+  ]
+}
+

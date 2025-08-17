@@ -1,0 +1,13 @@
+{
+  "id": "pulsar-client-producer-minimal",
+  "name": "Apache Pulsar Producer 最小",
+  "version": "1.0.0",
+  "stack": ["pulsar", "node"],
+  "tags": ["messaging"],
+  "description": "pulsar-client でメッセージ送信",
+  "params": [ { "name": "topic", "default": "persistent://public/default/events" } ],
+  "files": [
+    { "path": "pulsar/producer.js", "template": "const Pulsar = require('pulsar-client');\n(async () => {\n  const client = new Pulsar.Client({ serviceUrl: process.env.PULSAR_URL || 'pulsar://localhost:6650' });\n  const producer = await client.createProducer({ topic: process.env.PULSAR_TOPIC || '{{topic}}' });\n  await producer.send({ data: Buffer.from('hello') });\n  await producer.close();\n  await client.close();\n})();\n" }
+  ]
+}
+

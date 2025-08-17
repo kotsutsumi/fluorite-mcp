@@ -1,0 +1,13 @@
+{
+  "id": "bun-file-server-minimal",
+  "name": "Bun ファイルサーバ 最小",
+  "version": "1.0.0",
+  "stack": ["bun"],
+  "tags": ["web"],
+  "description": "Bun.serve を使った静的ファイルサーブ",
+  "params": [ ],
+  "files": [
+    { "path": "bun/server.ts", "template": "Bun.serve({ fetch(req) { return new Response('hello'); } });\n" }
+  ]
+}
+

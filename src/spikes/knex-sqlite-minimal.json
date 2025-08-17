@@ -1,0 +1,13 @@
+{
+  "id": "knex-sqlite-minimal",
+  "name": "Knex SQLite 最小",
+  "version": "1.0.0",
+  "stack": ["knex", "sqlite"],
+  "tags": ["db"],
+  "description": "Knex + SQLite のクエリ",
+  "params": [ ],
+  "files": [
+    { "path": "knex/sqlite.js", "template": "const knex = require('knex')({ client: 'sqlite3', connection: { filename: ':memory:' }, useNullAsDefault: true });\n(async()=>{ await knex.raw('select 1'); await knex.destroy(); })();\n" }
+  ]
+}
+

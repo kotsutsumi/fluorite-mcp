@@ -1,0 +1,13 @@
+{
+  "id": "express-session-cookie-minimal",
+  "name": "Express session cookie 最小",
+  "version": "1.0.0",
+  "stack": ["express", "express-session"],
+  "tags": ["session"],
+  "description": "express-session による Cookie セッション",
+  "params": [ { "name": "app_name", "default": "express-app" } ],
+  "files": [
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst session = require('express-session');\nconst app = express();\napp.use(session({ secret: 'secret', resave: false, saveUninitialized: true }));\napp.get('/', (req,res)=>{ req.session.views=(req.session.views||0)+1; res.json({ views: req.session.views }); });\napp.listen(3000);\n" }
+  ]
+}
+

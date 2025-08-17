@@ -1,0 +1,13 @@
+{
+  "id": "azure-cosmosdb-query-minimal",
+  "name": "Azure Cosmos DB クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["azure", "cosmosdb", "node"],
+  "tags": ["db"],
+  "description": "@azure/cosmos での items.query 最小例",
+  "params": [ { "name": "db", "default": "app" }, { "name": "container", "default": "items" } ],
+  "files": [
+    { "path": "azure/cosmos.mjs", "template": "import { CosmosClient } from '@azure/cosmos';\nconst c = new CosmosClient(process.env.COSMOS_CONN_STRING);\nconst container = c.database(process.env.COSMOS_DB || '{{db}}').container(process.env.COSMOS_CONTAINER || '{{container}}');\nconst { resources } = await container.items.query('select * from c').fetchAll();\nconsole.log(resources.length);\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "tiltfile-kubernetes-minimal",
+  "name": "Tiltfile Kubernetes 最小",
+  "version": "1.0.0",
+  "stack": ["tilt"],
+  "tags": ["dev"],
+  "description": "Tiltfile の最小",
+  "params": [ ],
+  "files": [
+    { "path": "Tiltfile", "template": "k8s_yaml('k8s/deployment.yaml')\n" }
+  ]
+}
+

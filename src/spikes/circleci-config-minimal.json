@@ -1,0 +1,13 @@
+{
+  "id": "circleci-config-minimal",
+  "name": "CircleCI config 最小",
+  "version": "1.0.0",
+  "stack": ["circleci", "yaml"],
+  "tags": ["ci"],
+  "description": ".circleci/config.yml の最小例",
+  "params": [ ],
+  "files": [
+    { "path": ".circleci/config.yml", "template": "version: 2.1\njobs:\n  build:\n    docker: [{ image: cimg/node:18.20 }]\n    steps: [ { checkout: {} }, { run: 'node -v' } ]\nworkflows:\n  build: { jobs: [build] }\n" }
+  ]
+}
+

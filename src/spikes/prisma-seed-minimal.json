@@ -1,0 +1,13 @@
+{
+  "id": "prisma-seed-minimal",
+  "name": "Prisma Seed 最小",
+  "version": "1.0.0",
+  "stack": ["prisma", "node"],
+  "tags": ["orm"],
+  "description": "Prisma の seed スクリプト最小例",
+  "params": [ ],
+  "files": [
+    { "path": "prisma/seed.ts", "template": "import { PrismaClient } from '@prisma/client';\nconst prisma = new PrismaClient();\nawait prisma.user.create({ data: { email: 'a@example.com' } });\nawait prisma.$disconnect();\n" }
+  ]
+}
+

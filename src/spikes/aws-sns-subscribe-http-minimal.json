@@ -1,0 +1,13 @@
+{
+  "id": "aws-sns-subscribe-http-minimal",
+  "name": "AWS SNS HTTP 購読 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "sns"],
+  "tags": ["events"],
+  "description": "SNS HTTP サブスクリプション作成",
+  "params": [ { "name": "topicArn", "default": "arn:aws:sns:us-east-1:123:topic" } ],
+  "files": [
+    { "path": "aws/sns-subscribe.mjs", "template": "import { SNSClient, SubscribeCommand } from '@aws-sdk/client-sns';\nconst c = new SNSClient({});\nawait c.send(new SubscribeCommand({ TopicArn: process.env.TOPIC_ARN || '{{topicArn}}', Protocol: 'https', Endpoint: 'https://example.com/sns' }));\nconsole.log('ok');\n" }
+  ]
+}
+

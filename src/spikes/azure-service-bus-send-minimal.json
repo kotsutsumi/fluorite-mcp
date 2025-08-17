@@ -1,0 +1,13 @@
+{
+  "id": "azure-service-bus-send-minimal",
+  "name": "Azure Service Bus 送信 最小",
+  "version": "1.0.0",
+  "stack": ["azure", "service-bus", "node"],
+  "tags": ["queue"],
+  "description": "@azure/service-bus でメッセージ送信",
+  "params": [ { "name": "queue", "default": "jobs" } ],
+  "files": [
+    { "path": "azure/servicebus.mjs", "template": "import { ServiceBusClient } from '@azure/service-bus';\nconst sb = new ServiceBusClient(process.env.SB_CONNECTION_STRING);\nconst sender = sb.createSender(process.env.SB_QUEUE || '{{queue}}');\nawait sender.sendMessages({ body: 'hello' });\nawait sender.close();\nawait sb.close();\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "jest-config-ts-minimal",
+  "name": "Jest 設定 TS 最小",
+  "version": "1.0.0",
+  "stack": ["jest", "typescript"],
+  "tags": ["test"],
+  "description": "jest.config.ts の最小例",
+  "params": [ ],
+  "files": [
+    { "path": "jest.config.ts", "template": "import type { Config } from 'jest';\nconst config: Config = { testEnvironment: 'node', transform: { '^.+\\\\.(t|j)sx?$': ['ts-jest', { tsconfig: 'tsconfig.json' }] } };\nexport default config;\n" }
+  ]
+}
+

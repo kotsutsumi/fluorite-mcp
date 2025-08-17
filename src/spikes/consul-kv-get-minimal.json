@@ -1,0 +1,13 @@
+{
+  "id": "consul-kv-get-minimal",
+  "name": "Consul KV GET 最小",
+  "version": "1.0.0",
+  "stack": ["consul", "node"],
+  "tags": ["config"],
+  "description": "consul で KV 値取得",
+  "params": [ ],
+  "files": [
+    { "path": "consul/get.mjs", "template": "import Consul from 'consul';\nconst c = new Consul();\nconsole.log(await c.kv.get('config'));\n" }
+  ]
+}
+

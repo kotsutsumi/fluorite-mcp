@@ -1,0 +1,13 @@
+{
+  "id": "vue-router-minimal",
+  "name": "Vue Router 最小",
+  "version": "1.0.0",
+  "stack": ["vue-router", "typescript"],
+  "tags": ["web"],
+  "description": "Vue Router の最小設定",
+  "params": [ ],
+  "files": [
+    { "path": "vue/router.ts", "template": "import { createRouter, createWebHistory } from 'vue-router';\nexport const router = createRouter({ history: createWebHistory(), routes: [{ path: '/', component: { template: '<div>home</div>' } }] });\n" }
+  ]
+}
+

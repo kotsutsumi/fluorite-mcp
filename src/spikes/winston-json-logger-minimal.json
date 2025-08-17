@@ -1,0 +1,13 @@
+{
+  "id": "winston-json-logger-minimal",
+  "name": "Winston JSON ロガー 最小",
+  "version": "1.0.0",
+  "stack": ["winston", "node"],
+  "tags": ["logging"],
+  "description": "Winston で JSON 形式ロギング",
+  "params": [ ],
+  "files": [
+    { "path": "log/winston.js", "template": "const { createLogger, transports, format } = require('winston');\nconst logger = createLogger({ level: 'info', format: format.json(), transports: [new transports.Console()] });\nlogger.info({ msg: 'hello' });\n" }
+  ]
+}
+

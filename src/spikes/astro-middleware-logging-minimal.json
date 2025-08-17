@@ -1,0 +1,13 @@
+{
+  "id": "astro-middleware-logging-minimal",
+  "name": "Astro Middleware ログ 最小",
+  "version": "1.0.0",
+  "stack": ["astro"],
+  "tags": ["middleware"],
+  "description": "Astro middleware でリクエストログ",
+  "params": [ ],
+  "files": [
+    { "path": "astro/src/middleware.ts", "template": "import type { MiddlewareHandler } from 'astro';\nexport const onRequest: MiddlewareHandler = async (ctx, next) => { console.log(ctx.request.method, ctx.url); return next(); };\n" }
+  ]
+}
+

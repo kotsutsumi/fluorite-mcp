@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-route-handler-cache-minimal",
+  "name": "Next.js Route Handler キャッシュ 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["web"],
+  "description": "revalidate とキャッシュヘッダの最小",
+  "params": [ { "name": "app_name", "default": "next-app" } ],
+  "files": [
+    { "path": "{{app_name}}/app/api/cache/route.ts", "template": "export const revalidate = 60;\nexport async function GET(){ return new Response('ok', { headers: { 'Cache-Control': 's-maxage=60' } }); }\n" }
+  ]
+}
+

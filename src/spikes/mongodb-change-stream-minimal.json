@@ -1,0 +1,13 @@
+{
+  "id": "mongodb-change-stream-minimal",
+  "name": "MongoDB ChangeStream 最小",
+  "version": "1.0.0",
+  "stack": ["mongodb", "node"],
+  "tags": ["db"],
+  "description": "changeStream の購読",
+  "params": [ ],
+  "files": [
+    { "path": "mongodb/changes.js", "template": "const { MongoClient } = require('mongodb');\n(async()=>{ const c = new MongoClient(process.env.MONGODB_URI); await c.connect();\nconst cs = c.db().collection('items').watch(); cs.on('change', console.log); })();\n" }
+  ]
+}
+

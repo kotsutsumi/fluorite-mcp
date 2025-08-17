@@ -1,0 +1,13 @@
+{
+  "id": "opensearch-bulk-index-minimal",
+  "name": "OpenSearch Bulk Index 最小",
+  "version": "1.0.0",
+  "stack": ["opensearch", "node"],
+  "tags": ["search"],
+  "description": "opensearch bulk API で投入",
+  "params": [ { "name": "index", "default": "docs" } ],
+  "files": [
+    { "path": "opensearch/bulk.js", "template": "const { Client } = require('@opensearch-project/opensearch');\nconst client = new Client({ node: process.env.OS_URL || 'http://localhost:9200' });\n(async()=>{ const ops=[{ index: { _index: process.env.OS_INDEX || '{{index}}' } }, { id: 1, title: 'Hello' }]; console.log(await client.bulk({ refresh: true, body: ops })); })();\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "paypal-checkout-node-minimal",
+  "name": "PayPal Checkout Node 最小",
+  "version": "1.0.0",
+  "stack": ["paypal", "node"],
+  "tags": ["payment"],
+  "description": "@paypal/checkout-server-sdk で注文作成",
+  "params": [ ],
+  "files": [
+    { "path": "payments/paypal.js", "template": "const paypal = require('@paypal/checkout-server-sdk');\nconst env = new paypal.core.SandboxEnvironment(process.env.PAYPAL_ID, process.env.PAYPAL_SECRET);\nconst client = new paypal.core.PayPalHttpClient(env);\nconst req = new paypal.orders.OrdersCreateRequest();\nreq.requestBody({ intent: 'CAPTURE', purchase_units: [{ amount: { currency_code: 'USD', value: '10.00' } }] });\nclient.execute(req).then(r=>console.log(r.result.id));\n" }
+  ]
+}
+

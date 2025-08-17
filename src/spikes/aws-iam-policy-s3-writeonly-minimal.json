@@ -1,0 +1,13 @@
+{
+  "id": "aws-iam-policy-s3-writeonly-minimal",
+  "name": "AWS IAM Policy S3 書込専用 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "iam"],
+  "tags": ["security"],
+  "description": "S3 バケットへの書込み権限のみを許可する最小ポリシー",
+  "params": [ { "name": "bucket", "default": "my-bucket" } ],
+  "files": [
+    { "path": "aws/policy-s3-write.json", "template": "{ \n  \"Version\": \"2012-10-17\",\n  \"Statement\": [ { \n    \"Effect\": \"Allow\", \n    \"Action\": [\"s3:PutObject\"], \n    \"Resource\": [\"arn:aws:s3:::{{bucket}}/*\"] \n  } ]\n}\n" }
+  ]
+}
+

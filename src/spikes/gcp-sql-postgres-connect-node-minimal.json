@@ -1,0 +1,13 @@
+{
+  "id": "gcp-sql-postgres-connect-node-minimal",
+  "name": "GCP Cloud SQL Postgres 接続 Node 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "cloud-sql", "postgres"],
+  "tags": ["db"],
+  "description": "pg + Cloud SQL への接続例",
+  "params": [ ],
+  "files": [
+    { "path": "gcp/cloudsql-pg.js", "template": "const { Client } = require('pg');\n(async()=>{ const c = new Client({ connectionString: process.env.DATABASE_URL }); await c.connect(); console.log((await c.query('select 1')).rows); await c.end(); })();\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "rethinkdb-query-minimal",
+  "name": "RethinkDB クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["rethinkdb", "node"],
+  "tags": ["db"],
+  "description": "rethinkdbdash を用いたクエリ",
+  "params": [ ],
+  "files": [
+    { "path": "rethink/index.js", "template": "const r = require('rethinkdbdash')();\n(async()=>{ console.log(await r.expr(1).run()); process.exit(0); })();\n" }
+  ]
+}
+

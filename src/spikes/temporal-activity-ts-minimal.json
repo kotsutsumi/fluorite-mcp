@@ -1,0 +1,13 @@
+{
+  "id": "temporal-activity-ts-minimal",
+  "name": "Temporal Activity TS 最小",
+  "version": "1.0.0",
+  "stack": ["temporal", "typescript"],
+  "tags": ["workflow"],
+  "description": "Temporal Activity の最小定義",
+  "params": [ ],
+  "files": [
+    { "path": "temporal/activities.ts", "template": "export async function add(a: number, b: number){ return a + b; }\n" }
+  ]
+}
+

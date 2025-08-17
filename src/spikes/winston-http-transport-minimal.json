@@ -1,0 +1,13 @@
+{
+  "id": "winston-http-transport-minimal",
+  "name": "Winston HTTP Transport 最小",
+  "version": "1.0.0",
+  "stack": ["winston", "node"],
+  "tags": ["logging"],
+  "description": "HTTP Transport を使ったログ送信",
+  "params": [ ],
+  "files": [
+    { "path": "log/winston-http.js", "template": "const { createLogger, transports, format } = require('winston');\nconst logger = createLogger({ transports: [ new transports.Http({ host: 'localhost', port: 3000, path: '/' }) ], format: format.json() });\nlogger.info({ msg: 'hello' });\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "supabase-storage-upload-minimal",
+  "name": "Supabase Storage アップロード 最小",
+  "version": "1.0.0",
+  "stack": ["supabase", "storage"],
+  "tags": ["storage"],
+  "description": "@supabase/supabase-js でストレージにアップロード",
+  "params": [ { "name": "bucket", "default": "public" } ],
+  "files": [
+    { "path": "supabase/upload.mjs", "template": "import { createClient } from '@supabase/supabase-js';\nconst s = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);\nawait s.storage.from(process.env.SUPABASE_BUCKET || '{{bucket}}').upload('hello.txt', new Blob(['hello']));\nconsole.log('ok');\n" }
+  ]
+}
+

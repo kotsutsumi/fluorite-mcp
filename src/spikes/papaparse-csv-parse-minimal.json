@@ -1,0 +1,13 @@
+{
+  "id": "papaparse-csv-parse-minimal",
+  "name": "PapaParse CSV parse 最小",
+  "version": "1.0.0",
+  "stack": ["papaparse", "node"],
+  "tags": ["data"],
+  "description": "PapaParse で CSV をパース",
+  "params": [ ],
+  "files": [
+    { "path": "data/papaparse.js", "template": "const Papa = require('papaparse');\nconsole.log(Papa.parse('a,b\n1,2').data);\n" }
+  ]
+}
+

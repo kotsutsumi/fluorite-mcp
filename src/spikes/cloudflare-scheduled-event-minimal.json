@@ -1,0 +1,13 @@
+{
+  "id": "cloudflare-scheduled-event-minimal",
+  "name": "Cloudflare Scheduled Event 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare", "workers"],
+  "tags": ["edge"],
+  "description": "scheduled ハンドラ",
+  "params": [ ],
+  "files": [
+    { "path": "cf/schedule.ts", "template": "export default {\n  async scheduled(_event: ScheduledEvent) {\n    console.log('tick');\n  },\n  async fetch(){ return new Response('ok'); }\n};\n" }
+  ]
+}
+

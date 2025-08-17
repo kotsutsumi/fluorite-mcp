@@ -1,0 +1,13 @@
+{
+  "id": "prometheus-custom-registry-minimal",
+  "name": "Prometheus カスタムレジストリ 最小",
+  "version": "1.0.0",
+  "stack": ["prometheus", "node"],
+  "tags": ["observability"],
+  "description": "prom-client の Registry を使う",
+  "params": [ ],
+  "files": [
+    { "path": "metrics/registry.js", "template": "const client = require('prom-client');\nconst reg = new client.Registry();\nconst c = new client.Counter({ name: 'hits_total', help: 'hits', registers: [reg] });\nc.inc();\nreg.metrics().then(console.log);\n" }
+  ]
+}
+

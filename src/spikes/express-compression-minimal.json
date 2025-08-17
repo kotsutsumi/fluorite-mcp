@@ -1,0 +1,13 @@
+{
+  "id": "express-compression-minimal",
+  "name": "Express compression 最小",
+  "version": "1.0.0",
+  "stack": ["express", "compression"],
+  "tags": ["middleware"],
+  "description": "compression ミドルウェアで gzip 配信",
+  "params": [ { "name": "app_name", "default": "express-app" } ],
+  "files": [
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst compression = require('compression');\nconst app = express();\napp.use(compression());\napp.get('/', (_req,res)=>res.send('ok'));\napp.listen(3000);\n" }
+  ]
+}
+

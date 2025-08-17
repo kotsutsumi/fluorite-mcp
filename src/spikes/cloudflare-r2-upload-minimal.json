@@ -1,0 +1,13 @@
+{
+  "id": "cloudflare-r2-upload-minimal",
+  "name": "Cloudflare R2 アップロード 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare", "r2"],
+  "tags": ["storage"],
+  "description": "R2 バケットに put で保存",
+  "params": [ { "name": "bucket", "default": "MY_BUCKET" } ],
+  "files": [
+    { "path": "cf/r2.ts", "template": "export default {\n  async fetch(_req: Request, env: any) {\n    await env.{{bucket}}.put('hello.txt', 'hello');\n    return new Response('ok');\n  }\n};\n" }
+  ]
+}
+

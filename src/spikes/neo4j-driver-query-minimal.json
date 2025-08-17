@@ -1,0 +1,13 @@
+{
+  "id": "neo4j-driver-query-minimal",
+  "name": "Neo4j Driver クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["neo4j", "node"],
+  "tags": ["db"],
+  "description": "neo4j-driver を用いた最小クエリ",
+  "params": [ ],
+  "files": [
+    { "path": "neo4j/query.mjs", "template": "import neo4j from 'neo4j-driver';\nconst driver = neo4j.driver(process.env.NEO4J_URL||'bolt://localhost:7687', neo4j.auth.basic('neo4j','pass'));\nconst s = driver.session();\nconsole.log(await s.run('RETURN 1 AS n'));\nawait s.close();\nawait driver.close();\n" }
+  ]
+}
+

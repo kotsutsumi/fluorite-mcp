@@ -1,0 +1,13 @@
+{
+  "id": "tauri-command-minimal",
+  "name": "Tauri コマンド 最小",
+  "version": "1.0.0",
+  "stack": ["tauri", "rust"],
+  "tags": ["desktop"],
+  "description": "Tauri commands の雛形 (概念)",
+  "params": [ ],
+  "files": [
+    { "path": "tauri/command.rs", "template": "#[tauri::command]\nfn greet(name: &str) -> String { format!(\"Hello, {}!\", name) }\n" }
+  ]
+}
+

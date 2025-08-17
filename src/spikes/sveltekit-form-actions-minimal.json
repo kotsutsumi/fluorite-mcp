@@ -1,0 +1,13 @@
+{
+  "id": "sveltekit-form-actions-minimal",
+  "name": "SvelteKit Form Actions 最小",
+  "version": "1.0.0",
+  "stack": ["sveltekit"],
+  "tags": ["web"],
+  "description": "SvelteKit の +page.server.ts で actions",
+  "params": [ ],
+  "files": [
+    { "path": "sveltekit/src/routes/+page.server.ts", "template": "export const actions = { default: async ({ request }) => { const f = await request.formData(); return { name: f.get('name') }; } };\n" }
+  ]
+}
+

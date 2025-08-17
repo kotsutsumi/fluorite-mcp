@@ -1,0 +1,13 @@
+{
+  "id": "pino-http-express-minimal",
+  "name": "pino-http + Express 最小",
+  "version": "1.0.0",
+  "stack": ["pino-http", "express"],
+  "tags": ["logging"],
+  "description": "pino-http ミドルウェア",
+  "params": [ { "name": "app_name", "default": "express-app" } ],
+  "files": [
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst pino = require('pino-http')();\nconst app = express();\napp.use(pino);\napp.get('/', (_req,res)=>res.send('ok'));\napp.listen(3000);\n" }
+  ]
+}
+

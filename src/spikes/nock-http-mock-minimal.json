@@ -1,0 +1,13 @@
+{
+  "id": "nock-http-mock-minimal",
+  "name": "Nock HTTP モック 最小",
+  "version": "1.0.0",
+  "stack": ["nock", "node"],
+  "tags": ["test"],
+  "description": "nock で HTTP 応答をモック",
+  "params": [ ],
+  "files": [
+    { "path": "test/nock.js", "template": "const nock = require('nock');\nnock('https://example.com').get('/hello').reply(200, { ok: true });\nrequire('node-fetch')('https://example.com/hello').then(r=>r.json()).then(console.log);\n" }
+  ]
+}
+

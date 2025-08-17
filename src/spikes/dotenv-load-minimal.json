@@ -1,0 +1,13 @@
+{
+  "id": "dotenv-load-minimal",
+  "name": "dotenv 読み込み 最小",
+  "version": "1.0.0",
+  "stack": ["dotenv", "node"],
+  "tags": ["config"],
+  "description": "dotenv を使った .env ロード最小例",
+  "params": [ ],
+  "files": [
+    { "path": "config/index.js", "template": "require('dotenv').config();\nconsole.log(process.env.NODE_ENV || 'development');\n" }
+  ]
+}
+

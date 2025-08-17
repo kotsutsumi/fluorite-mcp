@@ -1,0 +1,13 @@
+{
+  "id": "astro-endpoint-zod-validate-minimal",
+  "name": "Astro エンドポイント Zod 検証 最小",
+  "version": "1.0.0",
+  "stack": ["astro", "zod"],
+  "tags": ["api"],
+  "description": "Astro API エンドポイントで Zod 検証",
+  "params": [ ],
+  "files": [
+    { "path": "astro/src/pages/api/hello.ts", "template": "import type { APIRoute } from 'astro';\nimport { z } from 'zod';\nconst schema = z.object({ name: z.string() });\nexport const post: APIRoute = async ({ request }) => { const body = await request.json(); const r = schema.safeParse(body); if(!r.success) return new Response('bad', { status: 400 }); return Response.json({ ok: true, name: r.data.name }); };\n" }
+  ]
+}
+

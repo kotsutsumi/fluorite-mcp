@@ -1,0 +1,13 @@
+{
+  "id": "msw-node-mock-server-minimal",
+  "name": "MSW Node モックサーバ 最小",
+  "version": "1.0.0",
+  "stack": ["msw", "node"],
+  "tags": ["test"],
+  "description": "@mswjs/node で API モック",
+  "params": [ ],
+  "files": [
+    { "path": "msw/server.ts", "template": "import { setupServer } from 'msw/node';\nimport { rest } from 'msw';\nconst server = setupServer(rest.get('https://api.example.com/hello', (_req, res, ctx)=> res(ctx.json({ ok: true }))));\nserver.listen();\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "launchdarkly-node-minimal",
+  "name": "LaunchDarkly Node SDK 最小",
+  "version": "1.0.0",
+  "stack": ["launchdarkly", "node"],
+  "tags": ["feature-flag"],
+  "description": "launchdarkly-node-server-sdk の最小使用例",
+  "params": [ { "name": "flagKey", "default": "new-ui" } ],
+  "files": [
+    { "path": "flags/check.mjs", "template": "import LaunchDarkly from 'launchdarkly-node-server-sdk';\nconst client = LaunchDarkly.init(process.env.LD_SDK_KEY || 'sdk-key');\nawait client.waitForInitialization();\nconst v = await client.variation(process.env.LD_FLAG || '{{flagKey}}', { key: 'user' }, false);\nconsole.log(v);\nawait client.flush();\nawait client.close();\n" }
+  ]
+}
+

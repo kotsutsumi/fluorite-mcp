@@ -1,0 +1,13 @@
+{
+  "id": "github-actions-composite-action-minimal",
+  "name": "GitHub Actions Composite Action 最小",
+  "version": "1.0.0",
+  "stack": ["github-actions", "yaml"],
+  "tags": ["ci"],
+  "description": "Composite Action の最小 action.yml",
+  "params": [ { "name": "name", "default": "my-action" } ],
+  "files": [
+    { "path": ".github/actions/{{name}}/action.yml", "template": "name: {{name}}\ndescription: minimal composite action\nruns:\n  using: composite\n  steps:\n    - run: echo hello\n      shell: bash\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "kubernetes-service-manifest-minimal",
+  "name": "Kubernetes Service 最小",
+  "version": "1.0.0",
+  "stack": ["kubernetes", "yaml"],
+  "tags": ["k8s"],
+  "description": "v1 Service の最小マニフェスト",
+  "params": [ { "name": "name", "default": "web" } ],
+  "files": [
+    { "path": "k8s/service.yaml", "template": "apiVersion: v1\nkind: Service\nmetadata:\n  name: {{name}}\nspec:\n  selector:\n    app: {{name}}\n  ports:\n    - port: 80\n      targetPort: 80\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "postgres-create-function-plpgsql-minimal",
+  "name": "Postgres PL/pgSQL 関数作成 最小",
+  "version": "1.0.0",
+  "stack": ["postgres"],
+  "tags": ["db"],
+  "description": "PL/pgSQL の関数を定義する最小 SQL",
+  "params": [ ],
+  "files": [
+    { "path": "postgres/function.sql", "template": "create or replace function hello(name text) returns text language plpgsql as $$ begin return 'Hello, '||name; end; $$;\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "postmark-send-minimal",
+  "name": "Postmark メール送信 最小",
+  "version": "1.0.0",
+  "stack": ["postmark", "node"],
+  "tags": ["email"],
+  "description": "postmark でメール送信",
+  "params": [ { "name": "to", "default": "user@example.com" } ],
+  "files": [
+    { "path": "email/postmark.mjs", "template": "import postmark from 'postmark';\nconst client = new postmark.ServerClient(process.env.POSTMARK_TOKEN);\nawait client.sendEmail({ To: process.env.TO || '{{to}}', From: 'noreply@example.com', Subject: 'Hello', TextBody: 'Hello' });\n" }
+  ]
+}
+

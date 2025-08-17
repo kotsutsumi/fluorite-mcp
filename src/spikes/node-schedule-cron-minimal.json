@@ -1,0 +1,13 @@
+{
+  "id": "node-schedule-cron-minimal",
+  "name": "node-schedule Cron 最小",
+  "version": "1.0.0",
+  "stack": ["node-schedule"],
+  "tags": ["scheduler"],
+  "description": "node-schedule の cron",
+  "params": [ ],
+  "files": [
+    { "path": "jobs/schedule.js", "template": "const schedule = require('node-schedule');\nschedule.scheduleJob('* * * * *', ()=> console.log('tick'));\n" }
+  ]
+}
+

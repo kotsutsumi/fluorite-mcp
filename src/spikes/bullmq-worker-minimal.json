@@ -1,0 +1,13 @@
+{
+  "id": "bullmq-worker-minimal",
+  "name": "BullMQ ワーカー 最小",
+  "version": "1.0.0",
+  "stack": ["bullmq", "redis", "node"],
+  "tags": ["queue"],
+  "description": "BullMQ でのジョブ処理最小例",
+  "params": [ { "name": "queue", "default": "jobs" } ],
+  "files": [
+    { "path": "queue/worker.js", "template": "const { Worker, Queue } = require('bullmq');\nconst connection = { url: process.env.REDIS_URL || 'redis://localhost:6379' };\nnew Worker(process.env.QUEUE || '{{queue}}', async job => ({ ok: true, id: job.id }), { connection });\nnew Queue(process.env.QUEUE || '{{queue}}', { connection }).add('hello', { a: 1 });\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "meilisearch-instantsearch-react-minimal",
+  "name": "Meilisearch + InstantSearch React 最小",
+  "version": "1.0.0",
+  "stack": ["meilisearch", "react"],
+  "tags": ["search", "ui"],
+  "description": "InstantSearch での検索 UI 最小スニペット",
+  "params": [ ],
+  "files": [
+    { "path": "meili/Search.tsx", "template": "import { InstantSearch, SearchBox, Hits } from 'react-instantsearch';\nimport algoliasearch from 'algoliasearch/lite';\nconst searchClient = algoliasearch('app', 'key');\nexport default function Search(){ return (<InstantSearch searchClient={searchClient} indexName='books'><SearchBox /><Hits /></InstantSearch>); }\n" }
+  ]
+}
+

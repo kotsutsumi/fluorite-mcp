@@ -1,0 +1,13 @@
+{
+  "id": "pulsar-consumer-minimal",
+  "name": "Apache Pulsar Consumer 最小",
+  "version": "1.0.0",
+  "stack": ["pulsar", "node"],
+  "tags": ["messaging"],
+  "description": "pulsar-client で購読",
+  "params": [ { "name": "topic", "default": "persistent://public/default/events" } ],
+  "files": [
+    { "path": "pulsar/consumer.js", "template": "const Pulsar = require('pulsar-client');\n(async()=>{ const client = new Pulsar.Client({ serviceUrl: process.env.PULSAR_URL || 'pulsar://localhost:6650' }); const consumer = await client.subscribe({ topic: process.env.PULSAR_TOPIC || '{{topic}}', subscription: 's1' }); const m = await consumer.receive(1000); if(m){ console.log(m.getData().toString()); await consumer.acknowledge(m); } await consumer.close(); await client.close(); })();\n" }
+  ]
+}
+

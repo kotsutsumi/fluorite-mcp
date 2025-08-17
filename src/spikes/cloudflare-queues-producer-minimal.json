@@ -1,0 +1,13 @@
+{
+  "id": "cloudflare-queues-producer-minimal",
+  "name": "Cloudflare Queues Producer 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare", "queues"],
+  "tags": ["edge", "queue"],
+  "description": "Workers から Queue に publish",
+  "params": [ { "name": "queue", "default": "MY_QUEUE" } ],
+  "files": [
+    { "path": "cf/queue.ts", "template": "export default {\n  async fetch(_req: Request, env: any) {\n    await env.{{queue}}.send({ hello: 'world' });\n    return new Response('ok');\n  }\n};\n" }
+  ]
+}
+

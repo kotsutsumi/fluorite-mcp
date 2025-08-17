@@ -1,0 +1,13 @@
+{
+  "id": "terraform-aws-s3-bucket-minimal",
+  "name": "Terraform AWS S3 バケット 最小",
+  "version": "1.0.0",
+  "stack": ["terraform", "aws"],
+  "tags": ["iac"],
+  "description": "Terraform で S3 バケットを定義する最小例",
+  "params": [ { "name": "bucket", "default": "my-bucket" } ],
+  "files": [
+    { "path": "tf/main.tf", "template": "terraform { required_providers { aws = { source = \"hashicorp/aws\" } } }\nprovider \"aws\" { region = var.region }\nvariable \"region\" { default = \"us-east-1\" }\nresource \"aws_s3_bucket\" \"b\" { bucket = \"{{bucket}}\" }\n" }
+  ]
+}
+

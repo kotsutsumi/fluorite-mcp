@@ -1,0 +1,13 @@
+{
+  "id": "grpc-node-server-minimal",
+  "name": "gRPC Node サーバ 最小",
+  "version": "1.0.0",
+  "stack": ["grpc", "node"],
+  "tags": ["rpc"],
+  "description": "@grpc/grpc-js を使った最小サーバ (サービスロジックのみ)",
+  "params": [ { "name": "app_name", "default": "grpc-app" } ],
+  "files": [
+    { "path": "{{app_name}}/server.js", "template": "const grpc = require('@grpc/grpc-js');\nconst server = new grpc.Server();\nserver.bindAsync('0.0.0.0:50051', grpc.ServerCredentials.createInsecure(), () => server.start());\n" }
+  ]
+}
+

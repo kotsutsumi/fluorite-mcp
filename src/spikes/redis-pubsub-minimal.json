@@ -1,0 +1,14 @@
+{
+  "id": "redis-pubsub-minimal",
+  "name": "Redis Pub/Sub 最小",
+  "version": "1.0.0",
+  "stack": ["redis", "node"],
+  "tags": ["realtime"],
+  "description": "ioredis を使った publish と subscribe",
+  "params": [ { "name": "channel", "default": "news" } ],
+  "files": [
+    { "path": "redis/pub.js", "template": "const Redis = require('ioredis');\nconst r = new Redis(process.env.REDIS_URL);\nsetInterval(()=> r.publish(process.env.CHANNEL || '{{channel}}', 'hello'), 1000);\n" },
+    { "path": "redis/sub.js", "template": "const Redis = require('ioredis');\nconst r = new Redis(process.env.REDIS_URL);\nr.subscribe(process.env.CHANNEL || '{{channel}}');\nr.on('message', (_ch, msg) => console.log(msg));\n" }
+  ]
+}
+

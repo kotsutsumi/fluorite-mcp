@@ -1,0 +1,13 @@
+{
+  "id": "gcp-bigquery-load-gcs-minimal",
+  "name": "GCP BigQuery GCS ロード 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "bigquery"],
+  "tags": ["etl"],
+  "description": "@google-cloud/bigquery で GCS からロード",
+  "params": [ { "name": "dataset", "default": "ds" }, { "name": "table", "default": "items" }, { "name": "uri", "default": "gs://bucket/file.csv" } ],
+  "files": [
+    { "path": "gcp/bq-load.mjs", "template": "import { BigQuery } from '@google-cloud/bigquery';\nconst bq = new BigQuery();\nawait bq.dataset(process.env.BQ_DS||'{{dataset}}').table(process.env.BQ_TBL||'{{table}}').load(process.env.BQ_URI||'{{uri}}', { sourceFormat: 'CSV' });\nconsole.log('loaded');\n" }
+  ]
+}
+

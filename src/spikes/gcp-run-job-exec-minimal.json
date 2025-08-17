@@ -1,0 +1,13 @@
+{
+  "id": "gcp-run-job-exec-minimal",
+  "name": "GCP Cloud Run Job 実行 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "cloud-run"],
+  "tags": ["serverless"],
+  "description": "Cloud Run Jobs の実行 gcloud コマンド テンプレート",
+  "params": [ { "name": "job", "default": "hello-job" } ],
+  "files": [
+    { "path": "cloudrun/job.txt", "template": "gcloud run jobs execute {{job}} --region=us-central1\n" }
+  ]
+}
+

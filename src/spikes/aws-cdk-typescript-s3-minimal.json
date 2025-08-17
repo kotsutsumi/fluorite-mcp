@@ -1,0 +1,13 @@
+{
+  "id": "aws-cdk-typescript-s3-minimal",
+  "name": "AWS CDK TS S3 最小",
+  "version": "1.0.0",
+  "stack": ["aws-cdk", "typescript"],
+  "tags": ["iac"],
+  "description": "CDK で S3 バケット",
+  "params": [ ],
+  "files": [
+    { "path": "cdk/lib/s3-stack.ts", "template": "import { Stack } from 'aws-cdk-lib';\nimport * as s3 from 'aws-cdk-lib/aws-s3';\nimport { Construct } from 'constructs';\nexport class S3Stack extends Stack { constructor(scope: Construct, id: string){ super(scope, id); new s3.Bucket(this, 'B'); } }\n" }
+  ]
+}
+

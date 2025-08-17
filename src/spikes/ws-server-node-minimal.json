@@ -1,0 +1,13 @@
+{
+  "id": "ws-server-node-minimal",
+  "name": "ws WebSocket サーバ 最小",
+  "version": "1.0.0",
+  "stack": ["ws", "node"],
+  "tags": ["realtime"],
+  "description": "ws ライブラリを用いた最小サーバ",
+  "params": [ ],
+  "files": [
+    { "path": "ws/server.js", "template": "const { WebSocketServer } = require('ws');\nconst wss = new WebSocketServer({ port: 8080 });\nwss.on('connection', (ws) => ws.send('hello'));\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "aws-kinesis-enhanced-consumer-minimal",
+  "name": "AWS Kinesis Enhanced Consumer 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "kinesis"],
+  "tags": ["stream"],
+  "description": "Enhanced fan-out 受信 (概念)",
+  "params": [ { "name": "stream", "default": "events" } ],
+  "files": [
+    { "path": "aws/kinesis-enhanced.txt", "template": "# Use enhanced fan-out with SubscribeToShard API\n" }
+  ]
+}
+

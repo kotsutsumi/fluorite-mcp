@@ -1,0 +1,13 @@
+{
+  "id": "langchain-js-openai-minimal",
+  "name": "LangChain JS + OpenAI 最小",
+  "version": "1.0.0",
+  "stack": ["langchain", "openai", "node"],
+  "tags": ["ai"],
+  "description": "langchain と OpenAI Chat の最小呼び出し",
+  "params": [ ],
+  "files": [
+    { "path": "ai/langchain-openai.mjs", "template": "import { ChatOpenAI } from '@langchain/openai';\nconst model = new ChatOpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst res = await model.invoke('Say hello');\nconsole.log(res.content);\n" }
+  ]
+}
+

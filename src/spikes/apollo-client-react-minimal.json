@@ -1,0 +1,13 @@
+{
+  "id": "apollo-client-react-minimal",
+  "name": "Apollo Client React 最小",
+  "version": "1.0.0",
+  "stack": ["apollo-client", "react"],
+  "tags": ["graphql", "ui"],
+  "description": "ApolloProvider と useQuery の最小",
+  "params": [ ],
+  "files": [
+    { "path": "react/Apollo.tsx", "template": "import { ApolloClient, InMemoryCache, ApolloProvider, gql, useQuery } from '@apollo/client';\nconst client = new ApolloClient({ uri: '/graphql', cache: new InMemoryCache() });\nfunction Hello(){ const { data } = useQuery(gql`query{ __typename }`); return <pre>{JSON.stringify(data)}</pre>; }\nexport default function App(){ return <ApolloProvider client={client}><Hello/></ApolloProvider>; }\n" }
+  ]
+}
+

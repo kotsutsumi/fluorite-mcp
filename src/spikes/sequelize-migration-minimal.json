@@ -1,0 +1,13 @@
+{
+  "id": "sequelize-migration-minimal",
+  "name": "Sequelize マイグレーション 最小",
+  "version": "1.0.0",
+  "stack": ["sequelize", "node"],
+  "tags": ["orm", "migration"],
+  "description": "sequelize-cli のマイグレーション最小",
+  "params": [ ],
+  "files": [
+    { "path": "migrations/20230101000000-init.js", "template": "module.exports = { up: async (q)=> { await q.createTable('users', { id: { type: 'INTEGER', primaryKey: true, autoIncrement: true }, name: { type: 'TEXT' } }); }, down: async (q)=> { await q.dropTable('users'); } };\n" }
+  ]
+}
+

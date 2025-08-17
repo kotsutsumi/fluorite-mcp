@@ -1,0 +1,13 @@
+{
+  "id": "square-payments-minimal",
+  "name": "Square Payments 最小",
+  "version": "1.0.0",
+  "stack": ["square", "node"],
+  "tags": ["payment"],
+  "description": "square SDK で Payment 作成",
+  "params": [ ],
+  "files": [
+    { "path": "payments/square.mjs", "template": "import { Client, Environment } from 'square';\nconst client = new Client({ accessToken: process.env.SQUARE_TOKEN, environment: Environment.Sandbox });\nconst r = await client.paymentsApi.createPayment({ sourceId: 'cnon:card-nonce-ok', idempotencyKey: String(Date.now()), amountMoney: { amount: 100, currency: 'USD' } });\nconsole.log(r.result.payment?.id);\n" }
+  ]
+}
+

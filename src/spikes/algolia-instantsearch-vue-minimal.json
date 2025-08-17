@@ -1,0 +1,13 @@
+{
+  "id": "algolia-instantsearch-vue-minimal",
+  "name": "Algolia InstantSearch Vue 最小",
+  "version": "1.0.0",
+  "stack": ["algolia", "vue"],
+  "tags": ["search", "ui"],
+  "description": "Vue 用 InstantSearch の最小",
+  "params": [ ],
+  "files": [
+    { "path": "algolia/Search.vue", "template": "<template><ais-instant-search :search-client=\"sc\" index-name=\"books\"><ais-search-box/><ais-hits/></ais-instant-search></template>\n<script setup>\nimport algoliasearch from 'algoliasearch/lite';\nconst sc = algoliasearch('app','key');\n</script>\n" }
+  ]
+}
+

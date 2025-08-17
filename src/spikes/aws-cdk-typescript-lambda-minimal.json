@@ -1,0 +1,13 @@
+{
+  "id": "aws-cdk-typescript-lambda-minimal",
+  "name": "AWS CDK TS Lambda 最小",
+  "version": "1.0.0",
+  "stack": ["aws-cdk", "typescript"],
+  "tags": ["iac"],
+  "description": "CDK で Lambda を作成",
+  "params": [ ],
+  "files": [
+    { "path": "cdk/lib/app-stack.ts", "template": "import { Stack } from 'aws-cdk-lib';\nimport * as lambda from 'aws-cdk-lib/aws-lambda';\nimport { Construct } from 'constructs';\nexport class AppStack extends Stack { constructor(scope: Construct, id: string){ super(scope, id); new lambda.Function(this, 'Fn', { runtime: lambda.Runtime.NODEJS_18_X, code: lambda.Code.fromInline('exports.handler=async()=>\"ok\"'), handler: 'index.handler' }); } }\n" }
+  ]
+}
+

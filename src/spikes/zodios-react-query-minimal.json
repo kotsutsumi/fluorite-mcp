@@ -1,0 +1,13 @@
+{
+  "id": "zodios-react-query-minimal",
+  "name": "Zodios + React Query 最小",
+  "version": "1.0.0",
+  "stack": ["zodios", "react-query"],
+  "tags": ["api", "data"],
+  "description": "Zodios クライアントを React Query で利用",
+  "params": [ ],
+  "files": [
+    { "path": "react/ZodiosQuery.tsx", "template": "import { makeApi, Zodios } from '@zodios/core';\nimport { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';\nconst api = new Zodios('https://example.com', makeApi([]));\nconst qc = new QueryClient();\nfunction Hello(){ const q = useQuery({ queryKey: ['x'], queryFn: ()=> api.get('/') }); return <div>{String(q.isSuccess)}</div>; }\nexport default function App(){ return <QueryClientProvider client={qc}><Hello/></QueryClientProvider>; }\n" }
+  ]
+}
+
