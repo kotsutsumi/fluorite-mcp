@@ -179,7 +179,7 @@ The Spike Template Engine provides 750+ production-ready templates for rapid pro
 
 #### Authentication & Security
 - **JWT Authentication**: 15+ templates for various frameworks
-- **OAuth Integration**: Google, GitHub, Twitter, Facebook
+- **OAuth Integration**: Major OAuth providers and platforms
 - **Session Management**: Cookie-based, token-based, Redis sessions
 - **2FA Implementation**: TOTP, SMS, Email verification
 

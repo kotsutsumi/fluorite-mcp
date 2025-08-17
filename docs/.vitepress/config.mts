@@ -97,6 +97,7 @@ const japaneseSidebar = {
       text: '🧪 高度な機能',
       collapsed: false,
       items: [
+        { text: '機能ドキュメント', link: '/ja/features' },
         { text: 'スパイクテンプレートガイド', link: '/ja/spike-templates' },
         { text: 'テンプレート作成', link: '/ja/template-creation' }
       ]
