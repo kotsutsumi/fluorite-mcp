@@ -1,0 +1,15 @@
+{
+  "id": "chromadb-delete-where-filter-minimal",
+  "name": "ChromaDB Delete by where Filter Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "chromadb"],
+  "tags": ["delete", "filter"],
+  "description": "Delete documents matching a where filter in ChromaDB.",
+  "params": [{ "name": "app_name", "default": "chromadb-delete-where" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { ChromaClient } from 'chromadb';\nconst client = new ChromaClient();\nconst col = await client.getOrCreateCollection({ name: 'docs' });\nawait col.add({ ids: ['1','2'], documents: ['hello','fluorite'], metadatas: [{ tag: 'a' }, { tag: 'b' }] });\nawait col.delete({ where: { tag: 'a' } });\nconst res = await col.query({ queryTexts: ['*'], nResults: 2 });\nconsole.log(res);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"chromadb\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

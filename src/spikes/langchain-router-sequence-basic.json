@@ -1,0 +1,16 @@
+{
+  "id": "langchain-router-sequence-basic",
+  "name": "LangChain Router Sequence Basic (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "langchain", "openai"],
+  "tags": ["lcel", "router"],
+  "description": "Route inputs to different prompts using a simple LCEL router pattern.",
+  "params": [{ "name": "app_name", "default": "lc-router-basic" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { ChatOpenAI } from '@langchain/openai';\nimport { RunnableSequence } from 'langchain/schema/runnable';\nconst llm = new ChatOpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst route = (q)=> q.includes('time') ? 'time' : 'general';\nconst chain = RunnableSequence.from([async (q)=>({ prompt: route(q)==='time' ? `What time is it?` : `Answer: ${q}` }), llm]);\nconst res = await chain.invoke('Say hello');\nconsole.log(res.content);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@langchain/openai\": \"latest\", \"langchain\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" }
+  ],
+  "patches": []
+}
+

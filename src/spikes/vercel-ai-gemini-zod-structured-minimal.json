@@ -1,0 +1,16 @@
+{
+  "id": "vercel-ai-gemini-zod-structured-minimal",
+  "name": "Vercel AI SDK + Gemini Zod Structured Output (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "vercel-ai", "gemini", "zod"],
+  "tags": ["llm", "json", "schema"],
+  "description": "Use generateObject with Zod schema on Gemini provider.",
+  "params": [{ "name": "app_name", "default": "vercel-ai-gemini-zod" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { createGoogleGenerativeAI } from '@ai-sdk/google';\nimport { generateObject } from 'ai';\nimport { z } from 'zod';\nconst google = createGoogleGenerativeAI({ apiKey: process.env.GOOGLE_API_KEY });\nconst schema = z.object({ greeting: z.string() });\nconst { object } = await generateObject({ model: google('models/gemini-1.5-flash-latest'), schema, prompt: 'Return a greeting JSON.' });\nconsole.log(object);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@ai-sdk/google\": \"latest\", \"ai\": \"latest\", \"zod\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "GOOGLE_API_KEY=...\n" }
+  ],
+  "patches": []
+}
+

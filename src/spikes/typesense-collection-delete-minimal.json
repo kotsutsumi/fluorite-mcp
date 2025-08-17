@@ -1,0 +1,20 @@
+{
+  "id": "typesense-collection-delete-minimal",
+  "name": "Typesense Delete Collection Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "typesense"],
+  "tags": ["delete"],
+  "description": "Delete a Typesense collection by name.",
+  "params": [
+    { "name": "app_name", "default": "typesense-delete-collection" },
+    { "name": "typesense_nodes", "default": "http://localhost:8108" },
+    { "name": "api_key", "default": "xyz" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import Typesense from 'typesense';\nconst client = new Typesense.Client({ nodes: [{ host: (process.env.TS_NODE||'{{typesense_nodes}}').replace('http://','').replace('https://','').split(':')[0], port: Number((process.env.TS_NODE||'{{typesense_nodes}}').split(':')[2]||8108), protocol: (process.env.TS_NODE||'{{typesense_nodes}}').startsWith('https')?'https':'http' }], apiKey: process.env.TS_API_KEY || '{{api_key}}', connectionTimeoutSeconds: 2 });\ntry { await client.collections('docs').delete(); console.log('Deleted docs'); } catch (e) { console.log('Delete failed', e?.message); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"typesense\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "TS_NODE={{typesense_nodes}}\nTS_API_KEY={{api_key}}\n" }
+  ],
+  "patches": []
+}
+

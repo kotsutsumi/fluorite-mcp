@@ -1,0 +1,19 @@
+{
+  "id": "deepgram-transcribe-minimal",
+  "name": "Deepgram Transcription Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "deepgram"],
+  "tags": ["audio", "transcribe"],
+  "description": "Transcribe an audio URL using Deepgram REST API.",
+  "params": [
+    { "name": "app_name", "default": "deepgram-transcribe" },
+    { "name": "audio_url", "default": "https://static.deepgram.com/examples/Bueller-Life-moves-pretty-fast.wav" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "const url = 'https://api.deepgram.com/v1/listen?model=nova-2';\nconst res = await fetch(url, { method: 'POST', headers: { 'Authorization': `Token ${process.env.DEEPGRAM_API_KEY}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ url: process.env.AUDIO_URL || '{{audio_url}}' }) });\nconst json = await res.json();\nconsole.log(json.results?.channels?.[0]?.alternatives?.[0]?.transcript);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "DEEPGRAM_API_KEY=...\nAUDIO_URL={{audio_url}}\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,20 @@
+{
+  "id": "milvus-index-ivf-pq-minimal",
+  "name": "Milvus IVF_PQ Index Create (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "milvus"],
+  "tags": ["vector", "index"],
+  "description": "Create IVF_PQ index on a Milvus collection.",
+  "params": [
+    { "name": "app_name", "default": "milvus-index-ivfpq" },
+    { "name": "milvus_address", "default": "localhost:19530" },
+    { "name": "collection_name", "default": "documents" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { MilvusClient, IndexType, MetricType } from '@zilliz/milvus2-sdk-node';\nconst client = new MilvusClient({ address: process.env.MILVUS_ADDRESS || '{{milvus_address}}' });\nconst name = process.env.MILVUS_COLLECTION || '{{collection_name}}';\nawait client.createIndex({ collection_name: name, field_name: 'embedding', index_type: IndexType.IVF_PQ, metric_type: MetricType.L2, params: { nlist: '32', m: '4' } });\nconsole.log('Created IVF_PQ index');\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@zilliz/milvus2-sdk-node\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "MILVUS_ADDRESS=localhost:19530\nMILVUS_COLLECTION={{collection_name}}\n" }
+  ],
+  "patches": []
+}
+

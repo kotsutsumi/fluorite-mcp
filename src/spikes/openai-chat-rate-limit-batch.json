@@ -1,0 +1,16 @@
+{
+  "id": "openai-chat-rate-limit-batch",
+  "name": "OpenAI Chat with Rate Limit (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "openai"],
+  "tags": ["llm", "rate-limit"],
+  "description": "Batch chat completions using Bottleneck to respect rate limits.",
+  "params": [{ "name": "app_name", "default": "openai-chat-rl" }, { "name": "openai_model", "default": "gpt-4o-mini" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import OpenAI from 'openai';\nimport Bottleneck from 'bottleneck';\nconst client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst limiter = new Bottleneck({ minTime: 200 });\nconst prompts = Array.from({ length: 5 }, (_, i) => `Say hello #${i}`);\nconst tasks = prompts.map(p => limiter.schedule(() => client.chat.completions.create({ model: '{{openai_model}}', messages: [{ role: 'user', content: p }] })));\nconst outs = await Promise.all(tasks);\nconsole.log(outs.map(o=>o.choices?.[0]?.message?.content));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"openai\": \"latest\", \"bottleneck\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,19 @@
+{
+  "id": "bedrock-titan-image-generate-minimal",
+  "name": "AWS Bedrock Titan Image Generate Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "aws", "bedrock"],
+  "tags": ["image", "generation"],
+  "description": "Generate an image with Amazon Titan Image model via Bedrock Runtime (prints bytes).",
+  "params": [
+    { "name": "app_name", "default": "bedrock-titan-image" },
+    { "name": "aws_region", "default": "us-east-1" },
+    { "name": "model_id", "default": "amazon.titan-image-generator-v1" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { BedrockRuntimeClient, InvokeModelCommand } from '@aws-sdk/client-bedrock-runtime';\nconst client = new BedrockRuntimeClient({ region: process.env.AWS_REGION || '{{aws_region}}' });\nconst body = { taskType: 'TEXT_IMAGE', textToImageParams: { text: 'A cute robot waving' }, imageGenerationConfig: { numberOfImages: 1, quality: 'standard', width: 512, height: 512, cfgScale: 8 } };\nconst cmd = new InvokeModelCommand({ modelId: process.env.BEDROCK_TITAN_IMAGE || '{{model_id}}', body: JSON.stringify(body), contentType: 'application/json', accept: 'application/json' });\nconst resp = await client.send(cmd);\nconsole.log('bytes=', (await resp.body?.transformToString?.())?.length || 0);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@aws-sdk/client-bedrock-runtime\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

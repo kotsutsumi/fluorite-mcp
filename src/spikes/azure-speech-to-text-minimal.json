@@ -1,0 +1,20 @@
+{
+  "id": "azure-speech-to-text-minimal",
+  "name": "Azure Speech to Text Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "azure", "speech"],
+  "tags": ["audio", "stt"],
+  "description": "Recognize speech from a WAV file using Azure Cognitive Services Speech SDK.",
+  "params": [
+    { "name": "app_name", "default": "azure-stt" },
+    { "name": "speech_region", "default": "eastus" },
+    { "name": "audio_file", "default": "audio.wav" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import sdk from 'microsoft-cognitiveservices-speech-sdk';\nimport fs from 'node:fs';\nconst speechConfig = sdk.SpeechConfig.fromSubscription(process.env.AZURE_SPEECH_KEY, process.env.AZURE_SPEECH_REGION || '{{speech_region}}');\nconst pushStream = sdk.AudioInputStream.createPushStream();\nfs.createReadStream(process.env.AUDIO_FILE || '{{audio_file}}').on('data', s=>pushStream.write(s)).on('end', ()=>pushStream.close());\nconst audioConfig = sdk.AudioConfig.fromStreamInput(pushStream);\nconst recognizer = new sdk.SpeechRecognizer(speechConfig, audioConfig);\nrecognizer.recognizeOnceAsync(result => { console.log(result.text); recognizer.close(); });\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"microsoft-cognitiveservices-speech-sdk\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "AZURE_SPEECH_KEY=...\nAZURE_SPEECH_REGION={{speech_region}}\nAUDIO_FILE={{audio_file}}\n" }
+  ],
+  "patches": []
+}
+

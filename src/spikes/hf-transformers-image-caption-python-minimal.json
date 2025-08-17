@@ -1,0 +1,18 @@
+{
+  "id": "hf-transformers-image-caption-python-minimal",
+  "name": "Transformers Image Captioning (Python)",
+  "version": "1.0.0",
+  "stack": ["python", "transformers"],
+  "tags": ["vision", "local"],
+  "description": "Run a tiny image captioning pipeline and print the caption.",
+  "params": [
+    { "name": "app_name", "default": "transformers-image-caption" },
+    { "name": "image_url", "default": "https://picsum.photos/200" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/main.py", "template": "from transformers import pipeline\npipe = pipeline('image-to-text', model='nlpconnect/vit-gpt2-image-captioning')\nprint(pipe('{{image_url}}')[0]['generated_text'])\n" },
+    { "path": "{{app_name}}/requirements.txt", "template": "transformers\ntorch\nrequests\n" }
+  ],
+  "patches": []
+}
+

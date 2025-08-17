@@ -1,0 +1,19 @@
+{
+  "id": "assemblyai-transcribe-minimal",
+  "name": "AssemblyAI Transcription Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "assemblyai"],
+  "tags": ["audio", "transcribe"],
+  "description": "Upload and transcribe audio with AssemblyAI (polling).",
+  "params": [
+    { "name": "app_name", "default": "assemblyai-transcribe" },
+    { "name": "audio_url", "default": "https://github.com/microsoft/cognitive-services-speech-sdk-js/raw/master/samples/browser/SampleAudio/whatstheweatherlike.wav" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "const headers = { authorization: process.env.ASSEMBLYAI_API_KEY, 'content-type': 'application/json' };\nconst res = await fetch('https://api.assemblyai.com/v2/transcript', { method: 'POST', headers, body: JSON.stringify({ audio_url: process.env.AUDIO_URL || '{{audio_url}}' }) });\nconst json = await res.json();\nlet id = json.id;\nfor (;;) {\n  await new Promise(r=>setTimeout(r, 2000));\n  const r = await fetch(`https://api.assemblyai.com/v2/transcript/${id}`, { headers });\n  const j = await r.json();\n  if (j.status === 'completed') { console.log(j.text); break; }\n  if (j.status === 'error') { console.error(j.error); break; }\n}\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "ASSEMBLYAI_API_KEY=...\nAUDIO_URL={{audio_url}}\n" }
+  ],
+  "patches": []
+}
+

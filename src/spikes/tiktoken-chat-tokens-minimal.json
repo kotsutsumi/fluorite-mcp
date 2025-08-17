@@ -1,0 +1,15 @@
+{
+  "id": "tiktoken-chat-tokens-minimal",
+  "name": "tiktoken Chat Tokens (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "tokenizer"],
+  "tags": ["tokens"],
+  "description": "Estimate tokens for a chat prompt with tiktoken.",
+  "params": [{ "name": "app_name", "default": "tiktoken-chat" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { encoding_for_model } from 'tiktoken';\nconst enc = encoding_for_model('gpt-4o');\nconst messages = [{ role: 'system', content: 'You are concise.' }, { role: 'user', content: 'Say hello' }];\nconst text = messages.map(m=>`[${m.role}] ${m.content}`).join('\n');\nconst ids = enc.encode(text);\nconsole.log('tokens=', ids.length);\nenc.free();\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"tiktoken\": \"latest\" } }\n" } 
+  ],
+  "patches": []
+}
+

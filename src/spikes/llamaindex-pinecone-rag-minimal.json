@@ -1,0 +1,16 @@
+{
+  "id": "llamaindex-pinecone-rag-minimal",
+  "name": "LlamaIndex RAG with Pinecone (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "llamaindex", "pinecone", "openai"],
+  "tags": ["rag", "llamaindex"],
+  "description": "Embed with OpenAI via LlamaIndex and store/query in Pinecone (conceptual minimal).",
+  "params": [{ "name": "app_name", "default": "llamaindex-pinecone-rag" }, { "name": "pinecone_index", "default": "docs" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { Settings } from 'llamaindex';\nimport OpenAI from 'openai';\nimport { Pinecone } from '@pinecone-database/pinecone';\nSettings.llm = undefined;\nconst openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst pc = new Pinecone({ apiKey: process.env.PINECONE_API_KEY });\nconst index = pc.Index(process.env.PINECONE_INDEX || '{{pinecone_index}}');\nconsole.log('Pinecone ready:', !!index);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"llamaindex\": \"latest\", \"openai\": \"latest\", \"@pinecone-database/pinecone\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\nPINECONE_API_KEY=...\nPINECONE_INDEX={{pinecone_index}}\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,18 @@
+{
+  "id": "langchain-mmr-retriever-minimal",
+  "name": "LangChain MMR Retriever Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "langchain", "openai"],
+  "tags": ["rag", "retriever"],
+  "description": "Use Max Marginal Relevance retrieval with a simple memory vector store.",
+  "params": [
+    { "name": "app_name", "default": "lc-mmr-retriever" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { OpenAIEmbeddings } from '@langchain/openai';\nimport { MemoryVectorStore } from 'langchain/vectorstores/memory';\nconst docs = [{ pageContent: 'hello world' }, { pageContent: 'fluorite mcp spike' }, { pageContent: 'world of vectors' }];\nconst embeddings = new OpenAIEmbeddings({ apiKey: process.env.OPENAI_API_KEY });\nconst store = await MemoryVectorStore.fromDocuments(docs, embeddings);\nconst retriever = store.asRetriever(2, { searchType: 'mmr' });\nconst results = await retriever.getRelevantDocuments('fluorite world');\nconsole.log(results.map(r => r.pageContent));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@langchain/openai\": \"latest\", \"langchain\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" }
+  ],
+  "patches": []
+}
+

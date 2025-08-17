@@ -1,0 +1,19 @@
+{
+  "id": "elasticsearch-delete-by-query-minimal",
+  "name": "Elasticsearch Delete By Query Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "elasticsearch"],
+  "tags": ["delete"],
+  "description": "Delete documents matching a query using deleteByQuery.",
+  "params": [
+    { "name": "app_name", "default": "es-delete-by-query" },
+    { "name": "es_node", "default": "http://localhost:9200" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { Client } from '@elastic/elasticsearch';\nconst client = new Client({ node: process.env.ES_NODE || '{{es_node}}' });\nconst index = 'docs';\ntry { await client.indices.create({ index }); } catch {}\nawait client.index({ index, document: { text: 'hello', tag: 'a' } });\nawait client.indices.refresh({ index });\nconst del = await client.deleteByQuery({ index, query: { term: { tag: 'a' } } });\nconsole.log(del.deleted || 0);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@elastic/elasticsearch\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "ES_NODE={{es_node}}\n" }
+  ],
+  "patches": []
+}
+

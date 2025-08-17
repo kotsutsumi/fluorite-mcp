@@ -1,0 +1,16 @@
+{
+  "id": "vercel-ai-groq-zod-structured-minimal",
+  "name": "Vercel AI SDK + Groq Zod Structured Output (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "vercel-ai", "groq", "zod"],
+  "tags": ["llm", "json", "schema"],
+  "description": "Use generateObject with Zod schema on Groq provider.",
+  "params": [{ "name": "app_name", "default": "vercel-ai-groq-zod" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { createGroq } from '@ai-sdk/groq';\nimport { generateObject } from 'ai';\nimport { z } from 'zod';\nconst groq = createGroq({ apiKey: process.env.GROQ_API_KEY });\nconst schema = z.object({ greeting: z.string() });\nconst { object } = await generateObject({ model: groq('llama-3.1-8b-instant'), schema, prompt: 'Return a greeting JSON.' });\nconsole.log(object);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@ai-sdk/groq\": \"latest\", \"ai\": \"latest\", \"zod\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "GROQ_API_KEY=gsk_...\n" }
+  ],
+  "patches": []
+}
+

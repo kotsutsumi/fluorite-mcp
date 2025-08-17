@@ -1,0 +1,16 @@
+{
+  "id": "anthropic-vision-url-minimal",
+  "name": "Anthropic Vision with Image URL (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "anthropic"],
+  "tags": ["vision", "llm"],
+  "description": "Describe an image from URL with Anthropic Messages API.",
+  "params": [{ "name": "app_name", "default": "anthropic-vision" }, { "name": "image_url", "default": "https://picsum.photos/200" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import Anthropic from '@anthropic-ai/sdk';\nconst client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });\nconst msg = await client.messages.create({ model: 'claude-3-opus-20240229', max_tokens: 128, messages: [{ role: 'user', content: [{ type: 'text', text: 'Describe the image.' }, { type: 'image', source: { type: 'url', url: process.env.IMAGE_URL || '{{image_url}}' } }] }] });\nconsole.log(JSON.stringify(msg, null, 2));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@anthropic-ai/sdk\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "ANTHROPIC_API_KEY=sk-ant-...\nIMAGE_URL={{image_url}}\n" }
+  ],
+  "patches": []
+}
+

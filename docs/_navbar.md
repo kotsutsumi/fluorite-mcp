@@ -1,30 +1,61 @@
 # Documentation Navigation
 
-Quick navigation links for Fluorite MCP documentation.
+Quick navigation links for Fluorite MCP documentation - now available in English and Japanese!
+
+## 🌐 Language Options
+
+- **🇺🇸 English**: [Main Documentation](./README.md)
+- **🇯🇵 日本語**: [メインドキュメント](./ja/)
 
 ## 📖 Main Documentation
 
-### Getting Started
+### 🚀 Getting Started
 - [📋 Documentation Index](./README.md) - Complete documentation overview
 - [🚀 Quick Start Guide](./getting-started.md) - 5-minute setup
-- [💿 Installation Guide](./installation.md) - Detailed installation
+- [💿 Installation Guide](./installation.md) - Detailed installation  
+- [🎯 Your First Project](./introduction.md) - Hands-on tutorial
 - [⌨️ Command Reference](./commands.md) - All commands and features
 
-### Advanced Features
-- [🧪 Spike Templates](./spike-templates.md) - Rapid prototyping guide
-- [🔍 Static Analysis](../API.md#static-analysis) - Code analysis features
-- [⚡ Performance Tips](../API.md#performance-and-limits) - Optimization guide
-
-### Developer Resources
-- [🛠️ Developer Guide](./developer.md) - Contributing and architecture
+### 🧪 Advanced Features
+- [🧪 Spike Templates](./spike-templates.md) - 750+ production-ready scaffolds
 - [📝 Template Creation](./template-creation.md) - Create custom templates
+- [🔍 Static Analysis](./STATIC_ANALYSIS.md) - Code analysis features
+- [📊 Use Cases & Examples](./use-cases-examples.md) - Real-world examples
+
+### 🛠️ Developer Resources
+- [🛠️ Developer Guide](./developer.md) - Contributing and architecture
+- [🏗️ Architecture](./architecture/) - System design documentation
 - [🔧 API Documentation](../API.md) - Complete technical reference
+- [⚡ Performance](./performance.md) - Optimization guide
 - [🤝 Contributing Guide](../CONTRIBUTING.md) - How to contribute
 
-### Help & Support
+### 🆘 Help & Support
 - [🆘 Troubleshooting](./troubleshooting.md) - Common issues and solutions
 - [💬 GitHub Discussions](https://github.com/kotsutsumi/fluorite-mcp/discussions) - Community help
 - [🐛 GitHub Issues](https://github.com/kotsutsumi/fluorite-mcp/issues) - Bug reports
+
+## 🇯🇵 日本語ドキュメント
+
+### 🚀 はじめに
+- [📋 ドキュメント概要](./ja/) - 完全なドキュメント概要
+- [🚀 クイックスタート](./ja/getting-started.md) - 5分でセットアップ
+- [💿 インストールガイド](./ja/installation.md) - 詳細なインストール手順
+- [🎯 最初のプロジェクト](./ja/introduction.md) - ハンズオンチュートリアル
+- [⌨️ コマンドリファレンス](./ja/commands.md) - 全コマンドと機能
+
+### 🧪 高度な機能
+- [🧪 スパイクテンプレート](./ja/spike-templates.md) - 750以上の本番対応スキャフォールド
+- [📝 テンプレート作成](./ja/template-creation.md) - カスタムテンプレートの作成
+- [📊 使用例とケーススタディ](./ja/use-cases-examples.md) - 実世界の例
+
+### 🛠️ 開発者リソース  
+- [🛠️ 開発者ガイド](./ja/developer.md) - 貢献とアーキテクチャ
+- [🔧 APIドキュメント](../API.md) - 完全な技術リファレンス
+
+### 🆘 ヘルプとサポート
+- [🆘 トラブルシューティング](./ja/troubleshooting.md) - 一般的な問題と解決策
+- [💬 GitHub Discussions](https://github.com/kotsutsumi/fluorite-mcp/discussions) - コミュニティヘルプ
+- [🐛 GitHub Issues](https://github.com/kotsutsumi/fluorite-mcp/issues) - バグ報告
 
 ## 🔗 Cross-References
 

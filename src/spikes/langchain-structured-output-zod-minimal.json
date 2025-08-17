@@ -1,0 +1,16 @@
+{
+  "id": "langchain-structured-output-zod-minimal",
+  "name": "LangChain Structured Output with Zod (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "langchain", "openai", "zod"],
+  "tags": ["llm", "json", "schema"],
+  "description": "Use Structured Output Parser (Zod) to enforce JSON shape in LangChain.",
+  "params": [{ "name": "app_name", "default": "lc-structured-zod" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { ChatOpenAI } from '@langchain/openai';\nimport { z } from 'zod';\nimport { StructuredOutputParser } from 'langchain/output_parsers';\nconst llm = new ChatOpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst schema = z.object({ greeting: z.string() });\nconst parser = StructuredOutputParser.fromZodSchema(schema);\nconst format = parser.getFormatInstructions();\nconst res = await llm.invoke(`Return JSON matching: ${format} for a hello greeting.`);\nconsole.log(parser.parse(res.content));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@langchain/openai\": \"latest\", \"langchain\": \"latest\", \"zod\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" }
+  ],
+  "patches": []
+}
+

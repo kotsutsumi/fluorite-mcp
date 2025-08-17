@@ -1,0 +1,16 @@
+{
+  "id": "elasticsearch-bulk-index-minimal",
+  "name": "Elasticsearch Bulk Index Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "elasticsearch"],
+  "tags": ["bulk"],
+  "description": "Bulk index a few documents and refresh the index.",
+  "params": [{ "name": "app_name", "default": "es-bulk" }, { "name": "es_node", "default": "http://localhost:9200" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { Client } from '@elastic/elasticsearch';\nconst client = new Client({ node: process.env.ES_NODE || '{{es_node}}' });\nconst index = 'docs_bulk';\ntry { await client.indices.delete({ index }); } catch {}\nawait client.indices.create({ index });\nconst operations = [ { index: { _index: index } }, { text: 'hello' }, { index: { _index: index } }, { text: 'fluorite' } ];\nawait client.bulk({ operations });\nawait client.indices.refresh({ index });\nconst res = await client.search({ index, query: { match_all: {} } });\nconsole.log(res.hits?.hits?.length || 0);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@elastic/elasticsearch\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "ES_NODE={{es_node}}\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,16 @@
+{
+  "id": "langsmith-langchain-trace-minimal",
+  "name": "LangSmith Trace LangChain Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "observability", "langsmith", "langchain", "openai"],
+  "tags": ["observability", "tracing"],
+  "description": "Enable LangSmith tracing and run a simple LangChain call.",
+  "params": [{ "name": "app_name", "default": "langsmith-trace" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "process.env.LANGSMITH_TRACING_V2 = 'true';\nprocess.env.LANGSMITH_ENDPOINT = process.env.LANGSMITH_ENDPOINT || 'https://api.smith.langchain.com';\nimport { ChatOpenAI } from '@langchain/openai';\nconst llm = new ChatOpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst res = await llm.invoke('Say hello');\nconsole.log(res.content);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@langchain/openai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "LANGSMITH_API_KEY=...\nOPENAI_API_KEY=sk-...\nLANGSMITH_ENDPOINT=https://api.smith.langchain.com\n" }
+  ],
+  "patches": []
+}
+

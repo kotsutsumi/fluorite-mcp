@@ -1,0 +1,18 @@
+{
+  "id": "vercel-ai-openai-zod-structured-minimal",
+  "name": "Vercel AI SDK + OpenAI Zod Structured Output (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "vercel-ai", "openai", "zod"],
+  "tags": ["llm", "json", "schema"],
+  "description": "Use generateObject with Zod schema to enforce structured JSON output.",
+  "params": [
+    { "name": "app_name", "default": "vercel-ai-openai-zod" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { createOpenAI } from '@ai-sdk/openai';\nimport { generateObject } from 'ai';\nimport { z } from 'zod';\nconst openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst schema = z.object({ greeting: z.string(), language: z.string().optional() });\nconst { object } = await generateObject({ model: openai('gpt-4o-mini'), schema, prompt: 'Return a greeting object with a greeting field.' });\nconsole.log(object);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@ai-sdk/openai\": \"latest\", \"ai\": \"latest\", \"zod\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" }
+  ],
+  "patches": []
+}
+

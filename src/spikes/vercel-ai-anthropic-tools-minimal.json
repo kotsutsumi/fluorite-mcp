@@ -1,0 +1,18 @@
+{
+  "id": "vercel-ai-anthropic-tools-minimal",
+  "name": "Vercel AI SDK + Anthropic Tools (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "vercel-ai", "anthropic"],
+  "tags": ["llm", "tools"],
+  "description": "Demonstrate tool calling with Vercel AI SDK using Anthropic provider.",
+  "params": [
+    { "name": "app_name", "default": "vercel-ai-anthropic-tools" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { createAnthropic } from '@ai-sdk/anthropic';\nimport { generateText } from 'ai';\nconst anthropic = createAnthropic({ apiKey: process.env.ANTHROPIC_API_KEY });\nconst tools = { get_time: { description: 'Get current time', parameters: { type: 'object', properties: {} } } };\nconst res = await generateText({ model: anthropic('claude-3-5-sonnet-20240620'), tools, prompt: 'What time is it? Use the tool.' });\nconsole.log(res.text);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@ai-sdk/anthropic\": \"latest\", \"ai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "ANTHROPIC_API_KEY=sk-ant-...\n" }
+  ],
+  "patches": []
+}
+

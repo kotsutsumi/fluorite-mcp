@@ -1,0 +1,16 @@
+{
+  "id": "openai-json-schema-nested-minimal",
+  "name": "OpenAI JSON Schema Nested Output (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "openai", "json"],
+  "tags": ["llm", "json", "schema"],
+  "description": "Use response_format=json_schema with nested objects and arrays.",
+  "params": [{ "name": "app_name", "default": "openai-json-nested" }, { "name": "openai_model", "default": "gpt-4o-mini" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import OpenAI from 'openai';\nconst client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst jsonSchema = { name: 'PersonList', schema: { type: 'object', properties: { people: { type: 'array', items: { type: 'object', properties: { name: { type: 'string' }, age: { type: 'number' } }, required: ['name'] } } }, required: ['people'] } };\nconst res = await client.chat.completions.create({ model: '{{openai_model}}', response_format: { type: 'json_schema', json_schema: jsonSchema }, messages: [{ role: 'user', content: 'Return two people named Alice(30) and Bob(25).' }] });\nconsole.log(res.choices?.[0]?.message?.content);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"openai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" }
+  ],
+  "patches": []
+}
+

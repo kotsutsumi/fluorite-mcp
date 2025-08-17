@@ -1,0 +1,15 @@
+{
+  "id": "chromadb-where-document-filter-minimal",
+  "name": "ChromaDB where_document Filter Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "chromadb"],
+  "tags": ["filter"],
+  "description": "Use where_document to filter by document text.",
+  "params": [{ "name": "app_name", "default": "chromadb-where-doc" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { ChromaClient } from 'chromadb';\nconst client = new ChromaClient();\nconst col = await client.getOrCreateCollection({ name: 'docs' });\nawait col.add({ ids: ['1','2'], documents: ['hello world', 'fluorite mcp'] });\nconst res = await col.query({ queryTexts: ['hello'], nResults: 2, where_document: { $contains: 'hello' } });\nconsole.log(res);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"chromadb\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

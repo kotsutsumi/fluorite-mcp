@@ -1,0 +1,16 @@
+{
+  "id": "weaviate-update-object-minimal",
+  "name": "Weaviate Update Object Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "weaviate"],
+  "tags": ["vector", "update"],
+  "description": "Update properties of a Weaviate object by id.",
+  "params": [{ "name": "app_name", "default": "weaviate-update" }, { "name": "weaviate_host", "default": "localhost:8080" }, { "name": "weaviate_scheme", "default": "http" }, { "name": "class_name", "default": "Document" }, { "name": "object_id", "default": "00000000-0000-0000-0000-000000000001" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import weaviate from 'weaviate-ts-client';\nconst client = weaviate.client({ scheme: process.env.WEAVIATE_SCHEME || '{{weaviate_scheme}}', host: process.env.WEAVIATE_HOST || '{{weaviate_host}}' });\nawait client.data.objectUpdater().withClassName(process.env.WEAVIATE_CLASS || '{{class_name}}').withId(process.env.WEAVIATE_ID || '{{object_id}}').withProperties({ text: 'updated' }).do();\nconsole.log('Updated');\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"weaviate-ts-client\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "WEAVIATE_SCHEME=http\nWEAVIATE_HOST=localhost:8080\nWEAVIATE_CLASS=Document\nWEAVIATE_ID={{object_id}}\n" }
+  ],
+  "patches": []
+}
+

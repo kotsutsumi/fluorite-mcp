@@ -1,0 +1,20 @@
+{
+  "id": "openai-image-edit-minimal",
+  "name": "OpenAI Image Edit Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "openai"],
+  "tags": ["image", "edit"],
+  "description": "Edit an image with a mask using OpenAI Images API (prints URL).",
+  "params": [
+    { "name": "app_name", "default": "openai-image-edit" },
+    { "name": "prompt", "default": "Add a small red dot" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import OpenAI from 'openai';\nimport fs from 'node:fs';\nconst openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\n// Requires input.png and mask.png present in the folder\nconst img = await openai.images.edits({ prompt: process.env.PROMPT || '{{prompt}}', image: fs.createReadStream('input.png'), mask: fs.createReadStream('mask.png'), size: '512x512' });\nconsole.log(img.data?.[0]?.url);\n" },
+    { "path": "{{app_name}}/README.md", "template": "# Usage\n\nPut input.png and mask.png in this folder, then run:\n\nnode index.mjs\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"openai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\nPROMPT=Add a small red dot\n" }
+  ],
+  "patches": []
+}
+

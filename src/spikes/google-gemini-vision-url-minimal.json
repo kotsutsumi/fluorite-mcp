@@ -1,0 +1,16 @@
+{
+  "id": "google-gemini-vision-url-minimal",
+  "name": "Google Gemini Vision with Image URL (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "gemini"],
+  "tags": ["vision"],
+  "description": "Describe an image from URL using @google/generative-ai vision input.",
+  "params": [{ "name": "app_name", "default": "gemini-vision" }, { "name": "image_url", "default": "https://picsum.photos/200" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { GoogleGenerativeAI } from '@google/generative-ai';\nconst genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);\nconst model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });\nconst res = await model.generateContent({ contents: [{ role: 'user', parts: [{ text: 'Describe the image' }, { inlineData: { mimeType: 'image/png', data: '' } }, { text: `URL: ${process.env.IMAGE_URL || '{{image_url}}'}` }] }] });\nconsole.log(res.response.text());\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@google/generative-ai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "GOOGLE_API_KEY=...\nIMAGE_URL={{image_url}}\n" }
+  ],
+  "patches": []
+}
+

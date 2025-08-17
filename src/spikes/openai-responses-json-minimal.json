@@ -1,0 +1,16 @@
+{
+  "id": "openai-responses-json-minimal",
+  "name": "OpenAI Responses API JSON Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "openai"],
+  "tags": ["responses", "json"],
+  "description": "Use responses.create with JSON response_format.",
+  "params": [{ "name": "app_name", "default": "openai-responses-json" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import OpenAI from 'openai';\nconst client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst res = await client.responses.create({ model: 'gpt-4o-mini', response_format: { type: 'json_object' }, input: 'Return {\\"greeting\\": \\\"hello\\\"}' });\nconsole.log(res.output_text || JSON.stringify(res));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"openai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" }
+  ],
+  "patches": []
+}
+

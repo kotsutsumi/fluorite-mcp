@@ -1,0 +1,18 @@
+{
+  "id": "chromadb-python-persistent-minimal",
+  "name": "ChromaDB Persistent (Python)",
+  "version": "1.0.0",
+  "stack": ["python", "chromadb"],
+  "tags": ["vector", "database"],
+  "description": "Use Chroma persistent client in Python with a local path.",
+  "params": [
+    { "name": "app_name", "default": "chromadb-py-persist" },
+    { "name": "persist_dir", "default": ".chroma" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/main.py", "template": "from chromadb import PersistentClient\nclient = PersistentClient(path='{{persist_dir}}')\ncol = client.get_or_create_collection('docs')\ncol.add(ids=['1'], documents=['hello world'])\nres = col.query(query_texts=['hello'], n_results=1)\nprint(res)\n" },
+    { "path": "{{app_name}}/requirements.txt", "template": "chromadb>=0.5.0\n" }
+  ],
+  "patches": []
+}
+

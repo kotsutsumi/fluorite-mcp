@@ -1,79 +1,307 @@
 // docs/.vitepress/config.mts
 import { defineConfig } from 'vitepress'
 
-export default defineConfig({
-  title: 'fluorite-mcp',
-  description: 'Library spec MCP server + docs',
-  base: '/fluorite-mcp/',
-  ignoreDeadLinks: true,
-  themeConfig: {
-    nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Getting Started', link: '/getting-started' },
-      { text: 'Spike-Driven Development', link: '/spike-templates' },
-      { text: 'Specs', link: '/specs/' },
-      { text: 'API', link: '/API' }
-    ],
-    sidebar: {
-      '/': [
-        {
-          text: 'Documentation',
-          items: [
-            { text: 'Overview', link: '/' },
-            { text: 'Introduction', link: '/introduction' },
-            { text: 'Getting Started', link: '/getting-started' },
-            { text: 'Installation', link: '/installation' },
-            { text: 'Commands', link: '/commands' },
-            { text: '/fl: Commands', link: '/fl-commands' },
-            { text: '/fl: Commands Detailed', link: '/fl-commands-detailed' },
-            { text: 'Spike-Driven Development', link: '/spike-templates' },
-            { text: 'Developer Guide', link: '/developer' },
-            { text: 'API Reference', link: '/API' }
-          ]
-        }
-      ],
-      '/specs/': [
-        { text: 'Intro', link: '/specs/' },
-        {
-          text: '包括的エコシステム',
-          collapsed: false,
-          items: [
-            { text: 'Expo/React Native', link: '/specs/expo-react-native-comprehensive' },
-            { text: 'AI/ML・LLM統合', link: '/specs/ai-ml-llm-comprehensive' },
-            { text: 'フロントエンドUI革新', link: '/specs/frontend-ui-innovation' },
-            { text: 'モダンバックエンド', link: '/specs/modern-backend-serverless' },
-            { text: '開発効率・DX', link: '/specs/development-efficiency-dx' },
-            { text: 'データ処理・分析', link: '/specs/data-processing-analytics' },
-            { text: 'クラウドネイティブ', link: '/specs/cloud-native-infrastructure' },
-            { text: 'テスティング・DB・可視化', link: '/specs/additional-modern-technologies' }
-          ]
-        },
-        {
-          text: '言語エコシステム',
-          collapsed: true,
-          items: [
-            { text: '7つの言語エコシステム', link: '/specs/langs' }
-          ]
-        },
-        {
-          text: 'UIコンポーネント',
-          collapsed: true,
-          items: [
-            { text: 'React DnD TreeView', link: '/specs/react-dnd-treeview' },
-            { text: 'UIコンポーネント品質', link: '/specs/ui-component-quality' }
-          ]
-        },
-        {
-          text: 'Spike開発',
-          collapsed: false,
-          items: [
-            { text: 'Spike開発エコシステム', link: '/specs/spike-development' }
-          ]
-        }
+const sharedNavigation = [
+  { text: 'Home', link: '/' },
+  { text: 'Getting Started', link: '/getting-started' },
+  { text: 'Spike Templates', link: '/spike-templates' },
+  { text: 'Specs', link: '/specs/' },
+  { text: 'API', link: '/API' }
+]
+
+const japaneseNavigation = [
+  { text: 'ホーム', link: '/ja/' },
+  { text: 'はじめに', link: '/ja/getting-started' },
+  { text: 'スパイクテンプレート', link: '/ja/spike-templates' },
+  { text: '仕様', link: '/specs/' },
+  { text: 'API', link: '/API' }
+]
+
+const englishSidebar = {
+  '/': [
+    {
+      text: '🚀 Getting Started',
+      collapsed: false,
+      items: [
+        { text: 'Overview', link: '/' },
+        { text: 'Quick Start (5 min)', link: '/getting-started' },
+        { text: 'Installation Guide', link: '/installation' },
+        { text: 'Your First Project', link: '/introduction' }
       ]
     },
+    {
+      text: '📖 User Guides',
+      collapsed: false,
+      items: [
+        { text: 'Command Reference', link: '/commands' },
+        { text: '/fl: Commands', link: '/fl-commands' },
+        { text: '/fl: Commands Detailed', link: '/fl-commands-detailed' },
+        { text: 'Use Cases & Examples', link: '/use-cases-examples' }
+      ]
+    },
+    {
+      text: '🧪 Advanced Features',
+      collapsed: false,
+      items: [
+        { text: 'Spike Templates Guide', link: '/spike-templates' },
+        { text: 'Template Creation', link: '/template-creation' },
+        { text: 'Static Analysis', link: '/STATIC_ANALYSIS' }
+      ]
+    },
+    {
+      text: '🛠️ Developer Resources',
+      collapsed: true,
+      items: [
+        { text: 'Developer Guide', link: '/developer' },
+        { text: 'Architecture', link: '/architecture/' },
+        { text: 'Integration Guide', link: '/integration-guide' },
+        { text: 'Performance', link: '/performance' },
+        { text: 'Function Reference', link: '/function-reference' }
+      ]
+    },
+    {
+      text: '🆘 Help & Support',
+      collapsed: true,
+      items: [
+        { text: 'Troubleshooting', link: '/troubleshooting' },
+        { text: 'API Reference', link: '/API' },
+        { text: 'GitHub Issues', link: 'https://github.com/kotsutsumi/fluorite-mcp/issues' }
+      ]
+    }
+  ]
+}
+
+const japaneseSidebar = {
+  '/ja/': [
+    {
+      text: '🚀 はじめに',
+      collapsed: false,
+      items: [
+        { text: '概要', link: '/ja/' },
+        { text: 'クイックスタート (5分)', link: '/ja/getting-started' },
+        { text: 'インストールガイド', link: '/ja/installation' },
+        { text: '最初のプロジェクト', link: '/ja/introduction' }
+      ]
+    },
+    {
+      text: '📖 ユーザーガイド',
+      collapsed: false,
+      items: [
+        { text: 'コマンドリファレンス', link: '/ja/commands' },
+        { text: '使用例とケーススタディ', link: '/ja/use-cases-examples' }
+      ]
+    },
+    {
+      text: '🧪 高度な機能',
+      collapsed: false,
+      items: [
+        { text: 'スパイクテンプレートガイド', link: '/ja/spike-templates' },
+        { text: 'テンプレート作成', link: '/ja/template-creation' },
+        { text: '静的解析', link: '/ja/static-analysis' }
+      ]
+    },
+    {
+      text: '🛠️ 開発者リソース',
+      collapsed: true,
+      items: [
+        { text: '開発者ガイド', link: '/ja/developer' },
+        { text: 'アーキテクチャ', link: '/ja/architecture' },
+        { text: '統合ガイド', link: '/ja/integration-guide' },
+        { text: 'パフォーマンス', link: '/ja/performance' }
+      ]
+    },
+    {
+      text: '🆘 ヘルプとサポート',
+      collapsed: true,
+      items: [
+        { text: 'トラブルシューティング', link: '/ja/troubleshooting' },
+        { text: 'APIリファレンス', link: '/API' },
+        { text: 'GitHub Issues', link: 'https://github.com/kotsutsumi/fluorite-mcp/issues' }
+      ]
+    }
+  ]
+}
+
+const specsSidebar = {
+  '/specs/': [
+    { 
+      text: '📋 Library Catalog', 
+      link: '/specs/',
+      items: []
+    },
+    {
+      text: '🌟 Comprehensive Ecosystems',
+      collapsed: false,
+      items: [
+        { text: 'Expo/React Native', link: '/specs/expo-react-native-comprehensive' },
+        { text: 'AI/ML・LLM Integration', link: '/specs/ai-ml-llm-comprehensive' },
+        { text: 'Frontend UI Innovation', link: '/specs/frontend-ui-innovation' },
+        { text: 'Modern Backend/Serverless', link: '/specs/modern-backend-serverless' },
+        { text: 'Development Efficiency', link: '/specs/development-efficiency-dx' },
+        { text: 'Data Processing & Analytics', link: '/specs/data-processing-analytics' },
+        { text: 'Cloud Native Infrastructure', link: '/specs/cloud-native-infrastructure' },
+        { text: 'Testing & DB & Visualization', link: '/specs/additional-modern-technologies' }
+      ]
+    },
+    {
+      text: '💻 Language Ecosystems',
+      collapsed: true,
+      items: [
+        { text: '7 Language Ecosystems', link: '/specs/langs' },
+        { text: 'Laravel/PHP', link: '/specs/laravel' },
+        { text: 'FastAPI/Python', link: '/specs/fastapi' },
+        { text: 'Rust/Tauri', link: '/specs/rust-tauri' },
+        { text: 'Ruby on Rails', link: '/specs/ruby-rails' },
+        { text: 'Shell/DevOps Tools', link: '/specs/shell-tools' }
+      ]
+    },
+    {
+      text: '🎨 Frontend & UI',
+      collapsed: true,
+      items: [
+        { text: 'React DnD TreeView', link: '/specs/react-dnd-treeview' },
+        { text: 'UI Component Quality', link: '/specs/ui-component-quality' },
+        { text: 'Vue Ecosystem', link: '/specs/vue' },
+        { text: 'Nuxt Ecosystem', link: '/specs/nuxt' },
+        { text: 'VitePress/Documentation', link: '/specs/vitepress' }
+      ]
+    },
+    {
+      text: '🚀 Development & Infrastructure',
+      collapsed: true,
+      items: [
+        { text: 'Spike Development', link: '/specs/spike-development' },
+        { text: 'Cloud Platforms', link: '/specs/cloud-platforms' },
+        { text: 'DevOps Operations', link: '/specs/devops' },
+        { text: 'WebRTC/Streaming', link: '/specs/webrtc-streaming' }
+      ]
+    },
+    {
+      text: '📱 Mobile & Native',
+      collapsed: true,
+      items: [
+        { text: 'Mobile Native (iOS/Android)', link: '/specs/mobile-native' },
+        { text: 'Expo/React Native', link: '/specs/expo-react-native' }
+      ]
+    }
+  ]
+}
+
+export default defineConfig({
+  title: 'Fluorite MCP',
+  description: 'Comprehensive Model Context Protocol server for Claude Code CLI - Library specifications, static analysis, and rapid prototyping',
+  base: '/fluorite-mcp/',
+  ignoreDeadLinks: true,
+  cleanUrls: true,
+  
+  locales: {
+    root: {
+      label: 'English',
+      lang: 'en',
+      title: 'Fluorite MCP',
+      description: 'Comprehensive Model Context Protocol server for Claude Code CLI',
+      themeConfig: {
+        nav: sharedNavigation,
+        sidebar: {
+          ...englishSidebar,
+          ...specsSidebar
+        },
+        editLink: {
+          pattern: 'https://github.com/kotsutsumi/fluorite-mcp/edit/main/docs/:path',
+          text: 'Edit this page on GitHub'
+        },
+        outline: {
+          level: [2, 3],
+          label: 'On this page'
+        }
+      }
+    },
+    ja: {
+      label: '日本語',
+      lang: 'ja',
+      title: 'Fluorite MCP',
+      description: 'Claude Code CLI用の包括的なモデルコンテキストプロトコルサーバー',
+      themeConfig: {
+        nav: japaneseNavigation,
+        sidebar: japaneseSidebar,
+        editLink: {
+          pattern: 'https://github.com/kotsutsumi/fluorite-mcp/edit/main/docs/:path',
+          text: 'GitHubでこのページを編集'
+        },
+        outline: {
+          level: [2, 3],
+          label: 'このページ内'
+        },
+        docFooter: {
+          prev: '前のページ',
+          next: '次のページ'
+        },
+        darkModeSwitchLabel: 'ダークモード',
+        sidebarMenuLabel: 'メニュー',
+        returnToTopLabel: 'トップに戻る',
+        langMenuLabel: '言語を変更',
+        externalLinkIcon: true
+      }
+    }
+  },
+
+  themeConfig: {
     socialLinks: [
       { icon: 'github', link: 'https://github.com/kotsutsumi/fluorite-mcp' }
-    ]
+    ],
+
+    search: {
+      provider: 'local',
+      options: {
+        locales: {
+          ja: {
+            translations: {
+              button: {
+                buttonText: '検索',
+                buttonAriaLabel: 'ドキュメントを検索'
+              },
+              modal: {
+                displayDetails: '詳細を表示',
+                resetButtonTitle: 'リセット',
+                backButtonTitle: '戻る',
+                noResultsText: '結果が見つかりません',
+                footer: {
+                  selectText: '選択',
+                  navigateText: 'ナビゲート',
+                  closeText: '閉じる'
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    footer: {
+      message: 'Released under the MIT License.',
+      copyright: 'Copyright © 2025 Fluorite MCP Contributors'
+    }
+  },
+
+  head: [
+    ['link', { rel: 'icon', href: '/fluorite-mcp/favicon.ico' }],
+    ['meta', { name: 'theme-color', content: '#3c82f6' }],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:locale', content: 'en' }],
+    ['meta', { property: 'og:title', content: 'Fluorite MCP | Comprehensive Model Context Protocol server' }],
+    ['meta', { property: 'og:site_name', content: 'Fluorite MCP' }],
+    ['meta', { property: 'og:image', content: 'https://kotsutsumi.github.io/fluorite-mcp/og-image.png' }],
+    ['meta', { property: 'og:url', content: 'https://kotsutsumi.github.io/fluorite-mcp/' }]
+  ],
+
+  markdown: {
+    theme: {
+      light: 'github-light',
+      dark: 'github-dark'
+    },
+    lineNumbers: true,
+    config: (md) => {
+      // Add custom markdown plugins if needed
+    }
   }
 })

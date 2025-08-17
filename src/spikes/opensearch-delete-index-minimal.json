@@ -1,0 +1,20 @@
+{
+  "id": "opensearch-delete-index-minimal",
+  "name": "OpenSearch Delete Index Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "opensearch"],
+  "tags": ["delete"],
+  "description": "Delete an OpenSearch index by name.",
+  "params": [
+    { "name": "app_name", "default": "opensearch-delete-index" },
+    { "name": "os_node", "default": "http://localhost:9200" },
+    { "name": "index_name", "default": "docs" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { Client } from '@opensearch-project/opensearch';\nconst client = new Client({ node: process.env.OS_NODE || '{{os_node}}' });\ntry { const resp = await client.indices.delete({ index: process.env.OS_INDEX || '{{index_name}}' }); console.log(resp.body); } catch (e) { console.log('Delete failed', e?.message); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@opensearch-project/opensearch\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OS_NODE={{os_node}}\nOS_INDEX={{index_name}}\n" }
+  ],
+  "patches": []
+}
+

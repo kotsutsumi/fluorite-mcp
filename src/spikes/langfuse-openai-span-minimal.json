@@ -1,0 +1,16 @@
+{
+  "id": "langfuse-openai-span-minimal",
+  "name": "Langfuse Span around OpenAI Call (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "observability", "langfuse", "openai"],
+  "tags": ["observability", "tracing"],
+  "description": "Create a Langfuse trace + span wrapping an OpenAI call.",
+  "params": [{ "name": "app_name", "default": "langfuse-openai-span" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { Langfuse } from 'langfuse';\nimport OpenAI from 'openai';\nconst lf = new Langfuse({ secretKey: process.env.LANGFUSE_SECRET_KEY, publicKey: process.env.LANGFUSE_PUBLIC_KEY, baseUrl: process.env.LANGFUSE_BASE_URL });\nconst trace = lf.trace({ name: 'demo-trace' });\nconst span = trace.span({ name: 'openai-chat' });\nconst client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst res = await client.chat.completions.create({ model: 'gpt-4o-mini', messages: [{ role: 'user', content: 'Say hello' }] });\nspan.end({ output: res.choices?.[0]?.message?.content });\nawait lf.shutdownAsync();\nconsole.log('done');\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"langfuse\": \"latest\", \"openai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "LANGFUSE_PUBLIC_KEY=\nLANGFUSE_SECRET_KEY=\nLANGFUSE_BASE_URL=https://cloud.langfuse.com\nOPENAI_API_KEY=sk-...\n" }
+  ],
+  "patches": []
+}
+

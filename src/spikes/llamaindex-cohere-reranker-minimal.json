@@ -1,0 +1,18 @@
+{
+  "id": "llamaindex-cohere-reranker-minimal",
+  "name": "LlamaIndex Cohere Reranker Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "llamaindex", "cohere"],
+  "tags": ["rerank"],
+  "description": "Use Cohere Reranker with LlamaIndex to re-rank a small list of strings.",
+  "params": [
+    { "name": "app_name", "default": "llamaindex-cohere-rerank" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { Settings } from 'llamaindex';\nimport { CohereClient } from 'cohere-ai';\nSettings.llm = undefined;\nconst cohere = new CohereClient({ token: process.env.COHERE_API_KEY });\nconst docs = ['hello world', 'fluorite mcp spike', 'vector databases'];\nconst out = await cohere.rerank({ model: 'rerank-english-v3.0', query: 'fluorite', documents: docs });\nconsole.log(out.results?.map(r => ({ idx: r.index, score: r.relevance_score })));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"llamaindex\": \"latest\", \"cohere-ai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "COHERE_API_KEY=...\n" }
+  ],
+  "patches": []
+}
+

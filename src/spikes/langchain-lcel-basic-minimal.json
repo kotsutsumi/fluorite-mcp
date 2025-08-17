@@ -1,0 +1,16 @@
+{
+  "id": "langchain-lcel-basic-minimal",
+  "name": "LangChain LCEL RunnableSequence Basic (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "langchain", "openai"],
+  "tags": ["lcel"],
+  "description": "Build a simple RunnableSequence chain using LCEL.",
+  "params": [{ "name": "app_name", "default": "lc-lcel-basic" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { ChatOpenAI } from '@langchain/openai';\nimport { RunnableSequence } from 'langchain/schema/runnable';\nconst llm = new ChatOpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst chain = RunnableSequence.from([async (i)=>({ input: i }), llm]);\nconst res = await chain.invoke('Say hello');\nconsole.log(res.content);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@langchain/openai\": \"latest\", \"langchain\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" }
+  ],
+  "patches": []
+}
+

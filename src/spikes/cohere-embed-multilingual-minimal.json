@@ -1,0 +1,16 @@
+{
+  "id": "cohere-embed-multilingual-minimal",
+  "name": "Cohere Multilingual Embeddings Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "cohere"],
+  "tags": ["embeddings"],
+  "description": "Create multilingual embeddings with Cohere embed-multilingual-v3.0.",
+  "params": [{ "name": "app_name", "default": "cohere-embed-multi" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { CohereClient } from 'cohere-ai';\nconst cohere = new CohereClient({ token: process.env.COHERE_API_KEY });\nconst out = await cohere.embed({ model: 'embed-multilingual-v3.0', input: ['hello', 'こんにちは'] });\nconsole.log(out.embeddings?.[0]?.length);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"cohere-ai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "COHERE_API_KEY=...\n" }
+  ],
+  "patches": []
+}
+
