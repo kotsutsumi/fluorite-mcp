@@ -1,0 +1,15 @@
+{
+  "id": "langchain-page-chunker-minimal",
+  "name": "LangChain Page (Fixed Size) Chunker Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "langchain"],
+  "tags": ["rag", "chunking"],
+  "description": "Split text in fixed-size pages (characters).",
+  "params": [{ "name": "app_name", "default": "lc-page-chunker" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';\nconst splitter = new RecursiveCharacterTextSplitter({ chunkSize: 100, chunkOverlap: 20 });\nconst text = 'x'.repeat(500);\nconst docs = await splitter.createDocuments([text]);\nconsole.log(docs.length);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"langchain\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

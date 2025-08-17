@@ -1,0 +1,14 @@
+{
+  "id": "milvus-compare-indexes-concept",
+  "name": "Milvus Compare Indexes Concept (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "milvus"],
+  "tags": ["index", "concept"],
+  "description": "Concept: outline commands for comparing IVF_PQ vs HNSW vs DiskANN (no execution).",
+  "params": [{ "name": "app_name", "default": "milvus-compare-indexes" }],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "# Milvus Index Comparison (Concept)\n\n- Create IVF_PQ, HNSW, DiskANN on same collection.\n- Measure recall@k and latency for a fixed query set.\n- Tune params: nlist/m for IVF_PQ, M/efConstruction for HNSW, defaults for DiskANN.\n- Record results in a table.\n" }
+  ],
+  "patches": []
+}
+

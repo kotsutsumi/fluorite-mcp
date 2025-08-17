@@ -1,0 +1,15 @@
+{
+  "id": "langchain-json-mode-guard-minimal",
+  "name": "LangChain JSON Mode Guard Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "langchain", "openai"],
+  "tags": ["llm", "json"],
+  "description": "Request JSON output and guard-parse with try/catch.",
+  "params": [{ "name": "app_name", "default": "lc-json-guard" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { ChatOpenAI } from '@langchain/openai';\nconst llm = new ChatOpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst res = await llm.invoke('Return {\\"greeting\\": \\\"hello\\\"} as JSON only.');\ntry { const obj = JSON.parse(String(res.content)); console.log(obj.greeting); } catch (e) { console.log('parse failed', e.message); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@langchain/openai\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

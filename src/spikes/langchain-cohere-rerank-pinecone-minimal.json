@@ -1,0 +1,16 @@
+{
+  "id": "langchain-cohere-rerank-pinecone-minimal",
+  "name": "LangChain + Cohere Rerank + Pinecone (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "langchain", "cohere", "pinecone", "openai"],
+  "tags": ["rag", "rerank"],
+  "description": "Retrieve via Pinecone (LangChain) and rerank with Cohere Rerank.",
+  "params": [{ "name": "app_name", "default": "lc-pinecone-rerank" }, { "name": "pinecone_index", "default": "docs" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { Pinecone } from '@pinecone-database/pinecone';\nimport { PineconeStore } from '@langchain/pinecone';\nimport { OpenAIEmbeddings, ChatOpenAI } from '@langchain/openai';\nimport { CohereClient } from 'cohere-ai';\nconst pc = new Pinecone({ apiKey: process.env.PINECONE_API_KEY });\nconst index = pc.Index(process.env.PINECONE_INDEX || '{{pinecone_index}}');\nconst embeddings = new OpenAIEmbeddings({ apiKey: process.env.OPENAI_API_KEY });\nconst store = await PineconeStore.fromTexts(['hello world', 'fluorite mcp spike'], [{ id: '1' }, { id: '2' }], embeddings, { pineconeIndex: index });\nconst query = 'fluorite';\nconst initial = await store.similaritySearch(query, 2);\nconst cohere = new CohereClient({ token: process.env.COHERE_API_KEY });\nconst reranked = await cohere.rerank({ model: 'rerank-english-v3.0', query, documents: initial.map(d => d.pageContent) });\nconst llm = new ChatOpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst answer = await llm.invoke(`Use context: ${initial.map(d=>d.pageContent).join(' | ')}`);\nconsole.log(answer.content, reranked.results?.map(r=>r.relevance_score));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@langchain/openai\": \"latest\", \"@langchain/pinecone\": \"latest\", \"@pinecone-database/pinecone\": \"latest\", \"cohere-ai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\nCOHERE_API_KEY=...\nPINECONE_API_KEY=...\nPINECONE_INDEX={{pinecone_index}}\n" }
+  ],
+  "patches": []
+}
+

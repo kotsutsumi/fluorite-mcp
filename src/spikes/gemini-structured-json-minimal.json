@@ -1,0 +1,16 @@
+{
+  "id": "gemini-structured-json-minimal",
+  "name": "Google Gemini Structured JSON Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "gemini"],
+  "tags": ["llm", "json"],
+  "description": "Prompt Gemini to emit strict JSON and parse it.",
+  "params": [{ "name": "app_name", "default": "gemini-structured-json" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { GoogleGenerativeAI } from '@google/generative-ai';\nconst genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);\nconst model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });\nconst res = await model.generateContent('Return {\\"greeting\\": \\\"hello\\\"} as JSON only.');\nconsole.log(JSON.parse(res.response.text()));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@google/generative-ai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "GOOGLE_API_KEY=...\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,16 @@
+{
+  "id": "qdrant-scroll-filter-minimal",
+  "name": "Qdrant Scroll with Filter Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "qdrant"],
+  "tags": ["vector", "scroll", "filter"],
+  "description": "Scroll points with a metadata filter applied.",
+  "params": [{ "name": "app_name", "default": "qdrant-scroll-filter" }, { "name": "qdrant_url", "default": "http://localhost:6333" }, { "name": "qdrant_collection", "default": "documents" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { QdrantClient } from '@qdrant/js-client-rest';\nconst client = new QdrantClient({ url: process.env.QDRANT_URL || '{{qdrant_url}}' });\nconst collection = process.env.QDRANT_COLLECTION || '{{qdrant_collection}}';\nawait client.upsert(collection, { points: [{ id: '1', vector: [0.1,0.2,0.3], payload: { tag: 'a' } }, { id: '2', vector: [0.2,0.1,0.25], payload: { tag: 'b' } }] });\nconst res = await client.scroll(collection, { limit: 10, with_payload: true, filter: { must: [{ key: 'tag', match: { value: 'a' } }] } });\nconsole.log(res.points?.map(p => p.payload?.tag));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@qdrant/js-client-rest\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "QDRANT_URL=http://localhost:6333\nQDRANT_COLLECTION={{qdrant_collection}}\n" }
+  ],
+  "patches": []
+}
+

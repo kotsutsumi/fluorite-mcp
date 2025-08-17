@@ -1,0 +1,16 @@
+{
+  "id": "langchain-refine-qa-minimal",
+  "name": "LangChain Refine QA Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "langchain", "openai"],
+  "tags": ["rag", "qa"],
+  "description": "Use refine chain to incrementally refine an answer across docs.",
+  "params": [{ "name": "app_name", "default": "lc-refine-qa" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { loadQAMapReduceChain, loadQARefineChain } from 'langchain/chains';\nimport { ChatOpenAI } from '@langchain/openai';\nimport { Document } from 'langchain/document';\nconst llm = new ChatOpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst chain = loadQARefineChain(llm);\nconst docs = [new Document({ pageContent: 'Fluorite MCP provides spikes.' }), new Document({ pageContent: 'It supports many providers.' })];\nconst res = await chain.call({ input_documents: docs, question: 'What is Fluorite MCP?' });\nconsole.log(res?.output_text || res?.text);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"langchain\": \"latest\", \"@langchain/openai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" }
+  ],
+  "patches": []
+}
+

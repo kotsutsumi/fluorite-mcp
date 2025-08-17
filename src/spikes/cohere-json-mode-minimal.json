@@ -1,0 +1,16 @@
+{
+  "id": "cohere-json-mode-minimal",
+  "name": "Cohere JSON-like Response Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "cohere"],
+  "tags": ["llm", "json"],
+  "description": "Ask Cohere to return JSON and parse (best-effort).",
+  "params": [{ "name": "app_name", "default": "cohere-json-mode" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { CohereClient } from 'cohere-ai';\nconst cohere = new CohereClient({ token: process.env.COHERE_API_KEY });\nconst res = await cohere.chat({ model: 'command-r', message: 'Return {\\"greeting\\": \\\"hello\\\"} as JSON only.' });\ntry { console.log(JSON.parse(res.text)); } catch (e) { console.log('parse failed', res.text); }\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"cohere-ai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "COHERE_API_KEY=...\n" }
+  ],
+  "patches": []
+}
+

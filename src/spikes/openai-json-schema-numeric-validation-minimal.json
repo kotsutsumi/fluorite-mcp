@@ -1,0 +1,16 @@
+{
+  "id": "openai-json-schema-numeric-validation-minimal",
+  "name": "OpenAI JSON Schema Numeric Validation (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "openai", "json"],
+  "tags": ["llm", "json", "schema"],
+  "description": "JSON schema with number min/max constraints.",
+  "params": [{ "name": "app_name", "default": "openai-json-numeric" }, { "name": "openai_model", "default": "gpt-4o-mini" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import OpenAI from 'openai';\nconst client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst schema = { name: 'Score', schema: { type: 'object', properties: { score: { type: 'number', minimum: 0, maximum: 1 } }, required: ['score'] } };\nconst res = await client.chat.completions.create({ model: '{{openai_model}}', response_format: { type: 'json_schema', json_schema: schema }, messages: [{ role: 'user', content: 'Return a score between 0 and 1' }] });\nconsole.log(res.choices?.[0]?.message?.content);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"openai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" } 
+  ],
+  "patches": []
+}
+

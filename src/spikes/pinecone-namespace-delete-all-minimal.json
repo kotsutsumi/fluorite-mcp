@@ -1,0 +1,16 @@
+{
+  "id": "pinecone-namespace-delete-all-minimal",
+  "name": "Pinecone Delete All in Namespace Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "pinecone"],
+  "tags": ["vector", "namespace", "delete"],
+  "description": "Delete all vectors in a specific namespace using deleteMany.",
+  "params": [{ "name": "app_name", "default": "pinecone-namespace-delete" }, { "name": "pinecone_index", "default": "docs" }, { "name": "pinecone_namespace", "default": "ns1" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { Pinecone } from '@pinecone-database/pinecone';\nconst pc = new Pinecone({ apiKey: process.env.PINECONE_API_KEY });\nconst index = pc.Index(process.env.PINECONE_INDEX || '{{pinecone_index}}');\nconst ns = process.env.PINECONE_NAMESPACE || '{{pinecone_namespace}}';\nawait index.namespace(ns).deleteMany({});\nconsole.log('Deleted all in namespace', ns);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@pinecone-database/pinecone\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "PINECONE_API_KEY=...\nPINECONE_INDEX={{pinecone_index}}\nPINECONE_NAMESPACE={{pinecone_namespace}}\n" }
+  ],
+  "patches": []
+}
+

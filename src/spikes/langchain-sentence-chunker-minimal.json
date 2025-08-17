@@ -1,0 +1,15 @@
+{
+  "id": "langchain-sentence-chunker-minimal",
+  "name": "LangChain Sentence Chunker Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "langchain"],
+  "tags": ["rag", "chunking"],
+  "description": "Split text by sentences for RAG preprocessing.",
+  "params": [{ "name": "app_name", "default": "lc-sentence-chunker" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { CharacterTextSplitter } from 'langchain/text_splitter';\nconst splitter = new CharacterTextSplitter({ separator: '.', chunkSize: 0, chunkOverlap: 0 });\nconst text = 'Hello world. Fluorite MCP. Vector search is useful.';\nconst docs = await splitter.createDocuments([text]);\nconsole.log(docs.map(d=>d.pageContent.trim()));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"langchain\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

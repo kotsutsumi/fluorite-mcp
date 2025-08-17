@@ -1,0 +1,16 @@
+{
+  "id": "pinecone-filter-range-minimal",
+  "name": "Pinecone Numeric Range Filter Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "pinecone"],
+  "tags": ["vector", "filter"],
+  "description": "Query Pinecone using a numeric range filter on metadata.",
+  "params": [{ "name": "app_name", "default": "pinecone-range-filter" }, { "name": "pinecone_index", "default": "docs" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { Pinecone } from '@pinecone-database/pinecone';\nconst pc = new Pinecone({ apiKey: process.env.PINECONE_API_KEY });\nconst index = pc.Index(process.env.PINECONE_INDEX || '{{pinecone_index}}');\nawait index.upsert([{ id: '1', values: [0.1,0.2,0.3], metadata: { score: 0.7 } }, { id: '2', values: [0.2,0.1,0.25], metadata: { score: 0.3 } }]);\nconst res = await index.query({ vector: [0.1,0.2,0.3], topK: 2, includeMetadata: true, filter: { score: { $gte: 0.5 } } });\nconsole.log(res.matches?.map(m => m.id));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@pinecone-database/pinecone\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "PINECONE_API_KEY=...\nPINECONE_INDEX={{pinecone_index}}\n" }
+  ],
+  "patches": []
+}
+

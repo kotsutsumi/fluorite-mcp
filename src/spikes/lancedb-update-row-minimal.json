@@ -1,0 +1,15 @@
+{
+  "id": "lancedb-update-row-minimal",
+  "name": "LanceDB Update Row Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "lancedb"],
+  "tags": ["update"],
+  "description": "Update a row's metadata in a LanceDB table.",
+  "params": [{ "name": "app_name", "default": "lancedb-update-row" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { connect } from '@lancedb/lancedb';\nconst db = await connect('./.lancedb');\nconst table = await db.createTable('docs', [{ id: '1', vector: [0.1,0.2,0.3], text: 'hello' }]);\nawait table.update([{ id: '1', text: 'updated' }]);\nconst res = await table.toArray();\nconsole.log(res.map(r=>r.text));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@lancedb/lancedb\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

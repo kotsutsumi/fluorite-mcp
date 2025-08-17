@@ -1,0 +1,16 @@
+{
+  "id": "openai-json-schema-array-minimal",
+  "name": "OpenAI JSON Schema Array Output (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "openai", "json"],
+  "tags": ["llm", "json", "schema"],
+  "description": "JSON schema requiring an array of strings.",
+  "params": [{ "name": "app_name", "default": "openai-json-array" }, { "name": "openai_model", "default": "gpt-4o-mini" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import OpenAI from 'openai';\nconst client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst schema = { name: 'Tags', schema: { type: 'object', properties: { tags: { type: 'array', items: { type: 'string' }, minItems: 2 } }, required: ['tags'] } };\nconst res = await client.chat.completions.create({ model: '{{openai_model}}', response_format: { type: 'json_schema', json_schema: schema }, messages: [{ role: 'user', content: 'Return two tags: \"fluorite\" and \"mcp\"' }] });\nconsole.log(res.choices?.[0]?.message?.content);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"openai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" }
+  ],
+  "patches": []
+}
+

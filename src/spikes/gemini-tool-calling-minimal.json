@@ -1,0 +1,16 @@
+{
+  "id": "gemini-tool-calling-minimal",
+  "name": "Google Gemini Tool Calling Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "gemini"],
+  "tags": ["llm", "tools"],
+  "description": "Demonstrate a simple tool definition and invocation hint with Gemini.",
+  "params": [{ "name": "app_name", "default": "gemini-tools" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { GoogleGenerativeAI } from '@google/generative-ai';\nconst genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);\nconst model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });\nconst tools = [{ name: 'get_time', description: 'Get the current time', inputSchema: { type: 'object' } }];\nconst res = await model.generateContent({ tools, contents: [{ role: 'user', parts: [{ text: 'What time is it? Use a tool if needed.' }] }] });\nconsole.log(res.response.text());\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@google/generative-ai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "GOOGLE_API_KEY=...\n" }
+  ],
+  "patches": []
+}
+

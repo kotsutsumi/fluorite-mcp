@@ -1,0 +1,15 @@
+{
+  "id": "langchain-token-chunker-minimal",
+  "name": "LangChain Token-based Chunking Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "langchain"],
+  "tags": ["rag", "chunking"],
+  "description": "Split text by tokens using a token-aware splitter.",
+  "params": [{ "name": "app_name", "default": "lc-token-chunker" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { TokenTextSplitter } from 'langchain/text_splitter';\nconst splitter = new TokenTextSplitter({ chunkSize: 50, chunkOverlap: 10 });\nconst text = 'Hello world '.repeat(200);\nconst docs = await splitter.createDocuments([text]);\nconsole.log(docs.length);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"langchain\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

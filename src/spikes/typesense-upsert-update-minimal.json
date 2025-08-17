@@ -1,0 +1,16 @@
+{
+  "id": "typesense-upsert-update-minimal",
+  "name": "Typesense Upsert/Update Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "typesense"],
+  "tags": ["update"],
+  "description": "Upsert and update a document in a Typesense collection.",
+  "params": [{ "name": "app_name", "default": "typesense-upsert-update" }, { "name": "typesense_nodes", "default": "http://localhost:8108" }, { "name": "api_key", "default": "xyz" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import Typesense from 'typesense';\nconst client = new Typesense.Client({ nodes: [{ host: (process.env.TS_NODE||'{{typesense_nodes}}').replace('http://','').replace('https://','').split(':')[0], port: Number((process.env.TS_NODE||'{{typesense_nodes}}').split(':')[2]||8108), protocol: (process.env.TS_NODE||'{{typesense_nodes}}').startsWith('https')?'https':'http' }], apiKey: process.env.TS_API_KEY || '{{api_key}}', connectionTimeoutSeconds: 2 });\ntry { await client.collections('docs').delete(); } catch {}\nawait client.collections().create({ name: 'docs', fields: [{ name: 'id', type: 'string' }, { name: 'text', type: 'string' }] });\nawait client.collections('docs').documents().upsert({ id: '1', text: 'hello' });\nawait client.collections('docs').documents().update({ id: '1', text: 'updated' });\nconst res = await client.collections('docs').documents('1').retrieve();\nconsole.log(res.text);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"typesense\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "TS_NODE={{typesense_nodes}}\nTS_API_KEY={{api_key}}\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "chromadb-update-metadata-minimal",
+  "name": "ChromaDB Update Metadata Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "chromadb"],
+  "tags": ["update"],
+  "description": "Update metadata for existing ids in Chroma collection.",
+  "params": [{ "name": "app_name", "default": "chromadb-update-meta" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { ChromaClient } from 'chromadb';\nconst client = new ChromaClient();\nconst col = await client.getOrCreateCollection({ name: 'docs' });\nawait col.add({ ids: ['1'], documents: ['hello'], metadatas: [{ tag: 'a' }] });\nawait col.update({ ids: ['1'], metadatas: [{ tag: 'updated' }] });\nconst res = await col.get({ ids: ['1'] });\nconsole.log(res?.metadatas);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"chromadb\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

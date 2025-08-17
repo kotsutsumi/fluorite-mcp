@@ -88,6 +88,8 @@ const japaneseSidebar = {
       collapsed: false,
       items: [
         { text: 'コマンドリファレンス', link: '/ja/commands' },
+        { text: '/fl: コマンド', link: '/ja/fl-commands' },
+        { text: '/fl: コマンド詳細', link: '/ja/fl-commands-detailed' },
         { text: '使用例とケーススタディ', link: '/ja/use-cases-examples' }
       ]
     },
@@ -102,12 +104,13 @@ const japaneseSidebar = {
     },
     {
       text: '🛠️ 開発者リソース',
-      collapsed: true,
+      collapsed: false,
       items: [
         { text: '開発者ガイド', link: '/ja/developer' },
         { text: 'アーキテクチャ', link: '/ja/architecture' },
         { text: '統合ガイド', link: '/ja/integration-guide' },
-        { text: 'パフォーマンス', link: '/ja/performance' }
+        { text: 'パフォーマンス', link: '/ja/performance' },
+        { text: '関数リファレンス', link: '/function-reference.ja' }
       ]
     },
     {

@@ -1,0 +1,16 @@
+{
+  "id": "langchain-contextual-compression-openai-minimal",
+  "name": "LangChain Contextual Compression + OpenAI Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "langchain", "openai"],
+  "tags": ["rag", "compression"],
+  "description": "Use ContextualCompressionRetriever with a simple LLM-based compressor.",
+  "params": [{ "name": "app_name", "default": "lc-compression-openai" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { OpenAIEmbeddings, ChatOpenAI } from '@langchain/openai';\nimport { ContextualCompressionRetriever } from 'langchain/retrievers/contextual_compression';\nimport { MemoryVectorStore } from 'langchain/vectorstores/memory';\nconst docs = [{ pageContent: 'hello world' }, { pageContent: 'fluorite mcp spike' }];\nconst embeddings = new OpenAIEmbeddings({ apiKey: process.env.OPENAI_API_KEY });\nconst base = await MemoryVectorStore.fromDocuments(docs, embeddings);\nconst llm = new ChatOpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst retriever = new ContextualCompressionRetriever({ baseCompressor: { compressDocuments: async (docs, query)=>{ const prompt = `Filter docs for query: ${query} docs: ${docs.map(d=>d.pageContent).join(' | ')}`; const out = await llm.invoke(prompt); return out.content.includes('fluorite') ? docs.filter(d=>d.pageContent.includes('fluorite')) : [docs[0]]; } }, baseRetriever: base.asRetriever(2) });\nconst res = await retriever.getRelevantDocuments('fluorite');\nconsole.log(res.map(r=>r.pageContent));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@langchain/openai\": \"latest\", \"langchain\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" }
+  ],
+  "patches": []
+}
+

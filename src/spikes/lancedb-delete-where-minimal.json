@@ -1,0 +1,15 @@
+{
+  "id": "lancedb-delete-where-minimal",
+  "name": "LanceDB Delete Where Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "lancedb"],
+  "tags": ["delete", "filter"],
+  "description": "Delete rows matching a predicate in LanceDB table.",
+  "params": [{ "name": "app_name", "default": "lancedb-delete-where" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { connect } from '@lancedb/lancedb';\nconst db = await connect('./.lancedb');\nconst table = await db.createTable('docs', [{ vector: [0.1,0.2,0.3], text: 'hello', tag: 'a' }, { vector: [0.2,0.1,0.25], text: 'fluorite', tag: 'b' }]);\nawait table.delete('tag = \"a\"');\nconst res = await table.toArray();\nconsole.log(res.map(r=>r.text));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@lancedb/lancedb\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

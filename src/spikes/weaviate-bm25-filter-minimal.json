@@ -1,0 +1,16 @@
+{
+  "id": "weaviate-bm25-filter-minimal",
+  "name": "Weaviate BM25 with Where Filter Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "weaviate"],
+  "tags": ["bm25", "filter"],
+  "description": "Run BM25 keyword search with a where filter.",
+  "params": [{ "name": "app_name", "default": "weaviate-bm25-filter" }, { "name": "weaviate_host", "default": "localhost:8080" }, { "name": "weaviate_scheme", "default": "http" }, { "name": "class_name", "default": "Document" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import weaviate from 'weaviate-ts-client';\nconst client = weaviate.client({ scheme: process.env.WEAVIATE_SCHEME || '{{weaviate_scheme}}', host: process.env.WEAVIATE_HOST || '{{weaviate_host}}' });\nconst where = { path: ['tag'], operator: 'Equal', valueString: 'a' };\nconst res = await client.graphql.get().withClassName(process.env.WEAVIATE_CLASS || '{{class_name}}').withBm25({ query: 'hello' }).withWhere(where).withLimit(2).do();\nconsole.log(JSON.stringify(res, null, 2));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"weaviate-ts-client\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "WEAVIATE_SCHEME=http\nWEAVIATE_HOST=localhost:8080\nWEAVIATE_CLASS=Document\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,16 @@
+{
+  "id": "openai-json-schema-union-minimal",
+  "name": "OpenAI JSON Schema oneOf Union (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "openai", "json"],
+  "tags": ["llm", "json", "schema"],
+  "description": "Use response_format=json_schema with a oneOf union schema.",
+  "params": [{ "name": "app_name", "default": "openai-json-union" }, { "name": "openai_model", "default": "gpt-4o-mini" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import OpenAI from 'openai';\nconst client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst schema = { name: 'Shape', schema: { oneOf: [ { type: 'object', properties: { type: { const: 'circle' }, radius: { type: 'number' } }, required: ['type','radius'] }, { type: 'object', properties: { type: { const: 'square' }, size: { type: 'number' } }, required: ['type','size'] } ] } };\nconst res = await client.chat.completions.create({ model: '{{openai_model}}', response_format: { type: 'json_schema', json_schema: schema }, messages: [{ role: 'user', content: 'Return a circle with radius 3 as JSON' }] });\nconsole.log(res.choices?.[0]?.message?.content);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"openai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" }
+  ],
+  "patches": []
+}
+

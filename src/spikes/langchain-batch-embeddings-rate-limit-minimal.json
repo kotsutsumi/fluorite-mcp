@@ -1,0 +1,16 @@
+{
+  "id": "langchain-batch-embeddings-rate-limit-minimal",
+  "name": "LangChain Batch Embeddings with Rate Limit (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "langchain", "openai"],
+  "tags": ["embeddings", "rate-limit"],
+  "description": "Batch embed with OpenAIEmbeddings using Bottleneck to limit rate.",
+  "params": [{ "name": "app_name", "default": "lc-embed-rl" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { OpenAIEmbeddings } from '@langchain/openai';\nimport Bottleneck from 'bottleneck';\nconst embeddings = new OpenAIEmbeddings({ apiKey: process.env.OPENAI_API_KEY });\nconst limiter = new Bottleneck({ minTime: 150 });\nconst texts = Array.from({ length: 10 }, (_, i) => `doc ${i}`);\nconst tasks = texts.map(t => limiter.schedule(() => embeddings.embedQuery(t)));\nconst vecs = await Promise.all(tasks);\nconsole.log(vecs[0].length, vecs.length);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@langchain/openai\": \"latest\", \"bottleneck\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" }
+  ],
+  "patches": []
+}
+

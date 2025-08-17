@@ -1,0 +1,16 @@
+{
+  "id": "opensearch-delete-by-query-minimal",
+  "name": "OpenSearch Delete By Query Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "opensearch"],
+  "tags": ["delete"],
+  "description": "Delete documents matching a query using delete_by_query.",
+  "params": [{ "name": "app_name", "default": "os-delete-by-query" }, { "name": "os_node", "default": "http://localhost:9200" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { Client } from '@opensearch-project/opensearch';\nconst client = new Client({ node: process.env.OS_NODE || '{{os_node}}' });\nconst index = 'docs';\ntry { await client.indices.create({ index }); } catch {}\nawait client.index({ index, body: { text: 'hello', tag: 'a' } });\nawait client.indices.refresh({ index });\nconst del = await client.deleteByQuery({ index, body: { query: { term: { tag: 'a' } } } });\nconsole.log(del.body?.deleted || 0);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@opensearch-project/opensearch\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OS_NODE={{os_node}}\n" }
+  ],
+  "patches": []
+}
+

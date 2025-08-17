@@ -1,0 +1,17 @@
+{
+  "id": "openai-image-variation-minimal",
+  "name": "OpenAI Image Variation Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "openai"],
+  "tags": ["image", "variation"],
+  "description": "Create a variation of an image using OpenAI Images API (prints URL).",
+  "params": [{ "name": "app_name", "default": "openai-image-variation" }],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "Put input.png in folder then run: node index.mjs\n" },
+    { "path": "{{app_name}}/index.mjs", "template": "import OpenAI from 'openai';\nimport fs from 'node:fs';\nconst openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst img = await openai.images.variations({ image: fs.createReadStream('input.png'), size: '512x512' });\nconsole.log(img.data?.[0]?.url);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"openai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" }
+  ],
+  "patches": []
+}
+

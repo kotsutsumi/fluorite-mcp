@@ -1,0 +1,16 @@
+{
+  "id": "elasticsearch-knn-filter-minimal",
+  "name": "Elasticsearch kNN with Filter Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "elasticsearch"],
+  "tags": ["vector", "knn", "filter"],
+  "description": "Run kNN search with a filter (requires ES version supporting knn filter).",
+  "params": [{ "name": "app_name", "default": "es-knn-filter" }, { "name": "es_node", "default": "http://localhost:9200" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { Client } from '@elastic/elasticsearch';\nconst client = new Client({ node: process.env.ES_NODE || '{{es_node}}' });\nconst index = 'docs_knn_filter';\ntry { await client.indices.delete({ index }); } catch {}\nawait client.indices.create({ index, mappings: { properties: { text: { type: 'text' }, tag: { type: 'keyword' }, embedding: { type: 'dense_vector', dims: 3 } } } });\nawait client.index({ index, document: { text: 'hello', tag: 'a', embedding: [0.1,0.2,0.3] } });\nawait client.index({ index, document: { text: 'fluorite', tag: 'b', embedding: [0.2,0.1,0.25] } });\nawait client.indices.refresh({ index });\nconst res = await client.search({ index, knn: { field: 'embedding', query_vector: [0.1,0.2,0.3], k: 2, num_candidates: 10, filter: { term: { tag: 'a' } } }, _source: ['text','tag'] });\nconsole.log(res.hits?.hits?.map(h => h._source?.text));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@elastic/elasticsearch\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "ES_NODE={{es_node}}\n" }
+  ],
+  "patches": []
+}
+

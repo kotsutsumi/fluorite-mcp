@@ -1,0 +1,16 @@
+{
+  "id": "cohere-tool-calling-minimal",
+  "name": "Cohere Tool Calling Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "cohere"],
+  "tags": ["llm", "tools"],
+  "description": "Demonstrate tool-like JSON instruction with Cohere chat (concept).",
+  "params": [{ "name": "app_name", "default": "cohere-tools" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { CohereClient } from 'cohere-ai';\nconst cohere = new CohereClient({ token: process.env.COHERE_API_KEY });\nconst instructions = 'If asked for the time, respond with JSON {\\"tool\\": \\\"get_time\\\"}';\nconst res = await cohere.chat({ model: 'command-r', message: 'What time is it?', preamble: instructions });\nconsole.log(res.text);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"cohere-ai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "COHERE_API_KEY=...\n" }
+  ],
+  "patches": []
+}
+

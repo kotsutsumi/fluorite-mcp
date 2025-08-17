@@ -1,0 +1,16 @@
+{
+  "id": "tiktoken-encoding-switch-minimal",
+  "name": "tiktoken Encoding Switch Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "tokenizer"],
+  "tags": ["tokens"],
+  "description": "Compare token counts across encodings (cl100k_base vs o200k_base).",
+  "params": [{ "name": "app_name", "default": "tiktoken-switch" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { get_encoding } from 'tiktoken';\nconst text = process.env.TEXT || 'hello world';\nconst a = get_encoding('cl100k_base');\nconst b = get_encoding('o200k_base');\nconsole.log('cl100k=', a.encode(text).length, 'o200k=', b.encode(text).length);\na.free();\nb.free();\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"tiktoken\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "TEXT=hello world\n" } 
+  ],
+  "patches": []
+}
+

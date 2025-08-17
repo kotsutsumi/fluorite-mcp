@@ -1,0 +1,16 @@
+{
+  "id": "anthropic-tools-with-result-minimal",
+  "name": "Anthropic Tools + Tool Result Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "anthropic"],
+  "tags": ["llm", "tools"],
+  "description": "Send a tool result message after tool-use (conceptual example).",
+  "params": [{ "name": "app_name", "default": "anthropic-tools-result" }, { "name": "anthropic_model", "default": "claude-3-5-sonnet-20240620" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import Anthropic from '@anthropic-ai/sdk';\nconst client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });\nconst tools = [{ name: 'get_time', description: 'Get the current time', input_schema: { type: 'object' } }];\nconst msg1 = await client.messages.create({ model: '{{anthropic_model}}', max_tokens: 64, tools, messages: [{ role: 'user', content: 'What time is it? Use the tool.' }] });\nconsole.log('step1', msg1.type);\n// Conceptually send tool result back (API may differ)\nconst msg2 = await client.messages.create({ model: '{{anthropic_model}}', max_tokens: 64, tools, messages: [ { role: 'user', content: 'What time is it? Use the tool.' }, { role: 'tool', content: 'The time is 12:34', name: 'get_time' } ] });\nconsole.log('step2', JSON.stringify(msg2));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@anthropic-ai/sdk\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "ANTHROPIC_API_KEY=sk-ant-...\n" }
+  ],
+  "patches": []
+}
+

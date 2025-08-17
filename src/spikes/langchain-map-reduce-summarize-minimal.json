@@ -1,0 +1,16 @@
+{
+  "id": "langchain-map-reduce-summarize-minimal",
+  "name": "LangChain Map-Reduce Summarize Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "langchain", "openai"],
+  "tags": ["rag", "summarize"],
+  "description": "Use LC summarize with map-reduce over small docs.",
+  "params": [{ "name": "app_name", "default": "lc-map-reduce-sum" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { loadSummarizationChain } from 'langchain/chains';\nimport { ChatOpenAI } from '@langchain/openai';\nimport { Document } from 'langchain/document';\nconst llm = new ChatOpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst chain = loadSummarizationChain(llm, { type: 'map_reduce' });\nconst docs = [new Document({ pageContent: 'Fluorite MCP serves spike templates.' }), new Document({ pageContent: 'It helps agents scaffold code quickly.' })];\nconst res = await chain.call({ input_documents: docs });\nconsole.log(res?.text);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"langchain\": \"latest\", \"@langchain/openai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" }
+  ],
+  "patches": []
+}
+

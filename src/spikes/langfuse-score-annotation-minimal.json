@@ -1,0 +1,16 @@
+{
+  "id": "langfuse-score-annotation-minimal",
+  "name": "Langfuse Score Annotation Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "observability", "langfuse"],
+  "tags": ["observability", "scores"],
+  "description": "Send a trace with a numeric score annotation to Langfuse.",
+  "params": [{ "name": "app_name", "default": "langfuse-score" }],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { Langfuse } from 'langfuse';\nconst lf = new Langfuse({ secretKey: process.env.LANGFUSE_SECRET_KEY, publicKey: process.env.LANGFUSE_PUBLIC_KEY, baseUrl: process.env.LANGFUSE_BASE_URL });\nconst trace = lf.trace({ name: 'demo-score' });\ntrace.score({ name: 'quality', value: 0.9 });\nawait lf.shutdownAsync();\nconsole.log('scored');\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"langfuse\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "LANGFUSE_PUBLIC_KEY=\nLANGFUSE_SECRET_KEY=\nLANGFUSE_BASE_URL=https://cloud.langfuse.com\n" }
+  ],
+  "patches": []
+}
+
