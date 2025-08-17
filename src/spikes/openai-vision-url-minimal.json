@@ -1,0 +1,20 @@
+{
+  "id": "openai-vision-url-minimal",
+  "name": "OpenAI Vision with Image URL (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "openai"],
+  "tags": ["vision", "llm"],
+  "description": "Describe an image from URL using OpenAI chat with image content.",
+  "params": [
+    { "name": "app_name", "default": "openai-vision" },
+    { "name": "image_url", "default": "https://picsum.photos/200" },
+    { "name": "openai_model", "default": "gpt-4o-mini" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import OpenAI from 'openai';\nconst client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst res = await client.chat.completions.create({\n  model: '{{openai_model}}',\n  messages: [{\n    role: 'user',\n    content: [\n      { type: 'text', text: 'Describe the image briefly.' },\n      { type: 'image_url', image_url: { url: process.env.IMAGE_URL || '{{image_url}}' } }\n    ]\n  }]\n});\nconsole.log(res.choices?.[0]?.message?.content);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"openai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\nIMAGE_URL={{image_url}}\n" }
+  ],
+  "patches": []
+}
+

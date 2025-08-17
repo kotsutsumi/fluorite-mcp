@@ -1,0 +1,18 @@
+{
+  "id": "chromadb-openai-rag-node",
+  "name": "RAG: ChromaDB + OpenAI (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "chromadb", "openai"],
+  "tags": ["rag", "vector"],
+  "description": "Embed with OpenAI and use ChromaDB for storage and similarity query.",
+  "params": [
+    { "name": "app_name", "default": "chromadb-openai-rag" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { ChromaClient } from 'chromadb';\nimport OpenAI from 'openai';\nconst chroma = new ChromaClient();\nconst openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst docs = ['hello world', 'fluorite mcp spike'];\nconst emb = await openai.embeddings.create({ model: 'text-embedding-3-small', input: docs });\nconst col = await chroma.createCollection({ name: 'docs' });\nawait col.add({ ids: ['1','2'], documents: docs, embeddings: emb.data.map(d => d.embedding) });\nconst res = await col.query({ queryEmbeddings: [emb.data[0].embedding], nResults: 2 });\nconsole.log(res.documents);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"chromadb\": \"latest\", \"openai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" }
+  ],
+  "patches": []
+}
+

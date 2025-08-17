@@ -1,0 +1,18 @@
+{
+  "id": "bedrock-list-foundation-models-minimal",
+  "name": "AWS Bedrock List Foundation Models (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "aws", "bedrock"],
+  "tags": ["llm", "inspect"],
+  "description": "List available foundation models via Bedrock client.",
+  "params": [
+    { "name": "app_name", "default": "bedrock-list-models" },
+    { "name": "aws_region", "default": "us-east-1" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { BedrockClient, ListFoundationModelsCommand } from '@aws-sdk/client-bedrock';\nconst client = new BedrockClient({ region: process.env.AWS_REGION || '{{aws_region}}' });\nconst res = await client.send(new ListFoundationModelsCommand({}));\nconsole.log((res.modelSummaries||[]).slice(0,5).map(m=>m.modelId));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@aws-sdk/client-bedrock\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

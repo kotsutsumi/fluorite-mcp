@@ -1,0 +1,20 @@
+{
+  "id": "vllm-openai-compatible-chat-minimal",
+  "name": "vLLM OpenAI-Compatible Chat (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "vllm"],
+  "tags": ["llm", "local"],
+  "description": "Call a local vLLM server via OpenAI-compatible /v1/chat/completions endpoint.",
+  "params": [
+    { "name": "app_name", "default": "vllm-chat" },
+    { "name": "vllm_url", "default": "http://localhost:8000" },
+    { "name": "model", "default": "meta-llama/Meta-Llama-3.1-8B-Instruct" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "const url = `${process.env.VLLM_URL || '{{vllm_url}}'}/v1/chat/completions`;\nconst res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ model: process.env.VLLM_MODEL || '{{model}}', messages: [{ role: 'user', content: 'Say hello' }] }) });\nconst json = await res.json();\nconsole.log(json.choices?.[0]?.message?.content);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "VLLM_URL={{vllm_url}}\nVLLM_MODEL={{model}}\n" }
+  ],
+  "patches": []
+}
+

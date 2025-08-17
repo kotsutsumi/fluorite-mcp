@@ -1,0 +1,18 @@
+{
+  "id": "sqlite-vec-concept",
+  "name": "SQLite Vec Extension Concept (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "sqlite"],
+  "tags": ["vector", "concept"],
+  "description": "Conceptual example using sqlite-vec extension for vector search.",
+  "params": [
+    { "name": "app_name", "default": "sqlite-vec-demo" },
+    { "name": "db_file", "default": "vec.db" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "# SQLite Vec (Concept)\n\n> Requires sqlite compiled with vec extension.\n\n-- SQL (example)\nCREATE VIRTUAL TABLE IF NOT EXISTS vitems USING vec0(embedding float[3]);\nINSERT INTO vitems(rowid, embedding) VALUES (1, '[0.1,0.2,0.3]'), (2, '[0.2,0.1,0.25]');\nSELECT rowid, distance FROM vitems WHERE embedding MATCH '[0.1,0.2,0.3]' ORDER BY distance ASC LIMIT 2;\n" },
+    { "path": "{{app_name}}/.note.txt", "template": "This is a concept-only spike.\n" }
+  ],
+  "patches": []
+}
+

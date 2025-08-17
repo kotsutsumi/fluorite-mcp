@@ -1,0 +1,19 @@
+{
+  "id": "voyageai-embeddings-minimal",
+  "name": "VoyageAI Embeddings Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "voyageai"],
+  "tags": ["embeddings"],
+  "description": "Create embeddings using VoyageAI embeddings REST API.",
+  "params": [
+    { "name": "app_name", "default": "voyageai-embed" },
+    { "name": "model", "default": "voyage-2" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "const res = await fetch('https://api.voyageai.com/v1/embeddings', {\n  method: 'POST',\n  headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${process.env.VOYAGE_API_KEY}` },\n  body: JSON.stringify({ model: process.env.VOYAGE_MODEL || '{{model}}', input: ['hello world'] })\n});\nconst json = await res.json();\nconsole.log(json.data?.[0]?.embedding?.length);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "VOYAGE_API_KEY=...\nVOYAGE_MODEL={{model}}\n" }
+  ],
+  "patches": []
+}
+

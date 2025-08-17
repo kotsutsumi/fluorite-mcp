@@ -26,6 +26,17 @@ async function cleanupTestCatalog() {
   }
 }
 
+// Further constrain discovery and auto-spike resource usage during tests
+if (!process.env.FLUORITE_SPIKE_METADATA_MULTIPLIER) {
+  process.env.FLUORITE_SPIKE_METADATA_MULTIPLIER = '1';
+}
+if (!process.env.FLUORITE_AUTO_SPIKE_BATCH) {
+  process.env.FLUORITE_AUTO_SPIKE_BATCH = '25';
+}
+if (!process.env.FLUORITE_AUTO_SPIKE_TOP) {
+  process.env.FLUORITE_AUTO_SPIKE_TOP = '3';
+}
+
 // Constrain spike listing during tests to reduce memory usage
 if (!process.env.FLUORITE_SPIKE_LIST_LIMIT) {
   process.env.FLUORITE_SPIKE_LIST_LIMIT = '80';

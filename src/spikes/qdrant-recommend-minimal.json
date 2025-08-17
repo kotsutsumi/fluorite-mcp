@@ -1,0 +1,20 @@
+{
+  "id": "qdrant-recommend-minimal",
+  "name": "Qdrant Recommend API Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "qdrant"],
+  "tags": ["vector", "recommend"],
+  "description": "Use Qdrant recommend endpoint with positive ids to get similar points.",
+  "params": [
+    { "name": "app_name", "default": "qdrant-recommend" },
+    { "name": "qdrant_url", "default": "http://localhost:6333" },
+    { "name": "qdrant_collection", "default": "documents" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { QdrantClient } from '@qdrant/js-client-rest';\nconst client = new QdrantClient({ url: process.env.QDRANT_URL || '{{qdrant_url}}' });\nconst collection = process.env.QDRANT_COLLECTION || '{{qdrant_collection}}';\nawait client.upsert(collection, { points: [{ id: '1', vector: [0.1,0.2,0.3] }, { id: '2', vector: [0.2,0.1,0.25] }] });\nconst rec = await client.recommend(collection, { positive: ['1'], limit: 1 });\nconsole.log(rec.map(p => p.id));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@qdrant/js-client-rest\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "QDRANT_URL=http://localhost:6333\nQDRANT_COLLECTION={{qdrant_collection}}\n" }
+  ],
+  "patches": []
+}
+

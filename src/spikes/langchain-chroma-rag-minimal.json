@@ -1,0 +1,18 @@
+{
+  "id": "langchain-chroma-rag-minimal",
+  "name": "LangChain RAG with Chroma (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "langchain", "chroma", "openai"],
+  "tags": ["rag", "langchain"],
+  "description": "Use LangChain + OpenAI embeddings with Chroma vector store for similarity search.",
+  "params": [
+    { "name": "app_name", "default": "lc-chroma-rag" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { OpenAIEmbeddings } from '@langchain/openai';\nimport { Chroma } from '@langchain/community/vectorstores/chroma';\nimport { v4 as uuidv4 } from 'uuid';\nconst embeddings = new OpenAIEmbeddings({ apiKey: process.env.OPENAI_API_KEY });\nconst collectionName = 'docs_' + uuidv4().slice(0,8);\nconst store = await Chroma.fromTexts(['hello world', 'fluorite mcp spike'], [{ id: '1' }, { id: '2' }], embeddings, { collectionName });\nconst res = await store.similaritySearch('fluorite', 2);\nconsole.log(res.map(r => r.pageContent));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@langchain/openai\": \"latest\", \"@langchain/community\": \"latest\", \"uuid\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" }
+  ],
+  "patches": []
+}
+

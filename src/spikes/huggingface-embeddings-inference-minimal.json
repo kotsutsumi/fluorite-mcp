@@ -1,0 +1,19 @@
+{
+  "id": "huggingface-embeddings-inference-minimal",
+  "name": "Hugging Face Inference Embeddings (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "huggingface"],
+  "tags": ["embeddings"],
+  "description": "Get embeddings via HF Inference feature-extraction API.",
+  "params": [
+    { "name": "app_name", "default": "hf-embeddings" },
+    { "name": "model", "default": "sentence-transformers/all-MiniLM-L6-v2" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "const url = `https://api-inference.huggingface.co/pipeline/feature-extraction/${process.env.HF_MODEL || '{{model}}'}`;\nconst res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${process.env.HF_TOKEN}` }, body: JSON.stringify({ inputs: 'hello world' }) });\nconst json = await res.json();\nconsole.log(Array.isArray(json?.[0]) ? json[0].length : json.length);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "HF_TOKEN=...\nHF_MODEL={{model}}\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,19 @@
+{
+  "id": "replicate-image-generation-minimal",
+  "name": "Replicate Image Generation (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "replicate"],
+  "tags": ["image", "generation"],
+  "description": "Generate an image using a Replicate model and print prediction id.",
+  "params": [
+    { "name": "app_name", "default": "replicate-image-gen" },
+    { "name": "model", "default": "stability-ai/sdxl" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "const res = await fetch('https://api.replicate.com/v1/predictions', {\n  method: 'POST',\n  headers: { 'Content-Type': 'application/json', 'Authorization': `Token ${process.env.REPLICATE_API_TOKEN}` },\n  body: JSON.stringify({ version: process.env.REPLICATE_MODEL || '{{model}}', input: { prompt: 'A cute robot waving' } })\n});\nconst json = await res.json();\nconsole.log(json.id);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "REPLICATE_API_TOKEN=...\nREPLICATE_MODEL={{model}}\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,21 @@
+{
+  "id": "milvus-partition-create-query-minimal",
+  "name": "Milvus Partition Create + Query (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "milvus"],
+  "tags": ["vector", "partition"],
+  "description": "Create a partition and run a query within that partition.",
+  "params": [
+    { "name": "app_name", "default": "milvus-partition-query" },
+    { "name": "milvus_address", "default": "localhost:19530" },
+    { "name": "collection_name", "default": "documents" },
+    { "name": "partition_name", "default": "p1" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { MilvusClient } from '@zilliz/milvus2-sdk-node';\nconst client = new MilvusClient({ address: process.env.MILVUS_ADDRESS || '{{milvus_address}}' });\nconst name = process.env.MILVUS_COLLECTION || '{{collection_name}}';\nconst pn = process.env.MILVUS_PARTITION || '{{partition_name}}';\ntry { await client.createPartition({ collection_name: name, partition_name: pn }); } catch {}\nawait client.insert({ collection_name: name, partition_name: pn, fields_data: [{ text: 'hello', embedding: [0.1,0.2,0.3] }] });\nawait client.loadPartitions({ collection_name: name, partition_names: [pn] });\nconst res = await client.query({ collection_name: name, partition_names: [pn], expr: "text == 'hello'", output_fields: ['text'] });\nconsole.log(res);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@zilliz/milvus2-sdk-node\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "MILVUS_ADDRESS=localhost:19530\nMILVUS_COLLECTION={{collection_name}}\nMILVUS_PARTITION={{partition_name}}\n" }
+  ],
+  "patches": []
+}
+

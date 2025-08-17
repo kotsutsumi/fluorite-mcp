@@ -1,0 +1,19 @@
+{
+  "id": "openai-system-prompt-minimal",
+  "name": "OpenAI System Prompt Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "openai"],
+  "tags": ["llm", "prompt"],
+  "description": "Use a system prompt and a user prompt with OpenAI chat API.",
+  "params": [
+    { "name": "app_name", "default": "openai-system-prompt" },
+    { "name": "openai_model", "default": "gpt-4o-mini" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import OpenAI from 'openai';\nconst client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst res = await client.chat.completions.create({\n  model: '{{openai_model}}',\n  messages: [\n    { role: 'system', content: 'You are a concise assistant.' },\n    { role: 'user', content: 'Explain fluorite-mcp in one sentence.' }\n  ]\n});\nconsole.log(res.choices?.[0]?.message?.content);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"openai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" }
+  ],
+  "patches": []
+}
+

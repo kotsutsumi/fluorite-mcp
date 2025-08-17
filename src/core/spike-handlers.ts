@@ -161,7 +161,8 @@ export async function handleAutoSpikeTool(input: AutoSpikeInput): Promise<ToolCa
     }
     
     // First pass: score all spikes using metadata only (efficient)
-    const batchSize = 50; // Process in batches to avoid memory issues
+    const batchEnv = process.env.FLUORITE_AUTO_SPIKE_BATCH;
+    const batchSize = (() => { const n = batchEnv ? parseInt(batchEnv, 10) : 50; return Number.isNaN(n) ? 50 : Math.max(10, Math.min(200, n)); })(); // Process in batches to avoid memory issues
     let topCandidates: { id: string; score: number }[] = [];
     
     for (let i = 0; i < allIds.length; i += batchSize) {
@@ -176,9 +177,11 @@ export async function handleAutoSpikeTool(input: AutoSpikeInput): Promise<ToolCa
       }
     }
     
-    // Sort and get top 5 candidates
+    // Sort and get top candidates (cap via env)
     topCandidates.sort((a, b) => b.score - a.score);
-    const topFive = topCandidates.slice(0, 5);
+    const topEnv = process.env.FLUORITE_AUTO_SPIKE_TOP;
+    const topN = (() => { const n = topEnv ? parseInt(topEnv, 10) : 5; return Number.isNaN(n) ? 5 : Math.max(1, Math.min(20, n)); })();
+    const topFive = topCandidates.slice(0, topN);
     
     if (topFive.length === 0) {
       return { content: [{ type: 'text', text: 'No matching spikes found' }], metadata: { items: [] } };

@@ -1,0 +1,19 @@
+{
+  "id": "anthropic-tools-minimal",
+  "name": "Anthropic Tools (function calling) Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "anthropic"],
+  "tags": ["llm", "tools"],
+  "description": "Demonstrate tool (function) calling with Anthropic Messages API.",
+  "params": [
+    { "name": "app_name", "default": "anthropic-tools" },
+    { "name": "anthropic_model", "default": "claude-3-5-sonnet-20240620" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import Anthropic from '@anthropic-ai/sdk';\nconst client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });\nconst tools = [{ name: 'get_time', description: 'Get the current time', input_schema: { type: 'object', properties: {}, additionalProperties: false } }];\nconst msg = await client.messages.create({ model: '{{anthropic_model}}', max_tokens: 64, tools, messages: [{ role: 'user', content: 'What time is it? Use the tool.' }] });\nconsole.log(JSON.stringify(msg, null, 2));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@anthropic-ai/sdk\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "ANTHROPIC_API_KEY=sk-ant-...\n" }
+  ],
+  "patches": []
+}
+

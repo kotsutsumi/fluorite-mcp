@@ -1,0 +1,19 @@
+{
+  "id": "chromadb-persistent-node-minimal",
+  "name": "ChromaDB Persistent (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "chromadb"],
+  "tags": ["vector", "database"],
+  "description": "Use Chroma in persistent mode with a local path.",
+  "params": [
+    { "name": "app_name", "default": "chromadb-persist" },
+    { "name": "persist_dir", "default": ".chroma" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { ChromaClient } from 'chromadb';\nconst client = new ChromaClient({ path: process.env.CHROMA_PATH || '{{persist_dir}}' });\nconst col = await client.getOrCreateCollection({ name: 'docs' });\nawait col.add({ ids: ['1'], documents: ['hello world'] });\nconst res = await col.query({ queryTexts: ['hello'], nResults: 1 });\nconsole.log(res);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"chromadb\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "CHROMA_PATH={{persist_dir}}\n" }
+  ],
+  "patches": []
+}
+

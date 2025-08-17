@@ -452,7 +452,6 @@ npm run docs:deploy
 ### Support Channels
 - GitHub Issues
 - Discord Community
-- Stack Overflow Tag
 - Documentation Site
 - Video Tutorials
 

@@ -1,0 +1,17 @@
+{
+  "id": "duckdb-vss-concept",
+  "name": "DuckDB VSS Extension Concept (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "duckdb"],
+  "tags": ["vector", "concept"],
+  "description": "Conceptual example using DuckDB VSS extension for vector search.",
+  "params": [
+    { "name": "app_name", "default": "duckdb-vss-demo" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "# DuckDB VSS (Concept)\n\n> Requires DuckDB with vss extension.\n\n-- SQL (example)\nINSTALL vss; LOAD vss;\nCREATE TABLE items(id INTEGER, embedding FLOAT[3]);\nINSERT INTO items VALUES (1, [0.1,0.2,0.3]), (2, [0.2,0.1,0.25]);\nSELECT id, vss_distance(embedding, [0.1,0.2,0.3]) AS dist FROM items ORDER BY dist LIMIT 2;\n" },
+    { "path": "{{app_name}}/.note.txt", "template": "This is a concept-only spike.\n" }
+  ],
+  "patches": []
+}
+

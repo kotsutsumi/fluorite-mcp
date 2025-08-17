@@ -1,0 +1,19 @@
+{
+  "id": "jina-embeddings-minimal",
+  "name": "Jina AI Embeddings Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "jina"],
+  "tags": ["embeddings"],
+  "description": "Create embeddings using Jina AI embeddings REST API.",
+  "params": [
+    { "name": "app_name", "default": "jina-embed" },
+    { "name": "model", "default": "jina-embeddings-v2-base-en" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "const res = await fetch('https://api.jina.ai/v1/embeddings', {\n  method: 'POST',\n  headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${process.env.JINA_API_KEY}` },\n  body: JSON.stringify({ model: process.env.JINA_MODEL || '{{model}}', input: ['hello world'] })\n});\nconst json = await res.json();\nconsole.log(json.data?.[0]?.embedding?.length);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "JINA_API_KEY=...\nJINA_MODEL={{model}}\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,17 @@
+{
+  "id": "chromadb-filter-query-minimal",
+  "name": "ChromaDB Filtered Query (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "chromadb"],
+  "tags": ["vector", "filter"],
+  "description": "Query ChromaDB with where filter on metadata.",
+  "params": [
+    { "name": "app_name", "default": "chromadb-filter" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { ChromaClient } from 'chromadb';\nconst client = new ChromaClient();\nconst col = await client.getOrCreateCollection({ name: 'docs' });\nawait col.add({ ids: ['1','2'], documents: ['hello', 'fluorite'], metadatas: [{ tag: 'a' }, { tag: 'b' }] });\nconst res = await col.query({ queryTexts: ['hello'], nResults: 2, where: { tag: 'a' } });\nconsole.log(res);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"chromadb\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+
