@@ -1,0 +1,10 @@
+{
+  "id": "asana-project-create-minimal",
+  "name": "Asana プロジェクト作成 最小",
+  "version": "1.0.0",
+  "stack": ["asana"],
+  "tags": ["pm"],
+  "description": "asana SDK でプロジェクト作成",
+  "files": [ { "path": "run.js", "template": "const asana = require('asana');\nconsole.log('client.projects.create({ name })');\n" } ]
+}
+

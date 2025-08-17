@@ -1,0 +1,10 @@
+{
+  "id": "salesforce-rest-query-minimal",
+  "name": "Salesforce REST SOQL 最小",
+  "version": "1.0.0",
+  "stack": ["salesforce"],
+  "tags": ["crm"],
+  "description": "SOQL を REST API で実行",
+  "files": [ { "path": "run.js", "template": "console.log('GET https://instance.salesforce.com/services/data/vXX.X/query?q=SELECT+Id+FROM+Account');\n" } ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "id": "remix-streaming-sse-minimal",
+  "name": "Remix Streaming SSE 最小",
+  "version": "1.0.0",
+  "stack": ["remix"],
+  "tags": ["frontend", "realtime"],
+  "description": "Remix loader/action で SSE",
+  "files": [ { "path": "app/routes/sse.tsx", "template": "import { type LoaderFunctionArgs } from '@remix-run/node';\nexport async function loader(_args: LoaderFunctionArgs){ const enc=new TextEncoder(); const stream=new ReadableStream({ start(c){ c.enqueue(enc.encode('data: hello\\n\\n')); } }); return new Response(stream,{ headers:{ 'Content-Type':'text/event-stream' } }); }\nexport default function Page(){ return null }\n" } ]
+}
+

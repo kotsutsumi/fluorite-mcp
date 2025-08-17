@@ -1,0 +1,10 @@
+{
+  "id": "gcp-workflows-yaml-concept",
+  "name": "GCP Workflows YAML (概念)",
+  "version": "1.0.0",
+  "stack": ["gcp", "workflows"],
+  "tags": ["workflow"],
+  "description": "Workflows YAML の基本構造",
+  "files": [ { "path": "workflow.yaml", "template": "main:\n  steps:\n  - init: { assign: [{ x: 1 }] }\n  - returnResult: { return: ${x} }\n" } ]
+}
+

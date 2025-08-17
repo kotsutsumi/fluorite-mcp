@@ -1,0 +1,10 @@
+{
+  "id": "woocommerce-product-update-minimal",
+  "name": "WooCommerce 製品更新 最小",
+  "version": "1.0.0",
+  "stack": ["woocommerce"],
+  "tags": ["commerce"],
+  "description": "REST API で製品の一部更新",
+  "files": [ { "path": "run.js", "template": "import WooCommerceRestApi from '@woocommerce/woocommerce-rest-api';\nconsole.log('api.put(\'products/{id}\', { price: \"10.00\" })');\n" } ]
+}
+

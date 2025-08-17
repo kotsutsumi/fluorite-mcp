@@ -1,0 +1,10 @@
+{
+  "id": "ga4-measurement-protocol-minimal",
+  "name": "GA4 Measurement Protocol 最小",
+  "version": "1.0.0",
+  "stack": ["ga4"],
+  "tags": ["analytics"],
+  "description": "測定プロトコルでイベント送信",
+  "files": [ { "path": "run.js", "template": "console.log('POST https://www.google-analytics.com/mp/collect?measurement_id=...&api_secret=...');\n" } ]
+}
+

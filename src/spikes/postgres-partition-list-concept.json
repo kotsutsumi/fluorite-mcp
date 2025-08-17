@@ -1,0 +1,10 @@
+{
+  "id": "postgres-partition-list-concept",
+  "name": "Postgres List パーティション (概念)",
+  "version": "1.0.0",
+  "stack": ["postgres"],
+  "tags": ["db"],
+  "description": "リストパーティションの基本",
+  "files": [ { "path": "schema.sql", "template": "CREATE TABLE ev(type text, ts timestamptz) PARTITION BY LIST(type);\nCREATE TABLE ev_a PARTITION OF ev FOR VALUES IN ('a');\n" } ]
+}
+

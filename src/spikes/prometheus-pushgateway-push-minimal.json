@@ -1,0 +1,10 @@
+{
+  "id": "prometheus-pushgateway-push-minimal",
+  "name": "Prometheus Pushgateway Push 最小",
+  "version": "1.0.0",
+  "stack": ["prometheus"],
+  "tags": ["observability"],
+  "description": "Pushgateway にメトリクスを送信",
+  "files": [ { "path": "run.js", "template": "console.log('POST to /metrics/job/{job} with text/plain metrics');\n" } ]
+}
+

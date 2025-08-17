@@ -1,0 +1,10 @@
+{
+  "id": "line-flex-message-send-minimal",
+  "name": "LINE Flex Message 送信 最小",
+  "version": "1.0.0",
+  "stack": ["line"],
+  "tags": ["chat"],
+  "description": "Flex メッセージの送信",
+  "files": [ { "path": "run.js", "template": "console.log('POST https://api.line.me/v2/bot/message/push with Flex message');\n" } ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "id": "neptune-gremlin-query-minimal",
+  "name": "Amazon Neptune Gremlin クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["neptune"],
+  "tags": ["graph"],
+  "description": "Gremlin 経由でクエリ",
+  "files": [ { "path": "run.js", "template": "console.log('wss://neptune:8182/gremlin and submit g.V().count()');\n" } ]
+}
+

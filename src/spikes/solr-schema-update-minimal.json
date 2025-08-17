@@ -1,0 +1,10 @@
+{
+  "id": "solr-schema-update-minimal",
+  "name": "Solr Schema Update 最小",
+  "version": "1.0.0",
+  "stack": ["solr"],
+  "tags": ["search"],
+  "description": "fields/dynamicFields の更新",
+  "files": [ { "path": "run.js", "template": "console.log('POST /solr/{core}/schema with add-field/add-dynamic-field');\n" } ]
+}
+

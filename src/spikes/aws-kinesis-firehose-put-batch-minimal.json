@@ -1,0 +1,10 @@
+{
+  "id": "aws-kinesis-firehose-put-batch-minimal",
+  "name": "AWS Kinesis Firehose PutRecordBatch 最小",
+  "version": "1.0.0",
+  "stack": ["aws"],
+  "tags": ["stream"],
+  "description": "Firehose にバッチ投入",
+  "files": [ { "path": "run.js", "template": "import { FirehoseClient } from '@aws-sdk/client-firehose';\nconsole.log('PutRecordBatch with records to delivery stream');\n" } ]
+}
+

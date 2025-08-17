@@ -1,0 +1,10 @@
+{
+  "id": "mongodb-ttl-index-minimal",
+  "name": "MongoDB TTL Index 最小",
+  "version": "1.0.0",
+  "stack": ["mongodb"],
+  "tags": ["db"],
+  "description": "expireAfterSeconds による TTL インデックス",
+  "files": [ { "path": "run.js", "template": "const { MongoClient } = require('mongodb');\nconsole.log('db.collection.createIndex({ createdAt: 1 }, { expireAfterSeconds: 3600 })');\n" } ]
+}
+

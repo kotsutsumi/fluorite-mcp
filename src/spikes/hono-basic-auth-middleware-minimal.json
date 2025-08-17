@@ -1,0 +1,10 @@
+{
+  "id": "hono-basic-auth-middleware-minimal",
+  "name": "Hono Basic Auth ミドルウェア 最小",
+  "version": "1.0.0",
+  "stack": ["hono"],
+  "tags": ["web", "security"],
+  "description": "Basic 認証で保護",
+  "files": [ { "path": "server.ts", "template": "import { Hono } from 'hono';\nconst app = new Hono();\napp.use('*', async (c, next)=>{ const auth=c.req.header('authorization')||''; return auth==='Basic dXNlcjpwYXNz' ? next() : c.text('unauthorized',401); });\napp.get('/', c=> c.text('ok'));\nexport default app;\n" } ]
+}
+

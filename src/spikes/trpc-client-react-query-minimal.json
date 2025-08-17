@@ -1,0 +1,10 @@
+{
+  "id": "trpc-client-react-query-minimal",
+  "name": "tRPC Client + React Query 最小",
+  "version": "1.0.0",
+  "stack": ["trpc", "react"],
+  "tags": ["frontend"],
+  "description": "tRPC クライアントの基本 useQuery",
+  "files": [ { "path": "src/App.tsx", "template": "import { createTRPCReact } from '@trpc/react-query';\nconst trpc = createTRPCReact();\nexport default function App(){ return null }\n" } ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "id": "sveltekit-sse-streaming-minimal",
+  "name": "SvelteKit SSE Streaming 最小",
+  "version": "1.0.0",
+  "stack": ["sveltekit"],
+  "tags": ["frontend", "realtime"],
+  "description": "+server.ts で SSE 配信",
+  "files": [ { "path": "src/routes/api/sse/+server.ts", "template": "export const GET = async () => { const stream = new ReadableStream({ start(c){ c.enqueue(new TextEncoder().encode('data: hello\\n\\n')); } }); return new Response(stream, { headers: { 'Content-Type':'text/event-stream' } }); };\n" } ]
+}
+

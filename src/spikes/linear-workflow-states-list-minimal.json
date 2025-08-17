@@ -1,0 +1,10 @@
+{
+  "id": "linear-workflow-states-list-minimal",
+  "name": "Linear Workflow States 一覧 最小",
+  "version": "1.0.0",
+  "stack": ["linear"],
+  "tags": ["pm"],
+  "description": "リニアのワークフローステートを取得",
+  "files": [ { "path": "run.js", "template": "import { GraphQLClient, gql } from 'graphql-request';\nconsole.log('query { workflowStates(first:10){ nodes{ name type } } }');\n" } ]
+}
+

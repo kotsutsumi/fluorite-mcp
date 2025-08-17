@@ -1,0 +1,10 @@
+{
+  "id": "nats-jetstream-consumer-config-durable-minimal",
+  "name": "NATS JetStream Consumer Durable 設定 最小",
+  "version": "1.0.0",
+  "stack": ["nats"],
+  "tags": ["stream"],
+  "description": "Durable consumer の基本設定",
+  "files": [ { "path": "run.js", "template": "console.log('js.addConsumer with durable_name, ack_policy, deliver_policy');\n" } ]
+}
+

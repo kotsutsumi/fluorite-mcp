@@ -1,0 +1,10 @@
+{
+  "id": "shopify-graphql-bulk-operation-status-minimal",
+  "name": "Shopify GraphQL Bulk Operation Status 最小",
+  "version": "1.0.0",
+  "stack": ["shopify"],
+  "tags": ["commerce"],
+  "description": "bulkOperationRunQuery の status 取得",
+  "files": [ { "path": "run.js", "template": "console.log('query { currentBulkOperation { id status url } }');\n" } ]
+}
+

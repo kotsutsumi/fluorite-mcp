@@ -1,0 +1,10 @@
+{
+  "id": "milvus-collection-load-minimal",
+  "name": "Milvus Collection Load 最小",
+  "version": "1.0.0",
+  "stack": ["milvus"],
+  "tags": ["vector"],
+  "description": "コレクションをメモリにロード",
+  "files": [ { "path": "run.js", "template": "console.log('client.loadCollection({ collection_name })');\n" } ]
+}
+

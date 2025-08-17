@@ -1,0 +1,10 @@
+{
+  "id": "segment-track-http-minimal",
+  "name": "Segment HTTP Track 最小",
+  "version": "1.0.0",
+  "stack": ["segment"],
+  "tags": ["analytics"],
+  "description": "/v1/track でイベント送信",
+  "files": [ { "path": "run.js", "template": "console.log('POST https://api.segment.io/v1/track with userId/event');\n" } ]
+}
+

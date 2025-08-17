@@ -1,0 +1,10 @@
+{
+  "id": "google-calendar-channels-stop-minimal",
+  "name": "Google Calendar channels.stop 最小",
+  "version": "1.0.0",
+  "stack": ["googleapis"],
+  "tags": ["calendar"],
+  "description": "watch解除 (channels.stop) を呼び出す",
+  "files": [ { "path": "run.js", "template": "import { google } from 'googleapis';\nconsole.log('calendar.channels.stop({ resourceId, channelId })');\n" } ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "id": "notion-database-create-minimal",
+  "name": "Notion Database 作成 最小",
+  "version": "1.0.0",
+  "stack": ["notion"],
+  "tags": ["notion"],
+  "description": "databases.create でDB作成",
+  "files": [ { "path": "run.js", "template": "import { Client } from '@notionhq/client';\nconsole.log('notion.databases.create({ parent:{ page_id }, properties })');\n" } ]
+}
+

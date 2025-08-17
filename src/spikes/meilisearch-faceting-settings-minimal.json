@@ -1,0 +1,10 @@
+{
+  "id": "meilisearch-faceting-settings-minimal",
+  "name": "Meilisearch Faceting 設定 最小",
+  "version": "1.0.0",
+  "stack": ["meilisearch"],
+  "tags": ["search"],
+  "description": "faceting の基本設定",
+  "files": [ { "path": "run.js", "template": "console.log('index.updateSettings({ searchableAttributes, filterableAttributes, faceting })');\n" } ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "id": "slack-events-ack-latency-bestpractices",
+  "name": "Slack Events ACK 最適化 (概念)",
+  "version": "1.0.0",
+  "stack": ["slack"],
+  "tags": ["webhook"],
+  "description": "3秒以内 ACK / 非同期実行 の概念",
+  "files": [ { "path": "README.md", "template": "Respond 200 within 3s and offload heavy work to queue/worker.\n" } ]
+}
+

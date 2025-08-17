@@ -1,0 +1,10 @@
+{
+  "id": "sveltekit-auth-routes-handle-concept",
+  "name": "SvelteKit Auth ルート Guard (概念)",
+  "version": "1.0.0",
+  "stack": ["sveltekit"],
+  "tags": ["frontend", "auth"],
+  "description": "handle で保護ルート判定の概念",
+  "files": [ { "path": "src/hooks.server.ts", "template": "export const handle = async ({ event, resolve }) => { const authed = false; if(!authed && event.url.pathname.startsWith('/private')) return new Response('unauthorized',{ status:401 }); return resolve(event); };\n" } ]
+}
+

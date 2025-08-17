@@ -1,0 +1,10 @@
+{
+  "id": "sveltekit-hooks-handle-session-concept",
+  "name": "SvelteKit hooks でセッション管理 (概念)",
+  "version": "1.0.0",
+  "stack": ["sveltekit"],
+  "tags": ["frontend", "auth"],
+  "description": "cookies からの読み出しと locals 設定の概念",
+  "files": [ { "path": "src/hooks.server.ts", "template": "export const handle = async ({ event, resolve }) => { const cookie = event.request.headers.get('cookie')||''; event.locals.user = cookie.includes('sid=') ? { id:'1' } : null; return resolve(event); };\n" } ]
+}
+

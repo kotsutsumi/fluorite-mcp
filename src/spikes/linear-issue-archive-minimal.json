@@ -1,0 +1,10 @@
+{
+  "id": "linear-issue-archive-minimal",
+  "name": "Linear Issue アーカイブ 最小",
+  "version": "1.0.0",
+  "stack": ["linear"],
+  "tags": ["pm"],
+  "description": "Linear の課題をアーカイブ",
+  "files": [ { "path": "run.js", "template": "import { GraphQLClient } from 'graphql-request';\nconsole.log('mutation issueArchive { issueArchive(id:...) { success } }');\n" } ]
+}
+

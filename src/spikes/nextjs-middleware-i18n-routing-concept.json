@@ -1,0 +1,10 @@
+{
+  "id": "nextjs-middleware-i18n-routing-concept",
+  "name": "Next.js Middleware i18n ルーティング (概念)",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["frontend"],
+  "description": "Accept-Language での言語ルーティング",
+  "files": [ { "path": "middleware.ts", "template": "import { NextResponse } from 'next/server';\nexport function middleware(req: Request){ const url = new URL(req.url); const lang = (req as any).headers.get('accept-language')?.split(',')[0]||'en'; if(url.pathname==='/' && lang.startsWith('ja')) return NextResponse.redirect(new URL('/ja', url)); return NextResponse.next(); }\n" } ]
+}
+

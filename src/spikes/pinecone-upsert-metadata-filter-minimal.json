@@ -1,0 +1,10 @@
+{
+  "id": "pinecone-upsert-metadata-filter-minimal",
+  "name": "Pinecone Upsert + Metadata Filter 最小",
+  "version": "1.0.0",
+  "stack": ["pinecone"],
+  "tags": ["vector"],
+  "description": "メタデータ付与とフィルタ検索",
+  "files": [ { "path": "run.js", "template": "console.log('index.upsert([{id, values, metadata}]); query({ filter })');\n" } ]
+}
+

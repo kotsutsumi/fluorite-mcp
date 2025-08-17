@@ -1,0 +1,10 @@
+{
+  "id": "hubspot-contacts-create-minimal",
+  "name": "HubSpot Contacts 作成 最小",
+  "version": "1.0.0",
+  "stack": ["hubspot"],
+  "tags": ["crm"],
+  "description": "コンタクトを作成",
+  "files": [ { "path": "run.js", "template": "console.log('POST https://api.hubapi.com/crm/v3/objects/contacts');\n" } ]
+}
+

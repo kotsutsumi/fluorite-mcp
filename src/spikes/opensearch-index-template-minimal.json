@@ -1,0 +1,10 @@
+{
+  "id": "opensearch-index-template-minimal",
+  "name": "OpenSearch Index Template 最小",
+  "version": "1.0.0",
+  "stack": ["opensearch"],
+  "tags": ["search"],
+  "description": "テンプレートでマッピング/設定を定義",
+  "files": [ { "path": "run.js", "template": "console.log('PUT _index_template/{name} with template/mappings/settings');\n" } ]
+}
+

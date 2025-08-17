@@ -1,0 +1,10 @@
+{
+  "id": "nextjs-rsc-streaming-route-minimal",
+  "name": "Next.js RSC Streaming Route 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["frontend"],
+  "description": "Route Handler でストリーミング",
+  "files": [ { "path": "app/api/stream/route.ts", "template": "export async function GET(){ const enc = new TextEncoder(); const stream = new ReadableStream({ start(c){ c.enqueue(enc.encode('hello')); c.close(); } }); return new Response(stream); }\n" } ]
+}
+

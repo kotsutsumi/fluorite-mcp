@@ -1,0 +1,10 @@
+{
+  "id": "nextjs-middleware-ab-test-concept",
+  "name": "Next.js Middleware A/B テスト (概念)",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["frontend"],
+  "description": "Cookie ベースの A/B 分岐の概念",
+  "files": [ { "path": "middleware.ts", "template": "import { NextResponse } from 'next/server';\nexport function middleware(req: Request){ const url = new URL(req.url); const c = (req as any).headers.get('cookie')||''; const group = c.includes('ab=1') ? 'B' : 'A'; if(url.pathname==='/' && group==='B') return NextResponse.rewrite(new URL('/exp', url)); return NextResponse.next(); }\n" } ]
+}
+

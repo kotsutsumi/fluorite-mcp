@@ -1,0 +1,10 @@
+{
+  "id": "github-issues-lock-minimal",
+  "name": "GitHub Issues Lock 最小",
+  "version": "1.0.0",
+  "stack": ["github"],
+  "tags": ["pm"],
+  "description": "Issue をロックする",
+  "files": [ { "path": "run.js", "template": "import { Octokit } from '@octokit/rest';\nconsole.log('octokit.issues.lock({ owner, repo, issue_number })');\n" } ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "id": "aws-sesv2-template-create-minimal",
+  "name": "AWS SESv2 テンプレ作成 最小",
+  "version": "1.0.0",
+  "stack": ["aws"],
+  "tags": ["email"],
+  "description": "SES v2 のテンプレート作成",
+  "files": [ { "path": "run.js", "template": "import { SESv2Client } from '@aws-sdk/client-sesv2';\nconsole.log('CreateEmailTemplate with TemplateContent');\n" } ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "id": "telegram-answer-callback-query-minimal",
+  "name": "Telegram answerCallbackQuery 最小",
+  "version": "1.0.0",
+  "stack": ["telegram"],
+  "tags": ["bot"],
+  "description": "インラインボタンの CallbackQuery 応答",
+  "files": [ { "path": "run.js", "template": "console.log('GET https://api.telegram.org/botTOKEN/answerCallbackQuery?callback_query_id=...');\n" } ]
+}
+

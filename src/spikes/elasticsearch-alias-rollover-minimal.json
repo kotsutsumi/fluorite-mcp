@@ -1,0 +1,10 @@
+{
+  "id": "elasticsearch-alias-rollover-minimal",
+  "name": "Elasticsearch Alias Rollover 最小",
+  "version": "1.0.0",
+  "stack": ["elasticsearch"],
+  "tags": ["search"],
+  "description": "Rollover API を使ったインデックス運用",
+  "files": [ { "path": "run.js", "template": "console.log('POST /{alias}/_rollover with conditions');\n" } ]
+}
+

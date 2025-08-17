@@ -1,0 +1,10 @@
+{
+  "id": "jira-saved-filter-run-minimal",
+  "name": "Jira 保存済みフィルタ実行 最小",
+  "version": "1.0.0",
+  "stack": ["jira"],
+  "tags": ["pm"],
+  "description": "保存済みフィルタを適用してIssue検索",
+  "files": [ { "path": "run.js", "template": "import { Version3Client } from 'jira.js';\nconsole.log('GET /rest/api/3/filter/{id} and search JQL from filter');\n" } ]
+}
+

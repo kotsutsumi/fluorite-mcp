@@ -1,0 +1,10 @@
+{
+  "id": "fastify-rate-limit-minimal",
+  "name": "Fastify rate-limit プラグイン 最小",
+  "version": "1.0.0",
+  "stack": ["fastify"],
+  "tags": ["web", "security"],
+  "description": "@fastify/rate-limit の基本",
+  "files": [ { "path": "server.js", "template": "const Fastify = require('fastify');\nconst rateLimit = require('@fastify/rate-limit');\nconst app = Fastify();\napp.register(rateLimit, { max: 60, timeWindow: '1 minute' });\napp.get('/', async ()=> 'ok');\napp.listen({ port:3000 });\n" } ]
+}
+

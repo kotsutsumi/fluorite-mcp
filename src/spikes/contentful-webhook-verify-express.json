@@ -1,0 +1,10 @@
+{
+  "id": "contentful-webhook-verify-express",
+  "name": "Contentful Webhook 検証 (Express)",
+  "version": "1.0.0",
+  "stack": ["contentful", "express"],
+  "tags": ["cms", "webhook"],
+  "description": "Contentful の Webhook 署名検証",
+  "files": [ { "path": "server.js", "template": "const express=require('express'); const crypto=require('crypto'); const app=express(); app.use(express.raw({type:'*/*'})); app.post('/cf', (req,res)=>{ const sig=req.headers['x-contentful-signature']; const h=crypto.createHmac('sha256', process.env.CF_SECRET).update(req.body).digest('hex'); res.status(sig===h?200:401).send('ok'); }); app.listen(3000);\n" } ]
+}
+

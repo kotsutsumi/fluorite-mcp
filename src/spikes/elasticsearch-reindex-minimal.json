@@ -1,0 +1,10 @@
+{
+  "id": "elasticsearch-reindex-minimal",
+  "name": "Elasticsearch Reindex 最小",
+  "version": "1.0.0",
+  "stack": ["elasticsearch"],
+  "tags": ["search"],
+  "description": "_reindex API の呼出",
+  "files": [ { "path": "run.js", "template": "console.log('POST _reindex { source:{ index }, dest:{ index } }');\n" } ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "id": "amplitude-http-api-minimal",
+  "name": "Amplitude HTTP API 最小",
+  "version": "1.0.0",
+  "stack": ["amplitude"],
+  "tags": ["analytics"],
+  "description": "events を送信",
+  "files": [ { "path": "run.js", "template": "console.log('POST https://api2.amplitude.com/2/httpapi with api_key & events');\n" } ]
+}
+

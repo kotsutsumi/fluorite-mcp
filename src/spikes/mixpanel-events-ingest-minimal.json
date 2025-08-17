@@ -1,0 +1,10 @@
+{
+  "id": "mixpanel-events-ingest-minimal",
+  "name": "Mixpanel Events 取り込み 最小",
+  "version": "1.0.0",
+  "stack": ["mixpanel"],
+  "tags": ["analytics"],
+  "description": "/track へイベント送信",
+  "files": [ { "path": "run.js", "template": "console.log('POST https://api.mixpanel.com/track with base64 data');\n" } ]
+}
+

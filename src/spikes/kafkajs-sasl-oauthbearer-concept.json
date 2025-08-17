@@ -1,0 +1,10 @@
+{
+  "id": "kafkajs-sasl-oauthbearer-concept",
+  "name": "KafkaJS SASL OAUTHBEARER (概念)",
+  "version": "1.0.0",
+  "stack": ["kafka"],
+  "tags": ["stream", "auth"],
+  "description": "OAUTHBEARER 構成の概念",
+  "files": [ { "path": "README.md", "template": "Configure sasl: { mechanism:'oauthbearer', oauthBearerProvider: async ()=> ({ value:'token' }) }.\n" } ]
+}
+

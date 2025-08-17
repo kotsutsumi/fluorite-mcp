@@ -1,0 +1,10 @@
+{
+  "id": "shopify-admin-metafield-create-minimal",
+  "name": "Shopify Admin Metafield 作成 最小",
+  "version": "1.0.0",
+  "stack": ["shopify"],
+  "tags": ["commerce"],
+  "description": "リソースにメタフィールドを追加",
+  "files": [ { "path": "run.js", "template": "console.log('mutation metafieldsSet { metafieldsSet(metafields:[{ ownerId:\"gid://shopify/Product/..\", namespace:\"custom\", key:\"x\", value:\"y\", type:\"single_line_text_field\" }]){ userErrors{ message } } }');\n" } ]
+}
+

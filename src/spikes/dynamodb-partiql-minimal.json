@@ -1,0 +1,10 @@
+{
+  "id": "dynamodb-partiql-minimal",
+  "name": "DynamoDB PartiQL 最小",
+  "version": "1.0.0",
+  "stack": ["dynamodb"],
+  "tags": ["db"],
+  "description": "PartiQL を使ったクエリ実行",
+  "files": [ { "path": "run.js", "template": "console.log('ExecuteStatement: SELECT * FROM \"Table\"');\n" } ]
+}
+

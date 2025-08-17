@@ -1,0 +1,10 @@
+{
+  "id": "notion-comments-list-minimal",
+  "name": "Notion コメント一覧 最小",
+  "version": "1.0.0",
+  "stack": ["notion"],
+  "tags": ["notion"],
+  "description": "comments.list でスレッド取得",
+  "files": [ { "path": "run.js", "template": "import { Client } from '@notionhq/client';\nconsole.log('notion.comments.list({ block_id })');\n" } ]
+}
+

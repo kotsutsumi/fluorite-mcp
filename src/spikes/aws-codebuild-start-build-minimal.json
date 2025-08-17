@@ -1,0 +1,10 @@
+{
+  "id": "aws-codebuild-start-build-minimal",
+  "name": "AWS CodeBuild StartBuild 最小",
+  "version": "1.0.0",
+  "stack": ["aws"],
+  "tags": ["ci"],
+  "description": "CodeBuild ビルドを開始",
+  "files": [ { "path": "run.js", "template": "import { CodeBuildClient } from '@aws-sdk/client-codebuild';\nconsole.log('StartBuild with project name and env overrides');\n" } ]
+}
+

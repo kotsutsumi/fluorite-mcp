@@ -1,0 +1,10 @@
+{
+  "id": "shopify-storefront-customer-access-token-create-minimal",
+  "name": "Shopify Storefront customerAccessTokenCreate 最小",
+  "version": "1.0.0",
+  "stack": ["shopify"],
+  "tags": ["commerce", "auth"],
+  "description": "Access Token 作成ミューテーション",
+  "files": [ { "path": "run.js", "template": "import { GraphQLClient, gql } from 'graphql-request';\nconsole.log('mutation customerAccessTokenCreate { ... }');\n" } ]
+}
+

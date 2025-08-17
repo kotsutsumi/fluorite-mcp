@@ -1,0 +1,10 @@
+{
+  "id": "weaviate-backup-create-minimal",
+  "name": "Weaviate Backup 作成 最小",
+  "version": "1.0.0",
+  "stack": ["weaviate"],
+  "tags": ["vector"],
+  "description": "バックアップの作成 API 概要",
+  "files": [ { "path": "run.js", "template": "console.log('POST /v1/backups/{backend}/create');\n" } ]
+}
+
