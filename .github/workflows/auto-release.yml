@@ -186,12 +186,13 @@ jobs:
             }
 
   publish-npm:
-    name: Publish to NPM
+    name: Publish to NPM (Manual)
     runs-on: ubuntu-latest
     needs: [check-version, validate-release, create-release]
     if: |
       needs.check-version.outputs.version-changed == 'true' &&
-      needs.create-release.outputs.release-created == 'true'
+      needs.create-release.outputs.release-created == 'true' &&
+      github.event_name == 'workflow_dispatch'
     
     permissions:
       contents: read
@@ -229,6 +230,13 @@ jobs:
         run: |
           echo "📦 Publishing fluorite-mcp v${{ needs.check-version.outputs.new-version }} to NPM..."
           
+          # Check if NPM_TOKEN is configured
+          if [ -z "$NODE_AUTH_TOKEN" ]; then
+            echo "⚠️ NPM_TOKEN not configured - skipping NPM publish"
+            echo "📝 To publish manually, run: npm publish --provenance --access public"
+            exit 0
+          fi
+          
           # Set NPM configuration
           npm config set //registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}
           npm config set access public
@@ -242,7 +250,7 @@ jobs:
   post-release:
     name: Post-Release Actions
     runs-on: ubuntu-latest
-    needs: [check-version, create-release, publish-npm]
+    needs: [check-version, create-release]
     if: |
       needs.check-version.outputs.version-changed == 'true' &&
       needs.create-release.outputs.release-created == 'true'
@@ -256,12 +264,14 @@ jobs:
           echo "   Version: v${{ needs.check-version.outputs.new-version }}"
           echo "   Prerelease: ${{ needs.check-version.outputs.is-prerelease }}"
           echo "   GitHub Release: ✅ Created"
-          echo "   NPM Package: ✅ Published"
           echo ""
           echo "🔗 Links:"
           echo "   📦 NPM: https://www.npmjs.com/package/fluorite-mcp"
           echo "   📚 Docs: https://kotsutsumi.github.io/fluorite-mcp/"
           echo "   🐙 GitHub: https://github.com/kotsutsumi/fluorite-mcp"
+          echo ""
+          echo "📝 To publish to NPM manually, run:"
+          echo "   npm publish --provenance --access public"
 
       - name: Update README badge
         run: |
@@ -270,7 +280,7 @@ jobs:
   notify-failure:
     name: Failure Notification
     runs-on: ubuntu-latest
-    needs: [check-version, validate-release, create-release, publish-npm]
+    needs: [check-version, validate-release, create-release]
     if: |
       failure() && 
       needs.check-version.outputs.version-changed == 'true'
@@ -282,7 +292,6 @@ jobs:
           echo ""
           echo "🔍 Check the following:"
           echo "   - Build and test validation"
-          echo "   - NPM_TOKEN secret configuration"
           echo "   - GitHub permissions"
           echo "   - Package version uniqueness"
           echo ""
@@ -290,3 +299,6 @@ jobs:
           echo "   1. Fix the issue"
           echo "   2. Push a new commit with version bump"
           echo "   3. The workflow will automatically retry"
+          echo ""
+          echo "📝 To publish to NPM manually after fixing:"
+          echo "   npm publish --provenance --access public"
