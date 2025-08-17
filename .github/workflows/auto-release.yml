@@ -149,34 +149,28 @@ jobs:
                 repo: context.repo.repo,
                 tag_name: `v${version}`,
                 name: `Release v${version}`,
-                body: `## Fluorite MCP v${version}
-                
-🚀 **Automatic Release**
-
-### What's New in v${version}
-- Enhanced documentation and feature improvements
-- 219+ enterprise-grade spike templates
-- Comprehensive static analysis capabilities
-- Automated CI/CD workflows
-- Bilingual documentation support
-
-### Quick Start
-\`\`\`bash
-npm install -g fluorite-mcp
-\`\`\`
-
-### Documentation
-- 📚 [Full Documentation](https://kotsutsumi.github.io/fluorite-mcp/)
-- 🧪 [Spike Templates](https://kotsutsumi.github.io/fluorite-mcp/spike-templates)
-- 🛡️ [Static Analysis](https://kotsutsumi.github.io/fluorite-mcp/static-analysis)
-
-### Changes
-\`\`\`
-${context.payload.head_commit.message}
-\`\`\`
-
----
-*🤖 Auto-generated release by GitHub Actions*`,
+                body: '## Fluorite MCP v' + version + '\n\n' +
+                      '🚀 **Automatic Release**\n\n' +
+                      '### What\'s New in v' + version + '\n' +
+                      '- Enhanced documentation and feature improvements\n' +
+                      '- 219+ enterprise-grade spike templates\n' +
+                      '- Comprehensive static analysis capabilities\n' +
+                      '- Automated CI/CD workflows\n' +
+                      '- Bilingual documentation support\n\n' +
+                      '### Quick Start\n' +
+                      '```bash\n' +
+                      'npm install -g fluorite-mcp\n' +
+                      '```\n\n' +
+                      '### Documentation\n' +
+                      '- 📚 [Full Documentation](https://kotsutsumi.github.io/fluorite-mcp/)\n' +
+                      '- 🧪 [Spike Templates](https://kotsutsumi.github.io/fluorite-mcp/spike-templates)\n' +
+                      '- 🛡️ [Static Analysis](https://kotsutsumi.github.io/fluorite-mcp/static-analysis)\n\n' +
+                      '### Changes\n' +
+                      '```\n' +
+                      context.payload.head_commit.message + '\n' +
+                      '```\n\n' +
+                      '---\n' +
+                      '*🤖 Auto-generated release by GitHub Actions*',
                 draft: false,
                 prerelease: isPrerelease,
                 target_commitish: 'main'
