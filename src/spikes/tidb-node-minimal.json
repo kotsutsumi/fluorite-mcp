@@ -1,0 +1,10 @@
+{
+  "id": "tidb-node-minimal",
+  "name": "TiDB Node 最小",
+  "version": "1.0.0",
+  "stack": ["node", "tidb"],
+  "tags": ["db"],
+  "description": "TiDB に接続 (MySQL互換)",
+  "files": [ { "path": "run.js", "template": "console.log('Use mysql2 to connect to TiDB');\n" } ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "id": "nats-jetstream-pull-batch-minimal",
+  "name": "NATS JetStream Pull Batch 最小",
+  "version": "1.0.0",
+  "stack": ["nats"],
+  "tags": ["stream"],
+  "description": "Pull ベースでバッチ取得",
+  "files": [ { "path": "run.js", "template": "console.log('consumer.fetch({ max_messages }) and process batch');\n" } ]
+}
+

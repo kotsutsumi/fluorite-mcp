@@ -1,0 +1,10 @@
+{
+  "id": "fastify-swagger-openapi-minimal",
+  "name": "Fastify Swagger/OpenAPI 最小",
+  "version": "1.0.0",
+  "stack": ["fastify", "openapi"],
+  "tags": ["web"],
+  "description": "@fastify/swagger で OpenAPI ドキュメント",
+  "files": [ { "path": "server.js", "template": "const Fastify = require('fastify');\nconst swagger = require('@fastify/swagger');\nconst app = Fastify();\napp.register(swagger, { openapi: { info: { title: 'api', version: '1.0.0' } } });\napp.get('/hello', { schema: { response: { 200: { type: 'string' } } } }, async ()=> 'ok');\napp.listen({ port: 3000 });\n" } ]
+}
+

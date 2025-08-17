@@ -1,0 +1,10 @@
+{
+  "id": "ms-todo-graph-tasks-minimal",
+  "name": "Microsoft To Do Graph Tasks 最小",
+  "version": "1.0.0",
+  "stack": ["microsoft-graph"],
+  "tags": ["pm"],
+  "description": "/me/todo/lists/{id}/tasks を取得",
+  "files": [ { "path": "run.js", "template": "console.log('GET https://graph.microsoft.com/v1.0/me/todo/lists/{id}/tasks');\n" } ]
+}
+

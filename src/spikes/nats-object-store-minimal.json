@@ -1,0 +1,10 @@
+{
+  "id": "nats-object-store-minimal",
+  "name": "NATS Object Store 最小",
+  "version": "1.0.0",
+  "stack": ["nats"],
+  "tags": ["storage", "stream"],
+  "description": "Object Store API の基本",
+  "files": [ { "path": "run.js", "template": "console.log('js.views.objectStore(bucket).put/get');\n" } ]
+}
+

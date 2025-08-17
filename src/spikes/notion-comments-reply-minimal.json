@@ -1,0 +1,10 @@
+{
+  "id": "notion-comments-reply-minimal",
+  "name": "Notion コメント返信 最小",
+  "version": "1.0.0",
+  "stack": ["notion"],
+  "tags": ["notion"],
+  "description": "comments.create で返信",
+  "files": [ { "path": "run.js", "template": "import { Client } from '@notionhq/client';\nconsole.log('notion.comments.create({ discussion_id, rich_text })');\n" } ]
+}
+

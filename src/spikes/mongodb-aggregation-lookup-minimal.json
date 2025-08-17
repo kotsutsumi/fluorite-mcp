@@ -1,0 +1,10 @@
+{
+  "id": "mongodb-aggregation-lookup-minimal",
+  "name": "MongoDB Aggregation $lookup 最小",
+  "version": "1.0.0",
+  "stack": ["mongodb"],
+  "tags": ["db"],
+  "description": "$lookup で結合",
+  "files": [ { "path": "run.js", "template": "const { MongoClient } = require('mongodb');\nconsole.log('db.collection.aggregate([{ $lookup:{ from:\'other\', localField:\'k\', foreignField:\'k\', as:\'r\' } }])');\n" } ]
+}
+

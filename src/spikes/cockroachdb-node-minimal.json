@@ -1,0 +1,10 @@
+{
+  "id": "cockroachdb-node-minimal",
+  "name": "CockroachDB Node 最小",
+  "version": "1.0.0",
+  "stack": ["node", "cockroachdb"],
+  "tags": ["db"],
+  "description": "cockroachdb npm で接続/クエリ",
+  "files": [ { "path": "run.js", "template": "console.log('Connect via pg driver to CockroachDB');\n" } ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "id": "sveltekit-endpoint-binary-stream-minimal",
+  "name": "SvelteKit エンドポイント バイナリ配信 最小",
+  "version": "1.0.0",
+  "stack": ["sveltekit"],
+  "tags": ["frontend"],
+  "description": "ReadableStream でバイナリを返す",
+  "files": [ { "path": "src/routes/api/binary/+server.ts", "template": "export const GET = async () => { const bytes = new Uint8Array([0,1,2]); return new Response(bytes, { headers: { 'Content-Type':'application/octet-stream' } }); };\n" } ]
+}
+

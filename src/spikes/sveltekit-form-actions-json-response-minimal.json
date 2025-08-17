@@ -1,0 +1,10 @@
+{
+  "id": "sveltekit-form-actions-json-response-minimal",
+  "name": "SvelteKit form actions JSON 応答 最小",
+  "version": "1.0.0",
+  "stack": ["sveltekit"],
+  "tags": ["frontend"],
+  "description": "form actions で JSON 応答を返す",
+  "files": [ { "path": "+page.server.ts", "template": "export const actions = { default: async () => ({ ok: true }) };\n" } ]
+}
+

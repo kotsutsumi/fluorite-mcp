@@ -1,0 +1,10 @@
+{
+  "id": "linear-teams-list-minimal",
+  "name": "Linear Teams 一覧 最小",
+  "version": "1.0.0",
+  "stack": ["linear"],
+  "tags": ["pm"],
+  "description": "チーム一覧取得",
+  "files": [ { "path": "run.js", "template": "import { GraphQLClient } from 'graphql-request';\nconsole.log('query { teams(first:20){ nodes{ id name } } }');\n" } ]
+}
+

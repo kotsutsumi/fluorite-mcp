@@ -1,0 +1,10 @@
+{
+  "id": "notion-database-filter-by-relation-minimal",
+  "name": "Notion DB リレーションフィルタ 最小",
+  "version": "1.0.0",
+  "stack": ["notion"],
+  "tags": ["notion"],
+  "description": "relation プロパティで絞り込み",
+  "files": [ { "path": "run.js", "template": "import { Client } from '@notionhq/client';\nconsole.log('databases.query with filter: { property, relation: { contains } }');\n" } ]
+}
+

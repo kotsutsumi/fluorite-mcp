@@ -1,0 +1,10 @@
+{
+  "id": "stripe-payment-intent-confirm-minimal",
+  "name": "Stripe PaymentIntent confirm 最小",
+  "version": "1.0.0",
+  "stack": ["stripe"],
+  "tags": ["payments"],
+  "description": "PI の confirm 呼出",
+  "files": [ { "path": "run.js", "template": "console.log('stripe.paymentIntents.confirm(pi_...)');\n" } ]
+}
+

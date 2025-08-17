@@ -1,0 +1,10 @@
+{
+  "id": "woocommerce-categories-list-minimal",
+  "name": "WooCommerce Categories 一覧 最小",
+  "version": "1.0.0",
+  "stack": ["woocommerce"],
+  "tags": ["commerce"],
+  "description": "製品カテゴリの一覧取得",
+  "files": [ { "path": "run.js", "template": "import WooCommerceRestApi from '@woocommerce/woocommerce-rest-api';\nconsole.log('api.get(\'products/categories\')');\n" } ]
+}
+

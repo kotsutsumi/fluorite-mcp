@@ -1,0 +1,10 @@
+{
+  "id": "nextjs-draft-mode-minimal",
+  "name": "Next.js draftMode 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["frontend"],
+  "description": "draftMode().enable()/disable() の最小例",
+  "files": [ { "path": "app/api/draft/route.ts", "template": "import { draftMode } from 'next/headers';\nexport async function GET(){ draftMode().enable(); return new Response('ok'); }\n" } ]
+}
+

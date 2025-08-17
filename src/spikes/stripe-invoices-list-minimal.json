@@ -1,0 +1,10 @@
+{
+  "id": "stripe-invoices-list-minimal",
+  "name": "Stripe Invoices 一覧 最小",
+  "version": "1.0.0",
+  "stack": ["stripe"],
+  "tags": ["payments"],
+  "description": "請求書一覧の取得",
+  "files": [ { "path": "run.js", "template": "console.log('stripe.invoices.list({ customer })');\n" } ]
+}
+

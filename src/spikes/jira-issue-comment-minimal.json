@@ -1,0 +1,10 @@
+{
+  "id": "jira-issue-comment-minimal",
+  "name": "Jira 課題コメント 最小",
+  "version": "1.0.0",
+  "stack": ["jira"],
+  "tags": ["pm"],
+  "description": "課題へコメントを追加",
+  "files": [ { "path": "run.js", "template": "import { Version3Client } from 'jira.js';\nconsole.log('client.issueComments.addComment({ issueIdOrKey, body })');\n" } ]
+}
+

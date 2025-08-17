@@ -1,0 +1,10 @@
+{
+  "id": "linear-issue-labels-remove-minimal",
+  "name": "Linear Issue ラベル削除 最小",
+  "version": "1.0.0",
+  "stack": ["linear"],
+  "tags": ["pm"],
+  "description": "課題からラベルを削除",
+  "files": [ { "path": "run.js", "template": "import { GraphQLClient } from 'graphql-request';\nconsole.log('mutation issueUpdate { issueUpdate(id:..., input:{ labelIds:[] }) { success } }');\n" } ]
+}
+

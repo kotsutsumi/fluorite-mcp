@@ -1,0 +1,10 @@
+{
+  "id": "gcs-signed-post-policy-minimal",
+  "name": "GCS Signed POST Policy 最小",
+  "version": "1.0.0",
+  "stack": ["gcp"],
+  "tags": ["storage"],
+  "description": "POSTポリシーでフォームアップロード",
+  "files": [ { "path": "run.js", "template": "console.log('Generate v4 POST policy and upload via form');\n" } ]
+}
+

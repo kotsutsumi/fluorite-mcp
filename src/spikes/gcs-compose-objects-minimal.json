@@ -1,0 +1,10 @@
+{
+  "id": "gcs-compose-objects-minimal",
+  "name": "GCS Compose Objects 最小",
+  "version": "1.0.0",
+  "stack": ["gcp"],
+  "tags": ["storage"],
+  "description": "複数オブジェクトの結合",
+  "files": [ { "path": "run.js", "template": "console.log('storage.bucket().file().compose([sources])');\n" } ]
+}
+

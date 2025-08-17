@@ -1,0 +1,10 @@
+{
+  "id": "splunk-hec-logs-minimal",
+  "name": "Splunk HEC Logs 最小",
+  "version": "1.0.0",
+  "stack": ["splunk"],
+  "tags": ["observability"],
+  "description": "HTTP Event Collector にログ送信",
+  "files": [ { "path": "run.js", "template": "console.log('POST to https://splunk:8088/services/collector with HEC token');\n" } ]
+}
+

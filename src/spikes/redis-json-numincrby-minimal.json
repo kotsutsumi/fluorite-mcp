@@ -1,0 +1,10 @@
+{
+  "id": "redis-json-numincrby-minimal",
+  "name": "RedisJSON NUMINCRBY 最小",
+  "version": "1.0.0",
+  "stack": ["redis"],
+  "tags": ["cache"],
+  "description": "JSON.NUMINCRBY で数値加算",
+  "files": [ { "path": "run.js", "template": "const Redis=require('ioredis');\nconsole.log('JSON.NUMINCRBY key $.counter 1');\n" } ]
+}
+

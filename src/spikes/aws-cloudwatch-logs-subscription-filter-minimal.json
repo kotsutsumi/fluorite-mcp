@@ -1,0 +1,10 @@
+{
+  "id": "aws-cloudwatch-logs-subscription-filter-minimal",
+  "name": "AWS CloudWatch Logs Subscription Filter 最小",
+  "version": "1.0.0",
+  "stack": ["aws"],
+  "tags": ["observability"],
+  "description": "購読フィルタの作成",
+  "files": [ { "path": "run.js", "template": "console.log('PutSubscriptionFilter to deliver logs to Lambda/Kinesis/Firehose');\n" } ]
+}
+

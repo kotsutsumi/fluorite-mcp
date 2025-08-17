@@ -1,0 +1,10 @@
+{
+  "id": "asana-subtask-create-minimal",
+  "name": "Asana サブタスク作成 最小",
+  "version": "1.0.0",
+  "stack": ["asana"],
+  "tags": ["pm"],
+  "description": "親タスクにサブタスクを追加",
+  "files": [ { "path": "run.js", "template": "const asana=require('asana');\nconsole.log('client.tasks.addSubtask(taskGid, { name })');\n" } ]
+}
+

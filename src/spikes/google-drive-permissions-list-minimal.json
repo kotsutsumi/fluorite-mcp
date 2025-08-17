@@ -1,0 +1,10 @@
+{
+  "id": "google-drive-permissions-list-minimal",
+  "name": "Google Drive Permissions 一覧 最小",
+  "version": "1.0.0",
+  "stack": ["googleapis"],
+  "tags": ["drive"],
+  "description": "files.permissions.list の呼出",
+  "files": [ { "path": "run.js", "template": "import { google } from 'googleapis';\nconsole.log('drive.permissions.list({ fileId })');\n" } ]
+}
+

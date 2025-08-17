@@ -1,0 +1,10 @@
+{
+  "id": "gmail-labels-list-minimal",
+  "name": "Gmail Labels 一覧 最小",
+  "version": "1.0.0",
+  "stack": ["googleapis"],
+  "tags": ["email"],
+  "description": "labels.list の呼出",
+  "files": [ { "path": "run.js", "template": "import { google } from 'googleapis';\nconsole.log('gmail.users.labels.list({ userId:\'me\' })');\n" } ]
+}
+

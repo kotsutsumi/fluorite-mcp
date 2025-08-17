@@ -1,0 +1,10 @@
+{
+  "id": "clickhouse-s3-engine-concept",
+  "name": "ClickHouse S3 Engine (概念)",
+  "version": "1.0.0",
+  "stack": ["clickhouse"],
+  "tags": ["db"],
+  "description": "S3 Engine での外部データ参照概念",
+  "files": [ { "path": "README.md", "template": "CREATE TABLE ... ENGINE=S3('s3://bucket/path/*.parquet') with formats.\n" } ]
+}
+

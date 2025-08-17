@@ -1,0 +1,10 @@
+{
+  "id": "aws-kms-encrypt-decrypt-minimal",
+  "name": "AWS KMS Encrypt/Decrypt 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "kms"],
+  "tags": ["security"],
+  "description": "KMS で暗号化/復号",
+  "files": [ { "path": "run.js", "template": "console.log('KMS Encrypt/Decrypt with a CMK');\n" } ]
+}
+

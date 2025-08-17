@@ -1,0 +1,10 @@
+{
+  "id": "notion-page-archive-minimal",
+  "name": "Notion ページアーカイブ 最小",
+  "version": "1.0.0",
+  "stack": ["notion"],
+  "tags": ["notion"],
+  "description": "ページをアーカイブ",
+  "files": [ { "path": "run.js", "template": "import { Client } from '@notionhq/client';\nconsole.log('notion.pages.update({ page_id, archived:true })');\n" } ]
+}
+

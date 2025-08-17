@@ -1,0 +1,10 @@
+{
+  "id": "linear-milestone-create-minimal",
+  "name": "Linear Milestone 作成 最小",
+  "version": "1.0.0",
+  "stack": ["linear"],
+  "tags": ["pm"],
+  "description": "マイルストーン作成ミューテーション",
+  "files": [ { "path": "run.js", "template": "import { GraphQLClient } from 'graphql-request';\nconsole.log('mutation milestoneCreate { milestoneCreate(input:{ name:\'v1\' }){ success } }');\n" } ]
+}
+

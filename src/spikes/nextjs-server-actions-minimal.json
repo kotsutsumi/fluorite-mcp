@@ -1,0 +1,10 @@
+{
+  "id": "nextjs-server-actions-minimal",
+  "name": "Next.js Server Actions 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["frontend"],
+  "description": "サーバーアクションの基本",
+  "files": [ { "path": "app/actions.ts", "template": "'use server';\nexport async function save(data: FormData){ console.log('server action'); }\n" } ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "id": "qdrant-hnsw-config-minimal",
+  "name": "Qdrant HNSW Config 最小",
+  "version": "1.0.0",
+  "stack": ["qdrant"],
+  "tags": ["vector"],
+  "description": "HNSW パラメータの設定",
+  "files": [ { "path": "run.js", "template": "console.log('client.createCollection with hnsw_config: { m, ef_construct }');\n" } ]
+}
+

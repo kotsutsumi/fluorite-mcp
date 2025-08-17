@@ -1,0 +1,10 @@
+{
+  "id": "jira-issue-watchers-add-minimal",
+  "name": "Jira Issue Watchers 追加 最小",
+  "version": "1.0.0",
+  "stack": ["jira"],
+  "tags": ["pm"],
+  "description": "課題にウォッチャーを追加",
+  "files": [ { "path": "run.js", "template": "import { Version3Client } from 'jira.js';\nconsole.log('client.issueWatchers.addWatcher({ issueIdOrKey, accountId })');\n" } ]
+}
+

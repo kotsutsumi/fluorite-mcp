@@ -1,0 +1,10 @@
+{
+  "id": "gcp-pubsub-lite-produce-minimal",
+  "name": "GCP Pub/Sub Lite produce 最小",
+  "version": "1.0.0",
+  "stack": ["gcp"],
+  "tags": ["stream"],
+  "description": "Pub/Sub Lite に publish",
+  "files": [ { "path": "run.js", "template": "console.log('Use @google-cloud/pubsublite to publish messages');\n" } ]
+}
+

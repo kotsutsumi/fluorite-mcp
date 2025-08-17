@@ -1,0 +1,10 @@
+{
+  "id": "slack-views-open-modal-minimal",
+  "name": "Slack views.open モーダル 最小",
+  "version": "1.0.0",
+  "stack": ["slack"],
+  "tags": ["chat"],
+  "description": "Slack モーダルを開く",
+  "files": [ { "path": "run.js", "template": "console.log('POST https://slack.com/api/views.open with trigger_id & view');\n" } ]
+}
+

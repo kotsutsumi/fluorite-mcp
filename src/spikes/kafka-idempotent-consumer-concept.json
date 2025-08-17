@@ -1,0 +1,10 @@
+{
+  "id": "kafka-idempotent-consumer-concept",
+  "name": "Kafka Idempotent Consumer (概念)",
+  "version": "1.0.0",
+  "stack": ["kafka"],
+  "tags": ["stream"],
+  "description": "冪等な処理/重複排除パターン",
+  "files": [ { "path": "README.md", "template": "Store processed message keys/offsets to dedupe; use transactional outbox.\n" } ]
+}
+

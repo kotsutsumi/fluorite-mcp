@@ -1,0 +1,10 @@
+{
+  "id": "paypal-refund-capture-minimal",
+  "name": "PayPal Refund Capture 最小",
+  "version": "1.0.0",
+  "stack": ["paypal"],
+  "tags": ["payments"],
+  "description": "キャプチャに対する返金",
+  "files": [ { "path": "run.js", "template": "console.log('POST /v2/payments/captures/{capture_id}/refund');\n" } ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "id": "jose-rs256-pem-sign-verify-minimal",
+  "name": "jose RS256 PEM 署名/検証 最小",
+  "version": "1.0.0",
+  "stack": ["jose"],
+  "tags": ["security"],
+  "description": "PEM 鍵で RS256 JWT 署名/検証",
+  "files": [ { "path": "run.js", "template": "console.log('SignJWT with RS256 using importPKCS8/importSPKI');\n" } ]
+}
+

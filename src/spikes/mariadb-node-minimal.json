@@ -1,0 +1,10 @@
+{
+  "id": "mariadb-node-minimal",
+  "name": "MariaDB Node 最小",
+  "version": "1.0.0",
+  "stack": ["node", "mariadb"],
+  "tags": ["db"],
+  "description": "mariadb npm で接続/クエリ",
+  "files": [ { "path": "run.js", "template": "console.log('Use mariadb.createConnection and query');\n" } ]
+}
+

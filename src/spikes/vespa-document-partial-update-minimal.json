@@ -1,0 +1,10 @@
+{
+  "id": "vespa-document-partial-update-minimal",
+  "name": "Vespa Document Partial Update 最小",
+  "version": "1.0.0",
+  "stack": ["vespa"],
+  "tags": ["search"],
+  "description": "部分更新リクエストの雛形",
+  "files": [ { "path": "run.js", "template": "console.log('PUT /document/v1/ns/doc/docid/1 with partial update JSON');\n" } ]
+}
+

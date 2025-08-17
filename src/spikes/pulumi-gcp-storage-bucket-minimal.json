@@ -1,0 +1,10 @@
+{
+  "id": "pulumi-gcp-storage-bucket-minimal",
+  "name": "Pulumi GCP Storage Bucket 最小",
+  "version": "1.0.0",
+  "stack": ["pulumi", "gcp"],
+  "tags": ["iac"],
+  "description": "Pulumi TypeScript で GCS バケット作成",
+  "files": [ { "path": "index.ts", "template": "import * as gcp from '@pulumi/gcp';\nconst b = new gcp.storage.Bucket('b');\nexport const name = b.name;\n" } ]
+}
+

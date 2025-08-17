@@ -1,0 +1,10 @@
+{
+  "id": "aws-bedrock-list-foundation-models-minimal",
+  "name": "AWS Bedrock list foundation models 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "bedrock"],
+  "tags": ["ai"],
+  "description": "Bedrock の基盤モデル一覧",
+  "files": [ { "path": "run.js", "template": "console.log('BedrockClient listFoundationModels');\n" } ]
+}
+

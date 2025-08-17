@@ -1,0 +1,10 @@
+{
+  "id": "notion-users-list-minimal",
+  "name": "Notion Users 一覧 最小",
+  "version": "1.0.0",
+  "stack": ["notion"],
+  "tags": ["notion"],
+  "description": "users.list の呼出",
+  "files": [ { "path": "run.js", "template": "import { Client } from '@notionhq/client';\nconsole.log('notion.users.list()');\n" } ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "id": "mongodb-change-stream-resume-token-minimal",
+  "name": "MongoDB Change Stream Resume Token 最小",
+  "version": "1.0.0",
+  "stack": ["mongodb"],
+  "tags": ["db", "cdc"],
+  "description": "resumeAfter/startAfter の利用",
+  "files": [ { "path": "run.js", "template": "const { MongoClient } = require('mongodb');\nconsole.log('watch with resumeAfter token to continue from last event');\n" } ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "id": "redpanda-http-produce-minimal",
+  "name": "Redpanda HTTP Produce 最小",
+  "version": "1.0.0",
+  "stack": ["redpanda"],
+  "tags": ["stream"],
+  "description": "Redpanda HTTP proxy でメッセージ送信",
+  "files": [ { "path": "run.js", "template": "console.log('POST /topics/{topic} to Redpanda HTTP proxy');\n" } ]
+}
+

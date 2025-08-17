@@ -1,0 +1,10 @@
+{
+  "id": "linear-cycle-list-minimal",
+  "name": "Linear Cycle 一覧 最小",
+  "version": "1.0.0",
+  "stack": ["linear"],
+  "tags": ["pm"],
+  "description": "サイクル一覧取得",
+  "files": [ { "path": "run.js", "template": "import { GraphQLClient } from 'graphql-request';\nconsole.log('query { cycles(first:10){ nodes{ name startsAt endsAt } } }');\n" } ]
+}
+

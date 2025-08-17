@@ -1,0 +1,10 @@
+{
+  "id": "nats-jetstream-retention-policy-minimal",
+  "name": "NATS JetStream Retention Policy 最小",
+  "version": "1.0.0",
+  "stack": ["nats"],
+  "tags": ["stream"],
+  "description": "retention/replicas/max_age の設定",
+  "files": [ { "path": "run.js", "template": "console.log('js.addStream({ retention:\'limits\', max_age: 3600*1e9 })');\n" } ]
+}
+

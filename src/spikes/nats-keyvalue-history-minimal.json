@@ -1,0 +1,10 @@
+{
+  "id": "nats-keyvalue-history-minimal",
+  "name": "NATS KeyValue History 最小",
+  "version": "1.0.0",
+  "stack": ["nats"],
+  "tags": ["kv"],
+  "description": "KV バケットの履歴取得",
+  "files": [ { "path": "run.js", "template": "console.log('kv.history(key) to read revisions');\n" } ]
+}
+

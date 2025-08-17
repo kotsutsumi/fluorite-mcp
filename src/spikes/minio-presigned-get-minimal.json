@@ -1,0 +1,10 @@
+{
+  "id": "minio-presigned-get-minimal",
+  "name": "MinIO presigned GET 最小",
+  "version": "1.0.0",
+  "stack": ["minio"],
+  "tags": ["storage"],
+  "description": "presignedUrl(GET) を取得",
+  "files": [ { "path": "run.js", "template": "console.log('Use @minio/minio-js to presign GET');\n" } ]
+}
+

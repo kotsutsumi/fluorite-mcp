@@ -1,0 +1,10 @@
+{
+  "id": "nextjs-middleware-bot-detection-concept",
+  "name": "Next.js Middleware Bot Detection (概念)",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["frontend", "security"],
+  "description": "User-Agent 判定でボット制御の概念",
+  "files": [ { "path": "middleware.ts", "template": "import { NextResponse } from 'next/server';\nexport function middleware(req: Request){ const ua=(req as any).headers.get('user-agent')||''; if(/bot|crawler|spider/i.test(ua)) return new Response('bot', { status: 403 }); return NextResponse.next(); }\n" } ]
+}
+

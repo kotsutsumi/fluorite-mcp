@@ -1,0 +1,10 @@
+{
+  "id": "yugabytedb-node-minimal",
+  "name": "YugabyteDB Node 最小",
+  "version": "1.0.0",
+  "stack": ["node", "yugabytedb"],
+  "tags": ["db"],
+  "description": "YugabyteDB (pg互換) に接続",
+  "files": [ { "path": "run.js", "template": "console.log('Use pg driver to connect to YugabyteDB');\n" } ]
+}
+

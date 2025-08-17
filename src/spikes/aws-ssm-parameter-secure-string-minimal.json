@@ -1,0 +1,10 @@
+{
+  "id": "aws-ssm-parameter-secure-string-minimal",
+  "name": "AWS SSM パラメータ SecureString 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "ssm"],
+  "tags": ["secrets"],
+  "description": "SecureString の Put/Get",
+  "files": [ { "path": "run.js", "template": "console.log('SSM PutParameter Type=SecureString and GetParameter WithDecryption');\n" } ]
+}
+

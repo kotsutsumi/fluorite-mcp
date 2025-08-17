@@ -1,0 +1,10 @@
+{
+  "id": "rabbitmq-quorum-queue-concept",
+  "name": "RabbitMQ Quorum Queue (概念)",
+  "version": "1.0.0",
+  "stack": ["rabbitmq"],
+  "tags": ["queue"],
+  "description": "クォーラムキューの耐障害性/構成概念",
+  "files": [ { "path": "README.md", "template": "Use x-queue-type=quorum, set delivery-limit, and observe leader election.\n" } ]
+}
+

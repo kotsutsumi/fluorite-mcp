@@ -1,0 +1,10 @@
+{
+  "id": "jira-transitions-list-minimal",
+  "name": "Jira Transitions 一覧 最小",
+  "version": "1.0.0",
+  "stack": ["jira"],
+  "tags": ["pm"],
+  "description": "課題の遷移一覧取得",
+  "files": [ { "path": "run.js", "template": "import { Version3Client } from 'jira.js';\nconsole.log('client.issues.getTransitions({ issueIdOrKey })');\n" } ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "id": "mysql-readonly-grants-concept",
+  "name": "MySQL Read-only Grants (概念)",
+  "version": "1.0.0",
+  "stack": ["mysql"],
+  "tags": ["db"],
+  "description": "読み取り専用ユーザの権限設計",
+  "files": [ { "path": "README.md", "template": "GRANT SELECT ON db.* TO 'ro'@'%'; avoid superfluous privileges.\n" } ]
+}
+

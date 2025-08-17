@@ -1,0 +1,10 @@
+{
+  "id": "aws-s3-object-tagging-minimal",
+  "name": "AWS S3 Object Tagging 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "s3"],
+  "tags": ["storage"],
+  "description": "オブジェクトのタグ設定/取得",
+  "files": [ { "path": "run.js", "template": "import { S3Client } from '@aws-sdk/client-s3';\nconsole.log('PutObjectTagging/GetObjectTagging on an object');\n" } ]
+}
+

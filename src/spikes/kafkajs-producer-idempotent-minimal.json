@@ -1,0 +1,10 @@
+{
+  "id": "kafkajs-producer-idempotent-minimal",
+  "name": "KafkaJS Idempotent Producer 最小",
+  "version": "1.0.0",
+  "stack": ["kafka"],
+  "tags": ["stream"],
+  "description": "冪等プロデューサ構成",
+  "files": [ { "path": "run.js", "template": "console.log('Kafka({ allowAutoTopicCreation:false, retry:{ retries: 5 }, idempotent:true })');\n" } ]
+}
+

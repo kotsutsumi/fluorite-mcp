@@ -1,0 +1,10 @@
+{
+  "id": "jira-issue-assign-minimal",
+  "name": "Jira 課題アサイン 最小",
+  "version": "1.0.0",
+  "stack": ["jira"],
+  "tags": ["pm"],
+  "description": "課題の担当者設定",
+  "files": [ { "path": "run.js", "template": "import { Version3Client } from 'jira.js';\nconsole.log('client.issues.assignIssue({ issueIdOrKey, accountId })');\n" } ]
+}
+

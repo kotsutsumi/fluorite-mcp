@@ -1,0 +1,10 @@
+{
+  "id": "linear-project-create-minimal",
+  "name": "Linear プロジェクト作成 最小",
+  "version": "1.0.0",
+  "stack": ["linear"],
+  "tags": ["pm"],
+  "description": "プロジェクト作成のミューテーション",
+  "files": [ { "path": "run.js", "template": "import { GraphQLClient } from 'graphql-request';\nconsole.log('mutation projectCreate { projectCreate(input:{ name:\'Demo\' }){ success } }');\n" } ]
+}
+

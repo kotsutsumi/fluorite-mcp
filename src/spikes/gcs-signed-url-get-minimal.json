@@ -1,0 +1,10 @@
+{
+  "id": "gcs-signed-url-get-minimal",
+  "name": "GCS Signed URL GET 最小",
+  "version": "1.0.0",
+  "stack": ["gcp"],
+  "tags": ["storage"],
+  "description": "署名付きGET URL の生成",
+  "files": [ { "path": "run.js", "template": "console.log('storage.bucket().file(name).getSignedUrl({ action: \"read\", expires })');\n" } ]
+}
+

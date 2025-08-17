@@ -1,0 +1,10 @@
+{
+  "id": "kinesis-consumer-enhanced-fanout-minimal",
+  "name": "Kinesis Consumer Enhanced Fan-Out 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "kinesis"],
+  "tags": ["stream"],
+  "description": "Enhanced Fan-Out で購読",
+  "files": [ { "path": "run.js", "template": "console.log('SubscribeToShard for enhanced fan-out consumer');\n" } ]
+}
+

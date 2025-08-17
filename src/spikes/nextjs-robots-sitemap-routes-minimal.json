@@ -1,0 +1,10 @@
+{
+  "id": "nextjs-robots-sitemap-routes-minimal",
+  "name": "Next.js robots/sitemap Route 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["frontend", "seo"],
+  "description": "robots.txt と sitemap.xml の最小",
+  "files": [ { "path": "app/robots.txt/route.ts", "template": "export async function GET(){ return new Response('User-agent: *\\nAllow: /', { headers:{ 'Content-Type':'text/plain' } }); }\n" } ]
+}
+

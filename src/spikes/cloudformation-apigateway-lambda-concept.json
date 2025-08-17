@@ -1,0 +1,10 @@
+{
+  "id": "cloudformation-apigateway-lambda-concept",
+  "name": "CloudFormation API Gateway + Lambda (概念)",
+  "version": "1.0.0",
+  "stack": ["cloudformation", "aws"],
+  "tags": ["iac"],
+  "description": "API Gateway と Lambda を CFn で構成",
+  "files": [ { "path": "template.yaml", "template": "Resources: { Api: { Type: AWS::ApiGateway::RestApi }, Fn: { Type: AWS::Lambda::Function } }\n" } ]
+}
+

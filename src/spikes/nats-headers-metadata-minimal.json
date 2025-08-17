@@ -1,0 +1,10 @@
+{
+  "id": "nats-headers-metadata-minimal",
+  "name": "NATS ヘッダでメタデータ送信 最小",
+  "version": "1.0.0",
+  "stack": ["nats"],
+  "tags": ["stream"],
+  "description": "NATS ヘッダを利用したメタデータ付加",
+  "files": [ { "path": "run.js", "template": "console.log('Headers() to set metadata and publish with NATS headers');\n" } ]
+}
+

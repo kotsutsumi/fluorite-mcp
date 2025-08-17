@@ -1,0 +1,10 @@
+{
+  "id": "redis-stack-json-search-minimal",
+  "name": "Redis Stack JSON + Search 最小",
+  "version": "1.0.0",
+  "stack": ["redis"],
+  "tags": ["db", "search"],
+  "description": "JSON ドキュメントと RediSearch",
+  "files": [ { "path": "run.js", "template": "console.log('FT.CREATE idx ON JSON SCHEMA $.name AS name TEXT; FT.SEARCH idx \"name:Alice\"');\n" } ]
+}
+

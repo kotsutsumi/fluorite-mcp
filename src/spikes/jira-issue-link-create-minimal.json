@@ -1,0 +1,10 @@
+{
+  "id": "jira-issue-link-create-minimal",
+  "name": "Jira Issue Link 作成 最小",
+  "version": "1.0.0",
+  "stack": ["jira"],
+  "tags": ["pm"],
+  "description": "課題同士のリンク作成",
+  "files": [ { "path": "run.js", "template": "import { Version3Client } from 'jira.js';\nconsole.log('client.issueLinks.linkIssues({ inwardIssue, outwardIssue, type: { name } })');\n" } ]
+}
+

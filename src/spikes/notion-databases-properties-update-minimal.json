@@ -1,0 +1,10 @@
+{
+  "id": "notion-databases-properties-update-minimal",
+  "name": "Notion DB プロパティ更新 最小",
+  "version": "1.0.0",
+  "stack": ["notion"],
+  "tags": ["notion"],
+  "description": "DB のプロパティ定義を更新",
+  "files": [ { "path": "run.js", "template": "import { Client } from '@notionhq/client';\nconsole.log('notion.databases.update({ database_id, properties })');\n" } ]
+}
+

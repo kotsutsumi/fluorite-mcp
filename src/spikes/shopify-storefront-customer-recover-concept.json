@@ -1,0 +1,10 @@
+{
+  "id": "shopify-storefront-customer-recover-concept",
+  "name": "Shopify Storefront customerRecover (概念)",
+  "version": "1.0.0",
+  "stack": ["shopify"],
+  "tags": ["commerce", "auth"],
+  "description": "パスワードリカバリのミューテーション概念",
+  "files": [ { "path": "README.md", "template": "mutation customerRecover { customerRecover(email:...) { userErrors{ message } } }\n" } ]
+}
+

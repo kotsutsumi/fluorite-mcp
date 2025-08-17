@@ -1,0 +1,10 @@
+{
+  "id": "stripe-subscription-cancel-minimal",
+  "name": "Stripe Subscription 取消 最小",
+  "version": "1.0.0",
+  "stack": ["stripe"],
+  "tags": ["payments"],
+  "description": "サブスクリプションのキャンセル",
+  "files": [ { "path": "run.js", "template": "console.log('stripe.subscriptions.cancel(subId)');\n" } ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "id": "trello-labels-create-minimal",
+  "name": "Trello ラベル作成 最小",
+  "version": "1.0.0",
+  "stack": ["trello"],
+  "tags": ["pm"],
+  "description": "ラベルをボードに追加",
+  "files": [ { "path": "run.js", "template": "console.log('POST /1/labels?name=...&color=...&idBoard=...')\n" } ]
+}
+

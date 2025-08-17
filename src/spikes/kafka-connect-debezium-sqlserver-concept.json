@@ -1,0 +1,10 @@
+{
+  "id": "kafka-connect-debezium-sqlserver-concept",
+  "name": "Kafka Connect Debezium SQL Server (概念)",
+  "version": "1.0.0",
+  "stack": ["kafka"],
+  "tags": ["cdc"],
+  "description": "SQL Server CDC コネクタ設定の概念",
+  "files": [ { "path": "connector.json", "template": "{ \"name\": \"debezium-sqlserver\", \"config\": { \"connector.class\": \"io.debezium.connector.sqlserver.SqlServerConnector\" } }\n" } ]
+}
+

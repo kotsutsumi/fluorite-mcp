@@ -1,0 +1,10 @@
+{
+  "id": "github-actions-matrix-concept",
+  "name": "GitHub Actions Matrix (概念)",
+  "version": "1.0.0",
+  "stack": ["github"],
+  "tags": ["ci"],
+  "description": "マトリクス戦略の基本",
+  "files": [ { "path": "workflow.yml", "template": "jobs: { build: { runs-on: ubuntu-latest, strategy: { matrix: { node: [18,20] } }, steps: [{ uses:'actions/checkout@v4' }] } }\n" } ]
+}
+

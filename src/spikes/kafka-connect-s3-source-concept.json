@@ -1,0 +1,10 @@
+{
+  "id": "kafka-connect-s3-source-concept",
+  "name": "Kafka Connect S3 Source (概念)",
+  "version": "1.0.0",
+  "stack": ["kafka"],
+  "tags": ["stream"],
+  "description": "S3 Source コネクタ設定の概念",
+  "files": [ { "path": "connector.json", "template": "{ \"name\": \"s3-source\", \"config\": { \"connector.class\": \"io.confluent.connect.s3.source.S3SourceConnector\" } }\n" } ]
+}
+

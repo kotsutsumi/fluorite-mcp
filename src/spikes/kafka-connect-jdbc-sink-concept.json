@@ -1,0 +1,10 @@
+{
+  "id": "kafka-connect-jdbc-sink-concept",
+  "name": "Kafka Connect JDBC Sink (概念)",
+  "version": "1.0.0",
+  "stack": ["kafka"],
+  "tags": ["stream"],
+  "description": "JDBC Sink コネクタ設定概念",
+  "files": [ { "path": "connector.json", "template": "{ \"name\": \"jdbc-sink\", \"config\": { \"connector.class\": \"io.confluent.connect.jdbc.JdbcSinkConnector\" } }\n" } ]
+}
+

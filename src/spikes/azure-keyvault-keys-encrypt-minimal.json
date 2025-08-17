@@ -1,0 +1,10 @@
+{
+  "id": "azure-keyvault-keys-encrypt-minimal",
+  "name": "Azure Key Vault Keys Encrypt 最小",
+  "version": "1.0.0",
+  "stack": ["azure"],
+  "tags": ["security"],
+  "description": "Keys クライアントで暗号化",
+  "files": [ { "path": "run.js", "template": "console.log('Use @azure/keyvault-keys CryptographyClient.encrypt');\n" } ]
+}
+

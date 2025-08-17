@@ -1,0 +1,10 @@
+{
+  "id": "hono-jwt-rs256-verify-minimal",
+  "name": "Hono JWT RS256 Verify 最小",
+  "version": "1.0.0",
+  "stack": ["hono", "jwt"],
+  "tags": ["web", "security"],
+  "description": "RS256 JWT の検証",
+  "files": [ { "path": "server.ts", "template": "import { Hono } from 'hono';\nconst app = new Hono();\napp.use('*', async (c, next)=>{ /* verify RS256 JWT with JWKS */ return next(); });\napp.get('/', c=> c.text('ok'));\nexport default app;\n" } ]
+}
+
