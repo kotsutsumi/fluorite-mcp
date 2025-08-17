@@ -1,0 +1,10 @@
+{
+  "id": "sanity-mutation-patch-minimal",
+  "name": "Sanity Mutation patch 最小",
+  "version": "1.0.0",
+  "stack": ["sanity"],
+  "tags": ["cms"],
+  "description": "client.patch().set().commit()",
+  "files": [ { "path": "run.js", "template": "import { createClient } from '@sanity/client';\nconsole.log('client.patch(id).set({...}).commit()');\n" } ]
+}
+

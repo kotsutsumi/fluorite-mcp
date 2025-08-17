@@ -1,0 +1,10 @@
+{
+  "id": "aws-iam-policy-s3-readonly-concept",
+  "name": "AWS IAM Policy S3 ReadOnly (概念)",
+  "version": "1.0.0",
+  "stack": ["aws"],
+  "tags": ["security"],
+  "description": "S3 ReadOnly のポリシー例",
+  "files": [ { "path": "policy.json", "template": "{ \"Version\":\"2012-10-17\", \"Statement\":[{ \"Effect\":\"Allow\", \"Action\":[\"s3:Get*\",\"s3:List*\"], \"Resource\": \"*\" }]}\n" } ]
+}
+

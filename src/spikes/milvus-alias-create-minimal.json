@@ -1,0 +1,10 @@
+{
+  "id": "milvus-alias-create-minimal",
+  "name": "Milvus Alias 作成 最小",
+  "version": "1.0.0",
+  "stack": ["milvus"],
+  "tags": ["vector"],
+  "description": "コレクションに別名を付与",
+  "files": [ { "path": "run.js", "template": "console.log('client.createAlias({ collection_name, alias })');\n" } ]
+}
+

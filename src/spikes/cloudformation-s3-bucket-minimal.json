@@ -1,0 +1,10 @@
+{
+  "id": "cloudformation-s3-bucket-minimal",
+  "name": "CloudFormation S3 バケット 最小",
+  "version": "1.0.0",
+  "stack": ["cloudformation", "aws"],
+  "tags": ["iac"],
+  "description": "CFn テンプレで S3 を作成",
+  "files": [ { "path": "template.yaml", "template": "AWSTemplateFormatVersion: '2010-09-09'\nResources:\n  Bucket:\n    Type: AWS::S3::Bucket\n" } ]
+}
+

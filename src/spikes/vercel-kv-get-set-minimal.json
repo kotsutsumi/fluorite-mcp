@@ -1,0 +1,10 @@
+{
+  "id": "vercel-kv-get-set-minimal",
+  "name": "Vercel KV get/set 最小",
+  "version": "1.0.0",
+  "stack": ["vercel"],
+  "tags": ["kv"],
+  "description": "@vercel/kv で get/set",
+  "files": [ { "path": "run.js", "template": "console.log('import { kv } from @vercel/kv; await kv.set(\'k\',\'v\');')\n" } ]
+}
+

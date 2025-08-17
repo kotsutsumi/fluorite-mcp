@@ -1,0 +1,10 @@
+{
+  "id": "asana-section-create-minimal",
+  "name": "Asana セクション作成 最小",
+  "version": "1.0.0",
+  "stack": ["asana"],
+  "tags": ["pm"],
+  "description": "プロジェクトにセクションを作成",
+  "files": [ { "path": "run.js", "template": "const asana = require('asana');\nconsole.log('client.sections.createSection(projectGid, { name })');\n" } ]
+}
+

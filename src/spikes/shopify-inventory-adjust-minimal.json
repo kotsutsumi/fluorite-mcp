@@ -1,0 +1,10 @@
+{
+  "id": "shopify-inventory-adjust-minimal",
+  "name": "Shopify Inventory 調整 最小",
+  "version": "1.0.0",
+  "stack": ["shopify"],
+  "tags": ["commerce"],
+  "description": "InventoryAdjustQuantity を呼び出す概念",
+  "files": [ { "path": "run.js", "template": "import { GraphQLClient, gql } from 'graphql-request';\nconsole.log('mutation inventoryAdjustQuantity { inventoryAdjustQuantity(...) }');\n" } ]
+}
+

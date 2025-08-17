@@ -1,0 +1,10 @@
+{
+  "id": "aws-appconfig-get-configuration-minimal",
+  "name": "AWS AppConfig 設定取得 最小",
+  "version": "1.0.0",
+  "stack": ["aws"],
+  "tags": ["config"],
+  "description": "AppConfig から構成を取得",
+  "files": [ { "path": "run.js", "template": "import { AppConfigDataClient } from '@aws-sdk/client-appconfigdata';\nconsole.log('StartConfigurationSession + GetLatestConfiguration');\n" } ]
+}
+

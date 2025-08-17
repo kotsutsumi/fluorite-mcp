@@ -1,0 +1,10 @@
+{
+  "id": "shopify-storefront-cart-create-minimal",
+  "name": "Shopify Storefront cartCreate 最小",
+  "version": "1.0.0",
+  "stack": ["shopify"],
+  "tags": ["commerce"],
+  "description": "Storefront API でカート作成",
+  "files": [ { "path": "run.js", "template": "import { GraphQLClient, gql } from 'graphql-request';\nconsole.log('mutation cartCreate { cartCreate(input:{ lines:[...] }){ cart { id } } }');\n" } ]
+}
+

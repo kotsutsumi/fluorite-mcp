@@ -1,0 +1,10 @@
+{
+  "id": "strapi-role-permission-update-minimal",
+  "name": "Strapi ロール権限更新 最小",
+  "version": "1.0.0",
+  "stack": ["strapi"],
+  "tags": ["cms", "auth"],
+  "description": "Strapi のロール権限を更新する概念",
+  "files": [ { "path": "run.js", "template": "import fetch from 'node-fetch';\nconsole.log('PUT /admin/roles/{id} with updated permissions');\n" } ]
+}
+

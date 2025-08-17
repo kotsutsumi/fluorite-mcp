@@ -1,0 +1,10 @@
+{
+  "id": "debezium-postgres-connector-concept",
+  "name": "Debezium Postgres Connector (概念)",
+  "version": "1.0.0",
+  "stack": ["kafka", "postgres"],
+  "tags": ["cdc"],
+  "description": "Postgres CDC のコネクタ設定概念",
+  "files": [ { "path": "connector.json", "template": "{ \"name\": \"debezium-postgres\", \"config\": { \"connector.class\": \"io.debezium.connector.postgresql.PostgresConnector\", \"database.hostname\": \"localhost\" } }\n" } ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "id": "kafkajs-consumer-rebalance-minimal",
+  "name": "KafkaJS Consumer Rebalance 最小",
+  "version": "1.0.0",
+  "stack": ["kafka", "node"],
+  "tags": ["stream"],
+  "description": "Rebalance リスナで分割割当をハンドリング",
+  "files": [ { "path": "run.js", "template": "import { Kafka } from 'kafkajs';\nconsole.log('consumer.run({ eachBatch, partitionsConsumedConcurrently })');\n" } ]
+}
+

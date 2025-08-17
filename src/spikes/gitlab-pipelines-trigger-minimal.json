@@ -1,0 +1,10 @@
+{
+  "id": "gitlab-pipelines-trigger-minimal",
+  "name": "GitLab Pipelines Trigger 最小",
+  "version": "1.0.0",
+  "stack": ["gitlab"],
+  "tags": ["ci"],
+  "description": "pipeline トリガー API の呼出",
+  "files": [ { "path": "run.js", "template": "import { Gitlab } from 'gitlab';\nconsole.log('api.PipelineTriggers.trigger(projectId, token, ref)');\n" } ]
+}
+

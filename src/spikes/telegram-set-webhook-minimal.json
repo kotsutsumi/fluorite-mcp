@@ -1,0 +1,10 @@
+{
+  "id": "telegram-set-webhook-minimal",
+  "name": "Telegram setWebhook 最小",
+  "version": "1.0.0",
+  "stack": ["telegram"],
+  "tags": ["bot"],
+  "description": "Telegram の setWebhook 呼出",
+  "files": [ { "path": "run.js", "template": "console.log('GET https://api.telegram.org/botTOKEN/setWebhook?url=...');\n" } ]
+}
+

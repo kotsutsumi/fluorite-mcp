@@ -1,0 +1,10 @@
+{
+  "id": "kubernetes-deployment-minimal",
+  "name": "Kubernetes Deployment 最小",
+  "version": "1.0.0",
+  "stack": ["kubernetes"],
+  "tags": ["k8s"],
+  "description": "Deployment の最小マニフェスト",
+  "files": [ { "path": "deployment.yaml", "template": "apiVersion: apps/v1\nkind: Deployment\nmetadata: { name: demo }\nspec: { replicas: 1, selector: { matchLabels: { app: demo } }, template: { metadata: { labels: { app: demo } }, spec: { containers: [{ name: app, image: nginx }] } } }\n" } ]
+}
+

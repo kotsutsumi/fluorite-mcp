@@ -1,0 +1,10 @@
+{
+  "id": "google-pubsub-push-endpoint-express",
+  "name": "Google Pub/Sub Push Endpoint (Express)",
+  "version": "1.0.0",
+  "stack": ["google", "express"],
+  "tags": ["pubsub"],
+  "description": "Pub/Sub push を受ける Express",
+  "files": [ { "path": "server.js", "template": "const express = require('express');\nconst app = express();\napp.post('/pubsub', express.json(), (req, res)=>{ console.log(req.body); res.send('ok'); });\napp.listen(3000);\n" } ]
+}
+

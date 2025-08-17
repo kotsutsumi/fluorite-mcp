@@ -1,0 +1,10 @@
+{
+  "id": "qdrant-optimizer-config-minimal",
+  "name": "Qdrant Optimizer 設定 最小",
+  "version": "1.0.0",
+  "stack": ["qdrant"],
+  "tags": ["vector"],
+  "description": "オプティマイザ設定の更新",
+  "files": [ { "path": "run.js", "template": "console.log('client.setOptimizerParams({ memmap_threshold, indexing_threshold })');\n" } ]
+}
+

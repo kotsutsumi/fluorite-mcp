@@ -1,0 +1,10 @@
+{
+  "id": "linear-comment-create-minimal",
+  "name": "Linear コメント作成 最小",
+  "version": "1.0.0",
+  "stack": ["linear"],
+  "tags": ["pm"],
+  "description": "Linear GraphQL でコメント作成",
+  "files": [ { "path": "run.js", "template": "import { GraphQLClient, gql } from 'graphql-request';\nconsole.log('mutation commentCreate { commentCreate(...) { success } }');\n" } ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "id": "bigcommerce-order-create-minimal",
+  "name": "BigCommerce 注文作成 最小",
+  "version": "1.0.0",
+  "stack": ["bigcommerce"],
+  "tags": ["commerce"],
+  "description": "Orders API で作成リクエスト",
+  "files": [ { "path": "run.js", "template": "import fetch from 'node-fetch';\nconsole.log('POST /stores/{hash}/v2/orders with auth');\n" } ]
+}
+

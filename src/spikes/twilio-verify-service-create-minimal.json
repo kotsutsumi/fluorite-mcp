@@ -1,0 +1,10 @@
+{
+  "id": "twilio-verify-service-create-minimal",
+  "name": "Twilio Verify Service 作成 最小",
+  "version": "1.0.0",
+  "stack": ["twilio"],
+  "tags": ["auth"],
+  "description": "Verify サービスを作成",
+  "files": [ { "path": "run.js", "template": "const twilio = require('twilio');\nconsole.log('client.verify.v2.services.create({ friendlyName })');\n" } ]
+}
+

@@ -87,13 +87,23 @@ const englishSidebar = {
 const japaneseSidebar = {
   '/ja/': [
     {
-      text: '🚀 はじめに',
+      text: '🚀 クイックスタート',
       collapsed: false,
       items: [
-        { text: '概要', link: '/ja/' },
-        { text: 'クイックスタート (5分)', link: '/ja/getting-started' },
-        { text: 'インストールガイド', link: '/ja/installation' },
+        { text: 'Fluorite MCPとは', link: '/ja/' },
+        { text: '5分で始める', link: '/ja/getting-started' },
+        { text: 'インストール', link: '/ja/installation' },
         { text: '最初のプロジェクト', link: '/ja/introduction' }
+      ]
+    },
+    {
+      text: '⚡ 主要機能',
+      collapsed: false,
+      items: [
+        { text: '✨ スパイクテンプレート (1,359+)', link: '/ja/spike-templates' },
+        { text: '🔍 静的解析エンジン', link: '/ja/static-analysis' },
+        { text: '📚 ライブラリ仕様カタログ', link: '/specs/' },
+        { text: '🎯 /fl: コマンドシステム', link: '/ja/fl-commands' }
       ]
     },
     {
@@ -101,55 +111,63 @@ const japaneseSidebar = {
       collapsed: false,
       items: [
         { text: 'コマンドリファレンス', link: '/ja/commands' },
-        { text: '/fl: コマンド', link: '/ja/fl-commands' },
         { text: '/fl: コマンド詳細', link: '/ja/fl-commands-detailed' },
-        { text: '使用例とケーススタディ', link: '/ja/use-cases-examples' }
+        { text: '実際の使用例', link: '/ja/use-cases-examples' },
+        { text: 'テンプレート作成ガイド', link: '/ja/template-creation' }
       ]
     },
     {
-      text: '🧪 高度な機能',
+      text: '🧪 高度な使い方',
       collapsed: false,
       items: [
-        { text: '機能ドキュメント', link: '/ja/features' },
-        { text: 'スパイクテンプレートガイド', link: '/ja/spike-templates' },
+        { text: '機能の詳細解説', link: '/ja/features' },
         { text: 'スパイクテンプレート詳細', link: '/ja/spike-templates-detailed' },
-        { text: 'テンプレート作成', link: '/ja/template-creation' },
-        { text: '静的解析', link: '/ja/static-analysis' }
+        { text: 'パフォーマンス最適化', link: '/ja/performance' },
+        { text: '統合ガイド', link: '/ja/integration-guide' }
       ]
     },
     {
-      text: '🛠️ 開発者リソース',
-      collapsed: false,
+      text: '🛠️ 開発者向け',
+      collapsed: true,
       items: [
         { text: '開発者ガイド', link: '/ja/developer' },
-        { text: 'アーキテクチャサマリー', link: '/ARCHITECTURE_SUMMARY.ja' },
+        { text: 'アーキテクチャ概要', link: '/ARCHITECTURE_SUMMARY.ja' },
         { 
-          text: 'アーキテクチャドキュメント',
-          collapsed: false,
+          text: '詳細設計ドキュメント',
+          collapsed: true,
           items: [
-            { text: '概要', link: '/ja/architecture/' },
-            { text: 'Fluoriteラッパー設計', link: '/ja/architecture/fluorite-wrapper-design' },
-            { text: '実装ロードマップ', link: '/ja/architecture/implementation-roadmap' },
-            { text: 'コマンドマッピング仕様', link: '/ja/architecture/command-mapping-spec' },
+            { text: 'システム設計', link: '/ja/architecture/' },
+            { text: 'MCPサーバー設計', link: '/ja/architecture/fluorite-wrapper-design' },
+            { text: '実装計画', link: '/ja/architecture/implementation-roadmap' },
+            { text: 'コマンドマッピング', link: '/ja/architecture/command-mapping-spec' },
             { text: 'Claude CLI統合', link: '/ja/architecture/claude-cli-integration' },
-            { text: 'スパイクテンプレート拡張計画', link: '/ja/architecture/spike-template-expansion-plan' },
+            { text: 'テンプレート拡張', link: '/ja/architecture/spike-template-expansion-plan' },
             { text: 'テスト戦略', link: '/ja/architecture/testing-strategy' },
-            { text: 'デプロイメント計画', link: '/ja/architecture/deployment-plan' }
+            { text: 'デプロイ計画', link: '/ja/architecture/deployment-plan' }
           ]
         },
-        { text: '統合ガイド', link: '/ja/integration-guide' },
-        { text: 'パフォーマンス', link: '/ja/performance' },
-        { text: '静的解析', link: '/ja/static-analysis' },
         { text: '関数リファレンス', link: '/function-reference.ja' }
       ]
     },
     {
-      text: '🆘 ヘルプとサポート',
+      text: '📋 仕様カタログ',
+      collapsed: false,
+      items: [
+        { text: '📚 ライブラリ一覧', link: '/specs/' },
+        { text: '🌟 包括的エコシステム', link: '/specs/ai-ml-llm-comprehensive' },
+        { text: '💻 言語別エコシステム', link: '/specs/langs' },
+        { text: '🎨 フロントエンド・UI', link: '/specs/frontend-ui-innovation' },
+        { text: '🚀 バックエンド・インフラ', link: '/specs/modern-backend-serverless' }
+      ]
+    },
+    {
+      text: '🆘 ヘルプ',
       collapsed: true,
       items: [
         { text: 'トラブルシューティング', link: '/ja/troubleshooting' },
         { text: 'APIリファレンス', link: '/API' },
-        { text: 'GitHub Issues', link: 'https://github.com/kotsutsumi/fluorite-mcp/issues' }
+        { text: 'GitHub Issues', link: 'https://github.com/kotsutsumi/fluorite-mcp/issues' },
+        { text: 'コミュニティ', link: 'https://github.com/kotsutsumi/fluorite-mcp/discussions' }
       ]
     }
   ]

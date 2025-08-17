@@ -1,0 +1,10 @@
+{
+  "id": "bitbucket-branches-create-minimal",
+  "name": "Bitbucket ブランチ作成 最小",
+  "version": "1.0.0",
+  "stack": ["bitbucket"],
+  "tags": ["ci"],
+  "description": "Bitbucket API でブランチ作成",
+  "files": [ { "path": "run.js", "template": "import { Bitbucket } from 'bitbucket';\nconsole.log('client.refs.createBranch({ workspace, repo_slug, name, target })');\n" } ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "id": "github-releases-create-minimal",
+  "name": "GitHub Releases 作成 最小",
+  "version": "1.0.0",
+  "stack": ["github"],
+  "tags": ["ci"],
+  "description": "Octokit でリリース作成",
+  "files": [ { "path": "run.js", "template": "import { Octokit } from '@octokit/rest';\nconsole.log('octokit.repos.createRelease({ owner, repo, tag_name })');\n" } ]
+}
+

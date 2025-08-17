@@ -1,0 +1,10 @@
+{
+  "id": "argocd-application-manifest-concept",
+  "name": "Argo CD Application Manifest (概念)",
+  "version": "1.0.0",
+  "stack": ["argocd"],
+  "tags": ["k8s"],
+  "description": "ArgoCD Application の最小例",
+  "files": [ { "path": "README.md", "template": "apiVersion: argoproj.io/v1alpha1, kind: Application, spec: { source, destination, project }.\n" } ]
+}
+

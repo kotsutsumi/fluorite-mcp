@@ -1,0 +1,10 @@
+{
+  "id": "firebase-cloud-messaging-send-minimal",
+  "name": "Firebase Cloud Messaging 送信 最小",
+  "version": "1.0.0",
+  "stack": ["firebase"],
+  "tags": ["push"],
+  "description": "FCM で通知送信",
+  "files": [ { "path": "run.js", "template": "import admin from 'firebase-admin';\nconsole.log('admin.messaging().send({ token, notification:{ title, body }})');\n" } ]
+}
+

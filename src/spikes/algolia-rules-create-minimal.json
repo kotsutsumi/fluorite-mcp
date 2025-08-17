@@ -1,0 +1,10 @@
+{
+  "id": "algolia-rules-create-minimal",
+  "name": "Algolia Rules 作成 最小",
+  "version": "1.0.0",
+  "stack": ["node", "algolia"],
+  "tags": ["search"],
+  "description": "ランキング/同義語ルールの作成",
+  "files": [ { "path": "run.js", "template": "import algoliasearch from 'algoliasearch';\nconsole.log('index.saveRule({ objectID, conditions, consequence })');\n" } ]
+}
+

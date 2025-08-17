@@ -1,0 +1,10 @@
+{
+  "id": "sentry-node-transaction-manual-minimal",
+  "name": "Sentry Node Transaction 手動計測 最小",
+  "version": "1.0.0",
+  "stack": ["sentry", "node"],
+  "tags": ["observability"],
+  "description": "Sentry の Transaction/Span を手動で送信",
+  "files": [ { "path": "run.js", "template": "const Sentry = require('@sentry/node');\nSentry.init({ dsn: process.env.SENTRY_DSN, tracesSampleRate: 1.0 });\nconst t = Sentry.startTransaction({ name: 'job' });\nsetTimeout(()=>{ t.finish(); console.log('done'); }, 10);\n" } ]
+}
+

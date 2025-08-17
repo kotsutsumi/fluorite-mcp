@@ -1,0 +1,10 @@
+{
+  "id": "postgres-logical-replication-concept",
+  "name": "Postgres 論理レプリケーション (概念)",
+  "version": "1.0.0",
+  "stack": ["postgres"],
+  "tags": ["db"],
+  "description": "publication/subscription の基本",
+  "files": [ { "path": "README.md", "template": "CREATE PUBLICATION pub FOR TABLE my_table; CREATE SUBSCRIPTION sub CONNECTION '...' PUBLICATION pub;\n" } ]
+}
+

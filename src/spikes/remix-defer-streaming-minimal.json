@@ -1,0 +1,10 @@
+{
+  "id": "remix-defer-streaming-minimal",
+  "name": "Remix defer Streaming 最小",
+  "version": "1.0.0",
+  "stack": ["remix"],
+  "tags": ["frontend"],
+  "description": "defer を使ったストリーミング応答",
+  "files": [ { "path": "app/routes/defer.tsx", "template": "import { defer } from '@remix-run/node';\nexport async function loader(){ return defer({ slow: new Promise(r=> setTimeout(()=>r('done'), 10)) }); }\nexport default function Page(){ return null }\n" } ]
+}
+

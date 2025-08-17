@@ -1,0 +1,10 @@
+{
+  "id": "jira-issue-attachment-upload-minimal",
+  "name": "Jira 課題 添付アップロード 最小",
+  "version": "1.0.0",
+  "stack": ["jira"],
+  "tags": ["pm"],
+  "description": "Jira REST API で課題に添付",
+  "files": [ { "path": "run.js", "template": "import fetch from 'node-fetch';\nconsole.log('POST /rest/api/3/issue/{id}/attachments');\n" } ]
+}
+

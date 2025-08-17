@@ -1,0 +1,10 @@
+{
+  "id": "astro-middleware-basic-minimal",
+  "name": "Astro Middleware 基本 最小",
+  "version": "1.0.0",
+  "stack": ["astro"],
+  "tags": ["frontend"],
+  "description": "Astro middleware でヘッダ追加",
+  "files": [ { "path": "src/middleware.ts", "template": "import type { MiddlewareHandler } from 'astro';\nexport const onRequest: MiddlewareHandler = async (context, next) => { const response = await next(); response.headers.set('X-App','demo'); return response; };\n" } ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "id": "postmark-template-send-minimal",
+  "name": "Postmark テンプレ送信 最小",
+  "version": "1.0.0",
+  "stack": ["postmark"],
+  "tags": ["email"],
+  "description": "テンプレートを使ってメール送信",
+  "files": [ { "path": "run.js", "template": "console.log('POST to https://api.postmarkapp.com/email/withTemplate');\n" } ]
+}
+

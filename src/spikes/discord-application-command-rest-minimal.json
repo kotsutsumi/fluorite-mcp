@@ -1,0 +1,10 @@
+{
+  "id": "discord-application-command-rest-minimal",
+  "name": "Discord Application Command REST 最小",
+  "version": "1.0.0",
+  "stack": ["discord"],
+  "tags": ["bot"],
+  "description": "Discord REST API でのコマンド登録",
+  "files": [ { "path": "run.js", "template": "console.log('PUT /applications/{appId}/commands with Bearer bot_token');\n" } ]
+}
+
