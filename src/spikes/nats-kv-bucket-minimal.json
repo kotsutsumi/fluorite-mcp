@@ -1,0 +1,10 @@
+{
+  "id": "nats-kv-bucket-minimal",
+  "name": "NATS KV Bucket 最小",
+  "version": "1.0.0",
+  "stack": ["nats"],
+  "tags": ["kv"],
+  "description": "JetStream KV バケットの基本操作",
+  "files": [ { "path": "run.js", "template": "console.log('js.views.kv(bucket).put/get');\n" } ]
+}
+

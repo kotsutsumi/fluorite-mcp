@@ -1,0 +1,10 @@
+{
+  "id": "shopify-storefront-customer-create-minimal",
+  "name": "Shopify Storefront customerCreate 最小",
+  "version": "1.0.0",
+  "stack": ["shopify"],
+  "tags": ["commerce"],
+  "description": "顧客作成の最小ミューテーション",
+  "files": [ { "path": "run.js", "template": "import { GraphQLClient, gql } from 'graphql-request';\nconsole.log('mutation customerCreate { customerCreate(input:{email,password}){ customer { id } } }');\n" } ]
+}
+

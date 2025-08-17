@@ -1,0 +1,10 @@
+{
+  "id": "weaviate-bm25-search-minimal",
+  "name": "Weaviate BM25 検索 最小",
+  "version": "1.0.0",
+  "stack": ["weaviate"],
+  "tags": ["vector"],
+  "description": "BM25 キーワード検索",
+  "files": [ { "path": "run.js", "template": "console.log('Weaviate GraphQL { Get { Class(nearText/bm25:{}) } }');\n" } ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "id": "asana-attachment-upload-minimal",
+  "name": "Asana 添付アップロード 最小",
+  "version": "1.0.0",
+  "stack": ["asana"],
+  "tags": ["pm"],
+  "description": "Asana tasks にファイル添付",
+  "files": [ { "path": "run.js", "template": "const asana = require('asana');\nconsole.log('client.attachments.createOnTask(taskGid, file)');\n" } ]
+}
+

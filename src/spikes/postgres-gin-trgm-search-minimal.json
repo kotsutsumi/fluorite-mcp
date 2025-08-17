@@ -1,0 +1,10 @@
+{
+  "id": "postgres-gin-trgm-search-minimal",
+  "name": "Postgres GIN/pg_trgm 検索 最小",
+  "version": "1.0.0",
+  "stack": ["postgres"],
+  "tags": ["db"],
+  "description": "pg_trgm 拡張で類似検索",
+  "files": [ { "path": "schema.sql", "template": "CREATE EXTENSION IF NOT EXISTS pg_trgm;\nCREATE INDEX idx_trgm ON items USING gin (name gin_trgm_ops);\n" } ]
+}
+

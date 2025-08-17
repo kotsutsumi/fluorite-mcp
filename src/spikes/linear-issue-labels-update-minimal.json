@@ -1,0 +1,10 @@
+{
+  "id": "linear-issue-labels-update-minimal",
+  "name": "Linear Issue ラベル更新 最小",
+  "version": "1.0.0",
+  "stack": ["linear"],
+  "tags": ["pm"],
+  "description": "Issue にラベルを設定",
+  "files": [ { "path": "run.js", "template": "import { GraphQLClient, gql } from 'graphql-request';\nconsole.log('mutation issueUpdate { issueUpdate(id:..., input:{ labelIds:[...] }){ success } }');\n" } ]
+}
+

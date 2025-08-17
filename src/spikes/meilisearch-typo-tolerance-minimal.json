@@ -1,0 +1,10 @@
+{
+  "id": "meilisearch-typo-tolerance-minimal",
+  "name": "Meilisearch Typo Tolerance 最小",
+  "version": "1.0.0",
+  "stack": ["meilisearch"],
+  "tags": ["search"],
+  "description": "typoTolerance の設定",
+  "files": [ { "path": "run.js", "template": "console.log('index.updateSettings({ typoTolerance:{ enabled:true } })');\n" } ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "id": "sentry-tunnel-endpoint-express",
+  "name": "Sentry Tunnel Endpoint (Express)",
+  "version": "1.0.0",
+  "stack": ["sentry", "express"],
+  "tags": ["observability", "security"],
+  "description": "Sentry トンネルで DSN を秘匿化",
+  "files": [ { "path": "server.js", "template": "const express=require('express'); const app=express(); app.post('/monitoring', express.raw({type:'*/*'}),(req,res)=>{ /* forward to Sentry ingestion */ res.send('ok'); }); app.listen(3000);\n" } ]
+}
+

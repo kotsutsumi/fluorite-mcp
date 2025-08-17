@@ -1,0 +1,10 @@
+{
+  "id": "mongodb-text-index-search-minimal",
+  "name": "MongoDB Text Index 検索 最小",
+  "version": "1.0.0",
+  "stack": ["mongodb"],
+  "tags": ["db"],
+  "description": "Text Index を使用した検索",
+  "files": [ { "path": "run.js", "template": "const { MongoClient } = require('mongodb');\nconsole.log('db.collection.createIndex({ field:\'text\' }); find({ $text:{ $search: \"word\" } })');\n" } ]
+}
+

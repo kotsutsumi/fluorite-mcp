@@ -1,0 +1,10 @@
+{
+  "id": "sveltekit-service-worker-basic-minimal",
+  "name": "SvelteKit Service Worker 基本 最小",
+  "version": "1.0.0",
+  "stack": ["sveltekit"],
+  "tags": ["frontend"],
+  "description": "service worker の最小登録/イベント",
+  "files": [ { "path": "src/service-worker.ts", "template": "self.addEventListener('install', ()=>{});\nself.addEventListener('fetch', ()=>{});\n" } ]
+}
+

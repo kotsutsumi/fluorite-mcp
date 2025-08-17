@@ -1,0 +1,10 @@
+{
+  "id": "woocommerce-coupon-create-minimal",
+  "name": "WooCommerce クーポン作成 最小",
+  "version": "1.0.0",
+  "stack": ["woocommerce"],
+  "tags": ["commerce"],
+  "description": "REST API でクーポン作成",
+  "files": [ { "path": "run.js", "template": "import WooCommerceRestApi from '@woocommerce/woocommerce-rest-api';\nconsole.log('api.post(\'coupons\', { code:\'OFF10\', amount:\'10\' })');\n" } ]
+}
+
