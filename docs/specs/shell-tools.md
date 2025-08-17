@@ -165,7 +165,7 @@ cat access.log | \
 ### ネットワーク診断
 ```bash
 # 接続診断スクリプト
-hosts=("google.com" "github.com" "stackoverflow.com")
+hosts=("google.com" "github.com" "cloudflare.com")
 
 for host in "${hosts[@]}"; do
     if ping -c 1 "$host" >/dev/null 2>&1; then
