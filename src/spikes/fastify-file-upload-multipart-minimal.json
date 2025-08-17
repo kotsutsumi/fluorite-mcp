@@ -1,0 +1,12 @@
+{
+  "id": "fastify-file-upload-multipart-minimal",
+  "name": "Fastify ファイルアップロード (multipart) 最小",
+  "version": "1.0.0",
+  "stack": ["fastify"],
+  "tags": ["web"],
+  "description": "@fastify/multipart を使った受け取り",
+  "files": [
+    { "path": "server.js", "template": "const Fastify = require('fastify');\nconst multipart = require('@fastify/multipart');\nconst app = Fastify();\napp.register(multipart);\napp.post('/upload', async (req, reply)=>{ const parts = req.parts(); let c=0; for await (const _p of parts) c++; reply.send({ count:c }); });\napp.listen({ port:3000 });\n" }
+  ]
+}
+

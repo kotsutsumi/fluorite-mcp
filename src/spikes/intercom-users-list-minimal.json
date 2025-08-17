@@ -1,0 +1,14 @@
+{
+  "id": "intercom-users-list-minimal",
+  "name": "Intercom Users 一覧 最小",
+  "version": "1.0.0",
+  "stack": ["node", "intercom"],
+  "tags": ["saas"],
+  "description": "Intercom REST API でユーザ一覧",
+  "params": [ { "name": "app_name", "default": "intercom-users" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"node-fetch\": \"^3\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import fetch from 'node-fetch';\nconsole.log('GET https://api.intercom.io/users with Bearer token');\n" }
+  ]
+}
+

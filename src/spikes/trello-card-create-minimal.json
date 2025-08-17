@@ -1,0 +1,12 @@
+{
+  "id": "trello-card-create-minimal",
+  "name": "Trello カード作成 最小",
+  "version": "1.0.0",
+  "stack": ["node", "trello"],
+  "tags": ["pm"],
+  "description": "Trello REST API でカード作成",
+  "files": [
+    { "path": "run.js", "template": "import fetch from 'node-fetch';\nconsole.log('POST https://api.trello.com/1/cards?name=...&idList=...&key=...&token=...');\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "stripe-webhook-verify-fastify",
+  "name": "Stripe Webhook 署名検証 (Fastify)",
+  "version": "1.0.0",
+  "stack": ["node", "fastify", "stripe"],
+  "tags": ["webhook"],
+  "description": "Fastify + stripe 署名検証最小例",
+  "params": [ { "name": "app_name", "default": "stripe-webhook-fastify" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\\n  \"name\": \"{{app_name}}\",\\n  \"private\": true,\\n  \"scripts\": { \"start\": \"node server.js\" },\\n  \"dependencies\": { \"fastify\": \"^4\", \"stripe\": \"^16\" }\\n}\n" },
+    { "path": "{{app_name}}/server.js", "template": "const Fastify = require('fastify');\nconst Stripe = require('stripe');\nconst app = Fastify();\napp.addContentTypeParser('*/*', { parseAs: 'buffer' }, (_req, body, done)=> done(null, body));\napp.post('/stripe', (req, reply)=>{ const sig = req.headers['stripe-signature']; try { Stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET); reply.send('ok'); } catch(e){ reply.code(401).send('invalid'); } });\napp.listen({ port: 3000 }, ()=> console.log('listening'));\n" }
+  ]
+}
+

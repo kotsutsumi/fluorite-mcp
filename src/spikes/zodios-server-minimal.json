@@ -1,0 +1,12 @@
+{
+  "id": "zodios-server-minimal",
+  "name": "Zodios Server 最小",
+  "version": "1.0.0",
+  "stack": ["typescript", "zod", "zodios"],
+  "tags": ["web"],
+  "description": "zodios で型安全なエンドポイント定義",
+  "files": [
+    { "path": "server.ts", "template": "import { makeApi, Zodios } from '@zodios/core';\nimport { z } from 'zod';\nconst api = makeApi([{ method:'get', path:'/hello', parameters:[], response: z.string() }]);\nconst app = new Zodios('http://localhost:3000', api);\nconsole.log('Define routes and serve');\n" }
+  ]
+}
+

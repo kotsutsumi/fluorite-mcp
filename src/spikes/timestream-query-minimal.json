@@ -1,0 +1,10 @@
+{
+  "id": "timestream-query-minimal",
+  "name": "AWS Timestream Query 最小",
+  "version": "1.0.0",
+  "stack": ["aws"],
+  "tags": ["timeseries"],
+  "description": "Timestream Query API の実行",
+  "files": [ { "path": "run.js", "template": "import { TimestreamQueryClient } from '@aws-sdk/client-timestream-query';\nconsole.log('Query data with TimestreamQueryClient');\n" } ]
+}
+

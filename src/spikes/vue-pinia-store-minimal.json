@@ -1,0 +1,10 @@
+{
+  "id": "vue-pinia-store-minimal",
+  "name": "Vue Pinia ストア 最小",
+  "version": "1.0.0",
+  "stack": ["vue", "pinia"],
+  "tags": ["frontend"],
+  "description": "Pinia の最小ストア定義",
+  "files": [ { "path": "src/stores/counter.ts", "template": "import { defineStore } from 'pinia';\nexport const useCounter = defineStore('counter', { state:()=>({ n:0 }), actions:{ inc(){ this.n++; } } });\n" } ]
+}
+

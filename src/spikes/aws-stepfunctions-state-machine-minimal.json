@@ -1,0 +1,10 @@
+{
+  "id": "aws-stepfunctions-state-machine-minimal",
+  "name": "AWS Step Functions State Machine 最小",
+  "version": "1.0.0",
+  "stack": ["aws"],
+  "tags": ["workflow"],
+  "description": "State Machine 定義の最小サンプル",
+  "files": [ { "path": "state-machine.json", "template": "{ \"Comment\": \"Hello World\", \"StartAt\": \"Pass\", \"States\": { \"Pass\": { \"Type\": \"Pass\", \"End\": true } } }\n" } ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "cf-workers-queues-consumer-minimal",
+  "name": "Cloudflare Queues Consumer 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare"],
+  "tags": ["queues"],
+  "description": "Workers Queues のコンシューマー実装雛形",
+  "files": [
+    { "path": "worker.js", "template": "export default {\n  async queue(batch, env){ for (const msg of batch.messages) console.log(msg.body); }\n}\n" }
+  ]
+}
+

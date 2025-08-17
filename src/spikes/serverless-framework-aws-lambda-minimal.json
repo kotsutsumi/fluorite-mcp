@@ -1,0 +1,10 @@
+{
+  "id": "serverless-framework-aws-lambda-minimal",
+  "name": "Serverless Framework AWS Lambda 最小",
+  "version": "1.0.0",
+  "stack": ["serverless", "aws"],
+  "tags": ["iac"],
+  "description": "serverless.yml の最小 Lambda 定義",
+  "files": [ { "path": "serverless.yml", "template": "service: demo\nprovider: { name: aws, runtime: nodejs20.x }\nfunctions: { hello: { handler: handler.hello, events: [ { httpApi: { path: /hello, method: get } } ] } }\n" } ]
+}
+

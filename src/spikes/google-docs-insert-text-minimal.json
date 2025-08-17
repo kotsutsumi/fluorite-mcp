@@ -1,0 +1,12 @@
+{
+  "id": "google-docs-insert-text-minimal",
+  "name": "Google Docs テキスト挿入 最小",
+  "version": "1.0.0",
+  "stack": ["node", "googleapis"],
+  "tags": ["docs"],
+  "description": "docs.documents.batchUpdate でテキスト挿入",
+  "files": [
+    { "path": "run.js", "template": "import { google } from 'googleapis';\nconsole.log('docs.documents.batchUpdate({ documentId, requests:[{insertText:{...}}]})');\n" }
+  ]
+}
+

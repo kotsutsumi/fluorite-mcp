@@ -1,0 +1,12 @@
+{
+  "id": "aws-ses-send-templated-email-minimal",
+  "name": "AWS SES SendTemplatedEmail 最小",
+  "version": "1.0.0",
+  "stack": ["node", "aws"],
+  "tags": ["email"],
+  "description": "SES のテンプレートメール送信",
+  "files": [
+    { "path": "run.js", "template": "import { SESClient } from '@aws-sdk/client-ses';\nconsole.log('SendTemplatedEmail with TemplateData');\n" }
+  ]
+}
+

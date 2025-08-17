@@ -1,0 +1,14 @@
+{
+  "id": "kafkajs-sasl-ssl-minimal",
+  "name": "KafkaJS SASL/SSL 接続 最小",
+  "version": "1.0.0",
+  "stack": ["node", "kafka"],
+  "tags": ["stream"],
+  "description": "SASL/SSL 設定での最小接続",
+  "params": [ { "name": "app_name", "default": "kafkajs-sasl-ssl" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"kafkajs\": \"^2\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { Kafka } from 'kafkajs';\nconsole.log('Kafka({ ssl:true, sasl:{ mechanism, username, password } })');\n" }
+  ]
+}
+

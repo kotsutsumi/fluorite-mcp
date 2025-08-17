@@ -1,0 +1,12 @@
+{
+  "id": "valkey-redis-node-minimal",
+  "name": "Valkey (Redis互換) Node 最小",
+  "version": "1.0.0",
+  "stack": ["node", "redis"],
+  "tags": ["cache"],
+  "description": "valkey/redis 互換に ioredis で接続",
+  "files": [
+    { "path": "run.js", "template": "const Redis = require('ioredis');\nconsole.log('new Redis(\"redis://host:port\")');\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "remix-signed-cookies-minimal",
+  "name": "Remix 署名付き Cookie 最小",
+  "version": "1.0.0",
+  "stack": ["remix"],
+  "tags": ["frontend", "security"],
+  "description": "createCookie で署名付き Cookie を扱う",
+  "files": [
+    { "path": "app/cookies.server.ts", "template": "import { createCookie } from '@remix-run/node';\nexport const sessionCookie = createCookie('sid', { secrets:['s'], httpOnly:true, sameSite:'lax' });\n" }
+  ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "id": "sveltekit-handle-fetch-auth-header-minimal",
+  "name": "SvelteKit handleFetch Auth Header 最小",
+  "version": "1.0.0",
+  "stack": ["sveltekit"],
+  "tags": ["frontend", "auth"],
+  "description": "hooks.server.ts の handleFetch でヘッダ付与",
+  "files": [ { "path": "src/hooks.server.ts", "template": "export const handleFetch = async ({ request, fetch }) => { const r = new Request(request, { headers: { ...Object.fromEntries(request.headers), Authorization: 'Bearer token' } }); return fetch(r); };\n" } ]
+}
+

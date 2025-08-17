@@ -1,0 +1,12 @@
+{
+  "id": "stripe-subscription-create-minimal",
+  "name": "Stripe Subscription 作成 最小",
+  "version": "1.0.0",
+  "stack": ["node", "stripe"],
+  "tags": ["payments"],
+  "description": "顧客にサブスクリプションを作成",
+  "files": [
+    { "path": "run.js", "template": "import Stripe from 'stripe';\nconsole.log('stripe.subscriptions.create({ customer, items:[{price}] })');\n" }
+  ]
+}
+

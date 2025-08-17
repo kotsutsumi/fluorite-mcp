@@ -1,0 +1,12 @@
+{
+  "id": "redis-streams-xreadgroup-node-minimal",
+  "name": "Redis Streams XREADGROUP 最小",
+  "version": "1.0.0",
+  "stack": ["node", "redis"],
+  "tags": ["stream"],
+  "description": "ioredis で XREADGROUP を使う",
+  "files": [
+    { "path": "run.js", "template": "const Redis = require('ioredis');\nconsole.log('XGROUP CREATE, XADD, XREADGROUP flow');\n" }
+  ]
+}
+

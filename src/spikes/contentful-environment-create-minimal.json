@@ -1,0 +1,12 @@
+{
+  "id": "contentful-environment-create-minimal",
+  "name": "Contentful Environment 作成 最小",
+  "version": "1.0.0",
+  "stack": ["contentful"],
+  "tags": ["cms"],
+  "description": "CMA で環境を作成",
+  "files": [
+    { "path": "run.js", "template": "import contentful from 'contentful-management';\nconsole.log('space.createEnvironmentWithId(envId, {name})');\n" }
+  ]
+}
+

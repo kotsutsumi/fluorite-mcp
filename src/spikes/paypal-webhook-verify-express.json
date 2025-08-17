@@ -1,0 +1,12 @@
+{
+  "id": "paypal-webhook-verify-express",
+  "name": "PayPal Webhook 検証 (Express)",
+  "version": "1.0.0",
+  "stack": ["paypal", "express"],
+  "tags": ["webhook"],
+  "description": "PayPal webhook verify_signature の概念",
+  "files": [
+    { "path": "server.js", "template": "const express=require('express'); const app=express(); app.use(express.json()); app.post('/paypal',(req,res)=>{ console.log('verify with PayPal API'); res.send('ok'); }); app.listen(3000);\n" }
+  ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "id": "aws-batch-submit-job-minimal",
+  "name": "AWS Batch SubmitJob 最小",
+  "version": "1.0.0",
+  "stack": ["aws"],
+  "tags": ["batch"],
+  "description": "Batch ジョブを投入",
+  "files": [ { "path": "run.js", "template": "import { BatchClient } from '@aws-sdk/client-batch';\nconsole.log('SubmitJob with jobDefinition/queue');\n" } ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "id": "nextjs-auth-middleware-basic-concept",
+  "name": "Next.js Auth Middleware 基本 (概念)",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["frontend", "auth"],
+  "description": "セッションチェックと保護ルートの概念",
+  "files": [ { "path": "middleware.ts", "template": "import { NextResponse } from 'next/server';\nexport function middleware(req: Request){ const url = new URL(req.url); const authed = false; if(!authed && url.pathname.startsWith('/private')) return NextResponse.redirect(new URL('/login', url)); return NextResponse.next(); }\n" } ]
+}
+

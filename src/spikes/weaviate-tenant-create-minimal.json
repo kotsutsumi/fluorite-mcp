@@ -1,0 +1,10 @@
+{
+  "id": "weaviate-tenant-create-minimal",
+  "name": "Weaviate テナント作成 最小",
+  "version": "1.0.0",
+  "stack": ["node", "weaviate"],
+  "tags": ["vector"],
+  "description": "class にテナントを追加",
+  "files": [ { "path": "run.js", "template": "console.log('createTenants on a given class');\n" } ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "aws-cloudfront-invalidation-minimal",
+  "name": "AWS CloudFront Invalidation 最小",
+  "version": "1.0.0",
+  "stack": ["aws"],
+  "tags": ["cdn"],
+  "description": "CloudFront 無効化リクエスト作成",
+  "files": [
+    { "path": "run.js", "template": "import { CloudFrontClient } from '@aws-sdk/client-cloudfront';\nconsole.log('CreateInvalidation for /*');\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "github-app-jwt-create-minimal",
+  "name": "GitHub App JWT 生成 最小",
+  "version": "1.0.0",
+  "stack": ["node", "github"],
+  "tags": ["github", "auth"],
+  "description": "GitHub App 用 JWT を生成 (private key)",
+  "params": [ { "name": "app_name", "default": "github-app-jwt" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"jsonwebtoken\": \"^9\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import jwt from 'jsonwebtoken';\nconsole.log('jwt.sign({ iat, exp, iss }, privateKey, { algorithm:\'RS256\' })');\n" }
+  ]
+}
+

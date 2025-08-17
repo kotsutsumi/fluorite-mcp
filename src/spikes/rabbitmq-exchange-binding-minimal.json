@@ -1,0 +1,12 @@
+{
+  "id": "rabbitmq-exchange-binding-minimal",
+  "name": "RabbitMQ エクスチェンジ + バインド 最小",
+  "version": "1.0.0",
+  "stack": ["node", "rabbitmq"],
+  "tags": ["queue"],
+  "description": "amqplib で exchange/queue/bind を作成",
+  "files": [
+    { "path": "run.js", "template": "const amqp = require('amqplib');\nconsole.log('channel.assertExchange + assertQueue + bindQueue');\n" }
+  ]
+}
+

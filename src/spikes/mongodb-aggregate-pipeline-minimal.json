@@ -1,0 +1,12 @@
+{
+  "id": "mongodb-aggregate-pipeline-minimal",
+  "name": "MongoDB 集約パイプライン 最小",
+  "version": "1.0.0",
+  "stack": ["node", "mongodb"],
+  "tags": ["db"],
+  "description": "aggregate([{ $match: {} }, ...]) の最小",
+  "files": [
+    { "path": "run.js", "template": "const { MongoClient } = require('mongodb');\nconsole.log('collection.aggregate([{ $match:{} }]).toArray()');\n" }
+  ]
+}
+

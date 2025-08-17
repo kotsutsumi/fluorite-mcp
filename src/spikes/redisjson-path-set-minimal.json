@@ -1,0 +1,10 @@
+{
+  "id": "redisjson-path-set-minimal",
+  "name": "RedisJSON パス指定 SET 最小",
+  "version": "1.0.0",
+  "stack": ["redis"],
+  "tags": ["cache"],
+  "description": "JSON.SET key $.path value",
+  "files": [ { "path": "run.js", "template": "const Redis = require('ioredis');\nconsole.log('JSON.SET mykey $.name \"Alice\"');\n" } ]
+}
+

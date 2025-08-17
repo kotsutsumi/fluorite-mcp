@@ -1,0 +1,10 @@
+{
+  "id": "kafka-connect-debezium-mysql-concept",
+  "name": "Kafka Connect Debezium MySQL (概念)",
+  "version": "1.0.0",
+  "stack": ["kafka"],
+  "tags": ["cdc"],
+  "description": "Debezium MySQL コネクタ設定の概念",
+  "files": [ { "path": "connector.json", "template": "{ \"name\": \"debezium-mysql\", \"config\": { \"connector.class\": \"io.debezium.connector.mysql.MySqlConnector\", \"database.hostname\": \"localhost\" } }\n" } ]
+}
+

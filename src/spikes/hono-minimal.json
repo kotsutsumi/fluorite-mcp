@@ -1,15 +1,12 @@
 {
   "id": "hono-minimal",
-  "name": "Hono Minimal API",
+  "name": "Hono 最小サーバー",
   "version": "1.0.0",
-  "stack": ["node", "hono"],
-  "tags": ["api"],
-  "description": "Minimal Hono server with health + hello.",
-  "params": [ { "name": "app_name", "default": "hono-app" }, { "name": "port", "default": "3000" } ],
+  "stack": ["hono"],
+  "tags": ["web"],
+  "description": "Hono の最小 API サーバー",
   "files": [
-    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"scripts\": { \"start\": \"node index.mjs\" }, \"dependencies\": { \"hono\": \"latest\" } }\n" },
-    { "path": "{{app_name}}/index.mjs", "template": "import { Hono } from 'hono';\nimport { serve } from '@hono/node-server';\nconst app = new Hono();\napp.get('/health', c => c.json({ status: 'ok' }));\napp.get('/', c => c.json({ hello: 'world' }));\nserve({ fetch: app.fetch, port: Number('{{port}}') });\n" }
-  ],
-  "patches": []
+    { "path": "server.ts", "template": "import { Hono } from 'hono';\nconst app = new Hono();\napp.get('/', c=> c.text('ok'));\nexport default app;\n" }
+  ]
 }
 

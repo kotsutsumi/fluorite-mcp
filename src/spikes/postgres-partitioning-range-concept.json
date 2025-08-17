@@ -1,0 +1,10 @@
+{
+  "id": "postgres-partitioning-range-concept",
+  "name": "Postgres Range パーティショニング (概念)",
+  "version": "1.0.0",
+  "stack": ["postgres"],
+  "tags": ["db"],
+  "description": "範囲パーティショニングの基本 SQL",
+  "files": [ { "path": "schema.sql", "template": "CREATE TABLE logs(ts timestamptz, msg text) PARTITION BY RANGE(ts);\nCREATE TABLE logs_2024q3 PARTITION OF logs FOR VALUES FROM ('2024-07-01') TO ('2024-10-01');\n" } ]
+}
+

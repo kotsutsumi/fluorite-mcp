@@ -1,0 +1,12 @@
+{
+  "id": "clickhouse-http-select-minimal",
+  "name": "ClickHouse HTTP SELECT 最小",
+  "version": "1.0.0",
+  "stack": ["node", "clickhouse"],
+  "tags": ["db"],
+  "description": "HTTP クエリで SELECT",
+  "files": [
+    { "path": "run.js", "template": "import fetch from 'node-fetch';\nconsole.log('GET http://host:8123/?query=SELECT%201');\n" }
+  ]
+}
+

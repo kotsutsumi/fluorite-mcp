@@ -1,0 +1,14 @@
+{
+  "id": "github-checks-create-minimal",
+  "name": "GitHub Checks API create 最小",
+  "version": "1.0.0",
+  "stack": ["node", "github"],
+  "tags": ["github", "ci"],
+  "description": "@octokit/rest で Checks を作成",
+  "params": [ { "name": "app_name", "default": "github-checks" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@octokit/rest\": \"^20\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { Octokit } from '@octokit/rest';\nconsole.log('octokit.checks.create({ owner, repo, name, head_sha })');\n" }
+  ]
+}
+

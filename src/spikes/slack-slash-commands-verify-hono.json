@@ -1,0 +1,14 @@
+{
+  "id": "slack-slash-commands-verify-hono",
+  "name": "Slack Slash Commands 署名検証 (Hono)",
+  "version": "1.0.0",
+  "stack": ["node", "hono", "slack"],
+  "tags": ["webhook"],
+  "description": "Hono で Slack 署名検証",
+  "params": [ { "name": "app_name", "default": "slack-slash-hono" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\\n  \"name\": \"{{app_name}}\",\\n  \"private\": true,\\n  \"type\": \"module\",\\n  \"scripts\": { \"start\": \"node server.js\" },\\n  \"dependencies\": { \"hono\": \"^4\" }\\n}\n" },
+    { "path": "{{app_name}}/server.js", "template": "import { Hono } from 'hono';\nimport crypto from 'crypto';\nconst app = new Hono();\napp.post('/slack', async (c)=>{ const body = await c.req.text(); const ts = c.req.header('x-slack-request-timestamp'); const sig = c.req.header('x-slack-signature'); const base = `v0:${ts}:${body}`; const my = 'v0=' + crypto.createHmac('sha256', process.env.SLACK_SIGNING_SECRET).update(base).digest('hex'); return c.text('ok', sig===my?200:401); });\nexport default app;\n" }
+  ]
+}
+

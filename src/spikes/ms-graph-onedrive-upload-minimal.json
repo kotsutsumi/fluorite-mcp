@@ -1,0 +1,12 @@
+{
+  "id": "ms-graph-onedrive-upload-minimal",
+  "name": "Microsoft Graph OneDrive アップロード 最小",
+  "version": "1.0.0",
+  "stack": ["node", "microsoft-graph"],
+  "tags": ["graph"],
+  "description": "Graph API で OneDrive にアップロード",
+  "files": [
+    { "path": "run.js", "template": "import { Client } from '@microsoft/microsoft-graph-client';\nconsole.log('client.api(/me/drive/root:/path/file:/content).put(buffer)');\n" }
+  ]
+}
+

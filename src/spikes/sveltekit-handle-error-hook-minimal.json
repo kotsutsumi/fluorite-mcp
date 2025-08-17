@@ -1,0 +1,12 @@
+{
+  "id": "sveltekit-handle-error-hook-minimal",
+  "name": "SvelteKit handleError フック 最小",
+  "version": "1.0.0",
+  "stack": ["sveltekit"],
+  "tags": ["frontend"],
+  "description": "hooks.server.ts の handleError 実装例",
+  "files": [
+    { "path": "src/hooks.server.ts", "template": "export const handleError = ({ error, event }) => { console.error('error', error, 'at', event.url.pathname); return { message: 'Internal Error' }; };\n" }
+  ]
+}
+

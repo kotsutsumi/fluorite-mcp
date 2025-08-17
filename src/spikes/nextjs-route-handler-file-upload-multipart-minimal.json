@@ -1,0 +1,12 @@
+{
+  "id": "nextjs-route-handler-file-upload-multipart-minimal",
+  "name": "Next.js Route Handler マルチパートアップロード 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["frontend"],
+  "description": "Route Handler で multipart/form-data を処理",
+  "files": [
+    { "path": "app/api/upload/route.ts", "template": "export async function POST(req: Request){ const form = await req.formData(); const files = form.getAll('file'); return new Response(JSON.stringify({ count: files.length })); }\n" }
+  ]
+}
+

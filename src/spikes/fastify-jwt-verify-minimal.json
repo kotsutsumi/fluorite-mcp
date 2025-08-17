@@ -1,0 +1,10 @@
+{
+  "id": "fastify-jwt-verify-minimal",
+  "name": "Fastify JWT verify 最小",
+  "version": "1.0.0",
+  "stack": ["fastify", "jwt"],
+  "tags": ["web", "auth"],
+  "description": "@fastify/jwt の verify 利用例",
+  "files": [ { "path": "server.js", "template": "const Fastify = require('fastify');\nconst jwt = require('@fastify/jwt');\nconst app = Fastify();\napp.register(jwt, { secret: 's' });\napp.addHook('onRequest', async (req, reply)=>{ try { await req.jwtVerify(); } catch { reply.code(401).send('unauthorized'); } });\napp.get('/', async ()=> 'ok');\napp.listen({ port:3000 });\n" } ]
+}
+

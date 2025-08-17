@@ -1,0 +1,12 @@
+{
+  "id": "trpc-fastify-server-minimal",
+  "name": "tRPC Fastify サーバー 最小",
+  "version": "1.0.0",
+  "stack": ["trpc", "fastify", "ts"],
+  "tags": ["frontend"],
+  "description": "tRPC ルータを Fastify で公開",
+  "files": [
+    { "path": "src/server.ts", "template": "import Fastify from 'fastify';\nexport async function main(){ const app = Fastify(); app.get('/', async ()=> 'ok'); await app.listen({ port: 3000 }); }\n" }
+  ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "id": "aws-ssm-runcommand-minimal",
+  "name": "AWS SSM RunCommand 最小",
+  "version": "1.0.0",
+  "stack": ["aws"],
+  "tags": ["ssm"],
+  "description": "EC2へRunCommandを実行",
+  "files": [ { "path": "run.js", "template": "import { SSMClient } from '@aws-sdk/client-ssm';\nconsole.log('SendCommand to instance ids');\n" } ]
+}
+

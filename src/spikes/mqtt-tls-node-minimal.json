@@ -1,0 +1,14 @@
+{
+  "id": "mqtt-tls-node-minimal",
+  "name": "MQTT TLS Node 最小",
+  "version": "1.0.0",
+  "stack": ["node", "mqtt"],
+  "tags": ["realtime"],
+  "description": "mqtt パッケージで TLS 接続",
+  "params": [ { "name": "app_name", "default": "mqtt-tls" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"mqtt\": \"^5\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import mqtt from 'mqtt';\nconsole.log('Connect to mqtts://host:8883 with certs');\n" }
+  ]
+}
+

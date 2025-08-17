@@ -1,0 +1,14 @@
+{
+  "id": "jira-issue-create-minimal",
+  "name": "Jira 課題作成 最小",
+  "version": "1.0.0",
+  "stack": ["node", "jira"],
+  "tags": ["pm"],
+  "description": "jira.js で課題作成",
+  "params": [ { "name": "app_name", "default": "jira-issue-create" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"jira.js\": \"^4\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { Version3Client } from 'jira.js';\nconsole.log('client.issues.createIssue({ fields:{ project, summary, issuetype } })');\n" }
+  ]
+}
+

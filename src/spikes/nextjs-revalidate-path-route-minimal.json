@@ -1,0 +1,12 @@
+{
+  "id": "nextjs-revalidate-path-route-minimal",
+  "name": "Next.js revalidatePath Route 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["frontend"],
+  "description": "Route Handler で revalidatePath を呼ぶ",
+  "files": [
+    { "path": "app/api/revalidate-path/route.ts", "template": "import { revalidatePath } from 'next/cache';\nexport async function POST(){ revalidatePath('/'); return new Response('ok'); }\n" }
+  ]
+}
+

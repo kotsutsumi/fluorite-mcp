@@ -1,0 +1,10 @@
+{
+  "id": "azure-storage-queue-send-minimal",
+  "name": "Azure Storage Queue 送信 最小",
+  "version": "1.0.0",
+  "stack": ["azure"],
+  "tags": ["queue"],
+  "description": "@azure/storage-queue でメッセージ送信",
+  "files": [ { "path": "run.js", "template": "console.log('QueueClient.sendMessage');\n" } ]
+}
+

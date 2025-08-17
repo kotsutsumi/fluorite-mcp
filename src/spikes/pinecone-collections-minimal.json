@@ -1,0 +1,12 @@
+{
+  "id": "pinecone-collections-minimal",
+  "name": "Pinecone Collections 最小",
+  "version": "1.0.0",
+  "stack": ["node", "pinecone"],
+  "tags": ["vector"],
+  "description": "コレクション作成/一覧の基本",
+  "files": [
+    { "path": "run.js", "template": "import { Pinecone } from '@pinecone-database/pinecone';\nconsole.log('pc.createCollection / listCollections');\n" }
+  ]
+}
+

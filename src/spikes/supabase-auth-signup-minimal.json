@@ -1,0 +1,12 @@
+{
+  "id": "supabase-auth-signup-minimal",
+  "name": "Supabase Auth SignUp 最小",
+  "version": "1.0.0",
+  "stack": ["node", "supabase"],
+  "tags": ["auth"],
+  "description": "supabase-js でサインアップ",
+  "files": [
+    { "path": "run.js", "template": "import { createClient } from '@supabase/supabase-js';\nconsole.log('supabase.auth.signUp({ email, password })');\n" }
+  ]
+}
+

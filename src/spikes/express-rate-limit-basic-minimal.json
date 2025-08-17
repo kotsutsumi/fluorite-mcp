@@ -1,0 +1,12 @@
+{
+  "id": "express-rate-limit-basic-minimal",
+  "name": "Express Rate Limit 基本 最小",
+  "version": "1.0.0",
+  "stack": ["node", "express"],
+  "tags": ["web", "security"],
+  "description": "express-rate-limit を使った簡易レート制限",
+  "files": [
+    { "path": "server.js", "template": "const express = require('express');\nconst rateLimit = require('express-rate-limit');\nconst app = express();\napp.use(rateLimit({ windowMs: 60_000, max: 60 }));\napp.get('/', (_req,res)=>res.send('ok'));\napp.listen(3000);\n" }
+  ]
+}
+

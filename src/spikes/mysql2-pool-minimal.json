@@ -1,0 +1,10 @@
+{
+  "id": "mysql2-pool-minimal",
+  "name": "mysql2 プール接続 最小",
+  "version": "1.0.0",
+  "stack": ["node", "mysql"],
+  "tags": ["db"],
+  "description": "mysql2/promise でコネクションプール",
+  "files": [ { "path": "run.js", "template": "console.log('createPool and pool.query(\'SELECT 1\')');\n" } ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "id": "express-morgan-logging-minimal",
+  "name": "Express morgan ロギング 最小",
+  "version": "1.0.0",
+  "stack": ["express"],
+  "tags": ["web"],
+  "description": "morgan でアクセスログ",
+  "files": [ { "path": "server.js", "template": "const express = require('express');\nconst morgan = require('morgan');\nconst app = express();\napp.use(morgan('combined'));\napp.get('/', (_req,res)=>res.send('ok'));\napp.listen(3000);\n" } ]
+}
+

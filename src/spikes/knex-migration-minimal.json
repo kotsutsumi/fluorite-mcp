@@ -1,0 +1,12 @@
+{
+  "id": "knex-migration-minimal",
+  "name": "Knex Migration 最小",
+  "version": "1.0.0",
+  "stack": ["node", "knex"],
+  "tags": ["db"],
+  "description": "Knex のマイグレーション雛形",
+  "files": [
+    { "path": "migrations/0001_init.ts", "template": "import { Knex } from 'knex';\nexport async function up(knex: Knex){ await knex.schema.createTable('items', t=>{ t.increments('id'); t.string('name'); }); }\nexport async function down(knex: Knex){ await knex.schema.dropTableIfExists('items'); }\n" }
+  ]
+}
+

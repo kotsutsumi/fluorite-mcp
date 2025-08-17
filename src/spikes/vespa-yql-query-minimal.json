@@ -1,0 +1,10 @@
+{
+  "id": "vespa-yql-query-minimal",
+  "name": "Vespa YQL Query 最小",
+  "version": "1.0.0",
+  "stack": ["vespa"],
+  "tags": ["search"],
+  "description": "Vespa の YQL クエリを実行",
+  "files": [ { "path": "run.js", "template": "console.log('GET /search/?yql=select * from sources * where true');\n" } ]
+}
+

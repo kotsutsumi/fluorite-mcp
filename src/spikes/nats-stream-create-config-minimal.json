@@ -1,0 +1,10 @@
+{
+  "id": "nats-stream-create-config-minimal",
+  "name": "NATS JetStream ストリーム作成設定 最小",
+  "version": "1.0.0",
+  "stack": ["nats"],
+  "tags": ["stream"],
+  "description": "js.addStream の設定雛形",
+  "files": [ { "path": "run.js", "template": "console.log('js.addStream({ name, subjects, retention, storage })');\n" } ]
+}
+

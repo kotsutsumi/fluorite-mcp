@@ -1,0 +1,10 @@
+{
+  "id": "gmail-threads-list-minimal",
+  "name": "Gmail Threads 一覧 最小",
+  "version": "1.0.0",
+  "stack": ["googleapis"],
+  "tags": ["email"],
+  "description": "threads.list を呼び出し",
+  "files": [ { "path": "run.js", "template": "import { google } from 'googleapis';\nconsole.log('gmail.users.threads.list({ userId:\'me\' })');\n" } ]
+}
+

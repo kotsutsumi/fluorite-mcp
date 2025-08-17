@@ -50,10 +50,23 @@ const englishSidebar = {
     },
     {
       text: '🛠️ Developer Resources',
-      collapsed: true,
+      collapsed: false,
       items: [
         { text: 'Developer Guide', link: '/developer' },
-        { text: 'Architecture', link: '/architecture/' },
+        { 
+          text: 'Architecture',
+          collapsed: false,
+          items: [
+            { text: 'Overview', link: '/architecture/' },
+            { text: 'Fluorite Wrapper Design', link: '/architecture/fluorite-wrapper-design' },
+            { text: 'Implementation Roadmap', link: '/architecture/implementation-roadmap' },
+            { text: 'Command Mapping Spec', link: '/architecture/command-mapping-spec' },
+            { text: 'Claude CLI Integration', link: '/architecture/claude-cli-integration' },
+            { text: 'Spike Template Expansion', link: '/architecture/spike-template-expansion-plan' },
+            { text: 'Testing Strategy', link: '/architecture/testing-strategy' },
+            { text: 'Deployment Plan', link: '/architecture/deployment-plan' }
+          ]
+        },
         { text: 'Integration Guide', link: '/integration-guide' },
         { text: 'Performance', link: '/performance' },
         { text: 'Function Reference', link: '/function-reference' }
@@ -110,7 +123,20 @@ const japaneseSidebar = {
       items: [
         { text: '開発者ガイド', link: '/ja/developer' },
         { text: 'アーキテクチャサマリー', link: '/ARCHITECTURE_SUMMARY.ja' },
-        { text: 'アーキテクチャドキュメント', link: '/ja/architecture/' },
+        { 
+          text: 'アーキテクチャドキュメント',
+          collapsed: false,
+          items: [
+            { text: '概要', link: '/ja/architecture/' },
+            { text: 'Fluoriteラッパー設計', link: '/ja/architecture/fluorite-wrapper-design' },
+            { text: '実装ロードマップ', link: '/ja/architecture/implementation-roadmap' },
+            { text: 'コマンドマッピング仕様', link: '/ja/architecture/command-mapping-spec' },
+            { text: 'Claude CLI統合', link: '/ja/architecture/claude-cli-integration' },
+            { text: 'スパイクテンプレート拡張計画', link: '/ja/architecture/spike-template-expansion-plan' },
+            { text: 'テスト戦略', link: '/ja/architecture/testing-strategy' },
+            { text: 'デプロイメント計画', link: '/ja/architecture/deployment-plan' }
+          ]
+        },
         { text: '統合ガイド', link: '/ja/integration-guide' },
         { text: 'パフォーマンス', link: '/ja/performance' },
         { text: '静的解析', link: '/ja/static-analysis' },

@@ -1,0 +1,12 @@
+{
+  "id": "astro-endpoint-cors-minimal",
+  "name": "Astro エンドポイント CORS 最小",
+  "version": "1.0.0",
+  "stack": ["astro"],
+  "tags": ["frontend"],
+  "description": "Astro API で CORS ヘッダを返す",
+  "files": [
+    { "path": "src/pages/api/hello.ts", "template": "import type { APIRoute } from 'astro';\nexport const GET: APIRoute = () => new Response('ok', { headers: { 'Access-Control-Allow-Origin':'*' } });\n" }
+  ]
+}
+

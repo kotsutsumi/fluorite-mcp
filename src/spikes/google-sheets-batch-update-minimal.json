@@ -1,0 +1,12 @@
+{
+  "id": "google-sheets-batch-update-minimal",
+  "name": "Google Sheets BatchUpdate 最小",
+  "version": "1.0.0",
+  "stack": ["node", "googleapis"],
+  "tags": ["sheets"],
+  "description": "spreadsheets.batchUpdate を呼ぶ",
+  "files": [
+    { "path": "run.js", "template": "import { google } from 'googleapis';\nconsole.log('sheets.spreadsheets.batchUpdate({requests:[...]})');\n" }
+  ]
+}
+

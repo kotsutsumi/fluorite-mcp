@@ -1,0 +1,12 @@
+{
+  "id": "nextjs-rsc-cache-tags-minimal",
+  "name": "Next.js RSC Cache Tags 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["frontend"],
+  "description": "fetch の next: { tags } を使う",
+  "files": [
+    { "path": "app/page.tsx", "template": "async function getData(){ const r = await fetch('https://example.com', { next: { tags:['list'] } }); return r.text(); }\nexport default async function Page(){ const html = await getData(); return <div dangerouslySetInnerHTML={{ __html: html }} /> }\n" }
+  ]
+}
+

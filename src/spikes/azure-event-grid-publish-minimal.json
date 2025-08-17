@@ -1,0 +1,12 @@
+{
+  "id": "azure-event-grid-publish-minimal",
+  "name": "Azure Event Grid Publish 最小",
+  "version": "1.0.0",
+  "stack": ["azure"],
+  "tags": ["events"],
+  "description": "Event Grid トピックへイベント送信",
+  "files": [
+    { "path": "run.js", "template": "console.log('POST events to Event Grid topic endpoint with aeg-sas-key');\n" }
+  ]
+}
+

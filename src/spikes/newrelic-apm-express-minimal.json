@@ -1,0 +1,13 @@
+{
+  "id": "newrelic-apm-express-minimal",
+  "name": "New Relic APM + Express 最小",
+  "version": "1.0.0",
+  "stack": ["newrelic", "express"],
+  "tags": ["observability"],
+  "description": "newrelic エージェントでExpressを計測",
+  "files": [
+    { "path": "newrelic.js", "template": "exports.config = { app_name: ['demo'], license_key: 'REPLACE', logging: { level: 'info' } };\n" },
+    { "path": "server.js", "template": "require('newrelic'); const express = require('express'); const app = express(); app.get('/', (_req,res)=>res.send('ok')); app.listen(3000);\n" }
+  ]
+}
+

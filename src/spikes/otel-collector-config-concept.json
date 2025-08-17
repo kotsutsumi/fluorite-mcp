@@ -1,0 +1,10 @@
+{
+  "id": "otel-collector-config-concept",
+  "name": "OTel Collector 設定 (概念)",
+  "version": "1.0.0",
+  "stack": ["opentelemetry"],
+  "tags": ["observability"],
+  "description": "OpenTelemetry Collector の最小構成サンプル",
+  "files": [ { "path": "otel-collector.yaml", "template": "receivers: { otlp: { protocols: { http: {}, grpc: {} } } }\nexporters: { logging: {} }\nservice: { pipelines: { traces: { receivers: [otlp], exporters: [logging] }, metrics: { receivers: [otlp], exporters: [logging] } } }\n" } ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "notion-database-filter-search-minimal",
+  "name": "Notion DB フィルター検索 最小",
+  "version": "1.0.0",
+  "stack": ["node", "notion"],
+  "tags": ["notion"],
+  "description": "notion.databases.query の filter/sorts 利用",
+  "files": [
+    { "path": "run.js", "template": "import { Client } from '@notionhq/client';\nconsole.log('notion.databases.query({ database_id, filter, sorts })');\n" }
+  ]
+}
+

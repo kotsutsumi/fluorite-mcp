@@ -1,0 +1,10 @@
+{
+  "id": "angular-standalone-component-minimal",
+  "name": "Angular Standalone Component 最小",
+  "version": "1.0.0",
+  "stack": ["angular"],
+  "tags": ["frontend"],
+  "description": "standalone: true なコンポーネント",
+  "files": [ { "path": "src/app/hello.component.ts", "template": "import { Component } from '@angular/core';\n@Component({ selector:'hello', standalone:true, template:`<p>Hello</p>` })\nexport class HelloComponent {}\n" } ]
+}
+

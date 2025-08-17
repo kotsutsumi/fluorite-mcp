@@ -1,0 +1,10 @@
+{
+  "id": "notion-file-attachments-list-minimal",
+  "name": "Notion 添付ファイル一覧 最小",
+  "version": "1.0.0",
+  "stack": ["notion"],
+  "tags": ["notion"],
+  "description": "blocks.children と files プロパティの参照",
+  "files": [ { "path": "run.js", "template": "import { Client } from '@notionhq/client';\nconsole.log('Iterate blocks and collect file URLs');\n" } ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "id": "google-drive-permissions-remove-minimal",
+  "name": "Google Drive 権限削除 最小",
+  "version": "1.0.0",
+  "stack": ["googleapis"],
+  "tags": ["drive"],
+  "description": "drive.permissions.delete の呼出",
+  "files": [ { "path": "run.js", "template": "import { google } from 'googleapis';\nconsole.log('drive.permissions.delete({ fileId, permissionId })');\n" } ]
+}
+

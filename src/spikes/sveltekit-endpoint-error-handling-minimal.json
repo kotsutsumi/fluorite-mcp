@@ -1,0 +1,12 @@
+{
+  "id": "sveltekit-endpoint-error-handling-minimal",
+  "name": "SvelteKit エンドポイント エラーハンドリング 最小",
+  "version": "1.0.0",
+  "stack": ["sveltekit"],
+  "tags": ["frontend"],
+  "description": "+server.ts の try/catch と適切なレスポンス",
+  "files": [
+    { "path": "src/routes/api/error/+server.ts", "template": "export const GET = async () => { try { throw new Error('boom'); } catch { return new Response('fail', { status: 500 }); } };\n" }
+  ]
+}
+

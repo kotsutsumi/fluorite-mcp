@@ -1,0 +1,10 @@
+{
+  "id": "paypal-subscription-create-minimal",
+  "name": "PayPal Subscription 作成 最小",
+  "version": "1.0.0",
+  "stack": ["paypal"],
+  "tags": ["payments"],
+  "description": "PayPal でサブスクリプション作成",
+  "files": [ { "path": "run.js", "template": "console.log('POST /v1/billing/subscriptions with plan_id');\n" } ]
+}
+

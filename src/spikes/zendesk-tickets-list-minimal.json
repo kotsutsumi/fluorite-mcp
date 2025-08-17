@@ -1,0 +1,14 @@
+{
+  "id": "zendesk-tickets-list-minimal",
+  "name": "Zendesk Tickets 一覧 最小",
+  "version": "1.0.0",
+  "stack": ["node", "zendesk"],
+  "tags": ["saas"],
+  "description": "Zendesk API でチケット一覧取得",
+  "params": [ { "name": "app_name", "default": "zendesk-list" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"node-fetch\": \"^3\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import fetch from 'node-fetch';\nconsole.log('GET https://{subdomain}.zendesk.com/api/v2/tickets.json with basic auth');\n" }
+  ]
+}
+

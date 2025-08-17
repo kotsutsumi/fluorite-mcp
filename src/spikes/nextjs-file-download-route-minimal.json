@@ -1,0 +1,10 @@
+{
+  "id": "nextjs-file-download-route-minimal",
+  "name": "Next.js Route Handler ファイルダウンロード 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["frontend"],
+  "description": "ダウンロード用レスポンスの返却",
+  "files": [ { "path": "app/api/download/route.ts", "template": "export async function GET(){ return new Response('file-content', { headers: { 'Content-Type':'text/plain', 'Content-Disposition':'attachment; filename=hello.txt' } }); }\n" } ]
+}
+

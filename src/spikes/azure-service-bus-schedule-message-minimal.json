@@ -1,0 +1,10 @@
+{
+  "id": "azure-service-bus-schedule-message-minimal",
+  "name": "Azure Service Bus 送信予約 最小",
+  "version": "1.0.0",
+  "stack": ["azure", "servicebus"],
+  "tags": ["queue"],
+  "description": "Service Bus で将来時刻にメッセージ送信",
+  "files": [ { "path": "run.js", "template": "console.log('ServiceBusSender.scheduleMessages()');\n" } ]
+}
+

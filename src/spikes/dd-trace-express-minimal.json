@@ -1,0 +1,14 @@
+{
+  "id": "dd-trace-express-minimal",
+  "name": "Datadog APM dd-trace + Express 最小",
+  "version": "1.0.0",
+  "stack": ["node", "datadog", "express"],
+  "tags": ["observability"],
+  "description": "dd-trace を使った Express の最小トレーシング",
+  "params": [ { "name": "app_name", "default": "dd-trace-express" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\\n  \"name\": \"{{app_name}}\",\\n  \"private\": true,\\n  \"scripts\": { \"start\": \"node -r dd-trace/init server.js\" },\\n  \"dependencies\": { \"dd-trace\": \"^5\", \"express\": \"^4\" }\\n}\n" },
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express'); const app = express(); app.get('/', (_req,res)=>res.send('ok')); app.listen(3000);\n" }
+  ]
+}
+

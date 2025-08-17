@@ -1,0 +1,12 @@
+{
+  "id": "angular-http-interceptor-minimal",
+  "name": "Angular HttpInterceptor 最小",
+  "version": "1.0.0",
+  "stack": ["angular"],
+  "tags": ["frontend"],
+  "description": "リクエストにヘッダを付与する最小インターセプタ",
+  "files": [
+    { "path": "src/app/auth.interceptor.ts", "template": "import { Injectable } from '@angular/core';\nimport { HttpInterceptor, HttpRequest, HttpHandler } from '@angular/common/http';\n@Injectable({ providedIn: 'root' })\nexport class AuthInterceptor implements HttpInterceptor {\n  intercept(req: HttpRequest<any>, next: HttpHandler){ return next.handle(req.clone({ setHeaders: { Authorization: 'Bearer token' } })); }\n}\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "firebase-functions-pubsub-minimal",
+  "name": "Firebase Functions Pub/Sub 最小",
+  "version": "1.0.0",
+  "stack": ["firebase", "node"],
+  "tags": ["functions"],
+  "description": "Pub/Sub トリガーの最小雛形",
+  "files": [
+    { "path": "functions/index.js", "template": "const functions = require('firebase-functions');\nexports.helloPubSub = functions.pubsub.topic('test').onPublish((message) => { console.log(message.data); });\n" }
+  ]
+}
+

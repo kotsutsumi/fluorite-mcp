@@ -1,0 +1,10 @@
+{
+  "id": "typesense-stopwords-settings-minimal",
+  "name": "Typesense Stop Words 設定 最小",
+  "version": "1.0.0",
+  "stack": ["typesense"],
+  "tags": ["search"],
+  "description": "Stop words 設定を更新",
+  "files": [ { "path": "run.js", "template": "console.log('client.collections(\'docs\').update({ stopwords: [...] })');\n" } ]
+}
+

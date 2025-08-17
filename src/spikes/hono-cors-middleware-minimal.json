@@ -1,0 +1,10 @@
+{
+  "id": "hono-cors-middleware-minimal",
+  "name": "Hono CORS ミドルウェア 最小",
+  "version": "1.0.0",
+  "stack": ["hono"],
+  "tags": ["web"],
+  "description": "Hono で CORS ヘッダ付与",
+  "files": [ { "path": "server.ts", "template": "import { Hono } from 'hono';\nconst app = new Hono();\napp.use('*', (c, next)=>{ c.header('Access-Control-Allow-Origin','*'); return next(); });\napp.get('/', c=> c.text('ok'));\nexport default app;\n" } ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "id": "pulsar-node-consumer-minimal",
+  "name": "Apache Pulsar Node Consumer 最小",
+  "version": "1.0.0",
+  "stack": ["node", "pulsar"],
+  "tags": ["stream"],
+  "description": "pulsar-client で購読",
+  "files": [ { "path": "run.js", "template": "console.log('Create consumer and receive messages');\n" } ]
+}
+

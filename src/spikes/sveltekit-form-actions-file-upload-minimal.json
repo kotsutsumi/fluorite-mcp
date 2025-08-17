@@ -1,0 +1,12 @@
+{
+  "id": "sveltekit-form-actions-file-upload-minimal",
+  "name": "SvelteKit form actions ファイルアップロード 最小",
+  "version": "1.0.0",
+  "stack": ["sveltekit"],
+  "tags": ["frontend"],
+  "description": "+page.server.ts で multipart を処理",
+  "files": [
+    { "path": "+page.server.ts", "template": "export const actions = { default: async ({ request }) => { const form = await request.formData(); const files = form.getAll('file'); return { count: files.length }; } };\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "kinesis-consumer-shard-iterator-minimal",
+  "name": "AWS Kinesis Consumer 最小 (ShardIterator)",
+  "version": "1.0.0",
+  "stack": ["node", "aws"],
+  "tags": ["stream"],
+  "description": "ShardIterator を使ったシンプルな取得",
+  "params": [ { "name": "app_name", "default": "kinesis-consumer" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node read.js\" }, \"dependencies\": { \"@aws-sdk/client-kinesis\": \"^3\" } }\n" },
+    { "path": "{{app_name}}/read.js", "template": "import { KinesisClient } from '@aws-sdk/client-kinesis';\nconsole.log('GetShardIterator + GetRecords loop');\n" }
+  ]
+}
+

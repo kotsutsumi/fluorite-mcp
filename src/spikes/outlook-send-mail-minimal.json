@@ -1,0 +1,12 @@
+{
+  "id": "outlook-send-mail-minimal",
+  "name": "Outlook Send Mail 最小 (Graph)",
+  "version": "1.0.0",
+  "stack": ["node", "microsoft-graph"],
+  "tags": ["email"],
+  "description": "Graph でメール送信",
+  "files": [
+    { "path": "run.js", "template": "import { Client } from '@microsoft/microsoft-graph-client';\nconsole.log('client.api(/me/sendMail).post({ message: {...} })');\n" }
+  ]
+}
+

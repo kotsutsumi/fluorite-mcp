@@ -1,0 +1,14 @@
+{
+  "id": "asana-task-create-minimal",
+  "name": "Asana タスク作成 最小",
+  "version": "1.0.0",
+  "stack": ["node", "asana"],
+  "tags": ["pm"],
+  "description": "asana SDK でタスク作成",
+  "params": [ { "name": "app_name", "default": "asana-task-create" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"asana\": \"^3\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "const asana = require('asana');\nconsole.log('client.tasks.createTask({ name, projects:[id] })');\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "gmail-mime-send-minimal",
+  "name": "Gmail MIME 送信 最小",
+  "version": "1.0.0",
+  "stack": ["node", "googleapis"],
+  "tags": ["email"],
+  "description": "RAW MIME を base64url で送信",
+  "params": [ { "name": "app_name", "default": "gmail-mime-send" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node send.js\" }, \"dependencies\": { \"googleapis\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/send.js", "template": "import { google } from 'googleapis';\nconsole.log('gmail.users.messages.send({ userId:\'me\', requestBody:{ raw: BASE64URL(MIME) } })');\n" }
+  ]
+}
+

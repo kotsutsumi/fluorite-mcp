@@ -1,0 +1,12 @@
+{
+  "id": "airtable-formula-filter-minimal",
+  "name": "Airtable 公式式フィルター 最小",
+  "version": "1.0.0",
+  "stack": ["node", "airtable"],
+  "tags": ["db"],
+  "description": "Airtable formula を使って検索",
+  "files": [
+    { "path": "run.js", "template": "import Airtable from 'airtable';\nconsole.log('base(table).select({ filterByFormula: \"FIND(\\"x\\", {Name})\" })');\n" }
+  ]
+}
+

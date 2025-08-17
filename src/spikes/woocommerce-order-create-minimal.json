@@ -1,0 +1,12 @@
+{
+  "id": "woocommerce-order-create-minimal",
+  "name": "WooCommerce 注文作成 最小",
+  "version": "1.0.0",
+  "stack": ["node", "woocommerce"],
+  "tags": ["commerce"],
+  "description": "REST API で注文作成",
+  "files": [
+    { "path": "run.js", "template": "import WooCommerceRestApi from '@woocommerce/woocommerce-rest-api';\nconsole.log('api.post(\'orders\', { line_items: [...] })');\n" }
+  ]
+}
+

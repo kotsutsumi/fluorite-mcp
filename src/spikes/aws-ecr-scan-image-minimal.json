@@ -1,0 +1,10 @@
+{
+  "id": "aws-ecr-scan-image-minimal",
+  "name": "AWS ECR 画像スキャン 最小",
+  "version": "1.0.0",
+  "stack": ["aws"],
+  "tags": ["security"],
+  "description": "ECR の scan image コマンド",
+  "files": [ { "path": "run.js", "template": "import { ECRClient } from '@aws-sdk/client-ecr';\nconsole.log('StartImageScan and GetImageScanFindings');\n" } ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "aws-glue-start-job-run-minimal",
+  "name": "AWS Glue StartJobRun 最小",
+  "version": "1.0.0",
+  "stack": ["aws"],
+  "tags": ["etl"],
+  "description": "Glue Job を起動",
+  "files": [
+    { "path": "run.js", "template": "import { GlueClient } from '@aws-sdk/client-glue';\nconsole.log('StartJobRun for a given job name');\n" }
+  ]
+}
+

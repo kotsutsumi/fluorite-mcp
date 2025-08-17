@@ -1,0 +1,12 @@
+{
+  "id": "azure-devops-workitem-create-minimal",
+  "name": "Azure DevOps Work Item 作成 最小",
+  "version": "1.0.0",
+  "stack": ["azure", "devops"],
+  "tags": ["pm"],
+  "description": "Work Item 作成の REST 呼び出し",
+  "files": [
+    { "path": "run.js", "template": "console.log('POST JSON-Patch to https://dev.azure.com/{org}/{project}/_apis/wit/workitems/$Task?api-version=7.0');\n" }
+  ]
+}
+

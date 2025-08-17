@@ -1,0 +1,10 @@
+{
+  "id": "grafana-alloy-static-config-concept",
+  "name": "Grafana Alloy 静的設定 (概念)",
+  "version": "1.0.0",
+  "stack": ["grafana", "otel"],
+  "tags": ["observability"],
+  "description": "Alloy で OTLP を受けて Grafana Cloud 等に転送する概念",
+  "files": [ { "path": "alloy.yml", "template": "otelcol.receiver.otlp: {}\notelcol.exporter.otlphttp: { endpoint: https://... }\notelcol.service.pipelines: { traces: { receivers: [otlp], exporters: [otlphttp] } }\n" } ]
+}
+

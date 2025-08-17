@@ -1,0 +1,12 @@
+{
+  "id": "aws-athena-start-query-minimal",
+  "name": "AWS Athena StartQuery 最小",
+  "version": "1.0.0",
+  "stack": ["aws"],
+  "tags": ["data"],
+  "description": "Athena でクエリを投げる",
+  "files": [
+    { "path": "run.js", "template": "import { AthenaClient } from '@aws-sdk/client-athena';\nconsole.log('StartQueryExecution + GetQueryExecution polling');\n" }
+  ]
+}
+

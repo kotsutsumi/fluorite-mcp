@@ -1,0 +1,10 @@
+{
+  "id": "solr-search-minimal",
+  "name": "Apache Solr 検索 最小",
+  "version": "1.0.0",
+  "stack": ["solr"],
+  "tags": ["search"],
+  "description": "Solr Core に対して q= で検索",
+  "files": [ { "path": "run.js", "template": "console.log('GET http://host:8983/solr/core/select?q=*:*');\n" } ]
+}
+

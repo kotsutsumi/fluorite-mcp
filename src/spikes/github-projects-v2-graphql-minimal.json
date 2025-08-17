@@ -1,0 +1,10 @@
+{
+  "id": "github-projects-v2-graphql-minimal",
+  "name": "GitHub Projects v2 GraphQL 最小",
+  "version": "1.0.0",
+  "stack": ["github"],
+  "tags": ["pm"],
+  "description": "Projects v2 へ GraphQL クエリ",
+  "files": [ { "path": "run.js", "template": "import { GraphQLClient, gql } from 'graphql-request';\nconsole.log('query { viewer { projectsV2(first:1){ nodes { title } } } }');\n" } ]
+}
+

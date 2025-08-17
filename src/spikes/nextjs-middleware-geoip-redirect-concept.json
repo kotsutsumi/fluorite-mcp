@@ -1,0 +1,10 @@
+{
+  "id": "nextjs-middleware-geoip-redirect-concept",
+  "name": "Next.js Middleware GeoIP リダイレクト (概念)",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["frontend"],
+  "description": "国コードでのルーティング概念",
+  "files": [ { "path": "middleware.ts", "template": "import { NextResponse } from 'next/server';\nexport function middleware(req: Request){ const url = new URL(req.url); const country = (req as any).geo?.country; if(country==='JP' && url.pathname.startsWith('/en')) return NextResponse.redirect(new URL('/ja', url)); return NextResponse.next(); }\n" } ]
+}
+

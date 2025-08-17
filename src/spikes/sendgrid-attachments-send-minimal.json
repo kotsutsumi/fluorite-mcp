@@ -1,0 +1,10 @@
+{
+  "id": "sendgrid-attachments-send-minimal",
+  "name": "SendGrid 添付メール送信 最小",
+  "version": "1.0.0",
+  "stack": ["sendgrid"],
+  "tags": ["email"],
+  "description": "@sendgrid/mail で添付送信",
+  "files": [ { "path": "run.js", "template": "const sg = require('@sendgrid/mail');\nconsole.log('sg.send({ attachments:[{ content: base64 }], ... })');\n" } ]
+}
+

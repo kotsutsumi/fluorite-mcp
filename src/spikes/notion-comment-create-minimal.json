@@ -1,0 +1,14 @@
+{
+  "id": "notion-comment-create-minimal",
+  "name": "Notion コメント作成 最小",
+  "version": "1.0.0",
+  "stack": ["node", "notion"],
+  "tags": ["notion"],
+  "description": "comments.create API の雛形",
+  "params": [ { "name": "app_name", "default": "notion-comment" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@notionhq/client\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { Client } from '@notionhq/client';\nconsole.log('notion.comments.create({ parent:{ page_id }, rich_text:[...] })');\n" }
+  ]
+}
+

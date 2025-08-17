@@ -1,0 +1,10 @@
+{
+  "id": "aws-cloudwatch-alarms-create-minimal",
+  "name": "AWS CloudWatch アラーム作成 最小",
+  "version": "1.0.0",
+  "stack": ["aws"],
+  "tags": ["observability"],
+  "description": "PutMetricAlarm を呼出",
+  "files": [ { "path": "run.js", "template": "import { CloudWatchClient } from '@aws-sdk/client-cloudwatch';\nconsole.log('PutMetricAlarm for CPUUtilization');\n" } ]
+}
+

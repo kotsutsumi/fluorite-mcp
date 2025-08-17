@@ -1,0 +1,12 @@
+{
+  "id": "jira-transition-issue-minimal",
+  "name": "Jira 課題トランジション 最小",
+  "version": "1.0.0",
+  "stack": ["node", "jira"],
+  "tags": ["pm"],
+  "description": "jira.js で課題のステータス遷移",
+  "files": [
+    { "path": "run.js", "template": "import { Version3Client } from 'jira.js';\nconsole.log('client.issues.transitionIssue({ issueIdOrKey, transition: { id } })');\n" }
+  ]
+}
+

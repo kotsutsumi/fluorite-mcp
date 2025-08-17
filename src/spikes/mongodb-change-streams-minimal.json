@@ -1,0 +1,10 @@
+{
+  "id": "mongodb-change-streams-minimal",
+  "name": "MongoDB Change Streams 最小",
+  "version": "1.0.0",
+  "stack": ["mongodb"],
+  "tags": ["db"],
+  "description": "ChangeStream で変更を購読",
+  "files": [ { "path": "run.js", "template": "const { MongoClient } = require('mongodb');\nconsole.log('collection.watch() then on change events');\n" } ]
+}
+

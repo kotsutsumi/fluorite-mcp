@@ -1,0 +1,12 @@
+{
+  "id": "square-webhook-verify-express",
+  "name": "Square Webhook 検証 (Express)",
+  "version": "1.0.0",
+  "stack": ["square", "express"],
+  "tags": ["webhook"],
+  "description": "Square x-square-hmacsha256 検証",
+  "files": [
+    { "path": "server.js", "template": "const express = require('express'); const crypto = require('crypto'); const app = express(); app.use(express.raw({type:'*/*'})); app.post('/square', (req,res)=>{ const sig=req.headers['x-square-hmacsha256-signature']; const h=crypto.createHmac('sha256', process.env.SQUARE_WEBHOOK_SECRET).update(req.body).digest('base64'); res.status(sig===h?200:401).send('ok'); }); app.listen(3000);\n" }
+  ]
+}
+

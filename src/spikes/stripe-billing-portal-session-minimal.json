@@ -1,0 +1,10 @@
+{
+  "id": "stripe-billing-portal-session-minimal",
+  "name": "Stripe Billing Portal Session 最小",
+  "version": "1.0.0",
+  "stack": ["stripe"],
+  "tags": ["payments"],
+  "description": "請求ポータルセッションの作成",
+  "files": [ { "path": "run.js", "template": "import Stripe from 'stripe';\nconsole.log('stripe.billingPortal.sessions.create({ customer })');\n" } ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "contentful-entry-update-minimal",
+  "name": "Contentful Entry 更新 最小",
+  "version": "1.0.0",
+  "stack": ["node", "contentful"],
+  "tags": ["cms"],
+  "description": "contentful-management でエントリ更新/公開",
+  "files": [
+    { "path": "run.js", "template": "import contentful from 'contentful-management';\nconsole.log('space.getEnvironment().getEntry(id).then(e=>e.update(fields)).then(e=>e.publish())');\n" }
+  ]
+}
+

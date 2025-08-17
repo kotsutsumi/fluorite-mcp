@@ -1,0 +1,10 @@
+{
+  "id": "remix-loader-headers-minimal",
+  "name": "Remix loader ヘッダ設定 最小",
+  "version": "1.0.0",
+  "stack": ["remix"],
+  "tags": ["frontend"],
+  "description": "loader で Cache-Control 等を設定",
+  "files": [ { "path": "app/routes/cache.tsx", "template": "import { json, type LoaderFunctionArgs } from '@remix-run/node';\nexport async function loader(_args: LoaderFunctionArgs){ return json({ ok:true }, { headers: { 'Cache-Control':'max-age=60' } }); }\nexport default function Page(){ return null }\n" } ]
+}
+

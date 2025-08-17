@@ -1,0 +1,12 @@
+{
+  "id": "elasticsearch-ilm-policy-create-minimal",
+  "name": "Elasticsearch ILM ポリシー作成 最小",
+  "version": "1.0.0",
+  "stack": ["node", "elasticsearch"],
+  "tags": ["search"],
+  "description": "Index Lifecycle Management のポリシー作成",
+  "files": [
+    { "path": "run.js", "template": "import { Client } from '@elastic/elasticsearch';\nconsole.log('client.ilm.putLifecycle({ policy, body })');\n" }
+  ]
+}
+

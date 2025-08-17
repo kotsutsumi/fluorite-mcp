@@ -1,0 +1,10 @@
+{
+  "id": "timescaledb-hypertable-create-minimal",
+  "name": "TimescaleDB Hypertable 作成 最小",
+  "version": "1.0.0",
+  "stack": ["sql", "timescaledb"],
+  "tags": ["timeseries"],
+  "description": "Hypertable 作成の SQL サンプル",
+  "files": [ { "path": "schema.sql", "template": "CREATE TABLE metrics(ts TIMESTAMPTZ, v DOUBLE PRECISION);\nSELECT create_hypertable('metrics','ts');\n" } ]
+}
+

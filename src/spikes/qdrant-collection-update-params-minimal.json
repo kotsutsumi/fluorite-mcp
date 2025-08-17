@@ -1,0 +1,12 @@
+{
+  "id": "qdrant-collection-update-params-minimal",
+  "name": "Qdrant コレクション設定更新 最小",
+  "version": "1.0.0",
+  "stack": ["node", "qdrant"],
+  "tags": ["vector"],
+  "description": "update_collection でパラメータ変更",
+  "files": [
+    { "path": "run.js", "template": "import { QdrantClient } from '@qdrant/js-client-rest';\nconsole.log('client.updateCollection with optimizers/rescore parameters');\n" }
+  ]
+}
+

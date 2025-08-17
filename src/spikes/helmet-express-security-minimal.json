@@ -1,0 +1,12 @@
+{
+  "id": "helmet-express-security-minimal",
+  "name": "Helmet Express Security 最小",
+  "version": "1.0.0",
+  "stack": ["node", "express"],
+  "tags": ["web", "security"],
+  "description": "helmet で基本セキュリティヘッダ",
+  "files": [
+    { "path": "server.js", "template": "const express = require('express');\nconst helmet = require('helmet');\nconst app = express();\napp.use(helmet());\napp.get('/', (_req,res)=>res.send('ok'));\napp.listen(3000);\n" }
+  ]
+}
+

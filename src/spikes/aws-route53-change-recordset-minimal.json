@@ -1,0 +1,12 @@
+{
+  "id": "aws-route53-change-recordset-minimal",
+  "name": "AWS Route53 レコード変更 最小",
+  "version": "1.0.0",
+  "stack": ["aws"],
+  "tags": ["dns"],
+  "description": "ChangeResourceRecordSets で A レコード更新",
+  "files": [
+    { "path": "run.js", "template": "import { Route53Client } from '@aws-sdk/client-route-53';\nconsole.log('ChangeResourceRecordSets with UPSERT');\n" }
+  ]
+}
+

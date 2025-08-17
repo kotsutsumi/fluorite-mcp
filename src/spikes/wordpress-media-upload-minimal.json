@@ -1,0 +1,12 @@
+{
+  "id": "wordpress-media-upload-minimal",
+  "name": "WordPress Media Upload 最小",
+  "version": "1.0.0",
+  "stack": ["node", "wordpress"],
+  "tags": ["cms"],
+  "description": "WP REST API でメディアをアップロード",
+  "files": [
+    { "path": "run.js", "template": "import fetch from 'node-fetch';\nconsole.log('POST to wp-json/wp/v2/media with auth and multipart');\n" }
+  ]
+}
+

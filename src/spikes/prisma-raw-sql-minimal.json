@@ -1,0 +1,10 @@
+{
+  "id": "prisma-raw-sql-minimal",
+  "name": "Prisma raw SQL 最小",
+  "version": "1.0.0",
+  "stack": ["prisma"],
+  "tags": ["db"],
+  "description": "$queryRaw を用いたSQL実行",
+  "files": [ { "path": "run.ts", "template": "console.log('prisma.$queryRaw`SELECT 1`');\n" } ]
+}
+

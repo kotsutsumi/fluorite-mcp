@@ -1,0 +1,14 @@
+{
+  "id": "kinesis-producer-node-minimal",
+  "name": "AWS Kinesis Producer 最小",
+  "version": "1.0.0",
+  "stack": ["node", "aws"],
+  "tags": ["stream"],
+  "description": "Kinesis Data Streams へメッセージ送信",
+  "params": [ { "name": "app_name", "default": "kinesis-producer" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node send.js\" }, \"dependencies\": { \"@aws-sdk/client-kinesis\": \"^3\" } }\n" },
+    { "path": "{{app_name}}/send.js", "template": "import { KinesisClient, PutRecordCommand } from '@aws-sdk/client-kinesis';\nconst c = new KinesisClient({});\nconsole.log('Use PutRecordCommand({ StreamName, Data, PartitionKey })');\n" }
+  ]
+}
+

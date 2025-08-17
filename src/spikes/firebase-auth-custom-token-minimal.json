@@ -1,0 +1,12 @@
+{
+  "id": "firebase-auth-custom-token-minimal",
+  "name": "Firebase Auth Custom Token 最小",
+  "version": "1.0.0",
+  "stack": ["node", "firebase"],
+  "tags": ["auth"],
+  "description": "管理者権限でカスタムトークン発行",
+  "files": [
+    { "path": "run.js", "template": "import admin from 'firebase-admin';\nconsole.log('admin.auth().createCustomToken(uid)');\n" }
+  ]
+}
+

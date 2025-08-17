@@ -1,0 +1,14 @@
+{
+  "id": "sentry-performance-express-minimal",
+  "name": "Sentry Performance + Express 最小",
+  "version": "1.0.0",
+  "stack": ["node", "express", "sentry"],
+  "tags": ["observability"],
+  "description": "トレース/トランザクションを有効化した Sentry 初期化",
+  "params": [ { "name": "app_name", "default": "sentry-perf-express" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node server.js\" }, \"dependencies\": { \"express\": \"^4\", \"@sentry/node\": \"^8\", \"@sentry/profiling-node\": \"^8\" } }\n" },
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst Sentry = require('@sentry/node');\nconst { nodeProfilingIntegration } = require('@sentry/profiling-node');\nSentry.init({ dsn: process.env.SENTRY_DSN, tracesSampleRate: 1.0, profilesSampleRate: 1.0, integrations: [nodeProfilingIntegration()] });\nconst app = express();\napp.use(Sentry.Handlers.requestHandler());\napp.get('/', (_req,res)=>res.send('ok'));\napp.use(Sentry.Handlers.errorHandler());\napp.listen(3000, ()=>console.log('listening'));\n" }
+  ]
+}
+

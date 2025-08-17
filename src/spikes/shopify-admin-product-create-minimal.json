@@ -1,0 +1,10 @@
+{
+  "id": "shopify-admin-product-create-minimal",
+  "name": "Shopify Admin Product 作成 最小",
+  "version": "1.0.0",
+  "stack": ["shopify"],
+  "tags": ["commerce"],
+  "description": "Admin GraphQL で商品作成",
+  "files": [ { "path": "run.js", "template": "import { GraphQLClient, gql } from 'graphql-request';\nconsole.log('mutation productCreate { productCreate(input:{title:\'Demo\'}){ product{ id } } }');\n" } ]
+}
+

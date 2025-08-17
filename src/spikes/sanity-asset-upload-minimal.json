@@ -1,0 +1,12 @@
+{
+  "id": "sanity-asset-upload-minimal",
+  "name": "Sanity Asset Upload 最小",
+  "version": "1.0.0",
+  "stack": ["node", "sanity"],
+  "tags": ["cms"],
+  "description": "sanity クライアントで画像をアップロード",
+  "files": [
+    { "path": "run.js", "template": "import { createClient } from '@sanity/client';\nconsole.log('client.assets.upload(\'image\', fileStream, { filename })');\n" }
+  ]
+}
+

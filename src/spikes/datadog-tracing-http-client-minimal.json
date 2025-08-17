@@ -1,0 +1,12 @@
+{
+  "id": "datadog-tracing-http-client-minimal",
+  "name": "Datadog Tracing HTTP client 最小",
+  "version": "1.0.0",
+  "stack": ["node", "datadog"],
+  "tags": ["observability"],
+  "description": "dd-trace で外部HTTPコールのスパンを確認",
+  "files": [
+    { "path": "run.js", "template": "require('dd-trace').init();\nconst https = require('https');\nhttps.get('https://example.com', r=>{ r.resume(); console.log('done'); });\n" }
+  ]
+}
+

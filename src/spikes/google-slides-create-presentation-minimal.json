@@ -1,0 +1,12 @@
+{
+  "id": "google-slides-create-presentation-minimal",
+  "name": "Google Slides プレゼン作成 最小",
+  "version": "1.0.0",
+  "stack": ["node", "googleapis"],
+  "tags": ["slides"],
+  "description": "slides.presentations.create の呼び出し",
+  "files": [
+    { "path": "run.js", "template": "import { google } from 'googleapis';\nconsole.log('slides.presentations.create({ title })');\n" }
+  ]
+}
+

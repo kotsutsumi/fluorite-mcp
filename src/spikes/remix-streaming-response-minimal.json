@@ -1,0 +1,12 @@
+{
+  "id": "remix-streaming-response-minimal",
+  "name": "Remix Streaming Response 最小",
+  "version": "1.0.0",
+  "stack": ["remix"],
+  "tags": ["frontend"],
+  "description": "ReadableStream を返す最小例",
+  "files": [
+    { "path": "app/routes/stream.tsx", "template": "import { type LoaderFunctionArgs } from '@remix-run/node';\nexport async function loader(_args: LoaderFunctionArgs){ const encoder = new TextEncoder(); const stream = new ReadableStream({ start(c){ c.enqueue(encoder.encode('hello')); c.close(); } }); return new Response(stream); }\nexport default function Page(){ return null }\n" }
+  ]
+}
+

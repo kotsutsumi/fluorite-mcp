@@ -1,0 +1,10 @@
+{
+  "id": "datadog-dogstatsd-metrics-minimal",
+  "name": "Datadog DogStatsD メトリクス 最小",
+  "version": "1.0.0",
+  "stack": ["datadog"],
+  "tags": ["observability"],
+  "description": "DogStatsD にカウンタを送信 (udp)",
+  "files": [ { "path": "run.js", "template": "const dgram = require('dgram');\nconst s = dgram.createSocket('udp4');\ns.send('demo.metric:1|c', 8125, '127.0.0.1');\nconsole.log('sent');\n" } ]
+}
+
