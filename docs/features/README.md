@@ -341,7 +341,7 @@ The Memory Engine is a Rust-based intelligent learning system that continuously 
    - Performance monitoring
 
 4. **Learning Pipeline** (`fluorite-learner`)
-   - Pattern extraction from documentation
+   - Pattern extraction from internal knowledge base
    - Template generation from patterns
    - Quality validation loop
    - Continuous improvement metrics
@@ -350,7 +350,7 @@ The Memory Engine is a Rust-based intelligent learning system that continuously 
 ```rust
 // Simplified learning pipeline
 pub struct LearningPipeline {
-    crawler: DocumentCrawler,
+    knowledge_base: InternalKnowledgeBase,
     analyzer: PatternAnalyzer,
     generator: TemplateGenerator,
     validator: QualityValidator,
@@ -358,7 +358,7 @@ pub struct LearningPipeline {
 
 impl LearningPipeline {
     pub async fn learn(&mut self) -> Result<LearningOutcome> {
-        let documents = self.crawler.fetch_latest().await?;
+        let documents = self.knowledge_base.get_stored_patterns().await?;
         let patterns = self.analyzer.extract_patterns(&documents)?;
         let templates = self.generator.create_templates(&patterns)?;
         let validated = self.validator.validate(&templates)?;
