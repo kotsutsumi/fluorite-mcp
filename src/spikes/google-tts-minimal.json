@@ -1,0 +1,19 @@
+{
+  "id": "google-tts-minimal",
+  "name": "Google Cloud Text-to-Speech Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "gcp", "tts"],
+  "tags": ["audio", "tts"],
+  "description": "Synthesize speech with @google-cloud/text-to-speech and print bytes length.",
+  "params": [
+    { "name": "app_name", "default": "google-tts" },
+    { "name": "voice_name", "default": "en-US-Wavenet-D" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import textToSpeech from '@google-cloud/text-to-speech';\nconst client = new textToSpeech.TextToSpeechClient();\nconst [resp] = await client.synthesizeSpeech({ input: { text: 'Hello from Fluorite MCP' }, voice: { languageCode: 'en-US', name: process.env.VOICE_NAME || '{{voice_name}}' }, audioConfig: { audioEncoding: 'MP3' } });\nconst buf = Buffer.from(resp.audioContent, 'base64');\nconsole.log('bytes=', buf.length);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@google-cloud/text-to-speech\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "GOOGLE_APPLICATION_CREDENTIALS=path/to/key.json\nVOICE_NAME={{voice_name}}\n" }
+  ],
+  "patches": []
+}
+

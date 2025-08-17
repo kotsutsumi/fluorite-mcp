@@ -342,4 +342,4 @@ Found a great integration pattern? [Share it with the community](https://github.
 
 ---
 
-*Examples v0.11.0 - Last updated: December 2024*
+*Examples v0.12.1 - Last updated: January 2025*

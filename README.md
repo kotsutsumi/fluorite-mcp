@@ -10,7 +10,7 @@ Transform Claude Code CLI into a comprehensive development powerhouse with **Flu
 
 > **Enterprise Solution**: From rapid prototyping to production deployment - all specifications validated, maintained, and optimized for professional development workflows.
 
-**Quick Installation**: `npm i -g fluorite-mcp && claude mcp add fluorite -- fluorite-mcp-server`
+**Quick Installation**: `npm i -g fluorite-mcp && claude mcp add fluorite -- fluorite-mcp-server-server`
 
 ## 🎯 What is Fluorite MCP?
 
@@ -50,7 +50,7 @@ Prevent issues before they occur with intelligent analysis:
 ### 🧪 Accelerated Development with Spike Templates
 Bridge the gap between idea and implementation:
 
-- **🏭 385+ Production Templates**: Battle-tested scaffolds for authentication, APIs, testing, and deployment
+- **🏭 750+ Production Templates**: Battle-tested scaffolds for authentication, APIs, testing, and deployment
 - **🗣️ Natural Language Interface**: Describe features in plain English—no complex syntax to learn
 - **🎯 Intelligent Selection**: AI-powered template matching based on your project context and requirements
 - **🔄 Iterative Refinement**: Built-in quality validation and improvement loops
@@ -88,7 +88,7 @@ Advanced Rust-based learning system that evolves continuously:
 npm install -g fluorite-mcp
 
 # 2. Add to Claude Code CLI
-claude mcp add fluorite -- fluorite-mcp-server
+claude mcp add fluorite -- fluorite-mcp-server-server
 
 # 3. Verify installation
 claude mcp list
@@ -198,15 +198,15 @@ Fluorite MCP bridges the gap between natural language requirements and productio
 
 Transform ideas into working prototypes in minutes with our comprehensive template ecosystem:
 
-#### **385+ Production-Ready Templates**
+#### **750+ Production-Ready Templates**
 
 | **Category** | **Templates** | **Key Features** | **Time Savings** |
 |--------------|---------------|------------------|------------------|
-| **🌐 Frontend Frameworks** | 98+ | Next.js (SSR, API routes, middleware), React (hooks, contexts), Vue (Composition API) | **80% faster** setup |
-| **🚀 Backend APIs** | 59+ | FastAPI (auth, WebSockets, databases), Express, Go/Rust servers | **70% faster** API development |
-| **🧪 Testing & Quality** | 58+ | Playwright (E2E, accessibility), Vitest, Cypress, performance testing | **60% faster** test setup |
-| **🏗️ Infrastructure** | 40+ | Docker, Kubernetes, CI/CD pipelines, monitoring, deployment | **90% faster** DevOps setup |
-| **🎨 UI Components** | 27+ | Component libraries, design systems, interactive elements | **85% faster** UI development |
+| **🌐 Frontend Frameworks** | 180+ | Next.js (SSR, API routes, middleware), React (hooks, contexts), Vue (Composition API) | **80% faster** setup |
+| **🚀 Backend APIs** | 120+ | FastAPI (auth, WebSockets, databases), Express, Go/Rust servers | **70% faster** API development |
+| **🧪 Testing & Quality** | 150+ | Playwright (E2E, accessibility), Vitest, Cypress, performance testing | **60% faster** test setup |
+| **🏗️ Infrastructure** | 200+ | Docker, Kubernetes, CI/CD pipelines, monitoring, deployment | **90% faster** DevOps setup |
+| **🎨 UI Components** | 100+ | Component libraries, design systems, interactive elements | **85% faster** UI development |
 
 #### **Intelligent Template Selection Process**
 
@@ -336,55 +336,176 @@ Join our mission to democratize professional development patterns:
 - **🎯 学習コストゼロ**: 自然言語で動作 - 新しい構文やコマンドを覚える必要なし
 - **💎 本番品質**: すべての出力が業界のベストプラクティスに従い、適切なTypeScript型を含む
 - **🔧 フレームワークネイティブ**: モダンフレームワーク（Next.js、React、FastAPI、Vueなど）との深い統合
+- **🧠 インテリジェント学習**: Rust基盤のメモリエンジンでML駆動の継続的改善
 
 ### 🌟 **包括的機能セット**
 
 #### **📚 豊富なライブラリ知識ベース**
+プロフェッショナルに厳選された仕様で開発ワークフローを変革：
+
 - **📖 87以上のライブラリ仕様**: 詳細な使用パターン、設定例、アーキテクチャガイダンス
 - **🌍 12以上の言語エコシステム**: TypeScriptからRust、PythonからGoまでのフルスタックカバレッジ
-- **🏗️ フレームワーク習得**: Next.js、React、Vue、FastAPI、Expressとの深い統合
+- **🏗️ フレームワーク習得**: Next.js、React、Vue、FastAPI、Express、新興フレームワークとの深い統合
 - **🎯 ベストプラクティス統合**: すべての仕様に本番対応パターンとセキュリティ考慮事項を含む
 
 #### **🔍 高度なコードインテリジェンス**
+問題が発生する前にインテリジェントな解析で予防：
+
 - **🛡️ 50以上の検証ルール**: Next.js、React、Vue、TypeScriptのフレームワーク固有静的解析
 - **🔮 エラー予測エンジン**: 機械学習を活用した一般的なランタイムエラーの検出
 - **⚡ パフォーマンス最適化**: バンドルサイズ、レンダリング、メモリ効率の自動推奨
 - **🔒 セキュリティスキャニング**: OWASP準拠の脆弱性検出と予防
 
-### **🚀 インストール & セットアップ**
+#### **🧪 スパイクテンプレートによる開発加速**
+アイデアと実装の間のギャップを橋渡し：
+
+- **🏭 750以上の本番テンプレート**: 認証、API、テスト、デプロイ向けの実戦テスト済みスキャフォールド
+- **🗣️ 自然言語インターフェース**: プレーンな日本語で機能を記述 - 複雑な構文を学ぶ必要なし
+- **🎯 インテリジェント選択**: プロジェクトコンテキストと要件に基づくAI駆動テンプレートマッチング
+- **🔄 反復改良**: 組み込み品質検証と改善ループ
+
+#### **⚡ 優れた開発者体験**
+チームと共にスケールするプロフェッショナルグレードツール：
+
+- **🎬 設定ゼロ**: インストール後すぐに動作 - セットアップ不要
+- **💎 本番品質**: すべての生成されたコンポーネントにTypeScript定義、アクセシビリティ機能、包括的エラーハンドリングを含む
+- **📏 一貫した標準**: 強制されたコーディングパターンで保守可能でスケーラブルなコードベースを保証
+- **🔧 IDE統合**: Claude Code CLIとモダン開発環境とのシームレス統合
+
+### **🚀 クイックスタート（2分でインストール）**
 
 ```bash
 # 1. Fluorite MCPをグローバルインストール
 npm install -g fluorite-mcp
 
 # 2. Claude Code CLIに追加
-claude mcp add fluorite -- fluorite-mcp
+claude mcp add fluorite -- fluorite-mcp-server
 
 # 3. インストール確認
-claude --list-mcps
+claude mcp list
 ```
 
 ### **📚 日本語ドキュメント**
 
+#### **🚀 クイックスタートリソース**
 | **リソース** | **時間投資** | **学習内容** | **対象者** |
 |--------------|-------------|--------------|------------|
-| **[⚡ クイックスタートガイド](./docs/getting-started.md)** | 5分 | インストール、基本コマンド、基本使用法 | 新規ユーザー |
-| **[🔧 インストールガイド](./docs/installation.md)** | 10分 | 詳細セットアップ、トラブルシューティング | システム管理者 |
-| **[🔍 APIドキュメント](./API.md)** | 20分 | 完全なMCPプロトコルリファレンス | 開発者、統合担当者 |
-| **[👩‍💻 開発者ガイド](./docs/developer.md)** | 30分 | アーキテクチャ、貢献ガイドライン | 貢献者、上級ユーザー |
+| **[⚡ クイックスタートガイド](./docs/getting-started.ja.md)** | 5分 | インストール、基本コマンド、基本使用法 | 新規ユーザー |
+| **[🔧 インストールガイド](./docs/installation.ja.md)** | 15分 | 詳細セットアップ、トラブルシューティング、環境設定 | システム管理者、DevOps |
+| **[📖 コマンドリファレンス](./docs/commands.ja.md)** | 30分 | 完全なコマンド構文、高度な機能 | パワーユーザー、自動化 |
 
-### **🎯 使用例**
+#### **🏗️ 開発者・技術リソース**
+| **リソース** | **対象者** | **内容** | **価値** |
+|--------------|------------|---------|----------|
+| **[🔍 APIドキュメント](./API.md)** | 開発者、統合担当者 | 完全なMCPプロトコルリファレンス、200以上の文書化された関数とTSDoc | カスタム統合の構築と内部APIの理解 |
+| **[👩‍💻 開発者ガイド](./docs/developer.md)** | 貢献者、上級ユーザー | アーキテクチャ、包括的関数ドキュメント、貢献ガイドライン | 完全なAPI理解での拡張とカスタマイズ |
+| **[🏭 テンプレート作成ガイド](./docs/template-creation.md)** | テンプレート作成者 | カスタムスパイクテンプレートとライブラリ仕様の作成 | 新しいフレームワーク/ライブラリの追加 |
+| **[📊 静的解析ガイド](./docs/STATIC_ANALYSIS.md)** | 品質エンジニア | 50以上の検証ルール、エラー予測、React/Vue/Next.js解析器、依存関係解析 | 包括的ツールでコード品質を向上 |
 
+#### **🎯 専門ガイド・リファレンス**
+| **トピック** | **ドキュメント** | **対象使用例** |
+|-----------|-------------------|-------------------|
+| **🧪 高速プロトタイピング** | **[スパイクテンプレートガイド](./docs/spike-templates.md)** | テンプレートシステムを学び、プロトタイプを作成 |
+| **🔗 統合パターン** | **[Claude Code統合](./docs/architecture/claude-cli-integration.md)** | MCP統合を理解し、ワークフローをカスタマイズ |
+| **🏗️ アーキテクチャ詳細** | **[アーキテクチャドキュメント](./docs/architecture/)** | システム設計、デプロイ、スケーラビリティ |
+| **📈 パフォーマンス・最適化** | **[パフォーマンスガイド](./docs/performance.md)** | 最適化戦略、監視 |
+
+### **🎯 実用的な使用例**
+
+#### **ログインフォームの作成**
 ```
-要求: "認証機能付きのログインフォームを作成"
+要求: "react-hook-formとzodを使った検証付きのモダンなログインフォームを作成"
 
 結果: 
-✅ react-hook-formとzodの仕様に自動アクセス
-✅ TypeScript型定義を含む完全なコンポーネント
-✅ アクセシビリティ準拠（ARIA、キーボードナビゲーション）
-✅ セキュリティベストプラクティス（XSS防止、安全なフォーム処理）
-✅ パフォーマンス最適化とテスト例
+✅ 自動ライブラリ検出: react-hook-formとzodの仕様にアクセス
+✅ 本番対応コード: TypeScript型を含む完全なコンポーネント
+✅ アクセシビリティ準拠: ARIAラベル、キーボードナビゲーション、スクリーンリーダーサポート
+✅ セキュリティベストプラクティス: 入力検証、XSS防止、安全なフォーム処理
+✅ パフォーマンス最適化: 最小バンドル影響と最適化されたレンダリング
+✅ テスト対応: テスト例とアクセシビリティテストパターンを含む
 ```
+
+#### **APIエンドポイントの構築**
+```
+要求: "JWT認証とPydantic検証を含むFastAPIエンドポイントを作成"
+
+結果:
+✅ フレームワークネイティブパターン: FastAPIの慣例と慣用的パターンに従う
+✅ 型安全性: 完全なTypeScript定義と適切な型推論とエラー予防
+✅ セキュリティベストプラクティス: 一般的な脆弱性（XSS、CSRF、インジェクション攻撃）に対する組み込み保護
+✅ パフォーマンス解析: バンドル影響評価と最適化推奨事項
+```
+
+#### **レスポンシブダッシュボード**
+```
+要求: "チャートとメトリクスを含むレスポンシブダッシュボードを作成"
+
+結果:
+✅ プロフェッショナルダッシュボード: インタラクティブチャートとグラフ
+✅ リアルタイムデータ更新: ライブデータフィードとリアルタイム更新
+✅ モバイル対応設計: レスポンシブレイアウトとモバイル最適化
+✅ エクスポート・フィルタリング機能: データエクスポートとフィルタリング機能
+```
+
+### **🌍 包括的技術カバレッジ**
+
+#### **エンタープライズグレードライブラリ仕様**
+
+| **ドメイン** | **主要ライブラリ** | **仕様数** | **使用例** |
+|------------|-------------------|------------|----------|
+| **🎨 UI/UX** | shadcn/ui、Radix UI、Material-UI、Mantine、Tremor | 15以上 | コンポーネントライブラリ、デザインシステム、アクセシビリティ |
+| **🔄 状態管理** | Zustand、Jotai、TanStack Query、Redux Toolkit、Valtio | 8以上 | アプリケーション状態、サーバー状態、リアルタイムデータ |
+| **📝 フォーム・検証** | react-hook-form、Zod、Valibot、Yup、Formik | 6以上 | 型安全フォーム、スキーマ検証、ユーザー入力 |
+| **🔐 認証** | NextAuth.js、Clerk、Lucia、Supabase Auth、Auth0 | 8以上 | ユーザー管理、OAuth、セッション処理 |
+| **🧪 テスト・品質** | Playwright、Vitest、Cypress、Testing Library、Jest | 10以上 | E2Eテスト、ユニットテスト、アクセシビリティテスト |
+| **📊 データ・可視化** | Recharts、D3.js、Chart.js、Tremor、TanStack Table | 8以上 | チャート、ダッシュボード、データテーブル、アナリティクス |
+| **🌐 API・バックエンド** | tRPC、Prisma、Drizzle、GraphQL、RESTパターン | 12以上 | 型安全API、データベース統合、リアルタイム |
+| **🚀 パフォーマンス** | React Query、SWR、最適化パターン、バンドリング | 6以上 | キャッシング、パフォーマンス監視、最適化 |
+
+#### **言語エコシステムカバレッジ**
+
+| **言語** | **フレームワーク・ツール** | **仕様数** | **主要使用例** |
+|----------|-------------------------|------------|-------------|
+| **🟦 TypeScript/JavaScript** | Next.js、React、Vue、Svelte、Astro | 25以上 | フルスタックWebアプリ、SPA、SSR |
+| **🐍 Python** | FastAPI、Django、Flask、Pydantic、SQLAlchemy | 12以上 | API、データサイエンス、機械学習、自動化 |
+| **🦀 Rust** | Tauri、Axum、Actix、Serde、Tokio | 8以上 | システムプログラミング、デスクトップアプリ、WebAssembly |
+| **🐹 Go** | Gin、Fiber、Echo、GORM、Chi | 6以上 | 高性能バックエンド、マイクロサービス、CLIツール |
+| **💎 Ruby** | Rails、Sinatra、Sidekiq、ActiveRecord | 4以上 | フルスタックWebアプリ、高速プロトタイピング |
+
+### **🆘 サポート・コミュニティ**
+
+| **サポートチャンネル** | **応答時間** | **最適な用途** | **アクセス** |
+|--------------------|-------------|-------------|-----------|
+| **[🔧 トラブルシューティングガイド](./docs/troubleshooting.md)** | 即時 | 一般的な問題、エラー解決 | セルフサービス |
+| **[💬 GitHub Discussions](https://github.com/kotsutsumi/fluorite-mcp/discussions)** | 24-48時間 | 質問、機能リクエスト、コミュニティヘルプ | 無料、コミュニティ主導 |
+| **[🐛 Issue Tracker](https://github.com/kotsutsumi/fluorite-mcp/issues)** | 48-72時間 | バグ報告、機能リクエスト | 無料、メンテナーサポート |
+| **[🌐 オンラインドキュメント](https://kotsutsumi.github.io/fluorite-mcp)** | 即時 | 検索可能ドキュメント、最新更新 | 包括的リファレンス |
+
+### **💡 プロのヒント**
+
+1. **技術スタックを具体的に**:
+   ```
+   ✅ "react-hook-form、Zod検証、shadcn/uiコンポーネントでフォームを作成"
+   ❌ "フォームを作成"
+   ```
+
+2. **フレームワークコンテキストに言及**:
+   ```
+   ✅ "tRPCとPrismaでNext.js APIルートを構築"
+   ❌ "APIを構築"
+   ```
+
+3. **要件を含める**:
+   ```
+   ✅ "ソート、フィルタリング、ページネーション、TypeScriptでデータテーブルを作成"
+   ❌ "テーブルを作成"
+   ```
+
+4. **ベストプラクティスを求める**:
+   ```
+   ✅ "NextAuth.js実装のセキュリティベストプラクティスは何ですか？"
+   ✅ "このReactコンポーネントのパフォーマンス最適化を教えて"
+   ```
 
 ---
 
@@ -396,7 +517,7 @@ claude --list-mcps
 | **Library Coverage** | 87+ specifications | 100% production-tested | Leading in MCP ecosystem |
 | **Language Ecosystems** | 12+ comprehensive | Full-stack coverage | Most comprehensive available |
 | **Static Analysis Rules** | 50+ framework-specific | Zero false positives | Advanced error prediction |
-| **Template Ecosystem** | 385+ production templates | Enterprise-grade quality | Largest collection |
+| **Template Ecosystem** | 750+ production templates | Enterprise-grade quality | Largest collection |
 | **Documentation Quality** | 100+ pages, searchable | Professional technical writing | Award-winning clarity |
 
 ### **Developer Impact Metrics**
@@ -411,7 +532,7 @@ claude --list-mcps
 ```bash
 # 5-minute team setup
 npm install -g fluorite-mcp
-claude mcp add fluorite -- fluorite-mcp-server
+claude mcp add fluorite -- fluorite-mcp-server-server
 fluorite-mcp --self-test
 
 # Instant project analysis

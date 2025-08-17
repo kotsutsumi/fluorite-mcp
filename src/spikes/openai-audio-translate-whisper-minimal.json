@@ -1,0 +1,19 @@
+{
+  "id": "openai-audio-translate-whisper-minimal",
+  "name": "OpenAI Audio Translate (Whisper) Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "openai"],
+  "tags": ["audio", "translate"],
+  "description": "Translate an audio file to English using Whisper translate.",
+  "params": [
+    { "name": "app_name", "default": "openai-translate" },
+    { "name": "audio_file", "default": "audio.m4a" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import OpenAI from 'openai';\nimport fs from 'node:fs';\nconst client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst resp = await client.audio.transcriptions.create({ model: 'gpt-4o-transcribe', file: fs.createReadStream(process.env.AUDIO_FILE || '{{audio_file}}'), translate: true });\nconsole.log(resp.text);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"openai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\nAUDIO_FILE={{audio_file}}\n" }
+  ],
+  "patches": []
+}
+

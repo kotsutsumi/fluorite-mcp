@@ -1,0 +1,20 @@
+{
+  "id": "openai-tts-speech-minimal",
+  "name": "OpenAI Text-to-Speech Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "openai"],
+  "tags": ["audio", "tts"],
+  "description": "Synthesize speech from text using OpenAI audio.speech API (prints byte length).",
+  "params": [
+    { "name": "app_name", "default": "openai-tts" },
+    { "name": "voice", "default": "alloy" },
+    { "name": "text", "default": "Hello from Fluorite MCP" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import OpenAI from 'openai';\nconst client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst res = await client.audio.speech.create({ model: 'gpt-4o-mini-tts', voice: process.env.VOICE || '{{voice}}', input: process.env.TEXT || '{{text}}' });\nconst buf = Buffer.from(await res.arrayBuffer());\nconsole.log('bytes=', buf.length);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"openai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\nVOICE=alloy\nTEXT=Hello from Fluorite MCP\n" }
+  ],
+  "patches": []
+}
+

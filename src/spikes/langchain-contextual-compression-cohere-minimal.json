@@ -1,0 +1,18 @@
+{
+  "id": "langchain-contextual-compression-cohere-minimal",
+  "name": "LangChain Contextual Compression + Cohere Rerank (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "langchain", "cohere", "openai"],
+  "tags": ["rag", "compression"],
+  "description": "Use ContextualCompressionRetriever with Cohere Rerank to compress retrieved docs.",
+  "params": [
+    { "name": "app_name", "default": "lc-compression-cohere" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { OpenAIEmbeddings } from '@langchain/openai';\nimport { CohereClient } from 'cohere-ai';\nimport { ContextualCompressionRetriever } from 'langchain/retrievers/contextual_compression';\nimport { MemoryVectorStore } from 'langchain/vectorstores/memory';\nconst docs = [{ pageContent: 'hello world' }, { pageContent: 'fluorite mcp spike' }];\nconst embeddings = new OpenAIEmbeddings({ apiKey: process.env.OPENAI_API_KEY });\nconst base = await MemoryVectorStore.fromDocuments(docs, embeddings);\nconst cohere = new CohereClient({ token: process.env.COHERE_API_KEY });\nconst retriever = new ContextualCompressionRetriever({ baseCompressor: { compressDocuments: async (docs, query)=>{ const out = await cohere.rerank({ model: 'rerank-english-v3.0', query, documents: docs.map(d=>d.pageContent) }); return out.results?.map(r=>docs[r.index]) || []; } }, baseRetriever: base.asRetriever(2) });\nconst res = await retriever.getRelevantDocuments('fluorite');\nconsole.log(res.map(r=>r.pageContent));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@langchain/openai\": \"latest\", \"langchain\": \"latest\", \"cohere-ai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\nCOHERE_API_KEY=...\n" }
+  ],
+  "patches": []
+}
+

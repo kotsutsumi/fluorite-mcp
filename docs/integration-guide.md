@@ -3190,4 +3190,4 @@ export FLUORITE_DISABLED_RULES="rule-id-1,rule-id-2"
 
 This comprehensive integration guide provides detailed patterns for integrating Fluorite MCP across development workflows, CI/CD pipelines, team collaboration, and enterprise deployment scenarios. Each section includes practical examples and production-ready configurations that can be adapted to specific organizational needs.
 
-*Integration Guide v0.11.0 - Last updated: December 2024*
+*Integration Guide v0.12.1 - Last updated: January 2025*

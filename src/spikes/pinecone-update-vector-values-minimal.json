@@ -1,0 +1,19 @@
+{
+  "id": "pinecone-update-vector-values-minimal",
+  "name": "Pinecone Update Vector Values Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "pinecone"],
+  "tags": ["vector", "update"],
+  "description": "Update the vector values for an existing id in Pinecone.",
+  "params": [
+    { "name": "app_name", "default": "pinecone-update-values" },
+    { "name": "pinecone_index", "default": "docs" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { Pinecone } from '@pinecone-database/pinecone';\nconst pc = new Pinecone({ apiKey: process.env.PINECONE_API_KEY });\nconst index = pc.Index(process.env.PINECONE_INDEX || '{{pinecone_index}}');\nawait index.upsert([{ id: '1', values: [0.1,0.2,0.3] }]);\nawait index.update({ id: '1', values: [0.2,0.1,0.25] });\nconst res = await index.query({ vector: [0.2,0.1,0.25], topK: 1 });\nconsole.log(res.matches?.map(m => m.id));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@pinecone-database/pinecone\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "PINECONE_API_KEY=...\nPINECONE_INDEX={{pinecone_index}}\n" }
+  ],
+  "patches": []
+}
+

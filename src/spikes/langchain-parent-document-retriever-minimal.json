@@ -1,0 +1,18 @@
+{
+  "id": "langchain-parent-document-retriever-minimal",
+  "name": "LangChain ParentDocumentRetriever Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "langchain", "openai"],
+  "tags": ["rag", "retriever"],
+  "description": "Use ParentDocumentRetriever for chunked children with parent-level retrieval.",
+  "params": [
+    { "name": "app_name", "default": "lc-parent-doc" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { OpenAIEmbeddings } from '@langchain/openai';\nimport { ParentDocumentRetriever } from 'langchain/retrievers/parent_document';\nimport { MemoryVectorStore } from 'langchain/vectorstores/memory';\nimport { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';\nconst text = 'Hello world. '.repeat(20) + 'fluorite mcp spike. '.repeat(20);\nconst splitter = new RecursiveCharacterTextSplitter({ chunkSize: 50, chunkOverlap: 10 });\nconst docs = (await splitter.createDocuments([text])).map((d,i)=> ({ ...d, id: String(i) }));\nconst embeddings = new OpenAIEmbeddings({ apiKey: process.env.OPENAI_API_KEY });\nconst childVS = await MemoryVectorStore.fromDocuments(docs, embeddings);\nconst retriever = new ParentDocumentRetriever({ vectorstore: childVS, childSplitter: splitter, parentSplitter: splitter });\nconst results = await retriever.getRelevantDocuments('fluorite');\nconsole.log(results.length);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@langchain/openai\": \"latest\", \"langchain\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" }
+  ],
+  "patches": []
+}
+

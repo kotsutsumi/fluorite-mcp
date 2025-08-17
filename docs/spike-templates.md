@@ -41,9 +41,9 @@ Spike templates are production-ready scaffolds that implement the Spike developm
 
 ## Template Categories
 
-### 🌐 Frontend Frameworks (98+ templates)
+### 🌐 Frontend Frameworks (180+ templates)
 
-#### Next.js Ecosystem (98 templates)
+#### Next.js Ecosystem (150+ templates)
 | Template | Description | Use Case |
 |----------|-------------|----------|
 | `nextjs-minimal` | Basic SSR Next.js app with TypeScript | Starting point for any Next.js project |
@@ -505,7 +505,7 @@ All Spike templates work with full SuperClaude parameter bypass:
 **Coverage**: 15+ technology stacks, 50+ frameworks and libraries  
 **Quality**: Enterprise-grade patterns with security and performance built-in
 
-### Latest Additions (v0.11.0)
+### Latest Additions (v0.12.1)
 - **Quality & Security**: OpenAPI contract testing, secret detection, vulnerability scanning
 - **GitHub Actions**: Artifact upload, Cloudflare Pages preview, CloudFront invalidation, Snyk scanning, Turborepo cache
 - **Next.js Components**: shadcn/ui Badge and async Combobox components

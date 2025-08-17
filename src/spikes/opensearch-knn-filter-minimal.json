@@ -1,0 +1,19 @@
+{
+  "id": "opensearch-knn-filter-minimal",
+  "name": "OpenSearch k-NN with Filter (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "opensearch"],
+  "tags": ["vector", "knn", "filter"],
+  "description": "Run k-NN search with a filter on a knn_vector field.",
+  "params": [
+    { "name": "app_name", "default": "os-knn-filter" },
+    { "name": "os_node", "default": "http://localhost:9200" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { Client } from '@opensearch-project/opensearch';\nconst client = new Client({ node: process.env.OS_NODE || '{{os_node}}' });\nconst index = 'docs_filter';\ntry { await client.indices.delete({ index }); } catch {}\nawait client.indices.create({ index, body: { settings: { index: { knn: true } }, mappings: { properties: { text: { type: 'text' }, tag: { type: 'keyword' }, embedding: { type: 'knn_vector', dimension: 3, method: { name: 'hnsw', space_type: 'l2', engine: 'nmslib' } } } } } });\nawait client.index({ index, body: { text: 'hello', tag: 'a', embedding: [0.1,0.2,0.3] } });\nawait client.index({ index, body: { text: 'fluorite', tag: 'b', embedding: [0.2,0.1,0.25] } });\nawait client.indices.refresh({ index });\nconst res = await client.search({ index, body: { knn: { field: 'embedding', query_vector: [0.1,0.2,0.3], k: 2, num_candidates: 10 }, query: { bool: { filter: [{ term: { tag: 'a' } }] } }, _source: ['text','tag'] } });\nconsole.log(res.body.hits?.hits?.map(h => h._source?.text));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@opensearch-project/opensearch\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OS_NODE={{os_node}}\n" }
+  ],
+  "patches": []
+}
+

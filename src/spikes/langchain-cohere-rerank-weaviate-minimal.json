@@ -1,0 +1,22 @@
+{
+  "id": "langchain-cohere-rerank-weaviate-minimal",
+  "name": "LangChain + Cohere Rerank + Weaviate (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "langchain", "cohere", "weaviate", "openai"],
+  "tags": ["rag", "rerank"],
+  "description": "Retrieve from Weaviate via LangChain and rerank results using Cohere Rerank.",
+  "params": [
+    { "name": "app_name", "default": "lc-weaviate-rerank" },
+    { "name": "weaviate_host", "default": "localhost:8080" },
+    { "name": "weaviate_scheme", "default": "http" },
+    { "name": "class_name", "default": "Document" },
+    { "name": "cohere_rerank_model", "default": "rerank-english-v3.0" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import weaviate from 'weaviate-ts-client';\nimport { WeaviateStore } from '@langchain/weaviate';\nimport { OpenAIEmbeddings } from '@langchain/openai';\nimport { CohereClient } from 'cohere-ai';\nconst client = weaviate.client({ scheme: process.env.WEAVIATE_SCHEME || '{{weaviate_scheme}}', host: process.env.WEAVIATE_HOST || '{{weaviate_host}}' });\nconst embeddings = new OpenAIEmbeddings({ apiKey: process.env.OPENAI_API_KEY });\nconst store = await WeaviateStore.fromTexts(['hello world', 'fluorite mcp spike'], [{ id: '1' }, { id: '2' }], embeddings, { client, indexName: process.env.WEAVIATE_CLASS || '{{class_name}}' });\nconst query = 'fluorite';\nconst initial = await store.similaritySearch(query, 2);\nconst cohere = new CohereClient({ token: process.env.COHERE_API_KEY });\nconst reranked = await cohere.rerank({ model: '{{cohere_rerank_model}}', query, documents: initial.map(d => d.pageContent) });\nconsole.log(reranked.results?.map(r => ({ idx: r.index, score: r.relevance_score })));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@langchain/weaviate\": \"latest\", \"@langchain/openai\": \"latest\", \"weaviate-ts-client\": \"latest\", \"cohere-ai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\nCOHERE_API_KEY=...\nWEAVIATE_SCHEME=http\nWEAVIATE_HOST=localhost:8080\nWEAVIATE_CLASS=Document\n" }
+  ],
+  "patches": []
+}
+

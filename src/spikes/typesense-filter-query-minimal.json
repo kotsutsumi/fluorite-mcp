@@ -1,0 +1,20 @@
+{
+  "id": "typesense-filter-query-minimal",
+  "name": "Typesense Filtered Query (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "typesense"],
+  "tags": ["search", "filter"],
+  "description": "Run a simple search with a filter query against Typesense.",
+  "params": [
+    { "name": "app_name", "default": "typesense-filter" },
+    { "name": "typesense_nodes", "default": "http://localhost:8108" },
+    { "name": "api_key", "default": "xyz" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import Typesense from 'typesense';\nconst client = new Typesense.Client({ nodes: [{ host: (process.env.TS_NODE||'{{typesense_nodes}}').replace('http://','').replace('https://','').split(':')[0], port: Number((process.env.TS_NODE||'{{typesense_nodes}}').split(':')[2]||8108), protocol: (process.env.TS_NODE||'{{typesense_nodes}}').startsWith('https')?'https':'http' }], apiKey: process.env.TS_API_KEY || '{{api_key}}', connectionTimeoutSeconds: 2 });\ntry { await client.collections('docs').delete(); } catch {}\nawait client.collections().create({ name: 'docs', fields: [{ name: 'id', type: 'string' }, { name: 'text', type: 'string' }, { name: 'tag', type: 'string', facet: true } ] });\nawait client.documents('docs').create({ id: '1', text: 'hello', tag: 'a' });\nawait client.documents('docs').create({ id: '2', text: 'fluorite', tag: 'b' });\nconst res = await client.collections('docs').documents().search({ q: '*', query_by: 'text', filter_by: 'tag:=a' });\nconsole.log(res.hits?.map(h=>h.document.text));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"typesense\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "TS_NODE={{typesense_nodes}}\nTS_API_KEY={{api_key}}\n" }
+  ],
+  "patches": []
+}
+

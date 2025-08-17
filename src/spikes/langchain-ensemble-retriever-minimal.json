@@ -1,0 +1,18 @@
+{
+  "id": "langchain-ensemble-retriever-minimal",
+  "name": "LangChain Ensemble Retriever Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "langchain", "openai"],
+  "tags": ["rag", "retriever"],
+  "description": "Combine multiple retrievers (e.g., keyword + vector) with an ensemble retriever.",
+  "params": [
+    { "name": "app_name", "default": "lc-ensemble" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { OpenAIEmbeddings } from '@langchain/openai';\nimport { BM25Retriever } from 'langchain/retrievers/bm25';\nimport { MemoryVectorStore } from 'langchain/vectorstores/memory';\nimport { EnsembleRetriever } from 'langchain/retrievers/ensemble';\nconst docs = [{ pageContent: 'hello world' }, { pageContent: 'fluorite mcp spike' }];\nconst bm25 = await BM25Retriever.fromDocuments(docs);\nconst embeddings = new OpenAIEmbeddings({ apiKey: process.env.OPENAI_API_KEY });\nconst vec = await MemoryVectorStore.fromDocuments(docs, embeddings);\nconst ensemble = new EnsembleRetriever({ retrievers: [bm25, vec.asRetriever(2)], weights: [0.5, 0.5] });\nconst results = await ensemble.getRelevantDocuments('fluorite');\nconsole.log(results.map(r => r.pageContent));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@langchain/openai\": \"latest\", \"langchain\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" }
+  ],
+  "patches": []
+}
+

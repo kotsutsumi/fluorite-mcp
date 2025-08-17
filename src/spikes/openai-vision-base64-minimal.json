@@ -1,0 +1,19 @@
+{
+  "id": "openai-vision-base64-minimal",
+  "name": "OpenAI Vision with Base64 Image (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "openai"],
+  "tags": ["vision", "llm"],
+  "description": "Send a small base64 image string to OpenAI vision model.",
+  "params": [
+    { "name": "app_name", "default": "openai-vision-b64" },
+    { "name": "openai_model", "default": "gpt-4o-mini" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import OpenAI from 'openai';\nconst client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst png = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAAB...'; // tiny placeholder\nconst res = await client.chat.completions.create({\n  model: '{{openai_model}}',\n  messages: [{ role: 'user', content: [\n    { type: 'text', text: 'What do you see?' },\n    { type: 'image_url', image_url: { url: `data:image/png;base64,${png}` } }\n  ]}]\n});\nconsole.log(res.choices?.[0]?.message?.content);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"openai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" }
+  ],
+  "patches": []
+}
+

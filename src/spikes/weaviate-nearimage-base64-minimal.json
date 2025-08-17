@@ -1,0 +1,21 @@
+{
+  "id": "weaviate-nearimage-base64-minimal",
+  "name": "Weaviate nearImage (base64) Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "weaviate"],
+  "tags": ["vector", "vision"],
+  "description": "Run a nearImage GraphQL query using a base64-encoded image (requires appropriate module).",
+  "params": [
+    { "name": "app_name", "default": "weaviate-nearimage" },
+    { "name": "weaviate_host", "default": "localhost:8080" },
+    { "name": "weaviate_scheme", "default": "http" },
+    { "name": "class_name", "default": "ImageDoc" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import weaviate from 'weaviate-ts-client';\nconst client = weaviate.client({ scheme: process.env.WEAVIATE_SCHEME || '{{weaviate_scheme}}', host: process.env.WEAVIATE_HOST || '{{weaviate_host}}' });\nconst b64 = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAAB...';\nconst res = await client.graphql.get().withClassName(process.env.WEAVIATE_CLASS || '{{class_name}}').withNearImage({ image: b64 }).withLimit(1).do();\nconsole.log(JSON.stringify(res, null, 2));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"weaviate-ts-client\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "WEAVIATE_SCHEME=http\nWEAVIATE_HOST=localhost:8080\nWEAVIATE_CLASS=ImageDoc\n" }
+  ],
+  "patches": []
+}
+

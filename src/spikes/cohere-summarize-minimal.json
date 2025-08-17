@@ -1,0 +1,18 @@
+{
+  "id": "cohere-summarize-minimal",
+  "name": "Cohere Summarize Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "cohere"],
+  "tags": ["summarize"],
+  "description": "Summarize a paragraph using Cohere SDK.",
+  "params": [
+    { "name": "app_name", "default": "cohere-summarize" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { CohereClient } from 'cohere-ai';\nconst cohere = new CohereClient({ token: process.env.COHERE_API_KEY });\nconst text = 'Fluorite MCP serves specs and spike templates for many stacks.';\nconst res = await cohere.summarize({ text });\nconsole.log(res.summary);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"cohere-ai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "COHERE_API_KEY=...\n" }
+  ],
+  "patches": []
+}
+

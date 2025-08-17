@@ -478,4 +478,4 @@ If you encounter issues not covered here:
 
 ---
 
-*Last updated: December 2024*
+*Last updated: January 2025*

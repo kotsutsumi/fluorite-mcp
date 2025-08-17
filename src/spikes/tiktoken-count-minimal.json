@@ -1,0 +1,18 @@
+{
+  "id": "tiktoken-count-minimal",
+  "name": "tiktoken Token Count (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "tokenizer"],
+  "tags": ["tokens"],
+  "description": "Count tokens using tiktoken for cl100k_base.",
+  "params": [
+    { "name": "app_name", "default": "tiktoken-count" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { encoding_for_model } from 'tiktoken';\nconst enc = encoding_for_model('gpt-4o');\nconst text = process.env.TEXT || 'hello world';\nconst tokens = enc.encode(text);\nconsole.log('tokens=', tokens.length);\nenc.free();\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"tiktoken\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "TEXT=hello world\n" }
+  ],
+  "patches": []
+}
+

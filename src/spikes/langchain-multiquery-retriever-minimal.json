@@ -1,0 +1,18 @@
+{
+  "id": "langchain-multiquery-retriever-minimal",
+  "name": "LangChain Multi-Query Retriever Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "langchain", "openai"],
+  "tags": ["rag", "retriever"],
+  "description": "Use LC's MultiQueryRetriever to expand queries and retrieve from in-memory store.",
+  "params": [
+    { "name": "app_name", "default": "lc-multiquery" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { ChatOpenAI, OpenAIEmbeddings } from '@langchain/openai';\nimport { MultiQueryRetriever } from 'langchain/retrievers/multi_query';\nimport { MemoryVectorStore } from 'langchain/vectorstores/memory';\nconst docs = [{ pageContent: 'hello world' }, { pageContent: 'fluorite mcp spike' }];\nconst embeddings = new OpenAIEmbeddings({ apiKey: process.env.OPENAI_API_KEY });\nconst store = await MemoryVectorStore.fromDocuments(docs, embeddings);\nconst llm = new ChatOpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst retriever = MultiQueryRetriever.fromLLM({ llm, retriever: store.asRetriever(2) });\nconst results = await retriever.getRelevantDocuments('fluorite');\nconsole.log(results.map(r => r.pageContent));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@langchain/openai\": \"latest\", \"langchain\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" }
+  ],
+  "patches": []
+}
+

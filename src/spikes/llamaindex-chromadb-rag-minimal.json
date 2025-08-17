@@ -1,0 +1,18 @@
+{
+  "id": "llamaindex-chromadb-rag-minimal",
+  "name": "LlamaIndex RAG with ChromaDB (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "llamaindex", "chromadb", "openai"],
+  "tags": ["rag", "llamaindex"],
+  "description": "Embed with OpenAI via LlamaIndex and store/query in ChromaDB.",
+  "params": [
+    { "name": "app_name", "default": "llamaindex-chroma-rag" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { Settings, VectorStoreIndex, SimpleDocument } from 'llamaindex';\nimport OpenAI from 'openai';\nimport { ChromaClient } from 'chromadb';\nSettings.llm = undefined;\nconst openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst docs = [new SimpleDocument({ text: 'hello world' }), new SimpleDocument({ text: 'fluorite mcp spike' })];\nconst chroma = new ChromaClient();\n// Minimal illustration: rely on default embeddings in LlamaIndex runtime if configured\nconst index = await VectorStoreIndex.fromDocuments(docs);\nconst queryEngine = index.asQueryEngine();\nconst res = await queryEngine.query('fluorite');\nconsole.log(String(res));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"llamaindex\": \"latest\", \"chromadb\": \"latest\", \"openai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" }
+  ],
+  "patches": []
+}
+

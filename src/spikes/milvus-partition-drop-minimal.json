@@ -1,0 +1,21 @@
+{
+  "id": "milvus-partition-drop-minimal",
+  "name": "Milvus Drop Partition Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "milvus"],
+  "tags": ["vector", "partition"],
+  "description": "Drop a partition from a Milvus collection.",
+  "params": [
+    { "name": "app_name", "default": "milvus-drop-partition" },
+    { "name": "milvus_address", "default": "localhost:19530" },
+    { "name": "collection_name", "default": "documents" },
+    { "name": "partition_name", "default": "p1" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { MilvusClient } from '@zilliz/milvus2-sdk-node';\nconst client = new MilvusClient({ address: process.env.MILVUS_ADDRESS || '{{milvus_address}}' });\nawait client.dropPartition({ collection_name: process.env.MILVUS_COLLECTION || '{{collection_name}}', partition_name: process.env.MILVUS_PARTITION || '{{partition_name}}' });\nconsole.log('Partition dropped');\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@zilliz/milvus2-sdk-node\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "MILVUS_ADDRESS=localhost:19530\nMILVUS_COLLECTION={{collection_name}}\nMILVUS_PARTITION={{partition_name}}\n" }
+  ],
+  "patches": []
+}
+

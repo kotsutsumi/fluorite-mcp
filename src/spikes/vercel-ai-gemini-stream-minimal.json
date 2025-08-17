@@ -1,0 +1,18 @@
+{
+  "id": "vercel-ai-gemini-stream-minimal",
+  "name": "Vercel AI SDK + Gemini Streaming (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "vercel-ai", "gemini"],
+  "tags": ["llm", "stream"],
+  "description": "Stream text using Vercel AI SDK with Gemini provider.",
+  "params": [
+    { "name": "app_name", "default": "vercel-ai-gemini-stream" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { createGoogleGenerativeAI } from '@ai-sdk/google';\nimport { streamText } from 'ai';\nconst google = createGoogleGenerativeAI({ apiKey: process.env.GOOGLE_API_KEY });\nconst result = await streamText({ model: google('models/gemini-1.5-flash-latest'), prompt: 'Stream a short hello' });\nfor await (const part of result.textStream) { process.stdout.write(part); }\nconsole.log();\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@ai-sdk/google\": \"latest\", \"ai\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "GOOGLE_API_KEY=...\n" }
+  ],
+  "patches": []
+}
+

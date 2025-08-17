@@ -1,0 +1,17 @@
+{
+  "id": "lancedb-filter-search-minimal",
+  "name": "LanceDB Filtered Search (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "lancedb"],
+  "tags": ["vector", "filter"],
+  "description": "Search with a predicate filter in LanceDB.",
+  "params": [
+    { "name": "app_name", "default": "lancedb-filter" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { connect } from '@lancedb/lancedb';\nconst db = await connect('./.lancedb');\nconst table = await db.createTable('docs', [{ vector: [0.1,0.2,0.3], text: 'hello', tag: 'a' }, { vector: [0.2,0.1,0.25], text: 'fluorite', tag: 'b' }]);\nconst res = await table.search([0.1,0.2,0.3]).where('tag = \'a\'').limit(2).toArray();\nconsole.log(res.map(r => r.text));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@lancedb/lancedb\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

@@ -1,0 +1,19 @@
+{
+  "id": "openai-embeddings-rate-limit-batch",
+  "name": "OpenAI Embeddings with Rate Limit (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "openai"],
+  "tags": ["embeddings", "rate-limit"],
+  "description": "Batch embeddings with Bottleneck to respect rate limits.",
+  "params": [
+    { "name": "app_name", "default": "openai-embed-rl" },
+    { "name": "openai_embed_model", "default": "text-embedding-3-small" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import OpenAI from 'openai';\nimport Bottleneck from 'bottleneck';\nconst client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst limiter = new Bottleneck({ minTime: 150 }); // ~6 req/s\nconst inputs = Array.from({length: 10}, (_,i)=>`text ${i}`);\nconst tasks = inputs.map(inp => limiter.schedule(() => client.embeddings.create({ model: '{{openai_embed_model}}', input: inp })));\nconst outs = await Promise.all(tasks);\nconsole.log('dims=', outs[0].data[0].embedding.length, 'count=', outs.length);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"openai\": \"latest\", \"bottleneck\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" }
+  ],
+  "patches": []
+}
+

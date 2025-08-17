@@ -1,0 +1,17 @@
+{
+  "id": "chromadb-delete-by-ids-minimal",
+  "name": "ChromaDB Delete by IDs Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "chromadb"],
+  "tags": ["vector", "delete"],
+  "description": "Delete documents from ChromaDB collection by IDs.",
+  "params": [
+    { "name": "app_name", "default": "chromadb-delete-ids" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import { ChromaClient } from 'chromadb';\nconst client = new ChromaClient();\nconst col = await client.getOrCreateCollection({ name: 'docs' });\nawait col.add({ ids: ['1','2'], documents: ['hello','fluorite'] });\nawait col.delete({ ids: ['1'] });\nconst res = await col.query({ queryTexts: ['hello'], nResults: 2 });\nconsole.log(res);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"chromadb\": \"latest\" } }\n" }
+  ],
+  "patches": []
+}
+

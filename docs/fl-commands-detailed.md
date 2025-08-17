@@ -9,7 +9,7 @@ The `/fl:` command series provides enhanced fluorite-mcp functionality with comp
 **Key Features**:
 - 🚀 **SuperClaude Integration**: Full parameter bypass support (`--loop`, `--wave-mode`, `--delegate`, etc.)
 - 📚 **Library Knowledge**: Access to 87+ library specifications and patterns
-- 🛠️ **Spike Templates**: 385 production-ready development scaffolds
+- 🛠️ **Spike Templates**: 750+ production-ready development scaffolds
 - 🎯 **Intelligent Automation**: AI-powered template selection and code generation
 - 🔄 **Iterative Workflows**: Built-in refinement and quality validation
 
@@ -517,4 +517,4 @@ Every /fl: command includes:
 
 ---
 
-**/fl: Commands Documentation v0.11.0 - Enhanced with SuperClaude Integration**
+**/fl: Commands Documentation v0.12.1 - Enhanced with SuperClaude Integration**

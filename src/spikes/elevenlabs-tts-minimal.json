@@ -1,0 +1,19 @@
+{
+  "id": "elevenlabs-tts-minimal",
+  "name": "ElevenLabs TTS Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "elevenlabs"],
+  "tags": ["audio", "tts"],
+  "description": "Synthesize speech using ElevenLabs REST API and print bytes length.",
+  "params": [
+    { "name": "app_name", "default": "elevenlabs-tts" },
+    { "name": "voice_id", "default": "21m00Tcm4TlvDq8ikWAM" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "const url = `https://api.elevenlabs.io/v1/text-to-speech/${process.env.EL_VOICE_ID || '{{voice_id}}'}`;\nconst res = await fetch(url, { method: 'POST', headers: { 'accept': 'audio/mpeg', 'xi-api-key': process.env.EL_API_KEY, 'content-type': 'application/json' }, body: JSON.stringify({ text: 'Hello from Fluorite MCP' }) });\nconst buf = Buffer.from(await res.arrayBuffer());\nconsole.log('bytes=', buf.length);\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "EL_API_KEY=...\nEL_VOICE_ID={{voice_id}}\n" }
+  ],
+  "patches": []
+}
+

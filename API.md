@@ -4,10 +4,10 @@
 
 Fluorite MCP implements the Model Context Protocol (MCP) to provide library specifications, static analysis, and spike development tools to Claude Code CLI. This comprehensive API reference covers all available resources, tools, and integration patterns.
 
-**Version**: 0.11.0  
+**Version**: 0.12.1  
 **MCP Protocol**: 1.0.0  
 **Node.js**: 18.0+  
-**Spike Templates**: 385+  
+**Spike Templates**: 750+  
 **Catalog Specifications**: 87+
 
 ## Table of Contents
@@ -664,26 +664,26 @@ Each spike template follows this JSON format:
 }
 ```
 
-### Available Template Categories (385+ Total)
+### Available Template Categories (750+ Total)
 
-#### Web Frameworks (150+ templates)
+#### Web Frameworks (300+ templates)
 
-- **Next.js (80+ templates)**: SSR apps, API routes, middleware, authentication, file uploads, multipart handling, edge functions, caching, forms, image optimization
-- **React (25+ templates)**: Components, hooks, contexts, testing, state management (Jotai, Zustand, Redux Toolkit), internationalization
-- **Vue (10+ templates)**: Composition API, components, routing, Pinia state management
-- **FastAPI (30+ templates)**: REST APIs, authentication, database integration, WebSockets, background tasks, OpenAPI, dependency injection
-- **Express (15+ templates)**: Minimal setups, security, middleware, authentication, rate limiting
-- **Cloudflare Workers (10+ templates)**: Edge functions, R2 storage, KV operations
+- **Next.js (150+ templates)**: SSR apps, API routes, middleware, authentication, file uploads, multipart handling, edge functions, caching, forms, image optimization
+- **React (50+ templates)**: Components, hooks, contexts, testing, state management (Jotai, Zustand, Redux Toolkit), internationalization
+- **Vue (30+ templates)**: Composition API, components, routing, Pinia state management
+- **FastAPI (60+ templates)**: REST APIs, authentication, database integration, WebSockets, background tasks, OpenAPI, dependency injection
+- **Express (30+ templates)**: Minimal setups, security, middleware, authentication, rate limiting
+- **Cloudflare Workers (20+ templates)**: Edge functions, R2 storage, KV operations
 - **Other Frameworks**: Fastify, Hapi, Koa, NestJS, SvelteKit, Nuxt
 
-#### UI Component Libraries (40+ templates)
+#### UI Component Libraries (100+ templates)
 
 - **Shadcn/ui**: Alerts, dialogs, forms, navigation, data display components
 - **Material-UI (MUI)**: Data grids, forms, navigation, themes, React Hook Form integration
 - **Radix UI**: Accessible primitives, overlays, navigation, form controls
 - **Headless UI**: Framework-agnostic components
 
-#### Testing & Quality (25+ templates)
+#### Testing & Quality (150+ templates)
 
 - **Playwright**: E2E tests, accessibility, visual regression, Docker CI, parallel execution
 - **Vitest**: Unit tests, component testing, mocking
@@ -691,7 +691,7 @@ Each spike template follows this JSON format:
 - **Cypress**: Integration testing, custom commands
 - **Pytest**: FastAPI testing, fixtures
 
-#### Database & ORM (20+ templates)
+#### Database & ORM (50+ templates)
 
 - **Prisma**: PostgreSQL, SQLite, MongoDB, migrations, transactions
 - **Drizzle**: PostgreSQL, SQLite configurations
@@ -699,22 +699,22 @@ Each spike template follows this JSON format:
 - **Sequelize**: MySQL, PostgreSQL configurations
 - **Mongoose**: MongoDB CRUD operations
 
-#### DevOps & CI/CD (60+ templates)
+#### DevOps & CI/CD (200+ templates)
 
-- **GitHub Actions (35+ templates)**: CI pipelines, deployment, security scans, monorepo matrix builds, E2E testing, composite actions
+- **GitHub Actions (150+ templates)**: CI pipelines, deployment, security scans, monorepo matrix builds, E2E testing, composite actions
 - **Docker**: Containerization, multi-stage builds, compose configurations
 - **Infrastructure**: Terraform (AWS), Pulumi, Kubernetes deployments
 - **Monitoring**: OpenTelemetry, Prometheus, Grafana dashboards
 - **Security**: Secrets scanning, dependency review, SAST tools
 
-#### Cloud Services (30+ templates)
+#### Cloud Services (50+ templates)
 
 - **AWS**: S3, Lambda, CloudFront, SQS integrations
 - **Google Cloud**: Storage, Pub/Sub, signed URLs
 - **Cloudflare**: Workers, R2, KV storage
 - **Authentication**: Auth0, Clerk, NextAuth.js with various providers
 
-#### Development Tools (20+ templates)
+#### Development Tools (50+ templates)
 
 - **Build Tools**: Turbo, pnpm workspaces, Nx monorepos
 - **Linting**: ESLint, Prettier configurations
@@ -784,7 +784,7 @@ The fluorite-mcp CLI provides SuperClaude integration and local development comm
 npm i -g fluorite-mcp
 
 # Configure with Claude Code
-claude mcp add fluorite -- fluorite-mcp
+claude mcp add fluorite -- fluorite-mcp-server
 
 # CLI Commands
 fluorite-mcp setup              # Setup SuperClaude integration
@@ -906,7 +906,7 @@ try {
 - **Spike Operations**: 5-50ms depending on template complexity
 - **Memory Usage**: ~34MB active (up to 100MB under load)
 - **Max Spec Size**: 1MB per specification
-- **Catalog Size**: 87 specifications, 385+ spike templates
+- **Catalog Size**: 87 specifications, 750+ spike templates
 - **Concurrent Operations**: 100+ resource fetches, 20 spike operations
 
 ### Optimization Tips
@@ -1117,7 +1117,8 @@ export FLUORITE_ANALYSIS_CONCURRENCY=20
 
 | Fluorite MCP Version | MCP Protocol | Claude Code CLI | Node.js | Features |
 |---------------------|--------------|-----------------|---------|----------|
-| 0.11.x | 1.0.0 | Latest | 18.0+ | Full feature set |
+| 0.12.x | 1.0.0 | Latest | 18.0+ | Full feature set |
+| 0.11.x | 1.0.0 | Latest | 18.0+ | Legacy support |
 | 0.10.x | 1.0.0 | Latest | 18.0+ | Static analysis |
 | 0.9.x | 1.0.0 | Latest | 18.0+ | Spike templates |
 | 0.8.x | 1.0.0 | Latest | 18.0+ | Core functionality |
@@ -1142,7 +1143,7 @@ fluorite-mcp --migration-check
 
 # Update Claude Code CLI configuration if needed
 claude mcp remove fluorite
-claude mcp add fluorite -- fluorite-mcp
+claude mcp add fluorite -- fluorite-mcp-server
 ```
 
 **Breaking Changes**:
@@ -1189,4 +1190,4 @@ Contact: [Discussions](https://github.com/kotsutsumi/fluorite-mcp/discussions) f
 
 ---
 
-*API Documentation v0.11.0 - Last updated: December 2024*
+*API Documentation v0.12.1 - Last updated: January 2025*

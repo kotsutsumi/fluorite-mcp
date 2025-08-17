@@ -1,0 +1,21 @@
+{
+  "id": "azure-openai-function-calling-minimal",
+  "name": "Azure OpenAI Tool (Function) Calling Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "azure", "openai"],
+  "tags": ["llm", "tools"],
+  "description": "Demonstrate function/tool calling via Azure OpenAI REST endpoint.",
+  "params": [
+    { "name": "app_name", "default": "azure-openai-tools" },
+    { "name": "endpoint", "default": "https://YOUR-RESOURCE.openai.azure.com" },
+    { "name": "deployment", "default": "gpt-4o-mini" },
+    { "name": "api_version", "default": "2024-06-01" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "const url = `${process.env.AZURE_OPENAI_ENDPOINT || '{{endpoint}}'}/openai/deployments/${process.env.AZURE_OPENAI_DEPLOYMENT || '{{deployment}}'}/chat/completions?api-version=${process.env.AZURE_OPENAI_API_VERSION || '{{api_version}}'}`;\nconst body = { messages: [{ role: 'user', content: 'What time is it? Use the tool.' }], tools: [{ type: 'function', function: { name: 'get_time', description: 'Get current time', parameters: { type: 'object', properties: {} } } }] };\nconst res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json', 'api-key': process.env.AZURE_OPENAI_API_KEY }, body: JSON.stringify(body) });\nconst json = await res.json();\nconsole.log(JSON.stringify(json, null, 2));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "AZURE_OPENAI_ENDPOINT={{endpoint}}\nAZURE_OPENAI_DEPLOYMENT={{deployment}}\nAZURE_OPENAI_API_VERSION={{api_version}}\nAZURE_OPENAI_API_KEY=...\n" }
+  ],
+  "patches": []
+}
+

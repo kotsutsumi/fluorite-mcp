@@ -1,0 +1,19 @@
+{
+  "id": "groq-function-calling-minimal",
+  "name": "Groq Tool (Function) Calling Minimal (Node)",
+  "version": "1.0.0",
+  "stack": ["node", "groq"],
+  "tags": ["llm", "tools"],
+  "description": "Demonstrate function/tool calling with groq-sdk.",
+  "params": [
+    { "name": "app_name", "default": "groq-tools" },
+    { "name": "groq_model", "default": "llama-3.1-8b-instant" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/index.mjs", "template": "import Groq from 'groq-sdk';\nconst groq = new Groq({ apiKey: process.env.GROQ_API_KEY });\nconst res = await groq.chat.completions.create({ model: '{{groq_model}}', messages: [{ role: 'user', content: 'What time is it? Use the tool.' }], tools: [{ type: 'function', function: { name: 'get_time', description: 'Get current time', parameters: { type: 'object', properties: {} } } }] });\nconsole.log(JSON.stringify(res, null, 2));\n" },
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"groq-sdk\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.env.example", "template": "GROQ_API_KEY=gsk_...\n" }
+  ],
+  "patches": []
+}
+
