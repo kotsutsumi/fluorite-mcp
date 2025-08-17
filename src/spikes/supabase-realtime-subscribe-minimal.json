@@ -1,0 +1,14 @@
+{
+  "id": "supabase-realtime-subscribe-minimal",
+  "name": "Supabase Realtime Subscribe 最小",
+  "version": "1.0.0",
+  "stack": ["node", "supabase"],
+  "tags": ["realtime"],
+  "description": "@supabase/supabase-js で Realtime 購読",
+  "params": [ { "name": "app_name", "default": "supabase-realtime" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@supabase/supabase-js\": \"^2\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { createClient } from '@supabase/supabase-js';\nconst c = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);\nconsole.log('Use c.channel(...).on(...).subscribe()');\n" }
+  ]
+}
+

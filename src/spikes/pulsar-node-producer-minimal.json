@@ -1,0 +1,14 @@
+{
+  "id": "pulsar-node-producer-minimal",
+  "name": "Apache Pulsar Node Producer 最小",
+  "version": "1.0.0",
+  "stack": ["node", "pulsar"],
+  "tags": ["stream"],
+  "description": "pulsar-client でメッセージ送信",
+  "params": [ { "name": "app_name", "default": "pulsar-producer" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"pulsar-client\": \"^1\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "console.log('Use pulsar-client to connect and send messages');\n" }
+  ]
+}
+

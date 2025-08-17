@@ -1,0 +1,14 @@
+{
+  "id": "typesense-multi-search-minimal",
+  "name": "Typesense Multi-Search 最小",
+  "version": "1.0.0",
+  "stack": ["node", "typesense"],
+  "tags": ["search"],
+  "description": "複数クエリを1リクエストで実行",
+  "params": [ { "name": "app_name", "default": "typesense-multisearch" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"typesense\": \"^2\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import Typesense from 'typesense';\nconst c = new Typesense.Client({ nodes: [{ host:'localhost', port:8108, protocol:'http' }], apiKey: process.env.TYPESENSE_KEY });\nconst res = await c.multiSearch.perform({ searches: [{ q:'star', query_by:'title', collection:'movies' }] });\nconsole.log(res.results?.length>=0);\n" }
+  ]
+}
+

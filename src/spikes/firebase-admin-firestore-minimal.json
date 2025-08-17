@@ -1,0 +1,14 @@
+{
+  "id": "firebase-admin-firestore-minimal",
+  "name": "Firebase Admin Firestore 最小",
+  "version": "1.0.0",
+  "stack": ["node", "firebase"],
+  "tags": ["db"],
+  "description": "firebase-admin で Firestore 操作",
+  "params": [ { "name": "app_name", "default": "fb-firestore" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"firebase-admin\": \"^12\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import admin from 'firebase-admin';\nconsole.log('Initialize app and use admin.firestore()');\n" }
+  ]
+}
+

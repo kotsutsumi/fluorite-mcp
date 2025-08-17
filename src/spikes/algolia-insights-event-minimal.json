@@ -1,0 +1,14 @@
+{
+  "id": "algolia-insights-event-minimal",
+  "name": "Algolia Insights Event 最小",
+  "version": "1.0.0",
+  "stack": ["node", "algolia"],
+  "tags": ["analytics"],
+  "description": "insights にイベント送信",
+  "params": [ { "name": "app_name", "default": "algolia-insights" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node send.js\" }, \"dependencies\": { \"search-insights\": \"^2\" } }\n" },
+    { "path": "{{app_name}}/send.js", "template": "import aa from 'search-insights';\naa('init', { appId: process.env.ALGOLIA_APP_ID, apiKey: process.env.ALGOLIA_API_KEY });\naa('clickedObjectIDsAfterSearch', { index: 'movies', eventName: 'click', userToken: 'u1', objectIDs: ['1'], positions: [1], queryID: 'q' });\nconsole.log('sent');\n" }
+  ]
+}
+

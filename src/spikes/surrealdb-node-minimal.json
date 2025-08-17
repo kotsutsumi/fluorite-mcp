@@ -1,0 +1,14 @@
+{
+  "id": "surrealdb-node-minimal",
+  "name": "SurrealDB Node 最小",
+  "version": "1.0.0",
+  "stack": ["node", "surrealdb"],
+  "tags": ["db"],
+  "description": "surrealdb.js でクエリ",
+  "params": [ { "name": "app_name", "default": "surrealdb-min" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"surrealdb.js\": \"^1\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { Surreal } from 'surrealdb.js';\nconsole.log('Connect and run SQL-like queries');\n" }
+  ]
+}
+

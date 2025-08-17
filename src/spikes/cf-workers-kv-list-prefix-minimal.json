@@ -1,0 +1,12 @@
+{
+  "id": "cf-workers-kv-list-prefix-minimal",
+  "name": "Cloudflare Workers KV prefix 一覧 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare"],
+  "tags": ["kv"],
+  "description": "Workers KV の prefix リスト",
+  "files": [
+    { "path": "index.js", "template": "export default {\n  async fetch(){\n    const list = await MY_KV.list({ prefix: 'foo:' });\n    return new Response(JSON.stringify(list));\n  }\n}\n" }
+  ]
+}
+

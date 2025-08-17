@@ -1,0 +1,14 @@
+{
+  "id": "redshift-data-create-table-minimal",
+  "name": "Redshift Data API CREATE TABLE 最小",
+  "version": "1.0.0",
+  "stack": ["node", "aws"],
+  "tags": ["data"],
+  "description": "Redshift Data API で DDL 実行",
+  "params": [ { "name": "app_name", "default": "redshift-ddl" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@aws-sdk/client-redshift-data\": \"^3\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { RedshiftDataClient, ExecuteStatementCommand } from '@aws-sdk/client-redshift-data';\nconst c = new RedshiftDataClient({});\nconsole.log('Use ExecuteStatementCommand to run CREATE TABLE ...');\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "fauna-fql-minimal",
+  "name": "Fauna FQL 最小",
+  "version": "1.0.0",
+  "stack": ["node", "fauna"],
+  "tags": ["db"],
+  "description": "fauna に接続して FQL 実行",
+  "params": [ { "name": "app_name", "default": "fauna-fql" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"fauna\": \"^1\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { Client, fql } from 'fauna';\nconst client = new Client({ secret: process.env.FAUNA_SECRET });\nconsole.log('Use client.query(fql`1+1`)');\n" }
+  ]
+}
+

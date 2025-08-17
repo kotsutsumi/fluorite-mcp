@@ -1,0 +1,14 @@
+{
+  "id": "discord-interactions-verify-express",
+  "name": "Discord Interactions 署名検証 (Express)",
+  "version": "1.0.0",
+  "stack": ["node", "express", "discord"],
+  "tags": ["webhook"],
+  "description": "Discord 署名 (ed25519) の検証スケルトン",
+  "params": [ { "name": "app_name", "default": "discord-interactions" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"scripts\":{\"start\":\"node server.js\"},\"dependencies\":{\"express\":\"^4\",\"tweetnacl\":\"^1\"}}\n" },
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst nacl = require('tweetnacl');\nconst app = express();\napp.use(express.raw({ type: '*/*' }));\napp.post('/interactions', (req,res)=>{ const sig=req.headers['x-signature-ed25519']; const ts=req.headers['x-signature-timestamp']; const isValid = nacl.sign.detached.verify(Buffer.from(ts+req.body), Buffer.from(sig, 'hex'), Buffer.from(process.env.DISCORD_PUBLIC_KEY, 'hex')); res.status(isValid?200:401).send('ok'); });\napp.listen(3000, ()=>console.log('listening'));\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "milvus-index-drop-minimal",
+  "name": "Milvus Index Drop 最小",
+  "version": "1.0.0",
+  "stack": ["node", "milvus"],
+  "tags": ["vector"],
+  "description": "Milvus でインデックス削除",
+  "params": [ { "name": "app_name", "default": "milvus-drop-index" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@zilliz/milvus2-sdk-node\": \"^2\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { MilvusClient } from '@zilliz/milvus2-sdk-node';\nconsole.log('Use client.dropIndex({ collection_name, index_name })');\n" }
+  ]
+}
+

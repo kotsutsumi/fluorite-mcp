@@ -1,0 +1,14 @@
+{
+  "id": "nats-jetstream-push-consumer-minimal",
+  "name": "NATS JetStream Push Consumer 最小",
+  "version": "1.0.0",
+  "stack": ["node", "nats"],
+  "tags": ["stream"],
+  "description": "nats.js で Push Consumer 登録",
+  "params": [ { "name": "app_name", "default": "nats-js-push" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"nats\": \"^2\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { connect, consumerOpts, StringCodec } from 'nats';\nconsole.log('Connect to NATS and create push consumer with deliver_subject');\n" }
+  ]
+}
+

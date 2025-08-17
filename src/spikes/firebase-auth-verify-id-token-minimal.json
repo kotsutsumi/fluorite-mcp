@@ -1,0 +1,14 @@
+{
+  "id": "firebase-auth-verify-id-token-minimal",
+  "name": "Firebase Auth ID Token 検証 最小",
+  "version": "1.0.0",
+  "stack": ["node", "firebase"],
+  "tags": ["auth"],
+  "description": "firebase-admin で ID トークンを検証",
+  "params": [ { "name": "app_name", "default": "fb-verify-token" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node verify.js\" }, \"dependencies\": { \"firebase-admin\": \"^12\" } }\n" },
+    { "path": "{{app_name}}/verify.js", "template": "import admin from 'firebase-admin';\nconsole.log('Initialize app and call admin.auth().verifyIdToken(token)');\n" }
+  ]
+}
+

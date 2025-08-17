@@ -1,0 +1,10 @@
+{
+  "id": "loki-promtail-config-minimal",
+  "name": "Loki promtail 設定 最小",
+  "version": "1.0.0",
+  "stack": ["loki"],
+  "tags": ["observability"],
+  "description": "promtail の最小設定例",
+  "files": [ { "path": "promtail-config.yaml", "template": "server: { http_listen_port: 9080 }\nclients: [{ url: http://loki:3100/loki/api/v1/push }]\nscrape_configs: [{ job_name: syslog, static_configs: [{ targets: [localhost], labels: { job: syslog, __path__: /var/log/*log } }] }]\n" } ]
+}
+

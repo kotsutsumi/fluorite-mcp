@@ -1,0 +1,14 @@
+{
+  "id": "jose-jwk-import-verify-minimal",
+  "name": "jose JWK import/verify 最小",
+  "version": "1.0.0",
+  "stack": ["node", "jose"],
+  "tags": ["auth"],
+  "description": "JWK を import して署名検証",
+  "params": [ { "name": "app_name", "default": "jose-jwk-import" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"jose\": \"^5\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { importJWK, jwtVerify } from 'jose';\nconsole.log('Use importJWK and jwtVerify(token, key)');\n" }
+  ]
+}
+

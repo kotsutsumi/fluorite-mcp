@@ -1,0 +1,14 @@
+{
+  "id": "vespa-http-doc-insert-minimal",
+  "name": "Vespa HTTP ドキュメント投入 最小",
+  "version": "1.0.0",
+  "stack": ["node", "vespa"],
+  "tags": ["search"],
+  "description": "Vespa HTTP API に JSON ドキュメントを投入",
+  "params": [ { "name": "app_name", "default": "vespa-insert" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"start\": \"node send.js\" },\n  \"dependencies\": { \"node-fetch\": \"^3\" }\n}\n" },
+    { "path": "{{app_name}}/send.js", "template": "import fetch from 'node-fetch';\nconsole.log('POST to http://host:8080/document/v1/namespace/doc/docid/1 with JSON');\n" }
+  ]
+}
+

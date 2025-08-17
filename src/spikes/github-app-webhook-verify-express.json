@@ -1,0 +1,14 @@
+{
+  "id": "github-app-webhook-verify-express",
+  "name": "GitHub App Webhook 署名検証 (Express)",
+  "version": "1.0.0",
+  "stack": ["node", "express", "github"],
+  "tags": ["webhook"],
+  "description": "GitHub Webhook の sha256= 署名検証",
+  "params": [ { "name": "app_name", "default": "github-webhook" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node server.js\" }, \"dependencies\": { \"express\": \"^4\" } }\n" },
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst crypto = require('crypto');\nconst app = express();\napp.use(express.raw({ type: '*/*' }));\napp.post('/github', (req,res)=>{ const sig = req.headers['x-hub-signature-256']; const my = 'sha256=' + crypto.createHmac('sha256', process.env.GH_WEBHOOK_SECRET).update(req.body).digest('hex'); res.status(sig===my?200:401).send('ok'); });\napp.listen(3000, ()=>console.log('listening'));\n" }
+  ]
+}
+

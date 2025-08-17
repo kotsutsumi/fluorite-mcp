@@ -1,0 +1,14 @@
+{
+  "id": "shopify-storefront-checkout-create-minimal",
+  "name": "Shopify Storefront checkoutCreate 最小",
+  "version": "1.0.0",
+  "stack": ["node", "shopify"],
+  "tags": ["commerce"],
+  "description": "Storefront API で checkoutCreate を叩く",
+  "params": [ { "name": "app_name", "default": "shopify-checkout" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"type\":\"module\",\"scripts\":{\"start\":\"node run.js\"},\"dependencies\":{\"graphql-request\":\"^7\"}}\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { GraphQLClient, gql } from 'graphql-request';\nconst url = `https://${process.env.SHOPIFY_SHOP}/api/2024-07/graphql.json`;\nconst client = new GraphQLClient(url, { headers: { 'X-Shopify-Storefront-Access-Token': process.env.SHOPIFY_STOREFRONT_TOKEN } });\nconst m = gql`mutation($lineItems:[CheckoutLineItemInput!]!){ checkoutCreate(input:{ lineItems:$lineItems }){ checkout{ id webUrl } userErrors{ field message } } }`;\nconsole.log('Call checkoutCreate with sample lineItems');\n" }
+  ]
+}
+

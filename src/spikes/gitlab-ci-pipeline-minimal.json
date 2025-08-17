@@ -1,0 +1,10 @@
+{
+  "id": "gitlab-ci-pipeline-minimal",
+  "name": "GitLab CI パイプライン最小",
+  "version": "1.0.0",
+  "stack": ["gitlab"],
+  "tags": ["ci"],
+  "description": ".gitlab-ci.yml の最小例",
+  "files": [ { "path": ".gitlab-ci.yml", "template": "stages: [build]\nbuild: { stage: build, script: ['echo hello'] }\n" } ]
+}
+

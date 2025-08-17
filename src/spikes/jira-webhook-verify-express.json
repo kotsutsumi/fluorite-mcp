@@ -1,0 +1,14 @@
+{
+  "id": "jira-webhook-verify-express",
+  "name": "Jira Webhook 署名検証 (Express)",
+  "version": "1.0.0",
+  "stack": ["node", "express", "jira"],
+  "tags": ["webhook"],
+  "description": "Jira webhook の検証雛形 (カスタム実装例)",
+  "params": [ { "name": "app_name", "default": "jira-webhook" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node server.js\" }, \"dependencies\": { \"express\": \"^4\" } }\n" },
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst app = express();\napp.use(express.json());\napp.post('/jira', (req,res)=>{ console.log(req.body); res.send('ok'); });\napp.listen(3000, ()=>console.log('listening'));\n" }
+  ]
+}
+

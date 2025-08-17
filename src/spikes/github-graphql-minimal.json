@@ -1,0 +1,14 @@
+{
+  "id": "github-graphql-minimal",
+  "name": "GitHub GraphQL 最小",
+  "version": "1.0.0",
+  "stack": ["node", "github"],
+  "tags": ["github"],
+  "description": "GitHub GraphQL API へクエリ",
+  "params": [ { "name": "app_name", "default": "github-graphql" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"start\": \"node run.js\" },\n  \"dependencies\": { \"graphql-request\": \"^7\" }\n}\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { GraphQLClient, gql } from 'graphql-request';\nconst client = new GraphQLClient('https://api.github.com/graphql', { headers: { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` } });\nconst q = gql`{ viewer { login } }`;\ntry { const r = await client.request(q); console.log(!!r.viewer.login); } catch(e){ console.log('Provide token'); }\n" }
+  ]
+}
+

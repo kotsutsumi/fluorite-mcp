@@ -1,0 +1,14 @@
+{
+  "id": "socketio-basic-server-minimal",
+  "name": "Socket.IO 基本サーバー 最小",
+  "version": "1.0.0",
+  "stack": ["node", "socket.io"],
+  "tags": ["realtime"],
+  "description": "socket.io サーバーの最小例",
+  "params": [ { "name": "app_name", "default": "socketio-basic" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node server.js\" }, \"dependencies\": { \"socket.io\": \"^4\" } }\n" },
+    { "path": "{{app_name}}/server.js", "template": "const { Server } = require('socket.io');\nconst io = new Server(3000, { cors: { origin: '*' } });\nio.on('connection', s=>{ s.emit('hello','world'); });\nconsole.log('listening on :3000');\n" }
+  ]
+}
+

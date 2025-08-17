@@ -1,0 +1,14 @@
+{
+  "id": "webpush-send-vapid-minimal",
+  "name": "Web Push VAPID 送信 最小",
+  "version": "1.0.0",
+  "stack": ["node", "webpush"],
+  "tags": ["push"],
+  "description": "web-push ライブラリで VAPID 送信",
+  "params": [ { "name": "app_name", "default": "webpush-vapid" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node send.js\" }, \"dependencies\": { \"web-push\": \"^3\" } }\n" },
+    { "path": "{{app_name}}/send.js", "template": "const webPush = require('web-push');\nconsole.log('Set VAPID keys and send push to subscription');\n" }
+  ]
+}
+

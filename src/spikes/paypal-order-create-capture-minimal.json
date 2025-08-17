@@ -1,0 +1,14 @@
+{
+  "id": "paypal-order-create-capture-minimal",
+  "name": "PayPal Order Create/Capture 最小",
+  "version": "1.0.0",
+  "stack": ["node", "paypal"],
+  "tags": ["payments"],
+  "description": "PayPal REST SDK で Order 作成/キャプチャ",
+  "params": [ { "name": "app_name", "default": "paypal-order" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"start\": \"node run.js\" },\n  \"dependencies\": { \"@paypal/checkout-server-sdk\": \"^1\" }\n}\n" },
+    { "path": "{{app_name}}/run.js", "template": "import paypal from '@paypal/checkout-server-sdk';\nconsole.log('Initialize PayPal environment and create/capture order');\n" }
+  ]
+}
+

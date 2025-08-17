@@ -1,0 +1,14 @@
+{
+  "id": "opensearch-ingest-pipeline-minimal",
+  "name": "OpenSearch Ingest Pipeline 最小",
+  "version": "1.0.0",
+  "stack": ["node", "opensearch"],
+  "tags": ["search"],
+  "description": "Ingest Pipeline 作成の雛形",
+  "params": [ { "name": "app_name", "default": "opensearch-pipeline" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@opensearch-project/opensearch\": \"^2\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { Client } from '@opensearch-project/opensearch';\nconsole.log('Create or simulate an ingest pipeline');\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "sanity-webhook-verify-express",
+  "name": "Sanity Webhook 署名検証 (Express)",
+  "version": "1.0.0",
+  "stack": ["sanity", "express"],
+  "tags": ["webhook"],
+  "description": "Sanity Webhook の秘密鍵を用いた検証",
+  "params": [ { "name": "app_name", "default": "sanity-webhook" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\"name\":\"{{app_name}}\",\"private\":true,\"scripts\":{\"start\":\"node server.js\"},\"dependencies\":{\"express\":\"^4\",\"@sanity/webhook\":\"^4\"}}\n" },
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst { isValidSignature, SIGNATURE_HEADER_NAME } = require('@sanity/webhook');\nconst app = express();\napp.use(express.text({ type: '*/*' }));\napp.post('/sanity', (req,res)=>{ const valid = isValidSignature(req.body, req.headers[SIGNATURE_HEADER_NAME], process.env.SANITY_WEBHOOK_SECRET); res.status(valid?200:401).send('ok'); });\napp.listen(3000, ()=>console.log('listening'));\n" }
+  ]
+}
+

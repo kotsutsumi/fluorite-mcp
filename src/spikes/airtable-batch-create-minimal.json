@@ -1,0 +1,14 @@
+{
+  "id": "airtable-batch-create-minimal",
+  "name": "Airtable バッチ作成 最小",
+  "version": "1.0.0",
+  "stack": ["node", "airtable"],
+  "tags": ["db"],
+  "description": "Airtable バッチ API で複数レコード作成",
+  "params": [ { "name": "app_name", "default": "airtable-batch" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"airtable\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import Airtable from 'airtable';\nconsole.log('Use base(table).create([ { fields: {...} } ], { typecast: true })');\n" }
+  ]
+}
+

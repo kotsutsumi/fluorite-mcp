@@ -1,0 +1,14 @@
+{
+  "id": "pinecone-serverless-create-index-minimal",
+  "name": "Pinecone Serverless Index 作成 最小",
+  "version": "1.0.0",
+  "stack": ["node", "pinecone"],
+  "tags": ["vector"],
+  "description": "Serverless 環境にインデックスを作成",
+  "params": [ { "name": "app_name", "default": "pinecone-serverless-create" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"start\": \"node run.js\" },\n  \"dependencies\": { \"@pinecone-database/pinecone\": \"^2\" }\n}\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { Pinecone } from '@pinecone-database/pinecone';\nconst pc = new Pinecone({ apiKey: process.env.PINECONE_API_KEY });\nconsole.log('Use pc.createIndex({ name, dimension, metric, spec:{ serverless:{ ... } } })');\n" }
+  ]
+}
+

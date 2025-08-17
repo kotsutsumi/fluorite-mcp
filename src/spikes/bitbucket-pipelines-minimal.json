@@ -1,0 +1,10 @@
+{
+  "id": "bitbucket-pipelines-minimal",
+  "name": "Bitbucket Pipelines 最小",
+  "version": "1.0.0",
+  "stack": ["bitbucket"],
+  "tags": ["ci"],
+  "description": "bitbucket-pipelines.yml の最小例",
+  "files": [ { "path": "bitbucket-pipelines.yml", "template": "pipelines: { default: [ { step: { script: ['echo hello'] } } ] }\n" } ]
+}
+

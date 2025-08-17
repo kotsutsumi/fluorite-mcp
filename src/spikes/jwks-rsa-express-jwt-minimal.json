@@ -1,0 +1,14 @@
+{
+  "id": "jwks-rsa-express-jwt-minimal",
+  "name": "jwks-rsa + express-jwt 最小",
+  "version": "1.0.0",
+  "stack": ["node", "jwt"],
+  "tags": ["auth"],
+  "description": "JWKS から鍵を取得して JWT 検証",
+  "params": [ { "name": "app_name", "default": "jwks-express-jwt" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node server.js\" }, \"dependencies\": { \"express\": \"^4\", \"express-jwt\": \"^8\", \"jwks-rsa\": \"^3\" } }\n" },
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst { expressjwt: jwt } = require('express-jwt');\nconst jwksRsa = require('jwks-rsa');\nconst app = express();\napp.use(jwt({ secret: jwksRsa.expressJwtSecret({ jwksUri: process.env.JWKS_URI, cache:true, rateLimit:true }), algorithms:['RS256'] }).unless({ path:['/'] }));\napp.get('/', (_req,res)=>res.send('ok'));\napp.listen(3000, ()=>console.log('listening'));\n" }
+  ]
+}
+

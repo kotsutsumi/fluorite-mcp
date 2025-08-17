@@ -1,0 +1,10 @@
+{
+  "id": "vercel-cron-scheduler-concept",
+  "name": "Vercel Cron Scheduler (概念)",
+  "version": "1.0.0",
+  "stack": ["vercel"],
+  "tags": ["scheduler"],
+  "description": "Vercel Cron の設定例 (vercel.json)",
+  "files": [ { "path": "vercel.json", "template": "{ \"crons\": [{ \"path\": \"/api/cron\", \"schedule\": \"0 * * * *\" }] }\n" } ]
+}
+

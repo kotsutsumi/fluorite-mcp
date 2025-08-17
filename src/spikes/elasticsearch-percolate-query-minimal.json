@@ -1,0 +1,14 @@
+{
+  "id": "elasticsearch-percolate-query-minimal",
+  "name": "Elasticsearch Percolate クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["node", "elasticsearch"],
+  "tags": ["search"],
+  "description": "percolate クエリの雛形",
+  "params": [ { "name": "app_name", "default": "es-percolate" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@elastic/elasticsearch\": \"^8\" } }\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { Client } from '@elastic/elasticsearch';\nconsole.log('Index a percolator query and match a doc');\n" }
+  ]
+}
+

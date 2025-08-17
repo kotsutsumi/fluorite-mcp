@@ -1,0 +1,14 @@
+{
+  "id": "stripe-refund-payment-intent-minimal",
+  "name": "Stripe Refund PaymentIntent 最小",
+  "version": "1.0.0",
+  "stack": ["node", "stripe"],
+  "tags": ["payments"],
+  "description": "PaymentIntent の返金を作成",
+  "params": [ { "name": "app_name", "default": "stripe-refund" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node refund.js\" }, \"dependencies\": { \"stripe\": \"^16\" } }\n" },
+    { "path": "{{app_name}}/refund.js", "template": "import Stripe from 'stripe';\nconst stripe = new Stripe(process.env.STRIPE_SECRET_KEY);\nconsole.log('Use stripe.refunds.create({ payment_intent: \"pi_...\" })');\n" }
+  ]
+}
+

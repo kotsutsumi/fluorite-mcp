@@ -1,0 +1,14 @@
+{
+  "id": "strapi-upload-media-minimal",
+  "name": "Strapi メディアアップロード 最小",
+  "version": "1.0.0",
+  "stack": ["node", "strapi"],
+  "tags": ["cms"],
+  "description": "Strapi /upload へファイルを送る雛形",
+  "params": [ { "name": "app_name", "default": "strapi-upload" }, { "name": "url", "default": "http://localhost:1337/api/upload" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"start\": \"node upload.js\" },\n  \"dependencies\": { \"form-data\": \"^4\", \"node-fetch\": \"^3\" }\n}\n" },
+    { "path": "{{app_name}}/upload.js", "template": "import fetch from 'node-fetch';\nimport FormData from 'form-data';\nconsole.log('POST multipart/form-data to {{url}}');\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "shopify-admin-webhook-subscribe-minimal",
+  "name": "Shopify Admin Webhook Subscribe 最小",
+  "version": "1.0.0",
+  "stack": ["node", "shopify"],
+  "tags": ["commerce", "webhook"],
+  "description": "Admin API で webhook サブスクライブ",
+  "params": [ { "name": "app_name", "default": "shopify-webhook-sub" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"start\": \"node run.js\" },\n  \"dependencies\": { \"graphql-request\": \"^7\" }\n}\n" },
+    { "path": "{{app_name}}/run.js", "template": "import { GraphQLClient, gql } from 'graphql-request';\nconst url = `https://${process.env.SHOPIFY_SHOP}/admin/api/2024-07/graphql.json`;\nconst client = new GraphQLClient(url, { headers: { 'X-Shopify-Access-Token': process.env.SHOPIFY_TOKEN } });\nconst m = gql`mutation($topic:WebhookSubscriptionTopic!,$callback:String!){ webhookSubscriptionCreate(topic:$topic, webhookSubscription:{callbackUrl:$callback, format:JSON}){ userErrors{field message} webhookSubscription{ id } } }`;\nconsole.log('Call webhookSubscriptionCreate');\n" }
+  ]
+}
+

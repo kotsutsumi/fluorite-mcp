@@ -1,0 +1,14 @@
+{
+  "id": "okta-introspect-token-minimal",
+  "name": "Okta トークン内省 最小",
+  "version": "1.0.0",
+  "stack": ["node", "okta"],
+  "tags": ["auth"],
+  "description": "/v1/introspect でアクセストークン内省",
+  "params": [ { "name": "app_name", "default": "okta-introspect" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"start\": \"node run.js\" },\n  \"dependencies\": { \"node-fetch\": \"^3\" }\n}\n" },
+    { "path": "{{app_name}}/run.js", "template": "import fetch from 'node-fetch';\nconsole.log('POST to https://{domain}/oauth2/v1/introspect with client auth');\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "bigquery-create-partitioned-table-minimal",
+  "name": "BigQuery パーティションテーブル作成 最小",
+  "version": "1.0.0",
+  "stack": ["node", "gcp"],
+  "tags": ["data"],
+  "description": "@google-cloud/bigquery でパーティションテーブル作成",
+  "params": [ { "name": "app_name", "default": "bq-partition" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node create.js\" }, \"dependencies\": { \"@google-cloud/bigquery\": \"^7\" } }\n" },
+    { "path": "{{app_name}}/create.js", "template": "const { BigQuery } = require('@google-cloud/bigquery');\nconst bq = new BigQuery();\nconsole.log('Use dataset.table.create with timePartitioning');\n" }
+  ]
+}
+

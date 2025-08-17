@@ -1,0 +1,14 @@
+{
+  "id": "keycloak-admin-client-minimal",
+  "name": "Keycloak Admin Client 最小",
+  "version": "1.0.0",
+  "stack": ["node", "keycloak"],
+  "tags": ["auth"],
+  "description": "keycloak-admin でユーザー一覧取得",
+  "params": [ { "name": "app_name", "default": "keycloak-admin" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"start\": \"node run.js\" },\n  \"dependencies\": { \"keycloak-admin\": \"^2\" }\n}\n" },
+    { "path": "{{app_name}}/run.js", "template": "import KcAdminClient from 'keycloak-admin';\nconsole.log('Initialize KcAdminClient and list users');\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "linear-webhook-verify-express",
+  "name": "Linear Webhook 署名検証 (Express)",
+  "version": "1.0.0",
+  "stack": ["node", "express", "linear"],
+  "tags": ["webhook"],
+  "description": "Linear webhook の HMAC 検証",
+  "params": [ { "name": "app_name", "default": "linear-webhook" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node server.js\" }, \"dependencies\": { \"express\": \"^4\" } }\n" },
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst crypto = require('crypto');\nconst app = express();\napp.use(express.raw({ type: '*/*' }));\napp.post('/linear', (req,res)=>{ const sig = req.headers['x-linear-signature']; const my = crypto.createHmac('sha256', process.env.LINEAR_SECRET).update(req.body).digest('hex'); res.status(sig===my?200:401).send('ok'); });\napp.listen(3000, ()=>console.log('listening'));\n" }
+  ]
+}
+

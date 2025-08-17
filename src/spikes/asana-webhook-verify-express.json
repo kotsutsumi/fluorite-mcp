@@ -1,0 +1,14 @@
+{
+  "id": "asana-webhook-verify-express",
+  "name": "Asana Webhook 署名検証 (Express)",
+  "version": "1.0.0",
+  "stack": ["node", "express", "asana"],
+  "tags": ["webhook"],
+  "description": "Asana X-Hook-Signature 検証雛形",
+  "params": [ { "name": "app_name", "default": "asana-webhook" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node server.js\" }, \"dependencies\": { \"express\": \"^4\", \"crypto\": \"^1\" } }\n" },
+    { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst crypto = require('crypto');\nconst app = express();\napp.use(express.raw({ type: '*/*' }));\napp.post('/asana', (req,res)=>{ const sig = req.headers['x-hook-signature']; const h = crypto.createHmac('sha256', process.env.ASANA_SECRET).update(req.body).digest('hex'); res.status(sig===h?200:401).send('ok'); });\napp.listen(3000, ()=>console.log('listening'));\n" }
+  ]
+}
+

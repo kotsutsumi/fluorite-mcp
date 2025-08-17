@@ -1,0 +1,14 @@
+{
+  "id": "kafka-schema-registry-avro-produce-minimal",
+  "name": "Kafka SR Avro Produce 最小",
+  "version": "1.0.0",
+  "stack": ["node", "kafka"],
+  "tags": ["stream"],
+  "description": "@kafkajs/confluent-schema-registry で Avro 送信",
+  "params": [ { "name": "app_name", "default": "kafka-sr-avro" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"start\": \"node run.js\" },\n  \"dependencies\": { \"kafkajs\": \"^2\", \"@kafkajs/confluent-schema-registry\": \"^3\" }\n}\n" },
+    { "path": "{{app_name}}/run.js", "template": "console.log('Encode Avro with schema registry and produce via KafkaJS');\n" }
+  ]
+}
+
