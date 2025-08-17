@@ -1,0 +1,13 @@
+{
+  "id": "cue-template-k8s-minimal",
+  "name": "CUE テンプレート K8s 最小",
+  "version": "1.0.0",
+  "stack": ["cue"],
+  "tags": ["template"],
+  "description": "CUE で K8s YAML を生成 (概念)",
+  "params": [ ],
+  "files": [
+    { "path": "cue/k8s.txt", "template": "cue export k8s.cue\n" }
+  ]
+}
+

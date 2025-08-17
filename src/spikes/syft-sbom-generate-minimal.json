@@ -1,0 +1,13 @@
+{
+  "id": "syft-sbom-generate-minimal",
+  "name": "Syft SBOM 生成 最小",
+  "version": "1.0.0",
+  "stack": ["syft"],
+  "tags": ["security"],
+  "description": "Syft で SBOM 生成",
+  "params": [ ],
+  "files": [
+    { "path": "security/syft.txt", "template": "syft packages dir:. -o json > sbom.json\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "aws-glue-start-crawler-minimal",
+  "name": "AWS Glue Crawler 起動 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "glue"],
+  "tags": ["etl"],
+  "description": "Glue Crawler を起動する最小例",
+  "params": [ { "name": "crawlerName", "default": "my-crawler" } ],
+  "files": [
+    { "path": "aws/glue-crawler.mjs", "template": "import { GlueClient, StartCrawlerCommand } from '@aws-sdk/client-glue';\nconst c = new GlueClient({});\nawait c.send(new StartCrawlerCommand({ Name: process.env.CRAWLER || '{{crawlerName}}' }));\nconsole.log('started');\n" }
+  ]
+}
+

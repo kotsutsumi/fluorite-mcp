@@ -1,0 +1,13 @@
+{
+  "id": "vitest-coverage-config-minimal",
+  "name": "Vitest カバレッジ設定 最小",
+  "version": "1.0.0",
+  "stack": ["vitest"],
+  "tags": ["test"],
+  "description": "coverage/provider 設定の最小",
+  "params": [ ],
+  "files": [
+    { "path": "vitest.config.ts", "template": "import { defineConfig } from 'vitest/config';\nexport default defineConfig({ test: { coverage: { reporter: ['text','json'] } } });\n" }
+  ]
+}
+

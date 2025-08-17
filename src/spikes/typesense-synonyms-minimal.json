@@ -1,0 +1,13 @@
+{
+  "id": "typesense-synonyms-minimal",
+  "name": "Typesense Synonyms 最小",
+  "version": "1.0.0",
+  "stack": ["typesense", "node"],
+  "tags": ["search"],
+  "description": "Synonym の登録",
+  "params": [ { "name": "collection", "default": "books" } ],
+  "files": [
+    { "path": "typesense/synonyms.mjs", "template": "import Typesense from 'typesense';\nconst c = new Typesense.Client({ nodes:[{host:'localhost',port:8108,protocol:'http'}], apiKey:'xyz' });\nawait c.collections(process.env.COL||'{{collection}}').synonyms().upsert('syn', { synonyms: ['js','javascript'] });\nconsole.log('ok');\n" }
+  ]
+}
+

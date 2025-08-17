@@ -1,0 +1,13 @@
+{
+  "id": "cockroachdb-transaction-minimal",
+  "name": "CockroachDB トランザクション 最小",
+  "version": "1.0.0",
+  "stack": ["cockroachdb", "pg"],
+  "tags": ["db"],
+  "description": "pg で Cockroach トランザクション",
+  "params": [ ],
+  "files": [
+    { "path": "cockroach/tx.js", "template": "const { Client } = require('pg');\n(async()=>{ const c = new Client({ connectionString: process.env.DATABASE_URL }); await c.connect(); try { await c.query('begin'); await c.query('select 1'); await c.query('commit'); } catch(e){ await c.query('rollback'); } finally { await c.end(); } })();\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "airflow-taskflow-python-concept",
+  "name": "Airflow TaskFlow Python コンセプト",
+  "version": "1.0.0",
+  "stack": ["airflow", "python"],
+  "tags": ["orchestration"],
+  "description": "TaskFlow API の最小例 (概念)",
+  "params": [ ],
+  "files": [
+    { "path": "airflow/dag.py", "template": "from airflow.decorators import dag, task\nfrom datetime import datetime\n@dag(start_date=datetime(2024,1,1), schedule='@daily', catchup=False)\ndef my_dag():\n    @task\n    def hello():\n        print('hello')\n    hello()\n" }
+  ]
+}
+

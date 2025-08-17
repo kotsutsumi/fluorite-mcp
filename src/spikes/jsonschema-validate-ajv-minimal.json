@@ -1,0 +1,13 @@
+{
+  "id": "jsonschema-validate-ajv-minimal",
+  "name": "JSON Schema 検証 Ajv 最小",
+  "version": "1.0.0",
+  "stack": ["ajv"],
+  "tags": ["validation"],
+  "description": "Ajv で JSON を検証",
+  "params": [ ],
+  "files": [
+    { "path": "schema/ajv.js", "template": "const Ajv = require('ajv');\nconst ajv = new Ajv();\nconst validate = ajv.compile({ type: 'object', properties: { a: { type: 'number' } } });\nconsole.log(validate({ a: 1 }));\n" }
+  ]
+}
+

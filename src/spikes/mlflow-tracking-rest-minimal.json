@@ -1,0 +1,13 @@
+{
+  "id": "mlflow-tracking-rest-minimal",
+  "name": "MLflow Tracking REST 最小",
+  "version": "1.0.0",
+  "stack": ["mlflow"],
+  "tags": ["ml"],
+  "description": "MLflow REST API 呼び出し (概念)",
+  "params": [ ],
+  "files": [
+    { "path": "mlflow/rest.txt", "template": "# curl -X POST http://mlflow:5000/api/2.0/mlflow/runs/create\n" }
+  ]
+}
+

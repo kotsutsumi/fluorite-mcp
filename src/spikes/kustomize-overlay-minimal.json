@@ -1,0 +1,13 @@
+{
+  "id": "kustomize-overlay-minimal",
+  "name": "Kustomize Overlay 最小",
+  "version": "1.0.0",
+  "stack": ["kustomize"],
+  "tags": ["k8s"],
+  "description": "kustomization.yaml の最小 (overlay)",
+  "params": [ ],
+  "files": [
+    { "path": "kustomize/overlay/kustomization.yaml", "template": "resources: ['../../base']\npatches: []\n" }
+  ]
+}
+

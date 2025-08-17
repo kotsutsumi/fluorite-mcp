@@ -1,0 +1,13 @@
+{
+  "id": "newrelic-node-agent-minimal",
+  "name": "New Relic Node Agent 最小",
+  "version": "1.0.0",
+  "stack": ["newrelic", "node"],
+  "tags": ["observability"],
+  "description": "newrelic の初期化 (概念)",
+  "params": [ ],
+  "files": [
+    { "path": "newrelic/newrelic.txt", "template": "# require('newrelic') at app start\n" }
+  ]
+}
+

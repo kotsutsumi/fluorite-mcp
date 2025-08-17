@@ -1,0 +1,13 @@
+{
+  "id": "io-ts-validate-minimal",
+  "name": "io-ts validate 最小",
+  "version": "1.0.0",
+  "stack": ["io-ts"],
+  "tags": ["validation"],
+  "description": "io-ts での decode",
+  "params": [ ],
+  "files": [
+    { "path": "schema/io-ts.ts", "template": "import * as t from 'io-ts';\nconsole.log(t.type({ a: t.number }).decode({ a: 1 }));\n" }
+  ]
+}
+

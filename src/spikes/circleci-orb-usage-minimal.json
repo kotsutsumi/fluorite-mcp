@@ -1,0 +1,13 @@
+{
+  "id": "circleci-orb-usage-minimal",
+  "name": "CircleCI Orb 使用 最小",
+  "version": "1.0.0",
+  "stack": ["circleci", "yaml"],
+  "tags": ["ci"],
+  "description": "Orb を使った簡単な設定",
+  "params": [ ],
+  "files": [
+    { "path": ".circleci/config.yml", "template": "version: 2.1\norbs: { node: circleci/node@5 }\njobs: { build: { docker: [{ image: 'cimg/base:stable' }], steps: [ 'checkout', node/install, { run: 'node -v' } ] } }\nworkflows: { build: { jobs: [build] } }\n" }
+  ]
+}
+

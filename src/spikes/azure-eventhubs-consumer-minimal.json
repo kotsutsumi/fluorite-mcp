@@ -1,0 +1,13 @@
+{
+  "id": "azure-eventhubs-consumer-minimal",
+  "name": "Azure Event Hubs Consumer 最小",
+  "version": "1.0.0",
+  "stack": ["azure", "event-hubs"],
+  "tags": ["stream"],
+  "description": "@azure/event-hubs の Consumer",
+  "params": [ ],
+  "files": [
+    { "path": "azure/eventhubs.mjs", "template": "import { EventHubConsumerClient } from '@azure/event-hubs';\nconst c = new EventHubConsumerClient('$Default', process.env.EH_CONN, process.env.EH_NAME);\nconst sub = c.subscribe({ processEvents: async (events)=> console.log(events.length), processError: console.error });\n" }
+  ]
+}
+

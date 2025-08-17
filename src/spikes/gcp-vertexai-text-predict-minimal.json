@@ -1,0 +1,13 @@
+{
+  "id": "gcp-vertexai-text-predict-minimal",
+  "name": "GCP Vertex AI テキスト推論 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "vertex-ai"],
+  "tags": ["ai"],
+  "description": "Vertex AI Predictions REST の概念",
+  "params": [ ],
+  "files": [
+    { "path": "gcp/vertex.txt", "template": "# POST https://us-central1-aiplatform.googleapis.com/v1/...:predict\n" }
+  ]
+}
+

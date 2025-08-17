@@ -1,0 +1,13 @@
+{
+  "id": "docker-compose-kafka-zookeeper-minimal",
+  "name": "docker-compose Kafka+ZK 最小",
+  "version": "1.0.0",
+  "stack": ["docker-compose"],
+  "tags": ["messaging"],
+  "description": "Kafka/Zookeeper の最小 compose",
+  "params": [ ],
+  "files": [
+    { "path": "docker-compose.yml", "template": "version: '3.8'\nservices:\n  zookeeper:\n    image: confluentinc/cp-zookeeper:latest\n    environment: { ZOOKEEPER_CLIENT_PORT: 2181 }\n  kafka:\n    image: confluentinc/cp-kafka:latest\n    depends_on: [ zookeeper ]\n    environment: { KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181, KAFKA_LISTENERS: PLAINTEXT://:9092, KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092 }\n" }
+  ]
+}
+

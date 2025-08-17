@@ -1,0 +1,13 @@
+{
+  "id": "openfeature-node-flagd-minimal",
+  "name": "OpenFeature Node + flagd 最小",
+  "version": "1.0.0",
+  "stack": ["openfeature", "node"],
+  "tags": ["feature-flag"],
+  "description": "OpenFeature SDK と flagd の最小",
+  "params": [ ],
+  "files": [
+    { "path": "flags/openfeature.mjs", "template": "import { OpenFeature } from '@openfeature/js-sdk';\nconsole.log(OpenFeature.getClient('app'));\n" }
+  ]
+}
+

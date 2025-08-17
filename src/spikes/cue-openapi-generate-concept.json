@@ -1,0 +1,13 @@
+{
+  "id": "cue-openapi-generate-concept",
+  "name": "CUE OpenAPI 生成 コンセプト",
+  "version": "1.0.0",
+  "stack": ["cue"],
+  "tags": ["schema"],
+  "description": "CUE から OpenAPI 生成 (概念)",
+  "params": [ ],
+  "files": [
+    { "path": "cue/openapi.txt", "template": "cue export schema.cue --out openapi\n" }
+  ]
+}
+

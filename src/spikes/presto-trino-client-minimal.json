@@ -1,0 +1,13 @@
+{
+  "id": "presto-trino-client-minimal",
+  "name": "Presto/Trino Client 最小",
+  "version": "1.0.0",
+  "stack": ["trino", "node"],
+  "tags": ["sql"],
+  "description": "Trino クライアントでクエリ (概念)",
+  "params": [ ],
+  "files": [
+    { "path": "trino/query.txt", "template": "# Use trino client to query\n" }
+  ]
+}
+

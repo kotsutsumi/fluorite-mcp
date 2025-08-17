@@ -1,0 +1,13 @@
+{
+  "id": "pinecone-namespace-upsert-minimal",
+  "name": "Pinecone Namespace Upsert 最小",
+  "version": "1.0.0",
+  "stack": ["pinecone", "node"],
+  "tags": ["vector"],
+  "description": "名前空間を指定して upsert",
+  "params": [ { "name": "index_name", "default": "my-index" }, { "name": "namespace", "default": "ns" } ],
+  "files": [
+    { "path": "pinecone/ns-upsert.mjs", "template": "import { Pinecone } from '@pinecone-database/pinecone';\nconst pc = new Pinecone({ apiKey: process.env.PINECONE_API_KEY });\nawait pc.index(process.env.PINECONE_INDEX||'{{index_name}}').namespace(process.env.PINECONE_NS||'{{namespace}}').upsert([{ id:'1', values:[0.1,0.2,0.3] }]);\nconsole.log('ok');\n" }
+  ]
+}
+

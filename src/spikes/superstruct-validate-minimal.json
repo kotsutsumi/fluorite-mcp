@@ -1,0 +1,13 @@
+{
+  "id": "superstruct-validate-minimal",
+  "name": "Superstruct 検証 最小",
+  "version": "1.0.0",
+  "stack": ["superstruct"],
+  "tags": ["validation"],
+  "description": "superstruct の最小例",
+  "params": [ ],
+  "files": [
+    { "path": "schema/superstruct.mjs", "template": "import { object, number, is } from 'superstruct';\nconst S = object({ a: number() });\nconsole.log(is({ a: 1 }, S));\n" }
+  ]
+}
+

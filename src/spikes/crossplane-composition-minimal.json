@@ -1,0 +1,13 @@
+{
+  "id": "crossplane-composition-minimal",
+  "name": "Crossplane Composition 最小",
+  "version": "1.0.0",
+  "stack": ["crossplane", "kubernetes"],
+  "tags": ["iac"],
+  "description": "Composition の最小 YAML",
+  "params": [ ],
+  "files": [
+    { "path": "crossplane/composition.yaml", "template": "apiVersion: apiextensions.crossplane.io/v1\nkind: Composition\nmetadata: { name: x }\nspec: { compositeTypeRef: { apiVersion: x.example.org/v1, kind: X } }\n" }
+  ]
+}
+

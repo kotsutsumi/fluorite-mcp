@@ -1,0 +1,13 @@
+{
+  "id": "aws-athena-ctas-minimal",
+  "name": "AWS Athena CTAS 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "athena"],
+  "tags": ["etl"],
+  "description": "Athena で CTAS クエリを実行",
+  "params": [ { "name": "output", "default": "s3://bucket/results/" } ],
+  "files": [
+    { "path": "aws/athena-ctas.txt", "template": "-- CREATE TABLE AS SELECT ...\n" }
+  ]
+}
+

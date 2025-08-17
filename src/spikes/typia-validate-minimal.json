@@ -1,0 +1,13 @@
+{
+  "id": "typia-validate-minimal",
+  "name": "typia validate 最小",
+  "version": "1.0.0",
+  "stack": ["typia"],
+  "tags": ["validation"],
+  "description": "typia.validate の最小",
+  "params": [ ],
+  "files": [
+    { "path": "schema/typia.ts", "template": "import typia from 'typia';\ntype T = { a: number };\nconsole.log(typia.validate<T>({ a: 1 }).success);\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "docker-healthcheck-minimal",
+  "name": "Docker HEALTHCHECK 最小",
+  "version": "1.0.0",
+  "stack": ["docker"],
+  "tags": ["container"],
+  "description": "Dockerfile で HEALTHCHECK 設定",
+  "params": [ ],
+  "files": [
+    { "path": "Dockerfile", "template": "FROM alpine\nHEALTHCHECK CMD wget -q -O- http://localhost:3000 || exit 1\n" }
+  ]
+}
+

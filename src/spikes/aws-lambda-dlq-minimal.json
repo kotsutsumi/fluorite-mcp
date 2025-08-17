@@ -1,0 +1,13 @@
+{
+  "id": "aws-lambda-dlq-minimal",
+  "name": "AWS Lambda DLQ 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "lambda"],
+  "tags": ["serverless"],
+  "description": "Lambda Dead Letter Queue 設定の概念",
+  "params": [ ],
+  "files": [
+    { "path": "aws/lambda-dlq.txt", "template": "# Configure DLQ via AWS Console/IaC\n" }
+  ]
+}
+

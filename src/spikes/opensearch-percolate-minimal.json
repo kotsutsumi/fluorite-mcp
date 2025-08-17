@@ -1,0 +1,13 @@
+{
+  "id": "opensearch-percolate-minimal",
+  "name": "OpenSearch Percolate 最小",
+  "version": "1.0.0",
+  "stack": ["opensearch", "node"],
+  "tags": ["search"],
+  "description": "percolate クエリの概念",
+  "params": [ { "name": "index", "default": "queries" } ],
+  "files": [
+    { "path": "opensearch/percolate.txt", "template": "# Use percolate query to match documents against stored queries\n" }
+  ]
+}
+

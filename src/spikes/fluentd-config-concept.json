@@ -1,0 +1,13 @@
+{
+  "id": "fluentd-config-concept",
+  "name": "Fluentd config コンセプト",
+  "version": "1.0.0",
+  "stack": ["fluentd"],
+  "tags": ["observability"],
+  "description": "Fluentd の最小設定例 (概念)",
+  "params": [ ],
+  "files": [
+    { "path": "fluentd/fluent.conf", "template": "<source>\n  @type http\n  port 9880\n</source>\n<match **>\n  @type stdout\n</match>\n" }
+  ]
+}
+

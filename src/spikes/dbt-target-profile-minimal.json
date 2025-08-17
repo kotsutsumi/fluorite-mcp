@@ -1,0 +1,14 @@
+{
+  "id": "dbt-target-profile-minimal",
+  "name": "dbt target/profiles 最小",
+  "version": "1.0.0",
+  "stack": ["dbt", "yaml"],
+  "tags": ["etl"],
+  "description": "dbt_project.yml と profiles.yml の雛形",
+  "params": [ ],
+  "files": [
+    { "path": "dbt/dbt_project.yml", "template": "name: app\nprofile: app\n" },
+    { "path": "dbt/profiles.yml", "template": "app: { target: dev, outputs: { dev: { type: postgres } } }\n" }
+  ]
+}
+

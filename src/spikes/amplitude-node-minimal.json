@@ -1,0 +1,13 @@
+{
+  "id": "amplitude-node-minimal",
+  "name": "Amplitude Node 最小",
+  "version": "1.0.0",
+  "stack": ["amplitude", "node"],
+  "tags": ["analytics"],
+  "description": "Amplitude Node SDK の初期化",
+  "params": [ ],
+  "files": [
+    { "path": "analytics/amplitude.mjs", "template": "import { AmplitudeClient } from '@amplitude/node';\nconst amp = new AmplitudeClient(process.env.AMPLITUDE_API_KEY||'key');\nawait amp.logEvent({ event_type: 'hello' });\n" }
+  ]
+}
+

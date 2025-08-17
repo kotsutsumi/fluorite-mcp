@@ -3,6 +3,7 @@ import { defineConfig } from 'vitepress'
 
 const sharedNavigation = [
   { text: 'Home', link: '/' },
+  { text: 'Features', link: '/features' },
   { text: 'Getting Started', link: '/getting-started' },
   { text: 'Spike Templates', link: '/spike-templates' },
   { text: 'Specs', link: '/specs/' },
@@ -11,10 +12,11 @@ const sharedNavigation = [
 
 const japaneseNavigation = [
   { text: 'ホーム', link: '/ja/' },
+  { text: '機能', link: '/ja/features' },
   { text: 'はじめに', link: '/ja/getting-started' },
   { text: 'スパイクテンプレート', link: '/ja/spike-templates' },
   { text: '仕様', link: '/specs/' },
-  { text: 'API', link: '/API' }
+  { text: 'API', link: '/ja/API' }
 ]
 
 const englishSidebar = {
@@ -33,6 +35,7 @@ const englishSidebar = {
       text: '⚡ Core Features',
       collapsed: false,
       items: [
+        { text: '🤖 Complete Feature Guide', link: '/features' },
         { text: '🧪 Spike Templates (1,842+)', link: '/spike-templates' },
         { text: '🔍 Static Analysis & Validation', link: '/static-analysis' },
         { text: '📚 Library Specifications (86+)', link: '/specs/' },

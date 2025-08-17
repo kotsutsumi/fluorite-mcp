@@ -1,0 +1,13 @@
+{
+  "id": "pact-provider-verification-minimal",
+  "name": "Pact Provider Verification 最小",
+  "version": "1.0.0",
+  "stack": ["pact"],
+  "tags": ["contract-test"],
+  "description": "Provider 検証の最小スクリプト",
+  "params": [ ],
+  "files": [
+    { "path": "pact/provider.js", "template": "const { Verifier } = require('@pact-foundation/pact');\n(async()=>{ const v = new Verifier({ providerBaseUrl: 'http://localhost:3000', pactUrls: ['pacts/consumer-provider.json'] }); console.log(await v.verifyProvider()); })();\n" }
+  ]
+}
+

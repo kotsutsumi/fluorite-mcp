@@ -1,0 +1,13 @@
+{
+  "id": "linkerd-serviceprofile-minimal",
+  "name": "Linkerd ServiceProfile 最小",
+  "version": "1.0.0",
+  "stack": ["linkerd", "kubernetes"],
+  "tags": ["service-mesh"],
+  "description": "ServiceProfile の最小 YAML",
+  "params": [ ],
+  "files": [
+    { "path": "linkerd/sp.yaml", "template": "apiVersion: linkerd.io/v1alpha2\nkind: ServiceProfile\nmetadata: { name: app.default.svc.cluster.local, namespace: default }\nspec: { routes: [] }\n" }
+  ]
+}
+

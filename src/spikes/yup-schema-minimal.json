@@ -1,0 +1,13 @@
+{
+  "id": "yup-schema-minimal",
+  "name": "Yup スキーマ 最小",
+  "version": "1.0.0",
+  "stack": ["yup"],
+  "tags": ["validation"],
+  "description": "yup オブジェクトスキーマ最小",
+  "params": [ ],
+  "files": [
+    { "path": "schema/yup.mjs", "template": "import * as yup from 'yup';\nconst S = yup.object({ a: yup.number().required() });\nconsole.log(await S.isValid({ a: 1 }));\n" }
+  ]
+}
+

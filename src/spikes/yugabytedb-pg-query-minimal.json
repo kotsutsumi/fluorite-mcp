@@ -1,0 +1,13 @@
+{
+  "id": "yugabytedb-pg-query-minimal",
+  "name": "YugabyteDB PostgreSQL クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["yugabytedb", "postgres"],
+  "tags": ["db"],
+  "description": "pg クライアントで YugabyteDB に接続",
+  "params": [ ],
+  "files": [
+    { "path": "yugabyte/query.js", "template": "const { Client } = require('pg');\nconst c = new Client({ connectionString: process.env.DATABASE_URL });\n(async()=>{ await c.connect(); console.log((await c.query('select 1')).rows); await c.end(); })();\n" }
+  ]
+}
+

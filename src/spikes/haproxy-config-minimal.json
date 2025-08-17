@@ -1,0 +1,13 @@
+{
+  "id": "haproxy-config-minimal",
+  "name": "HAProxy 設定 最小",
+  "version": "1.0.0",
+  "stack": ["haproxy"],
+  "tags": ["proxy"],
+  "description": "haproxy.cfg の最小",
+  "params": [ ],
+  "files": [
+    { "path": "haproxy/haproxy.cfg", "template": "global\n  daemon\ndefaults\n  mode http\nlisten http-in\n  bind *:80\n  server app app:3000\n" }
+  ]
+}
+

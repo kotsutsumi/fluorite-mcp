@@ -1,0 +1,13 @@
+{
+  "id": "aws-apigateway-lambda-authorizer-minimal",
+  "name": "AWS API Gateway Lambda Authorizer 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "apigateway", "lambda"],
+  "tags": ["auth"],
+  "description": "Lambda Authorizer のポリシー生成雛形",
+  "params": [ ],
+  "files": [
+    { "path": "aws/lambda-authorizer.js", "template": "exports.handler = async (event) => {\n  const allow = {\n    principalId: 'user',\n    policyDocument: { Version: '2012-10-17', Statement: [{ Action: 'execute-api:Invoke', Effect: 'Allow', Resource: event.methodArn }] }\n  };\n  return allow;\n};\n" }
+  ]
+}
+

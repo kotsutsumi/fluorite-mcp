@@ -1,0 +1,13 @@
+{
+  "id": "gcp-memorystore-redis-ping-minimal",
+  "name": "GCP Memorystore Redis PING 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "redis"],
+  "tags": ["cache"],
+  "description": "Memorystore Redis へ PING (ioredis)",
+  "params": [ ],
+  "files": [
+    { "path": "gcp/redis.js", "template": "const Redis = require('ioredis');\nconst r = new Redis(process.env.REDIS_URL);\nr.ping().then(console.log);\n" }
+  ]
+}
+

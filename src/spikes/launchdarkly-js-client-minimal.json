@@ -1,0 +1,13 @@
+{
+  "id": "launchdarkly-js-client-minimal",
+  "name": "LaunchDarkly JS Client 最小",
+  "version": "1.0.0",
+  "stack": ["launchdarkly", "browser"],
+  "tags": ["feature-flag"],
+  "description": "ldclient-browser の初期化",
+  "params": [ ],
+  "files": [
+    { "path": "flags/ldclient.js", "template": "import * as LDClient from 'launchdarkly-js-client-sdk';\nconsole.log(LDClient.initialize('client-key', { key: 'user' }));\n" }
+  ]
+}
+

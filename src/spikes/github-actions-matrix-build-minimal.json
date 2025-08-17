@@ -1,0 +1,13 @@
+{
+  "id": "github-actions-matrix-build-minimal",
+  "name": "GitHub Actions マトリクスビルド 最小",
+  "version": "1.0.0",
+  "stack": ["github-actions", "yaml"],
+  "tags": ["ci"],
+  "description": "matrix 戦略の最小",
+  "params": [ ],
+  "files": [
+    { "path": ".github/workflows/matrix.yml", "template": "name: matrix\non: [push]\njobs:\n  build:\n    runs-on: ubuntu-latest\n    strategy: { matrix: { node: [18,20] } }\n    steps: [ { uses: actions/setup-node@v4, with: { node-version: '${{ matrix.node }}' } }, { run: 'node -v' } ]\n" }
+  ]
+}
+

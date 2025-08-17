@@ -1,0 +1,13 @@
+{
+  "id": "meilisearch-synonyms-minimal",
+  "name": "Meilisearch Synonyms 最小",
+  "version": "1.0.0",
+  "stack": ["meilisearch", "node"],
+  "tags": ["search"],
+  "description": "同義語設定を更新",
+  "params": [ { "name": "index", "default": "books" } ],
+  "files": [
+    { "path": "meilisearch/synonyms.mjs", "template": "import { MeiliSearch } from 'meilisearch';\nconst c = new MeiliSearch({ host:'http://127.0.0.1:7700' });\nawait c.index(process.env.MEILI_INDEX||'{{index}}').updateSettings({ synonyms: { js: ['javascript'] } });\nconsole.log('ok');\n" }
+  ]
+}
+

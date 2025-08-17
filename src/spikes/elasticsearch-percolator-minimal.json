@@ -1,0 +1,13 @@
+{
+  "id": "elasticsearch-percolator-minimal",
+  "name": "Elasticsearch Percolator 最小",
+  "version": "1.0.0",
+  "stack": ["elasticsearch", "node"],
+  "tags": ["search"],
+  "description": "Percolator クエリとマッチ",
+  "params": [ { "name": "index", "default": "queries" } ],
+  "files": [
+    { "path": "es/percolator.js", "template": "const { Client } = require('@elastic/elasticsearch');\nconst c = new Client({ node: 'http://localhost:9200' });\n(async()=>{ await c.indices.create({ index: process.env.INDEX||'{{index}}', mappings: { properties: { query: { type: 'percolator' } } } }, { ignore:[400] }); })();\n" }
+  ]
+}
+

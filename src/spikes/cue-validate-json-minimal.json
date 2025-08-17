@@ -1,0 +1,13 @@
+{
+  "id": "cue-validate-json-minimal",
+  "name": "CUE JSON 検証 最小",
+  "version": "1.0.0",
+  "stack": ["cue"],
+  "tags": ["schema"],
+  "description": "CUE による JSON 検証 (概念)",
+  "params": [ ],
+  "files": [
+    { "path": "cue/validate.txt", "template": "cue vet data.json schema.cue\n" }
+  ]
+}
+

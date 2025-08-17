@@ -1,0 +1,13 @@
+{
+  "id": "cosign-sign-container-minimal",
+  "name": "Cosign コンテナ署名 最小",
+  "version": "1.0.0",
+  "stack": ["cosign"],
+  "tags": ["security"],
+  "description": "Cosign でコンテナ署名 (概念)",
+  "params": [ ],
+  "files": [
+    { "path": "security/cosign.txt", "template": "cosign sign repo/image:tag\n" }
+  ]
+}
+

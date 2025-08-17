@@ -1,0 +1,13 @@
+{
+  "id": "datadog-node-tracer-minimal",
+  "name": "Datadog Node Tracer 最小",
+  "version": "1.0.0",
+  "stack": ["datadog", "node"],
+  "tags": ["observability"],
+  "description": "dd-trace の初期化",
+  "params": [ ],
+  "files": [
+    { "path": "datadog/tracer.js", "template": "require('dd-trace').init();\nconsole.log('dd-trace inited');\n" }
+  ]
+}
+

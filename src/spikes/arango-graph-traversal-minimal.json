@@ -1,0 +1,13 @@
+{
+  "id": "arango-graph-traversal-minimal",
+  "name": "ArangoDB グラフトラバーサル 最小",
+  "version": "1.0.0",
+  "stack": ["arango", "node"],
+  "tags": ["db", "graph"],
+  "description": "arangojs で AQL トラバーサル",
+  "params": [ ],
+  "files": [
+    { "path": "arango/traverse.mjs", "template": "import { Database, aql } from 'arangojs';\nconst db = new Database({ url: 'http://127.0.0.1:8529' });\nconsole.log(await db.query(aql`FOR v,e,p IN 1..1 ANY 'nodes/1' edges RETURN v`).then(c=>c.all()));\n" }
+  ]
+}
+

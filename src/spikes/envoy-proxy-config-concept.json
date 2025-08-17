@@ -1,0 +1,13 @@
+{
+  "id": "envoy-proxy-config-concept",
+  "name": "Envoy Proxy 設定 コンセプト",
+  "version": "1.0.0",
+  "stack": ["envoy", "yaml"],
+  "tags": ["proxy"],
+  "description": "Envoy の最小 static_resources 設定 (概念)",
+  "params": [ ],
+  "files": [
+    { "path": "envoy/envoy.yaml", "template": "static_resources: { listeners: [], clusters: [] }\n" }
+  ]
+}
+

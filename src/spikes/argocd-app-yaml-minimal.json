@@ -1,0 +1,13 @@
+{
+  "id": "argocd-app-yaml-minimal",
+  "name": "Argo CD Application YAML 最小",
+  "version": "1.0.0",
+  "stack": ["argocd", "kubernetes"],
+  "tags": ["cd"],
+  "description": "Argo CD Application の最小定義",
+  "params": [ ],
+  "files": [
+    { "path": "argocd/app.yaml", "template": "apiVersion: argoproj.io/v1alpha1\nkind: Application\nmetadata: { name: app, namespace: argocd }\nspec: { project: default, source: { repoURL: 'https://github.com/org/repo', path: 'charts/app' }, destination: { server: 'https://kubernetes.default.svc', namespace: 'default' } }\n" }
+  ]
+}
+

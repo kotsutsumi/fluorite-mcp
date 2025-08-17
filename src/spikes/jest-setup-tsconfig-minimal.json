@@ -1,0 +1,14 @@
+{
+  "id": "jest-setup-tsconfig-minimal",
+  "name": "Jest セットアップ + tsconfig 最小",
+  "version": "1.0.0",
+  "stack": ["jest", "typescript"],
+  "tags": ["test"],
+  "description": "jest.setup.ts と tsconfig の最小",
+  "params": [ ],
+  "files": [
+    { "path": "jest.setup.ts", "template": "// jest setup\n" },
+    { "path": "tsconfig.jest.json", "template": "{ \"extends\": \"./tsconfig.json\", \"compilerOptions\": { \"types\": [\"jest\"] } }\n" }
+  ]
+}
+

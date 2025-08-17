@@ -1,0 +1,13 @@
+{
+  "id": "docker-slim-minimal",
+  "name": "DockerSlim 最小",
+  "version": "1.0.0",
+  "stack": ["dockerslim"],
+  "tags": ["container"],
+  "description": "docker-slim でイメージ最適化 (概念)",
+  "params": [ ],
+  "files": [
+    { "path": "docker/slim.txt", "template": "docker-slim build --http-probe repo/image:tag\n" }
+  ]
+}
+

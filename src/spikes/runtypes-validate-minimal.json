@@ -1,0 +1,13 @@
+{
+  "id": "runtypes-validate-minimal",
+  "name": "runtypes validate 最小",
+  "version": "1.0.0",
+  "stack": ["runtypes"],
+  "tags": ["validation"],
+  "description": "runtypes での validate",
+  "params": [ ],
+  "files": [
+    { "path": "schema/runtypes.ts", "template": "import { Record, Number } from 'runtypes';\nconst T = Record({ a: Number });\nconsole.log(T.validate({ a: 1 }).success);\n" }
+  ]
+}
+

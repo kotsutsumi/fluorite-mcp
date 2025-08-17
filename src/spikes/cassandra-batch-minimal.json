@@ -1,0 +1,13 @@
+{
+  "id": "cassandra-batch-minimal",
+  "name": "Cassandra バッチ 最小",
+  "version": "1.0.0",
+  "stack": ["cassandra", "node"],
+  "tags": ["db"],
+  "description": "cassandra-driver でバッチ",
+  "params": [ ],
+  "files": [
+    { "path": "cassandra/batch.js", "template": "const { Client } = require('cassandra-driver');\nconst client = new Client({ contactPoints: ['127.0.0.1'], localDataCenter: 'datacenter1' });\n(async()=>{ await client.connect(); await client.batch([{ query: 'INSERT INTO ks.table (id) VALUES (?)', params: [1] }], { prepare: true }); await client.shutdown(); })();\n" }
+  ]
+}
+

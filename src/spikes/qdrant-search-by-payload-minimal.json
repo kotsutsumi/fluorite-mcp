@@ -1,0 +1,13 @@
+{
+  "id": "qdrant-search-by-payload-minimal",
+  "name": "Qdrant Payload フィルタ検索 最小",
+  "version": "1.0.0",
+  "stack": ["qdrant", "node"],
+  "tags": ["vector"],
+  "description": "ペイロードでフィルタして検索",
+  "params": [ { "name": "collection", "default": "docs" } ],
+  "files": [
+    { "path": "qdrant/search.mjs", "template": "const { QdrantClient } = require('qdrant-node');\n(async()=>{ const c = new QdrantClient({ url: process.env.QDRANT_URL||'http://localhost:6333' });\nconst r = await c.search(process.env.QDRANT_COLLECTION||'{{collection}}', { vector:[0.1,0.2,0.3], limit:1, filter: { must: [{ key:'lang', match:{ value:'en' } }] } });\nconsole.log(r.length); })();\n" }
+  ]
+}
+

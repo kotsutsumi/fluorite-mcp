@@ -1,0 +1,13 @@
+{
+  "id": "gcp-spanner-query-minimal",
+  "name": "GCP Spanner クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "spanner"],
+  "tags": ["db"],
+  "description": "@google-cloud/spanner でクエリ",
+  "params": [ ],
+  "files": [
+    { "path": "gcp/spanner.mjs", "template": "import { Spanner } from '@google-cloud/spanner';\nconst s = new Spanner();\nconst instance = s.instance(process.env.SPANNER_INSTANCE||'test');\nconst db = instance.database(process.env.SPANNER_DB||'db');\nconsole.log(await db.run({ sql: 'select 1' }));\n" }
+  ]
+}
+

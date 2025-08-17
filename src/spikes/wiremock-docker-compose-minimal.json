@@ -1,0 +1,13 @@
+{
+  "id": "wiremock-docker-compose-minimal",
+  "name": "WireMock docker-compose 最小",
+  "version": "1.0.0",
+  "stack": ["wiremock", "docker-compose"],
+  "tags": ["test"],
+  "description": "WireMock サーバを compose で起動",
+  "params": [ ],
+  "files": [
+    { "path": "docker-compose.yml", "template": "version: '3.8'\nservices:\n  wiremock:\n    image: wiremock/wiremock\n    ports: [ '8080:8080' ]\n" }
+  ]
+}
+

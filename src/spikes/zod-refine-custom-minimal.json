@@ -1,0 +1,13 @@
+{
+  "id": "zod-refine-custom-minimal",
+  "name": "Zod refine カスタム検証 最小",
+  "version": "1.0.0",
+  "stack": ["zod"],
+  "tags": ["validation"],
+  "description": "refine/superRefine の最小例",
+  "params": [ ],
+  "files": [
+    { "path": "schema/zod-refine.ts", "template": "import { z } from 'zod';\nconst S = z.object({ a: z.number() }).refine(v => v.a > 0, 'a>0');\nconsole.log(S.safeParse({ a: 1 }).success);\n" }
+  ]
+}
+

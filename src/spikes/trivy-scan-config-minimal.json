@@ -1,0 +1,13 @@
+{
+  "id": "trivy-scan-config-minimal",
+  "name": "Trivy スキャン設定 最小",
+  "version": "1.0.0",
+  "stack": ["trivy"],
+  "tags": ["security"],
+  "description": "trivy config の実行例",
+  "params": [ ],
+  "files": [
+    { "path": "security/trivy.txt", "template": "trivy config . --severity HIGH,CRITICAL\n" }
+  ]
+}
+

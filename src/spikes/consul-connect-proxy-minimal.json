@@ -1,0 +1,13 @@
+{
+  "id": "consul-connect-proxy-minimal",
+  "name": "Consul Connect Proxy 最小",
+  "version": "1.0.0",
+  "stack": ["consul"],
+  "tags": ["service-mesh"],
+  "description": "Consul Connect の proxy 設定 (概念)",
+  "params": [ ],
+  "files": [
+    { "path": "consul/connect.txt", "template": "# consul connect envoy -sidecar-for web\n" }
+  ]
+}
+

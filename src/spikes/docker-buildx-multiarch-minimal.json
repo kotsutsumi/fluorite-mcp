@@ -1,0 +1,13 @@
+{
+  "id": "docker-buildx-multiarch-minimal",
+  "name": "Docker Buildx マルチアーキ 最小",
+  "version": "1.0.0",
+  "stack": ["docker"],
+  "tags": ["container"],
+  "description": "buildx でマルチアーキビルド (概念)",
+  "params": [ ],
+  "files": [
+    { "path": "docker/buildx.txt", "template": "docker buildx build --platform linux/amd64,linux/arm64 -t repo/image:tag .\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "istio-virtualservice-minimal",
+  "name": "Istio VirtualService 最小",
+  "version": "1.0.0",
+  "stack": ["istio", "kubernetes"],
+  "tags": ["service-mesh"],
+  "description": "Istio の VirtualService YAML",
+  "params": [ ],
+  "files": [
+    { "path": "istio/virtualservice.yaml", "template": "apiVersion: networking.istio.io/v1beta1\nkind: VirtualService\nmetadata: { name: app }\nspec: { hosts: ['*'], http: [ { route: [ { destination: { host: app } } ] } ] }\n" }
+  ]
+}
+

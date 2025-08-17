@@ -1,0 +1,13 @@
+{
+  "id": "aws-cloudwatch-logs-insights-query-minimal",
+  "name": "AWS CloudWatch Logs Insights クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "cloudwatch"],
+  "tags": ["observability"],
+  "description": "Logs Insights クエリ実行",
+  "params": [ { "name": "logGroup", "default": "/aws/lambda/app" } ],
+  "files": [
+    { "path": "aws/logs-insights.mjs", "template": "import { CloudWatchLogsClient, StartQueryCommand, GetQueryResultsCommand } from '@aws-sdk/client-cloudwatch-logs';\nconst c = new CloudWatchLogsClient({});\nconst s = await c.send(new StartQueryCommand({ logGroupName: process.env.LG||'{{logGroup}}', startTime: Math.floor(Date.now()/1000)-3600, endTime: Math.floor(Date.now()/1000), queryString: 'fields @message | limit 1' }));\nconst r = await c.send(new GetQueryResultsCommand({ queryId: s.queryId }));\nconsole.log(r.results);\n" }
+  ]
+}
+

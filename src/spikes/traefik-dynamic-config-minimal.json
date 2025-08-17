@@ -1,0 +1,13 @@
+{
+  "id": "traefik-dynamic-config-minimal",
+  "name": "Traefik Dynamic Config 最小",
+  "version": "1.0.0",
+  "stack": ["traefik", "yaml"],
+  "tags": ["proxy"],
+  "description": "Traefik の dynamic config",
+  "params": [ ],
+  "files": [
+    { "path": "traefik/dynamic.yml", "template": "http: { routers: {}, services: {} }\n" }
+  ]
+}
+

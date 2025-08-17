@@ -1,0 +1,13 @@
+{
+  "id": "neo4j-bolt-transaction-minimal",
+  "name": "Neo4j Bolt トランザクション 最小",
+  "version": "1.0.0",
+  "stack": ["neo4j", "node"],
+  "tags": ["db"],
+  "description": "neo4j-driver でトランザクション",
+  "params": [ ],
+  "files": [
+    { "path": "neo4j/tx.mjs", "template": "import neo4j from 'neo4j-driver';\nconst d = neo4j.driver('bolt://localhost:7687', neo4j.auth.basic('neo4j','pass'));\nconst s = d.session();\nconst tx = s.beginTransaction();\nawait tx.run('RETURN 1');\nawait tx.commit();\nawait s.close();\nawait d.close();\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "class-validator-nestjs-dto-minimal",
+  "name": "class-validator NestJS DTO 最小",
+  "version": "1.0.0",
+  "stack": ["nestjs", "class-validator"],
+  "tags": ["validation"],
+  "description": "DTO に対する class-validator の最小",
+  "params": [ ],
+  "files": [
+    { "path": "nestjs/dto.ts", "template": "import { IsEmail } from 'class-validator';\nexport class CreateUserDto { @IsEmail() email!: string; }\n" }
+  ]
+}
+

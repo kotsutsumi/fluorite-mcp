@@ -1,0 +1,13 @@
+{
+  "id": "playwright-trace-config-minimal",
+  "name": "Playwright Trace 設定 最小",
+  "version": "1.0.0",
+  "stack": ["playwright"],
+  "tags": ["test"],
+  "description": "トレース収集を有効化した設定",
+  "params": [ ],
+  "files": [
+    { "path": "playwright.config.ts", "template": "import { defineConfig } from '@playwright/test';\nexport default defineConfig({ use: { trace: 'on-first-retry' } });\n" }
+  ]
+}
+

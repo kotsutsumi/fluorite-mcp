@@ -1,0 +1,13 @@
+{
+  "id": "prefect-flow-python-concept",
+  "name": "Prefect Flow Python コンセプト",
+  "version": "1.0.0",
+  "stack": ["prefect", "python"],
+  "tags": ["orchestration"],
+  "description": "Prefect Flow の最小 Python (概念)",
+  "params": [ ],
+  "files": [
+    { "path": "prefect/flow.py", "template": "from prefect import flow\n@flow\ndef my_flow():\n    print('hello')\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "splitio-node-client-minimal",
+  "name": "Split.io Node クライアント 最小",
+  "version": "1.0.0",
+  "stack": ["split.io", "node"],
+  "tags": ["feature-flag"],
+  "description": "Split SDK の初期化",
+  "params": [ ],
+  "files": [
+    { "path": "flags/splitio.js", "template": "const splitio = require('@splitsoftware/splitio');\nconst factory = splitio({ core: { authorizationKey: 'sdk-key' } });\nconsole.log(factory.client());\n" }
+  ]
+}
+

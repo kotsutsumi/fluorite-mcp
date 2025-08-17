@@ -1,0 +1,13 @@
+{
+  "id": "vault-kv-policy-minimal",
+  "name": "Vault KV Policy 最小",
+  "version": "1.0.0",
+  "stack": ["vault"],
+  "tags": ["security"],
+  "description": "KV パスに対するポリシー (HCL)",
+  "params": [ ],
+  "files": [
+    { "path": "vault/policy.hcl", "template": "path \"secret/data/*\" { capabilities = [\"read\"] }\n" }
+  ]
+}
+

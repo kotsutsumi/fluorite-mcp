@@ -1,0 +1,13 @@
+{
+  "id": "opentelemetry-logs-otlp-http-minimal",
+  "name": "OTel Logs OTLP/HTTP 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry", "logs"],
+  "tags": ["observability"],
+  "description": "OTLP/HTTP ログエクスポートの概念",
+  "params": [ ],
+  "files": [
+    { "path": "otel/logs.txt", "template": "# Use OTLP logs exporter when available\n" }
+  ]
+}
+

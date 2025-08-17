@@ -1,0 +1,13 @@
+{
+  "id": "cypress-component-test-react-minimal",
+  "name": "Cypress コンポーネントテスト React 最小",
+  "version": "1.0.0",
+  "stack": ["cypress", "react"],
+  "tags": ["test"],
+  "description": "Cypress CT の React 設定最小",
+  "params": [ ],
+  "files": [
+    { "path": "cypress.config.ts", "template": "import { defineConfig } from 'cypress';\nexport default defineConfig({ component: { devServer: { framework: 'react', bundler: 'vite' } } });\n" }
+  ]
+}
+

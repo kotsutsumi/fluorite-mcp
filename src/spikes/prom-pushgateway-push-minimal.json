@@ -1,0 +1,13 @@
+{
+  "id": "prom-pushgateway-push-minimal",
+  "name": "Prometheus Pushgateway Push 最小",
+  "version": "1.0.0",
+  "stack": ["prometheus"],
+  "tags": ["observability"],
+  "description": "Pushgateway にメトリクス送信",
+  "params": [ ],
+  "files": [
+    { "path": "metrics/push.sh", "template": "echo 'my_job_metric 1' | curl --data-binary @- http://localhost:9091/metrics/job/myjob\n" }
+  ]
+}
+

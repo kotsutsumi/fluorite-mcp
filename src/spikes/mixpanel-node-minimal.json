@@ -1,0 +1,13 @@
+{
+  "id": "mixpanel-node-minimal",
+  "name": "Mixpanel Node 最小",
+  "version": "1.0.0",
+  "stack": ["mixpanel", "node"],
+  "tags": ["analytics"],
+  "description": "Mixpanel でトラッキング",
+  "params": [ ],
+  "files": [
+    { "path": "analytics/mixpanel.js", "template": "const Mixpanel = require('mixpanel');\nconst m = Mixpanel.init('token');\nm.track('hello');\n" }
+  ]
+}
+

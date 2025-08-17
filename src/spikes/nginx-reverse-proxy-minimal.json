@@ -1,0 +1,13 @@
+{
+  "id": "nginx-reverse-proxy-minimal",
+  "name": "NGINX リバースプロキシ 最小",
+  "version": "1.0.0",
+  "stack": ["nginx"],
+  "tags": ["proxy"],
+  "description": "nginx のリバプロ設定",
+  "params": [ ],
+  "files": [
+    { "path": "nginx/nginx.conf", "template": "events {}\nhttp { server { listen 80; location / { proxy_pass http://app:3000; } } }\n" }
+  ]
+}
+

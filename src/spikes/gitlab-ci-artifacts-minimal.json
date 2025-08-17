@@ -1,0 +1,13 @@
+{
+  "id": "gitlab-ci-artifacts-minimal",
+  "name": "GitLab CI アーティファクト 最小",
+  "version": "1.0.0",
+  "stack": ["gitlab-ci", "yaml"],
+  "tags": ["ci"],
+  "description": "artifacts のアップロード",
+  "params": [ ],
+  "files": [
+    { "path": ".gitlab-ci.yml", "template": "stages: [build]\nbuild:\n  stage: build\n  script: echo hello > out.txt\n  artifacts: { paths: [out.txt] }\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "helmfile-config-minimal",
+  "name": "Helmfile 設定 最小",
+  "version": "1.0.0",
+  "stack": ["helmfile", "yaml"],
+  "tags": ["k8s"],
+  "description": "helmfile.yaml の最小",
+  "params": [ ],
+  "files": [
+    { "path": "helmfile.yaml", "template": "releases: []\n" }
+  ]
+}
+
