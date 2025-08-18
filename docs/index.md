@@ -10,8 +10,8 @@ hero:
       text: Get Started
       link: /getting-started
     - theme: alt
-      text: View on GitHub
-      link: https://github.com/kotsutsumi/fluorite-mcp
+      text: API Documentation
+      link: /API
 
 features:
   - icon: 🧪

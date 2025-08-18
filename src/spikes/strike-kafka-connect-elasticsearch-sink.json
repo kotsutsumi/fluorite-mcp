@@ -1,0 +1,19 @@
+{
+  "id": "strike-kafka-connect-elasticsearch-sink",
+  "name": "Kafka Connect Elasticsearch Sink",
+  "stack": [
+    "kafka",
+    "connect",
+    "elasticsearch"
+  ],
+  "tags": [
+    "sink"
+  ],
+  "files": [
+    {
+      "path": "kafka/connect-elastic.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

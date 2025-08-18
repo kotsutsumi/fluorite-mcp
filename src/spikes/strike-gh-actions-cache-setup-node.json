@@ -1,0 +1,19 @@
+{
+  "id": "strike-gh-actions-cache-setup-node",
+  "name": "GH Actions setup-node Cache",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci",
+    "cache"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/node-cache.yml",
+      "template": "name: NodeCache\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

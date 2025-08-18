@@ -1,0 +1,19 @@
+{
+  "id": "strike-tempo-exemplars-setup",
+  "name": "Tempo Exemplars 設定",
+  "stack": [
+    "tempo",
+    "prometheus"
+  ],
+  "tags": [
+    "traces",
+    "metrics"
+  ],
+  "files": [
+    {
+      "path": "tempo/exemplars.yaml",
+      "template": "# tempo exemplars skeleton\n"
+    }
+  ],
+  "patches": []
+}

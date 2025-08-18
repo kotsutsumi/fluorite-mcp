@@ -1,0 +1,19 @@
+{
+  "id": "strike-gh-actions-oidc-azure",
+  "name": "GH Actions OIDC→Azure",
+  "stack": [
+    "github",
+    "azure"
+  ],
+  "tags": [
+    "ci",
+    "auth"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/azure-oidc.yml",
+      "template": "name: AzureOIDC\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

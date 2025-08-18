@@ -414,8 +414,8 @@ subcategory: subcategory       # Optional
 tags:                          # Optional
   - tag1
   - tag2
-homepage: https://...          # Optional
-repository: https://github.com/... # Optional
+homepage: # ライブラリのホームページURL（オプション）
+repository: # GitリポジトリURL（オプション）
 language: TypeScript           # Optional
 
 # For simple libraries
@@ -432,8 +432,8 @@ tools:                        # Required for ecosystems
   tool_name:
     name: Tool Name
     description: Tool description
-    homepage: https://...
-    repository: https://...
+    homepage: # ツールのホームページURL
+    repository: # ツールのリポジトリURL
     language: TypeScript
     features:
       - Feature 1
@@ -1174,9 +1174,9 @@ const result = await client.callTool('static-analysis', {
 
 ### Community Support
 
-- **[GitHub Issues](https://github.com/kotsutsumi/fluorite-mcp/issues)** - Bug reports and feature requests
-- **[GitHub Discussions](https://github.com/kotsutsumi/fluorite-mcp/discussions)** - Community help and discussions
-- **[Official Documentation](https://kotsutsumi.github.io/fluorite-mcp)** - Complete documentation site
+- **GitHub Issues** - バグレポートと機能リクエスト
+- **GitHub Discussions** - コミュニティヘルプとディスカッション
+- **Official Documentation** - 完全なドキュメントサイト
 
 ### Commercial Support
 
@@ -1186,7 +1186,7 @@ For enterprise deployments and custom integrations:
 - Priority support and SLAs
 - Training and onboarding
 
-Contact: [Discussions](https://github.com/kotsutsumi/fluorite-mcp/discussions) for commercial inquiries.
+Contact: GitHub Discussions でのコマーシャルお問い合わせ
 
 ---
 

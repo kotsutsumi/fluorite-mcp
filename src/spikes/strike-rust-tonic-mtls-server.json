@@ -1,0 +1,20 @@
+{
+  "id": "strike-rust-tonic-mtls-server",
+  "name": "Rust Tonic mTLS Server",
+  "stack": [
+    "rust",
+    "tonic",
+    "tls"
+  ],
+  "tags": [
+    "security",
+    "rpc"
+  ],
+  "files": [
+    {
+      "path": "src/tls.rs",
+      "template": "// tonic mtls server skeleton\n"
+    }
+  ],
+  "patches": []
+}

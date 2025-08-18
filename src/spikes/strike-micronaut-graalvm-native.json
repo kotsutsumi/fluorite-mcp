@@ -1,0 +1,19 @@
+{
+  "id": "strike-micronaut-graalvm-native",
+  "name": "Micronaut GraalVM Native Config",
+  "stack": [
+    "java",
+    "micronaut",
+    "graalvm"
+  ],
+  "tags": [
+    "build"
+  ],
+  "files": [
+    {
+      "path": "src/main/resources/META-INF/native-image/reflect-config.json",
+      "template": "[ ]\n"
+    }
+  ],
+  "patches": []
+}

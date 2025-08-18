@@ -1,0 +1,18 @@
+{
+  "id": "strike-otel-gcp-logging-export",
+  "name": "OTel Logs → GCP Logging",
+  "stack": [
+    "opentelemetry",
+    "gcp"
+  ],
+  "tags": [
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "otel/gcp-logging.yaml",
+      "template": "exporters: { googlecloud: {} }\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-k8s-vpa-minimal",
+  "name": "K8s VPA 最小",
+  "stack": [
+    "kubernetes",
+    "vpa"
+  ],
+  "tags": [
+    "autoscale"
+  ],
+  "files": [
+    {
+      "path": "k8s/vpa.yaml",
+      "template": "# vpa skeleton\n"
+    }
+  ],
+  "patches": []
+}

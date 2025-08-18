@@ -448,7 +448,7 @@ jobs:
             --data '{
               "text": "${{ steps.status.outputs.emoji }} Pipeline ${{ steps.status.outputs.status }} for ${{ github.ref_name }}\n\n**Commit**: `${{ github.sha }}`\n**Actor**: ${{ github.actor }}\n**Fluorite MCP**: Quality gates ${{ steps.status.outputs.status == 'success' && 'passed' || 'failed' }}"
             }' \
-            ${{ secrets.SLACK_WEBHOOK_URL || 'https://httpbin.org/post' }}
+            ${{ secrets.SLACK_WEBHOOK_URL || 'フォールバックURL' }}
 
 # Additional workflow for scheduled dependency updates
 ---

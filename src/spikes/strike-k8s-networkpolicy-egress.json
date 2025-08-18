@@ -1,0 +1,17 @@
+{
+  "id": "strike-k8s-networkpolicy-egress",
+  "name": "K8s NetworkPolicy Egress",
+  "stack": [
+    "kubernetes"
+  ],
+  "tags": [
+    "network"
+  ],
+  "files": [
+    {
+      "path": "k8s/networkpolicy-egress.yaml",
+      "template": "# egress networkpolicy skeleton\n"
+    }
+  ],
+  "patches": []
+}

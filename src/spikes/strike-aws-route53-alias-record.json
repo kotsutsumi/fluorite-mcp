@@ -1,0 +1,18 @@
+{
+  "id": "strike-aws-route53-alias-record",
+  "name": "AWS Route53 Alias Record",
+  "stack": [
+    "aws",
+    "route53"
+  ],
+  "tags": [
+    "dns"
+  ],
+  "files": [
+    {
+      "path": "route53/alias.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,19 @@
+{
+  "id": "strike-gitlab-oidc-gcp-workload-identity",
+  "name": "GitLab OIDC→GCP Workload Identity",
+  "stack": [
+    "gitlab",
+    "gcp"
+  ],
+  "tags": [
+    "ci",
+    "auth"
+  ],
+  "files": [
+    {
+      "path": ".gitlab-ci.yml",
+      "template": "# gitlab oidc workload identity skeleton\n"
+    }
+  ],
+  "patches": []
+}

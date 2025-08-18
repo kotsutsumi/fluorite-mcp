@@ -1,0 +1,17 @@
+{
+  "id": "strike-postgres-rls-policies",
+  "name": "Postgres Row Level Security",
+  "stack": [
+    "postgres"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "sql/rls.sql",
+      "template": "-- rls policies skeleton\n"
+    }
+  ],
+  "patches": []
+}

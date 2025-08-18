@@ -1,0 +1,19 @@
+{
+  "id": "strike-kyverno-verifyimages-cosign",
+  "name": "Kyverno verifyImages + Cosign",
+  "stack": [
+    "kyverno",
+    "cosign"
+  ],
+  "tags": [
+    "policy",
+    "supply-chain"
+  ],
+  "files": [
+    {
+      "path": "kyverno/verifyimages.yaml",
+      "template": "# verify images skeleton\n"
+    }
+  ],
+  "patches": []
+}

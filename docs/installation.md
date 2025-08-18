@@ -50,8 +50,8 @@ claude --version
 For the quickest setup, use our automated installation script:
 
 ```bash
-# Clone the repository (if not already done)
-git clone https://github.com/kotsutsumi/fluorite-mcp.git
+# リポジトリをクローン（未実行の場合）
+git clone リポジトリURL
 cd fluorite-mcp
 
 # Run the automated setup script
@@ -100,7 +100,7 @@ For developers or latest features:
 
 ```bash
 # Clone the repository
-git clone https://github.com/kotsutsumi/fluorite-mcp.git
+git clone リポジトリURL
 cd fluorite-mcp
 
 # Install dependencies
@@ -395,7 +395,7 @@ For contributors and advanced users:
 
 ```bash
 # Clone and setup development environment
-git clone https://github.com/kotsutsumi/fluorite-mcp.git
+git clone リポジトリURL
 cd fluorite-mcp
 
 # Install dependencies
@@ -472,8 +472,8 @@ After successful installation:
 If you encounter issues not covered here:
 
 1. **Check the [Troubleshooting Guide](./troubleshooting.md)**
-2. **Search [GitHub Issues](https://github.com/kotsutsumi/fluorite-mcp/issues)**
-3. **Ask in [GitHub Discussions](https://github.com/kotsutsumi/fluorite-mcp/discussions)**
+2. **GitHub Issues で検索**
+3. **GitHub Discussions で質問**
 4. **Report bugs**: Create a new issue with installation details
 
 ---

@@ -53,7 +53,7 @@ This directory contains utility scripts for setting up and maintaining Fluorite 
 ### New Installation
 ```bash
 # Clone the repository
-git clone https://github.com/kotsutsumi/fluorite-mcp.git
+git clone リポジトリURL
 cd fluorite-mcp
 
 # Run automated setup
@@ -149,7 +149,7 @@ If these scripts don't resolve your issues:
 
 1. Check the [Installation Guide](../docs/installation.md)
 2. Review [Troubleshooting Documentation](../docs/troubleshooting.md)
-3. Search [GitHub Issues](https://github.com/kotsutsumi/fluorite-mcp/issues)
+3. GitHub Issues で検索
 4. Create a new issue with script output
 
 ---

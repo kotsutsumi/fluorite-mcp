@@ -1,0 +1,19 @@
+{
+  "id": "strike-aws-cloudfront-cache-policy",
+  "name": "CloudFront Cache Policy",
+  "stack": [
+    "aws",
+    "cloudfront"
+  ],
+  "tags": [
+    "edge",
+    "cache"
+  ],
+  "files": [
+    {
+      "path": "cloudfront/cache-policy.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

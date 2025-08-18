@@ -1,0 +1,57 @@
+{
+  "items": [
+    { "id": "strike-spring-micrometer-otel-export", "name": "Spring Micrometer OTel Export", "stack": ["java","spring","micrometer"], "tags": ["observability"], "files": [{ "path": "src/main/resources/application.yml", "template": "# micrometer otel export skeleton\n" }] },
+    { "id": "strike-quarkus-reactive-panache-postgres", "name": "Quarkus Reactive Panache + PG", "stack": ["java","quarkus","panache"], "tags": ["db","reactive"], "files": [{ "path": "src/main/java/org/acme/Entity.java", "template": "// reactive panache entity skeleton\n" }] },
+    { "id": "strike-micronaut-graalvm-native", "name": "Micronaut GraalVM Native Config", "stack": ["java","micronaut","graalvm"], "tags": ["build"], "files": [{ "path": "src/main/resources/META-INF/native-image/reflect-config.json", "template": "[ ]\n" }] },
+
+    { "id": "strike-dotnet-minimal-rate-limiter", "name": ".NET Minimal RateLimiter", "stack": ["dotnet","aspnet"], "tags": ["throttle"], "files": [{ "path": "Program.cs", "template": "// dotnet ratelimiter policy skeleton\n" }] },
+    { "id": "strike-dotnet-efcore-connection-resiliency", "name": ".NET EFCore Connection Resiliency", "stack": ["dotnet","efcore"], "tags": ["db","resilience"], "files": [{ "path": "Data/DbContext.cs", "template": "// efcore execution strategy skeleton\n" }] },
+
+    { "id": "strike-fastapi-sqlalchemy-async-session", "name": "FastAPI SQLAlchemy Async Session", "stack": ["python","fastapi","sqlalchemy"], "tags": ["db"], "files": [{ "path": "app/db.py", "template": "# async session scoped skeleton\n" }] },
+    { "id": "strike-python-openapi-httpx-client", "name": "Python OpenAPI + httpx クライアント", "stack": ["python","openapi","httpx"], "tags": ["codegen"], "files": [{ "path": "client/generate.py", "template": "# httpx client from openapi skeleton\n" }] },
+
+    { "id": "strike-go-otel-metrics-views", "name": "Go OTel Metrics Views", "stack": ["go","opentelemetry"], "tags": ["observability"], "files": [{ "path": "otel/metrics.go", "template": "// otel metric views skeleton\n" }] },
+    { "id": "strike-go-fiber-sse-stream", "name": "Go Fiber SSE Stream", "stack": ["go","fiber"], "tags": ["sse"], "files": [{ "path": "main.go", "template": "// fiber sse stream skeleton\n" }] },
+    { "id": "strike-go-chi-jwt-auth", "name": "Go chi JWT Auth", "stack": ["go","chi","jwt"], "tags": ["auth"], "files": [{ "path": "main.go", "template": "// chi jwt auth skeleton\n" }] },
+
+    { "id": "strike-rust-axum-rate-limit", "name": "Rust Axum Rate Limit", "stack": ["rust","axum"], "tags": ["throttle"], "files": [{ "path": "src/rate.rs", "template": "// axum ratelimit skeleton\n" }] },
+    { "id": "strike-rust-tonic-mtls-server", "name": "Rust Tonic mTLS Server", "stack": ["rust","tonic","tls"], "tags": ["security","rpc"], "files": [{ "path": "src/tls.rs", "template": "// tonic mtls server skeleton\n" }] },
+    { "id": "strike-rust-sqlx-pool-config", "name": "Rust SQLx Pool Config", "stack": ["rust","sqlx"], "tags": ["db"], "files": [{ "path": "src/db.rs", "template": "// sqlx pool config skeleton\n" }] },
+
+    { "id": "strike-k8s-vpa-minimal", "name": "K8s VPA 最小", "stack": ["kubernetes","vpa"], "tags": ["autoscale"], "files": [{ "path": "k8s/vpa.yaml", "template": "# vpa skeleton\n" }] },
+    { "id": "strike-k8s-networkpolicy-egress", "name": "K8s NetworkPolicy Egress", "stack": ["kubernetes"], "tags": ["network"], "files": [{ "path": "k8s/networkpolicy-egress.yaml", "template": "# egress networkpolicy skeleton\n" }] },
+    { "id": "strike-k8s-pod-security-admission", "name": "K8s Pod Security Admission", "stack": ["kubernetes"], "tags": ["security"], "files": [{ "path": "k8s/podsecurity.yaml", "template": "# pod security admission skeleton\n" }] },
+    { "id": "strike-k8s-csi-secrets-store", "name": "K8s CSI Secrets Store", "stack": ["kubernetes","csi"], "tags": ["secrets"], "files": [{ "path": "k8s/csi-secrets.yaml", "template": "# csi secrets store skeleton\n" }] },
+    { "id": "strike-kyverno-verifyimages-cosign", "name": "Kyverno verifyImages + Cosign", "stack": ["kyverno","cosign"], "tags": ["policy","supply-chain"], "files": [{ "path": "kyverno/verifyimages.yaml", "template": "# verify images skeleton\n" }] },
+
+    { "id": "strike-otel-gcp-logging-export", "name": "OTel Logs → GCP Logging", "stack": ["opentelemetry","gcp"], "tags": ["logs"], "files": [{ "path": "otel/gcp-logging.yaml", "template": "exporters: { googlecloud: {} }\n" }] },
+    { "id": "strike-prometheus-histogram-buckets", "name": "Prometheus Histogram Buckets", "stack": ["prometheus"], "tags": ["metrics"], "files": [{ "path": "prometheus/buckets.yml", "template": "# histogram buckets tuning skeleton\n" }] },
+    { "id": "strike-tempo-exemplars-setup", "name": "Tempo Exemplars 設定", "stack": ["tempo","prometheus"], "tags": ["traces","metrics"], "files": [{ "path": "tempo/exemplars.yaml", "template": "# tempo exemplars skeleton\n" }] },
+
+    { "id": "strike-gh-actions-oidc-azure", "name": "GH Actions OIDC→Azure", "stack": ["github","azure"], "tags": ["ci","auth"], "files": [{ "path": ".github/workflows/azure-oidc.yml", "template": "name: AzureOIDC\non: [push]\n" }] },
+    { "id": "strike-gitlab-oidc-gcp-workload-identity", "name": "GitLab OIDC→GCP Workload Identity", "stack": ["gitlab","gcp"], "tags": ["ci","auth"], "files": [{ "path": ".gitlab-ci.yml", "template": "# gitlab oidc workload identity skeleton\n" }] },
+    { "id": "strike-gh-actions-cache-setup-node", "name": "GH Actions setup-node Cache", "stack": ["github","actions"], "tags": ["ci","cache"], "files": [{ "path": ".github/workflows/node-cache.yml", "template": "name: NodeCache\non: [push]\n" }] },
+
+    { "id": "strike-redpanda-wasm-transform", "name": "Redpanda wasm Transform", "stack": ["redpanda","wasm"], "tags": ["stream"], "files": [{ "path": "redpanda/transform.rs", "template": "// redpanda wasm transform skeleton\n" }] },
+    { "id": "strike-kafka-connect-elasticsearch-sink", "name": "Kafka Connect Elasticsearch Sink", "stack": ["kafka","connect","elasticsearch"], "tags": ["sink"], "files": [{ "path": "kafka/connect-elastic.json", "template": "{ }\n" }] },
+    { "id": "strike-spark-structured-exactly-once", "name": "Spark Structured Streaming Exactly-Once", "stack": ["spark"], "tags": ["stream"], "files": [{ "path": "spark/exactly_once.py", "template": "# spark exactly-once skeleton\n" }] },
+
+    { "id": "strike-postgres-rls-policies", "name": "Postgres Row Level Security", "stack": ["postgres"], "tags": ["security"], "files": [{ "path": "sql/rls.sql", "template": "-- rls policies skeleton\n" }] },
+    { "id": "strike-postgres-wal2json-config", "name": "Postgres wal2json 設定", "stack": ["postgres"], "tags": ["cdc"], "files": [{ "path": "sql/wal2json.sql", "template": "-- wal2json plugin setup skeleton\n" }] },
+
+    { "id": "strike-meilisearch-ranking-rules-tune", "name": "Meilisearch RankingRules Tuning", "stack": ["meilisearch"], "tags": ["search"], "files": [{ "path": "meili/ranking.json", "template": "{ }\n" }] },
+    { "id": "strike-opensearch-bm25-params", "name": "OpenSearch BM25 Params", "stack": ["opensearch"], "tags": ["search"], "files": [{ "path": "os/bm25.json", "template": "{ }\n" }] },
+
+    { "id": "strike-google-pubsub-lite-topic", "name": "Google Pub/Sub Lite Topic", "stack": ["gcp","pubsublite"], "tags": ["stream"], "files": [{ "path": "gcp/pubsublite.json", "template": "{ }\n" }] },
+    { "id": "strike-minio-bucket-versioning", "name": "MinIO Bucket Versioning", "stack": ["minio"], "tags": ["storage"], "files": [{ "path": "minio/versioning.json", "template": "{ }\n" }] },
+    { "id": "strike-aws-s3-crr-replication", "name": "AWS S3 Cross-Region Replication", "stack": ["aws","s3"], "tags": ["storage"], "files": [{ "path": "s3/crr.json", "template": "{ }\n" }] },
+
+    { "id": "strike-aws-route53-alias-record", "name": "AWS Route53 Alias Record", "stack": ["aws","route53"], "tags": ["dns"], "files": [{ "path": "route53/alias.json", "template": "{ }\n" }] },
+    { "id": "strike-aws-cloudfront-cache-policy", "name": "CloudFront Cache Policy", "stack": ["aws","cloudfront"], "tags": ["edge","cache"], "files": [{ "path": "cloudfront/cache-policy.json", "template": "{ }\n" }] },
+    { "id": "strike-aws-apigw-http-authorizer", "name": "API Gateway HTTP Authorizer", "stack": ["aws","apigateway"], "tags": ["api","auth"], "files": [{ "path": "apigw/authorizer.json", "template": "{ }\n" }] },
+
+    { "id": "strike-makefile-patterns-ci", "name": "Makefile CI パターン", "stack": ["make","ci"], "tags": ["automation"], "files": [{ "path": "Makefile", "template": "# makefile ci patterns skeleton\n" }] },
+    { "id": "strike-pre-commit-hooks-format", "name": "pre-commit Hooks Format", "stack": ["pre-commit"], "tags": ["quality"], "files": [{ "path": ".pre-commit-config.yaml", "template": "# pre-commit hooks skeleton\n" }] }
+  ]
+}
+

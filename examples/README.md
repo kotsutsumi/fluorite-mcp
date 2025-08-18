@@ -8,10 +8,8 @@ Practical, ready-to-use examples and configuration files for integrating Fluorit
 **One-click team setup script** that gets your development team up and running with Fluorite MCP in under 5 minutes.
 
 ```bash
-# Download and run
-curl -fsSL https://raw.githubusercontent.com/kotsutsumi/fluorite-mcp/main/examples/quick-start-team.sh | bash
-
-# Or clone and run locally
+# クローンしてローカルで実行
+git clone リポジトリをクローンして使用
 ./examples/quick-start-team.sh
 ```
 
@@ -338,7 +336,7 @@ fluorite-mcp --performance-test --benchmark
 
 ## 💬 Community Examples
 
-Found a great integration pattern? [Share it with the community](https://github.com/kotsutsumi/fluorite-mcp/discussions) or [contribute an example](https://github.com/kotsutsumi/fluorite-mcp/blob/main/CONTRIBUTING.md).
+優れた統合パターンを見つけましたか？ コミュニティで共有するか、サンプルを貢献してください。
 
 ---
 

@@ -10,8 +10,8 @@ hero:
       text: はじめる
       link: /ja/getting-started
     - theme: alt
-      text: GitHub で見る
-      link: https://github.com/kotsutsumi/fluorite-mcp
+      text: APIドキュメント
+      link: /ja/API
 
 features:
   - icon: 🧪

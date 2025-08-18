@@ -22,69 +22,68 @@ const japaneseNavigation = [
 const englishSidebar = {
   '/': [
     {
-      text: '🚀 Getting Started',
+      text: '🚀 Quick Start',
       collapsed: false,
       items: [
-        { text: 'Overview', link: '/' },
-        { text: 'Installation', link: '/installation' },
-        { text: 'Quick Start Guide', link: '/getting-started' },
-        { text: 'First Template', link: '/introduction' }
+        { text: '📖 Overview', link: '/' },
+        { text: '⚙️ Installation', link: '/installation' },
+        { text: '🎯 Quick Start Guide', link: '/getting-started' },
+        { text: '🔰 First Template', link: '/introduction' }
       ]
     },
     {
-      text: '⚡ Core Features',
+      text: '⚡ Essential Features',
       collapsed: false,
       items: [
         { text: '🧪 Spike Templates (3,100+)', link: '/spike-templates' },
-        { text: '🎯 /fl: Commands', link: '/fl-commands' },
-        { text: '🔍 Static Analysis', link: '/static-analysis' },
-        { text: '📚 Library Specs', link: '/specs/' },
-        { text: '🤖 MCP Server', link: '/features' },
-        { text: '⚡ Performance', link: '/performance' }
+        { text: '📱 /fl: Commands System', link: '/fl-commands' },
+        { text: '🤖 MCP Server Integration', link: '/features' },
+        { text: '🔍 Static Analysis Engine', link: '/static-analysis' },
+        { text: '⚡ Performance Optimization', link: '/performance' }
       ]
     },
     {
-      text: '📖 Documentation',
+      text: '📚 Complete References',
       collapsed: false,
       items: [
-        { text: 'Command Reference', link: '/commands' },
-        { text: 'API Reference', link: '/API' },
-        { text: 'Function Reference', link: '/function-reference' },
-        { text: 'Use Cases', link: '/use-cases-examples' },
-        { text: 'Template Creation', link: '/template-creation' },
-        { text: 'Developer Guide', link: '/developer' }
+        { text: '📋 Command Reference', link: '/commands' },
+        { text: '🔧 API Reference', link: '/API' },
+        { text: '⚙️ Function Reference', link: '/function-reference' },
+        { text: '📝 Template Creation Guide', link: '/template-creation' },
+        { text: '💡 Use Cases & Examples', link: '/use-cases-examples' },
+        { text: '🛠️ Developer Guide', link: '/developer' }
       ]
     },
     {
-      text: '📚 Technology Catalog',
-      collapsed: true,
+      text: '📚 Technology Specifications',
+      collapsed: false,
       items: [
-        { text: 'Overview', link: '/specs/' },
-        { text: 'Frontend & UI', link: '/specs/frontend-ui-innovation' },
-        { text: 'Backend & Serverless', link: '/specs/modern-backend-serverless' },
-        { text: 'AI/ML & LLM', link: '/specs/ai-ml-llm-comprehensive' },
-        { text: 'Cloud Infrastructure', link: '/specs/cloud-native-infrastructure' },
-        { text: 'Language Ecosystems', link: '/specs/langs' }
+        { text: '📋 Specs Overview', link: '/specs/' },
+        { text: '🎨 Frontend & UI Innovation', link: '/specs/frontend-ui-innovation' },
+        { text: '🚀 Backend & Serverless', link: '/specs/modern-backend-serverless' },
+        { text: '🤖 AI/ML & LLM Integration', link: '/specs/ai-ml-llm-comprehensive' },
+        { text: '☁️ Cloud Infrastructure', link: '/specs/cloud-native-infrastructure' },
+        { text: '💻 Language Ecosystems', link: '/specs/langs' }
       ]
     },
     {
-      text: '🏗️ Architecture',
+      text: '🏗️ System Architecture',
       collapsed: true,
       items: [
-        { text: 'Overview', link: '/architecture/' },
-        { text: 'MCP Integration', link: '/architecture/claude-cli-integration' },
-        { text: 'Command Mapping', link: '/architecture/command-mapping-spec' },
-        { text: 'Template System', link: '/architecture/spike-template-expansion-plan' },
-        { text: 'Testing Strategy', link: '/architecture/testing-strategy' },
-        { text: 'Deployment Plan', link: '/architecture/deployment-plan' }
+        { text: '📐 Architecture Overview', link: '/architecture/' },
+        { text: '🔗 MCP Integration Details', link: '/architecture/claude-cli-integration' },
+        { text: '🗺️ Command Mapping Spec', link: '/architecture/command-mapping-spec' },
+        { text: '🧪 Template System Design', link: '/architecture/spike-template-expansion-plan' },
+        { text: '🧪 Testing Strategy', link: '/architecture/testing-strategy' },
+        { text: '🚀 Deployment Planning', link: '/architecture/deployment-plan' }
       ]
     },
     {
-      text: '🆘 Support',
+      text: '🆘 Help & Support',
       collapsed: true,
       items: [
-        { text: 'Troubleshooting', link: '/troubleshooting' },
-        { text: 'Common Issues', link: '/troubleshooting#common-issues' }
+        { text: '🔧 Troubleshooting Guide', link: '/troubleshooting' },
+        { text: '❓ Common Issues & Solutions', link: '/troubleshooting#common-issues' }
       ]
     }
   ]
@@ -158,69 +157,68 @@ const japaneseSpecsSidebar = {
 const japaneseSidebar = {
   '/ja/': [
     {
-      text: '🚀 スタートガイド',
+      text: '🚀 クイックスタート',
       collapsed: false,
       items: [
-        { text: '概要', link: '/ja/' },
-        { text: 'インストール', link: '/ja/installation' },
-        { text: 'クイックスタート', link: '/ja/getting-started' },
-        { text: '初めてのテンプレート', link: '/ja/introduction' }
+        { text: '📖 概要', link: '/ja/' },
+        { text: '⚙️ インストール', link: '/ja/installation' },
+        { text: '🎯 クイックスタートガイド', link: '/ja/getting-started' },
+        { text: '🔰 初めてのテンプレート', link: '/ja/introduction' }
       ]
     },
     {
-      text: '⚡ コア機能',
+      text: '⚡ 主要機能',
       collapsed: false,
       items: [
         { text: '🧪 スパイクテンプレート (3,100+)', link: '/ja/spike-templates' },
-        { text: '🎯 /fl: コマンド', link: '/ja/fl-commands' },
-        { text: '🔍 静的解析', link: '/ja/static-analysis' },
-        { text: '📚 ライブラリ仕様', link: '/ja/specs/' },
-        { text: '🤖 MCPサーバー', link: '/ja/features' },
-        { text: '⚡ パフォーマンス', link: '/ja/performance' }
+        { text: '📱 /fl: コマンドシステム', link: '/ja/fl-commands' },
+        { text: '🤖 MCPサーバー統合', link: '/ja/features' },
+        { text: '🔍 静的解析エンジン', link: '/ja/static-analysis' },
+        { text: '⚡ パフォーマンス最適化', link: '/ja/performance' }
       ]
     },
     {
-      text: '📖 ドキュメント',
+      text: '📚 完全リファレンス',
       collapsed: false,
       items: [
-        { text: 'コマンドリファレンス', link: '/ja/commands' },
-        { text: 'APIリファレンス', link: '/ja/API' },
-        { text: '関数リファレンス', link: '/ja/function-reference' },
-        { text: '使用事例', link: '/ja/use-cases-examples' },
-        { text: 'テンプレート作成', link: '/ja/template-creation' },
-        { text: '開発者ガイド', link: '/ja/developer' }
+        { text: '📋 コマンドリファレンス', link: '/ja/commands' },
+        { text: '🔧 APIリファレンス', link: '/ja/API' },
+        { text: '⚙️ 関数リファレンス', link: '/ja/function-reference' },
+        { text: '📝 テンプレート作成ガイド', link: '/ja/template-creation' },
+        { text: '💡 使用事例・実例', link: '/ja/use-cases-examples' },
+        { text: '🛠️ 開発者ガイド', link: '/ja/developer' }
       ]
     },
     {
-      text: '📚 技術カタログ',
-      collapsed: true,
+      text: '📚 技術仕様カタログ',
+      collapsed: false,
       items: [
-        { text: '概要', link: '/ja/specs/' },
-        { text: 'フロントエンド・UI', link: '/ja/specs/frontend-ui-innovation' },
-        { text: 'バックエンド・サーバーレス', link: '/ja/specs/modern-backend-serverless' },
-        { text: 'AI/ML・LLM', link: '/ja/specs/ai-ml-llm-comprehensive' },
-        { text: 'クラウドインフラ', link: '/ja/specs/cloud-native-infrastructure' },
-        { text: '言語エコシステム', link: '/ja/specs/langs' }
+        { text: '📋 仕様概要', link: '/ja/specs/' },
+        { text: '🎨 フロントエンド・UI革新', link: '/ja/specs/frontend-ui-innovation' },
+        { text: '🚀 モダンバックエンド・サーバーレス', link: '/ja/specs/modern-backend-serverless' },
+        { text: '🤖 AI/ML・LLM統合', link: '/ja/specs/ai-ml-llm-comprehensive' },
+        { text: '☁️ クラウドインフラ', link: '/ja/specs/cloud-native-infrastructure' },
+        { text: '💻 言語エコシステム', link: '/ja/specs/langs' }
       ]
     },
     {
-      text: '🏗️ アーキテクチャ',
+      text: '🏗️ システムアーキテクチャ',
       collapsed: true,
       items: [
-        { text: '概要', link: '/ja/architecture/' },
-        { text: 'MCP統合', link: '/ja/architecture/claude-cli-integration' },
-        { text: 'コマンドマッピング', link: '/ja/architecture/command-mapping-spec' },
-        { text: 'テンプレートシステム', link: '/ja/architecture/spike-template-expansion-plan' },
-        { text: 'テスト戦略', link: '/ja/architecture/testing-strategy' },
-        { text: 'デプロイプラン', link: '/ja/architecture/deployment-plan' }
+        { text: '📐 アーキテクチャ概要', link: '/ja/architecture/' },
+        { text: '🔗 MCP統合詳細', link: '/ja/architecture/claude-cli-integration' },
+        { text: '🗺️ コマンドマッピング仕様', link: '/ja/architecture/command-mapping-spec' },
+        { text: '🧪 テンプレートシステム設計', link: '/ja/architecture/spike-template-expansion-plan' },
+        { text: '🧪 テスト戦略', link: '/ja/architecture/testing-strategy' },
+        { text: '🚀 デプロイ計画', link: '/ja/architecture/deployment-plan' }
       ]
     },
     {
-      text: '🆘 サポート',
+      text: '🆘 ヘルプ・サポート',
       collapsed: true,
       items: [
-        { text: 'トラブルシューティング', link: '/ja/troubleshooting' },
-        { text: 'よくある問題', link: '/ja/troubleshooting#common-issues' }
+        { text: '🔧 トラブルシューティングガイド', link: '/ja/troubleshooting' },
+        { text: '❓ よくある問題・解決策', link: '/ja/troubleshooting#common-issues' }
       ]
     }
   ]

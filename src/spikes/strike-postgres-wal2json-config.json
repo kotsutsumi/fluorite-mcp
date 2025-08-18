@@ -1,0 +1,17 @@
+{
+  "id": "strike-postgres-wal2json-config",
+  "name": "Postgres wal2json 設定",
+  "stack": [
+    "postgres"
+  ],
+  "tags": [
+    "cdc"
+  ],
+  "files": [
+    {
+      "path": "sql/wal2json.sql",
+      "template": "-- wal2json plugin setup skeleton\n"
+    }
+  ],
+  "patches": []
+}

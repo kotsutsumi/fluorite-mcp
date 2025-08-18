@@ -1,0 +1,17 @@
+{
+  "id": "strike-k8s-pod-security-admission",
+  "name": "K8s Pod Security Admission",
+  "stack": [
+    "kubernetes"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "k8s/podsecurity.yaml",
+      "template": "# pod security admission skeleton\n"
+    }
+  ],
+  "patches": []
+}
