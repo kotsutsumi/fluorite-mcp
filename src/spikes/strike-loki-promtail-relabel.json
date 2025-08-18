@@ -1,0 +1,19 @@
+{
+  "id": "strike-loki-promtail-relabel",
+  "name": "Loki/Promtail Relabel",
+  "stack": [
+    "loki",
+    "promtail"
+  ],
+  "tags": [
+    "observability",
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "promtail/relabel.yaml",
+      "template": "relabel_configs: []\n"
+    }
+  ],
+  "patches": []
+}

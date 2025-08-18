@@ -1,0 +1,20 @@
+{
+  "id": "strike-nextjs-rsc-actions-cache",
+  "name": "Next.js RSC + Actions + Cache",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "frontend",
+    "rsc",
+    "actions",
+    "cache"
+  ],
+  "files": [
+    {
+      "path": "app/actions.ts",
+      "template": "'use server'\nexport async function doAction(){ return { ok:true } }\n"
+    }
+  ],
+  "patches": []
+}

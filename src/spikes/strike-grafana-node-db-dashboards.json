@@ -1,0 +1,18 @@
+{
+  "id": "strike-grafana-node-db-dashboards",
+  "name": "Grafana Dashboards Node/DB",
+  "stack": [
+    "grafana"
+  ],
+  "tags": [
+    "observability",
+    "dashboards"
+  ],
+  "files": [
+    {
+      "path": "grafana/dashboards/node-db.json",
+      "template": "{ \"title\": \"Node & DB\" }\n"
+    }
+  ],
+  "patches": []
+}

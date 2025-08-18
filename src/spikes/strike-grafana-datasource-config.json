@@ -1,0 +1,17 @@
+{
+  "id": "strike-grafana-datasource-config",
+  "name": "Grafana Datasource Config",
+  "stack": [
+    "grafana"
+  ],
+  "tags": [
+    "observability"
+  ],
+  "files": [
+    {
+      "path": "grafana/datasource.yaml",
+      "template": "apiVersion: 1\ndatasources: []\n"
+    }
+  ],
+  "patches": []
+}

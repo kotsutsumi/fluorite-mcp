@@ -1,0 +1,17 @@
+{
+  "id": "strike-sveltekit-handle-hooks",
+  "name": "SvelteKit Handle Hooks",
+  "stack": [
+    "sveltekit"
+  ],
+  "tags": [
+    "frontend"
+  ],
+  "files": [
+    {
+      "path": "src/hooks.server.ts",
+      "template": "export const handle = async ({ resolve }) => resolve();\n"
+    }
+  ],
+  "patches": []
+}

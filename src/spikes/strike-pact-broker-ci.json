@@ -1,0 +1,18 @@
+{
+  "id": "strike-pact-broker-ci",
+  "name": "Pact Broker CI Integration",
+  "stack": [
+    "pact"
+  ],
+  "tags": [
+    "test",
+    "contract"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/pact-broker.yml",
+      "template": "name: Pact Broker\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

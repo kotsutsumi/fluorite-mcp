@@ -1,0 +1,18 @@
+{
+  "id": "strike-rails-activejob-minimal",
+  "name": "Rails ActiveJob Minimal",
+  "stack": [
+    "ruby",
+    "rails"
+  ],
+  "tags": [
+    "jobs"
+  ],
+  "files": [
+    {
+      "path": "app/jobs/example_job.rb",
+      "template": "class ExampleJob < ApplicationJob\n  queue_as :default\n  def perform\n  end\nend\n"
+    }
+  ],
+  "patches": []
+}

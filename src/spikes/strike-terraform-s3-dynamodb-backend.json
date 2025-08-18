@@ -1,0 +1,18 @@
+{
+  "id": "strike-terraform-s3-dynamodb-backend",
+  "name": "Terraform S3 + DynamoDB Backend",
+  "stack": [
+    "terraform",
+    "aws"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "backend.tf",
+      "template": "terraform { backend \"s3\" { bucket=\"bucket\" key=\"state\" region=\"us-east-1\" dynamodb_table=\"lock\" } }\n"
+    }
+  ],
+  "patches": []
+}

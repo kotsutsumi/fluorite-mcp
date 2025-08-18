@@ -1,0 +1,17 @@
+{
+  "id": "strike-prometheus-scrape-configs-module",
+  "name": "Prometheus Scrape Configs Module",
+  "stack": [
+    "prometheus"
+  ],
+  "tags": [
+    "observability"
+  ],
+  "files": [
+    {
+      "path": "prometheus/scrape.yml",
+      "template": "scrape_configs: []\n"
+    }
+  ],
+  "patches": []
+}

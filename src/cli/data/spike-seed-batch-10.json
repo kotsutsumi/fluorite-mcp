@@ -1,0 +1,35 @@
+{
+  "items": [
+    { "id": "strike-express-ssr-streaming", "name": "Express SSR Streaming", "stack": ["node","express"], "tags": ["backend","ssr","stream"], "files": [{ "path": "server.js", "template": "// express SSR streaming skeleton\n" }] },
+    { "id": "strike-bun-static-file-server", "name": "Bun Static File Server", "stack": ["bun"], "tags": ["backend","edge","static"], "files": [{ "path": "server.ts", "template": "// bun static file server skeleton\n" }] },
+    { "id": "strike-go-chi-middlewares-advanced", "name": "Go chi Middlewares Advanced", "stack": ["go","chi"], "tags": ["backend","advanced","middleware"], "files": [{ "path": "main.go", "template": "package main\n// chi middlewares advanced skeleton\nfunc main(){}\n" }] },
+
+    { "id": "strike-nextjs-rsc-actions-cache", "name": "Next.js RSC + Actions + Cache", "stack": ["nextjs"], "tags": ["frontend","rsc","actions","cache"], "files": [{ "path": "app/actions.ts", "template": "'use server'\nexport async function doAction(){ return { ok:true } }\n" }] },
+    { "id": "strike-nuxt3-server-handlers-advanced", "name": "Nuxt3 Server Handlers Advanced", "stack": ["nuxt","nitro"], "tags": ["frontend","api","advanced"], "files": [{ "path": "server/api/users.get.ts", "template": "export default defineEventHandler(()=> [{ id:1 }])\n" }] },
+    { "id": "strike-sveltekit-streaming-endpoints", "name": "SvelteKit Streaming Endpoints", "stack": ["sveltekit"], "tags": ["frontend","api","stream"], "files": [{ "path": "src/routes/stream/+server.ts", "template": "// streaming endpoint skeleton\n" }] },
+
+    { "id": "strike-otel-collector-multi-pipeline", "name": "OTel Collector Multi Pipeline", "stack": ["opentelemetry","collector"], "tags": ["observability"], "files": [{ "path": "otel/multi-pipeline.yaml", "template": "receivers:{}\nprocessors:{}\nexporters:{}\npipelines:{ traces:{}, metrics:{}, logs:{} }\n" }] },
+    { "id": "strike-grafana-node-db-dashboards", "name": "Grafana Dashboards Node/DB", "stack": ["grafana"], "tags": ["observability","dashboards"], "files": [{ "path": "grafana/dashboards/node-db.json", "template": "{ \"title\": \"Node & DB\" }\n" }] },
+
+    { "id": "strike-oidc-introspection-endpoint", "name": "OIDC Introspection Endpoint", "stack": ["oidc"], "tags": ["security","auth"], "files": [{ "path": "auth/introspection.md", "template": "# OIDC introspection skeleton\n" }] },
+    { "id": "strike-jws-verification-utils", "name": "JWS Verification Utils", "stack": ["node","jose"], "tags": ["security","jwt"], "files": [{ "path": "auth/jws.mjs", "template": "// jose JWS verify skeleton\n" }] },
+
+    { "id": "strike-kafka-compaction-topic", "name": "Kafka Compaction Topic", "stack": ["kafka"], "tags": ["stream","storage"], "files": [{ "path": "kafka/compaction.json", "template": "{ \"cleanup.policy\": \"compact\" }\n" }] },
+    { "id": "strike-nats-mirror-replica", "name": "NATS Mirror/Replica", "stack": ["nats"], "tags": ["messaging","reliability"], "files": [{ "path": "nats/mirror.js", "template": "// nats mirror/replica skeleton\n" }] },
+    { "id": "strike-sqs-long-polling", "name": "SQS Long Polling", "stack": ["aws","sqs"], "tags": ["queue","perf"], "files": [{ "path": "aws/sqs-long-poll.mjs", "template": "// long polling skeleton\n" }] },
+
+    { "id": "strike-terraform-module-composition", "name": "Terraform Module Composition", "stack": ["terraform"], "tags": ["infra"], "files": [{ "path": "modules/compose/README.md", "template": "# Compose modules skeleton\n" }] },
+    { "id": "strike-gh-actions-reusable-advanced", "name": "GH Actions Reusable Advanced", "stack": ["github","actions"], "tags": ["ci"], "files": [{ "path": ".github/workflows/reusable-advanced.yml", "template": "name: ReusableAdvanced\non: workflow_call\n" }] },
+
+    { "id": "strike-pact-broker-ci", "name": "Pact Broker CI Integration", "stack": ["pact"], "tags": ["test","contract"], "files": [{ "path": ".github/workflows/pact-broker.yml", "template": "name: Pact Broker\non: [push]\n" }] },
+    { "id": "strike-playwright-trace-viewer", "name": "Playwright Trace Viewer", "stack": ["playwright"], "tags": ["test"], "files": [{ "path": "tests/trace.md", "template": "# Trace viewer usage skeleton\n" }] },
+
+    { "id": "strike-airflow-operators-advanced", "name": "Airflow Operators Advanced", "stack": ["airflow"], "tags": ["data"], "files": [{ "path": "dags/operators_advanced.py", "template": "# advanced operators skeleton\n" }] },
+
+    { "id": "strike-openapi-yaml-minimal", "name": "(Merge) OpenAPI YAML Meta", "stack": ["openapi"], "tags": ["api","merge"] },
+    { "id": "strike-dockerfile-node-minimal", "name": "(Merge) Dockerfile Node Meta", "stack": ["docker"], "tags": ["ops","merge"] },
+    { "id": "strike-nextjs-route-handler-minimal", "name": "(Merge) Next.js Route Handler Meta", "stack": ["nextjs"], "tags": ["frontend","api","merge"] },
+    { "id": "strike-otel-node-tracer-minimal", "name": "(Merge) OTel Node Tracer Meta", "stack": ["opentelemetry"], "tags": ["observability","merge"] }
+  ]
+}
+

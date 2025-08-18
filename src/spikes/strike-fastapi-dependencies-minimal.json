@@ -1,0 +1,18 @@
+{
+  "id": "strike-fastapi-dependencies-minimal",
+  "name": "FastAPI Dependencies Minimal",
+  "stack": [
+    "python",
+    "fastapi"
+  ],
+  "tags": [
+    "backend"
+  ],
+  "files": [
+    {
+      "path": "main.py",
+      "template": "from fastapi import FastAPI, Depends\napp = FastAPI()\nasync def dep(): return True\n@app.get('/health')\nasync def health(_: bool = Depends(dep)): return {'ok': True}\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-otel-collector-multi-pipeline",
+  "name": "OTel Collector Multi Pipeline",
+  "stack": [
+    "opentelemetry",
+    "collector"
+  ],
+  "tags": [
+    "observability"
+  ],
+  "files": [
+    {
+      "path": "otel/multi-pipeline.yaml",
+      "template": "receivers:{}\nprocessors:{}\nexporters:{}\npipelines:{ traces:{}, metrics:{}, logs:{} }\n"
+    }
+  ],
+  "patches": []
+}

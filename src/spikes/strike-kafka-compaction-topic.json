@@ -1,0 +1,18 @@
+{
+  "id": "strike-kafka-compaction-topic",
+  "name": "Kafka Compaction Topic",
+  "stack": [
+    "kafka"
+  ],
+  "tags": [
+    "stream",
+    "storage"
+  ],
+  "files": [
+    {
+      "path": "kafka/compaction.json",
+      "template": "{ \"cleanup.policy\": \"compact\" }\n"
+    }
+  ],
+  "patches": []
+}

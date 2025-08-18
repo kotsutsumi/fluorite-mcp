@@ -1,0 +1,19 @@
+{
+  "id": "strike-gcp-cloud-run-service",
+  "name": "GCP Cloud Run Service",
+  "stack": [
+    "gcp",
+    "cloud-run"
+  ],
+  "tags": [
+    "cloud",
+    "serverless"
+  ],
+  "files": [
+    {
+      "path": "service.yaml",
+      "template": "apiVersion: serving.knative.dev/v1\nkind: Service\nmetadata: { name: app }\nspec: {}\n"
+    }
+  ],
+  "patches": []
+}

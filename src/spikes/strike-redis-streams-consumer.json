@@ -1,0 +1,18 @@
+{
+  "id": "strike-redis-streams-consumer",
+  "name": "Redis Streams Consumer",
+  "stack": [
+    "redis"
+  ],
+  "tags": [
+    "queue",
+    "stream"
+  ],
+  "files": [
+    {
+      "path": "streams/consumer.js",
+      "template": "// redis streams xreadgroup skeleton\n"
+    }
+  ],
+  "patches": []
+}

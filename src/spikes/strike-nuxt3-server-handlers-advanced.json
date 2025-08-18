@@ -1,0 +1,20 @@
+{
+  "id": "strike-nuxt3-server-handlers-advanced",
+  "name": "Nuxt3 Server Handlers Advanced",
+  "stack": [
+    "nuxt",
+    "nitro"
+  ],
+  "tags": [
+    "frontend",
+    "api",
+    "advanced"
+  ],
+  "files": [
+    {
+      "path": "server/api/users.get.ts",
+      "template": "export default defineEventHandler(()=> [{ id:1 }])\n"
+    }
+  ],
+  "patches": []
+}

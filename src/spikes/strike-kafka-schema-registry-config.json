@@ -1,0 +1,19 @@
+{
+  "id": "strike-kafka-schema-registry-config",
+  "name": "Kafka Schema Registry Config",
+  "stack": [
+    "kafka",
+    "schema-registry"
+  ],
+  "tags": [
+    "stream",
+    "schema"
+  ],
+  "files": [
+    {
+      "path": "kafka/schema-registry.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

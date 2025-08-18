@@ -1,0 +1,19 @@
+{
+  "id": "strike-phoenix-liveview-minimal",
+  "name": "Phoenix LiveView Minimal",
+  "stack": [
+    "elixir",
+    "phoenix"
+  ],
+  "tags": [
+    "frontend",
+    "realtime"
+  ],
+  "files": [
+    {
+      "path": "lib/app_web/live/page_live.ex",
+      "template": "defmodule AppWeb.PageLive do\\n  use AppWeb, :live_view\\n  def render(assigns), do: Phoenix.HTML.raw(\\\"<h1>Hello</h1>\\\")\\nend\\n"
+    }
+  ],
+  "patches": []
+}

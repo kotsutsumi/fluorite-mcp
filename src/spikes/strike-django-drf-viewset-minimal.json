@@ -1,0 +1,20 @@
+{
+  "id": "strike-django-drf-viewset-minimal",
+  "name": "Django DRF ViewSet Minimal",
+  "stack": [
+    "python",
+    "django",
+    "drf"
+  ],
+  "tags": [
+    "backend",
+    "api"
+  ],
+  "files": [
+    {
+      "path": "app/views.py",
+      "template": "from rest_framework import viewsets\nclass ItemViewSet(viewsets.ViewSet):\n    def list(self, request):\n        return Response([])\n"
+    }
+  ],
+  "patches": []
+}

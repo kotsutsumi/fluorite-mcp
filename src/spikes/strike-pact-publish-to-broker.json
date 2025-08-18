@@ -1,0 +1,19 @@
+{
+  "id": "strike-pact-publish-to-broker",
+  "name": "Pact Publish to Broker",
+  "stack": [
+    "pact"
+  ],
+  "tags": [
+    "test",
+    "contract",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/pact-publish.yml",
+      "template": "name: Pact Publish\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

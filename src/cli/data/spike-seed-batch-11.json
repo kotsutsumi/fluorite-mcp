@@ -1,0 +1,54 @@
+{
+  "items": [
+    { "id": "strike-echo-middlewares-advanced", "name": "Echo Middlewares Advanced", "stack": ["go","echo"], "tags": ["backend","advanced","middleware"], "files": [{ "path": "main.go", "template": "package main\n// echo middlewares advanced skeleton (recover, cors, rate-limit)\nfunc main(){}\n" }] },
+    { "id": "strike-nestjs-guards-interceptors", "name": "NestJS Guards & Interceptors", "stack": ["nestjs","typescript"], "tags": ["backend","auth"], "files": [{ "path": "src/app.guard.ts", "template": "// NestJS guard/interceptor skeleton\n" }] },
+    { "id": "strike-fastapi-dependencies-minimal", "name": "FastAPI Dependencies Minimal", "stack": ["python","fastapi"], "tags": ["backend"], "files": [{ "path": "main.py", "template": "from fastapi import FastAPI, Depends\napp = FastAPI()\nasync def dep(): return True\n@app.get('/health')\nasync def health(_: bool = Depends(dep)): return {'ok': True}\n" }] },
+    { "id": "strike-django-drf-viewset-minimal", "name": "Django DRF ViewSet Minimal", "stack": ["python","django","drf"], "tags": ["backend","api"], "files": [{ "path": "app/views.py", "template": "from rest_framework import viewsets\nclass ItemViewSet(viewsets.ViewSet):\n    def list(self, request):\n        return Response([])\n" }] },
+    { "id": "strike-rails-activejob-minimal", "name": "Rails ActiveJob Minimal", "stack": ["ruby","rails"], "tags": ["jobs"], "files": [{ "path": "app/jobs/example_job.rb", "template": "class ExampleJob < ApplicationJob\n  queue_as :default\n  def perform\n  end\nend\n" }] },
+    { "id": "strike-phoenix-liveview-minimal", "name": "Phoenix LiveView Minimal", "stack": ["elixir","phoenix"], "tags": ["frontend","realtime"], "files": [{ "path": "lib/app_web/live/page_live.ex", "template": "defmodule AppWeb.PageLive do\\n  use AppWeb, :live_view\\n  def render(assigns), do: Phoenix.HTML.raw(\\\"<h1>Hello</h1>\\\")\\nend\\n" }] },
+
+    { "id": "strike-trpc-next-client-minimal", "name": "tRPC Next.js Client Minimal", "stack": ["trpc","nextjs"], "tags": ["frontend","api"], "files": [{ "path": "src/utils/trpc.ts", "template": "// tRPC next client skeleton\n" }] },
+    { "id": "strike-graphql-yoga-minimal", "name": "GraphQL Yoga Minimal", "stack": ["graphql","yoga"], "tags": ["api"], "files": [{ "path": "index.ts", "template": "// graphql-yoga minimal skeleton\n" }] },
+    { "id": "strike-webrtc-simple-peer-minimal", "name": "WebRTC Simple Peer Minimal", "stack": ["webrtc"], "tags": ["realtime"], "files": [{ "path": "client/webrtc.js", "template": "// simple-peer webrtc skeleton\n" }] },
+    { "id": "strike-pwa-manifest-sw", "name": "PWA Manifest + SW", "stack": ["pwa"], "tags": ["frontend","offline"], "files": [{ "path": "public/manifest.json", "template": "{ \"name\": \"App\" }\n" }, { "path": "public/sw.js", "template": "// service worker skeleton\n" }] },
+    { "id": "strike-next-edge-middleware-geo", "name": "Next Edge Middleware Geolocation", "stack": ["nextjs"], "tags": ["frontend","edge"], "files": [{ "path": "middleware.ts", "template": "export function middleware(){ return Response.next() }\n" }] },
+    { "id": "strike-nuxt3-seo-meta-composable", "name": "Nuxt3 SEO Meta Composable", "stack": ["nuxt"], "tags": ["frontend","seo"], "files": [{ "path": "composables/useSeo.ts", "template": "export const useSeo=()=>({ title:'App' })\n" }] },
+    { "id": "strike-sveltekit-handle-hooks", "name": "SvelteKit Handle Hooks", "stack": ["sveltekit"], "tags": ["frontend"], "files": [{ "path": "src/hooks.server.ts", "template": "export const handle = async ({ resolve }) => resolve();\n" }] },
+
+    { "id": "strike-zod-openapi-config-minimal", "name": "Zod OpenAPI Config Minimal", "stack": ["zod","openapi"], "tags": ["api","validation"], "files": [{ "path": "openapi/zod.ts", "template": "// zod-openapi generation config skeleton\n" }] },
+    { "id": "strike-openapi-client-gen-config", "name": "OpenAPI Client Generation Config", "stack": ["openapi"], "tags": ["api","client"], "files": [{ "path": "openapi/client.config.json", "template": "{ }\n" }] },
+    { "id": "strike-opa-policies-bundle-advanced", "name": "OPA Policies Bundle Advanced", "stack": ["opa"], "tags": ["security","policy"], "files": [{ "path": "policy/bundle/README.md", "template": "# bundle layout\n" }] },
+    { "id": "strike-koa-jwt-auth-middleware", "name": "Koa JWT Auth Middleware", "stack": ["koa","jwt"], "tags": ["security","auth"], "files": [{ "path": "middleware/jwt.js", "template": "// koa jwt middleware skeleton\n" }] },
+    { "id": "strike-hapi-joi-validation", "name": "hapi + Joi Validation", "stack": ["hapi","joi"], "tags": ["backend","validation"], "files": [{ "path": "server.js", "template": "// hapi joi validation skeleton\n" }] },
+
+    { "id": "strike-prisma-migration-seed", "name": "Prisma Migration + Seed", "stack": ["prisma"], "tags": ["db"], "files": [{ "path": "prisma/seed.ts", "template": "// prisma seed skeleton\n" }] },
+    { "id": "strike-drizzle-migration-minimal", "name": "Drizzle Migration Minimal", "stack": ["drizzle"], "tags": ["db"], "files": [{ "path": "drizzle/migrate.ts", "template": "// drizzle migrate skeleton\n" }] },
+    { "id": "strike-knex-seeds-minimal", "name": "Knex Seeds Minimal", "stack": ["knex"], "tags": ["db"], "files": [{ "path": "seeds/001_users.js", "template": "export async function seed(){ /* ... */ }\n" }] },
+
+    { "id": "strike-gh-actions-monorepo-cache-advanced", "name": "GH Actions Monorepo Cache Advanced", "stack": ["github","actions"], "tags": ["ci","monorepo"], "files": [{ "path": ".github/workflows/monorepo-cache.yml", "template": "name: MonorepoCache\non: [push]\n" }] },
+    { "id": "strike-helm-templates-helpers", "name": "Helm Templates Helpers", "stack": ["helm"], "tags": ["ops"], "files": [{ "path": "chart/templates/_helpers.tpl", "template": "{{/* helpers */}}\n" }] },
+    { "id": "strike-terraform-s3-dynamodb-backend", "name": "Terraform S3 + DynamoDB Backend", "stack": ["terraform","aws"], "tags": ["infra"], "files": [{ "path": "backend.tf", "template": "terraform { backend \"s3\" { bucket=\"bucket\" key=\"state\" region=\"us-east-1\" dynamodb_table=\"lock\" } }\n" }] },
+    { "id": "strike-prometheus-scrape-configs-module", "name": "Prometheus Scrape Configs Module", "stack": ["prometheus"], "tags": ["observability"], "files": [{ "path": "prometheus/scrape.yml", "template": "scrape_configs: []\n" }] },
+    { "id": "strike-loki-promtail-relabel", "name": "Loki/Promtail Relabel", "stack": ["loki","promtail"], "tags": ["observability","logs"], "files": [{ "path": "promtail/relabel.yaml", "template": "relabel_configs: []\n" }] },
+    { "id": "strike-grafana-datasource-config", "name": "Grafana Datasource Config", "stack": ["grafana"], "tags": ["observability"], "files": [{ "path": "grafana/datasource.yaml", "template": "apiVersion: 1\ndatasources: []\n" }] },
+
+    { "id": "strike-vitest-happy-dom-setup", "name": "Vitest happy-dom Setup", "stack": ["vitest"], "tags": ["test"], "files": [{ "path": "vitest.setup.ts", "template": "// happy-dom setup skeleton\n" }] },
+    { "id": "strike-jest-esm-node-config", "name": "Jest ESM Node Config Advanced", "stack": ["jest"], "tags": ["test"], "files": [{ "path": "jest.config.ts", "template": "// ESM + Node test env config skeleton\n" }] },
+    { "id": "strike-cypress-network-stubbing", "name": "Cypress Network Stubbing", "stack": ["cypress"], "tags": ["test"], "files": [{ "path": "cypress/e2e/network.cy.ts", "template": "// cy.intercept skeleton\n" }] },
+    { "id": "strike-pact-publish-to-broker", "name": "Pact Publish to Broker", "stack": ["pact"], "tags": ["test","contract","ci"], "files": [{ "path": ".github/workflows/pact-publish.yml", "template": "name: Pact Publish\non: [push]\n" }] },
+
+    { "id": "strike-redis-streams-consumer", "name": "Redis Streams Consumer", "stack": ["redis"], "tags": ["queue","stream"], "files": [{ "path": "streams/consumer.js", "template": "// redis streams xreadgroup skeleton\n" }] },
+    { "id": "strike-kafka-schema-registry-config", "name": "Kafka Schema Registry Config", "stack": ["kafka","schema-registry"], "tags": ["stream","schema"], "files": [{ "path": "kafka/schema-registry.json", "template": "{ }\n" }] },
+    { "id": "strike-nats-jetstream-durable-ack", "name": "NATS JetStream Durable ACK Policy", "stack": ["nats"], "tags": ["messaging"], "files": [{ "path": "nats/durable-ack.js", "template": "// durable consumer ack policy skeleton\n" }] },
+
+    { "id": "strike-aws-step-functions-state", "name": "AWS Step Functions State Machine", "stack": ["aws","step-functions"], "tags": ["cloud","workflow"], "files": [{ "path": "state-machine.json", "template": "{ \"StartAt\": \"Start\", \"States\": {} }\n" }] },
+    { "id": "strike-gcp-cloud-run-service", "name": "GCP Cloud Run Service", "stack": ["gcp","cloud-run"], "tags": ["cloud","serverless"], "files": [{ "path": "service.yaml", "template": "apiVersion: serving.knative.dev/v1\nkind: Service\nmetadata: { name: app }\nspec: {}\n" }] },
+    { "id": "strike-azure-bicep-storage", "name": "Azure Bicep Storage Account", "stack": ["azure","bicep"], "tags": ["infra"], "files": [{ "path": "main.bicep", "template": "// storage account bicep skeleton\n" }] },
+    { "id": "strike-dbt-exposures-minimal", "name": "dbt Exposures Minimal", "stack": ["dbt"], "tags": ["data"], "files": [{ "path": "models/exposures.yml", "template": "version: 2\nexposures: []\n" }] },
+    { "id": "strike-airflow-kubernetes-pod-operator", "name": "Airflow KubernetesPodOperator", "stack": ["airflow"], "tags": ["data","k8s"], "files": [{ "path": "dags/kpo.py", "template": "# KubernetesPodOperator skeleton\n" }] },
+
+    { "id": "strike-openapi-yaml-minimal", "name": "(Merge) OpenAPI YAML Meta", "stack": ["openapi"], "tags": ["api","merge"] },
+    { "id": "strike-nextjs-route-handler-minimal", "name": "(Merge) Next.js Route Handler Meta", "stack": ["nextjs"], "tags": ["frontend","api","merge"] },
+    { "id": "strike-react-hook-form-minimal", "name": "(Merge) RHF Minimal Meta", "stack": ["react","forms"], "tags": ["frontend","merge"] },
+    { "id": "strike-dockerfile-node-minimal", "name": "(Merge) Dockerfile Node Meta", "stack": ["docker"], "tags": ["ops","merge"] }
+  ]}

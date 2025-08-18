@@ -1,0 +1,19 @@
+{
+  "id": "strike-aws-step-functions-state",
+  "name": "AWS Step Functions State Machine",
+  "stack": [
+    "aws",
+    "step-functions"
+  ],
+  "tags": [
+    "cloud",
+    "workflow"
+  ],
+  "files": [
+    {
+      "path": "state-machine.json",
+      "template": "{ \"StartAt\": \"Start\", \"States\": {} }\n"
+    }
+  ],
+  "patches": []
+}

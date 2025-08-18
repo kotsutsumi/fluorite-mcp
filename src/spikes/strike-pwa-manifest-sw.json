@@ -1,0 +1,22 @@
+{
+  "id": "strike-pwa-manifest-sw",
+  "name": "PWA Manifest + SW",
+  "stack": [
+    "pwa"
+  ],
+  "tags": [
+    "frontend",
+    "offline"
+  ],
+  "files": [
+    {
+      "path": "public/manifest.json",
+      "template": "{ \"name\": \"App\" }\n"
+    },
+    {
+      "path": "public/sw.js",
+      "template": "// service worker skeleton\n"
+    }
+  ],
+  "patches": []
+}

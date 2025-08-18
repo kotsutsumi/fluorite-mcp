@@ -1,0 +1,19 @@
+{
+  "id": "strike-gh-actions-monorepo-cache-advanced",
+  "name": "GH Actions Monorepo Cache Advanced",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci",
+    "monorepo"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/monorepo-cache.yml",
+      "template": "name: MonorepoCache\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

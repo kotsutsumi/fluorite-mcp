@@ -1,0 +1,18 @@
+{
+  "id": "strike-airflow-kubernetes-pod-operator",
+  "name": "Airflow KubernetesPodOperator",
+  "stack": [
+    "airflow"
+  ],
+  "tags": [
+    "data",
+    "k8s"
+  ],
+  "files": [
+    {
+      "path": "dags/kpo.py",
+      "template": "# KubernetesPodOperator skeleton\n"
+    }
+  ],
+  "patches": []
+}
