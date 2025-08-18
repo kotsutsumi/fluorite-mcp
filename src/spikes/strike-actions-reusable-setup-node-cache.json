@@ -1,0 +1,19 @@
+{
+  "id": "strike-actions-reusable-setup-node-cache",
+  "name": "Actions Reusable Node Cache",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci",
+    "cache"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/setup-node-cache.yml",
+      "template": "name: NodeCache\non: workflow_call\n"
+    }
+  ],
+  "patches": []
+}

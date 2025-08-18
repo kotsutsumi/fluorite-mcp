@@ -1,0 +1,18 @@
+{
+  "id": "strike-terraform-environment-promote-ci",
+  "name": "Terraform Env Promote CI",
+  "stack": [
+    "terraform"
+  ],
+  "tags": [
+    "infra",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/tf-promote.yml",
+      "template": "name: TFPromote\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-dbt-env-profiles-ci",
+  "name": "dbt env/profiles CI",
+  "stack": [
+    "dbt"
+  ],
+  "tags": [
+    "data",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/dbt-env-profiles.yml",
+      "template": "name: DBTEnvProfiles\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

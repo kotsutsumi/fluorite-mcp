@@ -1,0 +1,18 @@
+{
+  "id": "strike-terraform-lockfile-pinning",
+  "name": "Terraform Lockfile Pinning",
+  "stack": [
+    "terraform"
+  ],
+  "tags": [
+    "infra",
+    "deps"
+  ],
+  "files": [
+    {
+      "path": ".terraform.lock.hcl",
+      "template": "# lockfile pinning notes\n"
+    }
+  ],
+  "patches": []
+}

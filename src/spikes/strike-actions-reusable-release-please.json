@@ -1,0 +1,20 @@
+{
+  "id": "strike-actions-reusable-release-please",
+  "name": "Actions Reusable Release Please",
+  "stack": [
+    "github",
+    "actions",
+    "release-please"
+  ],
+  "tags": [
+    "ci",
+    "release"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/release-please.yml",
+      "template": "name: ReleasePlease\non: workflow_call\n"
+    }
+  ],
+  "patches": []
+}

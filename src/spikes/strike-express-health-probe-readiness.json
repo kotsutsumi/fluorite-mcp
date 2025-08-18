@@ -1,0 +1,19 @@
+{
+  "id": "strike-express-health-probe-readiness",
+  "name": "Express Health/Readiness Probes",
+  "stack": [
+    "node",
+    "express"
+  ],
+  "tags": [
+    "backend",
+    "health"
+  ],
+  "files": [
+    {
+      "path": "server.js",
+      "template": "// express /healthz and /readyz skeleton\n"
+    }
+  ],
+  "patches": []
+}

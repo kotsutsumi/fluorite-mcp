@@ -1,0 +1,18 @@
+{
+  "id": "strike-playwright-parallel-shards-ci",
+  "name": "Playwright Parallel Shards CI",
+  "stack": [
+    "playwright"
+  ],
+  "tags": [
+    "test",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/pw-parallel-shards.yml",
+      "template": "name: PWParallelShards\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

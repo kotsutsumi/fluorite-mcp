@@ -1,0 +1,18 @@
+{
+  "id": "strike-grafana-alert-env-overrides",
+  "name": "Grafana Alert Env Overrides",
+  "stack": [
+    "grafana"
+  ],
+  "tags": [
+    "observability",
+    "alerts"
+  ],
+  "files": [
+    {
+      "path": "grafana/alerts/env_overrides.yaml",
+      "template": "groups: []\n"
+    }
+  ],
+  "patches": []
+}

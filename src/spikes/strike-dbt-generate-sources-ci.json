@@ -1,0 +1,18 @@
+{
+  "id": "strike-dbt-generate-sources-ci",
+  "name": "dbt generate-sources CI",
+  "stack": [
+    "dbt"
+  ],
+  "tags": [
+    "data",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/dbt-sources.yml",
+      "template": "name: DBTSources\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

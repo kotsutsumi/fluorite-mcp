@@ -1,0 +1,20 @@
+{
+  "id": "strike-helm-values-sops-kms",
+  "name": "Helm Values with SOPS KMS",
+  "stack": [
+    "helm",
+    "sops",
+    "kms"
+  ],
+  "tags": [
+    "ops",
+    "secrets"
+  ],
+  "files": [
+    {
+      "path": "helm/values.enc.yaml",
+      "template": "# sops + kms values skeleton\n"
+    }
+  ],
+  "patches": []
+}

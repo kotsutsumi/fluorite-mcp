@@ -1,0 +1,19 @@
+{
+  "id": "strike-actions-release-drafter",
+  "name": "Actions Release Drafter",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci",
+    "release"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/release-drafter.yml",
+      "template": "name: ReleaseDrafter\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

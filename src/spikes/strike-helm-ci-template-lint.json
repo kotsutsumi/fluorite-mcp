@@ -1,0 +1,18 @@
+{
+  "id": "strike-helm-ci-template-lint",
+  "name": "Helm CI Template Lint",
+  "stack": [
+    "helm"
+  ],
+  "tags": [
+    "ops",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/helm-lint.yml",
+      "template": "name: HelmLint\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,19 @@
+{
+  "id": "strike-grafana-k8s-cluster-dashboard",
+  "name": "Grafana K8s Cluster Dashboard",
+  "stack": [
+    "grafana",
+    "kubernetes"
+  ],
+  "tags": [
+    "observability",
+    "dashboards"
+  ],
+  "files": [
+    {
+      "path": "grafana/dashboards/k8s_cluster.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

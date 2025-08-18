@@ -1,0 +1,19 @@
+{
+  "id": "strike-airflow-bq-copy-dataset",
+  "name": "Airflow BigQuery Copy Dataset",
+  "stack": [
+    "airflow",
+    "gcp"
+  ],
+  "tags": [
+    "data",
+    "ops"
+  ],
+  "files": [
+    {
+      "path": "dags/bq_copy_dataset.py",
+      "template": "# copy dataset skeleton\n"
+    }
+  ],
+  "patches": []
+}

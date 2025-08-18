@@ -1,0 +1,19 @@
+{
+  "id": "strike-actions-reusable-artifacts-cleanup",
+  "name": "Actions Artifacts Cleanup",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci",
+    "artifacts"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/artifacts-cleanup.yml",
+      "template": "name: ArtifactsCleanup\non: workflow_call\n"
+    }
+  ],
+  "patches": []
+}

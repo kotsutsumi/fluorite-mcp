@@ -1,0 +1,19 @@
+{
+  "id": "strike-msw-rest-oauth-mock",
+  "name": "MSW REST OAuth Mock",
+  "stack": [
+    "msw",
+    "oauth2"
+  ],
+  "tags": [
+    "test",
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "src/mocks/oauth.ts",
+      "template": "// oauth endpoints mock skeleton\n"
+    }
+  ],
+  "patches": []
+}

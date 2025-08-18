@@ -1,0 +1,19 @@
+{
+  "id": "strike-collector-logs-route-by-attrs",
+  "name": "Collector Logs Route by Attributes",
+  "stack": [
+    "opentelemetry",
+    "collector"
+  ],
+  "tags": [
+    "observability",
+    "routing"
+  ],
+  "files": [
+    {
+      "path": "otel/logs_route.yaml",
+      "template": "processors: { routing: {} }\n"
+    }
+  ],
+  "patches": []
+}

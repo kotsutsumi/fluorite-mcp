@@ -1,0 +1,19 @@
+{
+  "id": "strike-actions-reusable-gh-release",
+  "name": "Actions Reusable GitHub Release",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci",
+    "release"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/gh-release.yml",
+      "template": "name: GHRelease\non: workflow_call\n"
+    }
+  ],
+  "patches": []
+}

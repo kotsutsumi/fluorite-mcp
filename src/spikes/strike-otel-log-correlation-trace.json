@@ -1,0 +1,19 @@
+{
+  "id": "strike-otel-log-correlation-trace",
+  "name": "OTel Log Correlation with Trace",
+  "stack": [
+    "opentelemetry"
+  ],
+  "tags": [
+    "observability",
+    "logs",
+    "traces"
+  ],
+  "files": [
+    {
+      "path": "otel/log_trace_correlation.js",
+      "template": "// correlate logs with current trace skeleton\n"
+    }
+  ],
+  "patches": []
+}

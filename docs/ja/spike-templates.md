@@ -15,27 +15,27 @@ Fluorite MCP の **スパイクテンプレート** システムは、750以上�
 
 ## 🛠️ カテゴリ別テンプレート
 
-### Frontend UI & Components
+### フロントエンドUI・コンポーネント
 - **React/Next.js**: モダンなUIコンポーネントとページ
 - **Vue/Nuxt**: リアクティブなコンポーネントとレイアウト
 - **Design Systems**: Tailwind CSS、shadcn/ui、Radix UI
 
-### Backend & APIs
+### バックエンド・API
 - **FastAPI**: Pydantic検証付きRESTful API
 - **Node.js/Express**: TypeScript対応のサーバーサイド開発
 - **Authentication**: JWT、OAuth、セッション管理
 
-### Database & Storage
+### データベース・ストレージ
 - **Prisma ORM**: TypeScript対応のデータベースアクセス
 - **Drizzle ORM**: 高性能SQLクエリビルダー
 - **Redis**: キャッシュとセッション管理
 
-### Testing & Quality
+### テスト・品質保証
 - **Jest/Vitest**: 単体テストとテストユーティリティ
 - **Playwright**: E2Eテストとブラウザ自動化
 - **ESLint/Prettier**: コード品質とフォーマット
 
-### DevOps & Deployment
+### DevOps・デプロイメント
 - **Docker**: コンテナ化とデプロイ
 - **CI/CD**: GitHub Actions、Vercel、Netlify
 - **Monitoring**: ログ、メトリクス、アラート

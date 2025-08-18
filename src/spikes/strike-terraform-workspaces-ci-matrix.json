@@ -1,0 +1,18 @@
+{
+  "id": "strike-terraform-workspaces-ci-matrix",
+  "name": "Terraform Workspaces CI Matrix",
+  "stack": [
+    "terraform"
+  ],
+  "tags": [
+    "infra",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/tf-workspaces.yml",
+      "template": "name: TFWorkspaces\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

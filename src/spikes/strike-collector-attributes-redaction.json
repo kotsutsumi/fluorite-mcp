@@ -1,0 +1,19 @@
+{
+  "id": "strike-collector-attributes-redaction",
+  "name": "Collector Attributes Redaction",
+  "stack": [
+    "opentelemetry",
+    "collector"
+  ],
+  "tags": [
+    "observability",
+    "privacy"
+  ],
+  "files": [
+    {
+      "path": "otel/attributes_redact.yaml",
+      "template": "processors: { attributes: { actions: [] } }\n"
+    }
+  ],
+  "patches": []
+}

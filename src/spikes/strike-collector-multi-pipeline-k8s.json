@@ -1,0 +1,19 @@
+{
+  "id": "strike-collector-multi-pipeline-k8s",
+  "name": "Collector Multi-Pipeline for K8s",
+  "stack": [
+    "opentelemetry",
+    "collector"
+  ],
+  "tags": [
+    "observability",
+    "k8s"
+  ],
+  "files": [
+    {
+      "path": "otel/k8s_multi.yaml",
+      "template": "pipelines: { logs: {}, metrics: {}, traces: {} }\n"
+    }
+  ],
+  "patches": []
+}

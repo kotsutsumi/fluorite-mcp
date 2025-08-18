@@ -1,0 +1,18 @@
+{
+  "id": "strike-otel-logs-json-processor",
+  "name": "OTel Logs JSON Processor",
+  "stack": [
+    "opentelemetry"
+  ],
+  "tags": [
+    "observability",
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "otel/logs_json_processor.js",
+      "template": "// transform app json logs to otel format skeleton\n"
+    }
+  ],
+  "patches": []
+}

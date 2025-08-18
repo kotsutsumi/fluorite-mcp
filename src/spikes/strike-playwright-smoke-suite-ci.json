@@ -1,0 +1,18 @@
+{
+  "id": "strike-playwright-smoke-suite-ci",
+  "name": "Playwright Smoke Suite CI",
+  "stack": [
+    "playwright"
+  ],
+  "tags": [
+    "test",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/pw-smoke.yml",
+      "template": "name: PWSmoke\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

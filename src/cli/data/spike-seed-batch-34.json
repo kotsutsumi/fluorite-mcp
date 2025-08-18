@@ -1,0 +1,51 @@
+{
+  "items": [
+    { "id": "strike-express-cors-preflight-cache", "name": "Express CORS Preflight Cache", "stack": ["node","express","cors"], "tags": ["backend","cors","perf"], "files": [{ "path": "server.js", "template": "// express cors preflight cache skeleton\n" }] },
+    { "id": "strike-koa-conditional-get-etag", "name": "Koa Conditional GET + ETag", "stack": ["node","koa"], "tags": ["backend","cache"], "files": [{ "path": "server.js", "template": "// koa conditional get + etag skeleton\n" }] },
+    { "id": "strike-fastify-logging-pino-pretty", "name": "Fastify Pino Pretty Logging", "stack": ["node","fastify","pino"], "tags": ["backend","logs"], "files": [{ "path": "server.js", "template": "// fastify pino pretty skeleton\n" }] },
+    { "id": "strike-go-chi-middleware-chain", "name": "Go chi Middleware Chain", "stack": ["go","chi"], "tags": ["backend","middleware"], "files": [{ "path": "main.go", "template": "package main\n// chi middleware chain skeleton\nfunc main(){}\n" }] },
+    { "id": "strike-deno-fresh-request-context", "name": "Deno Fresh Request Context", "stack": ["deno","fresh"], "tags": ["backend","context"], "files": [{ "path": "utils/context.ts", "template": "// fresh request context skeleton\n" }] },
+    { "id": "strike-hono-jwt-protect-route", "name": "Hono JWT Protected Route", "stack": ["hono","jwt"], "tags": ["backend","auth"], "files": [{ "path": "server.ts", "template": "// hono jwt protected route skeleton\n" }] },
+
+    { "id": "strike-nextjs-route-handler-jsonschema", "name": "Next.js Route Handler JSON Schema", "stack": ["nextjs","ajv"], "tags": ["frontend","api","validation"], "files": [{ "path": "app/api/schema/route.ts", "template": "// next route json schema validation skeleton\n" }] },
+    { "id": "strike-nuxt3-formdata-endpoint", "name": "Nuxt3 FormData Endpoint", "stack": ["nuxt"], "tags": ["frontend","api","upload"], "files": [{ "path": "server/api/form.post.ts", "template": "// formdata endpoint skeleton\n" }] },
+    { "id": "strike-sveltekit-endpoint-auth-cookie", "name": "SvelteKit Endpoint Auth via Cookie", "stack": ["sveltekit"], "tags": ["frontend","api","auth"], "files": [{ "path": "src/routes/api/auth/+server.ts", "template": "// cookie-based auth check skeleton\n" }] },
+    { "id": "strike-angular-standalone-feature-routes", "name": "Angular Standalone Feature Routes", "stack": ["angular"], "tags": ["frontend","routing"], "files": [{ "path": "src/app/feature.routes.ts", "template": "// standalone feature routes skeleton\n" }] },
+    { "id": "strike-solid-router-suspense-outlet", "name": "Solid Router Suspense Outlet", "stack": ["solid"], "tags": ["frontend","routing","ssr"], "files": [{ "path": "src/SuspenseOutlet.tsx", "template": "// suspense outlet skeleton\n" }] },
+
+    { "id": "strike-otel-logs-json-processor", "name": "OTel Logs JSON Processor", "stack": ["opentelemetry"], "tags": ["observability","logs"], "files": [{ "path": "otel/logs_json_processor.js", "template": "// transform app json logs to otel format skeleton\n" }] },
+    { "id": "strike-collector-k8s-attributes", "name": "Collector K8s Attributes Processor", "stack": ["opentelemetry","collector"], "tags": ["observability","k8s"], "files": [{ "path": "otel/k8s_attrs.yaml", "template": "processors: { k8sattributes: {} }\n" }] },
+    { "id": "strike-grafana-dashboard-api-latency", "name": "Grafana Dashboard API Latency", "stack": ["grafana"], "tags": ["observability","dashboards"], "files": [{ "path": "grafana/dashboards/api_latency.json", "template": "{ }\n" }] },
+
+    { "id": "strike-oidc-rotating-jwk-sets", "name": "OIDC Rotating JWK Sets", "stack": ["oidc","jose"], "tags": ["security","jwt"], "files": [{ "path": "auth/rotating_jwks.md", "template": "# rotating jwks sets skeleton\n" }] },
+    { "id": "strike-jwt-signed-cookies", "name": "JWT Signed Cookies", "stack": ["jwt"], "tags": ["security","cookies"], "files": [{ "path": "security/signed_cookies.md", "template": "# jwt signed cookies skeleton\n" }] },
+    { "id": "strike-opa-policy-tests-ci-matrix", "name": "OPA Policy Tests CI Matrix", "stack": ["opa"], "tags": ["security","policy","ci"], "files": [{ "path": ".github/workflows/opa-matrix.yml", "template": "name: OPAMatrix\non: [push]\n" }] },
+
+    { "id": "strike-kafka-consumer-group-rebalance-cooperative", "name": "Kafka Cooperative Rebalance", "stack": ["kafka"], "tags": ["stream","rebalance"], "files": [{ "path": "kafka/cooperative_rebalance.md", "template": "# cooperative rebalance notes\n" }] },
+    { "id": "strike-nats-mirror-streams", "name": "NATS Mirror Streams", "stack": ["nats"], "tags": ["messaging","topology"], "files": [{ "path": "nats/mirror_streams.md", "template": "# mirror streams patterns\n" }] },
+    { "id": "strike-sqs-cross-account-queues", "name": "SQS Cross-Account Queues", "stack": ["aws","sqs"], "tags": ["queue","security"], "files": [{ "path": "aws/cross_account.md", "template": "# cross account queue access\n" }] },
+
+    { "id": "strike-actions-reusable-trivy-scan", "name": "Actions Reusable Trivy Scan", "stack": ["github","actions","trivy"], "tags": ["ci","security"], "files": [{ "path": ".github/workflows/trivy-scan.yml", "template": "name: TrivyScan\non: workflow_call\n" }] },
+    { "id": "strike-terraform-environment-promote-ci", "name": "Terraform Env Promote CI", "stack": ["terraform"], "tags": ["infra","ci"], "files": [{ "path": ".github/workflows/tf-promote.yml", "template": "name: TFPromote\non: [push]\n" }] },
+    { "id": "strike-helm-ci-diff-preview", "name": "Helm CI Diff Preview", "stack": ["helm"], "tags": ["ops","ci"], "files": [{ "path": ".github/workflows/helm-diff.yml", "template": "name: HelmDiff\non: [push]\n" }] },
+
+    { "id": "strike-msw-rest-error-states", "name": "MSW REST Error States", "stack": ["msw"], "tags": ["test"], "files": [{ "path": "src/mocks/errors_states.ts", "template": "// error states handlers skeleton\n" }] },
+    { "id": "strike-playwright-visual-regression", "name": "Playwright Visual Regression", "stack": ["playwright"], "tags": ["test","visual"], "files": [{ "path": "tests/visual.md", "template": "# visual regression examples\n" }] },
+    { "id": "strike-jest-dom-setup-extended", "name": "Jest DOM Setup Extended", "stack": ["jest"], "tags": ["test"], "files": [{ "path": "jest.dom.md", "template": "# jest-dom extended patterns\n" }] },
+
+    { "id": "strike-airflow-dags-modularization", "name": "Airflow DAGs Modularization", "stack": ["airflow"], "tags": ["data","architecture"], "files": [{ "path": "dags/modularization.md", "template": "# modularization patterns\n" }] },
+    { "id": "strike-dbt-jinja-macros-library", "name": "dbt Jinja Macros Library", "stack": ["dbt"], "tags": ["data","macros"], "files": [{ "path": "macros/library.md", "template": "# macros library patterns\n" }] },
+    { "id": "strike-bigquery-data-governance", "name": "BigQuery Data Governance", "stack": ["gcp","bigquery"], "tags": ["data","governance"], "files": [{ "path": "docs/governance.md", "template": "# data governance notes\n" }] },
+
+    { "id": "strike-aws-lambda-alarms", "name": "AWS Lambda Alarms", "stack": ["aws","lambda","cloudwatch"], "tags": ["cloud","alerts"], "files": [{ "path": "lambda/alarms.json", "template": "{ }\n" }] },
+    { "id": "strike-gcp-storage-retention-policy", "name": "GCP Storage Retention Policy", "stack": ["gcp","gcs"], "tags": ["cloud","lifecycle"], "files": [{ "path": "gcs/retention.json", "template": "{ }\n" }] },
+    { "id": "strike-azure-api-management-policy", "name": "Azure API Management Policy", "stack": ["azure","apim"], "tags": ["cloud","api"], "files": [{ "path": "apim/policy.xml", "template": "<!-- apim policy skeleton -->\n" }] },
+
+    { "id": "strike-openapi-yaml-minimal", "name": "(Merge) OpenAPI YAML Meta", "stack": ["openapi"], "tags": ["api","merge"] },
+    { "id": "strike-nextjs-route-handler-minimal", "name": "(Merge) Next.js Route Handler Meta", "stack": ["nextjs"], "tags": ["frontend","api","merge"] },
+    { "id": "strike-dockerfile-node-minimal", "name": "(Merge) Dockerfile Node Meta", "stack": ["docker"], "tags": ["ops","merge"] },
+    { "id": "strike-otel-node-tracer-minimal", "name": "(Merge) OTel Node Tracer Meta", "stack": ["opentelemetry"], "tags": ["observability","merge"] },
+    { "id": "strike-react-hook-form-minimal", "name": "(Merge) RHF Minimal Meta", "stack": ["react","forms"], "tags": ["frontend","merge"] }
+  ]
+}
+

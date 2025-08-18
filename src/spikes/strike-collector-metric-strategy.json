@@ -1,0 +1,19 @@
+{
+  "id": "strike-collector-metric-strategy",
+  "name": "Collector Metric Strategy (batch/attrs)",
+  "stack": [
+    "opentelemetry",
+    "collector"
+  ],
+  "tags": [
+    "observability",
+    "metrics"
+  ],
+  "files": [
+    {
+      "path": "otel/metric_strategy.yaml",
+      "template": "processors: { batch: {}, attributes: {} }\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,19 @@
+{
+  "id": "strike-gcp-storage-retention-policy",
+  "name": "GCP Storage Retention Policy",
+  "stack": [
+    "gcp",
+    "gcs"
+  ],
+  "tags": [
+    "cloud",
+    "lifecycle"
+  ],
+  "files": [
+    {
+      "path": "gcs/retention.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

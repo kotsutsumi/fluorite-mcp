@@ -1,0 +1,18 @@
+{
+  "id": "strike-grafana-provision-alert-rules",
+  "name": "Grafana Provision Alert Rules",
+  "stack": [
+    "grafana"
+  ],
+  "tags": [
+    "observability",
+    "alerts"
+  ],
+  "files": [
+    {
+      "path": "grafana/provisioning/alerts.yaml",
+      "template": "apiVersion: 1\nalerting: {}\n"
+    }
+  ],
+  "patches": []
+}

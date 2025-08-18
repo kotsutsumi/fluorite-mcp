@@ -1,0 +1,19 @@
+{
+  "id": "strike-opa-policy-tests-ci-matrix",
+  "name": "OPA Policy Tests CI Matrix",
+  "stack": [
+    "opa"
+  ],
+  "tags": [
+    "security",
+    "policy",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/opa-matrix.yml",
+      "template": "name: OPAMatrix\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-otel-logs-to-stdout-json",
+  "name": "OTel Logs to Stdout(JSON)",
+  "stack": [
+    "opentelemetry"
+  ],
+  "tags": [
+    "observability",
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "otel/stdout_json.js",
+      "template": "// stdout log exporter json skeleton\n"
+    }
+  ],
+  "patches": []
+}

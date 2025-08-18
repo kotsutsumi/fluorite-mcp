@@ -1,0 +1,20 @@
+{
+  "id": "strike-actions-reusable-gh-pages",
+  "name": "Actions Reusable GitHub Pages",
+  "stack": [
+    "github",
+    "actions",
+    "pages"
+  ],
+  "tags": [
+    "ci",
+    "docs"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/gh-pages.yml",
+      "template": "name: GHPages\non: workflow_call\n"
+    }
+  ],
+  "patches": []
+}

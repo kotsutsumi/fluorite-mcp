@@ -1,0 +1,19 @@
+{
+  "id": "strike-actions-reusable-artifacts-retention",
+  "name": "Actions Artifacts Retention",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci",
+    "artifacts"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/artifacts_retention.yml",
+      "template": "name: ArtifactsRetention\non: workflow_call\n"
+    }
+  ],
+  "patches": []
+}

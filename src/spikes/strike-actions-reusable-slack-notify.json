@@ -1,0 +1,20 @@
+{
+  "id": "strike-actions-reusable-slack-notify",
+  "name": "Actions Reusable Slack Notify",
+  "stack": [
+    "github",
+    "actions",
+    "slack"
+  ],
+  "tags": [
+    "ci",
+    "notify"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/slack-notify.yml",
+      "template": "name: SlackNotify\non: workflow_call\n"
+    }
+  ],
+  "patches": []
+}

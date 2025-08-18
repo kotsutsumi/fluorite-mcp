@@ -1,0 +1,19 @@
+{
+  "id": "strike-jwt-jti-blacklist-store-redis",
+  "name": "JWT JTI Blacklist (Redis)",
+  "stack": [
+    "jwt",
+    "redis"
+  ],
+  "tags": [
+    "security",
+    "revocation"
+  ],
+  "files": [
+    {
+      "path": "security/jti_redis.md",
+      "template": "# jti blacklist via redis\n"
+    }
+  ],
+  "patches": []
+}

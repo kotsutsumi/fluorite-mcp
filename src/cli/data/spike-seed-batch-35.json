@@ -1,0 +1,51 @@
+{
+  "items": [
+    { "id": "strike-express-cache-control-swr", "name": "Express Cache-Control with Stale-While-Revalidate", "stack": ["node","express"], "tags": ["backend","cache"], "files": [{ "path": "server.js", "template": "// express cache-control: stale-while-revalidate skeleton\n" }] },
+    { "id": "strike-koa-graceful-shutdown-signals", "name": "Koa Graceful Shutdown with Signals", "stack": ["node","koa"], "tags": ["backend","reliability"], "files": [{ "path": "server.js", "template": "// koa graceful shutdown on SIGINT/SIGTERM skeleton\n" }] },
+    { "id": "strike-fastify-rate-limit-redis-store", "name": "Fastify Rate Limit with Redis Store", "stack": ["node","fastify","redis"], "tags": ["backend","security"], "files": [{ "path": "server.js", "template": "// fastify rate limit with redis store skeleton\n" }] },
+    { "id": "strike-go-gin-prometheus-metrics", "name": "Go Gin Prometheus Metrics", "stack": ["go","gin","prometheus"], "tags": ["backend","metrics"], "files": [{ "path": "main.go", "template": "package main\n// gin prometheus metrics skeleton\nfunc main(){}\n" }] },
+    { "id": "strike-deno-fresh-logger-context", "name": "Deno Fresh Logger with Context", "stack": ["deno","fresh"], "tags": ["backend","logs"], "files": [{ "path": "utils/logger.ts", "template": "// fresh logger with request context skeleton\n" }] },
+    { "id": "strike-hono-csrf-protection", "name": "Hono CSRF Protection", "stack": ["hono","csrf"], "tags": ["backend","security"], "files": [{ "path": "server.ts", "template": "// hono csrf protection middleware skeleton\n" }] },
+
+    { "id": "strike-nextjs-rsc-deduped-fetch", "name": "Next.js RSC Deduped fetch()", "stack": ["nextjs"], "tags": ["frontend","rsc","cache"], "files": [{ "path": "app/rsc/dedupedFetch.ts", "template": "// deduped fetch wrapper skeleton\n" }] },
+    { "id": "strike-nuxt3-server-rpc-pattern", "name": "Nuxt3 Server RPC Pattern", "stack": ["nuxt"], "tags": ["frontend","api","rpc"], "files": [{ "path": "server/api/rpc.post.ts", "template": "// rpc pattern endpoint skeleton\n" }] },
+    { "id": "strike-sveltekit-endpoint-file-download", "name": "SvelteKit File Download Endpoint", "stack": ["sveltekit"], "tags": ["frontend","api","download"], "files": [{ "path": "src/routes/api/download/+server.ts", "template": "// file download endpoint skeleton\n" }] },
+    { "id": "strike-angular-http-cache-etag", "name": "Angular HTTP Cache with ETag", "stack": ["angular"], "tags": ["frontend","http","cache"], "files": [{ "path": "src/app/http.etag.ts", "template": "// http etag cache interceptor skeleton\n" }] },
+    { "id": "strike-solid-router-progress-indicator", "name": "Solid Router Progress Indicator", "stack": ["solid"], "tags": ["frontend","routing","ux"], "files": [{ "path": "src/progress.tsx", "template": "// router progress indicator skeleton\n" }] },
+
+    { "id": "strike-otel-log-correlation-trace", "name": "OTel Log Correlation with Trace", "stack": ["opentelemetry"], "tags": ["observability","logs","traces"], "files": [{ "path": "otel/log_trace_correlation.js", "template": "// correlate logs with current trace skeleton\n" }] },
+    { "id": "strike-collector-filelog-receiver", "name": "Collector filelog Receiver", "stack": ["opentelemetry","collector"], "tags": ["observability","logs"], "files": [{ "path": "otel/filelog.yaml", "template": "receivers: { filelog: { include: ['logs/*.log'] } }\n" }] },
+    { "id": "strike-grafana-k8s-cluster-dashboard", "name": "Grafana K8s Cluster Dashboard", "stack": ["grafana","kubernetes"], "tags": ["observability","dashboards"], "files": [{ "path": "grafana/dashboards/k8s_cluster.json", "template": "{ }\n" }] },
+
+    { "id": "strike-oidc-dpop-proof-header", "name": "OIDC DPoP Proof Header", "stack": ["oidc","dpop"], "tags": ["security","auth"], "files": [{ "path": "auth/dpop_proof.md", "template": "# dpop proof header skeleton\n" }] },
+    { "id": "strike-jwt-detached-payload-jws", "name": "JWT Detached Payload (JWS)", "stack": ["jwt","jose"], "tags": ["security","jwt"], "files": [{ "path": "security/detached_jws.md", "template": "# detached jws skeleton\n" }] },
+    { "id": "strike-opa-bundle-signature-audit", "name": "OPA Bundle Signature Audit", "stack": ["opa"], "tags": ["security","policy","audit"], "files": [{ "path": "policy/bundle_signature_audit.md", "template": "# audit signatures skeleton\n" }] },
+
+    { "id": "strike-kafka-consumer-assign-partitions", "name": "Kafka Consumer Assign Partitions", "stack": ["kafka"], "tags": ["stream","partitions"], "files": [{ "path": "kafka/assign_partitions.md", "template": "# assign partitions patterns\n" }] },
+    { "id": "strike-nats-jetstream-consumer-retry", "name": "NATS JetStream Consumer Retry", "stack": ["nats"], "tags": ["messaging","retry"], "files": [{ "path": "nats/consumer_retry.md", "template": "# consumer retry strategies\n" }] },
+    { "id": "strike-sqs-message-grouping-patterns", "name": "SQS Message Grouping Patterns", "stack": ["aws","sqs"], "tags": ["queue","fifo"], "files": [{ "path": "aws/message_grouping.md", "template": "# message grouping patterns\n" }] },
+
+    { "id": "strike-actions-reusable-release-please", "name": "Actions Reusable Release Please", "stack": ["github","actions","release-please"], "tags": ["ci","release"], "files": [{ "path": ".github/workflows/release-please.yml", "template": "name: ReleasePlease\non: workflow_call\n" }] },
+    { "id": "strike-terraform-state-migration", "name": "Terraform State Migration", "stack": ["terraform"], "tags": ["infra","state"], "files": [{ "path": "docs/state_migration.md", "template": "# state migration notes\n" }] },
+    { "id": "strike-helm-values-shared-library", "name": "Helm Values Shared Library", "stack": ["helm"], "tags": ["ops","library"], "files": [{ "path": "helm/shared/README.md", "template": "# shared values library\n" }] },
+
+    { "id": "strike-msw-graphql-conditional-delay", "name": "MSW GraphQL Conditional Delay", "stack": ["msw","graphql"], "tags": ["test"], "files": [{ "path": "src/mocks/graphql_delay.ts", "template": "// conditional delay handlers skeleton\n" }] },
+    { "id": "strike-playwright-smoke-suite-ci", "name": "Playwright Smoke Suite CI", "stack": ["playwright"], "tags": ["test","ci"], "files": [{ "path": ".github/workflows/pw-smoke.yml", "template": "name: PWSmoke\non: [push]\n" }] },
+    { "id": "strike-jest-setup-tsdom", "name": "Jest Setup ts-dom", "stack": ["jest"], "tags": ["test","dom"], "files": [{ "path": "jest.tsdom.md", "template": "# ts-dom setup notes\n" }] },
+
+    { "id": "strike-airflow-gcs-to-bq-load", "name": "Airflow GCS to BigQuery Load", "stack": ["airflow","gcp"], "tags": ["data","etl"], "files": [{ "path": "dags/gcs_to_bq.py", "template": "# gcs to bq load skeleton\n" }] },
+    { "id": "strike-dbt-operations-macros-library", "name": "dbt Operations Macros Library", "stack": ["dbt"], "tags": ["data","macros"], "files": [{ "path": "macros/operations_library.md", "template": "# operations macros library\n" }] },
+    { "id": "strike-bigquery-usage-cost-views", "name": "BigQuery Usage Cost Views", "stack": ["gcp","bigquery"], "tags": ["data","cost"], "files": [{ "path": "sql/usage_cost_views.sql", "template": "-- views for usage/cost\n" }] },
+
+    { "id": "strike-aws-cloudfront-functions-headers", "name": "AWS CloudFront Functions Headers", "stack": ["aws","cloudfront"], "tags": ["cloud","edge"], "files": [{ "path": "cloudfront/headers.js", "template": "// modify headers function skeleton\n" }] },
+    { "id": "strike-gcp-iam-workload-identity", "name": "GCP IAM Workload Identity", "stack": ["gcp","iam"], "tags": ["cloud","auth"], "files": [{ "path": "iam/workload_identity.md", "template": "# workload identity federation\n" }] },
+    { "id": "strike-azure-b2c-user-flows", "name": "Azure AD B2C User Flows", "stack": ["azure","b2c"], "tags": ["cloud","auth"], "files": [{ "path": "b2c/user_flows.md", "template": "# user flows\n" }] },
+
+    { "id": "strike-openapi-yaml-minimal", "name": "(Merge) OpenAPI YAML Meta", "stack": ["openapi"], "tags": ["api","merge"] },
+    { "id": "strike-nextjs-route-handler-minimal", "name": "(Merge) Next.js Route Handler Meta", "stack": ["nextjs"], "tags": ["frontend","api","merge"] },
+    { "id": "strike-dockerfile-node-minimal", "name": "(Merge) Dockerfile Node Meta", "stack": ["docker"], "tags": ["ops","merge"] },
+    { "id": "strike-otel-node-tracer-minimal", "name": "(Merge) OTel Node Tracer Meta", "stack": ["opentelemetry"], "tags": ["observability","merge"] },
+    { "id": "strike-react-hook-form-minimal", "name": "(Merge) RHF Minimal Meta", "stack": ["react","forms"], "tags": ["frontend","merge"] }
+  ]
+}
+

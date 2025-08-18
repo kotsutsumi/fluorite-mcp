@@ -1,0 +1,19 @@
+{
+  "id": "strike-collector-batch-processor",
+  "name": "Collector Batch Processor",
+  "stack": [
+    "opentelemetry",
+    "collector"
+  ],
+  "tags": [
+    "observability",
+    "processor"
+  ],
+  "files": [
+    {
+      "path": "otel/batch.yaml",
+      "template": "processors: { batch: {} }\n"
+    }
+  ],
+  "patches": []
+}

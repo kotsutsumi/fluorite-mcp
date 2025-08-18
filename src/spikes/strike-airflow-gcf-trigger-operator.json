@@ -1,0 +1,19 @@
+{
+  "id": "strike-airflow-gcf-trigger-operator",
+  "name": "Airflow GCF Trigger Operator",
+  "stack": [
+    "airflow",
+    "gcp"
+  ],
+  "tags": [
+    "data",
+    "serverless"
+  ],
+  "files": [
+    {
+      "path": "dags/gcf_trigger.py",
+      "template": "# cloud function trigger operator\n"
+    }
+  ],
+  "patches": []
+}

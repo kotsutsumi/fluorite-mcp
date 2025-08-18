@@ -1,0 +1,20 @@
+{
+  "id": "strike-collector-prometheus-scrape-k8s",
+  "name": "Collector Prometheus K8s Scrape",
+  "stack": [
+    "opentelemetry",
+    "collector",
+    "prometheus"
+  ],
+  "tags": [
+    "observability",
+    "metrics"
+  ],
+  "files": [
+    {
+      "path": "otel/prom_k8s.yaml",
+      "template": "receivers: { prometheus: { config: { scrape_configs: [] } } }\n"
+    }
+  ],
+  "patches": []
+}

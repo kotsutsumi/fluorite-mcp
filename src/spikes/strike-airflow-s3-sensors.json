@@ -1,0 +1,19 @@
+{
+  "id": "strike-airflow-s3-sensors",
+  "name": "Airflow S3 Sensors",
+  "stack": [
+    "airflow",
+    "aws"
+  ],
+  "tags": [
+    "data",
+    "sensors"
+  ],
+  "files": [
+    {
+      "path": "dags/s3_sensors.py",
+      "template": "# s3 sensors skeleton\n"
+    }
+  ],
+  "patches": []
+}

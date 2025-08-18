@@ -201,7 +201,7 @@ Use descriptive branch names:
 
 ### 2. Commit Messages
 
-Follow [Conventional Commits](https://www.conventionalcommits.org/):
+Follow Conventional Commits specification:
 ```
 feat: add React Query specification
 fix: resolve TypeScript compilation error

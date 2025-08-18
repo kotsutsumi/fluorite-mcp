@@ -1,0 +1,20 @@
+{
+  "id": "strike-actions-reusable-trivy-scan",
+  "name": "Actions Reusable Trivy Scan",
+  "stack": [
+    "github",
+    "actions",
+    "trivy"
+  ],
+  "tags": [
+    "ci",
+    "security"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/trivy-scan.yml",
+      "template": "name: TrivyScan\non: workflow_call\n"
+    }
+  ],
+  "patches": []
+}

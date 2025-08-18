@@ -1,0 +1,51 @@
+{
+  "items": [
+    { "id": "strike-express-response-compression-threshold", "name": "Express Compression Threshold", "stack": ["node","express"], "tags": ["backend","perf"], "files": [{ "path": "server.js", "template": "// express compression threshold skeleton\n" }] },
+    { "id": "strike-koa-router-params-validation", "name": "Koa Router Params Validation", "stack": ["node","koa","zod"], "tags": ["backend","validation"], "files": [{ "path": "routes/index.js", "template": "// koa params validation skeleton\n" }] },
+    { "id": "strike-fastify-csrf-protection", "name": "Fastify CSRF Protection", "stack": ["node","fastify","csrf"], "tags": ["backend","security"], "files": [{ "path": "server.js", "template": "// fastify csrf protection skeleton\n" }] },
+    { "id": "strike-go-axum-route-minimal", "name": "Go Axum Route Minimal", "stack": ["go","axum"], "tags": ["backend","api"], "files": [{ "path": "main.rs", "template": "// axum route minimal skeleton\n" }] },
+    { "id": "strike-deno-kv-ttl", "name": "Deno KV TTL", "stack": ["deno","kv"], "tags": ["backend","cache"], "files": [{ "path": "kv.ts", "template": "// deno kv ttl skeleton\n" }] },
+    { "id": "strike-hono-cors-helmet", "name": "Hono CORS + Helmet", "stack": ["hono","helmet"], "tags": ["backend","security"], "files": [{ "path": "server.ts", "template": "// hono cors + helmet skeleton\n" }] },
+
+    { "id": "strike-nextjs-rsc-suspense-stream", "name": "Next.js RSC Suspense Stream", "stack": ["nextjs"], "tags": ["frontend","rsc","stream"], "files": [{ "path": "app/suspense/stream.tsx", "template": "// rsc suspense streaming skeleton\n" }] },
+    { "id": "strike-nuxt3-composables-fetch-cache", "name": "Nuxt3 useFetch Cache", "stack": ["nuxt"], "tags": ["frontend","cache"], "files": [{ "path": "composables/useCached.ts", "template": "// useFetch cache wrapper skeleton\n" }] },
+    { "id": "strike-sveltekit-endpoint-jsonschema", "name": "SvelteKit Endpoint JSON Schema", "stack": ["sveltekit","ajv"], "tags": ["frontend","api","validation"], "files": [{ "path": "src/routes/api/schema/+server.ts", "template": "// json schema validation skeleton\n" }] },
+    { "id": "strike-angular-router-preload-on-idle", "name": "Angular Router Preload on Idle", "stack": ["angular"], "tags": ["frontend","routing","perf"], "files": [{ "path": "src/app/preload-idle.ts", "template": "// preload on idle strategy skeleton\n" }] },
+    { "id": "strike-solid-store-context-selector", "name": "Solid Context Selector Pattern", "stack": ["solid"], "tags": ["frontend","state","perf"], "files": [{ "path": "src/contextSelector.tsx", "template": "// context selector pattern skeleton\n" }] },
+
+    { "id": "strike-otel-logs-severity-map", "name": "OTel Logs Severity Mapping", "stack": ["opentelemetry"], "tags": ["observability","logs"], "files": [{ "path": "otel/severity_map.js", "template": "// severity mapping skeleton\n" }] },
+    { "id": "strike-collector-otlp-grpc-http", "name": "Collector OTLP gRPC+HTTP", "stack": ["opentelemetry","collector"], "tags": ["observability","exporter"], "files": [{ "path": "otel/otlp_both.yaml", "template": "exporters: { otlp: {}, otlphttp: {} }\n" }] },
+    { "id": "strike-grafana-provision-alert-rules", "name": "Grafana Provision Alert Rules", "stack": ["grafana"], "tags": ["observability","alerts"], "files": [{ "path": "grafana/provisioning/alerts.yaml", "template": "apiVersion: 1\nalerting: {}\n" }] },
+
+    { "id": "strike-oidc-pkce-with-jwt-assertion", "name": "OIDC PKCE + JWT Assertion", "stack": ["oidc","jwt"], "tags": ["security","auth"], "files": [{ "path": "auth/pkce_jwt_assertion.md", "template": "# pkce + jwt client assertion skeleton\n" }] },
+    { "id": "strike-jwt-jti-blacklist-store-redis", "name": "JWT JTI Blacklist (Redis)", "stack": ["jwt","redis"], "tags": ["security","revocation"], "files": [{ "path": "security/jti_redis.md", "template": "# jti blacklist via redis\n" }] },
+    { "id": "strike-opa-input-shape-contracts", "name": "OPA Input Shape Contracts", "stack": ["opa"], "tags": ["security","policy"], "files": [{ "path": "policy/input_shape_contracts.md", "template": "# input contracts skeleton\n" }] },
+
+    { "id": "strike-kafka-producer-idempotency-config", "name": "Kafka Producer Idempotency Config", "stack": ["kafka"], "tags": ["stream","tx"], "files": [{ "path": "kafka/idempotency_config.md", "template": "# idempotency config\n" }] },
+    { "id": "strike-nats-js-consumer-max-pending", "name": "NATS Consumer Max Pending", "stack": ["nats"], "tags": ["messaging","flow"], "files": [{ "path": "nats/max_pending.md", "template": "# max pending strategies\n" }] },
+    { "id": "strike-sqs-batch-window-tuning", "name": "SQS Batch Window Tuning", "stack": ["aws","sqs"], "tags": ["queue","perf"], "files": [{ "path": "aws/batch_window.md", "template": "# batch window tuning\n" }] },
+
+    { "id": "strike-actions-release-drafter", "name": "Actions Release Drafter", "stack": ["github","actions"], "tags": ["ci","release"], "files": [{ "path": ".github/workflows/release-drafter.yml", "template": "name: ReleaseDrafter\non: [push]\n" }] },
+    { "id": "strike-terraform-module-interfaces", "name": "Terraform Module Interfaces", "stack": ["terraform"], "tags": ["infra","modules"], "files": [{ "path": "modules/interface.md", "template": "# module interfaces\n" }] },
+    { "id": "strike-helm-values-sops-kms", "name": "Helm Values with SOPS KMS", "stack": ["helm","sops","kms"], "tags": ["ops","secrets"], "files": [{ "path": "helm/values.enc.yaml", "template": "# sops + kms values skeleton\n" }] },
+
+    { "id": "strike-msw-rest-oauth-mock", "name": "MSW REST OAuth Mock", "stack": ["msw","oauth2"], "tags": ["test","auth"], "files": [{ "path": "src/mocks/oauth.ts", "template": "// oauth endpoints mock skeleton\n" }] },
+    { "id": "strike-playwright-parallel-shards-ci", "name": "Playwright Parallel Shards CI", "stack": ["playwright"], "tags": ["test","ci"], "files": [{ "path": ".github/workflows/pw-parallel-shards.yml", "template": "name: PWParallelShards\non: [push]\n" }] },
+    { "id": "strike-jest-cache-directory-ci", "name": "Jest Cache Directory in CI", "stack": ["jest"], "tags": ["test","ci"], "files": [{ "path": "jest.cache.md", "template": "# jest cache directory patterns\n" }] },
+
+    { "id": "strike-airflow-google-bq-to-gcs", "name": "Airflow BigQuery to GCS", "stack": ["airflow","gcp"], "tags": ["data","etl"], "files": [{ "path": "dags/bq_to_gcs.py", "template": "# bq to gcs operator skeleton\n" }] },
+    { "id": "strike-dbt-run-operation-helpers", "name": "dbt run-operation Helpers", "stack": ["dbt"], "tags": ["data","macros"], "files": [{ "path": "macros/helpers.md", "template": "# run-operation helper macros\n" }] },
+    { "id": "strike-bigquery-row-access-control-views", "name": "BigQuery Row Access Views", "stack": ["gcp","bigquery"], "tags": ["data","security"], "files": [{ "path": "sql/row_access_views.sql", "template": "-- row access control via views\n" }] },
+
+    { "id": "strike-aws-aurora-serverless-v2", "name": "AWS Aurora Serverless v2", "stack": ["aws","aurora"], "tags": ["cloud","db"], "files": [{ "path": "aurora/v2.md", "template": "# aurora serverless v2 notes\n" }] },
+    { "id": "strike-gcp-cloud-scheduler-oauth", "name": "GCP Scheduler OAuth", "stack": ["gcp","scheduler","oauth2"], "tags": ["cloud","auth"], "files": [{ "path": "scheduler/oauth.md", "template": "# scheduler oauth calls\n" }] },
+    { "id": "strike-azure-front-door-routing", "name": "Azure Front Door Routing", "stack": ["azure","front-door"], "tags": ["cloud","edge"], "files": [{ "path": "frontdoor/routing.json", "template": "{ }\n" }] },
+
+    { "id": "strike-openapi-yaml-minimal", "name": "(Merge) OpenAPI YAML Meta", "stack": ["openapi"], "tags": ["api","merge"] },
+    { "id": "strike-nextjs-route-handler-minimal", "name": "(Merge) Next.js Route Handler Meta", "stack": ["nextjs"], "tags": ["frontend","api","merge"] },
+    { "id": "strike-dockerfile-node-minimal", "name": "(Merge) Dockerfile Node Meta", "stack": ["docker"], "tags": ["ops","merge"] },
+    { "id": "strike-otel-node-tracer-minimal", "name": "(Merge) OTel Node Tracer Meta", "stack": ["opentelemetry"], "tags": ["observability","merge"] },
+    { "id": "strike-react-hook-form-minimal", "name": "(Merge) RHF Minimal Meta", "stack": ["react","forms"], "tags": ["frontend","merge"] }
+  ]
+}
+

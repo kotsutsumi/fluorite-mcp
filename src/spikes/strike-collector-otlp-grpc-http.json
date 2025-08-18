@@ -1,0 +1,19 @@
+{
+  "id": "strike-collector-otlp-grpc-http",
+  "name": "Collector OTLP gRPC+HTTP",
+  "stack": [
+    "opentelemetry",
+    "collector"
+  ],
+  "tags": [
+    "observability",
+    "exporter"
+  ],
+  "files": [
+    {
+      "path": "otel/otlp_both.yaml",
+      "template": "exporters: { otlp: {}, otlphttp: {} }\n"
+    }
+  ],
+  "patches": []
+}

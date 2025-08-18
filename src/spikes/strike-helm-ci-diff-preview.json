@@ -1,0 +1,18 @@
+{
+  "id": "strike-helm-ci-diff-preview",
+  "name": "Helm CI Diff Preview",
+  "stack": [
+    "helm"
+  ],
+  "tags": [
+    "ops",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/helm-diff.yml",
+      "template": "name: HelmDiff\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

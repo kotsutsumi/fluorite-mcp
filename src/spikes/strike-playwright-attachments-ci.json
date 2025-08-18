@@ -1,0 +1,18 @@
+{
+  "id": "strike-playwright-attachments-ci",
+  "name": "Playwright Attachments in CI",
+  "stack": [
+    "playwright"
+  ],
+  "tags": [
+    "test",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/pw-attachments.yml",
+      "template": "name: PWAttachments\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

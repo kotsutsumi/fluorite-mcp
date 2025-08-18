@@ -1,0 +1,18 @@
+{
+  "id": "strike-playwright-ci-artifacts-retention",
+  "name": "Playwright Artifacts Retention CI",
+  "stack": [
+    "playwright"
+  ],
+  "tags": [
+    "test",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/pw-artifacts-retention.yml",
+      "template": "name: PWArtifactsRetention\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

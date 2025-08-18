@@ -1,0 +1,19 @@
+{
+  "id": "strike-koa-graceful-shutdown-signals",
+  "name": "Koa Graceful Shutdown with Signals",
+  "stack": [
+    "node",
+    "koa"
+  ],
+  "tags": [
+    "backend",
+    "reliability"
+  ],
+  "files": [
+    {
+      "path": "server.js",
+      "template": "// koa graceful shutdown on SIGINT/SIGTERM skeleton\n"
+    }
+  ],
+  "patches": []
+}

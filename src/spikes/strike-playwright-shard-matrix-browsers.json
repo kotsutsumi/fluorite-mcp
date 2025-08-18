@@ -1,0 +1,18 @@
+{
+  "id": "strike-playwright-shard-matrix-browsers",
+  "name": "Playwright Shard Matrix (Browsers)",
+  "stack": [
+    "playwright"
+  ],
+  "tags": [
+    "test",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/pw-browser-matrix.yml",
+      "template": "name: PWBrowserMatrix\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

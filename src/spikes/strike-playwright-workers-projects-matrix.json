@@ -1,0 +1,18 @@
+{
+  "id": "strike-playwright-workers-projects-matrix",
+  "name": "Playwright Workers x Projects Matrix",
+  "stack": [
+    "playwright"
+  ],
+  "tags": [
+    "test",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/pw-workers-matrix.yml",
+      "template": "name: PWWorkersMatrix\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

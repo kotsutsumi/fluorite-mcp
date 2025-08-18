@@ -1,0 +1,19 @@
+{
+  "id": "strike-airflow-gcs-to-bq-load",
+  "name": "Airflow GCS to BigQuery Load",
+  "stack": [
+    "airflow",
+    "gcp"
+  ],
+  "tags": [
+    "data",
+    "etl"
+  ],
+  "files": [
+    {
+      "path": "dags/gcs_to_bq.py",
+      "template": "# gcs to bq load skeleton\n"
+    }
+  ],
+  "patches": []
+}

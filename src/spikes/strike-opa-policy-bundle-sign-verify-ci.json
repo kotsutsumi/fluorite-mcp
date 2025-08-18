@@ -1,0 +1,19 @@
+{
+  "id": "strike-opa-policy-bundle-sign-verify-ci",
+  "name": "OPA Bundle Sign/Verify CI",
+  "stack": [
+    "opa"
+  ],
+  "tags": [
+    "security",
+    "policy",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/opa-sign-verify.yml",
+      "template": "name: OPASignVerify\non: [push]\n"
+    }
+  ],
+  "patches": []
+}
