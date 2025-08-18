@@ -1,0 +1,17 @@
+{
+  "id": "strike-nuxt3-plugin-minimal",
+  "name": "Nuxt3 Plugin Minimal",
+  "stack": [
+    "nuxt"
+  ],
+  "tags": [
+    "frontend"
+  ],
+  "files": [
+    {
+      "path": "plugins/hello.client.ts",
+      "template": "export default defineNuxtPlugin(()=> ({ provide: { hello: ()=> 'world' } }));\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-msw-node-advanced",
+  "name": "MSW Node Advanced",
+  "stack": [
+    "msw"
+  ],
+  "tags": [
+    "test"
+  ],
+  "files": [
+    {
+      "path": "src/mocks/server.ts",
+      "template": "import { setupServer } from 'msw/node';\nexport const server = setupServer();\n"
+    }
+  ],
+  "patches": []
+}

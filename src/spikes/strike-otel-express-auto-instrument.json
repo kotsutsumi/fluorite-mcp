@@ -1,0 +1,18 @@
+{
+  "id": "strike-otel-express-auto-instrument",
+  "name": "OTel Express Auto-Instrument",
+  "stack": [
+    "opentelemetry",
+    "express"
+  ],
+  "tags": [
+    "observability"
+  ],
+  "files": [
+    {
+      "path": "otel/instrument.mjs",
+      "template": "// @opentelemetry/auto-instrumentations-node skeleton\n"
+    }
+  ],
+  "patches": []
+}

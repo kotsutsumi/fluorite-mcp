@@ -1,0 +1,19 @@
+{
+  "id": "strike-angular-http-interceptor-advanced",
+  "name": "Angular HTTP Interceptor Advanced",
+  "stack": [
+    "angular"
+  ],
+  "tags": [
+    "frontend",
+    "http",
+    "advanced"
+  ],
+  "files": [
+    {
+      "path": "src/app/http.interceptor.ts",
+      "template": "import { HttpInterceptorFn } from '@angular/common/http';\nexport const authInterceptor: HttpInterceptorFn = (req,next)=> next(req);\n"
+    }
+  ],
+  "patches": []
+}

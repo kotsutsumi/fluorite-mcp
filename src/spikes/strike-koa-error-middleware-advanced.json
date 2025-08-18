@@ -1,0 +1,20 @@
+{
+  "id": "strike-koa-error-middleware-advanced",
+  "name": "Koa Error Middleware Advanced",
+  "stack": [
+    "node",
+    "koa"
+  ],
+  "tags": [
+    "backend",
+    "errors",
+    "advanced"
+  ],
+  "files": [
+    {
+      "path": "middleware/error.js",
+      "template": "export async function errorHandler(ctx,next){ try{ await next(); } catch(e){ ctx.status = e.status||500; ctx.body = { error: 'internal' }; } }\n"
+    }
+  ],
+  "patches": []
+}

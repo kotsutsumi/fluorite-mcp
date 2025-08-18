@@ -1,0 +1,17 @@
+{
+  "id": "strike-vitest-jsdom-advanced",
+  "name": "Vitest jsdom Advanced",
+  "stack": [
+    "vitest"
+  ],
+  "tags": [
+    "test"
+  ],
+  "files": [
+    {
+      "path": "vitest.config.ts",
+      "template": "import { defineConfig } from 'vitest/config';\nexport default defineConfig({ test: { environment: 'jsdom', setupFiles: ['./vitest.setup.ts'] } });\n"
+    }
+  ],
+  "patches": []
+}

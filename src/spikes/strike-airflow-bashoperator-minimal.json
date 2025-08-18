@@ -1,0 +1,18 @@
+{
+  "id": "strike-airflow-bashoperator-minimal",
+  "name": "Airflow BashOperator Minimal",
+  "stack": [
+    "airflow",
+    "python"
+  ],
+  "tags": [
+    "data"
+  ],
+  "files": [
+    {
+      "path": "dags/bash.py",
+      "template": "from airflow.operators.bash import BashOperator\n# bash operator skeleton\n"
+    }
+  ],
+  "patches": []
+}

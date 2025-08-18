@@ -1,0 +1,19 @@
+{
+  "id": "strike-hono-cloudflare-pages-minimal",
+  "name": "Hono on Cloudflare Pages Functions",
+  "stack": [
+    "hono",
+    "cloudflare"
+  ],
+  "tags": [
+    "edge",
+    "backend"
+  ],
+  "files": [
+    {
+      "path": "functions/api/[[path]].ts",
+      "template": "import { Hono } from 'hono';\nconst app = new Hono();\napp.get('/health', c => c.json({ ok: true }));\nexport const onRequest = app.fetch;\n"
+    }
+  ],
+  "patches": []
+}

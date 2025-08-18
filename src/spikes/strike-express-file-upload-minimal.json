@@ -1,0 +1,19 @@
+{
+  "id": "strike-express-file-upload-minimal",
+  "name": "Express File Upload Minimal",
+  "stack": [
+    "node",
+    "express"
+  ],
+  "tags": [
+    "backend",
+    "upload"
+  ],
+  "files": [
+    {
+      "path": "server.js",
+      "template": "import express from 'express';\nimport multer from 'multer';\nconst upload = multer({ dest: 'uploads/' });\nconst app = express();\napp.post('/upload', upload.single('file'), (req, res)=> res.json({ ok:true }));\napp.listen(3000);\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-grafana-provisioning-pack",
+  "name": "Grafana Provisioning Pack",
+  "stack": [
+    "grafana"
+  ],
+  "tags": [
+    "observability"
+  ],
+  "files": [
+    {
+      "path": "grafana/provisioning/dashboards.yaml",
+      "template": "apiVersion: 1\nproviders: []\n"
+    }
+  ],
+  "patches": []
+}

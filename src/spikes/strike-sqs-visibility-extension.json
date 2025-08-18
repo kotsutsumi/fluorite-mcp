@@ -1,0 +1,18 @@
+{
+  "id": "strike-sqs-visibility-extension",
+  "name": "SQS Visibility Extension",
+  "stack": [
+    "aws",
+    "sqs"
+  ],
+  "tags": [
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "aws/sqs-extend.mjs",
+      "template": "// change message visibility skeleton\n"
+    }
+  ],
+  "patches": []
+}
