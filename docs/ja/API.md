@@ -22,7 +22,7 @@ Fluorite MCPは、Claude Code CLIとのシームレスな統合を提供する�
 ```json
 {
   "name": "fluorite-mcp",
-  "version": "0.15.1",
+  "version": "0.18.5",
   "protocol_version": "2024-11-05",
   "capabilities": {
     "tools": true,

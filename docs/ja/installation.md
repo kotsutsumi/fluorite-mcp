@@ -51,7 +51,7 @@ claude --version
 
 ```bash
 # リポジトリをクローン（まだ行っていない場合）
-git clone https://github.com/kotsutsumi/fluorite-mcp.git
+git clone リポジトリURL
 cd fluorite-mcp
 
 # 自動セットアップスクリプトを実行
@@ -100,7 +100,7 @@ claude mcp add fluorite -- $(pwd)/node_modules/.bin/fluorite-mcp-server
 
 ```bash
 # リポジトリをクローン
-git clone https://github.com/kotsutsumi/fluorite-mcp.git
+git clone リポジトリURL
 cd fluorite-mcp
 
 # 依存関係をインストール
@@ -395,7 +395,7 @@ source ~/.profile
 
 ```bash
 # 開発環境をクローンしてセットアップ
-git clone https://github.com/kotsutsumi/fluorite-mcp.git
+git clone リポジトリURL
 cd fluorite-mcp
 
 # 依存関係をインストール
@@ -472,8 +472,8 @@ export FLUORITE_FRAMEWORK_HINT="nextjs"  # または "react", "vue"
 ここでカバーされていない問題に遭遇した場合：
 
 1. **[トラブルシューティングガイド](./troubleshooting.md) を確認**
-2. **[GitHub Issues](https://github.com/kotsutsumi/fluorite-mcp/issues) を検索**
-3. **[GitHub Discussions](https://github.com/kotsutsumi/fluorite-mcp/discussions) で質問**
+2. **イシュートラッカーを検索**
+3. **ディスカッションフォーラムで質問**
 4. **バグ報告**: インストール詳細と共に新しいイシューを作成
 
 ## よくある質問（FAQ）

@@ -39,7 +39,7 @@ We are committed to providing a welcoming and inclusive environment. Please:
 
 1. **Fork and Clone**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/fluorite-mcp.git
+   git clone リポジトリをクローン
    cd fluorite-mcp
    ```
 
@@ -94,8 +94,8 @@ name: Library Name
 version: 1.0.0
 description: Brief description of the library
 category: ui-components # or appropriate category
-homepage: https://library-homepage.com
-repository: https://github.com/org/library
+homepage: # ライブラリのホームページURL
+repository: # GitリポジトリURL
 language: TypeScript
 
 tools:

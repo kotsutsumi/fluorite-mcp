@@ -103,7 +103,7 @@ yarn global add fluorite-mcp
 pnpm add -g fluorite-mcp
 
 # From source (developers)
-git clone https://github.com/kotsutsumi/fluorite-mcp.git
+git clone リポジトリURL
 cd fluorite-mcp && npm install && npm run build
 ```
 
@@ -276,9 +276,9 @@ Generated Output:
 | **Support Channel** | **Response Time** | **Best For** | **Access** |
 |--------------------|------------------|--------------|------------|
 | **[🔧 Troubleshooting Guide](./docs/troubleshooting.md)** | Immediate | Common issues, error resolution | Self-service |
-| **[💬 GitHub Discussions](https://github.com/kotsutsumi/fluorite-mcp/discussions)** | 24-48 hours | Questions, feature requests, community help | Free, community-driven |
-| **[🐛 Issue Tracker](https://github.com/kotsutsumi/fluorite-mcp/issues)** | 48-72 hours | Bug reports, feature requests | Free, maintainer support |
-| **[🌐 Online Documentation](https://kotsutsumi.github.io/fluorite-mcp)** | Immediate | Searchable docs, latest updates | Comprehensive reference |
+| **💬 GitHub Discussions** | 24-48 hours | Questions, feature requests, community help | Free, community-driven |
+| **🐛 Issue Tracker** | 48-72 hours | Bug reports, feature requests | Free, maintainer support |
+| **🌐 Online Documentation** | Immediate | Searchable docs, latest updates | Comprehensive reference |
 
 ### 📖 Library Specifications Reference
 Explore our comprehensive library knowledge base:
@@ -297,7 +297,7 @@ Explore our comprehensive library knowledge base:
 
 ```bash
 # Clone and setup
-git clone https://github.com/kotsutsumi/fluorite-mcp.git
+git clone リポジトリURL
 cd fluorite-mcp && npm install
 
 # Development workflow
@@ -477,9 +477,9 @@ claude mcp list
 | **サポートチャンネル** | **応答時間** | **最適な用途** | **アクセス** |
 |--------------------|-------------|-------------|-----------|
 | **[🔧 トラブルシューティングガイド](./docs/troubleshooting.md)** | 即時 | 一般的な問題、エラー解決 | セルフサービス |
-| **[💬 GitHub Discussions](https://github.com/kotsutsumi/fluorite-mcp/discussions)** | 24-48時間 | 質問、機能リクエスト、コミュニティヘルプ | 無料、コミュニティ主導 |
-| **[🐛 Issue Tracker](https://github.com/kotsutsumi/fluorite-mcp/issues)** | 48-72時間 | バグ報告、機能リクエスト | 無料、メンテナーサポート |
-| **[🌐 オンラインドキュメント](https://kotsutsumi.github.io/fluorite-mcp)** | 即時 | 検索可能ドキュメント、最新更新 | 包括的リファレンス |
+| **💬 GitHub Discussions** | 24-48時間 | 質問、機能リクエスト、コミュニティヘルプ | 無料、コミュニティ主導 |
+| **🐛 Issue Tracker** | 48-72時間 | バグ報告、機能リクエスト | 無料、メンテナーサポート |
+| **🌐 オンラインドキュメント** | 即時 | 検索可能ドキュメント、最新更新 | 包括的リファレンス |
 
 ### **💡 プロのヒント**
 
@@ -822,18 +822,18 @@ All library specifications include proper attribution and licensing information 
 ## 🔗 Official Resources & Links
 
 ### **Package Distribution**
-| **Channel** | **URL** | **Purpose** | **Update Frequency** |
-|-------------|---------|-------------|---------------------|
-| **📦 NPM Registry** | [npmjs.com/package/fluorite-mcp](https://www.npmjs.com/package/fluorite-mcp) | Primary distribution | Every release |
-| **🐙 GitHub Repository** | [github.com/kotsutsumi/fluorite-mcp](https://github.com/kotsutsumi/fluorite-mcp) | Source code & issues | Continuous |
-| **📖 Documentation Site** | [kotsutsumi.github.io/fluorite-mcp](https://kotsutsumi.github.io/fluorite-mcp) | Complete documentation | Weekly |
+| **Channel** | **Description** | **Purpose** | **Update Frequency** |
+|-------------|----------------|-------------|---------------------|
+| **📦 NPM Registry** | npmjs.com/package/fluorite-mcp | Primary distribution | Every release |
+| **🐙 GitHub Repository** | Source code repository | Source code & issues | Continuous |
+| **📖 Documentation Site** | Complete documentation | Documentation reference | Weekly |
 
 ### **Community & Support**
-| **Platform** | **URL** | **Best For** | **Response Time** |
-|--------------|---------|--------------|------------------|
-| **💬 Discussions** | [GitHub Discussions](https://github.com/kotsutsumi/fluorite-mcp/discussions) | Questions, features, community | 24-48 hours |
-| **🐛 Issue Tracker** | [GitHub Issues](https://github.com/kotsutsumi/fluorite-mcp/issues) | Bug reports, features | 48-72 hours |
-| **📈 Roadmap** | [GitHub Projects](https://github.com/kotsutsumi/fluorite-mcp/projects) | Development planning | Monthly updates |
+| **Platform** | **Description** | **Best For** | **Response Time** |
+|--------------|----------------|--------------|------------------|
+| **💬 Discussions** | GitHub Discussions | Questions, features, community | 24-48 hours |
+| **🐛 Issue Tracker** | GitHub Issues | Bug reports, features | 48-72 hours |
+| **📈 Roadmap** | GitHub Projects | Development planning | Monthly updates |
 
 ---
 
@@ -846,6 +846,6 @@ All library specifications include proper attribution and licensing information 
 
 *Developed with ❤️ by the open source community • Enterprise support available*
 
-**[Get Started in 2 Minutes](./docs/getting-started.md)** | **[View Documentation](https://kotsutsumi.github.io/fluorite-mcp)** | **[Join Community](https://github.com/kotsutsumi/fluorite-mcp/discussions)**
+**[Get Started in 2 Minutes](./docs/getting-started.md)** | **[View Documentation](./docs/)** | **[API Reference](./docs/API.md)**
 
 </div>

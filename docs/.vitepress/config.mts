@@ -39,6 +39,7 @@ const englishSidebar = {
         { text: '📱 /fl: Commands System', link: '/fl-commands' },
         { text: '🤖 MCP Server Integration', link: '/features' },
         { text: '🔍 Static Analysis Engine', link: '/static-analysis' },
+        { text: '🔗 Integration Guide', link: '/integration-guide' },
         { text: '⚡ Performance Optimization', link: '/performance' }
       ]
     },
@@ -174,6 +175,7 @@ const japaneseSidebar = {
         { text: '📱 /fl: コマンドシステム', link: '/ja/fl-commands' },
         { text: '🤖 MCPサーバー統合', link: '/ja/features' },
         { text: '🔍 静的解析エンジン', link: '/ja/static-analysis' },
+        { text: '🔗 統合ガイド', link: '/ja/integration-guide' },
         { text: '⚡ パフォーマンス最適化', link: '/ja/performance' }
       ]
     },
