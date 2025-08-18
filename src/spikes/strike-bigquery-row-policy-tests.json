@@ -1,0 +1,19 @@
+{
+  "id": "strike-bigquery-row-policy-tests",
+  "name": "BigQuery Row Policy Tests",
+  "stack": [
+    "gcp",
+    "bigquery"
+  ],
+  "tags": [
+    "data",
+    "security"
+  ],
+  "files": [
+    {
+      "path": "sql/row_policy_tests.sql",
+      "template": "-- row policy tests\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-openpolicyagent-envoy-extauthz",
+  "name": "Envoy ext_authz with OPA",
+  "stack": [
+    "envoy",
+    "opa"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "envoy/ext_authz.yaml",
+      "template": "# envoy ext_authz skeleton\n"
+    }
+  ],
+  "patches": []
+}

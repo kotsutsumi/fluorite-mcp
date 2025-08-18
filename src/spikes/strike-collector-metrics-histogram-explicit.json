@@ -1,0 +1,19 @@
+{
+  "id": "strike-collector-metrics-histogram-explicit",
+  "name": "Collector Histogram Explicit Bounds",
+  "stack": [
+    "opentelemetry",
+    "collector"
+  ],
+  "tags": [
+    "observability",
+    "metrics"
+  ],
+  "files": [
+    {
+      "path": "otel/histogram_explicit.yaml",
+      "template": "processors: { transform: {} }\n"
+    }
+  ],
+  "patches": []
+}

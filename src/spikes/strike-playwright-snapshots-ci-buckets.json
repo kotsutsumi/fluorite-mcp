@@ -1,0 +1,18 @@
+{
+  "id": "strike-playwright-snapshots-ci-buckets",
+  "name": "Playwright Snapshots CI Buckets",
+  "stack": [
+    "playwright"
+  ],
+  "tags": [
+    "test",
+    "visual"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/pw-snapshots-buckets.yml",
+      "template": "name: PWSnapshotsBuckets\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

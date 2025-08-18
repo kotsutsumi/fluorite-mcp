@@ -1,0 +1,18 @@
+{
+  "id": "strike-terraform-ci-drift-detection",
+  "name": "Terraform Drift Detection",
+  "stack": [
+    "terraform"
+  ],
+  "tags": [
+    "infra",
+    "drift"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/tf-drift.yml",
+      "template": "name: TFDrift\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

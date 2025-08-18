@@ -1,0 +1,18 @@
+{
+  "id": "strike-airbyte-connection-sync-cron",
+  "name": "Airbyte Connection Sync Cron",
+  "stack": [
+    "airbyte"
+  ],
+  "tags": [
+    "data",
+    "sync"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/airbyte-sync.yml",
+      "template": "name: AirbyteSync\non: { schedule: [{ cron: '0 * * * *' }] }\n"
+    }
+  ],
+  "patches": []
+}

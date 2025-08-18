@@ -1,0 +1,19 @@
+{
+  "id": "strike-actions-artifacts-retention-matrix",
+  "name": "Actions Artifacts Retention Matrix",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci",
+    "artifacts"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/artifacts-retention-matrix.yml",
+      "template": "name: ArtifactsRetentionMatrix\non: workflow_call\n"
+    }
+  ],
+  "patches": []
+}

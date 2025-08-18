@@ -1,0 +1,19 @@
+{
+  "id": "strike-collector-groupby-processor",
+  "name": "Collector GroupBy Processor",
+  "stack": [
+    "opentelemetry",
+    "collector"
+  ],
+  "tags": [
+    "observability",
+    "processor"
+  ],
+  "files": [
+    {
+      "path": "otel/groupby.yaml",
+      "template": "processors: { groupbyattrs: {} }\n"
+    }
+  ],
+  "patches": []
+}

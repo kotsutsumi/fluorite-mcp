@@ -1,0 +1,20 @@
+{
+  "id": "strike-terraform-ci-opa-policy-check",
+  "name": "Terraform OPA Policy Check CI",
+  "stack": [
+    "terraform",
+    "opa"
+  ],
+  "tags": [
+    "infra",
+    "policy",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/tf-opa.yml",
+      "template": "name: TFOpa\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

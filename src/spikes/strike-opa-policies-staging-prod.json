@@ -1,0 +1,19 @@
+{
+  "id": "strike-opa-policies-staging-prod",
+  "name": "OPA Policies Staging/Prod Split",
+  "stack": [
+    "opa"
+  ],
+  "tags": [
+    "security",
+    "policy",
+    "env"
+  ],
+  "files": [
+    {
+      "path": "policy/env_split.md",
+      "template": "# staging/prod policy split\n"
+    }
+  ],
+  "patches": []
+}

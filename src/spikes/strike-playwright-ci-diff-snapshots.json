@@ -1,0 +1,18 @@
+{
+  "id": "strike-playwright-ci-diff-snapshots",
+  "name": "Playwright CI Diff Snapshots",
+  "stack": [
+    "playwright"
+  ],
+  "tags": [
+    "test",
+    "visual"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/pw-diff-snapshots.yml",
+      "template": "name: PWDiffSnapshots\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-dbt-slim-ci-workflow",
+  "name": "dbt Slim CI Workflow",
+  "stack": [
+    "dbt"
+  ],
+  "tags": [
+    "data",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/dbt-slim.yml",
+      "template": "name: DBTSlim\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

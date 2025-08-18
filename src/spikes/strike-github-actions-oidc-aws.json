@@ -1,0 +1,20 @@
+{
+  "id": "strike-github-actions-oidc-aws",
+  "name": "GitHub Actions OIDC to AWS",
+  "stack": [
+    "github",
+    "actions",
+    "aws"
+  ],
+  "tags": [
+    "ci",
+    "auth"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/deploy.yml",
+      "template": "name: Deploy\non: [push]\n# OIDC to AWS skeleton\n"
+    }
+  ],
+  "patches": []
+}

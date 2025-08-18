@@ -1,0 +1,19 @@
+{
+  "id": "strike-dbt-docs-ci-artifacts",
+  "name": "dbt Docs CI Artifacts",
+  "stack": [
+    "dbt"
+  ],
+  "tags": [
+    "data",
+    "docs",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/dbt-docs-artifacts.yml",
+      "template": "name: DBTDocsArtifacts\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

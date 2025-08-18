@@ -1,0 +1,20 @@
+{
+  "id": "strike-sqs-kms-cmk-rotation",
+  "name": "SQS KMS CMK Rotation",
+  "stack": [
+    "aws",
+    "sqs",
+    "kms"
+  ],
+  "tags": [
+    "queue",
+    "security"
+  ],
+  "files": [
+    {
+      "path": "aws/cmk_rotation.md",
+      "template": "# cmk rotation notes\n"
+    }
+  ],
+  "patches": []
+}

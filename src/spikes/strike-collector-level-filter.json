@@ -1,0 +1,19 @@
+{
+  "id": "strike-collector-level-filter",
+  "name": "Collector Level Filter",
+  "stack": [
+    "opentelemetry",
+    "collector"
+  ],
+  "tags": [
+    "observability",
+    "filter"
+  ],
+  "files": [
+    {
+      "path": "otel/level_filter.yaml",
+      "template": "processors: { filter: {} }\n"
+    }
+  ],
+  "patches": []
+}

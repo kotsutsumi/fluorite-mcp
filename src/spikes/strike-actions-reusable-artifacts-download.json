@@ -1,0 +1,19 @@
+{
+  "id": "strike-actions-reusable-artifacts-download",
+  "name": "Actions Artifacts Download Reusable",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci",
+    "artifacts"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/artifacts-download.yml",
+      "template": "name: ArtifactsDownload\non: workflow_call\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,19 @@
+{
+  "id": "strike-collector-otlp-http-logs",
+  "name": "Collector OTLP/HTTP Logs",
+  "stack": [
+    "opentelemetry",
+    "collector"
+  ],
+  "tags": [
+    "observability",
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "otel/otlphttp_logs.yaml",
+      "template": "exporters: { otlphttp: {} }\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,51 @@
+{
+  "items": [
+    { "id": "strike-express-helmet-permissions-policy", "name": "Express Helmet Permissions-Policy", "stack": ["node","express","helmet"], "tags": ["backend","security"], "files": [{ "path": "server.js", "template": "// express helmet permissions-policy skeleton\n" }] },
+    { "id": "strike-koa-body-limit-handler", "name": "Koa Body Limit Handler", "stack": ["node","koa"], "tags": ["backend","security"], "files": [{ "path": "server.js", "template": "// koa body limit and handler skeleton\n" }] },
+    { "id": "strike-fastify-circuit-breaker", "name": "Fastify Circuit Breaker", "stack": ["node","fastify"], "tags": ["backend","reliability"], "files": [{ "path": "server.js", "template": "// fastify circuit breaker skeleton\n" }] },
+    { "id": "strike-go-gin-csrf-samesite", "name": "Go Gin CSRF + SameSite", "stack": ["go","gin"], "tags": ["backend","security"], "files": [{ "path": "main.go", "template": "package main\n// gin csrf + samesite skeleton\nfunc main(){}\n" }] },
+    { "id": "strike-hono-morgan-logger", "name": "Hono Morgan-like Logger", "stack": ["hono"], "tags": ["backend","logs"], "files": [{ "path": "server.ts", "template": "// hono logger with request-id skeleton\n" }] },
+    { "id": "strike-deno-fresh-csrf-protection", "name": "Fresh CSRF Protection", "stack": ["deno","fresh","csrf"], "tags": ["backend","security"], "files": [{ "path": "middleware.ts", "template": "// fresh csrf protection skeleton\n" }] },
+
+    { "id": "strike-nextjs-middleware-request-timing", "name": "Next.js Middleware Request Timing", "stack": ["nextjs"], "tags": ["frontend","middleware","perf"], "files": [{ "path": "middleware.ts", "template": "// request start/end timing middleware skeleton\n" }] },
+    { "id": "strike-nuxt3-cookies-http-only-secure", "name": "Nuxt3 Cookies HTTPOnly + Secure", "stack": ["nuxt"], "tags": ["frontend","cookies","security"], "files": [{ "path": "server/utils/cookies.ts", "template": "// httpOnly + secure cookies helpers\n" }] },
+    { "id": "strike-sveltekit-endpoint-jwt-verify", "name": "SvelteKit Endpoint JWT Verify", "stack": ["sveltekit","jwt"], "tags": ["frontend","api","auth"], "files": [{ "path": "src/routes/api/verify/+server.ts", "template": "// jwt verify endpoint skeleton\n" }] },
+    { "id": "strike-angular-http-x-request-id", "name": "Angular HTTP X-Request-ID", "stack": ["angular"], "tags": ["frontend","http","logs"], "files": [{ "path": "src/app/http.requestid.ts", "template": "// add x-request-id header interceptor\n" }] },
+    { "id": "strike-solid-router-sse-consumer", "name": "Solid Router SSE Consumer", "stack": ["solid"], "tags": ["frontend","router","realtime"], "files": [{ "path": "src/routerSSE.tsx", "template": "// sse consumer within router skeleton\n" }] },
+
+    { "id": "strike-otel-logs-rename-attributes", "name": "OTel Logs Rename Attributes", "stack": ["opentelemetry"], "tags": ["observability","logs"], "files": [{ "path": "otel/logs_rename.js", "template": "// rename log attributes skeleton\n" }] },
+    { "id": "strike-collector-metrics-histogram-explicit", "name": "Collector Histogram Explicit Bounds", "stack": ["opentelemetry","collector"], "tags": ["observability","metrics"], "files": [{ "path": "otel/histogram_explicit.yaml", "template": "processors: { transform: {} }\n" }] },
+    { "id": "strike-grafana-alert-contact-webhook", "name": "Grafana Alert Contact Webhook", "stack": ["grafana"], "tags": ["observability","alerts"], "files": [{ "path": "grafana/alerts/contacts_webhook.yaml", "template": "apiVersion: 1\ncontactPoints: [{ name: 'webhook', type: 'webhook' }]\n" }] },
+
+    { "id": "strike-oidc-acr-claims", "name": "OIDC ACR Claims", "stack": ["oidc"], "tags": ["security","auth"], "files": [{ "path": "auth/acr_claims.md", "template": "# acr claims patterns\n" }] },
+    { "id": "strike-jwt-claims-nbf-exp-iat", "name": "JWT Claims nbf/exp/iat", "stack": ["jwt"], "tags": ["security","jwt"], "files": [{ "path": "security/claims_times.md", "template": "# times claims patterns\n" }] },
+    { "id": "strike-opa-rego-unit-tests-matrix", "name": "OPA Rego Unit Tests Matrix", "stack": ["opa"], "tags": ["security","policy","ci"], "files": [{ "path": ".github/workflows/rego-matrix.yml", "template": "name: RegoMatrix\non: [push]\n" }] },
+
+    { "id": "strike-kafka-consumer-idle-heartbeat", "name": "Kafka Consumer Idle Heartbeat", "stack": ["kafka"], "tags": ["stream","reliability"], "files": [{ "path": "kafka/idle_heartbeat.md", "template": "# idle heartbeat notes\n" }] },
+    { "id": "strike-nats-js-consumer-redelivery", "name": "NATS Consumer Redelivery", "stack": ["nats"], "tags": ["messaging","retry"], "files": [{ "path": "nats/redelivery.md", "template": "# redelivery strategies\n" }] },
+    { "id": "strike-sqs-kms-cmk-rotation", "name": "SQS KMS CMK Rotation", "stack": ["aws","sqs","kms"], "tags": ["queue","security"], "files": [{ "path": "aws/cmk_rotation.md", "template": "# cmk rotation notes\n" }] },
+
+    { "id": "strike-actions-reusable-artifact-upload", "name": "Actions Reusable Artifact Upload", "stack": ["github","actions"], "tags": ["ci","artifacts"], "files": [{ "path": ".github/workflows/artifact-upload.yml", "template": "name: ArtifactUpload\non: workflow_call\n" }] },
+    { "id": "strike-terraform-workspace-locking", "name": "Terraform Workspace Locking", "stack": ["terraform"], "tags": ["infra","state"], "files": [{ "path": "docs/workspace_locking.md", "template": "# workspace locking notes\n" }] },
+    { "id": "strike-helm-values-secrets-vault", "name": "Helm Values Secrets from Vault", "stack": ["helm","vault"], "tags": ["ops","secrets"], "files": [{ "path": "helm/values.vault.md", "template": "# vault + values patterns\n" }] },
+
+    { "id": "strike-msw-rest-conditional-retry", "name": "MSW REST Conditional Retry", "stack": ["msw"], "tags": ["test","reliability"], "files": [{ "path": "src/mocks/rest_retry.ts", "template": "// conditional retry handlers skeleton\n" }] },
+    { "id": "strike-playwright-artifacts-download-ci", "name": "Playwright Artifacts Download CI", "stack": ["playwright"], "tags": ["test","ci"], "files": [{ "path": ".github/workflows/pw-artifacts-download.yml", "template": "name: PWArtifactsDownload\non: [push]\n" }] },
+    { "id": "strike-jest-mocks-shared-library", "name": "Jest Mocks Shared Library", "stack": ["jest"], "tags": ["test","mocks"], "files": [{ "path": "jest.mocks.md", "template": "# shared mocks library patterns\n" }] },
+
+    { "id": "strike-airflow-gcs-operators-advanced", "name": "Airflow GCS Operators Advanced", "stack": ["airflow","gcp"], "tags": ["data","gcs"], "files": [{ "path": "dags/gcs_advanced.py", "template": "# gcs operators advanced skeleton\n" }] },
+    { "id": "strike-dbt-exposures-priority", "name": "dbt Exposures Priority", "stack": ["dbt"], "tags": ["data","docs"], "files": [{ "path": "models/exposures_priority.yml", "template": "version: 2\nexposures: []\n" }] },
+    { "id": "strike-bigquery-routines-udf", "name": "BigQuery Routines/UDF", "stack": ["gcp","bigquery"], "tags": ["data","udf"], "files": [{ "path": "sql/udf.sql", "template": "-- udf routine skeleton\n" }] },
+
+    { "id": "strike-aws-bucket-cors-settings", "name": "AWS S3 Bucket CORS Settings", "stack": ["aws","s3"], "tags": ["cloud","cors"], "files": [{ "path": "s3/cors.json", "template": "{ }\n" }] },
+    { "id": "strike-gcp-run-token-exchange", "name": "GCP Cloud Run Token Exchange", "stack": ["gcp","cloud-run","oauth2"], "tags": ["cloud","auth"], "files": [{ "path": "run/token_exchange.md", "template": "# cloud run token exchange\n" }] },
+    { "id": "strike-azure-service-bus-sessions", "name": "Azure Service Bus Sessions", "stack": ["azure","service-bus"], "tags": ["cloud","queue"], "files": [{ "path": "service-bus/sessions.json", "template": "{ }\n" }] },
+
+    { "id": "strike-openapi-yaml-minimal", "name": "(Merge) OpenAPI YAML Meta", "stack": ["openapi"], "tags": ["api","merge"] },
+    { "id": "strike-nextjs-route-handler-minimal", "name": "(Merge) Next.js Route Handler Meta", "stack": ["nextjs"], "tags": ["frontend","api","merge"] },
+    { "id": "strike-dockerfile-node-minimal", "name": "(Merge) Dockerfile Node Meta", "stack": ["docker"], "tags": ["ops","merge"] },
+    { "id": "strike-otel-node-tracer-minimal", "name": "(Merge) OTel Node Tracer Meta", "stack": ["opentelemetry"], "tags": ["observability","merge"] },
+    { "id": "strike-react-hook-form-minimal", "name": "(Merge) RHF Minimal Meta", "stack": ["react","forms"], "tags": ["frontend","merge"] }
+  ]
+}
+

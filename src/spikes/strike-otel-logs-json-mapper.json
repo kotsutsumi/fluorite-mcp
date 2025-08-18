@@ -1,0 +1,18 @@
+{
+  "id": "strike-otel-logs-json-mapper",
+  "name": "OTel Logs JSON Mapper",
+  "stack": [
+    "opentelemetry"
+  ],
+  "tags": [
+    "observability",
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "otel/json_mapper.js",
+      "template": "// map json logs to otel attrs skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-playwright-parallel-splits",
+  "name": "Playwright Parallel Splits",
+  "stack": [
+    "playwright"
+  ],
+  "tags": [
+    "test",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/pw-parallel-splits.yml",
+      "template": "name: PWParallelSplits\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

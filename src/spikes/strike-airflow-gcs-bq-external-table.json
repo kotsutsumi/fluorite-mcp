@@ -1,0 +1,19 @@
+{
+  "id": "strike-airflow-gcs-bq-external-table",
+  "name": "Airflow GCS→BQ External Table",
+  "stack": [
+    "airflow",
+    "gcp"
+  ],
+  "tags": [
+    "data",
+    "etl"
+  ],
+  "files": [
+    {
+      "path": "dags/gcs_to_bq_external.py",
+      "template": "# gcs to bq external table skeleton\n"
+    }
+  ],
+  "patches": []
+}

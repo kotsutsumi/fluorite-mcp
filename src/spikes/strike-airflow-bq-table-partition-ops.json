@@ -1,0 +1,19 @@
+{
+  "id": "strike-airflow-bq-table-partition-ops",
+  "name": "Airflow BQ Table Partition Ops",
+  "stack": [
+    "airflow",
+    "gcp"
+  ],
+  "tags": [
+    "data",
+    "partition"
+  ],
+  "files": [
+    {
+      "path": "dags/bq_partition_ops.py",
+      "template": "# partition operations skeleton\n"
+    }
+  ],
+  "patches": []
+}

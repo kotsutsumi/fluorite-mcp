@@ -1,0 +1,18 @@
+{
+  "id": "strike-terraform-ci-cache-providers",
+  "name": "Terraform CI Cache Providers",
+  "stack": [
+    "terraform"
+  ],
+  "tags": [
+    "infra",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/tf-cache.yml",
+      "template": "name: TFCache\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

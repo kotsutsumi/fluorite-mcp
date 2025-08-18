@@ -1,0 +1,19 @@
+{
+  "id": "strike-symfony-security-jwt",
+  "name": "Symfony Security JWT",
+  "stack": [
+    "php",
+    "symfony",
+    "jwt"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "config/packages/security.yaml",
+      "template": "# JWT security skeleton\n"
+    }
+  ],
+  "patches": []
+}

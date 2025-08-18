@@ -1,0 +1,19 @@
+{
+  "id": "strike-rails-activejob-sqs",
+  "name": "Rails ActiveJob SQS",
+  "stack": [
+    "ruby",
+    "rails",
+    "sqs"
+  ],
+  "tags": [
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "app/jobs/notify_user_job.rb",
+      "template": "# ActiveJob SQS skeleton\n"
+    }
+  ],
+  "patches": []
+}

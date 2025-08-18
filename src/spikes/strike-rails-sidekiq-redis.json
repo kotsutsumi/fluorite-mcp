@@ -1,0 +1,19 @@
+{
+  "id": "strike-rails-sidekiq-redis",
+  "name": "Rails Sidekiq Redis",
+  "stack": [
+    "ruby",
+    "rails",
+    "sidekiq"
+  ],
+  "tags": [
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "config/sidekiq.yml",
+      "template": "# sidekiq config skeleton\n"
+    }
+  ],
+  "patches": []
+}

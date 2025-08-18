@@ -39,7 +39,7 @@ const englishSidebar = {
         { text: '🎯 /fl: Command Integration', link: '/fl-commands' },
         { text: '🔍 Static Analysis & Validation', link: '/static-analysis' },
         { text: '📚 Popular Specifications', link: '/specs/' },
-        { text: '🤖 MCP Server Features', link: '/features' },
+        { text: '🤖 MCP Server Features & Complete Guide', link: '/features' },
         { text: '⚡ Performance Optimization', link: '/performance' }
       ]
     },
@@ -111,14 +111,14 @@ const japaneseSpecsSidebar = {
       text: '🌟 包括的エコシステム',
       collapsed: false,
       items: [
-        { text: 'Expo/React Native', link: '/ja/specs/expo-react-native-comprehensive' },
-        { text: 'AI/ML・LLM統合', link: '/ja/specs/ai-ml-llm-comprehensive' },
-        { text: 'フロントエンドUI革新', link: '/ja/specs/frontend-ui-innovation' },
-        { text: 'モダンバックエンド・サーバーレス', link: '/ja/specs/modern-backend-serverless' },
-        { text: '開発効率・DX', link: '/ja/specs/development-efficiency-dx' },
-        { text: 'データ処理・分析', link: '/ja/specs/data-processing-analytics' },
-        { text: 'クラウドネイティブインフラ', link: '/ja/specs/cloud-native-infrastructure' },
-        { text: 'テスティング・DB・可視化', link: '/ja/specs/additional-modern-technologies' }
+        { text: '🎨 フロントエンドUI革新', link: '/ja/specs/frontend-ui-innovation' },
+        { text: '🚀 モダンバックエンド・サーバーレス', link: '/ja/specs/modern-backend-serverless' },
+        { text: '🤖 AI/ML・LLM統合', link: '/ja/specs/ai-ml-llm-comprehensive' },
+        { text: '📱 Expo/React Native', link: '/ja/specs/expo-react-native-comprehensive' },
+        { text: '⚡ 開発効率・DX', link: '/ja/specs/development-efficiency-dx' },
+        { text: '📊 データ処理・分析', link: '/ja/specs/data-processing-analytics' },
+        { text: '☁️ クラウドネイティブインフラ', link: '/ja/specs/cloud-native-infrastructure' },
+        { text: '🔧 テスティング・DB・可視化', link: '/ja/specs/additional-modern-technologies' }
       ]
     },
     {
@@ -185,7 +185,7 @@ const japaneseSidebar = {
         { text: '🎯 /fl: コマンド統合', link: '/ja/fl-commands' },
         { text: '🔍 静的解析・検証', link: '/ja/static-analysis' },
         { text: '📚 人気の技術仕様', link: '/ja/specs/' },
-        { text: '🤖 MCPサーバー機能', link: '/ja/features' },
+        { text: '🤖 MCPサーバー機能・全機能ガイド', link: '/ja/features' },
         { text: '⚡ パフォーマンス最適化', link: '/ja/performance' }
       ]
     },
@@ -257,8 +257,8 @@ const specsSidebar = {
       text: '🚀 Popular Tech Stacks',
       collapsed: false,
       items: [
-        { text: '🎨 Frontend & UI Innovation (React, Vue, Next.js)', link: '/specs/frontend-ui-innovation' },
-        { text: '⚡ Modern Backend & Serverless (Bun, Hono, tRPC)', link: '/specs/modern-backend-serverless' },
+        { text: '🎨 Frontend & UI Innovation', link: '/specs/frontend-ui-innovation' },
+        { text: '⚡ Modern Backend & Serverless', link: '/specs/modern-backend-serverless' },
         { text: '🤖 AI/ML & LLM Integration', link: '/specs/ai-ml-llm-comprehensive' },
         { text: '☁️ Cloud Native Infrastructure', link: '/specs/cloud-native-infrastructure' },
         { text: '💻 Language Ecosystems (7 Languages)', link: '/specs/langs' },

@@ -1,0 +1,20 @@
+{
+  "id": "strike-express-app-metrics-prom",
+  "name": "Express App Metrics (Prometheus)",
+  "stack": [
+    "node",
+    "express",
+    "prometheus"
+  ],
+  "tags": [
+    "backend",
+    "metrics"
+  ],
+  "files": [
+    {
+      "path": "server.js",
+      "template": "// express app metrics with prom-client skeleton\n"
+    }
+  ],
+  "patches": []
+}

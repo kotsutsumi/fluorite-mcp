@@ -1,0 +1,19 @@
+{
+  "id": "strike-airflow-sftp-to-gcs",
+  "name": "Airflow SFTP to GCS",
+  "stack": [
+    "airflow",
+    "gcp"
+  ],
+  "tags": [
+    "data",
+    "etl"
+  ],
+  "files": [
+    {
+      "path": "dags/sftp_to_gcs.py",
+      "template": "# sftp to gcs skeleton\n"
+    }
+  ],
+  "patches": []
+}

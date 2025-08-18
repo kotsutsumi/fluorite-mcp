@@ -1,0 +1,19 @@
+{
+  "id": "strike-collector-tail-sampling-traces",
+  "name": "Collector Tail Sampling (Traces)",
+  "stack": [
+    "opentelemetry",
+    "collector"
+  ],
+  "tags": [
+    "observability",
+    "traces"
+  ],
+  "files": [
+    {
+      "path": "otel/tail_sampling_traces.yaml",
+      "template": "processors: { tailsampling: {} }\n"
+    }
+  ],
+  "patches": []
+}

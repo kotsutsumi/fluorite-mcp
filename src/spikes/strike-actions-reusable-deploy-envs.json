@@ -1,0 +1,19 @@
+{
+  "id": "strike-actions-reusable-deploy-envs",
+  "name": "Actions Reusable Deploy Envs",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci",
+    "deploy"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/deploy-envs.yml",
+      "template": "name: DeployEnvs\non: workflow_call\n"
+    }
+  ],
+  "patches": []
+}

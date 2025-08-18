@@ -1,0 +1,18 @@
+{
+  "id": "strike-playwright-retries-buckets",
+  "name": "Playwright Retries Buckets",
+  "stack": [
+    "playwright"
+  ],
+  "tags": [
+    "test",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/pw-retries-buckets.yml",
+      "template": "name: PWRetriesBuckets\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

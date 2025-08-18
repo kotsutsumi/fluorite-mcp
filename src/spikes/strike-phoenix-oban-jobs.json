@@ -1,0 +1,19 @@
+{
+  "id": "strike-phoenix-oban-jobs",
+  "name": "Phoenix Oban Jobs",
+  "stack": [
+    "elixir",
+    "phoenix",
+    "oban"
+  ],
+  "tags": [
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "lib/app/workers/email_worker.ex",
+      "template": "# Oban worker skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,20 @@
+{
+  "id": "strike-bigquery-row-policy-ci",
+  "name": "BigQuery Row Policy CI",
+  "stack": [
+    "gcp",
+    "bigquery"
+  ],
+  "tags": [
+    "data",
+    "security",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": "sql/row_policy_ci.sql",
+      "template": "-- row policy ci checks\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-otel-logs-context-id",
+  "name": "OTel Logs Context ID",
+  "stack": [
+    "opentelemetry"
+  ],
+  "tags": [
+    "observability",
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "otel/logs_context_id.js",
+      "template": "// attach correlation id to logs skeleton\n"
+    }
+  ],
+  "patches": []
+}

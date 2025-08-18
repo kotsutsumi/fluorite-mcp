@@ -1,0 +1,20 @@
+{
+  "id": "strike-actions-reusable-publish-docs",
+  "name": "Actions Reusable Publish Docs",
+  "stack": [
+    "github",
+    "actions",
+    "pages"
+  ],
+  "tags": [
+    "ci",
+    "docs"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/publish-docs.yml",
+      "template": "name: PublishDocs\non: workflow_call\n"
+    }
+  ],
+  "patches": []
+}

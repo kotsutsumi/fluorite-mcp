@@ -1,0 +1,18 @@
+{
+  "id": "strike-msw-rest-retry-backoff",
+  "name": "MSW REST Retry + Backoff",
+  "stack": [
+    "msw"
+  ],
+  "tags": [
+    "test",
+    "reliability"
+  ],
+  "files": [
+    {
+      "path": "src/mocks/retry_backoff.ts",
+      "template": "// retry + backoff handlers skeleton\n"
+    }
+  ],
+  "patches": []
+}

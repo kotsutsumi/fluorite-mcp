@@ -1,0 +1,19 @@
+{
+  "id": "strike-airflow-bq-merge-upsert",
+  "name": "Airflow BigQuery MERGE Upsert",
+  "stack": [
+    "airflow",
+    "gcp"
+  ],
+  "tags": [
+    "data",
+    "etl"
+  ],
+  "files": [
+    {
+      "path": "dags/bq_merge_upsert.py",
+      "template": "# merge upsert skeleton\n"
+    }
+  ],
+  "patches": []
+}

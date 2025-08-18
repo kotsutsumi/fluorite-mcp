@@ -1,0 +1,19 @@
+{
+  "id": "strike-collector-processor-transform-attrs",
+  "name": "Collector Transform Attributes",
+  "stack": [
+    "opentelemetry",
+    "collector"
+  ],
+  "tags": [
+    "observability",
+    "processor"
+  ],
+  "files": [
+    {
+      "path": "otel/transform_attrs.yaml",
+      "template": "processors: { transform: {} }\n"
+    }
+  ],
+  "patches": []
+}

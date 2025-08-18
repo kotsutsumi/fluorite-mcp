@@ -1,0 +1,20 @@
+{
+  "id": "strike-actions-reusable-cache-restore",
+  "name": "Actions Reusable Cache Restore",
+  "stack": [
+    "github",
+    "actions",
+    "cache"
+  ],
+  "tags": [
+    "ci",
+    "cache"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/cache-restore.yml",
+      "template": "name: CacheRestore\non: workflow_call\n"
+    }
+  ],
+  "patches": []
+}

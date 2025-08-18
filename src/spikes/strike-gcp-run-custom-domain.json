@@ -1,0 +1,19 @@
+{
+  "id": "strike-gcp-run-custom-domain",
+  "name": "GCP Cloud Run Custom Domain",
+  "stack": [
+    "gcp",
+    "cloud-run"
+  ],
+  "tags": [
+    "cloud",
+    "dns"
+  ],
+  "files": [
+    {
+      "path": "run/custom_domain.md",
+      "template": "# custom domain config\n"
+    }
+  ],
+  "patches": []
+}

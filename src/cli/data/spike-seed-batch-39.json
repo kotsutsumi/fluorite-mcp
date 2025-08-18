@@ -1,0 +1,51 @@
+{
+  "items": [
+    { "id": "strike-express-brotli-compression", "name": "Express Brotli Compression", "stack": ["node","express"], "tags": ["backend","perf"], "files": [{ "path": "server.js", "template": "// express brotli compression skeleton\n" }] },
+    { "id": "strike-koa-helmet-hsts", "name": "Koa Helmet HSTS", "stack": ["node","koa","helmet"], "tags": ["backend","security"], "files": [{ "path": "server.js", "template": "// koa helmet hsts skeleton\n" }] },
+    { "id": "strike-fastify-prehandler-guards", "name": "Fastify preHandler Guards", "stack": ["node","fastify"], "tags": ["backend","hooks","auth"], "files": [{ "path": "server.js", "template": "// fastify preHandler guards skeleton\n" }] },
+    { "id": "strike-go-net-http-sse", "name": "Go net/http SSE", "stack": ["go"], "tags": ["backend","stream"], "files": [{ "path": "main.go", "template": "package main\n// net/http sse skeleton\nfunc main(){}\n" }] },
+    { "id": "strike-hono-csp-report-only", "name": "Hono CSP Report-Only", "stack": ["hono","csp"], "tags": ["backend","security"], "files": [{ "path": "server.ts", "template": "// hono csp report-only skeleton\n" }] },
+    { "id": "strike-deno-fresh-request-id-logger", "name": "Fresh Request-ID Logger", "stack": ["deno","fresh"], "tags": ["backend","logs"], "files": [{ "path": "middleware.ts", "template": "// fresh request-id logger skeleton\n" }] },
+
+    { "id": "strike-nextjs-middleware-csp-nonce", "name": "Next.js Middleware CSP Nonce", "stack": ["nextjs","csp"], "tags": ["frontend","middleware","security"], "files": [{ "path": "middleware.ts", "template": "// inject csp nonce middleware skeleton\n" }] },
+    { "id": "strike-nuxt3-storage-keys-patterns", "name": "Nuxt3 Storage Keys Patterns", "stack": ["nuxt"], "tags": ["frontend","storage"], "files": [{ "path": "composables/useStorageKeys.ts", "template": "// storage keys patterns skeleton\n" }] },
+    { "id": "strike-sveltekit-secure-cookies", "name": "SvelteKit Secure Cookies", "stack": ["sveltekit"], "tags": ["frontend","cookies","security"], "files": [{ "path": "src/lib/cookies.ts", "template": "// secure cookies helpers skeleton\n" }] },
+    { "id": "strike-angular-http-retry-exponential", "name": "Angular HTTP Retry Exponential", "stack": ["angular"], "tags": ["frontend","http","reliability"], "files": [{ "path": "src/app/http.retry.ts", "template": "// exponential backoff interceptor skeleton\n" }] },
+    { "id": "strike-solid-start-islands-ssr", "name": "SolidStart Islands SSR", "stack": ["solid","solid-start"], "tags": ["frontend","ssr"], "files": [{ "path": "src/Island.tsx", "template": "// solidstart islands skeleton\n" }] },
+
+    { "id": "strike-otel-resource-detectors-extra", "name": "OTel Resource Detectors Extra", "stack": ["opentelemetry"], "tags": ["observability","resource"], "files": [{ "path": "otel/resource_extra.js", "template": "// extra resource detectors skeleton\n" }] },
+    { "id": "strike-collector-transform-processor", "name": "Collector Transform Processor", "stack": ["opentelemetry","collector"], "tags": ["observability","processor"], "files": [{ "path": "otel/transform.yaml", "template": "processors: { transform: {} }\n" }] },
+    { "id": "strike-grafana-errors-dashboard", "name": "Grafana Errors Dashboard", "stack": ["grafana"], "tags": ["observability","dashboards"], "files": [{ "path": "grafana/dashboards/errors.json", "template": "{ }\n" }] },
+
+    { "id": "strike-oidc-token-binding-notes", "name": "OIDC Token Binding Notes", "stack": ["oidc"], "tags": ["security","auth"], "files": [{ "path": "auth/token_binding.md", "template": "# token binding notes\n" }] },
+    { "id": "strike-jwt-jws-b64-unencoded", "name": "JWT JWS b64 header Unencoded", "stack": ["jwt","jose"], "tags": ["security","jwt"], "files": [{ "path": "security/jws_b64_unencoded.md", "template": "# detached payload b64: false\n" }] },
+    { "id": "strike-opa-abac-policies", "name": "OPA ABAC Policies", "stack": ["opa"], "tags": ["security","policy"], "files": [{ "path": "policy/abac.rego", "template": "# abac policy skeleton\n" }] },
+
+    { "id": "strike-kafka-exactly-once-consumer", "name": "Kafka Exactly-Once Consumer", "stack": ["kafka"], "tags": ["stream","tx"], "files": [{ "path": "kafka/exactly_once_consumer.md", "template": "# exactly once consumption strategies\n" }] },
+    { "id": "strike-nats-message-dedup", "name": "NATS Message Deduplication", "stack": ["nats"], "tags": ["messaging","dedup"], "files": [{ "path": "nats/dedup.md", "template": "# message deduplication patterns\n" }] },
+    { "id": "strike-sqs-kms-sse-encryption", "name": "SQS KMS SSE Encryption", "stack": ["aws","sqs","kms"], "tags": ["queue","security"], "files": [{ "path": "aws/sse_kms.md", "template": "# sse kms encryption notes\n" }] },
+
+    { "id": "strike-actions-cache-restore-save", "name": "Actions Cache Restore/Save", "stack": ["github","actions"], "tags": ["ci","cache"], "files": [{ "path": ".github/workflows/cache-restore-save.yml", "template": "name: CacheRestoreSave\non: workflow_call\n" }] },
+    { "id": "strike-terraform-import-guide", "name": "Terraform Import Guide", "stack": ["terraform"], "tags": ["infra","state"], "files": [{ "path": "docs/import.md", "template": "# terraform import guide\n" }] },
+    { "id": "strike-helm-release-strategies", "name": "Helm Release Strategies", "stack": ["helm"], "tags": ["ops","deploy"], "files": [{ "path": "helm/release_strategies.md", "template": "# helm release strategies\n" }] },
+
+    { "id": "strike-msw-rest-retry-backoff", "name": "MSW REST Retry + Backoff", "stack": ["msw"], "tags": ["test","reliability"], "files": [{ "path": "src/mocks/retry_backoff.ts", "template": "// retry + backoff handlers skeleton\n" }] },
+    { "id": "strike-playwright-monitoring-ci", "name": "Playwright Monitoring CI", "stack": ["playwright"], "tags": ["test","monitoring"], "files": [{ "path": ".github/workflows/pw-monitor.yml", "template": "name: PWMonitor\non: [push]\n" }] },
+    { "id": "strike-jest-esm-config-guide", "name": "Jest ESM Config Guide", "stack": ["jest"], "tags": ["test","esm"], "files": [{ "path": "jest.esm.md", "template": "# jest esm config notes\n" }] },
+
+    { "id": "strike-airflow-dataproc-operator", "name": "Airflow DataprocSubmitJobOperator", "stack": ["airflow","gcp"], "tags": ["data","spark"], "files": [{ "path": "dags/dataproc.py", "template": "# dataproc submit job operator\n" }] },
+    { "id": "strike-dbt-exposures-lineage", "name": "dbt Exposures Lineage", "stack": ["dbt"], "tags": ["data","docs"], "files": [{ "path": "models/exposures_lineage.yml", "template": "version: 2\nexposures: []\n" }] },
+    { "id": "strike-bigquery-authorized-views", "name": "BigQuery Authorized Views", "stack": ["gcp","bigquery"], "tags": ["data","security"], "files": [{ "path": "docs/authorized_views.md", "template": "# authorized views notes\n" }] },
+
+    { "id": "strike-aws-alb-listener-rules", "name": "AWS ALB Listener Rules", "stack": ["aws","alb"], "tags": ["cloud","routing"], "files": [{ "path": "alb/listener_rules.json", "template": "{ }\n" }] },
+    { "id": "strike-gcp-bq-slot-reservations", "name": "GCP BigQuery Slot Reservations", "stack": ["gcp","bigquery"], "tags": ["cloud","cost"], "files": [{ "path": "bq/slot_reservations.md", "template": "# slot reservations notes\n" }] },
+    { "id": "strike-azure-keyvault-access-policies", "name": "Azure KeyVault Access Policies", "stack": ["azure","key-vault"], "tags": ["cloud","security"], "files": [{ "path": "keyvault/access_policies.json", "template": "{ }\n" }] },
+
+    { "id": "strike-openapi-yaml-minimal", "name": "(Merge) OpenAPI YAML Meta", "stack": ["openapi"], "tags": ["api","merge"] },
+    { "id": "strike-nextjs-route-handler-minimal", "name": "(Merge) Next.js Route Handler Meta", "stack": ["nextjs"], "tags": ["frontend","api","merge"] },
+    { "id": "strike-dockerfile-node-minimal", "name": "(Merge) Dockerfile Node Meta", "stack": ["docker"], "tags": ["ops","merge"] },
+    { "id": "strike-otel-node-tracer-minimal", "name": "(Merge) OTel Node Tracer Meta", "stack": ["opentelemetry"], "tags": ["observability","merge"] },
+    { "id": "strike-react-hook-form-minimal", "name": "(Merge) RHF Minimal Meta", "stack": ["react","forms"], "tags": ["frontend","merge"] }
+  ]
+}
+

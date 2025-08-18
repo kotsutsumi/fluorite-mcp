@@ -1,0 +1,20 @@
+{
+  "id": "strike-collector-k8s-filelog-receiver",
+  "name": "Collector k8s filelog Receiver",
+  "stack": [
+    "opentelemetry",
+    "collector",
+    "k8s"
+  ],
+  "tags": [
+    "observability",
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "otel/k8s_filelog.yaml",
+      "template": "receivers: { filelog: { include: ['/var/log/*.log'] } }\n"
+    }
+  ],
+  "patches": []
+}

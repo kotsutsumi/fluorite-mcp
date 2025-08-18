@@ -1,0 +1,18 @@
+{
+  "id": "strike-grafana-alert-contact-webhook",
+  "name": "Grafana Alert Contact Webhook",
+  "stack": [
+    "grafana"
+  ],
+  "tags": [
+    "observability",
+    "alerts"
+  ],
+  "files": [
+    {
+      "path": "grafana/alerts/contacts_webhook.yaml",
+      "template": "apiVersion: 1\ncontactPoints: [{ name: 'webhook', type: 'webhook' }]\n"
+    }
+  ],
+  "patches": []
+}

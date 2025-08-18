@@ -1,0 +1,18 @@
+{
+  "id": "strike-dbt-profiles-matrix-ci",
+  "name": "dbt Profiles Matrix CI",
+  "stack": [
+    "dbt"
+  ],
+  "tags": [
+    "data",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/dbt-profiles-matrix.yml",
+      "template": "name: DBTProfilesMatrix\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

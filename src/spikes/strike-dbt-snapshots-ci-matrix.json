@@ -1,0 +1,18 @@
+{
+  "id": "strike-dbt-snapshots-ci-matrix",
+  "name": "dbt Snapshots CI Matrix",
+  "stack": [
+    "dbt"
+  ],
+  "tags": [
+    "data",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/dbt-snapshots-matrix.yml",
+      "template": "name: DBTSnapshotsMatrix\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

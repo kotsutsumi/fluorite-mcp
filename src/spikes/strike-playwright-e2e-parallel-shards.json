@@ -1,0 +1,18 @@
+{
+  "id": "strike-playwright-e2e-parallel-shards",
+  "name": "Playwright E2E Parallel Shards",
+  "stack": [
+    "playwright"
+  ],
+  "tags": [
+    "test",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/pw-e2e-shards.yml",
+      "template": "name: PWE2EShards\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

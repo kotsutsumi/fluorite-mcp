@@ -1,0 +1,18 @@
+{
+  "id": "strike-otel-logs-exporters-dual",
+  "name": "OTel Logs Exporters (dual)",
+  "stack": [
+    "opentelemetry"
+  ],
+  "tags": [
+    "observability",
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "otel/logs_exporters.js",
+      "template": "// export logs to stdout+otlp skeleton\n"
+    }
+  ],
+  "patches": []
+}

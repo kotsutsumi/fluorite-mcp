@@ -1,0 +1,18 @@
+{
+  "id": "strike-helm-values-lint-ci",
+  "name": "Helm Values Lint CI",
+  "stack": [
+    "helm"
+  ],
+  "tags": [
+    "ops",
+    "lint"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/helm-values-lint.yml",
+      "template": "name: HelmValuesLint\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

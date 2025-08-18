@@ -1,0 +1,19 @@
+{
+  "id": "strike-actions-workflow-dispatch-templates",
+  "name": "Actions workflow_dispatch Templates",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci",
+    "manual"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/templates_dispatch.yml",
+      "template": "name: TemplatesDispatch\non: workflow_dispatch\n"
+    }
+  ],
+  "patches": []
+}

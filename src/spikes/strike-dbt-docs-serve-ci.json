@@ -1,0 +1,19 @@
+{
+  "id": "strike-dbt-docs-serve-ci",
+  "name": "dbt docs serve CI",
+  "stack": [
+    "dbt"
+  ],
+  "tags": [
+    "data",
+    "docs",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/dbt-docs-serve.yml",
+      "template": "name: DBTDocsServe\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

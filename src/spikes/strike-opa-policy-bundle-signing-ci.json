@@ -1,0 +1,19 @@
+{
+  "id": "strike-opa-policy-bundle-signing-ci",
+  "name": "OPA Policy Bundle Signing CI",
+  "stack": [
+    "opa"
+  ],
+  "tags": [
+    "security",
+    "policy",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/opa-bundle-sign.yml",
+      "template": "name: OPABundleSign\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

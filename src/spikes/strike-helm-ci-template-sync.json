@@ -1,0 +1,18 @@
+{
+  "id": "strike-helm-ci-template-sync",
+  "name": "Helm CI Template Sync",
+  "stack": [
+    "helm"
+  ],
+  "tags": [
+    "ops",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/helm-template-sync.yml",
+      "template": "name: HelmTemplateSync\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

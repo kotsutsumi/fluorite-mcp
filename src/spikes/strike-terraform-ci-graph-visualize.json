@@ -1,0 +1,18 @@
+{
+  "id": "strike-terraform-ci-graph-visualize",
+  "name": "Terraform CI Graph Visualize",
+  "stack": [
+    "terraform"
+  ],
+  "tags": [
+    "infra",
+    "graph"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/tf-graph.yml",
+      "template": "name: TFGraph\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

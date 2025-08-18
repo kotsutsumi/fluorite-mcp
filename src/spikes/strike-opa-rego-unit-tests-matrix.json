@@ -1,0 +1,19 @@
+{
+  "id": "strike-opa-rego-unit-tests-matrix",
+  "name": "OPA Rego Unit Tests Matrix",
+  "stack": [
+    "opa"
+  ],
+  "tags": [
+    "security",
+    "policy",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/rego-matrix.yml",
+      "template": "name: RegoMatrix\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

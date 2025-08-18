@@ -1,0 +1,18 @@
+{
+  "id": "strike-playwright-e2e-ci-parallel",
+  "name": "Playwright E2E CI Parallel",
+  "stack": [
+    "playwright"
+  ],
+  "tags": [
+    "test",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/pw-e2e-parallel.yml",
+      "template": "name: PWE2EParallel\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

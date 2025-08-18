@@ -1,0 +1,18 @@
+{
+  "id": "strike-dbt-deps-ci-cache",
+  "name": "dbt deps CI Cache",
+  "stack": [
+    "dbt"
+  ],
+  "tags": [
+    "data",
+    "deps"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/dbt-deps-cache.yml",
+      "template": "name: DBTDepsCache\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

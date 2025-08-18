@@ -1,0 +1,18 @@
+{
+  "id": "strike-terraform-ci-plan-approve",
+  "name": "Terraform Plan Approve Gate",
+  "stack": [
+    "terraform"
+  ],
+  "tags": [
+    "infra",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/tf-approve.yml",
+      "template": "name: TFApprove\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

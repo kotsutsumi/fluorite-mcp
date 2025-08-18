@@ -1,0 +1,18 @@
+{
+  "id": "strike-terraform-ci-plan-apply-gates",
+  "name": "Terraform Plan/Apply Gates",
+  "stack": [
+    "terraform"
+  ],
+  "tags": [
+    "infra",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/tf-gates.yml",
+      "template": "name: TFGates\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

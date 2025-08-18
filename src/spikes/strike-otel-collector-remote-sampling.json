@@ -1,0 +1,19 @@
+{
+  "id": "strike-otel-collector-remote-sampling",
+  "name": "Collector Remote Sampling",
+  "stack": [
+    "opentelemetry",
+    "collector"
+  ],
+  "tags": [
+    "observability",
+    "traces"
+  ],
+  "files": [
+    {
+      "path": "otel/remote_sampling.yaml",
+      "template": "extensions: { sampling: {} }\n"
+    }
+  ],
+  "patches": []
+}

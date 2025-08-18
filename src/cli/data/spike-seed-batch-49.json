@@ -1,0 +1,75 @@
+{
+  "items": [
+    { "id": "strike-laravel-mail-markdown", "name": "Laravel Mail Markdown", "stack": ["php","laravel"], "tags": ["backend","email"], "files": [{ "path": "app/Mail/WelcomeMail.php", "template": "<?php\n// Laravel mailable using Markdown skeleton\n" }] },
+    { "id": "strike-laravel-event-broadcasting", "name": "Laravel Event Broadcasting", "stack": ["php","laravel"], "tags": ["backend","realtime"], "files": [{ "path": "app/Events/MessagePosted.php", "template": "<?php\n// Event broadcasting skeleton\n" }] },
+    { "id": "strike-laravel-queue-redis", "name": "Laravel Queue (Redis)", "stack": ["php","laravel","redis"], "tags": ["backend","queue"], "files": [{ "path": "app/Jobs/ProcessEmail.php", "template": "<?php\n// Laravel queue job skeleton\n" }] },
+    { "id": "strike-laravel-api-resource", "name": "Laravel API Resource", "stack": ["php","laravel"], "tags": ["backend","api"], "files": [{ "path": "app/Http/Resources/UserResource.php", "template": "<?php\n// API Resource skeleton\n" }] },
+    { "id": "strike-laravel-sanctum-spa-auth", "name": "Laravel Sanctum SPA Auth", "stack": ["php","laravel","sanctum"], "tags": ["backend","auth"], "files": [{ "path": "routes/api.php", "template": "<?php\n// Sanctum SPA auth route skeleton\n" }] },
+
+    { "id": "strike-rails-api-jwt", "name": "Rails API with JWT", "stack": ["ruby","rails","jwt"], "tags": ["backend","api","auth"], "files": [{ "path": "app/controllers/auth_controller.rb", "template": "# Rails API JWT auth skeleton\n" }] },
+    { "id": "strike-rails-activejob-sqs", "name": "Rails ActiveJob SQS", "stack": ["ruby","rails","sqs"], "tags": ["queue"], "files": [{ "path": "app/jobs/notify_user_job.rb", "template": "# ActiveJob SQS skeleton\n" }] },
+    { "id": "strike-rails-sidekiq-redis", "name": "Rails Sidekiq Redis", "stack": ["ruby","rails","sidekiq"], "tags": ["queue"], "files": [{ "path": "config/sidekiq.yml", "template": "# sidekiq config skeleton\n" }] },
+    { "id": "strike-rails-actioncable-presence", "name": "Rails ActionCable Presence", "stack": ["ruby","rails","actioncable"], "tags": ["realtime"], "files": [{ "path": "app/channels/presence_channel.rb", "template": "# ActionCable presence skeleton\n" }] },
+    { "id": "strike-rails-rspec-request", "name": "Rails RSpec Request Spec", "stack": ["ruby","rails","rspec"], "tags": ["test"], "files": [{ "path": "spec/requests/api_spec.rb", "template": "# RSpec request spec skeleton\n" }] },
+
+    { "id": "strike-symfony-messenger-redis", "name": "Symfony Messenger + Redis", "stack": ["php","symfony","redis"], "tags": ["queue"], "files": [{ "path": "config/packages/messenger.yaml", "template": "# messenger redis transport skeleton\n" }] },
+    { "id": "strike-symfony-http-client-retry", "name": "Symfony HTTP Client Retry", "stack": ["php","symfony"], "tags": ["http","retry"], "files": [{ "path": "src/Http/Client.php", "template": "<?php\n// HttpClient retry strategy skeleton\n" }] },
+    { "id": "strike-symfony-security-jwt", "name": "Symfony Security JWT", "stack": ["php","symfony","jwt"], "tags": ["auth"], "files": [{ "path": "config/packages/security.yaml", "template": "# JWT security skeleton\n" }] },
+    { "id": "strike-symfony-serializer-groups", "name": "Symfony Serializer Groups", "stack": ["php","symfony"], "tags": ["serialization"], "files": [{ "path": "src/Entity/User.php", "template": "<?php\n// Serializer groups skeleton\n" }] },
+
+    { "id": "strike-phoenix-oban-jobs", "name": "Phoenix Oban Jobs", "stack": ["elixir","phoenix","oban"], "tags": ["queue"], "files": [{ "path": "lib/app/workers/email_worker.ex", "template": "# Oban worker skeleton\n" }] },
+    { "id": "strike-phoenix-ecto-soft-delete", "name": "Phoenix Ecto Soft Delete", "stack": ["elixir","phoenix","ecto"], "tags": ["db"], "files": [{ "path": "lib/app/schemas/user.ex", "template": "# Ecto soft delete skeleton\n" }] },
+    { "id": "strike-phoenix-liveview-uploads", "name": "Phoenix LiveView Uploads", "stack": ["elixir","phoenix","liveview"], "tags": ["frontend","upload"], "files": [{ "path": "lib/app_web/live/upload_live.ex", "template": "# LiveView uploads skeleton\n" }] },
+
+    { "id": "strike-aspnet-efcore-soft-delete", "name": "ASP.NET EFCore Soft Delete", "stack": ["dotnet","aspnet","efcore"], "tags": ["backend","db"], "files": [{ "path": "Models/SoftDeletable.cs", "template": "// EF Core soft delete skeleton\n" }] },
+    { "id": "strike-aspnet-minimal-api-rate-limit", "name": "ASP.NET Minimal API Rate Limit", "stack": ["dotnet","aspnet"], "tags": ["api","throttle"], "files": [{ "path": "Program.cs", "template": "// Minimal API rate limit skeleton\n" }] },
+    { "id": "strike-aspnet-serilog-correlation", "name": "ASP.NET Serilog Correlation", "stack": ["dotnet","aspnet","serilog"], "tags": ["logs"], "files": [{ "path": "Program.cs", "template": "// Serilog correlation id skeleton\n" }] },
+    { "id": "strike-aspnet-healthchecks-ui", "name": "ASP.NET HealthChecks UI", "stack": ["dotnet","aspnet"], "tags": ["ops"], "files": [{ "path": "Program.cs", "template": "// HealthChecks UI skeleton\n" }] },
+
+    { "id": "strike-ktor-websockets-broadcast", "name": "Ktor WebSockets Broadcast", "stack": ["kotlin","ktor"], "tags": ["backend","realtime"], "files": [{ "path": "src/WebSockets.kt", "template": "// Ktor websocket broadcast skeleton\n" }] },
+    { "id": "strike-ktor-auth-jwt-refresh", "name": "Ktor Auth JWT Refresh", "stack": ["kotlin","ktor","jwt"], "tags": ["auth"], "files": [{ "path": "src/Auth.kt", "template": "// JWT refresh skeleton\n" }] },
+    { "id": "strike-spring-boot-actuator-prometheus", "name": "Spring Boot Actuator + Prometheus", "stack": ["java","spring"], "tags": ["observability"], "files": [{ "path": "src/main/resources/application.yaml", "template": "# actuator prometheus skeleton\n" }] },
+    { "id": "strike-spring-data-jpa-soft-delete", "name": "Spring Data JPA Soft Delete", "stack": ["java","spring","jpa"], "tags": ["db"], "files": [{ "path": "src/main/java/com/example/model/BaseEntity.java", "template": "// soft delete base entity skeleton\n" }] },
+    { "id": "strike-spring-webflux-router-function", "name": "Spring WebFlux RouterFunction", "stack": ["java","spring","webflux"], "tags": ["api"], "files": [{ "path": "src/main/java/com/example/Routes.java", "template": "// RouterFunction skeleton\n" }] },
+    { "id": "strike-quarkus-resteasy-minimal", "name": "Quarkus RESTEasy Minimal", "stack": ["java","quarkus"], "tags": ["api"], "files": [{ "path": "src/main/java/org/acme/GreetingResource.java", "template": "// RESTEasy resource skeleton\n" }] },
+    { "id": "strike-micronaut-http-client-retry", "name": "Micronaut HTTP Client Retry", "stack": ["java","micronaut"], "tags": ["http","retry"], "files": [{ "path": "src/main/java/example/Client.java", "template": "// Micronaut client retry skeleton\n" }] },
+    { "id": "strike-vertx-eventbus-cluster", "name": "Vert.x EventBus Cluster", "stack": ["java","vertx"], "tags": ["realtime","cluster"], "files": [{ "path": "src/main/java/example/ClusterBus.java", "template": "// Vert.x clustered event bus skeleton\n" }] },
+
+    { "id": "strike-playframework-controller-minimal", "name": "Play Framework Controller Minimal", "stack": ["scala","play"], "tags": ["api"], "files": [{ "path": "app/controllers/HomeController.scala", "template": "// Play controller skeleton\n" }] },
+    { "id": "strike-akka-typed-actor-supervision", "name": "Akka Typed Actor Supervision", "stack": ["scala","akka"], "tags": ["concurrency"], "files": [{ "path": "src/main/scala/actors/Supervised.scala", "template": "// Akka supervision skeleton\n" }] },
+    { "id": "strike-zio-http-endpoint-minimal", "name": "ZIO HTTP Endpoint Minimal", "stack": ["scala","zio","zio-http"], "tags": ["api"], "files": [{ "path": "src/main/scala/App.scala", "template": "// ZIO HTTP skeleton\n" }] },
+    { "id": "strike-http4s-route-minimal", "name": "http4s Route Minimal", "stack": ["scala","http4s"], "tags": ["api"], "files": [{ "path": "src/main/scala/Routes.scala", "template": "// http4s route skeleton\n" }] },
+
+    { "id": "strike-rust-tokio-mpsc", "name": "Rust Tokio mpsc", "stack": ["rust","tokio"], "tags": ["async"], "files": [{ "path": "src/main.rs", "template": "// tokio mpsc skeleton\nfn main() {}\n" }] },
+    { "id": "strike-rust-reqwest-retry", "name": "Rust reqwest Retry", "stack": ["rust","reqwest"], "tags": ["http","retry"], "files": [{ "path": "src/client.rs", "template": "// reqwest retry skeleton\n" }] },
+    { "id": "strike-rust-serde-jsonschema", "name": "Rust Serde JSON Schema", "stack": ["rust","serde"], "tags": ["validation"], "files": [{ "path": "src/schema.rs", "template": "// serde json schema skeleton\n" }] },
+
+    { "id": "strike-go-wire-dependency-injection", "name": "Go Wire DI", "stack": ["go","wire"], "tags": ["di"], "files": [{ "path": "wire.go", "template": "// google/wire DI skeleton\n" }] },
+    { "id": "strike-go-fx-lifecycle", "name": "Go Uber FX Lifecycle", "stack": ["go","fx"], "tags": ["di","lifecycle"], "files": [{ "path": "main.go", "template": "// fx lifecycle skeleton\n" }] },
+    { "id": "strike-go-chi-middlewares-stack", "name": "Go chi Middlewares Stack", "stack": ["go","chi"], "tags": ["http"], "files": [{ "path": "main.go", "template": "// chi middleware stack skeleton\n" }] },
+
+    { "id": "strike-pandas-read-parquet-s3", "name": "Pandas Read Parquet from S3", "stack": ["python","pandas","s3"], "tags": ["data"], "files": [{ "path": "script.py", "template": "# pandas read parquet from s3 skeleton\n" }] },
+    { "id": "strike-polars-lazy-joins", "name": "Polars Lazy Joins", "stack": ["python","polars"], "tags": ["data"], "files": [{ "path": "joins.py", "template": "# polars lazy join skeleton\n" }] },
+    { "id": "strike-ray-task-retries", "name": "Ray Task Retries", "stack": ["python","ray"], "tags": ["distributed"], "files": [{ "path": "tasks.py", "template": "# ray task retries skeleton\n" }] },
+
+    { "id": "strike-airbyte-connection-sync-cron", "name": "Airbyte Connection Sync Cron", "stack": ["airbyte"], "tags": ["data","sync"], "files": [{ "path": ".github/workflows/airbyte-sync.yml", "template": "name: AirbyteSync\non: { schedule: [{ cron: '0 * * * *' }] }\n" }] },
+    { "id": "strike-dagster-asset-sensor", "name": "Dagster Asset Sensor", "stack": ["dagster"], "tags": ["data"], "files": [{ "path": "assets/sensor.py", "template": "# dagster asset sensor skeleton\n" }] },
+    { "id": "strike-prefect-flow-parameters", "name": "Prefect Flow Parameters", "stack": ["prefect"], "tags": ["orchestration"], "files": [{ "path": "flows/param_flow.py", "template": "# prefect flow with params skeleton\n" }] },
+
+    { "id": "strike-github-actions-oidc-aws", "name": "GitHub Actions OIDC to AWS", "stack": ["github","actions","aws"], "tags": ["ci","auth"], "files": [{ "path": ".github/workflows/deploy.yml", "template": "name: Deploy\non: [push]\n# OIDC to AWS skeleton\n" }] },
+    { "id": "strike-gitlab-ci-dynamic-environments", "name": "GitLab CI Dynamic Environments", "stack": ["gitlab","ci"], "tags": ["ci","preview"], "files": [{ "path": ".gitlab-ci.yml", "template": "# dynamic environments skeleton\n" }] },
+    { "id": "strike-circleci-workflows-matrix", "name": "CircleCI Workflows Matrix", "stack": ["circleci"], "tags": ["ci"], "files": [{ "path": ".circleci/config.yml", "template": "# circleci matrix skeleton\n" }] },
+
+    { "id": "strike-otel-sampler-parentbased-traceidratio", "name": "OTel ParentBased TraceIdRatio", "stack": ["opentelemetry"], "tags": ["observability"], "files": [{ "path": "otel/sampler.ts", "template": "// OTel sampler config skeleton\n" }] },
+    { "id": "strike-loki-labels-bestpractices", "name": "Loki Labels Best Practices", "stack": ["loki"], "tags": ["observability","logs"], "files": [{ "path": "loki/labels.md", "template": "# loki labels best practices\n" }] },
+    { "id": "strike-opa-rego-bundle-layout", "name": "OPA Rego Bundle Layout", "stack": ["opa"], "tags": ["policy"], "files": [{ "path": "policy/bundle_layout.md", "template": "# rego bundle layout skeleton\n" }] },
+    { "id": "strike-openpolicyagent-envoy-extauthz", "name": "Envoy ext_authz with OPA", "stack": ["envoy","opa"], "tags": ["security"], "files": [{ "path": "envoy/ext_authz.yaml", "template": "# envoy ext_authz skeleton\n" }] },
+
+    { "id": "strike-qwik-city-endpoint-minimal", "name": "Qwik City Endpoint Minimal", "stack": ["qwik"], "tags": ["frontend","api"], "files": [{ "path": "src/routes/api/health/index.ts", "template": "// qwik city endpoint skeleton\n" }] },
+    { "id": "strike-solid-start-api-route-minimal", "name": "SolidStart API Route Minimal", "stack": ["solid","solid-start"], "tags": ["frontend","api"], "files": [{ "path": "src/routes/api/health.ts", "template": "// solid-start api route skeleton\n" }] },
+    { "id": "strike-remix-loader-action-minimal", "name": "Remix Loader + Action Minimal", "stack": ["remix"], "tags": ["frontend","forms"], "files": [{ "path": "app/routes/health.tsx", "template": "// remix loader/action skeleton\n" }] },
+    { "id": "strike-sveltekit-form-actions", "name": "SvelteKit Form Actions", "stack": ["sveltekit"], "tags": ["frontend","forms"], "files": [{ "path": "src/routes/+page.server.ts", "template": "// sveltekit form actions skeleton\n" }] },
+    { "id": "strike-react-router-data-router", "name": "React Router Data Router", "stack": ["react-router"], "tags": ["frontend","routing"], "files": [{ "path": "src/routes.tsx", "template": "// data router skeleton\n" }] }
+  ]
+}
+

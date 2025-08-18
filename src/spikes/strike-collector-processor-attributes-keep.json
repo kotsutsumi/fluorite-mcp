@@ -1,0 +1,19 @@
+{
+  "id": "strike-collector-processor-attributes-keep",
+  "name": "Collector Attributes Keep List",
+  "stack": [
+    "opentelemetry",
+    "collector"
+  ],
+  "tags": [
+    "observability",
+    "privacy"
+  ],
+  "files": [
+    {
+      "path": "otel/attrs_keep.yaml",
+      "template": "processors: { attributes: { include: [] } }\n"
+    }
+  ],
+  "patches": []
+}

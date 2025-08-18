@@ -1,0 +1,20 @@
+{
+  "id": "strike-laravel-queue-redis",
+  "name": "Laravel Queue (Redis)",
+  "stack": [
+    "php",
+    "laravel",
+    "redis"
+  ],
+  "tags": [
+    "backend",
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "app/Jobs/ProcessEmail.php",
+      "template": "<?php\n// Laravel queue job skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,19 @@
+{
+  "id": "strike-bigquery-partition-by-ingestion",
+  "name": "BigQuery Partition by Ingestion",
+  "stack": [
+    "gcp",
+    "bigquery"
+  ],
+  "tags": [
+    "data",
+    "partition"
+  ],
+  "files": [
+    {
+      "path": "sql/partition_by_ingestion.sql",
+      "template": "-- partition by ingestion time\n"
+    }
+  ],
+  "patches": []
+}

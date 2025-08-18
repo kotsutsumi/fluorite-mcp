@@ -1,0 +1,18 @@
+{
+  "id": "strike-helm-ci-template-bump",
+  "name": "Helm CI Template Bump",
+  "stack": [
+    "helm"
+  ],
+  "tags": [
+    "ops",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/helm-bump.yml",
+      "template": "name: HelmBump\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

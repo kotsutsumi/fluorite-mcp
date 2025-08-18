@@ -1,0 +1,19 @@
+{
+  "id": "strike-airflow-dataproc-operator",
+  "name": "Airflow DataprocSubmitJobOperator",
+  "stack": [
+    "airflow",
+    "gcp"
+  ],
+  "tags": [
+    "data",
+    "spark"
+  ],
+  "files": [
+    {
+      "path": "dags/dataproc.py",
+      "template": "# dataproc submit job operator\n"
+    }
+  ],
+  "patches": []
+}

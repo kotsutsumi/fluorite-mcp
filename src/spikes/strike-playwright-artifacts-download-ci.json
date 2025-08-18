@@ -1,0 +1,18 @@
+{
+  "id": "strike-playwright-artifacts-download-ci",
+  "name": "Playwright Artifacts Download CI",
+  "stack": [
+    "playwright"
+  ],
+  "tags": [
+    "test",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/pw-artifacts-download.yml",
+      "template": "name: PWArtifactsDownload\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

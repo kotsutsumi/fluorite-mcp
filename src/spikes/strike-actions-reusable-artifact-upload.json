@@ -1,0 +1,19 @@
+{
+  "id": "strike-actions-reusable-artifact-upload",
+  "name": "Actions Reusable Artifact Upload",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci",
+    "artifacts"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/artifact-upload.yml",
+      "template": "name: ArtifactUpload\non: workflow_call\n"
+    }
+  ],
+  "patches": []
+}
