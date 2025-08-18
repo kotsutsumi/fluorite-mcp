@@ -1,0 +1,18 @@
+{
+  "id": "strike-angular-router-guard",
+  "name": "Angular Router Guard",
+  "stack": [
+    "angular"
+  ],
+  "tags": [
+    "frontend",
+    "routing"
+  ],
+  "files": [
+    {
+      "path": "src/app/auth.guard.ts",
+      "template": "import { CanActivateFn } from '@angular/router';\nexport const authGuard: CanActivateFn = () => true;\n"
+    }
+  ],
+  "patches": []
+}

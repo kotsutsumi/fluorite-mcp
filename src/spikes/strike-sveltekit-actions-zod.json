@@ -1,0 +1,20 @@
+{
+  "id": "strike-sveltekit-actions-zod",
+  "name": "SvelteKit Actions + Zod",
+  "stack": [
+    "sveltekit",
+    "zod"
+  ],
+  "tags": [
+    "frontend",
+    "forms",
+    "validation"
+  ],
+  "files": [
+    {
+      "path": "src/routes/+page.server.ts",
+      "template": "import { z } from 'zod';\nexport const actions = { default: async () => ({ ok:true }) };\n"
+    }
+  ],
+  "patches": []
+}

@@ -34,7 +34,7 @@ Fluorite MCP is a comprehensive Model Context Protocol server that enhances Clau
 ### 📚 Extensive Library Knowledge Base
 Transform your development workflow with professionally curated specifications:
 
-- **📖 87+ Library Specifications**: Detailed usage patterns, configuration examples, and architectural guidance
+- **📖 86+ Library Specifications**: Detailed usage patterns, configuration examples, and architectural guidance
 - **🌍 12+ Language Ecosystems**: Full-stack coverage from TypeScript to Rust, Python to Go
 - **🏗️ Framework Mastery**: Deep integration with Next.js, React, Vue, FastAPI, Express, and emerging frameworks
 - **🎯 Best Practices Integration**: Every specification includes production-ready patterns and security considerations
@@ -50,7 +50,7 @@ Prevent issues before they occur with intelligent analysis:
 ### 🧪 Accelerated Development with Spike Templates
 Bridge the gap between idea and implementation:
 
-- **🏭 750+ Production Templates**: Battle-tested scaffolds for authentication, APIs, testing, and deployment
+- **🏭 2500+ Production Templates**: Battle-tested scaffolds for authentication, APIs, testing, and deployment
 - **🗣️ Natural Language Interface**: Describe features in plain English—no complex syntax to learn
 - **🎯 Intelligent Selection**: AI-powered template matching based on your project context and requirements
 - **🔄 Iterative Refinement**: Built-in quality validation and improvement loops
@@ -168,7 +168,7 @@ Fluorite MCP bridges the gap between natural language requirements and productio
 - **Constraint Recognition**: Considers performance, security, and compatibility requirements
 
 #### 2. **Intelligent Library Selection & Specification Access**
-- **87+ Curated Specifications**: Professional-grade documentation with usage patterns and best practices
+- **86+ Curated Specifications**: Professional-grade documentation with usage patterns and best practices
 - **Smart Matching Algorithm**: Selects optimal libraries based on requirements, project context, and compatibility
 - **Version Compatibility**: Ensures selected libraries work together and match your project's dependency constraints
 - **Performance Optimization**: Considers bundle size, loading performance, and runtime efficiency
@@ -198,7 +198,7 @@ Fluorite MCP bridges the gap between natural language requirements and productio
 
 Transform ideas into working prototypes in minutes with our comprehensive template ecosystem:
 
-#### **750+ Production-Ready Templates**
+#### **2500+ Production-Ready Templates**
 
 | **Category** | **Templates** | **Key Features** | **Time Savings** |
 |--------------|---------------|------------------|------------------|
@@ -343,7 +343,7 @@ Join our mission to democratize professional development patterns:
 #### **📚 豊富なライブラリ知識ベース**
 プロフェッショナルに厳選された仕様で開発ワークフローを変革：
 
-- **📖 87以上のライブラリ仕様**: 詳細な使用パターン、設定例、アーキテクチャガイダンス
+- **📖 86以上のライブラリ仕様**: 詳細な使用パターン、設定例、アーキテクチャガイダンス
 - **🌍 12以上の言語エコシステム**: TypeScriptからRust、PythonからGoまでのフルスタックカバレッジ
 - **🏗️ フレームワーク習得**: Next.js、React、Vue、FastAPI、Express、新興フレームワークとの深い統合
 - **🎯 ベストプラクティス統合**: すべての仕様に本番対応パターンとセキュリティ考慮事項を含む
@@ -359,7 +359,7 @@ Join our mission to democratize professional development patterns:
 #### **🧪 スパイクテンプレートによる開発加速**
 アイデアと実装の間のギャップを橋渡し：
 
-- **🏭 750以上の本番テンプレート**: 認証、API、テスト、デプロイ向けの実戦テスト済みスキャフォールド
+- **🏭 2500以上の本番テンプレート**: 認証、API、テスト、デプロイ向けの実戦テスト済みスキャフォールド
 - **🗣️ 自然言語インターフェース**: プレーンな日本語で機能を記述 - 複雑な構文を学ぶ必要なし
 - **🎯 インテリジェント選択**: プロジェクトコンテキストと要件に基づくAI駆動テンプレートマッチング
 - **🔄 反復改良**: 組み込み品質検証と改善ループ
@@ -514,10 +514,10 @@ claude mcp list
 ### **Production Readiness Indicators**
 | **Metric** | **Current Status** | **Quality Standard** | **Industry Benchmark** |
 |------------|-------------------|---------------------|----------------------|
-| **Library Coverage** | 87+ specifications | 100% production-tested | Leading in MCP ecosystem |
+| **Library Coverage** | 86+ specifications | 100% production-tested | Leading in MCP ecosystem |
 | **Language Ecosystems** | 12+ comprehensive | Full-stack coverage | Most comprehensive available |
 | **Static Analysis Rules** | 50+ framework-specific | Zero false positives | Advanced error prediction |
-| **Template Ecosystem** | 750+ production templates | Enterprise-grade quality | Largest collection |
+| **Template Ecosystem** | 2500+ production templates | Enterprise-grade quality | Largest collection |
 | **Documentation Quality** | 100+ pages, searchable | Professional technical writing | Award-winning clarity |
 
 ### **Developer Impact Metrics**
@@ -689,9 +689,9 @@ graph TB
     C --> F[Spike Template System]
     C --> G[Intelligent Code Generation]
     
-    D --> H[87+ YAML Specifications]
+    D --> H[86+ YAML Specifications]
     E --> I[50+ Validation Rules]
-    F --> J[385+ Production Templates]
+    F --> J[2500+ Production Templates]
     G --> K[Framework-Native Output]
     
     H --> L[TypeScript/JavaScript]
@@ -706,9 +706,9 @@ graph TB
 ### **Project Structure**
 ```
 fluorite-mcp/                    # Enterprise MCP server
-├── 📁 src/catalog/             # Library specifications (87+ YAML files)
+├── 📁 src/catalog/             # Library specifications (86+ YAML files)
 ├── 📁 src/core/                # Core MCP functionality & analysis engine
-├── 📁 src/spikes/              # Spike template ecosystem (385+ templates)
+├── 📁 src/spikes/              # Spike template ecosystem (2500+ templates)
 ├── 📁 memory-engine/           # Rust-based intelligent memory system
 │   ├── 📁 fluorite-memory/     # Core chunk storage implementation
 │   ├── 📁 fluorite-ml/         # ML integration with PyO3
@@ -811,7 +811,7 @@ All library specifications include proper attribution and licensing information 
 
 ### **Technology Partners**
 - **Anthropic Claude Team**: MCP protocol development and Claude Code CLI integration
-- **Library Maintainers**: 87+ open source library teams for comprehensive documentation
+- **Library Maintainers**: 86+ open source library teams for comprehensive documentation
 - **TypeScript Community**: Advanced type system patterns and validation techniques
 
 ### **Enterprise Contributors**

@@ -1,0 +1,17 @@
+{
+  "id": "strike-helm-values-minimal",
+  "name": "Helm values.yaml Minimal",
+  "stack": [
+    "helm"
+  ],
+  "tags": [
+    "ops"
+  ],
+  "files": [
+    {
+      "path": "chart/values.yaml",
+      "template": "replicaCount: 1\nimage: { repository: app, tag: latest }\n"
+    }
+  ],
+  "patches": []
+}

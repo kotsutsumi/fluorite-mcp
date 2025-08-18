@@ -1,0 +1,18 @@
+{
+  "id": "strike-gh-actions-self-hosted",
+  "name": "GH Actions Self-Hosted Runner",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/self-hosted.yml",
+      "template": "name: SelfHosted\non: [push]\njobs:\n  build:\n    runs-on: self-hosted\n    steps:\n      - uses: actions/checkout@v4\n      - run: echo ok\n"
+    }
+  ],
+  "patches": []
+}

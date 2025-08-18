@@ -1,0 +1,42 @@
+{
+  "items": [
+    { "id": "strike-go-hono-route-minimal", "name": "Go Hono Route Minimal", "stack": ["go","hono"], "tags": ["backend","edge"], "files": [{ "path": "main.go", "template": "package main\n// Go Hono-like routing skeleton placeholder\nfunc main(){}\n" }] },
+    { "id": "strike-go-fasthttp-route-minimal", "name": "Go Fasthttp Route Minimal", "stack": ["go","fasthttp"], "tags": ["backend","api"], "files": [{ "path": "main.go", "template": "package main\n// fasthttp hello world skeleton\nfunc main(){}\n" }] },
+    { "id": "strike-aspnet-minimal-handlers", "name": ".NET Minimal API Handlers", "stack": ["dotnet","aspnet"], "tags": ["backend","advanced"], "files": [{ "path": "Program.cs", "template": "// MapGroup and handler filters skeleton\n" }] },
+    { "id": "strike-express-middlewares-pack", "name": "Express Middlewares Pack", "stack": ["node","express"], "tags": ["backend","middleware"], "files": [{ "path": "middlewares/index.js", "template": "// cors, helmet, rate-limit skeleton\n" }] },
+
+    { "id": "strike-nuxt3-composables-minimal", "name": "Nuxt3 Composables Minimal", "stack": ["nuxt"], "tags": ["frontend"], "files": [{ "path": "composables/useHealth.ts", "template": "export const useHealth=()=> ({ ok:true })\n" }] },
+    { "id": "strike-sveltekit-load-form", "name": "SvelteKit Load + Form", "stack": ["sveltekit"], "tags": ["frontend","forms"], "files": [{ "path": "src/routes/+page.ts", "template": "export const load=()=> ({ ok:true })\n" }] },
+    { "id": "strike-angular-signals-example", "name": "Angular Signals Example", "stack": ["angular"], "tags": ["frontend","state"], "files": [{ "path": "src/app/signals.ts", "template": "import { signal } from '@angular/core';\nexport const count = signal(0);\n" }] },
+
+    { "id": "strike-otel-exporter-otlp-http", "name": "OTel Exporter OTLP HTTP", "stack": ["opentelemetry"], "tags": ["observability","exporter"], "files": [{ "path": "otel/exporter-otlp-http.js", "template": "// OTLP HTTP exporter config skeleton\n" }] },
+    { "id": "strike-otel-exporter-jaeger", "name": "OTel Exporter Jaeger", "stack": ["opentelemetry","jaeger"], "tags": ["observability","exporter"], "files": [{ "path": "otel/exporter-jaeger.js", "template": "// Jaeger exporter config skeleton\n" }] },
+    { "id": "strike-otel-exporter-zipkin", "name": "OTel Exporter Zipkin", "stack": ["opentelemetry","zipkin"], "tags": ["observability","exporter"], "files": [{ "path": "otel/exporter-zipkin.js", "template": "// Zipkin exporter config skeleton\n" }] },
+    { "id": "strike-grafana-alert-rule-json", "name": "Grafana Alert Rule JSON", "stack": ["grafana"], "tags": ["observability","alerts"], "files": [{ "path": "grafana/alert.json", "template": "{ \"title\": \"High Error Rate\" }\n" }] },
+
+    { "id": "strike-oauth2-device-code-flow", "name": "OAuth2 Device Code Flow", "stack": ["oauth2"], "tags": ["security","auth"], "files": [{ "path": "auth/device_code.md", "template": "# Device Code Flow skeleton\n" }] },
+    { "id": "strike-jwks-rotation-strategy", "name": "JWKs Rotation Strategy", "stack": ["jwt"], "tags": ["security"], "files": [{ "path": "auth/jwks-rotation.md", "template": "# JWKs rotation skeleton\n" }] },
+    { "id": "strike-csp-presets-strict", "name": "CSP Presets Strict", "stack": ["helmet","csp"], "tags": ["security"], "files": [{ "path": "security/csp-strict.json", "template": "{ \"default-src\": \"'self'\" }\n" }] },
+    { "id": "strike-csp-presets-report-only", "name": "CSP Presets Report-Only", "stack": ["helmet","csp"], "tags": ["security"], "files": [{ "path": "security/csp-report-only.json", "template": "{ \"report-only\": true }\n" }] },
+
+    { "id": "strike-kafka-streams-topology-minimal", "name": "Kafka Streams Topology Minimal", "stack": ["kafka"], "tags": ["stream"], "files": [{ "path": "streams/topology.js", "template": "// Kafka streams topology skeleton\n" }] },
+    { "id": "strike-nats-kv-store-minimal", "name": "NATS KV Store Minimal", "stack": ["nats"], "tags": ["messaging","kv"], "files": [{ "path": "nats/kv.js", "template": "// NATS KV store skeleton\n" }] },
+    { "id": "strike-nats-object-store-minimal", "name": "NATS Object Store Minimal", "stack": ["nats"], "tags": ["messaging","object"], "files": [{ "path": "nats/object.js", "template": "// NATS object store skeleton\n" }] },
+    { "id": "strike-sqs-fifo-queue-minimal", "name": "AWS SQS FIFO Queue Minimal", "stack": ["aws","sqs"], "tags": ["queue"], "files": [{ "path": "aws/sqs-fifo.mjs", "template": "// SQS FIFO example skeleton\n" }] },
+
+    { "id": "strike-gh-actions-self-hosted", "name": "GH Actions Self-Hosted Runner", "stack": ["github","actions"], "tags": ["ci"], "files": [{ "path": ".github/workflows/self-hosted.yml", "template": "name: SelfHosted\non: [push]\njobs:\n  build:\n    runs-on: self-hosted\n    steps:\n      - uses: actions/checkout@v4\n      - run: echo ok\n" }] },
+    { "id": "strike-gh-actions-matrix-multi-os", "name": "GH Actions Matrix Multi-OS", "stack": ["github","actions"], "tags": ["ci"], "files": [{ "path": ".github/workflows/matrix-os.yml", "template": "name: MatrixOS\non: [push]\njobs:\n  build:\n    strategy:\n      matrix: { os: [ubuntu-latest, macos-latest, windows-latest] }\n    runs-on: ${{ matrix.os }}\n    steps:\n      - uses: actions/checkout@v4\n      - run: node -v\n" }] },
+    { "id": "strike-terraform-module-reusable", "name": "Terraform Re-usable Module", "stack": ["terraform"], "tags": ["infra"], "files": [{ "path": "modules/app/main.tf", "template": "// reusable module skeleton\n" }] },
+    { "id": "strike-helm-subcharts-layout", "name": "Helm Subcharts Layout", "stack": ["helm"], "tags": ["ops"], "files": [{ "path": "chart/charts/README.md", "template": "# Subcharts layout\n" }] },
+
+    { "id": "strike-playwright-projects-matrix", "name": "Playwright Projects Matrix", "stack": ["playwright"], "tags": ["test"], "files": [{ "path": "playwright.config.ts", "template": "// projects: chromium, firefox, webkit skeleton\n" }] },
+    { "id": "strike-msw-graphql-handlers", "name": "MSW GraphQL Handlers", "stack": ["msw","graphql"], "tags": ["test"], "files": [{ "path": "src/mocks/graphql.ts", "template": "// GraphQL handlers skeleton\n" }] },
+    { "id": "strike-pact-provider-advanced", "name": "Pact Provider Advanced", "stack": ["pact"], "tags": ["test","contract"], "files": [{ "path": "test/pact.provider.advanced.ts", "template": "// advanced provider verification skeleton\n" }] },
+
+    { "id": "strike-openapi-yaml-minimal", "name": "(Merge) OpenAPI YAML Meta", "stack": ["openapi"], "tags": ["api","oas","example"] },
+    { "id": "strike-react-hook-form-minimal", "name": "(Merge) RHF Minimal Meta", "stack": ["react","forms"], "tags": ["frontend","validation","example"] },
+    { "id": "strike-kafka-consumer-minimal", "name": "(Merge) Kafka Consumer Meta", "stack": ["kafka"], "tags": ["stream","consumer","example"] },
+    { "id": "strike-aws-s3-upload-minimal", "name": "(Merge) S3 Upload Meta", "stack": ["aws","s3"], "tags": ["storage","example"] }
+  ]
+}
+

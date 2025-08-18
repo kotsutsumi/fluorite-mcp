@@ -1,0 +1,19 @@
+{
+  "id": "strike-otel-node-metrics-minimal",
+  "name": "OpenTelemetry Metrics Minimal",
+  "stack": [
+    "node",
+    "opentelemetry"
+  ],
+  "tags": [
+    "observability",
+    "metrics"
+  ],
+  "files": [
+    {
+      "path": "metrics.js",
+      "template": "const { MeterProvider } = require('@opentelemetry/sdk-metrics');\nconst meter = new MeterProvider().getMeter('app');\nconst c = meter.createCounter('requests'); c.add(1);\n"
+    }
+  ],
+  "patches": []
+}

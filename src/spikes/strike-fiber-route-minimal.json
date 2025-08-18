@@ -1,0 +1,19 @@
+{
+  "id": "strike-fiber-route-minimal",
+  "name": "Go Fiber Route Minimal",
+  "stack": [
+    "go",
+    "fiber"
+  ],
+  "tags": [
+    "backend",
+    "api"
+  ],
+  "files": [
+    {
+      "path": "main.go",
+      "template": "package main\nimport (\n  \"github.com/gofiber/fiber/v2\"\n)\nfunc main(){ app:=fiber.New(); app.Get(\"/health\", func(c *fiber.Ctx) error { return c.JSON(fiber.Map{\"ok\": true}) }); app.Listen(\":3000\") }\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-jwt-minimal",
+  "name": "JWT Sign/Verify Minimal",
+  "stack": [
+    "node",
+    "jsonwebtoken"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "jwt.js",
+      "template": "import jwt from 'jsonwebtoken';\nconst token = jwt.sign({ sub:'1' }, 'secret');\nconsole.log(jwt.verify(token, 'secret'));\n"
+    }
+  ],
+  "patches": []
+}

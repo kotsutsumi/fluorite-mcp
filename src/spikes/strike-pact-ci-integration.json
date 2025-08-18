@@ -1,0 +1,18 @@
+{
+  "id": "strike-pact-ci-integration",
+  "name": "Pact CI Integration",
+  "stack": [
+    "pact"
+  ],
+  "tags": [
+    "test",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/pact.yml",
+      "template": "name: Pact CI\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

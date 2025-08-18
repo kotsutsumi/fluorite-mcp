@@ -1,0 +1,19 @@
+{
+  "id": "strike-aws-sns-publish-minimal",
+  "name": "AWS SNS Publish Minimal",
+  "stack": [
+    "aws",
+    "sns"
+  ],
+  "tags": [
+    "cloud",
+    "messaging"
+  ],
+  "files": [
+    {
+      "path": "sns.mjs",
+      "template": "import { SNSClient, PublishCommand } from '@aws-sdk/client-sns';\nconst client = new SNSClient({});\nawait client.send(new PublishCommand({ TopicArn: 'arn:aws:sns:us-east-1:123:topic', Message: 'hello' }));\n"
+    }
+  ],
+  "patches": []
+}

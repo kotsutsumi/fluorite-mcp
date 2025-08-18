@@ -1,0 +1,18 @@
+{
+  "id": "strike-opa-policy-minimal",
+  "name": "OPA Rego Policy Minimal",
+  "stack": [
+    "opa"
+  ],
+  "tags": [
+    "security",
+    "policy"
+  ],
+  "files": [
+    {
+      "path": "policy.rego",
+      "template": "package example\nallow { input.user == \"admin\" }\n"
+    }
+  ],
+  "patches": []
+}

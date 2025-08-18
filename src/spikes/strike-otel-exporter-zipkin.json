@@ -1,0 +1,21 @@
+{
+  "id": "strike-otel-exporter-zipkin",
+  "name": "OTel Exporter Zipkin",
+  "stack": [
+    "opentelemetry",
+    "zipkin"
+  ],
+  "tags": [
+    "observability",
+    "exporter",
+    "merge"
+  ],
+  "files": [
+    {
+      "path": "otel/exporter-zipkin.js",
+      "template": "// Zipkin exporter config skeleton\n"
+    }
+  ],
+  "patches": [],
+  "params": []
+}

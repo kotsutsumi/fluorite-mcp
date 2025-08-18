@@ -1,0 +1,18 @@
+{
+  "id": "strike-testing-library-react-minimal",
+  "name": "Testing Library React Minimal",
+  "stack": [
+    "react",
+    "testing-library"
+  ],
+  "tags": [
+    "test"
+  ],
+  "files": [
+    {
+      "path": "src/App.test.tsx",
+      "template": "import { render, screen } from '@testing-library/react';\nimport App from './App';\nrender(<App/>);\nscreen.getByText(/hello/i);\n"
+    }
+  ],
+  "patches": []
+}

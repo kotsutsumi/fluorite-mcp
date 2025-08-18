@@ -1,0 +1,18 @@
+{
+  "id": "strike-sklearn-pipeline-minimal",
+  "name": "Scikit-learn Pipeline Minimal",
+  "stack": [
+    "python",
+    "sklearn"
+  ],
+  "tags": [
+    "ml"
+  ],
+  "files": [
+    {
+      "path": "ml.py",
+      "template": "from sklearn.pipeline import Pipeline\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import LogisticRegression\npipe = Pipeline([('scaler', StandardScaler()), ('clf', LogisticRegression())])\n"
+    }
+  ],
+  "patches": []
+}

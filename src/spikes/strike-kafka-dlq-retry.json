@@ -1,0 +1,18 @@
+{
+  "id": "strike-kafka-dlq-retry",
+  "name": "Kafka DLQ/Retry",
+  "stack": [
+    "kafkajs"
+  ],
+  "tags": [
+    "stream",
+    "reliability"
+  ],
+  "files": [
+    {
+      "path": "retry.js",
+      "template": "// Kafka retry + DLQ skeleton\n"
+    }
+  ],
+  "patches": []
+}

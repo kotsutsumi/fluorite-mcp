@@ -1,0 +1,18 @@
+{
+  "id": "strike-promtail-config-minimal",
+  "name": "Promtail Config Minimal",
+  "stack": [
+    "promtail"
+  ],
+  "tags": [
+    "observability",
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "promtail-config.yaml",
+      "template": "server: { http_listen_port: 9080 }\n"
+    }
+  ],
+  "patches": []
+}

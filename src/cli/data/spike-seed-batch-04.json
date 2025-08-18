@@ -1,0 +1,40 @@
+{
+  "items": [
+    { "id": "strike-gin-jwt-middleware", "name": "Gin JWT Middleware", "stack": ["go","gin","jwt"], "tags": ["backend","security"], "files": [{ "path": "middleware/jwt.go", "template": "package middleware\n// example: JWT middleware skeleton for Gin\n" }] },
+    { "id": "strike-echo-oauth2-pkce", "name": "Echo OAuth2 PKCE", "stack": ["go","echo","oauth2"], "tags": ["security"], "files": [{ "path": "auth/pkce.go", "template": "package auth\n// example: OAuth2 PKCE flow skeleton for Echo\n" }] },
+    { "id": "strike-aspnet-auth-jwks", "name": ".NET Auth JWKS", "stack": ["dotnet","aspnet","jwt"], "tags": ["security"], "files": [{ "path": "Program.cs", "template": "// Configure JWT bearer with JWKS authority skeleton\n" }] },
+
+    { "id": "strike-nuxt3-server-route-minimal", "name": "Nuxt3 Server Route Minimal", "stack": ["nuxt","nitro"], "tags": ["frontend","api"], "files": [{ "path": "server/api/health.get.ts", "template": "export default defineEventHandler(()=> ({ ok:true }))\n" }] },
+    { "id": "strike-sveltekit-form-actions", "name": "SvelteKit Form Actions", "stack": ["sveltekit"], "tags": ["frontend","forms"], "files": [{ "path": "src/routes/+page.server.ts", "template": "export const actions = { default: async ({ request }) => ({ ok: true }) };\n" }] },
+    { "id": "strike-angular-router-guard", "name": "Angular Router Guard", "stack": ["angular"], "tags": ["frontend","routing"], "files": [{ "path": "src/app/auth.guard.ts", "template": "import { CanActivateFn } from '@angular/router';\nexport const authGuard: CanActivateFn = () => true;\n" }] },
+
+    { "id": "strike-otel-node-traces-http", "name": "OTel Node Traces HTTP", "stack": ["node","opentelemetry"], "tags": ["observability","traces"], "files": [{ "path": "traces-http.js", "template": "// OTel HTTP instrumentation setup skeleton\n" }] },
+    { "id": "strike-otel-node-traces-db", "name": "OTel Node Traces DB", "stack": ["node","opentelemetry"], "tags": ["observability","traces","db"], "files": [{ "path": "traces-db.js", "template": "// OTel DB instrumentation setup skeleton\n" }] },
+    { "id": "strike-grafana-dashboard-json", "name": "Grafana Dashboard JSON", "stack": ["grafana"], "tags": ["observability","dashboards"], "files": [{ "path": "grafana/dashboard.json", "template": "{ \"title\": \"Service\", \"panels\": [] }\n" }] },
+    { "id": "strike-loki-config-minimal", "name": "Loki Config Minimal", "stack": ["loki"], "tags": ["observability","logs"], "files": [{ "path": "loki-config.yaml", "template": "auth_enabled: false\n" }] },
+    { "id": "strike-promtail-config-minimal", "name": "Promtail Config Minimal", "stack": ["promtail"], "tags": ["observability","logs"], "files": [{ "path": "promtail-config.yaml", "template": "server: { http_listen_port: 9080 }\n" }] },
+
+    { "id": "strike-nats-jetstream-minimal", "name": "NATS JetStream Minimal", "stack": ["nats"], "tags": ["messaging"], "files": [{ "path": "jetstream.js", "template": "// NATS JetStream stream/consumer skeleton\n" }] },
+    { "id": "strike-kafka-dlq-retry", "name": "Kafka DLQ/Retry", "stack": ["kafkajs"], "tags": ["stream","reliability"], "files": [{ "path": "retry.js", "template": "// Kafka retry + DLQ skeleton\n" }] },
+    { "id": "strike-sns-sqs-fanout", "name": "SNS→SQS Fanout", "stack": ["aws","sns","sqs"], "tags": ["cloud","messaging"], "files": [{ "path": "fanout.mjs", "template": "// SNS topic + SQS subscription skeleton\n" }] },
+
+    { "id": "strike-gh-actions-matrix-monorepo", "name": "GH Actions Matrix Monorepo", "stack": ["github","actions"], "tags": ["ci","monorepo"], "files": [{ "path": ".github/workflows/ci-matrix.yml", "template": "name: CI Matrix\non: [push]\njobs:\n  build:\n    runs-on: ubuntu-latest\n    strategy:\n      matrix: { node: [18,20], pkg: ['pkg-a','pkg-b'] }\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: ${{ matrix.node }} }\n      - run: npm ci\n      - run: npm -w ${{ matrix.pkg }} test\n" }] },
+    { "id": "strike-terraform-modules-layout", "name": "Terraform Modules Layout", "stack": ["terraform"], "tags": ["infra"], "files": [{ "path": "modules/example/variables.tf", "template": "// module variables\n" }] },
+    { "id": "strike-helm-values-patterns", "name": "Helm values patterns", "stack": ["helm"], "tags": ["ops"], "files": [{ "path": "chart/values.schema.json", "template": "{ \"properties\": {} }\n" }] },
+
+    { "id": "strike-playwright-ci-docker", "name": "Playwright CI Docker", "stack": ["playwright"], "tags": ["test","ci"], "files": [{ "path": ".github/workflows/e2e.yml", "template": "name: E2E\non: [push]\njobs:\n  e2e:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - run: npx playwright install --with-deps\n      - run: npm ci && npm run test:e2e\n" }] },
+    { "id": "strike-msw-server-mode", "name": "MSW Server Mode", "stack": ["msw"], "tags": ["test"], "files": [{ "path": "src/mocks/server.ts", "template": "import { setupServer } from 'msw/node';\nimport { handlers } from './handlers';\nexport const server = setupServer(...handlers);\n" }] },
+    { "id": "strike-pact-provider-test-minimal", "name": "Pact Provider Test Minimal", "stack": ["pact","typescript"], "tags": ["test","contract"], "files": [{ "path": "test/pact.provider.spec.ts", "template": "// Pact provider verification skeleton\n" }] },
+
+    { "id": "strike-airflow-dag-basic", "name": "Airflow DAG Basic", "stack": ["airflow","python"], "tags": ["data","orchestration"], "files": [{ "path": "dags/example.py", "template": "from airflow import DAG\n# simple DAG skeleton\n" }] },
+    { "id": "strike-dbt-models-minimal", "name": "dbt Models Minimal", "stack": ["dbt"], "tags": ["data"], "files": [{ "path": "models/example.sql", "template": "select 1 as id\n" }] },
+
+    { "id": "strike-nextjs-route-handler-advanced", "name": "Next.js Route Handler Advanced", "stack": ["nextjs"], "tags": ["frontend","api","advanced"], "files": [{ "path": "app/api/items/route.ts", "template": "export async function POST(){ return Response.json({ ok: true }) }\n" }] },
+    { "id": "strike-react-hook-form-zod-advanced", "name": "React Hook Form + Zod Advanced", "stack": ["react","zod"], "tags": ["frontend","forms","validation","advanced"], "files": [{ "path": "src/Form.tsx", "template": "// advanced form with zod resolver skeleton\n" }] },
+
+    { "id": "strike-aws-lambda-minimal", "name": "(Merge) AWS Lambda Meta", "stack": ["aws","lambda"], "tags": ["cloud","serverless","example"] },
+    { "id": "strike-react-hook-form-minimal", "name": "(Merge) React Hook Form Meta", "stack": ["react","forms"], "tags": ["frontend","example"] },
+    { "id": "strike-openapi-yaml-minimal", "name": "(Merge) OpenAPI YAML Meta", "stack": ["openapi"], "tags": ["api","spec","example"] }
+  ]
+}
+

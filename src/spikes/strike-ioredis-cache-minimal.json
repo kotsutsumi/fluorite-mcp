@@ -1,0 +1,18 @@
+{
+  "id": "strike-ioredis-cache-minimal",
+  "name": "ioredis Cache Minimal",
+  "stack": [
+    "node",
+    "ioredis"
+  ],
+  "tags": [
+    "cache"
+  ],
+  "files": [
+    {
+      "path": "cache.js",
+      "template": "import Redis from 'ioredis';\nconst r = new Redis(); await r.set('k','v'); console.log(await r.get('k'));\n"
+    }
+  ],
+  "patches": []
+}

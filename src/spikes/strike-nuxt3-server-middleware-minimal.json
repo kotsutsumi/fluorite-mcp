@@ -1,0 +1,19 @@
+{
+  "id": "strike-nuxt3-server-middleware-minimal",
+  "name": "Nuxt3 Server Middleware Minimal",
+  "stack": [
+    "nuxt",
+    "nitro"
+  ],
+  "tags": [
+    "frontend",
+    "middleware"
+  ],
+  "files": [
+    {
+      "path": "server/middleware/log.ts",
+      "template": "export default defineEventHandler((e)=>{/* log */})\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-sveltekit-form-actions",
+  "name": "SvelteKit Form Actions",
+  "stack": [
+    "sveltekit"
+  ],
+  "tags": [
+    "frontend",
+    "forms"
+  ],
+  "files": [
+    {
+      "path": "src/routes/+page.server.ts",
+      "template": "export const actions = { default: async ({ request }) => ({ ok: true }) };\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-aspnet-controller-minimal",
+  "name": ".NET ASP.NET Controller Minimal",
+  "stack": [
+    "dotnet",
+    "aspnet"
+  ],
+  "tags": [
+    "backend"
+  ],
+  "files": [
+    {
+      "path": "Program.cs",
+      "template": "var builder = WebApplication.CreateBuilder(args); var app = builder.Build(); app.MapGet(\"/health\", () => new { ok = true }); app.Run();\n"
+    }
+  ],
+  "patches": []
+}

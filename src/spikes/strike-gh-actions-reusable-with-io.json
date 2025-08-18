@@ -1,0 +1,18 @@
+{
+  "id": "strike-gh-actions-reusable-with-io",
+  "name": "GH Actions Reusable with IO",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/reusable-io.yml",
+      "template": "name: ReusableIO\non: workflow_call:\n  inputs: { env: { required: false, type: string } }\n  outputs: { result: { value: 'ok' } }\njobs: { build: { runs-on: ubuntu-latest, steps: [{ run: 'echo ok' }] } }\n"
+    }
+  ],
+  "patches": []
+}

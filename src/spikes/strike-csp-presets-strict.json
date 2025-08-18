@@ -1,0 +1,18 @@
+{
+  "id": "strike-csp-presets-strict",
+  "name": "CSP Presets Strict",
+  "stack": [
+    "helmet",
+    "csp"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "security/csp-strict.json",
+      "template": "{ \"default-src\": \"'self'\" }\n"
+    }
+  ],
+  "patches": []
+}

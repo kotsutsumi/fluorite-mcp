@@ -1,0 +1,19 @@
+{
+  "id": "strike-gh-actions-matrix-monorepo",
+  "name": "GH Actions Matrix Monorepo",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci",
+    "monorepo"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/ci-matrix.yml",
+      "template": "name: CI Matrix\non: [push]\njobs:\n  build:\n    runs-on: ubuntu-latest\n    strategy:\n      matrix: { node: [18,20], pkg: ['pkg-a','pkg-b'] }\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: ${{ matrix.node }} }\n      - run: npm ci\n      - run: npm -w ${{ matrix.pkg }} test\n"
+    }
+  ],
+  "patches": []
+}

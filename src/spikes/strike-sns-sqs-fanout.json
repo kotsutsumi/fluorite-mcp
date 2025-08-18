@@ -1,0 +1,20 @@
+{
+  "id": "strike-sns-sqs-fanout",
+  "name": "SNS→SQS Fanout",
+  "stack": [
+    "aws",
+    "sns",
+    "sqs"
+  ],
+  "tags": [
+    "cloud",
+    "messaging"
+  ],
+  "files": [
+    {
+      "path": "fanout.mjs",
+      "template": "// SNS topic + SQS subscription skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-lru-cache-minimal",
+  "name": "LRU Cache Minimal",
+  "stack": [
+    "node",
+    "lru-cache"
+  ],
+  "tags": [
+    "cache"
+  ],
+  "files": [
+    {
+      "path": "cache.js",
+      "template": "import LRU from 'lru-cache';\nconst cache = new LRU({ max: 100 }); cache.set('k','v'); console.log(cache.get('k'));\n"
+    }
+  ],
+  "patches": []
+}

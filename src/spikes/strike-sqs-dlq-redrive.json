@@ -1,0 +1,19 @@
+{
+  "id": "strike-sqs-dlq-redrive",
+  "name": "SQS DLQ + Redrive",
+  "stack": [
+    "aws",
+    "sqs"
+  ],
+  "tags": [
+    "queue",
+    "reliability"
+  ],
+  "files": [
+    {
+      "path": "aws/sqs-dlq.mjs",
+      "template": "// dlq + redrive config skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-helm-umbrella-chart",
+  "name": "Helm Umbrella Chart",
+  "stack": [
+    "helm"
+  ],
+  "tags": [
+    "ops"
+  ],
+  "files": [
+    {
+      "path": "umbrella/Chart.yaml",
+      "template": "apiVersion: v2\nname: umbrella\nversion: 0.1.0\ndependencies: []\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,19 @@
+{
+  "id": "strike-nuxt3-server-route-minimal",
+  "name": "Nuxt3 Server Route Minimal",
+  "stack": [
+    "nuxt",
+    "nitro"
+  ],
+  "tags": [
+    "frontend",
+    "api"
+  ],
+  "files": [
+    {
+      "path": "server/api/health.get.ts",
+      "template": "export default defineEventHandler(()=> ({ ok:true }))\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-grafana-alert-rule-json",
+  "name": "Grafana Alert Rule JSON",
+  "stack": [
+    "grafana"
+  ],
+  "tags": [
+    "observability",
+    "alerts"
+  ],
+  "files": [
+    {
+      "path": "grafana/alert.json",
+      "template": "{ \"title\": \"High Error Rate\" }\n"
+    }
+  ],
+  "patches": []
+}

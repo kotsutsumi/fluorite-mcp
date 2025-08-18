@@ -1,0 +1,18 @@
+{
+  "id": "strike-stripe-webhook-minimal",
+  "name": "Stripe Webhook Minimal",
+  "stack": [
+    "node",
+    "stripe"
+  ],
+  "tags": [
+    "payments"
+  ],
+  "files": [
+    {
+      "path": "webhook.js",
+      "template": "import Stripe from 'stripe';\nconst stripe = new Stripe('sk');\n// verify signature & handle events...\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-nodemailer-minimal",
+  "name": "Nodemailer Minimal",
+  "stack": [
+    "node",
+    "nodemailer"
+  ],
+  "tags": [
+    "email"
+  ],
+  "files": [
+    {
+      "path": "mail.js",
+      "template": "import nodemailer from 'nodemailer';\nconst t = nodemailer.createTransport({ sendmail: true });\nawait t.sendMail({ to:'you@example.com', subject:'hi', text:'hello' });\n"
+    }
+  ],
+  "patches": []
+}

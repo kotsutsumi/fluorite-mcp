@@ -1,0 +1,19 @@
+{
+  "id": "strike-nextjs-app-router-actions",
+  "name": "Next.js App Router Server Actions",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "frontend",
+    "app-router",
+    "actions"
+  ],
+  "files": [
+    {
+      "path": "app/actions.ts",
+      "template": "'use server'\nexport async function action(){ return { ok: true } }\n"
+    }
+  ],
+  "patches": []
+}

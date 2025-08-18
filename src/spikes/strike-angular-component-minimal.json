@@ -1,0 +1,17 @@
+{
+  "id": "strike-angular-component-minimal",
+  "name": "Angular Standalone Component Minimal",
+  "stack": [
+    "angular"
+  ],
+  "tags": [
+    "frontend"
+  ],
+  "files": [
+    {
+      "path": "src/app/counter.component.ts",
+      "template": "import { Component } from '@angular/core';\n@Component({ selector:'app-counter', standalone:true, template:`<button (click)=\"count++\">{{count}}</button>` })\nexport class Counter { count=0 }\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-kustomize-base-minimal",
+  "name": "Kustomize Base Minimal",
+  "stack": [
+    "kustomize"
+  ],
+  "tags": [
+    "ops"
+  ],
+  "files": [
+    {
+      "path": "kustomization.yaml",
+      "template": "resources:\n- deployment.yaml\n"
+    }
+  ],
+  "patches": []
+}

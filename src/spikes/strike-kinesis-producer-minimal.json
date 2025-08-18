@@ -1,0 +1,19 @@
+{
+  "id": "strike-kinesis-producer-minimal",
+  "name": "AWS Kinesis Producer Minimal",
+  "stack": [
+    "aws",
+    "kinesis"
+  ],
+  "tags": [
+    "cloud",
+    "stream"
+  ],
+  "files": [
+    {
+      "path": "kinesis.mjs",
+      "template": "import { KinesisClient, PutRecordCommand } from '@aws-sdk/client-kinesis';\nconst c = new KinesisClient({});\nawait c.send(new PutRecordCommand({ StreamName:'events', PartitionKey:'p', Data: new TextEncoder().encode('hello') }));\n"
+    }
+  ],
+  "patches": []
+}

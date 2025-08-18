@@ -1,0 +1,20 @@
+{
+  "id": "strike-otel-node-traces-db",
+  "name": "OTel Node Traces DB",
+  "stack": [
+    "node",
+    "opentelemetry"
+  ],
+  "tags": [
+    "observability",
+    "traces",
+    "db"
+  ],
+  "files": [
+    {
+      "path": "traces-db.js",
+      "template": "// OTel DB instrumentation setup skeleton\n"
+    }
+  ],
+  "patches": []
+}

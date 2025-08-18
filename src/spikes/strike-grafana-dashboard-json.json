@@ -1,0 +1,18 @@
+{
+  "id": "strike-grafana-dashboard-json",
+  "name": "Grafana Dashboard JSON",
+  "stack": [
+    "grafana"
+  ],
+  "tags": [
+    "observability",
+    "dashboards"
+  ],
+  "files": [
+    {
+      "path": "grafana/dashboard.json",
+      "template": "{ \"title\": \"Service\", \"panels\": [] }\n"
+    }
+  ],
+  "patches": []
+}

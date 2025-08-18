@@ -1,0 +1,18 @@
+{
+  "id": "strike-otel-collector-config-minimal",
+  "name": "OTel Collector Config Minimal",
+  "stack": [
+    "opentelemetry",
+    "collector"
+  ],
+  "tags": [
+    "observability"
+  ],
+  "files": [
+    {
+      "path": "otel/collector.yaml",
+      "template": "receivers: {}\nexporters: {}\nservice: {}\n"
+    }
+  ],
+  "patches": []
+}

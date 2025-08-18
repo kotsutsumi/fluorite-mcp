@@ -1,0 +1,19 @@
+{
+  "id": "strike-gin-route-minimal",
+  "name": "Go Gin Route Minimal",
+  "stack": [
+    "go",
+    "gin"
+  ],
+  "tags": [
+    "backend",
+    "api"
+  ],
+  "files": [
+    {
+      "path": "main.go",
+      "template": "package main\nimport (\n  \"github.com/gin-gonic/gin\"\n)\nfunc main(){ r:=gin.Default(); r.GET(\"/health\", func(c *gin.Context){ c.JSON(200, gin.H{\"ok\":true}) }); r.Run() }\n"
+    }
+  ],
+  "patches": []
+}

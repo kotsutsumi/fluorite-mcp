@@ -1,0 +1,17 @@
+{
+  "id": "strike-solid-component-minimal",
+  "name": "SolidJS Component Minimal",
+  "stack": [
+    "solid"
+  ],
+  "tags": [
+    "frontend"
+  ],
+  "files": [
+    {
+      "path": "src/App.tsx",
+      "template": "import { createSignal } from 'solid-js';\nexport default function App(){ const [c,setC]=createSignal(0); return <button onClick={()=>setC(c()+1)}>Count {c()}</button> }\n"
+    }
+  ],
+  "patches": []
+}

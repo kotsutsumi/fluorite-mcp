@@ -35,7 +35,7 @@ const englishSidebar = {
       text: '⚡ Essential Features',
       collapsed: false,
       items: [
-        { text: '🧪 Spike Templates (1,842+)', link: '/spike-templates' },
+        { text: '🧪 Spike Templates (2,500+)', link: '/spike-templates' },
         { text: '🎯 /fl: Command Integration', link: '/fl-commands' },
         { text: '🔍 Static Analysis & Validation', link: '/static-analysis' },
         { text: '📚 Popular Specifications', link: '/specs/' },
@@ -181,7 +181,7 @@ const japaneseSidebar = {
       text: '⚡ 必須機能',
       collapsed: false,
       items: [
-        { text: '🧪 スパイクテンプレート (1,842+)', link: '/ja/spike-templates' },
+        { text: '🧪 スパイクテンプレート (2,500+)', link: '/ja/spike-templates' },
         { text: '🎯 /fl: コマンド統合', link: '/ja/fl-commands' },
         { text: '🔍 静的解析・検証', link: '/ja/static-analysis' },
         { text: '📚 人気の技術仕様', link: '/ja/specs/' },

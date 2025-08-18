@@ -1,0 +1,18 @@
+{
+  "id": "strike-playwright-ci-docker",
+  "name": "Playwright CI Docker",
+  "stack": [
+    "playwright"
+  ],
+  "tags": [
+    "test",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/e2e.yml",
+      "template": "name: E2E\non: [push]\njobs:\n  e2e:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - run: npx playwright install --with-deps\n      - run: npm ci && npm run test:e2e\n"
+    }
+  ],
+  "patches": []
+}

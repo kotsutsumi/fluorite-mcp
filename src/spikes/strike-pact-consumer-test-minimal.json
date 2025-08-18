@@ -1,0 +1,19 @@
+{
+  "id": "strike-pact-consumer-test-minimal",
+  "name": "Pact Consumer Test Minimal",
+  "stack": [
+    "pact",
+    "typescript"
+  ],
+  "tags": [
+    "test",
+    "contract"
+  ],
+  "files": [
+    {
+      "path": "test/pact.spec.ts",
+      "template": "import { PactV3 } from '@pact-foundation/pact';\nconst provider = new PactV3({ consumer:'web', provider:'api' });\n// define interactions...\n"
+    }
+  ],
+  "patches": []
+}

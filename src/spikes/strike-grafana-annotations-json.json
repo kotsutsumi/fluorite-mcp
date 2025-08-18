@@ -1,0 +1,18 @@
+{
+  "id": "strike-grafana-annotations-json",
+  "name": "Grafana Annotations JSON",
+  "stack": [
+    "grafana"
+  ],
+  "tags": [
+    "observability",
+    "annotations"
+  ],
+  "files": [
+    {
+      "path": "grafana/annotations.json",
+      "template": "{ \"annotations\": [] }\n"
+    }
+  ],
+  "patches": []
+}

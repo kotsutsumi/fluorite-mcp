@@ -1,0 +1,19 @@
+{
+  "id": "strike-echo-oauth2-pkce",
+  "name": "Echo OAuth2 PKCE",
+  "stack": [
+    "go",
+    "echo",
+    "oauth2"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "auth/pkce.go",
+      "template": "package auth\n// example: OAuth2 PKCE flow skeleton for Echo\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,19 @@
+{
+  "id": "strike-aspnet-auth-jwks",
+  "name": ".NET Auth JWKS",
+  "stack": [
+    "dotnet",
+    "aspnet",
+    "jwt"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "Program.cs",
+      "template": "// Configure JWT bearer with JWKS authority skeleton\n"
+    }
+  ],
+  "patches": []
+}

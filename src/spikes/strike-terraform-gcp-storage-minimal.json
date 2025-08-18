@@ -1,0 +1,18 @@
+{
+  "id": "strike-terraform-gcp-storage-minimal",
+  "name": "Terraform GCP Storage Minimal",
+  "stack": [
+    "terraform",
+    "gcp"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "main.tf",
+      "template": "provider \"google\" { project = \"demo\" region=\"us-central1\" }\nresource \"google_storage_bucket\" \"b\" { name=\"demo-bucket-123\" location=\"US\" }\n"
+    }
+  ],
+  "patches": []
+}

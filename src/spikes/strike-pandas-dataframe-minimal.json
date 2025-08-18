@@ -1,0 +1,18 @@
+{
+  "id": "strike-pandas-dataframe-minimal",
+  "name": "Pandas DataFrame Minimal",
+  "stack": [
+    "python",
+    "pandas"
+  ],
+  "tags": [
+    "data"
+  ],
+  "files": [
+    {
+      "path": "data.py",
+      "template": "import pandas as pd\ndf = pd.DataFrame({'a':[1,2,3]})\nprint(df.describe())\n"
+    }
+  ],
+  "patches": []
+}

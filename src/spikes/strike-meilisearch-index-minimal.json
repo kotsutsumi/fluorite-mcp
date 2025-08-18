@@ -1,0 +1,18 @@
+{
+  "id": "strike-meilisearch-index-minimal",
+  "name": "Meilisearch Index Minimal",
+  "stack": [
+    "node",
+    "meilisearch"
+  ],
+  "tags": [
+    "search"
+  ],
+  "files": [
+    {
+      "path": "search.js",
+      "template": "import { MeiliSearch } from 'meilisearch';\nconst c = new MeiliSearch({ host: 'http://127.0.0.1:7700' });\nawait c.index('movies').addDocuments([{ id: 1, title: 'Up' }]);\n"
+    }
+  ],
+  "patches": []
+}

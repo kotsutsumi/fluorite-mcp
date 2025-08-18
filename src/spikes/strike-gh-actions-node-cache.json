@@ -1,0 +1,18 @@
+{
+  "id": "strike-gh-actions-node-cache",
+  "name": "GitHub Actions Node Cache",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/ci-cache.yml",
+      "template": "name: CI Cache\non: [push]\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: '20', cache: 'npm' }\n      - run: npm ci\n      - run: npm test\n"
+    }
+  ],
+  "patches": []
+}

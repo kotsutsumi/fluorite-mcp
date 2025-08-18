@@ -1,0 +1,18 @@
+{
+  "id": "strike-s3-upload-minimal",
+  "name": "S3 Upload Minimal",
+  "stack": [
+    "aws",
+    "s3"
+  ],
+  "tags": [
+    "storage"
+  ],
+  "files": [
+    {
+      "path": "s3.mjs",
+      "template": "import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';\nconst c = new S3Client({});\nawait c.send(new PutObjectCommand({ Bucket:'bucket', Key:'a.txt', Body:'hello' }));\n"
+    }
+  ],
+  "patches": []
+}

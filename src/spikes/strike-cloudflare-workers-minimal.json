@@ -1,0 +1,18 @@
+{
+  "id": "strike-cloudflare-workers-minimal",
+  "name": "Cloudflare Workers Minimal",
+  "stack": [
+    "cloudflare",
+    "workers"
+  ],
+  "tags": [
+    "edge"
+  ],
+  "files": [
+    {
+      "path": "worker.js",
+      "template": "export default {\n  async fetch(){ return new Response('ok') }\n};\n"
+    }
+  ],
+  "patches": []
+}

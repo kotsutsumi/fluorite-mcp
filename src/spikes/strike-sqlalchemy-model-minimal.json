@@ -1,0 +1,18 @@
+{
+  "id": "strike-sqlalchemy-model-minimal",
+  "name": "SQLAlchemy Model Minimal",
+  "stack": [
+    "python",
+    "sqlalchemy"
+  ],
+  "tags": [
+    "db"
+  ],
+  "files": [
+    {
+      "path": "models.py",
+      "template": "from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column\nclass Base(DeclarativeBase): pass\nclass User(Base):\n  __tablename__='users'\n  id: Mapped[int] = mapped_column(primary_key=True)\n  email: Mapped[str]\n"
+    }
+  ],
+  "patches": []
+}

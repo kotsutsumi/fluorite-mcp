@@ -1,0 +1,18 @@
+{
+  "id": "strike-bullmq-worker-minimal",
+  "name": "BullMQ Worker Minimal",
+  "stack": [
+    "node",
+    "bullmq"
+  ],
+  "tags": [
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "worker.js",
+      "template": "import { Worker } from 'bullmq';\nnew Worker('jobs', async (job)=>{ console.log(job.name) });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,19 @@
+{
+  "id": "strike-hono-route-minimal",
+  "name": "Hono Route Minimal",
+  "stack": [
+    "node",
+    "hono"
+  ],
+  "tags": [
+    "backend",
+    "edge"
+  ],
+  "files": [
+    {
+      "path": "index.ts",
+      "template": "import { Hono } from 'hono';\nconst app = new Hono();\napp.get('/health', c => c.json({ ok: true }));\nexport default app;\n"
+    }
+  ],
+  "patches": []
+}

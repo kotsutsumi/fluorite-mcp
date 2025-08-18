@@ -1,0 +1,17 @@
+{
+  "id": "strike-airflow-taskgroup-retry",
+  "name": "Airflow TaskGroup + Retry",
+  "stack": [
+    "airflow"
+  ],
+  "tags": [
+    "data"
+  ],
+  "files": [
+    {
+      "path": "dags/taskgroup.py",
+      "template": "# task groups + retry skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-terraform-remote-state",
+  "name": "Terraform Remote State",
+  "stack": [
+    "terraform"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "backend.tf",
+      "template": "terraform { backend \"s3\" {} }\n"
+    }
+  ],
+  "patches": []
+}

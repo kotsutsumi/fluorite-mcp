@@ -1,0 +1,34 @@
+{
+  "items": [
+    { "id": "strike-bun-router-minimal", "name": "Bun Router Minimal", "stack": ["bun"], "tags": ["backend","edge"], "files": [{ "path": "server.ts", "template": "// bun router skeleton\n" }] },
+    { "id": "strike-express-error-handling-pack", "name": "Express Error Handling Pack", "stack": ["node","express"], "tags": ["backend","errors"], "files": [{ "path": "middlewares/error.js", "template": "// centralized error handler skeleton\n" }] },
+
+    { "id": "strike-nextjs-i18n-minimal", "name": "Next.js i18n Minimal", "stack": ["nextjs","i18n"], "tags": ["frontend","i18n"], "files": [{ "path": "i18n.ts", "template": "// next-i18next config skeleton\n" }] },
+    { "id": "strike-nuxt3-i18n-advanced", "name": "Nuxt3 i18n Advanced", "stack": ["nuxt","i18n"], "tags": ["frontend","i18n","advanced"], "files": [{ "path": "i18n.config.ts", "template": "export default defineI18nConfig(()=>({ strategy:'prefix', locales:['en','ja'] }))\n" }] },
+    { "id": "strike-a11y-aria-patterns", "name": "A11y ARIA Patterns", "stack": ["a11y"], "tags": ["frontend","accessibility"], "files": [{ "path": "docs/a11y-aria.md", "template": "# ARIA patterns skeleton\n" }] },
+
+    { "id": "strike-otel-collector-pipelines", "name": "OTel Collector Pipelines", "stack": ["opentelemetry","collector"], "tags": ["observability"], "files": [{ "path": "otel/pipelines.yaml", "template": "receivers:{}\nprocessors:{}\nexporters:{}\npipelines:{}\n" }] },
+    { "id": "strike-grafana-dashboards-pack", "name": "Grafana Dashboards Pack", "stack": ["grafana"], "tags": ["observability","dashboards"], "files": [{ "path": "grafana/dashboards/index.json", "template": "{ \"title\": \"Dashboards Pack\" }\n" }] },
+
+    { "id": "strike-oidc-token-validation", "name": "OIDC Token Validation", "stack": ["oidc"], "tags": ["security","auth"], "files": [{ "path": "auth/validate-token.md", "template": "# OIDC token validation skeleton\n" }] },
+    { "id": "strike-jwks-distribution-endpoint", "name": "JWKS Distribution Endpoint", "stack": ["node"], "tags": ["security","keys"], "files": [{ "path": "api/jwks.ts", "template": "// JWKS endpoint skeleton\n" }] },
+
+    { "id": "strike-kafka-retry-backoff", "name": "Kafka Retry Backoff Patterns", "stack": ["kafkajs"], "tags": ["stream","reliability"], "files": [{ "path": "kafka/retry-backoff.js", "template": "// retry with backoff skeleton\n" }] },
+    { "id": "strike-nats-durable-consumer", "name": "NATS Durable Consumer", "stack": ["nats"], "tags": ["messaging"], "files": [{ "path": "nats/durable.js", "template": "// durable consumer skeleton\n" }] },
+
+    { "id": "strike-gh-actions-reusable-examples", "name": "GH Actions Reusable Examples", "stack": ["github","actions"], "tags": ["ci"], "files": [{ "path": ".github/workflows/reusable-examples.yml", "template": "name: Examples\non: workflow_call\n" }] },
+    { "id": "strike-terraform-module-patterns", "name": "Terraform Module Patterns", "stack": ["terraform"], "tags": ["infra"], "files": [{ "path": "modules/README.md", "template": "# Module patterns skeleton\n" }] },
+
+    { "id": "strike-msw-playwright-integration", "name": "MSW + Playwright Integration", "stack": ["msw","playwright"], "tags": ["test"], "files": [{ "path": "tests/msw-playwright.md", "template": "# Integration skeleton\n" }] },
+    { "id": "strike-pact-ci-integration", "name": "Pact CI Integration", "stack": ["pact"], "tags": ["test","ci"], "files": [{ "path": ".github/workflows/pact.yml", "template": "name: Pact CI\non: [push]\n" }] },
+
+    { "id": "strike-airflow-operators-basic", "name": "Airflow Operators Basic", "stack": ["airflow"], "tags": ["data"], "files": [{ "path": "dags/operators.py", "template": "# basic operators skeleton\n" }] },
+    { "id": "strike-dbt-tests-pack", "name": "dbt Tests Pack", "stack": ["dbt"], "tags": ["data"], "files": [{ "path": "tests/schema.yml", "template": "version: 2\nmodels: []\n" }] },
+
+    { "id": "strike-nextjs-route-handler-advanced", "name": "(Merge) Next.js Route Advanced Meta", "stack": ["nextjs"], "tags": ["frontend","api","merge"] },
+    { "id": "strike-openapi-yaml-minimal", "name": "(Merge) OpenAPI YAML Meta", "stack": ["openapi"], "tags": ["api","spec","merge"] },
+    { "id": "strike-dockerfile-node-minimal", "name": "(Merge) Dockerfile Node Meta", "stack": ["docker"], "tags": ["ops","merge"] },
+    { "id": "strike-otel-node-tracer-minimal", "name": "(Merge) OTel Node Tracer Meta", "stack": ["opentelemetry"], "tags": ["observability","merge"] }
+  ]
+}
+

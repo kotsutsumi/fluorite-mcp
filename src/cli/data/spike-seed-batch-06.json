@@ -1,0 +1,36 @@
+{
+  "items": [
+    { "id": "strike-go-chi-route-minimal", "name": "Go Chi Route Minimal", "stack": ["go","chi"], "tags": ["backend","api"], "files": [{ "path": "main.go", "template": "package main\n// chi router skeleton\nfunc main(){}\n" }] },
+    { "id": "strike-node-elysia-minimal", "name": "Node Elysia Minimal", "stack": ["node","elysia"], "tags": ["backend"], "files": [{ "path": "index.ts", "template": "// Elysia app skeleton\n" }] },
+    { "id": "strike-bun-server-minimal", "name": "Bun Server Minimal", "stack": ["bun"], "tags": ["backend","edge"], "files": [{ "path": "server.ts", "template": "// Bun server skeleton\n" }] },
+
+    { "id": "strike-solid-start-route-minimal", "name": "Solid Start Route Minimal", "stack": ["solid","solid-start"], "tags": ["frontend","ssr"], "files": [{ "path": "src/routes/index.tsx", "template": "export default function(){ return <h1>Hello</h1> }\n" }] },
+    { "id": "strike-nextjs-middleware-advanced", "name": "Next.js Middleware Advanced", "stack": ["nextjs"], "tags": ["frontend","middleware","advanced"], "files": [{ "path": "middleware.ts", "template": "export function middleware(){ return Response.next() }\n" }] },
+    { "id": "strike-nuxt3-i18n-minimal", "name": "Nuxt3 i18n Minimal", "stack": ["nuxt","i18n"], "tags": ["frontend","i18n"], "files": [{ "path": "i18n.config.ts", "template": "export default defineI18nConfig(()=>({ legacy:false, locale:'en' }))\n" }] },
+
+    { "id": "strike-otel-resource-attributes", "name": "OTel Resource Attributes", "stack": ["opentelemetry"], "tags": ["observability"], "files": [{ "path": "otel/resource.js", "template": "// resource attributes skeleton\n" }] },
+    { "id": "strike-otel-collector-config-minimal", "name": "OTel Collector Config Minimal", "stack": ["opentelemetry","collector"], "tags": ["observability"], "files": [{ "path": "otel/collector.yaml", "template": "receivers: {}\nexporters: {}\nservice: {}\n" }] },
+
+    { "id": "strike-kafka-tx-producer-minimal", "name": "Kafka Transactional Producer Minimal", "stack": ["kafkajs"], "tags": ["stream","tx"], "files": [{ "path": "kafka/tx-producer.js", "template": "// transactional producer skeleton\n" }] },
+    { "id": "strike-nats-queue-groups-minimal", "name": "NATS Queue Groups Minimal", "stack": ["nats"], "tags": ["messaging"], "files": [{ "path": "nats/queue.js", "template": "// queue groups skeleton\n" }] },
+    { "id": "strike-sqs-batching-visibility", "name": "SQS Batching + Visibility", "stack": ["aws","sqs"], "tags": ["queue"], "files": [{ "path": "aws/sqs-batch.mjs", "template": "// batching & visibility timeout skeleton\n" }] },
+
+    { "id": "strike-gh-actions-reusable-workflow", "name": "GH Actions Reusable Workflow", "stack": ["github","actions"], "tags": ["ci"], "files": [{ "path": ".github/workflows/reusable.yml", "template": "name: Reusable\non: workflow_call\njobs:{ build:{ runs-on: ubuntu-latest, steps:[{ uses:'actions/checkout@v4' }] } }\n" }] },
+    { "id": "strike-terraform-multi-workspace", "name": "Terraform Multi-Workspace", "stack": ["terraform"], "tags": ["infra"], "files": [{ "path": "terraform.tfvars", "template": "// workspace vars skeleton\n" }] },
+    { "id": "strike-helm-umbrella-chart", "name": "Helm Umbrella Chart", "stack": ["helm"], "tags": ["ops"], "files": [{ "path": "umbrella/Chart.yaml", "template": "apiVersion: v2\nname: umbrella\nversion: 0.1.0\ndependencies: []\n" }] },
+
+    { "id": "strike-msw-rest-handlers", "name": "MSW REST Handlers", "stack": ["msw"], "tags": ["test"], "files": [{ "path": "src/mocks/rest.ts", "template": "// REST handlers skeleton\n" }] },
+    { "id": "strike-playwright-component-testing", "name": "Playwright Component Testing", "stack": ["playwright"], "tags": ["test"], "files": [{ "path": "playwright.component.ts", "template": "// component testing skeleton\n" }] },
+    { "id": "strike-pact-multi-provider", "name": "Pact Multi-Provider", "stack": ["pact"], "tags": ["test","contract"], "files": [{ "path": "test/pact.multi.spec.ts", "template": "// multi-provider verification skeleton\n" }] },
+
+    { "id": "strike-airflow-taskgroup-retry", "name": "Airflow TaskGroup + Retry", "stack": ["airflow"], "tags": ["data"], "files": [{ "path": "dags/taskgroup.py", "template": "# task groups + retry skeleton\n" }] },
+    { "id": "strike-dbt-snapshots-seeds", "name": "dbt Snapshots + Seeds", "stack": ["dbt"], "tags": ["data"], "files": [{ "path": "snapshots/example.sql", "template": "-- snapshot skeleton\n" }] },
+
+    { "id": "strike-aws-lambda-minimal", "name": "(Merge) AWS Lambda Meta", "stack": ["aws","lambda"], "tags": ["cloud","serverless","merge"] },
+    { "id": "strike-nextjs-route-handler-minimal", "name": "(Merge) Next.js Route Handler Meta", "stack": ["nextjs"], "tags": ["frontend","api","merge"] },
+    { "id": "strike-otel-node-tracer-minimal", "name": "(Merge) OTel Node Tracer Meta", "stack": ["opentelemetry"], "tags": ["observability","merge"] },
+    { "id": "strike-vite-config-minimal", "name": "(Merge) Vite Config Meta", "stack": ["vite"], "tags": ["build","merge"] },
+    { "id": "strike-dockerfile-node-minimal", "name": "(Merge) Dockerfile Node Meta", "stack": ["docker"], "tags": ["ops","merge"] }
+  ]
+}
+

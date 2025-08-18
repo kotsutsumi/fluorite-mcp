@@ -1,0 +1,18 @@
+{
+  "id": "strike-koa-route-minimal",
+  "name": "Koa Route Minimal",
+  "stack": [
+    "node",
+    "koa"
+  ],
+  "tags": [
+    "backend"
+  ],
+  "files": [
+    {
+      "path": "index.js",
+      "template": "import Koa from 'koa';\nimport Router from '@koa/router';\nconst app = new Koa(); const router = new Router();\nrouter.get('/health', ctx => ctx.body = { ok: true });\napp.use(router.routes()); app.listen(3000);\n"
+    }
+  ],
+  "patches": []
+}

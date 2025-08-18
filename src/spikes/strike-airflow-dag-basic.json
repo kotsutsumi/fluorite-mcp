@@ -1,0 +1,19 @@
+{
+  "id": "strike-airflow-dag-basic",
+  "name": "Airflow DAG Basic",
+  "stack": [
+    "airflow",
+    "python"
+  ],
+  "tags": [
+    "data",
+    "orchestration"
+  ],
+  "files": [
+    {
+      "path": "dags/example.py",
+      "template": "from airflow import DAG\n# simple DAG skeleton\n"
+    }
+  ],
+  "patches": []
+}

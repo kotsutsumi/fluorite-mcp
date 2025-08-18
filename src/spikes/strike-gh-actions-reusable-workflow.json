@@ -1,0 +1,18 @@
+{
+  "id": "strike-gh-actions-reusable-workflow",
+  "name": "GH Actions Reusable Workflow",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/reusable.yml",
+      "template": "name: Reusable\non: workflow_call\njobs:{ build:{ runs-on: ubuntu-latest, steps:[{ uses:'actions/checkout@v4' }] } }\n"
+    }
+  ],
+  "patches": []
+}

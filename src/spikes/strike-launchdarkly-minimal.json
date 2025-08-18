@@ -1,0 +1,18 @@
+{
+  "id": "strike-launchdarkly-minimal",
+  "name": "LaunchDarkly Minimal",
+  "stack": [
+    "node",
+    "launchdarkly"
+  ],
+  "tags": [
+    "feature-flags"
+  ],
+  "files": [
+    {
+      "path": "flags.js",
+      "template": "import LaunchDarkly from 'launchdarkly-node-server-sdk';\nconst client = LaunchDarkly.init('sdk-key'); await client.waitForInitialization();\nconsole.log(await client.variation('flag', { key:'user' }, false));\n"
+    }
+  ],
+  "patches": []
+}

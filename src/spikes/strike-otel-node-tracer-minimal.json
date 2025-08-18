@@ -6,7 +6,8 @@
     "opentelemetry"
   ],
   "tags": [
-    "observability"
+    "observability",
+    "merge"
   ],
   "files": [
     {
@@ -14,5 +15,6 @@
       "template": "const { NodeTracerProvider } = require('@opentelemetry/sdk-trace-node');\nnew NodeTracerProvider().register();\n"
     }
   ],
-  "patches": []
+  "patches": [],
+  "params": []
 }

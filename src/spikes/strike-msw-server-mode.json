@@ -1,0 +1,17 @@
+{
+  "id": "strike-msw-server-mode",
+  "name": "MSW Server Mode",
+  "stack": [
+    "msw"
+  ],
+  "tags": [
+    "test"
+  ],
+  "files": [
+    {
+      "path": "src/mocks/server.ts",
+      "template": "import { setupServer } from 'msw/node';\nimport { handlers } from './handlers';\nexport const server = setupServer(...handlers);\n"
+    }
+  ],
+  "patches": []
+}

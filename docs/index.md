@@ -3,32 +3,35 @@ layout: home
 
 hero:
   name: "Fluorite MCP"
-  text: "Multi-Platform Development Context"
-  tagline: "50+ ライブラリ、7つのプログラミング言語エコシステム、8つの包括的モダン技術エコシステムの深い知識をClaude Code CLIに提供"
+  text: "Enterprise-Grade Development Context"
+  tagline: "2500+ spike templates, 86+ library specifications, and intelligent development context for Claude Code CLI"
   actions:
     - theme: brand
-      text: はじめる
-      link: /specs/
+      text: Get Started
+      link: /getting-started
     - theme: alt
-      text: GitHub
+      text: View on GitHub
       link: https://github.com/kotsutsumi/fluorite-mcp
 
 features:
+  - icon: 🧪
+    title: 2500+ Spike Templates
+    details: Production-ready scaffolds for rapid prototyping. From authentication to deployment, get working code instantly.
   - icon: 📚
-    title: 深いライブラリ知識
-    details: 50以上の必須ライブラリの包括的な仕様を提供。正確なインポート、型定義、実装パターンを含む
+    title: 86+ Library Specifications
+    details: Comprehensive specifications for essential libraries. Accurate imports, type definitions, and implementation patterns included.
   - icon: 🌐
-    title: 多言語エコシステム
-    details: Zig、Elixir、Go、Dart、Flutter、C#、Unityの7つの主要言語エコシステムをサポート
-  - icon: 🚀
-    title: 包括的モダン技術エコシステム
-    details: AI/ML・LLM、クラウドネイティブ、データ処理、モバイル開発など8つの包括的エコシステムをカバー
+    title: Multi-Language Ecosystems
+    details: Support for TypeScript, Python, Go, Rust, Java, C#, PHP, and more modern development ecosystems.
+  - icon: 🔍
+    title: Intelligent Static Analysis
+    details: 50+ validation rules for framework-specific analysis. Error prediction and performance optimization built-in.
   - icon: ⚡
-    title: 即座のコード生成
-    details: プロダクションレディなコードを正しいインポートとベストプラクティスで生成
+    title: Instant Code Generation
+    details: Production-ready code with correct imports and best practices. Zero configuration required.
   - icon: 🎯
-    title: ベストプラクティス内蔵
-    details: セキュリティ、パフォーマンス、デザインパターンが組み込まれた実装
+    title: Built-in Best Practices
+    details: Security, performance, and design patterns embedded in every implementation.
 ---
 
 

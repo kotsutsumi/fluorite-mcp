@@ -1,0 +1,18 @@
+{
+  "id": "strike-nats-pubsub-minimal",
+  "name": "NATS PubSub Minimal",
+  "stack": [
+    "node",
+    "nats"
+  ],
+  "tags": [
+    "messaging"
+  ],
+  "files": [
+    {
+      "path": "nats.js",
+      "template": "import { connect, StringCodec } from 'nats';\nconst nc = await connect({ servers: 'nats://localhost:4222' });\nconst sc = StringCodec();\nconst sub = nc.subscribe('news');\n(async ()=>{ for await (const m of sub) console.log(sc.decode(m.data)) })();\nnc.publish('news', sc.encode('hello'));\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-vercel-edge-minimal",
+  "name": "Vercel Edge Function Minimal",
+  "stack": [
+    "vercel",
+    "edge"
+  ],
+  "tags": [
+    "edge"
+  ],
+  "files": [
+    {
+      "path": "api/edge.ts",
+      "template": "export const config = { runtime: 'edge' };\nexport default function handler(){ return new Response('ok'); }\n"
+    }
+  ],
+  "patches": []
+}

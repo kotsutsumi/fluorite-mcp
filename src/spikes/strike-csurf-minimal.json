@@ -1,0 +1,18 @@
+{
+  "id": "strike-csurf-minimal",
+  "name": "CSURF Minimal",
+  "stack": [
+    "node",
+    "csurf"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "server.js",
+      "template": "import express from 'express';\nimport cookieParser from 'cookie-parser';\nimport csurf from 'csurf';\nconst app=express(); app.use(cookieParser()); app.use(csurf({ cookie:true }));\napp.get('/form', (req,res)=> res.send(`<input type=hidden name=_csrf value=\"${req.csrfToken()}\"/>`));\napp.listen(3000);\n"
+    }
+  ],
+  "patches": []
+}

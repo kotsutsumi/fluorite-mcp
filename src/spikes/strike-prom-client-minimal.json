@@ -1,0 +1,19 @@
+{
+  "id": "strike-prom-client-minimal",
+  "name": "Prometheus Client Minimal",
+  "stack": [
+    "node",
+    "prom-client"
+  ],
+  "tags": [
+    "observability",
+    "metrics"
+  ],
+  "files": [
+    {
+      "path": "metrics.js",
+      "template": "import client from 'prom-client';\nconst c = new client.Counter({ name:'requests', help:'requests' });\nc.inc();\n"
+    }
+  ],
+  "patches": []
+}

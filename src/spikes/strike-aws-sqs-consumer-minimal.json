@@ -1,0 +1,19 @@
+{
+  "id": "strike-aws-sqs-consumer-minimal",
+  "name": "AWS SQS Consumer Minimal",
+  "stack": [
+    "aws",
+    "sqs"
+  ],
+  "tags": [
+    "cloud",
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "sqs.mjs",
+      "template": "import { SQSClient, ReceiveMessageCommand, DeleteMessageCommand } from '@aws-sdk/client-sqs';\nconst c = new SQSClient({}); const q='https://sqs.us-east-1.amazonaws.com/123/queue';\nconst r= await c.send(new ReceiveMessageCommand({ QueueUrl:q, WaitTimeSeconds:1 }));\nfor (const m of r.Messages||[]){ console.log(m.Body); await c.send(new DeleteMessageCommand({ QueueUrl:q, ReceiptHandle:m.ReceiptHandle! })); }\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-prometheus-recording-rules",
+  "name": "Prometheus Recording Rules",
+  "stack": [
+    "prometheus"
+  ],
+  "tags": [
+    "observability",
+    "metrics"
+  ],
+  "files": [
+    {
+      "path": "prometheus/recording-rules.yaml",
+      "template": "groups: []\n"
+    }
+  ],
+  "patches": []
+}

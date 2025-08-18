@@ -1,0 +1,18 @@
+{
+  "id": "strike-helmet-csp-minimal",
+  "name": "Helmet CSP Minimal",
+  "stack": [
+    "node",
+    "helmet"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "server.js",
+      "template": "import express from 'express';\nimport helmet from 'helmet';\nconst app = express();\napp.use(helmet.contentSecurityPolicy());\napp.get('/health', (_,res)=>res.json({ok:true}));\napp.listen(3000);\n"
+    }
+  ],
+  "patches": []
+}

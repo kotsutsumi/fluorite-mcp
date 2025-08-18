@@ -1,0 +1,39 @@
+{
+  "items": [
+    { "id": "strike-go-fiber-advanced", "name": "Go Fiber Advanced", "stack": ["go","fiber"], "tags": ["backend","advanced"], "files": [{ "path": "main.go", "template": "package main\n// Fiber advanced skeleton: middlewares, groups, error handler\nfunc main(){}\n" }] },
+    { "id": "strike-bun-hono-minimal", "name": "Bun + Hono Minimal", "stack": ["bun","hono"], "tags": ["backend","edge"], "files": [{ "path": "index.ts", "template": "// Bun + Hono minimal skeleton\n" }] },
+    { "id": "strike-express-zod-validate-middleware", "name": "Express + Zod Validation Middleware", "stack": ["node","express","zod"], "tags": ["backend","validation"], "files": [{ "path": "middleware/validate.js", "template": "// zod validation middleware skeleton\n" }] },
+
+    { "id": "strike-nextjs-app-router-actions", "name": "Next.js App Router Server Actions", "stack": ["nextjs"], "tags": ["frontend","app-router","actions"], "files": [{ "path": "app/actions.ts", "template": "'use server'\nexport async function action(){ return { ok: true } }\n" }] },
+    { "id": "strike-nuxt3-server-middleware-minimal", "name": "Nuxt3 Server Middleware Minimal", "stack": ["nuxt","nitro"], "tags": ["frontend","middleware"], "files": [{ "path": "server/middleware/log.ts", "template": "export default defineEventHandler((e)=>{/* log */})\n" }] },
+    { "id": "strike-sveltekit-actions-zod", "name": "SvelteKit Actions + Zod", "stack": ["sveltekit","zod"], "tags": ["frontend","forms","validation"], "files": [{ "path": "src/routes/+page.server.ts", "template": "import { z } from 'zod';\nexport const actions = { default: async () => ({ ok:true }) };\n" }] },
+
+    { "id": "strike-oidc-authorization-code-pkce", "name": "OIDC Authorization Code + PKCE", "stack": ["oidc","oauth2"], "tags": ["security","auth"], "files": [{ "path": "auth/oidc-code-pkce.md", "template": "# OIDC code + PKCE flow skeleton\n" }] },
+    { "id": "strike-key-rotation-cli", "name": "Key Rotation CLI", "stack": ["node"], "tags": ["security","keys"], "files": [{ "path": "scripts/rotate-keys.mjs", "template": "// rotate keys skeleton\n" }] },
+    { "id": "strike-opa-bundle-structure", "name": "OPA Policy Bundle Structure", "stack": ["opa"], "tags": ["security","policy"], "files": [{ "path": "policy/bundle/.keep", "template": "" }] },
+
+    { "id": "strike-otel-logs-setup", "name": "OTel Logs Setup", "stack": ["opentelemetry"], "tags": ["observability","logs"], "files": [{ "path": "otel/logs.js", "template": "// OTel logs provider skeleton\n" }] },
+    { "id": "strike-grafana-annotations-json", "name": "Grafana Annotations JSON", "stack": ["grafana"], "tags": ["observability","annotations"], "files": [{ "path": "grafana/annotations.json", "template": "{ \"annotations\": [] }\n" }] },
+    { "id": "strike-prometheus-recording-rules", "name": "Prometheus Recording Rules", "stack": ["prometheus"], "tags": ["observability","metrics"], "files": [{ "path": "prometheus/recording-rules.yaml", "template": "groups: []\n" }] },
+
+    { "id": "strike-kafka-exactly-once", "name": "Kafka Exactly-Once Semantics", "stack": ["kafkajs"], "tags": ["stream","tx","exactly-once"], "files": [{ "path": "kafka/exactly-once.js", "template": "// exactly-once producer/consumer skeleton\n" }] },
+    { "id": "strike-nats-ordered-consumer", "name": "NATS Ordered Consumer", "stack": ["nats"], "tags": ["messaging","ordered"], "files": [{ "path": "nats/ordered.js", "template": "// ordered consumer skeleton\n" }] },
+    { "id": "strike-sqs-dlq-redrive", "name": "SQS DLQ + Redrive", "stack": ["aws","sqs"], "tags": ["queue","reliability"], "files": [{ "path": "aws/sqs-dlq.mjs", "template": "// dlq + redrive config skeleton\n" }] },
+
+    { "id": "strike-gh-actions-reusable-with-io", "name": "GH Actions Reusable with IO", "stack": ["github","actions"], "tags": ["ci"], "files": [{ "path": ".github/workflows/reusable-io.yml", "template": "name: ReusableIO\non: workflow_call:\n  inputs: { env: { required: false, type: string } }\n  outputs: { result: { value: 'ok' } }\njobs: { build: { runs-on: ubuntu-latest, steps: [{ run: 'echo ok' }] } }\n" }] },
+    { "id": "strike-terraform-remote-state", "name": "Terraform Remote State", "stack": ["terraform"], "tags": ["infra"], "files": [{ "path": "backend.tf", "template": "terraform { backend \"s3\" {} }\n" }] },
+    { "id": "strike-helm-hooks", "name": "Helm Hooks", "stack": ["helm"], "tags": ["ops"], "files": [{ "path": "chart/templates/hooks.yaml", "template": "# helm hooks skeleton\n" }] },
+
+    { "id": "strike-pact-contract-suite-multi", "name": "Pact Contract Suite (Multi)", "stack": ["pact"], "tags": ["test","contract"], "files": [{ "path": "test/pact.suite.ts", "template": "// suite for multiple providers skeleton\n" }] },
+    { "id": "strike-playwright-e2e-component-matrix", "name": "Playwright E2E + Component Matrix", "stack": ["playwright"], "tags": ["test"], "files": [{ "path": "playwright.matrix.ts", "template": "// e2e + component matrix skeleton\n" }] },
+    { "id": "strike-msw-sw-advanced", "name": "MSW Service Worker Advanced", "stack": ["msw"], "tags": ["test"], "files": [{ "path": "public/mockServiceWorker.js", "template": "// custom SW skeleton\n" }] },
+
+    { "id": "strike-airflow-sensors-basic", "name": "Airflow Sensors Basic", "stack": ["airflow"], "tags": ["data"], "files": [{ "path": "dags/sensors.py", "template": "# sensor operator skeleton\n" }] },
+    { "id": "strike-dbt-macros-tests", "name": "dbt Macros + Tests", "stack": ["dbt"], "tags": ["data"], "files": [{ "path": "macros/example.sql", "template": "-- macro skeleton\n" }] },
+
+    { "id": "strike-otel-exporter-zipkin", "name": "(Merge) OTel Exporter Zipkin Meta", "stack": ["opentelemetry","zipkin"], "tags": ["observability","exporter","merge"] },
+    { "id": "strike-react-hook-form-zod-advanced", "name": "(Merge) RHF + Zod Advanced Meta", "stack": ["react","zod"], "tags": ["frontend","forms","validation","merge"] },
+    { "id": "strike-aws-lambda-minimal", "name": "(Merge) AWS Lambda Meta", "stack": ["aws","lambda"], "tags": ["cloud","serverless","merge"] }
+  ]
+}
+
