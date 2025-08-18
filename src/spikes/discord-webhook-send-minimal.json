@@ -2,9 +2,10 @@
   "id": "discord-webhook-send-minimal",
   "name": "Discord Webhook 送信 最小",
   "version": "1.0.0",
-  "stack": ["discord"],
-  "tags": ["chat"],
-  "description": "Webhook URL へ送信",
-  "files": [ { "path": "run.js", "template": "console.log('POST webhook url with { content }');\n" } ]
+  "stack": ["discord", "node"],
+  "tags": ["notify"],
+  "description": "Discord Webhook に投稿",
+  "params": [ ],
+  "files": [ { "path": "notify/discord.mjs", "template": "await fetch(process.env.DISCORD_WEBHOOK_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ content: 'hello' }) });\nconsole.log('ok');\n" } ]
 }
 

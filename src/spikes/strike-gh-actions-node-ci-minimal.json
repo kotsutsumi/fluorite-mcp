@@ -1,0 +1,18 @@
+{
+  "id": "strike-gh-actions-node-ci-minimal",
+  "name": "GitHub Actions Node CI Minimal",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "template": "name: CI\non: [push]\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: '20' }\n      - run: npm ci\n      - run: npm test\n"
+    }
+  ],
+  "patches": []
+}

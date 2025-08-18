@@ -1,0 +1,11 @@
+{
+  "id": "aws-iot-publish-minimal",
+  "name": "AWS IoT Publish 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "iot"],
+  "tags": ["iot"],
+  "description": "IoT Data Plane へ Publish",
+  "params": [ { "name": "topic", "default": "devices/1" } ],
+  "files": [ { "path": "aws/iot-publish.mjs", "template": "import { IoTDataPlaneClient, PublishCommand } from '@aws-sdk/client-iot-data-plane';\nconst c = new IoTDataPlaneClient({});\nawait c.send(new PublishCommand({ topic: process.env.IOT_TOPIC||'{{topic}}', payload: new TextEncoder().encode('hello'), qos: 0 }));\nconsole.log('ok');\n" } ]
+}
+

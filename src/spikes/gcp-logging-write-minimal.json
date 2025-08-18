@@ -1,14 +1,11 @@
 {
   "id": "gcp-logging-write-minimal",
-  "name": "Google Cloud Logging 書き込み 最小",
+  "name": "GCP Cloud Logging 書き込み 最小",
   "version": "1.0.0",
-  "stack": ["node", "gcp"],
+  "stack": ["gcp", "logging"],
   "tags": ["observability"],
-  "description": "@google-cloud/logging でログ送信",
-  "params": [ { "name": "app_name", "default": "gcp-logging" } ],
-  "files": [
-    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@google-cloud/logging\": \"^11\" } }\n" },
-    { "path": "{{app_name}}/run.js", "template": "const { Logging } = require('@google-cloud/logging');\nconst logging = new Logging();\nconst log = logging.log('test');\nconsole.log('Use log.write with entry');\n" }
-  ]
+  "description": "@google-cloud/logging でログを書き込み",
+  "params": [ ],
+  "files": [ { "path": "gcp/logging.mjs", "template": "import { Logging } from '@google-cloud/logging';\nconst log = new Logging().log('app');\nawait log.write(log.entry({ resource: { type:'global' } }, { message: 'hello' }));\nconsole.log('ok');\n" } ]
 }
 

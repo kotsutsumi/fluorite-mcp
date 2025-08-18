@@ -1,0 +1,18 @@
+{
+  "id": "strike-sequelize-model-minimal",
+  "name": "Sequelize Model Minimal",
+  "stack": [
+    "node",
+    "sequelize"
+  ],
+  "tags": [
+    "db"
+  ],
+  "files": [
+    {
+      "path": "models/user.js",
+      "template": "import { DataTypes } from 'sequelize';\nexport default (sequelize)=> sequelize.define('User',{ email: DataTypes.STRING });\n"
+    }
+  ],
+  "patches": []
+}

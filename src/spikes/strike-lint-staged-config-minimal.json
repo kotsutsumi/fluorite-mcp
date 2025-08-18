@@ -1,0 +1,17 @@
+{
+  "id": "strike-lint-staged-config-minimal",
+  "name": "lint-staged Config Minimal",
+  "stack": [
+    "lint-staged"
+  ],
+  "tags": [
+    "git"
+  ],
+  "files": [
+    {
+      "path": ".lintstagedrc.json",
+      "template": "{ \"*.{js,ts}\": \"eslint --fix\" }\n"
+    }
+  ],
+  "patches": []
+}

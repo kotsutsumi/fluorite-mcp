@@ -1,0 +1,11 @@
+{
+  "id": "istio-gateway-minimal",
+  "name": "Istio Gateway 最小",
+  "version": "1.0.0",
+  "stack": ["istio", "kubernetes"],
+  "tags": ["service-mesh"],
+  "description": "Gateway の最小",
+  "params": [ ],
+  "files": [ { "path": "istio/gateway.yaml", "template": "apiVersion: networking.istio.io/v1beta1\nkind: Gateway\nmetadata: { name: gw }\nspec: { selector: { istio: ingressgateway }, servers: [ { port: { number:80, name:'http', protocol:'HTTP' }, hosts: ['*'] } ] }\n" } ]
+}
+

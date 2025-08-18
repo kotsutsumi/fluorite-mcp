@@ -1,0 +1,11 @@
+{
+  "id": "opentelemetry-collector-config-minimal",
+  "name": "OTel Collector Config 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry-collector", "yaml"],
+  "tags": ["observability"],
+  "description": "OTel Collector の最小コンフィグ",
+  "params": [ ],
+  "files": [ { "path": "otel/collector.yaml", "template": "receivers: { otlp: { protocols: { http: {} } } }\nexporters: { logging: {} }\nservice: { pipelines: { traces: { receivers: [otlp], exporters: [logging] } } }\n" } ]
+}
+

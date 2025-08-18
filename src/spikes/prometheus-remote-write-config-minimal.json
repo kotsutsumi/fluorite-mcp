@@ -1,0 +1,11 @@
+{
+  "id": "prometheus-remote-write-config-minimal",
+  "name": "Prometheus remote_write 設定 最小",
+  "version": "1.0.0",
+  "stack": ["prometheus", "yaml"],
+  "tags": ["observability"],
+  "description": "remote_write の設定",
+  "params": [ ],
+  "files": [ { "path": "prometheus/prometheus.yml", "template": "global: { scrape_interval: 15s }\nremote_write: [ { url: 'http://remote-write:7201/api/v1/write' } ]\n" } ]
+}
+

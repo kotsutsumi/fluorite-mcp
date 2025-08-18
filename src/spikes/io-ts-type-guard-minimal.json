@@ -1,0 +1,11 @@
+{
+  "id": "io-ts-type-guard-minimal",
+  "name": "io-ts type guard 最小",
+  "version": "1.0.0",
+  "stack": ["io-ts", "typescript"],
+  "tags": ["validation"],
+  "description": "io-ts の TypeOf とガード",
+  "params": [ ],
+  "files": [ { "path": "schema/io-ts-guard.ts", "template": "import * as t from 'io-ts';\nconst T = t.type({ name: t.string });\nexport type TT = t.TypeOf<typeof T>;\nconsole.log(T.is({ name: 'a' }));\n" } ]
+}
+

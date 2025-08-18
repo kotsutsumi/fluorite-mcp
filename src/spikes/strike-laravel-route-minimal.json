@@ -1,0 +1,18 @@
+{
+  "id": "strike-laravel-route-minimal",
+  "name": "Laravel Route Minimal",
+  "stack": [
+    "php",
+    "laravel"
+  ],
+  "tags": [
+    "backend"
+  ],
+  "files": [
+    {
+      "path": "routes/web.php",
+      "template": "Route::get('/health', fn() => response()->json(['ok'=>true]));\n"
+    }
+  ],
+  "patches": []
+}

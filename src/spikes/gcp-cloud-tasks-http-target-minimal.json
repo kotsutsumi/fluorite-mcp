@@ -1,0 +1,11 @@
+{
+  "id": "gcp-cloud-tasks-http-target-minimal",
+  "name": "GCP Cloud Tasks HTTP ターゲット 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "cloud-tasks"],
+  "tags": ["queue"],
+  "description": "Cloud Tasks の HTTP タスク作成",
+  "params": [ { "name": "queue", "default": "jobs" } ],
+  "files": [ { "path": "gcp/tasks.mjs", "template": "import { CloudTasksClient } from '@google-cloud/tasks';\nconst c = new CloudTasksClient();\nconst parent = c.queuePath(process.env.PROJECT||'p','us-central1', process.env.QUEUE||'{{queue}}');\nconsole.log(await c.createTask({ parent, task: { httpRequest: { httpMethod: 'POST', url: 'https://example.com' } } }));\n" } ]
+}
+

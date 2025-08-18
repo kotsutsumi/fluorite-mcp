@@ -1,0 +1,11 @@
+{
+  "id": "aws-s3-lifecycle-rule-minimal",
+  "name": "AWS S3 ライフサイクルルール 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "s3"],
+  "tags": ["storage"],
+  "description": "S3 ライフサイクルルールの最小 JSON",
+  "params": [ ],
+  "files": [ { "path": "aws/s3-lifecycle.json", "template": "{ \"Rules\": [ { \"ID\": \"expire-old\", \"Status\": \"Enabled\", \"Expiration\": { \"Days\": 30 } } ] }\n" } ]
+}
+

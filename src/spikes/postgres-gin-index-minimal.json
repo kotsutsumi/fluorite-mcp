@@ -1,0 +1,11 @@
+{
+  "id": "postgres-gin-index-minimal",
+  "name": "Postgres GIN インデックス 最小",
+  "version": "1.0.0",
+  "stack": ["postgres"],
+  "tags": ["db"],
+  "description": "GIN インデックス作成 SQL",
+  "params": [ ],
+  "files": [ { "path": "postgres/gin.sql", "template": "create extension if not exists pg_trgm;\ncreate index if not exists idx_users_name on users using gin (name gin_trgm_ops);\n" } ]
+}
+

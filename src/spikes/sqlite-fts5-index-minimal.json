@@ -1,0 +1,11 @@
+{
+  "id": "sqlite-fts5-index-minimal",
+  "name": "SQLite FTS5 インデックス 最小",
+  "version": "1.0.0",
+  "stack": ["sqlite"],
+  "tags": ["db", "search"],
+  "description": "FTS5 仮想テーブルの作成",
+  "params": [ ],
+  "files": [ { "path": "sqlite/fts5.sql", "template": "create virtual table if not exists docs using fts5(title, body);\n" } ]
+}
+

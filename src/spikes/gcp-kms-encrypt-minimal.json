@@ -1,0 +1,11 @@
+{
+  "id": "gcp-kms-encrypt-minimal",
+  "name": "GCP KMS Encrypt 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "kms"],
+  "tags": ["security"],
+  "description": "@google-cloud/kms で暗号化",
+  "params": [ { "name": "keyName", "default": "projects/p/locations/l/keyRings/r/cryptoKeys/k" } ],
+  "files": [ { "path": "gcp/kms-encrypt.mjs", "template": "import { KeyManagementServiceClient } from '@google-cloud/kms';\nconst c = new KeyManagementServiceClient();\nconsole.log(await c.encrypt({ name: process.env.KMS_KEY||'{{keyName}}', plaintext: Buffer.from('hello') }));\n" } ]
+}
+

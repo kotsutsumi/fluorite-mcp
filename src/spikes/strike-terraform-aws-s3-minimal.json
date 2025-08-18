@@ -1,0 +1,18 @@
+{
+  "id": "strike-terraform-aws-s3-minimal",
+  "name": "Terraform AWS S3 Minimal",
+  "stack": [
+    "terraform",
+    "aws"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "main.tf",
+      "template": "provider \"aws\" { region = \"us-east-1\" }\nresource \"aws_s3_bucket\" \"b\" { bucket = \"example-bucket\" }\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,11 @@
+{
+  "id": "nextjs-image-remote-patterns-minimal",
+  "name": "Next.js Image remotePatterns 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["web"],
+  "description": "next.config で remotePatterns 設定",
+  "params": [ { "name": "app_name", "default": "next-app" } ],
+  "files": [ { "path": "{{app_name}}/next.config.js", "template": "module.exports = { images: { remotePatterns: [{ protocol: 'https', hostname: 'images.example.com' }] } };\n" } ]
+}
+

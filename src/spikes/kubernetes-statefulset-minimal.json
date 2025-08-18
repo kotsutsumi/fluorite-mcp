@@ -1,0 +1,11 @@
+{
+  "id": "kubernetes-statefulset-minimal",
+  "name": "Kubernetes StatefulSet 最小",
+  "version": "1.0.0",
+  "stack": ["kubernetes", "yaml"],
+  "tags": ["k8s"],
+  "description": "apps/v1 StatefulSet の最小",
+  "params": [ { "name": "name", "default": "db" } ],
+  "files": [ { "path": "k8s/statefulset.yaml", "template": "apiVersion: apps/v1\nkind: StatefulSet\nmetadata: { name: {{name}} }\nspec: { serviceName: {{name}}, selector: { matchLabels: { app: {{name}} } }, template: { metadata: { labels: { app: {{name}} } }, spec: { containers: [ { name: app, image: redis:alpine } ] } } }\n" } ]
+}
+

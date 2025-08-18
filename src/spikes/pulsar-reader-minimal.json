@@ -2,9 +2,10 @@
   "id": "pulsar-reader-minimal",
   "name": "Pulsar Reader 最小",
   "version": "1.0.0",
-  "stack": ["pulsar"],
-  "tags": ["stream"],
-  "description": "Pulsar Reader でストリームを読み取り",
-  "files": [ { "path": "run.js", "template": "console.log('Create reader from earliest/latest message id');\n" } ]
+  "stack": ["pulsar", "node"],
+  "tags": ["messaging"],
+  "description": "Pulsar Reader API の使用",
+  "params": [ ],
+  "files": [ { "path": "pulsar/reader.js", "template": "const Pulsar = require('pulsar-client');\n(async()=>{ const client = new Pulsar.Client({ serviceUrl:'pulsar://localhost:6650' }); const reader = await client.createReader({ topic:'events', startMessageId: Pulsar.MessageId.earliest() }); const m = await reader.readNext(); console.log(m.getData().toString()); await reader.close(); await client.close(); })();\n" } ]
 }
 

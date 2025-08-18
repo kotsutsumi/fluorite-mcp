@@ -1,0 +1,11 @@
+{
+  "id": "mongo-ttl-index-minimal",
+  "name": "MongoDB TTL インデックス 最小",
+  "version": "1.0.0",
+  "stack": ["mongodb"],
+  "tags": ["db"],
+  "description": "TTL インデックスを作成",
+  "params": [ ],
+  "files": [ { "path": "mongodb/ttl.js", "template": "const { MongoClient } = require('mongodb');\n(async()=>{ const c = new MongoClient(process.env.MONGODB_URI); await c.connect(); await c.db().collection('logs').createIndex({ createdAt: 1 }, { expireAfterSeconds: 3600 }); await c.close(); })();\n" } ]
+}
+

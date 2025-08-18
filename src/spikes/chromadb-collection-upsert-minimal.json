@@ -1,0 +1,11 @@
+{
+  "id": "chromadb-collection-upsert-minimal",
+  "name": "ChromaDB コレクション upsert 最小",
+  "version": "1.0.0",
+  "stack": ["chromadb", "node"],
+  "tags": ["vector"],
+  "description": "chromadb での upsert",
+  "params": [ ],
+  "files": [ { "path": "chromadb/index.mjs", "template": "import { ChromaClient } from 'chromadb';\nconst c = new ChromaClient();\nconst col = await c.getOrCreateCollection({ name: 'docs' });\nawait col.upsert({ ids: ['1'], documents: ['hello'], metadatas: [{ tag: 'greet' }] });\nconsole.log(await col.count());\n" } ]
+}
+

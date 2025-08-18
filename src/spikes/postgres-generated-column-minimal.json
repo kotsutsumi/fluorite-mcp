@@ -1,0 +1,11 @@
+{
+  "id": "postgres-generated-column-minimal",
+  "name": "Postgres 生成列 (generated) 最小",
+  "version": "1.0.0",
+  "stack": ["postgres"],
+  "tags": ["db"],
+  "description": "generated always as の最小 SQL",
+  "params": [ ],
+  "files": [ { "path": "postgres/generated.sql", "template": "create table if not exists t(a int, b int generated always as (a*2) stored);\n" } ]
+}
+

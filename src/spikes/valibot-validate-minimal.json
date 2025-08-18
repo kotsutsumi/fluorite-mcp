@@ -1,0 +1,11 @@
+{
+  "id": "valibot-validate-minimal",
+  "name": "Valibot validate 最小",
+  "version": "1.0.0",
+  "stack": ["valibot", "typescript"],
+  "tags": ["validation"],
+  "description": "valibot でのバリデーション",
+  "params": [ ],
+  "files": [ { "path": "schema/valibot.ts", "template": "import { object, string, safeParse } from 'valibot';\nconst S = object({ name: string() });\nconsole.log(safeParse(S,{ name:'Alice' }).success);\n" } ]
+}
+

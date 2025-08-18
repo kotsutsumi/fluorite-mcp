@@ -1,0 +1,11 @@
+{
+  "id": "minio-s3-client-minimal",
+  "name": "MinIO S3 Client 最小",
+  "version": "1.0.0",
+  "stack": ["minio", "node"],
+  "tags": ["storage"],
+  "description": "minio クライアントでバケット作成",
+  "params": [ ],
+  "files": [ { "path": "storage/minio.js", "template": "const Minio = require('minio');\nconst c = new Minio.Client({ endPoint: 'localhost', port: 9000, useSSL: false, accessKey: 'minio', secretKey: 'minio123' });\nc.makeBucket('test', 'us-east-1', console.log);\n" } ]
+}
+

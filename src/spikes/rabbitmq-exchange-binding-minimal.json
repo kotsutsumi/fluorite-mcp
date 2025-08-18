@@ -1,12 +1,11 @@
 {
   "id": "rabbitmq-exchange-binding-minimal",
-  "name": "RabbitMQ エクスチェンジ + バインド 最小",
+  "name": "RabbitMQ Exchange/Binding 最小",
   "version": "1.0.0",
-  "stack": ["node", "rabbitmq"],
-  "tags": ["queue"],
-  "description": "amqplib で exchange/queue/bind を作成",
-  "files": [
-    { "path": "run.js", "template": "const amqp = require('amqplib');\nconsole.log('channel.assertExchange + assertQueue + bindQueue');\n" }
-  ]
+  "stack": ["rabbitmq", "node"],
+  "tags": ["messaging"],
+  "description": "exchange/queue/bind の最小",
+  "params": [ ],
+  "files": [ { "path": "rabbitmq/exchange.js", "template": "const amqp = require('amqplib');\n(async()=>{ const c=await amqp.connect('amqp://localhost'); const ch=await c.createChannel(); await ch.assertExchange('ex','direct'); await ch.assertQueue('q'); await ch.bindQueue('q','ex','rk'); ch.publish('ex','rk',Buffer.from('hello')); })();\n" } ]
 }
 

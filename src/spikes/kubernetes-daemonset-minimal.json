@@ -1,0 +1,11 @@
+{
+  "id": "kubernetes-daemonset-minimal",
+  "name": "Kubernetes DaemonSet 最小",
+  "version": "1.0.0",
+  "stack": ["kubernetes", "yaml"],
+  "tags": ["k8s"],
+  "description": "apps/v1 DaemonSet の最小",
+  "params": [ { "name": "name", "default": "agent" } ],
+  "files": [ { "path": "k8s/daemonset.yaml", "template": "apiVersion: apps/v1\nkind: DaemonSet\nmetadata: { name: {{name}} }\nspec: { selector: { matchLabels: { app: {{name}} } }, template: { metadata: { labels: { app: {{name}} } }, spec: { containers: [ { name: agent, image: busybox, args: ['sh','-c','while true; do sleep 60; done'] } ] } } }\n" } ]
+}
+

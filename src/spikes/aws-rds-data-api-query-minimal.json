@@ -1,0 +1,11 @@
+{
+  "id": "aws-rds-data-api-query-minimal",
+  "name": "AWS RDS Data API クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "rds"],
+  "tags": ["db"],
+  "description": "RDS Data API で SQL 実行",
+  "params": [ { "name": "resourceArn", "default": "arn:aws:rds:...:cluster:db" }, { "name": "secretArn", "default": "arn:aws:secretsmanager:...:secret:db" }, { "name": "database", "default": "app" } ],
+  "files": [ { "path": "aws/rds-data.mjs", "template": "import { RDSDataClient, ExecuteStatementCommand } from '@aws-sdk/client-rds-data';\nconst c = new RDSDataClient({});\nconsole.log(await c.send(new ExecuteStatementCommand({ resourceArn: process.env.RDS_ARN||'{{resourceArn}}', secretArn: process.env.SECRET_ARN||'{{secretArn}}', database: process.env.DB||'{{database}}', sql: 'select 1' })));\n" } ]
+}
+

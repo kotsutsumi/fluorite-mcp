@@ -1,0 +1,11 @@
+{
+  "id": "aws-athena-unload-s3-minimal",
+  "name": "AWS Athena UNLOAD to S3 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "athena"],
+  "tags": ["etl"],
+  "description": "Athena の UNLOAD ステートメント (概念)",
+  "params": [ ],
+  "files": [ { "path": "aws/athena-unload.sql", "template": "UNLOAD (SELECT * FROM table) TO 's3://bucket/prefix/' WITH (format = 'PARQUET');\n" } ]
+}
+

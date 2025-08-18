@@ -1,0 +1,11 @@
+{
+  "id": "mysql-json-index-minimal",
+  "name": "MySQL JSON インデックス 最小",
+  "version": "1.0.0",
+  "stack": ["mysql"],
+  "tags": ["db"],
+  "description": "JSON カラムに対するインデックス",
+  "params": [ ],
+  "files": [ { "path": "mysql/json-index.sql", "template": "create table if not exists t(id int, data json, key idx_name ((json_extract(data,'$.name'))));\n" } ]
+}
+

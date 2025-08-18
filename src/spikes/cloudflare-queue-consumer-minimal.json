@@ -1,0 +1,11 @@
+{
+  "id": "cloudflare-queue-consumer-minimal",
+  "name": "Cloudflare Queues Consumer 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare", "queues"],
+  "tags": ["edge", "queue"],
+  "description": "Queues consumer のハンドラ",
+  "params": [ { "name": "queue", "default": "MY_QUEUE" } ],
+  "files": [ { "path": "cf/queue-consumer.ts", "template": "export default {\n  async queue(batch: MessageBatch) {\n    for (const msg of batch.messages) console.log(msg.body);\n  }\n};\n" } ]
+}
+

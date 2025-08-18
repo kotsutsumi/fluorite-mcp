@@ -1,0 +1,18 @@
+{
+  "id": "strike-pino-logger-minimal",
+  "name": "Pino Logger Minimal",
+  "stack": [
+    "node",
+    "pino"
+  ],
+  "tags": [
+    "logging"
+  ],
+  "files": [
+    {
+      "path": "logger.js",
+      "template": "import pino from 'pino';\nexport const logger = pino();\n"
+    }
+  ],
+  "patches": []
+}

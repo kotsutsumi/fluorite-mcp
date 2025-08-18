@@ -1,0 +1,11 @@
+{
+  "id": "gcp-storage-signed-url-v4-minimal",
+  "name": "GCP Storage 署名付きURL v4 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "storage"],
+  "tags": ["storage"],
+  "description": "@google-cloud/storage で v4 署名URL",
+  "params": [ ],
+  "files": [ { "path": "gcp/storage-signed.mjs", "template": "import { Storage } from '@google-cloud/storage';\nconst s = new Storage();\nconsole.log(await s.bucket('b').file('hello.txt').getSignedUrl({ action: 'read', expires: Date.now()+3600000, version: 'v4' }));\n" } ]
+}
+

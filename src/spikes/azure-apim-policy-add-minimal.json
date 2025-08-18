@@ -1,0 +1,11 @@
+{
+  "id": "azure-apim-policy-add-minimal",
+  "name": "Azure API Management Policy 追加 最小",
+  "version": "1.0.0",
+  "stack": ["azure", "apim"],
+  "tags": ["api"],
+  "description": "APIM Policy XML の追加 (概念)",
+  "params": [ ],
+  "files": [ { "path": "azure/apim-policy.xml", "template": "<policies><inbound><base/></inbound><backend><base/></backend><outbound><base/></outbound></policies>\n" } ]
+}
+

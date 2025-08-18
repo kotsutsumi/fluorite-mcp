@@ -1,0 +1,17 @@
+{
+  "id": "strike-renovate-config-minimal",
+  "name": "Renovate Config Minimal",
+  "stack": [
+    "renovate"
+  ],
+  "tags": [
+    "deps"
+  ],
+  "files": [
+    {
+      "path": "renovate.json",
+      "template": "{ \"extends\": [\"config:base\"] }\n"
+    }
+  ],
+  "patches": []
+}

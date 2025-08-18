@@ -1,0 +1,11 @@
+{
+  "id": "ipfs-add-file-minimal",
+  "name": "IPFS add ファイル 最小",
+  "version": "1.0.0",
+  "stack": ["ipfs", "node"],
+  "tags": ["storage"],
+  "description": "ipfs-core でファイル追加 (概念)",
+  "params": [ ],
+  "files": [ { "path": "storage/ipfs.txt", "template": "# import { create } from 'ipfs-core'; await (await create()).add('hello');\n" } ]
+}
+

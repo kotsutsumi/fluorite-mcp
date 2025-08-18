@@ -1,0 +1,11 @@
+{
+  "id": "gcp-bigquery-partition-table-ddl-minimal",
+  "name": "GCP BigQuery パーティションテーブル DDL 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "bigquery"],
+  "tags": ["etl"],
+  "description": "日付パーティションテーブルの DDL",
+  "params": [ ],
+  "files": [ { "path": "gcp/bq-partition.sql", "template": "CREATE TABLE ds.items (id INT64, created TIMESTAMP) PARTITION BY DATE(created);\n" } ]
+}
+

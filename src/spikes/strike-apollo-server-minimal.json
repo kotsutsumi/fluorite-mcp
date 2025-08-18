@@ -1,0 +1,18 @@
+{
+  "id": "strike-apollo-server-minimal",
+  "name": "Apollo Server Minimal",
+  "stack": [
+    "node",
+    "apollo"
+  ],
+  "tags": [
+    "graphql"
+  ],
+  "files": [
+    {
+      "path": "index.js",
+      "template": "import { ApolloServer } from '@apollo/server';\nconst typeDefs = `type Query { hello: String }`;\nconst resolvers = { Query: { hello: ()=>'world' } };\nconst server = new ApolloServer({ typeDefs, resolvers });\nawait server.start();\n"
+    }
+  ],
+  "patches": []
+}

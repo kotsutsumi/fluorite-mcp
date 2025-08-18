@@ -1,0 +1,11 @@
+{
+  "id": "sentry-traces-sample-rate-minimal",
+  "name": "Sentry Traces Sample Rate 最小",
+  "version": "1.0.0",
+  "stack": ["sentry", "node"],
+  "tags": ["observability"],
+  "description": "トレースのサンプリングレート設定",
+  "params": [ ],
+  "files": [ { "path": "sentry/traces.js", "template": "const Sentry = require('@sentry/node');\nSentry.init({ dsn: '', tracesSampleRate: 1.0 });\n" } ]
+}
+

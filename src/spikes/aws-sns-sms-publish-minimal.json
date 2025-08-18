@@ -2,11 +2,10 @@
   "id": "aws-sns-sms-publish-minimal",
   "name": "AWS SNS SMS Publish 最小",
   "version": "1.0.0",
-  "stack": ["node", "aws"],
-  "tags": ["sms"],
+  "stack": ["aws", "sns"],
+  "tags": ["notify"],
   "description": "SNS で SMS 送信",
-  "files": [
-    { "path": "run.js", "template": "import { SNSClient } from '@aws-sdk/client-sns';\nconsole.log('Publish to SMS with PhoneNumber');\n" }
-  ]
+  "params": [ ],
+  "files": [ { "path": "aws/sns-sms.mjs", "template": "import { SNSClient, PublishCommand } from '@aws-sdk/client-sns';\nconst c = new SNSClient({});\nawait c.send(new PublishCommand({ PhoneNumber: process.env.PHONE, Message: 'hello' }));\nconsole.log('ok');\n" } ]
 }
 

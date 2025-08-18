@@ -1,0 +1,11 @@
+{
+  "id": "telegram-bot-send-minimal",
+  "name": "Telegram Bot 送信 最小",
+  "version": "1.0.0",
+  "stack": ["telegram", "node"],
+  "tags": ["notify"],
+  "description": "Telegram Bot API で sendMessage",
+  "params": [ ],
+  "files": [ { "path": "notify/telegram.mjs", "template": "const url = `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`;\nawait fetch(url, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ chat_id: process.env.TELEGRAM_CHAT_ID, text: 'hello' }) });\nconsole.log('ok');\n" } ]
+}
+

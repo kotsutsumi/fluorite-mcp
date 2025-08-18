@@ -1,0 +1,11 @@
+{
+  "id": "gcp-scheduler-update-job-minimal",
+  "name": "GCP Cloud Scheduler Job 更新 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "scheduler"],
+  "tags": ["scheduler"],
+  "description": "スケジュールの更新",
+  "params": [ ],
+  "files": [ { "path": "gcp/scheduler-update.txt", "template": "gcloud scheduler jobs update http job --schedule='*/10 * * * *'\n" } ]
+}
+

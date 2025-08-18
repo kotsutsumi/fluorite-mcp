@@ -1,0 +1,11 @@
+{
+  "id": "astro-content-collection-minimal",
+  "name": "Astro Content Collection 最小",
+  "version": "1.0.0",
+  "stack": ["astro"],
+  "tags": ["content"],
+  "description": "Content Collections の雛形",
+  "params": [ ],
+  "files": [ { "path": "astro/src/content/config.ts", "template": "import { defineCollection, z } from 'astro:content';\nexport const collections = { posts: defineCollection({ schema: z.object({ title: z.string() }) }) };\n" } ]
+}
+

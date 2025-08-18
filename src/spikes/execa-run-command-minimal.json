@@ -3,13 +3,9 @@
   "name": "execa コマンド実行 最小",
   "version": "1.0.0",
   "stack": ["execa", "node"],
-  "tags": ["utils"],
-  "description": "execa で外部コマンド実行。",
-  "params": [ { "name": "app_name", "default": "execa-run" } ],
-  "files": [
-    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"scripts\": { \"start\": \"node run.mjs\" }, \"dependencies\": { \"execa\": \"latest\" } }\n" },
-    { "path": "{{app_name}}/run.mjs", "template": "import { execa } from 'execa';\nconst { stdout } = await execa('echo', ['hello']);\nconsole.log(stdout);\n" }
-  ],
-  "patches": []
+  "tags": ["cli"],
+  "description": "execa で外部コマンド実行",
+  "params": [ ],
+  "files": [ { "path": "scripts/run.mjs", "template": "import execa from 'execa';\nconsole.log((await execa('echo', ['hello'])).stdout);\n" } ]
 }
 

@@ -1,0 +1,11 @@
+{
+  "id": "passport-oauth2-express-minimal",
+  "name": "Passport OAuth2 Express 最小",
+  "version": "1.0.0",
+  "stack": ["passport", "express"],
+  "tags": ["auth"],
+  "description": "passport-oauth2 を使った最小スケルトン",
+  "params": [ ],
+  "files": [ { "path": "auth/passport-oauth2.js", "template": "const express = require('express');\nconst passport = require('passport');\nconst OAuth2Strategy = require('passport-oauth2');\npassport.use(new OAuth2Strategy({ authorizationURL:'', tokenURL:'', clientID:'', clientSecret:'', callbackURL:'/cb' }, (a,_r,p,cb)=> cb(null,{ accessToken:a, profile:{} })));\nconst app = express();\napp.get('/auth', passport.authenticate('oauth2'));\napp.get('/cb', passport.authenticate('oauth2', { session:false }), (_req,res)=> res.send('ok'));\napp.listen(3000);\n" } ]
+}
+

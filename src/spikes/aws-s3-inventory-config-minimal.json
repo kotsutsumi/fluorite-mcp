@@ -1,0 +1,11 @@
+{
+  "id": "aws-s3-inventory-config-minimal",
+  "name": "AWS S3 Inventory 設定 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "s3"],
+  "tags": ["storage"],
+  "description": "S3 インベントリの設定 (概念)",
+  "params": [ ],
+  "files": [ { "path": "aws/s3-inventory.txt", "template": "# Configure S3 Inventory via console/IaC\n" } ]
+}
+

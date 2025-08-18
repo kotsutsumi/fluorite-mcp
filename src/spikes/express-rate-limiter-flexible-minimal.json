@@ -1,0 +1,11 @@
+{
+  "id": "express-rate-limiter-flexible-minimal",
+  "name": "Express rate-limiter-flexible 最小",
+  "version": "1.0.0",
+  "stack": ["express", "rate-limiter-flexible"],
+  "tags": ["ratelimit"],
+  "description": "rate-limiter-flexible を用いた制限",
+  "params": [ { "name": "app_name", "default": "express-app" } ],
+  "files": [ { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst { RateLimiterMemory } = require('rate-limiter-flexible');\nconst limiter = new RateLimiterMemory({ points: 10, duration: 60 });\nconst app = express();\napp.use(async (_req,_res,next)=>{ try{ await limiter.consume('ip'); next(); } catch{ _res.status(429).send('Too Many Requests'); } });\napp.get('/', (_req,res)=>res.send('ok'));\napp.listen(3000);\n" } ]
+}
+

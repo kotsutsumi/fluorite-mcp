@@ -1,0 +1,11 @@
+{
+  "id": "gcp-iam-policy-binding-minimal",
+  "name": "GCP IAM ポリシーバインド 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "iam"],
+  "tags": ["security"],
+  "description": "gcloud で policy binding 追加",
+  "params": [ ],
+  "files": [ { "path": "gcp/iam.txt", "template": "gcloud projects add-iam-policy-binding PROJECT --member='serviceAccount:svc@p.iam.gserviceaccount.com' --role='roles/viewer'\n" } ]
+}
+

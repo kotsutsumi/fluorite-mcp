@@ -1,18 +1,11 @@
 {
   "id": "langchain-retrieval-qa-minimal",
-  "name": "LangChain Retrieval QA Minimal (Node)",
+  "name": "LangChain RetrievalQA 最小",
   "version": "1.0.0",
-  "stack": ["node", "langchain", "openai"],
-  "tags": ["rag", "qa"],
-  "description": "Build a minimal Retrieval QA: embed docs, retrieve, and answer with context.",
-  "params": [
-    { "name": "app_name", "default": "lc-retrieval-qa" }
-  ],
-  "files": [
-    { "path": "{{app_name}}/index.mjs", "template": "import { ChatOpenAI, OpenAIEmbeddings } from '@langchain/openai';\nimport { MemoryVectorStore } from 'langchain/vectorstores/memory';\nconst docs = [{ pageContent: 'fluorite mcp provides spike templates' }, { pageContent: 'vector databases enable semantic search' }];\nconst embeddings = new OpenAIEmbeddings({ apiKey: process.env.OPENAI_API_KEY });\nconst store = await MemoryVectorStore.fromDocuments(docs, embeddings);\nconst query = 'What does fluorite mcp provide?';\nconst retrieved = await store.similaritySearch(query, 2);\nconst context = retrieved.map(d=>d.pageContent).join('\n');\nconst llm = new ChatOpenAI({ apiKey: process.env.OPENAI_API_KEY });\nconst res = await llm.invoke(`Use the context to answer succinctly.\nContext:\n${context}\n\nQuestion: ${query}`);\nconsole.log(res.content);\n" },
-    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"type\": \"module\", \"private\": true, \"dependencies\": { \"@langchain/openai\": \"latest\", \"langchain\": \"latest\" } }\n" },
-    { "path": "{{app_name}}/.env.example", "template": "OPENAI_API_KEY=sk-...\n" }
-  ],
-  "patches": []
+  "stack": ["langchain", "node"],
+  "tags": ["ai"],
+  "description": "RetrievalQA チェーンの概念",
+  "params": [ ],
+  "files": [ { "path": "ai/langchain-rqa.txt", "template": "# Create vector store and RetrievalQA chain\n" } ]
 }
 

@@ -1,0 +1,11 @@
+{
+  "id": "hapi-validate-params-minimal",
+  "name": "hapi パラメータ検証 最小",
+  "version": "1.0.0",
+  "stack": ["hapi", "joi"],
+  "tags": ["validation"],
+  "description": "Joi で path params 検証",
+  "params": [ ],
+  "files": [ { "path": "hapi/params.js", "template": "const Hapi = require('@hapi/hapi');\nconst Joi = require('joi');\n(async()=>{ const s=Hapi.server({ port:3000 }); s.route({ method:'GET', path:'/users/{id}', options:{ validate:{ params: Joi.object({ id:Joi.number().integer().required() }) } }, handler: (r,h)=> h.response({ id:r.params.id }) }); await s.start(); })();\n" } ]
+}
+

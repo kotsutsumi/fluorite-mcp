@@ -1,0 +1,18 @@
+{
+  "id": "strike-drizzle-schema-minimal",
+  "name": "Drizzle Schema Minimal",
+  "stack": [
+    "node",
+    "drizzle"
+  ],
+  "tags": [
+    "db"
+  ],
+  "files": [
+    {
+      "path": "src/schema.ts",
+      "template": "import { pgTable, serial, varchar } from 'drizzle-orm/pg-core';\nexport const users = pgTable('users',{ id: serial('id').primaryKey(), email: varchar('email',{length:255}) });\n"
+    }
+  ],
+  "patches": []
+}

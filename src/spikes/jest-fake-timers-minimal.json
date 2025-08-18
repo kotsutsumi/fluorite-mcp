@@ -1,0 +1,11 @@
+{
+  "id": "jest-fake-timers-minimal",
+  "name": "Jest Fake Timers 最小",
+  "version": "1.0.0",
+  "stack": ["jest"],
+  "tags": ["test"],
+  "description": "jest.useFakeTimers の最小",
+  "params": [ ],
+  "files": [ { "path": "jest/timers.test.js", "template": "jest.useFakeTimers();\ntest('timers', ()=>{ setTimeout(()=>{}, 1000); jest.advanceTimersByTime(1000); expect(1).toBe(1); });\n" } ]
+}
+

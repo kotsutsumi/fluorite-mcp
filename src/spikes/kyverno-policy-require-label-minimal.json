@@ -1,0 +1,11 @@
+{
+  "id": "kyverno-policy-require-label-minimal",
+  "name": "Kyverno 必須ラベルポリシー 最小",
+  "version": "1.0.0",
+  "stack": ["kyverno", "kubernetes"],
+  "tags": ["policy"],
+  "description": "必須ラベルを強制する Kyverno ポリシー",
+  "params": [ ],
+  "files": [ { "path": "kyverno/policy.yaml", "template": "apiVersion: kyverno.io/v1\nkind: ClusterPolicy\nmetadata: { name: require-app-label }\nspec: { rules: [ { name: check, match: { resources: { kinds: ['Pod'] } }, validate: { message: 'app label required', pattern: { metadata: { labels: { app: '?' } } } } } ] }\n" } ]
+}
+

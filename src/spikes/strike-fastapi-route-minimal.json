@@ -1,0 +1,19 @@
+{
+  "id": "strike-fastapi-route-minimal",
+  "name": "FastAPI Route Minimal",
+  "stack": [
+    "python",
+    "fastapi"
+  ],
+  "tags": [
+    "backend",
+    "api"
+  ],
+  "files": [
+    {
+      "path": "main.py",
+      "template": "from fastapi import FastAPI\napp = FastAPI()\n@app.get('/health')\ndef health():\n    return {'ok': True}\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,11 @@
+{
+  "id": "redis-timeseries-add-minimal",
+  "name": "RedisTimeSeries TS.ADD 最小",
+  "version": "1.0.0",
+  "stack": ["redis", "redistimeseries"],
+  "tags": ["time-series"],
+  "description": "TS.ADD/TS.RANGE の最小例",
+  "params": [ ],
+  "files": [ { "path": "redis/ts.js", "template": "const Redis = require('ioredis');\nconst r = new Redis(process.env.REDIS_URL);\n(async()=>{ await r.call('TS.ADD','temp','*','21'); console.log(await r.call('TS.RANGE','temp','-','+')); process.exit(0); })();\n" } ]
+}
+

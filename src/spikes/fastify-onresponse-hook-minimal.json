@@ -1,0 +1,11 @@
+{
+  "id": "fastify-onresponse-hook-minimal",
+  "name": "Fastify onResponse フック 最小",
+  "version": "1.0.0",
+  "stack": ["fastify"],
+  "tags": ["web"],
+  "description": "onResponse フックでログ",
+  "params": [ ],
+  "files": [ { "path": "fastify/hook.js", "template": "const Fastify = require('fastify');\nconst app = Fastify();\napp.addHook('onResponse', (req,res,done)=> { console.log(res.statusCode); done(); });\napp.get('/', (_req,res)=> res.send('ok'));\napp.listen({ port: 3000 });\n" } ]
+}
+

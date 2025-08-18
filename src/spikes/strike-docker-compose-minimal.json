@@ -1,0 +1,17 @@
+{
+  "id": "strike-docker-compose-minimal",
+  "name": "Docker Compose Minimal",
+  "stack": [
+    "docker"
+  ],
+  "tags": [
+    "ops"
+  ],
+  "files": [
+    {
+      "path": "docker-compose.yml",
+      "template": "version: '3'\nservices:\n  app:\n    image: node:20-alpine\n    command: node index.js\n"
+    }
+  ],
+  "patches": []
+}

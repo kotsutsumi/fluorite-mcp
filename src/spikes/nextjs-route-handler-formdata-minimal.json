@@ -1,0 +1,11 @@
+{
+  "id": "nextjs-route-handler-formdata-minimal",
+  "name": "Next.js Route Handler FormData 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["web"],
+  "description": "FormData を受け取る Route Handler",
+  "params": [ { "name": "app_name", "default": "next-app" } ],
+  "files": [ { "path": "{{app_name}}/app/api/upload/route.ts", "template": "export async function POST(req: Request){ const form = await req.formData(); return Response.json({ keys: Array.from(form.keys()) }); }\n" } ]
+}
+

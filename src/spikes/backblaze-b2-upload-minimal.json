@@ -2,13 +2,10 @@
   "id": "backblaze-b2-upload-minimal",
   "name": "Backblaze B2 アップロード 最小",
   "version": "1.0.0",
-  "stack": ["node", "b2"],
+  "stack": ["backblaze", "node"],
   "tags": ["storage"],
-  "description": "backblaze-b2 パッケージで簡易アップロード",
-  "params": [ { "name": "app_name", "default": "b2-upload" } ],
-  "files": [
-    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node upload.js\" }, \"dependencies\": { \"backblaze-b2\": \"^2\" } }\n" },
-    { "path": "{{app_name}}/upload.js", "template": "const B2 = require('backblaze-b2');\nconst b2 = new B2({ applicationKeyId: process.env.B2_KEY_ID, applicationKey: process.env.B2_APP_KEY });\n(async () => { console.log('Init B2 and use upload endpoints'); })();\n" }
-  ]
+  "description": "b2 にアップロード (概念)",
+  "params": [ ],
+  "files": [ { "path": "storage/b2.txt", "template": "# b2 authorize-account && b2 upload-file bucket file.txt file.txt\n" } ]
 }
 

@@ -1,0 +1,11 @@
+{
+  "id": "mysql-range-partitioning-minimal",
+  "name": "MySQL 範囲パーティショニング 最小",
+  "version": "1.0.0",
+  "stack": ["mysql"],
+  "tags": ["db"],
+  "description": "RANGE パーティションの作成 SQL",
+  "params": [ ],
+  "files": [ { "path": "mysql/partition.sql", "template": "create table logs(id int, created date) partition by range columns(created) ( partition p2024 values less than ('2025-01-01') );\n" } ]
+}
+

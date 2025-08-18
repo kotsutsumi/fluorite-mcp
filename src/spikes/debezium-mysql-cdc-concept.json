@@ -1,0 +1,11 @@
+{
+  "id": "debezium-mysql-cdc-concept",
+  "name": "Debezium MySQL CDC コンセプト",
+  "version": "1.0.0",
+  "stack": ["debezium", "json"],
+  "tags": ["cdc"],
+  "description": "Debezium MySQL コネクタの設定",
+  "params": [ ],
+  "files": [ { "path": "debezium/mysql.json", "template": "{ \"name\": \"mysql-connector\", \"config\": { \"connector.class\": \"io.debezium.connector.mysql.MySqlConnector\", \"database.hostname\": \"mysql\" } }\n" } ]
+}
+

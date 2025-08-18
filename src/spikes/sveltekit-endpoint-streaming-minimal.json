@@ -1,0 +1,11 @@
+{
+  "id": "sveltekit-endpoint-streaming-minimal",
+  "name": "SvelteKit エンドポイント Streaming 最小",
+  "version": "1.0.0",
+  "stack": ["sveltekit"],
+  "tags": ["web"],
+  "description": "ReadableStream を返す",
+  "params": [ ],
+  "files": [ { "path": "sveltekit/src/routes/stream/+server.ts", "template": "export async function GET(){ const e=new TextEncoder(); const s=new ReadableStream({ start(c){ c.enqueue(e.encode('hello')); c.close(); } }); return new Response(s); }\n" } ]
+}
+

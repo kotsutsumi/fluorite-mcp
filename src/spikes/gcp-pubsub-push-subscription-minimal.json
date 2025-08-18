@@ -1,0 +1,11 @@
+{
+  "id": "gcp-pubsub-push-subscription-minimal",
+  "name": "GCP Pub/Sub Push Subscription 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "pubsub"],
+  "tags": ["messaging"],
+  "description": "push 配信のサブスクリプション作成",
+  "params": [ { "name": "topic", "default": "events" }, { "name": "sub", "default": "events-push" } ],
+  "files": [ { "path": "gcp/pubsub-push.txt", "template": "gcloud pubsub subscriptions create {{sub}} --topic={{topic}} --push-endpoint=https://example.com/hook\n" } ]
+}
+

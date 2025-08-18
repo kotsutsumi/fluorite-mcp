@@ -1,0 +1,11 @@
+{
+  "id": "gcp-eventarc-http-trigger-concept",
+  "name": "GCP Eventarc HTTP Trigger コンセプト",
+  "version": "1.0.0",
+  "stack": ["gcp", "eventarc"],
+  "tags": ["events"],
+  "description": "Eventarc の HTTP トリガ (概念)",
+  "params": [ ],
+  "files": [ { "path": "gcp/eventarc.txt", "template": "gcloud eventarc triggers create http-trigger --destination-http-endpoint=https://example.com\n" } ]
+}
+

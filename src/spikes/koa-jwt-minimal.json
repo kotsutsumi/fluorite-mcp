@@ -1,0 +1,11 @@
+{
+  "id": "koa-jwt-minimal",
+  "name": "Koa JWT 最小",
+  "version": "1.0.0",
+  "stack": ["koa", "jwt"],
+  "tags": ["auth"],
+  "description": "koa-jwt ミドルウェア",
+  "params": [ ],
+  "files": [ { "path": "koa/jwt.js", "template": "const Koa = require('koa');\nconst jwt = require('koa-jwt');\nconst app = new Koa();\napp.use(jwt({ secret: 'secret' }));\napp.use(ctx=> ctx.body='ok');\napp.listen(3000);\n" } ]
+}
+

@@ -1,0 +1,18 @@
+{
+  "id": "strike-axum-route-minimal",
+  "name": "Axum Route Minimal",
+  "stack": [
+    "rust",
+    "axum"
+  ],
+  "tags": [
+    "backend"
+  ],
+  "files": [
+    {
+      "path": "src/main.rs",
+      "template": "use axum::{routing::get, Router};\n#[tokio::main]\nasync fn main() {\n  let app = Router::new().route(\"/health\", get(|| async { \"ok\" }));\n  axum::Server::bind(&\"0.0.0.0:3000\".parse().unwrap()).serve(app.into_make_service()).await.unwrap();\n}\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,11 @@
+{
+  "id": "nats-kv-store-minimal",
+  "name": "NATS KV ストア 最小",
+  "version": "1.0.0",
+  "stack": ["nats", "jetstream"],
+  "tags": ["kv"],
+  "description": "KV バケット作成と put/get (概念)",
+  "params": [ ],
+  "files": [ { "path": "nats/kv.txt", "template": "# js.kv('bucket').put('key','value')\n" } ]
+}
+

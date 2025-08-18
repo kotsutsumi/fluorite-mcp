@@ -1,0 +1,11 @@
+{
+  "id": "neo4j-create-index-minimal",
+  "name": "Neo4j インデックス作成 最小",
+  "version": "1.0.0",
+  "stack": ["neo4j"],
+  "tags": ["db"],
+  "description": "Cypher で INDEX 作成",
+  "params": [ ],
+  "files": [ { "path": "neo4j/index.cypher", "template": "CREATE INDEX user_name IF NOT EXISTS FOR (u:User) ON (u.name);\n" } ]
+}
+

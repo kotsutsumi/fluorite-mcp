@@ -1,0 +1,11 @@
+{
+  "id": "aws-guardduty-list-findings-minimal",
+  "name": "AWS GuardDuty Findings 取得 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "guardduty"],
+  "tags": ["security"],
+  "description": "ガードデューティのファインディング列挙",
+  "params": [ { "name": "detectorId", "default": "12abc" } ],
+  "files": [ { "path": "aws/guardduty.mjs", "template": "import { GuardDutyClient, ListFindingsCommand } from '@aws-sdk/client-guardduty';\nconst c = new GuardDutyClient({});\nconsole.log(await c.send(new ListFindingsCommand({ DetectorId: process.env.DETECTOR||'{{detectorId}}' })));\n" } ]
+}
+

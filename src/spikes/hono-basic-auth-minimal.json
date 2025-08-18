@@ -1,0 +1,11 @@
+{
+  "id": "hono-basic-auth-minimal",
+  "name": "Hono Basic Auth 最小",
+  "version": "1.0.0",
+  "stack": ["hono"],
+  "tags": ["auth", "edge"],
+  "description": "@hono/basic-auth の最小例",
+  "params": [ ],
+  "files": [ { "path": "hono/auth.ts", "template": "import { Hono } from 'hono';\nimport { basicAuth } from 'hono/basic-auth';\nconst app = new Hono();\napp.use('*', basicAuth({ username: 'u', password: 'p' }));\napp.get('/', (c)=> c.text('ok'));\nexport default app;\n" } ]
+}
+

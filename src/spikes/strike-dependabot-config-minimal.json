@@ -1,0 +1,17 @@
+{
+  "id": "strike-dependabot-config-minimal",
+  "name": "Dependabot Config Minimal",
+  "stack": [
+    "dependabot"
+  ],
+  "tags": [
+    "deps"
+  ],
+  "files": [
+    {
+      "path": ".github/dependabot.yml",
+      "template": "version: 2\nupdates:\n  - package-ecosystem: npm\n    directory: /\n    schedule:\n      interval: weekly\n"
+    }
+  ],
+  "patches": []
+}

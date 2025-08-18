@@ -1,0 +1,11 @@
+{
+  "id": "aws-eks-managed-nodegroup-concept",
+  "name": "AWS EKS Managed NodeGroup コンセプト",
+  "version": "1.0.0",
+  "stack": ["aws", "eks"],
+  "tags": ["k8s"],
+  "description": "マネージドノードグループの作成 (概念)",
+  "params": [ ],
+  "files": [ { "path": "aws/eks-ng.txt", "template": "# eksctl create nodegroup --cluster cluster --name ng --nodes 2\n" } ]
+}
+

@@ -1,0 +1,11 @@
+{
+  "id": "aws-ecs-task-definition-minimal",
+  "name": "AWS ECS Task Definition 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "ecs"],
+  "tags": ["compute"],
+  "description": "タスク定義 JSON の最小",
+  "params": [ ],
+  "files": [ { "path": "aws/ecs-task.json", "template": "{ \"containerDefinitions\": [ { \"name\": \"app\", \"image\": \"nginx\" } ], \"family\": \"app\" }\n" } ]
+}
+

@@ -1,0 +1,11 @@
+{
+  "id": "next-auth-github-minimal",
+  "name": "NextAuth GitHub 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "next-auth"],
+  "tags": ["auth"],
+  "description": "GitHub プロバイダ設定",
+  "params": [ { "name": "app_name", "default": "next-app" } ],
+  "files": [ { "path": "{{app_name}}/pages/api/auth/[...nextauth].ts", "template": "import NextAuth from 'next-auth';\nimport GitHubProvider from 'next-auth/providers/github';\nexport default NextAuth({ providers: [ GitHubProvider({ clientId: process.env.GITHUB_ID||'', clientSecret: process.env.GITHUB_SECRET||'' }) ] });\n" } ]
+}
+

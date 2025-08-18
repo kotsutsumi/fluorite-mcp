@@ -1,0 +1,18 @@
+{
+  "id": "strike-ws-server-minimal",
+  "name": "WebSocket Server Minimal",
+  "stack": [
+    "node",
+    "ws"
+  ],
+  "tags": [
+    "realtime"
+  ],
+  "files": [
+    {
+      "path": "index.js",
+      "template": "import { WebSocketServer } from 'ws';\nconst wss = new WebSocketServer({ port: 3000 });\nwss.on('connection', ws => ws.send('hello'));\n"
+    }
+  ],
+  "patches": []
+}

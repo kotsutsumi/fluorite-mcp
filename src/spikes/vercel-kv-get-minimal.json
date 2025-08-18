@@ -1,0 +1,11 @@
+{
+  "id": "vercel-kv-get-minimal",
+  "name": "Vercel KV GET 最小",
+  "version": "1.0.0",
+  "stack": ["vercel", "kv"],
+  "tags": ["edge", "cache"],
+  "description": "@vercel/kv で get",
+  "params": [ ],
+  "files": [ { "path": "vercel/kv.mjs", "template": "import { kv } from '@vercel/kv';\nconsole.log(await kv.get('hello'));\n" } ]
+}
+

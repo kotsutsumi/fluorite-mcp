@@ -1,0 +1,18 @@
+{
+  "id": "strike-actix-route-minimal",
+  "name": "Actix Route Minimal",
+  "stack": [
+    "rust",
+    "actix-web"
+  ],
+  "tags": [
+    "backend"
+  ],
+  "files": [
+    {
+      "path": "src/main.rs",
+      "template": "use actix_web::{get, App, HttpServer, Responder};\n#[get(\"/health\")] async fn health() -> impl Responder { \"ok\" }\n#[actix_web::main] async fn main() -> std::io::Result<()> {\n  HttpServer::new(|| App::new().service(health)).bind((\"0.0.0.0\",3000))?.run().await\n}\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,201 @@
+{
+  "items": [
+    {
+      "id": "strike-express-route-minimal",
+      "name": "Express Route Minimal",
+      "version": "1.0.0",
+      "stack": ["node", "express"],
+      "tags": ["backend", "http"],
+      "description": "Minimal Express.js route handler",
+      "params": [{ "name": "app_name", "default": "express-app" }],
+      "files": [
+        { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"type\": \"module\",\n  \"private\": true,\n  \"scripts\": { \"dev\": \"node index.js\" },\n  \"dependencies\": { \"express\": \"^4\" }\n}\n" },
+        { "path": "{{app_name}}/index.js", "template": "import express from 'express';\nconst app = express();\napp.get('/health', (req,res)=>res.json({ ok: true }));\napp.listen(3000, ()=> console.log('listening on http://localhost:3000'));\n" }
+      ]
+    },
+    {
+      "id": "strike-nestjs-controller-minimal",
+      "name": "NestJS Controller Minimal",
+      "stack": ["node", "nestjs"],
+      "tags": ["backend"],
+      "description": "Minimal NestJS controller with one GET endpoint",
+      "params": [{ "name": "name", "default": "App" }],
+      "files": [
+        { "path": "src/{{name}}.controller.ts", "template": "import { Controller, Get } from '@nestjs/common';\n@Controller()\nexport class {{name}}Controller {\n  @Get('health')\n  health() { return { ok: true }; }\n}\n" }
+      ]
+    },
+    {
+      "id": "strike-fastify-plugin-minimal",
+      "name": "Fastify Plugin Minimal",
+      "stack": ["node", "fastify"],
+      "tags": ["backend"],
+      "description": "Minimal Fastify plugin registering a health route",
+      "files": [
+        { "path": "plugin.js", "template": "export default async function plugin(fastify, opts) {\n  fastify.get('/health', async () => ({ ok: true }));\n}\n" }
+      ]
+    },
+    {
+      "id": "strike-typeorm-entity-minimal",
+      "name": "TypeORM Entity Minimal",
+      "stack": ["node", "typeorm"],
+      "tags": ["db"],
+      "files": [
+        { "path": "src/entity/User.ts", "template": "import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';\n@Entity()\nexport class User {\n  @PrimaryGeneratedColumn() id!: number;\n  @Column() email!: string;\n}\n" }
+      ]
+    },
+    {
+      "id": "strike-prisma-model-minimal",
+      "name": "Prisma Model Minimal",
+      "stack": ["node", "prisma"],
+      "tags": ["db"],
+      "files": [
+        { "path": "prisma/schema.prisma", "template": "datasource db { provider = \"postgresql\" url = env(\"DATABASE_URL\") }\n generator client { provider = \"prisma-client-js\" }\n model User { id Int @id @default(autoincrement()) email String @unique }\n" }
+      ]
+    },
+    {
+      "id": "strike-nextjs-route-handler-minimal",
+      "name": "Next.js Route Handler Minimal",
+      "stack": ["nextjs"],
+      "tags": ["frontend", "api"],
+      "files": [
+        { "path": "app/api/health/route.ts", "template": "export function GET() { return Response.json({ ok: true }); }\n" }
+      ]
+    },
+    {
+      "id": "strike-react-hook-form-minimal",
+      "name": "React Hook Form Minimal",
+      "stack": ["react"],
+      "tags": ["frontend"],
+      "files": [
+        { "path": "src/LoginForm.tsx", "template": "import { useForm } from 'react-hook-form';\nexport function LoginForm(){\n  const { register, handleSubmit } = useForm();\n  return (<form onSubmit={handleSubmit(console.log)}>\n    <input {...register('email')} placeholder='email'/>\n    <button type='submit'>Send</button>\n  </form>);\n}\n" }
+      ]
+    },
+    {
+      "id": "strike-redux-slice-minimal",
+      "name": "Redux Slice Minimal",
+      "stack": ["redux", "typescript"],
+      "tags": ["frontend"],
+      "files": [
+        { "path": "src/features/counter/counterSlice.ts", "template": "import { createSlice } from '@reduxjs/toolkit';\nconst slice = createSlice({ name: 'counter', initialState: { value: 0 }, reducers: { inc: s=>{s.value++} } });\nexport const { inc } = slice.actions;\nexport default slice.reducer;\n" }
+      ]
+    },
+    {
+      "id": "strike-rxjs-observable-minimal",
+      "name": "RxJS Observable Minimal",
+      "stack": ["rxjs", "typescript"],
+      "tags": ["frontend"],
+      "files": [
+        { "path": "src/clock.ts", "template": "import { interval, map } from 'rxjs';\nexport const clock$ = interval(1000).pipe(map(()=> new Date()));\n" }
+      ]
+    },
+    {
+      "id": "strike-zod-schema-minimal",
+      "name": "Zod Schema Minimal",
+      "stack": ["zod", "typescript"],
+      "tags": ["validation"],
+      "files": [
+        { "path": "src/user.schema.ts", "template": "import { z } from 'zod';\nexport const UserSchema = z.object({ id: z.number(), email: z.string().email() });\nexport type User = z.infer<typeof UserSchema>;\n" }
+      ]
+    },
+    {
+      "id": "strike-ajv-schema-minimal",
+      "name": "AJV Schema Minimal",
+      "stack": ["ajv", "jsonschema"],
+      "tags": ["validation"],
+      "files": [
+        { "path": "schemas/user.json", "template": "{ \n  \"$schema\": \"http://json-schema.org/draft-07/schema#\",\n  \"type\": \"object\",\n  \"properties\": { \"id\": { \"type\": \"integer\" }, \"email\": { \"type\": \"string\", \"format\": \"email\" } },\n  \"required\": [\"id\", \"email\"]\n}\n" }
+      ]
+    },
+    {
+      "id": "strike-kafka-consumer-minimal",
+      "name": "Kafka Consumer Minimal",
+      "stack": ["node", "kafkajs"],
+      "tags": ["stream"],
+      "files": [
+        { "path": "consumer.js", "template": "import { Kafka } from 'kafkajs';\nconst kafka = new Kafka({ clientId: 'app', brokers: ['localhost:9092'] });\nconst consumer = kafka.consumer({ groupId: 'group' });\nawait consumer.connect();\nawait consumer.subscribe({ topic: 'events' });\nawait consumer.run({ eachMessage: async ({ message }) => console.log(message.value?.toString()) });\n" }
+      ]
+    },
+    {
+      "id": "strike-rabbitmq-consumer-minimal",
+      "name": "RabbitMQ Consumer Minimal",
+      "stack": ["node", "amqplib"],
+      "tags": ["queue"],
+      "files": [
+        { "path": "consumer.js", "template": "import amqp from 'amqplib';\nconst conn = await amqp.connect('amqp://localhost');\nconst ch = await conn.createChannel();\nconst q = 'tasks';\nawait ch.assertQueue(q);\nch.consume(q, msg => { if (msg) { console.log(msg.content.toString()); ch.ack(msg); } });\n" }
+      ]
+    },
+    {
+      "id": "strike-aws-lambda-minimal",
+      "name": "AWS Lambda Minimal",
+      "stack": ["aws", "lambda"],
+      "tags": ["cloud"],
+      "files": [
+        { "path": "index.mjs", "template": "export const handler = async () => ({ statusCode: 200, body: JSON.stringify({ ok: true }) });\n" }
+      ]
+    },
+    {
+      "id": "strike-openapi-yaml-minimal",
+      "name": "OpenAPI YAML Minimal",
+      "stack": ["openapi"],
+      "tags": ["api"],
+      "files": [
+        { "path": "openapi.yaml", "template": "openapi: 3.0.0\ninfo:\n  title: API\n  version: 1.0.0\npaths:\n  /health:\n    get:\n      responses:\n        '200': { description: ok }\n" }
+      ]
+    },
+    {
+      "id": "strike-playwright-test-minimal",
+      "name": "Playwright Test Minimal",
+      "stack": ["playwright", "typescript"],
+      "tags": ["test"],
+      "files": [
+        { "path": "tests/example.spec.ts", "template": "import { test, expect } from '@playwright/test';\ntest('basic', async ({ page }) => {\n  await page.goto('https://example.com');\n  await expect(page).toHaveTitle(/Example Domain/);\n});\n" }
+      ]
+    },
+    {
+      "id": "strike-vitest-setup-minimal",
+      "name": "Vitest Setup Minimal",
+      "stack": ["vitest", "typescript"],
+      "tags": ["test"],
+      "files": [
+        { "path": "vitest.config.ts", "template": "import { defineConfig } from 'vitest/config';\nexport default defineConfig({ test: { environment: 'node' } });\n" }
+      ]
+    },
+    {
+      "id": "strike-eslint-config-minimal",
+      "name": "ESLint Config Minimal",
+      "stack": ["eslint"],
+      "tags": ["tooling"],
+      "files": [
+        { "path": ".eslintrc.json", "template": "{ \n  \"env\": { \"es2022\": true, \"node\": true },\n  \"extends\": [\"eslint:recommended\"],\n  \"parserOptions\": { \"ecmaVersion\": 2022, \"sourceType\": \"module\" }\n}\n" }
+      ]
+    },
+    {
+      "id": "strike-prettier-config-minimal",
+      "name": "Prettier Config Minimal",
+      "stack": ["prettier"],
+      "tags": ["tooling"],
+      "files": [
+        { "path": ".prettierrc", "template": "{ \n  \"semi\": true, \n  \"singleQuote\": true\n}\n" }
+      ]
+    },
+    {
+      "id": "strike-dockerfile-node-minimal",
+      "name": "Dockerfile Node Minimal",
+      "stack": ["docker"],
+      "tags": ["ops"],
+      "files": [
+        { "path": "Dockerfile", "template": "FROM node:20-alpine\nWORKDIR /app\nCOPY package*.json ./\nRUN npm ci --only=production\nCOPY . .\nCMD [\"node\", \"index.js\"]\n" }
+      ]
+    },
+    {
+      "id": "strike-k8s-deployment-minimal",
+      "name": "K8s Deployment Minimal",
+      "stack": ["kubernetes"],
+      "tags": ["ops"],
+      "files": [
+        { "path": "k8s/deployment.yaml", "template": "apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: app\nspec:\n  replicas: 1\n  selector: { matchLabels: { app: app } }\n  template:\n    metadata: { labels: { app: app } }\n    spec:\n      containers: [{ name: app, image: node:20-alpine, command: ['node','index.js'] }]\n" }
+      ]
+    }
+  ]
+}
+

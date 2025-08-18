@@ -2,14 +2,10 @@
   "id": "aws-sts-assume-role-minimal",
   "name": "AWS STS AssumeRole 最小",
   "version": "1.0.0",
-  "stack": ["aws", "sts", "node"],
+  "stack": ["aws", "sts"],
   "tags": ["security"],
-  "description": "AssumeRole で一時クレデンシャル取得。",
-  "params": [ { "name": "app_name", "default": "sts-assume" }, { "name": "role_arn", "default": "arn:aws:iam::123456789012:role/demo" } ],
-  "files": [
-    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"@aws-sdk/client-sts\": \"latest\" } }\n" },
-    { "path": "{{app_name}}/run.js", "template": "const { STSClient, AssumeRoleCommand } = require('@aws-sdk/client-sts');\nconst sts = new STSClient({});\n(async ()=>{ const r = await sts.send(new AssumeRoleCommand({ RoleArn: '{{role_arn}}', RoleSessionName: 'demo' })); console.log(Boolean(r.Credentials)); })();\n" }
-  ],
-  "patches": []
+  "description": "AssumeRole を使用して一時クレデンシャル取得",
+  "params": [ { "name": "roleArn", "default": "arn:aws:iam::123:role/app" } ],
+  "files": [ { "path": "aws/sts-assume.mjs", "template": "import { STSClient, AssumeRoleCommand } from '@aws-sdk/client-sts';\nconst c = new STSClient({});\nconsole.log(await c.send(new AssumeRoleCommand({ RoleArn: process.env.ROLE_ARN||'{{roleArn}}', RoleSessionName: 'session' })));\n" } ]
 }
 

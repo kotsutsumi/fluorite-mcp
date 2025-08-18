@@ -1,0 +1,11 @@
+{
+  "id": "kafka-connect-sink-config-concept",
+  "name": "Kafka Connect Sink 設定 コンセプト",
+  "version": "1.0.0",
+  "stack": ["kafka-connect", "json"],
+  "tags": ["etl"],
+  "description": "Kafka Connect Sink の設定 JSON",
+  "params": [ ],
+  "files": [ { "path": "kafka/connect-sink.json", "template": "{ \"name\": \"sink\", \"config\": { \"connector.class\": \"FileStreamSink\", \"topics\": \"events\", \"file\": \"/tmp/out.log\" } }\n" } ]
+}
+

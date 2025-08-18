@@ -1,0 +1,11 @@
+{
+  "id": "deno-deploy-fetch-minimal",
+  "name": "Deno Deploy fetch 最小",
+  "version": "1.0.0",
+  "stack": ["deno", "deploy"],
+  "tags": ["edge"],
+  "description": "Deno Deploy の fetch ハンドラ",
+  "params": [ ],
+  "files": [ { "path": "deno/deploy.ts", "template": "addEventListener('fetch', (e) => e.respondWith(new Response('hello')));\n" } ]
+}
+

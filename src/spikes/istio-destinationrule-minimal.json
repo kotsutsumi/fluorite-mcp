@@ -1,0 +1,11 @@
+{
+  "id": "istio-destinationrule-minimal",
+  "name": "Istio DestinationRule 最小",
+  "version": "1.0.0",
+  "stack": ["istio", "kubernetes"],
+  "tags": ["service-mesh"],
+  "description": "DestinationRule の最小",
+  "params": [ ],
+  "files": [ { "path": "istio/destinationrule.yaml", "template": "apiVersion: networking.istio.io/v1beta1\nkind: DestinationRule\nmetadata: { name: app }\nspec: { host: app, trafficPolicy: { tls: { mode: ISTIO_MUTUAL } } }\n" } ]
+}
+

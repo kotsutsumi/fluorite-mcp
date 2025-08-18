@@ -1,0 +1,11 @@
+{
+  "id": "loki-logql-query-concept",
+  "name": "Loki LogQL クエリ コンセプト",
+  "version": "1.0.0",
+  "stack": ["loki"],
+  "tags": ["observability"],
+  "description": "LogQL クエリ例 (概念)",
+  "params": [ ],
+  "files": [ { "path": "loki/logql.txt", "template": "{app=\"web\"} |= \"error\"\n" } ]
+}
+

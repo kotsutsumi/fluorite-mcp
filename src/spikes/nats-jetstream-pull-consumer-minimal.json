@@ -2,13 +2,10 @@
   "id": "nats-jetstream-pull-consumer-minimal",
   "name": "NATS JetStream Pull Consumer 最小",
   "version": "1.0.0",
-  "stack": ["node", "nats"],
-  "tags": ["stream"],
-  "description": "nats.js で Pull Consumer を使用",
-  "params": [ { "name": "app_name", "default": "nats-js-pull" } ],
-  "files": [
-    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node run.js\" }, \"dependencies\": { \"nats\": \"^2\" } }\n" },
-    { "path": "{{app_name}}/run.js", "template": "import { connect } from 'nats';\nconsole.log('Create durable pull consumer and fetch messages');\n" }
-  ]
+  "stack": ["nats", "jetstream"],
+  "tags": ["messaging"],
+  "description": "Pull consumer の概念",
+  "params": [ ],
+  "files": [ { "path": "nats/js-pull.txt", "template": "# Create pull consumer and fetch messages\n" } ]
 }
 

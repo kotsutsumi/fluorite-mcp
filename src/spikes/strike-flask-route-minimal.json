@@ -1,0 +1,18 @@
+{
+  "id": "strike-flask-route-minimal",
+  "name": "Flask Route Minimal",
+  "stack": [
+    "python",
+    "flask"
+  ],
+  "tags": [
+    "backend"
+  ],
+  "files": [
+    {
+      "path": "app.py",
+      "template": "from flask import Flask, jsonify\napp = Flask(__name__)\n@app.get('/health')\ndef health():\n    return jsonify(ok=True)\n"
+    }
+  ],
+  "patches": []
+}

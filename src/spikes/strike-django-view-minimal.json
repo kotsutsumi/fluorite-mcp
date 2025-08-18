@@ -1,0 +1,18 @@
+{
+  "id": "strike-django-view-minimal",
+  "name": "Django View Minimal",
+  "stack": [
+    "python",
+    "django"
+  ],
+  "tags": [
+    "backend"
+  ],
+  "files": [
+    {
+      "path": "app/views.py",
+      "template": "from django.http import JsonResponse\n\ndef health(_):\n    return JsonResponse({'ok': True})\n"
+    }
+  ],
+  "patches": []
+}

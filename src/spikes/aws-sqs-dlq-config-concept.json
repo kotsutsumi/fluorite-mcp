@@ -1,0 +1,11 @@
+{
+  "id": "aws-sqs-dlq-config-concept",
+  "name": "AWS SQS DLQ 設定 コンセプト",
+  "version": "1.0.0",
+  "stack": ["aws", "sqs"],
+  "tags": ["queue"],
+  "description": "dead-letter-queue の RedrivePolicy 設定",
+  "params": [ ],
+  "files": [ { "path": "aws/sqs-dlq.txt", "template": "# Set RedrivePolicy on source queue referencing DLQ ARN\n" } ]
+}
+

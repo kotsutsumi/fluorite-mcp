@@ -1,0 +1,11 @@
+{
+  "id": "azure-managed-identity-token-minimal",
+  "name": "Azure Managed Identity トークン取得 最小",
+  "version": "1.0.0",
+  "stack": ["azure", "identity"],
+  "tags": ["security"],
+  "description": "DefaultAzureCredential でトークン取得",
+  "params": [ ],
+  "files": [ { "path": "azure/identity.mjs", "template": "import { DefaultAzureCredential } from '@azure/identity';\nimport { TokenCredentialAuthenticationProvider } from '@azure/ms-rest-js';\nconst cred = new DefaultAzureCredential();\nconsole.log(await cred.getToken('https://management.azure.com/.default'));\n" } ]
+}
+

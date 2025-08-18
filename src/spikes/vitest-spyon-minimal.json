@@ -1,0 +1,11 @@
+{
+  "id": "vitest-spyon-minimal",
+  "name": "Vitest spyOn 最小",
+  "version": "1.0.0",
+  "stack": ["vitest"],
+  "tags": ["test"],
+  "description": "vi.spyOn の最小",
+  "params": [ ],
+  "files": [ { "path": "vitest/spy.test.ts", "template": "import { vi, expect, test } from 'vitest';\nconst obj = { add: (a:number,b:number)=> a+b };\ntest('spy', ()=>{ const s = vi.spyOn(obj,'add').mockReturnValue(42); expect(obj.add(1,2)).toBe(42); s.mockRestore(); });\n" } ]
+}
+

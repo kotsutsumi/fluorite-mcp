@@ -1,0 +1,18 @@
+{
+  "id": "strike-helm-chart-skeleton",
+  "name": "Helm Chart Skeleton",
+  "stack": [
+    "helm",
+    "kubernetes"
+  ],
+  "tags": [
+    "ops"
+  ],
+  "files": [
+    {
+      "path": "chart/Chart.yaml",
+      "template": "apiVersion: v2\nname: app\nversion: 0.1.0\n"
+    }
+  ],
+  "patches": []
+}

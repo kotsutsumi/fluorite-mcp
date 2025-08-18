@@ -2,13 +2,10 @@
   "id": "vercel-blob-upload-minimal",
   "name": "Vercel Blob アップロード 最小",
   "version": "1.0.0",
-  "stack": ["node", "vercel"],
-  "tags": ["storage"],
-  "description": "@vercel/blob でサーバーからアップロード",
-  "params": [ { "name": "app_name", "default": "vercel-blob" } ],
-  "files": [
-    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"start\": \"node upload.js\" }, \"dependencies\": { \"@vercel/blob\": \"latest\" } }\n" },
-    { "path": "{{app_name}}/upload.js", "template": "import { put } from '@vercel/blob';\nconst { url } = await put('hello.txt', new Blob(['hello']), { access: 'public' });\nconsole.log('Blob URL:', url);\n" }
-  ]
+  "stack": ["vercel", "blob"],
+  "tags": ["edge", "storage"],
+  "description": "@vercel/blob でアップロード (概念)",
+  "params": [ ],
+  "files": [ { "path": "vercel/blob.txt", "template": "# import { put } from '@vercel/blob'; await put('hello.txt','hello');\n" } ]
 }
 

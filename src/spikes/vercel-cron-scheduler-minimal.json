@@ -1,0 +1,11 @@
+{
+  "id": "vercel-cron-scheduler-minimal",
+  "name": "Vercel Cron Scheduler 最小",
+  "version": "1.0.0",
+  "stack": ["vercel"],
+  "tags": ["edge"],
+  "description": "vercel.json で cron 設定 (概念)",
+  "params": [ ],
+  "files": [ { "path": "vercel/vercel.json", "template": "{ \"crons\": [ { \"path\": \"/api/cron\", \"schedule\": \"0 * * * *\" } ] }\n" } ]
+}
+

@@ -1,0 +1,11 @@
+{
+  "id": "koa-compose-error-handler-minimal",
+  "name": "Koa compose エラーハンドラ 最小",
+  "version": "1.0.0",
+  "stack": ["koa"],
+  "tags": ["web"],
+  "description": "try/catch ベースのエラー処理ミドルウェア",
+  "params": [ ],
+  "files": [ { "path": "koa/error.js", "template": "const Koa = require('koa');\nconst app = new Koa();\napp.use(async (ctx,next)=> { try{ await next(); } catch(e){ ctx.status=500; ctx.body='error'; } });\napp.use(ctx=> ctx.body='ok');\napp.listen(3000);\n" } ]
+}
+

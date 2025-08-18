@@ -1,0 +1,14 @@
+{
+  "id": "aws-lambda-function-url-minimal",
+  "name": "AWS Lambda Function URL 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "lambda"],
+  "tags": ["serverless"],
+  "description": "Function URL の作成 (概念) とシンプル handler",
+  "params": [ ],
+  "files": [
+    { "path": "aws/lambda-url.txt", "template": "# aws lambda create-function-url-config --function-name fn --auth-type NONE\n" },
+    { "path": "aws/handler.mjs", "template": "export const handler = async (event) => ({ statusCode: 200, body: 'ok' });\n" }
+  ]
+}
+

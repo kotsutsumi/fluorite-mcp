@@ -1,0 +1,11 @@
+{
+  "id": "duckdb-read-parquet-minimal",
+  "name": "DuckDB Parquet 読み込み 最小",
+  "version": "1.0.0",
+  "stack": ["duckdb", "node"],
+  "tags": ["data"],
+  "description": "DuckDB で Parquet 読み込み (概念)",
+  "params": [ ],
+  "files": [ { "path": "duckdb/parquet.txt", "template": "-- SELECT * FROM 'data.parquet'\n" } ]
+}
+

@@ -1,0 +1,11 @@
+{
+  "id": "nuxt3-plugin-minimal",
+  "name": "Nuxt 3 プラグイン 最小",
+  "version": "1.0.0",
+  "stack": ["nuxt"],
+  "tags": ["web"],
+  "description": "Nuxt 3 のプラグイン雛形",
+  "params": [ ],
+  "files": [ { "path": "nuxt/plugins/hello.ts", "template": "export default defineNuxtPlugin(()=> ({ provide: { hello: ()=>'world' } }));\n" } ]
+}
+

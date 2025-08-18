@@ -1,0 +1,11 @@
+{
+  "id": "vllm-inference-request-concept",
+  "name": "vLLM 推論リクエスト コンセプト",
+  "version": "1.0.0",
+  "stack": ["vllm"],
+  "tags": ["ai"],
+  "description": "vLLM HTTP 推論 API 呼び出し",
+  "params": [ ],
+  "files": [ { "path": "ai/vllm.txt", "template": "# curl -X POST http://localhost:8000/generate -d '{"prompt":"hello"}'\n" } ]
+}
+

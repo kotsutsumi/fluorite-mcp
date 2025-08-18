@@ -1,0 +1,11 @@
+{
+  "id": "sqlite-wal-mode-minimal",
+  "name": "SQLite WAL モード 最小",
+  "version": "1.0.0",
+  "stack": ["sqlite"],
+  "tags": ["db"],
+  "description": "WAL モードへの切替 SQL",
+  "params": [ ],
+  "files": [ { "path": "sqlite/wal.sql", "template": "pragma journal_mode=WAL;\n" } ]
+}
+

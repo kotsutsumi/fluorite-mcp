@@ -1,0 +1,18 @@
+{
+  "id": "strike-otel-node-tracer-minimal",
+  "name": "OpenTelemetry Node Tracer Minimal",
+  "stack": [
+    "node",
+    "opentelemetry"
+  ],
+  "tags": [
+    "observability"
+  ],
+  "files": [
+    {
+      "path": "tracer.js",
+      "template": "const { NodeTracerProvider } = require('@opentelemetry/sdk-trace-node');\nnew NodeTracerProvider().register();\n"
+    }
+  ],
+  "patches": []
+}

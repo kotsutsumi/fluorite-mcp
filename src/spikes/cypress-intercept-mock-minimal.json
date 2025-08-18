@@ -1,0 +1,11 @@
+{
+  "id": "cypress-intercept-mock-minimal",
+  "name": "Cypress intercept モック 最小",
+  "version": "1.0.0",
+  "stack": ["cypress"],
+  "tags": ["test"],
+  "description": "cy.intercept で API モック",
+  "params": [ ],
+  "files": [ { "path": "cypress/e2e/mock.cy.ts", "template": "describe('mock', ()=>{ it('intercepts', ()=>{ cy.intercept('GET','/api/hello',{ ok:true }); cy.visit('/'); }); });\n" } ]
+}
+

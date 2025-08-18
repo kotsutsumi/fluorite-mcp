@@ -1,0 +1,17 @@
+{
+  "id": "strike-lhci-config-minimal",
+  "name": "Lighthouse CI Config Minimal",
+  "stack": [
+    "lhci"
+  ],
+  "tags": [
+    "quality"
+  ],
+  "files": [
+    {
+      "path": ".lighthouserc.json",
+      "template": "{ \"ci\": { \"collect\": { \"staticDistDir\": \"dist\" } } }\n"
+    }
+  ],
+  "patches": []
+}

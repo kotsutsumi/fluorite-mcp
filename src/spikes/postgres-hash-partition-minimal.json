@@ -1,0 +1,11 @@
+{
+  "id": "postgres-hash-partition-minimal",
+  "name": "Postgres HASH パーティション 最小",
+  "version": "1.0.0",
+  "stack": ["postgres"],
+  "tags": ["db"],
+  "description": "hash パーティションの最小 SQL",
+  "params": [ ],
+  "files": [ { "path": "postgres/hash-partition.sql", "template": "create table if not exists items(id int) partition by hash(id);\ncreate table if not exists items_p1 partition of items for values with (modulus 2, remainder 0);\ncreate table if not exists items_p2 partition of items for values with (modulus 2, remainder 1);\n" } ]
+}
+

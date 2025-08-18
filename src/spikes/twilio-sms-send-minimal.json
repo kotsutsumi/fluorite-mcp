@@ -1,0 +1,11 @@
+{
+  "id": "twilio-sms-send-minimal",
+  "name": "Twilio SMS 送信 最小",
+  "version": "1.0.0",
+  "stack": ["twilio", "node"],
+  "tags": ["notify"],
+  "description": "twilio で SMS 送信",
+  "params": [ ],
+  "files": [ { "path": "notify/twilio.js", "template": "const twilio = require('twilio');\nconst client = twilio(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);\nclient.messages.create({ from: process.env.TWILIO_FROM, to: process.env.TWILIO_TO, body: 'hello' }).then(r=>console.log(r.sid));\n" } ]
+}
+

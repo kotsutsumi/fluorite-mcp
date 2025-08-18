@@ -1,0 +1,11 @@
+{
+  "id": "superjson-serialize-minimal",
+  "name": "superjson シリアライズ 最小",
+  "version": "1.0.0",
+  "stack": ["superjson", "node"],
+  "tags": ["data"],
+  "description": "superjson で Date 等をシリアライズ",
+  "params": [ ],
+  "files": [ { "path": "data/superjson.js", "template": "const SuperJSON = require('superjson');\nconsole.log(SuperJSON.stringify({ now: new Date() }));\n" } ]
+}
+

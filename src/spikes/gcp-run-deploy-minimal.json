@@ -1,0 +1,11 @@
+{
+  "id": "gcp-run-deploy-minimal",
+  "name": "GCP Cloud Run デプロイ 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "cloud-run"],
+  "tags": ["serverless"],
+  "description": "Cloud Run サービスのデプロイ (概念)",
+  "params": [ ],
+  "files": [ { "path": "gcp/run-deploy.txt", "template": "gcloud run deploy app --image gcr.io/project/image --region us-central1\n" } ]
+}
+

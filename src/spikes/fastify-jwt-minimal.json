@@ -1,0 +1,11 @@
+{
+  "id": "fastify-jwt-minimal",
+  "name": "Fastify JWT 最小",
+  "version": "1.0.0",
+  "stack": ["fastify", "jwt"],
+  "tags": ["auth"],
+  "description": "@fastify/jwt を使った署名と検証",
+  "params": [ ],
+  "files": [ { "path": "fastify/jwt.js", "template": "const Fastify = require('fastify');\nconst jwt = require('@fastify/jwt');\nconst app = Fastify();\napp.register(jwt, { secret: 'secret' });\napp.get('/token', async ()=> app.jwt.sign({ sub: '1' }));\napp.get('/me', async (req)=> req.jwtVerify().then(()=> ({ sub: req.user.sub })));\napp.listen({ port: 3000 });\n" } ]
+}
+

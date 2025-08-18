@@ -1,0 +1,11 @@
+{
+  "id": "cloudflare-turnstile-verify-minimal",
+  "name": "Cloudflare Turnstile 検証 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare", "turnstile"],
+  "tags": ["security"],
+  "description": "Turnstile のトークン検証",
+  "params": [ ],
+  "files": [ { "path": "cf/turnstile.mjs", "template": "const r = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', { method: 'POST', body: new URLSearchParams({ secret: process.env.TURNSTILE_SECRET||'', response: process.env.TURNSTILE_TOKEN||'' }) });\nconsole.log(await r.json());\n" } ]
+}
+

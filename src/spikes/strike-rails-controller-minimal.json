@@ -1,0 +1,18 @@
+{
+  "id": "strike-rails-controller-minimal",
+  "name": "Rails Controller Minimal",
+  "stack": [
+    "ruby",
+    "rails"
+  ],
+  "tags": [
+    "backend"
+  ],
+  "files": [
+    {
+      "path": "app/controllers/health_controller.rb",
+      "template": "class HealthController < ApplicationController\n  def index\n    render json: { ok: true }\n  end\nend\n"
+    }
+  ],
+  "patches": []
+}

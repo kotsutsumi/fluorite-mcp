@@ -1,0 +1,11 @@
+{
+  "id": "azure-functions-blob-trigger-minimal",
+  "name": "Azure Functions Blob Trigger 最小",
+  "version": "1.0.0",
+  "stack": ["azure", "functions"],
+  "tags": ["serverless"],
+  "description": "Blob Trigger の function.json",
+  "params": [ ],
+  "files": [ { "path": "azure/function.json", "template": "{ \n  \"bindings\": [ { \"type\": \"blobTrigger\", \"direction\": \"in\", \"name\": \"myBlob\", \"path\": \"container/{name}\" } ] \n}\n" } ]
+}
+

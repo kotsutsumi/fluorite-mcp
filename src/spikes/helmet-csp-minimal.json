@@ -1,0 +1,11 @@
+{
+  "id": "helmet-csp-minimal",
+  "name": "Helmet CSP 最小",
+  "version": "1.0.0",
+  "stack": ["helmet", "express"],
+  "tags": ["security"],
+  "description": "helmet.contentSecurityPolicy の最小",
+  "params": [ { "name": "app_name", "default": "express-app" } ],
+  "files": [ { "path": "{{app_name}}/server.js", "template": "const express = require('express');\nconst helmet = require('helmet');\nconst app = express();\napp.use(helmet.contentSecurityPolicy({ directives: { defaultSrc: [\"'self'\"] } }));\napp.get('/', (_req,res)=>res.send('ok'));\napp.listen(3000);\n" } ]
+}
+

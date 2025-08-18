@@ -1,0 +1,11 @@
+{
+  "id": "promethuesrule-alert-minimal",
+  "name": "PrometheusRule アラート 最小",
+  "version": "1.0.0",
+  "stack": ["prometheus", "kubernetes"],
+  "tags": ["observability"],
+  "description": "PrometheusRule の最小 YAML",
+  "params": [ ],
+  "files": [ { "path": "k8s/prometheusrule.yaml", "template": "apiVersion: monitoring.coreos.com/v1\nkind: PrometheusRule\nmetadata: { name: alerts }\nspec: { groups: [ { name: example, rules: [ { alert: HighErrorRate, expr: 'sum(rate(http_requests_total{code=\"500\"}[5m])) > 1' } ] } ] }\n" } ]
+}
+

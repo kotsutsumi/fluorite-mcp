@@ -170,7 +170,7 @@ commands:
 spikes:
   cache_dir: ~/.fluorite/spikes
   auto_update: true
-  index_url: https://api.fluorite.dev/spikes/index.json
+  # index_url: configuration will be added when API is available
   
 # Serena MCP integration
 serena:

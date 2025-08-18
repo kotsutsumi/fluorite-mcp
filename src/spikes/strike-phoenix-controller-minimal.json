@@ -1,0 +1,18 @@
+{
+  "id": "strike-phoenix-controller-minimal",
+  "name": "Phoenix Controller Minimal",
+  "stack": [
+    "elixir",
+    "phoenix"
+  ],
+  "tags": [
+    "backend"
+  ],
+  "files": [
+    {
+      "path": "lib/app_web/controllers/health_controller.ex",
+      "template": "defmodule AppWeb.HealthController do\n  use AppWeb, :controller\n  def index(conn, _params), do: json(conn, %{ok: true})\nend\n"
+    }
+  ],
+  "patches": []
+}

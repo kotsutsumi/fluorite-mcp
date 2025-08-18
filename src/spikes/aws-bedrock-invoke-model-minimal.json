@@ -1,0 +1,11 @@
+{
+  "id": "aws-bedrock-invoke-model-minimal",
+  "name": "AWS Bedrock invoke-model 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "bedrock"],
+  "tags": ["ai"],
+  "description": "Bedrock の invoke-model 呼び出し",
+  "params": [ { "name": "modelId", "default": "ai21.j2-lite-v1" } ],
+  "files": [ { "path": "aws/bedrock.mjs", "template": "import { BedrockRuntimeClient, InvokeModelCommand } from '@aws-sdk/client-bedrock-runtime';\nconst c = new BedrockRuntimeClient({});\nconst r = await c.send(new InvokeModelCommand({ modelId: process.env.BEDROCK_MODEL||'{{modelId}}', body: new TextEncoder().encode(JSON.stringify({ inputText: 'hello' })) }));\nconsole.log(!!r.body);\n" } ]
+}
+

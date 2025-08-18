@@ -1,0 +1,18 @@
+{
+  "id": "strike-msw-setup-minimal",
+  "name": "MSW Setup Minimal",
+  "stack": [
+    "msw",
+    "typescript"
+  ],
+  "tags": [
+    "test"
+  ],
+  "files": [
+    {
+      "path": "src/mocks/handlers.ts",
+      "template": "import { http, HttpResponse } from 'msw';\nexport const handlers = [ http.get('/health', ()=> HttpResponse.json({ ok: true })) ];\n"
+    }
+  ],
+  "patches": []
+}

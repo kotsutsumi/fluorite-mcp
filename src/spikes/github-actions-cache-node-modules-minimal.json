@@ -1,0 +1,11 @@
+{
+  "id": "github-actions-cache-node-modules-minimal",
+  "name": "GitHub Actions cache node_modules 最小",
+  "version": "1.0.0",
+  "stack": ["github-actions", "yaml"],
+  "tags": ["ci"],
+  "description": "actions/cache を使った npm キャッシュ",
+  "params": [ ],
+  "files": [ { "path": ".github/workflows/cache.yml", "template": "name: cache\non: [push]\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: 18, cache: 'npm' }\n      - run: npm ci\n" } ]
+}
+

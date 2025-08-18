@@ -1,0 +1,11 @@
+{
+  "id": "aws-sfn-express-start-sync-minimal",
+  "name": "AWS Step Functions Express 同期 実行 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "stepfunctions"],
+  "tags": ["workflow"],
+  "description": "StartSyncExecution の最小",
+  "params": [ { "name": "stateMachineArn", "default": "arn:aws:states:...:stateMachine:sm" } ],
+  "files": [ { "path": "aws/sfn-sync.mjs", "template": "import { SFNClient, StartSyncExecutionCommand } from '@aws-sdk/client-sfn';\nconst c = new SFNClient({});\nconsole.log(await c.send(new StartSyncExecutionCommand({ stateMachineArn: process.env.SFN_ARN||'{{stateMachineArn}}', input: '{}' })));\n" } ]
+}
+

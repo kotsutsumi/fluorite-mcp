@@ -1,0 +1,11 @@
+{
+  "id": "sqlite-trigger-minimal",
+  "name": "SQLite トリガ 最小",
+  "version": "1.0.0",
+  "stack": ["sqlite"],
+  "tags": ["db"],
+  "description": "SQLite トリガ作成 SQL",
+  "params": [ ],
+  "files": [ { "path": "sqlite/trigger.sql", "template": "create table if not exists logs(id integer, name text);\ncreate trigger if not exists logs_ai after insert on logs begin insert into logs(id,name) values (NEW.id+100,'copy'); end;\n" } ]
+}
+

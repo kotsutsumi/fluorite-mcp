@@ -1,0 +1,11 @@
+{
+  "id": "mysql-json-extract-minimal",
+  "name": "MySQL JSON_EXTRACT 最小",
+  "version": "1.0.0",
+  "stack": ["mysql"],
+  "tags": ["db"],
+  "description": "JSON_EXTRACT を使う最小 SQL",
+  "params": [ ],
+  "files": [ { "path": "mysql/json.sql", "template": "create table if not exists items(id int, data json);\nselect json_extract(data, '$.name') from items;\n" } ]
+}
+

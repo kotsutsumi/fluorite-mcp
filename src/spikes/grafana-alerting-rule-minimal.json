@@ -1,0 +1,11 @@
+{
+  "id": "grafana-alerting-rule-minimal",
+  "name": "Grafana Alerting Rule 最小",
+  "version": "1.0.0",
+  "stack": ["grafana", "yaml"],
+  "tags": ["observability"],
+  "description": "Grafana Alerting ルール YAML",
+  "params": [ ],
+  "files": [ { "path": "grafana/alert.yaml", "template": "apiVersion: 1\ngroups: [ { name: alerts, rules: [ { uid: 'x', title: 'HighErrors', condition: 'A', data: [] } ] } ]\n" } ]
+}
+

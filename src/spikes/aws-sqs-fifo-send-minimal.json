@@ -1,0 +1,11 @@
+{
+  "id": "aws-sqs-fifo-send-minimal",
+  "name": "AWS SQS FIFO 送信 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "sqs"],
+  "tags": ["queue"],
+  "description": "FIFO キューへメッセージ送信",
+  "params": [ { "name": "queueUrl", "default": "https://sqs.us-east-1.amazonaws.com/123/queue.fifo" } ],
+  "files": [ { "path": "aws/sqs-fifo.mjs", "template": "import { SQSClient, SendMessageCommand } from '@aws-sdk/client-sqs';\nconst c = new SQSClient({});\nawait c.send(new SendMessageCommand({ QueueUrl: process.env.SQS_URL||'{{queueUrl}}', MessageBody: 'hello', MessageGroupId: 'g1' }));\nconsole.log('ok');\n" } ]
+}
+

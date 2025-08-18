@@ -1,0 +1,18 @@
+{
+  "id": "strike-spring-controller-minimal",
+  "name": "Spring Boot Controller Minimal",
+  "stack": [
+    "java",
+    "spring"
+  ],
+  "tags": [
+    "backend"
+  ],
+  "files": [
+    {
+      "path": "src/main/java/app/HealthController.java",
+      "template": "package app;\nimport org.springframework.web.bind.annotation.*;\n@RestController\npublic class HealthController {\n  @GetMapping(\"/health\") public String health(){ return \"ok\"; }\n}\n"
+    }
+  ],
+  "patches": []
+}

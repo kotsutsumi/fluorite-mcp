@@ -1,0 +1,18 @@
+{
+  "id": "strike-winston-logger-minimal",
+  "name": "Winston Logger Minimal",
+  "stack": [
+    "node",
+    "winston"
+  ],
+  "tags": [
+    "logging"
+  ],
+  "files": [
+    {
+      "path": "logger.js",
+      "template": "import winston from 'winston';\nexport const logger = winston.createLogger({ transports: [new winston.transports.Console()] });\n"
+    }
+  ],
+  "patches": []
+}

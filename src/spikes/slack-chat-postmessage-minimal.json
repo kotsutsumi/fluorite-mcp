@@ -1,0 +1,11 @@
+{
+  "id": "slack-chat-postmessage-minimal",
+  "name": "Slack chat.postMessage 最小",
+  "version": "1.0.0",
+  "stack": ["slack", "node"],
+  "tags": ["notify"],
+  "description": "Slack Web API でメッセージ送信",
+  "params": [ ],
+  "files": [ { "path": "notify/slack.mjs", "template": "const r = await fetch('https://slack.com/api/chat.postMessage',{ method:'POST', headers:{ 'Content-Type':'application/json','Authorization':`Bearer ${process.env.SLACK_BOT_TOKEN}` }, body: JSON.stringify({ channel: process.env.SLACK_CHANNEL||'general', text: 'hello' }) });\nconsole.log(await r.json());\n" } ]
+}
+

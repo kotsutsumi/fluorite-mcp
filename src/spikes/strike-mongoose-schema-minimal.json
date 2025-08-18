@@ -1,0 +1,18 @@
+{
+  "id": "strike-mongoose-schema-minimal",
+  "name": "Mongoose Schema Minimal",
+  "stack": [
+    "node",
+    "mongoose"
+  ],
+  "tags": [
+    "db"
+  ],
+  "files": [
+    {
+      "path": "models/User.js",
+      "template": "import { Schema, model } from 'mongoose';\nexport default model('User', new Schema({ email: String }));\n"
+    }
+  ],
+  "patches": []
+}

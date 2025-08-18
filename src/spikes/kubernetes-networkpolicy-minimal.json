@@ -1,0 +1,11 @@
+{
+  "id": "kubernetes-networkpolicy-minimal",
+  "name": "Kubernetes NetworkPolicy 最小",
+  "version": "1.0.0",
+  "stack": ["kubernetes", "yaml"],
+  "tags": ["k8s", "security"],
+  "description": "NetworkPolicy の最小",
+  "params": [ { "name": "app", "default": "web" } ],
+  "files": [ { "path": "k8s/networkpolicy.yaml", "template": "apiVersion: networking.k8s.io/v1\nkind: NetworkPolicy\nmetadata: { name: allow-same-app }\nspec: { podSelector: { matchLabels: { app: {{app}} } }, policyTypes: ['Ingress'], ingress: [ { from: [ { podSelector: { matchLabels: { app: {{app}} } } } ] } ] }\n" } ]
+}
+

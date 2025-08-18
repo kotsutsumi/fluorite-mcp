@@ -1,0 +1,18 @@
+{
+  "id": "strike-grpc-node-minimal",
+  "name": "gRPC Node Minimal",
+  "stack": [
+    "node",
+    "grpc"
+  ],
+  "tags": [
+    "rpc"
+  ],
+  "files": [
+    {
+      "path": "proto/health.proto",
+      "template": "syntax = 'proto3';\nservice Health { rpc Check(google.protobuf.Empty) returns (CheckResponse); }\nmessage CheckResponse { bool ok = 1; }\n"
+    }
+  ],
+  "patches": []
+}

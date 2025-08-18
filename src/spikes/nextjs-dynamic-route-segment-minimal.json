@@ -1,10 +1,11 @@
 {
   "id": "nextjs-dynamic-route-segment-minimal",
-  "name": "Next.js Dynamic Route Segment 最小",
+  "name": "Next.js 動的セグメント 最小",
   "version": "1.0.0",
   "stack": ["nextjs"],
-  "tags": ["frontend"],
-  "description": "[slug] の基本",
-  "files": [ { "path": "app/[slug]/page.tsx", "template": "export default function Page({ params }:{ params:{ slug:string }}){ return <div>{params.slug}</div> }\n" } ]
+  "tags": ["web"],
+  "description": "App Router の [id] セグメント",
+  "params": [ { "name": "app_name", "default": "next-app" } ],
+  "files": [ { "path": "{{app_name}}/app/items/[id]/page.tsx", "template": "export default function Page({ params }: any){ return <div>{params.id}</div>; }\n" } ]
 }
 

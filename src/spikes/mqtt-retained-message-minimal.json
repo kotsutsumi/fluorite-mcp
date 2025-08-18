@@ -1,0 +1,11 @@
+{
+  "id": "mqtt-retained-message-minimal",
+  "name": "MQTT retained メッセージ 最小",
+  "version": "1.0.0",
+  "stack": ["mqtt"],
+  "tags": ["messaging"],
+  "description": "retain フラグ付き publish",
+  "params": [ ],
+  "files": [ { "path": "mqtt/retain.js", "template": "const mqtt = require('mqtt');\nconst c = mqtt.connect('mqtt://localhost:1883');\nc.on('connect', ()=> c.publish('status','online',{ retain: true }, ()=> process.exit(0)));\n" } ]
+}
+

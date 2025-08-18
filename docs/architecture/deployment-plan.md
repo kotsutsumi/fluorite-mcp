@@ -39,7 +39,7 @@ channels:
     "development-tools",
     "cli"
   ],
-  "homepage": "https://fluorite.dev",
+  "homepage": "https://github.com/kotsutsumi/fluorite-mcp",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kotsutsumi/fluorite-mcp.git"
@@ -202,7 +202,7 @@ fluorite-mcp:
   author: kotsutsumi
   version: 1.0.0
   command: fluorite-mcp
-  homepage: https://fluorite.dev
+  homepage: https://github.com/kotsutsumi/fluorite-mcp
   repository: https://github.com/kotsutsumi/fluorite-mcp
   keywords: [wrapper, superclaude, spikes, development]
   installation:
@@ -374,7 +374,7 @@ npm deprecate fluorite-mcp@1.0.1 "Critical bug, use 1.0.2"
 export class EmergencyProcedures {
   async checkKillSwitch(): Promise<boolean> {
     // Check remote kill switch
-    const response = await fetch('https://api.fluorite.dev/status');
+    // Check remote status endpoint when available
     return response.json().active;
   }
   
@@ -420,7 +420,7 @@ npm run docs:api
 # Serve locally
 npm run docs:preview
 
-# Deploy to fluorite.dev
+# Deploy to GitHub Pages
 npm run docs:deploy
 ```
 

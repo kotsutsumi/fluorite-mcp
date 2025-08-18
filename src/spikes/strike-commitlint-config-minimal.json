@@ -1,0 +1,17 @@
+{
+  "id": "strike-commitlint-config-minimal",
+  "name": "Commitlint Config Minimal",
+  "stack": [
+    "commitlint"
+  ],
+  "tags": [
+    "git"
+  ],
+  "files": [
+    {
+      "path": "commitlint.config.js",
+      "template": "export default { extends: ['@commitlint/config-conventional'] };\n"
+    }
+  ],
+  "patches": []
+}

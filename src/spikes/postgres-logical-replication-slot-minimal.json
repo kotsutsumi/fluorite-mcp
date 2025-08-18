@@ -1,0 +1,11 @@
+{
+  "id": "postgres-logical-replication-slot-minimal",
+  "name": "Postgres 論理レプリケーションスロット 最小",
+  "version": "1.0.0",
+  "stack": ["postgres"],
+  "tags": ["db"],
+  "description": "レプリケーションスロット作成 SQL",
+  "params": [ ],
+  "files": [ { "path": "postgres/replication.sql", "template": "select * from pg_create_logical_replication_slot('slot1','pgoutput');\n" } ]
+}
+

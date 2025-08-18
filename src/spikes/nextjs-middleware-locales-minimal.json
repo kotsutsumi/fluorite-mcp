@@ -1,0 +1,11 @@
+{
+  "id": "nextjs-middleware-locales-minimal",
+  "name": "Next.js middleware ロケール 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["web"],
+  "description": "Accept-Language に応じた分岐",
+  "params": [ { "name": "app_name", "default": "next-app" } ],
+  "files": [ { "path": "{{app_name}}/middleware.ts", "template": "import { NextResponse } from 'next/server';\nexport function middleware(req: Request){ const lang = req.headers.get('accept-language')?.split(',')[0]||'en'; const res = NextResponse.next(); res.headers.set('x-lang', lang); return res; }\n" } ]
+}
+

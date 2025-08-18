@@ -1,0 +1,11 @@
+{
+  "id": "sveltekit-hooks-handle-minimal",
+  "name": "SvelteKit hooks.handle 最小",
+  "version": "1.0.0",
+  "stack": ["sveltekit"],
+  "tags": ["web"],
+  "description": "hooks.server.ts の handle",
+  "params": [ ],
+  "files": [ { "path": "sveltekit/src/hooks.server.ts", "template": "import type { Handle } from '@sveltejs/kit';\nexport const handle: Handle = async ({ event, resolve }) => { event.locals.hello = 'world'; return resolve(event); };\n" } ]
+}
+

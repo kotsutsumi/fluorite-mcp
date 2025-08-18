@@ -1,0 +1,11 @@
+{
+  "id": "azure-event-grid-storage-blob-subscribe-minimal",
+  "name": "Azure Event Grid Storage Blob サブスクライブ 最小",
+  "version": "1.0.0",
+  "stack": ["azure", "event-grid"],
+  "tags": ["events"],
+  "description": "ストレージ Blob の Event Grid 購読",
+  "params": [ ],
+  "files": [ { "path": "azure/eg-storage.txt", "template": "az eventgrid event-subscription create --name sub --source-resource-id /subscriptions/.../resourceGroups/.../providers/Microsoft.Storage/storageAccounts/acc --endpoint https://example.com\n" } ]
+}
+

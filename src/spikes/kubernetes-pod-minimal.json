@@ -1,0 +1,11 @@
+{
+  "id": "kubernetes-pod-minimal",
+  "name": "Kubernetes Pod 最小",
+  "version": "1.0.0",
+  "stack": ["kubernetes", "yaml"],
+  "tags": ["k8s"],
+  "description": "v1 Pod の最小マニフェスト",
+  "params": [ { "name": "name", "default": "app" } ],
+  "files": [ { "path": "k8s/pod.yaml", "template": "apiVersion: v1\nkind: Pod\nmetadata: { name: {{name}} }\nspec: { containers: [ { name: app, image: nginx:alpine } ] }\n" } ]
+}
+

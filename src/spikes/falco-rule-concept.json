@@ -1,0 +1,11 @@
+{
+  "id": "falco-rule-concept",
+  "name": "Falco ルール コンセプト",
+  "version": "1.0.0",
+  "stack": ["falco"],
+  "tags": ["security"],
+  "description": "Falco ルールの最小例 (概念)",
+  "params": [ ],
+  "files": [ { "path": "falco/rules.yaml", "template": "- rule: Write below etc\n  desc: detect suspicious write\n  condition: evt.dir = < and fd.name startswith /etc/\n  output: suspicious write\n  priority: WARNING\n  tags: [filesystem]\n" } ]
+}
+

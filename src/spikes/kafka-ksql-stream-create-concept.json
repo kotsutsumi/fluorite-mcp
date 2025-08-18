@@ -1,0 +1,11 @@
+{
+  "id": "kafka-ksql-stream-create-concept",
+  "name": "KSQL ストリーム作成 コンセプト",
+  "version": "1.0.0",
+  "stack": ["ksql", "kafka"],
+  "tags": ["stream"],
+  "description": "KSQL で CREATE STREAM (概念)",
+  "params": [ ],
+  "files": [ { "path": "kafka/ksql.txt", "template": "CREATE STREAM s (id INT, name VARCHAR) WITH (kafka_topic='events', value_format='json');\n" } ]
+}
+

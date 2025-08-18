@@ -1,0 +1,17 @@
+{
+  "id": "strike-cypress-test-minimal",
+  "name": "Cypress Test Minimal",
+  "stack": [
+    "cypress"
+  ],
+  "tags": [
+    "test"
+  ],
+  "files": [
+    {
+      "path": "cypress/e2e/spec.cy.ts",
+      "template": "describe('basic', ()=>{ it('works',()=>{ cy.visit('https://example.com') }) })\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,11 @@
+{
+  "id": "remix-deferred-json-minimal",
+  "name": "Remix deferred JSON 最小",
+  "version": "1.0.0",
+  "stack": ["remix"],
+  "tags": ["web"],
+  "description": "defer を使った遅延レスポンス",
+  "params": [ ],
+  "files": [ { "path": "remix/app/routes/deferred.tsx", "template": "import { defer } from '@remix-run/node';\nexport function loader(){ return defer({ slow: new Promise(r=> setTimeout(()=> r('ok'), 100)) }); }\nexport default function(){ return <div>deferred</div>; }\n" } ]
+}
+

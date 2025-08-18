@@ -1,0 +1,17 @@
+{
+  "id": "strike-rollup-config-minimal",
+  "name": "Rollup Config Minimal",
+  "stack": [
+    "rollup"
+  ],
+  "tags": [
+    "build"
+  ],
+  "files": [
+    {
+      "path": "rollup.config.mjs",
+      "template": "export default { input: 'src/index.js', output: { file: 'dist/bundle.js', format: 'esm' } };\n"
+    }
+  ],
+  "patches": []
+}

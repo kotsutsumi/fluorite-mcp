@@ -1,0 +1,11 @@
+{
+  "id": "timescale-continuous-aggregate-minimal",
+  "name": "TimescaleDB Continuous Aggregate 最小",
+  "version": "1.0.0",
+  "stack": ["timescale", "postgres"],
+  "tags": ["db"],
+  "description": "連続集約ビュー作成 SQL",
+  "params": [ ],
+  "files": [ { "path": "timescale/cagg.sql", "template": "create materialized view if not exists cagg with (timescaledb.continuous) as select time_bucket('1 hour', ts) as bucket, avg(v) from metrics group by bucket;\n" } ]
+}
+

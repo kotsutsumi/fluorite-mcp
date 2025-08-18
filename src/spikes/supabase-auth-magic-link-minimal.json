@@ -1,0 +1,11 @@
+{
+  "id": "supabase-auth-magic-link-minimal",
+  "name": "Supabase Auth Magic Link 最小",
+  "version": "1.0.0",
+  "stack": ["supabase", "auth"],
+  "tags": ["auth"],
+  "description": "メールマジックリンクでサインイン",
+  "params": [ ],
+  "files": [ { "path": "supabase/magic.mjs", "template": "import { createClient } from '@supabase/supabase-js';\nconst s = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);\nawait s.auth.signInWithOtp({ email: process.env.EMAIL });\nconsole.log('sent');\n" } ]
+}
+

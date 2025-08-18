@@ -1,0 +1,11 @@
+{
+  "id": "azure-functions-service-bus-trigger-minimal",
+  "name": "Azure Functions Service Bus Trigger 最小",
+  "version": "1.0.0",
+  "stack": ["azure", "functions", "service-bus"],
+  "tags": ["serverless"],
+  "description": "Service Bus Trigger の function.json",
+  "params": [ ],
+  "files": [ { "path": "azure/function.json", "template": "{ \n  \"bindings\": [ { \n    \"type\": \"serviceBusTrigger\", \n    \"direction\": \"in\", \n    \"name\": \"msg\", \n    \"queueName\": \"jobs\" \n  } ] \n}\n" } ]
+}
+

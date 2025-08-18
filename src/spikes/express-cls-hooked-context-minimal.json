@@ -1,0 +1,11 @@
+{
+  "id": "express-cls-hooked-context-minimal",
+  "name": "Express cls-hooked コンテキスト 最小",
+  "version": "1.0.0",
+  "stack": ["express", "cls-hooked"],
+  "tags": ["context"],
+  "description": "リクエストスコープのコンテキスト保持",
+  "params": [ ],
+  "files": [ { "path": "express/cls.js", "template": "const express = require('express');\nconst { createNamespace } = require('cls-hooked');\nconst ns = createNamespace('req');\nconst app = express();\napp.use((req,_res,next)=> ns.run(()=>{ ns.set('id', Date.now()); next(); }));\napp.get('/', (_req,res)=> res.send(String(ns.get('id'))));\napp.listen(3000);\n" } ]
+}
+

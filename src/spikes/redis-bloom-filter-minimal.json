@@ -2,9 +2,10 @@
   "id": "redis-bloom-filter-minimal",
   "name": "RedisBloom フィルタ 最小",
   "version": "1.0.0",
-  "stack": ["redis"],
-  "tags": ["cache"],
-  "description": "BF.ADD/BF.EXISTS の使用",
-  "files": [ { "path": "run.js", "template": "const Redis = require('ioredis');\nconsole.log('BF.ADD myfilter item');\n" } ]
+  "stack": ["redis", "redisbloom"],
+  "tags": ["data"],
+  "description": "BF.ADD/BF.EXISTS の最小例",
+  "params": [ ],
+  "files": [ { "path": "redis/bloom.js", "template": "const Redis = require('ioredis');\nconst r = new Redis(process.env.REDIS_URL);\n(async()=>{ await r.call('BF.ADD','bloom','hello'); console.log(await r.call('BF.EXISTS','bloom','hello')); process.exit(0); })();\n" } ]
 }
 

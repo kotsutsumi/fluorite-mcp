@@ -1,0 +1,18 @@
+{
+  "id": "strike-sentry-init-minimal",
+  "name": "Sentry Init Minimal",
+  "stack": [
+    "node",
+    "sentry"
+  ],
+  "tags": [
+    "observability"
+  ],
+  "files": [
+    {
+      "path": "sentry.js",
+      "template": "import * as Sentry from '@sentry/node';\nSentry.init({ dsn: 'YOUR_DSN' });\n"
+    }
+  ],
+  "patches": []
+}

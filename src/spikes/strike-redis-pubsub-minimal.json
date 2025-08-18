@@ -1,0 +1,19 @@
+{
+  "id": "strike-redis-pubsub-minimal",
+  "name": "Redis Pub/Sub Minimal",
+  "stack": [
+    "node",
+    "redis"
+  ],
+  "tags": [
+    "cache",
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "pubsub.js",
+      "template": "import { createClient } from 'redis';\nconst pub = createClient(); const sub = createClient();\nawait pub.connect(); await sub.connect();\nawait sub.subscribe('news', (m)=> console.log(m));\nawait pub.publish('news','hello');\n"
+    }
+  ],
+  "patches": []
+}

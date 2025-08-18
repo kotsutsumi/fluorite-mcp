@@ -1,0 +1,11 @@
+{
+  "id": "redis-geoadd-georadius-minimal",
+  "name": "Redis GEOADD/GEORADIUS 最小",
+  "version": "1.0.0",
+  "stack": ["redis"],
+  "tags": ["geo"],
+  "description": "地理空間コマンドの最小例",
+  "params": [ ],
+  "files": [ { "path": "redis/geo.js", "template": "const Redis = require('ioredis');\nconst r=new Redis(process.env.REDIS_URL);\n(async()=>{ await r.geoadd('places',139.767052,35.681167,'tokyo'); console.log(await r.georadius('places',139.76,35.68,10,'km')); process.exit(0); })();\n" } ]
+}
+

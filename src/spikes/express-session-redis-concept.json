@@ -1,0 +1,11 @@
+{
+  "id": "express-session-redis-concept",
+  "name": "Express session + Redis コンセプト",
+  "version": "1.0.0",
+  "stack": ["express", "redis"],
+  "tags": ["session"],
+  "description": "connect-redis を使ったセッションストア",
+  "params": [ ],
+  "files": [ { "path": "express/session-redis.txt", "template": "# const RedisStore = require('connect-redis').default\n# app.use(session({ store: new RedisStore({ client: redisClient }), secret: 's' }))\n" } ]
+}
+

@@ -1,0 +1,18 @@
+{
+  "id": "strike-trpc-router-minimal",
+  "name": "tRPC Router Minimal",
+  "stack": [
+    "typescript",
+    "trpc"
+  ],
+  "tags": [
+    "api"
+  ],
+  "files": [
+    {
+      "path": "src/router.ts",
+      "template": "import { initTRPC } from '@trpc/server';\nconst t = initTRPC.create();\nexport const router = t.router({ hello: t.procedure.query(()=> 'world') });\n"
+    }
+  ],
+  "patches": []
+}

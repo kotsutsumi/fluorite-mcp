@@ -1,0 +1,11 @@
+{
+  "id": "nestjs-guard-roles-minimal",
+  "name": "NestJS Guard Roles 最小",
+  "version": "1.0.0",
+  "stack": ["nestjs", "typescript"],
+  "tags": ["auth"],
+  "description": "Roles ガードの雛形",
+  "params": [ ],
+  "files": [ { "path": "nestjs/roles.guard.ts", "template": "import { CanActivate, ExecutionContext } from '@nestjs/common';\nexport class RolesGuard implements CanActivate { canActivate(_c: ExecutionContext){ return true; } }\n" } ]
+}
+

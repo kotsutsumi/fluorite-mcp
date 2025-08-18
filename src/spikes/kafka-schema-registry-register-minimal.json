@@ -1,0 +1,11 @@
+{
+  "id": "kafka-schema-registry-register-minimal",
+  "name": "Kafka Schema Registry 登録 最小",
+  "version": "1.0.0",
+  "stack": ["kafka", "schema-registry"],
+  "tags": ["messaging"],
+  "description": "スキーマの登録 (概念)",
+  "params": [ ],
+  "files": [ { "path": "kafka/schema.txt", "template": "# POST to /subjects/<subject>/versions with Avro schema\n" } ]
+}
+

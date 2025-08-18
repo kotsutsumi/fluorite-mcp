@@ -1,0 +1,17 @@
+{
+  "id": "strike-storybook-config-minimal",
+  "name": "Storybook Config Minimal",
+  "stack": [
+    "storybook"
+  ],
+  "tags": [
+    "docs"
+  ],
+  "files": [
+    {
+      "path": ".storybook/main.ts",
+      "template": "import type { StorybookConfig } from '@storybook/react-vite';\nconst config: StorybookConfig = { stories: ['../src/**/*.stories.@(js|jsx|ts|tsx)'] };\nexport default config;\n"
+    }
+  ],
+  "patches": []
+}

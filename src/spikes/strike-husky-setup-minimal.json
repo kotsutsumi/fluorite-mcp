@@ -1,0 +1,17 @@
+{
+  "id": "strike-husky-setup-minimal",
+  "name": "Husky Setup Minimal",
+  "stack": [
+    "husky"
+  ],
+  "tags": [
+    "git"
+  ],
+  "files": [
+    {
+      "path": ".husky/pre-commit",
+      "template": "#!/bin/sh\nnpx lint-staged\n"
+    }
+  ],
+  "patches": []
+}

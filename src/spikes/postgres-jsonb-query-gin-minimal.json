@@ -1,0 +1,11 @@
+{
+  "id": "postgres-jsonb-query-gin-minimal",
+  "name": "Postgres JSONB GIN クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["postgres"],
+  "tags": ["db"],
+  "description": "JSONB + GIN インデックスのクエリ",
+  "params": [ ],
+  "files": [ { "path": "postgres/jsonb.sql", "template": "create table if not exists items(id serial, data jsonb);\ncreate index if not exists idx_items_data on items using gin (data);\nselect * from items where data @> '{\"type\":\"post\"}';\n" } ]
+}
+

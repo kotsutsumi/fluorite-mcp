@@ -1,0 +1,11 @@
+{
+  "id": "azure-storage-table-query-minimal",
+  "name": "Azure Storage Table クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["azure", "table"],
+  "tags": ["db"],
+  "description": "@azure/data-tables の OData クエリ",
+  "params": [ ],
+  "files": [ { "path": "azure/table-query.mjs", "template": "import { TableClient } from '@azure/data-tables';\nconst c = TableClient.fromConnectionString(process.env.AZURE_TABLES_CS, 'items');\nfor await (const e of c.listEntities({ queryOptions: { filter: `PartitionKey eq 'p1'` } })) console.log(e);\n" } ]
+}
+

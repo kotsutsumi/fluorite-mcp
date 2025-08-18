@@ -1,0 +1,18 @@
+{
+  "id": "strike-socketio-server-minimal",
+  "name": "Socket.IO Server Minimal",
+  "stack": [
+    "node",
+    "socket.io"
+  ],
+  "tags": [
+    "realtime"
+  ],
+  "files": [
+    {
+      "path": "index.js",
+      "template": "import { Server } from 'socket.io';\nnew Server(3000).on('connection', s => s.emit('hello','world'));\n"
+    }
+  ],
+  "patches": []
+}

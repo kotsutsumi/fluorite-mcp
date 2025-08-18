@@ -1,0 +1,11 @@
+{
+  "id": "kubernetes-pod-security-standards-concept",
+  "name": "Kubernetes PSS コンセプト",
+  "version": "1.0.0",
+  "stack": ["kubernetes", "policy"],
+  "tags": ["k8s", "security"],
+  "description": "Pod Security Standards のラベル適用 (概念)",
+  "params": [ ],
+  "files": [ { "path": "k8s/pss.txt", "template": "# label namespace with pod-security.kubernetes.io/enforce: restricted\n" } ]
+}
+
