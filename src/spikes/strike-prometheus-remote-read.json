@@ -1,0 +1,18 @@
+{
+  "id": "strike-prometheus-remote-read",
+  "name": "Prometheus Remote Read",
+  "stack": [
+    "prometheus"
+  ],
+  "tags": [
+    "observability",
+    "metrics"
+  ],
+  "files": [
+    {
+      "path": "prometheus/remote_read.yaml",
+      "template": "remote_read: []\n"
+    }
+  ],
+  "patches": []
+}

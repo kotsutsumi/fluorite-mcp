@@ -1,0 +1,20 @@
+{
+  "id": "strike-actions-reusable-docker-build",
+  "name": "Actions Reusable Docker Build",
+  "stack": [
+    "github",
+    "actions",
+    "docker"
+  ],
+  "tags": [
+    "ci",
+    "build"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/docker-build.yml",
+      "template": "name: DockerBuild\non: workflow_call\n"
+    }
+  ],
+  "patches": []
+}

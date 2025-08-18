@@ -1,0 +1,19 @@
+{
+  "id": "strike-opa-policy-testing-ci",
+  "name": "OPA Policy Testing CI",
+  "stack": [
+    "opa"
+  ],
+  "tags": [
+    "security",
+    "policy",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/opa-test.yml",
+      "template": "name: OPATest\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

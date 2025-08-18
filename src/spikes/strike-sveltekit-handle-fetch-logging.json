@@ -1,0 +1,18 @@
+{
+  "id": "strike-sveltekit-handle-fetch-logging",
+  "name": "SvelteKit handleFetch Logging",
+  "stack": [
+    "sveltekit"
+  ],
+  "tags": [
+    "frontend",
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "src/hooks.server.ts",
+      "template": "export const handleFetch = async ({ request, fetch }) => fetch(request);\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-playwright-shards-matrix",
+  "name": "Playwright Shards Matrix",
+  "stack": [
+    "playwright"
+  ],
+  "tags": [
+    "test",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/pw-shards-matrix.yml",
+      "template": "name: PWShardsMatrix\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,19 @@
+{
+  "id": "strike-gcp-run-jobs-minimal",
+  "name": "GCP Cloud Run Jobs Minimal",
+  "stack": [
+    "gcp",
+    "cloud-run"
+  ],
+  "tags": [
+    "cloud",
+    "jobs"
+  ],
+  "files": [
+    {
+      "path": "run/jobs.yaml",
+      "template": "apiVersion: run.googleapis.com/v1\nkind: Job\nmetadata: { name: demo }\nspec: {}\n"
+    }
+  ],
+  "patches": []
+}

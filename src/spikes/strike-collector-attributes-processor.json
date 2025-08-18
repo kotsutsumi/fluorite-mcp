@@ -1,0 +1,18 @@
+{
+  "id": "strike-collector-attributes-processor",
+  "name": "Collector Attributes Processor",
+  "stack": [
+    "opentelemetry",
+    "collector"
+  ],
+  "tags": [
+    "observability"
+  ],
+  "files": [
+    {
+      "path": "otel/attributes.yaml",
+      "template": "processors: { attributes: {} }\n"
+    }
+  ],
+  "patches": []
+}

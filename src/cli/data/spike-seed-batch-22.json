@@ -1,0 +1,50 @@
+{
+  "items": [
+    { "id": "strike-express-csurf-cookie", "name": "Express CSURF Cookie", "stack": ["node","express","csurf"], "tags": ["backend","security"], "files": [{ "path": "server.js", "template": "// express csurf cookie skeleton\n" }] },
+    { "id": "strike-koa-bodyparser-json", "name": "Koa Bodyparser JSON", "stack": ["node","koa"], "tags": ["backend","json"], "files": [{ "path": "server.js", "template": "// koa bodyparser json skeleton\n" }] },
+    { "id": "strike-fastify-rate-limit", "name": "Fastify Rate Limit", "stack": ["node","fastify"], "tags": ["backend","security"], "files": [{ "path": "server.js", "template": "// fastify rate limit skeleton\n" }] },
+    { "id": "strike-go-gin-gzip", "name": "Go Gin Gzip", "stack": ["go","gin"], "tags": ["backend","perf"], "files": [{ "path": "main.go", "template": "package main\n// gin gzip skeleton\nfunc main(){}\n" }] },
+    { "id": "strike-deno-fresh-auth-middleware", "name": "Deno Fresh Auth Middleware", "stack": ["deno","fresh"], "tags": ["backend","auth"], "files": [{ "path": "middleware.ts", "template": "// fresh auth middleware skeleton\n" }] },
+
+    { "id": "strike-nextjs-routes-grouping", "name": "Next.js Routes Grouping", "stack": ["nextjs"], "tags": ["frontend","routing"], "files": [{ "path": "app/(group)/page.tsx", "template": "// next routes grouping skeleton\n" }] },
+    { "id": "strike-nuxt3-middleware-headers", "name": "Nuxt3 Middleware Headers", "stack": ["nuxt"], "tags": ["frontend","headers"], "files": [{ "path": "middleware/headers.global.ts", "template": "export default defineNuxtRouteMiddleware(()=>{})\n" }] },
+    { "id": "strike-sveltekit-handle-fetch-logging", "name": "SvelteKit handleFetch Logging", "stack": ["sveltekit"], "tags": ["frontend","logs"], "files": [{ "path": "src/hooks.server.ts", "template": "export const handleFetch = async ({ request, fetch }) => fetch(request);\n" }] },
+    { "id": "strike-angular-http-caching-interceptor", "name": "Angular HTTP Caching Interceptor", "stack": ["angular"], "tags": ["frontend","http","cache"], "files": [{ "path": "src/app/cache.interceptor.ts", "template": "// caching interceptor skeleton\n" }] },
+    { "id": "strike-solid-error-boundary", "name": "Solid Error Boundary", "stack": ["solid"], "tags": ["frontend","error"], "files": [{ "path": "src/ErrorBoundary.tsx", "template": "// solid error boundary skeleton\n" }] },
+
+    { "id": "strike-otel-logs-stdout-processor", "name": "OTel Logs Stdout Processor", "stack": ["opentelemetry"], "tags": ["observability","logs"], "files": [{ "path": "otel/logs-processor.js", "template": "// otel logs processor skeleton\n" }] },
+    { "id": "strike-collector-receiver-prometheus", "name": "Collector Receiver Prometheus", "stack": ["opentelemetry","collector"], "tags": ["observability","metrics"], "files": [{ "path": "otel/receiver-prom.yaml", "template": "receivers: { prometheus: {} }\n" }] },
+    { "id": "strike-grafana-provision-json", "name": "Grafana Provision JSON", "stack": ["grafana"], "tags": ["observability"], "files": [{ "path": "grafana/provisioning/datasources.json", "template": "{ }\n" }] },
+
+    { "id": "strike-oidc-logout-rp-initiated", "name": "OIDC RP-Initiated Logout", "stack": ["oidc"], "tags": ["security","auth"], "files": [{ "path": "auth/logout.md", "template": "# rp-initiated logout skeleton\n" }] },
+    { "id": "strike-opa-input-schema-validate", "name": "OPA Input Schema Validate", "stack": ["opa"], "tags": ["security","policy"], "files": [{ "path": "policy/input_schema.rego", "template": "# input schema validate skeleton\n" }] },
+    { "id": "strike-csp-report-uri-endpoint", "name": "CSP report-uri Endpoint", "stack": ["security","csp"], "tags": ["security"], "files": [{ "path": "security/csp-report.js", "template": "// csp report endpoint skeleton\n" }] },
+
+    { "id": "strike-kafka-partitions-best-practices", "name": "Kafka Partitions Best Practices", "stack": ["kafka"], "tags": ["stream","scaling"], "files": [{ "path": "kafka/partitions.md", "template": "# partitions best practices\n" }] },
+    { "id": "strike-nats-js-pull-consumers", "name": "NATS JS Pull Consumers", "stack": ["nats"], "tags": ["messaging","consumers"], "files": [{ "path": "nats/pull.js", "template": "// pull consumers skeleton\n" }] },
+    { "id": "strike-sqs-visibility-timeout-strategy", "name": "SQS Visibility Timeout Strategy", "stack": ["aws","sqs"], "tags": ["queue","reliability"], "files": [{ "path": "aws/visibility.md", "template": "# visibility timeout strategies\n" }] },
+
+    { "id": "strike-actions-reusable-changelog", "name": "Actions Reusable Changelog", "stack": ["github","actions"], "tags": ["ci","release"], "files": [{ "path": ".github/workflows/changelog.yml", "template": "name: Changelog\non: workflow_call\n" }] },
+    { "id": "strike-terraform-backend-gcs", "name": "Terraform Backend GCS", "stack": ["terraform","gcp"], "tags": ["infra"], "files": [{ "path": "backend/gcs.tf", "template": "// gcs backend skeleton\n" }] },
+    { "id": "strike-helm-values-ci-cd", "name": "Helm Values CI/CD", "stack": ["helm"], "tags": ["ops","ci"], "files": [{ "path": "helm/values-ci.yaml", "template": "replicaCount: 1\n" }] },
+
+    { "id": "strike-msw-bypass-network", "name": "MSW Bypass Network", "stack": ["msw"], "tags": ["test"], "files": [{ "path": "src/mocks/bypass.ts", "template": "// bypass network skeleton\n" }] },
+    { "id": "strike-playwright-snapshots", "name": "Playwright Snapshots", "stack": ["playwright"], "tags": ["test"], "files": [{ "path": "tests/snapshots.md", "template": "# snapshots usage\n" }] },
+    { "id": "strike-jest-setup-msw", "name": "Jest Setup MSW", "stack": ["jest","msw"], "tags": ["test"], "files": [{ "path": "jest.setup.ts", "template": "// jest setup msw skeleton\n" }] },
+
+    { "id": "strike-airflow-dynamic-task-mapping", "name": "Airflow Dynamic Task Mapping", "stack": ["airflow"], "tags": ["data","parallel"], "files": [{ "path": "dags/dynamic.py", "template": "# dynamic task mapping skeleton\n" }] },
+    { "id": "strike-dbt-env-var-patterns", "name": "dbt env var Patterns", "stack": ["dbt"], "tags": ["data","env"], "files": [{ "path": "docs/env_vars.md", "template": "# env var patterns\n" }] },
+    { "id": "strike-bigquery-json-ingest", "name": "BigQuery JSON Ingest", "stack": ["gcp","bigquery"], "tags": ["data"], "files": [{ "path": "sql/json_ingest.sql", "template": "-- json ingest skeleton\n" }] },
+
+    { "id": "strike-aws-cloudwatch-logs-subscription", "name": "AWS CloudWatch Logs Subscription", "stack": ["aws","cloudwatch"], "tags": ["cloud","logs"], "files": [{ "path": "cloudwatch/subscription.json", "template": "{ }\n" }] },
+    { "id": "strike-gcp-run-jobs-minimal", "name": "GCP Cloud Run Jobs Minimal", "stack": ["gcp","cloud-run"], "tags": ["cloud","jobs"], "files": [{ "path": "run/jobs.yaml", "template": "apiVersion: run.googleapis.com/v1\nkind: Job\nmetadata: { name: demo }\nspec: {}\n" }] },
+    { "id": "strike-azure-event-grid-subscription", "name": "Azure Event Grid Subscription", "stack": ["azure","event-grid"], "tags": ["cloud","events"], "files": [{ "path": "event-grid/subscription.json", "template": "{ }\n" }] },
+
+    { "id": "strike-openapi-yaml-minimal", "name": "(Merge) OpenAPI YAML Meta", "stack": ["openapi"], "tags": ["api","merge"] },
+    { "id": "strike-nextjs-route-handler-minimal", "name": "(Merge) Next.js Route Handler Meta", "stack": ["nextjs"], "tags": ["frontend","api","merge"] },
+    { "id": "strike-dockerfile-node-minimal", "name": "(Merge) Dockerfile Node Meta", "stack": ["docker"], "tags": ["ops","merge"] },
+    { "id": "strike-otel-node-tracer-minimal", "name": "(Merge) OTel Node Tracer Meta", "stack": ["opentelemetry"], "tags": ["observability","merge"] },
+    { "id": "strike-react-hook-form-minimal", "name": "(Merge) RHF Minimal Meta", "stack": ["react","forms"], "tags": ["frontend","merge"] }
+  ]
+}
+

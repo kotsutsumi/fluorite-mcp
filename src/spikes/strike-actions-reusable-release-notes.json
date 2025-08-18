@@ -1,0 +1,19 @@
+{
+  "id": "strike-actions-reusable-release-notes",
+  "name": "Actions Reusable Release Notes",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci",
+    "release"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/release-notes.yml",
+      "template": "name: ReleaseNotes\non: workflow_call\n"
+    }
+  ],
+  "patches": []
+}

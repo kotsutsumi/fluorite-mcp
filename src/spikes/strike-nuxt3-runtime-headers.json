@@ -1,0 +1,18 @@
+{
+  "id": "strike-nuxt3-runtime-headers",
+  "name": "Nuxt3 Runtime Headers",
+  "stack": [
+    "nuxt"
+  ],
+  "tags": [
+    "frontend",
+    "headers"
+  ],
+  "files": [
+    {
+      "path": "server/middleware/headers.ts",
+      "template": "export default defineEventHandler((e)=> e)\n"
+    }
+  ],
+  "patches": []
+}

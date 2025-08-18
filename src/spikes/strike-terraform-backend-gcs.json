@@ -1,0 +1,18 @@
+{
+  "id": "strike-terraform-backend-gcs",
+  "name": "Terraform Backend GCS",
+  "stack": [
+    "terraform",
+    "gcp"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "backend/gcs.tf",
+      "template": "// gcs backend skeleton\n"
+    }
+  ],
+  "patches": []
+}

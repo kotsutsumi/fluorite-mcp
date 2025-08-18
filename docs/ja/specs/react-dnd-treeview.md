@@ -7,21 +7,21 @@
 - **Version**: ^3.4.4
 - **License**: MIT
 
-## Overview
+## 概要
 
-React DnD TreeView provides a highly customizable tree component with built-in drag-and-drop functionality. It leverages the react-dnd library for robust drag operations and supports both mouse and touch devices through its MultiBackend adapter.
+React DnD TreeViewは、組み込みのドラッグ&ドロップ機能を備えた高度にカスタマイズ可能なツリーコンポーネントを提供します。react-dndライブラリを活用して堅牢なドラッグ操作を実現し、MultiBackendアダプターを通じてマウスとタッチデバイスの両方をサポートしています。
 
-## Key Features
+## 主要機能
 
-- 🎯 **Hierarchical drag and drop** with automatic tree restructuring
-- 📱 **Cross-device support** (mouse, touch, stylus) via MultiBackend
-- 🎨 **Fully customizable** node rendering with render props
-- ♿ **Accessibility-first** with keyboard navigation and ARIA attributes
-- ⚡ **High performance** with virtual scrolling support for large datasets
-- 📦 **TypeScript support** with comprehensive type definitions
-- 🔧 **Flexible API** supporting controlled and uncontrolled patterns
+- 🎯 **階層的なドラッグ&ドロップ** - 自動的なツリー構造の再編成
+- 📱 **クロスデバイス対応** - MultiBackend経由でマウス、タッチ、スタイラスに対応
+- 🎨 **完全にカスタマイズ可能** - レンダープロップによるノードレンダリング
+- ♿ **アクセシビリティ優先** - キーボードナビゲーションとARIA属性
+- ⚡ **高パフォーマンス** - 大規模データセット用の仮想スクロールサポート
+- 📦 **TypeScript サポート** - 包括的な型定義
+- 🔧 **柔軟なAPI** - 制御/非制御パターンをサポート
 
-## Installation
+## インストール
 
 ```bash
 # npm
@@ -34,66 +34,66 @@ yarn add react-dnd @minoru/react-dnd-treeview
 pnpm add react-dnd @minoru/react-dnd-treeview
 ```
 
-### Requirements
-- React 16.8+ (hooks support required)
-- react-dnd for drag-and-drop functionality
+### 必要要件
+- React 16.8+ (フックサポートが必要)
+- ドラッグ&ドロップ機能用のreact-dnd
 
-## Data Model
+## データモデル
 
-### Node Structure
+### ノード構造
 
 ```typescript
 interface NodeModel<T = any> {
-  id: number | string;        // Unique identifier (required)
-  parent: number | string;     // Parent node ID, 0 for root (required)
-  text: string;               // Display text (required)
-  droppable?: boolean;        // Can accept dropped items (default: false)
-  data?: T;                   // Custom data attachment
+  id: number | string;        // 一意の識別子 (必須)
+  parent: number | string;     // 親ノードID、ルートの場合は0 (必須)
+  text: string;               // 表示テキスト (必須)
+  droppable?: boolean;        // ドロップを受け入れ可能か (デフォルト: false)
+  data?: T;                   // カスタムデータの添付
 }
 ```
 
-## Core API
+## コアAPI
 
-### Main Component Props
+### メインコンポーネントのプロパティ
 
-#### Required Props
+#### 必須プロパティ
 
-| Prop | Type | Description |
+| プロパティ | 型 | 説明 |
 |------|------|-------------|
-| `tree` | `NodeModel<T>[]` | Array of tree nodes with hierarchical structure |
-| `rootId` | `number \| string` | ID of the root node (typically 0) |
-| `render` | `(node, params) => ReactNode` | Node rendering function |
-| `onDrop` | `(tree, options) => void` | Callback for drop operations |
+| `tree` | `NodeModel<T>[]` | 階層構造を持つツリーノードの配列 |
+| `rootId` | `number \| string` | ルートノードのID (通常は0) |
+| `render` | `(node, params) => ReactNode` | ノードレンダリング関数 |
+| `onDrop` | `(tree, options) => void` | ドロップ操作のコールバック |
 
-#### Optional Props
+#### オプションプロパティ
 
-| Prop | Type | Default | Description |
+| プロパティ | 型 | デフォルト | 説明 |
 |------|------|---------|-------------|
-| `initialOpen` | `boolean \| (number\|string)[]` | `false` | Initially expanded nodes |
-| `canDrag` | `(node) => boolean` | - | Control draggability per node |
-| `canDrop` | `(tree, options) => boolean` | - | Control drop targets |
-| `sort` | `(a, b) => number` | - | Custom sibling sorting |
-| `dragPreviewRender` | `(monitor) => ReactNode` | - | Custom drag preview |
-| `classes` | `object \| function` | - | CSS classes for styling |
-| `onChangeOpen` | `(nodeIds) => void` | - | Expansion change callback |
+| `initialOpen` | `boolean \| (number\|string)[]` | `false` | 初期展開されるノード |
+| `canDrag` | `(node) => boolean` | - | ノード毎のドラッグ可否制御 |
+| `canDrop` | `(tree, options) => boolean` | - | ドロップターゲットの制御 |
+| `sort` | `(a, b) => number` | - | カスタム兄弟ソート |
+| `dragPreviewRender` | `(monitor) => ReactNode` | - | カスタムドラッグプレビュー |
+| `classes` | `object \| function` | - | スタイリング用CSSクラス |
+| `onChangeOpen` | `(nodeIds) => void` | - | 展開状態変更コールバック |
 
-### Render Parameters
+### レンダーパラメータ
 
-The render function receives these parameters:
+レンダー関数は以下のパラメータを受け取ります：
 
 ```typescript
 interface RenderParams {
-  depth: number;         // Nesting level
-  isOpen: boolean;       // Expansion state
-  isDropTarget: boolean; // Current drop target
-  isDragging: boolean;   // Being dragged
-  onToggle: () => void; // Toggle expansion
+  depth: number;         // ネストレベル
+  isOpen: boolean;       // 展開状態
+  isDropTarget: boolean; // 現在のドロップターゲット
+  isDragging: boolean;   // ドラッグ中
+  onToggle: () => void; // 展開の切り替え
 }
 ```
 
-## Usage Examples
+## 使用例
 
-### Basic Implementation
+### 基本的な実装
 
 ```tsx
 import { useState } from "react";
@@ -130,7 +130,7 @@ export default function FileTree() {
 }
 ```
 
-### Advanced TypeScript Example
+### 高度なTypeScriptの例
 
 ```tsx
 interface FileData {
@@ -190,74 +190,74 @@ const FileExplorer: React.FC = () => {
 };
 ```
 
-## Performance Optimization
+## パフォーマンスの最適化
 
-### Best Practices
+### ベストプラクティス
 
-1. **Memoize render functions** to prevent unnecessary re-renders
-2. **Implement virtual scrolling** for trees with >1000 nodes
-3. **Use production builds** of react-dnd for optimal performance
-4. **Debounce state updates** when persisting expansion state
+1. **レンダー関数のメモ化** - 不要な再レンダリングを防ぐ
+2. **仮想スクロールの実装** - 1000以上のノードを持つツリー用
+3. **本番ビルドの使用** - react-dndの最適なパフォーマンスのため
+4. **状態更新のデバウンス** - 展開状態を永続化する際
 
-### Performance Benchmarks
+### パフォーマンスベンチマーク
 
-- Handles **10,000+ nodes** with virtual scrolling
-- **Sub-100ms** drag response time
-- **60fps** animations during drag operations
-- **~45KB** minified bundle size
+- 仮想スクロールで **10,000以上のノード** を処理
+- **100ms未満** のドラッグレスポンス時間
+- ドラッグ操作中の **60fps** アニメーション
+- **約45KB** の圧縮後バンドルサイズ
 
-## Accessibility
+## アクセシビリティ
 
-The component includes comprehensive accessibility features:
+コンポーネントには包括的なアクセシビリティ機能が含まれています：
 
-- ✅ ARIA attributes for tree structure
-- ✅ Keyboard navigation (Arrow keys, Enter, Space)
-- ✅ Screen reader announcements
-- ✅ Focus management during interactions
+- ✅ ツリー構造のためのARIA属性
+- ✅ キーボードナビゲーション（矢印キー、Enter、Space）
+- ✅ スクリーンリーダーアナウンス
+- ✅ インタラクション中のフォーカス管理
 
-## Browser Compatibility
+## ブラウザ互換性
 
-| Browser | Minimum Version |
+| ブラウザ | 最小バージョン |
 |---------|----------------|
 | Chrome | 90+ |
 | Firefox | 88+ |
 | Safari | 14+ |
 | Edge | 90+ |
 
-## Common Issues & Solutions
+## よくある問題と解決策
 
-### Touch Device Drag Preview
-**Problem**: Drag preview not showing on mobile devices  
-**Solution**: Implement the `dragPreviewRender` prop with a custom preview component
+### タッチデバイスのドラッグプレビュー
+**問題**: モバイルデバイスでドラッグプレビューが表示されない  
+**解決策**: `dragPreviewRender` プロパティにカスタムプレビューコンポーネントを実装する
 
-### Large Dataset Performance
-**Problem**: Sluggish performance with thousands of nodes  
-**Solution**: Implement virtual scrolling or pagination strategies
+### 大規模データセットのパフォーマンス
+**問題**: 数千のノードで動作が遅い  
+**解決策**: 仮想スクロールまたはページネーション戦略を実装する
 
-### TypeScript Generic Types
-**Problem**: TypeScript errors with custom data types  
-**Solution**: Use the generic type parameter: `Tree<YourDataType>`
+### TypeScriptジェネリック型
+**問題**: カスタムデータ型でTypeScriptエラーが発生  
+**解決策**: ジェネリック型パラメータを使用： `Tree<YourDataType>`
 
-## Related Packages
+## 関連パッケージ
 
-- **react-dnd**: Core drag and drop library (required dependency)
-- **react-sortable-tree**: Alternative with built-in features
-- **rc-tree**: Ant Design tree component
-- **react-arborist**: File-tree with virtualization
+- **react-dnd**: コアドラッグ&ドロップライブラリ（必須依存関係）
+- **react-sortable-tree**: 組み込み機能を持つ代替案
+- **rc-tree**: Ant Designツリーコンポーネント
+- **react-arborist**: 仮想化を備えたファイルツリー
 
-## Resources
+## リソース
 
-- [Documentation](https://github.com/minop1205/react-dnd-treeview/blob/main/README.md)
-- [Live Demo](https://minop1205.github.io/react-dnd-treeview/)
-- [API Reference](https://github.com/minop1205/react-dnd-treeview/blob/main/docs/api.md)
-- [Examples](https://github.com/minop1205/react-dnd-treeview/tree/main/examples)
-- [Changelog](https://github.com/minop1205/react-dnd-treeview/blob/main/CHANGELOG.md)
+- [ドキュメント](https://github.com/minop1205/react-dnd-treeview/blob/main/README.md)
+- [ライブデモ](https://minop1205.github.io/react-dnd-treeview/)
+- [APIリファレンス](https://github.com/minop1205/react-dnd-treeview/blob/main/docs/api.md)
+- [サンプル](https://github.com/minop1205/react-dnd-treeview/tree/main/examples)
+- [変更履歴](https://github.com/minop1205/react-dnd-treeview/blob/main/CHANGELOG.md)
 - [GitHub Issues](https://github.com/minop1205/react-dnd-treeview/issues)
 
-## Package Stats
+## パッケージ統計
 
-- **Weekly Downloads**: ~5,000
-- **GitHub Stars**: 400+
-- **Last Published**: March 2024
-- **Bundle Size**: ~45KB minified
-- **License**: MIT
+- **週間ダウンロード数**: 約5,000
+- **GitHubスター数**: 400+
+- **最終公開日**: 2024年3月
+- **バンドルサイズ**: 圧縮後約45KB
+- **ライセンス**: MIT

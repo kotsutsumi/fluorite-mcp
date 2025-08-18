@@ -1,0 +1,17 @@
+{
+  "id": "strike-grafana-provision-json",
+  "name": "Grafana Provision JSON",
+  "stack": [
+    "grafana"
+  ],
+  "tags": [
+    "observability"
+  ],
+  "files": [
+    {
+      "path": "grafana/provisioning/datasources.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

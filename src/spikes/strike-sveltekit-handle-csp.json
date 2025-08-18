@@ -1,0 +1,18 @@
+{
+  "id": "strike-sveltekit-handle-csp",
+  "name": "SvelteKit handle() CSP",
+  "stack": [
+    "sveltekit"
+  ],
+  "tags": [
+    "frontend",
+    "security"
+  ],
+  "files": [
+    {
+      "path": "src/hooks.server.ts",
+      "template": "export const handle = async ({ resolve }) => { return resolve(); };\n"
+    }
+  ],
+  "patches": []
+}

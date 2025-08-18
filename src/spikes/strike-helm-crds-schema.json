@@ -1,0 +1,22 @@
+{
+  "id": "strike-helm-crds-schema",
+  "name": "Helm CRDs + Schema",
+  "stack": [
+    "helm"
+  ],
+  "tags": [
+    "ops",
+    "schema"
+  ],
+  "files": [
+    {
+      "path": "chart/crds/crd.yaml",
+      "template": "# crd skeleton\n"
+    },
+    {
+      "path": "chart/values.schema.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

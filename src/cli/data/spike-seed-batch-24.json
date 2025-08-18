@@ -1,0 +1,50 @@
+{
+  "items": [
+    { "id": "strike-express-redis-session", "name": "Express Redis Session", "stack": ["node","express","redis"], "tags": ["backend","session"], "files": [{ "path": "server.js", "template": "// express session with redis skeleton\n" }] },
+    { "id": "strike-koa-health-liveness-readiness", "name": "Koa Health Liveness/Readiness", "stack": ["node","koa"], "tags": ["backend","health"], "files": [{ "path": "server.js", "template": "// koa liveness/readiness endpoints skeleton\n" }] },
+    { "id": "strike-fastify-ajv-custom-keywords", "name": "Fastify AJV Custom Keywords", "stack": ["node","fastify","ajv"], "tags": ["backend","validation"], "files": [{ "path": "server.js", "template": "// fastify ajv custom keyword skeleton\n" }] },
+    { "id": "strike-go-gin-recover-cors", "name": "Go Gin Recover + CORS", "stack": ["go","gin"], "tags": ["backend","reliability","cors"], "files": [{ "path": "main.go", "template": "package main\n// gin recover + cors skeleton\nfunc main(){}\n" }] },
+    { "id": "strike-deno-fresh-rpc-route", "name": "Deno Fresh RPC Route", "stack": ["deno","fresh"], "tags": ["backend","api"], "files": [{ "path": "routes/rpc.ts", "template": "// fresh rpc route skeleton\n" }] },
+
+    { "id": "strike-nextjs-edge-config", "name": "Next.js Edge Config", "stack": ["nextjs","edge"], "tags": ["frontend","config"], "files": [{ "path": "app/edge-config.ts", "template": "// next edge config skeleton\n" }] },
+    { "id": "strike-nuxt3-route-middleware-guards", "name": "Nuxt3 Route Middleware Guards", "stack": ["nuxt"], "tags": ["frontend","middleware","auth"], "files": [{ "path": "middleware/guards.global.ts", "template": "export default defineNuxtRouteMiddleware(()=>{})\n" }] },
+    { "id": "strike-sveltekit-actions-formdata", "name": "SvelteKit Actions FormData", "stack": ["sveltekit"], "tags": ["frontend","forms","upload"], "files": [{ "path": "src/routes/+page.server.ts", "template": "// handle FormData in actions skeleton\n" }] },
+    { "id": "strike-angular-route-preloading", "name": "Angular Route Preloading", "stack": ["angular"], "tags": ["frontend","routing","perf"], "files": [{ "path": "src/app/preloading.ts", "template": "// route preloading strategy skeleton\n" }] },
+    { "id": "strike-solid-context-provider-pattern", "name": "Solid Context Provider Pattern", "stack": ["solid"], "tags": ["frontend","state"], "files": [{ "path": "src/context.tsx", "template": "// solid context provider pattern skeleton\n" }] },
+
+    { "id": "strike-otel-instrumentation-http", "name": "OTel HTTP Instrumentation", "stack": ["opentelemetry"], "tags": ["observability","http"], "files": [{ "path": "otel/http.js", "template": "// http instrumentation skeleton\n" }] },
+    { "id": "strike-collector-logging-exporter", "name": "Collector Logging Exporter", "stack": ["opentelemetry","collector"], "tags": ["observability","logs"], "files": [{ "path": "otel/logging-exporter.yaml", "template": "exporters: { logging: {} }\n" }] },
+    { "id": "strike-grafana-dashboard-nodejs", "name": "Grafana Dashboard Node.js", "stack": ["grafana"], "tags": ["observability","dashboards"], "files": [{ "path": "grafana/dashboards/nodejs.json", "template": "{ }\n" }] },
+
+    { "id": "strike-oidc-introspect-cache", "name": "OIDC Introspect Cache", "stack": ["oidc"], "tags": ["security","auth"], "files": [{ "path": "auth/introspect-cache.md", "template": "# cache introspection results patterns\n" }] },
+    { "id": "strike-opa-bundle-versioning", "name": "OPA Bundle Versioning", "stack": ["opa"], "tags": ["security","policy"], "files": [{ "path": "policy/bundle-versioning.md", "template": "# bundle versioning patterns\n" }] },
+    { "id": "strike-csp-nonce-hashes-combined", "name": "CSP nonce + hashes Combined", "stack": ["csp"], "tags": ["security"], "files": [{ "path": "security/nonce_hashes.md", "template": "# combine nonce and hashes\n" }] },
+
+    { "id": "strike-kafka-connectors-best-practices", "name": "Kafka Connectors Best Practices", "stack": ["kafka","connect"], "tags": ["stream","etl"], "files": [{ "path": "connect/best_practices.md", "template": "# connectors best practices\n" }] },
+    { "id": "strike-nats-js-leafnodes", "name": "NATS Leafnodes", "stack": ["nats"], "tags": ["messaging","topology"], "files": [{ "path": "nats/leafnodes.md", "template": "# leafnodes topology\n" }] },
+    { "id": "strike-sqs-large-payload-s3", "name": "SQS Large Payload via S3", "stack": ["aws","sqs","s3"], "tags": ["queue","storage"], "files": [{ "path": "aws/large_payload.md", "template": "# large payload via s3\n" }] },
+
+    { "id": "strike-actions-reusable-tag-release", "name": "Actions Reusable Tag Release", "stack": ["github","actions"], "tags": ["ci","release"], "files": [{ "path": ".github/workflows/tag-release.yml", "template": "name: TagRelease\non: workflow_call\n" }] },
+    { "id": "strike-terraform-backend-azure", "name": "Terraform Backend Azure", "stack": ["terraform","azure"], "tags": ["infra"], "files": [{ "path": "backend/azure.tf", "template": "// azure backend skeleton\n" }] },
+    { "id": "strike-helm-ci-template-values", "name": "Helm CI Template Values", "stack": ["helm"], "tags": ["ops","ci"], "files": [{ "path": "helm/values-template.yaml", "template": "replicaCount: 1\n" }] },
+
+    { "id": "strike-msw-file-uploads", "name": "MSW File Uploads", "stack": ["msw"], "tags": ["test"], "files": [{ "path": "src/mocks/uploads.ts", "template": "// msw file uploads skeleton\n" }] },
+    { "id": "strike-playwright-shards-matrix", "name": "Playwright Shards Matrix", "stack": ["playwright"], "tags": ["test","ci"], "files": [{ "path": ".github/workflows/pw-shards-matrix.yml", "template": "name: PWShardsMatrix\non: [push]\n" }] },
+    { "id": "strike-jest-setup-fetch-msw", "name": "Jest Setup fetch + MSW", "stack": ["jest","msw"], "tags": ["test"], "files": [{ "path": "jest.setup.ts", "template": "// fetch polyfill + msw setup skeleton\n" }] },
+
+    { "id": "strike-airflow-spark-operator", "name": "Airflow Spark Submit Operator", "stack": ["airflow","spark"], "tags": ["data"], "files": [{ "path": "dags/spark.py", "template": "# spark submit operator skeleton\n" }] },
+    { "id": "strike-dbt-snapshots-advanced", "name": "dbt Snapshots Advanced", "stack": ["dbt"], "tags": ["data"], "files": [{ "path": "snapshots/advanced.md", "template": "# snapshots advanced patterns\n" }] },
+    { "id": "strike-bigquery-partition-evolution", "name": "BigQuery Partition Evolution", "stack": ["gcp","bigquery"], "tags": ["data"], "files": [{ "path": "docs/partition_evolution.md", "template": "# partition evolution\n" }] },
+
+    { "id": "strike-aws-s3-signed-urls", "name": "AWS S3 Signed URLs", "stack": ["aws","s3"], "tags": ["cloud","storage"], "files": [{ "path": "s3/signed_urls.mjs", "template": "// signed urls skeleton\n" }] },
+    { "id": "strike-gcp-firestore-rules-minimal", "name": "GCP Firestore Rules Minimal", "stack": ["gcp","firestore"], "tags": ["cloud","security"], "files": [{ "path": "firestore.rules", "template": "// firestore rules skeleton\n" }] },
+    { "id": "strike-azure-blob-sas-minimal", "name": "Azure Blob SAS Minimal", "stack": ["azure","storage"], "tags": ["cloud","security"], "files": [{ "path": "blob/sas.json", "template": "{ }\n" }] },
+
+    { "id": "strike-openapi-yaml-minimal", "name": "(Merge) OpenAPI YAML Meta", "stack": ["openapi"], "tags": ["api","merge"] },
+    { "id": "strike-dockerfile-node-minimal", "name": "(Merge) Dockerfile Node Meta", "stack": ["docker"], "tags": ["ops","merge"] },
+    { "id": "strike-nextjs-route-handler-minimal", "name": "(Merge) Next.js Route Handler Meta", "stack": ["nextjs"], "tags": ["frontend","api","merge"] },
+    { "id": "strike-otel-node-tracer-minimal", "name": "(Merge) OTel Node Tracer Meta", "stack": ["opentelemetry"], "tags": ["observability","merge"] },
+    { "id": "strike-react-hook-form-minimal", "name": "(Merge) RHF Minimal Meta", "stack": ["react","forms"], "tags": ["frontend","merge"] }
+  ]
+}
+

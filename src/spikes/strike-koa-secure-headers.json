@@ -1,0 +1,19 @@
+{
+  "id": "strike-koa-secure-headers",
+  "name": "Koa Secure Headers",
+  "stack": [
+    "node",
+    "koa"
+  ],
+  "tags": [
+    "backend",
+    "security"
+  ],
+  "files": [
+    {
+      "path": "server.js",
+      "template": "import Koa from 'koa';\nconst app = new Koa();\napp.use(async (ctx,next)=>{ ctx.set('X-Frame-Options','DENY'); await next(); });\napp.use((ctx)=> ctx.body = { ok:true });\napp.listen(3000);\n"
+    }
+  ],
+  "patches": []
+}

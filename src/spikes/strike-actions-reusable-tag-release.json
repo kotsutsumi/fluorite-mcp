@@ -1,0 +1,19 @@
+{
+  "id": "strike-actions-reusable-tag-release",
+  "name": "Actions Reusable Tag Release",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci",
+    "release"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/tag-release.yml",
+      "template": "name: TagRelease\non: workflow_call\n"
+    }
+  ],
+  "patches": []
+}

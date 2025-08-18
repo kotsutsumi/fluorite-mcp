@@ -1,0 +1,19 @@
+{
+  "id": "strike-collector-receiver-prometheus",
+  "name": "Collector Receiver Prometheus",
+  "stack": [
+    "opentelemetry",
+    "collector"
+  ],
+  "tags": [
+    "observability",
+    "metrics"
+  ],
+  "files": [
+    {
+      "path": "otel/receiver-prom.yaml",
+      "template": "receivers: { prometheus: {} }\n"
+    }
+  ],
+  "patches": []
+}

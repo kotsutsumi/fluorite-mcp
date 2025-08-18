@@ -1,0 +1,18 @@
+{
+  "id": "strike-helm-values-ci-cd",
+  "name": "Helm Values CI/CD",
+  "stack": [
+    "helm"
+  ],
+  "tags": [
+    "ops",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": "helm/values-ci.yaml",
+      "template": "replicaCount: 1\n"
+    }
+  ],
+  "patches": []
+}

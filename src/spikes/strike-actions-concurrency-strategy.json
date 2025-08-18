@@ -1,0 +1,18 @@
+{
+  "id": "strike-actions-concurrency-strategy",
+  "name": "Actions Concurrency Strategy",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/concurrency.yml",
+      "template": "name: Concurrency\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

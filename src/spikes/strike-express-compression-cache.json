@@ -1,0 +1,19 @@
+{
+  "id": "strike-express-compression-cache",
+  "name": "Express Compression + Cache-Control",
+  "stack": [
+    "node",
+    "express"
+  ],
+  "tags": [
+    "backend",
+    "perf"
+  ],
+  "files": [
+    {
+      "path": "server.js",
+      "template": "import express from 'express';\nimport compression from 'compression';\nconst app = express();\napp.use(compression());\napp.get('/health', (req,res)=>{ res.set('Cache-Control','no-store'); res.json({ ok:true }); });\napp.listen(3000);\n"
+    }
+  ],
+  "patches": []
+}

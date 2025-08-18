@@ -1,0 +1,20 @@
+{
+  "id": "strike-express-etag-conditional-get",
+  "name": "Express ETag + Conditional GET",
+  "stack": [
+    "node",
+    "express"
+  ],
+  "tags": [
+    "backend",
+    "perf",
+    "cache"
+  ],
+  "files": [
+    {
+      "path": "server.js",
+      "template": "import express from 'express';\nconst app = express();\napp.set('etag', 'strong');\napp.get('/data', (req, res)=>{ res.json({ ts: Date.now() }); });\napp.listen(3000);\n"
+    }
+  ],
+  "patches": []
+}

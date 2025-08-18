@@ -1,0 +1,19 @@
+{
+  "id": "strike-pact-can-i-deploy-ci",
+  "name": "Pact can-i-deploy CI",
+  "stack": [
+    "pact"
+  ],
+  "tags": [
+    "test",
+    "contract",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/pact-can-i-deploy.yml",
+      "template": "name: CanIDeploy\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

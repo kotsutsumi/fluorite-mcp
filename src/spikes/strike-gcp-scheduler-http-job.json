@@ -1,0 +1,19 @@
+{
+  "id": "strike-gcp-scheduler-http-job",
+  "name": "GCP Scheduler HTTP Job",
+  "stack": [
+    "gcp",
+    "scheduler"
+  ],
+  "tags": [
+    "cloud",
+    "jobs"
+  ],
+  "files": [
+    {
+      "path": "scheduler/http.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

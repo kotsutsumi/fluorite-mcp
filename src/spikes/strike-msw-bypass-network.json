@@ -1,0 +1,17 @@
+{
+  "id": "strike-msw-bypass-network",
+  "name": "MSW Bypass Network",
+  "stack": [
+    "msw"
+  ],
+  "tags": [
+    "test"
+  ],
+  "files": [
+    {
+      "path": "src/mocks/bypass.ts",
+      "template": "// bypass network skeleton\n"
+    }
+  ],
+  "patches": []
+}

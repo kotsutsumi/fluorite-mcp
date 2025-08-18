@@ -1,0 +1,50 @@
+{
+  "items": [
+    { "id": "strike-express-etag-conditional-get", "name": "Express ETag + Conditional GET", "stack": ["node","express"], "tags": ["backend","perf","cache"], "files": [{ "path": "server.js", "template": "import express from 'express';\nconst app = express();\napp.set('etag', 'strong');\napp.get('/data', (req, res)=>{ res.json({ ts: Date.now() }); });\napp.listen(3000);\n" }] },
+    { "id": "strike-koa-helmet-csp", "name": "Koa Helmet CSP", "stack": ["node","koa","helmet"], "tags": ["backend","security"], "files": [{ "path": "server.js", "template": "// koa + helmet csp skeleton\n" }] },
+    { "id": "strike-fastify-compress-cache", "name": "Fastify Compress + Cache", "stack": ["node","fastify"], "tags": ["backend","perf"], "files": [{ "path": "server.js", "template": "// fastify compress + cache headers skeleton\n" }] },
+    { "id": "strike-go-gin-openapi-swagger", "name": "Go Gin OpenAPI + Swagger", "stack": ["go","gin","swagger"], "tags": ["backend","docs"], "files": [{ "path": "main.go", "template": "package main\n// gin swagger skeleton\nfunc main(){}\n" }] },
+    { "id": "strike-deno-fresh-auth-headers", "name": "Deno Fresh Auth Headers", "stack": ["deno","fresh"], "tags": ["backend","auth"], "files": [{ "path": "routes/auth.ts", "template": "// fresh set auth headers skeleton\n" }] },
+
+    { "id": "strike-nextjs-middleware-rate-limit", "name": "Next.js Middleware Rate Limit", "stack": ["nextjs"], "tags": ["frontend","middleware","security"], "files": [{ "path": "middleware.ts", "template": "// rate limit middleware skeleton\n" }] },
+    { "id": "strike-nuxt3-cors-middleware", "name": "Nuxt3 CORS Middleware", "stack": ["nuxt"], "tags": ["frontend","cors"], "files": [{ "path": "middleware/cors.global.ts", "template": "export default defineNuxtRouteMiddleware(()=>{})\n" }] },
+    { "id": "strike-sveltekit-handle-csp", "name": "SvelteKit handle() CSP", "stack": ["sveltekit"], "tags": ["frontend","security"], "files": [{ "path": "src/hooks.server.ts", "template": "export const handle = async ({ resolve }) => { return resolve(); };\n" }] },
+    { "id": "strike-angular-http-circuit-breaker", "name": "Angular HTTP Circuit Breaker", "stack": ["angular"], "tags": ["frontend","http","reliability"], "files": [{ "path": "src/app/circuit.interceptor.ts", "template": "// circuit breaker interceptor skeleton\n" }] },
+    { "id": "strike-solid-global-store", "name": "Solid Global Store", "stack": ["solid"], "tags": ["frontend","state"], "files": [{ "path": "src/globalStore.ts", "template": "// global store singleton skeleton\n" }] },
+
+    { "id": "strike-otel-node-metrics-runtime", "name": "OTel Node Runtime Metrics", "stack": ["opentelemetry"], "tags": ["observability","metrics"], "files": [{ "path": "otel/runtime-metrics.js", "template": "// runtime metrics skeleton\n" }] },
+    { "id": "strike-collector-attributes-processor", "name": "Collector Attributes Processor", "stack": ["opentelemetry","collector"], "tags": ["observability"], "files": [{ "path": "otel/attributes.yaml", "template": "processors: { attributes: {} }\n" }] },
+    { "id": "strike-grafana-logs-explorer", "name": "Grafana Logs Explorer", "stack": ["grafana"], "tags": ["observability","logs"], "files": [{ "path": "grafana/dashboards/logs_explorer.json", "template": "{ }\n" }] },
+
+    { "id": "strike-oidc-introspection-client-creds", "name": "OIDC Introspection (Client Credentials)", "stack": ["oidc"], "tags": ["security","auth"], "files": [{ "path": "auth/introspect_client_creds.md", "template": "# introspection with client credentials\n" }] },
+    { "id": "strike-opa-distributed-policies", "name": "OPA Distributed Policies", "stack": ["opa"], "tags": ["security","policy"], "files": [{ "path": "policy/distributed.md", "template": "# distributed policy loading\n" }] },
+    { "id": "strike-csp-inline-scripts-hash", "name": "CSP Inline Scripts Hash", "stack": ["csp"], "tags": ["security"], "files": [{ "path": "security/inline_hash.md", "template": "# inline scripts hash patterns\n" }] },
+
+    { "id": "strike-kafka-consumer-retry-backoff", "name": "Kafka Consumer Retry Backoff", "stack": ["kafka"], "tags": ["stream","reliability"], "files": [{ "path": "kafka/retry_backoff.md", "template": "# retry backoff patterns\n" }] },
+    { "id": "strike-nats-js-headers-metadata", "name": "NATS Headers Metadata", "stack": ["nats"], "tags": ["messaging","headers"], "files": [{ "path": "nats/metadata.js", "template": "// headers metadata skeleton\n" }] },
+    { "id": "strike-sqs-scaling-policy", "name": "SQS Scaling Policy", "stack": ["aws","sqs"], "tags": ["queue","scaling"], "files": [{ "path": "aws/scaling.md", "template": "# sqs scaling policy\n" }] },
+
+    { "id": "strike-actions-reusable-release-notes", "name": "Actions Reusable Release Notes", "stack": ["github","actions"], "tags": ["ci","release"], "files": [{ "path": ".github/workflows/release-notes.yml", "template": "name: ReleaseNotes\non: workflow_call\n" }] },
+    { "id": "strike-terraform-dep-graphs", "name": "Terraform Dependency Graphs", "stack": ["terraform"], "tags": ["infra"], "files": [{ "path": "docs/dep_graphs.md", "template": "# terraform graph usage\n" }] },
+    { "id": "strike-helm-helmfile-basics", "name": "Helmfile Basics", "stack": ["helm","helmfile"], "tags": ["ops"], "files": [{ "path": "helmfile.yaml", "template": "# helmfile basics skeleton\n" }] },
+
+    { "id": "strike-msw-graphql-uploads", "name": "MSW GraphQL Uploads", "stack": ["msw","graphql"], "tags": ["test"], "files": [{ "path": "src/mocks/graphql_uploads.ts", "template": "// graphql uploads skeleton\n" }] },
+    { "id": "strike-playwright-retries-ci", "name": "Playwright Retries CI", "stack": ["playwright"], "tags": ["test","ci"], "files": [{ "path": ".github/workflows/pw-retries.yml", "template": "name: PWRetries\non: [push]\n" }] },
+    { "id": "strike-jest-transform-esbuild", "name": "Jest Transform via esbuild", "stack": ["jest","esbuild"], "tags": ["test","speed"], "files": [{ "path": "jest.config.ts", "template": "// esbuild transform skeleton\n" }] },
+
+    { "id": "strike-airflow-sla-miss-callbacks", "name": "Airflow SLA Miss Callbacks", "stack": ["airflow"], "tags": ["data","alerts"], "files": [{ "path": "dags/sla.py", "template": "# sla miss callbacks skeleton\n" }] },
+    { "id": "strike-dbt-seeds-advanced", "name": "dbt Seeds Advanced", "stack": ["dbt"], "tags": ["data"], "files": [{ "path": "seeds/README.md", "template": "# seeds advanced patterns\n" }] },
+    { "id": "strike-bigquery-row-level-security", "name": "BigQuery Row Level Security", "stack": ["gcp","bigquery"], "tags": ["data","security"], "files": [{ "path": "docs/row_level_security.md", "template": "# rls concepts\n" }] },
+
+    { "id": "strike-aws-lambda-provisioned-concurrency", "name": "AWS Lambda Provisioned Concurrency", "stack": ["aws","lambda"], "tags": ["cloud","perf"], "files": [{ "path": "lambda/provisioned.md", "template": "# provisioned concurrency\n" }] },
+    { "id": "strike-gcp-gcs-signed-urls", "name": "GCP GCS Signed URLs", "stack": ["gcp","gcs"], "tags": ["cloud","storage"], "files": [{ "path": "gcs/signed_urls.md", "template": "# gcs signed urls\n" }] },
+    { "id": "strike-azure-managed-identity-msi", "name": "Azure Managed Identity (MSI)", "stack": ["azure","identity"], "tags": ["cloud","auth"], "files": [{ "path": "msi/README.md", "template": "# managed identity basics\n" }] },
+
+    { "id": "strike-openapi-yaml-minimal", "name": "(Merge) OpenAPI YAML Meta", "stack": ["openapi"], "tags": ["api","merge"] },
+    { "id": "strike-nextjs-route-handler-minimal", "name": "(Merge) Next.js Route Handler Meta", "stack": ["nextjs"], "tags": ["frontend","api","merge"] },
+    { "id": "strike-dockerfile-node-minimal", "name": "(Merge) Dockerfile Node Meta", "stack": ["docker"], "tags": ["ops","merge"] },
+    { "id": "strike-otel-node-tracer-minimal", "name": "(Merge) OTel Node Tracer Meta", "stack": ["opentelemetry"], "tags": ["observability","merge"] },
+    { "id": "strike-react-hook-form-minimal", "name": "(Merge) RHF Minimal Meta", "stack": ["react","forms"], "tags": ["frontend","merge"] }
+  ]
+}
+

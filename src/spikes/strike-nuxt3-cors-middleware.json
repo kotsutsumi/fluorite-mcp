@@ -1,0 +1,18 @@
+{
+  "id": "strike-nuxt3-cors-middleware",
+  "name": "Nuxt3 CORS Middleware",
+  "stack": [
+    "nuxt"
+  ],
+  "tags": [
+    "frontend",
+    "cors"
+  ],
+  "files": [
+    {
+      "path": "middleware/cors.global.ts",
+      "template": "export default defineNuxtRouteMiddleware(()=>{})\n"
+    }
+  ],
+  "patches": []
+}
