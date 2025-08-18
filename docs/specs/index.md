@@ -1,171 +1,171 @@
-# ライブラリ仕様カタログ
+# Library Specifications Catalog
 
-Fluorite MCPが提供するライブラリ仕様の一覧です。これらの仕様はClaude Code CLIにコンテキストを提供し、より正確で実用的なコード生成を可能にします。
+A comprehensive catalog of library specifications provided by Fluorite MCP. These specifications provide context to Claude Code CLI, enabling more accurate and practical code generation.
 
 ::: info
-仕様ファイルは `src/catalog/` ディレクトリにYAML形式で保管されています。
+Specification files are stored in YAML format in the `src/catalog/` directory.
 :::
 
-## 🌟 特集ライブラリ
+## 🌟 Featured Libraries
 
-### ツリービューコンポーネント
-- [React DnD TreeView](./react-dnd-treeview) - ドラッグ&ドロップ対応のツリービュー
+### Tree View Components
+- [React DnD TreeView](./react-dnd-treeview) - Drag & drop enabled tree view components
 
-## 🖌️ UIコンポーネント & スタイリング
+## 🖌️ UI Components & Styling
 
-### デザインシステム
-- **shadcn/ui** - Radix UIとTailwind CSSを使用したコピー&ペースト可能なコンポーネント
-- **@radix-ui/themes** - 完全なデザインシステムとコンポーネントライブラリ
-- **Tailwind CSS** - ユーティリティファーストCSSフレームワーク
+### Design Systems
+- **shadcn/ui** - Copy & paste components using Radix UI and Tailwind CSS
+- **@radix-ui/themes** - Complete design system and component library
+- **Tailwind CSS** - Utility-first CSS framework
 
-### ダッシュボード & データ可視化
-- **@tremor/react** - React用ダッシュボードコンポーネント
-- **Recharts** - D3ベースのコンポーザブルなチャートライブラリ
-- **visx** - Airbnb製の低レベル可視化コンポーネント
+### Dashboard & Data Visualization
+- **@tremor/react** - Dashboard components for React
+- **Recharts** - Composable charting library built on D3
+- **visx** - Low-level visualization components by Airbnb
 
-### Vue エコシステム
-- [Vue エコシステム](./vue) - `spec://vue-ecosystem` とスターター `spec://vue-opinionated-starter`
+### Vue Ecosystem
+- [Vue Ecosystem](./vue) - `spec://vue-ecosystem` and starters `spec://vue-opinionated-starter`
 
-### Nuxt エコシステム
-- [Nuxt エコシステム](./nuxt) - `spec://nuxt-ecosystem`
+### Nuxt Ecosystem
+- [Nuxt Ecosystem](./nuxt) - `spec://nuxt-ecosystem`
 
-## 📊 データグリッド & テーブル
+## 📊 Data Grids & Tables
 
-- **AG Grid** - エンタープライズグレードのデータグリッド
-- **@mui/x-data-grid** - Material-UIの高機能データグリッド
-- **@tanstack/react-table** - ヘッドレステーブルライブラリ
+- **AG Grid** - Enterprise-grade data grid
+- **@mui/x-data-grid** - Material-UI's powerful data grid
+- **@tanstack/react-table** - Headless table library
 
-## 📝 フォーム & バリデーション
+## 📝 Forms & Validation
 
-- **react-hook-form** - 高性能フォームライブラリ
-- **Zod** - TypeScriptファーストのスキーマ宣言とバリデーション
+- **react-hook-form** - High-performance forms library
+- **Zod** - TypeScript-first schema declaration and validation
 
-## 🎯 状態管理
+## 🎯 State Management
 
-- **Jotai** - React用アトミック状態管理
-- **@tanstack/react-query** - 非同期データフェッチとキャッシング
+- **Jotai** - Atomic state management for React
+- **@tanstack/react-query** - Async data fetching and caching
 
-## 🔐 認証 & セキュリティ
+## 🔐 Authentication & Security
 
-- **@auth/nextjs (NextAuth.js)** - Next.js用完全認証ソリューション
-- **@clerk/nextjs** - ユーザー管理と認証プラットフォーム
-- **Lucia** - シンプルで柔軟な認証ライブラリ
+- **@auth/nextjs (NextAuth.js)** - Complete authentication solution for Next.js
+- **@clerk/nextjs** - User management and authentication platform
+- **Lucia** - Simple and flexible authentication library
 
-## 🗄️ データベース & ORM
+## 🗄️ Database & ORM
 
-- **Prisma** - 次世代TypeScript ORM
-- **Drizzle ORM** - TypeScript SQLクエリビルダー
-- **@upstash/redis** - サーバーレスRedisクライアント
+- **Prisma** - Next-generation TypeScript ORM
+- **Drizzle ORM** - TypeScript SQL query builder
+- **@upstash/redis** - Serverless Redis client
 
-## 🌐 フレームワーク & ツール
+## 🌐 Frameworks & Tools
 
-- **Hono** - 超高速Webフレームワーク
-- **tRPC** - エンドツーエンドの型安全API
-- **next-intl** - Next.js用国際化ライブラリ
+- **Hono** - Ultra-fast web framework
+- **tRPC** - End-to-end typesafe APIs
+- **next-intl** - Internationalization library for Next.js
 
 ### PHP/Laravel
-- [Laravel 基礎](./laravel) - `spec://laravel`
-- [Laravel エコシステム](./laravel) - `spec://laravel-ecosystem`
+- [Laravel Fundamentals](./laravel) - `spec://laravel`
+- [Laravel Ecosystem](./laravel) - `spec://laravel-ecosystem`
 
 ### Rust / Tauri
-- [Rust / Tauri エコシステム](./rust-tauri) - `spec://rust-tauri-ecosystem`
+- [Rust / Tauri Ecosystem](./rust-tauri) - `spec://rust-tauri-ecosystem`
 
 ### FastAPI
-- [FastAPI エコシステム](./fastapi) - `spec://fastapi-ecosystem`
+- [FastAPI Ecosystem](./fastapi) - `spec://fastapi-ecosystem`
 
-### クラウドプラットフォーム
+### Cloud Platforms
 - [Supabase / Firebase / Vercel / Azure / GCP](./cloud-platforms)
 
-### Vercel / Next.js スターター
+### Vercel / Next.js Starters
 - `spec://vercel-next-starter`
 
-### FastAPI スターター
+### FastAPI Starters
 - `spec://fastapi-starter`
 
-### 言語エコシステム
-- [Zig システムプログラミング](./langs) - `spec://zig-ecosystem`
-- [Elixir 関数型・並行プログラミング](./langs) - `spec://elixir-ecosystem`
-- [Go 高性能バックエンド開発](./langs) - `spec://go-ecosystem`
-- [Dart クロスプラットフォーム言語](./langs) - `spec://dart-ecosystem`
-- [Flutter モバイル開発](./langs) - `spec://flutter-ecosystem`
-- [C# エンタープライズ開発](./langs) - `spec://csharp-ecosystem`
-- [Unity ゲーム開発](./langs) - `spec://unity-ecosystem`
+### Language Ecosystems
+- [Zig Systems Programming](./langs) - `spec://zig-ecosystem`
+- [Elixir Functional & Concurrent Programming](./langs) - `spec://elixir-ecosystem`
+- [Go High-Performance Backend Development](./langs) - `spec://go-ecosystem`
+- [Dart Cross-Platform Language](./langs) - `spec://dart-ecosystem`
+- [Flutter Mobile Development](./langs) - `spec://flutter-ecosystem`
+- [C# Enterprise Development](./langs) - `spec://csharp-ecosystem`
+- [Unity Game Development](./langs) - `spec://unity-ecosystem`
 
-## 🚀 包括的エコシステム仕様
+## 🚀 Comprehensive Ecosystem Specifications
 
-### Web開発・ユーティリティ
-- [包括的Web開発ユーティリティ・モジュールエコシステム](./web-development-comprehensive) - `spec://web-development-comprehensive-ecosystem`
+### Web Development & Utilities
+- [Comprehensive Web Development Utilities & Module Ecosystem](./web-development-comprehensive) - `spec://web-development-comprehensive-ecosystem`
 
-### モバイル開発
-- [Expo / React Native 包括エコシステム](./expo-react-native-comprehensive) - `spec://expo-react-native-comprehensive-ecosystem`
-- [ネイティブモバイル開発（Swift/Kotlin）](./additional-modern-technologies) - `spec://additional-modern-technologies-ecosystem`
-- [モバイルネイティブ（iOS/Android/KMM）](./mobile-native) - `spec://mobile-native-ecosystem`
+### Mobile Development
+- [Expo / React Native Comprehensive Ecosystem](./expo-react-native-comprehensive) - `spec://expo-react-native-comprehensive-ecosystem`
+- [Native Mobile Development (Swift/Kotlin)](./additional-modern-technologies) - `spec://additional-modern-technologies-ecosystem`
+- [Mobile Native (iOS/Android/KMM)](./mobile-native) - `spec://mobile-native-ecosystem`
 
-### AI/ML・LLM統合
-- [AI/ML・LLM包括エコシステム](./ai-ml-llm-comprehensive) - `spec://ai-ml-llm-comprehensive-ecosystem`
+### AI/ML & LLM Integration
+- [AI/ML & LLM Comprehensive Ecosystem](./ai-ml-llm-comprehensive) - `spec://ai-ml-llm-comprehensive-ecosystem`
 
-### フロントエンド・UI
-- [フロントエンドUI革新エコシステム](./frontend-ui-innovation) - `spec://frontend-ui-innovation-ecosystem`
-- [フロントエンド可視化/編集エコシステム](./frontend-visualization) - `spec://frontend-visualization-ecosystem`
-- [UI 品質向上（React/Vue）](./ui-component-quality) - `spec://ui-component-quality`
+### Frontend & UI
+- [Frontend UI Innovation Ecosystem](./frontend-ui-innovation) - `spec://frontend-ui-innovation-ecosystem`
+- [Frontend Visualization/Editing Ecosystem](./frontend-visualization) - `spec://frontend-visualization-ecosystem`
+- [UI Quality Enhancement (React/Vue)](./ui-component-quality) - `spec://ui-component-quality`
 
-### バックエンド・サーバーレス
-- [モダンバックエンド・サーバーレスエコシステム](./modern-backend-serverless) - `spec://modern-backend-serverless-ecosystem`
+### Backend & Serverless
+- [Modern Backend & Serverless Ecosystem](./modern-backend-serverless) - `spec://modern-backend-serverless-ecosystem`
 
-### 開発効率・DX
-- [開発効率・DXエコシステム](./development-efficiency-dx) - `spec://development-efficiency-dx-ecosystem`
-- [スパイク開発エコシステム](./spike-development) - `spec://spike-development-ecosystem`
+### Development Efficiency & DX
+- [Development Efficiency & DX Ecosystem](./development-efficiency-dx) - `spec://development-efficiency-dx-ecosystem`
+- [Spike Development Ecosystem](./spike-development) - `spec://spike-development-ecosystem`
 
-### データ処理・分析
-- [データ処理・分析エコシステム](./data-processing-analytics) - `spec://data-processing-analytics-ecosystem`
+### Data Processing & Analytics
+- [Data Processing & Analytics Ecosystem](./data-processing-analytics) - `spec://data-processing-analytics-ecosystem`
 
-### クラウドネイティブ・インフラ
-- [クラウドネイティブインフラエコシステム](./cloud-native-infrastructure) - `spec://cloud-native-infrastructure-ecosystem`
+### Cloud Native & Infrastructure
+- [Cloud Native Infrastructure Ecosystem](./cloud-native-infrastructure) - `spec://cloud-native-infrastructure-ecosystem`
 
-### テスティング・データベース・可視化
-- [テスティング・データベース・可視化エコシステム](./additional-modern-technologies) - `spec://additional-modern-technologies-ecosystem`
+### Testing, Database & Visualization
+- [Testing, Database & Visualization Ecosystem](./additional-modern-technologies) - `spec://additional-modern-technologies-ecosystem`
 
-### モダンスタック横断
-- [モダンスタック横断カタログ](./modern-tech) - `spec://modern-tech-ecosystem`
- 
-### 可視化・編集
-- [フロントエンド可視化/編集エコシステム](./frontend-visualization) - `spec://frontend-visualization-ecosystem`
+### Modern Cross-Stack
+- [Modern Cross-Stack Catalog](./modern-tech) - `spec://modern-tech-ecosystem`
 
-### UI 品質（React/Vue）
-- [UI 品質向上（React/Vue）](./ui-component-quality) - `spec://ui-component-quality`
+### Visualization & Editing
+- [Frontend Visualization/Editing Ecosystem](./frontend-visualization) - `spec://frontend-visualization-ecosystem`
 
-### ドキュメント/SSG
-- [VitePress / ドキュメント・SSG エコシステム](./vitepress) - `spec://vitepress-ecosystem`
+### UI Quality (React/Vue)
+- [UI Quality Enhancement (React/Vue)](./ui-component-quality) - `spec://ui-component-quality`
 
-### スクリプト言語 / Ruby on Rails
-- [Lua / 軽量スクリプト言語エコシステム](./lua) - `spec://lua-ecosystem`
-- [Ruby / Ruby on Rails エコシステム](./ruby-rails) - `spec://ruby-rails-ecosystem`
+### Documentation/SSG
+- [VitePress / Documentation & SSG Ecosystem](./vitepress) - `spec://vitepress-ecosystem`
 
-### 映像配信 / WebRTC
-- [WebRTC / ストリーミング配信エコシステム](./webrtc-streaming) - `spec://webrtc-streaming-ecosystem`
+### Scripting Languages / Ruby on Rails
+- [Lua / Lightweight Scripting Language Ecosystem](./lua) - `spec://lua-ecosystem`
+- [Ruby / Ruby on Rails Ecosystem](./ruby-rails) - `spec://ruby-rails-ecosystem`
 
-## 🐳 監視 & 分析
+### Video Streaming / WebRTC
+- [WebRTC / Streaming Ecosystem](./webrtc-streaming) - `spec://webrtc-streaming-ecosystem`
 
-- **@sentry/nextjs** - エラー追跡とパフォーマンス監視
-- **PostHog** - プロダクト分析プラットフォーム
+## 🐳 Monitoring & Analytics
 
-## 💳 決済 & サブスクリプション
+- **@sentry/nextjs** - Error tracking and performance monitoring
+- **PostHog** - Product analytics platform
 
-- **Stripe** - オンライン決済処理
-- **Paddle** - SaaS向け決済プラットフォーム
+## 💳 Payments & Subscriptions
 
-## 📤 ファイルアップロード
+- **Stripe** - Online payment processing
+- **Paddle** - SaaS-focused payment platform
 
-- **UploadThing** - TypeScript対応ファイルアップロードサービス
+## 📤 File Upload
 
-### シェル / テキスト処理 / ネットワーク
-- [シェル/テキスト処理/ネットワーク CLI エコシステム](./shell-tools) - `spec://shell-tools-ecosystem`
+- **UploadThing** - TypeScript-native file upload service
+
+### Shell / Text Processing / Network
+- [Shell/Text Processing/Network CLI Ecosystem](./shell-tools) - `spec://shell-tools-ecosystem`
 
 ### DevOps / IaC / Kubernetes / CI-CD
-- [Shell / DevOps / IaC / Kubernetes / CI‑CD エコシステム](./devops) - `spec://devops-operations-ecosystem`
+- [Shell / DevOps / IaC / Kubernetes / CI‑CD Ecosystem](./devops) - `spec://devops-operations-ecosystem`
 
 ---
 
-::: tip 新しい仕様を追加したいですか？
-`src/catalog/`ディレクトリにYAMLファイルを追加して、[GitHub](https://github.com/kotsutsumi/fluorite-mcp)でPRを作成してください。
+::: tip Want to add a new specification?
+Add a YAML file to the `src/catalog/` directory and create a PR on [GitHub](https://github.com/kotsutsumi/fluorite-mcp).
 :::

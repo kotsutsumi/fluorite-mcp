@@ -15,7 +15,7 @@ const japaneseNavigation = [
   { text: '機能', link: '/ja/features' },
   { text: 'はじめに', link: '/ja/getting-started' },
   { text: 'スパイクテンプレート', link: '/ja/spike-templates' },
-  { text: '仕様', link: '/specs/' },
+  { text: '仕様', link: '/ja/specs/' },
   { text: 'API', link: '/ja/API' }
 ]
 
@@ -100,6 +100,71 @@ const englishSidebar = {
   ]
 }
 
+const japaneseSpecsSidebar = {
+  '/ja/specs/': [
+    { 
+      text: '📋 ライブラリカタログ', 
+      link: '/ja/specs/',
+      items: []
+    },
+    {
+      text: '🌟 包括的エコシステム',
+      collapsed: false,
+      items: [
+        { text: 'Expo/React Native', link: '/ja/specs/expo-react-native-comprehensive' },
+        { text: 'AI/ML・LLM統合', link: '/ja/specs/ai-ml-llm-comprehensive' },
+        { text: 'フロントエンドUI革新', link: '/ja/specs/frontend-ui-innovation' },
+        { text: 'モダンバックエンド・サーバーレス', link: '/ja/specs/modern-backend-serverless' },
+        { text: '開発効率・DX', link: '/ja/specs/development-efficiency-dx' },
+        { text: 'データ処理・分析', link: '/ja/specs/data-processing-analytics' },
+        { text: 'クラウドネイティブインフラ', link: '/ja/specs/cloud-native-infrastructure' },
+        { text: 'テスティング・DB・可視化', link: '/ja/specs/additional-modern-technologies' }
+      ]
+    },
+    {
+      text: '💻 言語エコシステム',
+      collapsed: true,
+      items: [
+        { text: '7つの言語エコシステム', link: '/ja/specs/langs' },
+        { text: 'Laravel/PHP', link: '/ja/specs/laravel' },
+        { text: 'FastAPI/Python', link: '/ja/specs/fastapi' },
+        { text: 'Rust/Tauri', link: '/ja/specs/rust-tauri' },
+        { text: 'Ruby on Rails', link: '/ja/specs/ruby-rails' },
+        { text: 'シェル・DevOpsツール', link: '/ja/specs/shell-tools' }
+      ]
+    },
+    {
+      text: '🎨 フロントエンド・UI',
+      collapsed: true,
+      items: [
+        { text: 'React DnD TreeView', link: '/ja/specs/react-dnd-treeview' },
+        { text: 'UIコンポーネント品質', link: '/ja/specs/ui-component-quality' },
+        { text: 'Vue エコシステム', link: '/ja/specs/vue' },
+        { text: 'Nuxt エコシステム', link: '/ja/specs/nuxt' },
+        { text: 'VitePress・ドキュメント', link: '/ja/specs/vitepress' }
+      ]
+    },
+    {
+      text: '🚀 開発・インフラ',
+      collapsed: true,
+      items: [
+        { text: 'スパイク開発', link: '/ja/specs/spike-development' },
+        { text: 'クラウドプラットフォーム', link: '/ja/specs/cloud-platforms' },
+        { text: 'DevOps運用', link: '/ja/specs/devops' },
+        { text: 'WebRTC・ストリーミング', link: '/ja/specs/webrtc-streaming' }
+      ]
+    },
+    {
+      text: '📱 モバイル・ネイティブ',
+      collapsed: true,
+      items: [
+        { text: 'モバイルネイティブ (iOS/Android)', link: '/ja/specs/mobile-native' },
+        { text: 'Expo/React Native', link: '/ja/specs/expo-react-native' }
+      ]
+    }
+  ]
+}
+
 const japaneseSidebar = {
   '/ja/': [
     {
@@ -118,7 +183,7 @@ const japaneseSidebar = {
       items: [
         { text: '🧪 スパイクテンプレート (1,842+)', link: '/ja/spike-templates' },
         { text: '🔍 静的解析・検証', link: '/ja/static-analysis' },
-        { text: '📚 ライブラリ仕様 (86+)', link: '/specs/' },
+        { text: '📚 ライブラリ仕様 (86+)', link: '/ja/specs/' },
         { text: '🎯 /fl: コマンド統合', link: '/ja/fl-commands' },
         { text: '🤖 MCPサーバー機能', link: '/ja/features' }
       ]
@@ -159,12 +224,12 @@ const japaneseSidebar = {
       text: '📚 仕様・カタログ',
       collapsed: false,
       items: [
-        { text: '全ライブラリ一覧', link: '/specs/' },
-        { text: 'フロントエンド・UI革新', link: '/specs/frontend-ui-innovation' },
-        { text: 'モダンバックエンド', link: '/specs/modern-backend-serverless' },
-        { text: 'AI・ML・LLM', link: '/specs/ai-ml-llm-comprehensive' },
-        { text: 'クラウドネイティブ', link: '/specs/cloud-native-infrastructure' },
-        { text: '言語エコシステム', link: '/specs/langs' }
+        { text: '全ライブラリ一覧', link: '/ja/specs/' },
+        { text: 'フロントエンド・UI革新', link: '/ja/specs/frontend-ui-innovation' },
+        { text: 'モダンバックエンド', link: '/ja/specs/modern-backend-serverless' },
+        { text: 'AI・ML・LLM', link: '/ja/specs/ai-ml-llm-comprehensive' },
+        { text: 'クラウドネイティブ', link: '/ja/specs/cloud-native-infrastructure' },
+        { text: '言語エコシステム', link: '/ja/specs/langs' }
       ]
     },
     {
@@ -281,7 +346,10 @@ export default defineConfig({
       description: 'Claude Code CLI用の包括的なモデルコンテキストプロトコルサーバー',
       themeConfig: {
         nav: japaneseNavigation,
-        sidebar: japaneseSidebar,
+        sidebar: {
+          ...japaneseSidebar,
+          ...japaneseSpecsSidebar
+        },
         editLink: {
           pattern: 'https://github.com/kotsutsumi/fluorite-mcp/edit/main/docs/:path',
           text: 'GitHubでこのページを編集'
