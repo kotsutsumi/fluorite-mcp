@@ -1,0 +1,18 @@
+{
+  "id": "strike-actions-reusable-cache-templates",
+  "name": "Actions Reusable Cache Templates",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/cache-templates.yml",
+      "template": "name: CacheTemplates\non: workflow_call\n"
+    }
+  ],
+  "patches": []
+}

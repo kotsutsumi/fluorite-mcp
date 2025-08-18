@@ -1,0 +1,19 @@
+{
+  "id": "strike-express-rate-limit-cors",
+  "name": "Express Rate Limit + CORS",
+  "stack": [
+    "node",
+    "express"
+  ],
+  "tags": [
+    "backend",
+    "security"
+  ],
+  "files": [
+    {
+      "path": "server.js",
+      "template": "import express from 'express';\nimport rateLimit from 'express-rate-limit';\nimport cors from 'cors';\nconst app = express();\napp.use(cors());\napp.use(rateLimit({ windowMs: 60000, max: 60 }));\napp.get('/health',(req,res)=>res.json({ok:true}));\napp.listen(3000);\n"
+    }
+  ],
+  "patches": []
+}

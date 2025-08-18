@@ -1,0 +1,18 @@
+{
+  "id": "strike-grafana-alert-notifications",
+  "name": "Grafana Alert Notifications",
+  "stack": [
+    "grafana"
+  ],
+  "tags": [
+    "observability",
+    "alerts"
+  ],
+  "files": [
+    {
+      "path": "grafana/notifications.yaml",
+      "template": "apiVersion: 1\ncontactPoints: []\n"
+    }
+  ],
+  "patches": []
+}

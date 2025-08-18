@@ -1,0 +1,18 @@
+{
+  "id": "strike-deno-deploy-minimal",
+  "name": "Deno Deploy Minimal",
+  "stack": [
+    "deno"
+  ],
+  "tags": [
+    "backend",
+    "edge"
+  ],
+  "files": [
+    {
+      "path": "main.ts",
+      "template": "// deno deploy skeleton\n"
+    }
+  ],
+  "patches": []
+}

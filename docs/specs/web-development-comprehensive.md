@@ -426,11 +426,11 @@ mqttClient.on('message', (topic, message) => {
 - [Playwright Documentation](https://playwright.dev/) - モダンテスト手法
 - [React Documentation](https://react.dev/) - コンポーネントベース開発
 
-### 実践的学習プラットフォーム
-- [Frontend Masters](https://frontendmasters.com/) - 高度なWeb開発コース
-- [Egghead.io](https://egghead.io/) - 短時間集中学習コンテンツ
+### 実践的学習リソース
 - [Web.dev](https://web.dev/) - Google によるWeb 開発ベストプラクティス
 - [MDN Web Docs](https://developer.mozilla.org/) - Web標準リファレンス
+- 公式ドキュメント - 各技術の公式ガイドとチュートリアル
+- コミュニティ学習リソース - 実践的な開発パターンと事例
 
 ### コミュニティ・情報収集
 - [GitHub](https://github.com/) - オープンソースプロジェクト参加

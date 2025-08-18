@@ -1,0 +1,18 @@
+{
+  "id": "strike-kafka-redpanda-config",
+  "name": "Kafka (Redpanda) Config",
+  "stack": [
+    "kafka",
+    "redpanda"
+  ],
+  "tags": [
+    "stream"
+  ],
+  "files": [
+    {
+      "path": "kafka/redpanda.yml",
+      "template": "# redpanda config skeleton\n"
+    }
+  ],
+  "patches": []
+}

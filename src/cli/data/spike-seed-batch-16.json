@@ -1,0 +1,50 @@
+{
+  "items": [
+    { "id": "strike-express-health-check-advanced", "name": "Express Health Check Advanced", "stack": ["node","express"], "tags": ["backend","health","advanced"], "files": [{ "path": "server.js", "template": "import express from 'express';\nconst app = express();\napp.get('/health', (req,res)=> res.status(200).json({ ok:true, uptime: process.uptime() }));\napp.listen(3000);\n" }] },
+    { "id": "strike-elysia-plugin-logger", "name": "Elysia Plugin Logger", "stack": ["bun","elysia"], "tags": ["backend","logs"], "files": [{ "path": "plugins/logger.ts", "template": "// elysia plugin logger skeleton\n" }] },
+    { "id": "strike-hono-middleware-advanced", "name": "Hono Middleware Advanced", "stack": ["hono"], "tags": ["backend","middleware","advanced"], "files": [{ "path": "middleware/log.ts", "template": "// hono middleware advanced skeleton\n" }] },
+    { "id": "strike-nestjs-pipes-validators", "name": "NestJS Pipes + Validators", "stack": ["nestjs"], "tags": ["backend","validation"], "files": [{ "path": "src/pipes/validation.pipe.ts", "template": "// nestjs pipe validator skeleton\n" }] },
+    { "id": "strike-fastify-schema-validation", "name": "Fastify Schema Validation", "stack": ["fastify"], "tags": ["backend","validation"], "files": [{ "path": "server.js", "template": "// fastify schema validation skeleton\n" }] },
+
+    { "id": "strike-nextjs-metadata-route", "name": "Next.js Metadata Route", "stack": ["nextjs"], "tags": ["frontend","meta"], "files": [{ "path": "app/robots.txt/route.ts", "template": "// next metadata route skeleton\n" }] },
+    { "id": "strike-remix-meta-headers", "name": "Remix Meta + Headers", "stack": ["remix"], "tags": ["frontend","meta"], "files": [{ "path": "app/root.tsx", "template": "// remix meta/headers skeleton\n" }] },
+    { "id": "strike-nuxt3-middleware-auth", "name": "Nuxt3 Middleware Auth", "stack": ["nuxt"], "tags": ["frontend","auth"], "files": [{ "path": "middleware/auth.global.ts", "template": "export default defineNuxtRouteMiddleware(()=>{ /* auth */ })\n" }] },
+    { "id": "strike-sveltekit-handle-errors", "name": "SvelteKit Handle Errors", "stack": ["sveltekit"], "tags": ["frontend","error"], "files": [{ "path": "src/hooks.server.ts", "template": "export const handleError = ({ error }) => { return { message: String(error) }; };\n" }] },
+    { "id": "strike-solid-ssr-streaming", "name": "Solid SSR Streaming", "stack": ["solid"], "tags": ["frontend","ssr","stream"], "files": [{ "path": "src/ssr.tsx", "template": "// solid ssr streaming skeleton\n" }] },
+
+    { "id": "strike-otel-resource-detectors", "name": "OTel Resource Detectors", "stack": ["opentelemetry"], "tags": ["observability","resource"], "files": [{ "path": "otel/resource-detectors.js", "template": "// resource detectors skeleton\n" }] },
+    { "id": "strike-otel-collector-processors", "name": "OTel Collector Processors", "stack": ["opentelemetry","collector"], "tags": ["observability"], "files": [{ "path": "otel/processors.yaml", "template": "processors: {}\n" }] },
+    { "id": "strike-grafana-alert-notifications", "name": "Grafana Alert Notifications", "stack": ["grafana"], "tags": ["observability","alerts"], "files": [{ "path": "grafana/notifications.yaml", "template": "apiVersion: 1\ncontactPoints: []\n" }] },
+
+    { "id": "strike-oidc-jws-kid-rotation", "name": "OIDC JWS kid Rotation", "stack": ["oidc","jose"], "tags": ["security","jwt"], "files": [{ "path": "auth/jws-rotation.md", "template": "# JWS kid rotation strategies\n" }] },
+    { "id": "strike-oauth2-refresh-rotation-advanced", "name": "OAuth2 Refresh Rotation Advanced", "stack": ["oauth2"], "tags": ["security","auth"], "files": [{ "path": "auth/refresh-rotation.md", "template": "# refresh rotation advanced\n" }] },
+    { "id": "strike-helmet-csp-presets-adv", "name": "Helmet CSP Presets Advanced", "stack": ["helmet","csp"], "tags": ["security"], "files": [{ "path": "security/csp-presets.json", "template": "{ }\n" }] },
+
+    { "id": "strike-kafka-redpanda-config", "name": "Kafka (Redpanda) Config", "stack": ["kafka","redpanda"], "tags": ["stream"], "files": [{ "path": "kafka/redpanda.yml", "template": "# redpanda config skeleton\n" }] },
+    { "id": "strike-rabbitmq-backpressure-strategy", "name": "RabbitMQ Backpressure Strategy", "stack": ["amqplib"], "tags": ["queue","perf"], "files": [{ "path": "rabbit/backpressure.md", "template": "# backpressure strategies\n" }] },
+    { "id": "strike-nats-js-ordered-delivery", "name": "NATS JS Ordered Delivery", "stack": ["nats"], "tags": ["messaging"], "files": [{ "path": "nats/ordered-delivery.js", "template": "// ordered delivery skeleton\n" }] },
+
+    { "id": "strike-actions-reusable-concurrency", "name": "Actions Reusable Concurrency", "stack": ["github","actions"], "tags": ["ci"], "files": [{ "path": ".github/workflows/reusable-concurrency.yml", "template": "name: Concurrency\non: workflow_call\nconcurrency: { group: 'group', cancel-in-progress: true }\njobs: {}\n" }] },
+    { "id": "strike-terraform-data-sources-patterns", "name": "Terraform Data Sources Patterns", "stack": ["terraform"], "tags": ["infra"], "files": [{ "path": "patterns/data-sources.tf", "template": "// data sources patterns\n" }] },
+    { "id": "strike-helm-tests-minimal", "name": "Helm Tests Minimal", "stack": ["helm"], "tags": ["ops","tests"], "files": [{ "path": "chart/templates/tests/test-connection.yaml", "template": "apiVersion: v1\nkind: Pod\nmetadata: { name: \"test-connection\" }\nspec: {}\n" }] },
+
+    { "id": "strike-vitest-snapshot-config", "name": "Vitest Snapshot Config", "stack": ["vitest"], "tags": ["test"], "files": [{ "path": "vitest.config.ts", "template": "import { defineConfig } from 'vitest/config';\nexport default defineConfig({ test: { snapshotFormat: { printBasicPrototype: false } } });\n" }] },
+    { "id": "strike-playwright-projects-matrix-advanced", "name": "Playwright Projects Matrix Advanced", "stack": ["playwright"], "tags": ["test","ci"], "files": [{ "path": "playwright.config.ts", "template": "// projects matrix advanced skeleton\n" }] },
+    { "id": "strike-jest-transform-esm", "name": "Jest Transform ESM", "stack": ["jest"], "tags": ["test"], "files": [{ "path": "jest.config.ts", "template": "// transform ESM skeleton\n" }] },
+
+    { "id": "strike-trino-query-sample", "name": "Trino Query Sample", "stack": ["trino"], "tags": ["data"], "files": [{ "path": "sql/trino_sample.sql", "template": "select 1;\n" }] },
+    { "id": "strike-snowflake-warehouse-config", "name": "Snowflake Warehouse Config", "stack": ["snowflake"], "tags": ["data"], "files": [{ "path": "snowflake/warehouse.sql", "template": "-- warehouse config skeleton\n" }] },
+    { "id": "strike-presto-connector-config", "name": "Presto Connector Config", "stack": ["presto"], "tags": ["data"], "files": [{ "path": "presto/connector.properties", "template": "# connector config\n" }] },
+
+    { "id": "strike-gcp-bigquery-scheduled-query", "name": "GCP BigQuery Scheduled Query", "stack": ["gcp","bigquery"], "tags": ["cloud","data"], "files": [{ "path": "bq/scheduled.json", "template": "{ }\n" }] },
+    { "id": "strike-aws-eventbridge-bus-policy", "name": "AWS EventBridge Bus Policy", "stack": ["aws","eventbridge"], "tags": ["cloud"], "files": [{ "path": "eventbridge/bus-policy.json", "template": "{ }\n" }] },
+    { "id": "strike-azure-storage-cors-config", "name": "Azure Storage CORS Config", "stack": ["azure","storage"], "tags": ["cloud"], "files": [{ "path": "storage/cors.json", "template": "{ }\n" }] },
+
+    { "id": "strike-openapi-yaml-minimal", "name": "(Merge) OpenAPI YAML Meta", "stack": ["openapi"], "tags": ["api","merge"] },
+    { "id": "strike-nextjs-route-handler-minimal", "name": "(Merge) Next.js Route Handler Meta", "stack": ["nextjs"], "tags": ["frontend","api","merge"] },
+    { "id": "strike-dockerfile-node-minimal", "name": "(Merge) Dockerfile Node Meta", "stack": ["docker"], "tags": ["ops","merge"] },
+    { "id": "strike-otel-node-tracer-minimal", "name": "(Merge) OTel Node Tracer Meta", "stack": ["opentelemetry"], "tags": ["observability","merge"] },
+    { "id": "strike-react-hook-form-minimal", "name": "(Merge) RHF Minimal Meta", "stack": ["react","forms"], "tags": ["frontend","merge"] }
+  ]
+}
+

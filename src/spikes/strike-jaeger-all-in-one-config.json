@@ -1,0 +1,17 @@
+{
+  "id": "strike-jaeger-all-in-one-config",
+  "name": "Jaeger All-in-One Config",
+  "stack": [
+    "jaeger"
+  ],
+  "tags": [
+    "observability"
+  ],
+  "files": [
+    {
+      "path": "jaeger/docker-compose.yml",
+      "template": "version: '3'\nservices: {}\n"
+    }
+  ],
+  "patches": []
+}

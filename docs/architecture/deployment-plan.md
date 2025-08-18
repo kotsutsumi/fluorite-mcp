@@ -453,7 +453,7 @@ npm run docs:deploy
 - GitHub Issues
 - Discord Community
 - Documentation Site
-- Video Tutorials
+- Interactive Examples
 
 ### Maintenance Schedule
 - Daily: Monitor errors and metrics

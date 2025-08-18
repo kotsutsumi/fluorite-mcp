@@ -1,0 +1,17 @@
+{
+  "id": "strike-presto-connector-config",
+  "name": "Presto Connector Config",
+  "stack": [
+    "presto"
+  ],
+  "tags": [
+    "data"
+  ],
+  "files": [
+    {
+      "path": "presto/connector.properties",
+      "template": "# connector config\n"
+    }
+  ],
+  "patches": []
+}

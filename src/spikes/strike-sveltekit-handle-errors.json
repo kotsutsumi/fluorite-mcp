@@ -1,0 +1,18 @@
+{
+  "id": "strike-sveltekit-handle-errors",
+  "name": "SvelteKit Handle Errors",
+  "stack": [
+    "sveltekit"
+  ],
+  "tags": [
+    "frontend",
+    "error"
+  ],
+  "files": [
+    {
+      "path": "src/hooks.server.ts",
+      "template": "export const handleError = ({ error }) => { return { message: String(error) }; };\n"
+    }
+  ],
+  "patches": []
+}

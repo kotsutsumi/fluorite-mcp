@@ -1,0 +1,18 @@
+{
+  "id": "strike-playwright-shard-ci",
+  "name": "Playwright Shard CI",
+  "stack": [
+    "playwright"
+  ],
+  "tags": [
+    "test",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/playwright-shard.yml",
+      "template": "name: PlaywrightShard\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

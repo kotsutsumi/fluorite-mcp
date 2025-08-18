@@ -1,0 +1,18 @@
+{
+  "id": "strike-nuxt3-middleware-auth",
+  "name": "Nuxt3 Middleware Auth",
+  "stack": [
+    "nuxt"
+  ],
+  "tags": [
+    "frontend",
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "middleware/auth.global.ts",
+      "template": "export default defineNuxtRouteMiddleware(()=>{ /* auth */ })\n"
+    }
+  ],
+  "patches": []
+}

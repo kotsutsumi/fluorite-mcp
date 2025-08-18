@@ -1,0 +1,19 @@
+{
+  "id": "strike-pact-broker-auto-verify",
+  "name": "Pact Broker Auto Verify",
+  "stack": [
+    "pact"
+  ],
+  "tags": [
+    "test",
+    "contract",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/pact-auto-verify.yml",
+      "template": "name: PactAuto\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

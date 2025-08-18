@@ -1,0 +1,18 @@
+{
+  "id": "strike-helm-tests-minimal",
+  "name": "Helm Tests Minimal",
+  "stack": [
+    "helm"
+  ],
+  "tags": [
+    "ops",
+    "tests"
+  ],
+  "files": [
+    {
+      "path": "chart/templates/tests/test-connection.yaml",
+      "template": "apiVersion: v1\nkind: Pod\nmetadata: { name: \"test-connection\" }\nspec: {}\n"
+    }
+  ],
+  "patches": []
+}

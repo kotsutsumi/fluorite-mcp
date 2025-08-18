@@ -1,0 +1,18 @@
+{
+  "id": "strike-cypress-component-ci",
+  "name": "Cypress Component CI",
+  "stack": [
+    "cypress"
+  ],
+  "tags": [
+    "test",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/cypress-component.yml",
+      "template": "name: CypressComponent\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

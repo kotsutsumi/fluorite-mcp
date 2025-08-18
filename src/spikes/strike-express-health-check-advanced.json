@@ -1,0 +1,20 @@
+{
+  "id": "strike-express-health-check-advanced",
+  "name": "Express Health Check Advanced",
+  "stack": [
+    "node",
+    "express"
+  ],
+  "tags": [
+    "backend",
+    "health",
+    "advanced"
+  ],
+  "files": [
+    {
+      "path": "server.js",
+      "template": "import express from 'express';\nconst app = express();\napp.get('/health', (req,res)=> res.status(200).json({ ok:true, uptime: process.uptime() }));\napp.listen(3000);\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,19 @@
+{
+  "id": "strike-sveltekit-form-actions-advanced",
+  "name": "SvelteKit Form Actions Advanced",
+  "stack": [
+    "sveltekit"
+  ],
+  "tags": [
+    "frontend",
+    "forms",
+    "advanced"
+  ],
+  "files": [
+    {
+      "path": "src/routes/+page.server.ts",
+      "template": "export const actions = { save: async ()=> ({ ok:true }) };\n"
+    }
+  ],
+  "patches": []
+}

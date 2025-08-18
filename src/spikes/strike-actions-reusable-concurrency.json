@@ -1,0 +1,18 @@
+{
+  "id": "strike-actions-reusable-concurrency",
+  "name": "Actions Reusable Concurrency",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/reusable-concurrency.yml",
+      "template": "name: Concurrency\non: workflow_call\nconcurrency: { group: 'group', cancel-in-progress: true }\njobs: {}\n"
+    }
+  ],
+  "patches": []
+}

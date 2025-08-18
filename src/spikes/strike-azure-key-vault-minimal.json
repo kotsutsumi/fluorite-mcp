@@ -1,0 +1,19 @@
+{
+  "id": "strike-azure-key-vault-minimal",
+  "name": "Azure Key Vault Minimal",
+  "stack": [
+    "azure",
+    "key-vault"
+  ],
+  "tags": [
+    "cloud",
+    "secrets"
+  ],
+  "files": [
+    {
+      "path": "kv/config.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

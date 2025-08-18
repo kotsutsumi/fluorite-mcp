@@ -1,0 +1,19 @@
+{
+  "id": "strike-aws-ses-email-minimal",
+  "name": "AWS SES Email Minimal",
+  "stack": [
+    "aws",
+    "ses"
+  ],
+  "tags": [
+    "cloud",
+    "email"
+  ],
+  "files": [
+    {
+      "path": "ses/send.mjs",
+      "template": "// ses send email skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-vitest-snapshot-config",
+  "name": "Vitest Snapshot Config",
+  "stack": [
+    "vitest"
+  ],
+  "tags": [
+    "test"
+  ],
+  "files": [
+    {
+      "path": "vitest.config.ts",
+      "template": "import { defineConfig } from 'vitest/config';\nexport default defineConfig({ test: { snapshotFormat: { printBasicPrototype: false } } });\n"
+    }
+  ],
+  "patches": []
+}
