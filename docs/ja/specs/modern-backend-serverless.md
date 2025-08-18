@@ -202,17 +202,100 @@ server.listen(4000, () => {
 })
 ```
 
-## ベストプラクティス
+## データベース統合
 
-- 型安全性の確保
-- エラーハンドリングの実装
-- 認証・認可の適切な実装
-- レート制限の設定
-- キャッシング戦略の実装
+### Drizzle ORM with Type Safety
+```typescript
+import { drizzle } from 'drizzle-orm/node-postgres'
+import { pgTable, serial, varchar, timestamp } from 'drizzle-orm/pg-core'
 
-## リソース
+// スキーマ定義
+export const users = pgTable('users', {
+  id: serial('id').primaryKey(),
+  name: varchar('name', { length: 255 }).notNull(),
+  email: varchar('email', { length: 255 }).notNull().unique(),
+  createdAt: timestamp('created_at').defaultNow()
+})
 
-- [Bun ドキュメント](https://bun.sh/docs)
-- [Deno ドキュメント](https://deno.land/manual)
-- [Hono ドキュメント](https://hono.dev)
-- [仕様ファイル](https://github.com/kotsutsumi/fluorite-mcp/blob/main/src/catalog/modern-backend-serverless-ecosystem.yaml)
+// 型安全クエリ
+const db = drizzle(connection)
+
+const newUser = await db.insert(users).values({
+  name: 'John Doe',
+  email: 'john@example.com'
+}).returning()
+
+const usersList = await db.select().from(users)
+```
+
+## アーキテクチャパターン
+
+### エッジマイクロサービス
+- **APIゲートウェイ**: Cloudflare Workersによるルーティング
+- **サービス**: 個別のBun/Denoアプリケーション
+- **データベース**: エッジキャッシング付き分散構成
+- **認証**: エッジ検証付きJWT
+
+### サーバーレスファースト設計
+- **関数**: ステートレス、イベント駆動
+- **ストレージ**: オブジェクトストレージ + マネージドデータベース
+- **キャッシング**: 多層エッジキャッシング
+- **監視**: 分散トレーシング
+
+### 型安全フルスタック
+- **フロントエンド**: Next.js/React with tRPCクライアント
+- **バックエンド**: tRPCサーバー with Drizzle ORM
+- **データベース**: PostgreSQL with 型生成
+- **デプロイ**: Vercel + Neon/PlanetScale
+
+## パフォーマンス最適化
+
+### コールドスタート軽減
+- **Bun**: 超高速起動時間
+- **エッジワーカー**: 常時ウォーム実行
+- **コネクションプーリング**: 共有データベース接続
+- **モジュールバンドリング**: 最適化されたバンドルサイズ
+
+### キャッシング戦略
+- **エッジキャッシング**: CDN + エッジコンピュートキャッシング
+- **データベースキャッシング**: Redis/Upstash統合
+- **アプリケーションキャッシング**: インメモリキャッシング
+- **静的アセット**: プリコンパイル・キャッシング
+
+## セキュリティベストプラクティス
+
+### 認証・認可
+- **JWT**: ステートレストークンベース認証
+- **OAuth**: ソーシャルログイン統合
+- **RBAC**: ロールベースアクセス制御
+- **APIキー**: サービス間認証
+
+### データ保護
+- **入力検証**: Zodスキーマ検証
+- **SQLインジェクション**: ORM クエリビルディング
+- **CORS**: 適切なクロスオリジンポリシー
+- **レート制限**: エッジベースレート制限
+
+## 監視・可観測性
+
+### パフォーマンス監視
+- **APM**: アプリケーションパフォーマンス監視
+- **メトリクス**: リクエスト遅延、スループット
+- **アラート**: 自動インシデント検出
+- **ダッシュボード**: リアルタイムシステム洞察
+
+### エラートラッキング
+- **Sentry**: エラー収集・分析
+- **ログ**: 構造化JSONログ
+- **トレーシング**: 分散リクエストトレーシング
+- **デバッグ**: リモートデバッグ機能
+
+---
+
+::: tip はじめに
+最大パフォーマンスならBun + Hono、フルスタック型安全性ならNext.js + tRPCから始めましょう。
+:::
+
+::: warning 本番考慮事項
+本番サーバーレスアプリケーションでは、適切なエラーハンドリング、監視、レート制限を必ず実装してください。
+:::

@@ -22,76 +22,76 @@ const japaneseNavigation = [
 const englishSidebar = {
   '/': [
     {
-      text: '🚀 Getting Started',
+      text: '🚀 Quick Start',
       collapsed: false,
       items: [
-        { text: 'Overview', link: '/' },
-        { text: 'Quick Start (5 min)', link: '/getting-started' },
-        { text: 'Installation Guide', link: '/installation' },
-        { text: 'Your First Project', link: '/introduction' }
+        { text: 'Overview & Features', link: '/' },
+        { text: '5-Minute Setup Guide', link: '/getting-started' },
+        { text: 'Installation & Integration', link: '/installation' },
+        { text: 'Your First Spike Template', link: '/introduction' }
       ]
     },
     {
-      text: '⚡ Core Features',
+      text: '⚡ Essential Features',
       collapsed: false,
       items: [
-        { text: '🤖 Complete Feature Guide', link: '/features' },
         { text: '🧪 Spike Templates (1,842+)', link: '/spike-templates' },
-        { text: '🔍 Static Analysis & Validation', link: '/static-analysis' },
-        { text: '📚 Library Specifications (86+)', link: '/specs/' },
         { text: '🎯 /fl: Command Integration', link: '/fl-commands' },
+        { text: '🔍 Static Analysis & Validation', link: '/static-analysis' },
+        { text: '📚 Popular Specifications', link: '/specs/' },
+        { text: '🤖 MCP Server Features', link: '/features' },
         { text: '⚡ Performance Optimization', link: '/performance' }
       ]
     },
     {
-      text: '📖 Practical Guides',
+      text: '📖 Implementation Guides',
       collapsed: false,
       items: [
         { text: 'Complete Command Reference', link: '/commands' },
-        { text: '/fl: Commands Detailed', link: '/fl-commands-detailed' },
-        { text: 'Real-world Use Cases', link: '/use-cases-examples' },
-        { text: 'Template Creation Guide', link: '/template-creation' }
+        { text: '/fl: Commands Deep Dive', link: '/fl-commands-detailed' },
+        { text: 'Real-world Use Cases & Examples', link: '/use-cases-examples' },
+        { text: 'Custom Template Creation', link: '/template-creation' }
       ]
     },
     {
-      text: '🔧 Integration & Development',
+      text: '🔧 Developer Integration',
       collapsed: false,
       items: [
-        { text: 'Claude Code CLI Integration', link: '/integration-guide' },
-        { text: 'Developer API Reference', link: '/API' },
-        { text: 'Function Reference', link: '/function-reference' },
+        { text: 'Claude Code CLI Setup', link: '/integration-guide' },
+        { text: 'MCP Server API Reference', link: '/API' },
+        { text: 'Function & Method Reference', link: '/function-reference' },
         { text: 'Advanced Customization', link: '/developer' }
       ]
     },
     {
-      text: '🏗️ Architecture',
-      collapsed: true,
-      items: [
-        { text: 'System Design Overview', link: '/architecture/' },
-        { text: 'MCP Integration Architecture', link: '/architecture/claude-cli-integration' },
-        { text: 'Command Mapping Specification', link: '/architecture/command-mapping-spec' },
-        { text: 'Template System Design', link: '/architecture/spike-template-expansion-plan' },
-        { text: 'Testing Strategy', link: '/architecture/testing-strategy' },
-        { text: 'Deployment Planning', link: '/architecture/deployment-plan' }
-      ]
-    },
-    {
-      text: '📚 Specifications & Catalog',
+      text: '📚 Technology Catalog',
       collapsed: false,
       items: [
-        { text: 'Complete Library Catalog', link: '/specs/' },
-        { text: 'Frontend UI Innovation', link: '/specs/frontend-ui-innovation' },
-        { text: 'Modern Backend/Serverless', link: '/specs/modern-backend-serverless' },
-        { text: 'AI/ML & LLM Integration', link: '/specs/ai-ml-llm-comprehensive' },
-        { text: 'Cloud Native Infrastructure', link: '/specs/cloud-native-infrastructure' },
-        { text: 'Language Ecosystems', link: '/specs/langs' }
+        { text: '🌟 Popular Tech Stacks', link: '/specs/' },
+        { text: '🎨 Frontend & UI (React, Vue, Next.js)', link: '/specs/frontend-ui-innovation' },
+        { text: '🚀 Backend & Serverless (Bun, Hono, tRPC)', link: '/specs/modern-backend-serverless' },
+        { text: '🤖 AI/ML & LLM Integration', link: '/specs/ai-ml-llm-comprehensive' },
+        { text: '☁️ Cloud Native & Infrastructure', link: '/specs/cloud-native-infrastructure' },
+        { text: '💻 Language Ecosystems (7 Languages)', link: '/specs/langs' }
       ]
     },
     {
-      text: '🆘 Support',
+      text: '🏗️ System Architecture',
       collapsed: true,
       items: [
-        { text: 'Troubleshooting', link: '/troubleshooting' },
+        { text: 'Architecture Overview', link: '/architecture/' },
+        { text: 'MCP Integration Design', link: '/architecture/claude-cli-integration' },
+        { text: 'Command Mapping Specification', link: '/architecture/command-mapping-spec' },
+        { text: 'Template System Architecture', link: '/architecture/spike-template-expansion-plan' },
+        { text: 'Testing & Quality Strategy', link: '/architecture/testing-strategy' },
+        { text: 'Deployment & Distribution', link: '/architecture/deployment-plan' }
+      ]
+    },
+    {
+      text: '🆘 Help & Support',
+      collapsed: true,
+      items: [
+        { text: 'Troubleshooting Guide', link: '/troubleshooting' },
         { text: 'Common Issues & Solutions', link: '/troubleshooting#common-issues' },
         { text: 'GitHub Issues', link: 'https://github.com/kotsutsumi/fluorite-mcp/issues' },
         { text: 'Community Discussions', link: 'https://github.com/kotsutsumi/fluorite-mcp/discussions' }
@@ -168,76 +168,77 @@ const japaneseSpecsSidebar = {
 const japaneseSidebar = {
   '/ja/': [
     {
-      text: '🚀 はじめに',
+      text: '🚀 クイックスタート',
       collapsed: false,
       items: [
-        { text: 'Fluorite MCPとは', link: '/ja/' },
-        { text: '5分でセットアップ', link: '/ja/getting-started' },
-        { text: 'インストールガイド', link: '/ja/installation' },
-        { text: '最初のプロジェクト', link: '/ja/introduction' }
+        { text: '概要・機能紹介', link: '/ja/' },
+        { text: '5分セットアップガイド', link: '/ja/getting-started' },
+        { text: 'インストール・統合', link: '/ja/installation' },
+        { text: '最初のスパイクテンプレート', link: '/ja/introduction' }
       ]
     },
     {
-      text: '⚡ 核心機能',
+      text: '⚡ 必須機能',
       collapsed: false,
       items: [
         { text: '🧪 スパイクテンプレート (1,842+)', link: '/ja/spike-templates' },
-        { text: '🔍 静的解析・検証', link: '/ja/static-analysis' },
-        { text: '📚 ライブラリ仕様 (86+)', link: '/ja/specs/' },
         { text: '🎯 /fl: コマンド統合', link: '/ja/fl-commands' },
-        { text: '🤖 MCPサーバー機能', link: '/ja/features' }
+        { text: '🔍 静的解析・検証', link: '/ja/static-analysis' },
+        { text: '📚 人気の技術仕様', link: '/ja/specs/' },
+        { text: '🤖 MCPサーバー機能', link: '/ja/features' },
+        { text: '⚡ パフォーマンス最適化', link: '/ja/performance' }
       ]
     },
     {
-      text: '📖 実用ガイド',
+      text: '📖 実装ガイド',
       collapsed: false,
       items: [
         { text: 'コマンド完全リファレンス', link: '/ja/commands' },
         { text: '/fl: コマンド詳細解説', link: '/ja/fl-commands-detailed' },
-        { text: '実践的使用例・パターン', link: '/ja/use-cases-examples' },
-        { text: 'パフォーマンス最適化', link: '/ja/performance' }
+        { text: '実践例・使用パターン', link: '/ja/use-cases-examples' },
+        { text: 'カスタムテンプレート作成', link: '/ja/template-creation' }
       ]
     },
     {
-      text: '🔧 統合・開発',
+      text: '🔧 開発者統合',
       collapsed: false,
       items: [
-        { text: 'Claude Code CLI統合', link: '/ja/integration-guide' },
-        { text: 'カスタムテンプレート作成', link: '/ja/template-creation' },
-        { text: '開発者向けAPI', link: '/ja/API' },
+        { text: 'Claude Code CLI設定', link: '/ja/integration-guide' },
+        { text: 'MCPサーバーAPI リファレンス', link: '/ja/API' },
+        { text: '関数・メソッド リファレンス', link: '/ja/function-reference' },
         { text: '高度なカスタマイズ', link: '/ja/developer' }
       ]
     },
     {
-      text: '🏗️ アーキテクチャ',
-      collapsed: true,
-      items: [
-        { text: 'システム設計概要', link: '/ja/architecture/' },
-        { text: 'MCP統合アーキテクチャ', link: '/ja/architecture/claude-cli-integration' },
-        { text: 'コマンドマッピング仕様', link: '/ja/architecture/command-mapping-spec' },
-        { text: 'テンプレートシステム', link: '/ja/architecture/spike-template-expansion-plan' },
-        { text: 'テスト戦略', link: '/ja/architecture/testing-strategy' },
-        { text: 'デプロイメント計画', link: '/ja/architecture/deployment-plan' }
-      ]
-    },
-    {
-      text: '📚 仕様・カタログ',
+      text: '📚 技術カタログ',
       collapsed: false,
       items: [
-        { text: '全ライブラリ一覧', link: '/ja/specs/' },
-        { text: 'フロントエンド・UI革新', link: '/ja/specs/frontend-ui-innovation' },
-        { text: 'モダンバックエンド', link: '/ja/specs/modern-backend-serverless' },
-        { text: 'AI・ML・LLM', link: '/ja/specs/ai-ml-llm-comprehensive' },
-        { text: 'クラウドネイティブ', link: '/ja/specs/cloud-native-infrastructure' },
-        { text: '言語エコシステム', link: '/ja/specs/langs' }
+        { text: '🌟 人気技術スタック', link: '/ja/specs/' },
+        { text: '🎨 フロントエンド・UI (React, Vue, Next.js)', link: '/ja/specs/frontend-ui-innovation' },
+        { text: '🚀 バックエンド・サーバーレス (Bun, Hono, tRPC)', link: '/ja/specs/modern-backend-serverless' },
+        { text: '🤖 AI・ML・LLM統合', link: '/ja/specs/ai-ml-llm-comprehensive' },
+        { text: '☁️ クラウドネイティブ・インフラ', link: '/ja/specs/cloud-native-infrastructure' },
+        { text: '💻 言語エコシステム (7言語)', link: '/ja/specs/langs' }
       ]
     },
     {
-      text: '🆘 サポート',
+      text: '🏗️ システムアーキテクチャ',
       collapsed: true,
       items: [
-        { text: 'トラブルシューティング', link: '/ja/troubleshooting' },
-        { text: 'よくある質問・解決策', link: '/ja/troubleshooting#common-issues' },
+        { text: 'アーキテクチャ概要', link: '/ja/architecture/' },
+        { text: 'MCP統合設計', link: '/ja/architecture/claude-cli-integration' },
+        { text: 'コマンドマッピング仕様', link: '/ja/architecture/command-mapping-spec' },
+        { text: 'テンプレートシステム設計', link: '/ja/architecture/spike-template-expansion-plan' },
+        { text: 'テスト・品質戦略', link: '/ja/architecture/testing-strategy' },
+        { text: 'デプロイメント・配布', link: '/ja/architecture/deployment-plan' }
+      ]
+    },
+    {
+      text: '🆘 ヘルプ・サポート',
+      collapsed: true,
+      items: [
+        { text: 'トラブルシューティングガイド', link: '/ja/troubleshooting' },
+        { text: 'よくある問題・解決策', link: '/ja/troubleshooting#common-issues' },
         { text: 'GitHub Issues', link: 'https://github.com/kotsutsumi/fluorite-mcp/issues' },
         { text: 'コミュニティディスカッション', link: 'https://github.com/kotsutsumi/fluorite-mcp/discussions' }
       ]
@@ -248,63 +249,69 @@ const japaneseSidebar = {
 const specsSidebar = {
   '/specs/': [
     { 
-      text: '📋 Library Catalog', 
+      text: '📋 Technology Catalog Overview', 
       link: '/specs/',
       items: []
     },
     {
-      text: '🌟 Comprehensive Ecosystems',
+      text: '🚀 Popular Tech Stacks',
       collapsed: false,
       items: [
-        { text: 'Expo/React Native', link: '/specs/expo-react-native-comprehensive' },
-        { text: 'AI/ML・LLM Integration', link: '/specs/ai-ml-llm-comprehensive' },
-        { text: 'Frontend UI Innovation', link: '/specs/frontend-ui-innovation' },
-        { text: 'Modern Backend/Serverless', link: '/specs/modern-backend-serverless' },
-        { text: 'Development Efficiency', link: '/specs/development-efficiency-dx' },
+        { text: '🎨 Frontend & UI Innovation (React, Vue, Next.js)', link: '/specs/frontend-ui-innovation' },
+        { text: '⚡ Modern Backend & Serverless (Bun, Hono, tRPC)', link: '/specs/modern-backend-serverless' },
+        { text: '🤖 AI/ML & LLM Integration', link: '/specs/ai-ml-llm-comprehensive' },
+        { text: '☁️ Cloud Native Infrastructure', link: '/specs/cloud-native-infrastructure' },
+        { text: '💻 Language Ecosystems (7 Languages)', link: '/specs/langs' },
+        { text: '🛠️ Development Efficiency & DX', link: '/specs/development-efficiency-dx' }
+      ]
+    },
+    {
+      text: '🎨 Frontend & UI Frameworks',
+      collapsed: false,
+      items: [
+        { text: 'Vue Ecosystem (Vue 3, Pinia, Composition API)', link: '/specs/vue' },
+        { text: 'React DnD TreeView (Drag & Drop)', link: '/specs/react-dnd-treeview' },
+        { text: 'Nuxt Ecosystem (SSR, Static Generation)', link: '/specs/nuxt' },
+        { text: 'UI Component Quality & Design Systems', link: '/specs/ui-component-quality' },
+        { text: 'VitePress & Documentation Sites', link: '/specs/vitepress' }
+      ]
+    },
+    {
+      text: '🌟 Comprehensive Ecosystems',
+      collapsed: true,
+      items: [
+        { text: 'Expo/React Native Mobile Development', link: '/specs/expo-react-native-comprehensive' },
         { text: 'Data Processing & Analytics', link: '/specs/data-processing-analytics' },
-        { text: 'Cloud Native Infrastructure', link: '/specs/cloud-native-infrastructure' },
-        { text: 'Testing & DB & Visualization', link: '/specs/additional-modern-technologies' }
+        { text: 'Testing, Database & Visualization', link: '/specs/additional-modern-technologies' },
+        { text: 'WebRTC & Real-time Streaming', link: '/specs/webrtc-streaming' }
       ]
     },
     {
-      text: '💻 Language Ecosystems',
+      text: '💻 Backend & Language Ecosystems',
       collapsed: true,
       items: [
-        { text: '7 Language Ecosystems', link: '/specs/langs' },
-        { text: 'Laravel/PHP', link: '/specs/laravel' },
-        { text: 'FastAPI/Python', link: '/specs/fastapi' },
-        { text: 'Rust/Tauri', link: '/specs/rust-tauri' },
-        { text: 'Ruby on Rails', link: '/specs/ruby-rails' },
-        { text: 'Shell/DevOps Tools', link: '/specs/shell-tools' }
+        { text: 'FastAPI & Python Ecosystem', link: '/specs/fastapi' },
+        { text: 'Laravel & PHP Ecosystem', link: '/specs/laravel' },
+        { text: 'Rust & Tauri Desktop Apps', link: '/specs/rust-tauri' },
+        { text: 'Ruby on Rails Ecosystem', link: '/specs/ruby-rails' },
+        { text: 'Shell Scripting & DevOps Tools', link: '/specs/shell-tools' }
       ]
     },
     {
-      text: '🎨 Frontend & UI',
+      text: '🚀 Infrastructure & Operations',
       collapsed: true,
       items: [
-        { text: 'React DnD TreeView', link: '/specs/react-dnd-treeview' },
-        { text: 'UI Component Quality', link: '/specs/ui-component-quality' },
-        { text: 'Vue Ecosystem', link: '/specs/vue' },
-        { text: 'Nuxt Ecosystem', link: '/specs/nuxt' },
-        { text: 'VitePress/Documentation', link: '/specs/vitepress' }
+        { text: 'Spike Development Workflow', link: '/specs/spike-development' },
+        { text: 'Cloud Platforms (AWS, GCP, Azure)', link: '/specs/cloud-platforms' },
+        { text: 'DevOps & CI/CD Operations', link: '/specs/devops' }
       ]
     },
     {
-      text: '🚀 Development & Infrastructure',
-      collapsed: true,
-      items: [
-        { text: 'Spike Development', link: '/specs/spike-development' },
-        { text: 'Cloud Platforms', link: '/specs/cloud-platforms' },
-        { text: 'DevOps Operations', link: '/specs/devops' },
-        { text: 'WebRTC/Streaming', link: '/specs/webrtc-streaming' }
-      ]
-    },
-    {
-      text: '📱 Mobile & Native',
+      text: '📱 Mobile Development',
       collapsed: true,
       items: [
         { text: 'Mobile Native (iOS/Android)', link: '/specs/mobile-native' },
-        { text: 'Expo/React Native', link: '/specs/expo-react-native' }
+        { text: 'Expo/React Native (Cross-platform)', link: '/specs/expo-react-native' }
       ]
     }
   ]
