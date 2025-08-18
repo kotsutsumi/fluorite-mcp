@@ -1,0 +1,19 @@
+{
+  "id": "strike-express-morgan-logger",
+  "name": "Express Morgan Logger",
+  "stack": [
+    "node",
+    "express"
+  ],
+  "tags": [
+    "backend",
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "server.js",
+      "template": "import express from 'express';\nimport morgan from 'morgan';\nconst app = express();\napp.use(morgan('combined'));\napp.get('/health',(req,res)=>res.json({ok:true}));\napp.listen(3000);\n"
+    }
+  ],
+  "patches": []
+}

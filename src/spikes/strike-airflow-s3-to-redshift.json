@@ -1,0 +1,17 @@
+{
+  "id": "strike-airflow-s3-to-redshift",
+  "name": "Airflow S3 to Redshift",
+  "stack": [
+    "airflow"
+  ],
+  "tags": [
+    "data"
+  ],
+  "files": [
+    {
+      "path": "dags/s3_redshift.py",
+      "template": "# s3 to redshift skeleton\n"
+    }
+  ],
+  "patches": []
+}

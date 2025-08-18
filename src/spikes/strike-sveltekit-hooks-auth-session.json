@@ -1,0 +1,18 @@
+{
+  "id": "strike-sveltekit-hooks-auth-session",
+  "name": "SvelteKit Hooks Auth Session",
+  "stack": [
+    "sveltekit"
+  ],
+  "tags": [
+    "frontend",
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "src/hooks.server.ts",
+      "template": "export const handle = async ({ event, resolve }) => resolve(event);\n"
+    }
+  ],
+  "patches": []
+}

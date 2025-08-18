@@ -1,0 +1,19 @@
+{
+  "id": "strike-airbyte-check-connection-ci",
+  "name": "Airbyte Check Connection CI",
+  "stack": [
+    "airbyte"
+  ],
+  "tags": [
+    "data",
+    "etl",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/airbyte-check.yml",
+      "template": "name: AirbyteCheck\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

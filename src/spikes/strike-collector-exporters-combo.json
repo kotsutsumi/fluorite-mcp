@@ -1,0 +1,18 @@
+{
+  "id": "strike-collector-exporters-combo",
+  "name": "Collector Exporters Combo",
+  "stack": [
+    "opentelemetry",
+    "collector"
+  ],
+  "tags": [
+    "observability"
+  ],
+  "files": [
+    {
+      "path": "otel/exporters.yaml",
+      "template": "exporters: { otlp: {}, logging: {} }\n"
+    }
+  ],
+  "patches": []
+}

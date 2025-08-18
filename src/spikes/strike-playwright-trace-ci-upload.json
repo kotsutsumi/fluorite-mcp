@@ -1,0 +1,18 @@
+{
+  "id": "strike-playwright-trace-ci-upload",
+  "name": "Playwright Trace CI Upload",
+  "stack": [
+    "playwright"
+  ],
+  "tags": [
+    "test",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/playwright-trace-upload.yml",
+      "template": "name: TraceUpload\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

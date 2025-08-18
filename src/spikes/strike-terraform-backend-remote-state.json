@@ -1,0 +1,17 @@
+{
+  "id": "strike-terraform-backend-remote-state",
+  "name": "Terraform Backend Remote State",
+  "stack": [
+    "terraform"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "backend/remote.tf",
+      "template": "// remote state backend skeleton\n"
+    }
+  ],
+  "patches": []
+}

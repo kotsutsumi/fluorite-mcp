@@ -1,0 +1,18 @@
+{
+  "id": "strike-actions-reusable-matrix-os",
+  "name": "Actions Reusable Matrix OS",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/reusable-matrix-os.yml",
+      "template": "name: MatrixOS\non: workflow_call\n"
+    }
+  ],
+  "patches": []
+}
