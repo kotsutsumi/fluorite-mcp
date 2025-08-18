@@ -1,0 +1,19 @@
+{
+  "id": "strike-collector-otlp-http-exporter",
+  "name": "Collector OTLP/HTTP Exporter",
+  "stack": [
+    "opentelemetry",
+    "collector"
+  ],
+  "tags": [
+    "observability",
+    "exporter"
+  ],
+  "files": [
+    {
+      "path": "otel/otlp-http.yaml",
+      "template": "exporters: { otlphttp: {} }\n"
+    }
+  ],
+  "patches": []
+}

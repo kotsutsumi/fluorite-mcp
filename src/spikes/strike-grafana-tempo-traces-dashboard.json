@@ -1,0 +1,19 @@
+{
+  "id": "strike-grafana-tempo-traces-dashboard",
+  "name": "Grafana Tempo Traces Dashboard",
+  "stack": [
+    "grafana",
+    "tempo"
+  ],
+  "tags": [
+    "observability",
+    "traces"
+  ],
+  "files": [
+    {
+      "path": "grafana/dashboards/tempo.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

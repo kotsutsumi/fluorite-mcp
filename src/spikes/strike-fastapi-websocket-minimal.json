@@ -1,0 +1,20 @@
+{
+  "id": "strike-fastapi-websocket-minimal",
+  "name": "FastAPI WebSocket Minimal",
+  "stack": [
+    "python",
+    "fastapi",
+    "websocket"
+  ],
+  "tags": [
+    "backend",
+    "realtime"
+  ],
+  "files": [
+    {
+      "path": "main.py",
+      "template": "from fastapi import FastAPI, WebSocket\napp = FastAPI()\n@app.websocket('/ws')\nasync def ws(ws: WebSocket):\n    await ws.accept(); await ws.send_text('hello'); await ws.close()\n"
+    }
+  ],
+  "patches": []
+}

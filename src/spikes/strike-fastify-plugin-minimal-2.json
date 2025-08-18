@@ -1,0 +1,18 @@
+{
+  "id": "strike-fastify-plugin-minimal-2",
+  "name": "Fastify Plugin Minimal 2",
+  "stack": [
+    "node",
+    "fastify"
+  ],
+  "tags": [
+    "backend"
+  ],
+  "files": [
+    {
+      "path": "plugin.js",
+      "template": "export default async function plugin(f){ f.get('/health', async ()=>({ ok:true })); }\n"
+    }
+  ],
+  "patches": []
+}

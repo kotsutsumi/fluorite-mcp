@@ -1,0 +1,19 @@
+{
+  "id": "strike-grafana-loki-alerts",
+  "name": "Grafana Loki Alerts",
+  "stack": [
+    "grafana",
+    "loki"
+  ],
+  "tags": [
+    "observability",
+    "alerts"
+  ],
+  "files": [
+    {
+      "path": "grafana/alerts/loki.yaml",
+      "template": "groups: []\n"
+    }
+  ],
+  "patches": []
+}

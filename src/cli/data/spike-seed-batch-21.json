@@ -1,0 +1,51 @@
+{
+  "items": [
+    { "id": "strike-express-multer-memory-advanced", "name": "Express Multer MemoryStorage Advanced", "stack": ["node","express","multer"], "tags": ["backend","upload","advanced"], "files": [{ "path": "server.js", "template": "// multer memoryStorage advanced skeleton\n" }] },
+    { "id": "strike-koa-router-prefix", "name": "Koa Router with Prefix", "stack": ["node","koa"], "tags": ["backend","routing"], "files": [{ "path": "routes/index.js", "template": "import Router from '@koa/router';\nexport const router = new Router({ prefix: '/api' });\nrouter.get('/health', ctx => ctx.body = { ok:true });\n" }] },
+    { "id": "strike-fastapi-websocket-minimal", "name": "FastAPI WebSocket Minimal", "stack": ["python","fastapi","websocket"], "tags": ["backend","realtime"], "files": [{ "path": "main.py", "template": "from fastapi import FastAPI, WebSocket\napp = FastAPI()\n@app.websocket('/ws')\nasync def ws(ws: WebSocket):\n    await ws.accept(); await ws.send_text('hello'); await ws.close()\n" }] },
+    { "id": "strike-django-channels-minimal", "name": "Django Channels Minimal", "stack": ["python","django","channels"], "tags": ["backend","realtime"], "files": [{ "path": "app/consumers.py", "template": "# channels consumer skeleton\n" }] },
+    { "id": "strike-rails-actioncable-minimal", "name": "Rails ActionCable Minimal", "stack": ["ruby","rails"], "tags": ["backend","realtime"], "files": [{ "path": "app/channels/application_cable/channel.rb", "template": "# actioncable channel skeleton\n" }] },
+    { "id": "strike-phoenix-pubsub-minimal", "name": "Phoenix PubSub Minimal", "stack": ["elixir","phoenix"], "tags": ["backend","realtime"], "files": [{ "path": "lib/app/pubsub.ex", "template": "# phoenix pubsub skeleton\n" }] },
+
+    { "id": "strike-nextjs-app-route-multipart", "name": "Next.js App Route Multipart", "stack": ["nextjs"], "tags": ["frontend","api","upload"], "files": [{ "path": "app/api/upload/route.ts", "template": "// next app route multipart parse skeleton\n" }] },
+    { "id": "strike-nuxt3-route-rules-middleware", "name": "Nuxt3 Route Rules Middleware", "stack": ["nuxt"], "tags": ["frontend","middleware"], "files": [{ "path": "middleware/routeRules.global.ts", "template": "export default defineNuxtRouteMiddleware(()=>{})\n" }] },
+    { "id": "strike-sveltekit-load-streaming", "name": "SvelteKit load() Streaming", "stack": ["sveltekit"], "tags": ["frontend","ssr","stream"], "files": [{ "path": "src/routes/+page.ts", "template": "// load() streaming-like pattern skeleton\n" }] },
+    { "id": "strike-angular-signals-computed-store", "name": "Angular Signals Computed Store", "stack": ["angular"], "tags": ["frontend","state"], "files": [{ "path": "src/app/store.ts", "template": "// computed signals store skeleton\n" }] },
+    { "id": "strike-solid-suspense-data", "name": "Solid Suspense Data", "stack": ["solid"], "tags": ["frontend","data"], "files": [{ "path": "src/SuspenseExample.tsx", "template": "// solid suspense example skeleton\n" }] },
+
+    { "id": "strike-otel-baggage-context", "name": "OTel Baggage Context", "stack": ["opentelemetry"], "tags": ["observability","context"], "files": [{ "path": "otel/baggage.js", "template": "// baggage context skeleton\n" }] },
+    { "id": "strike-prometheus-static-scrape-targets", "name": "Prometheus Static Scrape Targets", "stack": ["prometheus"], "tags": ["observability","metrics"], "files": [{ "path": "prometheus/targets.yaml", "template": "scrape_configs: [{ static_configs: [{ targets: ['localhost:9100'] }] }]\n" }] },
+    { "id": "strike-grafana-contact-points", "name": "Grafana Alert Contact Points", "stack": ["grafana"], "tags": ["observability","alerts"], "files": [{ "path": "grafana/contact-points.yaml", "template": "apiVersion: 1\ncontactPoints: []\n" }] },
+
+    { "id": "strike-jwt-jwks-cache-ttl", "name": "JWT JWKS Cache TTL", "stack": ["jwt","jose"], "tags": ["security","jwt"], "files": [{ "path": "auth/jwks-cache.md", "template": "# jwks caching ttl patterns\n" }] },
+    { "id": "strike-oauth2-token-exchange", "name": "OAuth2 Token Exchange", "stack": ["oauth2"], "tags": ["security","auth"], "files": [{ "path": "auth/token-exchange.md", "template": "# rfc8693 token exchange skeleton\n" }] },
+    { "id": "strike-csp-frame-ancestors", "name": "CSP frame-ancestors Patterns", "stack": ["security","csp"], "tags": ["security"], "files": [{ "path": "security/frame-ancestors.md", "template": "# frame-ancestors patterns\n" }] },
+
+    { "id": "strike-kafka-retention-compaction-advanced", "name": "Kafka Retention + Compaction Advanced", "stack": ["kafka"], "tags": ["stream","storage"], "files": [{ "path": "kafka/retention_compaction.md", "template": "# retention + compaction policies\n" }] },
+    { "id": "strike-nats-headers-usage", "name": "NATS Headers Usage", "stack": ["nats"], "tags": ["messaging","headers"], "files": [{ "path": "nats/headers.js", "template": "// nats headers skeleton\n" }] },
+    { "id": "strike-sqs-queue-attributes", "name": "SQS Queue Attributes", "stack": ["aws","sqs"], "tags": ["queue","config"], "files": [{ "path": "aws/queue-attributes.json", "template": "{ }\n" }] },
+
+    { "id": "strike-actions-oidc-aws-assume-role", "name": "Actions OIDC AssumeRole for AWS", "stack": ["github","actions","aws"], "tags": ["ci","auth"], "files": [{ "path": ".github/workflows/oidc-aws.yml", "template": "name: OIDC-AWS\non: [push]\n" }] },
+    { "id": "strike-terraform-tfvars-per-workspace", "name": "Terraform tfvars per Workspace", "stack": ["terraform"], "tags": ["infra"], "files": [{ "path": "workspaces/README.md", "template": "# tfvars per workspace patterns\n" }] },
+    { "id": "strike-helm-lifecycle-hooks", "name": "Helm Lifecycle Hooks Examples", "stack": ["helm"], "tags": ["ops"], "files": [{ "path": "chart/hooks.md", "template": "# helm pre/post hooks examples\n" }] },
+
+    { "id": "strike-msw-passthrough", "name": "MSW Passthrough", "stack": ["msw"], "tags": ["test"], "files": [{ "path": "src/mocks/passthrough.ts", "template": "// msw passthrough skeleton\n" }] },
+    { "id": "strike-playwright-projects-per-browser", "name": "Playwright Projects per Browser", "stack": ["playwright"], "tags": ["test","ci"], "files": [{ "path": "playwright.config.ts", "template": "// projects per browser skeleton\n" }] },
+    { "id": "strike-jest-fake-timers-modern", "name": "Jest Fake Timers Modern", "stack": ["jest"], "tags": ["test"], "files": [{ "path": "jest.config.ts", "template": "// use fake timers modern skeleton\n" }] },
+
+    { "id": "strike-airflow-dag-params", "name": "Airflow DAG Params", "stack": ["airflow"], "tags": ["data"], "files": [{ "path": "dags/params.py", "template": "# dag params skeleton\n" }] },
+    { "id": "strike-dbt-exposures-dashboard", "name": "dbt Exposures Dashboard", "stack": ["dbt"], "tags": ["data"], "files": [{ "path": "models/exposures_dashboard.yml", "template": "version: 2\nexposures: []\n" }] },
+    { "id": "strike-bigquery-partition-decorator", "name": "BigQuery Partition Decorator", "stack": ["gcp","bigquery"], "tags": ["data"], "files": [{ "path": "docs/partition_decorator.md", "template": "# partition decorator notes\n" }] },
+
+    { "id": "strike-aws-kms-encrypt-decrypt", "name": "AWS KMS Encrypt/Decrypt", "stack": ["aws","kms"], "tags": ["cloud","security"], "files": [{ "path": "kms/example.mjs", "template": "// kms encrypt/decrypt skeleton\n" }] },
+    { "id": "strike-gcp-secret-manager-rotation", "name": "GCP Secret Manager Rotation", "stack": ["gcp","secret-manager"], "tags": ["cloud","secrets"], "files": [{ "path": "secrets/rotation.json", "template": "{ }\n" }] },
+    { "id": "strike-azure-app-service-settings", "name": "Azure App Service Settings", "stack": ["azure","app-service"], "tags": ["cloud","config"], "files": [{ "path": "app-service/settings.json", "template": "{ }\n" }] },
+
+    { "id": "strike-openapi-yaml-minimal", "name": "(Merge) OpenAPI YAML Meta", "stack": ["openapi"], "tags": ["api","merge"] },
+    { "id": "strike-dockerfile-node-minimal", "name": "(Merge) Dockerfile Node Meta", "stack": ["docker"], "tags": ["ops","merge"] },
+    { "id": "strike-nextjs-route-handler-minimal", "name": "(Merge) Next.js Route Handler Meta", "stack": ["nextjs"], "tags": ["frontend","api","merge"] },
+    { "id": "strike-otel-node-tracer-minimal", "name": "(Merge) OTel Node Tracer Meta", "stack": ["opentelemetry"], "tags": ["observability","merge"] },
+    { "id": "strike-react-hook-form-minimal", "name": "(Merge) RHF Minimal Meta", "stack": ["react","forms"], "tags": ["frontend","merge"] }
+  ]
+}
+

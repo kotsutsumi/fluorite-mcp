@@ -1,0 +1,19 @@
+{
+  "id": "strike-oidc-jwk-fetch-rotate",
+  "name": "OIDC JWK Fetch + Rotate",
+  "stack": [
+    "oidc",
+    "jose"
+  ],
+  "tags": [
+    "security",
+    "jwt"
+  ],
+  "files": [
+    {
+      "path": "auth/jwk-rotate.mjs",
+      "template": "// fetch and rotate jwks skeleton\n"
+    }
+  ],
+  "patches": []
+}

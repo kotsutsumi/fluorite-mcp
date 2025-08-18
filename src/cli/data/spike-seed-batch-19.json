@@ -1,0 +1,50 @@
+{
+  "items": [
+    { "id": "strike-express-helmet-hsts", "name": "Express Helmet + HSTS", "stack": ["node","express","helmet"], "tags": ["backend","security"], "files": [{ "path": "server.js", "template": "import express from 'express';\nimport helmet from 'helmet';\nconst app = express();\napp.use(helmet());\napp.get('/health', (req,res)=>res.json({ ok:true }));\napp.listen(3000);\n" }] },
+    { "id": "strike-koa-router-modular", "name": "Koa Router Modular", "stack": ["node","koa"], "tags": ["backend","routing"], "files": [{ "path": "routes/index.js", "template": "import Router from '@koa/router';\nexport const router = new Router();\nrouter.get('/health', ctx => ctx.body = { ok:true });\n" }] },
+    { "id": "strike-fastify-auto-hooks", "name": "Fastify Auto Hooks", "stack": ["node","fastify"], "tags": ["backend","hooks"], "files": [{ "path": "hooks.js", "template": "export default async function hooks(f){ f.addHook('onRequest', async ()=>{}); }\n" }] },
+    { "id": "strike-go-gin-cors", "name": "Go Gin CORS", "stack": ["go","gin"], "tags": ["backend","cors"], "files": [{ "path": "main.go", "template": "package main\n// gin cors skeleton\nfunc main(){}\n" }] },
+    { "id": "strike-deno-fresh-middleware", "name": "Deno Fresh Middleware", "stack": ["deno","fresh"], "tags": ["backend","middleware"], "files": [{ "path": "middleware.ts", "template": "// fresh middleware skeleton\n" }] },
+
+    { "id": "strike-nextjs-route-headers", "name": "Next.js Route Headers", "stack": ["nextjs"], "tags": ["frontend","headers"], "files": [{ "path": "app/api/headers/route.ts", "template": "// next route headers skeleton\n" }] },
+    { "id": "strike-nuxt3-route-middleware-auth", "name": "Nuxt3 Route Middleware Auth", "stack": ["nuxt"], "tags": ["frontend","auth"], "files": [{ "path": "middleware/auth.ts", "template": "export default defineNuxtRouteMiddleware(()=>{})\n" }] },
+    { "id": "strike-sveltekit-endpoint-formdata", "name": "SvelteKit Endpoint FormData", "stack": ["sveltekit"], "tags": ["frontend","api","upload"], "files": [{ "path": "src/routes/upload/+server.ts", "template": "// endpoint formdata skeleton\n" }] },
+    { "id": "strike-angular-http-interceptor-logging", "name": "Angular HTTP Logging Interceptor", "stack": ["angular"], "tags": ["frontend","http","logs"], "files": [{ "path": "src/app/log.interceptor.ts", "template": "// logging interceptor skeleton\n" }] },
+    { "id": "strike-solid-store-context", "name": "Solid Store + Context", "stack": ["solid"], "tags": ["frontend","state"], "files": [{ "path": "src/store.tsx", "template": "// solid store + context skeleton\n" }] },
+
+    { "id": "strike-otel-node-metrics-http", "name": "OTel Node Metrics HTTP", "stack": ["opentelemetry"], "tags": ["observability","metrics"], "files": [{ "path": "otel/metrics-http.js", "template": "// otel http metrics skeleton\n" }] },
+    { "id": "strike-collector-pipelines-detailed", "name": "Collector Pipelines Detailed", "stack": ["opentelemetry","collector"], "tags": ["observability"], "files": [{ "path": "otel/pipelines-detailed.yaml", "template": "receivers:{}\nprocessors:{}\nexporters:{}\npipelines:{}\n" }] },
+    { "id": "strike-grafana-loki-alerts", "name": "Grafana Loki Alerts", "stack": ["grafana","loki"], "tags": ["observability","alerts"], "files": [{ "path": "grafana/alerts/loki.yaml", "template": "groups: []\n" }] },
+
+    { "id": "strike-oidc-jwk-fetch-rotate", "name": "OIDC JWK Fetch + Rotate", "stack": ["oidc","jose"], "tags": ["security","jwt"], "files": [{ "path": "auth/jwk-rotate.mjs", "template": "// fetch and rotate jwks skeleton\n" }] },
+    { "id": "strike-opa-bundle-verify-ci", "name": "OPA Bundle Verify CI", "stack": ["opa"], "tags": ["security","policy","ci"], "files": [{ "path": ".github/workflows/opa-verify.yml", "template": "name: OpaVerify\non: [push]\n" }] },
+    { "id": "strike-csp-nonce-randomizer", "name": "CSP Nonce Randomizer", "stack": ["security","csp"], "tags": ["security"], "files": [{ "path": "security/csp-nonce.js", "template": "// nonce generator skeleton\n" }] },
+
+    { "id": "strike-kafka-consumer-lag-monitoring", "name": "Kafka Consumer Lag Monitoring", "stack": ["kafka"], "tags": ["stream","monitoring"], "files": [{ "path": "kafka/lag.md", "template": "# lag monitoring patterns\n" }] },
+    { "id": "strike-nats-js-queue-groups-ordered", "name": "NATS Queue Groups Ordered", "stack": ["nats"], "tags": ["messaging","ordered"], "files": [{ "path": "nats/queue-ordered.js", "template": "// ordered queue groups skeleton\n" }] },
+    { "id": "strike-sqs-dlq-redrive-policy-advanced", "name": "SQS DLQ Redrive Policy Advanced", "stack": ["aws","sqs"], "tags": ["queue","reliability"], "files": [{ "path": "aws/dlq-redrive-adv.json", "template": "{ }\n" }] },
+
+    { "id": "strike-actions-reusable-release", "name": "Actions Reusable Release Workflow", "stack": ["github","actions"], "tags": ["ci","release"], "files": [{ "path": ".github/workflows/reusable-release.yml", "template": "name: Release\non: workflow_call\n" }] },
+    { "id": "strike-terraform-modules-testing", "name": "Terraform Modules Testing", "stack": ["terraform"], "tags": ["infra","tests"], "files": [{ "path": "modules/testing/README.md", "template": "# modules testing skeleton\n" }] },
+    { "id": "strike-helm-umbrella-best-practices", "name": "Helm Umbrella Best Practices", "stack": ["helm"], "tags": ["ops"], "files": [{ "path": "charts/umbrella/README.md", "template": "# umbrella best practices\n" }] },
+
+    { "id": "strike-msw-rest-error-boundaries", "name": "MSW REST Error Boundaries", "stack": ["msw"], "tags": ["test"], "files": [{ "path": "src/mocks/rest-errors.ts", "template": "// error boundaries handlers\n" }] },
+    { "id": "strike-playwright-ci-artifacts", "name": "Playwright CI Artifacts", "stack": ["playwright"], "tags": ["test","ci"], "files": [{ "path": ".github/workflows/playwright-artifacts.yml", "template": "name: PWArtifacts\non: [push]\n" }] },
+    { "id": "strike-jest-setup-global-fetch", "name": "Jest Setup Global fetch", "stack": ["jest"], "tags": ["test"], "files": [{ "path": "jest.setup.ts", "template": "// global fetch polyfill skeleton\n" }] },
+
+    { "id": "strike-airflow-slack-notifications", "name": "Airflow Slack Notifications", "stack": ["airflow"], "tags": ["data","alerts"], "files": [{ "path": "dags/slack.py", "template": "# slack notifications skeleton\n" }] },
+    { "id": "strike-dbt-tests-advanced", "name": "dbt Tests Advanced", "stack": ["dbt"], "tags": ["data"], "files": [{ "path": "tests/advanced.yml", "template": "version: 2\ntests: []\n" }] },
+    { "id": "strike-bigquery-partition-clustering", "name": "BigQuery Partition + Clustering", "stack": ["gcp","bigquery"], "tags": ["data"], "files": [{ "path": "sql/partition_cluster.sql", "template": "-- partition + cluster skeleton\n" }] },
+
+    { "id": "strike-aws-iam-oidc-provider", "name": "AWS IAM OIDC Provider", "stack": ["aws","iam"], "tags": ["cloud","auth"], "files": [{ "path": "iam/oidc.json", "template": "{ }\n" }] },
+    { "id": "strike-gcp-cloud-logging-sink", "name": "GCP Cloud Logging Sink", "stack": ["gcp","logging"], "tags": ["cloud","logs"], "files": [{ "path": "logging/sink.json", "template": "{ }\n" }] },
+    { "id": "strike-azure-service-bus-topic", "name": "Azure Service Bus Topic", "stack": ["azure","service-bus"], "tags": ["cloud","queue"], "files": [{ "path": "service-bus/topic.json", "template": "{ }\n" }] },
+
+    { "id": "strike-openapi-yaml-minimal", "name": "(Merge) OpenAPI YAML Meta", "stack": ["openapi"], "tags": ["api","merge"] },
+    { "id": "strike-nextjs-route-handler-minimal", "name": "(Merge) Next.js Route Handler Meta", "stack": ["nextjs"], "tags": ["frontend","api","merge"] },
+    { "id": "strike-dockerfile-node-minimal", "name": "(Merge) Dockerfile Node Meta", "stack": ["docker"], "tags": ["ops","merge"] },
+    { "id": "strike-otel-node-tracer-minimal", "name": "(Merge) OTel Node Tracer Meta", "stack": ["opentelemetry"], "tags": ["observability","merge"] },
+    { "id": "strike-react-hook-form-minimal", "name": "(Merge) RHF Minimal Meta", "stack": ["react","forms"], "tags": ["frontend","merge"] }
+  ]
+}
+

@@ -1,0 +1,19 @@
+{
+  "id": "strike-azure-managed-identity-config",
+  "name": "Azure Managed Identity Config",
+  "stack": [
+    "azure",
+    "identity"
+  ],
+  "tags": [
+    "cloud",
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "identity/config.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

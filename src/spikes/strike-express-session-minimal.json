@@ -1,0 +1,19 @@
+{
+  "id": "strike-express-session-minimal",
+  "name": "Express Session Minimal",
+  "stack": [
+    "node",
+    "express"
+  ],
+  "tags": [
+    "backend",
+    "session"
+  ],
+  "files": [
+    {
+      "path": "server.js",
+      "template": "import express from 'express';\nimport session from 'express-session';\nconst app = express();\napp.use(session({ secret: 's', resave: false, saveUninitialized: true }));\napp.get('/health',(req,res)=>res.json({ ok:true }));\napp.listen(3000);\n"
+    }
+  ],
+  "patches": []
+}

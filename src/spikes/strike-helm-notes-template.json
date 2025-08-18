@@ -1,0 +1,17 @@
+{
+  "id": "strike-helm-notes-template",
+  "name": "Helm NOTES Template",
+  "stack": [
+    "helm"
+  ],
+  "tags": [
+    "ops"
+  ],
+  "files": [
+    {
+      "path": "chart/templates/NOTES.txt",
+      "template": "Thank you for installing {{ .Chart.Name }}\n"
+    }
+  ],
+  "patches": []
+}

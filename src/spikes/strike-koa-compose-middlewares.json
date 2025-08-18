@@ -1,0 +1,19 @@
+{
+  "id": "strike-koa-compose-middlewares",
+  "name": "Koa Compose Middlewares",
+  "stack": [
+    "node",
+    "koa"
+  ],
+  "tags": [
+    "backend",
+    "middleware"
+  ],
+  "files": [
+    {
+      "path": "server.js",
+      "template": "import Koa from 'koa';\nimport compose from 'koa-compose';\nconst app = new Koa();\nconst a = async (ctx,next)=>{ await next(); };\nconst b = async (ctx,next)=>{ await next(); };\napp.use(compose([a,b]));\napp.listen(3000);\n"
+    }
+  ],
+  "patches": []
+}

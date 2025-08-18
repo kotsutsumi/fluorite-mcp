@@ -34,7 +34,7 @@ Fluorite MCP is a comprehensive Model Context Protocol server that enhances Clau
 ### 📚 Extensive Library Knowledge Base
 Transform your development workflow with professionally curated specifications:
 
-- **📖 86+ Library Specifications**: Detailed usage patterns, configuration examples, and architectural guidance
+- **📖 94+ Library Specifications**: Detailed usage patterns, configuration examples, and architectural guidance
 - **🌍 12+ Language Ecosystems**: Full-stack coverage from TypeScript to Rust, Python to Go
 - **🏗️ Framework Mastery**: Deep integration with Next.js, React, Vue, FastAPI, Express, and emerging frameworks
 - **🎯 Best Practices Integration**: Every specification includes production-ready patterns and security considerations
@@ -50,7 +50,7 @@ Prevent issues before they occur with intelligent analysis:
 ### 🧪 Accelerated Development with Spike Templates
 Bridge the gap between idea and implementation:
 
-- **🏭 2500+ Production Templates**: Battle-tested scaffolds for authentication, APIs, testing, and deployment
+- **🏭 2,900+ Production Templates**: Battle-tested scaffolds for authentication, APIs, testing, and deployment
 - **🗣️ Natural Language Interface**: Describe features in plain English—no complex syntax to learn
 - **🎯 Intelligent Selection**: AI-powered template matching based on your project context and requirements
 - **🔄 Iterative Refinement**: Built-in quality validation and improvement loops

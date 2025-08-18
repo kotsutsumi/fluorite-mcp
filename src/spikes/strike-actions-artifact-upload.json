@@ -1,0 +1,18 @@
+{
+  "id": "strike-actions-artifact-upload",
+  "name": "Actions Artifact Upload",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/artifact.yml",
+      "template": "name: Artifacts\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,19 @@
+{
+  "id": "strike-fastify-auto-hooks",
+  "name": "Fastify Auto Hooks",
+  "stack": [
+    "node",
+    "fastify"
+  ],
+  "tags": [
+    "backend",
+    "hooks"
+  ],
+  "files": [
+    {
+      "path": "hooks.js",
+      "template": "export default async function hooks(f){ f.addHook('onRequest', async ()=>{}); }\n"
+    }
+  ],
+  "patches": []
+}

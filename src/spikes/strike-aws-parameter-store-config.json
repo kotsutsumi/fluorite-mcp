@@ -1,0 +1,19 @@
+{
+  "id": "strike-aws-parameter-store-config",
+  "name": "AWS Parameter Store Config",
+  "stack": [
+    "aws",
+    "ssm"
+  ],
+  "tags": [
+    "cloud",
+    "config"
+  ],
+  "files": [
+    {
+      "path": "ssm/params.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

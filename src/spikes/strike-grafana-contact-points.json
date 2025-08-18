@@ -1,0 +1,18 @@
+{
+  "id": "strike-grafana-contact-points",
+  "name": "Grafana Alert Contact Points",
+  "stack": [
+    "grafana"
+  ],
+  "tags": [
+    "observability",
+    "alerts"
+  ],
+  "files": [
+    {
+      "path": "grafana/contact-points.yaml",
+      "template": "apiVersion: 1\ncontactPoints: []\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,19 @@
+{
+  "id": "strike-koa-router-prefix",
+  "name": "Koa Router with Prefix",
+  "stack": [
+    "node",
+    "koa"
+  ],
+  "tags": [
+    "backend",
+    "routing"
+  ],
+  "files": [
+    {
+      "path": "routes/index.js",
+      "template": "import Router from '@koa/router';\nexport const router = new Router({ prefix: '/api' });\nrouter.get('/health', ctx => ctx.body = { ok:true });\n"
+    }
+  ],
+  "patches": []
+}

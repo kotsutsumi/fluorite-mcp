@@ -1,0 +1,18 @@
+{
+  "id": "strike-airflow-slack-notifications",
+  "name": "Airflow Slack Notifications",
+  "stack": [
+    "airflow"
+  ],
+  "tags": [
+    "data",
+    "alerts"
+  ],
+  "files": [
+    {
+      "path": "dags/slack.py",
+      "template": "# slack notifications skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,20 @@
+{
+  "id": "strike-express-helmet-hsts",
+  "name": "Express Helmet + HSTS",
+  "stack": [
+    "node",
+    "express",
+    "helmet"
+  ],
+  "tags": [
+    "backend",
+    "security"
+  ],
+  "files": [
+    {
+      "path": "server.js",
+      "template": "import express from 'express';\nimport helmet from 'helmet';\nconst app = express();\napp.use(helmet());\napp.get('/health', (req,res)=>res.json({ ok:true }));\napp.listen(3000);\n"
+    }
+  ],
+  "patches": []
+}

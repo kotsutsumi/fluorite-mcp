@@ -1,0 +1,20 @@
+{
+  "id": "strike-actions-oidc-aws-assume-role",
+  "name": "Actions OIDC AssumeRole for AWS",
+  "stack": [
+    "github",
+    "actions",
+    "aws"
+  ],
+  "tags": [
+    "ci",
+    "auth"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/oidc-aws.yml",
+      "template": "name: OIDC-AWS\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

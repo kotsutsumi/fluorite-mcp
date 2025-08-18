@@ -1,0 +1,19 @@
+{
+  "id": "strike-actions-reusable-publish-npm",
+  "name": "Actions Reusable Publish NPM",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci",
+    "release"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/reusable-publish-npm.yml",
+      "template": "name: PublishNPM\non: workflow_call\n"
+    }
+  ],
+  "patches": []
+}

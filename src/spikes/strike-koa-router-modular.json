@@ -1,0 +1,19 @@
+{
+  "id": "strike-koa-router-modular",
+  "name": "Koa Router Modular",
+  "stack": [
+    "node",
+    "koa"
+  ],
+  "tags": [
+    "backend",
+    "routing"
+  ],
+  "files": [
+    {
+      "path": "routes/index.js",
+      "template": "import Router from '@koa/router';\nexport const router = new Router();\nrouter.get('/health', ctx => ctx.body = { ok:true });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,19 @@
+{
+  "id": "strike-gcp-cloud-logging-sink",
+  "name": "GCP Cloud Logging Sink",
+  "stack": [
+    "gcp",
+    "logging"
+  ],
+  "tags": [
+    "cloud",
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "logging/sink.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

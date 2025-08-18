@@ -1,0 +1,19 @@
+{
+  "id": "strike-grafana-k6-dashboard",
+  "name": "Grafana k6 Dashboard",
+  "stack": [
+    "grafana",
+    "k6"
+  ],
+  "tags": [
+    "observability",
+    "dashboards"
+  ],
+  "files": [
+    {
+      "path": "grafana/dashboards/k6.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

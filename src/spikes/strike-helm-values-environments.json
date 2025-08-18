@@ -1,0 +1,21 @@
+{
+  "id": "strike-helm-values-environments",
+  "name": "Helm Values for Environments",
+  "stack": [
+    "helm"
+  ],
+  "tags": [
+    "ops"
+  ],
+  "files": [
+    {
+      "path": "helm/values-dev.yaml",
+      "template": "replicaCount: 1\n"
+    },
+    {
+      "path": "helm/values-prod.yaml",
+      "template": "replicaCount: 3\n"
+    }
+  ],
+  "patches": []
+}
