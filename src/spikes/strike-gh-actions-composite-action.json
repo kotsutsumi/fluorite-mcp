@@ -1,0 +1,19 @@
+{
+  "id": "strike-gh-actions-composite-action",
+  "name": "GitHub Actions Composite Action",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci",
+    "reusable"
+  ],
+  "files": [
+    {
+      "path": ".github/actions/setup/action.yml",
+      "template": "name: Setup\nruns: using: 'node20'\n"
+    }
+  ],
+  "patches": []
+}

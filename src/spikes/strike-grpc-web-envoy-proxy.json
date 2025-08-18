@@ -1,0 +1,18 @@
+{
+  "id": "strike-grpc-web-envoy-proxy",
+  "name": "gRPC-Web Envoy Proxy",
+  "stack": [
+    "grpc",
+    "envoy"
+  ],
+  "tags": [
+    "proxy"
+  ],
+  "files": [
+    {
+      "path": "envoy.yaml",
+      "template": "# envoy grpc-web proxy skeleton\n"
+    }
+  ],
+  "patches": []
+}

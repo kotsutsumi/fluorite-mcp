@@ -1,0 +1,18 @@
+{
+  "id": "strike-kyverno-mutate-imagepullpolicy",
+  "name": "Kyverno mutate imagePullPolicy",
+  "stack": [
+    "kyverno",
+    "kubernetes"
+  ],
+  "tags": [
+    "policy"
+  ],
+  "files": [
+    {
+      "path": "kyverno/policy.yaml",
+      "template": "# kyverno mutate skeleton\n"
+    }
+  ],
+  "patches": []
+}

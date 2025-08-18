@@ -1,0 +1,88 @@
+{
+  "items": [
+    { "id": "strike-spring-websocket-stomp", "name": "Spring WebSocket STOMP", "stack": ["java","spring","websocket"], "tags": ["realtime"], "files": [{ "path": "src/main/java/example/WebSocketConfig.java", "template": "// spring websocket stomp skeleton\n" }] },
+    { "id": "strike-spring-graphql-minimal", "name": "Spring GraphQL 最小", "stack": ["java","spring","graphql"], "tags": ["api"], "files": [{ "path": "src/main/resources/schema.graphqls", "template": "type Query { hello: String }\n" }] },
+    { "id": "strike-quarkus-scheduler-cron", "name": "Quarkus Scheduler CRON", "stack": ["java","quarkus"], "tags": ["jobs"], "files": [{ "path": "src/main/java/org/acme/Scheduler.java", "template": "// quarkus scheduler cron skeleton\n" }] },
+    { "id": "strike-micronaut-kafka-serde", "name": "Micronaut Kafka Serde", "stack": ["java","micronaut","kafka"], "tags": ["stream"], "files": [{ "path": "src/main/java/example/KafkaSerde.java", "template": "// micronaut kafka serde skeleton\n" }] },
+    { "id": "strike-vertx-circuit-breaker", "name": "Vert.x Circuit Breaker", "stack": ["java","vertx"], "tags": ["resilience"], "files": [{ "path": "src/main/java/example/Circuit.java", "template": "// vertx circuit breaker skeleton\n" }] },
+
+    { "id": "strike-dotnet-azure-servicebus-processor", "name": ".NET Azure Service Bus Processor", "stack": ["dotnet","azure","servicebus"], "tags": ["queue"], "files": [{ "path": "Program.cs", "template": "// azure service bus processor skeleton\n" }] },
+    { "id": "strike-dotnet-masstransit-rabbitmq", "name": ".NET MassTransit + RabbitMQ", "stack": ["dotnet","masstransit","rabbitmq"], "tags": ["queue"], "files": [{ "path": "Bus/Startup.cs", "template": "// masstransit rabbitmq skeleton\n" }] },
+    { "id": "strike-dotnet-grpc-bidirectional-stream", "name": ".NET gRPC 双方向ストリーム", "stack": ["dotnet","grpc"], "tags": ["rpc","stream"], "files": [{ "path": "Protos/echo.proto", "template": "// grpc bidi stream proto skeleton\n" }] },
+    { "id": "strike-dotnet-orleans-grains-minimal", "name": ".NET Orleans Grains 最小", "stack": ["dotnet","orleans"], "tags": ["actor"], "files": [{ "path": "Grains/HelloGrain.cs", "template": "// orleans grain skeleton\n" }] },
+    { "id": "strike-dotnet-minimal-swagger", "name": ".NET Minimal APIs + Swagger", "stack": ["dotnet","aspnet"], "tags": ["api","docs"], "files": [{ "path": "Program.cs", "template": "// minimal api + swagger skeleton\n" }] },
+
+    { "id": "strike-rails-stimulusreflex-minimal", "name": "Rails StimulusReflex 最小", "stack": ["ruby","rails","stimulusreflex"], "tags": ["realtime"], "files": [{ "path": "app/reflexes/example_reflex.rb", "template": "# stimulusreflex skeleton\n" }] },
+    { "id": "strike-rails-anycable-setup", "name": "Rails AnyCable セットアップ", "stack": ["ruby","rails","anycable"], "tags": ["realtime"], "files": [{ "path": "config/anycable.yml", "template": "# anycable skeleton\n" }] },
+    { "id": "strike-laravel-octane-swoole", "name": "Laravel Octane (Swoole)", "stack": ["php","laravel","octane"], "tags": ["perf"], "files": [{ "path": "config/octane.php", "template": "<?php\n// octane skeleton\n" }] },
+    { "id": "strike-symfony-messenger-redis-stream", "name": "Symfony Messenger Redis Stream", "stack": ["php","symfony","redis"], "tags": ["queue"], "files": [{ "path": "config/packages/messenger.yaml", "template": "# messenger redis stream skeleton\n" }] },
+    { "id": "strike-laravel-scout-algolia", "name": "Laravel Scout + Algolia", "stack": ["php","laravel","algolia"], "tags": ["search"], "files": [{ "path": "config/scout.php", "template": "<?php\n// scout algolia skeleton\n" }] },
+
+    { "id": "strike-elixir-broadway-kafka", "name": "Elixir Broadway Kafka", "stack": ["elixir","broadway","kafka"], "tags": ["stream"], "files": [{ "path": "lib/pipeline.ex", "template": "# broadway kafka skeleton\n" }] },
+    { "id": "strike-phoenix-channels-rate-limit", "name": "Phoenix Channels Rate Limit", "stack": ["elixir","phoenix"], "tags": ["realtime","throttle"], "files": [{ "path": "lib/app_web/channels/user_socket.ex", "template": "# phoenix channels rate limit skeleton\n" }] },
+
+    { "id": "strike-go-watermill-router", "name": "Go Watermill Router", "stack": ["go","watermill"], "tags": ["stream"], "files": [{ "path": "main.go", "template": "// watermill router skeleton\n" }] },
+    { "id": "strike-go-pubsub-ack-extend", "name": "Go GCP Pub/Sub Ack Extend", "stack": ["go","gcp","pubsub"], "tags": ["queue"], "files": [{ "path": "pubsub/main.go", "template": "// pubsub ack extension skeleton\n" }] },
+    { "id": "strike-go-zap-structured-logging", "name": "Go Zap 構造化ログ", "stack": ["go","zap"], "tags": ["logs"], "files": [{ "path": "logging/main.go", "template": "// zap structured logging skeleton\n" }] },
+
+    { "id": "strike-rust-actix-auth-middleware", "name": "Rust Actix 認証ミドルウェア", "stack": ["rust","actix"], "tags": ["auth"], "files": [{ "path": "src/auth.rs", "template": "// actix auth middleware skeleton\n" }] },
+    { "id": "strike-rust-tonic-interceptor", "name": "Rust Tonic Interceptor", "stack": ["rust","tonic"], "tags": ["rpc"], "files": [{ "path": "src/interceptor.rs", "template": "// tonic interceptor skeleton\n" }] },
+    { "id": "strike-rust-rocket-rate-limit", "name": "Rust Rocket Rate Limit", "stack": ["rust","rocket"], "tags": ["throttle"], "files": [{ "path": "src/limits.rs", "template": "// rocket rate limit skeleton\n" }] },
+    { "id": "strike-rust-warp-filters", "name": "Rust Warp Filters", "stack": ["rust","warp"], "tags": ["api"], "files": [{ "path": "src/filters.rs", "template": "// warp filters skeleton\n" }] },
+
+    { "id": "strike-starlette-minimal", "name": "Starlette 最小API", "stack": ["python","starlette"], "tags": ["api"], "files": [{ "path": "app/main.py", "template": "# starlette minimal skeleton\n" }] },
+    { "id": "strike-litestar-minimal", "name": "Litestar 最小API", "stack": ["python","litestar"], "tags": ["api"], "files": [{ "path": "app/main.py", "template": "# litestar minimal skeleton\n" }] },
+    { "id": "strike-celery-chord-group", "name": "Celery Chord + Group", "stack": ["python","celery"], "tags": ["jobs"], "files": [{ "path": "celery.py", "template": "# celery chord+group skeleton\n" }] },
+    { "id": "strike-prefect-subflow-patterns", "name": "Prefect サブフロー", "stack": ["prefect"], "tags": ["orchestration"], "files": [{ "path": "flows/subflows.py", "template": "# prefect subflows skeleton\n" }] },
+    { "id": "strike-dagster-sensor-file-watcher", "name": "Dagster センサ File Watcher", "stack": ["dagster"], "tags": ["data"], "files": [{ "path": "sensors/file.py", "template": "# dagster file sensor skeleton\n" }] },
+    { "id": "strike-airflow-xcom-push-pull", "name": "Airflow XCom push/pull", "stack": ["airflow"], "tags": ["orchestration"], "files": [{ "path": "dags/xcom.py", "template": "# airflow xcom skeleton\n" }] },
+
+    { "id": "strike-spark-window-functions", "name": "Spark Window Functions", "stack": ["spark"], "tags": ["data"], "files": [{ "path": "spark/window.py", "template": "# spark window functions skeleton\n" }] },
+    { "id": "strike-duckdb-parquet-httpfs-cred", "name": "DuckDB Parquet HTTPFS + 認証", "stack": ["duckdb","s3"], "tags": ["data"], "files": [{ "path": "duckdb/httpfs_auth.sql", "template": "-- duckdb httpfs creds skeleton\n" }] },
+    { "id": "strike-trino-presto-query-basic", "name": "Trino/Presto クエリ基本", "stack": ["trino","presto"], "tags": ["sql"], "files": [{ "path": "trino/query.sql", "template": "-- trino query skeleton\n" }] },
+    { "id": "strike-ksqldb-udf-example", "name": "ksqlDB UDF 例", "stack": ["ksqldb"], "tags": ["stream"], "files": [{ "path": "ksql/udf.java", "template": "// ksqldb udf skeleton\n" }] },
+
+    { "id": "strike-vespa-vector-search", "name": "Vespa Vector Search", "stack": ["vespa"], "tags": ["vector","search"], "files": [{ "path": "vespa/schema.sd", "template": "# vespa schema skeleton\n" }] },
+    { "id": "strike-elasticsearch-knn-dense-vector", "name": "Elasticsearch kNN Dense Vector", "stack": ["elasticsearch"], "tags": ["vector"], "files": [{ "path": "es/mapping.json", "template": "{ }\n" }] },
+    { "id": "strike-redisearch-vector-similarity", "name": "RediSearch Vector Similarity", "stack": ["redis","redisearch"], "tags": ["vector"], "files": [{ "path": "redis/vector.md", "template": "# redis vector similarity skeleton\n" }] },
+
+    { "id": "strike-otel-collector-logs-to-loki", "name": "OTel Collector Logs→Loki", "stack": ["opentelemetry","loki"], "tags": ["observability"], "files": [{ "path": "otel/collector-logs-loki.yaml", "template": "receivers: {}\n" }] },
+    { "id": "strike-promtail-scrape-config", "name": "Promtail Scrape Config", "stack": ["promtail"], "tags": ["observability"], "files": [{ "path": "promtail/config.yaml", "template": "# promtail config skeleton\n" }] },
+    { "id": "strike-tempo-s3-blocks-storage", "name": "Tempo S3 Blocks Storage", "stack": ["tempo"], "tags": ["observability"], "files": [{ "path": "tempo/storage.yaml", "template": "# tempo blocks storage skeleton\n" }] },
+    { "id": "strike-grafana-alerting-contact-points", "name": "Grafana Alerting ContactPoints", "stack": ["grafana"], "tags": ["observability"], "files": [{ "path": "grafana/contact_points.yaml", "template": "# grafana contact points skeleton\n" }] },
+    { "id": "strike-keda-prometheus-scaler", "name": "KEDA Prometheus Scaler", "stack": ["keda","prometheus"], "tags": ["autoscale"], "files": [{ "path": "k8s/keda-prom.yaml", "template": "# keda prometheus scaler skeleton\n" }] },
+
+    { "id": "strike-security-jwt-jti-blacklist", "name": "JWT JTI ブラックリスト", "stack": ["security","jwt","redis"], "tags": ["auth"], "files": [{ "path": "security/jti.md", "template": "# jwt jti blacklist skeleton\n" }] },
+    { "id": "strike-security-totp-2fa-node", "name": "TOTP 2FA (Node)", "stack": ["node","security","totp"], "tags": ["auth"], "files": [{ "path": "security/totp.ts", "template": "// totp 2fa skeleton\n" }] },
+    { "id": "strike-keycloak-fine-grained-authz", "name": "Keycloak 細粒度AuthZ", "stack": ["keycloak"], "tags": ["authz"], "files": [{ "path": "keycloak/permission.json", "template": "{ }\n" }] },
+    { "id": "strike-oauth-device-code-flow", "name": "OAuth Device Code Flow", "stack": ["oauth2"], "tags": ["auth"], "files": [{ "path": "oauth/device_code.md", "template": "# device code flow skeleton\n" }] },
+    { "id": "strike-nginx-mtls-client-verify", "name": "Nginx mTLS Client Verify", "stack": ["nginx","mtls"], "tags": ["security"], "files": [{ "path": "nginx/mtls.conf", "template": "# nginx mtls client verify skeleton\n" }] },
+
+    { "id": "strike-k8s-cronjob-timezone", "name": "K8s CronJob タイムゾーン", "stack": ["kubernetes"], "tags": ["jobs"], "files": [{ "path": "k8s/cronjob.yaml", "template": "# cronjob tz skeleton\n" }] },
+    { "id": "strike-karpenter-consolidation", "name": "Karpenter Consolidation", "stack": ["karpenter","kubernetes"], "tags": ["autoscale","cost"], "files": [{ "path": "k8s/consolidation.yaml", "template": "# karpenter consolidation skeleton\n" }] },
+    { "id": "strike-cluster-autoscaler-config", "name": "Cluster Autoscaler Config", "stack": ["kubernetes"], "tags": ["autoscale"], "files": [{ "path": "k8s/cluster-autoscaler.yaml", "template": "# cluster autoscaler skeleton\n" }] },
+    { "id": "strike-bitnami-sealed-secrets", "name": "Bitnami Sealed Secrets", "stack": ["kubernetes","sealed-secrets"], "tags": ["secrets"], "files": [{ "path": "k8s/sealed-secret.yaml", "template": "# sealed secrets skeleton\n" }] },
+    { "id": "strike-external-secrets-operator", "name": "External Secrets Operator", "stack": ["kubernetes","external-secrets"], "tags": ["secrets"], "files": [{ "path": "k8s/external-secrets.yaml", "template": "# external secrets operator skeleton\n" }] },
+
+    { "id": "strike-mqtt-ws-bridge-node", "name": "MQTT→WebSocket ブリッジ(Node)", "stack": ["node","mqtt","websocket"], "tags": ["bridge"], "files": [{ "path": "bridge/index.js", "template": "// mqtt to ws bridge skeleton\n" }] },
+    { "id": "strike-nats-streaming-to-jetstream", "name": "NATS Streaming→JetStream 移行", "stack": ["nats","jetstream"], "tags": ["migration"], "files": [{ "path": "nats/migration.md", "template": "# stan to jetstream migration skeleton\n" }] },
+    { "id": "strike-kafka-transactional-producer", "name": "Kafka Transactional Producer", "stack": ["kafka"], "tags": ["stream","tx"], "files": [{ "path": "kafka/tx-producer.java", "template": "// kafka transactional producer skeleton\n" }] },
+
+    { "id": "strike-mongodb-change-streams", "name": "MongoDB Change Streams", "stack": ["mongodb"], "tags": ["events"], "files": [{ "path": "mongo/change_stream.js", "template": "// mongodb change streams skeleton\n" }] },
+    { "id": "strike-node-pg-notify-listen", "name": "Node pg LISTEN/NOTIFY", "stack": ["node","postgres"], "tags": ["events"], "files": [{ "path": "pg/notify.js", "template": "// node pg listen/notify skeleton\n" }] },
+    { "id": "strike-clickhouse-dictionary-http", "name": "ClickHouse HTTP Dictionary", "stack": ["clickhouse"], "tags": ["db"], "files": [{ "path": "clickhouse/dictionary.xml", "template": "<!-- http dictionary skeleton -->\n" }] },
+
+    { "id": "strike-typesense-stop-words", "name": "Typesense Stop-Words", "stack": ["typesense"], "tags": ["search"], "files": [{ "path": "typesense/stop_words.json", "template": "{ }\n" }] },
+    { "id": "strike-meilisearch-sortable-filterable", "name": "Meilisearch ソート/フィルタ設定", "stack": ["meilisearch"], "tags": ["search"], "files": [{ "path": "meili/sort_filter.json", "template": "{ }\n" }] },
+    { "id": "strike-opensearch-knn-mapping", "name": "OpenSearch k-NN Mapping", "stack": ["opensearch"], "tags": ["vector"], "files": [{ "path": "os/knn.json", "template": "{ }\n" }] },
+
+    { "id": "strike-argorollouts-prom-metric-analysis", "name": "Argo Rollouts Prom Metric 分析", "stack": ["argo-rollouts","prometheus"], "tags": ["canary"], "files": [{ "path": "k8s/analysis.yaml", "template": "# argo analysis template skeleton\n" }] },
+    { "id": "strike-gh-actions-reusable-npm-publish", "name": "GH Actions 再利用 npm publish", "stack": ["github","actions","npm"], "tags": ["ci","release"], "files": [{ "path": ".github/workflows/npm-publish.yml", "template": "name: NpmPublish\non: workflow_call\n" }] },
+    { "id": "strike-circleci-tests-split-by-timing", "name": "CircleCI テスト時間分割", "stack": ["circleci"], "tags": ["ci"], "files": [{ "path": ".circleci/config.yml", "template": "# circleci timing split skeleton\n" }] },
+    { "id": "strike-gitlab-include-parent-child", "name": "GitLab Include Parent/Child", "stack": ["gitlab","ci"], "tags": ["ci"], "files": [{ "path": ".gitlab-ci.yml", "template": "# gitlab include parent/child skeleton\n" }] },
+
+    { "id": "strike-vercel-og-image-function", "name": "Vercel OG Image 関数", "stack": ["vercel"], "tags": ["edge","image"], "files": [{ "path": "api/og/route.ts", "template": "// vercel og image route skeleton\n" }] },
+    { "id": "strike-netlify-scheduled-functions", "name": "Netlify Scheduled Functions", "stack": ["netlify"], "tags": ["serverless","schedule"], "files": [{ "path": "netlify/functions/scheduled.ts", "template": "// netlify scheduled function skeleton\n" }] }
+  ]
+}
+

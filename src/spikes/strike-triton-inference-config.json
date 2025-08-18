@@ -1,0 +1,18 @@
+{
+  "id": "strike-triton-inference-config",
+  "name": "NVIDIA Triton Inference Config",
+  "stack": [
+    "triton"
+  ],
+  "tags": [
+    "ml",
+    "serve"
+  ],
+  "files": [
+    {
+      "path": "models/config.pbtxt",
+      "template": "# triton model config skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-gh-actions-codeowners-enforce",
+  "name": "GH Actions CODEOWNERS 強制",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "policy"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/codeowners.yml",
+      "template": "name: Codeowners\non: [pull_request]\n"
+    }
+  ],
+  "patches": []
+}

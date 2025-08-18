@@ -1,0 +1,17 @@
+{
+  "id": "strike-kong-declarative-config",
+  "name": "Kong 宣言的設定",
+  "stack": [
+    "kong"
+  ],
+  "tags": [
+    "gateway"
+  ],
+  "files": [
+    {
+      "path": "kong/kong.yml",
+      "template": "_format_version: '3.0'\n"
+    }
+  ],
+  "patches": []
+}

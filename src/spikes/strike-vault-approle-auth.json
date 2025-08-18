@@ -1,0 +1,17 @@
+{
+  "id": "strike-vault-approle-auth",
+  "name": "Vault AppRole 認証",
+  "stack": [
+    "vault"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "vault/approle.hcl",
+      "template": "# vault approle skeleton\n"
+    }
+  ],
+  "patches": []
+}

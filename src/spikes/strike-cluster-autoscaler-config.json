@@ -1,0 +1,17 @@
+{
+  "id": "strike-cluster-autoscaler-config",
+  "name": "Cluster Autoscaler Config",
+  "stack": [
+    "kubernetes"
+  ],
+  "tags": [
+    "autoscale"
+  ],
+  "files": [
+    {
+      "path": "k8s/cluster-autoscaler.yaml",
+      "template": "# cluster autoscaler skeleton\n"
+    }
+  ],
+  "patches": []
+}

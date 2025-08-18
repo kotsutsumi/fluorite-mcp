@@ -1,0 +1,18 @@
+{
+  "id": "strike-yugabytedb-geo-partition",
+  "name": "YugabyteDB Geo-Partition",
+  "stack": [
+    "yugabyte"
+  ],
+  "tags": [
+    "db",
+    "geo"
+  ],
+  "files": [
+    {
+      "path": "yuga/geo.sql",
+      "template": "-- yugabyte geo partition skeleton\n"
+    }
+  ],
+  "patches": []
+}

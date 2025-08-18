@@ -1,0 +1,18 @@
+{
+  "id": "strike-linkerd-multicluster-gateway",
+  "name": "Linkerd Multi-cluster Gateway",
+  "stack": [
+    "linkerd",
+    "kubernetes"
+  ],
+  "tags": [
+    "mesh"
+  ],
+  "files": [
+    {
+      "path": "k8s/multicluster.yaml",
+      "template": "# linkerd multicluster skeleton\n"
+    }
+  ],
+  "patches": []
+}

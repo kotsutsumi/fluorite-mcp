@@ -1,0 +1,19 @@
+{
+  "id": "strike-keda-aws-sqs-scaler",
+  "name": "KEDA AWS SQS Scaler",
+  "stack": [
+    "keda",
+    "aws",
+    "sqs"
+  ],
+  "tags": [
+    "autoscale"
+  ],
+  "files": [
+    {
+      "path": "k8s/scaledobject.yaml",
+      "template": "# keda sqs scaler skeleton\n"
+    }
+  ],
+  "patches": []
+}

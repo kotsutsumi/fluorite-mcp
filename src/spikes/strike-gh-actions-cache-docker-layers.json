@@ -1,0 +1,19 @@
+{
+  "id": "strike-gh-actions-cache-docker-layers",
+  "name": "GH Actions Dockerレイヤーキャッシュ",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci",
+    "build"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/docker-cache.yml",
+      "template": "name: DockerCache\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

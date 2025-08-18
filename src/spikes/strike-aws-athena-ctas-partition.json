@@ -1,0 +1,18 @@
+{
+  "id": "strike-aws-athena-ctas-partition",
+  "name": "Athena CTAS Partition",
+  "stack": [
+    "aws",
+    "athena"
+  ],
+  "tags": [
+    "sql"
+  ],
+  "files": [
+    {
+      "path": "athena/ctas.sql",
+      "template": "-- athena ctas partition skeleton\n"
+    }
+  ],
+  "patches": []
+}

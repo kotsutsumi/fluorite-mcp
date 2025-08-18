@@ -1,0 +1,18 @@
+{
+  "id": "strike-github-actions-matrix-cache",
+  "name": "GH Actions マトリクス+キャッシュ",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/cache.yml",
+      "template": "name: Cache\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

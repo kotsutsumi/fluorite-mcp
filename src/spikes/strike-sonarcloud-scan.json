@@ -1,0 +1,17 @@
+{
+  "id": "strike-sonarcloud-scan",
+  "name": "SonarCloud Scan",
+  "stack": [
+    "sonarcloud"
+  ],
+  "tags": [
+    "quality"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/sonar.yml",
+      "template": "name: Sonar\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

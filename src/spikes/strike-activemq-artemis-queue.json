@@ -1,0 +1,18 @@
+{
+  "id": "strike-activemq-artemis-queue",
+  "name": "ActiveMQ Artemis Queue",
+  "stack": [
+    "activemq",
+    "artemis"
+  ],
+  "tags": [
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "artemis/broker.xml",
+      "template": "<!-- artemis queue skeleton -->\n"
+    }
+  ],
+  "patches": []
+}

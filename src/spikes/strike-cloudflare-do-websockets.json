@@ -1,0 +1,18 @@
+{
+  "id": "strike-cloudflare-do-websockets",
+  "name": "Cloudflare DO WebSockets",
+  "stack": [
+    "cloudflare",
+    "durable-objects"
+  ],
+  "tags": [
+    "realtime"
+  ],
+  "files": [
+    {
+      "path": "src/worker.ts",
+      "template": "// durable objects websockets skeleton\n"
+    }
+  ],
+  "patches": []
+}

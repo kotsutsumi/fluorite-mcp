@@ -2,11 +2,13 @@
   "id": "strike-airflow-kubernetes-pod-operator",
   "name": "Airflow KubernetesPodOperator",
   "stack": [
-    "airflow"
+    "airflow",
+    "kubernetes"
   ],
   "tags": [
     "data",
-    "k8s"
+    "k8s",
+    "orchestration"
   ],
   "files": [
     {
@@ -14,5 +16,6 @@
       "template": "# KubernetesPodOperator skeleton\n"
     }
   ],
-  "patches": []
+  "patches": [],
+  "params": []
 }

@@ -1,0 +1,19 @@
+{
+  "id": "strike-dynamodb-streams-lambda",
+  "name": "DynamoDB Streams→Lambda",
+  "stack": [
+    "aws",
+    "dynamodb",
+    "lambda"
+  ],
+  "tags": [
+    "events"
+  ],
+  "files": [
+    {
+      "path": "infra/ddb_streams.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

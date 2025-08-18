@@ -1,0 +1,18 @@
+{
+  "id": "strike-sops-kms-decrypt-ci",
+  "name": "SOPS KMS Decrypt in CI",
+  "stack": [
+    "sops",
+    "ci"
+  ],
+  "tags": [
+    "secrets"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/sops.yml",
+      "template": "name: SOPS\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

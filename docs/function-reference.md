@@ -107,8 +107,8 @@ name: My Custom Library
 version: 1.0.0
 description: A custom library for specialized functionality
 category: custom-tools
-homepage: https://mycustomlibrary.dev
-repository: https://github.com/myorg/my-custom-library
+homepage: # ライブラリのホームページURL
+repository: # GitリポジトリURL
 language: TypeScript
 
 features:

@@ -1,0 +1,17 @@
+{
+  "id": "strike-drone-ci-pipeline",
+  "name": "Drone CI Pipeline",
+  "stack": [
+    "drone"
+  ],
+  "tags": [
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".drone.yml",
+      "template": "# drone pipeline skeleton\n"
+    }
+  ],
+  "patches": []
+}

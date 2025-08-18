@@ -1,0 +1,19 @@
+{
+  "id": "strike-symfony-messenger-redis-stream",
+  "name": "Symfony Messenger Redis Stream",
+  "stack": [
+    "php",
+    "symfony",
+    "redis"
+  ],
+  "tags": [
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "config/packages/messenger.yaml",
+      "template": "# messenger redis stream skeleton\n"
+    }
+  ],
+  "patches": []
+}

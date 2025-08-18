@@ -1,0 +1,19 @@
+{
+  "id": "strike-terraform-aws-ecs-fargate",
+  "name": "Terraform AWS ECS Fargate",
+  "stack": [
+    "terraform",
+    "aws",
+    "ecs"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "terraform/main.tf",
+      "template": "# ecs fargate skeleton\n"
+    }
+  ],
+  "patches": []
+}

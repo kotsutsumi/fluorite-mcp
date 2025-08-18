@@ -1,0 +1,17 @@
+{
+  "id": "strike-prometheus-relabel-config",
+  "name": "Prometheus Relabel Config",
+  "stack": [
+    "prometheus"
+  ],
+  "tags": [
+    "observability"
+  ],
+  "files": [
+    {
+      "path": "prometheus/relabel.yml",
+      "template": "# relabel config skeleton\n"
+    }
+  ],
+  "patches": []
+}

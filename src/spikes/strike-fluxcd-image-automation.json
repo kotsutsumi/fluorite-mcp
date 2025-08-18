@@ -1,0 +1,18 @@
+{
+  "id": "strike-fluxcd-image-automation",
+  "name": "FluxCD Image Automation",
+  "stack": [
+    "fluxcd",
+    "kubernetes"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/image-automation.yaml",
+      "template": "# fluxcd image automation skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-fluxcd-kustomize-patches",
+  "name": "FluxCD Kustomize Patches",
+  "stack": [
+    "fluxcd",
+    "kustomize"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "clusters/patches.yaml",
+      "template": "# fluxcd patches skeleton\n"
+    }
+  ],
+  "patches": []
+}

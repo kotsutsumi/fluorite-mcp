@@ -1,0 +1,74 @@
+{
+  "items": [
+    { "id": "strike-spring-outbox-kafka-producer", "name": "Spring Outbox → Kafka Producer", "stack": ["java","spring","kafka"], "tags": ["outbox","event"], "files": [{ "path": "src/main/java/example/outbox/Publisher.java", "template": "// spring outbox -> kafka publisher skeleton\n" }] },
+    { "id": "strike-spring-saga-orchestrator", "name": "Spring Saga Orchestrator", "stack": ["java","spring"], "tags": ["saga","workflow"], "files": [{ "path": "src/main/java/example/saga/Orchestrator.java", "template": "// saga orchestrator skeleton\n" }] },
+    { "id": "strike-quarkus-kafka-consumer-outbox", "name": "Quarkus Kafka Consumer Outbox", "stack": ["java","quarkus","kafka"], "tags": ["outbox","consumer"], "files": [{ "path": "src/main/java/org/acme/outbox/Consumer.java", "template": "// quarkus kafka consumer outbox skeleton\n" }] },
+    { "id": "strike-micronaut-rabbitmq-retry-dlx", "name": "Micronaut RabbitMQ Retry + DLX", "stack": ["java","micronaut","rabbitmq"], "tags": ["queue","retry"], "files": [{ "path": "src/main/java/example/rabbit/Config.java", "template": "// rabbitmq retry + DLX skeleton\n" }] },
+    { "id": "strike-vertx-kafka-streams-microservice", "name": "Vert.x Kafka Streams Microservice", "stack": ["java","vertx","kstreams"], "tags": ["stream"], "files": [{ "path": "src/main/java/example/Streams.java", "template": "// vertx with kafka streams skeleton\n" }] },
+
+    { "id": "strike-dotnet-efcore-outbox-consumer", "name": ".NET EFCore Outbox Consumer", "stack": ["dotnet","efcore","kafka"], "tags": ["outbox","consumer"], "files": [{ "path": "Workers/OutboxConsumer.cs", "template": "// efcore outbox consumer skeleton\n" }] },
+    { "id": "strike-dotnet-hangfire-jobs-dashboard", "name": ".NET Hangfire Jobs + Dashboard", "stack": ["dotnet","hangfire"], "tags": ["jobs"], "files": [{ "path": "Program.cs", "template": "// hangfire jobs + dashboard skeleton\n" }] },
+    { "id": "strike-dotnet-identity-jwt-rotation", "name": ".NET Identity JWT Rotation", "stack": ["dotnet","aspnet","jwt"], "tags": ["auth"], "files": [{ "path": "Auth/JwtService.cs", "template": "// jwt rotation skeleton\n" }] },
+    { "id": "strike-dotnet-serilog-otel-exporter", "name": ".NET Serilog → OTel Exporter", "stack": ["dotnet","serilog","opentelemetry"], "tags": ["observability"], "files": [{ "path": "Program.cs", "template": "// serilog -> otel exporter skeleton\n" }] },
+
+    { "id": "strike-rails-actioncable-redis-streams", "name": "Rails ActionCable + Redis Streams", "stack": ["ruby","rails","redis"], "tags": ["realtime"], "files": [{ "path": "app/channels/chat_channel.rb", "template": "# actioncable + redis streams skeleton\n" }] },
+    { "id": "strike-rails-sidekiq-reliable-queue", "name": "Rails Sidekiq Reliable Queue", "stack": ["ruby","rails","sidekiq"], "tags": ["jobs","reliability"], "files": [{ "path": "config/sidekiq.yml", "template": "# sidekiq reliable queue skeleton\n" }] },
+    { "id": "strike-laravel-horizon-queues", "name": "Laravel Horizon Queues", "stack": ["php","laravel","horizon"], "tags": ["jobs","monitor"], "files": [{ "path": "config/horizon.php", "template": "<?php\n// horizon queues skeleton\n" }] },
+    { "id": "strike-laravel-broadcast-redis", "name": "Laravel Broadcast (Redis)", "stack": ["php","laravel","redis"], "tags": ["realtime"], "files": [{ "path": "routes/channels.php", "template": "<?php\n// broadcast channels skeleton\n" }] },
+    { "id": "strike-symfony-messenger-sqs-retry", "name": "Symfony Messenger + SQS Retry", "stack": ["php","symfony","sqs"], "tags": ["queue","retry"], "files": [{ "path": "config/packages/messenger.yaml", "template": "# messenger sqs retry skeleton\n" }] },
+
+    { "id": "strike-phoenix-liveview-presence-tracking", "name": "Phoenix LiveView Presence Tracking", "stack": ["elixir","phoenix","liveview"], "tags": ["realtime"], "files": [{ "path": "lib/app_web/live/presence_live.ex", "template": "# liveview presence skeleton\n" }] },
+    { "id": "strike-phoenix-telemetry-otel", "name": "Phoenix Telemetry + OTel", "stack": ["elixir","phoenix","opentelemetry"], "tags": ["observability"], "files": [{ "path": "config/runtime.exs", "template": "# phoenix otel telemetry skeleton\n" }] },
+
+    { "id": "strike-go-echo-otel-metrics-traces", "name": "Go Echo OTel Metrics + Traces", "stack": ["go","echo","opentelemetry"], "tags": ["observability"], "files": [{ "path": "main.go", "template": "// echo otel metrics + traces skeleton\n" }] },
+    { "id": "strike-go-chi-rate-limit-redis", "name": "Go chi Rate Limit (Redis)", "stack": ["go","chi","redis"], "tags": ["throttle"], "files": [{ "path": "main.go", "template": "// chi redis rate limit skeleton\n" }] },
+    { "id": "strike-go-grpc-microservice-health", "name": "Go gRPC Microservice Health", "stack": ["go","grpc"], "tags": ["rpc","health"], "files": [{ "path": "server/main.go", "template": "// grpc health skeleton\n" }] },
+    { "id": "strike-go-kafka-sarama-consumer-group", "name": "Go Sarama Consumer Group", "stack": ["go","kafka","sarama"], "tags": ["stream"], "files": [{ "path": "kafka/consumer.go", "template": "// sarama consumer group skeleton\n" }] },
+
+    { "id": "strike-rust-tonic-client-retry", "name": "Rust tonic Client + Retry", "stack": ["rust","tonic","grpc"], "tags": ["rpc","resilience"], "files": [{ "path": "src/client.rs", "template": "// tonic client with retry skeleton\n" }] },
+    { "id": "strike-rust-axum-sse-stream", "name": "Rust Axum SSE Stream", "stack": ["rust","axum"], "tags": ["sse"], "files": [{ "path": "src/sse.rs", "template": "// axum sse stream skeleton\n" }] },
+    { "id": "strike-rust-sqlx-outbox-processor", "name": "Rust SQLx Outbox Processor", "stack": ["rust","sqlx","postgres"], "tags": ["outbox"], "files": [{ "path": "src/outbox.rs", "template": "// sqlx outbox processor skeleton\n" }] },
+    { "id": "strike-rust-tracing-json-structured", "name": "Rust tracing JSON Structured", "stack": ["rust","tracing"], "tags": ["logs"], "files": [{ "path": "src/logging.rs", "template": "// tracing json structured logs skeleton\n" }] },
+
+    { "id": "strike-fastapi-jwt-rotation-redis", "name": "FastAPI JWT Rotation + Redis", "stack": ["python","fastapi","jwt","redis"], "tags": ["auth"], "files": [{ "path": "app/auth.py", "template": "# jwt rotation with redis skeleton\n" }] },
+    { "id": "strike-fastapi-cache-redis-ttl", "name": "FastAPI Cache (Redis TTL)", "stack": ["python","fastapi","redis"], "tags": ["cache"], "files": [{ "path": "app/cache.py", "template": "# cache with redis ttl skeleton\n" }] },
+    { "id": "strike-fastapi-rate-limit-slowapi", "name": "FastAPI Rate Limit (slowapi)", "stack": ["python","fastapi"], "tags": ["throttle"], "files": [{ "path": "app/limit.py", "template": "# slowapi rate limit skeleton\n" }] },
+    { "id": "strike-flask-circuitbreaker", "name": "Flask Circuit Breaker", "stack": ["python","flask"], "tags": ["resilience"], "files": [{ "path": "app/circuit.py", "template": "# flask circuit breaker skeleton\n" }] },
+
+    { "id": "strike-pyspark-structured-streaming-kafka", "name": "PySpark Structured Streaming Kafka", "stack": ["python","pyspark","kafka"], "tags": ["stream"], "files": [{ "path": "spark/stream.py", "template": "# pyspark structured streaming kafka skeleton\n" }] },
+    { "id": "strike-flink-datastream-minimal", "name": "Apache Flink DataStream Minimal", "stack": ["flink","java"], "tags": ["stream"], "files": [{ "path": "src/main/java/example/FlinkApp.java", "template": "// flink datastream skeleton\n" }] },
+    { "id": "strike-ksqldb-stream-table-join", "name": "ksqlDB Stream-Table Join", "stack": ["ksqldb","kafka"], "tags": ["stream"], "files": [{ "path": "ksql/queries.sql", "template": "-- ksqldb stream-table join skeleton\n" }] },
+    { "id": "strike-airbyte-python-connector-skeleton", "name": "Airbyte Python Connector Skeleton", "stack": ["airbyte","python"], "tags": ["connector"], "files": [{ "path": "source/__init__.py", "template": "# airbyte connector skeleton\n" }] },
+
+    { "id": "strike-dbt-seeds-snapshots", "name": "dbt Seeds + Snapshots", "stack": ["dbt"], "tags": ["sql"], "files": [{ "path": "snapshots/snapshots.sql", "template": "-- dbt snapshot skeleton\n" }] },
+    { "id": "strike-dagster-multi-asset-deps", "name": "Dagster Multi-Asset Dependencies", "stack": ["dagster"], "tags": ["data"], "files": [{ "path": "assets/multi.py", "template": "# dagster multi-asset deps skeleton\n" }] },
+    { "id": "strike-prefect-result-persistence-s3", "name": "Prefect Result Persistence (S3)", "stack": ["prefect","s3"], "tags": ["orchestration"], "files": [{ "path": "flows/result_s3.py", "template": "# prefect result persistence skeleton\n" }] },
+    { "id": "strike-great-expectations-checkpoint", "name": "Great Expectations Checkpoint", "stack": ["python","great-expectations"], "tags": ["dq"], "files": [{ "path": "gx/checkpoint.yml", "template": "# gx checkpoint skeleton\n" }] },
+
+    { "id": "strike-langchain-multi-vector-stores", "name": "LangChain Multi Vector Stores", "stack": ["python","langchain"], "tags": ["rag"], "files": [{ "path": "rag/multi_store.py", "template": "# langchain multi vector stores skeleton\n" }] },
+    { "id": "strike-llamaindex-router-retrievers", "name": "LlamaIndex Router Retrievers", "stack": ["python","llamaindex"], "tags": ["rag"], "files": [{ "path": "rag/router.py", "template": "# llamaindex router retrievers skeleton\n" }] },
+    { "id": "strike-openai-structured-output-jsonschema", "name": "OpenAI Structured Output (JSON Schema)", "stack": ["python","openai"], "tags": ["ml"], "files": [{ "path": "ai/structured.py", "template": "# openai structured output skeleton\n" }] },
+    { "id": "strike-guardrails-prompt-robustness", "name": "Guardrails Prompt Robustness", "stack": ["python","guardrails"], "tags": ["ml","validation"], "files": [{ "path": "ai/guardrails_prompt.py", "template": "# guardrails prompt robustness skeleton\n" }] },
+
+    { "id": "strike-chromadb-segmented-ingestion", "name": "ChromaDB Segmented Ingestion", "stack": ["chromadb"], "tags": ["vector"], "files": [{ "path": "chroma/ingest.py", "template": "# chroma segmented ingestion skeleton\n" }] },
+    { "id": "strike-qdrant-hnsw-params", "name": "Qdrant HNSW Params", "stack": ["qdrant"], "tags": ["vector"], "files": [{ "path": "qdrant/hnsw.json", "template": "{ }\n" }] },
+    { "id": "strike-weaviate-near-text-rerank", "name": "Weaviate nearText + Rerank", "stack": ["weaviate"], "tags": ["vector"], "files": [{ "path": "weaviate/near_text.json", "template": "{ }\n" }] },
+    { "id": "strike-milvus-ilogic-partitioning", "name": "Milvus Intelligent Partitioning", "stack": ["milvus"], "tags": ["vector"], "files": [{ "path": "milvus/partitioning.py", "template": "# milvus intelligent partitioning skeleton\n" }] },
+
+    { "id": "strike-otel-end-to-end-node-go", "name": "OTel E2E Node↔Go", "stack": ["opentelemetry","node","go"], "tags": ["observability"], "files": [{ "path": "otel/notes.md", "template": "# otel end-to-end cross-lang skeleton\n" }] },
+    { "id": "strike-otel-propagators-w3c-b3", "name": "OTel Propagators (w3c + b3)", "stack": ["opentelemetry"], "tags": ["observability"], "files": [{ "path": "otel/propagators.md", "template": "# otel propagators config skeleton\n" }] },
+    { "id": "strike-tempo-metrics-generator", "name": "Tempo Metrics Generator", "stack": ["tempo","grafana"], "tags": ["observability"], "files": [{ "path": "tempo/generator.yaml", "template": "# tempo metrics generator skeleton\n" }] },
+    { "id": "strike-loki-stream-label-bestpractices", "name": "Loki Stream Label Best Practices", "stack": ["loki"], "tags": ["logs"], "files": [{ "path": "loki/labels.md", "template": "# loki labels best practices skeleton\n" }] },
+
+    { "id": "strike-opa-gatekeeper-policies-library", "name": "OPA Gatekeeper Policies Library", "stack": ["opa","gatekeeper","kubernetes"], "tags": ["policy"], "files": [{ "path": "k8s/gatekeeper/policies.yaml", "template": "# gatekeeper policies library skeleton\n" }] },
+    { "id": "strike-slsa-levels-hardening", "name": "SLSA Levels Hardening", "stack": ["slsa","github"], "tags": ["supply-chain"], "files": [{ "path": ".github/workflows/slsa-harden.yml", "template": "name: SLSA-Harden\non: [push]\n" }] },
+    { "id": "strike-sigstore-verify-policy-controller", "name": "Sigstore Policy Controller Verify", "stack": ["sigstore","kubernetes"], "tags": ["supply-chain"], "files": [{ "path": "k8s/policy-controller.yaml", "template": "# sigstore policy controller skeleton\n" }] },
+    { "id": "strike-conftest-helm-chart-ci", "name": "Conftest Helm Chart CI", "stack": ["conftest","helm"], "tags": ["policy","ci"], "files": [{ "path": ".github/workflows/conftest-helm.yml", "template": "name: Conftest-Helm\non: [push]\n" }] },
+
+    { "id": "strike-github-actions-cdk-deploy", "name": "GitHub Actions CDK Deploy", "stack": ["github","cdk","aws"], "tags": ["ci","deploy"], "files": [{ "path": ".github/workflows/cdk.yml", "template": "name: CDK\non: [push]\n" }] },
+    { "id": "strike-argocd-app-of-apps", "name": "ArgoCD App of Apps", "stack": ["argocd","kubernetes"], "tags": ["gitops"], "files": [{ "path": "k8s/app-of-apps.yaml", "template": "# argocd app of apps skeleton\n" }] },
+    { "id": "strike-fluxcd-image-automation", "name": "FluxCD Image Automation", "stack": ["fluxcd","kubernetes"], "tags": ["gitops"], "files": [{ "path": "k8s/image-automation.yaml", "template": "# fluxcd image automation skeleton\n" }] },
+    { "id": "strike-tekton-pipeline-triggers", "name": "Tekton Pipeline + Triggers", "stack": ["tekton","kubernetes"], "tags": ["ci"], "files": [{ "path": "k8s/tekton.yaml", "template": "# tekton pipelines skeleton\n" }] }
+  ]
+}
+

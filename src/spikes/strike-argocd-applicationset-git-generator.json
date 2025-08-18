@@ -1,0 +1,18 @@
+{
+  "id": "strike-argocd-applicationset-git-generator",
+  "name": "ArgoCD ApplicationSet Git Generator",
+  "stack": [
+    "argocd",
+    "kubernetes"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/applicationset.yaml",
+      "template": "# appset git generator skeleton\n"
+    }
+  ],
+  "patches": []
+}

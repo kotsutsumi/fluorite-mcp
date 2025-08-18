@@ -1,0 +1,18 @@
+{
+  "id": "strike-minio-bucket-notify-nats",
+  "name": "MinIO Bucket → NATS 通知",
+  "stack": [
+    "minio",
+    "nats"
+  ],
+  "tags": [
+    "events"
+  ],
+  "files": [
+    {
+      "path": "minio/notify.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

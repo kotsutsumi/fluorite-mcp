@@ -1,0 +1,18 @@
+{
+  "id": "strike-victoriametrics-remote-write",
+  "name": "VictoriaMetrics Remote Write",
+  "stack": [
+    "victoriametrics",
+    "prometheus"
+  ],
+  "tags": [
+    "observability"
+  ],
+  "files": [
+    {
+      "path": "vm/remote_write.yml",
+      "template": "# victoriametrics remote write skeleton\n"
+    }
+  ],
+  "patches": []
+}

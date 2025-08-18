@@ -1,0 +1,17 @@
+{
+  "id": "strike-boundary-session-broker",
+  "name": "HashiCorp Boundary Session",
+  "stack": [
+    "boundary"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "boundary/config.hcl",
+      "template": "# boundary session skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-argocd-app-of-apps",
+  "name": "ArgoCD App of Apps",
+  "stack": [
+    "argocd",
+    "kubernetes"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/app-of-apps.yaml",
+      "template": "# argocd app of apps skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,19 @@
+{
+  "id": "strike-otel-collector-kafka-pipeline",
+  "name": "OTel Collector Kafka Pipeline",
+  "stack": [
+    "opentelemetry",
+    "collector",
+    "kafka"
+  ],
+  "tags": [
+    "observability"
+  ],
+  "files": [
+    {
+      "path": "otel/kafka-pipeline.yaml",
+      "template": "# otel collector kafka pipeline skeleton\n"
+    }
+  ],
+  "patches": []
+}

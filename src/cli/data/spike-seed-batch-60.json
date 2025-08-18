@@ -1,0 +1,84 @@
+{
+  "items": [
+    { "id": "strike-react-native-expo-minimal", "name": "React Native Expo 最小", "stack": ["react-native","expo"], "tags": ["mobile"], "files": [{ "path": "App.tsx", "template": "// expo minimal skeleton\n" }] },
+    { "id": "strike-react-native-push-notifications", "name": "React Native Push通知", "stack": ["react-native"], "tags": ["mobile","notifications"], "files": [{ "path": "src/notifications.ts", "template": "// rn push notifications skeleton\n" }] },
+    { "id": "strike-flutter-http-client", "name": "Flutter HTTP Client", "stack": ["flutter","dart"], "tags": ["mobile","http"], "files": [{ "path": "lib/http.dart", "template": "// flutter http client skeleton\n" }] },
+    { "id": "strike-android-kotlin-retrofit", "name": "Android Kotlin Retrofit", "stack": ["android","kotlin"], "tags": ["mobile","http"], "files": [{ "path": "app/src/main/java/example/Api.kt", "template": "// retrofit client skeleton\n" }] },
+    { "id": "strike-ios-swift-urlsession", "name": "iOS Swift URLSession", "stack": ["ios","swift"], "tags": ["mobile","http"], "files": [{ "path": "App/Network.swift", "template": "// urlsession skeleton\n" }] },
+    { "id": "strike-swiftui-keychain-auth", "name": "SwiftUI + Keychain 認証", "stack": ["ios","swiftui"], "tags": ["mobile","auth"], "files": [{ "path": "App/Auth.swift", "template": "// keychain auth skeleton\n" }] },
+    { "id": "strike-kmm-ktor-client", "name": "KMM Ktor Client", "stack": ["kotlin","kmm"], "tags": ["mobile","shared"], "files": [{ "path": "shared/src/commonMain/kotlin/client.kt", "template": "// kmm ktor client skeleton\n" }] },
+
+    { "id": "strike-electron-auto-update", "name": "Electron Auto Update", "stack": ["electron"], "tags": ["desktop","update"], "files": [{ "path": "main.js", "template": "// electron auto update skeleton\n" }] },
+    { "id": "strike-tauri-updater-config", "name": "Tauri Updater Config", "stack": ["tauri"], "tags": ["desktop","update"], "files": [{ "path": "src-tauri/tauri.conf.json", "template": "{ }\n" }] },
+    { "id": "strike-wasm-rust-wasm-pack", "name": "WASM Rust wasm-pack", "stack": ["wasm","rust"], "tags": ["frontend","wasm"], "files": [{ "path": "pkg/README.md", "template": "# wasm-pack skeleton\n" }] },
+
+    { "id": "strike-openapi-typescript-codegen", "name": "openapi-typescript-codegen", "stack": ["openapi","typescript"], "tags": ["codegen"], "files": [{ "path": "openapi/generate.ts", "template": "// openapi ts codegen skeleton\n" }] },
+    { "id": "strike-graphql-codegen-react-apollo", "name": "GraphQL Codegen React Apollo", "stack": ["graphql","react"], "tags": ["codegen"], "files": [{ "path": "codegen.yml", "template": "# graphql codegen skeleton\n" }] },
+    { "id": "strike-openapi-fastify-autogen-routes", "name": "Fastify OpenAPI 自動ルート", "stack": ["fastify","openapi"], "tags": ["api"], "files": [{ "path": "server.js", "template": "// fastify openapi autogen routes skeleton\n" }] },
+    { "id": "strike-nextjs-openapi-client-generation", "name": "Next.js OpenAPI クライアント生成", "stack": ["nextjs","openapi"], "tags": ["frontend","api"], "files": [{ "path": "scripts/openapi.ts", "template": "// next openapi client gen skeleton\n" }] },
+
+    { "id": "strike-supabase-storage-upload", "name": "Supabase Storage Upload", "stack": ["supabase"], "tags": ["storage"], "files": [{ "path": "supabase/upload.ts", "template": "// supabase storage upload skeleton\n" }] },
+    { "id": "strike-firebase-firestore-trigger", "name": "Firebase Firestore Trigger", "stack": ["firebase","functions"], "tags": ["serverless"], "files": [{ "path": "functions/index.ts", "template": "// firestore trigger skeleton\n" }] },
+    { "id": "strike-firebase-cloud-messaging", "name": "Firebase Cloud Messaging", "stack": ["firebase"], "tags": ["notifications"], "files": [{ "path": "functions/fcm.ts", "template": "// fcm send skeleton\n" }] },
+    { "id": "strike-gcp-cloud-tasks-enqueue", "name": "GCP Cloud Tasks Enqueue", "stack": ["gcp","cloud-tasks"], "tags": ["queue"], "files": [{ "path": "tasks/enqueue.ts", "template": "// cloud tasks enqueue skeleton\n" }] },
+    { "id": "strike-azure-event-grid-subscription", "name": "Azure Event Grid 購読", "stack": ["azure","event-grid"], "tags": ["events"], "files": [{ "path": "eventgrid/subscription.json", "template": "{ }\n" }] },
+
+    { "id": "strike-aws-sns-sqs-fanout", "name": "AWS SNS→SQS Fanout", "stack": ["aws","sns","sqs"], "tags": ["events"], "files": [{ "path": "infra/fanout.json", "template": "{ }\n" }] },
+    { "id": "strike-aws-s3-eventbridge-notification", "name": "S3→EventBridge 通知", "stack": ["aws","s3","eventbridge"], "tags": ["events"], "files": [{ "path": "s3/eventbridge.json", "template": "{ }\n" }] },
+    { "id": "strike-aws-stepfunctions-callback-task", "name": "Step Functions Callback Task", "stack": ["aws","stepfunctions"], "tags": ["workflow"], "files": [{ "path": "sfn/callback.json", "template": "{ }\n" }] },
+    { "id": "strike-aws-lambda-layers-ts", "name": "Lambda Layers (TypeScript)", "stack": ["aws","lambda"], "tags": ["serverless"], "files": [{ "path": "layers/notes.md", "template": "# lambda layers ts skeleton\n" }] },
+    { "id": "strike-aws-cdk-pipelines", "name": "AWS CDK Pipelines", "stack": ["aws","cdk"], "tags": ["ci","deploy"], "files": [{ "path": "infra/pipeline.ts", "template": "// cdk pipelines skeleton\n" }] },
+    { "id": "strike-aws-glue-etl-job", "name": "AWS Glue ETL Job", "stack": ["aws","glue"], "tags": ["etl"], "files": [{ "path": "glue/job.py", "template": "# glue etl job skeleton\n" }] },
+    { "id": "strike-aws-athena-ctas-partition", "name": "Athena CTAS Partition", "stack": ["aws","athena"], "tags": ["sql"], "files": [{ "path": "athena/ctas.sql", "template": "-- athena ctas partition skeleton\n" }] },
+    { "id": "strike-aws-opensearch-serverless-collection", "name": "OpenSearch Serverless Collection", "stack": ["aws","opensearch"], "tags": ["search"], "files": [{ "path": "opensearch/serverless.json", "template": "{ }\n" }] },
+
+    { "id": "strike-thanos-sidecar-config", "name": "Thanos Sidecar 設定", "stack": ["thanos","prometheus"], "tags": ["observability"], "files": [{ "path": "thanos/sidecar.yaml", "template": "# thanos sidecar skeleton\n" }] },
+    { "id": "strike-prometheus-federation", "name": "Prometheus Federation", "stack": ["prometheus"], "tags": ["observability"], "files": [{ "path": "prometheus/federation.yml", "template": "# prometheus federation skeleton\n" }] },
+    { "id": "strike-mimir-remote-write", "name": "Grafana Mimir Remote Write", "stack": ["mimir"], "tags": ["observability"], "files": [{ "path": "mimir/remote_write.yaml", "template": "# mimir remote write skeleton\n" }] },
+    { "id": "strike-loki-multi-tenant-headers", "name": "Loki Multi-Tenant Headers", "stack": ["loki"], "tags": ["logs"], "files": [{ "path": "loki/tenant.md", "template": "# loki multi-tenant headers skeleton\n" }] },
+    { "id": "strike-otel-collector-kafka-pipeline", "name": "OTel Collector Kafka Pipeline", "stack": ["opentelemetry","collector","kafka"], "tags": ["observability"], "files": [{ "path": "otel/kafka-pipeline.yaml", "template": "# otel collector kafka pipeline skeleton\n" }] },
+    { "id": "strike-otel-js-web-tracing", "name": "OTel JS Web Tracing", "stack": ["opentelemetry","javascript"], "tags": ["tracing"], "files": [{ "path": "otel/web.js", "template": "// otel web tracing skeleton\n" }] },
+    { "id": "strike-otel-react-native-tracing", "name": "OTel React Native Tracing", "stack": ["opentelemetry","react-native"], "tags": ["tracing"], "files": [{ "path": "otel/rn.ts", "template": "// rn tracing skeleton\n" }] },
+
+    { "id": "strike-temporal-java-workflow", "name": "Temporal Java Workflow", "stack": ["temporal","java"], "tags": ["workflow"], "files": [{ "path": "src/main/java/workflow/Example.java", "template": "// temporal java workflow skeleton\n" }] },
+    { "id": "strike-temporal-python-asyncio", "name": "Temporal Python asyncio", "stack": ["temporal","python"], "tags": ["workflow"], "files": [{ "path": "temporal/flow.py", "template": "# temporal python asyncio skeleton\n" }] },
+    { "id": "strike-cadence-workflow-go", "name": "Cadence Workflow Go", "stack": ["cadence","go"], "tags": ["workflow"], "files": [{ "path": "workflow/main.go", "template": "// cadence workflow skeleton\n" }] },
+    { "id": "strike-airbyte-java-connector", "name": "Airbyte Java Connector", "stack": ["airbyte","java"], "tags": ["connector"], "files": [{ "path": "src/main/java/Source.java", "template": "// airbyte java connector skeleton\n" }] },
+
+    { "id": "strike-aws-appsync-graphql-subscriptions", "name": "AWS AppSync GraphQL Subscriptions", "stack": ["aws","appsync","graphql"], "tags": ["realtime"], "files": [{ "path": "appsync/schema.graphql", "template": "type Subscription { onMessage: String }\n" }] },
+    { "id": "strike-graphql-subscriptions-ws", "name": "GraphQL Subscriptions over WS", "stack": ["graphql"], "tags": ["realtime"], "files": [{ "path": "server/subscriptions.ts", "template": "// graphql subscriptions ws skeleton\n" }] },
+    { "id": "strike-hasura-actions-event-triggers", "name": "Hasura Actions/Event Triggers", "stack": ["hasura","graphql"], "tags": ["api"], "files": [{ "path": "hasura/actions.yaml", "template": "# hasura actions skeleton\n" }] },
+    { "id": "strike-postgraphile-minimal", "name": "PostGraphile 最小", "stack": ["postgraphile","graphql"], "tags": ["api"], "files": [{ "path": "server.js", "template": "// postgraphile minimal skeleton\n" }] },
+
+    { "id": "strike-redis-geospatial-queries", "name": "Redis Geospatial", "stack": ["redis"], "tags": ["geo"], "files": [{ "path": "redis/geo.md", "template": "# redis geo queries skeleton\n" }] },
+    { "id": "strike-elasticsearch-rollover-alias", "name": "Elasticsearch Rollover + Alias", "stack": ["elasticsearch"], "tags": ["index"], "files": [{ "path": "es/rollover.json", "template": "{ }\n" }] },
+    { "id": "strike-opensearch-ism-policy", "name": "OpenSearch ISM Policy", "stack": ["opensearch"], "tags": ["lifecycle"], "files": [{ "path": "os/ism.json", "template": "{ }\n" }] },
+    { "id": "strike-clickhouse-postgres-engine", "name": "ClickHouse Postgres Engine", "stack": ["clickhouse"], "tags": ["db"], "files": [{ "path": "clickhouse/postgres_engine.sql", "template": "-- clickhouse postgres engine skeleton\n" }] },
+    { "id": "strike-trino-iceberg-catalog", "name": "Trino Iceberg Catalog", "stack": ["trino","iceberg"], "tags": ["sql"], "files": [{ "path": "trino/catalog.properties", "template": "# trino iceberg catalog skeleton\n" }] },
+    { "id": "strike-spark-iceberg-merge-into", "name": "Spark Iceberg MERGE INTO", "stack": ["spark","iceberg"], "tags": ["lakehouse"], "files": [{ "path": "spark/merge_into.py", "template": "# spark iceberg merge into skeleton\n" }] },
+    { "id": "strike-dbt-cross-database-models", "name": "dbt Cross-DB Models", "stack": ["dbt"], "tags": ["sql"], "files": [{ "path": "models/schema.yml", "template": "version: 2\nmodels: []\n" }] },
+    { "id": "strike-airflow-kubernetes-pod-operator", "name": "Airflow KubernetesPodOperator", "stack": ["airflow","kubernetes"], "tags": ["orchestration"], "files": [{ "path": "dags/pod.py", "template": "# k8s pod operator skeleton\n" }] },
+    { "id": "strike-argo-workflows-artifacts-s3", "name": "Argo Workflows Artifacts S3", "stack": ["argo-workflows","s3"], "tags": ["workflow"], "files": [{ "path": "k8s/artifacts.yaml", "template": "# argo artifacts s3 skeleton\n" }] },
+    { "id": "strike-argocd-notifications", "name": "ArgoCD Notifications", "stack": ["argocd"], "tags": ["gitops","notify"], "files": [{ "path": "k8s/argocd-notifications.yaml", "template": "# argocd notifications skeleton\n" }] },
+    { "id": "strike-fluxcd-alerting-provider", "name": "FluxCD Alerting Provider", "stack": ["fluxcd"], "tags": ["gitops","notify"], "files": [{ "path": "k8s/flux-alerts.yaml", "template": "# fluxcd alert provider skeleton\n" }] },
+    { "id": "strike-keda-aws-sqs-scaler", "name": "KEDA AWS SQS Scaler", "stack": ["keda","aws","sqs"], "tags": ["autoscale"], "files": [{ "path": "k8s/scaledobject.yaml", "template": "# keda sqs scaler skeleton\n" }] },
+    { "id": "strike-helmfile-environments-minimal", "name": "Helmfile Environments 最小", "stack": ["helmfile"], "tags": ["infra"], "files": [{ "path": "helmfile.yaml", "template": "# helmfile env skeleton\n" }] },
+    { "id": "strike-terraform-aws-ecs-fargate", "name": "Terraform AWS ECS Fargate", "stack": ["terraform","aws","ecs"], "tags": ["infra"], "files": [{ "path": "terraform/main.tf", "template": "# ecs fargate skeleton\n" }] },
+    { "id": "strike-packer-hcl-ami", "name": "Packer HCL AMI", "stack": ["packer","aws"], "tags": ["infra"], "files": [{ "path": "packer/ami.pkr.hcl", "template": "# packer hcl skeleton\n" }] },
+    { "id": "strike-ansible-kubernetes-modules", "name": "Ansible Kubernetes Modules", "stack": ["ansible","kubernetes"], "tags": ["infra"], "files": [{ "path": "ansible/playbook.yaml", "template": "# ansible k8s modules skeleton\n" }] },
+
+    { "id": "strike-confluent-schema-compatibility", "name": "Confluent Schema 互換性", "stack": ["confluent","schema-registry"], "tags": ["schema"], "files": [{ "path": "schema/compat.json", "template": "{ }\n" }] },
+    { "id": "strike-protobuf-schema-evolution", "name": "Protobuf スキーマ進化", "stack": ["protobuf"], "tags": ["schema"], "files": [{ "path": "proto/notes.md", "template": "# protobuf schema evolution skeleton\n" }] },
+    { "id": "strike-grpc-web-envoy-proxy", "name": "gRPC-Web Envoy Proxy", "stack": ["grpc","envoy"], "tags": ["proxy"], "files": [{ "path": "envoy.yaml", "template": "# envoy grpc-web proxy skeleton\n" }] },
+    { "id": "strike-envoy-rate-limit-service", "name": "Envoy Rate Limit Service", "stack": ["envoy"], "tags": ["throttle"], "files": [{ "path": "ratelimit/config.yaml", "template": "# envoy rate limit service skeleton\n" }] },
+    { "id": "strike-istio-ratelimit-envoyfilter", "name": "Istio EnvoyFilter レート制限", "stack": ["istio"], "tags": ["mesh","throttle"], "files": [{ "path": "k8s/envoyfilter.yaml", "template": "# istio ratelimit envoyfilter skeleton\n" }] },
+
+    { "id": "strike-opa-bundle-signing", "name": "OPA Bundle 署名", "stack": ["opa"], "tags": ["policy","security"], "files": [{ "path": "opa/bundle_sign.md", "template": "# opa bundle signing skeleton\n" }] },
+    { "id": "strike-sigstore-fulcio-rekor-verify", "name": "Sigstore Fulcio/Rekor Verify", "stack": ["sigstore"], "tags": ["supply-chain"], "files": [{ "path": "sigstore/verify.md", "template": "# sigstore verify skeleton\n" }] },
+    { "id": "strike-slsa-provenance-attestations", "name": "SLSA Provenance Attestations", "stack": ["slsa"], "tags": ["supply-chain"], "files": [{ "path": ".github/workflows/slsa-prov.yml", "template": "name: SLSA-Prov\non: [push]\n" }] },
+    { "id": "strike-gh-actions-oidc-gcp", "name": "GH Actions OIDC→GCP", "stack": ["github","gcp"], "tags": ["ci","auth"], "files": [{ "path": ".github/workflows/gcp-oidc.yml", "template": "name: GcpOIDC\non: [push]\n" }] },
+    { "id": "strike-gh-actions-cache-docker-layers", "name": "GH Actions Dockerレイヤーキャッシュ", "stack": ["github","actions"], "tags": ["ci","build"], "files": [{ "path": ".github/workflows/docker-cache.yml", "template": "name: DockerCache\non: [push]\n" }] },
+    { "id": "strike-circleci-dynamic-config", "name": "CircleCI Dynamic Config", "stack": ["circleci"], "tags": ["ci"], "files": [{ "path": ".circleci/config.yml", "template": "# circleci dynamic config skeleton\n" }] }
+  ]
+}
+

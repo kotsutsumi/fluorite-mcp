@@ -1,0 +1,17 @@
+{
+  "id": "strike-loki-retention-and-buckets",
+  "name": "Loki Retention + Buckets",
+  "stack": [
+    "loki"
+  ],
+  "tags": [
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "loki/storage.yaml",
+      "template": "# loki retention skeleton\n"
+    }
+  ],
+  "patches": []
+}

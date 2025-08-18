@@ -1,0 +1,18 @@
+{
+  "id": "strike-bigquery-partition-cluster",
+  "name": "BigQuery Partition + Cluster",
+  "stack": [
+    "gcp",
+    "bigquery"
+  ],
+  "tags": [
+    "warehouse"
+  ],
+  "files": [
+    {
+      "path": "bq/table.sql",
+      "template": "-- partition + cluster table skeleton\n"
+    }
+  ],
+  "patches": []
+}

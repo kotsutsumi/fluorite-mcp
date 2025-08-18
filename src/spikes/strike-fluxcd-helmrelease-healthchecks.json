@@ -1,0 +1,18 @@
+{
+  "id": "strike-fluxcd-helmrelease-healthchecks",
+  "name": "FluxCD HelmRelease HealthChecks",
+  "stack": [
+    "fluxcd",
+    "helm"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/helmrelease.yaml",
+      "template": "# fluxcd helmrelease health skeleton\n"
+    }
+  ],
+  "patches": []
+}

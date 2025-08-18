@@ -1,0 +1,18 @@
+{
+  "id": "strike-tekton-pipeline-triggers",
+  "name": "Tekton Pipeline + Triggers",
+  "stack": [
+    "tekton",
+    "kubernetes"
+  ],
+  "tags": [
+    "ci"
+  ],
+  "files": [
+    {
+      "path": "k8s/tekton.yaml",
+      "template": "# tekton pipelines skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-haproxy-tcp-health-check",
+  "name": "HAProxy TCP Health Check",
+  "stack": [
+    "haproxy"
+  ],
+  "tags": [
+    "proxy"
+  ],
+  "files": [
+    {
+      "path": "haproxy/haproxy.cfg",
+      "template": "# haproxy config skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,65 @@
+{
+  "items": [
+    { "id": "strike-iot-aws-iot-core-rule", "name": "AWS IoT Core ルール", "stack": ["aws","iot"], "tags": ["iot","rule"], "files": [{ "path": "iot/rule.json", "template": "{ }\n" }] },
+    { "id": "strike-iot-azure-iothub-route", "name": "Azure IoT Hub ルーティング", "stack": ["azure","iothub"], "tags": ["iot","route"], "files": [{ "path": "iothub/route.json", "template": "{ }\n" }] },
+    { "id": "strike-iot-gcp-iot-core-registry", "name": "GCP IoT Core レジストリ", "stack": ["gcp","iot"], "tags": ["iot"], "files": [{ "path": "gcp/iot_registry.json", "template": "{ }\n" }] },
+
+    { "id": "strike-robotics-ros2-publisher", "name": "ROS2 Publisher 基本", "stack": ["ros2","python"], "tags": ["robotics"], "files": [{ "path": "ros2/publisher.py", "template": "# ros2 publisher skeleton\n" }] },
+    { "id": "strike-robotics-ros2-slam-toolbox", "name": "ROS2 SLAM Toolbox", "stack": ["ros2"], "tags": ["robotics","slam"], "files": [{ "path": "ros2/slam.yaml", "template": "# slam toolbox skeleton\n" }] },
+
+    { "id": "strike-game-unity-urp-postprocessing", "name": "Unity URP PostProcessing", "stack": ["unity"], "tags": ["game"], "files": [{ "path": "unity/urp_post.fx", "template": "// urp post skeleton\n" }] },
+    { "id": "strike-game-unreal-blueprint-http", "name": "Unreal BP HTTP", "stack": ["unreal"], "tags": ["game","http"], "files": [{ "path": "unreal/http.bp", "template": "# unreal http blueprint skeleton\n" }] },
+
+    { "id": "strike-elm-spa-router-minimal", "name": "Elm SPA Router 最小", "stack": ["elm"], "tags": ["frontend"], "files": [{ "path": "src/Main.elm", "template": "-- elm spa skeleton\n" }] },
+    { "id": "strike-reasonml-react-minimal", "name": "ReasonML React 最小", "stack": ["reasonml","react"], "tags": ["frontend"], "files": [{ "path": "src/App.re", "template": "/* reason react skeleton */\n" }] },
+    { "id": "strike-ocaml-dream-route", "name": "OCaml Dream Route", "stack": ["ocaml","dream"], "tags": ["backend"], "files": [{ "path": "server.ml", "template": "(* dream route skeleton *)\n" }] },
+    { "id": "strike-haskell-servant-api", "name": "Haskell Servant API", "stack": ["haskell","servant"], "tags": ["backend"], "files": [{ "path": "Server.hs", "template": "-- servant api skeleton\n" }] },
+    { "id": "strike-clojure-ring-compojure", "name": "Clojure Ring + Compojure", "stack": ["clojure","ring"], "tags": ["backend"], "files": [{ "path": "src/server.clj", "template": ";; ring compojure skeleton\n" }] },
+
+    { "id": "strike-ktor-kotlinx-serialization-json", "name": "Ktor kotlinx-serialization JSON", "stack": ["kotlin","ktor"], "tags": ["api"], "files": [{ "path": "src/Application.kt", "template": "// ktor json skeleton\n" }] },
+    { "id": "strike-ktor-koin-di", "name": "Ktor Koin DI", "stack": ["kotlin","ktor","koin"], "tags": ["di"], "files": [{ "path": "src/Di.kt", "template": "// koin di skeleton\n" }] },
+    { "id": "strike-scala-zio-http-endpoint", "name": "Scala ZIO-HTTP Endpoint", "stack": ["scala","zio-http"], "tags": ["api"], "files": [{ "path": "src/main/scala/App.scala", "template": "// zio http endpoint skeleton\n" }] },
+    { "id": "strike-scala-http4s-auth-middleware", "name": "Scala http4s Auth Middleware", "stack": ["scala","http4s"], "tags": ["auth"], "files": [{ "path": "src/main/scala/Auth.scala", "template": "// http4s auth mw skeleton\n" }] },
+
+    { "id": "strike-rust-yew-component-minimal", "name": "Rust Yew Component 最小", "stack": ["rust","yew"], "tags": ["frontend","wasm"], "files": [{ "path": "src/lib.rs", "template": "// yew component skeleton\n" }] },
+    { "id": "strike-rust-leptos-ssr-minimal", "name": "Rust Leptos SSR 最小", "stack": ["rust","leptos"], "tags": ["frontend","ssr"], "files": [{ "path": "src/main.rs", "template": "// leptos ssr skeleton\n" }] },
+    { "id": "strike-rust-wasm-bindgen-canvas", "name": "Rust wasm-bindgen Canvas", "stack": ["rust","wasm"], "tags": ["graphics"], "files": [{ "path": "src/canvas.rs", "template": "// wasm canvas skeleton\n" }] },
+
+    { "id": "strike-go-gin-openapi-swaggerui", "name": "Go Gin + OpenAPI + SwaggerUI", "stack": ["go","gin","openapi"], "tags": ["api","docs"], "files": [{ "path": "main.go", "template": "// gin swagger skeleton\n" }] },
+    { "id": "strike-go-fiber-websocket-chat", "name": "Go Fiber WebSocket Chat", "stack": ["go","fiber"], "tags": ["realtime"], "files": [{ "path": "main.go", "template": "// fiber ws chat skeleton\n" }] },
+    { "id": "strike-go-vugu-webui-minimal", "name": "Go Vugu WebUI 最小", "stack": ["go","vugu"], "tags": ["frontend"], "files": [{ "path": "main.go", "template": "// vugu minimal skeleton\n" }] },
+
+    { "id": "strike-python-tornado-websocket", "name": "Python Tornado WebSocket", "stack": ["python","tornado"], "tags": ["realtime"], "files": [{ "path": "app.py", "template": "# tornado websocket skeleton\n" }] },
+    { "id": "strike-python-sanic-minimal", "name": "Python Sanic 最小API", "stack": ["python","sanic"], "tags": ["api"], "files": [{ "path": "app.py", "template": "# sanic minimal skeleton\n" }] },
+    { "id": "strike-python-grpc-aio-stream", "name": "Python gRPC aio Stream", "stack": ["python","grpc"], "tags": ["rpc","stream"], "files": [{ "path": "proto/echo.proto", "template": "// grpc aio stream proto skeleton\n" }] },
+
+    { "id": "strike-php-swoole-http-server", "name": "PHP Swoole HTTP サーバ", "stack": ["php","swoole"], "tags": ["backend"], "files": [{ "path": "server.php", "template": "<?php\n// swoole server skeleton\n" }] },
+    { "id": "strike-rails-hotwire-cableready", "name": "Rails Hotwire CableReady", "stack": ["ruby","rails","cableready"], "tags": ["realtime"], "files": [{ "path": "app/channels/demo_channel.rb", "template": "# cableready skeleton\n" }] },
+
+    { "id": "strike-nginx-reverse-proxy-websocket", "name": "Nginx 逆プロキシ WebSocket", "stack": ["nginx"], "tags": ["proxy"], "files": [{ "path": "nginx/ws.conf", "template": "# nginx ws proxy skeleton\n" }] },
+    { "id": "strike-haproxy-tcp-health-check", "name": "HAProxy TCP Health Check", "stack": ["haproxy"], "tags": ["proxy"], "files": [{ "path": "haproxy/haproxy.cfg", "template": "# haproxy config skeleton\n" }] },
+    { "id": "strike-traefik-middleware-chain", "name": "Traefik Middleware Chain", "stack": ["traefik"], "tags": ["proxy"], "files": [{ "path": "traefik/mw.yaml", "template": "# traefik mw chain skeleton\n" }] },
+
+    { "id": "strike-prometheus-exporter-nodejs", "name": "Prometheus Exporter Node.js", "stack": ["prometheus","node"], "tags": ["metrics"], "files": [{ "path": "metrics/server.js", "template": "// prometheus client skeleton\n" }] },
+    { "id": "strike-prometheus-exporter-python", "name": "Prometheus Exporter Python", "stack": ["prometheus","python"], "tags": ["metrics"], "files": [{ "path": "metrics/server.py", "template": "# prometheus exporter skeleton\n" }] },
+    { "id": "strike-prometheus-exporter-go", "name": "Prometheus Exporter Go", "stack": ["prometheus","go"], "tags": ["metrics"], "files": [{ "path": "metrics/main.go", "template": "// prometheus exporter go skeleton\n" }] },
+
+    { "id": "strike-grafana-datasource-loki", "name": "Grafana Datasource Loki", "stack": ["grafana","loki"], "tags": ["observability"], "files": [{ "path": "grafana/datasource.yaml", "template": "# grafana loki ds skeleton\n" }] },
+    { "id": "strike-grafana-dashboard-timeseries", "name": "Grafana Timeseries Dashboard", "stack": ["grafana"], "tags": ["observability"], "files": [{ "path": "grafana/dashboard.json", "template": "{ }\n" }] },
+
+    { "id": "strike-elk-logstash-filebeat-pipeline", "name": "ELK Logstash + Filebeat", "stack": ["elk","logstash","filebeat"], "tags": ["logs"], "files": [{ "path": "elk/pipeline.conf", "template": "# logstash pipeline skeleton\n" }] },
+    { "id": "strike-graylog-input-gelf", "name": "Graylog GELF Input", "stack": ["graylog"], "tags": ["logs"], "files": [{ "path": "graylog/input.json", "template": "{ }\n" }] },
+
+    { "id": "strike-bi-metabase-dataset-model", "name": "Metabase Dataset Model", "stack": ["metabase"], "tags": ["bi"], "files": [{ "path": "metabase/dataset.json", "template": "{ }\n" }] },
+    { "id": "strike-superset-dashboard-import", "name": "Apache Superset Dashboard", "stack": ["superset"], "tags": ["bi"], "files": [{ "path": "superset/dashboard.json", "template": "{ }\n" }] },
+    { "id": "strike-looker-studio-source-config", "name": "Looker Studio Source 設定", "stack": ["looker"], "tags": ["bi"], "files": [{ "path": "looker/source.json", "template": "{ }\n" }] },
+
+    { "id": "strike-airflow-dbt-cloud-operator", "name": "Airflow dbt Cloud Operator", "stack": ["airflow","dbt"], "tags": ["orchestration"], "files": [{ "path": "dags/dbt_cloud.py", "template": "# airflow dbt cloud skeleton\n" }] },
+    { "id": "strike-dagster-great-expectations", "name": "Dagster + Great Expectations", "stack": ["dagster","great-expectations"], "tags": ["dq"], "files": [{ "path": "assets/gx.py", "template": "# dagster gx skeleton\n" }] },
+    { "id": "strike-prefect-gcs-result-storage", "name": "Prefect GCS_Result Storage", "stack": ["prefect","gcs"], "tags": ["orchestration"], "files": [{ "path": "flows/gcs_result.py", "template": "# prefect gcs result skeleton\n" }] },
+
+    { "id": "strike-terraform-aws-vpc-endpoints", "name": "Terraform AWS VPC Endpoints", "stack": ["terraform","aws"], "tags": ["infra"], "files": [{ "path": "terraform/vpc_endpoints.tf", "template": "# vpc endpoints skeleton\n" }] },
+    { "id": "strike-crossplane-composition-rds", "name": "Crossplane Composition RDS", "stack": ["crossplane","aws"], "tags": ["infra"], "files": [{ "path": "crossplane/rds.yaml", "template": "# crossplane rds composition skeleton\n" }] }
+  ]
+}
+

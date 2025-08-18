@@ -1,0 +1,18 @@
+{
+  "id": "strike-polaris-k8s-audit",
+  "name": "Polaris K8s 構成監査",
+  "stack": [
+    "polaris",
+    "kubernetes"
+  ],
+  "tags": [
+    "policy"
+  ],
+  "files": [
+    {
+      "path": "k8s/polaris.yaml",
+      "template": "# polaris audit skeleton\n"
+    }
+  ],
+  "patches": []
+}

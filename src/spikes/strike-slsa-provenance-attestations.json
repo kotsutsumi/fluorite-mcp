@@ -1,0 +1,17 @@
+{
+  "id": "strike-slsa-provenance-attestations",
+  "name": "SLSA Provenance Attestations",
+  "stack": [
+    "slsa"
+  ],
+  "tags": [
+    "supply-chain"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/slsa-prov.yml",
+      "template": "name: SLSA-Prov\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

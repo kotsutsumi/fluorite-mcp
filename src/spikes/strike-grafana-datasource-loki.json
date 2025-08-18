@@ -1,0 +1,18 @@
+{
+  "id": "strike-grafana-datasource-loki",
+  "name": "Grafana Datasource Loki",
+  "stack": [
+    "grafana",
+    "loki"
+  ],
+  "tags": [
+    "observability"
+  ],
+  "files": [
+    {
+      "path": "grafana/datasource.yaml",
+      "template": "# grafana loki ds skeleton\n"
+    }
+  ],
+  "patches": []
+}

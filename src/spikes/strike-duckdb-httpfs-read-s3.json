@@ -1,0 +1,18 @@
+{
+  "id": "strike-duckdb-httpfs-read-s3",
+  "name": "DuckDB HTTPFS read S3",
+  "stack": [
+    "duckdb",
+    "s3"
+  ],
+  "tags": [
+    "data"
+  ],
+  "files": [
+    {
+      "path": "duckdb/httpfs.sql",
+      "template": "-- duckdb httpfs s3 skeleton\n"
+    }
+  ],
+  "patches": []
+}

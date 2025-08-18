@@ -1,0 +1,20 @@
+{
+  "id": "strike-github-actions-cdk-deploy",
+  "name": "GitHub Actions CDK Deploy",
+  "stack": [
+    "github",
+    "cdk",
+    "aws"
+  ],
+  "tags": [
+    "ci",
+    "deploy"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/cdk.yml",
+      "template": "name: CDK\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

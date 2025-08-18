@@ -1,0 +1,20 @@
+{
+  "id": "strike-opa-conftest-k8s-ci",
+  "name": "OPA Conftest K8s CI",
+  "stack": [
+    "opa",
+    "conftest",
+    "kubernetes"
+  ],
+  "tags": [
+    "policy",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/conftest.yml",
+      "template": "name: Conftest\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

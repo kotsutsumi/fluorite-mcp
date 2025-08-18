@@ -299,9 +299,9 @@ fluorite-mcp/
 
 ### Getting Help
 
-- 💬 [GitHub Discussions](https://github.com/kotsutsumi/fluorite-mcp/discussions)
-- 🐛 [Issue Tracker](https://github.com/kotsutsumi/fluorite-mcp/issues)
-- 📧 Contact maintainers (see README)
+- 💬 GitHub Discussions: 本プロジェクトのディスカッション
+- 🐛 Issue Tracker: 本プロジェクトのイシュートラッカー
+- 📧 Contact maintainers: README参照
 
 ### Recognition
 

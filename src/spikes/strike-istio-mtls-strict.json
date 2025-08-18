@@ -1,0 +1,19 @@
+{
+  "id": "strike-istio-mtls-strict",
+  "name": "Istio mTLS STRICT",
+  "stack": [
+    "istio",
+    "kubernetes"
+  ],
+  "tags": [
+    "mesh",
+    "security"
+  ],
+  "files": [
+    {
+      "path": "k8s/peer-authentication.yaml",
+      "template": "# istio mtls strict skeleton\n"
+    }
+  ],
+  "patches": []
+}

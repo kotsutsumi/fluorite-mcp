@@ -1,0 +1,19 @@
+{
+  "id": "strike-aws-appsync-graphql-subscriptions",
+  "name": "AWS AppSync GraphQL Subscriptions",
+  "stack": [
+    "aws",
+    "appsync",
+    "graphql"
+  ],
+  "tags": [
+    "realtime"
+  ],
+  "files": [
+    {
+      "path": "appsync/schema.graphql",
+      "template": "type Subscription { onMessage: String }\n"
+    }
+  ],
+  "patches": []
+}

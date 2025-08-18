@@ -1,0 +1,19 @@
+{
+  "id": "strike-conftest-helm-chart-ci",
+  "name": "Conftest Helm Chart CI",
+  "stack": [
+    "conftest",
+    "helm"
+  ],
+  "tags": [
+    "policy",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/conftest-helm.yml",
+      "template": "name: Conftest-Helm\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

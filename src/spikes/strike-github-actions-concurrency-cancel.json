@@ -1,0 +1,18 @@
+{
+  "id": "strike-github-actions-concurrency-cancel",
+  "name": "GH Actions 並列キャンセル",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "template": "name: CI\nconcurrency: { group: 'build', cancel-in-progress: true }\n"
+    }
+  ],
+  "patches": []
+}

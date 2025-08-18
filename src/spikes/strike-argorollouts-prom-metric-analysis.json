@@ -1,0 +1,18 @@
+{
+  "id": "strike-argorollouts-prom-metric-analysis",
+  "name": "Argo Rollouts Prom Metric 分析",
+  "stack": [
+    "argo-rollouts",
+    "prometheus"
+  ],
+  "tags": [
+    "canary"
+  ],
+  "files": [
+    {
+      "path": "k8s/analysis.yaml",
+      "template": "# argo analysis template skeleton\n"
+    }
+  ],
+  "patches": []
+}

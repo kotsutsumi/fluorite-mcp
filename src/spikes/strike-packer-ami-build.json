@@ -1,0 +1,18 @@
+{
+  "id": "strike-packer-ami-build",
+  "name": "Packer AMI Build",
+  "stack": [
+    "packer",
+    "aws"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "packer/template.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

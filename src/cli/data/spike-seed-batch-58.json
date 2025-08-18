@@ -1,0 +1,77 @@
+{
+  "items": [
+    { "id": "strike-spring-webflux-rsocket", "name": "Spring WebFlux RSocket", "stack": ["java","spring","rsocket"], "tags": ["realtime"], "files": [{ "path": "src/main/java/example/RSocketConfig.java", "template": "// rsocket config skeleton\n" }] },
+    { "id": "strike-spring-data-redis-streams", "name": "Spring Data Redis Streams", "stack": ["java","spring","redis"], "tags": ["stream"], "files": [{ "path": "src/main/java/example/RedisStreams.java", "template": "// redis streams consumer skeleton\n" }] },
+    { "id": "strike-quarkus-grpc-minimal", "name": "Quarkus gRPC 最小", "stack": ["java","quarkus","grpc"], "tags": ["rpc"], "files": [{ "path": "src/main/proto/echo.proto", "template": "// quarkus grpc echo proto\n" }] },
+    { "id": "strike-micronaut-kafka-dlq", "name": "Micronaut Kafka DLQ", "stack": ["java","micronaut","kafka"], "tags": ["retry","dlq"], "files": [{ "path": "src/main/java/example/DlqConfig.java", "template": "// kafka dlq config skeleton\n" }] },
+    { "id": "strike-vertx-healthcheck-composite", "name": "Vert.x Composite HealthCheck", "stack": ["java","vertx"], "tags": ["health"], "files": [{ "path": "src/main/java/example/Health.java", "template": "// vertx composite health checks skeleton\n" }] },
+
+    { "id": "strike-dotnet-efcore-codefirst-migrations", "name": ".NET EFCore Code-First Migrations", "stack": ["dotnet","efcore"], "tags": ["db"], "files": [{ "path": "Data/Migrations/Readme.md", "template": "# efcore migrations skeleton\n" }] },
+    { "id": "strike-dotnet-worker-quartz", "name": ".NET Worker + Quartz.NET", "stack": ["dotnet","quartz"], "tags": ["jobs","schedule"], "files": [{ "path": "Workers/QuartzJob.cs", "template": "// quartz job skeleton\n" }] },
+    { "id": "strike-dotnet-azure-blob-sas", "name": ".NET Azure Blob SAS", "stack": ["dotnet","azure","blob"], "tags": ["storage","security"], "files": [{ "path": "Storage/BlobSas.cs", "template": "// azure blob sas skeleton\n" }] },
+    { "id": "strike-dotnet-opa-http-authorization", "name": ".NET OPA HTTP Authorization", "stack": ["dotnet","opa"], "tags": ["policy"], "files": [{ "path": "Policy/OpaMiddleware.cs", "template": "// opa http auth skeleton\n" }] },
+
+    { "id": "strike-rails-hotwire-turbo-frames", "name": "Rails Hotwire Turbo Frames", "stack": ["ruby","rails","hotwire"], "tags": ["frontend","realtime"], "files": [{ "path": "app/views/posts/_frame.turbo_stream.erb", "template": "<!-- turbo frame skeleton -->\n" }] },
+    { "id": "strike-laravel-cashier-stripe", "name": "Laravel Cashier (Stripe)", "stack": ["php","laravel","stripe"], "tags": ["billing"], "files": [{ "path": "app/Billing/Notes.md", "template": "# cashier stripe skeleton\n" }] },
+    { "id": "strike-laravel-passport-oauth2", "name": "Laravel Passport OAuth2", "stack": ["php","laravel","oauth2"], "tags": ["auth"], "files": [{ "path": "routes/api.php", "template": "<?php\n// passport oauth routes skeleton\n" }] },
+    { "id": "strike-symfony-api-platform-minimal", "name": "Symfony API Platform 最小", "stack": ["php","symfony","api-platform"], "tags": ["api"], "files": [{ "path": "config/packages/api_platform.yaml", "template": "# api platform skeleton\n" }] },
+    { "id": "strike-phoenix-pow-auth", "name": "Phoenix Pow 認証", "stack": ["elixir","phoenix","pow"], "tags": ["auth"], "files": [{ "path": "lib/app_web/auth.ex", "template": "# pow auth skeleton\n" }] },
+
+    { "id": "strike-go-cobra-cli-minimal", "name": "Go Cobra CLI 最小", "stack": ["go","cobra"], "tags": ["cli"], "files": [{ "path": "cmd/root.go", "template": "// cobra root cmd skeleton\n" }] },
+    { "id": "strike-go-fiber-jwt-guard", "name": "Go Fiber JWT ガード", "stack": ["go","fiber","jwt"], "tags": ["auth"], "files": [{ "path": "main.go", "template": "// fiber jwt guard skeleton\n" }] },
+    { "id": "strike-go-kratos-service-minimal", "name": "Go Kratos サービス最小", "stack": ["go","kratos"], "tags": ["microservice"], "files": [{ "path": "app/main.go", "template": "// kratos service skeleton\n" }] },
+    { "id": "strike-go-nats-jetstream-kv-watch", "name": "NATS JetStream KV Watch", "stack": ["go","nats","jetstream"], "tags": ["store"], "files": [{ "path": "nats/kv_watch.go", "template": "// jetstream kv watch skeleton\n" }] },
+
+    { "id": "strike-rust-diesel-postgres", "name": "Rust Diesel + Postgres", "stack": ["rust","diesel","postgres"], "tags": ["db"], "files": [{ "path": "src/schema.rs", "template": "// diesel schema skeleton\n" }] },
+    { "id": "strike-rust-axum-websocket-chat", "name": "Rust Axum WebSocket Chat", "stack": ["rust","axum"], "tags": ["realtime"], "files": [{ "path": "src/ws.rs", "template": "// axum websocket chat skeleton\n" }] },
+    { "id": "strike-rust-tokio-broadcast-channel", "name": "Rust Tokio Broadcast Channel", "stack": ["rust","tokio"], "tags": ["async"], "files": [{ "path": "src/broadcast.rs", "template": "// tokio broadcast channel skeleton\n" }] },
+    { "id": "strike-tauri-notifications-basic", "name": "Tauri 通知 基本", "stack": ["tauri","rust"], "tags": ["desktop"], "files": [{ "path": "src-tauri/src/notify.rs", "template": "// tauri notifications skeleton\n" }] },
+
+    { "id": "strike-fastapi-background-redisq", "name": "FastAPI Background + Redis Queue", "stack": ["python","fastapi","redis"], "tags": ["jobs"], "files": [{ "path": "app/bg.py", "template": "# fastapi background redis queue skeleton\n" }] },
+    { "id": "strike-django-channels-websocket", "name": "Django Channels WebSocket", "stack": ["python","django","channels"], "tags": ["realtime"], "files": [{ "path": "mysite/routing.py", "template": "# channels routing skeleton\n" }] },
+    { "id": "strike-pydantic-basesettings-dotenv", "name": "Pydantic BaseSettings + .env", "stack": ["python","pydantic"], "tags": ["config"], "files": [{ "path": "config/settings.py", "template": "# pydantic basesettings dotenv skeleton\n" }] },
+    { "id": "strike-poetry-project-basic", "name": "Poetry プロジェクト基本", "stack": ["python","poetry"], "tags": ["tooling"], "files": [{ "path": "pyproject.toml", "template": "# poetry project skeleton\n" }] },
+
+    { "id": "strike-kafka-connect-debezium-mysql", "name": "Kafka Connect Debezium MySQL", "stack": ["kafka","debezium","mysql"], "tags": ["cdc"], "files": [{ "path": "connect/debezium-mysql.json", "template": "{ }\n" }] },
+    { "id": "strike-redpanda-tiered-storage", "name": "Redpanda Tiered Storage", "stack": ["redpanda"], "tags": ["stream","storage"], "files": [{ "path": "redpanda/config.yaml", "template": "# tiered storage skeleton\n" }] },
+    { "id": "strike-apache-druid-ingestion-spec", "name": "Apache Druid Ingestion Spec", "stack": ["druid"], "tags": ["ingest"], "files": [{ "path": "druid/ingestion.json", "template": "{ }\n" }] },
+    { "id": "strike-apache-pinot-realtime-table", "name": "Apache Pinot Realtime Table", "stack": ["pinot"], "tags": ["realtime"], "files": [{ "path": "pinot/table.json", "template": "{ }\n" }] },
+    { "id": "strike-apache-nifi-flow-minimal", "name": "Apache NiFi Flow 最小", "stack": ["nifi"], "tags": ["etl"], "files": [{ "path": "nifi/flow.json", "template": "{ }\n" }] },
+
+    { "id": "strike-milvus-index-ivf-pq", "name": "Milvus IVF-PQ Index", "stack": ["milvus"], "tags": ["vector"], "files": [{ "path": "milvus/index.py", "template": "# milvus ivf-pq index skeleton\n" }] },
+    { "id": "strike-pinecone-autoscaling-pods", "name": "Pinecone Autoscaling Pods", "stack": ["pinecone"], "tags": ["vector"], "files": [{ "path": "pinecone/autoscale.json", "template": "{ }\n" }] },
+    { "id": "strike-weaviate-hybrid-bm25-vector", "name": "Weaviate Hybrid BM25+Vector", "stack": ["weaviate"], "tags": ["vector","search"], "files": [{ "path": "weaviate/hybrid.json", "template": "{ }\n" }] },
+    { "id": "strike-qdrant-payload-index", "name": "Qdrant Payload Index", "stack": ["qdrant"], "tags": ["vector"], "files": [{ "path": "qdrant/payload_index.json", "template": "{ }\n" }] },
+
+    { "id": "strike-otel-collector-tail-sampling", "name": "OTel Collector Tail Sampling", "stack": ["opentelemetry","collector"], "tags": ["observability"], "files": [{ "path": "otel/tail_sampling.yaml", "template": "processors: { tail_sampling: {} }\n" }] },
+    { "id": "strike-prometheus-relabel-config", "name": "Prometheus Relabel Config", "stack": ["prometheus"], "tags": ["observability"], "files": [{ "path": "prometheus/relabel.yml", "template": "# relabel config skeleton\n" }] },
+    { "id": "strike-loki-promtail-docker-pipeline", "name": "Loki Promtail Docker Pipeline", "stack": ["loki","promtail"], "tags": ["logs"], "files": [{ "path": "promtail/docker-pipeline.yaml", "template": "# promtail docker pipeline skeleton\n" }] },
+    { "id": "strike-otel-logging-python", "name": "OTel Logging (Python)", "stack": ["opentelemetry","python"], "tags": ["logs"], "files": [{ "path": "otel/python_logging.py", "template": "# otel logging python skeleton\n" }] },
+    { "id": "strike-grafana-synthetic-monitoring", "name": "Grafana Synthetic Monitoring", "stack": ["grafana"], "tags": ["observability"], "files": [{ "path": "grafana/synthetic.yaml", "template": "# synthetic monitoring skeleton\n" }] },
+
+    { "id": "strike-oidc-pkce-flow", "name": "OIDC PKCE フロー", "stack": ["oidc"], "tags": ["auth"], "files": [{ "path": "auth/oidc_pkce.md", "template": "# oidc pkce skeleton\n" }] },
+    { "id": "strike-jwt-kid-rotation", "name": "JWT kid 鍵ローテーション", "stack": ["jwt"], "tags": ["security"], "files": [{ "path": "security/kid_rotation.md", "template": "# jwt kid rotation skeleton\n" }] },
+    { "id": "strike-aws-kms-key-rotation", "name": "AWS KMS Key ローテーション", "stack": ["aws","kms"], "tags": ["security"], "files": [{ "path": "kms/rotation.md", "template": "# kms key rotation skeleton\n" }] },
+    { "id": "strike-vault-approle-auth", "name": "Vault AppRole 認証", "stack": ["vault"], "tags": ["security"], "files": [{ "path": "vault/approle.hcl", "template": "# vault approle skeleton\n" }] },
+    { "id": "strike-sops-age-key-management", "name": "SOPS age キー管理", "stack": ["sops","age"], "tags": ["secrets"], "files": [{ "path": "sops/keys.md", "template": "# sops age keys skeleton\n" }] },
+
+    { "id": "strike-argo-rollouts-bluegreen", "name": "Argo Rollouts Blue/Green", "stack": ["argo-rollouts"], "tags": ["deploy"], "files": [{ "path": "k8s/rollout-bluegreen.yaml", "template": "# bluegreen rollout skeleton\n" }] },
+    { "id": "strike-fluxcd-kustomize-patches", "name": "FluxCD Kustomize Patches", "stack": ["fluxcd","kustomize"], "tags": ["gitops"], "files": [{ "path": "clusters/patches.yaml", "template": "# fluxcd patches skeleton\n" }] },
+    { "id": "strike-gh-actions-codeowners-enforce", "name": "GH Actions CODEOWNERS 強制", "stack": ["github","actions"], "tags": ["policy"], "files": [{ "path": ".github/workflows/codeowners.yml", "template": "name: Codeowners\non: [pull_request]\n" }] },
+    { "id": "strike-renovate-automerge-rules", "name": "Renovate 自動マージ規則", "stack": ["renovate"], "tags": ["deps"], "files": [{ "path": "renovate.json", "template": "{ }\n" }] },
+    { "id": "strike-gitlab-review-apps", "name": "GitLab Review Apps", "stack": ["gitlab","ci"], "tags": ["preview"], "files": [{ "path": ".gitlab-ci.yml", "template": "# review apps skeleton\n" }] },
+    { "id": "strike-circleci-contexts-secrets", "name": "CircleCI Contexts + Secrets", "stack": ["circleci"], "tags": ["ci","secrets"], "files": [{ "path": ".circleci/config.yml", "template": "# circleci contexts skeleton\n" }] },
+    { "id": "strike-tekton-chains-signature", "name": "Tekton Chains 署名", "stack": ["tekton","chains"], "tags": ["supply-chain"], "files": [{ "path": "k8s/tekton-chains.yaml", "template": "# tekton chains skeleton\n" }] },
+    { "id": "strike-syft-sbom-generate", "name": "Syft SBOM 生成", "stack": ["syft"], "tags": ["sbom"], "files": [{ "path": "sbom/generate.md", "template": "# syft sbom skeleton\n" }] },
+
+    { "id": "strike-cloudflare-pages-on-demand-builders", "name": "Cloudflare Pages ODB", "stack": ["cloudflare","pages"], "tags": ["edge"], "files": [{ "path": "functions/[[path]].ts", "template": "// on-demand builders skeleton\n" }] },
+    { "id": "strike-vercel-edge-cron", "name": "Vercel Edge Cron", "stack": ["vercel"], "tags": ["edge","schedule"], "files": [{ "path": "api/cron/route.ts", "template": "// vercel edge cron skeleton\n" }] },
+    { "id": "strike-deno-kv-atomic-batch", "name": "Deno KV Atomic Batch", "stack": ["deno","kv"], "tags": ["edge","db"], "files": [{ "path": "main.ts", "template": "// deno kv atomic batch skeleton\n" }] },
+    { "id": "strike-bun-websocket-server", "name": "Bun WebSocket サーバ", "stack": ["bun"], "tags": ["realtime"], "files": [{ "path": "server.ts", "template": "// bun websocket server skeleton\n" }] },
+    { "id": "strike-hono-jwt-guard", "name": "Hono JWT ガード", "stack": ["hono","jwt"], "tags": ["auth"], "files": [{ "path": "app.ts", "template": "// hono jwt guard skeleton\n" }] },
+
+    { "id": "strike-elasticsearch-eql-query", "name": "Elasticsearch EQL クエリ", "stack": ["elasticsearch"], "tags": ["search"], "files": [{ "path": "es/eql.json", "template": "{ }\n" }] },
+    { "id": "strike-opensearch-alerting-destination", "name": "OpenSearch Alerting Destination", "stack": ["opensearch"], "tags": ["alert"], "files": [{ "path": "os/alert_destination.json", "template": "{ }\n" }] }
+  ]
+}
+

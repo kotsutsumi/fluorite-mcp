@@ -1,0 +1,18 @@
+{
+  "id": "strike-packer-hcl-ami",
+  "name": "Packer HCL AMI",
+  "stack": [
+    "packer",
+    "aws"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "packer/ami.pkr.hcl",
+      "template": "# packer hcl skeleton\n"
+    }
+  ],
+  "patches": []
+}

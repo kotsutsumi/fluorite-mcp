@@ -1,0 +1,19 @@
+{
+  "id": "strike-deno-deploy-feature-flags",
+  "name": "Deno Deploy Feature Flags",
+  "stack": [
+    "deno",
+    "deploy"
+  ],
+  "tags": [
+    "edge",
+    "flags"
+  ],
+  "files": [
+    {
+      "path": "main.ts",
+      "template": "// deno deploy flags skeleton\n"
+    }
+  ],
+  "patches": []
+}

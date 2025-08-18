@@ -1,0 +1,19 @@
+{
+  "id": "strike-gh-actions-nx-affected",
+  "name": "GH Actions Nx affected",
+  "stack": [
+    "github",
+    "nx"
+  ],
+  "tags": [
+    "ci",
+    "monorepo"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/nx-affected.yml",
+      "template": "name: NxAffected\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

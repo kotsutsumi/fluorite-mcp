@@ -1,0 +1,18 @@
+{
+  "id": "strike-otel-k8s-attributes-processor",
+  "name": "OTel k8sattributes processor",
+  "stack": [
+    "opentelemetry",
+    "collector"
+  ],
+  "tags": [
+    "observability"
+  ],
+  "files": [
+    {
+      "path": "otel/k8sattrs.yaml",
+      "template": "processors: { k8sattributes: {} }\n"
+    }
+  ],
+  "patches": []
+}

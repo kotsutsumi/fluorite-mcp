@@ -1,0 +1,18 @@
+{
+  "id": "strike-prometheus-scrape-kubernetes-nodes",
+  "name": "Prometheus Scrape K8s Nodes",
+  "stack": [
+    "prometheus",
+    "kubernetes"
+  ],
+  "tags": [
+    "observability"
+  ],
+  "files": [
+    {
+      "path": "prometheus/scrape.yml",
+      "template": "# prometheus scrape nodes skeleton\n"
+    }
+  ],
+  "patches": []
+}

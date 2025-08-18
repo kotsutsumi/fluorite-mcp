@@ -1,0 +1,17 @@
+{
+  "id": "strike-postgres-partition-maintenance",
+  "name": "Postgres パーティション保守PROC",
+  "stack": [
+    "postgres"
+  ],
+  "tags": [
+    "db"
+  ],
+  "files": [
+    {
+      "path": "sql/partition_proc.sql",
+      "template": "-- partition maintenance proc skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-trivy-fs-scan-ci",
+  "name": "Trivy FS Scan CI",
+  "stack": [
+    "trivy",
+    "github"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/trivy-fs.yml",
+      "template": "name: TrivyFS\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

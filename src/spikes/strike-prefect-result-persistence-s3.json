@@ -1,0 +1,18 @@
+{
+  "id": "strike-prefect-result-persistence-s3",
+  "name": "Prefect Result Persistence (S3)",
+  "stack": [
+    "prefect",
+    "s3"
+  ],
+  "tags": [
+    "orchestration"
+  ],
+  "files": [
+    {
+      "path": "flows/result_s3.py",
+      "template": "# prefect result persistence skeleton\n"
+    }
+  ],
+  "patches": []
+}

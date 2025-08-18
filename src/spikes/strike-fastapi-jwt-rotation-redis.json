@@ -1,0 +1,20 @@
+{
+  "id": "strike-fastapi-jwt-rotation-redis",
+  "name": "FastAPI JWT Rotation + Redis",
+  "stack": [
+    "python",
+    "fastapi",
+    "jwt",
+    "redis"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "app/auth.py",
+      "template": "# jwt rotation with redis skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,19 @@
+{
+  "id": "strike-gh-actions-codecov-upload",
+  "name": "GH Actions Codecov Upload",
+  "stack": [
+    "github",
+    "codecov"
+  ],
+  "tags": [
+    "ci",
+    "coverage"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/codecov.yml",
+      "template": "name: Codecov\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

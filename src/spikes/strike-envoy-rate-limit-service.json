@@ -1,0 +1,17 @@
+{
+  "id": "strike-envoy-rate-limit-service",
+  "name": "Envoy Rate Limit Service",
+  "stack": [
+    "envoy"
+  ],
+  "tags": [
+    "throttle"
+  ],
+  "files": [
+    {
+      "path": "ratelimit/config.yaml",
+      "template": "# envoy rate limit service skeleton\n"
+    }
+  ],
+  "patches": []
+}

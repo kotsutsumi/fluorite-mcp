@@ -1,0 +1,18 @@
+{
+  "id": "strike-argocd-notifications",
+  "name": "ArgoCD Notifications",
+  "stack": [
+    "argocd"
+  ],
+  "tags": [
+    "gitops",
+    "notify"
+  ],
+  "files": [
+    {
+      "path": "k8s/argocd-notifications.yaml",
+      "template": "# argocd notifications skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,19 @@
+{
+  "id": "strike-bentoml-service-deploy",
+  "name": "BentoML Service Deploy",
+  "stack": [
+    "python",
+    "bentoml"
+  ],
+  "tags": [
+    "ml",
+    "serve"
+  ],
+  "files": [
+    {
+      "path": "service.py",
+      "template": "# bentoml service skeleton\n"
+    }
+  ],
+  "patches": []
+}

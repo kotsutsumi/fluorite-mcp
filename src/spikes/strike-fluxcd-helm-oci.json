@@ -1,0 +1,18 @@
+{
+  "id": "strike-fluxcd-helm-oci",
+  "name": "FluxCD Helm OCI レジストリ",
+  "stack": [
+    "fluxcd",
+    "helm"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/helm-oci.yaml",
+      "template": "# flux helm oci skeleton\n"
+    }
+  ],
+  "patches": []
+}

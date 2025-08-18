@@ -1,0 +1,17 @@
+{
+  "id": "strike-playwright-trace-upload-artifacts",
+  "name": "Playwright Trace Artifacts",
+  "stack": [
+    "playwright"
+  ],
+  "tags": [
+    "test"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/pw-trace.yml",
+      "template": "name: PWTrace\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

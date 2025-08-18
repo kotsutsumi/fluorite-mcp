@@ -1,0 +1,18 @@
+{
+  "id": "strike-duckdb-parquet-httpfs-cred",
+  "name": "DuckDB Parquet HTTPFS + 認証",
+  "stack": [
+    "duckdb",
+    "s3"
+  ],
+  "tags": [
+    "data"
+  ],
+  "files": [
+    {
+      "path": "duckdb/httpfs_auth.sql",
+      "template": "-- duckdb httpfs creds skeleton\n"
+    }
+  ],
+  "patches": []
+}

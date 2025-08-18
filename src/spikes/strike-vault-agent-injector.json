@@ -1,0 +1,18 @@
+{
+  "id": "strike-vault-agent-injector",
+  "name": "Vault Agent Injector",
+  "stack": [
+    "vault",
+    "kubernetes"
+  ],
+  "tags": [
+    "secrets"
+  ],
+  "files": [
+    {
+      "path": "k8s/vault-agent.yaml",
+      "template": "# vault agent injector skeleton\n"
+    }
+  ],
+  "patches": []
+}

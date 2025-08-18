@@ -1,0 +1,20 @@
+{
+  "id": "strike-go-grpc-gateway-proxy",
+  "name": "Go gRPC-Gateway Proxy",
+  "stack": [
+    "go",
+    "grpc",
+    "grpc-gateway"
+  ],
+  "tags": [
+    "api",
+    "proxy"
+  ],
+  "files": [
+    {
+      "path": "cmd/main.go",
+      "template": "// grpc-gateway proxy skeleton\n"
+    }
+  ],
+  "patches": []
+}

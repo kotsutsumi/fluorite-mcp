@@ -1,0 +1,17 @@
+{
+  "id": "strike-kafka-acls-setup",
+  "name": "Kafka ACLs 設定",
+  "stack": [
+    "kafka"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "kafka/acls.sh",
+      "template": "# kafka acls skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-loki-promtail-docker-pipeline",
+  "name": "Loki Promtail Docker Pipeline",
+  "stack": [
+    "loki",
+    "promtail"
+  ],
+  "tags": [
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "promtail/docker-pipeline.yaml",
+      "template": "# promtail docker pipeline skeleton\n"
+    }
+  ],
+  "patches": []
+}

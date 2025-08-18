@@ -1,0 +1,19 @@
+{
+  "id": "strike-karpenter-consolidation",
+  "name": "Karpenter Consolidation",
+  "stack": [
+    "karpenter",
+    "kubernetes"
+  ],
+  "tags": [
+    "autoscale",
+    "cost"
+  ],
+  "files": [
+    {
+      "path": "k8s/consolidation.yaml",
+      "template": "# karpenter consolidation skeleton\n"
+    }
+  ],
+  "patches": []
+}

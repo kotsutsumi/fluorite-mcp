@@ -3,7 +3,8 @@
   "name": "Debezium Postgres Source",
   "stack": [
     "kafka",
-    "debezium"
+    "debezium",
+    "postgres"
   ],
   "tags": [
     "cdc"
@@ -14,5 +15,6 @@
       "template": "{ }\n"
     }
   ],
-  "patches": []
+  "patches": [],
+  "params": []
 }

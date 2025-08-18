@@ -1,0 +1,20 @@
+{
+  "id": "strike-symfony-messenger-sqs-retry",
+  "name": "Symfony Messenger + SQS Retry",
+  "stack": [
+    "php",
+    "symfony",
+    "sqs"
+  ],
+  "tags": [
+    "queue",
+    "retry"
+  ],
+  "files": [
+    {
+      "path": "config/packages/messenger.yaml",
+      "template": "# messenger sqs retry skeleton\n"
+    }
+  ],
+  "patches": []
+}

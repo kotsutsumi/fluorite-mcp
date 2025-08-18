@@ -1,0 +1,19 @@
+{
+  "id": "strike-aws-sns-sqs-fanout",
+  "name": "AWS SNS→SQS Fanout",
+  "stack": [
+    "aws",
+    "sns",
+    "sqs"
+  ],
+  "tags": [
+    "events"
+  ],
+  "files": [
+    {
+      "path": "infra/fanout.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

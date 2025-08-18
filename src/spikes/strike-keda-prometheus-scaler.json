@@ -1,0 +1,18 @@
+{
+  "id": "strike-keda-prometheus-scaler",
+  "name": "KEDA Prometheus Scaler",
+  "stack": [
+    "keda",
+    "prometheus"
+  ],
+  "tags": [
+    "autoscale"
+  ],
+  "files": [
+    {
+      "path": "k8s/keda-prom.yaml",
+      "template": "# keda prometheus scaler skeleton\n"
+    }
+  ],
+  "patches": []
+}

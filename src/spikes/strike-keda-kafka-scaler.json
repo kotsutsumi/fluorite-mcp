@@ -1,0 +1,19 @@
+{
+  "id": "strike-keda-kafka-scaler",
+  "name": "KEDA Kafka Scaler",
+  "stack": [
+    "keda",
+    "kubernetes",
+    "kafka"
+  ],
+  "tags": [
+    "autoscale"
+  ],
+  "files": [
+    {
+      "path": "k8s/scaledobject-kafka.yaml",
+      "template": "# keda kafka scaler skeleton\n"
+    }
+  ],
+  "patches": []
+}

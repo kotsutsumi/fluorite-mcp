@@ -1,0 +1,18 @@
+{
+  "id": "strike-mosquitto-bridge-minimal",
+  "name": "Mosquitto ブリッジ最小",
+  "stack": [
+    "mqtt",
+    "mosquitto"
+  ],
+  "tags": [
+    "broker"
+  ],
+  "files": [
+    {
+      "path": "mosquitto/bridge.conf",
+      "template": "# mosquitto bridge skeleton\n"
+    }
+  ],
+  "patches": []
+}

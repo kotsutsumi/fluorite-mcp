@@ -1,0 +1,61 @@
+{
+  "items": [
+    { "id": "strike-argocd-applicationset-git-generator", "name": "ArgoCD ApplicationSet Git Generator", "stack": ["argocd","kubernetes"], "tags": ["gitops"], "files": [{ "path": "k8s/applicationset.yaml", "template": "# appset git generator skeleton\n" }] },
+    { "id": "strike-argocd-rollouts-nginx-traffic", "name": "Argo Rollouts NGINX TrafficSplit", "stack": ["argo-rollouts","nginx"], "tags": ["canary"], "files": [{ "path": "k8s/rollout.yaml", "template": "# nginx traffic split skeleton\n" }] },
+    { "id": "strike-fluxcd-helm-oci", "name": "FluxCD Helm OCI レジストリ", "stack": ["fluxcd","helm"], "tags": ["gitops"], "files": [{ "path": "k8s/helm-oci.yaml", "template": "# flux helm oci skeleton\n" }] },
+
+    { "id": "strike-otel-collector-filelog-receiver", "name": "OTel Collector filelog receiver", "stack": ["opentelemetry","collector"], "tags": ["logs"], "files": [{ "path": "otel/filelog.yaml", "template": "receivers: { filelog: {} }\n" }] },
+    { "id": "strike-otel-k8s-attributes-processor", "name": "OTel k8sattributes processor", "stack": ["opentelemetry","collector"], "tags": ["observability"], "files": [{ "path": "otel/k8sattrs.yaml", "template": "processors: { k8sattributes: {} }\n" }] },
+    { "id": "strike-loki-retention-and-buckets", "name": "Loki Retention + Buckets", "stack": ["loki"], "tags": ["logs"], "files": [{ "path": "loki/storage.yaml", "template": "# loki retention skeleton\n" }] },
+    { "id": "strike-alertmanager-inhibit-rules", "name": "Alertmanager Inhibit Rules", "stack": ["alertmanager"], "tags": ["observability"], "files": [{ "path": "alertmanager/inhibit.yml", "template": "# inhibit rules skeleton\n" }] },
+
+    { "id": "strike-kyverno-mutate-imagepullpolicy", "name": "Kyverno mutate imagePullPolicy", "stack": ["kyverno","kubernetes"], "tags": ["policy"], "files": [{ "path": "kyverno/policy.yaml", "template": "# kyverno mutate skeleton\n" }] },
+    { "id": "strike-trivy-fs-scan-ci", "name": "Trivy FS Scan CI", "stack": ["trivy","github"], "tags": ["security"], "files": [{ "path": ".github/workflows/trivy-fs.yml", "template": "name: TrivyFS\non: [push]\n" }] },
+    { "id": "strike-vault-pki-issue-cert", "name": "Vault PKI 証明書発行", "stack": ["vault","pki"], "tags": ["security"], "files": [{ "path": "vault/pki.hcl", "template": "# vault pki issue cert skeleton\n" }] },
+    { "id": "strike-boundary-session-broker", "name": "HashiCorp Boundary Session", "stack": ["boundary"], "tags": ["security"], "files": [{ "path": "boundary/config.hcl", "template": "# boundary session skeleton\n" }] },
+
+    { "id": "strike-aws-eventbridge-pipes-sqs-to-lambda", "name": "EventBridge Pipes SQS→Lambda", "stack": ["aws","eventbridge","pipes"], "tags": ["events"], "files": [{ "path": "aws/pipes.json", "template": "{ }\n" }] },
+    { "id": "strike-aws-stepfunctions-map-state", "name": "Step Functions Map State", "stack": ["aws","stepfunctions"], "tags": ["workflow"], "files": [{ "path": "sfn/map.json", "template": "{ }\n" }] },
+    { "id": "strike-aws-glue-crawler-s3", "name": "AWS Glue Crawler S3", "stack": ["aws","glue"], "tags": ["etl"], "files": [{ "path": "glue/crawler.json", "template": "{ }\n" }] },
+    { "id": "strike-gcp-cloud-run-jobs", "name": "GCP Cloud Run Jobs", "stack": ["gcp","cloud-run"], "tags": ["jobs"], "files": [{ "path": "run/job.yaml", "template": "# cloud run job skeleton\n" }] },
+    { "id": "strike-gcp-cloud-scheduler-pubsub", "name": "Cloud Scheduler → Pub/Sub", "stack": ["gcp","scheduler","pubsub"], "tags": ["schedule"], "files": [{ "path": "gcp/scheduler.yaml", "template": "# scheduler to pubsub skeleton\n" }] },
+    { "id": "strike-azure-durable-functions-entities", "name": "Azure Durable Functions Entities", "stack": ["azure","functions","durable"], "tags": ["workflow"], "files": [{ "path": "functions/entity.ts", "template": "// durable entity skeleton\n" }] },
+    { "id": "strike-azure-servicebus-topics", "name": "Azure Service Bus Topics", "stack": ["azure","servicebus"], "tags": ["queue"], "files": [{ "path": "servicebus/topics.json", "template": "{ }\n" }] },
+
+    { "id": "strike-flink-cep-pattern-detect", "name": "Flink CEP パターン検出", "stack": ["flink"], "tags": ["stream"], "files": [{ "path": "flink/cep.java", "template": "// flink cep skeleton\n" }] },
+    { "id": "strike-spark-streaming-watermark", "name": "Spark Streaming Watermark", "stack": ["spark"], "tags": ["stream"], "files": [{ "path": "spark/watermark.py", "template": "# watermark skeleton\n" }] },
+    { "id": "strike-kafka-streams-exactly-once", "name": "Kafka Streams Exactly-Once", "stack": ["kafka","streams"], "tags": ["stream"], "files": [{ "path": "kafka/streams.java", "template": "// exactly once skeleton\n" }] },
+    { "id": "strike-debezium-postgres-source", "name": "Debezium Postgres Source", "stack": ["debezium","postgres"], "tags": ["cdc"], "files": [{ "path": "debezium/postgres.json", "template": "{ }\n" }] },
+
+    { "id": "strike-dspy-prompt-optimization", "name": "DSPy Prompt 最適化", "stack": ["dspy","python"], "tags": ["ml"], "files": [{ "path": "ai/dspy.py", "template": "# dspy prompt opt skeleton\n" }] },
+    { "id": "strike-peft-lora-inference", "name": "PEFT LoRA 推論", "stack": ["peft","python"], "tags": ["ml"], "files": [{ "path": "ai/peft_lora.py", "template": "# peft lora inference skeleton\n" }] },
+    { "id": "strike-mistral-client-basic", "name": "Mistral Client 基本", "stack": ["mistral","python"], "tags": ["ml"], "files": [{ "path": "ai/mistral.py", "template": "# mistral client skeleton\n" }] },
+    { "id": "strike-llamaindex-query-fusion", "name": "LlamaIndex Query Fusion", "stack": ["llamaindex","python"], "tags": ["rag"], "files": [{ "path": "rag/query_fusion.py", "template": "# query fusion skeleton\n" }] },
+    { "id": "strike-langchain-agent-executor-tools", "name": "LangChain AgentExecutor + Tools", "stack": ["langchain","python"], "tags": ["agents"], "files": [{ "path": "rag/agent_executor.py", "template": "# agent executor tools skeleton\n" }] },
+
+    { "id": "strike-nextjs-bot-detection-middleware", "name": "Next.js Bot検知 Middleware", "stack": ["nextjs"], "tags": ["middleware","security"], "files": [{ "path": "middleware.ts", "template": "// bot detection skeleton\n" }] },
+    { "id": "strike-react-rsc-cache-helpers", "name": "React Server Components Cache", "stack": ["react","nextjs"], "tags": ["rsc","cache"], "files": [{ "path": "app/cache.ts", "template": "// rsc cache skeleton\n" }] },
+    { "id": "strike-tanstack-table-minimal", "name": "TanStack Table 最小", "stack": ["react","tanstack-table"], "tags": ["ui"], "files": [{ "path": "src/table.tsx", "template": "// tanstack table skeleton\n" }] },
+    { "id": "strike-swr-mutate-optimistic-ui", "name": "SWR mutate 楽観UI", "stack": ["react","swr"], "tags": ["data"], "files": [{ "path": "src/useData.ts", "template": "// swr optimistic ui skeleton\n" }] },
+    { "id": "strike-zustand-persist-storage", "name": "Zustand persist storage", "stack": ["react","zustand"], "tags": ["state"], "files": [{ "path": "src/store.ts", "template": "// zustand persist skeleton\n" }] },
+    { "id": "strike-shadcn-toast-provider", "name": "shadcn/ui Toast Provider", "stack": ["react","shadcn"], "tags": ["ui"], "files": [{ "path": "src/ui/toast.tsx", "template": "// shadcn toast provider skeleton\n" }] },
+    { "id": "strike-tailwind-typography-plugin", "name": "Tailwind Typography プラグイン", "stack": ["tailwind"], "tags": ["css"], "files": [{ "path": "tailwind.config.js", "template": "// tailwind typography plugin skeleton\n" }] },
+
+    { "id": "strike-cloudflare-hyperdrive-postgres", "name": "Cloudflare Hyperdrive Postgres", "stack": ["cloudflare","hyperdrive","postgres"], "tags": ["edge","db"], "files": [{ "path": "wrangler.toml", "template": "# hyperdrive skeleton\n" }] },
+    { "id": "strike-cloudflare-workers-ai-vision", "name": "Workers AI Vision API", "stack": ["cloudflare","workers-ai"], "tags": ["ai","edge"], "files": [{ "path": "src/vision.ts", "template": "// workers ai vision skeleton\n" }] },
+    { "id": "strike-d1-migrations-wrangler", "name": "Cloudflare D1 Migrations", "stack": ["cloudflare","d1"], "tags": ["db"], "files": [{ "path": "migrations/001_init.sql", "template": "-- d1 migration skeleton\n" }] },
+
+    { "id": "strike-gh-actions-codecov-upload", "name": "GH Actions Codecov Upload", "stack": ["github","codecov"], "tags": ["ci","coverage"], "files": [{ "path": ".github/workflows/codecov.yml", "template": "name: Codecov\non: [push]\n" }] },
+    { "id": "strike-gh-actions-nx-affected", "name": "GH Actions Nx affected", "stack": ["github","nx"], "tags": ["ci","monorepo"], "files": [{ "path": ".github/workflows/nx-affected.yml", "template": "name: NxAffected\non: [push]\n" }] },
+    { "id": "strike-turborepo-remote-cache-s3", "name": "Turborepo Remote Cache S3(拡張)", "stack": ["turborepo","s3"], "tags": ["ci","cache"], "files": [{ "path": "turbo.json", "template": "{ }\n" }] },
+    { "id": "strike-playwright-trace-upload-artifacts", "name": "Playwright Trace Artifacts", "stack": ["playwright"], "tags": ["test"], "files": [{ "path": ".github/workflows/pw-trace.yml", "template": "name: PWTrace\non: [push]\n" }] },
+    { "id": "strike-cypress-parallelization", "name": "Cypress 並列実行", "stack": ["cypress"], "tags": ["test"], "files": [{ "path": ".github/workflows/cypress.yml", "template": "name: Cypress\non: [push]\n" }] },
+    { "id": "strike-sonarcloud-scan", "name": "SonarCloud Scan", "stack": ["sonarcloud"], "tags": ["quality"], "files": [{ "path": ".github/workflows/sonar.yml", "template": "name: Sonar\non: [push]\n" }] },
+
+    { "id": "strike-ansible-vault-secrets", "name": "Ansible Vault Secrets", "stack": ["ansible"], "tags": ["secrets"], "files": [{ "path": "ansible/vault.md", "template": "# ansible vault skeleton\n" }] },
+    { "id": "strike-nix-flakes-devshell", "name": "Nix Flakes devShell", "stack": ["nix"], "tags": ["dev"], "files": [{ "path": "flake.nix", "template": "# nix devshell skeleton\n" }] },
+    { "id": "strike-bazel-build-typescript", "name": "Bazel Build TypeScript", "stack": ["bazel","typescript"], "tags": ["build"], "files": [{ "path": "WORKSPACE", "template": "# bazel workspace skeleton\n" }] },
+    { "id": "strike-taskfile-ci-pipeline", "name": "Taskfile CI パイプライン", "stack": ["taskfile","ci"], "tags": ["automation"], "files": [{ "path": "Taskfile.yml", "template": "# taskfile skeleton\n" }] }
+  ]
+}
+

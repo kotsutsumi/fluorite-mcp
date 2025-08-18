@@ -1,0 +1,19 @@
+{
+  "id": "strike-quarkus-grpc-minimal",
+  "name": "Quarkus gRPC 最小",
+  "stack": [
+    "java",
+    "quarkus",
+    "grpc"
+  ],
+  "tags": [
+    "rpc"
+  ],
+  "files": [
+    {
+      "path": "src/main/proto/echo.proto",
+      "template": "// quarkus grpc echo proto\n"
+    }
+  ],
+  "patches": []
+}

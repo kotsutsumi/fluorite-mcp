@@ -1,0 +1,17 @@
+{
+  "id": "strike-argo-rollouts-bluegreen",
+  "name": "Argo Rollouts Blue/Green",
+  "stack": [
+    "argo-rollouts"
+  ],
+  "tags": [
+    "deploy"
+  ],
+  "files": [
+    {
+      "path": "k8s/rollout-bluegreen.yaml",
+      "template": "# bluegreen rollout skeleton\n"
+    }
+  ],
+  "patches": []
+}

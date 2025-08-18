@@ -1,0 +1,18 @@
+{
+  "id": "strike-aws-verified-permissions-abac",
+  "name": "AWS Verified Permissions ABAC",
+  "stack": [
+    "aws",
+    "avp"
+  ],
+  "tags": [
+    "authz"
+  ],
+  "files": [
+    {
+      "path": "avp/policy.cedar",
+      "template": "// cedar policy skeleton\n"
+    }
+  ],
+  "patches": []
+}

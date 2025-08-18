@@ -1,10 +1,10 @@
 # Fluorite MCP - Enterprise-Grade Development Context for Claude Code CLI
 
-[![NPM Version](https://img.shields.io/npm/v/fluorite-mcp.svg)](https://www.npmjs.com/package/fluorite-mcp)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Node.js Version](https://img.shields.io/node/v/fluorite-mcp.svg)](https://nodejs.org)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
-[![Documentation](https://img.shields.io/badge/docs-vitepress-green.svg)](https://kotsutsumi.github.io/fluorite-mcp)
+**NPM Version**: fluorite-mcp  
+**License**: MIT  
+**Node.js Version**: 18.0+  
+**TypeScript**: 5.0+  
+**Documentation**: Available in this repository
 
 Transform Claude Code CLI into a comprehensive development powerhouse with **Fluorite MCP**. Experience professional-grade code generation, intelligent error prevention, and accelerated prototyping through our extensive library of specifications and proven patterns.
 

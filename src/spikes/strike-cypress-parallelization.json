@@ -1,0 +1,17 @@
+{
+  "id": "strike-cypress-parallelization",
+  "name": "Cypress 並列実行",
+  "stack": [
+    "cypress"
+  ],
+  "tags": [
+    "test"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/cypress.yml",
+      "template": "name: Cypress\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

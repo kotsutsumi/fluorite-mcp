@@ -1,0 +1,18 @@
+{
+  "id": "strike-istio-ratelimit-envoyfilter",
+  "name": "Istio EnvoyFilter レート制限",
+  "stack": [
+    "istio"
+  ],
+  "tags": [
+    "mesh",
+    "throttle"
+  ],
+  "files": [
+    {
+      "path": "k8s/envoyfilter.yaml",
+      "template": "# istio ratelimit envoyfilter skeleton\n"
+    }
+  ],
+  "patches": []
+}

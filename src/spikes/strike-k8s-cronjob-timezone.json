@@ -1,0 +1,17 @@
+{
+  "id": "strike-k8s-cronjob-timezone",
+  "name": "K8s CronJob タイムゾーン",
+  "stack": [
+    "kubernetes"
+  ],
+  "tags": [
+    "jobs"
+  ],
+  "files": [
+    {
+      "path": "k8s/cronjob.yaml",
+      "template": "# cronjob tz skeleton\n"
+    }
+  ],
+  "patches": []
+}

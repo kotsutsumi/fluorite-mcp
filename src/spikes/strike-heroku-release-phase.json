@@ -1,0 +1,17 @@
+{
+  "id": "strike-heroku-release-phase",
+  "name": "Heroku Release Phase",
+  "stack": [
+    "heroku"
+  ],
+  "tags": [
+    "deploy"
+  ],
+  "files": [
+    {
+      "path": "Procfile",
+      "template": "release: node migrate.js\n"
+    }
+  ],
+  "patches": []
+}

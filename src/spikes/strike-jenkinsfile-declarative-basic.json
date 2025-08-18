@@ -1,0 +1,17 @@
+{
+  "id": "strike-jenkinsfile-declarative-basic",
+  "name": "Jenkinsfile Declarative 基本",
+  "stack": [
+    "jenkins"
+  ],
+  "tags": [
+    "ci"
+  ],
+  "files": [
+    {
+      "path": "Jenkinsfile",
+      "template": "pipeline { agent any; stages { stage('build'){ steps { echo 'hi' } } } }\n"
+    }
+  ],
+  "patches": []
+}

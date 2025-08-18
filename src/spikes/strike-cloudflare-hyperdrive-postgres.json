@@ -1,0 +1,20 @@
+{
+  "id": "strike-cloudflare-hyperdrive-postgres",
+  "name": "Cloudflare Hyperdrive Postgres",
+  "stack": [
+    "cloudflare",
+    "hyperdrive",
+    "postgres"
+  ],
+  "tags": [
+    "edge",
+    "db"
+  ],
+  "files": [
+    {
+      "path": "wrangler.toml",
+      "template": "# hyperdrive skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,19 @@
+{
+  "id": "strike-kafka-connect-debezium-mysql",
+  "name": "Kafka Connect Debezium MySQL",
+  "stack": [
+    "kafka",
+    "debezium",
+    "mysql"
+  ],
+  "tags": [
+    "cdc"
+  ],
+  "files": [
+    {
+      "path": "connect/debezium-mysql.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

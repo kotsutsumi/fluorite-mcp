@@ -1,0 +1,18 @@
+{
+  "id": "strike-nsq-nsqlookupd-compose",
+  "name": "NSQ + nsqlookupd Compose",
+  "stack": [
+    "nsq",
+    "docker"
+  ],
+  "tags": [
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "docker-compose.yml",
+      "template": "# nsq compose skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -107,8 +107,8 @@ name: マイカスタムライブラリ
 version: 1.0.0
 description: 専門機能のためのカスタムライブラリ
 category: custom-tools
-homepage: https://mycustomlibrary.dev
-repository: https://github.com/myorg/my-custom-library
+homepage: # ライブラリのホームページURL
+repository: # GitリポジトリURL
 language: TypeScript
 
 features:

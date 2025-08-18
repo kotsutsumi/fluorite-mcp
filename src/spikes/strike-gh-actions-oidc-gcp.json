@@ -1,0 +1,19 @@
+{
+  "id": "strike-gh-actions-oidc-gcp",
+  "name": "GH Actions OIDC→GCP",
+  "stack": [
+    "github",
+    "gcp"
+  ],
+  "tags": [
+    "ci",
+    "auth"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/gcp-oidc.yml",
+      "template": "name: GcpOIDC\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

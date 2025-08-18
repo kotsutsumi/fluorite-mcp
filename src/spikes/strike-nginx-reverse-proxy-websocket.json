@@ -1,0 +1,17 @@
+{
+  "id": "strike-nginx-reverse-proxy-websocket",
+  "name": "Nginx 逆プロキシ WebSocket",
+  "stack": [
+    "nginx"
+  ],
+  "tags": [
+    "proxy"
+  ],
+  "files": [
+    {
+      "path": "nginx/ws.conf",
+      "template": "# nginx ws proxy skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-grafana-provision-datasources",
+  "name": "Grafana Provision Datasources",
+  "stack": [
+    "grafana"
+  ],
+  "tags": [
+    "observability"
+  ],
+  "files": [
+    {
+      "path": "grafana/datasources.yml",
+      "template": "# grafana datasource provision skeleton\n"
+    }
+  ],
+  "patches": []
+}

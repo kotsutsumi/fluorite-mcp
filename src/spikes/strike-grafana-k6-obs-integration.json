@@ -1,0 +1,19 @@
+{
+  "id": "strike-grafana-k6-obs-integration",
+  "name": "Grafana k6 Observability 連携",
+  "stack": [
+    "grafana",
+    "k6"
+  ],
+  "tags": [
+    "observability",
+    "loadtest"
+  ],
+  "files": [
+    {
+      "path": "k6/obs.yaml",
+      "template": "# k6 observability skeleton\n"
+    }
+  ],
+  "patches": []
+}

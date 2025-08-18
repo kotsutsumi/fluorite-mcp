@@ -1,0 +1,18 @@
+{
+  "id": "strike-d1-migrations-wrangler",
+  "name": "Cloudflare D1 Migrations",
+  "stack": [
+    "cloudflare",
+    "d1"
+  ],
+  "tags": [
+    "db"
+  ],
+  "files": [
+    {
+      "path": "migrations/001_init.sql",
+      "template": "-- d1 migration skeleton\n"
+    }
+  ],
+  "patches": []
+}

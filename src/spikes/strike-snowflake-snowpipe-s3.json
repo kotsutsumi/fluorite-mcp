@@ -1,0 +1,18 @@
+{
+  "id": "strike-snowflake-snowpipe-s3",
+  "name": "Snowflake Snowpipe (S3)",
+  "stack": [
+    "snowflake",
+    "s3"
+  ],
+  "tags": [
+    "warehouse"
+  ],
+  "files": [
+    {
+      "path": "snowflake/snowpipe.sql",
+      "template": "-- create stage + pipe skeleton\n"
+    }
+  ],
+  "patches": []
+}

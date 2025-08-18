@@ -1,0 +1,18 @@
+{
+  "id": "strike-trivy-operator-k8s",
+  "name": "Trivy Operator for K8s",
+  "stack": [
+    "trivy",
+    "kubernetes"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "k8s/trivy-operator.yaml",
+      "template": "# trivy operator skeleton\n"
+    }
+  ],
+  "patches": []
+}

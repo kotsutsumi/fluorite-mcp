@@ -1,0 +1,18 @@
+{
+  "id": "strike-gitlab-review-apps",
+  "name": "GitLab Review Apps",
+  "stack": [
+    "gitlab",
+    "ci"
+  ],
+  "tags": [
+    "preview"
+  ],
+  "files": [
+    {
+      "path": ".gitlab-ci.yml",
+      "template": "# review apps skeleton\n"
+    }
+  ],
+  "patches": []
+}

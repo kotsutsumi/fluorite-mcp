@@ -1,0 +1,17 @@
+{
+  "id": "strike-alertmanager-inhibit-rules",
+  "name": "Alertmanager Inhibit Rules",
+  "stack": [
+    "alertmanager"
+  ],
+  "tags": [
+    "observability"
+  ],
+  "files": [
+    {
+      "path": "alertmanager/inhibit.yml",
+      "template": "# inhibit rules skeleton\n"
+    }
+  ],
+  "patches": []
+}

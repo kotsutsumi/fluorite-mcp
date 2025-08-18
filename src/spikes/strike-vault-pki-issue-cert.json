@@ -1,0 +1,18 @@
+{
+  "id": "strike-vault-pki-issue-cert",
+  "name": "Vault PKI 証明書発行",
+  "stack": [
+    "vault",
+    "pki"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "vault/pki.hcl",
+      "template": "# vault pki issue cert skeleton\n"
+    }
+  ],
+  "patches": []
+}

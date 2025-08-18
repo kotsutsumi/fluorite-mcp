@@ -1,0 +1,18 @@
+{
+  "id": "strike-argocd-rollouts-nginx-traffic",
+  "name": "Argo Rollouts NGINX TrafficSplit",
+  "stack": [
+    "argo-rollouts",
+    "nginx"
+  ],
+  "tags": [
+    "canary"
+  ],
+  "files": [
+    {
+      "path": "k8s/rollout.yaml",
+      "template": "# nginx traffic split skeleton\n"
+    }
+  ],
+  "patches": []
+}

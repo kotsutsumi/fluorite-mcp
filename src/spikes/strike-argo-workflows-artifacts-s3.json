@@ -1,0 +1,18 @@
+{
+  "id": "strike-argo-workflows-artifacts-s3",
+  "name": "Argo Workflows Artifacts S3",
+  "stack": [
+    "argo-workflows",
+    "s3"
+  ],
+  "tags": [
+    "workflow"
+  ],
+  "files": [
+    {
+      "path": "k8s/artifacts.yaml",
+      "template": "# argo artifacts s3 skeleton\n"
+    }
+  ],
+  "patches": []
+}

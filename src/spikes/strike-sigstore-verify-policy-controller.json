@@ -1,0 +1,18 @@
+{
+  "id": "strike-sigstore-verify-policy-controller",
+  "name": "Sigstore Policy Controller Verify",
+  "stack": [
+    "sigstore",
+    "kubernetes"
+  ],
+  "tags": [
+    "supply-chain"
+  ],
+  "files": [
+    {
+      "path": "k8s/policy-controller.yaml",
+      "template": "# sigstore policy controller skeleton\n"
+    }
+  ],
+  "patches": []
+}

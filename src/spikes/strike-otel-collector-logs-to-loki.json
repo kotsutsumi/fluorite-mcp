@@ -1,0 +1,18 @@
+{
+  "id": "strike-otel-collector-logs-to-loki",
+  "name": "OTel Collector Logs→Loki",
+  "stack": [
+    "opentelemetry",
+    "loki"
+  ],
+  "tags": [
+    "observability"
+  ],
+  "files": [
+    {
+      "path": "otel/collector-logs-loki.yaml",
+      "template": "receivers: {}\n"
+    }
+  ],
+  "patches": []
+}

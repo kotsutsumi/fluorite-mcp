@@ -1,0 +1,19 @@
+{
+  "id": "strike-mqtt-emqx-rule-kafka",
+  "name": "EMQX ルール → Kafka",
+  "stack": [
+    "mqtt",
+    "emqx",
+    "kafka"
+  ],
+  "tags": [
+    "stream"
+  ],
+  "files": [
+    {
+      "path": "emqx/rule.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

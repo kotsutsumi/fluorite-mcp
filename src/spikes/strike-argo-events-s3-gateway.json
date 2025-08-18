@@ -1,0 +1,18 @@
+{
+  "id": "strike-argo-events-s3-gateway",
+  "name": "Argo Events S3 Gateway",
+  "stack": [
+    "argo-events",
+    "kubernetes"
+  ],
+  "tags": [
+    "events"
+  ],
+  "files": [
+    {
+      "path": "k8s/argo-events.yaml",
+      "template": "# argo events s3 gateway skeleton\n"
+    }
+  ],
+  "patches": []
+}

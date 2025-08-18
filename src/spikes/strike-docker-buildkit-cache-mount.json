@@ -1,0 +1,17 @@
+{
+  "id": "strike-docker-buildkit-cache-mount",
+  "name": "Docker BuildKit Cache Mount",
+  "stack": [
+    "docker"
+  ],
+  "tags": [
+    "build"
+  ],
+  "files": [
+    {
+      "path": "Dockerfile",
+      "template": "# syntax=docker/dockerfile:1.6\n# buildkit cache mount skeleton\n"
+    }
+  ],
+  "patches": []
+}

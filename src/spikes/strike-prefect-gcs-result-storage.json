@@ -1,0 +1,18 @@
+{
+  "id": "strike-prefect-gcs-result-storage",
+  "name": "Prefect GCS_Result Storage",
+  "stack": [
+    "prefect",
+    "gcs"
+  ],
+  "tags": [
+    "orchestration"
+  ],
+  "files": [
+    {
+      "path": "flows/gcs_result.py",
+      "template": "# prefect gcs result skeleton\n"
+    }
+  ],
+  "patches": []
+}

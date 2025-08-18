@@ -1,0 +1,18 @@
+{
+  "id": "strike-kong-jwt-plugin",
+  "name": "Kong JWT プラグイン",
+  "stack": [
+    "kong",
+    "jwt"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "kong/jwt.yml",
+      "template": "# kong jwt plugin skeleton\n"
+    }
+  ],
+  "patches": []
+}

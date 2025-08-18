@@ -1,0 +1,18 @@
+{
+  "id": "strike-janusgraph-cql-storage",
+  "name": "JanusGraph + CQL ストレージ",
+  "stack": [
+    "janusgraph",
+    "cassandra"
+  ],
+  "tags": [
+    "graph"
+  ],
+  "files": [
+    {
+      "path": "janusgraph/config.properties",
+      "template": "# janusgraph cql skeleton\n"
+    }
+  ],
+  "patches": []
+}

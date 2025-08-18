@@ -1,0 +1,18 @@
+{
+  "id": "strike-mlflow-model-registry-ci",
+  "name": "MLflow Model Registry CI",
+  "stack": [
+    "mlflow"
+  ],
+  "tags": [
+    "ml",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/mlflow.yml",
+      "template": "name: MLflow\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

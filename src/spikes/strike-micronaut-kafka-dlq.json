@@ -1,0 +1,20 @@
+{
+  "id": "strike-micronaut-kafka-dlq",
+  "name": "Micronaut Kafka DLQ",
+  "stack": [
+    "java",
+    "micronaut",
+    "kafka"
+  ],
+  "tags": [
+    "retry",
+    "dlq"
+  ],
+  "files": [
+    {
+      "path": "src/main/java/example/DlqConfig.java",
+      "template": "// kafka dlq config skeleton\n"
+    }
+  ],
+  "patches": []
+}

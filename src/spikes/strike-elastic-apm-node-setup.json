@@ -1,0 +1,19 @@
+{
+  "id": "strike-elastic-apm-node-setup",
+  "name": "Elastic APM Node Setup",
+  "stack": [
+    "elastic",
+    "apm",
+    "node"
+  ],
+  "tags": [
+    "observability"
+  ],
+  "files": [
+    {
+      "path": "apm/node.js",
+      "template": "// elastic apm node skeleton\n"
+    }
+  ],
+  "patches": []
+}

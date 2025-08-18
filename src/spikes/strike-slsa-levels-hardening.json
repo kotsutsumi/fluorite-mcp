@@ -1,0 +1,18 @@
+{
+  "id": "strike-slsa-levels-hardening",
+  "name": "SLSA Levels Hardening",
+  "stack": [
+    "slsa",
+    "github"
+  ],
+  "tags": [
+    "supply-chain"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/slsa-harden.yml",
+      "template": "name: SLSA-Harden\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

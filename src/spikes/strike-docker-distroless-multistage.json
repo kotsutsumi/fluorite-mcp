@@ -1,0 +1,18 @@
+{
+  "id": "strike-docker-distroless-multistage",
+  "name": "Docker Distroless マルチステージ",
+  "stack": [
+    "docker"
+  ],
+  "tags": [
+    "build",
+    "security"
+  ],
+  "files": [
+    {
+      "path": "Dockerfile",
+      "template": "# multistage distroless skeleton\n"
+    }
+  ],
+  "patches": []
+}

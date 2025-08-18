@@ -1,0 +1,17 @@
+{
+  "id": "strike-circleci-dynamic-config",
+  "name": "CircleCI Dynamic Config",
+  "stack": [
+    "circleci"
+  ],
+  "tags": [
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".circleci/config.yml",
+      "template": "# circleci dynamic config skeleton\n"
+    }
+  ],
+  "patches": []
+}

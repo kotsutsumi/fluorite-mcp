@@ -267,8 +267,8 @@ version: 2.1.0
 description: A comprehensive UI component library with TypeScript support
 category: ui-components
 subcategory: component-libraries
-homepage: https://mycustomlibrary.dev
-repository: https://github.com/myorg/my-custom-library
+homepage: # ライブラリのホームページURL
+repository: # GitリポジトリURL
 language: TypeScript
 
 # Classification
@@ -432,8 +432,8 @@ tools:
   core_framework:
     name: My Framework
     description: Core application framework
-    homepage: https://myframework.dev
-    repository: https://github.com/myorg/my-framework
+    homepage: # フレームワークのホームページURL
+    repository: # GitリポジトリURL
     language: TypeScript
     features:
       - Server-side rendering
@@ -831,7 +831,7 @@ git push origin main
 # install-templates.sh
 
 TEMPLATE_DIR="$HOME/.fluorite/custom-templates"
-REPO_URL="https://github.com/myorg/fluorite-templates"
+REPO_URL="# テンプレートリポジトリURL"
 
 # Create directory
 mkdir -p "$TEMPLATE_DIR"
@@ -1111,7 +1111,7 @@ Add validation rules to templates:
 
 1. **Fork the Repository**:
    ```bash
-   git fork https://github.com/kotsutsumi/fluorite-mcp
+   # 本プロジェクトのリポジトリをフォーク
    ```
 
 2. **Add Your Template**:

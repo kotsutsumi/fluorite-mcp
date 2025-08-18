@@ -273,8 +273,8 @@ name: My Library
 version: 2.1.0
 description: A comprehensive UI component library
 category: ui-components
-homepage: https://mylibrary.dev
-repository: https://github.com/myorg/mylibrary
+homepage: # ライブラリのホームページURL
+repository: # GitリポジトリURL
 
 features:
   - Accessible components
@@ -549,8 +549,8 @@ tags:
   - typescript
   - react
   - accessibility
-homepage: https://example.com
-repository: https://github.com/example/library
+homepage: # ライブラリのホームページURL
+repository: # GitリポジトリURL
 language: TypeScript
 
 # Simple library format

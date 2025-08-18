@@ -1,0 +1,19 @@
+{
+  "id": "strike-ray-serve-deployment",
+  "name": "Ray Serve Deployment",
+  "stack": [
+    "python",
+    "ray"
+  ],
+  "tags": [
+    "ml",
+    "serve"
+  ],
+  "files": [
+    {
+      "path": "serve/deploy.py",
+      "template": "# ray serve skeleton\n"
+    }
+  ],
+  "patches": []
+}

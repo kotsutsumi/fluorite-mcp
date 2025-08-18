@@ -1,0 +1,18 @@
+{
+  "id": "strike-redpanda-tiered-storage",
+  "name": "Redpanda Tiered Storage",
+  "stack": [
+    "redpanda"
+  ],
+  "tags": [
+    "stream",
+    "storage"
+  ],
+  "files": [
+    {
+      "path": "redpanda/config.yaml",
+      "template": "# tiered storage skeleton\n"
+    }
+  ],
+  "patches": []
+}

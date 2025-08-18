@@ -1,0 +1,68 @@
+{
+  "items": [
+    { "id": "strike-kafka-mirrormaker2-replication", "name": "Kafka MirrorMaker2 レプリケーション", "stack": ["kafka","mirrormaker2"], "tags": ["replication"], "files": [{ "path": "kafka/mirrormaker2.json", "template": "{ }\n" }] },
+    { "id": "strike-kafka-kraft-migration-notes", "name": "Kafka KRaft 移行メモ", "stack": ["kafka","kraft"], "tags": ["migration"], "files": [{ "path": "kafka/kraft.md", "template": "# kraft migration skeleton\n" }] },
+    { "id": "strike-kafka-acls-setup", "name": "Kafka ACLs 設定", "stack": ["kafka"], "tags": ["security"], "files": [{ "path": "kafka/acls.sh", "template": "# kafka acls skeleton\n" }] },
+    { "id": "strike-kafka-schema-evolution", "name": "Kafka スキーマ進化", "stack": ["kafka","schema-registry"], "tags": ["schema"], "files": [{ "path": "kafka/schema_evolution.avsc", "template": "{ }\n" }] },
+
+    { "id": "strike-activemq-artemis-queue", "name": "ActiveMQ Artemis Queue", "stack": ["activemq","artemis"], "tags": ["queue"], "files": [{ "path": "artemis/broker.xml", "template": "<!-- artemis queue skeleton -->\n" }] },
+    { "id": "strike-rabbitmq-streams-minimal", "name": "RabbitMQ Streams 最小", "stack": ["rabbitmq","streams"], "tags": ["stream"], "files": [{ "path": "rabbitmq/streams.md", "template": "# rabbitmq streams skeleton\n" }] },
+    { "id": "strike-nsq-nsqlookupd-compose", "name": "NSQ + nsqlookupd Compose", "stack": ["nsq","docker"], "tags": ["queue"], "files": [{ "path": "docker-compose.yml", "template": "# nsq compose skeleton\n" }] },
+
+    { "id": "strike-cockroachdb-serializable-tx", "name": "CockroachDB Serializable TX", "stack": ["cockroachdb"], "tags": ["db"], "files": [{ "path": "crdb/tx.sql", "template": "-- cockroachdb serializable tx skeleton\n" }] },
+    { "id": "strike-yugabytedb-geo-partition", "name": "YugabyteDB Geo-Partition", "stack": ["yugabyte"], "tags": ["db","geo"], "files": [{ "path": "yuga/geo.sql", "template": "-- yugabyte geo partition skeleton\n" }] },
+    { "id": "strike-vitess-sharding-router", "name": "Vitess シャーディング/Router", "stack": ["vitess"], "tags": ["db","shard"], "files": [{ "path": "vitess/notes.md", "template": "# vitess sharding skeleton\n" }] },
+    { "id": "strike-planetescale-branch-branching", "name": "PlanetScale Branch/Deploy", "stack": ["planetscale"], "tags": ["db","deploy"], "files": [{ "path": "pscale/notes.md", "template": "# planetscale branching skeleton\n" }] },
+    { "id": "strike-tidb-htap-basic", "name": "TiDB HTAP 基本", "stack": ["tidb"], "tags": ["db"], "files": [{ "path": "tidb/notes.md", "template": "# tidb htap skeleton\n" }] },
+
+    { "id": "strike-janusgraph-cql-storage", "name": "JanusGraph + CQL ストレージ", "stack": ["janusgraph","cassandra"], "tags": ["graph"], "files": [{ "path": "janusgraph/config.properties", "template": "# janusgraph cql skeleton\n" }] },
+    { "id": "strike-questdb-ilp-write", "name": "QuestDB ILP Write", "stack": ["questdb"], "tags": ["timeseries"], "files": [{ "path": "questdb/ilp.py", "template": "# questdb ilp write skeleton\n" }] },
+    { "id": "strike-victoriametrics-remote-write", "name": "VictoriaMetrics Remote Write", "stack": ["victoriametrics","prometheus"], "tags": ["observability"], "files": [{ "path": "vm/remote_write.yml", "template": "# victoriametrics remote write skeleton\n" }] },
+    { "id": "strike-m3db-cluster-basic", "name": "M3DB クラスタ基本", "stack": ["m3db"], "tags": ["timeseries"], "files": [{ "path": "m3db/cluster.yaml", "template": "# m3db cluster skeleton\n" }] },
+
+    { "id": "strike-openmetadata-ingestion-docker", "name": "OpenMetadata Ingestion Docker", "stack": ["openmetadata"], "tags": ["governance"], "files": [{ "path": "openmetadata/docker-compose.yml", "template": "# openmetadata ingestion skeleton\n" }] },
+    { "id": "strike-datahub-ingestion-yaml", "name": "DataHub Ingestion YAML", "stack": ["datahub"], "tags": ["governance"], "files": [{ "path": "datahub/ingestion.yml", "template": "# datahub ingestion skeleton\n" }] },
+    { "id": "strike-amundsen-metadata-loader", "name": "Amundsen Metadata Loader", "stack": ["amundsen"], "tags": ["catalog"], "files": [{ "path": "amundsen/loader.py", "template": "# amundsen loader skeleton\n" }] },
+
+    { "id": "strike-mlflow-model-registry-ci", "name": "MLflow Model Registry CI", "stack": ["mlflow"], "tags": ["ml","ci"], "files": [{ "path": ".github/workflows/mlflow.yml", "template": "name: MLflow\non: [push]\n" }] },
+    { "id": "strike-kedro-pipeline-minimal", "name": "Kedro Pipeline 最小", "stack": ["kedro"], "tags": ["pipelines"], "files": [{ "path": "kedro/pipeline.py", "template": "# kedro pipeline skeleton\n" }] },
+    { "id": "strike-databricks-jobs-api", "name": "Databricks Jobs API", "stack": ["databricks"], "tags": ["jobs"], "files": [{ "path": "databricks/job.json", "template": "{ }\n" }] },
+    { "id": "strike-dbt-artifacts-parse", "name": "dbt Artifacts 解析", "stack": ["dbt"], "tags": ["metadata"], "files": [{ "path": "dbt/artifacts.py", "template": "# dbt artifacts parse skeleton\n" }] },
+
+    { "id": "strike-langserve-fastapi-endpoint", "name": "LangServe FastAPI エンドポイント", "stack": ["langserve","fastapi"], "tags": ["ml","serve"], "files": [{ "path": "langserve/app.py", "template": "# langserve endpoint skeleton\n" }] },
+    { "id": "strike-llamaindex-observability", "name": "LlamaIndex 観測可能性", "stack": ["llamaindex"], "tags": ["ml","observability"], "files": [{ "path": "rag/observability.py", "template": "# llamaindex observability skeleton\n" }] },
+    { "id": "strike-vllm-openai-compatible-server", "name": "vLLM OpenAI Compatible Server", "stack": ["vllm"], "tags": ["ml","serve"], "files": [{ "path": "ai/vllm_server.md", "template": "# vllm server skeleton\n" }] },
+    { "id": "strike-triton-dynamic-batching", "name": "Triton Dynamic Batching", "stack": ["triton"], "tags": ["ml","serve"], "files": [{ "path": "models/config.pbtxt", "template": "# triton dynamic batching skeleton\n" }] },
+
+    { "id": "strike-lakefs-hooks-actions", "name": "lakeFS Hooks/Actions", "stack": ["lakefs"], "tags": ["data","versioning"], "files": [{ "path": "lakefs/actions.yaml", "template": "# lakefs actions skeleton\n" }] },
+    { "id": "strike-s3-lifecycle-transition", "name": "S3 ライフサイクル/遷移", "stack": ["aws","s3"], "tags": ["storage"], "files": [{ "path": "s3/lifecycle.json", "template": "{ }\n" }] },
+    { "id": "strike-azure-blob-lifecycle", "name": "Azure Blob Lifecycle", "stack": ["azure","blob"], "tags": ["storage"], "files": [{ "path": "azure/blob_lifecycle.json", "template": "{ }\n" }] },
+    { "id": "strike-gcs-object-lifecycle", "name": "GCS Object Lifecycle", "stack": ["gcp","gcs"], "tags": ["storage"], "files": [{ "path": "gcs/lifecycle.json", "template": "{ }\n" }] },
+
+    { "id": "strike-aws-iam-roles-anywhere", "name": "AWS IAM Roles Anywhere", "stack": ["aws","iam"], "tags": ["security"], "files": [{ "path": "iam/roles_anywhere.md", "template": "# roles anywhere skeleton\n" }] },
+    { "id": "strike-aws-identity-center-sso", "name": "AWS Identity Center(SSO)", "stack": ["aws","sso"], "tags": ["auth"], "files": [{ "path": "sso/notes.md", "template": "# identity center sso skeleton\n" }] },
+    { "id": "strike-aws-verified-permissions-abac", "name": "AWS Verified Permissions ABAC", "stack": ["aws","avp"], "tags": ["authz"], "files": [{ "path": "avp/policy.cedar", "template": "// cedar policy skeleton\n" }] },
+    { "id": "strike-cedar-policy-examples", "name": "Cedar Policy 例", "stack": ["cedar"], "tags": ["authz"], "files": [{ "path": "cedar/policies.cedar", "template": "// cedar examples skeleton\n" }] },
+
+    { "id": "strike-fastly-compute-edge-basic", "name": "Fastly Compute@Edge 基本", "stack": ["fastly","edge"], "tags": ["edge"], "files": [{ "path": "fastly/main.rs", "template": "// fastly compute@edge skeleton\n" }] },
+    { "id": "strike-akamai-edgeworkers-minimal", "name": "Akamai EdgeWorkers 最小", "stack": ["akamai","edge"], "tags": ["edge"], "files": [{ "path": "edgeworkers/main.js", "template": "// akamai edgeworkers skeleton\n" }] },
+    { "id": "strike-flyio-machines-deploy", "name": "Fly.io Machines Deploy", "stack": ["flyio"], "tags": ["deploy"], "files": [{ "path": "fly.toml", "template": "# fly machines skeleton\n" }] },
+    { "id": "strike-heroku-release-phase", "name": "Heroku Release Phase", "stack": ["heroku"], "tags": ["deploy"], "files": [{ "path": "Procfile", "template": "release: node migrate.js\n" }] },
+
+    { "id": "strike-litmus-chaos-engine", "name": "LitmusChaos ChaosEngine", "stack": ["litmus","kubernetes"], "tags": ["chaos"], "files": [{ "path": "k8s/chaosengine.yaml", "template": "# litmus chaosengine skeleton\n" }] },
+    { "id": "strike-chaosmesh-network-chaos", "name": "Chaos Mesh NetworkChaos", "stack": ["chaosmesh","kubernetes"], "tags": ["chaos"], "files": [{ "path": "k8s/networkchaos.yaml", "template": "# chaosmesh networkchaos skeleton\n" }] },
+    { "id": "strike-k6-browser-tracing", "name": "k6 Browser + Tracing", "stack": ["k6","browser"], "tags": ["loadtest","trace"], "files": [{ "path": "k6/browser.js", "template": "// k6 browser tracing skeleton\n" }] },
+    { "id": "strike-grafana-k6-obs-integration", "name": "Grafana k6 Observability 連携", "stack": ["grafana","k6"], "tags": ["observability","loadtest"], "files": [{ "path": "k6/obs.yaml", "template": "# k6 observability skeleton\n" }] },
+
+    { "id": "strike-nextjs-app-router-cache-tags", "name": "Next.js App Router Cache Tags", "stack": ["nextjs"], "tags": ["frontend","cache"], "files": [{ "path": "app/actions.ts", "template": "// next cache tags skeleton\n" }] },
+    { "id": "strike-nuxt-isr-cached-endpoints", "name": "Nuxt ISR Cached Endpoints", "stack": ["nuxt"], "tags": ["frontend","cache"], "files": [{ "path": "server/api/cache.ts", "template": "// nuxt isr cache skeleton\n" }] },
+    { "id": "strike-sveltekit-edge-adapter", "name": "SvelteKit Edge Adapter", "stack": ["sveltekit","edge"], "tags": ["frontend"], "files": [{ "path": "svelte.config.js", "template": "// sveltekit edge adapter skeleton\n" }] },
+    { "id": "strike-astro-image-service-sharp", "name": "Astro Image Service(sharp)", "stack": ["astro"], "tags": ["frontend","image"], "files": [{ "path": "astro.config.mjs", "template": "// astro image service sharp skeleton\n" }] },
+
+    { "id": "strike-jenkinsfile-declarative-basic", "name": "Jenkinsfile Declarative 基本", "stack": ["jenkins"], "tags": ["ci"], "files": [{ "path": "Jenkinsfile", "template": "pipeline { agent any; stages { stage('build'){ steps { echo 'hi' } } } }\n" }] },
+    { "id": "strike-buildkite-pipeline-steps", "name": "Buildkite Pipeline Steps", "stack": ["buildkite"], "tags": ["ci"], "files": [{ "path": "buildkite/pipeline.yml", "template": "# buildkite pipeline skeleton\n" }] },
+    { "id": "strike-drone-ci-pipeline", "name": "Drone CI Pipeline", "stack": ["drone"], "tags": ["ci"], "files": [{ "path": ".drone.yml", "template": "# drone pipeline skeleton\n" }] },
+    { "id": "strike-woodpecker-ci-pipeline", "name": "Woodpecker CI Pipeline", "stack": ["woodpecker"], "tags": ["ci"], "files": [{ "path": ".woodpecker.yml", "template": "# woodpecker pipeline skeleton\n" }] }
+  ]
+}
+

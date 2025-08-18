@@ -1,0 +1,17 @@
+{
+  "id": "strike-alertmanager-routing-templates",
+  "name": "Alertmanager Routing + Templates",
+  "stack": [
+    "alertmanager"
+  ],
+  "tags": [
+    "observability"
+  ],
+  "files": [
+    {
+      "path": "alertmanager/config.yml",
+      "template": "# alertmanager routes skeleton\n"
+    }
+  ],
+  "patches": []
+}

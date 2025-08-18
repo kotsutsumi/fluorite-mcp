@@ -1,0 +1,18 @@
+{
+  "id": "strike-otel-collector-filelog-receiver",
+  "name": "OTel Collector filelog receiver",
+  "stack": [
+    "opentelemetry",
+    "collector"
+  ],
+  "tags": [
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "otel/filelog.yaml",
+      "template": "receivers: { filelog: {} }\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-nginx-mtls-client-verify",
+  "name": "Nginx mTLS Client Verify",
+  "stack": [
+    "nginx",
+    "mtls"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "nginx/mtls.conf",
+      "template": "# nginx mtls client verify skeleton\n"
+    }
+  ],
+  "patches": []
+}

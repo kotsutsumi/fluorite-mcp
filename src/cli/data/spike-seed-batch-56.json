@@ -1,0 +1,67 @@
+{
+  "items": [
+    { "id": "strike-langgraph-agent-tools-basic", "name": "LangGraph Agent + Tools 基本", "stack": ["python","langgraph"], "tags": ["agents","workflow"], "files": [{ "path": "rag/langgraph_agent.py", "template": "# langgraph agent + tools skeleton\n" }] },
+    { "id": "strike-crewai-dual-agent-collab", "name": "CrewAI 二体エージェント協調", "stack": ["python","crewai"], "tags": ["agents"], "files": [{ "path": "ai/crewai_collab.py", "template": "# crewai dual agents skeleton\n" }] },
+    { "id": "strike-autogen-groupchat-tools", "name": "AutoGen GroupChat + Tools", "stack": ["python","autogen"], "tags": ["agents"], "files": [{ "path": "ai/autogen_groupchat.py", "template": "# autogen group chat skeleton\n" }] },
+
+    { "id": "strike-ragas-basic-eval", "name": "RAGAS 基本評価", "stack": ["python","ragas"], "tags": ["eval","rag"], "files": [{ "path": "eval/ragas_basic.py", "template": "# ragas basic eval skeleton\n" }] },
+    { "id": "strike-deepeval-llm-as-judge", "name": "DeepEval LLM-as-a-Judge", "stack": ["python","deepeval"], "tags": ["eval"], "files": [{ "path": "eval/deepeval_judge.py", "template": "# deepeval lj skeleton\n" }] },
+    { "id": "strike-trulens-feedback-evals", "name": "TruLens Feedback Evals", "stack": ["python","trulens"], "tags": ["eval","ml"], "files": [{ "path": "eval/trulens.py", "template": "# trulens feedback evals skeleton\n" }] },
+
+    { "id": "strike-postgres-pgvector-setup", "name": "Postgres pgvector セットアップ", "stack": ["postgres","pgvector"], "tags": ["vector"], "files": [{ "path": "sql/pgvector.sql", "template": "-- pgvector extension + index skeleton\n" }] },
+    { "id": "strike-sqlite-vss-setup", "name": "SQLite VSS 拡張セットアップ", "stack": ["sqlite","vss"], "tags": ["vector"], "files": [{ "path": "sql/sqlite_vss.sql", "template": "-- sqlite vss skeleton\n" }] },
+    { "id": "strike-pinecone-namespace-filter", "name": "Pinecone Namespace + Filter", "stack": ["pinecone"], "tags": ["vector"], "files": [{ "path": "pinecone/namespace.py", "template": "# pinecone namespace + metadata filter skeleton\n" }] },
+
+    { "id": "strike-apache-beam-dataflow-python", "name": "Apache Beam→Dataflow (Python)", "stack": ["beam","dataflow"], "tags": ["etl"], "files": [{ "path": "beam/pipeline.py", "template": "# beam -> dataflow skeleton\n" }] },
+    { "id": "strike-gcp-dataflow-flex-template", "name": "GCP Dataflow Flex Template", "stack": ["gcp","dataflow"], "tags": ["etl","deploy"], "files": [{ "path": "dataflow/template.json", "template": "{ }\n" }] },
+    { "id": "strike-azure-datafactory-copy-batch", "name": "Azure Data Factory Copy バッチ", "stack": ["azure","adf"], "tags": ["etl"], "files": [{ "path": "adf/pipeline.json", "template": "{ }\n" }] },
+
+    { "id": "strike-snowflake-snowpipe-s3", "name": "Snowflake Snowpipe (S3)", "stack": ["snowflake","s3"], "tags": ["warehouse"], "files": [{ "path": "snowflake/snowpipe.sql", "template": "-- create stage + pipe skeleton\n" }] },
+    { "id": "strike-snowflake-task-stream-merge", "name": "Snowflake Task + Stream Merge", "stack": ["snowflake"], "tags": ["warehouse"], "files": [{ "path": "snowflake/task_stream.sql", "template": "-- stream + task + merge skeleton\n" }] },
+    { "id": "strike-bigquery-scheduled-query", "name": "BigQuery Scheduled Query", "stack": ["gcp","bigquery"], "tags": ["warehouse"], "files": [{ "path": "bq/scheduled.json", "template": "{ }\n" }] },
+    { "id": "strike-bigquery-partition-cluster", "name": "BigQuery Partition + Cluster", "stack": ["gcp","bigquery"], "tags": ["warehouse"], "files": [{ "path": "bq/table.sql", "template": "-- partition + cluster table skeleton\n" }] },
+
+    { "id": "strike-dynamodb-streams-lambda", "name": "DynamoDB Streams→Lambda", "stack": ["aws","dynamodb","lambda"], "tags": ["events"], "files": [{ "path": "infra/ddb_streams.json", "template": "{ }\n" }] },
+    { "id": "strike-dynamodb-ttl-gsi", "name": "DynamoDB TTL + GSI", "stack": ["aws","dynamodb"], "tags": ["db"], "files": [{ "path": "infra/ddb_ttl_gsi.json", "template": "{ }\n" }] },
+    { "id": "strike-redis-timeseries-basic", "name": "RedisTimeSeries 基本", "stack": ["redis","timeseries"], "tags": ["ts"], "files": [{ "path": "redis/ts.md", "template": "# redis timeseries skeleton\n" }] },
+
+    { "id": "strike-mqtt-emqx-rule-kafka", "name": "EMQX ルール → Kafka", "stack": ["mqtt","emqx","kafka"], "tags": ["stream"], "files": [{ "path": "emqx/rule.json", "template": "{ }\n" }] },
+    { "id": "strike-mosquitto-bridge-minimal", "name": "Mosquitto ブリッジ最小", "stack": ["mqtt","mosquitto"], "tags": ["broker"], "files": [{ "path": "mosquitto/bridge.conf", "template": "# mosquitto bridge skeleton\n" }] },
+    { "id": "strike-socketio-rooms-broadcast", "name": "Socket.IO Rooms Broadcast", "stack": ["node","socket.io"], "tags": ["realtime"], "files": [{ "path": "socket/server.js", "template": "// socket.io rooms skeleton\n" }] },
+
+    { "id": "strike-aws-cloudfront-viewer-request-fn", "name": "CloudFront Viewer-Request Function", "stack": ["aws","cloudfront"], "tags": ["edge"], "files": [{ "path": "cf/function.js", "template": "// cloudfront viewer-request function skeleton\n" }] },
+    { "id": "strike-aws-kms-envelope-encryption", "name": "AWS KMS 封筒暗号化", "stack": ["aws","kms"], "tags": ["security"], "files": [{ "path": "kms/envelope.md", "template": "# kms envelope encryption skeleton\n" }] },
+    { "id": "strike-gcp-kms-encrypt-decrypt", "name": "GCP KMS Encrypt/Decrypt", "stack": ["gcp","kms"], "tags": ["security"], "files": [{ "path": "kms/gcp_kms.py", "template": "# gcp kms encrypt/decrypt skeleton\n" }] },
+    { "id": "strike-vault-transit-encrypt", "name": "Vault Transit 透過暗号", "stack": ["vault"], "tags": ["security"], "files": [{ "path": "vault/transit.hcl", "template": "# vault transit skeleton\n" }] },
+
+    { "id": "strike-keda-kafka-scaler", "name": "KEDA Kafka Scaler", "stack": ["keda","kubernetes","kafka"], "tags": ["autoscale"], "files": [{ "path": "k8s/scaledobject-kafka.yaml", "template": "# keda kafka scaler skeleton\n" }] },
+    { "id": "strike-trivy-operator-k8s", "name": "Trivy Operator for K8s", "stack": ["trivy","kubernetes"], "tags": ["security"], "files": [{ "path": "k8s/trivy-operator.yaml", "template": "# trivy operator skeleton\n" }] },
+    { "id": "strike-polaris-k8s-audit", "name": "Polaris K8s 構成監査", "stack": ["polaris","kubernetes"], "tags": ["policy"], "files": [{ "path": "k8s/polaris.yaml", "template": "# polaris audit skeleton\n" }] },
+    { "id": "strike-argo-events-s3-gateway", "name": "Argo Events S3 Gateway", "stack": ["argo-events","kubernetes"], "tags": ["events"], "files": [{ "path": "k8s/argo-events.yaml", "template": "# argo events s3 gateway skeleton\n" }] },
+
+    { "id": "strike-opentelemetry-operator-setup", "name": "OTel Operator セットアップ", "stack": ["opentelemetry","kubernetes"], "tags": ["observability"], "files": [{ "path": "k8s/otel-operator.yaml", "template": "# otel operator skeleton\n" }] },
+    { "id": "strike-istio-mtls-strict", "name": "Istio mTLS STRICT", "stack": ["istio","kubernetes"], "tags": ["mesh","security"], "files": [{ "path": "k8s/peer-authentication.yaml", "template": "# istio mtls strict skeleton\n" }] },
+    { "id": "strike-linkerd-multicluster-gateway", "name": "Linkerd Multi-cluster Gateway", "stack": ["linkerd","kubernetes"], "tags": ["mesh"], "files": [{ "path": "k8s/multicluster.yaml", "template": "# linkerd multicluster skeleton\n" }] },
+
+    { "id": "strike-github-actions-concurrency-cancel", "name": "GH Actions 並列キャンセル", "stack": ["github","actions"], "tags": ["ci"], "files": [{ "path": ".github/workflows/ci.yml", "template": "name: CI\nconcurrency: { group: 'build', cancel-in-progress: true }\n" }] },
+    { "id": "strike-github-actions-matrix-cache", "name": "GH Actions マトリクス+キャッシュ", "stack": ["github","actions"], "tags": ["ci"], "files": [{ "path": ".github/workflows/cache.yml", "template": "name: Cache\non: [push]\n" }] },
+    { "id": "strike-goreleaser-minimal", "name": "GoReleaser 最小設定", "stack": ["goreleaser","go"], "tags": ["release"], "files": [{ "path": ".goreleaser.yaml", "template": "# goreleaser skeleton\n" }] },
+    { "id": "strike-docker-buildkit-cache-mount", "name": "Docker BuildKit Cache Mount", "stack": ["docker"], "tags": ["build"], "files": [{ "path": "Dockerfile", "template": "# syntax=docker/dockerfile:1.6\n# buildkit cache mount skeleton\n" }] },
+    { "id": "strike-docker-distroless-multistage", "name": "Docker Distroless マルチステージ", "stack": ["docker"], "tags": ["build","security"], "files": [{ "path": "Dockerfile", "template": "# multistage distroless skeleton\n" }] },
+
+    { "id": "strike-neo4j-apoc-triggers", "name": "Neo4j APOC Triggers", "stack": ["neo4j","apoc"], "tags": ["graph"], "files": [{ "path": "neo4j/apoc_triggers.cql", "template": "// apoc triggers skeleton\n" }] },
+    { "id": "strike-neo4j-graphql-ogm", "name": "Neo4j GraphQL OGM", "stack": ["neo4j","graphql"], "tags": ["graph","api"], "files": [{ "path": "neo4j/graphql.ts", "template": "// neo4j graphql ogm skeleton\n" }] },
+    { "id": "strike-apollo-federation-gateway", "name": "Apollo Federation Gateway", "stack": ["node","apollo"], "tags": ["graphql"], "files": [{ "path": "apollo/gateway.ts", "template": "// apollo federation gateway skeleton\n" }] },
+    { "id": "strike-graphql-yoga-minimal", "name": "GraphQL Yoga 最小", "stack": ["node","graphql-yoga"], "tags": ["graphql"], "files": [{ "path": "graphql/server.ts", "template": "// graphql yoga minimal skeleton\n" }] },
+
+    { "id": "strike-nextjs-isr-revalidate-tag", "name": "Next.js ISR revalidateTag", "stack": ["nextjs"], "tags": ["frontend","cache"], "files": [{ "path": "app/actions.ts", "template": "// revalidateTag skeleton\n" }] },
+    { "id": "strike-nextjs-edge-streaming-route", "name": "Next.js Edge Streaming Route", "stack": ["nextjs","edge"], "tags": ["stream"], "files": [{ "path": "app/api/stream/route.ts", "template": "// edge streaming route skeleton\n" }] },
+    { "id": "strike-remix-zod-action-validate", "name": "Remix Action Zod Validate", "stack": ["remix","zod"], "tags": ["forms","validation"], "files": [{ "path": "app/routes/form.tsx", "template": "// remix zod action skeleton\n" }] },
+    { "id": "strike-sveltekit-load-server-parent", "name": "SvelteKit load + parent", "stack": ["sveltekit"], "tags": ["frontend"], "files": [{ "path": "src/routes/+layout.server.ts", "template": "// load + parent skeleton\n" }] },
+    { "id": "strike-vue-query-tanstack", "name": "Vue + TanStack Query", "stack": ["vue","tanstack-query"], "tags": ["frontend","data"], "files": [{ "path": "src/query.ts", "template": "// vue tanstack query skeleton\n" }] },
+
+    { "id": "strike-k6-load-test-minimal", "name": "k6 負荷試験最小", "stack": ["k6"], "tags": ["loadtest"], "files": [{ "path": "k6/script.js", "template": "// k6 load test skeleton\n" }] },
+    { "id": "strike-locust-load-test-minimal", "name": "Locust 負荷試験最小", "stack": ["locust"], "tags": ["loadtest"], "files": [{ "path": "locustfile.py", "template": "# locust skeleton\n" }] }
+  ]
+}
+

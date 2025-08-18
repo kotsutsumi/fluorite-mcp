@@ -1,0 +1,18 @@
+{
+  "id": "strike-gitlab-child-pipelines",
+  "name": "GitLab Child Pipelines",
+  "stack": [
+    "gitlab",
+    "ci"
+  ],
+  "tags": [
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".gitlab-ci.yml",
+      "template": "# child pipelines skeleton\n"
+    }
+  ],
+  "patches": []
+}

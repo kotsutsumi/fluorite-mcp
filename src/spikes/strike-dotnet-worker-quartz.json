@@ -1,0 +1,19 @@
+{
+  "id": "strike-dotnet-worker-quartz",
+  "name": ".NET Worker + Quartz.NET",
+  "stack": [
+    "dotnet",
+    "quartz"
+  ],
+  "tags": [
+    "jobs",
+    "schedule"
+  ],
+  "files": [
+    {
+      "path": "Workers/QuartzJob.cs",
+      "template": "// quartz job skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-airflow-dbt-cloud-operator",
+  "name": "Airflow dbt Cloud Operator",
+  "stack": [
+    "airflow",
+    "dbt"
+  ],
+  "tags": [
+    "orchestration"
+  ],
+  "files": [
+    {
+      "path": "dags/dbt_cloud.py",
+      "template": "# airflow dbt cloud skeleton\n"
+    }
+  ],
+  "patches": []
+}

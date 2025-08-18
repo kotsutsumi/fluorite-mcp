@@ -1,0 +1,17 @@
+{
+  "id": "strike-promtail-scrape-config",
+  "name": "Promtail Scrape Config",
+  "stack": [
+    "promtail"
+  ],
+  "tags": [
+    "observability"
+  ],
+  "files": [
+    {
+      "path": "promtail/config.yaml",
+      "template": "# promtail config skeleton\n"
+    }
+  ],
+  "patches": []
+}

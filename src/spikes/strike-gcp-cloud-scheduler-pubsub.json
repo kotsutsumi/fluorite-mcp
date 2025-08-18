@@ -1,0 +1,19 @@
+{
+  "id": "strike-gcp-cloud-scheduler-pubsub",
+  "name": "Cloud Scheduler → Pub/Sub",
+  "stack": [
+    "gcp",
+    "scheduler",
+    "pubsub"
+  ],
+  "tags": [
+    "schedule"
+  ],
+  "files": [
+    {
+      "path": "gcp/scheduler.yaml",
+      "template": "# scheduler to pubsub skeleton\n"
+    }
+  ],
+  "patches": []
+}

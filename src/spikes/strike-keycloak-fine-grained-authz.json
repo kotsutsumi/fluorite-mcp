@@ -1,0 +1,17 @@
+{
+  "id": "strike-keycloak-fine-grained-authz",
+  "name": "Keycloak 細粒度AuthZ",
+  "stack": [
+    "keycloak"
+  ],
+  "tags": [
+    "authz"
+  ],
+  "files": [
+    {
+      "path": "keycloak/permission.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

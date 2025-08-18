@@ -1,0 +1,20 @@
+{
+  "id": "strike-gh-actions-reusable-npm-publish",
+  "name": "GH Actions 再利用 npm publish",
+  "stack": [
+    "github",
+    "actions",
+    "npm"
+  ],
+  "tags": [
+    "ci",
+    "release"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/npm-publish.yml",
+      "template": "name: NpmPublish\non: workflow_call\n"
+    }
+  ],
+  "patches": []
+}

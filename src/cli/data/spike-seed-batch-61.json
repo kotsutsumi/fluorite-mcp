@@ -1,0 +1,60 @@
+{
+  "items": [
+    { "id": "strike-h3-route-minimal", "name": "h3 ルート最小", "stack": ["node","h3"], "tags": ["api"], "files": [{ "path": "server.ts", "template": "// h3 minimal route skeleton\n" }] },
+    { "id": "strike-nitro-workers-kv", "name": "Nitro Workers + KV", "stack": ["nitro","cloudflare","kv"], "tags": ["edge"], "files": [{ "path": "server/api/kv.ts", "template": "// nitro workers kv skeleton\n" }] },
+    { "id": "strike-deno-fresh-isr", "name": "Deno Fresh ISR", "stack": ["deno","fresh"], "tags": ["frontend","isr"], "files": [{ "path": "routes/isr.ts", "template": "// fresh isr skeleton\n" }] },
+    { "id": "strike-bun-elysia-websocket-chat", "name": "Bun Elysia WebSocket Chat", "stack": ["bun","elysia"], "tags": ["realtime"], "files": [{ "path": "server.ts", "template": "// elysia websocket chat skeleton\n" }] },
+    { "id": "strike-sveltekit-lucia-auth", "name": "SvelteKit Lucia 認証", "stack": ["sveltekit","lucia"], "tags": ["auth"], "files": [{ "path": "src/lib/server/auth.ts", "template": "// sveltekit lucia auth skeleton\n" }] },
+
+    { "id": "strike-go-grpc-gateway-proxy", "name": "Go gRPC-Gateway Proxy", "stack": ["go","grpc","grpc-gateway"], "tags": ["api","proxy"], "files": [{ "path": "cmd/main.go", "template": "// grpc-gateway proxy skeleton\n" }] },
+    { "id": "strike-go-buf-generate", "name": "Go buf 生成", "stack": ["go","buf"], "tags": ["proto","codegen"], "files": [{ "path": "buf.gen.yaml", "template": "version: v1\n" }] },
+    { "id": "strike-go-openfeature-flags", "name": "Go OpenFeature フラグ", "stack": ["go","openfeature"], "tags": ["flags"], "files": [{ "path": "flags/main.go", "template": "// openfeature flags skeleton\n" }] },
+    { "id": "strike-go-kratos-jwt-auth", "name": "Go Kratos JWT 認証", "stack": ["go","kratos","jwt"], "tags": ["auth"], "files": [{ "path": "internal/auth/jwt.go", "template": "// kratos jwt auth skeleton\n" }] },
+
+    { "id": "strike-rust-axum-state-extractor", "name": "Rust Axum State Extractor", "stack": ["rust","axum"], "tags": ["api"], "files": [{ "path": "src/state.rs", "template": "// axum state extractor skeleton\n" }] },
+    { "id": "strike-rust-sqlx-migrate-cli", "name": "Rust SQLx migrate CLI", "stack": ["rust","sqlx"], "tags": ["db"], "files": [{ "path": "sql/migrations/README.md", "template": "# sqlx migrate skeleton\n" }] },
+    { "id": "strike-rust-tauri-plugin-template", "name": "Tauri プラグイン雛形", "stack": ["tauri","rust"], "tags": ["desktop","plugin"], "files": [{ "path": "src-tauri/plugins/README.md", "template": "# tauri plugin skeleton\n" }] },
+
+    { "id": "strike-spring-graphql-subscriptions-rsocket", "name": "Spring GraphQL Subscriptions + RSocket", "stack": ["java","spring","graphql","rsocket"], "tags": ["realtime"], "files": [{ "path": "src/main/java/example/GraphqlConfig.java", "template": "// spring graphql subscriptions rsocket skeleton\n" }] },
+    { "id": "strike-quarkus-smallrye-openapi", "name": "Quarkus SmallRye OpenAPI", "stack": ["java","quarkus","openapi"], "tags": ["api","docs"], "files": [{ "path": "src/main/resources/application.properties", "template": "# smallrye openapi skeleton\n" }] },
+    { "id": "strike-micronaut-security-oauth2-google", "name": "Micronaut Security OAuth2 Google", "stack": ["java","micronaut","oauth2"], "tags": ["auth"], "files": [{ "path": "src/main/resources/application.yml", "template": "# micronaut oauth2 google skeleton\n" }] },
+
+    { "id": "strike-aspnet-output-cache", "name": "ASP.NET Output Cache", "stack": ["dotnet","aspnet"], "tags": ["cache"], "files": [{ "path": "Program.cs", "template": "// aspnet output cache skeleton\n" }] },
+    { "id": "strike-dotnet-grpc-json-transcoding", "name": ".NET gRPC JSON Transcoding", "stack": ["dotnet","grpc"], "tags": ["api"], "files": [{ "path": "appsettings.json", "template": "{ }\n" }] },
+    { "id": "strike-dotnet-worker-serilog", "name": ".NET Worker Serilog", "stack": ["dotnet","serilog"], "tags": ["logs"], "files": [{ "path": "Program.cs", "template": "// worker serilog skeleton\n" }] },
+
+    { "id": "strike-materialize-streaming-views", "name": "Materialize Streaming Views", "stack": ["materialize"], "tags": ["stream","sql"], "files": [{ "path": "mz/views.sql", "template": "-- materialize views skeleton\n" }] },
+    { "id": "strike-risingwave-streaming-sql", "name": "RisingWave Streaming SQL", "stack": ["risingwave"], "tags": ["stream","sql"], "files": [{ "path": "rw/queries.sql", "template": "-- risingwave streaming sql skeleton\n" }] },
+    { "id": "strike-postgres-partition-maintenance", "name": "Postgres パーティション保守PROC", "stack": ["postgres"], "tags": ["db"], "files": [{ "path": "sql/partition_proc.sql", "template": "-- partition maintenance proc skeleton\n" }] },
+    { "id": "strike-timescaledb-continuous-aggregate-policy", "name": "Timescale 連続集計ポリシー", "stack": ["timescaledb"], "tags": ["timeseries"], "files": [{ "path": "sql/cont_agg_policy.sql", "template": "-- continuous aggregate policy skeleton\n" }] },
+
+    { "id": "strike-faiss-gpu-ivf-flat", "name": "FAISS GPU IVF-Flat", "stack": ["faiss","python"], "tags": ["vector"], "files": [{ "path": "faiss/index.py", "template": "# faiss gpu ivf-flat skeleton\n" }] },
+    { "id": "strike-haystack-retriever-pipeline", "name": "Haystack Retriever Pipeline", "stack": ["haystack","python"], "tags": ["rag"], "files": [{ "path": "haystack/pipeline.py", "template": "# haystack pipeline skeleton\n" }] },
+    { "id": "strike-langchain-lcel-basic", "name": "LangChain LCEL 基本", "stack": ["langchain","python"], "tags": ["lcel"], "files": [{ "path": "rag/lcel.py", "template": "# lcel chain skeleton\n" }] },
+
+    { "id": "strike-dagster-dbt-core-integration", "name": "Dagster + dbt-core 連携", "stack": ["dagster","dbt"], "tags": ["data"], "files": [{ "path": "assets/dbt_integration.py", "template": "# dagster dbt integration skeleton\n" }] },
+    { "id": "strike-airflow-taskflow-branch", "name": "Airflow TaskFlow Branch", "stack": ["airflow"], "tags": ["orchestration"], "files": [{ "path": "dags/branch.py", "template": "# airflow taskflow branch skeleton\n" }] },
+    { "id": "strike-prefect-dask-executor", "name": "Prefect Dask Executor", "stack": ["prefect","dask"], "tags": ["orchestration"], "files": [{ "path": "flows/dask_executor.py", "template": "# prefect dask executor skeleton\n" }] },
+
+    { "id": "strike-keda-rabbitmq-scaler", "name": "KEDA RabbitMQ Scaler", "stack": ["keda","rabbitmq"], "tags": ["autoscale"], "files": [{ "path": "k8s/scaledobject.yaml", "template": "# keda rabbitmq scaler skeleton\n" }] },
+    { "id": "strike-k8s-hpa-custom-metrics", "name": "K8s HPA v2 カスタム指標", "stack": ["kubernetes","prometheus"], "tags": ["autoscale"], "files": [{ "path": "k8s/hpa.yaml", "template": "# hpa custom metrics skeleton\n" }] },
+    { "id": "strike-fluxcd-helmrelease-healthchecks", "name": "FluxCD HelmRelease HealthChecks", "stack": ["fluxcd","helm"], "tags": ["gitops"], "files": [{ "path": "k8s/helmrelease.yaml", "template": "# fluxcd helmrelease health skeleton\n" }] },
+
+    { "id": "strike-kong-declarative-config", "name": "Kong 宣言的設定", "stack": ["kong"], "tags": ["gateway"], "files": [{ "path": "kong/kong.yml", "template": "_format_version: '3.0'\n" }] },
+    { "id": "strike-kong-jwt-plugin", "name": "Kong JWT プラグイン", "stack": ["kong","jwt"], "tags": ["auth"], "files": [{ "path": "kong/jwt.yml", "template": "# kong jwt plugin skeleton\n" }] },
+    { "id": "strike-tyk-gateway-basic", "name": "Tyk Gateway 基本", "stack": ["tyk"], "tags": ["gateway"], "files": [{ "path": "tyk/apis.json", "template": "[ ]\n" }] },
+
+    { "id": "strike-pact-contract-testing", "name": "Pact コントラクトテスト", "stack": ["pact","node"], "tags": ["contract-test"], "files": [{ "path": "pact/pact.test.ts", "template": "// pact contract test skeleton\n" }] },
+    { "id": "strike-sloth-slo-prometheus", "name": "Sloth SLO for Prometheus", "stack": ["sloth","prometheus"], "tags": ["slo"], "files": [{ "path": "slo/service.yml", "template": "# sloth slo skeleton\n" }] },
+    { "id": "strike-launchdarkly-node-sdk", "name": "LaunchDarkly Node SDK", "stack": ["launchdarkly","node"], "tags": ["flags"], "files": [{ "path": "flags/ld.ts", "template": "// launchdarkly sdk skeleton\n" }] },
+    { "id": "strike-unleash-proxy-client", "name": "Unleash Proxy Client", "stack": ["unleash","node"], "tags": ["flags"], "files": [{ "path": "flags/unleash.ts", "template": "// unleash proxy client skeleton\n" }] },
+
+    { "id": "strike-minio-bucket-notify-nats", "name": "MinIO Bucket → NATS 通知", "stack": ["minio","nats"], "tags": ["events"], "files": [{ "path": "minio/notify.json", "template": "{ }\n" }] },
+    { "id": "strike-telegraf-influx-line-protocol", "name": "Telegraf Influx Line Protocol", "stack": ["telegraf","influx"], "tags": ["metrics"], "files": [{ "path": "telegraf/telegraf.conf", "template": "# telegraf config skeleton\n" }] },
+    { "id": "strike-cloudflare-do-websockets", "name": "Cloudflare DO WebSockets", "stack": ["cloudflare","durable-objects"], "tags": ["realtime"], "files": [{ "path": "src/worker.ts", "template": "// durable objects websockets skeleton\n" }] },
+
+    { "id": "strike-oidc-frontchannel-logout", "name": "OIDC Front-Channel Logout", "stack": ["oidc"], "tags": ["auth"], "files": [{ "path": "auth/oidc_logout.md", "template": "# oidc front-channel logout skeleton\n" }] },
+    { "id": "strike-oauth-token-introspection", "name": "OAuth Token Introspection", "stack": ["oauth2"], "tags": ["auth"], "files": [{ "path": "auth/introspection.md", "template": "# oauth token introspection skeleton\n" }] }
+  ]
+}
+

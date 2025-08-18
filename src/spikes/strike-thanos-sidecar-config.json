@@ -1,0 +1,18 @@
+{
+  "id": "strike-thanos-sidecar-config",
+  "name": "Thanos Sidecar 設定",
+  "stack": [
+    "thanos",
+    "prometheus"
+  ],
+  "tags": [
+    "observability"
+  ],
+  "files": [
+    {
+      "path": "thanos/sidecar.yaml",
+      "template": "# thanos sidecar skeleton\n"
+    }
+  ],
+  "patches": []
+}

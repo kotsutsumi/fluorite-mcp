@@ -1,0 +1,19 @@
+{
+  "id": "strike-elk-logstash-filebeat-pipeline",
+  "name": "ELK Logstash + Filebeat",
+  "stack": [
+    "elk",
+    "logstash",
+    "filebeat"
+  ],
+  "tags": [
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "elk/pipeline.conf",
+      "template": "# logstash pipeline skeleton\n"
+    }
+  ],
+  "patches": []
+}

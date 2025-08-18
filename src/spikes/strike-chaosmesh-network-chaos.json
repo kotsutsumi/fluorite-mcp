@@ -1,0 +1,18 @@
+{
+  "id": "strike-chaosmesh-network-chaos",
+  "name": "Chaos Mesh NetworkChaos",
+  "stack": [
+    "chaosmesh",
+    "kubernetes"
+  ],
+  "tags": [
+    "chaos"
+  ],
+  "files": [
+    {
+      "path": "k8s/networkchaos.yaml",
+      "template": "# chaosmesh networkchaos skeleton\n"
+    }
+  ],
+  "patches": []
+}
