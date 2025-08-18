@@ -1,0 +1,18 @@
+{
+  "id": "strike-playwright-ci-trace",
+  "name": "Playwright CI Trace Integration",
+  "stack": [
+    "playwright"
+  ],
+  "tags": [
+    "test",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/playwright-trace.yml",
+      "template": "name: Trace\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

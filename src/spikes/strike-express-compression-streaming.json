@@ -1,0 +1,21 @@
+{
+  "id": "strike-express-compression-streaming",
+  "name": "Express Compression + Streaming",
+  "stack": [
+    "node",
+    "express"
+  ],
+  "tags": [
+    "backend",
+    "ssr",
+    "stream",
+    "compression"
+  ],
+  "files": [
+    {
+      "path": "server.js",
+      "template": "import express from 'express';\nimport compression from 'compression';\nconst app = express();\napp.use(compression());\napp.get('/stream', (req,res)=>{ res.write('hello'); res.end(); });\napp.listen(3000);\n"
+    }
+  ],
+  "patches": []
+}

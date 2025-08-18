@@ -1,0 +1,17 @@
+{
+  "id": "strike-kustomize-overlays-minimal",
+  "name": "Kustomize Overlays Minimal",
+  "stack": [
+    "kustomize"
+  ],
+  "tags": [
+    "ops"
+  ],
+  "files": [
+    {
+      "path": "overlays/dev/kustomization.yaml",
+      "template": "resources: []\n"
+    }
+  ],
+  "patches": []
+}

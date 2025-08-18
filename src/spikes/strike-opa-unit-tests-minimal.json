@@ -1,0 +1,18 @@
+{
+  "id": "strike-opa-unit-tests-minimal",
+  "name": "OPA Unit Tests Minimal",
+  "stack": [
+    "opa"
+  ],
+  "tags": [
+    "security",
+    "policy"
+  ],
+  "files": [
+    {
+      "path": "policy/tests/example_test.rego",
+      "template": "package example\n# test skeleton\n"
+    }
+  ],
+  "patches": []
+}

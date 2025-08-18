@@ -1,0 +1,19 @@
+{
+  "id": "strike-express-router-modular",
+  "name": "Express Modular Router",
+  "stack": [
+    "node",
+    "express"
+  ],
+  "tags": [
+    "backend",
+    "routing"
+  ],
+  "files": [
+    {
+      "path": "routes/index.js",
+      "template": "import { Router } from 'express';\nexport const router = Router();\nrouter.get('/health', (req,res)=>res.json({ok:true}));\n"
+    }
+  ],
+  "patches": []
+}

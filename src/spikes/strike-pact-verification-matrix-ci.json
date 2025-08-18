@@ -1,0 +1,19 @@
+{
+  "id": "strike-pact-verification-matrix-ci",
+  "name": "Pact Verification Matrix CI",
+  "stack": [
+    "pact"
+  ],
+  "tags": [
+    "test",
+    "contract",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/pact-matrix.yml",
+      "template": "name: PactMatrix\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-dbt-metrics-minimal",
+  "name": "dbt Metrics Minimal",
+  "stack": [
+    "dbt"
+  ],
+  "tags": [
+    "data"
+  ],
+  "files": [
+    {
+      "path": "models/metrics.yml",
+      "template": "version: 2\nmetrics: []\n"
+    }
+  ],
+  "patches": []
+}

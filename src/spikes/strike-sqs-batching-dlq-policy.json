@@ -1,0 +1,19 @@
+{
+  "id": "strike-sqs-batching-dlq-policy",
+  "name": "SQS Batching + DLQ Policy",
+  "stack": [
+    "aws",
+    "sqs"
+  ],
+  "tags": [
+    "queue",
+    "reliability"
+  ],
+  "files": [
+    {
+      "path": "aws/sqs-batch-dlq.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

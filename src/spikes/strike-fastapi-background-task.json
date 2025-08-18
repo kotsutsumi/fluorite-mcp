@@ -1,0 +1,18 @@
+{
+  "id": "strike-fastapi-background-task",
+  "name": "FastAPI Background Task",
+  "stack": [
+    "python",
+    "fastapi"
+  ],
+  "tags": [
+    "backend"
+  ],
+  "files": [
+    {
+      "path": "main.py",
+      "template": "from fastapi import FastAPI, BackgroundTasks\napp = FastAPI()\nasync def task(): pass\n@app.get('/run')\nasync def run(bg: BackgroundTasks): bg.add_task(task); return {'ok': True}\n"
+    }
+  ],
+  "patches": []
+}

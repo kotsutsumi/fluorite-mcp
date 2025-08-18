@@ -1,0 +1,17 @@
+{
+  "id": "strike-dbt-source-freshness",
+  "name": "dbt Source Freshness",
+  "stack": [
+    "dbt"
+  ],
+  "tags": [
+    "data"
+  ],
+  "files": [
+    {
+      "path": "models/sources.yml",
+      "template": "version: 2\nsources: []\n"
+    }
+  ],
+  "patches": []
+}

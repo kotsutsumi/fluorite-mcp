@@ -1,0 +1,18 @@
+{
+  "id": "strike-gh-actions-reusable-typed-inputs",
+  "name": "GH Actions Reusable Typed Inputs",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/reusable-typed.yml",
+      "template": "name: ReusableTyped\non: workflow_call:\n  inputs: { level: { required: true, type: string } }\njobs: {}\n"
+    }
+  ],
+  "patches": []
+}

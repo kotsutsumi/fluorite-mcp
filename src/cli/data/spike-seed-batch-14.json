@@ -1,0 +1,50 @@
+{
+  "items": [
+    { "id": "strike-express-router-modular", "name": "Express Modular Router", "stack": ["node","express"], "tags": ["backend","routing"], "files": [{ "path": "routes/index.js", "template": "import { Router } from 'express';\nexport const router = Router();\nrouter.get('/health', (req,res)=>res.json({ok:true}));\n" }] },
+    { "id": "strike-bun-websocket-minimal", "name": "Bun WebSocket Minimal", "stack": ["bun","ws"], "tags": ["backend","realtime"], "files": [{ "path": "server.ts", "template": "// bun websocket skeleton\n" }] },
+    { "id": "strike-go-chi-jwt-middleware", "name": "Go chi JWT Middleware", "stack": ["go","chi","jwt"], "tags": ["backend","security"], "files": [{ "path": "main.go", "template": "package main\n// chi jwt middleware skeleton\nfunc main(){}\n" }] },
+    { "id": "strike-deno-oak-minimal", "name": "Deno Oak Minimal", "stack": ["deno","oak"], "tags": ["backend"], "files": [{ "path": "main.ts", "template": "// deno oak skeleton\n" }] },
+    { "id": "strike-remix-actions-zod", "name": "Remix Actions + Zod", "stack": ["remix","zod"], "tags": ["frontend","forms","validation"], "files": [{ "path": "app/utils/validation.ts", "template": "// remix zod validation skeleton\n" }] },
+
+    { "id": "strike-nextjs-rsc-cache-advanced", "name": "Next.js RSC Cache Advanced", "stack": ["nextjs"], "tags": ["frontend","rsc","cache","advanced"], "files": [{ "path": "app/cache-adv.ts", "template": "// rsc cache advanced skeleton\n" }] },
+    { "id": "strike-nuxt3-server-validators", "name": "Nuxt3 Server Validators", "stack": ["nuxt","nitro"], "tags": ["frontend","api","validation"], "files": [{ "path": "server/api/validate.post.ts", "template": "export default defineEventHandler(async (e)=> ({ ok:true }))\n" }] },
+    { "id": "strike-sveltekit-endpoint-auth", "name": "SvelteKit Endpoint Auth", "stack": ["sveltekit"], "tags": ["frontend","api","auth"], "files": [{ "path": "src/routes/api/auth/+server.ts", "template": "// endpoint auth skeleton\n" }] },
+    { "id": "strike-angular-standalone-route-guards", "name": "Angular Standalone Route Guards", "stack": ["angular"], "tags": ["frontend","routing"], "files": [{ "path": "src/app/guards.ts", "template": "// guards skeleton\n" }] },
+    { "id": "strike-solid-i18n-minimal", "name": "Solid i18n Minimal", "stack": ["solid","i18n"], "tags": ["frontend","i18n"], "files": [{ "path": "src/i18n.ts", "template": "// solid i18n skeleton\n" }] },
+
+    { "id": "strike-otel-node-logs-advanced", "name": "OTel Node Logs Advanced", "stack": ["opentelemetry"], "tags": ["observability","logs","advanced"], "files": [{ "path": "otel/logs-adv.js", "template": "// otel logs advanced skeleton\n" }] },
+    { "id": "strike-grafana-json-dashboard-node", "name": "Grafana Dashboard Node Service", "stack": ["grafana"], "tags": ["observability","dashboards"], "files": [{ "path": "grafana/dashboards/node-service.json", "template": "{ }\n" }] },
+    { "id": "strike-prometheus-recording-rules-adv", "name": "Prometheus Recording Rules Advanced", "stack": ["prometheus"], "tags": ["observability","metrics"], "files": [{ "path": "prometheus/recording-adv.yaml", "template": "groups: []\n" }] },
+
+    { "id": "strike-oidc-introspection-express", "name": "OIDC Introspection Express", "stack": ["oidc","express"], "tags": ["security","auth"], "files": [{ "path": "auth/introspection.js", "template": "// express introspection endpoint skeleton\n" }] },
+    { "id": "strike-opa-unit-tests-minimal", "name": "OPA Unit Tests Minimal", "stack": ["opa"], "tags": ["security","policy"], "files": [{ "path": "policy/tests/example_test.rego", "template": "package example\n# test skeleton\n" }] },
+    { "id": "strike-csp-advanced-presets", "name": "CSP Advanced Presets", "stack": ["security","csp"], "tags": ["security"], "files": [{ "path": "security/csp-advanced.json", "template": "{ }\n" }] },
+
+    { "id": "strike-kafka-exactly-once-advanced", "name": "Kafka Exactly-Once Advanced", "stack": ["kafka"], "tags": ["stream","tx","advanced"], "files": [{ "path": "kafka/exactly-once-adv.md", "template": "# advanced patterns\n" }] },
+    { "id": "strike-nats-durable-consumer-adv", "name": "NATS Durable Consumer Advanced", "stack": ["nats"], "tags": ["messaging","advanced"], "files": [{ "path": "nats/durable-adv.js", "template": "// nats durable advanced skeleton\n" }] },
+    { "id": "strike-sqs-batching-dlq-policy", "name": "SQS Batching + DLQ Policy", "stack": ["aws","sqs"], "tags": ["queue","reliability"], "files": [{ "path": "aws/sqs-batch-dlq.json", "template": "{ }\n" }] },
+
+    { "id": "strike-actions-reusable-templates", "name": "Actions Reusable Templates", "stack": ["github","actions"], "tags": ["ci"], "files": [{ "path": ".github/workflows/templates.yml", "template": "name: Templates\non: workflow_call\n" }] },
+    { "id": "strike-terraform-module-best-practices", "name": "Terraform Module Best Practices", "stack": ["terraform"], "tags": ["infra"], "files": [{ "path": "modules/README.md", "template": "# best practices\n" }] },
+    { "id": "strike-helm-best-practices", "name": "Helm Best Practices", "stack": ["helm"], "tags": ["ops"], "files": [{ "path": "chart/README.md", "template": "# helm best practices\n" }] },
+
+    { "id": "strike-pact-broker-matrix", "name": "Pact Broker Matrix Patterns", "stack": ["pact"], "tags": ["test","contract","ci"], "files": [{ "path": "tests/pact-matrix.md", "template": "# matrix patterns\n" }] },
+    { "id": "strike-playwright-ci-trace", "name": "Playwright CI Trace Integration", "stack": ["playwright"], "tags": ["test","ci"], "files": [{ "path": ".github/workflows/playwright-trace.yml", "template": "name: Trace\non: [push]\n" }] },
+    { "id": "strike-msw-error-cases", "name": "MSW Error Cases", "stack": ["msw"], "tags": ["test"], "files": [{ "path": "src/mocks/errors.ts", "template": "// error cases\n" }] },
+
+    { "id": "strike-airflow-operators-hooks", "name": "Airflow Operators + Hooks", "stack": ["airflow"], "tags": ["data"], "files": [{ "path": "dags/operators_hooks.py", "template": "# operators + hooks\n" }] },
+    { "id": "strike-dbt-metrics-minimal", "name": "dbt Metrics Minimal", "stack": ["dbt"], "tags": ["data"], "files": [{ "path": "models/metrics.yml", "template": "version: 2\nmetrics: []\n" }] },
+    { "id": "strike-airbyte-destination-config", "name": "Airbyte Destination Config", "stack": ["airbyte"], "tags": ["data","etl"], "files": [{ "path": "airbyte/destination.json", "template": "{ }\n" }] },
+
+    { "id": "strike-gcp-functions-http-trigger", "name": "GCP Functions HTTP Trigger", "stack": ["gcp","functions"], "tags": ["cloud","serverless"], "files": [{ "path": "index.js", "template": "// http trigger skeleton\n" }] },
+    { "id": "strike-aws-lambda-edge-minimal", "name": "AWS Lambda@Edge Minimal", "stack": ["aws","lambda"], "tags": ["cloud","edge"], "files": [{ "path": "edge/index.js", "template": "// lambda@edge skeleton\n" }] },
+    { "id": "strike-azure-functions-http-minimal", "name": "Azure Functions HTTP Minimal", "stack": ["azure","functions"], "tags": ["cloud","serverless"], "files": [{ "path": "function.json", "template": "{ }\n" }] },
+
+    { "id": "strike-openapi-yaml-minimal", "name": "(Merge) OpenAPI YAML Meta", "stack": ["openapi"], "tags": ["api","merge","advanced"] },
+    { "id": "strike-nextjs-middleware-advanced", "name": "(Merge) Next.js Middleware Advanced Meta", "stack": ["nextjs"], "tags": ["frontend","middleware","merge","advanced"] },
+    { "id": "strike-dockerfile-node-minimal", "name": "(Merge) Dockerfile Node Meta", "stack": ["docker"], "tags": ["ops","merge","best-practices"] },
+    { "id": "strike-otel-node-tracer-minimal", "name": "(Merge) OTel Node Tracer Meta", "stack": ["opentelemetry"], "tags": ["observability","merge","advanced"] },
+    { "id": "strike-react-hook-form-minimal", "name": "(Merge) RHF Minimal Meta", "stack": ["react","forms"], "tags": ["frontend","merge","examples"] }
+  ]
+}
+

@@ -1,0 +1,18 @@
+{
+  "id": "strike-nuxt3-runtime-config-usage",
+  "name": "Nuxt3 Runtime Config Usage",
+  "stack": [
+    "nuxt"
+  ],
+  "tags": [
+    "frontend",
+    "config"
+  ],
+  "files": [
+    {
+      "path": "server/api/conf.get.ts",
+      "template": "export default defineEventHandler((e)=> useRuntimeConfig())\n"
+    }
+  ],
+  "patches": []
+}

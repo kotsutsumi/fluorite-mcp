@@ -1,0 +1,18 @@
+{
+  "id": "strike-actions-reusable-templates",
+  "name": "Actions Reusable Templates",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/templates.yml",
+      "template": "name: Templates\non: workflow_call\n"
+    }
+  ],
+  "patches": []
+}

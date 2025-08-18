@@ -1,0 +1,17 @@
+{
+  "id": "strike-cypress-retries-config",
+  "name": "Cypress Retries Config",
+  "stack": [
+    "cypress"
+  ],
+  "tags": [
+    "test"
+  ],
+  "files": [
+    {
+      "path": "cypress.config.ts",
+      "template": "export default { e2e: { retries: 2 } };\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-aws-apigw-mapping-template",
+  "name": "AWS API Gateway Mapping Template",
+  "stack": [
+    "aws",
+    "apigateway"
+  ],
+  "tags": [
+    "cloud"
+  ],
+  "files": [
+    {
+      "path": "apigw/mapping.vtl",
+      "template": "#set($inputRoot = $input.path('$'))\n"
+    }
+  ],
+  "patches": []
+}

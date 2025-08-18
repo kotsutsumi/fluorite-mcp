@@ -1,0 +1,20 @@
+{
+  "id": "strike-nuxt3-server-validators",
+  "name": "Nuxt3 Server Validators",
+  "stack": [
+    "nuxt",
+    "nitro"
+  ],
+  "tags": [
+    "frontend",
+    "api",
+    "validation"
+  ],
+  "files": [
+    {
+      "path": "server/api/validate.post.ts",
+      "template": "export default defineEventHandler(async (e)=> ({ ok:true }))\n"
+    }
+  ],
+  "patches": []
+}

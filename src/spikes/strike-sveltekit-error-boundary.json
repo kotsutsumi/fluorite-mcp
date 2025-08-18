@@ -1,0 +1,18 @@
+{
+  "id": "strike-sveltekit-error-boundary",
+  "name": "SvelteKit Error Boundary",
+  "stack": [
+    "sveltekit"
+  ],
+  "tags": [
+    "frontend",
+    "error"
+  ],
+  "files": [
+    {
+      "path": "src/error.svelte",
+      "template": "<script> export let error; </script>\n<h1>{error?.message}</h1>\n"
+    }
+  ],
+  "patches": []
+}
