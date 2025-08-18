@@ -1,0 +1,19 @@
+{
+  "id": "strike-postgres-trigger-audit",
+  "name": "Postgres Trigger Audit",
+  "stack": [
+    "sql",
+    "postgres"
+  ],
+  "tags": [
+    "db",
+    "audit"
+  ],
+  "files": [
+    {
+      "path": "sql/audit.sql",
+      "template": "-- pg audit trigger skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -19,7 +19,7 @@ Transform Claude Code CLI into an **enterprise-grade development platform** with
 
 | 🎯 **Core Systems** | 📊 **Statistics** | 🚀 **Key Value** |
 |---|---|---|
-| **🧪 Spike Templates** | 2,500+ production-ready | Ideas→Implementation in seconds |
+| **🧪 Spike Templates** | 3,100+ production-ready | Ideas→Implementation in seconds |
 | **📚 Library Specs** | 86+ professional | Perfect integration patterns |
 | **🔍 Static Analysis Engine** | 50+ validation rules | Error prevention & quality assurance |
 | **🎯 /fl: Commands** | 17+ extensions | SuperClaude integration |
@@ -127,7 +127,7 @@ configuration:
 ```
 
 #### Catalog Management
-- **750+ Ecosystems**: React, Vue, Next.js, Node.js, and more
+- **86+ Ecosystems**: React, Vue, Next.js, Node.js, and more
 - **Auto-Updates**: Synchronization with latest versions
 - **Quality Assurance**: Manual review and automatic validation
 
@@ -159,7 +159,7 @@ fluorite-mcp catalog-stats
 ## Spike Template Engine
 
 ### Overview
-Spike templates are production-ready code scaffolds that accelerate development by providing proven implementations of common patterns. With 750+ templates covering authentication, APIs, testing, deployment, and more, you can go from idea to working code in seconds.
+Spike templates are production-ready code scaffolds that accelerate development by providing proven implementations of common patterns. With 3,100+ templates covering authentication, APIs, testing, deployment, and more, you can go from idea to working code in seconds.
 
 ### Template Categories
 

@@ -1,0 +1,19 @@
+{
+  "id": "strike-security-trivy-scan-ci",
+  "name": "Trivy Scan in CI",
+  "stack": [
+    "security",
+    "trivy"
+  ],
+  "tags": [
+    "sast",
+    "container"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/trivy.yml",
+      "template": "name: Trivy\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

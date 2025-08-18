@@ -1,0 +1,18 @@
+{
+  "id": "strike-argocd-appset-pr-generator",
+  "name": "ArgoCD AppSet PR Generator",
+  "stack": [
+    "kubernetes",
+    "argocd"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/appset.yaml",
+      "template": "# appset pr generator skeleton\n"
+    }
+  ],
+  "patches": []
+}

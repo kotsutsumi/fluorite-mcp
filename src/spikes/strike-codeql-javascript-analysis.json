@@ -1,0 +1,19 @@
+{
+  "id": "strike-codeql-javascript-analysis",
+  "name": "GitHub CodeQL JavaScript",
+  "stack": [
+    "github",
+    "codeql"
+  ],
+  "tags": [
+    "security",
+    "sast"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/codeql.yml",
+      "template": "name: CodeQL\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

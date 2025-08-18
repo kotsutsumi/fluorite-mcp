@@ -1,0 +1,19 @@
+{
+  "id": "strike-linkerd-serviceprofile-retries",
+  "name": "Linkerd ServiceProfile Retries",
+  "stack": [
+    "kubernetes",
+    "linkerd"
+  ],
+  "tags": [
+    "mesh",
+    "resilience"
+  ],
+  "files": [
+    {
+      "path": "k8s/serviceprofile.yaml",
+      "template": "# linkerd serviceprofile skeleton\n"
+    }
+  ],
+  "patches": []
+}

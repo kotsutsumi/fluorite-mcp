@@ -1,0 +1,19 @@
+{
+  "id": "strike-kafka-connect-s3-sink",
+  "name": "Kafka Connect S3 Sink",
+  "stack": [
+    "kafka",
+    "connect",
+    "s3"
+  ],
+  "tags": [
+    "sink"
+  ],
+  "files": [
+    {
+      "path": "kafka/connect-s3.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

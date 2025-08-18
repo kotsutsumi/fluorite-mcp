@@ -1,0 +1,19 @@
+{
+  "id": "strike-rust-tonic-grpc-server",
+  "name": "Rust tonic gRPC Server",
+  "stack": [
+    "rust",
+    "tonic",
+    "grpc"
+  ],
+  "tags": [
+    "rpc"
+  ],
+  "files": [
+    {
+      "path": "proto/echo.proto",
+      "template": "// tonic echo proto skeleton\n"
+    }
+  ],
+  "patches": []
+}

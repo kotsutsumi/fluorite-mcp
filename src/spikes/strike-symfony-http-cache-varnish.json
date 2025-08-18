@@ -1,0 +1,18 @@
+{
+  "id": "strike-symfony-http-cache-varnish",
+  "name": "Symfony HTTP Cache + Varnish",
+  "stack": [
+    "php",
+    "symfony"
+  ],
+  "tags": [
+    "cache"
+  ],
+  "files": [
+    {
+      "path": "config/packages/framework.yaml",
+      "template": "# symfony http cache skeleton\n"
+    }
+  ],
+  "patches": []
+}

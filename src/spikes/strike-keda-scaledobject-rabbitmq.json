@@ -1,0 +1,18 @@
+{
+  "id": "strike-keda-scaledobject-rabbitmq",
+  "name": "KEDA ScaledObject RabbitMQ",
+  "stack": [
+    "kubernetes",
+    "keda"
+  ],
+  "tags": [
+    "autoscale"
+  ],
+  "files": [
+    {
+      "path": "k8s/scaledobject.yaml",
+      "template": "# keda scaledobject skeleton\n"
+    }
+  ],
+  "patches": []
+}

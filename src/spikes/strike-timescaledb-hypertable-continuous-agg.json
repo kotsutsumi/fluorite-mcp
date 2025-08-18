@@ -1,0 +1,18 @@
+{
+  "id": "strike-timescaledb-hypertable-continuous-agg",
+  "name": "TimescaleDB Hypertable + Continuous Agg",
+  "stack": [
+    "timescaledb",
+    "postgres"
+  ],
+  "tags": [
+    "timeseries"
+  ],
+  "files": [
+    {
+      "path": "sql/timescale.sql",
+      "template": "-- timescaledb skeleton\n"
+    }
+  ],
+  "patches": []
+}

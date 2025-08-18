@@ -1,0 +1,18 @@
+{
+  "id": "strike-terraform-aws-vpc-minimal",
+  "name": "Terraform AWS VPC Minimal",
+  "stack": [
+    "terraform",
+    "aws"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "terraform/main.tf",
+      "template": "# terraform vpc skeleton\n"
+    }
+  ],
+  "patches": []
+}

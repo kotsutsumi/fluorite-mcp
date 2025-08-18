@@ -1,0 +1,18 @@
+{
+  "id": "strike-aws-sqs-fifo-deduplication",
+  "name": "AWS SQS FIFO Deduplication",
+  "stack": [
+    "aws",
+    "sqs"
+  ],
+  "tags": [
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "infra/sqs-fifo.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

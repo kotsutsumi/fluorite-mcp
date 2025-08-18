@@ -1,0 +1,18 @@
+{
+  "id": "strike-changesets-versioning-release",
+  "name": "Changesets Versioning + Release",
+  "stack": [
+    "changesets",
+    "github"
+  ],
+  "tags": [
+    "release"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/release.yml",
+      "template": "name: Release\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

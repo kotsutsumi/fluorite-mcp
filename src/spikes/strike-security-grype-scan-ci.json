@@ -1,0 +1,19 @@
+{
+  "id": "strike-security-grype-scan-ci",
+  "name": "Grype Scan in CI",
+  "stack": [
+    "security",
+    "grype"
+  ],
+  "tags": [
+    "sast",
+    "container"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/grype.yml",
+      "template": "name: Grype\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

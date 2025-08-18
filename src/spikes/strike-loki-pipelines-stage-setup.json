@@ -1,0 +1,18 @@
+{
+  "id": "strike-loki-pipelines-stage-setup",
+  "name": "Loki Pipelines Stage Setup",
+  "stack": [
+    "loki"
+  ],
+  "tags": [
+    "observability",
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "loki/pipelines.yaml",
+      "template": "# loki pipelines skeleton\n"
+    }
+  ],
+  "patches": []
+}

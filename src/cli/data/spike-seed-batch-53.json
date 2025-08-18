@@ -1,0 +1,59 @@
+{
+  "items": [
+    { "id": "strike-aws-lambda-powertools-node", "name": "AWS Lambda Powertools (Node)", "stack": ["aws","lambda","powertools"], "tags": ["serverless","observability"], "files": [{ "path": "index.mjs", "template": "// lambda powertools node skeleton\n" }] },
+    { "id": "strike-aws-lambda-powertools-python", "name": "AWS Lambda Powertools (Python)", "stack": ["aws","lambda","powertools"], "tags": ["serverless","observability"], "files": [{ "path": "app.py", "template": "# lambda powertools python skeleton\n" }] },
+    { "id": "strike-aws-sqs-fifo-deduplication", "name": "AWS SQS FIFO Deduplication", "stack": ["aws","sqs"], "tags": ["queue"], "files": [{ "path": "infra/sqs-fifo.json", "template": "{ }\n" }] },
+    { "id": "strike-aws-eventbridge-event-bus-routing", "name": "EventBridge Event Bus Routing", "stack": ["aws","eventbridge"], "tags": ["events"], "files": [{ "path": "aws/event-bus.json", "template": "{ }\n" }] },
+    { "id": "strike-aws-kinesis-firehose-s3", "name": "Kinesis Firehose to S3", "stack": ["aws","kinesis"], "tags": ["stream"], "files": [{ "path": "aws/firehose.json", "template": "{ }\n" }] },
+
+    { "id": "strike-gcp-workflows-http-invoke", "name": "GCP Workflows HTTP Invoke", "stack": ["gcp","workflows"], "tags": ["workflow"], "files": [{ "path": "gcp/workflow.yaml", "template": "# gcp workflows skeleton\n" }] },
+    { "id": "strike-azure-functions-http-trigger", "name": "Azure Functions HTTP Trigger", "stack": ["azure","functions"], "tags": ["serverless"], "files": [{ "path": "function.json", "template": "{ }\n" }] },
+    { "id": "strike-azure-apim-route-jwt-validate", "name": "Azure APIM Route JWT Validate", "stack": ["azure","apim","jwt"], "tags": ["api","security"], "files": [{ "path": "apim/policy.xml", "template": "<!-- apim policy skeleton -->\n" }] },
+
+    { "id": "strike-istio-virtualservice-canary", "name": "Istio VirtualService Canary", "stack": ["kubernetes","istio"], "tags": ["mesh","canary"], "files": [{ "path": "k8s/virtualservice.yaml", "template": "# istio canary skeleton\n" }] },
+    { "id": "strike-linkerd-serviceprofile-retries", "name": "Linkerd ServiceProfile Retries", "stack": ["kubernetes","linkerd"], "tags": ["mesh","resilience"], "files": [{ "path": "k8s/serviceprofile.yaml", "template": "# linkerd serviceprofile skeleton\n" }] },
+    { "id": "strike-karpenter-provisioner-spot", "name": "Karpenter Provisioner (Spot)", "stack": ["kubernetes","karpenter"], "tags": ["autoscale","cost"], "files": [{ "path": "k8s/provisioner.yaml", "template": "# karpenter provisioner skeleton\n" }] },
+    { "id": "strike-fluxcd-kustomize-helmrelease", "name": "FluxCD Kustomize + HelmRelease", "stack": ["kubernetes","fluxcd","helm"], "tags": ["gitops"], "files": [{ "path": "clusters/app/helmrelease.yaml", "template": "# fluxcd helmrelease skeleton\n" }] },
+
+    { "id": "strike-codeql-javascript-analysis", "name": "GitHub CodeQL JavaScript", "stack": ["github","codeql"], "tags": ["security","sast"], "files": [{ "path": ".github/workflows/codeql.yml", "template": "name: CodeQL\non: [push]\n" }] },
+    { "id": "strike-snyk-ci-scan-node", "name": "Snyk CI Scan (Node)", "stack": ["snyk","github"], "tags": ["security"], "files": [{ "path": ".github/workflows/snyk.yml", "template": "name: Snyk\non: [push]\n" }] },
+    { "id": "strike-slsa-provenance-github-oidc", "name": "SLSA Provenance via OIDC", "stack": ["github","slsa"], "tags": ["supply-chain"], "files": [{ "path": ".github/workflows/slsa.yml", "template": "name: SLSA\non: [push]\n" }] },
+    { "id": "strike-changesets-versioning-release", "name": "Changesets Versioning + Release", "stack": ["changesets","github"], "tags": ["release"], "files": [{ "path": ".github/workflows/release.yml", "template": "name: Release\non: [push]\n" }] },
+
+    { "id": "strike-keycloak-realm-export-json", "name": "Keycloak Realm Export", "stack": ["keycloak"], "tags": ["auth","config"], "files": [{ "path": "keycloak/realm-export.json", "template": "{ }\n" }] },
+    { "id": "strike-openfga-model-basic", "name": "OpenFGA Model Basic", "stack": ["openfga"], "tags": ["authz"], "files": [{ "path": "authz/model.fga", "template": "# openfga model skeleton\n" }] },
+    { "id": "strike-okta-authorization-code-flow", "name": "Okta Authorization Code Flow", "stack": ["okta","oauth2"], "tags": ["auth"], "files": [{ "path": "okta/notes.md", "template": "# okta auth code flow skeleton\n" }] },
+    { "id": "strike-auth0-machine-to-machine", "name": "Auth0 Machine-to-Machine", "stack": ["auth0","oauth2"], "tags": ["auth"], "files": [{ "path": "auth0/m2m.md", "template": "# auth0 m2m skeleton\n" }] },
+
+    { "id": "strike-stripe-webhook-verify", "name": "Stripe Webhook Verify", "stack": ["stripe"], "tags": ["payments"], "files": [{ "path": "server.js", "template": "// stripe webhook verify skeleton\n" }] },
+    { "id": "strike-sendgrid-dynamic-templates", "name": "SendGrid Dynamic Templates", "stack": ["sendgrid"], "tags": ["email"], "files": [{ "path": "sendgrid/templates.json", "template": "{ }\n" }] },
+    { "id": "strike-slack-events-app-mentions", "name": "Slack Events: app_mention", "stack": ["slack"], "tags": ["chatops"], "files": [{ "path": "slack/app.js", "template": "// slack app_mention skeleton\n" }] },
+    { "id": "strike-discord-bot-slash-commands", "name": "Discord Bot Slash Commands", "stack": ["discord"], "tags": ["chatops"], "files": [{ "path": "bot/index.js", "template": "// discord slash commands skeleton\n" }] },
+
+    { "id": "strike-kafka-schema-registry-avro", "name": "Kafka Schema Registry Avro", "stack": ["kafka","schema-registry","avro"], "tags": ["schema"], "files": [{ "path": "kafka/avro-schema.avsc", "template": "{ }\n" }] },
+    { "id": "strike-kafka-connect-s3-sink", "name": "Kafka Connect S3 Sink", "stack": ["kafka","connect","s3"], "tags": ["sink"], "files": [{ "path": "kafka/connect-s3.json", "template": "{ }\n" }] },
+    { "id": "strike-redpanda-console-docker-compose", "name": "Redpanda + Console Compose", "stack": ["redpanda","docker"], "tags": ["stream"], "files": [{ "path": "docker-compose.yml", "template": "# redpanda compose skeleton\n" }] },
+    { "id": "strike-nats-streaming-durable-sub", "name": "NATS Streaming Durable Sub", "stack": ["nats-streaming"], "tags": ["stream"], "files": [{ "path": "nats/stan.md", "template": "# nats streaming durable sub skeleton\n" }] },
+
+    { "id": "strike-postgres-logical-replication", "name": "Postgres Logical Replication", "stack": ["postgres"], "tags": ["replication"], "files": [{ "path": "sql/logical_replication.sql", "template": "-- logical replication skeleton\n" }] },
+    { "id": "strike-timescaledb-hypertable-continuous-agg", "name": "TimescaleDB Hypertable + Continuous Agg", "stack": ["timescaledb","postgres"], "tags": ["timeseries"], "files": [{ "path": "sql/timescale.sql", "template": "-- timescaledb skeleton\n" }] },
+    { "id": "strike-cassandra-cql-basic", "name": "Cassandra CQL Basic", "stack": ["cassandra"], "tags": ["db"], "files": [{ "path": "cassandra/schema.cql", "template": "-- cassandra cql skeleton\n" }] },
+    { "id": "strike-scylladb-alternator-dynamodb", "name": "ScyllaDB Alternator (DynamoDB)", "stack": ["scylladb","dynamodb"], "tags": ["db"], "files": [{ "path": "scylla/alternator.md", "template": "# scylla alternator skeleton\n" }] },
+
+    { "id": "strike-great-expectations-datasource", "name": "Great Expectations Datasource", "stack": ["python","great-expectations"], "tags": ["dq"], "files": [{ "path": "gx/datasource.yaml", "template": "# gx datasource skeleton\n" }] },
+    { "id": "strike-soda-core-checks-yaml", "name": "Soda Core Checks YAML", "stack": ["soda"], "tags": ["dq"], "files": [{ "path": "soda/checks.yml", "template": "checks: []\n" }] },
+    { "id": "strike-evidently-ml-monitoring", "name": "Evidently ML Monitoring", "stack": ["python","evidently"], "tags": ["ml","monitor"], "files": [{ "path": "evidently/report.py", "template": "# evidently report skeleton\n" }] },
+    { "id": "strike-whylabs-logger-setup", "name": "WhyLabs Logger Setup", "stack": ["python","whylabs"], "tags": ["ml","monitor"], "files": [{ "path": "whylabs/logger.py", "template": "# whylabs logger skeleton\n" }] },
+
+    { "id": "strike-langsmith-tracing-setup", "name": "LangSmith Tracing Setup", "stack": ["langsmith","langchain"], "tags": ["observability","ml"], "files": [{ "path": "rag/tracing.py", "template": "# langsmith tracing skeleton\n" }] },
+    { "id": "strike-guardrails-pydantic-validators", "name": "Guardrails Pydantic Validators", "stack": ["python","guardrails"], "tags": ["ml","validation"], "files": [{ "path": "ai/guardrails.py", "template": "# guardrails validators skeleton\n" }] },
+    { "id": "strike-openai-evals-basic", "name": "OpenAI Evals Basic", "stack": ["python","openai"], "tags": ["ml","eval"], "files": [{ "path": "ai/evals.py", "template": "# openai evals skeleton\n" }] },
+
+    { "id": "strike-nextjs-trpc-procedures", "name": "Next.js tRPC Procedures", "stack": ["nextjs","trpc"], "tags": ["api","rpc"], "files": [{ "path": "src/server/router.ts", "template": "// nextjs trpc skeleton\n" }] },
+    { "id": "strike-remix-cloudflare-pages-adapter", "name": "Remix Cloudflare Pages Adapter", "stack": ["remix","cloudflare"], "tags": ["edge"], "files": [{ "path": "wrangler.toml", "template": "# remix cf pages skeleton\n" }] },
+    { "id": "strike-sveltekit-endpoint-jwt-guard", "name": "SvelteKit Endpoint JWT Guard", "stack": ["sveltekit","jwt"], "tags": ["api","auth"], "files": [{ "path": "src/routes/api/+server.ts", "template": "// sveltekit endpoint jwt guard skeleton\n" }] },
+    { "id": "strike-react-email-templates", "name": "React Email Templates", "stack": ["react","email"], "tags": ["frontend","email"], "files": [{ "path": "emails/Welcome.tsx", "template": "// react email skeleton\n" }] },
+    { "id": "strike-solidstart-rpc-functions", "name": "SolidStart RPC Functions", "stack": ["solid","solid-start"], "tags": ["rpc"], "files": [{ "path": "src/server/rpc.ts", "template": "// solid-start rpc skeleton\n" }] }
+  ]
+}
+

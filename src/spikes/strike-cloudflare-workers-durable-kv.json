@@ -1,0 +1,19 @@
+{
+  "id": "strike-cloudflare-workers-durable-kv",
+  "name": "Cloudflare Workers Durable + KV",
+  "stack": [
+    "cloudflare",
+    "workers",
+    "kv"
+  ],
+  "tags": [
+    "edge"
+  ],
+  "files": [
+    {
+      "path": "src/worker.ts",
+      "template": "// workers durable+kv skeleton\n"
+    }
+  ],
+  "patches": []
+}

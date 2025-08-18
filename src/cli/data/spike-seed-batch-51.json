@@ -1,0 +1,82 @@
+{
+  "items": [
+    { "id": "strike-spring-resilience4j-retry-circuit", "name": "Spring Resilience4j Retry + Circuit", "stack": ["java","spring","resilience4j"], "tags": ["resilience","http"], "files": [{ "path": "src/main/java/example/ResilienceConfig.java", "template": "// resilience4j retry+circuit skeleton\n" }] },
+    { "id": "strike-spring-security-opaque-token", "name": "Spring Security Opaque Token", "stack": ["java","spring","security"], "tags": ["auth","oauth2"], "files": [{ "path": "src/main/java/example/SecurityConfig.java", "template": "// spring opaque token resource server skeleton\n" }] },
+    { "id": "strike-spring-cloud-stream-kafka", "name": "Spring Cloud Stream Kafka", "stack": ["java","spring","kafka"], "tags": ["stream"], "files": [{ "path": "src/main/java/example/StreamConfig.java", "template": "// spring cloud stream kafka skeleton\n" }] },
+    { "id": "strike-spring-batch-chunking", "name": "Spring Batch Chunking", "stack": ["java","spring","batch"], "tags": ["batch"], "files": [{ "path": "src/main/java/example/BatchJob.java", "template": "// spring batch chunk skeleton\n" }] },
+    { "id": "strike-quarkus-panache-rest", "name": "Quarkus Panache REST", "stack": ["java","quarkus","panache"], "tags": ["api","db"], "files": [{ "path": "src/main/java/org/acme/PersonResource.java", "template": "// quarkus panache resource skeleton\n" }] },
+    { "id": "strike-micronaut-http-client-resilience", "name": "Micronaut HTTP Client Resilience", "stack": ["java","micronaut"], "tags": ["http","resilience"], "files": [{ "path": "src/main/java/example/Client.java", "template": "// micronaut http client resilience skeleton\n" }] },
+    { "id": "strike-vertx-web-router-health", "name": "Vert.x Web Router Health", "stack": ["java","vertx"], "tags": ["api","health"], "files": [{ "path": "src/main/java/example/HealthRouter.java", "template": "// vertx router health skeleton\n" }] },
+
+    { "id": "strike-dotnet-efcore-outbox-pattern", "name": ".NET EFCore Outbox Pattern", "stack": ["dotnet","efcore"], "tags": ["db","event"], "files": [{ "path": "Infrastructure/Outbox.cs", "template": "// efcore outbox pattern skeleton\n" }] },
+    { "id": "strike-dotnet-minimal-api-versioning", "name": ".NET Minimal API Versioning", "stack": ["dotnet","aspnet"], "tags": ["api"], "files": [{ "path": "Program.cs", "template": "// minimal api versioning skeleton\n" }] },
+    { "id": "strike-dotnet-mediatr-cqrs", "name": ".NET MediatR CQRS", "stack": ["dotnet","mediatr"], "tags": ["cqrs"], "files": [{ "path": "Application/Commands/CreateUser.cs", "template": "// mediatr command skeleton\n" }] },
+    { "id": "strike-dotnet-keyed-di", "name": ".NET Keyed DI", "stack": ["dotnet"], "tags": ["di"], "files": [{ "path": "Program.cs", "template": "// keyed service registration skeleton\n" }] },
+
+    { "id": "strike-rails-hotwire-turbo-streams", "name": "Rails Hotwire Turbo Streams", "stack": ["ruby","rails","hotwire"], "tags": ["frontend","realtime"], "files": [{ "path": "app/views/messages/create.turbo_stream.erb", "template": "<!-- turbo stream skeleton -->\n" }] },
+    { "id": "strike-rails-active-storage-s3", "name": "Rails ActiveStorage S3", "stack": ["ruby","rails","s3"], "tags": ["upload"], "files": [{ "path": "config/storage.yml", "template": "# activestorage s3 skeleton\n" }] },
+    { "id": "strike-rails-action-mailer-ses", "name": "Rails ActionMailer SES", "stack": ["ruby","rails","ses"], "tags": ["email"], "files": [{ "path": "app/mailers/user_mailer.rb", "template": "# action mailer ses skeleton\n" }] },
+    { "id": "strike-laravel-notification-channels", "name": "Laravel Notification Channels", "stack": ["php","laravel"], "tags": ["notify"], "files": [{ "path": "app/Notifications/InvoicePaid.php", "template": "<?php\n// laravel notification skeleton\n" }] },
+    { "id": "strike-laravel-polices-gates", "name": "Laravel Policies + Gates", "stack": ["php","laravel"], "tags": ["auth","rbac"], "files": [{ "path": "app/Policies/PostPolicy.php", "template": "<?php\n// policies skeleton\n" }] },
+    { "id": "strike-symfony-messenger-failure-transport", "name": "Symfony Messenger Failure Transport", "stack": ["php","symfony"], "tags": ["queue","retry"], "files": [{ "path": "config/packages/messenger.yaml", "template": "# failure transport skeleton\n" }] },
+
+    { "id": "strike-phoenix-guardian-jwt-auth", "name": "Phoenix Guardian JWT Auth", "stack": ["elixir","phoenix","guardian"], "tags": ["auth"], "files": [{ "path": "lib/app_web/auth.ex", "template": "# guardian auth skeleton\n" }] },
+    { "id": "strike-phoenix-oban-cron", "name": "Phoenix Oban Cron", "stack": ["elixir","phoenix","oban"], "tags": ["jobs"], "files": [{ "path": "config/config.exs", "template": "# oban cron skeleton\n" }] },
+
+    { "id": "strike-go-gorm-soft-delete", "name": "Go GORM Soft Delete", "stack": ["go","gorm"], "tags": ["db"], "files": [{ "path": "models/user.go", "template": "// gorm soft delete skeleton\n" }] },
+    { "id": "strike-go-sqlc-query-layer", "name": "Go sqlc Query Layer", "stack": ["go","sqlc"], "tags": ["db"], "files": [{ "path": "db/queries.sql", "template": "-- sqlc query skeleton\n" }] },
+    { "id": "strike-go-gin-otel-middleware", "name": "Go Gin OTel Middleware", "stack": ["go","gin","opentelemetry"], "tags": ["observability"], "files": [{ "path": "main.go", "template": "// gin otel middleware skeleton\n" }] },
+    { "id": "strike-go-echo-jwt-middleware", "name": "Go Echo JWT Middleware", "stack": ["go","echo","jwt"], "tags": ["auth"], "files": [{ "path": "main.go", "template": "// echo jwt middleware skeleton\n" }] },
+
+    { "id": "strike-rust-axum-extractor-validated", "name": "Rust Axum Validated Extractor", "stack": ["rust","axum"], "tags": ["api","validation"], "files": [{ "path": "src/extractors.rs", "template": "// axum validated extractor skeleton\n" }] },
+    { "id": "strike-rust-tower-layer-tracing", "name": "Rust Tower Layer Tracing", "stack": ["rust","tower"], "tags": ["observability"], "files": [{ "path": "src/layers.rs", "template": "// tower tracing layer skeleton\n" }] },
+    { "id": "strike-rust-seaorm-entity", "name": "Rust SeaORM Entity", "stack": ["rust","sea-orm"], "tags": ["db"], "files": [{ "path": "src/entity/user.rs", "template": "// sea-orm entity skeleton\n" }] },
+
+    { "id": "strike-scala-cats-effect-resource", "name": "Scala Cats Effect Resource", "stack": ["scala","cats-effect"], "tags": ["concurrency"], "files": [{ "path": "src/main/scala/ResourceApp.scala", "template": "// cats-effect resource skeleton\n" }] },
+    { "id": "strike-scala-zio-layer-config", "name": "Scala ZIO Layer + Config", "stack": ["scala","zio"], "tags": ["config"], "files": [{ "path": "src/main/scala/LayerApp.scala", "template": "// zio layer config skeleton\n" }] },
+
+    { "id": "strike-langchain-chromadb-rag", "name": "LangChain + Chroma RAG", "stack": ["python","langchain","chromadb"], "tags": ["rag"], "files": [{ "path": "rag/chroma.py", "template": "# langchain chroma rag skeleton\n" }] },
+    { "id": "strike-langchain-qdrant-rag", "name": "LangChain + Qdrant RAG", "stack": ["python","langchain","qdrant"], "tags": ["rag"], "files": [{ "path": "rag/qdrant.py", "template": "# langchain qdrant rag skeleton\n" }] },
+    { "id": "strike-langchain-weaviate-rag", "name": "LangChain + Weaviate RAG", "stack": ["python","langchain","weaviate"], "tags": ["rag"], "files": [{ "path": "rag/weaviate.py", "template": "# langchain weaviate rag skeleton\n" }] },
+    { "id": "strike-llamaindex-milvus-rag", "name": "LlamaIndex + Milvus RAG", "stack": ["python","llamaindex","milvus"], "tags": ["rag"], "files": [{ "path": "rag/milvus.py", "template": "# llamaindex milvus rag skeleton\n" }] },
+    { "id": "strike-llamaindex-pinecone-rag", "name": "LlamaIndex + Pinecone RAG", "stack": ["python","llamaindex","pinecone"], "tags": ["rag"], "files": [{ "path": "rag/pinecone.py", "template": "# llamaindex pinecone rag skeleton\n" }] },
+
+    { "id": "strike-airflow-task-group-patterns", "name": "Airflow TaskGroup Patterns", "stack": ["airflow"], "tags": ["orchestration"], "files": [{ "path": "dags/patterns.py", "template": "# airflow taskgroup patterns skeleton\n" }] },
+    { "id": "strike-dagster-asset-partitions", "name": "Dagster Asset Partitions", "stack": ["dagster"], "tags": ["data"], "files": [{ "path": "assets/partitions.py", "template": "# dagster asset partitions skeleton\n" }] },
+    { "id": "strike-prefect-deployment-cli", "name": "Prefect Deployment CLI", "stack": ["prefect"], "tags": ["orchestration"], "files": [{ "path": "flows/deploy.py", "template": "# prefect deployment cli skeleton\n" }] },
+    { "id": "strike-dbt-macro-generate-sql", "name": "dbt Macro generate_sql", "stack": ["dbt"], "tags": ["sql","macro"], "files": [{ "path": "macros/generate_sql.sql", "template": "-- dbt macro skeleton\n" }] },
+
+    { "id": "strike-argo-rollouts-canary-webhooks", "name": "Argo Rollouts Canary + Webhooks", "stack": ["kubernetes","argo-rollouts"], "tags": ["deploy","canary"], "files": [{ "path": "k8s/rollout.yaml", "template": "# argo rollouts webhooks skeleton\n" }] },
+    { "id": "strike-argocd-appset-pr-generator", "name": "ArgoCD AppSet PR Generator", "stack": ["kubernetes","argocd"], "tags": ["gitops"], "files": [{ "path": "k8s/appset.yaml", "template": "# appset pr generator skeleton\n" }] },
+    { "id": "strike-keda-scaledobject-rabbitmq", "name": "KEDA ScaledObject RabbitMQ", "stack": ["kubernetes","keda"], "tags": ["autoscale"], "files": [{ "path": "k8s/scaledobject.yaml", "template": "# keda scaledobject skeleton\n" }] },
+
+    { "id": "strike-github-workflow-reusable-templates", "name": "GitHub Workflow Reusable Templates", "stack": ["github","actions"], "tags": ["ci"], "files": [{ "path": ".github/workflows/reusable.yml", "template": "name: Reusable\non: workflow_call\n" }] },
+    { "id": "strike-github-pages-vitepress", "name": "GitHub Pages VitePress", "stack": ["github","pages","vitepress"], "tags": ["docs"], "files": [{ "path": ".github/workflows/pages.yml", "template": "name: Pages\non: { push: { branches: [main] } }\n" }] },
+    { "id": "strike-gitlab-ci-terraform-plan-apply", "name": "GitLab CI Terraform Plan/Apply", "stack": ["gitlab","terraform"], "tags": ["ci"], "files": [{ "path": ".gitlab-ci.yml", "template": "# terraform plan/apply skeleton\n" }] },
+
+    { "id": "strike-security-precommit-talisman", "name": "Security Talisman Pre-commit", "stack": ["security","git"], "tags": ["sast"], "files": [{ "path": ".pre-commit-config.yaml", "template": "# pre-commit talisman skeleton\n" }] },
+    { "id": "strike-security-trivy-scan-ci", "name": "Trivy Scan in CI", "stack": ["security","trivy"], "tags": ["sast","container"], "files": [{ "path": ".github/workflows/trivy.yml", "template": "name: Trivy\non: [push]\n" }] },
+    { "id": "strike-security-grype-scan-ci", "name": "Grype Scan in CI", "stack": ["security","grype"], "tags": ["sast","container"], "files": [{ "path": ".github/workflows/grype.yml", "template": "name: Grype\non: [push]\n" }] },
+
+    { "id": "strike-cloudflare-workers-durable-kv", "name": "Cloudflare Workers Durable + KV", "stack": ["cloudflare","workers","kv"], "tags": ["edge"], "files": [{ "path": "src/worker.ts", "template": "// workers durable+kv skeleton\n" }] },
+    { "id": "strike-cloudflare-queues-dlq", "name": "Cloudflare Queues DLQ", "stack": ["cloudflare","queues"], "tags": ["queue"], "files": [{ "path": "wrangler.toml", "template": "# queues dlq skeleton\n" }] },
+
+    { "id": "strike-bun-elysia-openapi", "name": "Bun Elysia OpenAPI", "stack": ["bun","elysia","openapi"], "tags": ["api"], "files": [{ "path": "src/app.ts", "template": "// elysia openapi skeleton\n" }] },
+    { "id": "strike-deno-fresh-streaming-sse", "name": "Deno Fresh Streaming SSE", "stack": ["deno","fresh"], "tags": ["frontend","sse"], "files": [{ "path": "routes/sse.ts", "template": "// fresh sse skeleton\n" }] },
+
+    { "id": "strike-nextauth-credentials-provider", "name": "NextAuth Credentials Provider", "stack": ["nextjs","nextauth"], "tags": ["auth"], "files": [{ "path": "app/api/auth/[...nextauth]/route.ts", "template": "// nextauth credentials skeleton\n" }] },
+    { "id": "strike-next-auth-jwt-rotation", "name": "NextAuth JWT Rotation", "stack": ["nextjs","nextauth","jwt"], "tags": ["auth"], "files": [{ "path": "lib/auth.ts", "template": "// nextauth jwt rotation skeleton\n" }] },
+    { "id": "strike-tanstack-router-loader-actions", "name": "TanStack Router Loader+Actions", "stack": ["react","tanstack-router"], "tags": ["routing"], "files": [{ "path": "src/router.tsx", "template": "// tanstack router skeleton\n" }] },
+    { "id": "strike-vite-ssr-express", "name": "Vite SSR with Express", "stack": ["vite","express"], "tags": ["ssr"], "files": [{ "path": "server.js", "template": "// vite ssr express skeleton\n" }] },
+    { "id": "strike-nuxt3-server-api-zod", "name": "Nuxt3 Server API + Zod", "stack": ["nuxt","zod"], "tags": ["api","validation"], "files": [{ "path": "server/api/health.get.ts", "template": "// nuxt api zod skeleton\n" }] },
+    { "id": "strike-vue-router-data-fetch", "name": "Vue Router Data Fetch", "stack": ["vue","vue-router"], "tags": ["routing","data"], "files": [{ "path": "src/router.ts", "template": "// vue router data fetch skeleton\n" }] },
+
+    { "id": "strike-redis-bloom-filter-setup", "name": "Redis Bloom Filter Setup", "stack": ["redis","redisbloom"], "tags": ["probabilistic"], "files": [{ "path": "redis/bloom.md", "template": "# redis bloom skeleton\n" }] },
+    { "id": "strike-nats-jetstream-key-value", "name": "NATS JetStream Key/Value", "stack": ["nats","jetstream"], "tags": ["store"], "files": [{ "path": "nats/kv.md", "template": "# nats kv skeleton\n" }] },
+
+    { "id": "strike-pulumi-typescript-aws", "name": "Pulumi TypeScript AWS", "stack": ["pulumi","aws"], "tags": ["infra"], "files": [{ "path": "infra/index.ts", "template": "// pulumi aws skeleton\n" }] },
+    { "id": "strike-pulumi-python-azure", "name": "Pulumi Python Azure", "stack": ["pulumi","azure"], "tags": ["infra"], "files": [{ "path": "infra/main.py", "template": "# pulumi azure skeleton\n" }] },
+    { "id": "strike-pulumi-gcp-go", "name": "Pulumi Go GCP", "stack": ["pulumi","gcp","go"], "tags": ["infra"], "files": [{ "path": "infra/main.go", "template": "// pulumi gcp go skeleton\n" }] }
+  ]
+}
+

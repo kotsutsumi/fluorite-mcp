@@ -1,0 +1,18 @@
+{
+  "id": "strike-docker-compose-postgres-adminer",
+  "name": "Docker Compose Postgres + Adminer",
+  "stack": [
+    "docker",
+    "postgres"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "docker-compose.yml",
+      "template": "# postgres + adminer skeleton\n"
+    }
+  ],
+  "patches": []
+}

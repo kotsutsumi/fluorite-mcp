@@ -1,0 +1,20 @@
+{
+  "id": "strike-rails-activejob-sidekiq-retry",
+  "name": "Rails ActiveJob Sidekiq Retry",
+  "stack": [
+    "ruby",
+    "rails",
+    "sidekiq"
+  ],
+  "tags": [
+    "jobs",
+    "retry"
+  ],
+  "files": [
+    {
+      "path": "app/jobs/retry_job.rb",
+      "template": "# sidekiq retry skeleton\n"
+    }
+  ],
+  "patches": []
+}

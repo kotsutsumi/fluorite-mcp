@@ -1,0 +1,18 @@
+{
+  "id": "strike-otel-collector-gateway-topology",
+  "name": "OTel Collector Gateway Topology",
+  "stack": [
+    "opentelemetry",
+    "collector"
+  ],
+  "tags": [
+    "observability"
+  ],
+  "files": [
+    {
+      "path": "otel/collector-gateway.yaml",
+      "template": "receivers: {}\n"
+    }
+  ],
+  "patches": []
+}

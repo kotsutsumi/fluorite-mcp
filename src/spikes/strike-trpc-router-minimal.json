@@ -3,10 +3,13 @@
   "name": "tRPC Router Minimal",
   "stack": [
     "typescript",
-    "trpc"
+    "trpc",
+    "node"
   ],
   "tags": [
-    "api"
+    "api",
+    "backend",
+    "rpc"
   ],
   "files": [
     {
@@ -14,5 +17,6 @@
       "template": "import { initTRPC } from '@trpc/server';\nconst t = initTRPC.create();\nexport const router = t.router({ hello: t.procedure.query(()=> 'world') });\n"
     }
   ],
-  "patches": []
+  "patches": [],
+  "params": []
 }

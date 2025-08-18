@@ -1,0 +1,18 @@
+{
+  "id": "strike-slsa-provenance-github-oidc",
+  "name": "SLSA Provenance via OIDC",
+  "stack": [
+    "github",
+    "slsa"
+  ],
+  "tags": [
+    "supply-chain"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/slsa.yml",
+      "template": "name: SLSA\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

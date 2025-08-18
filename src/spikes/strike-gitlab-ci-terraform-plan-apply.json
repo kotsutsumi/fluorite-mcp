@@ -1,0 +1,18 @@
+{
+  "id": "strike-gitlab-ci-terraform-plan-apply",
+  "name": "GitLab CI Terraform Plan/Apply",
+  "stack": [
+    "gitlab",
+    "terraform"
+  ],
+  "tags": [
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".gitlab-ci.yml",
+      "template": "# terraform plan/apply skeleton\n"
+    }
+  ],
+  "patches": []
+}

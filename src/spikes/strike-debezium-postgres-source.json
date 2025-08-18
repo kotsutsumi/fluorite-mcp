@@ -1,0 +1,18 @@
+{
+  "id": "strike-debezium-postgres-source",
+  "name": "Debezium Postgres Source",
+  "stack": [
+    "kafka",
+    "debezium"
+  ],
+  "tags": [
+    "cdc"
+  ],
+  "files": [
+    {
+      "path": "kafka/debezium.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

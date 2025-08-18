@@ -1,0 +1,18 @@
+{
+  "id": "strike-cloudflare-queues-dlq",
+  "name": "Cloudflare Queues DLQ",
+  "stack": [
+    "cloudflare",
+    "queues"
+  ],
+  "tags": [
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "wrangler.toml",
+      "template": "# queues dlq skeleton\n"
+    }
+  ],
+  "patches": []
+}

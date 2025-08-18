@@ -1,0 +1,17 @@
+{
+  "id": "strike-nginx-reverse-proxy-basic",
+  "name": "Nginx Reverse Proxy Basic",
+  "stack": [
+    "nginx"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "nginx.conf",
+      "template": "# nginx reverse proxy skeleton\n"
+    }
+  ],
+  "patches": []
+}

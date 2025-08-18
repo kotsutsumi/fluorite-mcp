@@ -1,0 +1,18 @@
+{
+  "id": "strike-security-precommit-talisman",
+  "name": "Security Talisman Pre-commit",
+  "stack": [
+    "security",
+    "git"
+  ],
+  "tags": [
+    "sast"
+  ],
+  "files": [
+    {
+      "path": ".pre-commit-config.yaml",
+      "template": "# pre-commit talisman skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,19 @@
+{
+  "id": "strike-github-pages-vitepress",
+  "name": "GitHub Pages VitePress",
+  "stack": [
+    "github",
+    "pages",
+    "vitepress"
+  ],
+  "tags": [
+    "docs"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/pages.yml",
+      "template": "name: Pages\non: { push: { branches: [main] } }\n"
+    }
+  ],
+  "patches": []
+}

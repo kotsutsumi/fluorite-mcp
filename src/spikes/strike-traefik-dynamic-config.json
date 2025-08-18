@@ -1,0 +1,17 @@
+{
+  "id": "strike-traefik-dynamic-config",
+  "name": "Traefik Dynamic Config",
+  "stack": [
+    "traefik"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "traefik/dynamic.yml",
+      "template": "# traefik dynamic config skeleton\n"
+    }
+  ],
+  "patches": []
+}

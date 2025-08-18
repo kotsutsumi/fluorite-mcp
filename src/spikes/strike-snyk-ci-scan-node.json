@@ -1,0 +1,18 @@
+{
+  "id": "strike-snyk-ci-scan-node",
+  "name": "Snyk CI Scan (Node)",
+  "stack": [
+    "snyk",
+    "github"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/snyk.yml",
+      "template": "name: Snyk\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

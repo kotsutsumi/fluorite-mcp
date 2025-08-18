@@ -1,0 +1,19 @@
+{
+  "id": "strike-karpenter-provisioner-spot",
+  "name": "Karpenter Provisioner (Spot)",
+  "stack": [
+    "kubernetes",
+    "karpenter"
+  ],
+  "tags": [
+    "autoscale",
+    "cost"
+  ],
+  "files": [
+    {
+      "path": "k8s/provisioner.yaml",
+      "template": "# karpenter provisioner skeleton\n"
+    }
+  ],
+  "patches": []
+}

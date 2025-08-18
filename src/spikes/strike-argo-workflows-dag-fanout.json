@@ -1,0 +1,18 @@
+{
+  "id": "strike-argo-workflows-dag-fanout",
+  "name": "Argo Workflows DAG Fan-out",
+  "stack": [
+    "kubernetes",
+    "argo-workflows"
+  ],
+  "tags": [
+    "workflow"
+  ],
+  "files": [
+    {
+      "path": "k8s/workflow.yaml",
+      "template": "# argo workflows dag skeleton\n"
+    }
+  ],
+  "patches": []
+}

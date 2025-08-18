@@ -1,0 +1,113 @@
+{
+  "items": [
+    { "id": "strike-spring-cloud-gateway-rate-limit", "name": "Spring Cloud Gateway Rate Limit", "stack": ["java","spring","gateway"], "tags": ["api","throttle"], "files": [{ "path": "src/main/resources/application.yml", "template": "# gateway rate limit skeleton\n" }] },
+    { "id": "strike-spring-resilience4j-bulkhead", "name": "Spring Resilience4j Bulkhead", "stack": ["java","spring","resilience4j"], "tags": ["resilience"], "files": [{ "path": "src/main/java/example/ResilienceConfig.java", "template": "// bulkhead skeleton\n" }] },
+    { "id": "strike-quarkus-graphql-minimal", "name": "Quarkus GraphQL Minimal", "stack": ["java","quarkus","graphql"], "tags": ["api"], "files": [{ "path": "src/main/java/org/acme/GreetingResource.java", "template": "// quarkus graphql skeleton\n" }] },
+    { "id": "strike-micronaut-oauth2-client", "name": "Micronaut OAuth2 Client", "stack": ["java","micronaut","oauth2"], "tags": ["auth"], "files": [{ "path": "src/main/resources/application.yml", "template": "# micronaut oauth2 client skeleton\n" }] },
+    { "id": "strike-vertx-clustered-event-bus", "name": "Vert.x Clustered Event Bus", "stack": ["java","vertx"], "tags": ["realtime","cluster"], "files": [{ "path": "src/main/java/example/ClusteredBus.java", "template": "// clustered event bus skeleton\n" }] },
+
+    { "id": "strike-dotnet-polly-resilience-handlers", "name": ".NET Polly Resilience Handlers", "stack": ["dotnet","polly"], "tags": ["resilience","http"], "files": [{ "path": "Program.cs", "template": "// polly handlers skeleton\n" }] },
+    { "id": "strike-dotnet-efcore-interceptors", "name": ".NET EFCore Interceptors", "stack": ["dotnet","efcore"], "tags": ["db","audit"], "files": [{ "path": "Data/Interceptors.cs", "template": "// efcore interceptors skeleton\n" }] },
+    { "id": "strike-dotnet-dapper-repository", "name": ".NET Dapper Repository", "stack": ["dotnet","dapper"], "tags": ["db"], "files": [{ "path": "Data/Repo.cs", "template": "// dapper repo skeleton\n" }] },
+    { "id": "strike-dotnet-minimal-endpoint-filters", "name": ".NET Minimal Endpoint Filters", "stack": ["dotnet","aspnet"], "tags": ["api"], "files": [{ "path": "Program.cs", "template": "// endpoint filters skeleton\n" }] },
+
+    { "id": "strike-rails-activejob-mailer", "name": "Rails ActiveJob + Mailer", "stack": ["ruby","rails"], "tags": ["jobs","email"], "files": [{ "path": "app/jobs/mailer_job.rb", "template": "# mailer job skeleton\n" }] },
+    { "id": "strike-laravel-websockets-pusher", "name": "Laravel WebSockets (Pusher)", "stack": ["php","laravel"], "tags": ["realtime"], "files": [{ "path": "routes/channels.php", "template": "<?php\n// websockets channels skeleton\n" }] },
+    { "id": "strike-symfony-rate-limiter", "name": "Symfony Rate Limiter", "stack": ["php","symfony"], "tags": ["throttle"], "files": [{ "path": "config/packages/rate_limiter.yaml", "template": "# rate limiter skeleton\n" }] },
+    { "id": "strike-phoenix-channels-auth", "name": "Phoenix Channels Auth", "stack": ["elixir","phoenix"], "tags": ["realtime","auth"], "files": [{ "path": "lib/app_web/channels/user_socket.ex", "template": "# channels auth skeleton\n" }] },
+
+    { "id": "strike-go-fiber-otel-traces", "name": "Go Fiber OTel Traces", "stack": ["go","fiber","opentelemetry"], "tags": ["observability"], "files": [{ "path": "main.go", "template": "// fiber otel traces skeleton\n" }] },
+    { "id": "strike-go-chi-cors-rate", "name": "Go chi CORS + Rate", "stack": ["go","chi"], "tags": ["api","throttle"], "files": [{ "path": "main.go", "template": "// chi cors+rate skeleton\n" }] },
+    { "id": "strike-go-kit-endpoint-transport", "name": "Go kit Endpoint + Transport", "stack": ["go","go-kit"], "tags": ["api"], "files": [{ "path": "svc/service.go", "template": "// go-kit endpoint transport skeleton\n" }] },
+    { "id": "strike-go-opa-http-middleware", "name": "Go OPA HTTP Middleware", "stack": ["go","opa"], "tags": ["policy","authz"], "files": [{ "path": "policy/middleware.go", "template": "// opa http middleware skeleton\n" }] },
+
+    { "id": "strike-rust-actix-websockets", "name": "Rust Actix WebSockets", "stack": ["rust","actix"], "tags": ["realtime"], "files": [{ "path": "src/ws.rs", "template": "// actix websocket skeleton\n" }] },
+    { "id": "strike-rust-sqlx-migrations", "name": "Rust SQLx Migrations", "stack": ["rust","sqlx"], "tags": ["db"], "files": [{ "path": "sql/migrations/0001_init.sql", "template": "-- sqlx migration skeleton\n" }] },
+    { "id": "strike-rust-tracing-subscriber-layers", "name": "Rust tracing Subscriber Layers", "stack": ["rust","tracing"], "tags": ["observability"], "files": [{ "path": "src/telemetry.rs", "template": "// tracing subscriber layers skeleton\n" }] },
+    { "id": "strike-rust-anyhow-thiserror", "name": "Rust anyhow + thiserror", "stack": ["rust"], "tags": ["errors"], "files": [{ "path": "src/error.rs", "template": "// anyhow + thiserror skeleton\n" }] },
+
+    { "id": "strike-python-pydantic-v2-settings", "name": "Pydantic v2 Settings", "stack": ["python","pydantic"], "tags": ["config"], "files": [{ "path": "config/settings.py", "template": "# pydantic v2 settings skeleton\n" }] },
+    { "id": "strike-python-typer-cli-commands", "name": "Typer CLI Commands", "stack": ["python","typer"], "tags": ["cli"], "files": [{ "path": "cli/main.py", "template": "# typer cli skeleton\n" }] },
+    { "id": "strike-fastapi-oauth2-google-authcode", "name": "FastAPI OAuth2 (Google) Auth Code", "stack": ["python","fastapi","oauth2"], "tags": ["auth"], "files": [{ "path": "app/auth.py", "template": "# fastapi google auth code skeleton\n" }] },
+    { "id": "strike-celery-beat-schedule", "name": "Celery Beat Schedule", "stack": ["python","celery"], "tags": ["jobs"], "files": [{ "path": "celeryconfig.py", "template": "# celery beat schedule skeleton\n" }] },
+
+    { "id": "strike-airflow-s3-key-sensor", "name": "Airflow S3Key Sensor", "stack": ["airflow"], "tags": ["orchestration"], "files": [{ "path": "dags/s3_sensor.py", "template": "# airflow s3 key sensor skeleton\n" }] },
+    { "id": "strike-dagster-io-manager-s3", "name": "Dagster IO Manager S3", "stack": ["dagster"], "tags": ["data"], "files": [{ "path": "io/s3_manager.py", "template": "# dagster io manager s3 skeleton\n" }] },
+    { "id": "strike-prefect-blocks-s3-gcs", "name": "Prefect Blocks S3/GCS", "stack": ["prefect"], "tags": ["orchestration"], "files": [{ "path": "blocks/setup.py", "template": "# prefect blocks skeleton\n" }] },
+    { "id": "strike-dbt-exposures-dashboard", "name": "dbt Exposures Dashboard", "stack": ["dbt"], "tags": ["sql","docs"], "files": [{ "path": "models/exposures.yml", "template": "version: 2\nexposures: []\n" }] },
+
+    { "id": "strike-delta-lake-spark-write", "name": "Delta Lake Spark Write", "stack": ["spark","delta"], "tags": ["data"], "files": [{ "path": "spark/delta_write.py", "template": "# delta lake write skeleton\n" }] },
+    { "id": "strike-apache-iceberg-spark-read", "name": "Apache Iceberg Spark Read", "stack": ["spark","iceberg"], "tags": ["data"], "files": [{ "path": "spark/iceberg_read.py", "template": "# iceberg read skeleton\n" }] },
+    { "id": "strike-apache-hudi-upsert", "name": "Apache Hudi Upsert", "stack": ["spark","hudi"], "tags": ["data"], "files": [{ "path": "spark/hudi_upsert.py", "template": "# hudi upsert skeleton\n" }] },
+    { "id": "strike-duckdb-httpfs-read-s3", "name": "DuckDB HTTPFS read S3", "stack": ["duckdb","s3"], "tags": ["data"], "files": [{ "path": "duckdb/httpfs.sql", "template": "-- duckdb httpfs s3 skeleton\n" }] },
+
+    { "id": "strike-polars-sql-query-engine", "name": "Polars SQL Query Engine", "stack": ["python","polars"], "tags": ["data"], "files": [{ "path": "polars/sql.py", "template": "# polars sql query skeleton\n" }] },
+    { "id": "strike-pandera-dataframe-schema", "name": "Pandera DataFrame Schema", "stack": ["python","pandera"], "tags": ["validation"], "files": [{ "path": "pandera/schema.py", "template": "# pandera schema skeleton\n" }] },
+    { "id": "strike-bentoml-service-deploy", "name": "BentoML Service Deploy", "stack": ["python","bentoml"], "tags": ["ml","serve"], "files": [{ "path": "service.py", "template": "# bentoml service skeleton\n" }] },
+    { "id": "strike-ray-serve-deployment", "name": "Ray Serve Deployment", "stack": ["python","ray"], "tags": ["ml","serve"], "files": [{ "path": "serve/deploy.py", "template": "# ray serve skeleton\n" }] },
+
+    { "id": "strike-triton-inference-config", "name": "NVIDIA Triton Inference Config", "stack": ["triton"], "tags": ["ml","serve"], "files": [{ "path": "models/config.pbtxt", "template": "# triton model config skeleton\n" }] },
+    { "id": "strike-torchserve-model-archive", "name": "TorchServe Model Archive", "stack": ["torchserve"], "tags": ["ml","serve"], "files": [{ "path": "model-handler.py", "template": "# torchserve handler skeleton\n" }] },
+    { "id": "strike-hf-spaces-basic", "name": "Hugging Face Spaces Basic", "stack": ["huggingface","spaces"], "tags": ["ml","ui"], "files": [{ "path": "app.py", "template": "# hf spaces skeleton\n" }] },
+
+    { "id": "strike-pinecone-index-settings", "name": "Pinecone Index Settings", "stack": ["pinecone"], "tags": ["vector"], "files": [{ "path": "pinecone/settings.json", "template": "{ }\n" }] },
+    { "id": "strike-qdrant-payload-filtering", "name": "Qdrant Payload Filtering", "stack": ["qdrant"], "tags": ["vector"], "files": [{ "path": "qdrant/filter.json", "template": "{ }\n" }] },
+    { "id": "strike-weaviate-cross-refs", "name": "Weaviate Cross-Refs", "stack": ["weaviate"], "tags": ["vector"], "files": [{ "path": "weaviate/refs.json", "template": "{ }\n" }] },
+    { "id": "strike-milvus-partitions", "name": "Milvus Partitions", "stack": ["milvus"], "tags": ["vector"], "files": [{ "path": "milvus/partitions.py", "template": "# milvus partitions skeleton\n" }] },
+    { "id": "strike-chromadb-embedding-fn", "name": "ChromaDB Embedding Function", "stack": ["chromadb"], "tags": ["vector"], "files": [{ "path": "chroma/embed.py", "template": "# chromadb embedding function skeleton\n" }] },
+
+    { "id": "strike-otel-log-correlation-cross-service", "name": "OTel Log Correlation Cross-Service", "stack": ["opentelemetry"], "tags": ["observability","logs"], "files": [{ "path": "otel/correlation.md", "template": "# otel log correlation skeleton\n" }] },
+    { "id": "strike-prometheus-scrape-kubernetes-nodes", "name": "Prometheus Scrape K8s Nodes", "stack": ["prometheus","kubernetes"], "tags": ["observability"], "files": [{ "path": "prometheus/scrape.yml", "template": "# prometheus scrape nodes skeleton\n" }] },
+    { "id": "strike-alertmanager-routing-templates", "name": "Alertmanager Routing + Templates", "stack": ["alertmanager"], "tags": ["observability"], "files": [{ "path": "alertmanager/config.yml", "template": "# alertmanager routes skeleton\n" }] },
+    { "id": "strike-grafana-provision-datasources", "name": "Grafana Provision Datasources", "stack": ["grafana"], "tags": ["observability"], "files": [{ "path": "grafana/datasources.yml", "template": "# grafana datasource provision skeleton\n" }] },
+    { "id": "strike-jaeger-remote-sampling", "name": "Jaeger Remote Sampling", "stack": ["jaeger"], "tags": ["observability"], "files": [{ "path": "jaeger/sampling.json", "template": "{ }\n" }] },
+    { "id": "strike-elastic-apm-node-setup", "name": "Elastic APM Node Setup", "stack": ["elastic","apm","node"], "tags": ["observability"], "files": [{ "path": "apm/node.js", "template": "// elastic apm node skeleton\n" }] },
+    { "id": "strike-sentry-release-tracking", "name": "Sentry Release Tracking", "stack": ["sentry"], "tags": ["observability","release"], "files": [{ "path": "sentry/release.ts", "template": "// sentry release skeleton\n" }] },
+
+    { "id": "strike-opa-conftest-k8s-ci", "name": "OPA Conftest K8s CI", "stack": ["opa","conftest","kubernetes"], "tags": ["policy","ci"], "files": [{ "path": ".github/workflows/conftest.yml", "template": "name: Conftest\non: [push]\n" }] },
+    { "id": "strike-gatekeeper-constraints-library", "name": "Gatekeeper Constraints Library", "stack": ["gatekeeper","kubernetes"], "tags": ["policy"], "files": [{ "path": "k8s/constraints.yaml", "template": "# gatekeeper constraints skeleton\n" }] },
+    { "id": "strike-falco-runtime-rules", "name": "Falco Runtime Rules", "stack": ["falco"], "tags": ["security"], "files": [{ "path": "falco/rules.yaml", "template": "# falco rules skeleton\n" }] },
+    { "id": "strike-kyverno-policies-bestpractices", "name": "Kyverno Policies Best Practices", "stack": ["kyverno"], "tags": ["policy"], "files": [{ "path": "kyverno/policies.yaml", "template": "# kyverno policies skeleton\n" }] },
+    { "id": "strike-vault-agent-injector", "name": "Vault Agent Injector", "stack": ["vault","kubernetes"], "tags": ["secrets"], "files": [{ "path": "k8s/vault-agent.yaml", "template": "# vault agent injector skeleton\n" }] },
+
+    { "id": "strike-gh-actions-composite-action", "name": "GitHub Actions Composite Action", "stack": ["github","actions"], "tags": ["ci","reusable"], "files": [{ "path": ".github/actions/setup/action.yml", "template": "name: Setup\nruns: using: 'node20'\n" }] },
+    { "id": "strike-gitlab-child-pipelines", "name": "GitLab Child Pipelines", "stack": ["gitlab","ci"], "tags": ["ci"], "files": [{ "path": ".gitlab-ci.yml", "template": "# child pipelines skeleton\n" }] },
+    { "id": "strike-circleci-reusable-orbs", "name": "CircleCI Reusable Orbs", "stack": ["circleci"], "tags": ["ci"], "files": [{ "path": ".circleci/config.yml", "template": "# circleci orbs skeleton\n" }] },
+    { "id": "strike-argocd-image-updater", "name": "ArgoCD Image Updater", "stack": ["argocd"], "tags": ["gitops"], "files": [{ "path": "k8s/image-updater.yaml", "template": "# argocd image updater skeleton\n" }] },
+    { "id": "strike-semantic-release-config", "name": "semantic-release Config", "stack": ["semantic-release"], "tags": ["release"], "files": [{ "path": ".releaserc", "template": "{ }\n" }] },
+
+    { "id": "strike-terraform-module-vpc", "name": "Terraform Module VPC", "stack": ["terraform","aws"], "tags": ["infra"], "files": [{ "path": "modules/vpc/main.tf", "template": "# terraform vpc module skeleton\n" }] },
+    { "id": "strike-crossplane-composition-s3", "name": "Crossplane Composition S3", "stack": ["crossplane","kubernetes"], "tags": ["infra","gitops"], "files": [{ "path": "crossplane/composition.yaml", "template": "# crossplane composition skeleton\n" }] },
+    { "id": "strike-helm-umbrella-chart", "name": "Helm Umbrella Chart", "stack": ["helm"], "tags": ["infra"], "files": [{ "path": "charts/umbrella/Chart.yaml", "template": "# helm umbrella skeleton\n" }] },
+    { "id": "strike-kustomize-secret-generator", "name": "Kustomize Secret Generator", "stack": ["kustomize"], "tags": ["infra","secrets"], "files": [{ "path": "k8s/kustomization.yaml", "template": "# kustomize secret generator skeleton\n" }] },
+    { "id": "strike-sops-kms-decrypt-ci", "name": "SOPS KMS Decrypt in CI", "stack": ["sops","ci"], "tags": ["secrets"], "files": [{ "path": ".github/workflows/sops.yml", "template": "name: SOPS\non: [push]\n" }] },
+    { "id": "strike-ansible-playbook-basic", "name": "Ansible Playbook Basic", "stack": ["ansible"], "tags": ["infra"], "files": [{ "path": "ansible/playbook.yaml", "template": "# ansible playbook skeleton\n" }] },
+    { "id": "strike-packer-ami-build", "name": "Packer AMI Build", "stack": ["packer","aws"], "tags": ["infra"], "files": [{ "path": "packer/template.json", "template": "{ }\n" }] },
+
+    { "id": "strike-cloudflare-images-resize", "name": "Cloudflare Images Resize", "stack": ["cloudflare","images"], "tags": ["edge","media"], "files": [{ "path": "src/images.ts", "template": "// images resize skeleton\n" }] },
+    { "id": "strike-cloudflare-kv-atomic-counters", "name": "Cloudflare KV Atomic Counters", "stack": ["cloudflare","kv"], "tags": ["edge"], "files": [{ "path": "src/kv.ts", "template": "// kv atomic counters skeleton\n" }] },
+    { "id": "strike-cloudflare-do-alarm-timers", "name": "Cloudflare Durable Objects Alarms", "stack": ["cloudflare","durable-objects"], "tags": ["edge","schedule"], "files": [{ "path": "src/do.ts", "template": "// durable objects alarms skeleton\n" }] },
+    { "id": "strike-cloudflare-pages-functions-router", "name": "Cloudflare Pages Functions Router", "stack": ["cloudflare","pages"], "tags": ["edge"], "files": [{ "path": "functions/_middleware.ts", "template": "// pages functions router skeleton\n" }] },
+    { "id": "strike-deno-deploy-feature-flags", "name": "Deno Deploy Feature Flags", "stack": ["deno","deploy"], "tags": ["edge","flags"], "files": [{ "path": "main.ts", "template": "// deno deploy flags skeleton\n" }] },
+    { "id": "strike-vercel-middleware-intl", "name": "Vercel Middleware i18n", "stack": ["vercel","nextjs"], "tags": ["middleware","i18n"], "files": [{ "path": "middleware.ts", "template": "// vercel middleware i18n skeleton\n" }] },
+
+    { "id": "strike-nextjs-i18n-routing", "name": "Next.js i18n Routing", "stack": ["nextjs"], "tags": ["frontend","i18n"], "files": [{ "path": "next.config.js", "template": "// nextjs i18n routing skeleton\n" }] },
+    { "id": "strike-nextjs-middleware-ab-test", "name": "Next.js Middleware A/B Test", "stack": ["nextjs"], "tags": ["frontend","experiments"], "files": [{ "path": "middleware.ts", "template": "// nextjs ab test skeleton\n" }] },
+    { "id": "strike-nuxt-nitro-storage-drivers", "name": "Nuxt Nitro Storage Drivers", "stack": ["nuxt","nitro"], "tags": ["backend"], "files": [{ "path": "server/storage.ts", "template": "// nuxt nitro storage skeleton\n" }] },
+    { "id": "strike-angular-ssr-hydration", "name": "Angular SSR Hydration", "stack": ["angular"], "tags": ["frontend","ssr"], "files": [{ "path": "src/main.server.ts", "template": "// angular ssr hydration skeleton\n" }] },
+    { "id": "strike-vue-ssr-server-entry", "name": "Vue SSR Server Entry", "stack": ["vue","ssr"], "tags": ["frontend","ssr"], "files": [{ "path": "src/entry-server.ts", "template": "// vue ssr entry skeleton\n" }] },
+    { "id": "strike-solidstart-streaming-ssr", "name": "SolidStart Streaming SSR", "stack": ["solid","solid-start"], "tags": ["frontend","ssr"], "files": [{ "path": "src/entry-server.tsx", "template": "// solidstart streaming ssr skeleton\n" }] },
+    { "id": "strike-astro-islands-advanced", "name": "Astro Islands Advanced", "stack": ["astro"], "tags": ["frontend"], "files": [{ "path": "src/components/Island.astro", "template": "---\n// astro island advanced skeleton\n---\n" }] },
+
+    { "id": "strike-typesense-vector-search", "name": "Typesense Vector Search", "stack": ["typesense"], "tags": ["search","vector"], "files": [{ "path": "typesense/schema.json", "template": "{ }\n" }] },
+    { "id": "strike-meilisearch-typo-tolerance-tuning", "name": "Meilisearch Typo Tolerance Tuning", "stack": ["meilisearch"], "tags": ["search"], "files": [{ "path": "meili/typo.json", "template": "{ }\n" }] },
+    { "id": "strike-elasticsearch-ingest-pipeline", "name": "Elasticsearch Ingest Pipeline", "stack": ["elasticsearch"], "tags": ["search","ingest"], "files": [{ "path": "es/ingest.json", "template": "{ }\n" }] },
+    { "id": "strike-opensearch-anomaly-detection", "name": "OpenSearch Anomaly Detection", "stack": ["opensearch"], "tags": ["search","anomaly"], "files": [{ "path": "os/ad.json", "template": "{ }\n" }] },
+
+    { "id": "strike-nats-jetstream-ordered-consumer", "name": "NATS JetStream Ordered Consumer", "stack": ["nats","jetstream"], "tags": ["stream"], "files": [{ "path": "nats/ordered.md", "template": "# jetstream ordered consumer skeleton\n" }] },
+    { "id": "strike-kafka-streams-table-join", "name": "Kafka Streams Table Join", "stack": ["kafka","streams"], "tags": ["stream"], "files": [{ "path": "kafka/join.java", "template": "// kstreams table join skeleton\n" }] },
+    { "id": "strike-apache-pulsar-functions", "name": "Apache Pulsar Functions", "stack": ["pulsar"], "tags": ["stream"], "files": [{ "path": "pulsar/function.py", "template": "# pulsar function skeleton\n" }] },
+    { "id": "strike-rabbitmq-quorum-queues", "name": "RabbitMQ Quorum Queues", "stack": ["rabbitmq"], "tags": ["queue","ha"], "files": [{ "path": "rabbitmq/quorum.md", "template": "# rabbitmq quorum queues skeleton\n" }] }
+  ]
+}
+

@@ -1,0 +1,19 @@
+{
+  "id": "strike-argo-rollouts-canary-webhooks",
+  "name": "Argo Rollouts Canary + Webhooks",
+  "stack": [
+    "kubernetes",
+    "argo-rollouts"
+  ],
+  "tags": [
+    "deploy",
+    "canary"
+  ],
+  "files": [
+    {
+      "path": "k8s/rollout.yaml",
+      "template": "# argo rollouts webhooks skeleton\n"
+    }
+  ],
+  "patches": []
+}

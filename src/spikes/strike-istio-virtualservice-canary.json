@@ -1,0 +1,19 @@
+{
+  "id": "strike-istio-virtualservice-canary",
+  "name": "Istio VirtualService Canary",
+  "stack": [
+    "kubernetes",
+    "istio"
+  ],
+  "tags": [
+    "mesh",
+    "canary"
+  ],
+  "files": [
+    {
+      "path": "k8s/virtualservice.yaml",
+      "template": "# istio canary skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-jaeger-docker-compose",
+  "name": "Jaeger Docker Compose",
+  "stack": [
+    "jaeger",
+    "docker"
+  ],
+  "tags": [
+    "observability"
+  ],
+  "files": [
+    {
+      "path": "docker-compose.yml",
+      "template": "# jaeger compose skeleton\n"
+    }
+  ],
+  "patches": []
+}

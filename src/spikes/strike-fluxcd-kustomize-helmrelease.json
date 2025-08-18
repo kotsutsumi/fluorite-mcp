@@ -1,0 +1,19 @@
+{
+  "id": "strike-fluxcd-kustomize-helmrelease",
+  "name": "FluxCD Kustomize + HelmRelease",
+  "stack": [
+    "kubernetes",
+    "fluxcd",
+    "helm"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "clusters/app/helmrelease.yaml",
+      "template": "# fluxcd helmrelease skeleton\n"
+    }
+  ],
+  "patches": []
+}

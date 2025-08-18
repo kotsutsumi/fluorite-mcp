@@ -1,0 +1,18 @@
+{
+  "id": "strike-sentry-node-setup",
+  "name": "Sentry Node Setup",
+  "stack": [
+    "sentry",
+    "node"
+  ],
+  "tags": [
+    "observability"
+  ],
+  "files": [
+    {
+      "path": "sentry/node.ts",
+      "template": "// sentry node setup skeleton\n"
+    }
+  ],
+  "patches": []
+}

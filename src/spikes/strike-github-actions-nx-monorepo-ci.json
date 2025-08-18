@@ -1,0 +1,20 @@
+{
+  "id": "strike-github-actions-nx-monorepo-ci",
+  "name": "GitHub Actions Nx Monorepo CI",
+  "stack": [
+    "github",
+    "actions",
+    "nx"
+  ],
+  "tags": [
+    "ci",
+    "monorepo"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/nx-ci.yml",
+      "template": "name: NxCI\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

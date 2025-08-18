@@ -1,0 +1,19 @@
+{
+  "id": "strike-symfony-messenger-failure-transport",
+  "name": "Symfony Messenger Failure Transport",
+  "stack": [
+    "php",
+    "symfony"
+  ],
+  "tags": [
+    "queue",
+    "retry"
+  ],
+  "files": [
+    {
+      "path": "config/packages/messenger.yaml",
+      "template": "# failure transport skeleton\n"
+    }
+  ],
+  "patches": []
+}

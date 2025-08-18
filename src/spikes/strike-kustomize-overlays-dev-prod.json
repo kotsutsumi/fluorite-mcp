@@ -1,0 +1,17 @@
+{
+  "id": "strike-kustomize-overlays-dev-prod",
+  "name": "Kustomize Overlays Dev/Prod",
+  "stack": [
+    "kustomize"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "k8s/overlays/dev/kustomization.yaml",
+      "template": "# kustomize overlays skeleton\n"
+    }
+  ],
+  "patches": []
+}

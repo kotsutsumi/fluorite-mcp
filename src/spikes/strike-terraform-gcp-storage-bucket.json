@@ -1,0 +1,18 @@
+{
+  "id": "strike-terraform-gcp-storage-bucket",
+  "name": "Terraform GCP Storage Bucket",
+  "stack": [
+    "terraform",
+    "gcp"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "terraform/main.tf",
+      "template": "# terraform gcs bucket skeleton\n"
+    }
+  ],
+  "patches": []
+}

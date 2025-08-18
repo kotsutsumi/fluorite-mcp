@@ -1,0 +1,19 @@
+{
+  "id": "strike-turborepo-remote-cache-s3",
+  "name": "Turborepo Remote Cache S3",
+  "stack": [
+    "turborepo",
+    "s3"
+  ],
+  "tags": [
+    "ci",
+    "cache"
+  ],
+  "files": [
+    {
+      "path": "turbo.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

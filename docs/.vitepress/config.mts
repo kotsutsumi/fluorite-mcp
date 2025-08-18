@@ -35,7 +35,7 @@ const englishSidebar = {
       text: '⚡ Essential Features',
       collapsed: false,
       items: [
-        { text: '🧪 Spike Templates (2,900+)', link: '/spike-templates' },
+        { text: '🧪 Spike Templates (3,100+)', link: '/spike-templates' },
         { text: '🎯 /fl: Command Integration', link: '/fl-commands' },
         { text: '🔍 Static Analysis & Validation', link: '/static-analysis' },
         { text: '📚 Popular Specifications', link: '/specs/' },

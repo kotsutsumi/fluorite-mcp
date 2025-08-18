@@ -1,0 +1,19 @@
+{
+  "id": "strike-kafka-schema-registry-avro",
+  "name": "Kafka Schema Registry Avro",
+  "stack": [
+    "kafka",
+    "schema-registry",
+    "avro"
+  ],
+  "tags": [
+    "schema"
+  ],
+  "files": [
+    {
+      "path": "kafka/avro-schema.avsc",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,19 @@
+{
+  "id": "strike-next-auth-jwt-rotation",
+  "name": "NextAuth JWT Rotation",
+  "stack": [
+    "nextjs",
+    "nextauth",
+    "jwt"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "lib/auth.ts",
+      "template": "// nextauth jwt rotation skeleton\n"
+    }
+  ],
+  "patches": []
+}

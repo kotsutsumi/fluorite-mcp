@@ -1,0 +1,18 @@
+{
+  "id": "strike-keycloak-realm-export-json",
+  "name": "Keycloak Realm Export",
+  "stack": [
+    "keycloak"
+  ],
+  "tags": [
+    "auth",
+    "config"
+  ],
+  "files": [
+    {
+      "path": "keycloak/realm-export.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}
