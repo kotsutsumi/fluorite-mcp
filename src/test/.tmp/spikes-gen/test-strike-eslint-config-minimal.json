@@ -1,0 +1,17 @@
+{
+  "id": "test-strike-eslint-config-minimal",
+  "name": "ESLint Config Minimal",
+  "stack": [
+    "eslint"
+  ],
+  "tags": [
+    "tooling"
+  ],
+  "files": [
+    {
+      "path": ".eslintrc.json",
+      "template": "{ \n  \"env\": { \"es2022\": true, \"node\": true },\n  \"extends\": [\"eslint:recommended\"],\n  \"parserOptions\": { \"ecmaVersion\": 2022, \"sourceType\": \"module\" }\n}\n"
+    }
+  ],
+  "patches": []
+}

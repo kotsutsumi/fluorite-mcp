@@ -1,0 +1,18 @@
+{
+  "id": "test-strike-typeorm-entity-minimal",
+  "name": "TypeORM Entity Minimal",
+  "stack": [
+    "node",
+    "typeorm"
+  ],
+  "tags": [
+    "db"
+  ],
+  "files": [
+    {
+      "path": "src/entity/User.ts",
+      "template": "import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';\n@Entity()\nexport class User {\n  @PrimaryGeneratedColumn() id!: number;\n  @Column() email!: string;\n}\n"
+    }
+  ],
+  "patches": []
+}

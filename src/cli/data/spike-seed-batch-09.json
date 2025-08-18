@@ -1,0 +1,43 @@
+{
+  "items": [
+    { "id": "strike-hapi-route-minimal", "name": "hapi Route Minimal", "stack": ["node","hapi"], "tags": ["backend","api"], "files": [{ "path": "server.js", "template": "// @hapi/hapi route skeleton\n" }] },
+    { "id": "strike-deno-fresh-minimal", "name": "Deno Fresh Minimal", "stack": ["deno","fresh"], "tags": ["backend","edge"], "files": [{ "path": "main.ts", "template": "// deno fresh skeleton\n" }] },
+    { "id": "strike-remix-loader-action-minimal", "name": "Remix Loader/Action Minimal", "stack": ["remix"], "tags": ["frontend","ssr"], "files": [{ "path": "app/routes/_index.tsx", "template": "// remix loader/action skeleton\n" }] },
+
+    { "id": "strike-astro-endpoint-advanced", "name": "Astro Endpoint Advanced", "stack": ["astro"], "tags": ["frontend","api","advanced"], "files": [{ "path": "src/pages/api/data.ts", "template": "// astro endpoint advanced skeleton\n" }] },
+    { "id": "strike-nextjs-rsc-cache-patterns", "name": "Next.js RSC Cache Patterns", "stack": ["nextjs"], "tags": ["frontend","rsc","cache"], "files": [{ "path": "app/cache.ts", "template": "// RSC cache patterns skeleton\n" }] },
+    { "id": "strike-sveltekit-endpoints-patterns", "name": "SvelteKit Endpoints Patterns", "stack": ["sveltekit"], "tags": ["frontend","api"], "files": [{ "path": "src/routes/api/+server.ts", "template": "// endpoint patterns skeleton\n" }] },
+
+    { "id": "strike-otel-sampling-config", "name": "OTel Sampling Config", "stack": ["opentelemetry"], "tags": ["observability","traces"], "files": [{ "path": "otel/sampling.js", "template": "// sampling config skeleton\n" }] },
+    { "id": "strike-jaeger-collector-config", "name": "Jaeger Collector Config", "stack": ["jaeger"], "tags": ["observability"], "files": [{ "path": "jaeger/collector.yaml", "template": "receivers:{}\nprocessors:{}\nexporters:{}\nservice:{}\n" }] },
+    { "id": "strike-prometheus-alert-rules", "name": "Prometheus Alert Rules", "stack": ["prometheus"], "tags": ["observability","alerts"], "files": [{ "path": "prometheus/alerts.yaml", "template": "groups: []\n" }] },
+
+    { "id": "strike-totp-2fa-skeleton", "name": "TOTP/2FA Skeleton", "stack": ["node"], "tags": ["security","2fa"], "files": [{ "path": "auth/totp.mjs", "template": "// TOTP 2FA skeleton\n" }] },
+    { "id": "strike-csrf-double-submit-advanced", "name": "CSRF Double Submit Advanced", "stack": ["node","express"], "tags": ["security","csrf"], "files": [{ "path": "security/csrf.js", "template": "// double submit cookie pattern skeleton\n" }] },
+    { "id": "strike-rate-limiting-strategies", "name": "Rate Limiting Strategies", "stack": ["node"], "tags": ["security","perf"], "files": [{ "path": "security/rate-limit.md", "template": "# Token bucket/Leaky bucket skeleton\n" }] },
+
+    { "id": "strike-rabbitmq-publisher-confirms", "name": "RabbitMQ Publisher Confirms", "stack": ["amqplib"], "tags": ["queue"], "files": [{ "path": "rabbit/confirm.js", "template": "// publisher confirms skeleton\n" }] },
+    { "id": "strike-google-pubsub-minimal", "name": "Google Pub/Sub Minimal", "stack": ["gcp","pubsub"], "tags": ["queue","cloud"], "files": [{ "path": "gcp/pubsub.mjs", "template": "// gcp pubsub skeleton\n" }] },
+
+    { "id": "strike-gitlab-ci-minimal", "name": "GitLab CI Minimal", "stack": ["gitlab","ci"], "tags": ["ci"], "files": [{ "path": ".gitlab-ci.yml", "template": "stages: [build, test]\n" }] },
+    { "id": "strike-turborepo-pipeline-minimal", "name": "Turborepo Pipeline Minimal", "stack": ["turborepo"], "tags": ["build","monorepo"], "files": [{ "path": "turbo.json", "template": "{ \"pipeline\": { \"build\": {} } }\n" }] },
+    { "id": "strike-esbuild-config-minimal", "name": "esbuild Config Minimal", "stack": ["esbuild"], "tags": ["build"], "files": [{ "path": "esbuild.config.mjs", "template": "// esbuild config skeleton\n" }] },
+    { "id": "strike-swc-config-minimal", "name": "SWC Config Minimal", "stack": ["swc"], "tags": ["build"], "files": [{ "path": ".swcrc", "template": "{ }\n" }] },
+    { "id": "strike-vitepress-config-minimal", "name": "VitePress Config Minimal", "stack": ["vitepress"], "tags": ["docs"], "files": [{ "path": ".vitepress/config.ts", "template": "// vitepress config skeleton\n" }] },
+
+    { "id": "strike-gcp-cloud-functions-minimal", "name": "GCP Cloud Functions Minimal", "stack": ["gcp","functions"], "tags": ["cloud","serverless"], "files": [{ "path": "index.js", "template": "// gcp cloud function skeleton\n" }] },
+    { "id": "strike-azure-functions-minimal", "name": "Azure Functions Minimal", "stack": ["azure","functions"], "tags": ["cloud","serverless"], "files": [{ "path": "function.json", "template": "{ }\n" }] },
+
+    { "id": "strike-kafka-connect-config", "name": "Kafka Connect Config", "stack": ["kafka","connect"], "tags": ["data","stream"], "files": [{ "path": "connect/connector.json", "template": "{ }\n" }] },
+    { "id": "strike-airbyte-config-minimal", "name": "Airbyte Config Minimal", "stack": ["airbyte"], "tags": ["data","etl"], "files": [{ "path": "airbyte/config.json", "template": "{ }\n" }] },
+
+    { "id": "strike-cypress-component-config", "name": "Cypress Component Testing Config", "stack": ["cypress"], "tags": ["test"], "files": [{ "path": "cypress.config.ts", "template": "// component testing config skeleton\n" }] },
+    { "id": "strike-jest-tsjest-advanced", "name": "Jest ts-jest Advanced", "stack": ["jest","ts-jest"], "tags": ["test"], "files": [{ "path": "jest.config.ts", "template": "// ts-jest advanced config skeleton\n" }] },
+
+    { "id": "strike-nextjs-route-handler-minimal", "name": "(Merge) Next.js Route Handler Meta", "stack": ["nextjs"], "tags": ["frontend","api","merge"] },
+    { "id": "strike-dockerfile-node-minimal", "name": "(Merge) Dockerfile Node Meta", "stack": ["docker"], "tags": ["ops","merge"] },
+    { "id": "strike-openapi-yaml-minimal", "name": "(Merge) OpenAPI YAML Meta", "stack": ["openapi"], "tags": ["api","merge"] },
+    { "id": "strike-aws-s3-upload-minimal", "name": "(Merge) S3 Upload Meta", "stack": ["aws","s3"], "tags": ["storage","merge"] }
+  ]
+}
+

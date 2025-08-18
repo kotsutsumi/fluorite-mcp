@@ -1,0 +1,25 @@
+{
+  "id": "test-strike-nestjs-controller-minimal",
+  "name": "NestJS Controller Minimal",
+  "description": "Minimal NestJS controller with one GET endpoint",
+  "stack": [
+    "node",
+    "nestjs"
+  ],
+  "tags": [
+    "backend"
+  ],
+  "params": [
+    {
+      "name": "name",
+      "default": "App"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/{{name}}.controller.ts",
+      "template": "import { Controller, Get } from '@nestjs/common';\n@Controller()\nexport class {{name}}Controller {\n  @Get('health')\n  health() { return { ok: true }; }\n}\n"
+    }
+  ],
+  "patches": []
+}

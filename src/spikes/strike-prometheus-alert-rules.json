@@ -1,0 +1,18 @@
+{
+  "id": "strike-prometheus-alert-rules",
+  "name": "Prometheus Alert Rules",
+  "stack": [
+    "prometheus"
+  ],
+  "tags": [
+    "observability",
+    "alerts"
+  ],
+  "files": [
+    {
+      "path": "prometheus/alerts.yaml",
+      "template": "groups: []\n"
+    }
+  ],
+  "patches": []
+}

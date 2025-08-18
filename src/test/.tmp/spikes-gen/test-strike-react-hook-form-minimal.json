@@ -1,0 +1,17 @@
+{
+  "id": "test-strike-react-hook-form-minimal",
+  "name": "React Hook Form Minimal",
+  "stack": [
+    "react"
+  ],
+  "tags": [
+    "frontend"
+  ],
+  "files": [
+    {
+      "path": "src/LoginForm.tsx",
+      "template": "import { useForm } from 'react-hook-form';\nexport function LoginForm(){\n  const { register, handleSubmit } = useForm();\n  return (<form onSubmit={handleSubmit(console.log)}>\n    <input {...register('email')} placeholder='email'/>\n    <button type='submit'>Send</button>\n  </form>);\n}\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "test-strike-openapi-yaml-minimal",
+  "name": "OpenAPI YAML Minimal",
+  "stack": [
+    "openapi"
+  ],
+  "tags": [
+    "api"
+  ],
+  "files": [
+    {
+      "path": "openapi.yaml",
+      "template": "openapi: 3.0.0\ninfo:\n  title: API\n  version: 1.0.0\npaths:\n  /health:\n    get:\n      responses:\n        '200': { description: ok }\n"
+    }
+  ],
+  "patches": []
+}

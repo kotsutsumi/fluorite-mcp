@@ -1,0 +1,17 @@
+{
+  "id": "test-strike-dockerfile-node-minimal",
+  "name": "Dockerfile Node Minimal",
+  "stack": [
+    "docker"
+  ],
+  "tags": [
+    "ops"
+  ],
+  "files": [
+    {
+      "path": "Dockerfile",
+      "template": "FROM node:20-alpine\nWORKDIR /app\nCOPY package*.json ./\nRUN npm ci --only=production\nCOPY . .\nCMD [\"node\", \"index.js\"]\n"
+    }
+  ],
+  "patches": []
+}

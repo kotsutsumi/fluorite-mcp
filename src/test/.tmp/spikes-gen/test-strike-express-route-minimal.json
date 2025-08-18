@@ -1,0 +1,31 @@
+{
+  "id": "test-strike-express-route-minimal",
+  "name": "Express Route Minimal",
+  "version": "1.0.0",
+  "description": "Minimal Express.js route handler",
+  "stack": [
+    "node",
+    "express"
+  ],
+  "tags": [
+    "backend",
+    "http"
+  ],
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/package.json",
+      "template": "{\n  \"name\": \"{{app_name}}\",\n  \"type\": \"module\",\n  \"private\": true,\n  \"scripts\": { \"dev\": \"node index.js\" },\n  \"dependencies\": { \"express\": \"^4\" }\n}\n"
+    },
+    {
+      "path": "{{app_name}}/index.js",
+      "template": "import express from 'express';\nconst app = express();\napp.get('/health', (req,res)=>res.json({ ok: true }));\napp.listen(3000, ()=> console.log('listening on http://localhost:3000'));\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "test-strike-prisma-model-minimal",
+  "name": "Prisma Model Minimal",
+  "stack": [
+    "node",
+    "prisma"
+  ],
+  "tags": [
+    "db"
+  ],
+  "files": [
+    {
+      "path": "prisma/schema.prisma",
+      "template": "datasource db { provider = \"postgresql\" url = env(\"DATABASE_URL\") }\n generator client { provider = \"prisma-client-js\" }\n model User { id Int @id @default(autoincrement()) email String @unique }\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "test-strike-aws-lambda-minimal",
+  "name": "AWS Lambda Minimal",
+  "stack": [
+    "aws",
+    "lambda"
+  ],
+  "tags": [
+    "cloud"
+  ],
+  "files": [
+    {
+      "path": "index.mjs",
+      "template": "export const handler = async () => ({ statusCode: 200, body: JSON.stringify({ ok: true }) });\n"
+    }
+  ],
+  "patches": []
+}

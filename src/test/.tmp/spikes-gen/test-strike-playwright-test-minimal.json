@@ -1,0 +1,18 @@
+{
+  "id": "test-strike-playwright-test-minimal",
+  "name": "Playwright Test Minimal",
+  "stack": [
+    "playwright",
+    "typescript"
+  ],
+  "tags": [
+    "test"
+  ],
+  "files": [
+    {
+      "path": "tests/example.spec.ts",
+      "template": "import { test, expect } from '@playwright/test';\ntest('basic', async ({ page }) => {\n  await page.goto('https://example.com');\n  await expect(page).toHaveTitle(/Example Domain/);\n});\n"
+    }
+  ],
+  "patches": []
+}

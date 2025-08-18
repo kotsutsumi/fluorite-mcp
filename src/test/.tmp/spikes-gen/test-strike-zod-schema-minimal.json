@@ -1,0 +1,18 @@
+{
+  "id": "test-strike-zod-schema-minimal",
+  "name": "Zod Schema Minimal",
+  "stack": [
+    "zod",
+    "typescript"
+  ],
+  "tags": [
+    "validation"
+  ],
+  "files": [
+    {
+      "path": "src/user.schema.ts",
+      "template": "import { z } from 'zod';\nexport const UserSchema = z.object({ id: z.number(), email: z.string().email() });\nexport type User = z.infer<typeof UserSchema>;\n"
+    }
+  ],
+  "patches": []
+}

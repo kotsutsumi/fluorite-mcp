@@ -1,0 +1,19 @@
+{
+  "id": "strike-kafka-connect-config",
+  "name": "Kafka Connect Config",
+  "stack": [
+    "kafka",
+    "connect"
+  ],
+  "tags": [
+    "data",
+    "stream"
+  ],
+  "files": [
+    {
+      "path": "connect/connector.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

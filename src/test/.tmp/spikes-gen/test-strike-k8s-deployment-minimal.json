@@ -1,0 +1,17 @@
+{
+  "id": "test-strike-k8s-deployment-minimal",
+  "name": "K8s Deployment Minimal",
+  "stack": [
+    "kubernetes"
+  ],
+  "tags": [
+    "ops"
+  ],
+  "files": [
+    {
+      "path": "k8s/deployment.yaml",
+      "template": "apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: app\nspec:\n  replicas: 1\n  selector: { matchLabels: { app: app } }\n  template:\n    metadata: { labels: { app: app } }\n    spec:\n      containers: [{ name: app, image: node:20-alpine, command: ['node','index.js'] }]\n"
+    }
+  ],
+  "patches": []
+}

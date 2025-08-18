@@ -1,0 +1,18 @@
+{
+  "id": "test-strike-redux-slice-minimal",
+  "name": "Redux Slice Minimal",
+  "stack": [
+    "redux",
+    "typescript"
+  ],
+  "tags": [
+    "frontend"
+  ],
+  "files": [
+    {
+      "path": "src/features/counter/counterSlice.ts",
+      "template": "import { createSlice } from '@reduxjs/toolkit';\nconst slice = createSlice({ name: 'counter', initialState: { value: 0 }, reducers: { inc: s=>{s.value++} } });\nexport const { inc } = slice.actions;\nexport default slice.reducer;\n"
+    }
+  ],
+  "patches": []
+}

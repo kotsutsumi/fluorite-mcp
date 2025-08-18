@@ -1,0 +1,18 @@
+{
+  "id": "strike-turborepo-pipeline-minimal",
+  "name": "Turborepo Pipeline Minimal",
+  "stack": [
+    "turborepo"
+  ],
+  "tags": [
+    "build",
+    "monorepo"
+  ],
+  "files": [
+    {
+      "path": "turbo.json",
+      "template": "{ \"pipeline\": { \"build\": {} } }\n"
+    }
+  ],
+  "patches": []
+}

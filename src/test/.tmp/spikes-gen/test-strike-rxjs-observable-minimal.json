@@ -1,0 +1,18 @@
+{
+  "id": "test-strike-rxjs-observable-minimal",
+  "name": "RxJS Observable Minimal",
+  "stack": [
+    "rxjs",
+    "typescript"
+  ],
+  "tags": [
+    "frontend"
+  ],
+  "files": [
+    {
+      "path": "src/clock.ts",
+      "template": "import { interval, map } from 'rxjs';\nexport const clock$ = interval(1000).pipe(map(()=> new Date()));\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "test-strike-kafka-consumer-minimal",
+  "name": "Kafka Consumer Minimal",
+  "stack": [
+    "node",
+    "kafkajs"
+  ],
+  "tags": [
+    "stream"
+  ],
+  "files": [
+    {
+      "path": "consumer.js",
+      "template": "import { Kafka } from 'kafkajs';\nconst kafka = new Kafka({ clientId: 'app', brokers: ['localhost:9092'] });\nconst consumer = kafka.consumer({ groupId: 'group' });\nawait consumer.connect();\nawait consumer.subscribe({ topic: 'events' });\nawait consumer.run({ eachMessage: async ({ message }) => console.log(message.value?.toString()) });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "test-strike-rabbitmq-consumer-minimal",
+  "name": "RabbitMQ Consumer Minimal",
+  "stack": [
+    "node",
+    "amqplib"
+  ],
+  "tags": [
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "consumer.js",
+      "template": "import amqp from 'amqplib';\nconst conn = await amqp.connect('amqp://localhost');\nconst ch = await conn.createChannel();\nconst q = 'tasks';\nawait ch.assertQueue(q);\nch.consume(q, msg => { if (msg) { console.log(msg.content.toString()); ch.ack(msg); } });\n"
+    }
+  ],
+  "patches": []
+}

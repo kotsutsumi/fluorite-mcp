@@ -1,0 +1,17 @@
+{
+  "id": "strike-jaeger-collector-config",
+  "name": "Jaeger Collector Config",
+  "stack": [
+    "jaeger"
+  ],
+  "tags": [
+    "observability"
+  ],
+  "files": [
+    {
+      "path": "jaeger/collector.yaml",
+      "template": "receivers:{}\nprocessors:{}\nexporters:{}\nservice:{}\n"
+    }
+  ],
+  "patches": []
+}

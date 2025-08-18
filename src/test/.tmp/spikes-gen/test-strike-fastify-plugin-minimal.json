@@ -1,0 +1,19 @@
+{
+  "id": "test-strike-fastify-plugin-minimal",
+  "name": "Fastify Plugin Minimal",
+  "description": "Minimal Fastify plugin registering a health route",
+  "stack": [
+    "node",
+    "fastify"
+  ],
+  "tags": [
+    "backend"
+  ],
+  "files": [
+    {
+      "path": "plugin.js",
+      "template": "export default async function plugin(fastify, opts) {\n  fastify.get('/health', async () => ({ ok: true }));\n}\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "test-strike-vitest-setup-minimal",
+  "name": "Vitest Setup Minimal",
+  "stack": [
+    "vitest",
+    "typescript"
+  ],
+  "tags": [
+    "test"
+  ],
+  "files": [
+    {
+      "path": "vitest.config.ts",
+      "template": "import { defineConfig } from 'vitest/config';\nexport default defineConfig({ test: { environment: 'node' } });\n"
+    }
+  ],
+  "patches": []
+}

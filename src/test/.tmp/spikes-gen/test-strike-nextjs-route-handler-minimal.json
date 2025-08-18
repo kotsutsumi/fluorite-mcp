@@ -1,0 +1,18 @@
+{
+  "id": "test-strike-nextjs-route-handler-minimal",
+  "name": "Next.js Route Handler Minimal",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "frontend",
+    "api"
+  ],
+  "files": [
+    {
+      "path": "app/api/health/route.ts",
+      "template": "export function GET() { return Response.json({ ok: true }); }\n"
+    }
+  ],
+  "patches": []
+}
