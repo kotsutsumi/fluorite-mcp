@@ -181,7 +181,7 @@ const japaneseSidebar = {
       text: '⚡ 必須機能',
       collapsed: false,
       items: [
-        { text: '🧪 スパイクテンプレート (2,900+)', link: '/ja/spike-templates' },
+        { text: '🧪 スパイクテンプレート (3,100+)', link: '/ja/spike-templates' },
         { text: '🎯 /fl: コマンド統合', link: '/ja/fl-commands' },
         { text: '🔍 静的解析・検証', link: '/ja/static-analysis' },
         { text: '📚 人気の技術仕様', link: '/ja/specs/' },

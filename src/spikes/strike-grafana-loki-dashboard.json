@@ -1,0 +1,19 @@
+{
+  "id": "strike-grafana-loki-dashboard",
+  "name": "Grafana Loki Dashboard",
+  "stack": [
+    "grafana",
+    "loki"
+  ],
+  "tags": [
+    "observability",
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "grafana/dashboards/loki.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

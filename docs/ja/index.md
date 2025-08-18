@@ -4,7 +4,7 @@ layout: home
 hero:
   name: "Fluorite MCP"
   text: "エンタープライズグレード開発コンテキスト"
-  tagline: "2,900以上のスパイクテンプレート、94以上のライブラリ仕様、Claude Code CLIのための高性能開発コンテキスト"
+  tagline: "3,100以上のスパイクテンプレート、86のライブラリ仕様、Claude Code CLIのための高性能開発コンテキスト"
   actions:
     - theme: brand
       text: はじめる
@@ -15,10 +15,10 @@ hero:
 
 features:
   - icon: 🧪
-    title: 2,900以上のスパイクテンプレート
+    title: 3,100以上のスパイクテンプレート
     details: 高速プロトタイピングのための本番対応スキャフォールド。認証からデプロイメントまで、動作するコードを即座に取得。
   - icon: 📚
-    title: 94以上のライブラリ仕様
+    title: 86のライブラリ仕様
     details: 必須ライブラリの包括的な仕様。正確なインポート、型定義、実装パターンを含む。
   - icon: 🌐
     title: 多言語エコシステム

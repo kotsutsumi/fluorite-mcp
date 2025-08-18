@@ -1,0 +1,19 @@
+{
+  "id": "strike-gcp-pubsub-deadletter",
+  "name": "GCP Pub/Sub Dead Letter",
+  "stack": [
+    "gcp",
+    "pubsub"
+  ],
+  "tags": [
+    "cloud",
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "pubsub/dlq.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

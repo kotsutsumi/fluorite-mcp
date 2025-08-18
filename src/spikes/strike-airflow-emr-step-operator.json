@@ -1,0 +1,19 @@
+{
+  "id": "strike-airflow-emr-step-operator",
+  "name": "Airflow EMR Step Operator",
+  "stack": [
+    "airflow",
+    "emr"
+  ],
+  "tags": [
+    "data",
+    "aws"
+  ],
+  "files": [
+    {
+      "path": "dags/emr.py",
+      "template": "# emr step operator skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,19 @@
+{
+  "id": "strike-aws-sqs-fifo-content-dedup",
+  "name": "AWS SQS FIFO Content Dedup",
+  "stack": [
+    "aws",
+    "sqs"
+  ],
+  "tags": [
+    "queue",
+    "dedup"
+  ],
+  "files": [
+    {
+      "path": "sqs/fifo_content_dedup.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

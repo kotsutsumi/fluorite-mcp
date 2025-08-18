@@ -1,0 +1,18 @@
+{
+  "id": "strike-helm-chart-testing",
+  "name": "Helm Chart Testing",
+  "stack": [
+    "helm"
+  ],
+  "tags": [
+    "ops",
+    "tests"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/helm-test.yml",
+      "template": "name: HelmTest\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-grafana-alert-contact-slack",
+  "name": "Grafana Alert Contact Slack",
+  "stack": [
+    "grafana"
+  ],
+  "tags": [
+    "observability",
+    "alerts"
+  ],
+  "files": [
+    {
+      "path": "grafana/alerts/contacts.yaml",
+      "template": "apiVersion: 1\ncontactPoints: [{ name: 'slack', type: 'slack' }]\n"
+    }
+  ],
+  "patches": []
+}

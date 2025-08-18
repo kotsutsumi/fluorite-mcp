@@ -1,0 +1,18 @@
+{
+  "id": "strike-helm-best-practices-ci",
+  "name": "Helm Best Practices CI",
+  "stack": [
+    "helm"
+  ],
+  "tags": [
+    "ops",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/helm-best.yml",
+      "template": "name: HelmBest\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,19 @@
+{
+  "id": "strike-collector-prometheus-remote-write",
+  "name": "Collector Prometheus Remote Write",
+  "stack": [
+    "opentelemetry",
+    "collector"
+  ],
+  "tags": [
+    "observability",
+    "metrics"
+  ],
+  "files": [
+    {
+      "path": "otel/prom-remote-write.yaml",
+      "template": "exporters: { prometheusremotewrite: {} }\n"
+    }
+  ],
+  "patches": []
+}

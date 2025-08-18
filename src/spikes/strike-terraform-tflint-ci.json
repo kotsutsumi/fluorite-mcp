@@ -1,0 +1,18 @@
+{
+  "id": "strike-terraform-tflint-ci",
+  "name": "Terraform tflint CI",
+  "stack": [
+    "terraform"
+  ],
+  "tags": [
+    "infra",
+    "lint"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/tflint.yml",
+      "template": "name: TFLint\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

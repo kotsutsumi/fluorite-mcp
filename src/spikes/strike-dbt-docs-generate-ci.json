@@ -1,0 +1,19 @@
+{
+  "id": "strike-dbt-docs-generate-ci",
+  "name": "dbt docs generate CI",
+  "stack": [
+    "dbt"
+  ],
+  "tags": [
+    "data",
+    "docs",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/dbt-docs.yml",
+      "template": "name: DBTDocs\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

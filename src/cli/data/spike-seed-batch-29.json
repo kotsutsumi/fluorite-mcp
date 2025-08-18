@@ -1,0 +1,50 @@
+{
+  "items": [
+    { "id": "strike-express-request-id-logging", "name": "Express Request-ID Logging", "stack": ["node","express"], "tags": ["backend","logs"], "files": [{ "path": "server.js", "template": "// request-id + logging skeleton\n" }] },
+    { "id": "strike-koa-csrf-double-submit", "name": "Koa CSRF Double Submit", "stack": ["node","koa","csrf"], "tags": ["backend","security"], "files": [{ "path": "server.js", "template": "// csrf double submit cookie skeleton\n" }] },
+    { "id": "strike-fastify-openapi-swagger", "name": "Fastify OpenAPI + Swagger", "stack": ["node","fastify","swagger"], "tags": ["backend","docs"], "files": [{ "path": "server.js", "template": "// fastify swagger skeleton\n" }] },
+    { "id": "strike-go-echo-cors-gzip", "name": "Go Echo CORS + Gzip", "stack": ["go","echo"], "tags": ["backend","perf","cors"], "files": [{ "path": "main.go", "template": "package main\n// echo cors + gzip skeleton\nfunc main(){}\n" }] },
+    { "id": "strike-deno-fresh-cache-headers", "name": "Deno Fresh Cache Headers", "stack": ["deno","fresh"], "tags": ["backend","cache"], "files": [{ "path": "routes/cache.ts", "template": "// set cache headers skeleton\n" }] },
+
+    { "id": "strike-nextjs-middleware-ab-test", "name": "Next.js Middleware A/B Test", "stack": ["nextjs"], "tags": ["frontend","middleware","experiment"], "files": [{ "path": "middleware.ts", "template": "// a/b test middleware skeleton\n" }] },
+    { "id": "strike-nuxt3-content-endpoint", "name": "Nuxt3 Content Endpoint", "stack": ["nuxt"], "tags": ["frontend","api","content"], "files": [{ "path": "server/api/content.get.ts", "template": "// content endpoint skeleton\n" }] },
+    { "id": "strike-sveltekit-endpoint-stream-ndjson", "name": "SvelteKit NDJSON Stream Endpoint", "stack": ["sveltekit"], "tags": ["frontend","api","stream"], "files": [{ "path": "src/routes/api/ndjson/+server.ts", "template": "// ndjson streaming skeleton\n" }] },
+    { "id": "strike-angular-route-guards-canload", "name": "Angular Route canLoad Guards", "stack": ["angular"], "tags": ["frontend","routing","auth"], "files": [{ "path": "src/app/canload.ts", "template": "// canLoad guard skeleton\n" }] },
+    { "id": "strike-solid-router-locale", "name": "Solid Router Locale Switch", "stack": ["solid"], "tags": ["frontend","routing","i18n"], "files": [{ "path": "src/locale.ts", "template": "// locale switch skeleton\n" }] },
+
+    { "id": "strike-otel-node-logs-json", "name": "OTel Node Logs JSON", "stack": ["opentelemetry"], "tags": ["observability","logs"], "files": [{ "path": "otel/logs-json.js", "template": "// json logs setup skeleton\n" }] },
+    { "id": "strike-collector-prometheus-remote-write", "name": "Collector Prometheus Remote Write", "stack": ["opentelemetry","collector"], "tags": ["observability","metrics"], "files": [{ "path": "otel/prom-remote-write.yaml", "template": "exporters: { prometheusremotewrite: {} }\n" }] },
+    { "id": "strike-grafana-tempo-explore", "name": "Grafana Tempo Explore", "stack": ["grafana","tempo"], "tags": ["observability","traces"], "files": [{ "path": "grafana/dashboards/tempo_explore.json", "template": "{ }\n" }] },
+
+    { "id": "strike-oidc-backchannel-logout", "name": "OIDC Back-Channel Logout", "stack": ["oidc"], "tags": ["security","auth"], "files": [{ "path": "auth/backchannel_logout.md", "template": "# back-channel logout skeleton\n" }] },
+    { "id": "strike-jwt-jwk-thumbprint", "name": "JWT JWK Thumbprint", "stack": ["jwt","jose"], "tags": ["security","jwt"], "files": [{ "path": "security/jwk_thumbprint.md", "template": "# jwk thumbprint skeleton\n" }] },
+    { "id": "strike-opa-policy-bundles-cache", "name": "OPA Policy Bundles Cache", "stack": ["opa"], "tags": ["security","policy"], "files": [{ "path": "policy/bundles_cache.md", "template": "# bundles cache patterns\n" }] },
+
+    { "id": "strike-kafka-seek-offset-patterns", "name": "Kafka Seek Offset Patterns", "stack": ["kafka"], "tags": ["stream","offsets"], "files": [{ "path": "kafka/seek_offsets.md", "template": "# seek offsets patterns\n" }] },
+    { "id": "strike-nats-js-ordered-consumers", "name": "NATS Ordered Consumers", "stack": ["nats"], "tags": ["messaging","ordered"], "files": [{ "path": "nats/ordered_consumers.js", "template": "// ordered consumers skeleton\n" }] },
+    { "id": "strike-sqs-dlq-retry-strategy", "name": "SQS DLQ Retry Strategy", "stack": ["aws","sqs"], "tags": ["queue","reliability"], "files": [{ "path": "aws/dlq_retry.md", "template": "# dlq retry strategies\n" }] },
+
+    { "id": "strike-actions-reusable-publish-ghcr", "name": "Actions Reusable Publish GHCR", "stack": ["github","actions","docker"], "tags": ["ci","registry"], "files": [{ "path": ".github/workflows/publish-ghcr.yml", "template": "name: PublishGHCR\non: workflow_call\n" }] },
+    { "id": "strike-terraform-cost-estimation", "name": "Terraform Cost Estimation", "stack": ["terraform"], "tags": ["infra","cost"], "files": [{ "path": "docs/cost_estimation.md", "template": "# infracost patterns\n" }] },
+    { "id": "strike-helm-best-practices-ci", "name": "Helm Best Practices CI", "stack": ["helm"], "tags": ["ops","ci"], "files": [{ "path": ".github/workflows/helm-best.yml", "template": "name: HelmBest\non: [push]\n" }] },
+
+    { "id": "strike-msw-graphql-introspection-mock", "name": "MSW GraphQL Introspection Mock", "stack": ["msw","graphql"], "tags": ["test"], "files": [{ "path": "src/mocks/graphql_introspection.ts", "template": "// introspection mock skeleton\n" }] },
+    { "id": "strike-playwright-shard-by-file", "name": "Playwright Shard by File", "stack": ["playwright"], "tags": ["test","ci"], "files": [{ "path": "playwright.config.ts", "template": "// shard by file skeleton\n" }] },
+    { "id": "strike-jest-node-test-runner", "name": "Jest Node Test Runner", "stack": ["jest"], "tags": ["test","perf"], "files": [{ "path": "jest.config.ts", "template": "// node test runner skeleton\n" }] },
+
+    { "id": "strike-airflow-google-operator", "name": "Airflow Google Cloud Operators", "stack": ["airflow","gcp"], "tags": ["data","cloud"], "files": [{ "path": "dags/gcp.py", "template": "# google operators skeleton\n" }] },
+    { "id": "strike-dbt-docs-generate-ci", "name": "dbt docs generate CI", "stack": ["dbt"], "tags": ["data","docs","ci"], "files": [{ "path": ".github/workflows/dbt-docs.yml", "template": "name: DBTDocs\non: [push]\n" }] },
+    { "id": "strike-bigquery-external-connection", "name": "BigQuery External Connection", "stack": ["gcp","bigquery"], "tags": ["data","external"], "files": [{ "path": "docs/external_connection.md", "template": "# external connection notes\n" }] },
+
+    { "id": "strike-aws-opensearch-index", "name": "AWS OpenSearch Index", "stack": ["aws","opensearch"], "tags": ["cloud","search"], "files": [{ "path": "opensearch/index.json", "template": "{ }\n" }] },
+    { "id": "strike-gcp-bigtable-schema", "name": "GCP Bigtable Schema", "stack": ["gcp","bigtable"], "tags": ["cloud","db"], "files": [{ "path": "bigtable/schema.json", "template": "{ }\n" }] },
+    { "id": "strike-azure-cognitive-search-index", "name": "Azure Cognitive Search Index", "stack": ["azure","search"], "tags": ["cloud","search"], "files": [{ "path": "search/index.json", "template": "{ }\n" }] },
+
+    { "id": "strike-openapi-yaml-minimal", "name": "(Merge) OpenAPI YAML Meta", "stack": ["openapi"], "tags": ["api","merge"] },
+    { "id": "strike-nextjs-route-handler-minimal", "name": "(Merge) Next.js Route Handler Meta", "stack": ["nextjs"], "tags": ["frontend","api","merge"] },
+    { "id": "strike-dockerfile-node-minimal", "name": "(Merge) Dockerfile Node Meta", "stack": ["docker"], "tags": ["ops","merge"] },
+    { "id": "strike-otel-node-tracer-minimal", "name": "(Merge) OTel Node Tracer Meta", "stack": ["opentelemetry"], "tags": ["observability","merge"] },
+    { "id": "strike-react-hook-form-minimal", "name": "(Merge) RHF Minimal Meta", "stack": ["react","forms"], "tags": ["frontend","merge"] }
+  ]
+}
+

@@ -1,0 +1,19 @@
+{
+  "id": "strike-actions-composite-action-skeleton",
+  "name": "Actions Composite Action Skeleton",
+  "stack": [
+    "github",
+    "actions"
+  ],
+  "tags": [
+    "ci",
+    "actions"
+  ],
+  "files": [
+    {
+      "path": ".github/actions/composite/action.yml",
+      "template": "name: composite\nruns: { using: 'composite', steps: [] }\n"
+    }
+  ],
+  "patches": []
+}

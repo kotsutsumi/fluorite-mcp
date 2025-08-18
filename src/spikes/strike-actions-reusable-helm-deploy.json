@@ -1,0 +1,20 @@
+{
+  "id": "strike-actions-reusable-helm-deploy",
+  "name": "Actions Reusable Helm Deploy",
+  "stack": [
+    "github",
+    "actions",
+    "helm"
+  ],
+  "tags": [
+    "ci",
+    "deploy"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/helm-deploy.yml",
+      "template": "name: HelmDeploy\non: workflow_call\n"
+    }
+  ],
+  "patches": []
+}

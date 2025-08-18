@@ -1,0 +1,20 @@
+{
+  "id": "strike-actions-reusable-publish-ghcr",
+  "name": "Actions Reusable Publish GHCR",
+  "stack": [
+    "github",
+    "actions",
+    "docker"
+  ],
+  "tags": [
+    "ci",
+    "registry"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/publish-ghcr.yml",
+      "template": "name: PublishGHCR\non: workflow_call\n"
+    }
+  ],
+  "patches": []
+}

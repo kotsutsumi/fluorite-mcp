@@ -1,0 +1,19 @@
+{
+  "id": "strike-terraform-sentinel-policy",
+  "name": "Terraform Sentinel Policy",
+  "stack": [
+    "terraform",
+    "sentinel"
+  ],
+  "tags": [
+    "infra",
+    "policy"
+  ],
+  "files": [
+    {
+      "path": "sentinel/policy.hcl",
+      "template": "# sentinel policy skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,19 @@
+{
+  "id": "strike-helm-ct-advanced",
+  "name": "Helm chart-testing Advanced",
+  "stack": [
+    "helm",
+    "chart-testing"
+  ],
+  "tags": [
+    "ops",
+    "tests"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/ct-advanced.yml",
+      "template": "name: CTAdvanced\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

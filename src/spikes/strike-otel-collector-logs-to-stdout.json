@@ -1,0 +1,19 @@
+{
+  "id": "strike-otel-collector-logs-to-stdout",
+  "name": "Collector Logs to Stdout",
+  "stack": [
+    "opentelemetry",
+    "collector"
+  ],
+  "tags": [
+    "observability",
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "otel/logs-stdout.yaml",
+      "template": "exporters: { logging: { loglevel: debug } }\n"
+    }
+  ],
+  "patches": []
+}
