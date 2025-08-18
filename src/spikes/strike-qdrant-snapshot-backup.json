@@ -1,0 +1,18 @@
+{
+  "id": "strike-qdrant-snapshot-backup",
+  "name": "Qdrant Snapshot Backup",
+  "stack": [
+    "qdrant"
+  ],
+  "tags": [
+    "backup",
+    "vector"
+  ],
+  "files": [
+    {
+      "path": "qdrant/snapshot.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

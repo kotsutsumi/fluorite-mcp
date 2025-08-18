@@ -1,0 +1,19 @@
+{
+  "id": "strike-kafka-connect-jdbc-sink-pg",
+  "name": "Kafka Connect JDBC Sink → PG",
+  "stack": [
+    "kafka",
+    "connect",
+    "postgres"
+  ],
+  "tags": [
+    "sink"
+  ],
+  "files": [
+    {
+      "path": "kafka/connect-jdbc.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

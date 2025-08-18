@@ -1,0 +1,20 @@
+{
+  "id": "strike-terraform-s3-static-website",
+  "name": "Terraform S3 静的サイト",
+  "stack": [
+    "terraform",
+    "aws",
+    "s3"
+  ],
+  "tags": [
+    "infra",
+    "web"
+  ],
+  "files": [
+    {
+      "path": "terraform/main.tf",
+      "template": "# terraform s3 static website skeleton\n"
+    }
+  ],
+  "patches": []
+}

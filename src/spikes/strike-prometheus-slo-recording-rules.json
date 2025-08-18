@@ -1,0 +1,18 @@
+{
+  "id": "strike-prometheus-slo-recording-rules",
+  "name": "Prometheus SLO Recording Rules",
+  "stack": [
+    "prometheus",
+    "sloth"
+  ],
+  "tags": [
+    "slo"
+  ],
+  "files": [
+    {
+      "path": "prometheus/slo.yml",
+      "template": "# slo recording rules skeleton\n"
+    }
+  ],
+  "patches": []
+}

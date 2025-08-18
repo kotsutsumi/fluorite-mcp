@@ -1,0 +1,17 @@
+{
+  "id": "strike-prometheus-alert-cpu-memory",
+  "name": "Prometheus CPU/Memory Alerts",
+  "stack": [
+    "prometheus"
+  ],
+  "tags": [
+    "alerts"
+  ],
+  "files": [
+    {
+      "path": "prometheus/alerts.yml",
+      "template": "# cpu/mem alert rules skeleton\n"
+    }
+  ],
+  "patches": []
+}

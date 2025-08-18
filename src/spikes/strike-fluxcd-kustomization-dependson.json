@@ -1,0 +1,18 @@
+{
+  "id": "strike-fluxcd-kustomization-dependson",
+  "name": "FluxCD Kustomization dependsOn",
+  "stack": [
+    "fluxcd",
+    "kustomize"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/kustomization.yaml",
+      "template": "# flux kustomization dependson skeleton\n"
+    }
+  ],
+  "patches": []
+}

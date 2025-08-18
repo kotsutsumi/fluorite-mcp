@@ -1,0 +1,64 @@
+{
+  "items": [
+    { "id": "strike-spring-cloud-config-client", "name": "Spring Cloud Config Client", "stack": ["java","spring","config"], "tags": ["config"], "files": [{ "path": "src/main/resources/bootstrap.yml", "template": "# cloud config client skeleton\n" }] },
+    { "id": "strike-spring-batch-partitioner", "name": "Spring Batch Partitioner", "stack": ["java","spring","batch"], "tags": ["batch"], "files": [{ "path": "src/main/java/example/PartitionerJob.java", "template": "// spring batch partitioner skeleton\n" }] },
+    { "id": "strike-quarkus-oidc-auth-code", "name": "Quarkus OIDC Auth Code", "stack": ["java","quarkus","oidc"], "tags": ["auth"], "files": [{ "path": "src/main/resources/application.properties", "template": "# quarkus oidc auth code skeleton\n" }] },
+    { "id": "strike-micronaut-smallrye-metrics", "name": "Micronaut SmallRye Metrics", "stack": ["java","micronaut","metrics"], "tags": ["observability"], "files": [{ "path": "src/main/resources/application.yml", "template": "# smallrye metrics skeleton\n" }] },
+
+    { "id": "strike-aspnet-authorization-handlers", "name": ".NET ASP.NET AuthZ Handlers", "stack": ["dotnet","aspnet"], "tags": ["authz"], "files": [{ "path": "Auth/Handlers.cs", "template": "// authorization handlers skeleton\n" }] },
+    { "id": "strike-aspnet-outputcache-tag", "name": ".NET OutputCache Tag", "stack": ["dotnet","aspnet"], "tags": ["cache"], "files": [{ "path": "Program.cs", "template": "// outputcache tag based skeleton\n" }] },
+    { "id": "strike-efcore-owned-types", "name": "EFCore Owned Types", "stack": ["dotnet","efcore"], "tags": ["db"], "files": [{ "path": "Data/Entities.cs", "template": "// efcore owned types skeleton\n" }] },
+    { "id": "strike-serilog-sink-seq", "name": "Serilog Sink Seq", "stack": ["dotnet","serilog"], "tags": ["logs"], "files": [{ "path": "Program.cs", "template": "// serilog sink seq skeleton\n" }] },
+
+    { "id": "strike-nestjs-cqrs-minimal", "name": "NestJS CQRS 最小", "stack": ["node","nestjs","cqrs"], "tags": ["backend"], "files": [{ "path": "src/app.module.ts", "template": "// nestjs cqrs skeleton\n" }] },
+    { "id": "strike-fastify-under-pressure", "name": "Fastify under-pressure", "stack": ["node","fastify"], "tags": ["stability"], "files": [{ "path": "server.js", "template": "// fastify under-pressure skeleton\n" }] },
+    { "id": "strike-hono-opentelemetry", "name": "Hono OpenTelemetry", "stack": ["hono","opentelemetry"], "tags": ["observability"], "files": [{ "path": "app.ts", "template": "// hono otel skeleton\n" }] },
+    { "id": "strike-nuxt-nitro-cache-driver", "name": "Nuxt Nitro Cache Driver", "stack": ["nuxt","nitro"], "tags": ["cache"], "files": [{ "path": "server/cache.ts", "template": "// nitro cache driver skeleton\n" }] },
+
+    { "id": "strike-fastapi-dependency-override-test", "name": "FastAPI Dependency Override(Test)", "stack": ["python","fastapi","pytest"], "tags": ["test"], "files": [{ "path": "tests/test_override.py", "template": "# fastapi dependency override skeleton\n" }] },
+    { "id": "strike-pydantic-v2-custom-validators", "name": "Pydantic v2 カスタムValidator", "stack": ["python","pydantic"], "tags": ["validation"], "files": [{ "path": "app/validators.py", "template": "# pydantic v2 custom validators skeleton\n" }] },
+    { "id": "strike-pyspark-delta-live-tables", "name": "Delta Live Tables(概念)", "stack": ["pyspark","databricks"], "tags": ["etl"], "files": [{ "path": "dlt/notes.md", "template": "# delta live tables skeleton\n" }] },
+    { "id": "strike-beam-sql-transform", "name": "Apache Beam SQL Transform", "stack": ["beam","python"], "tags": ["etl"], "files": [{ "path": "beam/sql.py", "template": "# beam sql transform skeleton\n" }] },
+    { "id": "strike-duckdb-parquet-bulk-import", "name": "DuckDB Parquet Bulk Import", "stack": ["duckdb"], "tags": ["data"], "files": [{ "path": "duckdb/import.sql", "template": "-- duckdb parquet bulk import skeleton\n" }] },
+    { "id": "strike-motherduck-connector-notes", "name": "MotherDuck Connector(概念)", "stack": ["motherduck","duckdb"], "tags": ["data"], "files": [{ "path": "motherduck/notes.md", "template": "# motherduck connector skeleton\n" }] },
+
+    { "id": "strike-emqx-ruleengine-http", "name": "EMQX RuleEngine → HTTP", "stack": ["emqx","mqtt"], "tags": ["rule"], "files": [{ "path": "emqx/rule.json", "template": "{ }\n" }] },
+    { "id": "strike-nats-multi-stream-replication", "name": "NATS Multi-Stream Replication", "stack": ["nats","jetstream"], "tags": ["stream"], "files": [{ "path": "nats/replication.md", "template": "# nats multi-stream replication skeleton\n" }] },
+    { "id": "strike-kafka-consumer-transactional-eos", "name": "Kafka Consumer Transactional EOS", "stack": ["kafka"], "tags": ["exactly-once"], "files": [{ "path": "kafka/consumer.java", "template": "// kafka consumer eos skeleton\n" }] },
+    { "id": "strike-kstream-ktable-join", "name": "Kafka Streams KTable Join", "stack": ["kafka","streams"], "tags": ["stream"], "files": [{ "path": "kafka/join.kt", "template": "// kstreams ktable join skeleton\n" }] },
+
+    { "id": "strike-opa-gatekeeper-allowed-registries", "name": "Gatekeeper Allowed Registries", "stack": ["gatekeeper","kubernetes"], "tags": ["policy"], "files": [{ "path": "k8s/constraint.yaml", "template": "# gatekeeper allowed registries skeleton\n" }] },
+    { "id": "strike-kyverno-add-imagepullsecrets", "name": "Kyverno add imagePullSecrets", "stack": ["kyverno","kubernetes"], "tags": ["policy"], "files": [{ "path": "kyverno/add-secrets.yaml", "template": "# kyverno add imagePullSecrets skeleton\n" }] },
+    { "id": "strike-jwt-audience-enforce", "name": "JWT audience 厳格化", "stack": ["jwt"], "tags": ["security"], "files": [{ "path": "security/jwt_aud.md", "template": "# jwt audience enforce skeleton\n" }] },
+    { "id": "strike-csp-nonce-headers", "name": "CSP Nonce ヘッダ", "stack": ["security","csp"], "tags": ["security"], "files": [{ "path": "security/csp_nonce.md", "template": "# csp nonce skeleton\n" }] },
+    { "id": "strike-hsts-headers-config", "name": "HSTS ヘッダ設定", "stack": ["security","hsts"], "tags": ["security"], "files": [{ "path": "security/hsts.md", "template": "# hsts headers skeleton\n" }] },
+
+    { "id": "strike-argocd-reposerver-kustomize-options", "name": "ArgoCD RepoServer Kustomize", "stack": ["argocd","kustomize"], "tags": ["gitops"], "files": [{ "path": "k8s/reposerver.yaml", "template": "# argocd reposerver kustomize skeleton\n" }] },
+    { "id": "strike-fluxcd-image-policy-canary", "name": "FluxCD ImagePolicy Canary", "stack": ["fluxcd"], "tags": ["gitops"], "files": [{ "path": "k8s/imagepolicy.yaml", "template": "# flux imagepolicy canary skeleton\n" }] },
+    { "id": "strike-tekton-trigger-eventlistener", "name": "Tekton Triggers EventListener", "stack": ["tekton"], "tags": ["ci"], "files": [{ "path": "k8s/eventlistener.yaml", "template": "# tekton eventlistener skeleton\n" }] },
+    { "id": "strike-argo-events-calendar", "name": "Argo Events Calendar", "stack": ["argo-events"], "tags": ["events"], "files": [{ "path": "k8s/calendar.yaml", "template": "# argo events calendar skeleton\n" }] },
+
+    { "id": "strike-otel-baggage-propagation", "name": "OTel Baggage Propagation", "stack": ["opentelemetry"], "tags": ["tracing"], "files": [{ "path": "otel/baggage.md", "template": "# otel baggage skeleton\n" }] },
+    { "id": "strike-loki-query-examples", "name": "Loki Query 例", "stack": ["loki"], "tags": ["logs"], "files": [{ "path": "loki/queries.md", "template": "# loki query examples skeleton\n" }] },
+    { "id": "strike-prometheus-alert-cpu-memory", "name": "Prometheus CPU/Memory Alerts", "stack": ["prometheus"], "tags": ["alerts"], "files": [{ "path": "prometheus/alerts.yml", "template": "# cpu/mem alert rules skeleton\n" }] },
+    { "id": "strike-grafana-annotations-api", "name": "Grafana Annotations API", "stack": ["grafana"], "tags": ["observability"], "files": [{ "path": "grafana/annotations.md", "template": "# grafana annotations api skeleton\n" }] },
+    { "id": "strike-sentry-performance-transactions", "name": "Sentry Performance Transactions", "stack": ["sentry"], "tags": ["apm"], "files": [{ "path": "sentry/perf.ts", "template": "// sentry performance transactions skeleton\n" }] },
+
+    { "id": "strike-cloudflare-r2-multipart-copy", "name": "Cloudflare R2 Multipart Copy", "stack": ["cloudflare","r2"], "tags": ["storage"], "files": [{ "path": "r2/copy.ts", "template": "// r2 multipart copy skeleton\n" }] },
+    { "id": "strike-vercel-blob-file-uploads", "name": "Vercel Blob File Uploads", "stack": ["vercel","blob"], "tags": ["storage"], "files": [{ "path": "api/upload/route.ts", "template": "// vercel blob upload skeleton\n" }] },
+    { "id": "strike-netlify-image-cdn-transform", "name": "Netlify Image CDN Transform", "stack": ["netlify","images"], "tags": ["edge"], "files": [{ "path": "netlify/edge.ts", "template": "// netlify image transform skeleton\n" }] },
+
+    { "id": "strike-qdrant-sharding-setup", "name": "Qdrant Sharding 設定", "stack": ["qdrant"], "tags": ["vector"], "files": [{ "path": "qdrant/sharding.json", "template": "{ }\n" }] },
+    { "id": "strike-weaviate-replication-settings", "name": "Weaviate Replication 設定", "stack": ["weaviate"], "tags": ["vector"], "files": [{ "path": "weaviate/replication.json", "template": "{ }\n" }] },
+    { "id": "strike-pinecone-metadata-indexing", "name": "Pinecone Metadata Indexing", "stack": ["pinecone"], "tags": ["vector"], "files": [{ "path": "pinecone/metadata.json", "template": "{ }\n" }] },
+    { "id": "strike-milvus-ivf-sq8-disk", "name": "Milvus IVF-SQ8 Disk", "stack": ["milvus"], "tags": ["vector"], "files": [{ "path": "milvus/index_ivf_sq8.py", "template": "# milvus ivf-sq8 disk skeleton\n" }] },
+    { "id": "strike-faiss-hnsw-operations", "name": "FAISS HNSW Operations", "stack": ["faiss","python"], "tags": ["vector"], "files": [{ "path": "faiss/hnsw.py", "template": "# faiss hnsw operations skeleton\n" }] },
+
+    { "id": "strike-nextjs-middleware-basic-auth", "name": "Next.js Middleware BasicAuth", "stack": ["nextjs"], "tags": ["security"], "files": [{ "path": "middleware.ts", "template": "// next middleware basic auth skeleton\n" }] },
+    { "id": "strike-tanstack-router-deferred", "name": "TanStack Router Deferred", "stack": ["react","tanstack-router"], "tags": ["routing"], "files": [{ "path": "src/router.tsx", "template": "// tanstack router deferred skeleton\n" }] },
+    { "id": "strike-vue-ssr-suspense", "name": "Vue SSR Suspense", "stack": ["vue","ssr"], "tags": ["frontend"], "files": [{ "path": "src/entry-server.ts", "template": "// vue ssr suspense skeleton\n" }] },
+    { "id": "strike-sveltekit-hooks-csrf", "name": "SvelteKit hooks CSRF", "stack": ["sveltekit","csrf"], "tags": ["security"], "files": [{ "path": "src/hooks.server.ts", "template": "// sveltekit csrf hooks skeleton\n" }] },
+    { "id": "strike-astro-content-islands-advanced", "name": "Astro Content Islands Advanced", "stack": ["astro"], "tags": ["frontend"], "files": [{ "path": "src/components/Island.astro", "template": "---\n// astro islands advanced skeleton\n---\n" }] }
+  ]
+}
+

@@ -1,0 +1,18 @@
+{
+  "id": "strike-helm-post-renderer-kustomize",
+  "name": "Helm Post-Renderer Kustomize",
+  "stack": [
+    "helm",
+    "kustomize"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "charts/app/post-renderer.sh",
+      "template": "#!/usr/bin/env bash\n# post-renderer kustomize skeleton\n"
+    }
+  ],
+  "patches": []
+}

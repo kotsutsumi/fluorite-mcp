@@ -1,0 +1,53 @@
+{
+  "items": [
+    { "id": "strike-spring-kafka-retry-dlt", "name": "Spring Kafka Retry + DLT", "stack": ["java","spring","kafka"], "tags": ["retry","dlt"], "files": [{ "path": "src/main/java/example/KafkaConfig.java", "template": "// spring kafka retry + dlt skeleton\n" }] },
+    { "id": "strike-spring-webclient-resilience4j", "name": "Spring WebClient + Resilience4j", "stack": ["java","spring","resilience4j"], "tags": ["resilience","http"], "files": [{ "path": "src/main/java/example/WebClientCfg.java", "template": "// webclient + resilience4j skeleton\n" }] },
+    { "id": "strike-quarkus-smallrye-fault-tolerance", "name": "Quarkus SmallRye Fault Tolerance", "stack": ["java","quarkus"], "tags": ["resilience"], "files": [{ "path": "src/main/java/org/acme/Resilient.java", "template": "// smallrye fault tolerance skeleton\n" }] },
+    { "id": "strike-micronaut-nats-messaging", "name": "Micronaut NATS Messaging", "stack": ["java","micronaut","nats"], "tags": ["messaging"], "files": [{ "path": "src/main/java/example/NatsClient.java", "template": "// micronaut nats skeleton\n" }] },
+
+    { "id": "strike-aspnet-problem-details", "name": ".NET ProblemDetails 標準化", "stack": ["dotnet","aspnet"], "tags": ["errors"], "files": [{ "path": "Program.cs", "template": "// problem details middleware skeleton\n" }] },
+    { "id": "strike-aspnet-healthchecks-k8s", "name": ".NET HealthChecks for K8s", "stack": ["dotnet","aspnet"], "tags": ["health"], "files": [{ "path": "Program.cs", "template": "// healthchecks for k8s skeleton\n" }] },
+    { "id": "strike-efcore-auditing-interceptor", "name": "EFCore 監査インターセプタ", "stack": ["dotnet","efcore"], "tags": ["audit"], "files": [{ "path": "Data/AuditInterceptor.cs", "template": "// efcore audit interceptor skeleton\n" }] },
+    { "id": "strike-mediatr-pipeline-behaviors", "name": "MediatR Pipeline Behaviors", "stack": ["dotnet","mediatr"], "tags": ["cqrs"], "files": [{ "path": "Application/Behaviors/ValidationBehavior.cs", "template": "// mediatr behavior skeleton\n" }] },
+
+    { "id": "strike-express-helmet-csp-nonce", "name": "Express Helmet CSP + Nonce", "stack": ["node","express"], "tags": ["security"], "files": [{ "path": "server.js", "template": "// express helmet csp nonce skeleton\n" }] },
+    { "id": "strike-hono-basic-auth-middleware", "name": "Hono Basic Auth Middleware", "stack": ["hono"], "tags": ["auth"], "files": [{ "path": "app.ts", "template": "// hono basic auth middleware skeleton\n" }] },
+    { "id": "strike-nestjs-event-emitter-pattern", "name": "NestJS EventEmitter パターン", "stack": ["node","nestjs"], "tags": ["events"], "files": [{ "path": "src/events.ts", "template": "// nestjs event emitter skeleton\n" }] },
+    { "id": "strike-fastify-under-pressure-alert", "name": "Fastify under-pressure + Alert", "stack": ["node","fastify"], "tags": ["stability","alerts"], "files": [{ "path": "server.js", "template": "// under-pressure with alert skeleton\n" }] },
+
+    { "id": "strike-fastapi-opentelemetry-instrument", "name": "FastAPI OTel 自動計測", "stack": ["python","fastapi","opentelemetry"], "tags": ["observability"], "files": [{ "path": "app/otel.py", "template": "# fastapi otel auto-instrument skeleton\n" }] },
+    { "id": "strike-django-rest-framework-throttle", "name": "DRF スロットリング", "stack": ["python","django","drf"], "tags": ["throttle"], "files": [{ "path": "app/throttle.py", "template": "# drf throttle skeleton\n" }] },
+    { "id": "strike-pyspark-window-session", "name": "PySpark Window セッション集計", "stack": ["python","pyspark"], "tags": ["stream"], "files": [{ "path": "spark/window_session.py", "template": "# pyspark session window skeleton\n" }] },
+    { "id": "strike-ray-data-read-parquet-s3", "name": "Ray Data Parquet S3", "stack": ["python","ray"], "tags": ["data"], "files": [{ "path": "ray/read_parquet.py", "template": "# ray data read parquet s3 skeleton\n" }] },
+
+    { "id": "strike-go-otel-logrus-hook", "name": "Go OTel + logrus Hook", "stack": ["go","opentelemetry","logrus"], "tags": ["logs"], "files": [{ "path": "logging/main.go", "template": "// logrus hook to otel skeleton\n" }] },
+    { "id": "strike-go-grpc-retry-interceptor", "name": "Go gRPC Retry Interceptor", "stack": ["go","grpc"], "tags": ["resilience"], "files": [{ "path": "grpc/retry.go", "template": "// grpc retry interceptor skeleton\n" }] },
+    { "id": "strike-go-temporal-cron-workflow", "name": "Go Temporal Cron Workflow", "stack": ["go","temporal"], "tags": ["workflow"], "files": [{ "path": "workflow/cron.go", "template": "// temporal cron workflow skeleton\n" }] },
+    { "id": "strike-go-gin-circuit-breaker", "name": "Go Gin Circuit Breaker", "stack": ["go","gin","resilience"], "tags": ["resilience"], "files": [{ "path": "main.go", "template": "// gin circuit breaker skeleton\n" }] },
+
+    { "id": "strike-rust-axum-sqlx-middleware", "name": "Rust Axum SQLx Middleware", "stack": ["rust","axum","sqlx"], "tags": ["db"], "files": [{ "path": "src/mw_db.rs", "template": "// axum sqlx middleware skeleton\n" }] },
+    { "id": "strike-rust-tracing-subscriber-filter", "name": "Rust tracing Subscriber Filter", "stack": ["rust","tracing"], "tags": ["logs"], "files": [{ "path": "src/logging.rs", "template": "// tracing subscriber filter skeleton\n" }] },
+    { "id": "strike-rust-reqwest-timeout-retry", "name": "Rust reqwest Timeout + Retry", "stack": ["rust","reqwest"], "tags": ["http","resilience"], "files": [{ "path": "src/http.rs", "template": "// reqwest timeout + retry skeleton\n" }] },
+
+    { "id": "strike-k8s-gateway-api-httproute", "name": "K8s Gateway API HTTPRoute", "stack": ["kubernetes","gateway-api"], "tags": ["routing"], "files": [{ "path": "k8s/httproute.yaml", "template": "# gateway api httproute skeleton\n" }] },
+    { "id": "strike-k8s-pdb-minavailable", "name": "K8s PodDisruptionBudget", "stack": ["kubernetes"], "tags": ["ha"], "files": [{ "path": "k8s/pdb.yaml", "template": "# pdb skeleton\n" }] },
+    { "id": "strike-k8s-psp-psa-migration-notes", "name": "K8s PSP→PSA 移行メモ", "stack": ["kubernetes"], "tags": ["security"], "files": [{ "path": "k8s/psa.md", "template": "# psp to psa migration notes skeleton\n" }] },
+    { "id": "strike-keda-scaledjob-cron", "name": "KEDA ScaledJob + Cron", "stack": ["keda"], "tags": ["autoscale","jobs"], "files": [{ "path": "k8s/scaledjob.yaml", "template": "# keda scaledjob cron skeleton\n" }] },
+
+    { "id": "strike-opa-bundle-verify-ci", "name": "OPA Bundle Verify in CI", "stack": ["opa","conftest"], "tags": ["policy","ci"], "files": [{ "path": ".github/workflows/opa-verify.yml", "template": "name: OpaVerify\non: [push]\n" }] },
+    { "id": "strike-kyverno-restricted-policies", "name": "Kyverno Restricted Policies", "stack": ["kyverno"], "tags": ["policy"], "files": [{ "path": "kyverno/restricted.yaml", "template": "# kyverno restricted policies skeleton\n" }] },
+    { "id": "strike-sigstore-keyless-ci", "name": "Sigstore Keyless in CI", "stack": ["sigstore"], "tags": ["supply-chain"], "files": [{ "path": ".github/workflows/sigstore-keyless.yml", "template": "name: SigstoreKeyless\non: [push]\n" }] },
+    { "id": "strike-slsa-provenance-verification", "name": "SLSA Provenance 検証", "stack": ["slsa"], "tags": ["supply-chain"], "files": [{ "path": ".github/workflows/slsa-verify.yml", "template": "name: SLSA-Verify\non: [push]\n" }] },
+
+    { "id": "strike-grafana-llm-observability-dashboard", "name": "Grafana LLM Observability", "stack": ["grafana","llm"], "tags": ["observability"], "files": [{ "path": "grafana/llm_dashboard.json", "template": "{ }\n" }] },
+    { "id": "strike-otel-spanmetrics-processor", "name": "OTel SpanMetrics Processor", "stack": ["opentelemetry","collector"], "tags": ["metrics","traces"], "files": [{ "path": "otel/spanmetrics.yaml", "template": "# spanmetrics processor skeleton\n" }] },
+    { "id": "strike-prometheus-slo-recording-rules", "name": "Prometheus SLO Recording Rules", "stack": ["prometheus","sloth"], "tags": ["slo"], "files": [{ "path": "prometheus/slo.yml", "template": "# slo recording rules skeleton\n" }] },
+    { "id": "strike-sentry-sourcemaps-upload", "name": "Sentry SourceMaps Upload", "stack": ["sentry"], "tags": ["apm","release"], "files": [{ "path": ".github/workflows/sentry-sourcemaps.yml", "template": "name: SentrySourceMaps\non: [push]\n" }] },
+
+    { "id": "strike-elasticsearch-ilm-policy", "name": "Elasticsearch ILM Policy", "stack": ["elasticsearch"], "tags": ["lifecycle"], "files": [{ "path": "es/ilm.json", "template": "{ }\n" }] },
+    { "id": "strike-opensearch-rollups-job", "name": "OpenSearch Rollups Job", "stack": ["opensearch"], "tags": ["rollup"], "files": [{ "path": "os/rollup.json", "template": "{ }\n" }] },
+    { "id": "strike-clickhouse-materialized-view", "name": "ClickHouse Materialized View", "stack": ["clickhouse"], "tags": ["db"], "files": [{ "path": "clickhouse/mv.sql", "template": "-- clickhouse mv skeleton\n" }] },
+    { "id": "strike-duckdb-s3-httpfs-catalog", "name": "DuckDB S3 HTTPFS Catalog", "stack": ["duckdb"], "tags": ["data"], "files": [{ "path": "duckdb/catalog.sql", "template": "-- duckdb s3 httpfs catalog skeleton\n" }] }
+  ]
+}
+

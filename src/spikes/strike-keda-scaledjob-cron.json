@@ -1,0 +1,18 @@
+{
+  "id": "strike-keda-scaledjob-cron",
+  "name": "KEDA ScaledJob + Cron",
+  "stack": [
+    "keda"
+  ],
+  "tags": [
+    "autoscale",
+    "jobs"
+  ],
+  "files": [
+    {
+      "path": "k8s/scaledjob.yaml",
+      "template": "# keda scaledjob cron skeleton\n"
+    }
+  ],
+  "patches": []
+}

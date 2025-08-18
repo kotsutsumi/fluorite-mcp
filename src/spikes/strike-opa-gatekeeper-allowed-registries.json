@@ -1,0 +1,18 @@
+{
+  "id": "strike-opa-gatekeeper-allowed-registries",
+  "name": "Gatekeeper Allowed Registries",
+  "stack": [
+    "gatekeeper",
+    "kubernetes"
+  ],
+  "tags": [
+    "policy"
+  ],
+  "files": [
+    {
+      "path": "k8s/constraint.yaml",
+      "template": "# gatekeeper allowed registries skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-kafka-mirror-topic-acls",
+  "name": "Kafka Mirror Topic + ACLs",
+  "stack": [
+    "kafka"
+  ],
+  "tags": [
+    "replication",
+    "security"
+  ],
+  "files": [
+    {
+      "path": "kafka/mirror_acls.sh",
+      "template": "# kafka mirror acls skeleton\n"
+    }
+  ],
+  "patches": []
+}

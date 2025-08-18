@@ -1,0 +1,19 @@
+{
+  "id": "strike-spring-cloud-config-client",
+  "name": "Spring Cloud Config Client",
+  "stack": [
+    "java",
+    "spring",
+    "config"
+  ],
+  "tags": [
+    "config"
+  ],
+  "files": [
+    {
+      "path": "src/main/resources/bootstrap.yml",
+      "template": "# cloud config client skeleton\n"
+    }
+  ],
+  "patches": []
+}

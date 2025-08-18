@@ -1,0 +1,17 @@
+{
+  "id": "strike-duckdb-s3-httpfs-catalog",
+  "name": "DuckDB S3 HTTPFS Catalog",
+  "stack": [
+    "duckdb"
+  ],
+  "tags": [
+    "data"
+  ],
+  "files": [
+    {
+      "path": "duckdb/catalog.sql",
+      "template": "-- duckdb s3 httpfs catalog skeleton\n"
+    }
+  ],
+  "patches": []
+}

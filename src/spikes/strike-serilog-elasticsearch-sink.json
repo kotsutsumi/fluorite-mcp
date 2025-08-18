@@ -1,0 +1,19 @@
+{
+  "id": "strike-serilog-elasticsearch-sink",
+  "name": "Serilog Elasticsearch Sink",
+  "stack": [
+    "dotnet",
+    "serilog",
+    "elasticsearch"
+  ],
+  "tags": [
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "appsettings.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

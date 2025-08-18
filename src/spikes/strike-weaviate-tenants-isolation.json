@@ -1,0 +1,18 @@
+{
+  "id": "strike-weaviate-tenants-isolation",
+  "name": "Weaviate Tenants Isolation",
+  "stack": [
+    "weaviate"
+  ],
+  "tags": [
+    "vector",
+    "multitenant"
+  ],
+  "files": [
+    {
+      "path": "weaviate/tenants.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

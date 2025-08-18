@@ -1,0 +1,17 @@
+{
+  "id": "strike-kustomize-images-patch",
+  "name": "Kustomize images Patch",
+  "stack": [
+    "kustomize"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/kustomization.yaml",
+      "template": "# kustomize images patch skeleton\n"
+    }
+  ],
+  "patches": []
+}

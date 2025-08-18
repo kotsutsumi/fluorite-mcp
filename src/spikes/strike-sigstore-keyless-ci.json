@@ -1,0 +1,17 @@
+{
+  "id": "strike-sigstore-keyless-ci",
+  "name": "Sigstore Keyless in CI",
+  "stack": [
+    "sigstore"
+  ],
+  "tags": [
+    "supply-chain"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/sigstore-keyless.yml",
+      "template": "name: SigstoreKeyless\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

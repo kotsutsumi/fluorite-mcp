@@ -1,0 +1,19 @@
+{
+  "id": "strike-go-otel-logrus-hook",
+  "name": "Go OTel + logrus Hook",
+  "stack": [
+    "go",
+    "opentelemetry",
+    "logrus"
+  ],
+  "tags": [
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "logging/main.go",
+      "template": "// logrus hook to otel skeleton\n"
+    }
+  ],
+  "patches": []
+}

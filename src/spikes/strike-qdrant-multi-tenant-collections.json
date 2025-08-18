@@ -1,0 +1,18 @@
+{
+  "id": "strike-qdrant-multi-tenant-collections",
+  "name": "Qdrant Multi-Tenant Collections",
+  "stack": [
+    "qdrant"
+  ],
+  "tags": [
+    "vector",
+    "multitenant"
+  ],
+  "files": [
+    {
+      "path": "qdrant/tenants.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

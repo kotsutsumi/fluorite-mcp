@@ -1,0 +1,17 @@
+{
+  "id": "strike-fluxcd-notification-provider",
+  "name": "FluxCD Notification Provider",
+  "stack": [
+    "fluxcd"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/notification.yaml",
+      "template": "# flux notification provider skeleton\n"
+    }
+  ],
+  "patches": []
+}

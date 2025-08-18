@@ -1,0 +1,17 @@
+{
+  "id": "strike-elasticsearch-ilm-policy",
+  "name": "Elasticsearch ILM Policy",
+  "stack": [
+    "elasticsearch"
+  ],
+  "tags": [
+    "lifecycle"
+  ],
+  "files": [
+    {
+      "path": "es/ilm.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

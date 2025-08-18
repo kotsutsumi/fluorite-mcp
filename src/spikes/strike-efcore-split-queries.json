@@ -1,0 +1,19 @@
+{
+  "id": "strike-efcore-split-queries",
+  "name": "EFCore Split Queries",
+  "stack": [
+    "dotnet",
+    "efcore"
+  ],
+  "tags": [
+    "db",
+    "perf"
+  ],
+  "files": [
+    {
+      "path": "Data/DbContext.cs",
+      "template": "// efcore split queries skeleton\n"
+    }
+  ],
+  "patches": []
+}

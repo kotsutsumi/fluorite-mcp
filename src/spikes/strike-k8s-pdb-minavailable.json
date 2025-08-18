@@ -1,0 +1,17 @@
+{
+  "id": "strike-k8s-pdb-minavailable",
+  "name": "K8s PodDisruptionBudget",
+  "stack": [
+    "kubernetes"
+  ],
+  "tags": [
+    "ha"
+  ],
+  "files": [
+    {
+      "path": "k8s/pdb.yaml",
+      "template": "# pdb skeleton\n"
+    }
+  ],
+  "patches": []
+}

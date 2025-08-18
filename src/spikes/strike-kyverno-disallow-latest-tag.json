@@ -1,0 +1,17 @@
+{
+  "id": "strike-kyverno-disallow-latest-tag",
+  "name": "Kyverno Disallow :latest",
+  "stack": [
+    "kyverno"
+  ],
+  "tags": [
+    "policy"
+  ],
+  "files": [
+    {
+      "path": "kyverno/disallow-latest.yaml",
+      "template": "# disallow latest tag skeleton\n"
+    }
+  ],
+  "patches": []
+}

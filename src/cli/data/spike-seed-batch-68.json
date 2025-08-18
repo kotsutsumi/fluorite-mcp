@@ -1,0 +1,50 @@
+{
+  "items": [
+    { "id": "strike-spring-webflux-sse-backpressure", "name": "Spring WebFlux SSE Backpressure", "stack": ["java","spring","webflux"], "tags": ["realtime","sse"], "files": [{ "path": "src/main/java/example/SseController.java", "template": "// webflux sse backpressure skeleton\n" }] },
+    { "id": "strike-spring-integration-kafka-flow", "name": "Spring Integration Kafka Flow", "stack": ["java","spring","integration","kafka"], "tags": ["flow"], "files": [{ "path": "src/main/java/example/Flow.java", "template": "// spring integration kafka flow skeleton\n" }] },
+    { "id": "strike-quarkus-reactive-messaging-kafka", "name": "Quarkus Reactive Messaging Kafka", "stack": ["java","quarkus","kafka"], "tags": ["messaging"], "files": [{ "path": "src/main/java/org/acme/Stream.java", "template": "// reactive messaging kafka skeleton\n" }] },
+    { "id": "strike-micronaut-graphql-minimal", "name": "Micronaut GraphQL 最小", "stack": ["java","micronaut","graphql"], "tags": ["api"], "files": [{ "path": "src/main/resources/schema.graphqls", "template": "type Query { hello: String }\n" }] },
+    { "id": "strike-micronaut-http-retryable", "name": "Micronaut HTTP Retryable", "stack": ["java","micronaut"], "tags": ["http","retry"], "files": [{ "path": "src/main/java/example/HttpClient.java", "template": "// micronaut http retryable skeleton\n" }] },
+
+    { "id": "strike-aspnet-yarp-reverse-proxy", "name": ".NET YARP Reverse Proxy", "stack": ["dotnet","yarp"], "tags": ["proxy"], "files": [{ "path": "Program.cs", "template": "// yarp reverse proxy skeleton\n" }] },
+    { "id": "strike-efcore-temporal-tables", "name": "EFCore Temporal Tables", "stack": ["dotnet","efcore"], "tags": ["db","history"], "files": [{ "path": "Data/Migrations/Temporal.sql", "template": "-- temporal tables skeleton\n" }] },
+    { "id": "strike-pollynets-hedging-strategy", "name": "Polly Hedging Strategy", "stack": ["dotnet","polly"], "tags": ["resilience"], "files": [{ "path": "Program.cs", "template": "// polly hedging skeleton\n" }] },
+    { "id": "strike-serilog-elasticsearch-sink", "name": "Serilog Elasticsearch Sink", "stack": ["dotnet","serilog","elasticsearch"], "tags": ["logs"], "files": [{ "path": "appsettings.json", "template": "{ }\n" }] },
+
+    { "id": "strike-fastify-prisma-pg-pool", "name": "Fastify Prisma + PG Pool", "stack": ["node","fastify","prisma"], "tags": ["db"], "files": [{ "path": "server.ts", "template": "// fastify prisma pg pool skeleton\n" }] },
+    { "id": "strike-koa-rate-limit-basic", "name": "Koa Rate Limit 基本", "stack": ["node","koa"], "tags": ["throttle"], "files": [{ "path": "server.js", "template": "// koa rate limit skeleton\n" }] },
+    { "id": "strike-hono-durable-objects-session", "name": "Hono Durable Objects Session", "stack": ["hono","cloudflare","durable-objects"], "tags": ["session","edge"], "files": [{ "path": "src/app.ts", "template": "// hono durable objects session skeleton\n" }] },
+    { "id": "strike-bun-fetch-streaming", "name": "Bun Fetch Streaming", "stack": ["bun"], "tags": ["http","stream"], "files": [{ "path": "fetch.ts", "template": "// bun fetch streaming skeleton\n" }] },
+
+    { "id": "strike-fastapi-dep-injection-advanced", "name": "FastAPI 依存注入 高度", "stack": ["python","fastapi"], "tags": ["di"], "files": [{ "path": "app/deps.py", "template": "# fastapi advanced deps skeleton\n" }] },
+    { "id": "strike-django-channels-redis", "name": "Django Channels + Redis", "stack": ["python","django","channels","redis"], "tags": ["realtime"], "files": [{ "path": "mysite/settings.py", "template": "# channels redis skeleton\n" }] },
+    { "id": "strike-prefect-concurrency-limits", "name": "Prefect Concurrency Limits", "stack": ["prefect"], "tags": ["orchestration"], "files": [{ "path": "flows/concurrency.py", "template": "# prefect concurrency limits skeleton\n" }] },
+    { "id": "strike-dagster-software-defined-assets", "name": "Dagster Software-Defined Assets", "stack": ["dagster"], "tags": ["data"], "files": [{ "path": "assets/sda.py", "template": "# dagster sda skeleton\n" }] },
+
+    { "id": "strike-kafka-connect-jdbc-sink-pg", "name": "Kafka Connect JDBC Sink → PG", "stack": ["kafka","connect","postgres"], "tags": ["sink"], "files": [{ "path": "kafka/connect-jdbc.json", "template": "{ }\n" }] },
+    { "id": "strike-flink-kafka-sink", "name": "Flink Kafka Sink", "stack": ["flink","kafka"], "tags": ["stream"], "files": [{ "path": "flink/sink.java", "template": "// flink kafka sink skeleton\n" }] },
+    { "id": "strike-airbyte-normalization-basic", "name": "Airbyte Normalization 基本", "stack": ["airbyte"], "tags": ["etl"], "files": [{ "path": "airbyte/normalization.md", "template": "# airbyte normalization skeleton\n" }] },
+
+    { "id": "strike-pgvector-ivfflat-index", "name": "pgvector IVF_Flat Index", "stack": ["postgres","pgvector"], "tags": ["vector"], "files": [{ "path": "sql/pgvector_ivfflat.sql", "template": "-- pgvector ivfflat skeleton\n" }] },
+    { "id": "strike-weaviate-backup-s3", "name": "Weaviate Backup → S3", "stack": ["weaviate","s3"], "tags": ["backup","vector"], "files": [{ "path": "weaviate/backup.json", "template": "{ }\n" }] },
+    { "id": "strike-qdrant-snapshot-backup", "name": "Qdrant Snapshot Backup", "stack": ["qdrant"], "tags": ["backup","vector"], "files": [{ "path": "qdrant/snapshot.json", "template": "{ }\n" }] },
+
+    { "id": "strike-argocd-applicationset-pullrequest", "name": "ArgoCD ApplicationSet PullRequest", "stack": ["argocd"], "tags": ["gitops"], "files": [{ "path": "k8s/appset-pr.yaml", "template": "# applicationset pr generator skeleton\n" }] },
+    { "id": "strike-fluxcd-notification-provider", "name": "FluxCD Notification Provider", "stack": ["fluxcd"], "tags": ["gitops"], "files": [{ "path": "k8s/notification.yaml", "template": "# flux notification provider skeleton\n" }] },
+    { "id": "strike-kustomize-replacements", "name": "Kustomize Replacements", "stack": ["kustomize"], "tags": ["gitops"], "files": [{ "path": "k8s/replacements.yaml", "template": "# kustomize replacements skeleton\n" }] },
+    { "id": "strike-helm-test-hooks", "name": "Helm Test Hooks", "stack": ["helm"], "tags": ["charts"], "files": [{ "path": "charts/app/templates/tests.yaml", "template": "# helm test hooks skeleton\n" }] },
+    { "id": "strike-helm-post-renderer-kustomize", "name": "Helm Post-Renderer Kustomize", "stack": ["helm","kustomize"], "tags": ["gitops"], "files": [{ "path": "charts/app/post-renderer.sh", "template": "#!/usr/bin/env bash\n# post-renderer kustomize skeleton\n" }] },
+
+    { "id": "strike-opa-rego-common-library", "name": "OPA Rego 共通ライブラリ", "stack": ["opa"], "tags": ["policy"], "files": [{ "path": "policy/lib.rego", "template": "# common rego library skeleton\n" }] },
+    { "id": "strike-kyverno-disallow-latest-tag", "name": "Kyverno Disallow :latest", "stack": ["kyverno"], "tags": ["policy"], "files": [{ "path": "kyverno/disallow-latest.yaml", "template": "# disallow latest tag skeleton\n" }] },
+    { "id": "strike-sops-pgp-encryption", "name": "SOPS PGP 暗号化", "stack": ["sops","pgp"], "tags": ["secrets"], "files": [{ "path": "sops/pgp.md", "template": "# sops pgp encryption skeleton\n" }] },
+    { "id": "strike-vault-aws-dynamic-secrets", "name": "Vault AWS 動的シークレット", "stack": ["vault","aws"], "tags": ["secrets"], "files": [{ "path": "vault/aws.hcl", "template": "# vault aws dynamic secrets skeleton\n" }] },
+
+    { "id": "strike-cloudflare-queues-r2-pipeline", "name": "Cloudflare Queues → R2 パイプライン", "stack": ["cloudflare","queues","r2"], "tags": ["edge"], "files": [{ "path": "wrangler.toml", "template": "# queues to r2 pipeline skeleton\n" }] },
+    { "id": "strike-d1-prepared-statements", "name": "Cloudflare D1 Prepared Statements", "stack": ["cloudflare","d1"], "tags": ["db"], "files": [{ "path": "src/db.ts", "template": "// d1 prepared statements skeleton\n" }] },
+    { "id": "strike-workers-ai-image-to-text", "name": "Workers AI Image→Text", "stack": ["cloudflare","workers-ai"], "tags": ["ai"], "files": [{ "path": "src/ai.ts", "template": "// workers ai image to text skeleton\n" }] },
+    { "id": "strike-vercel-postgres-drizzle", "name": "Vercel Postgres + Drizzle", "stack": ["vercel","postgres","drizzle"], "tags": ["db"], "files": [{ "path": "db/index.ts", "template": "// vercel postgres drizzle skeleton\n" }] },
+    { "id": "strike-flyio-volumes-persist", "name": "Fly.io Volumes Persist", "stack": ["flyio"], "tags": ["storage"], "files": [{ "path": "fly.toml", "template": "# fly volumes skeleton\n" }] }
+  ]
+}
+

@@ -1,0 +1,18 @@
+{
+  "id": "strike-argocd-reposerver-kustomize-options",
+  "name": "ArgoCD RepoServer Kustomize",
+  "stack": [
+    "argocd",
+    "kustomize"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/reposerver.yaml",
+      "template": "# argocd reposerver kustomize skeleton\n"
+    }
+  ],
+  "patches": []
+}

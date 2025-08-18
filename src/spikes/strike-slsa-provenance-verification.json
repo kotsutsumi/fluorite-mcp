@@ -1,0 +1,17 @@
+{
+  "id": "strike-slsa-provenance-verification",
+  "name": "SLSA Provenance 検証",
+  "stack": [
+    "slsa"
+  ],
+  "tags": [
+    "supply-chain"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/slsa-verify.yml",
+      "template": "name: SLSA-Verify\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

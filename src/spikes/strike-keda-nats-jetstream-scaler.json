@@ -1,0 +1,18 @@
+{
+  "id": "strike-keda-nats-jetstream-scaler",
+  "name": "KEDA NATS JetStream Scaler",
+  "stack": [
+    "keda",
+    "nats"
+  ],
+  "tags": [
+    "autoscale"
+  ],
+  "files": [
+    {
+      "path": "k8s/scaledobject.yaml",
+      "template": "# keda nats jetstream scaler skeleton\n"
+    }
+  ],
+  "patches": []
+}

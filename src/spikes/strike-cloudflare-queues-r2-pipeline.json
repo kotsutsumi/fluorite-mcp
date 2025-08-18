@@ -1,0 +1,19 @@
+{
+  "id": "strike-cloudflare-queues-r2-pipeline",
+  "name": "Cloudflare Queues → R2 パイプライン",
+  "stack": [
+    "cloudflare",
+    "queues",
+    "r2"
+  ],
+  "tags": [
+    "edge"
+  ],
+  "files": [
+    {
+      "path": "wrangler.toml",
+      "template": "# queues to r2 pipeline skeleton\n"
+    }
+  ],
+  "patches": []
+}

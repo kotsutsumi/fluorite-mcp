@@ -2,7 +2,8 @@
   "id": "strike-opa-bundle-verify-ci",
   "name": "OPA Bundle Verify CI",
   "stack": [
-    "opa"
+    "opa",
+    "conftest"
   ],
   "tags": [
     "security",
@@ -15,5 +16,6 @@
       "template": "name: OpaVerify\non: [push]\n"
     }
   ],
-  "patches": []
+  "patches": [],
+  "params": []
 }

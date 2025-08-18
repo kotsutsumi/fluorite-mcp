@@ -1,0 +1,17 @@
+{
+  "id": "strike-trino-oauth2-config",
+  "name": "Trino OAuth2 Config",
+  "stack": [
+    "trino"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "trino/config.properties",
+      "template": "# trino oauth2 config skeleton\n"
+    }
+  ],
+  "patches": []
+}

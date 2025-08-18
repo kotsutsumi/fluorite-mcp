@@ -1,0 +1,17 @@
+{
+  "id": "strike-fluxcd-image-policy-canary",
+  "name": "FluxCD ImagePolicy Canary",
+  "stack": [
+    "fluxcd"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/imagepolicy.yaml",
+      "template": "# flux imagepolicy canary skeleton\n"
+    }
+  ],
+  "patches": []
+}

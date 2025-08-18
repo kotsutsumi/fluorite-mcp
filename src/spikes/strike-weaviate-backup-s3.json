@@ -1,0 +1,19 @@
+{
+  "id": "strike-weaviate-backup-s3",
+  "name": "Weaviate Backup → S3",
+  "stack": [
+    "weaviate",
+    "s3"
+  ],
+  "tags": [
+    "backup",
+    "vector"
+  ],
+  "files": [
+    {
+      "path": "weaviate/backup.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

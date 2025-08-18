@@ -1,0 +1,18 @@
+{
+  "id": "strike-argocd-appproject-restrictions",
+  "name": "ArgoCD AppProject 制約",
+  "stack": [
+    "argocd"
+  ],
+  "tags": [
+    "gitops",
+    "policy"
+  ],
+  "files": [
+    {
+      "path": "k8s/appproject.yaml",
+      "template": "# argocd appproject restrictions skeleton\n"
+    }
+  ],
+  "patches": []
+}

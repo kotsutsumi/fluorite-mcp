@@ -1,0 +1,21 @@
+{
+  "id": "strike-spring-transactional-outbox-debezium",
+  "name": "Spring Transactional Outbox + Debezium",
+  "stack": [
+    "java",
+    "spring",
+    "kafka",
+    "debezium"
+  ],
+  "tags": [
+    "outbox",
+    "cdc"
+  ],
+  "files": [
+    {
+      "path": "src/main/java/example/OutboxPublisher.java",
+      "template": "// spring transactional outbox with debezium skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,56 @@
+{
+  "items": [
+    { "id": "strike-spring-transactional-outbox-debezium", "name": "Spring Transactional Outbox + Debezium", "stack": ["java","spring","kafka","debezium"], "tags": ["outbox","cdc"], "files": [{ "path": "src/main/java/example/OutboxPublisher.java", "template": "// spring transactional outbox with debezium skeleton\n" }] },
+    { "id": "strike-spring-cloud-gateway-rewrite-advanced", "name": "Spring Cloud Gateway Rewrite Advanced", "stack": ["java","spring","gateway"], "tags": ["api","rewrite"], "files": [{ "path": "src/main/resources/application.yml", "template": "# gateway rewrite filters skeleton\n" }] },
+    { "id": "strike-spring-security-oauth2-client-pkce", "name": "Spring Security OAuth2 Client PKCE", "stack": ["java","spring","oauth2"], "tags": ["auth"], "files": [{ "path": "src/main/resources/application.yml", "template": "# oauth2 client pkce skeleton\n" }] },
+    { "id": "strike-spring-batch-remote-partitioning", "name": "Spring Batch Remote Partitioning", "stack": ["java","spring","batch"], "tags": ["batch","scale"], "files": [{ "path": "src/main/java/example/RemotePartitionJob.java", "template": "// remote partitioning skeleton\n" }] },
+    { "id": "strike-quarkus-opentelemetry-export", "name": "Quarkus OpenTelemetry Export", "stack": ["java","quarkus","opentelemetry"], "tags": ["observability"], "files": [{ "path": "src/main/resources/application.properties", "template": "# quarkus otel export skeleton\n" }] },
+    { "id": "strike-micronaut-retry-circuitbreaker", "name": "Micronaut Retry + CircuitBreaker", "stack": ["java","micronaut"], "tags": ["resilience"], "files": [{ "path": "src/main/java/example/Resilience.java", "template": "// micronaut retry + circuit breaker skeleton\n" }] },
+
+    { "id": "strike-aspnet-identity-refresh-tokens", "name": ".NET Identity Refresh Tokens", "stack": ["dotnet","aspnet","identity"], "tags": ["auth"], "files": [{ "path": "Auth/RefreshTokenService.cs", "template": "// identity refresh tokens skeleton\n" }] },
+    { "id": "strike-aspnet-rate-limiter-fixed-window", "name": ".NET RateLimiter FixedWindow", "stack": ["dotnet","aspnet"], "tags": ["throttle"], "files": [{ "path": "Program.cs", "template": "// ratelimiter fixed window skeleton\n" }] },
+    { "id": "strike-efcore-split-queries", "name": "EFCore Split Queries", "stack": ["dotnet","efcore"], "tags": ["db","perf"], "files": [{ "path": "Data/DbContext.cs", "template": "// efcore split queries skeleton\n" }] },
+    { "id": "strike-masstransit-outbox-efcore", "name": "MassTransit Outbox + EFCore", "stack": ["dotnet","masstransit","efcore"], "tags": ["outbox"], "files": [{ "path": "Bus/Outbox.cs", "template": "// masstransit outbox skeleton\n" }] },
+
+    { "id": "strike-nestjs-schedule-cron-jobs", "name": "NestJS Schedule Cron Jobs", "stack": ["node","nestjs","schedule"], "tags": ["jobs"], "files": [{ "path": "src/schedule.ts", "template": "// nestjs cron jobs skeleton\n" }] },
+    { "id": "strike-express-oauth2-proxy-forwardauth", "name": "Express oauth2-proxy ForwardAuth", "stack": ["node","express","oauth2"], "tags": ["auth","proxy"], "files": [{ "path": "server.js", "template": "// express forwardauth skeleton\n" }] },
+    { "id": "strike-graphql-yoga-subscriptions-ws", "name": "GraphQL Yoga Subscriptions(WS)", "stack": ["node","graphql","yoga"], "tags": ["realtime"], "files": [{ "path": "graphql/server.ts", "template": "// yoga subscriptions ws skeleton\n" }] },
+    { "id": "strike-h3-hono-bridge", "name": "h3 ↔ Hono Bridge", "stack": ["node","h3","hono"], "tags": ["api"], "files": [{ "path": "server.ts", "template": "// h3-hono bridge skeleton\n" }] },
+
+    { "id": "strike-fastapi-sqlmodel-relationships", "name": "FastAPI SQLModel リレーション", "stack": ["python","fastapi","sqlmodel"], "tags": ["db"], "files": [{ "path": "app/models.py", "template": "# sqlmodel relationships skeleton\n" }] },
+    { "id": "strike-pydantic-dataclasses-v2", "name": "Pydantic v2 Dataclasses", "stack": ["python","pydantic"], "tags": ["typing"], "files": [{ "path": "app/dataclasses.py", "template": "# pydantic dataclasses v2 skeleton\n" }] },
+    { "id": "strike-airflow-external-task-sensor", "name": "Airflow ExternalTaskSensor", "stack": ["airflow"], "tags": ["orchestration"], "files": [{ "path": "dags/external_sensor.py", "template": "# external task sensor skeleton\n" }] },
+    { "id": "strike-dagster-io-manager-gcs", "name": "Dagster IO Manager GCS", "stack": ["dagster","gcs"], "tags": ["data"], "files": [{ "path": "io/gcs_manager.py", "template": "# dagster gcs io manager skeleton\n" }] },
+    { "id": "strike-prefect-deployment-yaml", "name": "Prefect Deployment YAML", "stack": ["prefect"], "tags": ["deploy"], "files": [{ "path": "flows/deployment.yaml", "template": "# prefect deployment yaml skeleton\n" }] },
+    { "id": "strike-dask-distributed-cluster", "name": "Dask Distributed Cluster", "stack": ["dask","python"], "tags": ["distributed"], "files": [{ "path": "dask/cluster.py", "template": "# dask cluster skeleton\n" }] },
+
+    { "id": "strike-dbt-incremental-merge", "name": "dbt Incremental Merge", "stack": ["dbt"], "tags": ["sql"], "files": [{ "path": "models/incremental.sql", "template": "-- dbt incremental merge skeleton\n" }] },
+    { "id": "strike-bigquery-external-table-parquet", "name": "BigQuery 外部テーブル(Parquet)", "stack": ["gcp","bigquery"], "tags": ["sql"], "files": [{ "path": "bq/external_table.sql", "template": "-- bq external parquet skeleton\n" }] },
+    { "id": "strike-druid-kafka-indexing-spec", "name": "Druid Kafka Indexing Spec", "stack": ["druid","kafka"], "tags": ["ingest"], "files": [{ "path": "druid/kafka_indexing.json", "template": "{ }\n" }] },
+    { "id": "strike-pinot-upsert-realtime-table", "name": "Pinot Upsert Realtime Table", "stack": ["pinot"], "tags": ["realtime"], "files": [{ "path": "pinot/upsert_table.json", "template": "{ }\n" }] },
+    { "id": "strike-trino-oauth2-config", "name": "Trino OAuth2 Config", "stack": ["trino"], "tags": ["auth"], "files": [{ "path": "trino/config.properties", "template": "# trino oauth2 config skeleton\n" }] },
+
+    { "id": "strike-qdrant-multi-tenant-collections", "name": "Qdrant Multi-Tenant Collections", "stack": ["qdrant"], "tags": ["vector","multitenant"], "files": [{ "path": "qdrant/tenants.json", "template": "{ }\n" }] },
+    { "id": "strike-weaviate-tenants-isolation", "name": "Weaviate Tenants Isolation", "stack": ["weaviate"], "tags": ["vector","multitenant"], "files": [{ "path": "weaviate/tenants.json", "template": "{ }\n" }] },
+    { "id": "strike-pinecone-consistency-hints", "name": "Pinecone Consistency Hints", "stack": ["pinecone"], "tags": ["vector"], "files": [{ "path": "pinecone/consistency.md", "template": "# pinecone consistency hints skeleton\n" }] },
+
+    { "id": "strike-argocd-sync-waves", "name": "ArgoCD Sync Waves", "stack": ["argocd"], "tags": ["gitops"], "files": [{ "path": "k8s/syncwaves.yaml", "template": "# argocd sync waves skeleton\n" }] },
+    { "id": "strike-argocd-appproject-restrictions", "name": "ArgoCD AppProject 制約", "stack": ["argocd"], "tags": ["gitops","policy"], "files": [{ "path": "k8s/appproject.yaml", "template": "# argocd appproject restrictions skeleton\n" }] },
+    { "id": "strike-fluxcd-kustomization-dependson", "name": "FluxCD Kustomization dependsOn", "stack": ["fluxcd","kustomize"], "tags": ["gitops"], "files": [{ "path": "k8s/kustomization.yaml", "template": "# flux kustomization dependson skeleton\n" }] },
+    { "id": "strike-kustomize-images-patch", "name": "Kustomize images Patch", "stack": ["kustomize"], "tags": ["gitops"], "files": [{ "path": "k8s/kustomization.yaml", "template": "# kustomize images patch skeleton\n" }] },
+
+    { "id": "strike-oauth2-proxy-config", "name": "oauth2-proxy 設定", "stack": ["oauth2-proxy"], "tags": ["auth","proxy"], "files": [{ "path": "oauth2-proxy/config.yaml", "template": "# oauth2-proxy config skeleton\n" }] },
+    { "id": "strike-traefik-forwardauth-oauth2-proxy", "name": "Traefik ForwardAuth oauth2-proxy", "stack": ["traefik","oauth2-proxy"], "tags": ["auth","proxy"], "files": [{ "path": "traefik/forwardauth.yaml", "template": "# traefik forwardauth skeleton\n" }] },
+    { "id": "strike-nginx-mtls-strict-server", "name": "Nginx mTLS Strict Server", "stack": ["nginx","mtls"], "tags": ["security"], "files": [{ "path": "nginx/mtls_strict.conf", "template": "# nginx mtls strict server skeleton\n" }] },
+
+    { "id": "strike-nats-jetstream-mirror-snapshot", "name": "NATS JetStream Mirror Snapshot", "stack": ["nats","jetstream"], "tags": ["backup"], "files": [{ "path": "nats/mirror_snapshot.md", "template": "# jetstream mirror snapshot skeleton\n" }] },
+    { "id": "strike-rabbitmq-super-stream-setup", "name": "RabbitMQ Super Stream 設定", "stack": ["rabbitmq","streams"], "tags": ["stream","scale"], "files": [{ "path": "rabbitmq/superstream.md", "template": "# rabbitmq super stream skeleton\n" }] },
+    { "id": "strike-kafka-mirror-topic-acls", "name": "Kafka Mirror Topic + ACLs", "stack": ["kafka"], "tags": ["replication","security"], "files": [{ "path": "kafka/mirror_acls.sh", "template": "# kafka mirror acls skeleton\n" }] },
+
+    { "id": "strike-terraform-s3-static-website", "name": "Terraform S3 静的サイト", "stack": ["terraform","aws","s3"], "tags": ["infra","web"], "files": [{ "path": "terraform/main.tf", "template": "# terraform s3 static website skeleton\n" }] },
+    { "id": "strike-crossplane-composition-redis", "name": "Crossplane Composition Redis", "stack": ["crossplane"], "tags": ["infra"], "files": [{ "path": "crossplane/redis.yaml", "template": "# crossplane composition redis skeleton\n" }] },
+    { "id": "strike-helm-dependencies-subcharts", "name": "Helm 依存(Subcharts)", "stack": ["helm"], "tags": ["charts"], "files": [{ "path": "charts/app/Chart.yaml", "template": "# helm subcharts skeleton\n" }] },
+    { "id": "strike-keda-nats-jetstream-scaler", "name": "KEDA NATS JetStream Scaler", "stack": ["keda","nats"], "tags": ["autoscale"], "files": [{ "path": "k8s/scaledobject.yaml", "template": "# keda nats jetstream scaler skeleton\n" }] }
+  ]
+}
+

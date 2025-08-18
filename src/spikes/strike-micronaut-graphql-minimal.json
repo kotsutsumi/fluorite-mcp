@@ -1,0 +1,19 @@
+{
+  "id": "strike-micronaut-graphql-minimal",
+  "name": "Micronaut GraphQL 最小",
+  "stack": [
+    "java",
+    "micronaut",
+    "graphql"
+  ],
+  "tags": [
+    "api"
+  ],
+  "files": [
+    {
+      "path": "src/main/resources/schema.graphqls",
+      "template": "type Query { hello: String }\n"
+    }
+  ],
+  "patches": []
+}

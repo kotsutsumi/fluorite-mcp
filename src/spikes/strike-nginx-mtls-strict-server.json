@@ -1,0 +1,18 @@
+{
+  "id": "strike-nginx-mtls-strict-server",
+  "name": "Nginx mTLS Strict Server",
+  "stack": [
+    "nginx",
+    "mtls"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "nginx/mtls_strict.conf",
+      "template": "# nginx mtls strict server skeleton\n"
+    }
+  ],
+  "patches": []
+}

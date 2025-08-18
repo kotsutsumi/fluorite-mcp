@@ -1,0 +1,19 @@
+{
+  "id": "strike-traefik-forwardauth-oauth2-proxy",
+  "name": "Traefik ForwardAuth oauth2-proxy",
+  "stack": [
+    "traefik",
+    "oauth2-proxy"
+  ],
+  "tags": [
+    "auth",
+    "proxy"
+  ],
+  "files": [
+    {
+      "path": "traefik/forwardauth.yaml",
+      "template": "# traefik forwardauth skeleton\n"
+    }
+  ],
+  "patches": []
+}

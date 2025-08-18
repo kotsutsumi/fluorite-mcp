@@ -1,0 +1,17 @@
+{
+  "id": "strike-argocd-sync-waves",
+  "name": "ArgoCD Sync Waves",
+  "stack": [
+    "argocd"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/syncwaves.yaml",
+      "template": "# argocd sync waves skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-sentry-sourcemaps-upload",
+  "name": "Sentry SourceMaps Upload",
+  "stack": [
+    "sentry"
+  ],
+  "tags": [
+    "apm",
+    "release"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/sentry-sourcemaps.yml",
+      "template": "name: SentrySourceMaps\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

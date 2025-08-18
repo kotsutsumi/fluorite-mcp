@@ -1,0 +1,17 @@
+{
+  "id": "strike-argocd-applicationset-pullrequest",
+  "name": "ArgoCD ApplicationSet PullRequest",
+  "stack": [
+    "argocd"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/appset-pr.yaml",
+      "template": "# applicationset pr generator skeleton\n"
+    }
+  ],
+  "patches": []
+}
