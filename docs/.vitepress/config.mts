@@ -6,6 +6,7 @@ const sharedNavigation = [
   { text: 'Features', link: '/features' },
   { text: 'Getting Started', link: '/getting-started' },
   { text: 'Spike Templates', link: '/spike-templates' },
+  { text: 'Commands', link: '/fl-commands' },
   { text: 'Specs', link: '/specs/' },
   { text: 'API', link: '/API' }
 ]
@@ -15,6 +16,7 @@ const japaneseNavigation = [
   { text: '機能', link: '/ja/features' },
   { text: 'はじめに', link: '/ja/getting-started' },
   { text: 'スパイクテンプレート', link: '/ja/spike-templates' },
+  { text: 'コマンド', link: '/ja/fl-commands' },
   { text: '仕様', link: '/ja/specs/' },
   { text: 'API', link: '/ja/API' }
 ]
@@ -35,7 +37,7 @@ const englishSidebar = {
       text: '⚡ Essential Features',
       collapsed: false,
       items: [
-        { text: '🧪 Spike Templates (3,100+)', link: '/spike-templates' },
+        { text: '🧪 Spike Templates (3,111+)', link: '/spike-templates' },
         { text: '📱 /fl: Commands System', link: '/fl-commands' },
         { text: '🤖 MCP Server Integration', link: '/features' },
         { text: '🔍 Static Analysis Engine', link: '/static-analysis' },
@@ -171,12 +173,15 @@ const japaneseSidebar = {
       text: '⚡ 主要機能',
       collapsed: false,
       items: [
-        { text: '🧪 スパイクテンプレート (3,100+)', link: '/ja/spike-templates' },
+        { text: '🧪 スパイクテンプレート (3,111+)', link: '/ja/spike-templates' },
+        { text: '📚 スパイクテンプレート詳細ガイド', link: '/ja/spike-templates-detailed' },
         { text: '📱 /fl: コマンドシステム', link: '/ja/fl-commands' },
+        { text: '📋 /fl: コマンド詳細リファレンス', link: '/ja/fl-commands-detailed' },
         { text: '🤖 MCPサーバー統合', link: '/ja/features' },
         { text: '🔍 静的解析エンジン', link: '/ja/static-analysis' },
         { text: '🔗 統合ガイド', link: '/ja/integration-guide' },
-        { text: '⚡ パフォーマンス最適化', link: '/ja/performance' }
+        { text: '⚡ パフォーマンス最適化', link: '/ja/performance' },
+        { text: '🎵 音声処理パイプライン', link: '/ja/SPEECH_PROCESSING' }
       ]
     },
     {
@@ -234,15 +239,15 @@ const specsSidebar = {
       items: []
     },
     {
-      text: '🚀 Popular Tech Stacks',
+      text: '🚀 人気のテクノロジースタック',
       collapsed: false,
       items: [
-        { text: '🎨 Frontend & UI Innovation', link: '/specs/frontend-ui-innovation' },
-        { text: '⚡ Modern Backend & Serverless', link: '/specs/modern-backend-serverless' },
-        { text: '🤖 AI/ML & LLM Integration', link: '/specs/ai-ml-llm-comprehensive' },
-        { text: '☁️ Cloud Native Infrastructure', link: '/specs/cloud-native-infrastructure' },
-        { text: '💻 Language Ecosystems (7 Languages)', link: '/specs/langs' },
-        { text: '🛠️ Development Efficiency & DX', link: '/specs/development-efficiency-dx' }
+        { text: '🎨 フロントエンド・UI革新', link: '/specs/frontend-ui-innovation' },
+        { text: '⚡ モダンバックエンド・サーバーレス', link: '/specs/modern-backend-serverless' },
+        { text: '🤖 AI/ML・LLM統合', link: '/specs/ai-ml-llm-comprehensive' },
+        { text: '☁️ クラウドネイティブインフラ', link: '/specs/cloud-native-infrastructure' },
+        { text: '💻 言語エコシステム (7言語)', link: '/specs/langs' },
+        { text: '🛠️ 開発効率・DX', link: '/specs/development-efficiency-dx' }
       ]
     },
     {
@@ -299,7 +304,7 @@ const specsSidebar = {
 
 export default defineConfig({
   title: 'Fluorite MCP',
-  description: 'Comprehensive Model Context Protocol server for Claude Code CLI - Library specifications, static analysis, and rapid prototyping',
+  description: 'Enterprise-grade MCP server for Claude Code CLI with 3,111+ spike templates, 86 library specs, intelligent memory engine, and continuous learning capabilities',
   base: '/fluorite-mcp/',
   ignoreDeadLinks: true,
   cleanUrls: true,

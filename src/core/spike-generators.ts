@@ -133,6 +133,9 @@ function makeFiles(id: string, lib: string, pattern: string, style: string, lang
   }
   if (lib === 'nextjs' && pattern === 'service') {
     files.push({ path: `app/actions/demo.ts`, template: `'use server';\nexport async function demoAction(){ return { ok: true }; }\n` });
+    if (style === 'advanced') {
+      files.push({ path: `src/next/response.ts`, template: `import { NextResponse } from 'next/server';\nexport type Ok<T> = { ok: true; data: T };\nexport type Err = { ok: false; error: unknown };\nexport function ok<T>(data: T){ return NextResponse.json({ ok: true, data } as Ok<T>); }\nexport function err(e: unknown, status=400){ return NextResponse.json({ ok: false, error: String(e) } as Err, { status }); }\n` });
+    }
   }
   if (lib === 'nextjs' && pattern === 'client') {
     files.push({ path: `app/client-demo/page.tsx`, template: `'use client';\nexport default function Page(){ return <div>Client Component</div>; }\n` });
@@ -151,10 +154,8 @@ function makeFiles(id: string, lib: string, pattern: string, style: string, lang
     if (pattern === 'service') {
       files.push({ path: `src/user.service.ts`, template: `import { prisma } from './prisma';\nexport async function createUserWithTx(email: string){\n  return await prisma.$transaction(async (tx)=>{\n    const user = await tx.user.create({ data: { email } });\n    return user;\n  });\n}\n` });
       if (style === 'advanced') {
-        files.push({
-          path: `src/prisma.pagination.ts`,
-          template: `import { prisma } from './prisma';\nexport async function listUsersPage(limit: number, cursor?: number){\n  const items = await prisma.user.findMany({ take: limit, skip: cursor ? 1 : 0, ...(cursor ? { cursor: { id: cursor } } : {}) });\n  const nextCursor = items.length === limit ? items[items.length-1].id : undefined;\n  return { items, nextCursor };\n}\nexport async function withRetry<T>(fn: ()=>Promise<T>, retries=3){\n  let lastErr: unknown;\n  for(let i=0;i<retries;i++){ try{ return await fn(); } catch(e){ lastErr = e; } }\n  throw lastErr;\n}\n`
-        });
+        files.push({ path: `src/prisma.pagination.ts`, template: `import { prisma } from './prisma';\nexport async function listUsersPage(limit: number, cursor?: number){\n  const items = await prisma.user.findMany({ take: limit, skip: cursor ? 1 : 0, ...(cursor ? { cursor: { id: cursor } } : {}) });\n  const nextCursor = items.length === limit ? items[items.length-1].id : undefined;\n  return { items, nextCursor };\n}\nexport async function withRetry<T>(fn: ()=>Promise<T>, retries=3){\n  let lastErr: unknown;\n  for(let i=0;i<retries;i++){ try{ return await fn(); } catch(e){ lastErr = e; } }\n  throw lastErr;\n}\n` });
+        files.push({ path: `src/prisma.filters.ts`, template: `export type SortOrder = 'asc'|'desc';\nexport interface PageOpts { limit: number; cursor?: number; sortBy?: 'id'|'createdAt'; order?: SortOrder }\nexport function pageArgs<T extends { id: number }>(o: PageOpts){ const orderBy = o.sortBy ? { [o.sortBy]: o.order||'desc' } : undefined as any; return { take: o.limit, skip: o.cursor ? 1 : 0, ...(o.cursor ? { cursor: { id: o.cursor } } : {}), ...(orderBy ? { orderBy } : {}) }; }\n` });
       }
     }
     if (style === 'advanced' && pattern === 'crud') {
@@ -175,6 +176,7 @@ function makeFiles(id: string, lib: string, pattern: string, style: string, lang
       path: `src/graphql/useUpdateTitle.tsx`,
       template: `import { gql, useMutation } from '@apollo/client';\nconst UPDATE = gql\`mutation($id: ID!, $title: String!){ updateTitle(id:$id, title:$title){ id title } }\`;\nexport function useUpdateTitle(){\n  return useMutation(UPDATE, {\n    optimisticResponse: (vars)=>({ updateTitle: { __typename: 'Post', id: vars.id, title: vars.title } })\n  });\n}\n`
     });
+    files.push({ path: `src/graphql/cache.ts`, template: `import type { ApolloCache, DefaultContext, MutationUpdaterFunction } from '@apollo/client';\nexport const noopUpdate: MutationUpdaterFunction<any, any, DefaultContext, ApolloCache<any>> = () => {};\n` });
   }
   if (lib === 'graphql' && pattern === 'client') {
     files.push({ path: `src/graphql/useHello.tsx`, template: `import { gql, useQuery } from '@apollo/client';\nconst HELLO = gql\`query { hello }\`;\nexport function useHello(){ return useQuery(HELLO); }\n` });
@@ -197,6 +199,7 @@ function makeFiles(id: string, lib: string, pattern: string, style: string, lang
     if (style === 'advanced') {
       files.push({ path: `env.example`, template: `NEXTAUTH_URL=http://localhost:3000\nNEXTAUTH_SECRET=please-change-me\nGITHUB_ID=xxx\nGITHUB_SECRET=yyy\n` });
       files.push({ path: `app/api/auth/[...nextauth]/providers.ts`, template: `import GitHub from 'next-auth/providers/github';\nimport Credentials from 'next-auth/providers/credentials';\nexport const providers = [\n  GitHub({ clientId: process.env.GITHUB_ID!, clientSecret: process.env.GITHUB_SECRET! }),\n  Credentials({ name: 'Credentials', credentials: { username: {}, password: {} }, authorize: async () => ({ id: '1', name: 'demo' }) })\n];\n` });
+      files.push({ path: `app/api/auth/[...nextauth]/providers.google.example.ts`, template: `import Google from 'next-auth/providers/google';\nexport const google = Google({ clientId: process.env.GOOGLE_ID!, clientSecret: process.env.GOOGLE_SECRET! });\n` });
       files.push({ path: `app/(protected)/dashboard/page.tsx`, template: `export default function Page(){ return <div>Protected Dashboard</div>; }\n` });
     }
   }
@@ -209,6 +212,7 @@ function makeFiles(id: string, lib: string, pattern: string, style: string, lang
   }
   if (lib === 'github-actions' && pattern === 'job' && style === 'advanced') {
     files.push({ path: `.github/workflows/e2e.yml`, template: `name: E2E\non: [push, pull_request]\njobs:\n  e2e:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: '20' }\n      - run: npm ci\n      - run: npx playwright install --with-deps\n      - run: npm run test:e2e --if-present\n` });
+    files.push({ path: `.github/workflows/lint.yml`, template: `name: Lint\non: [push, pull_request]\njobs:\n  lint:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: '20' }\n      - run: npm ci\n      - run: npm run lint --if-present\n      - run: npm run format:check --if-present\n` });
   }
 
   // Always include the generic stub and README
