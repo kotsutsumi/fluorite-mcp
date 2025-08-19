@@ -1,0 +1,18 @@
+{
+  "id": "strike-kyverno-verifyimages-oidc",
+  "name": "Kyverno verifyImages OIDC",
+  "stack": [
+    "kyverno",
+    "cosign"
+  ],
+  "tags": [
+    "supply-chain"
+  ],
+  "files": [
+    {
+      "path": "kyverno/verify-oidc.yaml",
+      "template": "# kyverno verify images oidc skeleton\n"
+    }
+  ],
+  "patches": []
+}

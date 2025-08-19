@@ -1,0 +1,18 @@
+{
+  "id": "strike-falco-k8s-syscalls",
+  "name": "Falco K8s Syscalls 監視",
+  "stack": [
+    "falco",
+    "kubernetes"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "falco/rules.yaml",
+      "template": "# falco k8s syscalls skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-kyverno-enforce-readonlyrootfs",
+  "name": "Kyverno readOnlyRootFilesystem",
+  "stack": [
+    "kyverno"
+  ],
+  "tags": [
+    "policy"
+  ],
+  "files": [
+    {
+      "path": "kyverno/readonlyrootfs.yaml",
+      "template": "# kyverno readonlyrootfs skeleton\n"
+    }
+  ],
+  "patches": []
+}

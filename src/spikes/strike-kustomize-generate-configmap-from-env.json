@@ -1,0 +1,17 @@
+{
+  "id": "strike-kustomize-generate-configmap-from-env",
+  "name": "Kustomize configMapGenerator",
+  "stack": [
+    "kustomize"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/kustomization.yaml",
+      "template": "# kustomize configMapGenerator skeleton\n"
+    }
+  ],
+  "patches": []
+}

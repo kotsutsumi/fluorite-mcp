@@ -1,0 +1,17 @@
+{
+  "id": "strike-airflow-trigger-dagrun-external",
+  "name": "Airflow TriggerDagRun(外部)",
+  "stack": [
+    "airflow"
+  ],
+  "tags": [
+    "orchestration"
+  ],
+  "files": [
+    {
+      "path": "dags/trigger_external.py",
+      "template": "# airflow trigger dagrun skeleton\n"
+    }
+  ],
+  "patches": []
+}

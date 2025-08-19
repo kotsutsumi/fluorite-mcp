@@ -1,0 +1,17 @@
+{
+  "id": "strike-falco-k8s-audit-policy",
+  "name": "Falco K8s Audit Policy",
+  "stack": [
+    "falco"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "falco/audit.yaml",
+      "template": "# falco k8s audit policy skeleton\n"
+    }
+  ],
+  "patches": []
+}

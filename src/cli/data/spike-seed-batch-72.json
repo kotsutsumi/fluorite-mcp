@@ -1,0 +1,55 @@
+{
+  "items": [
+    { "id": "strike-spring-security-resource-server-jwt", "name": "Spring Security Resource Server JWT", "stack": ["java","spring","oauth2"], "tags": ["auth"], "files": [{ "path": "src/main/resources/application.yml", "template": "# resource server jwt skeleton\n" }] },
+    { "id": "strike-spring-data-redis-cacheable", "name": "Spring Data Redis @Cacheable", "stack": ["java","spring","redis"], "tags": ["cache"], "files": [{ "path": "src/main/java/example/CacheConfig.java", "template": "// spring cacheable redis skeleton\n" }] },
+    { "id": "strike-quarkus-devservices-postgres", "name": "Quarkus DevServices Postgres", "stack": ["java","quarkus","postgres"], "tags": ["dev"], "files": [{ "path": "src/main/resources/application.properties", "template": "# devservices postgres skeleton\n" }] },
+    { "id": "strike-micronaut-micrometer-prometheus", "name": "Micronaut Micrometer Prometheus", "stack": ["java","micronaut","micrometer"], "tags": ["metrics"], "files": [{ "path": "src/main/resources/application.yml", "template": "# micrometer prometheus skeleton\n" }] },
+    { "id": "strike-ktor-validation-content-negotiation", "name": "Ktor Validation + ContentNegotiation", "stack": ["kotlin","ktor"], "tags": ["api","validation"], "files": [{ "path": "src/Application.kt", "template": "// ktor validation + content negotiation skeleton\n" }] },
+
+    { "id": "strike-aspnet-otel-metrics-exporter", "name": ".NET OTel Metrics Exporter", "stack": ["dotnet","opentelemetry"], "tags": ["metrics"], "files": [{ "path": "Program.cs", "template": "// dotnet otel metrics exporter skeleton\n" }] },
+    { "id": "strike-efcore-tpt-inheritance", "name": "EFCore TPT Inheritance", "stack": ["dotnet","efcore"], "tags": ["db"], "files": [{ "path": "Data/Entities.cs", "template": "// efcore tpt inheritance skeleton\n" }] },
+    { "id": "strike-serilog-opentelemetry-logger", "name": "Serilog OpenTelemetry Logger", "stack": ["dotnet","serilog","opentelemetry"], "tags": ["logs"], "files": [{ "path": "Program.cs", "template": "// serilog opentelemetry logger skeleton\n" }] },
+    { "id": "strike-aspnet-identity-jwt-bearer", "name": ".NET Identity JWT Bearer", "stack": ["dotnet","aspnet","identity"], "tags": ["auth"], "files": [{ "path": "Auth/Jwt.cs", "template": "// identity jwt bearer skeleton\n" }] },
+
+    { "id": "strike-hono-r2-multipart-upload", "name": "Hono R2 Multipart Upload", "stack": ["hono","r2"], "tags": ["upload","edge"], "files": [{ "path": "src/upload.ts", "template": "// hono r2 multipart upload skeleton\n" }] },
+    { "id": "strike-nextjs-revalidate-path-action", "name": "Next.js revalidatePath Action", "stack": ["nextjs"], "tags": ["cache"], "files": [{ "path": "app/actions.ts", "template": "// nextjs revalidatePath skeleton\n" }] },
+    { "id": "strike-nestjs-config-validation", "name": "NestJS Config Validation", "stack": ["node","nestjs"], "tags": ["config","validation"], "files": [{ "path": "src/config.ts", "template": "// nestjs config validation skeleton\n" }] },
+    { "id": "strike-fastify-secure-session-cookie", "name": "Fastify secure-session Cookie", "stack": ["node","fastify"], "tags": ["session"], "files": [{ "path": "server.js", "template": "// fastify secure-session cookie skeleton\n" }] },
+    { "id": "strike-koa-csrf-protection", "name": "Koa CSRF Protection", "stack": ["node","koa"], "tags": ["security"], "files": [{ "path": "server.js", "template": "// koa csrf protection skeleton\n" }] },
+
+    { "id": "strike-fastapi-websocket-auth", "name": "FastAPI WebSocket Auth", "stack": ["python","fastapi"], "tags": ["realtime","auth"], "files": [{ "path": "app/ws.py", "template": "# fastapi websocket auth skeleton\n" }] },
+    { "id": "strike-drf-simplejwt-config", "name": "DRF SimpleJWT Config", "stack": ["python","django","drf","jwt"], "tags": ["auth"], "files": [{ "path": "app/jwt.py", "template": "# drf simplejwt config skeleton\n" }] },
+    { "id": "strike-pydantic-v2-computed-fields", "name": "Pydantic v2 Computed Fields", "stack": ["python","pydantic"], "tags": ["typing"], "files": [{ "path": "app/computed.py", "template": "# pydantic v2 computed fields skeleton\n" }] },
+    { "id": "strike-airflow-kubernetes-executor-config", "name": "Airflow Kubernetes Executor Config", "stack": ["airflow","kubernetes"], "tags": ["orchestration"], "files": [{ "path": "dags/k8s_executor.py", "template": "# airflow kubernetes executor skeleton\n" }] },
+
+    { "id": "strike-trino-iceberg-rest-catalog", "name": "Trino Iceberg REST Catalog", "stack": ["trino","iceberg"], "tags": ["sql"], "files": [{ "path": "trino/catalog.properties", "template": "# trino iceberg rest catalog skeleton\n" }] },
+    { "id": "strike-snowflake-masking-policies", "name": "Snowflake Masking Policies", "stack": ["snowflake"], "tags": ["security"], "files": [{ "path": "snowflake/masking.sql", "template": "-- snowflake masking policies skeleton\n" }] },
+    { "id": "strike-bigquery-authorized-views", "name": "BigQuery Authorized Views", "stack": ["gcp","bigquery"], "tags": ["security"], "files": [{ "path": "bq/authorized_views.sql", "template": "-- bigquery authorized views skeleton\n" }] },
+
+    { "id": "strike-milvus-hnsw-index-params", "name": "Milvus HNSW Index Params", "stack": ["milvus"], "tags": ["vector"], "files": [{ "path": "milvus/hnsw.py", "template": "# milvus hnsw index params skeleton\n" }] },
+    { "id": "strike-qdrant-write-consistency-levels", "name": "Qdrant Write Consistency Levels", "stack": ["qdrant"], "tags": ["vector"], "files": [{ "path": "qdrant/consistency.json", "template": "{ }\n" }] },
+    { "id": "strike-weaviate-generative-openai", "name": "Weaviate Generative OpenAI", "stack": ["weaviate","openai"], "tags": ["vector","generate"], "files": [{ "path": "weaviate/generative.json", "template": "{ }\n" }] },
+    { "id": "strike-pinecone-sparse-vectors", "name": "Pinecone Sparse Vectors", "stack": ["pinecone"], "tags": ["vector","hybrid"], "files": [{ "path": "pinecone/sparse.json", "template": "{ }\n" }] },
+
+    { "id": "strike-argocd-notifications-templates", "name": "ArgoCD Notifications Templates", "stack": ["argocd"], "tags": ["gitops","notify"], "files": [{ "path": "k8s/notifications-templates.yaml", "template": "# argocd notification templates skeleton\n" }] },
+    { "id": "strike-flux-helmrelease-drift-detection", "name": "Flux HelmRelease Drift Detection", "stack": ["fluxcd","helm"], "tags": ["gitops"], "files": [{ "path": "k8s/helmrelease.yaml", "template": "# flux helmrelease drift detection skeleton\n" }] },
+    { "id": "strike-helm-values-kubeval-ci", "name": "Helm values kubeval CI", "stack": ["helm","kubeval"], "tags": ["charts","ci"], "files": [{ "path": ".github/workflows/kubeval.yml", "template": "name: Kubeval\non: [push]\n" }] },
+    { "id": "strike-otel-collector-file-storage", "name": "OTel Collector file_storage ext", "stack": ["opentelemetry","collector"], "tags": ["storage"], "files": [{ "path": "otel/file_storage.yaml", "template": "extensions: { file_storage: {} }\n" }] },
+    { "id": "strike-tempo-service-graphs-processor", "name": "Tempo Service Graphs Processor", "stack": ["tempo"], "tags": ["traces"], "files": [{ "path": "tempo/service_graphs.yaml", "template": "# tempo service graphs processor skeleton\n" }] },
+
+    { "id": "strike-kyverno-verifyimages-oidc", "name": "Kyverno verifyImages OIDC", "stack": ["kyverno","cosign"], "tags": ["supply-chain"], "files": [{ "path": "kyverno/verify-oidc.yaml", "template": "# kyverno verify images oidc skeleton\n" }] },
+    { "id": "strike-gatekeeper-allowed-hostpath", "name": "Gatekeeper Allowed hostPath", "stack": ["gatekeeper","kubernetes"], "tags": ["policy"], "files": [{ "path": "k8s/allowed-hostpath.yaml", "template": "# gatekeeper allowed hostpath skeleton\n" }] },
+    { "id": "strike-falco-priv-esc-detect", "name": "Falco Privilege Escalation Detect", "stack": ["falco"], "tags": ["security"], "files": [{ "path": "falco/priv_esc.yaml", "template": "# falco privilege escalation skeleton\n" }] },
+    { "id": "strike-sigstore-rekor-lookup-ci", "name": "Sigstore Rekor Lookup CI", "stack": ["sigstore"], "tags": ["supply-chain"], "files": [{ "path": ".github/workflows/rekor-lookup.yml", "template": "name: RekorLookup\non: [push]\n" }] },
+
+    { "id": "strike-cloudflare-pages-functions-kv", "name": "Cloudflare Pages Functions KV", "stack": ["cloudflare","pages","kv"], "tags": ["edge"], "files": [{ "path": "functions/_middleware.ts", "template": "// pages functions with kv skeleton\n" }] },
+    { "id": "strike-deno-kv-watch-api", "name": "Deno KV Watch API", "stack": ["deno","kv"], "tags": ["events"], "files": [{ "path": "kv_watch.ts", "template": "// deno kv watch api skeleton\n" }] },
+    { "id": "strike-vercel-middleware-device-detect", "name": "Vercel Middleware Device Detect", "stack": ["vercel"], "tags": ["edge","device"], "files": [{ "path": "middleware.ts", "template": "// vercel device detect middleware skeleton\n" }] },
+    { "id": "strike-flyio-wireguard-private-network", "name": "Fly.io WireGuard Private Network", "stack": ["flyio"], "tags": ["network"], "files": [{ "path": "fly.toml", "template": "# fly wireguard private network skeleton\n" }] },
+
+    { "id": "strike-s3-inventory-reports", "name": "AWS S3 Inventory Reports", "stack": ["aws","s3"], "tags": ["storage"], "files": [{ "path": "s3/inventory.json", "template": "{ }\n" }] },
+    { "id": "strike-minio-bucket-replication", "name": "MinIO Bucket Replication", "stack": ["minio"], "tags": ["storage"], "files": [{ "path": "minio/replication.json", "template": "{ }\n" }] },
+    { "id": "strike-metabase-api-query", "name": "Metabase API Query", "stack": ["metabase"], "tags": ["bi"], "files": [{ "path": "metabase/query.json", "template": "{ }\n" }] }
+  ]
+}
+

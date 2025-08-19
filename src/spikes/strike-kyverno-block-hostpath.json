@@ -1,0 +1,17 @@
+{
+  "id": "strike-kyverno-block-hostpath",
+  "name": "Kyverno Block hostPath",
+  "stack": [
+    "kyverno"
+  ],
+  "tags": [
+    "policy"
+  ],
+  "files": [
+    {
+      "path": "kyverno/block-hostpath.yaml",
+      "template": "# kyverno block hostpath skeleton\n"
+    }
+  ],
+  "patches": []
+}

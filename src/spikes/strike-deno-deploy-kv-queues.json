@@ -1,0 +1,19 @@
+{
+  "id": "strike-deno-deploy-kv-queues",
+  "name": "Deno Deploy KV + Queues",
+  "stack": [
+    "deno",
+    "deploy",
+    "kv"
+  ],
+  "tags": [
+    "edge"
+  ],
+  "files": [
+    {
+      "path": "main.ts",
+      "template": "// deno deploy kv + queues skeleton\n"
+    }
+  ],
+  "patches": []
+}

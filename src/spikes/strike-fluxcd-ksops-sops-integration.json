@@ -1,0 +1,19 @@
+{
+  "id": "strike-fluxcd-ksops-sops-integration",
+  "name": "FluxCD KSOPS + SOPS",
+  "stack": [
+    "fluxcd",
+    "sops"
+  ],
+  "tags": [
+    "gitops",
+    "secrets"
+  ],
+  "files": [
+    {
+      "path": "k8s/ksops.yaml",
+      "template": "# flux ksops integration skeleton\n"
+    }
+  ],
+  "patches": []
+}

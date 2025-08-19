@@ -1,0 +1,17 @@
+{
+  "id": "strike-opa-rego-network-egress-allow",
+  "name": "OPA Rego Network Egress Allow",
+  "stack": [
+    "opa"
+  ],
+  "tags": [
+    "policy"
+  ],
+  "files": [
+    {
+      "path": "policy/network_egress.rego",
+      "template": "# rego network egress allow skeleton\n"
+    }
+  ],
+  "patches": []
+}

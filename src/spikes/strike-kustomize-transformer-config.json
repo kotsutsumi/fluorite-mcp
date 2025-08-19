@@ -1,0 +1,17 @@
+{
+  "id": "strike-kustomize-transformer-config",
+  "name": "Kustomize Transformer Config",
+  "stack": [
+    "kustomize"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/transformer.yaml",
+      "template": "# kustomize transformer config skeleton\n"
+    }
+  ],
+  "patches": []
+}

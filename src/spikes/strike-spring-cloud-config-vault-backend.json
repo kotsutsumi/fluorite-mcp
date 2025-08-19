@@ -1,0 +1,20 @@
+{
+  "id": "strike-spring-cloud-config-vault-backend",
+  "name": "Spring Cloud Config Vault Backend",
+  "stack": [
+    "java",
+    "spring",
+    "vault"
+  ],
+  "tags": [
+    "config",
+    "secrets"
+  ],
+  "files": [
+    {
+      "path": "src/main/resources/bootstrap.yml",
+      "template": "# cloud config vault backend skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-gatekeeper-allowed-hostpath",
+  "name": "Gatekeeper Allowed hostPath",
+  "stack": [
+    "gatekeeper",
+    "kubernetes"
+  ],
+  "tags": [
+    "policy"
+  ],
+  "files": [
+    {
+      "path": "k8s/allowed-hostpath.yaml",
+      "template": "# gatekeeper allowed hostpath skeleton\n"
+    }
+  ],
+  "patches": []
+}

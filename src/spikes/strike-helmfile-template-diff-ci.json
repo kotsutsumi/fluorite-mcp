@@ -1,0 +1,17 @@
+{
+  "id": "strike-helmfile-template-diff-ci",
+  "name": "Helmfile Template + Diff CI",
+  "stack": [
+    "helmfile"
+  ],
+  "tags": [
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/helmfile-template.yml",
+      "template": "name: HelmfileTemplate\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

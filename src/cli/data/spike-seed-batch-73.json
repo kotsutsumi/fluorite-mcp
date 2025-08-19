@@ -1,0 +1,29 @@
+{
+  "items": [
+    { "id": "strike-spring-saga-choreography-kafka", "name": "Spring Saga(Choreography) + Kafka", "stack": ["java","spring","kafka"], "tags": ["saga","event"], "files": [{ "path": "src/main/java/example/SagaOrchestrator.java", "template": "// spring saga choreography via kafka skeleton\n" }] },
+    { "id": "strike-quarkus-outbox-panache-debezium", "name": "Quarkus Outbox + Panache + Debezium", "stack": ["java","quarkus","debezium"], "tags": ["outbox","cdc"], "files": [{ "path": "src/main/java/org/acme/OutboxService.java", "template": "// quarkus outbox with panache + debezium skeleton\n" }] },
+    { "id": "strike-dotnet-saga-masstransit-state", "name": ".NET Saga MassTransit State", "stack": ["dotnet","masstransit"], "tags": ["saga"], "files": [{ "path": "Bus/SagaState.cs", "template": "// masstransit saga state skeleton\n" }] },
+    { "id": "strike-go-saga-choreography-nats", "name": "Go Saga Choreography + NATS", "stack": ["go","nats"], "tags": ["saga","event"], "files": [{ "path": "saga/main.go", "template": "// go saga choreography with nats skeleton\n" }] },
+    { "id": "strike-rust-saga-outbox-sqlx", "name": "Rust Saga Outbox + SQLx", "stack": ["rust","sqlx"], "tags": ["saga","outbox"], "files": [{ "path": "src/saga_outbox.rs", "template": "// rust saga outbox processor skeleton\n" }] },
+
+    { "id": "strike-langchain-agent-tools-evals-suite", "name": "LangChain Agents + Tools + Evals", "stack": ["python","langchain"], "tags": ["agents","eval"], "files": [{ "path": "rag/agents_evals.py", "template": "# langchain agents + tools + evals skeleton\n" }] },
+    { "id": "strike-llamaindex-ragas-trulens-observe", "name": "LlamaIndex + RAGAS + TruLens Observe", "stack": ["python","llamaindex","ragas"], "tags": ["rag","observability"], "files": [{ "path": "rag/observe.py", "template": "# llamaindex with ragas + trulens skeleton\n" }] },
+    { "id": "strike-chromadb-qdrant-hybrid-pipeline", "name": "Chroma + Qdrant Hybrid Pipeline", "stack": ["chromadb","qdrant"], "tags": ["vector","hybrid"], "files": [{ "path": "rag/hybrid.py", "template": "# hybrid vector pipeline chroma+qdrant skeleton\n" }] },
+    { "id": "strike-rag-openai-rerank-evals", "name": "RAG + OpenAI Rerank + Evals", "stack": ["python","openai","ragas"], "tags": ["rag","eval"], "files": [{ "path": "rag/rerank_eval.py", "template": "# rag + rerank + evals skeleton\n" }] },
+
+    { "id": "strike-argocd-fluxcd-coexist-strategy", "name": "ArgoCD × FluxCD 共存戦略", "stack": ["argocd","fluxcd"], "tags": ["gitops"], "files": [{ "path": "k8s/gitops-coexist.md", "template": "# coexist strategy notes skeleton\n" }] },
+    { "id": "strike-gitops-otel-end2end-stack", "name": "GitOps + OTel End-to-End", "stack": ["argocd","fluxcd","opentelemetry"], "tags": ["gitops","observability"], "files": [{ "path": "k8s/gitops-otel.yaml", "template": "# gitops + otel end-to-end stack skeleton\n" }] },
+    { "id": "strike-helmfile-kustomize-gitops-suite", "name": "Helmfile + Kustomize GitOps Suite", "stack": ["helmfile","kustomize"], "tags": ["gitops"], "files": [{ "path": "k8s/helmfile-suite.yaml", "template": "# helmfile + kustomize suite skeleton\n" }] },
+
+    { "id": "strike-kyverno-podsecurity-standards", "name": "Kyverno Pod Security Standards", "stack": ["kyverno"], "tags": ["policy"], "files": [{ "path": "kyverno/pss.yaml", "template": "# kyverno pss baseline/restricted skeleton\n" }] },
+    { "id": "strike-gatekeeper-library-bundle", "name": "Gatekeeper Policy Library Bundle", "stack": ["gatekeeper"], "tags": ["policy"], "files": [{ "path": "k8s/gatekeeper-bundle.yaml", "template": "# gatekeeper policies bundle skeleton\n" }] },
+    { "id": "strike-falco-cloudtrail-rules", "name": "Falco CloudTrail 連携ルール", "stack": ["falco","aws"], "tags": ["security"], "files": [{ "path": "falco/cloudtrail.yaml", "template": "# falco cloudtrail integration rules skeleton\n" }] },
+    { "id": "strike-opa-bundle-distribution-s3", "name": "OPA Bundle 配布(S3)", "stack": ["opa","s3"], "tags": ["policy","distribution"], "files": [{ "path": "opa/bundle_s3.md", "template": "# opa bundle distribution via s3 skeleton\n" }] },
+
+    { "id": "strike-nextjs-offline-cache-sw", "name": "Next.js Offline Cache + SW", "stack": ["nextjs","pwa"], "tags": ["offline","cache"], "files": [{ "path": "public/sw.js", "template": "// nextjs offline service worker skeleton\n" }] },
+    { "id": "strike-react-native-offline-first", "name": "React Native Offline First", "stack": ["react-native"], "tags": ["offline","mobile"], "files": [{ "path": "src/offline.ts", "template": "// react-native offline-first skeleton\n" }] },
+    { "id": "strike-firebase-fcm-device-groups", "name": "Firebase FCM Device Groups", "stack": ["firebase","fcm"], "tags": ["notifications"], "files": [{ "path": "functions/fcm_groups.ts", "template": "// firebase fcm device groups skeleton\n" }] },
+    { "id": "strike-cloudflare-cache-api-tagged", "name": "Cloudflare Cache API(Tagged)", "stack": ["cloudflare"], "tags": ["edge","cache"], "files": [{ "path": "src/cache.ts", "template": "// cloudflare cache api with tags skeleton\n" }] }
+  ]
+}
+

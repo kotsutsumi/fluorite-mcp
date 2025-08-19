@@ -1,0 +1,18 @@
+{
+  "id": "strike-trivy-kubernetes-admission",
+  "name": "Trivy Kubernetes Admission",
+  "stack": [
+    "trivy",
+    "kubernetes"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "k8s/trivy-admission.yaml",
+      "template": "# trivy admission controller skeleton\n"
+    }
+  ],
+  "patches": []
+}

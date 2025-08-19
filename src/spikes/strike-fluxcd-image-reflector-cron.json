@@ -1,0 +1,17 @@
+{
+  "id": "strike-fluxcd-image-reflector-cron",
+  "name": "FluxCD Image Reflector Cron",
+  "stack": [
+    "fluxcd"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/image-reflector.yaml",
+      "template": "# flux image reflector cron skeleton\n"
+    }
+  ],
+  "patches": []
+}

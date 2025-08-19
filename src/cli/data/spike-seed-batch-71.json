@@ -1,0 +1,49 @@
+{
+  "items": [
+    { "id": "strike-spring-kafka-exactly-once-tx", "name": "Spring Kafka Exactly-Once TX", "stack": ["java","spring","kafka"], "tags": ["eos","tx"], "files": [{ "path": "src/main/java/example/KafkaTx.java", "template": "// spring kafka eos tx skeleton\n" }] },
+    { "id": "strike-spring-cloud-circuitbreaker-resilience4j", "name": "Spring Cloud CircuitBreaker(Resilience4j)", "stack": ["java","spring"], "tags": ["resilience"], "files": [{ "path": "src/main/java/example/CBConfig.java", "template": "// cloud circuitbreaker resilience4j skeleton\n" }] },
+    { "id": "strike-quarkus-panache-redis-cache", "name": "Quarkus Panache + Redis Cache", "stack": ["java","quarkus","panache","redis"], "tags": ["db","cache"], "files": [{ "path": "src/main/java/org/acme/Cache.java", "template": "// quarkus panache redis cache skeleton\n" }] },
+    { "id": "strike-micronaut-openapi-swagger-ui", "name": "Micronaut OpenAPI + Swagger UI", "stack": ["java","micronaut","openapi"], "tags": ["api","docs"], "files": [{ "path": "src/main/resources/application.yml", "template": "# micronaut openapi swagger ui skeleton\n" }] },
+    { "id": "strike-ktor-server-websockets-auth", "name": "Ktor Server WebSockets + Auth", "stack": ["kotlin","ktor"], "tags": ["realtime","auth"], "files": [{ "path": "src/WebSockets.kt", "template": "// ktor websockets auth skeleton\n" }] },
+
+    { "id": "strike-aspnet-minimal-redis-rate-limit", "name": ".NET Minimal Redis RateLimit", "stack": ["dotnet","aspnet","redis"], "tags": ["throttle"], "files": [{ "path": "Program.cs", "template": "// minimal api redis ratelimit skeleton\n" }] },
+    { "id": "strike-efcore-audit-softdelete-shadow", "name": "EFCore Audit + SoftDelete Shadow", "stack": ["dotnet","efcore"], "tags": ["db","audit"], "files": [{ "path": "Data/Audit.cs", "template": "// efcore audit softdelete shadow props skeleton\n" }] },
+    { "id": "strike-serilog-gelf-graylog", "name": "Serilog GELF → Graylog", "stack": ["dotnet","serilog","graylog"], "tags": ["logs"], "files": [{ "path": "Program.cs", "template": "// serilog gelf graylog skeleton\n" }] },
+    { "id": "strike-orleans-reminders-cron", "name": ".NET Orleans Reminders Cron", "stack": ["dotnet","orleans"], "tags": ["schedule"], "files": [{ "path": "Grains/Reminder.cs", "template": "// orleans reminders cron skeleton\n" }] },
+
+    { "id": "strike-nestjs-opentelemetry-auto", "name": "NestJS OpenTelemetry 自動計測", "stack": ["node","nestjs","opentelemetry"], "tags": ["observability"], "files": [{ "path": "src/otel.ts", "template": "// nestjs otel auto instrument skeleton\n" }] },
+    { "id": "strike-express-rate-limit-redis-adapter", "name": "Express Rate Limit Redis Adapter", "stack": ["node","express","redis"], "tags": ["throttle"], "files": [{ "path": "server.js", "template": "// express rate-limit redis adapter skeleton\n" }] },
+    { "id": "strike-fastify-request-id-tracing", "name": "Fastify Request-ID + Tracing", "stack": ["node","fastify","opentelemetry"], "tags": ["tracing"], "files": [{ "path": "server.js", "template": "// fastify request-id tracing skeleton\n" }] },
+    { "id": "strike-hono-sse-streaming", "name": "Hono SSE Streaming", "stack": ["hono"], "tags": ["sse"], "files": [{ "path": "src/sse.ts", "template": "// hono sse streaming skeleton\n" }] },
+
+    { "id": "strike-fastapi-sse-notifications", "name": "FastAPI SSE Notifications", "stack": ["python","fastapi"], "tags": ["sse","realtime"], "files": [{ "path": "app/sse.py", "template": "# fastapi sse notifications skeleton\n" }] },
+    { "id": "strike-django-dramatiq-redis", "name": "Django Dramatiq + Redis", "stack": ["python","django","dramatiq","redis"], "tags": ["jobs"], "files": [{ "path": "dramatiq.py", "template": "# django dramatiq redis skeleton\n" }] },
+    { "id": "strike-pyspark-iceberg-catalog-hive", "name": "PySpark Iceberg Catalog(Hive)", "stack": ["pyspark","iceberg"], "tags": ["lakehouse"], "files": [{ "path": "spark/iceberg_hive.py", "template": "# pyspark iceberg hive catalog skeleton\n" }] },
+    { "id": "strike-mlflow-model-serving-rest", "name": "MLflow Model Serving REST", "stack": ["mlflow","python"], "tags": ["ml","serve"], "files": [{ "path": "mlflow/serve.py", "template": "# mlflow model serving rest skeleton\n" }] },
+
+    { "id": "strike-spark-structured-gcp-pubsub", "name": "Spark Structured Streaming Pub/Sub", "stack": ["spark","gcp","pubsub"], "tags": ["stream"], "files": [{ "path": "spark/pubsub.py", "template": "# spark streaming pubsub skeleton\n" }] },
+    { "id": "strike-trino-oauth2-azure-ad", "name": "Trino OAuth2 Azure AD", "stack": ["trino","oauth2","azure"], "tags": ["auth"], "files": [{ "path": "trino/config.properties", "template": "# trino oauth2 azure ad skeleton\n" }] },
+    { "id": "strike-snowflake-row-access-policies", "name": "Snowflake Row Access Policies", "stack": ["snowflake"], "tags": ["security"], "files": [{ "path": "snowflake/rap.sql", "template": "-- snowflake row access policies skeleton\n" }] },
+    { "id": "strike-bigquery-row-level-security", "name": "BigQuery Row-Level Security", "stack": ["gcp","bigquery"], "tags": ["security"], "files": [{ "path": "bq/rls.sql", "template": "-- bigquery row-level security skeleton\n" }] },
+
+    { "id": "strike-qdrant-distributed-replication", "name": "Qdrant Distributed Replication", "stack": ["qdrant"], "tags": ["vector","ha"], "files": [{ "path": "qdrant/replication.json", "template": "{ }\n" }] },
+    { "id": "strike-weaviate-hybrid-bm25-splade", "name": "Weaviate Hybrid BM25 + SPLADE", "stack": ["weaviate"], "tags": ["vector","hybrid"], "files": [{ "path": "weaviate/splade.json", "template": "{ }\n" }] },
+    { "id": "strike-pinecone-serverless-collections", "name": "Pinecone Serverless Collections", "stack": ["pinecone"], "tags": ["vector"], "files": [{ "path": "pinecone/serverless.json", "template": "{ }\n" }] },
+
+    { "id": "strike-argocd-appset-bitbucket", "name": "ArgoCD AppSet Bitbucket", "stack": ["argocd"], "tags": ["gitops"], "files": [{ "path": "k8s/appset-bitbucket.yaml", "template": "# argocd appset bitbucket skeleton\n" }] },
+    { "id": "strike-fluxcd-image-automation-policies", "name": "FluxCD Image Automation Policies", "stack": ["fluxcd"], "tags": ["gitops"], "files": [{ "path": "k8s/image-automation.yaml", "template": "# flux image automation policies skeleton\n" }] },
+    { "id": "strike-helm-unit-tests-chart-testing", "name": "Helm Unit Tests(Chart Testing)", "stack": ["helm","chart-testing"], "tags": ["charts","ci"], "files": [{ "path": ".github/workflows/chart-testing.yml", "template": "name: ChartTesting\non: [push]\n" }] },
+    { "id": "strike-kustomize-generate-configmap-from-env", "name": "Kustomize configMapGenerator", "stack": ["kustomize"], "tags": ["gitops"], "files": [{ "path": "k8s/kustomization.yaml", "template": "# kustomize configMapGenerator skeleton\n" }] },
+
+    { "id": "strike-kyverno-disallow-privileged", "name": "Kyverno Disallow Privileged", "stack": ["kyverno"], "tags": ["policy"], "files": [{ "path": "kyverno/privileged.yaml", "template": "# kyverno disallow privileged skeleton\n" }] },
+    { "id": "strike-opa-rego-k8s-pod-security", "name": "OPA Rego K8s Pod Security", "stack": ["opa"], "tags": ["policy"], "files": [{ "path": "policy/pod_security.rego", "template": "# rego pod security skeleton\n" }] },
+    { "id": "strike-falco-dns-exfil-detect", "name": "Falco DNS Exfiltration Detect", "stack": ["falco"], "tags": ["security"], "files": [{ "path": "falco/dns.yaml", "template": "# falco dns exfiltration detect skeleton\n" }] },
+    { "id": "strike-trivy-kubernetes-admission", "name": "Trivy Kubernetes Admission", "stack": ["trivy","kubernetes"], "tags": ["security"], "files": [{ "path": "k8s/trivy-admission.yaml", "template": "# trivy admission controller skeleton\n" }] },
+
+    { "id": "strike-cloudflare-r2-lifecycle-rules", "name": "Cloudflare R2 Lifecycle Rules", "stack": ["cloudflare","r2"], "tags": ["storage"], "files": [{ "path": "r2/lifecycle.json", "template": "{ }\n" }] },
+    { "id": "strike-deno-deploy-kv-queues", "name": "Deno Deploy KV + Queues", "stack": ["deno","deploy","kv"], "tags": ["edge"], "files": [{ "path": "main.ts", "template": "// deno deploy kv + queues skeleton\n" }] },
+    { "id": "strike-vercel-edge-ab-testing", "name": "Vercel Edge A/B Testing", "stack": ["vercel"], "tags": ["edge","ab"], "files": [{ "path": "middleware.ts", "template": "// vercel edge a/b testing skeleton\n" }] },
+    { "id": "strike-flyio-machines-health-checks", "name": "Fly.io Machines Health Checks", "stack": ["flyio"], "tags": ["health"], "files": [{ "path": "fly.toml", "template": "# fly machines health checks skeleton\n" }] }
+  ]
+}
+

@@ -1,0 +1,19 @@
+{
+  "id": "strike-trivy-filesystem-scan-pr",
+  "name": "Trivy Filesystem Scan(PR)",
+  "stack": [
+    "trivy",
+    "github"
+  ],
+  "tags": [
+    "security",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/trivy-fs-pr.yml",
+      "template": "name: TrivyFS-PR\non: [pull_request]\n"
+    }
+  ],
+  "patches": []
+}

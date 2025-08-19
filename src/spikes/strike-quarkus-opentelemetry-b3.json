@@ -1,0 +1,19 @@
+{
+  "id": "strike-quarkus-opentelemetry-b3",
+  "name": "Quarkus OpenTelemetry B3",
+  "stack": [
+    "java",
+    "quarkus",
+    "opentelemetry"
+  ],
+  "tags": [
+    "tracing"
+  ],
+  "files": [
+    {
+      "path": "src/main/resources/application.properties",
+      "template": "# otel propagators b3 skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,49 @@
+{
+  "items": [
+    { "id": "strike-spring-security-mfa-totp", "name": "Spring Security MFA(TOTP)", "stack": ["java","spring","security"], "tags": ["auth","mfa"], "files": [{ "path": "src/main/java/example/MfaConfig.java", "template": "// spring mfa totp skeleton\n" }] },
+    { "id": "strike-spring-cloud-gateway-rate-limit-redis", "name": "Gateway RateLimit(Redis)", "stack": ["java","spring","gateway","redis"], "tags": ["throttle"], "files": [{ "path": "src/main/resources/application.yml", "template": "# gateway ratelimit redis skeleton\n" }] },
+    { "id": "strike-quarkus-rest-client-retry-circuit", "name": "Quarkus REST Client Retry + Circuit", "stack": ["java","quarkus"], "tags": ["resilience"], "files": [{ "path": "src/main/java/org/acme/Client.java", "template": "// rest client retry + circuit breaker skeleton\n" }] },
+    { "id": "strike-micronaut-openapi-annotations", "name": "Micronaut OpenAPI Annotations", "stack": ["java","micronaut"], "tags": ["api","docs"], "files": [{ "path": "src/main/java/example/Api.java", "template": "// micronaut openapi annotations skeleton\n" }] },
+    { "id": "strike-ktor-server-auth-jwt-refresh", "name": "Ktor Auth JWT Refresh", "stack": ["kotlin","ktor","jwt"], "tags": ["auth"], "files": [{ "path": "src/Auth.kt", "template": "// ktor jwt refresh skeleton\n" }] },
+
+    { "id": "strike-aspnet-correlation-middleware", "name": ".NET Correlation Middleware", "stack": ["dotnet","aspnet"], "tags": ["tracing"], "files": [{ "path": "Program.cs", "template": "// correlation id middleware skeleton\n" }] },
+    { "id": "strike-efcore-temporal-audit-history", "name": "EFCore Temporal Audit History", "stack": ["dotnet","efcore"], "tags": ["db","audit"], "files": [{ "path": "Data/TemporalAudit.cs", "template": "// efcore temporal audit history skeleton\n" }] },
+    { "id": "strike-serilog-opentelemetry-logs", "name": "Serilog → OTel Logs", "stack": ["dotnet","serilog","opentelemetry"], "tags": ["logs"], "files": [{ "path": "Program.cs", "template": "// serilog to otel logs skeleton\n" }] },
+    { "id": "strike-orleans-grains-reminders", "name": "Orleans Grains + Reminders", "stack": ["dotnet","orleans"], "tags": ["schedule"], "files": [{ "path": "Grains/Reminder.cs", "template": "// orleans grains reminders skeleton\n" }] },
+
+    { "id": "strike-express-zod-fastify-swagger", "name": "Express Zod → Fastify Swagger", "stack": ["node","express","fastify","zod"], "tags": ["api","docs"], "files": [{ "path": "scripts/migrate.ts", "template": "// convert zod route defs to fastify swagger skeleton\n" }] },
+    { "id": "strike-nestjs-sse-gateway", "name": "NestJS SSE Gateway", "stack": ["node","nestjs"], "tags": ["realtime","sse"], "files": [{ "path": "src/sse.ts", "template": "// nestjs sse gateway skeleton\n" }] },
+    { "id": "strike-fastify-helmet-csp-hsts", "name": "Fastify Helmet CSP/HSTS", "stack": ["node","fastify","helmet"], "tags": ["security"], "files": [{ "path": "server.js", "template": "// fastify helmet csp hsts skeleton\n" }] },
+    { "id": "strike-hono-r2-presigned-multipart", "name": "Hono R2 Pre-signed Multipart", "stack": ["hono","r2"], "tags": ["upload","edge"], "files": [{ "path": "src/presign.ts", "template": "// hono r2 presigned multipart skeleton\n" }] },
+
+    { "id": "strike-fastapi-lifespan-events", "name": "FastAPI Lifespan Events", "stack": ["python","fastapi"], "tags": ["startup","shutdown"], "files": [{ "path": "app/lifespan.py", "template": "# fastapi lifespan events skeleton\n" }] },
+    { "id": "strike-django-channels-rate-limit", "name": "Django Channels Rate Limit", "stack": ["python","django","channels"], "tags": ["throttle"], "files": [{ "path": "app/rate_limit.py", "template": "# channels rate limit skeleton\n" }] },
+    { "id": "strike-pydantic-v2-jsonschema-refs", "name": "Pydantic v2 JSONSchema $refs", "stack": ["python","pydantic"], "tags": ["schema"], "files": [{ "path": "app/jsonschema.py", "template": "# pydantic v2 jsonschema refs skeleton\n" }] },
+    { "id": "strike-dagster-io-manager-duckdb", "name": "Dagster IO Manager DuckDB", "stack": ["dagster","duckdb"], "tags": ["data"], "files": [{ "path": "io/duckdb.py", "template": "# dagster duckdb io manager skeleton\n" }] },
+    { "id": "strike-prefect-push-parameters-cli", "name": "Prefect Push Parameters CLI", "stack": ["prefect"], "tags": ["cli"], "files": [{ "path": "flows/cli_params.py", "template": "# prefect push parameters via cli skeleton\n" }] },
+
+    { "id": "strike-spark-structured-sqs", "name": "Spark Structured SQS", "stack": ["spark","sqs"], "tags": ["stream"], "files": [{ "path": "spark/sqs.py", "template": "# spark streaming sqs skeleton\n" }] },
+    { "id": "strike-trino-ldap-auth", "name": "Trino LDAP Auth", "stack": ["trino","ldap"], "tags": ["auth"], "files": [{ "path": "trino/config.properties", "template": "# trino ldap auth skeleton\n" }] },
+    { "id": "strike-snowflake-external-table-parquet", "name": "Snowflake External Table(Parquet)", "stack": ["snowflake","s3"], "tags": ["warehouse"], "files": [{ "path": "snowflake/external_table_parquet.sql", "template": "-- snowflake external table parquet skeleton\n" }] },
+    { "id": "strike-bigquery-materialized-views", "name": "BigQuery Materialized Views", "stack": ["gcp","bigquery"], "tags": ["sql"], "files": [{ "path": "bq/mviews.sql", "template": "-- bigquery materialized views skeleton\n" }] },
+
+    { "id": "strike-chromadb-partial-updates", "name": "ChromaDB Partial Updates", "stack": ["chromadb"], "tags": ["vector"], "files": [{ "path": "chroma/partial_update.py", "template": "# chromadb partial updates skeleton\n" }] },
+    { "id": "strike-milvus-index-ivf-flat-gpu", "name": "Milvus IVF-Flat GPU", "stack": ["milvus"], "tags": ["vector"], "files": [{ "path": "milvus/ivf_flat_gpu.py", "template": "# milvus ivf-flat gpu skeleton\n" }] },
+    { "id": "strike-pinecone-upsert-with-metadata", "name": "Pinecone Upsert with Metadata", "stack": ["pinecone"], "tags": ["vector"], "files": [{ "path": "pinecone/upsert_meta.json", "template": "{ }\n" }] },
+
+    { "id": "strike-argocd-notifications-slack-webhook", "name": "ArgoCD Notifications Slack(Webhook)", "stack": ["argocd","slack"], "tags": ["gitops","notify"], "files": [{ "path": "k8s/notify_slack.yaml", "template": "# argocd notifications slack webhook skeleton\n" }] },
+    { "id": "strike-fluxcd-image-reflector-aws-ecr", "name": "Flux Image Reflector AWS ECR", "stack": ["fluxcd","ecr"], "tags": ["gitops"], "files": [{ "path": "k8s/image-reflector-ecr.yaml", "template": "# flux image reflector ecr skeleton\n" }] },
+    { "id": "strike-helmfile-template-lint-ci", "name": "Helmfile Template Lint CI", "stack": ["helmfile"], "tags": ["ci"], "files": [{ "path": ".github/workflows/helmfile-lint.yml", "template": "name: HelmfileLint\non: [push]\n" }] },
+    { "id": "strike-kustomize-patches-jsonpatch", "name": "Kustomize JSONPatch", "stack": ["kustomize"], "tags": ["gitops"], "files": [{ "path": "k8s/jsonpatch.yaml", "template": "# kustomize jsonpatch skeleton\n" }] },
+
+    { "id": "strike-kyverno-env-var-blacklist", "name": "Kyverno Env Var Blacklist", "stack": ["kyverno"], "tags": ["policy"], "files": [{ "path": "kyverno/env_blacklist.yaml", "template": "# kyverno env var blacklist skeleton\n" }] },
+    { "id": "strike-opa-rego-request-headers-policy", "name": "OPA Rego Request Headers Policy", "stack": ["opa"], "tags": ["policy"], "files": [{ "path": "policy/headers.rego", "template": "# rego headers policy skeleton\n" }] },
+    { "id": "strike-falco-proc-rename-detect", "name": "Falco Process Rename Detect", "stack": ["falco"], "tags": ["security"], "files": [{ "path": "falco/proc_rename.yaml", "template": "# falco process rename detect skeleton\n" }] },
+
+    { "id": "strike-workers-ai-image-caption", "name": "Workers AI Image Caption", "stack": ["cloudflare","workers-ai"], "tags": ["ai","edge"], "files": [{ "path": "src/caption.ts", "template": "// workers ai image caption skeleton\n" }] },
+    { "id": "strike-deno-deploy-kv-session-store", "name": "Deno Deploy KV Session Store", "stack": ["deno","deploy","kv"], "tags": ["session"], "files": [{ "path": "session.ts", "template": "// deno kv session store skeleton\n" }] },
+    { "id": "strike-vercel-middleware-security-headers", "name": "Vercel Middleware Security Headers", "stack": ["vercel"], "tags": ["security","edge"], "files": [{ "path": "middleware.ts", "template": "// vercel security headers middleware skeleton\n" }] },
+    { "id": "strike-flyio-machines-drain-traffic", "name": "Fly.io Machines Drain Traffic", "stack": ["flyio"], "tags": ["ops"], "files": [{ "path": "fly.toml", "template": "# fly machines drain traffic skeleton\n" }] }
+  ]
+}
+

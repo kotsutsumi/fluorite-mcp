@@ -1,0 +1,18 @@
+{
+  "id": "strike-kustomize-helm-chartinflator",
+  "name": "Kustomize helmChartInflator",
+  "stack": [
+    "kustomize",
+    "helm"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/inflator.yaml",
+      "template": "# kustomize chart inflator skeleton\n"
+    }
+  ],
+  "patches": []
+}

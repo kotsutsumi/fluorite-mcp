@@ -1,0 +1,18 @@
+{
+  "id": "strike-airflow-kubernetes-executor-config",
+  "name": "Airflow Kubernetes Executor Config",
+  "stack": [
+    "airflow",
+    "kubernetes"
+  ],
+  "tags": [
+    "orchestration"
+  ],
+  "files": [
+    {
+      "path": "dags/k8s_executor.py",
+      "template": "# airflow kubernetes executor skeleton\n"
+    }
+  ],
+  "patches": []
+}

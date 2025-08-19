@@ -50,10 +50,11 @@ Prevent issues before they occur with intelligent analysis:
 ### 🧪 Accelerated Development with Spike Templates
 Bridge the gap between idea and implementation:
 
-- **🏭 2,900+ Production Templates**: Battle-tested scaffolds for authentication, APIs, testing, and deployment
+- **🏭 2,900+ Production Templates**: Battle-tested scaffolds for authentication, APIs, testing, deployment, and speech processing
 - **🗣️ Natural Language Interface**: Describe features in plain English—no complex syntax to learn
 - **🎯 Intelligent Selection**: AI-powered template matching based on your project context and requirements
 - **🔄 Iterative Refinement**: Built-in quality validation and improvement loops
+- **🎵 Advanced Speech Processing**: Complete phonetic analysis with X-SAMPA/IPA conversion, ToBI prosodic annotation, and multilingual speech synthesis
 
 ### ⚡ Superior Developer Experience
 Professional-grade tooling that scales with your team:
@@ -461,6 +462,7 @@ claude mcp list
 | **📊 データ・可視化** | Recharts、D3.js、Chart.js、Tremor、TanStack Table | 8以上 | チャート、ダッシュボード、データテーブル、アナリティクス |
 | **🌐 API・バックエンド** | tRPC、Prisma、Drizzle、GraphQL、RESTパターン | 12以上 | 型安全API、データベース統合、リアルタイム |
 | **🚀 パフォーマンス** | React Query、SWR、最適化パターン、バンドリング | 6以上 | キャッシング、パフォーマンス監視、最適化 |
+| **🎵 音声処理** | X-SAMPA/IPA変換、ToBI韻律注釈、音声合成・解析 | 3以上 | 音韻解析、韻律分析、多言語音声処理 |
 
 #### **言語エコシステムカバレッジ**
 

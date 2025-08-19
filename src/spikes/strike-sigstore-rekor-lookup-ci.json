@@ -1,0 +1,17 @@
+{
+  "id": "strike-sigstore-rekor-lookup-ci",
+  "name": "Sigstore Rekor Lookup CI",
+  "stack": [
+    "sigstore"
+  ],
+  "tags": [
+    "supply-chain"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/rekor-lookup.yml",
+      "template": "name: RekorLookup\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

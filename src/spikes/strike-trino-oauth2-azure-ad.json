@@ -1,0 +1,19 @@
+{
+  "id": "strike-trino-oauth2-azure-ad",
+  "name": "Trino OAuth2 Azure AD",
+  "stack": [
+    "trino",
+    "oauth2",
+    "azure"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "trino/config.properties",
+      "template": "# trino oauth2 azure ad skeleton\n"
+    }
+  ],
+  "patches": []
+}

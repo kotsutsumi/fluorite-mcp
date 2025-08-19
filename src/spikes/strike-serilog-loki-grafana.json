@@ -1,0 +1,19 @@
+{
+  "id": "strike-serilog-loki-grafana",
+  "name": "Serilog Loki → Grafana",
+  "stack": [
+    "dotnet",
+    "serilog",
+    "loki"
+  ],
+  "tags": [
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "Program.cs",
+      "template": "// serilog loki sink skeleton\n"
+    }
+  ],
+  "patches": []
+}

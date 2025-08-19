@@ -1,0 +1,49 @@
+{
+  "items": [
+    { "id": "strike-spring-websocket-stomp-security", "name": "Spring WebSocket STOMP Security", "stack": ["java","spring","websocket"], "tags": ["realtime","security"], "files": [{ "path": "src/main/java/example/WebSocketSecurity.java", "template": "// websocket stomp security skeleton\n" }] },
+    { "id": "strike-spring-cloud-openfeign-retry", "name": "Spring Cloud OpenFeign Retry", "stack": ["java","spring","feign"], "tags": ["http","resilience"], "files": [{ "path": "src/main/java/example/FeignConfig.java", "template": "// openfeign retry skeleton\n" }] },
+    { "id": "strike-quarkus-kogito-workflow-basic", "name": "Quarkus Kogito Workflow 基本", "stack": ["java","quarkus","kogito"], "tags": ["workflow"], "files": [{ "path": "src/main/resources/process.bpmn2", "template": "<!-- kogito workflow skeleton -->\n" }] },
+    { "id": "strike-micronaut-grpc-server-client", "name": "Micronaut gRPC Server+Client", "stack": ["java","micronaut","grpc"], "tags": ["rpc"], "files": [{ "path": "src/main/proto/echo.proto", "template": "// micronaut grpc echo skeleton\n" }] },
+    { "id": "strike-ktor-client-retry-timeout", "name": "Ktor Client Retry + Timeout", "stack": ["kotlin","ktor"], "tags": ["http","resilience"], "files": [{ "path": "src/Http.kt", "template": "// ktor client retry timeout skeleton\n" }] },
+
+    { "id": "strike-aspnet-minimal-authn-authz", "name": ".NET Minimal AuthN/AuthZ", "stack": ["dotnet","aspnet"], "tags": ["auth"], "files": [{ "path": "Program.cs", "template": "// minimal authn/authz skeleton\n" }] },
+    { "id": "strike-efcore-global-query-filter-softdelete", "name": "EFCore Global Query Filter(SoftDelete)", "stack": ["dotnet","efcore"], "tags": ["db"], "files": [{ "path": "Data/Filters.cs", "template": "// efcore soft-delete filter skeleton\n" }] },
+    { "id": "strike-serilog-otel-exporter", "name": "Serilog → OpenTelemetry Exporter", "stack": ["dotnet","serilog","opentelemetry"], "tags": ["logs"], "files": [{ "path": "Program.cs", "template": "// serilog to otel exporter skeleton\n" }] },
+    { "id": "strike-masstransit-saga-state-machine", "name": "MassTransit Saga StateMachine", "stack": ["dotnet","masstransit"], "tags": ["saga"], "files": [{ "path": "Bus/Saga.cs", "template": "// masstransit saga state machine skeleton\n" }] },
+
+    { "id": "strike-express-zod-openapi", "name": "Express Zod OpenAPI", "stack": ["node","express","zod"], "tags": ["api","validation"], "files": [{ "path": "server.ts", "template": "// express zod openapi skeleton\n" }] },
+    { "id": "strike-nestjs-bull-redis-queues", "name": "NestJS Bull Redis Queues", "stack": ["node","nestjs","redis"], "tags": ["jobs"], "files": [{ "path": "src/queues.ts", "template": "// nestjs bull queues skeleton\n" }] },
+    { "id": "strike-fastify-cluster-primary-worker", "name": "Fastify Cluster Primary/Worker", "stack": ["node","fastify"], "tags": ["cluster"], "files": [{ "path": "server.js", "template": "// fastify cluster primary/worker skeleton\n" }] },
+    { "id": "strike-hono-kv-session-storage", "name": "Hono KV Session Storage", "stack": ["hono","cloudflare","kv"], "tags": ["session"], "files": [{ "path": "src/session.ts", "template": "// hono kv session storage skeleton\n" }] },
+
+    { "id": "strike-fastapi-sqlalchemy-asyncpg", "name": "FastAPI SQLAlchemy + asyncpg", "stack": ["python","fastapi","sqlalchemy"], "tags": ["db"], "files": [{ "path": "app/db.py", "template": "# sqlalchemy asyncpg engine skeleton\n" }] },
+    { "id": "strike-django-graphql-ariadne", "name": "Django GraphQL(Ariadne)", "stack": ["python","django","graphql"], "tags": ["api"], "files": [{ "path": "app/schema.py", "template": "# ariadne schema skeleton\n" }] },
+    { "id": "strike-ray-serve-grpc-gateway", "name": "Ray Serve gRPC Gateway", "stack": ["python","ray","serve"], "tags": ["ml","serve"], "files": [{ "path": "serve/grpc.py", "template": "# ray serve grpc gateway skeleton\n" }] },
+    { "id": "strike-airflow-trigger-dagrun-external", "name": "Airflow TriggerDagRun(外部)", "stack": ["airflow"], "tags": ["orchestration"], "files": [{ "path": "dags/trigger_external.py", "template": "# airflow trigger dagrun skeleton\n" }] },
+
+    { "id": "strike-spark-structured-kinesis", "name": "Spark Structured Streaming Kinesis", "stack": ["spark","kinesis"], "tags": ["stream"], "files": [{ "path": "spark/kinesis.py", "template": "# spark streaming kinesis skeleton\n" }] },
+    { "id": "strike-dbt-cross-db-macros", "name": "dbt Cross-DB Macros", "stack": ["dbt"], "tags": ["sql","macro"], "files": [{ "path": "macros/cross_db.sql", "template": "-- dbt cross db macro skeleton\n" }] },
+    { "id": "strike-snowflake-external-oauth", "name": "Snowflake External OAuth", "stack": ["snowflake","oauth2"], "tags": ["auth"], "files": [{ "path": "snowflake/oauth.sql", "template": "-- snowflake external oauth skeleton\n" }] },
+    { "id": "strike-trino-kerberos-auth", "name": "Trino Kerberos Auth", "stack": ["trino","kerberos"], "tags": ["auth"], "files": [{ "path": "trino/config.properties", "template": "# trino kerberos auth skeleton\n" }] },
+
+    { "id": "strike-qdrant-read-replicas", "name": "Qdrant Read Replicas", "stack": ["qdrant"], "tags": ["vector","ha"], "files": [{ "path": "qdrant/read_replicas.json", "template": "{ }\n" }] },
+    { "id": "strike-weaviate-tenants-backup", "name": "Weaviate Tenants Backup", "stack": ["weaviate"], "tags": ["vector","backup"], "files": [{ "path": "weaviate/tenants_backup.json", "template": "{ }\n" }] },
+    { "id": "strike-pinecone-index-dimension-migrate", "name": "Pinecone Index Dimension 移行", "stack": ["pinecone"], "tags": ["vector"], "files": [{ "path": "pinecone/migrate.md", "template": "# pinecone index dimension migration skeleton\n" }] },
+
+    { "id": "strike-argocd-appset-github-org", "name": "ArgoCD AppSet GitHub Org", "stack": ["argocd"], "tags": ["gitops"], "files": [{ "path": "k8s/appset-org.yaml", "template": "# appset github org skeleton\n" }] },
+    { "id": "strike-fluxcd-bucket-source-s3", "name": "FluxCD BucketSource S3", "stack": ["fluxcd","s3"], "tags": ["gitops"], "files": [{ "path": "k8s/bucket-source.yaml", "template": "# flux bucket source s3 skeleton\n" }] },
+    { "id": "strike-helm-json-schema-values", "name": "Helm JSON Schema for values", "stack": ["helm"], "tags": ["charts"], "files": [{ "path": "charts/app/values.schema.json", "template": "{ }\n" }] },
+    { "id": "strike-kustomize-patches-json6902", "name": "Kustomize patchesJson6902", "stack": ["kustomize"], "tags": ["gitops"], "files": [{ "path": "k8s/patches.json", "template": "# patches json6902 skeleton\n" }] },
+
+    { "id": "strike-kyverno-verifyimages-attestors", "name": "Kyverno verifyImages Attestors", "stack": ["kyverno","cosign"], "tags": ["policy","supply-chain"], "files": [{ "path": "kyverno/attestors.yaml", "template": "# kyverno verifyimages attestors skeleton\n" }] },
+    { "id": "strike-opa-conftest-helm-kustomize", "name": "Conftest Helm+Kustomize 検証", "stack": ["opa","conftest"], "tags": ["policy","ci"], "files": [{ "path": ".github/workflows/conftest-all.yml", "template": "name: ConftestAll\non: [push]\n" }] },
+    { "id": "strike-falco-kernel-modules-detect", "name": "Falco Kernel Modules Detect", "stack": ["falco"], "tags": ["security"], "files": [{ "path": "falco/modules.yaml", "template": "# falco kernel modules detect skeleton\n" }] },
+    { "id": "strike-trivy-sbom-cyclonedx", "name": "Trivy SBOM(CycloneDX)", "stack": ["trivy","sbom"], "tags": ["supply-chain"], "files": [{ "path": ".github/workflows/trivy-sbom.yml", "template": "name: TrivySBOM\non: [push]\n" }] },
+
+    { "id": "strike-cloudflare-r2-signed-downloads", "name": "Cloudflare R2 Signed Downloads", "stack": ["cloudflare","r2"], "tags": ["storage"], "files": [{ "path": "r2/signed.ts", "template": "// r2 signed downloads skeleton\n" }] },
+    { "id": "strike-deno-kv-subscriptions", "name": "Deno KV Subscriptions", "stack": ["deno","kv"], "tags": ["events"], "files": [{ "path": "kv.ts", "template": "// deno kv subscriptions skeleton\n" }] },
+    { "id": "strike-vercel-og-fonts", "name": "Vercel OG Fonts", "stack": ["vercel"], "tags": ["edge","image"], "files": [{ "path": "api/og/route.ts", "template": "// vercel og fonts skeleton\n" }] },
+    { "id": "strike-flyio-machines-scaling", "name": "Fly.io Machines Scaling", "stack": ["flyio"], "tags": ["scale"], "files": [{ "path": "fly.toml", "template": "# fly machines scaling skeleton\n" }] }
+  ]
+}
+

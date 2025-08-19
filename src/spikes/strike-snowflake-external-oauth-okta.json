@@ -1,0 +1,19 @@
+{
+  "id": "strike-snowflake-external-oauth-okta",
+  "name": "Snowflake External OAuth(Okta)",
+  "stack": [
+    "snowflake",
+    "oauth2",
+    "okta"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "snowflake/oauth_okta.sql",
+      "template": "-- snowflake external oauth okta skeleton\n"
+    }
+  ],
+  "patches": []
+}

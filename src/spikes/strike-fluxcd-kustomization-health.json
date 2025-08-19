@@ -1,0 +1,17 @@
+{
+  "id": "strike-fluxcd-kustomization-health",
+  "name": "FluxCD Kustomization Health",
+  "stack": [
+    "fluxcd"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/kustomization_health.yaml",
+      "template": "# flux kustomization health skeleton\n"
+    }
+  ],
+  "patches": []
+}

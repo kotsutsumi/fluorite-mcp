@@ -1,0 +1,18 @@
+{
+  "id": "strike-weaviate-tenants-backup",
+  "name": "Weaviate Tenants Backup",
+  "stack": [
+    "weaviate"
+  ],
+  "tags": [
+    "vector",
+    "backup"
+  ],
+  "files": [
+    {
+      "path": "weaviate/tenants_backup.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

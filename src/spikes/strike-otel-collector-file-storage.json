@@ -1,0 +1,18 @@
+{
+  "id": "strike-otel-collector-file-storage",
+  "name": "OTel Collector file_storage ext",
+  "stack": [
+    "opentelemetry",
+    "collector"
+  ],
+  "tags": [
+    "storage"
+  ],
+  "files": [
+    {
+      "path": "otel/file_storage.yaml",
+      "template": "extensions: { file_storage: {} }\n"
+    }
+  ],
+  "patches": []
+}

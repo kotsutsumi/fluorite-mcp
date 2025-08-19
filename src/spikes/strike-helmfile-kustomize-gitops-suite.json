@@ -1,0 +1,18 @@
+{
+  "id": "strike-helmfile-kustomize-gitops-suite",
+  "name": "Helmfile + Kustomize GitOps Suite",
+  "stack": [
+    "helmfile",
+    "kustomize"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/helmfile-suite.yaml",
+      "template": "# helmfile + kustomize suite skeleton\n"
+    }
+  ],
+  "patches": []
+}

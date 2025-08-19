@@ -1,0 +1,20 @@
+{
+  "id": "strike-cloudflare-queues-kafka-proxy",
+  "name": "Cloudflare Queues Kafka Proxy",
+  "stack": [
+    "cloudflare",
+    "queues",
+    "kafka"
+  ],
+  "tags": [
+    "edge",
+    "proxy"
+  ],
+  "files": [
+    {
+      "path": "wrangler.toml",
+      "template": "# queues to kafka proxy skeleton\n"
+    }
+  ],
+  "patches": []
+}

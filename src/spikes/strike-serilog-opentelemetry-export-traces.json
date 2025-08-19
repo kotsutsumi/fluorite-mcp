@@ -1,0 +1,19 @@
+{
+  "id": "strike-serilog-opentelemetry-export-traces",
+  "name": "Serilog → OTel Export(Traces)",
+  "stack": [
+    "dotnet",
+    "serilog",
+    "opentelemetry"
+  ],
+  "tags": [
+    "traces"
+  ],
+  "files": [
+    {
+      "path": "Program.cs",
+      "template": "// serilog to otel traces skeleton\n"
+    }
+  ],
+  "patches": []
+}

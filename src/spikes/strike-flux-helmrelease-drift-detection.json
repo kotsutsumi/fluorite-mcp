@@ -1,0 +1,18 @@
+{
+  "id": "strike-flux-helmrelease-drift-detection",
+  "name": "Flux HelmRelease Drift Detection",
+  "stack": [
+    "fluxcd",
+    "helm"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/helmrelease.yaml",
+      "template": "# flux helmrelease drift detection skeleton\n"
+    }
+  ],
+  "patches": []
+}

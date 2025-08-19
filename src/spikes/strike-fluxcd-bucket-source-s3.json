@@ -1,0 +1,18 @@
+{
+  "id": "strike-fluxcd-bucket-source-s3",
+  "name": "FluxCD BucketSource S3",
+  "stack": [
+    "fluxcd",
+    "s3"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/bucket-source.yaml",
+      "template": "# flux bucket source s3 skeleton\n"
+    }
+  ],
+  "patches": []
+}

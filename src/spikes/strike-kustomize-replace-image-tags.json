@@ -1,0 +1,17 @@
+{
+  "id": "strike-kustomize-replace-image-tags",
+  "name": "Kustomize Replace Image Tags",
+  "stack": [
+    "kustomize"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/kustomization.yaml",
+      "template": "# kustomize replace image tags skeleton\n"
+    }
+  ],
+  "patches": []
+}

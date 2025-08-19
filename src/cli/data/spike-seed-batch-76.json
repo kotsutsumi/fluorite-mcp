@@ -1,0 +1,53 @@
+{
+  "items": [
+    { "id": "strike-spring-webflux-circuitbreaker-timeouts", "name": "Spring WebFlux CircuitBreaker + Timeouts", "stack": ["java","spring","webflux"], "tags": ["resilience","http"], "files": [{ "path": "src/main/java/example/Resilience.java", "template": "// webflux circuitbreaker + timeouts skeleton\n" }] },
+    { "id": "strike-spring-data-mongodb-transactions", "name": "Spring Data MongoDB Transactions", "stack": ["java","spring","mongodb"], "tags": ["db","tx"], "files": [{ "path": "src/main/java/example/MongoTx.java", "template": "// mongodb transactions skeleton\n" }] },
+    { "id": "strike-quarkus-reactive-rest-client-mtls", "name": "Quarkus Reactive REST Client mTLS", "stack": ["java","quarkus","tls"], "tags": ["http","security"], "files": [{ "path": "src/main/resources/application.properties", "template": "# reactive rest client mtls skeleton\n" }] },
+    { "id": "strike-micronaut-http-client-circuitbreaker", "name": "Micronaut HTTP Client CircuitBreaker", "stack": ["java","micronaut"], "tags": ["resilience","http"], "files": [{ "path": "src/main/java/example/Client.java", "template": "// micronaut http client circuitbreaker skeleton\n" }] },
+    { "id": "strike-ktor-server-csrf-protection", "name": "Ktor Server CSRF Protection", "stack": ["kotlin","ktor"], "tags": ["security"], "files": [{ "path": "src/Csrf.kt", "template": "// ktor csrf protection skeleton\n" }] },
+
+    { "id": "strike-aspnet-identity-webauthn", "name": ".NET Identity WebAuthn", "stack": ["dotnet","aspnet","identity"], "tags": ["auth","webauthn"], "files": [{ "path": "Auth/WebAuthn.cs", "template": "// identity webauthn skeleton\n" }] },
+    { "id": "strike-efcore-json-columns", "name": "EFCore JSON Columns", "stack": ["dotnet","efcore"], "tags": ["db"], "files": [{ "path": "Data/JsonColumns.cs", "template": "// efcore json columns skeleton\n" }] },
+    { "id": "strike-serilog-grafana-cloud-logs", "name": "Serilog Grafana Cloud Logs", "stack": ["dotnet","serilog","grafana"], "tags": ["logs"], "files": [{ "path": "Program.cs", "template": "// serilog grafana cloud logs skeleton\n" }] },
+    { "id": "strike-mediatr-outbox-behavior", "name": "MediatR Outbox Behavior", "stack": ["dotnet","mediatr"], "tags": ["outbox","cqrs"], "files": [{ "path": "Application/Behaviors/OutboxBehavior.cs", "template": "// mediatr outbox behavior skeleton\n" }] },
+
+    { "id": "strike-express-als-trace-context", "name": "Express ALS Trace Context", "stack": ["node","express"], "tags": ["tracing"], "files": [{ "path": "server.js", "template": "// express async-local-storage trace context skeleton\n" }] },
+    { "id": "strike-nestjs-kafka-microservice", "name": "NestJS Kafka Microservice", "stack": ["node","nestjs","kafka"], "tags": ["microservice"], "files": [{ "path": "src/kafka.ts", "template": "// nestjs kafka microservice skeleton\n" }] },
+    { "id": "strike-fastify-redis-rate-limit-store", "name": "Fastify Redis Rate Limit Store", "stack": ["node","fastify","redis"], "tags": ["throttle"], "files": [{ "path": "server.js", "template": "// fastify redis rate limit store skeleton\n" }] },
+    { "id": "strike-h3-openapi-swagger", "name": "h3 OpenAPI + Swagger", "stack": ["node","h3"], "tags": ["api","docs"], "files": [{ "path": "server.ts", "template": "// h3 openapi swagger skeleton\n" }] },
+
+    { "id": "strike-fastapi-cors-origins-config", "name": "FastAPI CORS Origins Config", "stack": ["python","fastapi"], "tags": ["security","cors"], "files": [{ "path": "app/cors.py", "template": "# fastapi cors origins config skeleton\n" }] },
+    { "id": "strike-django-queryset-caching", "name": "Django QuerySet Caching", "stack": ["python","django"], "tags": ["cache"], "files": [{ "path": "app/cache.py", "template": "# django queryset caching skeleton\n" }] },
+    { "id": "strike-pandas-pyarrow-dataset", "name": "Pandas PyArrow Dataset", "stack": ["python","pandas","pyarrow"], "tags": ["data"], "files": [{ "path": "pandas/pyarrow_dataset.py", "template": "# pandas pyarrow dataset skeleton\n" }] },
+    { "id": "strike-prefect-work-pools", "name": "Prefect Work Pools", "stack": ["prefect"], "tags": ["orchestration"], "files": [{ "path": "flows/work_pools.py", "template": "# prefect work pools skeleton\n" }] },
+    { "id": "strike-dagster-db-resource-managers", "name": "Dagster DB Resource Managers", "stack": ["dagster"], "tags": ["data"], "files": [{ "path": "resources/db.py", "template": "# dagster db resource manager skeleton\n" }] },
+
+    { "id": "strike-spark-structured-delta-sink", "name": "Spark Structured Delta Lake Sink", "stack": ["spark","delta"], "tags": ["stream"], "files": [{ "path": "spark/delta_sink.py", "template": "# spark delta sink skeleton\n" }] },
+    { "id": "strike-trino-iceberg-glue-catalog", "name": "Trino Iceberg Glue Catalog", "stack": ["trino","iceberg","glue"], "tags": ["sql"], "files": [{ "path": "trino/catalog_glue.properties", "template": "# trino iceberg glue catalog skeleton\n" }] },
+    { "id": "strike-snowflake-dynamic-data-masking", "name": "Snowflake Dynamic Data Masking", "stack": ["snowflake"], "tags": ["security"], "files": [{ "path": "snowflake/ddm.sql", "template": "-- snowflake dynamic data masking skeleton\n" }] },
+    { "id": "strike-bigquery-column-level-security", "name": "BigQuery Column-Level Security", "stack": ["gcp","bigquery"], "tags": ["security"], "files": [{ "path": "bq/column_security.sql", "template": "-- bigquery column-level security skeleton\n" }] },
+
+    { "id": "strike-chromadb-deduplication", "name": "ChromaDB Deduplication", "stack": ["chromadb"], "tags": ["vector"], "files": [{ "path": "chroma/dedup.py", "template": "# chromadb deduplication skeleton\n" }] },
+    { "id": "strike-milvus-partitions-hnsw-params", "name": "Milvus Partitions + HNSW Params", "stack": ["milvus"], "tags": ["vector"], "files": [{ "path": "milvus/hnsw_partitions.py", "template": "# milvus partitions + hnsw params skeleton\n" }] },
+    { "id": "strike-pinecone-collection-metadata-upsert", "name": "Pinecone Collection Metadata Upsert", "stack": ["pinecone"], "tags": ["vector"], "files": [{ "path": "pinecone/metadata_upsert.json", "template": "{ }\n" }] },
+
+    { "id": "strike-fluxcd-webhook-receiver-github", "name": "FluxCD Webhook Receiver(GitHub)", "stack": ["fluxcd","github"], "tags": ["gitops"], "files": [{ "path": "k8s/receiver.yaml", "template": "# fluxcd webhook receiver github skeleton\n" }] },
+    { "id": "strike-helmfile-sops-encrypted-secrets", "name": "Helmfile SOPS Encrypted Secrets", "stack": ["helmfile","sops"], "tags": ["gitops","secrets"], "files": [{ "path": "helmfile.yaml", "template": "# helmfile sops secrets skeleton\n" }] },
+    { "id": "strike-kustomize-patches-strategic-merge", "name": "Kustomize patches Strategic Merge", "stack": ["kustomize"], "tags": ["gitops"], "files": [{ "path": "k8s/patch-strategic.yaml", "template": "# kustomize patches strategic merge skeleton\n" }] },
+
+    { "id": "strike-kyverno-block-hostpath", "name": "Kyverno Block hostPath", "stack": ["kyverno"], "tags": ["policy"], "files": [{ "path": "kyverno/block-hostpath.yaml", "template": "# kyverno block hostpath skeleton\n" }] },
+    { "id": "strike-opa-rego-time-window-policy", "name": "OPA Rego Time Window Policy", "stack": ["opa"], "tags": ["policy"], "files": [{ "path": "policy/time_window.rego", "template": "# rego time window policy skeleton\n" }] },
+    { "id": "strike-falco-container-escape-detect", "name": "Falco Container Escape Detect", "stack": ["falco"], "tags": ["security"], "files": [{ "path": "falco/container_escape.yaml", "template": "# falco container escape detect skeleton\n" }] },
+    { "id": "strike-trivy-filesystem-scan-pr", "name": "Trivy Filesystem Scan(PR)", "stack": ["trivy","github"], "tags": ["security","ci"], "files": [{ "path": ".github/workflows/trivy-fs-pr.yml", "template": "name: TrivyFS-PR\non: [pull_request]\n" }] },
+
+    { "id": "strike-workers-routes-cache-tags", "name": "Workers Routes Cache Tags", "stack": ["cloudflare","workers"], "tags": ["edge","cache"], "files": [{ "path": "src/routes.ts", "template": "// workers routes cache tags skeleton\n" }] },
+    { "id": "strike-deno-queues-delayed-messages", "name": "Deno Queues Delayed Messages", "stack": ["deno","queues"], "tags": ["edge"], "files": [{ "path": "queue.ts", "template": "// deno queues delayed messages skeleton\n" }] },
+    { "id": "strike-vercel-image-optimization-loader", "name": "Vercel Image Optimization Loader", "stack": ["vercel"], "tags": ["image","edge"], "files": [{ "path": "next.config.js", "template": "// vercel image optimization loader skeleton\n" }] },
+    { "id": "strike-flyio-private-network-services", "name": "Fly.io Private Network Services", "stack": ["flyio"], "tags": ["network"], "files": [{ "path": "fly.toml", "template": "# fly private network services skeleton\n" }] },
+
+    { "id": "strike-temporal-activities-retry-policy", "name": "Temporal Activities Retry Policy", "stack": ["temporal"], "tags": ["workflow"], "files": [{ "path": "workflow/retry.go", "template": "// temporal activities retry policy skeleton\n" }] },
+    { "id": "strike-airbyte-cdk-python-source-minimal", "name": "Airbyte CDK Python Source Minimal", "stack": ["airbyte","python"], "tags": ["connector"], "files": [{ "path": "source/__init__.py", "template": "# airbyte cdk python source skeleton\n" }] },
+    { "id": "strike-dbt-source-freshness-ci", "name": "dbt Source Freshness CI", "stack": ["dbt"], "tags": ["ci","sql"], "files": [{ "path": ".github/workflows/dbt-freshness.yml", "template": "name: DBT Freshness\non: [push]\n" }] }
+  ]
+}
+

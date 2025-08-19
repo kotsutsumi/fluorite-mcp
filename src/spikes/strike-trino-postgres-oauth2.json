@@ -1,0 +1,18 @@
+{
+  "id": "strike-trino-postgres-oauth2",
+  "name": "Trino Postgres OAuth2",
+  "stack": [
+    "trino",
+    "oauth2"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "trino/config.properties",
+      "template": "# trino postgres oauth2 skeleton\n"
+    }
+  ],
+  "patches": []
+}

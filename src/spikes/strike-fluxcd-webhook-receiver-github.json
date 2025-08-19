@@ -1,0 +1,18 @@
+{
+  "id": "strike-fluxcd-webhook-receiver-github",
+  "name": "FluxCD Webhook Receiver(GitHub)",
+  "stack": [
+    "fluxcd",
+    "github"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/receiver.yaml",
+      "template": "# fluxcd webhook receiver github skeleton\n"
+    }
+  ],
+  "patches": []
+}

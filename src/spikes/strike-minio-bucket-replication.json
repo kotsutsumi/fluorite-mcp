@@ -1,0 +1,17 @@
+{
+  "id": "strike-minio-bucket-replication",
+  "name": "MinIO Bucket Replication",
+  "stack": [
+    "minio"
+  ],
+  "tags": [
+    "storage"
+  ],
+  "files": [
+    {
+      "path": "minio/replication.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

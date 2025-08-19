@@ -1,0 +1,19 @@
+{
+  "id": "strike-hono-kv-session-storage",
+  "name": "Hono KV Session Storage",
+  "stack": [
+    "hono",
+    "cloudflare",
+    "kv"
+  ],
+  "tags": [
+    "session"
+  ],
+  "files": [
+    {
+      "path": "src/session.ts",
+      "template": "// hono kv session storage skeleton\n"
+    }
+  ],
+  "patches": []
+}

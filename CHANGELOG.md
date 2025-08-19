@@ -1,63 +1,63 @@
-# Changelog
+# 変更ログ
 
-All notable changes to this project will be documented in this file.
+このプロジェクトの注目すべき変更はすべてこのファイルに記録されます。
 
 変更ログの形式は Keep a Changelog 形式に基づいており、
 このプロジェクトは Semantic Versioning に準拠しています。
 
 ## [0.12.1] - 2025-01-17
 
-### Added
-- Expanded spike template ecosystem to 750+ production-ready templates
-- Enhanced template categories with significant growth:
-  - Frontend Frameworks: 180+ templates (up from 98+)
-  - Backend APIs: 120+ templates (up from 59+)
-  - Testing & Quality: 150+ templates (up from 58+)
-  - Infrastructure: 200+ templates (up from 40+)
-  - UI Components: 100+ templates (up from 27+)
-- Comprehensive documentation updates and version synchronization
-- Improved API consistency and accuracy
+### 追加
+- スパイクテンプレートエコシステムを750以上のプロダクション対応テンプレートに拡張
+- テンプレートカテゴリの大幅な増強:
+  - フロントエンドフレームワーク: 180以上のテンプレート（98以上から増加）
+  - バックエンドAPI: 120以上のテンプレート（59以上から増加）
+  - テスト・品質: 150以上のテンプレート（58以上から増加）
+  - インフラストラクチャ: 200以上のテンプレート（40以上から増加）
+  - UIコンポーネント: 100以上のテンプレート（27以上から増加）
+- 包括的なドキュメント更新とバージョン同期
+- API一貫性と精度の向上
 
-### Enhanced
-- Updated all documentation to reflect current capabilities
-- Synchronized version references across all documentation files
-- Enhanced installation instructions with correct MCP server commands
-- Improved feature documentation accuracy
+### 改善
+- 現在の機能を反映するよう全ドキュメントを更新
+- 全ドキュメントファイル間でのバージョン参照の同期
+- 正しいMCPサーバーコマンドによるインストール手順の改善
+- 機能ドキュメントの精度向上
 
-### Fixed
-- Version inconsistencies across documentation files (0.11.0 → 0.12.1)
-- Installation command references throughout documentation
-- Template count accuracy in marketing materials
-- Cross-reference synchronization between documents
+### 修正
+- ドキュメントファイル間のバージョン不整合（0.11.0 → 0.12.1）
+- ドキュメント全体でのインストールコマンド参照
+- マーケティング資料でのテンプレート数の精度
+- ドキュメント間の相互参照同期
 
 ## [0.11.0] - 2024-12-19
 
-### Added
-- Enhanced automation scripts and spike template collection
-- Comprehensive documentation with performance guide
-- Extensive library specifications (87+ libraries)
-- Spike templates ecosystem (385+ templates)
-- Static analysis with 50+ validation rules
-- Error prediction engine
-- Multi-language ecosystem support (12+ languages)
+### 追加
+- 自動化スクリプトとスパイクテンプレートコレクションの改善
+- パフォーマンスガイドを含む包括的なドキュメント
+- 幅広いライブラリ仕様（87以上のライブラリ）
+- スパイクテンプレートエコシステム（385以上のテンプレート）
+- 50以上の検証ルールを持つ静的解析
+- エラー予測エンジン
+- 多言語エコシステムサポート（12以上の言語）
 
-### Enhanced
-- Professional presentation and documentation consistency
-- API version updates and improved functionality
-- Package-lock.json version management
+### 改善
+- プロフェッショナルなプレゼンテーションとドキュメントの一貫性
+- APIバージョン更新と機能向上
+- package-lock.jsonバージョン管理
 
-### Fixed
-- Documentation links and internal references
-- Broken anchor links in contributing guidelines
-- Missing sections in CONTRIBUTING.md
+### 修正
+- ドキュメントリンクと内部参照
+- コントリビューションガイドラインの壊れたアンカーリンク
+- CONTRIBUTING.mdの欠落セクション
 
-## [Unreleased]
+## [未リリース]
 
-### Added
-- Fixed broken internal links and references
-- Added missing CHANGELOG.md file
-- Enhanced CONTRIBUTING.md with proper section anchors
+### 追加
+- 壊れた内部リンクと参照の修正
+- 欠落していたCHANGELOG.mdファイルの追加
+- 適切なセクションアンカーを持つCONTRIBUTING.mdの改善
 
 ---
 
-For the complete release history, see [GitHub Releases](https://github.com/kotsutsumi/fluorite-mcp/releases).
+完全なリリース履歴については、[GitHub Releases](https://github.com/kotsutsumi/fluorite-mcp/releases)をご確認ください。

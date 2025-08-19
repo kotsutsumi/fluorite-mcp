@@ -1,0 +1,17 @@
+{
+  "id": "strike-argocd-config-management-plugins",
+  "name": "ArgoCD Config Management Plugins",
+  "stack": [
+    "argocd"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/cmp.yaml",
+      "template": "# argocd cmp skeleton\n"
+    }
+  ],
+  "patches": []
+}

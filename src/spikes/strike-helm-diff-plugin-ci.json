@@ -1,0 +1,19 @@
+{
+  "id": "strike-helm-diff-plugin-ci",
+  "name": "Helm Diff Plugin CI",
+  "stack": [
+    "helm",
+    "diff"
+  ],
+  "tags": [
+    "charts",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/helm-diff.yml",
+      "template": "name: HelmDiff\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,48 @@
+{
+  "items": [
+    { "id": "strike-spring-security-keycloak-adapter", "name": "Spring Security Keycloak Adapter", "stack": ["java","spring","keycloak"], "tags": ["auth"], "files": [{ "path": "src/main/resources/application.yml", "template": "# keycloak adapter skeleton\n" }] },
+    { "id": "strike-spring-cloud-stream-kafka-dlt", "name": "Spring Cloud Stream Kafka + DLT", "stack": ["java","spring","kafka"], "tags": ["dlt"], "files": [{ "path": "src/main/resources/application.yml", "template": "# cloud stream kafka dlt skeleton\n" }] },
+    { "id": "strike-quarkus-opentelemetry-b3", "name": "Quarkus OpenTelemetry B3", "stack": ["java","quarkus","opentelemetry"], "tags": ["tracing"], "files": [{ "path": "src/main/resources/application.properties", "template": "# otel propagators b3 skeleton\n" }] },
+    { "id": "strike-micronaut-kafka-batch-consume", "name": "Micronaut Kafka Batch Consume", "stack": ["java","micronaut","kafka"], "tags": ["batch","consume"], "files": [{ "path": "src/main/java/example/BatchConsumer.java", "template": "// micronaut kafka batch consumer skeleton\n" }] },
+    { "id": "strike-ktor-plugins-rate-limit", "name": "Ktor Plugins Rate Limit", "stack": ["kotlin","ktor"], "tags": ["throttle"], "files": [{ "path": "src/RateLimit.kt", "template": "// ktor rate limit plugin skeleton\n" }] },
+
+    { "id": "strike-aspnet-outputcache-taghelpers", "name": ".NET OutputCache TagHelpers", "stack": ["dotnet","aspnet"], "tags": ["cache"], "files": [{ "path": "Program.cs", "template": "// outputcache taghelpers skeleton\n" }] },
+    { "id": "strike-efcore-interceptors-softdelete", "name": "EFCore Interceptors SoftDelete", "stack": ["dotnet","efcore"], "tags": ["db"], "files": [{ "path": "Data/Interceptors.cs", "template": "// efcore softdelete interceptor skeleton\n" }] },
+    { "id": "strike-serilog-loki-grafana", "name": "Serilog Loki → Grafana", "stack": ["dotnet","serilog","loki"], "tags": ["logs"], "files": [{ "path": "Program.cs", "template": "// serilog loki sink skeleton\n" }] },
+    { "id": "strike-masstransit-outbox-inbox", "name": "MassTransit Outbox + Inbox", "stack": ["dotnet","masstransit"], "tags": ["outbox","inbox"], "files": [{ "path": "Bus/OutboxInbox.cs", "template": "// masstransit outbox+inbox skeleton\n" }] },
+
+    { "id": "strike-express-helmet-hsts-csp", "name": "Express Helmet HSTS + CSP", "stack": ["node","express"], "tags": ["security"], "files": [{ "path": "server.js", "template": "// express helmet hsts + csp skeleton\n" }] },
+    { "id": "strike-nestjs-terminus-health", "name": "NestJS Terminus Health", "stack": ["node","nestjs","terminus"], "tags": ["health"], "files": [{ "path": "src/health.ts", "template": "// nestjs terminus health skeleton\n" }] },
+    { "id": "strike-fastify-routes-autoload", "name": "Fastify Routes Auto-Load", "stack": ["node","fastify"], "tags": ["routing"], "files": [{ "path": "server.js", "template": "// fastify autoload skeleton\n" }] },
+    { "id": "strike-hono-jwt-rt-refresh", "name": "Hono JWT Refresh Tokens", "stack": ["hono","jwt"], "tags": ["auth"], "files": [{ "path": "src/auth.ts", "template": "// hono jwt refresh tokens skeleton\n" }] },
+
+    { "id": "strike-fastapi-background-apscheduler", "name": "FastAPI + APScheduler", "stack": ["python","fastapi","apscheduler"], "tags": ["jobs"], "files": [{ "path": "app/schedule.py", "template": "# fastapi apscheduler skeleton\n" }] },
+    { "id": "strike-django-cacheops-redis", "name": "Django cacheops + Redis", "stack": ["python","django","redis"], "tags": ["cache"], "files": [{ "path": "settings/cacheops.py", "template": "# django cacheops skeleton\n" }] },
+    { "id": "strike-pydantic-v2-serializers", "name": "Pydantic v2 Custom Serializers", "stack": ["python","pydantic"], "tags": ["typing"], "files": [{ "path": "app/serializers.py", "template": "# pydantic v2 custom serializers skeleton\n" }] },
+    { "id": "strike-airflow-snowflake-operator", "name": "Airflow Snowflake Operator", "stack": ["airflow","snowflake"], "tags": ["orchestration"], "files": [{ "path": "dags/snowflake.py", "template": "# airflow snowflake operator skeleton\n" }] },
+
+    { "id": "strike-spark-structured-s3-file-source", "name": "Spark Structured S3 File Source", "stack": ["spark","s3"], "tags": ["stream"], "files": [{ "path": "spark/s3_source.py", "template": "# spark structured streaming s3 source skeleton\n" }] },
+    { "id": "strike-dbt-unit-tests-great-expectations", "name": "dbt Unit Tests + Great Expectations", "stack": ["dbt","great-expectations"], "tags": ["tests"], "files": [{ "path": "tests/gx_tests.yml", "template": "# dbt + gx tests skeleton\n" }] },
+    { "id": "strike-trino-hive-kerberos", "name": "Trino Hive Kerberos", "stack": ["trino","hive","kerberos"], "tags": ["auth"], "files": [{ "path": "trino/config.properties", "template": "# trino hive kerberos skeleton\n" }] },
+    { "id": "strike-snowflake-external-stage-gcs", "name": "Snowflake External Stage GCS", "stack": ["snowflake","gcs"], "tags": ["warehouse"], "files": [{ "path": "snowflake/stage_gcs.sql", "template": "-- snowflake stage gcs skeleton\n" }] },
+
+    { "id": "strike-qdrant-consistency-quorum", "name": "Qdrant Consistency Quorum", "stack": ["qdrant"], "tags": ["vector"], "files": [{ "path": "qdrant/quorum.json", "template": "{ }\n" }] },
+    { "id": "strike-weaviate-ref2vec-centroid", "name": "Weaviate Ref2Vec Centroid", "stack": ["weaviate"], "tags": ["vector","generate"], "files": [{ "path": "weaviate/ref2vec.json", "template": "{ }\n" }] },
+    { "id": "strike-pinecone-index-replication", "name": "Pinecone Index Replication", "stack": ["pinecone"], "tags": ["vector","ha"], "files": [{ "path": "pinecone/replication.json", "template": "{ }\n" }] },
+
+    { "id": "strike-argocd-config-management-plugins", "name": "ArgoCD Config Management Plugins", "stack": ["argocd"], "tags": ["gitops"], "files": [{ "path": "k8s/cmp.yaml", "template": "# argocd cmp skeleton\n" }] },
+    { "id": "strike-fluxcd-ksops-sops-integration", "name": "FluxCD KSOPS + SOPS", "stack": ["fluxcd","sops"], "tags": ["gitops","secrets"], "files": [{ "path": "k8s/ksops.yaml", "template": "# flux ksops integration skeleton\n" }] },
+    { "id": "strike-helm-diff-plugin-ci", "name": "Helm Diff Plugin CI", "stack": ["helm","diff"], "tags": ["charts","ci"], "files": [{ "path": ".github/workflows/helm-diff.yml", "template": "name: HelmDiff\non: [push]\n" }] },
+    { "id": "strike-kustomize-transformer-config", "name": "Kustomize Transformer Config", "stack": ["kustomize"], "tags": ["gitops"], "files": [{ "path": "k8s/transformer.yaml", "template": "# kustomize transformer config skeleton\n" }] },
+
+    { "id": "strike-kyverno-enforce-readonlyrootfs", "name": "Kyverno readOnlyRootFilesystem", "stack": ["kyverno"], "tags": ["policy"], "files": [{ "path": "kyverno/readonlyrootfs.yaml", "template": "# kyverno readonlyrootfs skeleton\n" }] },
+    { "id": "strike-opa-rego-service-allowlist", "name": "OPA Rego Service AllowList", "stack": ["opa"], "tags": ["policy"], "files": [{ "path": "policy/allowlist.rego", "template": "# rego service allowlist skeleton\n" }] },
+    { "id": "strike-falco-k8s-audit-policy", "name": "Falco K8s Audit Policy", "stack": ["falco"], "tags": ["security"], "files": [{ "path": "falco/audit.yaml", "template": "# falco k8s audit policy skeleton\n" }] },
+
+    { "id": "strike-cloudflare-queues-drizzle-orm", "name": "Cloudflare Queues + Drizzle ORM", "stack": ["cloudflare","queues","drizzle"], "tags": ["edge","db"], "files": [{ "path": "src/queue.ts", "template": "// cloudflare queues with drizzle orm skeleton\n" }] },
+    { "id": "strike-deno-deploy-durable-objects-kv", "name": "Deno Deploy DO + KV", "stack": ["deno","deploy","kv"], "tags": ["edge"], "files": [{ "path": "main.ts", "template": "// deno deploy durable objects + kv skeleton\n" }] },
+    { "id": "strike-vercel-cron-scheduled-functions", "name": "Vercel Cron Scheduled Functions", "stack": ["vercel"], "tags": ["schedule"], "files": [{ "path": "api/cron/route.ts", "template": "// vercel cron scheduled function skeleton\n" }] },
+    { "id": "strike-flyio-postgres-ha-replication", "name": "Fly.io Postgres HA Replication", "stack": ["flyio","postgres"], "tags": ["ha"], "files": [{ "path": "fly.toml", "template": "# fly postgres ha replication skeleton\n" }] }
+  ]
+}
+

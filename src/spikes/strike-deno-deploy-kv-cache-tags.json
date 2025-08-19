@@ -1,0 +1,20 @@
+{
+  "id": "strike-deno-deploy-kv-cache-tags",
+  "name": "Deno Deploy KV Cache Tags",
+  "stack": [
+    "deno",
+    "deploy",
+    "kv"
+  ],
+  "tags": [
+    "cache",
+    "edge"
+  ],
+  "files": [
+    {
+      "path": "kv_cache.ts",
+      "template": "// deno deploy kv cache tags skeleton\n"
+    }
+  ],
+  "patches": []
+}

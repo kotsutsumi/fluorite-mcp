@@ -1,0 +1,19 @@
+{
+  "id": "strike-otel-collector-logs-s3",
+  "name": "OTel Collector Logs → S3",
+  "stack": [
+    "opentelemetry",
+    "collector",
+    "s3"
+  ],
+  "tags": [
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "otel/logs_to_s3.yaml",
+      "template": "# otel logs to s3 skeleton\n"
+    }
+  ],
+  "patches": []
+}

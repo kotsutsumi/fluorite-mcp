@@ -1,0 +1,18 @@
+{
+  "id": "strike-trino-ranger-authorization",
+  "name": "Trino Ranger Authorization",
+  "stack": [
+    "trino",
+    "ranger"
+  ],
+  "tags": [
+    "authz"
+  ],
+  "files": [
+    {
+      "path": "trino/config.properties",
+      "template": "# trino ranger authorization skeleton\n"
+    }
+  ],
+  "patches": []
+}

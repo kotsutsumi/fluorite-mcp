@@ -1,0 +1,299 @@
+---
+id: phonetics-linguistic-ecosystem
+name: Phonetics & Linguistic Processing Ecosystem
+description: Comprehensive ecosystem for phonetic analysis, X-SAMPA/IPA processing, prosodic notation, and linguistic annotation systems
+version: "1.0.0"
+tags: [linguistics, phonetics, x-sampa, ipa, prosody, tts, speech, annotation]
+homepage: ./phonetics-linguistic-ecosystem.md
+repository: null
+language: multi
+ecosystem_type: cross_language
+last_updated: "2025-01-18"
+
+libraries:
+  # Core Phonetic Processing
+  x-sampa:
+    name: "X-SAMPA Processing"
+    description: "ASCII-based phonetic alphabet for IPA representation"
+    npm: "x-sampa"
+    python: "phonemizer"
+    go: "go-phonetics/xsampa"
+    rust: "phoneme-rs"
+    java: "phonetic-java"
+    usage: |
+      // JavaScript/TypeScript
+      import { xsampaToIpa, ipaToXsampa } from 'x-sampa';
+      const ipa = xsampaToIpa('hE"loU'); // → [hɛˈloʊ]
+      const xsampa = ipaToXsampa('[ʃ]'); // → S
+      
+      # Python
+      from phonemizer import phonemize
+      from phonemizer.backend import EspeakBackend
+      backend = EspeakBackend('en-us', with_stress=True)
+      phonemes = backend.phonemize(['hello'], strip=True)
+      
+      // Rust
+      use phoneme_rs::{xsampa_to_ipa, ipa_to_xsampa};
+      let ipa = xsampa_to_ipa("hE\"loU").unwrap();
+      let xsampa = ipa_to_xsampa("[ʃ]").unwrap();
+
+  ipa-processing:
+    name: "International Phonetic Alphabet (IPA)"
+    description: "Core IPA processing and manipulation libraries"
+    npm: "ipa-features"
+    python: "panphon"
+    r: "phonetics"
+    usage: |
+      // JavaScript
+      import { Phoneme, Features } from 'ipa-features';
+      const phoneme = new Phoneme('ʃ');
+      const features = phoneme.getFeatures(); // voiceless, postalveolar, fricative
+      
+      # Python
+      import panphon
+      ft = panphon.FeatureTable()
+      features = ft.word_to_vector_list('[ʃ]')
+      segments = ft.seg_known('[ʃɪp]')
+
+  prosody-tobi:
+    name: "ToBI (Tones and Break Indices)"
+    description: "Prosodic annotation system for intonation and rhythm"
+    npm: "tobi-prosody"
+    python: "praat-parselmouth"
+    usage: |
+      // JavaScript
+      import { ToBIAnnotator, BreakIndex } from 'tobi-prosody';
+      const annotator = new ToBIAnnotator();
+      const tobi = annotator.annotate('Hello world', {
+        tones: ['H*', 'L-L%'],
+        breaks: [0, 1, 4]
+      });
+      
+      # Python
+      import parselmouth
+      sound = parselmouth.Sound("audio.wav")
+      pitch = sound.to_pitch()
+      formants = sound.to_formant_burg()
+
+  phonetic-alignment:
+    name: "Forced Phonetic Alignment"
+    description: "Align phonetic transcriptions with audio"
+    npm: "gentle-forced-aligner"
+    python: "montreal-forced-alignment"
+    cpp: "kaldi"
+    usage: |
+      # Python MFA
+      from montreal_forced_alignment import align
+      alignment = align(
+          audio_path="speech.wav",
+          transcript_path="transcript.txt",
+          dictionary_path="lexicon.txt"
+      )
+      
+      # JavaScript
+      import { Gentle } from 'gentle-forced-aligner';
+      const aligner = new Gentle();
+      const alignment = await aligner.align('audio.wav', 'transcript.txt');
+
+  # Speech Analysis & Synthesis
+  speech-analysis:
+    name: "Speech Signal Analysis"
+    description: "Acoustic analysis of speech signals"
+    npm: "meyda"
+    python: "librosa"
+    matlab: "voicebox"
+    usage: |
+      // JavaScript
+      import Meyda from 'meyda';
+      const features = Meyda.extract(['spectralCentroid', 'mfcc'], audioBuffer);
+      
+      # Python
+      import librosa
+      y, sr = librosa.load('audio.wav')
+      mfccs = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=13)
+      pitch = librosa.piptrack(y=y, sr=sr)
+
+  tts-synthesis:
+    name: "Text-to-Speech Synthesis"
+    description: "Speech synthesis from phonetic input"
+    npm: "speech-synthesis-toolkit"
+    python: "TTS"
+    cpp: "festival"
+    usage: |
+      # Python TTS
+      from TTS.api import TTS
+      tts = TTS(model_name="tts_models/en/ljspeech/tacotron2-DDC")
+      tts.tts_to_file(text="Hello world", file_path="output.wav")
+      
+      // JavaScript
+      import { SpeechSynthesis } from 'speech-synthesis-toolkit';
+      const synth = new SpeechSynthesis();
+      const audio = await synth.synthesize("hE\"loU w3:ld", { format: 'x-sampa' });
+
+  # Linguistic Annotation
+  linguistic-annotation:
+    name: "Linguistic Corpus Annotation"
+    description: "Tools for linguistic data annotation and management"
+    python: "nltk"
+    java: "stanford-corenlp"
+    usage: |
+      # Python NLTK
+      import nltk
+      from nltk.corpus import cmudict
+      phonemes = cmudict.dict()
+      pronunciation = phonemes.get('hello', ['HH', 'AH0', 'L', 'OW1'])
+      
+      // Java Stanford CoreNLP
+      Properties props = new Properties();
+      props.setProperty("annotators", "tokenize,ssplit,pos,lemma,ner");
+      StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+
+  # Audio Processing
+  audio-processing:
+    name: "Audio Signal Processing"
+    description: "Core audio manipulation and analysis"
+    npm: "node-wav"
+    python: "soundfile"
+    rust: "rodio"
+    cpp: "sndfile"
+    usage: |
+      // JavaScript
+      import wav from 'node-wav';
+      const buffer = fs.readFileSync('audio.wav');
+      const result = wav.decode(buffer);
+      const audioData = result.channelData[0];
+      
+      # Python
+      import soundfile as sf
+      data, samplerate = sf.read('audio.wav')
+      sf.write('output.wav', data, samplerate)
+      
+      // Rust
+      use rodio::{Decoder, OutputStream, Sink};
+      let file = std::fs::File::open("audio.wav").unwrap();
+      let source = Decoder::new(file).unwrap();
+
+patterns:
+  phonetic_pipeline:
+    name: "Complete Phonetic Processing Pipeline"
+    description: "End-to-end phonetic analysis workflow"
+    steps:
+      - "Audio input and preprocessing"
+      - "Speech-to-text with phonetic alignment"
+      - "IPA/X-SAMPA conversion and normalization"
+      - "Prosodic annotation (ToBI/prosodic features)"
+      - "Linguistic feature extraction"
+      - "Output formatting and storage"
+
+  tts_pipeline:
+    name: "Text-to-Speech with Phonetic Control"
+    description: "Controlled speech synthesis from linguistic input"
+    steps:
+      - "Text preprocessing and normalization"
+      - "Phonetic transcription (IPA/X-SAMPA)"
+      - "Prosodic planning and ToBI annotation"
+      - "Acoustic feature generation"
+      - "Speech synthesis and audio output"
+
+  multilingual_phonetics:
+    name: "Multilingual Phonetic Processing"
+    description: "Cross-language phonetic analysis and conversion"
+    steps:
+      - "Language detection and normalization"
+      - "Language-specific phoneme set mapping"
+      - "Cross-linguistic phonetic comparison"
+      - "Universal phonetic representation"
+
+best_practices:
+  - "Use standardized phonetic alphabets (IPA, X-SAMPA) for interoperability"
+  - "Implement proper Unicode handling for IPA characters"
+  - "Validate phonetic transcriptions against known phoneme inventories"
+  - "Consider language-specific phonological rules and allophonic variation"
+  - "Maintain synchronization between audio and phonetic annotations"
+  - "Use appropriate sampling rates for speech processing (16kHz minimum)"
+  - "Implement robust error handling for malformed phonetic input"
+  - "Consider cognitive load when designing prosodic annotation interfaces"
+
+integration_examples:
+  basic_xsampa_conversion:
+    description: "Convert between X-SAMPA and IPA notation"
+    code: |
+      // TypeScript example
+      interface PhoneticConverter {
+        xsampaToIpa(xsampa: string): string;
+        ipaToXsampa(ipa: string): string;
+        validatePhoneme(phoneme: string, format: 'ipa' | 'xsampa'): boolean;
+      }
+      
+      class PhoneticProcessor implements PhoneticConverter {
+        private xsampaMap = new Map([
+          ['S', 'ʃ'], ['Z', 'ʒ'], ['T', 'θ'], ['D', 'ð'],
+          ['N', 'ŋ'], ['@', 'ə'], ['3:', 'ɜː'], ['I', 'ɪ']
+        ]);
+        
+        xsampaToIpa(xsampa: string): string {
+          return xsampa.replace(/\S+/g, match => 
+            this.xsampaMap.get(match) || match
+          );
+        }
+      }
+
+  tobi_annotation:
+    description: "Prosodic annotation with ToBI system"
+    code: |
+      interface ToBIAnnotation {
+        tones: string[];      // H*, L*, H+L*, etc.
+        breaks: number[];     // 0-4 break indices
+        words: string[];      // word alignment
+        timestamps: number[]; // temporal alignment
+      }
+      
+      class ProsodyAnnotator {
+        annotateWithToBI(text: string, audio: AudioBuffer): ToBIAnnotation {
+          const words = this.tokenize(text);
+          const pitch = this.extractPitch(audio);
+          const tones = this.detectTones(pitch);
+          const breaks = this.detectBreaks(words, pitch);
+          
+          return { tones, breaks, words, timestamps: [] };
+        }
+      }
+
+common_issues:
+  unicode_handling:
+    problem: "IPA characters not displaying correctly"
+    solution: "Ensure UTF-8 encoding and proper font support for IPA Unicode blocks"
+  
+  xsampa_ambiguity:
+    problem: "Ambiguous X-SAMPA sequences"
+    solution: "Use context-aware parsing and maintain phoneme inventory constraints"
+  
+  alignment_drift:
+    problem: "Audio-text alignment becomes inaccurate over time"
+    solution: "Implement regular re-alignment checkpoints and confidence thresholds"
+  
+  prosody_complexity:
+    problem: "ToBI annotation too complex for users"
+    solution: "Provide simplified interfaces with automatic ToBI generation options"
+
+compatibility:
+  audio_formats:
+    - "WAV (uncompressed, 16kHz+)"
+    - "FLAC (lossless compression)"
+    - "MP3 (for storage, not analysis)"
+  
+  text_encodings:
+    - "UTF-8 (required for IPA)"
+    - "ASCII (X-SAMPA compatible)"
+  
+  platforms:
+    - "Cross-platform audio processing"
+    - "Browser compatibility for web applications"
+    - "Mobile platform considerations"
+
+security_considerations:
+  - "Validate phonetic input to prevent injection attacks"
+  - "Sanitize user-provided audio files"
+  - "Implement rate limiting for computationally expensive operations"
+  - "Secure handling of potentially sensitive voice data"
+  - "Privacy considerations for biometric voice features"

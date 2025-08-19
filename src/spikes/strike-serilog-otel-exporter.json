@@ -1,0 +1,19 @@
+{
+  "id": "strike-serilog-otel-exporter",
+  "name": "Serilog → OpenTelemetry Exporter",
+  "stack": [
+    "dotnet",
+    "serilog",
+    "opentelemetry"
+  ],
+  "tags": [
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "Program.cs",
+      "template": "// serilog to otel exporter skeleton\n"
+    }
+  ],
+  "patches": []
+}

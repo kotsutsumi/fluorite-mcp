@@ -1,0 +1,19 @@
+{
+  "id": "strike-serilog-datadog-logs",
+  "name": "Serilog DataDog Logs",
+  "stack": [
+    "dotnet",
+    "serilog",
+    "datadog"
+  ],
+  "tags": [
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "Program.cs",
+      "template": "// serilog datadog sink skeleton\n"
+    }
+  ],
+  "patches": []
+}

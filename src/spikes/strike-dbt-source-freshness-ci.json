@@ -1,0 +1,18 @@
+{
+  "id": "strike-dbt-source-freshness-ci",
+  "name": "dbt Source Freshness CI",
+  "stack": [
+    "dbt"
+  ],
+  "tags": [
+    "ci",
+    "sql"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/dbt-freshness.yml",
+      "template": "name: DBT Freshness\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-argocd-image-updater-rules",
+  "name": "ArgoCD Image Updater Rules",
+  "stack": [
+    "argocd"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/image-updater-rules.yaml",
+      "template": "# argocd image updater rules skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-fluxcd-image-automation-policies",
+  "name": "FluxCD Image Automation Policies",
+  "stack": [
+    "fluxcd"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/image-automation.yaml",
+      "template": "# flux image automation policies skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-qdrant-read-replicas",
+  "name": "Qdrant Read Replicas",
+  "stack": [
+    "qdrant"
+  ],
+  "tags": [
+    "vector",
+    "ha"
+  ],
+  "files": [
+    {
+      "path": "qdrant/read_replicas.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

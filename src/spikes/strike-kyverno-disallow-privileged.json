@@ -1,0 +1,17 @@
+{
+  "id": "strike-kyverno-disallow-privileged",
+  "name": "Kyverno Disallow Privileged",
+  "stack": [
+    "kyverno"
+  ],
+  "tags": [
+    "policy"
+  ],
+  "files": [
+    {
+      "path": "kyverno/privileged.yaml",
+      "template": "# kyverno disallow privileged skeleton\n"
+    }
+  ],
+  "patches": []
+}

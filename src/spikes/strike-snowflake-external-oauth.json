@@ -1,0 +1,18 @@
+{
+  "id": "strike-snowflake-external-oauth",
+  "name": "Snowflake External OAuth",
+  "stack": [
+    "snowflake",
+    "oauth2"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "snowflake/oauth.sql",
+      "template": "-- snowflake external oauth skeleton\n"
+    }
+  ],
+  "patches": []
+}

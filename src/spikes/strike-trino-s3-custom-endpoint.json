@@ -1,0 +1,18 @@
+{
+  "id": "strike-trino-s3-custom-endpoint",
+  "name": "Trino S3 Custom Endpoint",
+  "stack": [
+    "trino",
+    "s3"
+  ],
+  "tags": [
+    "sql"
+  ],
+  "files": [
+    {
+      "path": "trino/catalog.properties",
+      "template": "# trino s3 custom endpoint skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,49 @@
+{
+  "items": [
+    { "id": "strike-spring-websocket-stomp-jwt", "name": "Spring WebSocket STOMP + JWT", "stack": ["java","spring","websocket","jwt"], "tags": ["realtime","auth"], "files": [{ "path": "src/main/java/example/StompJwt.java", "template": "// stomp jwt interceptor skeleton\n" }] },
+    { "id": "strike-spring-cloud-gateway-cors-csp", "name": "Spring Cloud Gateway CORS + CSP", "stack": ["java","spring","gateway"], "tags": ["security"], "files": [{ "path": "src/main/resources/application.yml", "template": "# gateway cors + csp headers skeleton\n" }] },
+    { "id": "strike-quarkus-graphql-smallrye-subscriptions", "name": "Quarkus SmallRye GraphQL Subscriptions", "stack": ["java","quarkus","graphql"], "tags": ["realtime"], "files": [{ "path": "src/main/java/org/acme/GraphQL.java", "template": "// graphql subscriptions skeleton\n" }] },
+    { "id": "strike-micronaut-reactor-resilience4j", "name": "Micronaut Reactor + Resilience4j", "stack": ["java","micronaut","resilience4j"], "tags": ["resilience"], "files": [{ "path": "src/main/java/example/ReactorResilience.java", "template": "// reactor + resilience4j skeleton\n" }] },
+    { "id": "strike-ktor-client-ktorfit-retrofit", "name": "Ktor Client + Ktorfit (Retrofit)", "stack": ["kotlin","ktor"], "tags": ["http","client"], "files": [{ "path": "src/Client.kt", "template": "// ktorfit retrofit-like client skeleton\n" }] },
+
+    { "id": "strike-aspnet-identity-external-login", "name": ".NET Identity External Login", "stack": ["dotnet","aspnet","identity"], "tags": ["auth"], "files": [{ "path": "Auth/ExternalLogin.cs", "template": "// identity external login skeleton\n" }] },
+    { "id": "strike-efcore-owned-collections", "name": "EFCore Owned Collections", "stack": ["dotnet","efcore"], "tags": ["db"], "files": [{ "path": "Data/OwnedCollections.cs", "template": "// efcore owned collections skeleton\n" }] },
+    { "id": "strike-serilog-opentelemetry-export-traces", "name": "Serilog → OTel Export(Traces)", "stack": ["dotnet","serilog","opentelemetry"], "tags": ["traces"], "files": [{ "path": "Program.cs", "template": "// serilog to otel traces skeleton\n" }] },
+    { "id": "strike-masstransit-saga-outbox-inbox", "name": "MassTransit Saga + Outbox + Inbox", "stack": ["dotnet","masstransit"], "tags": ["saga","outbox"], "files": [{ "path": "Bus/SagaOutboxInbox.cs", "template": "// masstransit saga outbox inbox skeleton\n" }] },
+
+    { "id": "strike-express-openapi-request-coercion", "name": "Express OpenAPI Request Coercion", "stack": ["node","express","openapi"], "tags": ["validation"], "files": [{ "path": "server.js", "template": "// openapi request coercion skeleton\n" }] },
+    { "id": "strike-nestjs-rmq-retry-dlx", "name": "NestJS RMQ Retry + DLX", "stack": ["node","nestjs","rabbitmq"], "tags": ["retry"], "files": [{ "path": "src/rmq_retry.ts", "template": "// nestjs rmq retry + dlx skeleton\n" }] },
+    { "id": "strike-fastify-undici-retry-pool", "name": "Fastify Undici Retry + Pool", "stack": ["node","fastify","undici"], "tags": ["http"], "files": [{ "path": "server.js", "template": "// undici retry + pool skeleton\n" }] },
+    { "id": "strike-hono-queues-scheduler", "name": "Hono Queues + Scheduler", "stack": ["hono","cloudflare","queues"], "tags": ["jobs","edge"], "files": [{ "path": "src/jobs.ts", "template": "// hono queues + scheduler skeleton\n" }] },
+
+    { "id": "strike-fastapi-cachetools-ttl", "name": "FastAPI cachetools TTL", "stack": ["python","fastapi"], "tags": ["cache"], "files": [{ "path": "app/cachetools.py", "template": "# fastapi cachetools ttl skeleton\n" }] },
+    { "id": "strike-django-sorl-thumbnail-s3", "name": "Django sorl-thumbnail + S3", "stack": ["python","django","s3"], "tags": ["image"], "files": [{ "path": "app/thumbnails.py", "template": "# django sorl-thumbnail s3 skeleton\n" }] },
+    { "id": "strike-pydantic-v2-tagged-unions", "name": "Pydantic v2 Tagged Unions", "stack": ["python","pydantic"], "tags": ["typing"], "files": [{ "path": "app/tagged.py", "template": "# pydantic v2 tagged unions skeleton\n" }] },
+    { "id": "strike-prefect-artifacts-logging", "name": "Prefect Artifacts + Logging", "stack": ["prefect"], "tags": ["orchestration"], "files": [{ "path": "flows/artifacts.py", "template": "# prefect artifacts + logging skeleton\n" }] },
+    { "id": "strike-dagster-partitions-dynamic", "name": "Dagster Dynamic Partitions", "stack": ["dagster"], "tags": ["data"], "files": [{ "path": "assets/partitions_dynamic.py", "template": "# dagster dynamic partitions skeleton\n" }] },
+
+    { "id": "strike-spark-structured-kafka-exactly-once", "name": "Spark Structured Kafka EOS", "stack": ["spark","kafka"], "tags": ["stream","eos"], "files": [{ "path": "spark/kafka_eos.py", "template": "# spark kafka eos skeleton\n" }] },
+    { "id": "strike-trino-ranger-authorization", "name": "Trino Ranger Authorization", "stack": ["trino","ranger"], "tags": ["authz"], "files": [{ "path": "trino/config.properties", "template": "# trino ranger authorization skeleton\n" }] },
+    { "id": "strike-snowflake-row-access-tags", "name": "Snowflake Row Access + Tags", "stack": ["snowflake"], "tags": ["security"], "files": [{ "path": "snowflake/rap_tags.sql", "template": "-- snowflake row access + tags skeleton\n" }] },
+    { "id": "strike-bigquery-dcl-iam-policies", "name": "BigQuery DCL IAM Policies", "stack": ["gcp","bigquery"], "tags": ["security"], "files": [{ "path": "bq/dcl.sql", "template": "-- bigquery dcl policies skeleton\n" }] },
+
+    { "id": "strike-chromadb-persist-directory-layout", "name": "ChromaDB Persist Directory Layout", "stack": ["chromadb"], "tags": ["vector"], "files": [{ "path": "chroma/persist.md", "template": "# chroma persist dir layout skeleton\n" }] },
+    { "id": "strike-milvus-index-disk-annoy", "name": "Milvus Disk-ANN(ANNOY)", "stack": ["milvus"], "tags": ["vector"], "files": [{ "path": "milvus/disk_ann.py", "template": "# milvus disk-ann annoy skeleton\n" }] },
+    { "id": "strike-pinecone-namespace-ttl-policy", "name": "Pinecone Namespace TTL Policy", "stack": ["pinecone"], "tags": ["vector"], "files": [{ "path": "pinecone/ttl.json", "template": "{ }\n" }] },
+
+    { "id": "strike-argocd-appset-gitlab", "name": "ArgoCD AppSet GitLab", "stack": ["argocd","gitlab"], "tags": ["gitops"], "files": [{ "path": "k8s/appset-gitlab.yaml", "template": "# appset gitlab generator skeleton\n" }] },
+    { "id": "strike-fluxcd-oci-repository-ecr", "name": "FluxCD OCIRepository (ECR)", "stack": ["fluxcd","ecr"], "tags": ["gitops"], "files": [{ "path": "k8s/oci-repository.yaml", "template": "# flux oci repository ecr skeleton\n" }] },
+    { "id": "strike-helmfile-template-diff-ci", "name": "Helmfile Template + Diff CI", "stack": ["helmfile"], "tags": ["ci"], "files": [{ "path": ".github/workflows/helmfile-template.yml", "template": "name: HelmfileTemplate\non: [push]\n" }] },
+    { "id": "strike-kustomize-replace-image-tags", "name": "Kustomize Replace Image Tags", "stack": ["kustomize"], "tags": ["gitops"], "files": [{ "path": "k8s/kustomization.yaml", "template": "# kustomize replace image tags skeleton\n" }] },
+
+    { "id": "strike-kyverno-minimum-uid-gid", "name": "Kyverno Minimum UID/GID", "stack": ["kyverno"], "tags": ["policy"], "files": [{ "path": "kyverno/min_uid_gid.yaml", "template": "# kyverno minimum uid gid skeleton\n" }] },
+    { "id": "strike-opa-rego-network-egress-allow", "name": "OPA Rego Network Egress Allow", "stack": ["opa"], "tags": ["policy"], "files": [{ "path": "policy/network_egress.rego", "template": "# rego network egress allow skeleton\n" }] },
+    { "id": "strike-falco-write-host-binaries", "name": "Falco Write Host Binaries", "stack": ["falco"], "tags": ["security"], "files": [{ "path": "falco/host_write.yaml", "template": "# falco write host binaries skeleton\n" }] },
+
+    { "id": "strike-workers-ai-summarize-pipeline", "name": "Workers AI Summarize Pipeline", "stack": ["cloudflare","workers-ai"], "tags": ["ai","edge"], "files": [{ "path": "src/summarize.ts", "template": "// workers ai summarize pipeline skeleton\n" }] },
+    { "id": "strike-deno-deploy-kv-cache-tags", "name": "Deno Deploy KV Cache Tags", "stack": ["deno","deploy","kv"], "tags": ["cache","edge"], "files": [{ "path": "kv_cache.ts", "template": "// deno deploy kv cache tags skeleton\n" }] },
+    { "id": "strike-vercel-middleware-geo-redirect", "name": "Vercel Middleware Geo Redirect", "stack": ["vercel"], "tags": ["edge","geo"], "files": [{ "path": "middleware.ts", "template": "// vercel geo redirect skeleton\n" }] },
+    { "id": "strike-flyio-machine-autoscale-policies", "name": "Fly.io Machine Autoscale Policies", "stack": ["flyio"], "tags": ["scale"], "files": [{ "path": "fly.toml", "template": "# fly machine autoscale policies skeleton\n" }] }
+  ]
+}
+

@@ -1,0 +1,20 @@
+{
+  "id": "strike-hono-queues-scheduler",
+  "name": "Hono Queues + Scheduler",
+  "stack": [
+    "hono",
+    "cloudflare",
+    "queues"
+  ],
+  "tags": [
+    "jobs",
+    "edge"
+  ],
+  "files": [
+    {
+      "path": "src/jobs.ts",
+      "template": "// hono queues + scheduler skeleton\n"
+    }
+  ],
+  "patches": []
+}

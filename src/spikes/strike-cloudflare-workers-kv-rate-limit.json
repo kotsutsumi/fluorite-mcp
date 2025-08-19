@@ -1,0 +1,19 @@
+{
+  "id": "strike-cloudflare-workers-kv-rate-limit",
+  "name": "Workers KV Rate Limit",
+  "stack": [
+    "cloudflare",
+    "kv"
+  ],
+  "tags": [
+    "edge",
+    "throttle"
+  ],
+  "files": [
+    {
+      "path": "src/ratelimit.ts",
+      "template": "// workers kv rate limit skeleton\n"
+    }
+  ],
+  "patches": []
+}

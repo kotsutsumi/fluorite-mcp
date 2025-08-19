@@ -1,0 +1,17 @@
+{
+  "id": "strike-kyverno-seccomp-strict",
+  "name": "Kyverno Seccomp Strict",
+  "stack": [
+    "kyverno"
+  ],
+  "tags": [
+    "policy"
+  ],
+  "files": [
+    {
+      "path": "kyverno/seccomp.yaml",
+      "template": "# kyverno seccomp strict skeleton\n"
+    }
+  ],
+  "patches": []
+}

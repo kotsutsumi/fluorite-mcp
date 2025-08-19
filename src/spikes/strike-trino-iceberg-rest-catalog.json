@@ -1,0 +1,18 @@
+{
+  "id": "strike-trino-iceberg-rest-catalog",
+  "name": "Trino Iceberg REST Catalog",
+  "stack": [
+    "trino",
+    "iceberg"
+  ],
+  "tags": [
+    "sql"
+  ],
+  "files": [
+    {
+      "path": "trino/catalog.properties",
+      "template": "# trino iceberg rest catalog skeleton\n"
+    }
+  ],
+  "patches": []
+}

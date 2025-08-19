@@ -1,0 +1,17 @@
+{
+  "id": "strike-argocd-appset-bitbucket",
+  "name": "ArgoCD AppSet Bitbucket",
+  "stack": [
+    "argocd"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/appset-bitbucket.yaml",
+      "template": "# argocd appset bitbucket skeleton\n"
+    }
+  ],
+  "patches": []
+}

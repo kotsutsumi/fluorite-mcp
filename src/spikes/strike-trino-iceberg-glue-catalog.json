@@ -1,0 +1,19 @@
+{
+  "id": "strike-trino-iceberg-glue-catalog",
+  "name": "Trino Iceberg Glue Catalog",
+  "stack": [
+    "trino",
+    "iceberg",
+    "glue"
+  ],
+  "tags": [
+    "sql"
+  ],
+  "files": [
+    {
+      "path": "trino/catalog_glue.properties",
+      "template": "# trino iceberg glue catalog skeleton\n"
+    }
+  ],
+  "patches": []
+}

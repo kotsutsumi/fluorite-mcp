@@ -1,0 +1,18 @@
+{
+  "id": "strike-trivy-sbom-cyclonedx",
+  "name": "Trivy SBOM(CycloneDX)",
+  "stack": [
+    "trivy",
+    "sbom"
+  ],
+  "tags": [
+    "supply-chain"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/trivy-sbom.yml",
+      "template": "name: TrivySBOM\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

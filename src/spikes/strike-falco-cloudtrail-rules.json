@@ -1,0 +1,18 @@
+{
+  "id": "strike-falco-cloudtrail-rules",
+  "name": "Falco CloudTrail 連携ルール",
+  "stack": [
+    "falco",
+    "aws"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "falco/cloudtrail.yaml",
+      "template": "# falco cloudtrail integration rules skeleton\n"
+    }
+  ],
+  "patches": []
+}

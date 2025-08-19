@@ -1,0 +1,17 @@
+{
+  "id": "strike-opa-rego-k8s-pod-security",
+  "name": "OPA Rego K8s Pod Security",
+  "stack": [
+    "opa"
+  ],
+  "tags": [
+    "policy"
+  ],
+  "files": [
+    {
+      "path": "policy/pod_security.rego",
+      "template": "# rego pod security skeleton\n"
+    }
+  ],
+  "patches": []
+}

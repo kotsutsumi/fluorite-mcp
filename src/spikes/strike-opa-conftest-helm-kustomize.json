@@ -1,0 +1,19 @@
+{
+  "id": "strike-opa-conftest-helm-kustomize",
+  "name": "Conftest Helm+Kustomize 検証",
+  "stack": [
+    "opa",
+    "conftest"
+  ],
+  "tags": [
+    "policy",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/conftest-all.yml",
+      "template": "name: ConftestAll\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

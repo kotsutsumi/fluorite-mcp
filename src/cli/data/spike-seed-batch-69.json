@@ -1,0 +1,57 @@
+{
+  "items": [
+    { "id": "strike-spring-retry-resttemplate", "name": "Spring Retry + RestTemplate", "stack": ["java","spring"], "tags": ["resilience","http"], "files": [{ "path": "src/main/java/example/RetryConfig.java", "template": "// resttemplate + retry skeleton\n" }] },
+    { "id": "strike-spring-cloud-stream-rabbit", "name": "Spring Cloud Stream Rabbit", "stack": ["java","spring","rabbitmq"], "tags": ["stream"], "files": [{ "path": "src/main/resources/application.yml", "template": "# spring cloud stream rabbit skeleton\n" }] },
+    { "id": "strike-spring-batch-jdbc-item-writer", "name": "Spring Batch JDBC ItemWriter", "stack": ["java","spring","batch"], "tags": ["batch"], "files": [{ "path": "src/main/java/example/BatchJob.java", "template": "// jdbc item writer skeleton\n" }] },
+    { "id": "strike-quarkus-rest-client-reactive-retry", "name": "Quarkus REST Client Reactive + Retry", "stack": ["java","quarkus"], "tags": ["http","resilience"], "files": [{ "path": "src/main/java/org/acme/RestClient.java", "template": "// rest client reactive retry skeleton\n" }] },
+    { "id": "strike-quarkus-opentelemetry-logs", "name": "Quarkus OpenTelemetry Logs", "stack": ["java","quarkus","opentelemetry"], "tags": ["logs"], "files": [{ "path": "src/main/resources/application.properties", "template": "# quarkus otel logs skeleton\n" }] },
+    { "id": "strike-micronaut-kafka-serde-avro", "name": "Micronaut Kafka Serde (Avro)", "stack": ["java","micronaut","kafka"], "tags": ["serde"], "files": [{ "path": "src/main/java/example/Serde.java", "template": "// micronaut kafka avro serde skeleton\n" }] },
+
+    { "id": "strike-aspnet-authz-policy-providers", "name": ".NET AuthZ Policy Providers", "stack": ["dotnet","aspnet"], "tags": ["authz"], "files": [{ "path": "Auth/PolicyProvider.cs", "template": "// custom policy provider skeleton\n" }] },
+    { "id": "strike-efcore-bulk-operations", "name": "EFCore Bulk Operations", "stack": ["dotnet","efcore"], "tags": ["db","perf"], "files": [{ "path": "Data/Bulk.cs", "template": "// efcore bulk operations skeleton\n" }] },
+    { "id": "strike-dotnet-dapper-sqlbuilder", "name": ".NET Dapper SqlBuilder", "stack": ["dotnet","dapper"], "tags": ["db"], "files": [{ "path": "Data/Dapper.cs", "template": "// dapper sqlbuilder skeleton\n" }] },
+    { "id": "strike-serilog-seq-structured-logging", "name": "Serilog Seq Structured Logging", "stack": ["dotnet","serilog","seq"], "tags": ["logs"], "files": [{ "path": "Program.cs", "template": "// serilog seq structured logs skeleton\n" }] },
+
+    { "id": "strike-nestjs-rmq-microservice", "name": "NestJS RMQ Microservice", "stack": ["node","nestjs","rabbitmq"], "tags": ["microservice"], "files": [{ "path": "src/rmq.ts", "template": "// nestjs rmq microservice skeleton\n" }] },
+    { "id": "strike-fastify-redis-cache-store", "name": "Fastify Redis Cache Store", "stack": ["node","fastify","redis"], "tags": ["cache"], "files": [{ "path": "server.js", "template": "// fastify redis cache skeleton\n" }] },
+    { "id": "strike-koa-zod-validation", "name": "Koa + Zod Validation", "stack": ["node","koa","zod"], "tags": ["validation"], "files": [{ "path": "server.js", "template": "// koa zod validation skeleton\n" }] },
+    { "id": "strike-express-openapi-ts-client-gen", "name": "Express OpenAPI TS Client Gen", "stack": ["node","express","openapi"], "tags": ["codegen"], "files": [{ "path": "scripts/generate.ts", "template": "// openapi ts client generation skeleton\n" }] },
+
+    { "id": "strike-fastapi-cache-redis-async", "name": "FastAPI Cache Redis Async", "stack": ["python","fastapi","redis"], "tags": ["cache"], "files": [{ "path": "app/cache.py", "template": "# fastapi async redis cache skeleton\n" }] },
+    { "id": "strike-django-celery-redis-beat", "name": "Django Celery + Redis Beat", "stack": ["python","django","celery","redis"], "tags": ["jobs"], "files": [{ "path": "celery.py", "template": "# django celery redis beat skeleton\n" }] },
+    { "id": "strike-pandas-polars-interop", "name": "Pandas ↔ Polars Interop", "stack": ["python","pandas","polars"], "tags": ["data"], "files": [{ "path": "interop/convert.py", "template": "# pandas <-> polars interop skeleton\n" }] },
+    { "id": "strike-pydantic-settings-hierarchy", "name": "Pydantic Settings 階層", "stack": ["python","pydantic"], "tags": ["config"], "files": [{ "path": "config/settings.py", "template": "# pydantic settings hierarchy skeleton\n" }] },
+
+    { "id": "strike-spark-streaming-checkpointing", "name": "Spark Streaming Checkpointing", "stack": ["spark"], "tags": ["stream"], "files": [{ "path": "spark/checkpoint.py", "template": "# spark streaming checkpoint skeleton\n" }] },
+    { "id": "strike-trino-delta-lake-connector", "name": "Trino Delta Lake Connector", "stack": ["trino","delta"], "tags": ["sql"], "files": [{ "path": "trino/catalog.properties", "template": "# trino delta connector skeleton\n" }] },
+    { "id": "strike-snowflake-external-stage-s3", "name": "Snowflake External Stage S3", "stack": ["snowflake","s3"], "tags": ["warehouse"], "files": [{ "path": "snowflake/stage.sql", "template": "-- snowflake external stage s3 skeleton\n" }] },
+    { "id": "strike-bigquery-row-access-policies", "name": "BigQuery Row Access Policies", "stack": ["gcp","bigquery"], "tags": ["security"], "files": [{ "path": "bq/row_access.sql", "template": "-- bigquery row access policy skeleton\n" }] },
+
+    { "id": "strike-chromadb-collection-ttl", "name": "ChromaDB Collection TTL", "stack": ["chromadb"], "tags": ["vector"], "files": [{ "path": "chroma/ttl.py", "template": "# chromadb collection ttl skeleton\n" }] },
+    { "id": "strike-milvus-dynamic-schema", "name": "Milvus Dynamic Schema", "stack": ["milvus"], "tags": ["vector"], "files": [{ "path": "milvus/dynamic_schema.py", "template": "# milvus dynamic schema skeleton\n" }] },
+    { "id": "strike-weaviate-cohere-reranker", "name": "Weaviate Cohere Reranker", "stack": ["weaviate","cohere"], "tags": ["vector","rerank"], "files": [{ "path": "weaviate/reranker.json", "template": "{ }\n" }] },
+
+    { "id": "strike-otel-collector-logs-s3", "name": "OTel Collector Logs → S3", "stack": ["opentelemetry","collector","s3"], "tags": ["logs"], "files": [{ "path": "otel/logs_to_s3.yaml", "template": "# otel logs to s3 skeleton\n" }] },
+    { "id": "strike-grafana-unified-alerting-slack", "name": "Grafana Unified Alerting Slack", "stack": ["grafana"], "tags": ["alerts"], "files": [{ "path": "grafana/alerting_slack.yaml", "template": "# grafana alerting slack skeleton\n" }] },
+
+    { "id": "strike-cloudflare-queues-kafka-proxy", "name": "Cloudflare Queues Kafka Proxy", "stack": ["cloudflare","queues","kafka"], "tags": ["edge","proxy"], "files": [{ "path": "wrangler.toml", "template": "# queues to kafka proxy skeleton\n" }] },
+    { "id": "strike-deno-deploy-websocket-broadcast", "name": "Deno Deploy WebSocket Broadcast", "stack": ["deno","deploy"], "tags": ["realtime"], "files": [{ "path": "main.ts", "template": "// deno deploy ws broadcast skeleton\n" }] },
+    { "id": "strike-vercel-rate-limit-middleware", "name": "Vercel Rate Limit Middleware", "stack": ["vercel"], "tags": ["middleware","throttle"], "files": [{ "path": "middleware.ts", "template": "// vercel rate limit middleware skeleton\n" }] },
+
+    { "id": "strike-fluxcd-image-reflector-cron", "name": "FluxCD Image Reflector Cron", "stack": ["fluxcd"], "tags": ["gitops"], "files": [{ "path": "k8s/image-reflector.yaml", "template": "# flux image reflector cron skeleton\n" }] },
+    { "id": "strike-opa-rego-jwt-validate", "name": "OPA Rego JWT Validate", "stack": ["opa"], "tags": ["policy","auth"], "files": [{ "path": "policy/jwt.rego", "template": "# rego jwt validate skeleton\n" }] },
+    { "id": "strike-kyverno-add-securitycontext", "name": "Kyverno add securityContext", "stack": ["kyverno","kubernetes"], "tags": ["policy"], "files": [{ "path": "kyverno/securitycontext.yaml", "template": "# kyverno add securityContext skeleton\n" }] },
+    { "id": "strike-falco-k8s-syscalls", "name": "Falco K8s Syscalls 監視", "stack": ["falco","kubernetes"], "tags": ["security"], "files": [{ "path": "falco/rules.yaml", "template": "# falco k8s syscalls skeleton\n" }] },
+
+    { "id": "strike-kafka-dynamic-topic-configs", "name": "Kafka Dynamic Topic Configs", "stack": ["kafka"], "tags": ["ops"], "files": [{ "path": "kafka/topic_config.sh", "template": "# kafka dynamic topic configs skeleton\n" }] },
+    { "id": "strike-redpanda-tiered-cache", "name": "Redpanda Tiered Cache", "stack": ["redpanda"], "tags": ["cache"], "files": [{ "path": "redpanda/config.yaml", "template": "# redpanda tiered cache skeleton\n" }] },
+
+    { "id": "strike-superset-dataset-yaml", "name": "Superset Dataset YAML", "stack": ["superset"], "tags": ["bi"], "files": [{ "path": "superset/dataset.yaml", "template": "# superset dataset yaml skeleton\n" }] },
+    { "id": "strike-metabase-collection-export", "name": "Metabase Collection Export", "stack": ["metabase"], "tags": ["bi"], "files": [{ "path": "metabase/collection.json", "template": "{ }\n" }] },
+
+    { "id": "strike-gh-actions-oidc-azure-keyvault", "name": "GH Actions OIDC→Azure KeyVault", "stack": ["github","azure","keyvault"], "tags": ["ci","secrets"], "files": [{ "path": ".github/workflows/keyvault.yml", "template": "name: KeyVault\non: [push]\n" }] },
+    { "id": "strike-terraform-aws-eks-fargate-profiles", "name": "Terraform AWS EKS Fargate Profiles", "stack": ["terraform","aws","eks"], "tags": ["infra"], "files": [{ "path": "terraform/eks_fargate.tf", "template": "# eks fargate profiles skeleton\n" }] },
+    { "id": "strike-helmfile-helm-secrets", "name": "Helmfile + helm-secrets", "stack": ["helmfile","sops"], "tags": ["gitops","secrets"], "files": [{ "path": "helmfile.yaml", "template": "# helmfile with helm-secrets skeleton\n" }] }
+  ]
+}
+

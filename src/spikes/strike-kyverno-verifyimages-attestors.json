@@ -1,0 +1,19 @@
+{
+  "id": "strike-kyverno-verifyimages-attestors",
+  "name": "Kyverno verifyImages Attestors",
+  "stack": [
+    "kyverno",
+    "cosign"
+  ],
+  "tags": [
+    "policy",
+    "supply-chain"
+  ],
+  "files": [
+    {
+      "path": "kyverno/attestors.yaml",
+      "template": "# kyverno verifyimages attestors skeleton\n"
+    }
+  ],
+  "patches": []
+}

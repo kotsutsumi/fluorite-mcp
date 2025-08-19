@@ -1,0 +1,17 @@
+{
+  "id": "strike-kustomize-patches-strategic-merge",
+  "name": "Kustomize patches Strategic Merge",
+  "stack": [
+    "kustomize"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/patch-strategic.yaml",
+      "template": "# kustomize patches strategic merge skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-argocd-appset-gitlab",
+  "name": "ArgoCD AppSet GitLab",
+  "stack": [
+    "argocd",
+    "gitlab"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/appset-gitlab.yaml",
+      "template": "# appset gitlab generator skeleton\n"
+    }
+  ],
+  "patches": []
+}

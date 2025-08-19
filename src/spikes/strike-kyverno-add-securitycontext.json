@@ -1,0 +1,18 @@
+{
+  "id": "strike-kyverno-add-securitycontext",
+  "name": "Kyverno add securityContext",
+  "stack": [
+    "kyverno",
+    "kubernetes"
+  ],
+  "tags": [
+    "policy"
+  ],
+  "files": [
+    {
+      "path": "kyverno/securitycontext.yaml",
+      "template": "# kyverno add securityContext skeleton\n"
+    }
+  ],
+  "patches": []
+}

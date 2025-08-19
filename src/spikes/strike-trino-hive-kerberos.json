@@ -1,0 +1,19 @@
+{
+  "id": "strike-trino-hive-kerberos",
+  "name": "Trino Hive Kerberos",
+  "stack": [
+    "trino",
+    "hive",
+    "kerberos"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "trino/config.properties",
+      "template": "# trino hive kerberos skeleton\n"
+    }
+  ],
+  "patches": []
+}

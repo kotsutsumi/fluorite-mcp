@@ -1,0 +1,18 @@
+{
+  "id": "strike-trino-delta-lake-connector",
+  "name": "Trino Delta Lake Connector",
+  "stack": [
+    "trino",
+    "delta"
+  ],
+  "tags": [
+    "sql"
+  ],
+  "files": [
+    {
+      "path": "trino/catalog.properties",
+      "template": "# trino delta connector skeleton\n"
+    }
+  ],
+  "patches": []
+}

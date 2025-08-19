@@ -1,0 +1,19 @@
+{
+  "id": "strike-chromadb-qdrant-hybrid-pipeline",
+  "name": "Chroma + Qdrant Hybrid Pipeline",
+  "stack": [
+    "chromadb",
+    "qdrant"
+  ],
+  "tags": [
+    "vector",
+    "hybrid"
+  ],
+  "files": [
+    {
+      "path": "rag/hybrid.py",
+      "template": "# hybrid vector pipeline chroma+qdrant skeleton\n"
+    }
+  ],
+  "patches": []
+}

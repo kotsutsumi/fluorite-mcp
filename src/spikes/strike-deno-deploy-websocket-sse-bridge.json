@@ -1,0 +1,19 @@
+{
+  "id": "strike-deno-deploy-websocket-sse-bridge",
+  "name": "Deno Deploy WS↔SSE Bridge",
+  "stack": [
+    "deno",
+    "deploy"
+  ],
+  "tags": [
+    "realtime",
+    "bridge"
+  ],
+  "files": [
+    {
+      "path": "bridge.ts",
+      "template": "// deno deploy ws <-> sse bridge skeleton\n"
+    }
+  ],
+  "patches": []
+}

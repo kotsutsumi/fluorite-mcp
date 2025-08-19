@@ -1,0 +1,17 @@
+{
+  "id": "strike-argocd-appset-github-org",
+  "name": "ArgoCD AppSet GitHub Org",
+  "stack": [
+    "argocd"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/appset-org.yaml",
+      "template": "# appset github org skeleton\n"
+    }
+  ],
+  "patches": []
+}

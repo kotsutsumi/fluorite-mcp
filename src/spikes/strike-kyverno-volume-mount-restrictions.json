@@ -1,0 +1,17 @@
+{
+  "id": "strike-kyverno-volume-mount-restrictions",
+  "name": "Kyverno VolumeMount Restrictions",
+  "stack": [
+    "kyverno"
+  ],
+  "tags": [
+    "policy"
+  ],
+  "files": [
+    {
+      "path": "kyverno/volumemount.yaml",
+      "template": "# kyverno volumemount restrictions skeleton\n"
+    }
+  ],
+  "patches": []
+}

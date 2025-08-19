@@ -1,0 +1,19 @@
+{
+  "id": "strike-deno-deploy-durable-objects-kv",
+  "name": "Deno Deploy DO + KV",
+  "stack": [
+    "deno",
+    "deploy",
+    "kv"
+  ],
+  "tags": [
+    "edge"
+  ],
+  "files": [
+    {
+      "path": "main.ts",
+      "template": "// deno deploy durable objects + kv skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,20 @@
+{
+  "id": "strike-gitops-otel-end2end-stack",
+  "name": "GitOps + OTel End-to-End",
+  "stack": [
+    "argocd",
+    "fluxcd",
+    "opentelemetry"
+  ],
+  "tags": [
+    "gitops",
+    "observability"
+  ],
+  "files": [
+    {
+      "path": "k8s/gitops-otel.yaml",
+      "template": "# gitops + otel end-to-end stack skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-snowflake-external-stage-gcs",
+  "name": "Snowflake External Stage GCS",
+  "stack": [
+    "snowflake",
+    "gcs"
+  ],
+  "tags": [
+    "warehouse"
+  ],
+  "files": [
+    {
+      "path": "snowflake/stage_gcs.sql",
+      "template": "-- snowflake stage gcs skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-flyio-postgres-ha-replication",
+  "name": "Fly.io Postgres HA Replication",
+  "stack": [
+    "flyio",
+    "postgres"
+  ],
+  "tags": [
+    "ha"
+  ],
+  "files": [
+    {
+      "path": "fly.toml",
+      "template": "# fly postgres ha replication skeleton\n"
+    }
+  ],
+  "patches": []
+}

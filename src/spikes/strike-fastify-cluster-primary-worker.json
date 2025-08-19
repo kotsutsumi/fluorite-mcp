@@ -1,0 +1,18 @@
+{
+  "id": "strike-fastify-cluster-primary-worker",
+  "name": "Fastify Cluster Primary/Worker",
+  "stack": [
+    "node",
+    "fastify"
+  ],
+  "tags": [
+    "cluster"
+  ],
+  "files": [
+    {
+      "path": "server.js",
+      "template": "// fastify cluster primary/worker skeleton\n"
+    }
+  ],
+  "patches": []
+}

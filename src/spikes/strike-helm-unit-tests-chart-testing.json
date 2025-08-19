@@ -1,0 +1,19 @@
+{
+  "id": "strike-helm-unit-tests-chart-testing",
+  "name": "Helm Unit Tests(Chart Testing)",
+  "stack": [
+    "helm",
+    "chart-testing"
+  ],
+  "tags": [
+    "charts",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/chart-testing.yml",
+      "template": "name: ChartTesting\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

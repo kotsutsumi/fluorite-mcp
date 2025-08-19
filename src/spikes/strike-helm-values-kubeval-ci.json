@@ -1,0 +1,19 @@
+{
+  "id": "strike-helm-values-kubeval-ci",
+  "name": "Helm values kubeval CI",
+  "stack": [
+    "helm",
+    "kubeval"
+  ],
+  "tags": [
+    "charts",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/kubeval.yml",
+      "template": "name: Kubeval\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,20 @@
+{
+  "id": "strike-cloudflare-queues-drizzle-orm",
+  "name": "Cloudflare Queues + Drizzle ORM",
+  "stack": [
+    "cloudflare",
+    "queues",
+    "drizzle"
+  ],
+  "tags": [
+    "edge",
+    "db"
+  ],
+  "files": [
+    {
+      "path": "src/queue.ts",
+      "template": "// cloudflare queues with drizzle orm skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,70 +1,70 @@
 # Fluorite Memory Engine
 
-A high-performance Rust-based memory and pre-learning system for fluorite-mcp, designed to enhance code generation accuracy through intelligent pattern recognition and ML-powered learning.
+fluorite-mcp向けの高性能Rust基盤メモリ・事前学習システム。インテリジェントなパターン認識とML駆動学習により、コード生成精度を向上させるよう設計されています。
 
-## 🎯 Overview
+## 🎯 概要
 
-The Memory Engine is a sophisticated system that combines:
-- **Rust** for high-performance parallel I/O operations
-- **PyO3** for Python ML model integration (CPU-only)
-- **Chunk-based storage** for thought processes and learning data
-- **Node.js bridge** for seamless MCP integration
-- **Automated learning** from spike templates and web sources
+Memory Engineは以下を組み合わせた高度なシステムです：
+- **Rust** による高性能並列I/O操作
+- **PyO3** によるPython MLモデル統合（CPU専用）
+- 思考プロセスと学習データのための**チャンク型ストレージ**
+- シームレスなMCP統合のための**Node.jsブリッジ**
+- スパイクテンプレートとWebソースからの**自動学習**
 
-## 🏗️ Architecture
+## 🏗️ アーキテクチャ
 
 ```
 fluorite-mcp/
 ├── memory-engine/
-│   ├── fluorite-memory/     # Core memory storage engine
-│   ├── fluorite-learner/    # Learning pipeline
-│   ├── fluorite-ml/         # ML integration (CPU-only)
-│   └── fluorite-bridge/     # Node.js integration
-└── learning-chunks/         # Generated learning data
+│   ├── fluorite-memory/     # コアメモリストレージエンジン
+│   ├── fluorite-learner/    # 学習パイプライン
+│   ├── fluorite-ml/         # ML統合（CPU専用）
+│   └── fluorite-bridge/     # Node.js統合
+└── learning-chunks/         # 生成された学習データ
 ```
 
-## 🚀 Key Features
+## 🚀 主要機能
 
-### 1. **Hybrid Memory-Disk Storage**
-- Intelligent caching with LRU eviction
-- Compressed disk storage for large datasets
-- Memory-mapped files for fast access
-- Parallel I/O operations
+### 1. **ハイブリッドメモリ・ディスクストレージ**
+- LRU追い出しによるインテリジェントキャッシュ
+- 大型データセット向け圧縮ディスクストレージ
+- 高速アクセス用メモリマップファイル
+- 並列I/O操作
 
-### 2. **ML Integration (CPU-Only)**
-- Sentence transformers for embeddings
-- Pattern recognition models
-- Clustering for similar code patterns
-- No GPU required - runs on standard hardware
+### 2. **ML統合（CPU専用）**
+- 埋め込み用Sentence Transformers
+- パターン認識モデル
+- 類似コードパターンのクラスタリング
+- GPU不要 - 標準ハードウェアで動作
 
-### 3. **Automated Learning Pipeline**
-- Processes spike templates automatically
-- Learns framework combinations (Next.js + Hono + Laravel)
-- Generates reusable code patterns
-- Continuously improves through feedback
+### 3. **自動学習パイプライン**
+- スパイクテンプレートの自動処理
+- フレームワーク組み合わせの学習（Next.js + Hono + Laravel）
+- 再利用可能なコードパターンの生成
+- フィードバックによる継続的改善
 
-### 4. **Node.js Bridge**
-- Native Node.js addon using N-API
-- Async/await support
-- Type-safe TypeScript definitions
-- Zero-copy data transfer
+### 4. **Node.jsブリッジ**
+- N-APIを使用したネイティブNode.jsアドオン
+- async/awaitサポート
+- 型安全TypeScript定義
+- ゼロコピーデータ転送
 
-## 📦 Installation
+## 📦 インストール
 
-### Prerequisites
-- Rust 1.75+ (for memory engine)
-- Node.js 18+ (for fluorite-mcp)
-- Python 3.9+ (for ML models)
-- 4GB+ RAM recommended
+### 前提条件
+- Rust 1.75+（メモリエンジン用）
+- Node.js 18+（fluorite-mcp用）
+- Python 3.9+（MLモデル用）
+- 推奨RAM 4GB以上
 
-### Building the Memory Engine
+### Memory Engineのビルド
 
 ```bash
 cd memory-engine
 cargo build --release
 ```
 
-### Installing Node.js Bridge
+### Node.jsブリッジのインストール
 
 ```bash
 cd fluorite-bridge
@@ -72,98 +72,98 @@ npm install
 npm run build
 ```
 
-### Setting up Python Environment
+### Python環境のセットアップ
 
 ```bash
-# Create virtual environment
+# 仮想環境の作成
 python3 -m venv venv
 source venv/bin/activate
 
-# Install ML dependencies (CPU-only)
+# ML依存関係のインストール（CPU専用）
 pip install sentence-transformers scikit-learn numpy --no-deps torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
 ```
 
-## 🤖 Automated Learning
+## 🤖 自動学習
 
-The system includes automated scripts for continuous learning:
+システムには継続的学習のための自動化スクリプトが含まれています：
 
-### Learning Script (`~/fluorite-auto-learn.sh`)
+### 学習スクリプト（`~/fluorite-auto-learn.sh`）
 
-Performs the following tasks:
-1. Collects implementation examples from technical sources
-2. Processes spike templates
-3. Generates learning chunks
-4. Trains ML models
-5. Updates the fluorite-mcp repository
+以下のタスクを実行します：
+1. 技術ソースから実装例を収集
+2. スパイクテンプレートの処理
+3. 学習チャンクの生成
+4. MLモデルの学習
+5. fluorite-mcpリポジトリの更新
 
-### Running Manually
+### 手動実行
 
 ```bash
 ~/fluorite-auto-learn.sh
 ```
 
-### Setting Up Scheduled Execution
+### スケジュール実行の設定
 
 ```bash
 ~/fluorite-schedule-setup.sh
 ```
 
-Choose from:
-- Daily cron job (2 AM)
+以下から選択できます：
+- 日次cron job（午前2時）
 - macOS LaunchAgent
-- Manual execution
+- 手動実行
 
-### Privacy & Storage
+### プライバシー・ストレージ
 
-- **Search history**: Stored in `~/tmp/fluorite-learning/` (excluded from repo)
-- **Learning chunks**: Stored in `fluorite-mcp/learning-chunks/`
-- **Models**: Cached in `memory-engine/models/`
+- **検索履歴**: `~/tmp/fluorite-learning/`に保存（リポジトリから除外）
+- **学習チャンク**: `fluorite-mcp/learning-chunks/`に保存
+- **モデル**: `memory-engine/models/`にキャッシュ
 
-## 🧠 How It Works
+## 🧠 動作方法
 
-### 1. Pattern Collection
-The system collects patterns from:
-- Existing spike templates
-- Framework documentation
-- Community examples
-- User interactions
+### 1. パターン収集
+システムは以下からパターンを収集します：
+- 既存のスパイクテンプレート
+- フレームワークドキュメント
+- コミュニティ例
+- ユーザーインタラクション
 
-### 2. Learning Process
+### 2. 学習プロセス
 ```rust
-// Example: Learning from spike templates
+// 例：スパイクテンプレートからの学習
 let pipeline = LearningPipeline::new(config).await?;
 let report = pipeline.learn_from_spikes().await?;
 
-// Patterns are extracted and stored
+// パターンが抽出され保存される
 for pattern in report.patterns {
     memory_engine.store_chunk(pattern).await?;
 }
 ```
 
-### 3. Pattern Recognition
+### 3. パターン認識
 ```python
-# ML model recognizes patterns
+# MLモデルがパターンを認識
 embeddings = model.encode(code_snippets)
 similar_patterns = find_similar(query_embedding, stored_embeddings)
 ```
 
-### 4. Code Generation Enhancement
-When generating code, the system:
-1. Analyzes the user's request
-2. Searches for similar patterns
-3. Combines relevant chunks
-4. Generates optimized code
+### 4. コード生成強化
+コード生成時、システムは以下を行います：
+1. ユーザーリクエストの分析
+2. 類似パターンの検索
+3. 関連チャンクの組み合わせ
+4. 最適化されたコードの生成
 
-## 📊 Performance
+## 📊 パフォーマンス
 
-- **Chunk Storage**: ~1M chunks with <100ms retrieval
-- **Embedding Generation**: ~50ms per text (CPU)
-- **Pattern Matching**: <10ms for similarity search
-- **Memory Usage**: ~500MB baseline, scales with data
+- **チャンクストレージ**: 約100万チャンク、100ms未満での検索
+- **埋め込み生成**: テキストあたり約50ms（CPU）
+- **パターンマッチング**: 類似性検索10ms未満
+- **メモリ使用量**: ベースライン約500MB、データに応じてスケール
 
-## 🔧 Configuration
+## 🔧 設定
 
-### Memory Engine Config
+### Memory Engine設定
 ```toml
 [memory]
 cache_size_mb = 512
@@ -181,48 +181,48 @@ cpu_only = true
 num_threads = 8
 ```
 
-## 🧪 Testing
+## 🧪 テスト
 
 ```bash
-# Run all tests
+# 全テストの実行
 cargo test --all
 
-# Run specific component tests
+# 特定コンポーネントテストの実行
 cargo test -p fluorite-memory
 cargo test -p fluorite-ml
 
-# Run integration tests
+# 統合テストの実行
 cargo test --test integration
 ```
 
-## 📈 Monitoring
+## 📈 モニタリング
 
-The system provides metrics for:
-- Learning progress
-- Pattern quality scores
-- Memory usage
-- Cache hit rates
-- ML model accuracy
+システムは以下のメトリクスを提供します：
+- 学習進捗
+- パターン品質スコア
+- メモリ使用量
+- キャッシュヒット率
+- MLモデル精度
 
-View metrics:
+メトリクス表示：
 ```bash
 cat ~/tmp/fluorite-learning/learning-*.log
 ```
 
-## 🔄 Continuous Improvement
+## 🔄 継続的改善
 
-The system improves through:
-1. **User Feedback**: Rating generated code
-2. **Usage Patterns**: Learning from successful generations
-3. **Error Corrections**: Learning from mistakes
-4. **Community Contributions**: Shared patterns and templates
+システムは以下により改善されます：
+1. **ユーザーフィードバック**: 生成されたコードの評価
+2. **使用パターン**: 成功した生成からの学習
+3. **エラー修正**: ミスからの学習
+4. **コミュニティ貢献**: 共有パターンとテンプレート
 
-## 🤝 Integration with fluorite-mcp
+## 🤝 fluorite-mcpとの統合
 
-The memory engine integrates seamlessly:
+メモリエンジンはシームレスに統合されます：
 
 ```javascript
-// In fluorite-mcp Node.js code
+// fluorite-mcp Node.jsコード内
 const { FluoriteBridge } = require('./memory-engine/fluorite-bridge');
 
 const bridge = new FluoriteBridge();
@@ -233,7 +233,7 @@ await bridge.initialize({
     enable_ml: true
 });
 
-// Store learning chunk
+// 学習チャンクの保存
 await bridge.storeChunk({
     id: 'nextjs-bff-pattern',
     content: codeSnippet,
@@ -241,30 +241,30 @@ await bridge.storeChunk({
     quality_score: 0.9
 });
 
-// Search similar patterns
+// 類似パターンの検索
 const similar = await bridge.searchSimilar('BFF implementation', 10);
 ```
 
-## 🚦 Roadmap
+## 🚦 ロードマップ
 
-- [ ] Advanced pattern synthesis
-- [ ] Multi-language support
-- [ ] Distributed learning
-- [ ] Real-time pattern updates
-- [ ] Visual pattern exploration
-- [ ] API for external integrations
+- [ ] 高度なパターン合成
+- [ ] 多言語サポート
+- [ ] 分散学習
+- [ ] リアルタイムパターン更新
+- [ ] ビジュアルパターン探索
+- [ ] 外部統合用API
 
-## 📝 License
+## 📝 ライセンス
 
-MIT License - See LICENSE file for details
+MIT License - 詳細はLICENSEファイルをご確認ください
 
-## 🙏 Acknowledgments
+## 🙏 謝辞
 
-- ONNX Runtime for CPU inference
-- Sentence Transformers for embeddings
-- PyO3 for Python integration
-- The Rust and Node.js communities
+- CPU推論のためのONNX Runtime
+- 埋め込みのためのSentence Transformers
+- Python統合のためのPyO3
+- RustとNode.jsコミュニティ
 
 ---
 
-**Note**: This is an advanced experimental system. The automated learning capabilities are designed to run locally and privately, with all search history stored outside the repository for privacy.
+**注意**: これは高度な実験的システムです。自動学習機能はローカルおよびプライベートに実行するよう設計されており、すべての検索履歴はプライバシーのためリポジトリ外に保存されます。

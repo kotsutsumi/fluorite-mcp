@@ -1,0 +1,19 @@
+{
+  "id": "strike-fluxcd-notify-discord",
+  "name": "FluxCD Notifications Discord",
+  "stack": [
+    "fluxcd",
+    "discord"
+  ],
+  "tags": [
+    "gitops",
+    "notify"
+  ],
+  "files": [
+    {
+      "path": "k8s/notify_discord.yaml",
+      "template": "# fluxcd notify discord skeleton\n"
+    }
+  ],
+  "patches": []
+}
