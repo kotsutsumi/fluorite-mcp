@@ -1,0 +1,49 @@
+{
+  "items": [
+    { "id": "strike-spring-batch-skip-and-retry", "name": "Spring Batch Skip & Retry", "stack": ["java","spring","batch"], "tags": ["batch","retry"], "files": [{ "path": "src/main/java/example/SkipRetry.java", "template": "// spring batch skip & retry skeleton\n" }] },
+    { "id": "strike-spring-cloud-stream-kafka-headers", "name": "Cloud Stream Kafka Headers", "stack": ["java","spring","kafka"], "tags": ["stream"], "files": [{ "path": "src/main/resources/application.yml", "template": "# kafka headers mapping skeleton\n" }] },
+    { "id": "strike-quarkus-panache-repository-pattern", "name": "Quarkus Panache Repository Pattern", "stack": ["java","quarkus","panache"], "tags": ["db"], "files": [{ "path": "src/main/java/org/acme/Repo.java", "template": "// panache repository pattern skeleton\n" }] },
+    { "id": "strike-micronaut-security-oidc-google", "name": "Micronaut OIDC Google", "stack": ["java","micronaut","oidc"], "tags": ["auth"], "files": [{ "path": "src/main/resources/application.yml", "template": "# micronaut oidc google skeleton\n" }] },
+    { "id": "strike-ktor-server-koin-di", "name": "Ktor Server Koin DI", "stack": ["kotlin","ktor","koin"], "tags": ["di"], "files": [{ "path": "src/Di.kt", "template": "// ktor koin di skeleton\n" }] },
+
+    { "id": "strike-aspnet-minimal-api-filters", "name": ".NET Minimal API Filters", "stack": ["dotnet","aspnet"], "tags": ["api"], "files": [{ "path": "Program.cs", "template": "// minimal api filters skeleton\n" }] },
+    { "id": "strike-efcore-tph-inheritance", "name": "EFCore TPH Inheritance", "stack": ["dotnet","efcore"], "tags": ["db"], "files": [{ "path": "Data/Entities.cs", "template": "// efcore tph inheritance skeleton\n" }] },
+    { "id": "strike-serilog-enricher-correlation", "name": "Serilog Enricher Correlation", "stack": ["dotnet","serilog"], "tags": ["logs"], "files": [{ "path": "Program.cs", "template": "// serilog enricher correlation skeleton\n" }] },
+    { "id": "strike-orleans-streams-rabbitmq", "name": "Orleans Streams RabbitMQ", "stack": ["dotnet","orleans","rabbitmq"], "tags": ["stream"], "files": [{ "path": "Grains/StreamRabbit.cs", "template": "// orleans streams rabbitmq skeleton\n" }] },
+
+    { "id": "strike-express-compression-brotli", "name": "Express Compression(Brotli)", "stack": ["node","express"], "tags": ["perf"], "files": [{ "path": "server.js", "template": "// express compression brotli skeleton\n" }] },
+    { "id": "strike-nestjs-rmq-dynamic-modules", "name": "NestJS RMQ Dynamic Modules", "stack": ["node","nestjs","rabbitmq"], "tags": ["modular"], "files": [{ "path": "src/rmq.module.ts", "template": "// nestjs rmq dynamic module skeleton\n" }] },
+    { "id": "strike-fastify-request-context-storage", "name": "Fastify Request Context Storage", "stack": ["node","fastify"], "tags": ["context"], "files": [{ "path": "server.js", "template": "// fastify request context storage skeleton\n" }] },
+    { "id": "strike-h3-middleware-error-handler", "name": "h3 Middleware Error Handler", "stack": ["node","h3"], "tags": ["error"], "files": [{ "path": "server.ts", "template": "// h3 error handler middleware skeleton\n" }] },
+
+    { "id": "strike-fastapi-sqlmodel-pg-async", "name": "FastAPI SQLModel Postgres Async", "stack": ["python","fastapi","sqlmodel"], "tags": ["db"], "files": [{ "path": "app/db.py", "template": "# sqlmodel postgres async skeleton\n" }] },
+    { "id": "strike-django-rest-framework-openapi", "name": "DRF OpenAPI Schema", "stack": ["python","django","drf"], "tags": ["api","docs"], "files": [{ "path": "app/schema.py", "template": "# drf openapi schema skeleton\n" }] },
+    { "id": "strike-pydantic-v2-validators-datetime", "name": "Pydantic v2 DateTime Validators", "stack": ["python","pydantic"], "tags": ["validation"], "files": [{ "path": "app/datetime.py", "template": "# pydantic datetime validators skeleton\n" }] },
+    { "id": "strike-dagster-op-factory", "name": "Dagster Op Factory", "stack": ["dagster"], "tags": ["pipeline"], "files": [{ "path": "pipeline/factory.py", "template": "# dagster op factory skeleton\n" }] },
+    { "id": "strike-prefect-work-pool-deploy-cli", "name": "Prefect Work Pool Deploy CLI", "stack": ["prefect"], "tags": ["deploy"], "files": [{ "path": "flows/deploy_cli.py", "template": "# prefect work pool deploy cli skeleton\n" }] },
+
+    { "id": "strike-spark-structured-kinesis-firehose", "name": "Spark Structured Kinesis + Firehose", "stack": ["spark","kinesis","firehose"], "tags": ["stream"], "files": [{ "path": "spark/kinesis_firehose.py", "template": "# spark kinesis firehose skeleton\n" }] },
+    { "id": "strike-trino-mysql-oauth2", "name": "Trino MySQL OAuth2", "stack": ["trino","mysql","oauth2"], "tags": ["auth"], "files": [{ "path": "trino/config.properties", "template": "# trino mysql oauth2 skeleton\n" }] },
+    { "id": "strike-snowflake-access-history-monitor", "name": "Snowflake Access History Monitor", "stack": ["snowflake"], "tags": ["security"], "files": [{ "path": "snowflake/access_history.sql", "template": "-- snowflake access history monitor skeleton\n" }] },
+    { "id": "strike-bigquery-row-policy-functions", "name": "BigQuery Row Policy Functions", "stack": ["gcp","bigquery"], "tags": ["security"], "files": [{ "path": "bq/policy_functions.sql", "template": "-- bigquery row policy functions skeleton\n" }] },
+
+    { "id": "strike-chromadb-index-configs", "name": "ChromaDB Index Configs", "stack": ["chromadb"], "tags": ["vector"], "files": [{ "path": "chroma/index_configs.py", "template": "# chromadb index configs skeleton\n" }] },
+    { "id": "strike-milvus-index-scalar-filters", "name": "Milvus Scalar Filters", "stack": ["milvus"], "tags": ["vector"], "files": [{ "path": "milvus/scalar_filters.py", "template": "# milvus scalar filters skeleton\n" }] },
+    { "id": "strike-pinecone-consistency-models", "name": "Pinecone Consistency Models", "stack": ["pinecone"], "tags": ["vector"], "files": [{ "path": "pinecone/consistency_models.json", "template": "{ }\n" }] },
+
+    { "id": "strike-argocd-notifications-email", "name": "ArgoCD Notifications Email", "stack": ["argocd"], "tags": ["gitops","notify"], "files": [{ "path": "k8s/notify_email.yaml", "template": "# argocd notifications email skeleton\n" }] },
+    { "id": "strike-fluxcd-oci-helm-source", "name": "FluxCD OCI Helm Source", "stack": ["fluxcd","helm"], "tags": ["gitops"], "files": [{ "path": "k8s/oci-helm.yaml", "template": "# flux oci helm source skeleton\n" }] },
+    { "id": "strike-helmfile-environments-ci", "name": "Helmfile Environments CI", "stack": ["helmfile"], "tags": ["ci"], "files": [{ "path": ".github/workflows/helmfile-envs.yml", "template": "name: HelmfileEnvs\non: [push]\n" }] },
+    { "id": "strike-kustomize-remote-bases", "name": "Kustomize Remote Bases", "stack": ["kustomize"], "tags": ["gitops"], "files": [{ "path": "k8s/remote_bases.yaml", "template": "# kustomize remote bases skeleton\n" }] },
+
+    { "id": "strike-kyverno-imagepullpolicy-enforce", "name": "Kyverno imagePullPolicy Enforce", "stack": ["kyverno"], "tags": ["policy"], "files": [{ "path": "kyverno/imagepullpolicy.yaml", "template": "# kyverno imagepullpolicy enforce skeleton\n" }] },
+    { "id": "strike-opa-rego-headers-audit", "name": "OPA Rego Headers Audit", "stack": ["opa"], "tags": ["policy"], "files": [{ "path": "policy/headers_audit.rego", "template": "# rego headers audit skeleton\n" }] },
+    { "id": "strike-falco-open-port-detect", "name": "Falco Open Port Detect", "stack": ["falco"], "tags": ["security"], "files": [{ "path": "falco/open_port.yaml", "template": "# falco open port detect skeleton\n" }] },
+
+    { "id": "strike-workers-ai-vision-moderation", "name": "Workers AI Vision Moderation", "stack": ["cloudflare","workers-ai"], "tags": ["ai","moderation"], "files": [{ "path": "src/moderation.ts", "template": "// workers ai vision moderation skeleton\n" }] },
+    { "id": "strike-deno-kv-ttl-collections", "name": "Deno KV TTL Collections", "stack": ["deno","kv"], "tags": ["db"], "files": [{ "path": "kv_ttl.ts", "template": "// deno kv ttl collections skeleton\n" }] },
+    { "id": "strike-vercel-og-image-cache", "name": "Vercel OG Image Cache", "stack": ["vercel"], "tags": ["image","cache"], "files": [{ "path": "api/og-cache/route.ts", "template": "// vercel og image cache skeleton\n" }] },
+    { "id": "strike-flyio-machines-metrics-scrape", "name": "Fly.io Machines Metrics Scrape", "stack": ["flyio"], "tags": ["metrics"], "files": [{ "path": "fly.toml", "template": "# fly machines metrics scrape skeleton\n" }] }
+  ]
+}
+

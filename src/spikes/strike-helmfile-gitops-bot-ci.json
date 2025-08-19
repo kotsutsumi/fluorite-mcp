@@ -1,0 +1,18 @@
+{
+  "id": "strike-helmfile-gitops-bot-ci",
+  "name": "Helmfile GitOps Bot CI",
+  "stack": [
+    "helmfile"
+  ],
+  "tags": [
+    "gitops",
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/gitops-bot.yml",
+      "template": "name: GitOpsBot\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

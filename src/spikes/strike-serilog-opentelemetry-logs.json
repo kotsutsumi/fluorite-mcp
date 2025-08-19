@@ -1,0 +1,19 @@
+{
+  "id": "strike-serilog-opentelemetry-logs",
+  "name": "Serilog → OTel Logs",
+  "stack": [
+    "dotnet",
+    "serilog",
+    "opentelemetry"
+  ],
+  "tags": [
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "Program.cs",
+      "template": "// serilog to otel logs skeleton\n"
+    }
+  ],
+  "patches": []
+}

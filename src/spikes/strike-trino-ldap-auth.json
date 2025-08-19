@@ -1,0 +1,18 @@
+{
+  "id": "strike-trino-ldap-auth",
+  "name": "Trino LDAP Auth",
+  "stack": [
+    "trino",
+    "ldap"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "trino/config.properties",
+      "template": "# trino ldap auth skeleton\n"
+    }
+  ],
+  "patches": []
+}

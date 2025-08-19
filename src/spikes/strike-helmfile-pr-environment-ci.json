@@ -1,0 +1,17 @@
+{
+  "id": "strike-helmfile-pr-environment-ci",
+  "name": "Helmfile PR Environment CI",
+  "stack": [
+    "helmfile"
+  ],
+  "tags": [
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/helmfile-pr-env.yml",
+      "template": "name: HelmfilePREnv\non: [pull_request]\n"
+    }
+  ],
+  "patches": []
+}

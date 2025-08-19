@@ -1,0 +1,18 @@
+{
+  "id": "strike-trino-oauth2-gateway-proxy",
+  "name": "Trino OAuth2 behind Gateway",
+  "stack": [
+    "trino",
+    "oauth2"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "trino/config.properties",
+      "template": "# trino oauth2 behind gateway skeleton\n"
+    }
+  ],
+  "patches": []
+}

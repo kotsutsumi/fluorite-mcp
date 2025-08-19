@@ -1,0 +1,19 @@
+{
+  "id": "strike-trino-kerberos-oauth2-mixed",
+  "name": "Trino Kerberos + OAuth2 Mixed",
+  "stack": [
+    "trino",
+    "kerberos",
+    "oauth2"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "trino/config.properties",
+      "template": "# trino kerberos + oauth2 mixed skeleton\n"
+    }
+  ],
+  "patches": []
+}

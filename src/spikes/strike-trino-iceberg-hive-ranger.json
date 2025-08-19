@@ -1,0 +1,19 @@
+{
+  "id": "strike-trino-iceberg-hive-ranger",
+  "name": "Trino Iceberg Hive + Ranger",
+  "stack": [
+    "trino",
+    "iceberg",
+    "ranger"
+  ],
+  "tags": [
+    "authz"
+  ],
+  "files": [
+    {
+      "path": "trino/config.properties",
+      "template": "# trino iceberg hive ranger skeleton\n"
+    }
+  ],
+  "patches": []
+}

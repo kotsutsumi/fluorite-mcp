@@ -1,0 +1,49 @@
+{
+  "items": [
+    { "id": "strike-spring-cloud-gateway-bluegreen", "name": "Gateway Blue/Green Routing", "stack": ["java","spring","gateway"], "tags": ["deploy","routing"], "files": [{ "path": "src/main/resources/application.yml", "template": "# gateway blue/green routing skeleton\n" }] },
+    { "id": "strike-spring-security-opaque-token", "name": "Spring Security Opaque Token", "stack": ["java","spring","oauth2"], "tags": ["auth"], "files": [{ "path": "src/main/resources/application.yml", "template": "# opaque token introspection skeleton\n" }] },
+    { "id": "strike-quarkus-smallrye-openapi-ui", "name": "Quarkus SmallRye OpenAPI UI", "stack": ["java","quarkus","openapi"], "tags": ["api","docs"], "files": [{ "path": "src/main/resources/application.properties", "template": "# openapi ui skeleton\n" }] },
+    { "id": "strike-micronaut-multi-tenancy-header", "name": "Micronaut Multi-Tenancy(Header)", "stack": ["java","micronaut"], "tags": ["multitenant"], "files": [{ "path": "src/main/java/example/TenantResolver.java", "template": "// micronaut header tenant resolver skeleton\n" }] },
+    { "id": "strike-ktor-server-call-logging-otel", "name": "Ktor Call Logging + OTel", "stack": ["kotlin","ktor","opentelemetry"], "tags": ["logs","traces"], "files": [{ "path": "src/Logging.kt", "template": "// ktor call logging with otel skeleton\n" }] },
+
+    { "id": "strike-aspnet-minimal-grpc-json-transcoding", "name": ".NET gRPC JSON Transcoding", "stack": ["dotnet","aspnet","grpc"], "tags": ["api"], "files": [{ "path": "Program.cs", "template": "// aspnet grpc json transcoding skeleton\n" }] },
+    { "id": "strike-efcore-batching-bulk-extensions", "name": "EFCore BulkExtensions Batching", "stack": ["dotnet","efcore"], "tags": ["db","perf"], "files": [{ "path": "Data/BulkExtensions.cs", "template": "// efcore bulkextensions batching skeleton\n" }] },
+    { "id": "strike-serilog-application-insights", "name": "Serilog Application Insights", "stack": ["dotnet","serilog","appinsights"], "tags": ["logs","apm"], "files": [{ "path": "Program.cs", "template": "// serilog application insights sink skeleton\n" }] },
+    { "id": "strike-orleans-grpc-gateway", "name": "Orleans gRPC Gateway", "stack": ["dotnet","orleans","grpc"], "tags": ["gateway"], "files": [{ "path": "Gateway/Program.cs", "template": "// orleans grpc gateway skeleton\n" }] },
+
+    { "id": "strike-express-undici-agent-pooling", "name": "Express Undici Agent Pooling", "stack": ["node","express","undici"], "tags": ["http","perf"], "files": [{ "path": "server.js", "template": "// express undici agent pooling skeleton\n" }] },
+    { "id": "strike-nestjs-mqtt-gateway", "name": "NestJS MQTT Gateway", "stack": ["node","nestjs","mqtt"], "tags": ["realtime"], "files": [{ "path": "src/mqtt.ts", "template": "// nestjs mqtt gateway skeleton\n" }] },
+    { "id": "strike-fastify-otel-instrumentation", "name": "Fastify OTel Instrumentation", "stack": ["node","fastify","opentelemetry"], "tags": ["observability"], "files": [{ "path": "server.js", "template": "// fastify otel instrumentation skeleton\n" }] },
+    { "id": "strike-h3-cors-csrf-headers", "name": "h3 CORS + CSRF Headers", "stack": ["node","h3"], "tags": ["security"], "files": [{ "path": "server.ts", "template": "// h3 cors + csrf headers skeleton\n" }] },
+
+    { "id": "strike-fastapi-sqlmodel-relationship-load", "name": "SQLModel Relationship Lazy/Eager", "stack": ["python","sqlmodel"], "tags": ["db"], "files": [{ "path": "app/models.py", "template": "# sqlmodel relation load strategies skeleton\n" }] },
+    { "id": "strike-django-rest-authentication-sessions", "name": "DRF Authentication + Sessions", "stack": ["python","django","drf"], "tags": ["auth"], "files": [{ "path": "app/auth.py", "template": "# drf auth sessions skeleton\n" }] },
+    { "id": "strike-pydantic-v2-serializers-json", "name": "Pydantic v2 JSON Serializers", "stack": ["python","pydantic"], "tags": ["typing"], "files": [{ "path": "app/serial_json.py", "template": "# pydantic v2 json serializers skeleton\n" }] },
+    { "id": "strike-dagster-partition-mapping", "name": "Dagster Partition Mapping", "stack": ["dagster"], "tags": ["partitions"], "files": [{ "path": "assets/partition_mapping.py", "template": "# dagster partition mapping skeleton\n" }] },
+    { "id": "strike-prefect-work-pool-schedules", "name": "Prefect Work Pool Schedules", "stack": ["prefect"], "tags": ["schedule"], "files": [{ "path": "flows/schedules.py", "template": "# prefect work pool schedules skeleton\n" }] },
+
+    { "id": "strike-spark-structured-kafka-exactly-once-idempotent", "name": "Spark Kafka EOS Idempotent", "stack": ["spark","kafka"], "tags": ["stream","eos"], "files": [{ "path": "spark/kafka_eos_idempotent.py", "template": "# spark kafka eos idempotent producer skeleton\n" }] },
+    { "id": "strike-trino-oauth2-gateway-proxy", "name": "Trino OAuth2 behind Gateway", "stack": ["trino","oauth2"], "tags": ["auth"], "files": [{ "path": "trino/config.properties", "template": "# trino oauth2 behind gateway skeleton\n" }] },
+    { "id": "strike-snowflake-data-classification", "name": "Snowflake Data Classification", "stack": ["snowflake"], "tags": ["security"], "files": [{ "path": "snowflake/classification.sql", "template": "-- snowflake data classification skeleton\n" }] },
+    { "id": "strike-bigquery-row-access-policies-tags", "name": "BigQuery Row Access via Tags", "stack": ["gcp","bigquery"], "tags": ["security"], "files": [{ "path": "bq/row_tags.sql", "template": "-- bigquery row access via tags skeleton\n" }] },
+
+    { "id": "strike-chromadb-concurrency-locks", "name": "ChromaDB Concurrency Locks", "stack": ["chromadb"], "tags": ["vector","concurrency"], "files": [{ "path": "chroma/locks.py", "template": "# chromadb concurrency locks skeleton\n" }] },
+    { "id": "strike-milvus-index-hnsw-tuning", "name": "Milvus HNSW Tuning", "stack": ["milvus"], "tags": ["vector","tuning"], "files": [{ "path": "milvus/hnsw_tuning.py", "template": "# milvus hnsw tuning skeleton\n" }] },
+    { "id": "strike-pinecone-namespace-consistency", "name": "Pinecone Namespace Consistency", "stack": ["pinecone"], "tags": ["vector"], "files": [{ "path": "pinecone/ns_consistency.json", "template": "{ }\n" }] },
+
+    { "id": "strike-argocd-appset-github-enterprise", "name": "AppSet GitHub Enterprise", "stack": ["argocd","github"], "tags": ["gitops"], "files": [{ "path": "k8s/appset-gh-enterprise.yaml", "template": "# appset github enterprise skeleton\n" }] },
+    { "id": "strike-fluxcd-image-automation-gcr", "name": "Flux Image Automation(GCR)", "stack": ["fluxcd","gcr"], "tags": ["gitops"], "files": [{ "path": "k8s/image-automation-gcr.yaml", "template": "# flux image automation gcr skeleton\n" }] },
+    { "id": "strike-helmfile-pr-environment-ci", "name": "Helmfile PR Environment CI", "stack": ["helmfile"], "tags": ["ci"], "files": [{ "path": ".github/workflows/helmfile-pr-env.yml", "template": "name: HelmfilePREnv\non: [pull_request]\n" }] },
+    { "id": "strike-kustomize-generator-plugins", "name": "Kustomize Generator Plugins", "stack": ["kustomize"], "tags": ["gitops"], "files": [{ "path": "k8s/generator_plugins.yaml", "template": "# kustomize generator plugins skeleton\n" }] },
+
+    { "id": "strike-kyverno-sysctls-block", "name": "Kyverno Sysctls Block", "stack": ["kyverno"], "tags": ["policy"], "files": [{ "path": "kyverno/sysctls.yaml", "template": "# kyverno sysctls block skeleton\n" }] },
+    { "id": "strike-opa-rego-xff-trusted-proxies", "name": "OPA Rego XFF Trusted Proxies", "stack": ["opa"], "tags": ["policy"], "files": [{ "path": "policy/xff.rego", "template": "# rego xff trusted proxies skeleton\n" }] },
+    { "id": "strike-falco-crypto-miner-detect", "name": "Falco Crypto Miner Detect", "stack": ["falco"], "tags": ["security"], "files": [{ "path": "falco/crypto_miner.yaml", "template": "# falco crypto miner detect skeleton\n" }] },
+
+    { "id": "strike-workers-ai-audio-transcribe", "name": "Workers AI Audio Transcribe", "stack": ["cloudflare","workers-ai"], "tags": ["ai","audio"], "files": [{ "path": "src/transcribe.ts", "template": "// workers ai audio transcribe skeleton\n" }] },
+    { "id": "strike-deno-kv-causal-consistency", "name": "Deno KV Causal Consistency", "stack": ["deno","kv"], "tags": ["db","consistency"], "files": [{ "path": "kv_causal.ts", "template": "# deno kv causal consistency skeleton\n" }] },
+    { "id": "strike-vercel-middleware-locale-switch", "name": "Vercel Middleware Locale Switch", "stack": ["vercel"], "tags": ["i18n","edge"], "files": [{ "path": "middleware.ts", "template": "// vercel locale switch middleware skeleton\n" }] },
+    { "id": "strike-flyio-services-private-redis", "name": "Fly.io Services Private Redis", "stack": ["flyio","redis"], "tags": ["network","cache"], "files": [{ "path": "fly.toml", "template": "# fly private redis services skeleton\n" }] }
+  ]
+}
+

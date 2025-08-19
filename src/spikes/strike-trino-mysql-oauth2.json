@@ -1,0 +1,19 @@
+{
+  "id": "strike-trino-mysql-oauth2",
+  "name": "Trino MySQL OAuth2",
+  "stack": [
+    "trino",
+    "mysql",
+    "oauth2"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "trino/config.properties",
+      "template": "# trino mysql oauth2 skeleton\n"
+    }
+  ],
+  "patches": []
+}

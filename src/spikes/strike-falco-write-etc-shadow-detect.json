@@ -1,0 +1,17 @@
+{
+  "id": "strike-falco-write-etc-shadow-detect",
+  "name": "Falco Write /etc/shadow Detect",
+  "stack": [
+    "falco"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "falco/shadow.yaml",
+      "template": "# falco /etc/shadow write detect skeleton\n"
+    }
+  ],
+  "patches": []
+}

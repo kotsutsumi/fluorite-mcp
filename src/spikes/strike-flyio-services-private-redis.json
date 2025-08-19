@@ -1,0 +1,19 @@
+{
+  "id": "strike-flyio-services-private-redis",
+  "name": "Fly.io Services Private Redis",
+  "stack": [
+    "flyio",
+    "redis"
+  ],
+  "tags": [
+    "network",
+    "cache"
+  ],
+  "files": [
+    {
+      "path": "fly.toml",
+      "template": "# fly private redis services skeleton\n"
+    }
+  ],
+  "patches": []
+}

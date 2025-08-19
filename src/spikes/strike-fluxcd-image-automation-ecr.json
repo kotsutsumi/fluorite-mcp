@@ -1,0 +1,18 @@
+{
+  "id": "strike-fluxcd-image-automation-ecr",
+  "name": "Flux Image Automation(ECR)",
+  "stack": [
+    "fluxcd",
+    "ecr"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/image-automation-ecr.yaml",
+      "template": "# flux image automation ecr skeleton\n"
+    }
+  ],
+  "patches": []
+}

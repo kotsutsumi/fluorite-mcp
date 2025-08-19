@@ -1,0 +1,20 @@
+{
+  "id": "strike-micronaut-graphql-batch-loader",
+  "name": "Micronaut GraphQL BatchLoader",
+  "stack": [
+    "java",
+    "micronaut",
+    "graphql"
+  ],
+  "tags": [
+    "api",
+    "perf"
+  ],
+  "files": [
+    {
+      "path": "src/main/resources/schema.graphqls",
+      "template": "type Query { hello: String }\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-helmfile-sync-matrix-ci",
+  "name": "Helmfile Sync Matrix CI",
+  "stack": [
+    "helmfile"
+  ],
+  "tags": [
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/helmfile-sync.yml",
+      "template": "name: HelmfileSync\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

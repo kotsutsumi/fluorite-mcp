@@ -1,0 +1,19 @@
+{
+  "id": "strike-fluxcd-alert-provider-slack",
+  "name": "FluxCD Alert Provider Slack",
+  "stack": [
+    "fluxcd",
+    "slack"
+  ],
+  "tags": [
+    "gitops",
+    "notify"
+  ],
+  "files": [
+    {
+      "path": "k8s/alert-provider.yaml",
+      "template": "# flux alert provider slack skeleton\n"
+    }
+  ],
+  "patches": []
+}

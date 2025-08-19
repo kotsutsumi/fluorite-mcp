@@ -1,0 +1,18 @@
+{
+  "id": "strike-fluxcd-image-automation-gcr",
+  "name": "Flux Image Automation(GCR)",
+  "stack": [
+    "fluxcd",
+    "gcr"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/image-automation-gcr.yaml",
+      "template": "# flux image automation gcr skeleton\n"
+    }
+  ],
+  "patches": []
+}

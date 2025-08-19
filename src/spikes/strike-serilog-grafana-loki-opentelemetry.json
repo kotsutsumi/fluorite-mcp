@@ -1,0 +1,20 @@
+{
+  "id": "strike-serilog-grafana-loki-opentelemetry",
+  "name": "Serilog Loki + OTel",
+  "stack": [
+    "dotnet",
+    "serilog",
+    "loki",
+    "opentelemetry"
+  ],
+  "tags": [
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "Program.cs",
+      "template": "// serilog loki + otel exporter skeleton\n"
+    }
+  ],
+  "patches": []
+}

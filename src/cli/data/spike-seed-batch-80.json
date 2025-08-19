@@ -1,0 +1,49 @@
+{
+  "items": [
+    { "id": "strike-spring-webflux-webclient-metrics", "name": "Spring WebClient Metrics(Micrometer)", "stack": ["java","spring","webflux","micrometer"], "tags": ["metrics"], "files": [{ "path": "src/main/java/example/Metrics.java", "template": "// webclient metrics micrometer skeleton\n" }] },
+    { "id": "strike-spring-batch-chunk-listener", "name": "Spring Batch Chunk Listener", "stack": ["java","spring","batch"], "tags": ["batch"], "files": [{ "path": "src/main/java/example/ChunkListener.java", "template": "// batch chunk listener skeleton\n" }] },
+    { "id": "strike-quarkus-mutiny-uni-multi", "name": "Quarkus Mutiny Uni/Multi", "stack": ["java","quarkus","mutiny"], "tags": ["reactive"], "files": [{ "path": "src/main/java/org/acme/Reactive.java", "template": "// mutiny uni/multi skeleton\n" }] },
+    { "id": "strike-micronaut-grpc-interceptor", "name": "Micronaut gRPC Interceptor", "stack": ["java","micronaut","grpc"], "tags": ["rpc"], "files": [{ "path": "src/main/proto/echo.proto", "template": "// grpc interceptor echo skeleton\n" }] },
+    { "id": "strike-ktor-client-logging", "name": "Ktor Client Logging", "stack": ["kotlin","ktor"], "tags": ["http","logs"], "files": [{ "path": "src/ClientLogging.kt", "template": "// ktor client logging skeleton\n" }] },
+
+    { "id": "strike-aspnet-healthchecks-ui-prometheus", "name": ".NET HealthChecks UI + Prometheus", "stack": ["dotnet","aspnet","prometheus"], "tags": ["health","metrics"], "files": [{ "path": "Program.cs", "template": "// healthchecks ui + prometheus skeleton\n" }] },
+    { "id": "strike-efcore-batch-commands", "name": "EFCore Batch Commands", "stack": ["dotnet","efcore"], "tags": ["db","perf"], "files": [{ "path": "Data/Batch.cs", "template": "// efcore batch commands skeleton\n" }] },
+    { "id": "strike-serilog-otlp-exporter", "name": "Serilog OTLP Exporter", "stack": ["dotnet","serilog","otlp"], "tags": ["logs"], "files": [{ "path": "Program.cs", "template": "// serilog otlp exporter skeleton\n" }] },
+    { "id": "strike-orleans-streams-kafka", "name": "Orleans Streams Kafka", "stack": ["dotnet","orleans","kafka"], "tags": ["stream"], "files": [{ "path": "Grains/Stream.cs", "template": "// orleans streams kafka skeleton\n" }] },
+
+    { "id": "strike-express-opentelemetry-auto", "name": "Express OpenTelemetry Auto", "stack": ["node","express","opentelemetry"], "tags": ["observability"], "files": [{ "path": "server.js", "template": "// express otel auto-instrument skeleton\n" }] },
+    { "id": "strike-nestjs-config-schema-zod", "name": "NestJS Config Schema(Zod)", "stack": ["node","nestjs","zod"], "tags": ["config"], "files": [{ "path": "src/config.ts", "template": "// nestjs config schema with zod skeleton\n" }] },
+    { "id": "strike-fastify-openapi-codegen-client", "name": "Fastify OpenAPI Codegen Client", "stack": ["node","fastify","openapi"], "tags": ["codegen"], "files": [{ "path": "scripts/client.ts", "template": "// openapi codegen client skeleton\n" }] },
+    { "id": "strike-hono-websocket-broadcast", "name": "Hono WebSocket Broadcast", "stack": ["hono"], "tags": ["realtime","ws"], "files": [{ "path": "src/ws.ts", "template": "// hono websocket broadcast skeleton\n" }] },
+
+    { "id": "strike-fastapi-sqlalchemy-async-sessionmaker", "name": "FastAPI SQLAlchemy async sessionmaker", "stack": ["python","fastapi","sqlalchemy"], "tags": ["db"], "files": [{ "path": "app/session.py", "template": "# async sessionmaker skeleton\n" }] },
+    { "id": "strike-django-cacheops-invalidation", "name": "Django cacheops Invalidation", "stack": ["python","django","redis"], "tags": ["cache"], "files": [{ "path": "app/cacheops.py", "template": "# cacheops invalidation skeleton\n" }] },
+    { "id": "strike-pydantic-v2-model-validators", "name": "Pydantic v2 model_validators", "stack": ["python","pydantic"], "tags": ["validation"], "files": [{ "path": "app/model_validators.py", "template": "# pydantic v2 model_validators skeleton\n" }] },
+    { "id": "strike-dagster-software-defined-io-managers", "name": "Dagster SDIO Managers", "stack": ["dagster"], "tags": ["io"], "files": [{ "path": "io/sdio.py", "template": "# dagster software-defined io managers skeleton\n" }] },
+    { "id": "strike-prefect-deploy-with-work-pools", "name": "Prefect Deploy + Work Pools", "stack": ["prefect"], "tags": ["deploy"], "files": [{ "path": "flows/deploy_pools.py", "template": "# prefect deploy with work pools skeleton\n" }] },
+
+    { "id": "strike-spark-structured-eventhub", "name": "Spark Structured Azure EventHub", "stack": ["spark","azure","eventhub"], "tags": ["stream"], "files": [{ "path": "spark/eventhub.py", "template": "# spark streaming eventhub skeleton\n" }] },
+    { "id": "strike-trino-sso-jwt-auth", "name": "Trino SSO JWT Auth", "stack": ["trino","jwt"], "tags": ["auth"], "files": [{ "path": "trino/config.properties", "template": "# trino sso jwt auth skeleton\n" }] },
+    { "id": "strike-snowflake-external-table-gcs-parquet", "name": "Snowflake External Table(GCS Parquet)", "stack": ["snowflake","gcs"], "tags": ["warehouse"], "files": [{ "path": "snowflake/external_table_gcs.sql", "template": "-- snowflake external table gcs skeleton\n" }] },
+    { "id": "strike-bigquery-dynamic-sql-proc", "name": "BigQuery Dynamic SQL Stored Proc", "stack": ["gcp","bigquery"], "tags": ["sql"], "files": [{ "path": "bq/dynamic_proc.sql", "template": "-- bq dynamic sql proc skeleton\n" }] },
+
+    { "id": "strike-chromadb-postgres-backend", "name": "ChromaDB Postgres Backend", "stack": ["chromadb","postgres"], "tags": ["vector"], "files": [{ "path": "chroma/postgres.md", "template": "# chromadb postgres backend skeleton\n" }] },
+    { "id": "strike-milvus-multi-vector-fields", "name": "Milvus Multi-Vector Fields", "stack": ["milvus"], "tags": ["vector"], "files": [{ "path": "milvus/multi_vectors.py", "template": "# milvus multi-vector fields skeleton\n" }] },
+    { "id": "strike-pinecone-index-scaling-policies", "name": "Pinecone Index Scaling Policies", "stack": ["pinecone"], "tags": ["vector","scale"], "files": [{ "path": "pinecone/scaling.json", "template": "{ }\n" }] },
+
+    { "id": "strike-argocd-appset-helm-matrix", "name": "ArgoCD AppSet Helm Matrix", "stack": ["argocd","helm"], "tags": ["gitops"], "files": [{ "path": "k8s/appset-helm-matrix.yaml", "template": "# appset helm matrix generator skeleton\n" }] },
+    { "id": "strike-fluxcd-alert-provider-slack", "name": "FluxCD Alert Provider Slack", "stack": ["fluxcd","slack"], "tags": ["gitops","notify"], "files": [{ "path": "k8s/alert-provider.yaml", "template": "# flux alert provider slack skeleton\n" }] },
+    { "id": "strike-helmfile-gitops-bot-ci", "name": "Helmfile GitOps Bot CI", "stack": ["helmfile"], "tags": ["gitops","ci"], "files": [{ "path": ".github/workflows/gitops-bot.yml", "template": "name: GitOpsBot\non: [push]\n" }] },
+    { "id": "strike-kustomize-nameprefix-suffix", "name": "Kustomize namePrefix/suffix", "stack": ["kustomize"], "tags": ["gitops"], "files": [{ "path": "k8s/kustomization.yaml", "template": "# namePrefix/suffix skeleton\n" }] },
+
+    { "id": "strike-kyverno-image-registry-allow", "name": "Kyverno Image Registry Allow", "stack": ["kyverno"], "tags": ["policy"], "files": [{ "path": "kyverno/registry_allow.yaml", "template": "# kyverno image registry allow skeleton\n" }] },
+    { "id": "strike-opa-rego-cors-policy", "name": "OPA Rego CORS Policy", "stack": ["opa"], "tags": ["policy"], "files": [{ "path": "policy/cors.rego", "template": "# rego cors policy skeleton\n" }] },
+    { "id": "strike-falco-write-etc-shadow-detect", "name": "Falco Write /etc/shadow Detect", "stack": ["falco"], "tags": ["security"], "files": [{ "path": "falco/shadow.yaml", "template": "# falco /etc/shadow write detect skeleton\n" }] },
+
+    { "id": "strike-workers-ai-chain-of-thought", "name": "Workers AI Chain-of-Thought", "stack": ["cloudflare","workers-ai"], "tags": ["ai","edge"], "files": [{ "path": "src/cot.ts", "template": "// workers ai chain-of-thought skeleton\n" }] },
+    { "id": "strike-deno-queues-retry-dlq", "name": "Deno Queues Retry + DLQ", "stack": ["deno","queues"], "tags": ["retry"], "files": [{ "path": "queue_retry.ts", "template": "// deno queues retry + dlq skeleton\n" }] },
+    { "id": "strike-vercel-edge-config-kv-bridge", "name": "Vercel Edge Config ↔ KV Bridge", "stack": ["vercel","kv"], "tags": ["edge","config"], "files": [{ "path": "src/bridge.ts", "template": "// vercel edge config <-> kv bridge skeleton\n" }] },
+    { "id": "strike-flyio-services-private-dns", "name": "Fly.io Services Private DNS", "stack": ["flyio"], "tags": ["dns"], "files": [{ "path": "fly.toml", "template": "# fly services private dns skeleton\n" }] }
+  ]
+}
+

@@ -1,0 +1,21 @@
+{
+  "id": "strike-spring-websocket-stomp-scaleout-redis",
+  "name": "Spring STOMP Scale-out via Redis",
+  "stack": [
+    "java",
+    "spring",
+    "websocket",
+    "redis"
+  ],
+  "tags": [
+    "realtime",
+    "scale"
+  ],
+  "files": [
+    {
+      "path": "src/main/java/example/RedisBroker.java",
+      "template": "// stomp redis message broker skeleton\n"
+    }
+  ],
+  "patches": []
+}

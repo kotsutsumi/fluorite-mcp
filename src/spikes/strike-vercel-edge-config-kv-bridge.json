@@ -1,0 +1,19 @@
+{
+  "id": "strike-vercel-edge-config-kv-bridge",
+  "name": "Vercel Edge Config ↔ KV Bridge",
+  "stack": [
+    "vercel",
+    "kv"
+  ],
+  "tags": [
+    "edge",
+    "config"
+  ],
+  "files": [
+    {
+      "path": "src/bridge.ts",
+      "template": "// vercel edge config <-> kv bridge skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,19 @@
+{
+  "id": "strike-deno-deploy-kv-session-store",
+  "name": "Deno Deploy KV Session Store",
+  "stack": [
+    "deno",
+    "deploy",
+    "kv"
+  ],
+  "tags": [
+    "session"
+  ],
+  "files": [
+    {
+      "path": "session.ts",
+      "template": "// deno kv session store skeleton\n"
+    }
+  ],
+  "patches": []
+}

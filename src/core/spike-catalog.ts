@@ -6,6 +6,7 @@ import { readdir, readFile, mkdir, access } from 'node:fs/promises';
 import { constants } from 'node:fs';
 import path from 'node:path';
 import { createLogger } from './logger.js';
+import { listGeneratedSpikeIds, isGeneratedId, generateSpike, generateMetadata } from './spike-generators.js';
 
 const log = createLogger('spike-catalog', 'fluorite-mcp');
 
@@ -112,6 +113,12 @@ export async function listSpikeIds(filter?: string, cfg: SpikeCatalogConfig = DE
     .map(f => f.replace(/\.json$/i, ''))
     .sort();
 
+  // Merge generated spikes
+  const genIds = listGeneratedSpikeIds();
+  for (const id of genIds) {
+    if (!ids.includes(id)) ids.push(id);
+  }
+
   if (filter) {
     const re = new RegExp(filter, 'i');
     ids = ids.filter(id => re.test(id));
@@ -134,6 +141,13 @@ export async function loadSpike(id: string, cfg: SpikeCatalogConfig = DEFAULT_SP
     return cached;
   }
 
+  // Generated spikes are synthesized on the fly
+  if (isGeneratedId(id)) {
+    const spec = generateSpike(id);
+    spikeCache.set(id, spec);
+    return spec;
+  }
+
   const file = path.resolve(cfg.baseDir, `${id}.json`);
   const raw = await readFile(file, 'utf-8');
   try {
@@ -152,6 +166,9 @@ export async function loadSpike(id: string, cfg: SpikeCatalogConfig = DEFAULT_SP
 
 // Load only metadata from spike files for efficient indexing
 export async function loadSpikeMetadata(id: string, cfg: SpikeCatalogConfig = DEFAULT_SPIKE_CONFIG): Promise<SpikeMetadata> {
+  if (isGeneratedId(id)) {
+    return generateMetadata(id);
+  }
   const file = path.resolve(cfg.baseDir, `${id}.json`);
   const raw = await readFile(file, 'utf-8');
   try {
@@ -220,4 +237,3 @@ export function scoreSpikeMatch(task: string, specOrMeta: SpikeSpec | SpikeMetad
   const hits = words.reduce((acc,w)=> acc + (hay.includes(w) ? 1 : 0), 0);
   return hits / words.length; // simple ratio 0..1
 }
-

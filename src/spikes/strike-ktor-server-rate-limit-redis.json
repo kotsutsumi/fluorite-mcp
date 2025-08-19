@@ -1,0 +1,19 @@
+{
+  "id": "strike-ktor-server-rate-limit-redis",
+  "name": "Ktor Rate Limit + Redis",
+  "stack": [
+    "kotlin",
+    "ktor",
+    "redis"
+  ],
+  "tags": [
+    "throttle"
+  ],
+  "files": [
+    {
+      "path": "src/RateLimit.kt",
+      "template": "// ktor rate limit with redis skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -574,6 +574,17 @@ fluorite-mcp --apply-spike nextjs-auth-nextauth-credentials --params '{"app_name
 fluorite-mcp --preview-spike fastapi-jwt-auth --params '{"project_name":"MyAPI"}'
 ```
 
+Note: In addition to thousands of file-based spikes under `src/spikes`, Fluorite MCP synthesizes 10k+ virtual spikes at runtime. These generated templates have IDs prefixed with `gen-` (e.g., `gen-express-route-basic-ts`). Use the environment variable `FLUORITE_GENERATED_SPIKES_LIMIT` to cap generation for testing, and `FLUORITE_SPIKE_LIST_LIMIT` to cap overall listing size.
+
+To inspect current spike coverage and duplicates, use the new `spike-stats` tool (exposed via MCP): it reports total spikes, counts by source (file vs generated), duplicates, and a small sample of IDs.
+
+Examples of generated spike IDs and their specialized files:
+- `gen-nextjs-route-basic-ts`: adds `app/api/health/route.ts` (Next.js Route Handler)
+- `gen-prisma-crud-basic-ts`: adds `src/prisma.ts` and `prisma/schema.prisma`
+- `gen-graphql-service-basic-ts`: adds `schema.graphql` and `src/graphql/resolvers.ts`
+- `gen-next-auth-config-basic-ts`: adds `app/api/auth/[...nextauth]/route.ts`
+- `gen-github-actions-config-basic-ts`: adds `.github/workflows/ci.yml`
+
 ### **Development Workflow Integration**
 ```bash
 # Pre-commit hook integration

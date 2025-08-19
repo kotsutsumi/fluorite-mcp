@@ -33,6 +33,7 @@ import {
   handleAutoSpikeTool,
   type DiscoverInput
 } from "./core/spike-handlers.js";
+import { getSpikeStats } from "./core/spike-stats.js";
 
 // Resolve package version from package.json at runtime
 function getPackageVersion(): string {
@@ -200,6 +201,24 @@ server.registerTool(
   },
   async () => {
     return await handleCatalogStatsTool(config);
+  }
+);
+
+server.registerTool(
+  "spike-stats",
+  {
+    title: "Spike Statistics",
+    description: "スパイクの統計情報（総数、生成/ファイル別、重複チェック）",
+    inputSchema: {}
+  },
+  async () => {
+    const stats = await getSpikeStats();
+    const text = [
+      `Spikes: total=${stats.total}, generated=${stats.generated_count}, files=${stats.files_count}`,
+      stats.duplicates.length ? `duplicates: ${stats.duplicates.join(', ')}` : 'duplicates: none',
+      `sample: ${stats.sample.join(', ')}`
+    ].join('\n');
+    return { content: [{ type: 'text', text }], metadata: stats } as any;
   }
 );
 

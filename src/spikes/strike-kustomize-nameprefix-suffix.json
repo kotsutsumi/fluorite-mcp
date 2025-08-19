@@ -1,0 +1,17 @@
+{
+  "id": "strike-kustomize-nameprefix-suffix",
+  "name": "Kustomize namePrefix/suffix",
+  "stack": [
+    "kustomize"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/kustomization.yaml",
+      "template": "# namePrefix/suffix skeleton\n"
+    }
+  ],
+  "patches": []
+}

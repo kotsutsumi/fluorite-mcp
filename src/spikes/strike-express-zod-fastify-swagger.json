@@ -1,0 +1,21 @@
+{
+  "id": "strike-express-zod-fastify-swagger",
+  "name": "Express Zod → Fastify Swagger",
+  "stack": [
+    "node",
+    "express",
+    "fastify",
+    "zod"
+  ],
+  "tags": [
+    "api",
+    "docs"
+  ],
+  "files": [
+    {
+      "path": "scripts/migrate.ts",
+      "template": "// convert zod route defs to fastify swagger skeleton\n"
+    }
+  ],
+  "patches": []
+}

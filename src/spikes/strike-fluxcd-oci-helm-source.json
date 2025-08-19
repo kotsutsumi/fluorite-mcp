@@ -1,0 +1,18 @@
+{
+  "id": "strike-fluxcd-oci-helm-source",
+  "name": "FluxCD OCI Helm Source",
+  "stack": [
+    "fluxcd",
+    "helm"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/oci-helm.yaml",
+      "template": "# flux oci helm source skeleton\n"
+    }
+  ],
+  "patches": []
+}

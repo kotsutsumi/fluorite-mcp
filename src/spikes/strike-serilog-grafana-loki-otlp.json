@@ -1,0 +1,20 @@
+{
+  "id": "strike-serilog-grafana-loki-otlp",
+  "name": "Serilog → Loki/OTLP",
+  "stack": [
+    "dotnet",
+    "serilog",
+    "loki",
+    "otlp"
+  ],
+  "tags": [
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "Program.cs",
+      "template": "// serilog loki + otlp exporters skeleton\n"
+    }
+  ],
+  "patches": []
+}

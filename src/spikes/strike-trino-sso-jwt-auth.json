@@ -1,0 +1,18 @@
+{
+  "id": "strike-trino-sso-jwt-auth",
+  "name": "Trino SSO JWT Auth",
+  "stack": [
+    "trino",
+    "jwt"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "trino/config.properties",
+      "template": "# trino sso jwt auth skeleton\n"
+    }
+  ],
+  "patches": []
+}

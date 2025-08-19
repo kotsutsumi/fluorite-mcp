@@ -1,0 +1,17 @@
+{
+  "id": "strike-kyverno-imagepullpolicy-enforce",
+  "name": "Kyverno imagePullPolicy Enforce",
+  "stack": [
+    "kyverno"
+  ],
+  "tags": [
+    "policy"
+  ],
+  "files": [
+    {
+      "path": "kyverno/imagepullpolicy.yaml",
+      "template": "# kyverno imagepullpolicy enforce skeleton\n"
+    }
+  ],
+  "patches": []
+}

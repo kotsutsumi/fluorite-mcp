@@ -1,0 +1,18 @@
+{
+  "id": "strike-argocd-notifications-email",
+  "name": "ArgoCD Notifications Email",
+  "stack": [
+    "argocd"
+  ],
+  "tags": [
+    "gitops",
+    "notify"
+  ],
+  "files": [
+    {
+      "path": "k8s/notify_email.yaml",
+      "template": "# argocd notifications email skeleton\n"
+    }
+  ],
+  "patches": []
+}

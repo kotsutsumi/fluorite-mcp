@@ -1,0 +1,18 @@
+{
+  "id": "strike-argocd-appset-helm-matrix",
+  "name": "ArgoCD AppSet Helm Matrix",
+  "stack": [
+    "argocd",
+    "helm"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/appset-helm-matrix.yaml",
+      "template": "# appset helm matrix generator skeleton\n"
+    }
+  ],
+  "patches": []
+}

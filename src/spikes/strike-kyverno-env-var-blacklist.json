@@ -1,0 +1,17 @@
+{
+  "id": "strike-kyverno-env-var-blacklist",
+  "name": "Kyverno Env Var Blacklist",
+  "stack": [
+    "kyverno"
+  ],
+  "tags": [
+    "policy"
+  ],
+  "files": [
+    {
+      "path": "kyverno/env_blacklist.yaml",
+      "template": "# kyverno env var blacklist skeleton\n"
+    }
+  ],
+  "patches": []
+}

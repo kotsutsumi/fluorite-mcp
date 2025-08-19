@@ -1,0 +1,17 @@
+{
+  "id": "strike-prefect-deploy-with-work-pools",
+  "name": "Prefect Deploy + Work Pools",
+  "stack": [
+    "prefect"
+  ],
+  "tags": [
+    "deploy"
+  ],
+  "files": [
+    {
+      "path": "flows/deploy_pools.py",
+      "template": "# prefect deploy with work pools skeleton\n"
+    }
+  ],
+  "patches": []
+}

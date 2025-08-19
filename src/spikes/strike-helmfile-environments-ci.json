@@ -1,0 +1,17 @@
+{
+  "id": "strike-helmfile-environments-ci",
+  "name": "Helmfile Environments CI",
+  "stack": [
+    "helmfile"
+  ],
+  "tags": [
+    "ci"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/helmfile-envs.yml",
+      "template": "name: HelmfileEnvs\non: [push]\n"
+    }
+  ],
+  "patches": []
+}

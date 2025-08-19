@@ -1,0 +1,17 @@
+{
+  "id": "strike-opa-rego-service-deny-by-time",
+  "name": "OPA Service Deny by Time",
+  "stack": [
+    "opa"
+  ],
+  "tags": [
+    "policy"
+  ],
+  "files": [
+    {
+      "path": "policy/time_deny.rego",
+      "template": "# rego deny service by time skeleton\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-argocd-appset-matrix-git",
+  "name": "ArgoCD AppSet Matrix(Git)",
+  "stack": [
+    "argocd"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/appset-matrix-git.yaml",
+      "template": "# appset matrix from git skeleton\n"
+    }
+  ],
+  "patches": []
+}

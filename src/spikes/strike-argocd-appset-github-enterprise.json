@@ -1,0 +1,18 @@
+{
+  "id": "strike-argocd-appset-github-enterprise",
+  "name": "AppSet GitHub Enterprise",
+  "stack": [
+    "argocd",
+    "github"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "k8s/appset-gh-enterprise.yaml",
+      "template": "# appset github enterprise skeleton\n"
+    }
+  ],
+  "patches": []
+}

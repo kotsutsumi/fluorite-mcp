@@ -1,0 +1,19 @@
+{
+  "id": "strike-argocd-notifications-slack-webhook",
+  "name": "ArgoCD Notifications Slack(Webhook)",
+  "stack": [
+    "argocd",
+    "slack"
+  ],
+  "tags": [
+    "gitops",
+    "notify"
+  ],
+  "files": [
+    {
+      "path": "k8s/notify_slack.yaml",
+      "template": "# argocd notifications slack webhook skeleton\n"
+    }
+  ],
+  "patches": []
+}

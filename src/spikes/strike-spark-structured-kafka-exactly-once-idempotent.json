@@ -1,0 +1,19 @@
+{
+  "id": "strike-spark-structured-kafka-exactly-once-idempotent",
+  "name": "Spark Kafka EOS Idempotent",
+  "stack": [
+    "spark",
+    "kafka"
+  ],
+  "tags": [
+    "stream",
+    "eos"
+  ],
+  "files": [
+    {
+      "path": "spark/kafka_eos_idempotent.py",
+      "template": "# spark kafka eos idempotent producer skeleton\n"
+    }
+  ],
+  "patches": []
+}

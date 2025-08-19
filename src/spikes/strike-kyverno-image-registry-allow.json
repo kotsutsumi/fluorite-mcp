@@ -1,0 +1,17 @@
+{
+  "id": "strike-kyverno-image-registry-allow",
+  "name": "Kyverno Image Registry Allow",
+  "stack": [
+    "kyverno"
+  ],
+  "tags": [
+    "policy"
+  ],
+  "files": [
+    {
+      "path": "kyverno/registry_allow.yaml",
+      "template": "# kyverno image registry allow skeleton\n"
+    }
+  ],
+  "patches": []
+}

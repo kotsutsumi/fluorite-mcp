@@ -1,0 +1,49 @@
+{
+  "items": [
+    { "id": "strike-spring-websocket-stomp-scaleout-redis", "name": "Spring STOMP Scale-out via Redis", "stack": ["java","spring","websocket","redis"], "tags": ["realtime","scale"], "files": [{ "path": "src/main/java/example/RedisBroker.java", "template": "// stomp redis message broker skeleton\n" }] },
+    { "id": "strike-spring-cloud-sleuth-otel-bridge", "name": "Spring Sleuth → OTel Bridge", "stack": ["java","spring","opentelemetry"], "tags": ["tracing"], "files": [{ "path": "src/main/resources/application.yml", "template": "# sleuth to otel bridge skeleton\n" }] },
+    { "id": "strike-quarkus-kafka-outbox-panache", "name": "Quarkus Kafka Outbox (Panache)", "stack": ["java","quarkus","kafka"], "tags": ["outbox"], "files": [{ "path": "src/main/java/org/acme/Outbox.java", "template": "// quarkus outbox panache skeleton\n" }] },
+    { "id": "strike-micronaut-graphql-batch-loader", "name": "Micronaut GraphQL BatchLoader", "stack": ["java","micronaut","graphql"], "tags": ["api","perf"], "files": [{ "path": "src/main/resources/schema.graphqls", "template": "type Query { hello: String }\n" }] },
+    { "id": "strike-ktor-server-rate-limit-redis", "name": "Ktor Rate Limit + Redis", "stack": ["kotlin","ktor","redis"], "tags": ["throttle"], "files": [{ "path": "src/RateLimit.kt", "template": "// ktor rate limit with redis skeleton\n" }] },
+
+    { "id": "strike-aspnet-problem-details-middleware", "name": ".NET ProblemDetails Middleware", "stack": ["dotnet","aspnet"], "tags": ["errors"], "files": [{ "path": "Program.cs", "template": "// problem details middleware skeleton\n" }] },
+    { "id": "strike-efcore-json-converters", "name": "EFCore JSON Converters", "stack": ["dotnet","efcore"], "tags": ["db"], "files": [{ "path": "Data/JsonConverters.cs", "template": "// efcore json converters skeleton\n" }] },
+    { "id": "strike-serilog-grafana-loki-otlp", "name": "Serilog → Loki/OTLP", "stack": ["dotnet","serilog","loki","otlp"], "tags": ["logs"], "files": [{ "path": "Program.cs", "template": "// serilog loki + otlp exporters skeleton\n" }] },
+    { "id": "strike-orleans-silo-health-metrics", "name": "Orleans Silo Health + Metrics", "stack": ["dotnet","orleans"], "tags": ["health","metrics"], "files": [{ "path": "Silo/Health.cs", "template": "// orleans silo health + metrics skeleton\n" }] },
+
+    { "id": "strike-express-async-local-storage-scope", "name": "Express ALS Request Scope", "stack": ["node","express"], "tags": ["context"], "files": [{ "path": "server.js", "template": "// express als request scope skeleton\n" }] },
+    { "id": "strike-nestjs-multi-redis-clients", "name": "NestJS Multi Redis Clients", "stack": ["node","nestjs","redis"], "tags": ["cache"], "files": [{ "path": "src/redis.ts", "template": "// nestjs multi redis clients skeleton\n" }] },
+    { "id": "strike-fastify-websocket-sse-bridge", "name": "Fastify WS↔SSE Bridge", "stack": ["node","fastify"], "tags": ["realtime","bridge"], "files": [{ "path": "server.js", "template": "// fastify websocket <-> sse bridge skeleton\n" }] },
+    { "id": "strike-h3-auth-bearer-jwt", "name": "h3 Auth Bearer JWT", "stack": ["node","h3","jwt"], "tags": ["auth"], "files": [{ "path": "server.ts", "template": "// h3 bearer jwt auth skeleton\n" }] },
+
+    { "id": "strike-fastapi-tenacity-retry", "name": "FastAPI Tenacity Retry", "stack": ["python","fastapi","tenacity"], "tags": ["retry"], "files": [{ "path": "app/retry.py", "template": "# fastapi tenacity retry skeleton\n" }] },
+    { "id": "strike-django-channels-redis-sharding", "name": "Django Channels Redis Sharding", "stack": ["python","django","channels","redis"], "tags": ["realtime","scale"], "files": [{ "path": "mysite/settings.py", "template": "# channels redis sharding skeleton\n" }] },
+    { "id": "strike-pydantic-v2-root-models", "name": "Pydantic v2 Root Models", "stack": ["python","pydantic"], "tags": ["typing"], "files": [{ "path": "app/root_model.py", "template": "# pydantic v2 root models skeleton\n" }] },
+    { "id": "strike-dagster-asset-partitions-by-time", "name": "Dagster Asset Partitions by Time", "stack": ["dagster"], "tags": ["partitions"], "files": [{ "path": "assets/time_partitions.py", "template": "# dagster time-based partitions skeleton\n" }] },
+    { "id": "strike-prefect-retry-policy-flows", "name": "Prefect Flows Retry Policy", "stack": ["prefect"], "tags": ["retry"], "files": [{ "path": "flows/retry.py", "template": "# prefect flow retry policy skeleton\n" }] },
+
+    { "id": "strike-spark-structured-dynamodb", "name": "Spark Structured DynamoDB", "stack": ["spark","dynamodb"], "tags": ["stream"], "files": [{ "path": "spark/dynamodb.py", "template": "# spark structured dynamodb skeleton\n" }] },
+    { "id": "strike-trino-iceberg-hive-ranger", "name": "Trino Iceberg Hive + Ranger", "stack": ["trino","iceberg","ranger"], "tags": ["authz"], "files": [{ "path": "trino/config.properties", "template": "# trino iceberg hive ranger skeleton\n" }] },
+    { "id": "strike-snowflake-row-access-masking", "name": "Snowflake Row Access + Masking", "stack": ["snowflake"], "tags": ["security"], "files": [{ "path": "snowflake/row_access_masking.sql", "template": "-- snowflake row access + masking skeleton\n" }] },
+    { "id": "strike-bigquery-dlp-tokenization", "name": "BigQuery DLP Tokenization", "stack": ["gcp","dlp","bigquery"], "tags": ["security"], "files": [{ "path": "bq/dlp_tokenization.sql", "template": "-- bigquery dlp tokenization skeleton\n" }] },
+
+    { "id": "strike-chromadb-ids-sharding-strategy", "name": "ChromaDB IDs Sharding Strategy", "stack": ["chromadb"], "tags": ["vector","shard"], "files": [{ "path": "chroma/shard_ids.py", "template": "# chroma ids sharding skeleton\n" }] },
+    { "id": "strike-milvus-index-pq-params", "name": "Milvus PQ Index Params", "stack": ["milvus"], "tags": ["vector"], "files": [{ "path": "milvus/pq_params.py", "template": "# milvus pq index params skeleton\n" }] },
+    { "id": "strike-pinecone-multi-namespace-ops", "name": "Pinecone Multi-Namespace Ops", "stack": ["pinecone"], "tags": ["vector","multi"], "files": [{ "path": "pinecone/multi_ns.json", "template": "{ }\n" }] },
+
+    { "id": "strike-argocd-appset-matrix-git", "name": "ArgoCD AppSet Matrix(Git)", "stack": ["argocd"], "tags": ["gitops"], "files": [{ "path": "k8s/appset-matrix-git.yaml", "template": "# appset matrix from git skeleton\n" }] },
+    { "id": "strike-fluxcd-image-automation-ecr", "name": "Flux Image Automation(ECR)", "stack": ["fluxcd","ecr"], "tags": ["gitops"], "files": [{ "path": "k8s/image-automation-ecr.yaml", "template": "# flux image automation ecr skeleton\n" }] },
+    { "id": "strike-helmfile-sync-matrix-ci", "name": "Helmfile Sync Matrix CI", "stack": ["helmfile"], "tags": ["ci"], "files": [{ "path": ".github/workflows/helmfile-sync.yml", "template": "name: HelmfileSync\non: [push]\n" }] },
+    { "id": "strike-kustomize-component-bases", "name": "Kustomize Component Bases", "stack": ["kustomize"], "tags": ["gitops"], "files": [{ "path": "k8s/components.yaml", "template": "# kustomize component bases skeleton\n" }] },
+
+    { "id": "strike-kyverno-force-readonlyfs", "name": "Kyverno Force readOnlyRootFS", "stack": ["kyverno"], "tags": ["policy"], "files": [{ "path": "kyverno/force_readonlyfs.yaml", "template": "# kyverno force readonly root fs skeleton\n" }] },
+    { "id": "strike-opa-rego-geoip-policy", "name": "OPA Rego GeoIP Policy", "stack": ["opa"], "tags": ["policy"], "files": [{ "path": "policy/geoip.rego", "template": "# rego geoip policy skeleton\n" }] },
+    { "id": "strike-falco-k8s-exec-detect", "name": "Falco K8s Exec Detect", "stack": ["falco"], "tags": ["security"], "files": [{ "path": "falco/k8s_exec.yaml", "template": "# falco k8s exec detect skeleton\n" }] },
+
+    { "id": "strike-workers-ai-multimodal-search", "name": "Workers AI Multimodal Search", "stack": ["cloudflare","workers-ai"], "tags": ["ai","search"], "files": [{ "path": "src/multimodal.ts", "template": "// workers ai multimodal search skeleton\n" }] },
+    { "id": "strike-deno-kv-queues-scheduler", "name": "Deno KV Queues Scheduler", "stack": ["deno","kv","queues"], "tags": ["edge","jobs"], "files": [{ "path": "scheduler.ts", "template": "// deno kv queues scheduler skeleton\n" }] },
+    { "id": "strike-vercel-middleware-csp-nonce", "name": "Vercel Middleware CSP Nonce", "stack": ["vercel"], "tags": ["security","edge"], "files": [{ "path": "middleware.ts", "template": "// vercel middleware csp nonce skeleton\n" }] },
+    { "id": "strike-flyio-machines-jobs-cron", "name": "Fly.io Machines Jobs(Cron)", "stack": ["flyio"], "tags": ["jobs"], "files": [{ "path": "fly.toml", "template": "# fly machines jobs cron skeleton\n" }] }
+  ]
+}
+

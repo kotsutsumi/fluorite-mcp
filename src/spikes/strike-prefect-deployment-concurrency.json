@@ -1,0 +1,18 @@
+{
+  "id": "strike-prefect-deployment-concurrency",
+  "name": "Prefect Deployment Concurrency",
+  "stack": [
+    "prefect"
+  ],
+  "tags": [
+    "deploy",
+    "concurrency"
+  ],
+  "files": [
+    {
+      "path": "flows/deploy_concurrency.py",
+      "template": "# prefect deployment concurrency skeleton\n"
+    }
+  ],
+  "patches": []
+}
