@@ -143,6 +143,8 @@ function makeFiles(id: string, lib: string, pattern: string, style: string, lang
   if (lib === 'nextjs' && style === 'advanced') {
     files.push({ path: `app/rsc/page.tsx`, template: `export default function Page(){ return <div>Server Component (RSC)</div>; }\n` });
     files.push({ path: `app/csr/page.tsx`, template: `'use client';\nexport default function Page(){ return <div>Client Component (CSR)</div>; }\n` });
+    files.push({ path: `app/api/typed/route.ts`, template: `import { z } from 'zod';\nimport { ok, err } from '@/src/next/response';\nconst Payload = z.object({ name: z.string().min(1) });\nexport async function POST(req: Request){ try { const json = await req.json(); const parsed = Payload.parse(json); return ok({ message: 'Hello ' + parsed.name }); } catch(e){ return err(e, 400); } }\n` });
+    files.push({ path: `src/next/withRole.ts`, template: `import type { NextRequest } from 'next/server';\nexport function withRole(required: 'user'|'admin', handler: (req: NextRequest)=>Promise<Response>|Response){\n  return async (req: NextRequest) => {\n    const role = (req.headers.get('x-role') as 'user'|'admin') || 'user';\n    if (required === 'admin' && role !== 'admin') {\n      return new Response('Forbidden', { status: 403 });\n    }\n    return handler(req);\n  };\n}\n` });
   }
 
   // Prisma
@@ -155,6 +157,8 @@ function makeFiles(id: string, lib: string, pattern: string, style: string, lang
       files.push({ path: `src/user.service.ts`, template: `import { prisma } from './prisma';\nexport async function createUserWithTx(email: string){\n  return await prisma.$transaction(async (tx)=>{\n    const user = await tx.user.create({ data: { email } });\n    return user;\n  });\n}\n` });
       if (style === 'advanced') {
         files.push({ path: `src/prisma.pagination.ts`, template: `import { prisma } from './prisma';\nexport async function listUsersPage(limit: number, cursor?: number){\n  const items = await prisma.user.findMany({ take: limit, skip: cursor ? 1 : 0, ...(cursor ? { cursor: { id: cursor } } : {}) });\n  const nextCursor = items.length === limit ? items[items.length-1].id : undefined;\n  return { items, nextCursor };\n}\nexport async function withRetry<T>(fn: ()=>Promise<T>, retries=3){\n  let lastErr: unknown;\n  for(let i=0;i<retries;i++){ try{ return await fn(); } catch(e){ lastErr = e; } }\n  throw lastErr;\n}\n` });
+        files.push({ path: `src/prisma.dto.ts`, template: `export interface PageDTO<T> { items: T[]; nextCursor?: number }\nexport interface FilterDTO { term?: string; from?: string; to?: string }\n` });
+        files.push({ path: `src/prisma.sort.ts`, template: `export type SortBy = 'id'|'createdAt'|'updatedAt';\nexport type SortOrder = 'asc'|'desc';\nexport function sortArg(sortBy?: SortBy, order: SortOrder='desc'){ return sortBy ? { [sortBy]: order } as any : undefined as any; }\n` });
         files.push({ path: `src/prisma.filters.ts`, template: `export type SortOrder = 'asc'|'desc';\nexport interface PageOpts { limit: number; cursor?: number; sortBy?: 'id'|'createdAt'; order?: SortOrder }\nexport function pageArgs<T extends { id: number }>(o: PageOpts){ const orderBy = o.sortBy ? { [o.sortBy]: o.order||'desc' } : undefined as any; return { take: o.limit, skip: o.cursor ? 1 : 0, ...(o.cursor ? { cursor: { id: o.cursor } } : {}), ...(orderBy ? { orderBy } : {}) }; }\n` });
       }
     }
@@ -172,11 +176,11 @@ function makeFiles(id: string, lib: string, pattern: string, style: string, lang
     }
   }
   if (lib === 'graphql' && pattern === 'client' && style === 'advanced') {
-    files.push({
-      path: `src/graphql/useUpdateTitle.tsx`,
-      template: `import { gql, useMutation } from '@apollo/client';\nconst UPDATE = gql\`mutation($id: ID!, $title: String!){ updateTitle(id:$id, title:$title){ id title } }\`;\nexport function useUpdateTitle(){\n  return useMutation(UPDATE, {\n    optimisticResponse: (vars)=>({ updateTitle: { __typename: 'Post', id: vars.id, title: vars.title } })\n  });\n}\n`
-    });
+    files.push({ path: `src/graphql/useUpdateTitle.tsx`, template: `import { gql, useMutation } from '@apollo/client';\nconst UPDATE = gql\`mutation($id: ID!, $title: String!){ updateTitle(id:$id, title:$title){ id title } }\`;\nexport function useUpdateTitle(){\n  return useMutation(UPDATE, {\n    optimisticResponse: (vars)=>({ updateTitle: { __typename: 'Post', id: vars.id, title: vars.title } })\n  });\n}\n` });
     files.push({ path: `src/graphql/cache.ts`, template: `import type { ApolloCache, DefaultContext, MutationUpdaterFunction } from '@apollo/client';\nexport const noopUpdate: MutationUpdaterFunction<any, any, DefaultContext, ApolloCache<any>> = () => {};\n` });
+    files.push({ path: `src/graphql/updateCache.ts`, template: `import type { ApolloCache } from '@apollo/client';\nexport function writePostTitle(cache: ApolloCache<any>, id: string, title: string){\n  cache.modify({ id: cache.identify({ __typename: 'Post', id }), fields: { title: () => title } });\n}\n` });
+    files.push({ path: `src/graphql/fragments.ts`, template: `import { gql } from '@apollo/client';\nexport const POST_FIELDS = gql\`fragment PostFields on Post { id title }\`;\n` });
+    files.push({ path: `src/graphql/cachePolicies.ts`, template: `import { InMemoryCache } from '@apollo/client';\nexport const cache = new InMemoryCache({ typePolicies: { Query: { fields: { posts: { merge: false } } } } });\n` });
   }
   if (lib === 'graphql' && pattern === 'client') {
     files.push({ path: `src/graphql/useHello.tsx`, template: `import { gql, useQuery } from '@apollo/client';\nconst HELLO = gql\`query { hello }\`;\nexport function useHello(){ return useQuery(HELLO); }\n` });
@@ -192,6 +196,41 @@ function makeFiles(id: string, lib: string, pattern: string, style: string, lang
     files.push({ path: `src/apollo/client.ts`, template: `import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';\nexport const client = new ApolloClient({ link: new HttpLink({ uri: '/api/graphql' }), cache: new InMemoryCache() });\n` });
   }
 
+  // tRPC
+  if (lib === 'trpc' && (pattern === 'service' || pattern === 'server')) {
+    files.push({ path: `src/trpc/context.ts`, template: `export type Context = {};\nexport async function createContext(): Promise<Context> { return {}; }\n` });
+    files.push({ path: `src/trpc/router.ts`, template: `import { initTRPC } from '@trpc/server';\nconst t = initTRPC.context<{}>().create();\nexport const appRouter = t.router({ hello: t.procedure.query(()=> 'world') });\nexport type AppRouter = typeof appRouter;\n` });
+    files.push({ path: `src/trpc/server.ts`, template: `import { createHTTPServer } from '@trpc/server/adapters/standalone';\nimport { appRouter } from './router';\nconst server = createHTTPServer({ router: appRouter });\nserver.listen(20222);\n` });
+  }
+  if (lib === 'trpc' && pattern === 'client') {
+    files.push({ path: `src/trpc/client.ts`, template: `import { createTRPCProxyClient, httpBatchLink } from '@trpc/client';\nimport type { AppRouter } from './router';\nexport const client = createTRPCProxyClient<AppRouter>({ links: [httpBatchLink({ url: '/trpc' })] });\n` });
+  }
+
+  // Drizzle ORM
+  if (lib === 'drizzle' && (pattern === 'config' || pattern === 'init')) {
+    files.push({ path: `drizzle.config.ts`, template: `import type { Config } from 'drizzle-kit';\nexport default { schema: './src/db/schema.ts', out: './drizzle', driver: 'pg', dbCredentials: { connectionString: process.env.DATABASE_URL! } } satisfies Config;\n` });
+    files.push({ path: `src/db/schema.ts`, template: `import { pgTable, serial, text, timestamp } from 'drizzle-orm/pg-core';\nexport const posts = pgTable('posts', { id: serial('id').primaryKey(), title: text('title').notNull(), createdAt: timestamp('created_at').defaultNow() });\n` });
+    files.push({ path: `src/db/client.ts`, template: `import { drizzle } from 'drizzle-orm/node-postgres';\nimport { Pool } from 'pg';\nconst pool = new Pool({ connectionString: process.env.DATABASE_URL });\nexport const db = drizzle(pool);\n` });
+  }
+
+  // Docker
+  if (lib === 'docker' && (pattern === 'config' || pattern === 'init')) {
+    files.push({ path: `Dockerfile`, template: `FROM node:20-alpine\nWORKDIR /app\nCOPY package*.json ./\nRUN npm ci\nCOPY . .\nCMD [\"npm\", \"start\"]\n` });
+    files.push({ path: `docker-compose.yml`, template: `version: '3.9'\nservices:\n  app:\n    build: .\n    ports:\n      - '3000:3000'\n    environment:\n      - NODE_ENV=production\n` });
+  }
+
+  // Kafka
+  if (lib === 'kafka' && (pattern === 'service' || pattern === 'client')) {
+    files.push({ path: `src/kafka/producer.ts`, template: `import { Kafka } from 'kafkajs';\nconst kafka = new Kafka({ clientId: 'app', brokers: ['localhost:9092'] });\nexport async function produce(topic: string, message: string){ const p = kafka.producer(); await p.connect(); await p.send({ topic, messages: [{ value: message }] }); await p.disconnect(); }\n` });
+    files.push({ path: `src/kafka/consumer.ts`, template: `import { Kafka } from 'kafkajs';\nconst kafka = new Kafka({ clientId: 'app', brokers: ['localhost:9092'] });\nexport async function consume(topic: string){ const c = kafka.consumer({ groupId: 'group' }); await c.connect(); await c.subscribe({ topic, fromBeginning: true }); await c.run({ eachMessage: async ({ message }) => console.log(message.value?.toString()) }); }\n` });
+  }
+
+  // Playwright
+  if (lib === 'playwright' && (pattern === 'config' || pattern === 'init')) {
+    files.push({ path: `playwright.config.ts`, template: `import { defineConfig } from '@playwright/test';\nexport default defineConfig({ use: { headless: true } });\n` });
+    files.push({ path: `tests/example.spec.ts`, template: `import { test, expect } from '@playwright/test';\ntest('homepage', async ({ page }) => { await page.goto('https://example.com'); await expect(page).toHaveTitle(/Example/); });\n` });
+  }
+
   // NextAuth
   if (lib === 'next-auth' && (pattern === 'config' || pattern === 'route')) {
     files.push({ path: `app/api/auth/[...nextauth]/route.ts`, template: `import NextAuth from 'next-auth';\nimport Credentials from 'next-auth/providers/credentials';\nconst handler = NextAuth({ providers: [Credentials({ name: 'Credentials', credentials: { username: {}, password: {} }, authorize: async () => ({ id: '1', name: 'demo' }) })] });\nexport { handler as GET, handler as POST };\n` });
@@ -201,6 +240,8 @@ function makeFiles(id: string, lib: string, pattern: string, style: string, lang
       files.push({ path: `app/api/auth/[...nextauth]/providers.ts`, template: `import GitHub from 'next-auth/providers/github';\nimport Credentials from 'next-auth/providers/credentials';\nexport const providers = [\n  GitHub({ clientId: process.env.GITHUB_ID!, clientSecret: process.env.GITHUB_SECRET! }),\n  Credentials({ name: 'Credentials', credentials: { username: {}, password: {} }, authorize: async () => ({ id: '1', name: 'demo' }) })\n];\n` });
       files.push({ path: `app/api/auth/[...nextauth]/providers.google.example.ts`, template: `import Google from 'next-auth/providers/google';\nexport const google = Google({ clientId: process.env.GOOGLE_ID!, clientSecret: process.env.GOOGLE_SECRET! });\n` });
       files.push({ path: `app/(protected)/dashboard/page.tsx`, template: `export default function Page(){ return <div>Protected Dashboard</div>; }\n` });
+      files.push({ path: `src/auth/withRole.tsx`, template: `import type { ReactNode } from 'react';\nexport function withRole<TProps>(Comp: (p:TProps)=>any, required: 'user'|'admin'){\n  return function Guarded(props: TProps & { role?: 'user'|'admin'; children?: ReactNode }){\n    const role = props.role || 'user';\n    if(required==='admin' && role!=='admin'){ return null; }\n    return Comp(props);\n  }\n}\n` });
+      files.push({ path: `app/(protected)/admin/page.tsx`, template: `export default function Page(){ return <div>Admin Only</div>; }\n` });
     }
   }
 
@@ -209,10 +250,14 @@ function makeFiles(id: string, lib: string, pattern: string, style: string, lang
     const basic = `name: CI\non: [push, pull_request]\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: '20' }\n      - run: npm ci\n      - run: npm test\n`;
     const advanced = `name: CI\non: [push, pull_request]\njobs:\n  test:\n    strategy:\n      matrix:\n        node: [18, 20, 22]\n        os: [ubuntu-latest, macos-latest]\n    runs-on: \${{ matrix.os }}\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: \${{ matrix.node }}\n          cache: npm\n      - run: npm ci\n      - run: npm run lint --if-present\n      - run: npm test -- --coverage\n`;
     files.push({ path: `.github/workflows/ci.yml`, template: style === 'advanced' ? advanced : basic });
+    if (style === 'advanced') {
+      files.push({ path: `.github/workflows/monorepo.yml`, template: `name: Monorepo CI\non: [push, pull_request]\njobs:\n  build:\n    runs-on: ubuntu-latest\n    strategy:\n      matrix:\n        package: ['packages/app', 'packages/api']\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: '20' }\n      - run: npm ci\n      - run: cd \${{ matrix.package }} && npm ci && npm test --if-present\n` });
+    }
   }
   if (lib === 'github-actions' && pattern === 'job' && style === 'advanced') {
     files.push({ path: `.github/workflows/e2e.yml`, template: `name: E2E\non: [push, pull_request]\njobs:\n  e2e:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: '20' }\n      - run: npm ci\n      - run: npx playwright install --with-deps\n      - run: npm run test:e2e --if-present\n` });
     files.push({ path: `.github/workflows/lint.yml`, template: `name: Lint\non: [push, pull_request]\njobs:\n  lint:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: '20' }\n      - run: npm ci\n      - run: npm run lint --if-present\n      - run: npm run format:check --if-present\n` });
+    files.push({ path: `.github/workflows/affected-tests.yml`, template: `name: Affected Tests\non: [pull_request]\njobs:\n  affected:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: '20' }\n      - run: npm ci\n      - run: echo "Run only affected tests (stub)"\n` });
   }
 
   // Always include the generic stub and README

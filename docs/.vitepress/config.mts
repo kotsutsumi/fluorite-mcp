@@ -38,11 +38,14 @@ const englishSidebar = {
       collapsed: false,
       items: [
         { text: '🧪 Spike Templates (3,111+)', link: '/spike-templates' },
+        { text: '📚 Spike Templates Detailed Guide', link: '/spike-templates-detailed' },
         { text: '📱 /fl: Commands System', link: '/fl-commands' },
+        { text: '📋 /fl: Commands Detailed Reference', link: '/fl-commands-detailed' },
         { text: '🤖 MCP Server Integration', link: '/features' },
         { text: '🔍 Static Analysis Engine', link: '/static-analysis' },
         { text: '🔗 Integration Guide', link: '/integration-guide' },
-        { text: '⚡ Performance Optimization', link: '/performance' }
+        { text: '⚡ Performance Optimization', link: '/performance' },
+        { text: '🎵 Speech Processing Pipeline', link: '/SPEECH_PROCESSING' }
       ]
     },
     {
@@ -304,7 +307,7 @@ const specsSidebar = {
 
 export default defineConfig({
   title: 'Fluorite MCP',
-  description: 'Enterprise-grade MCP server for Claude Code CLI with 3,111+ spike templates, 86 library specs, intelligent memory engine, and continuous learning capabilities',
+  description: 'Enterprise-grade MCP server for Claude Code CLI with 3,111+ spike templates, 86 library specs, intelligent memory engine, speech processing capabilities, and continuous learning',
   base: '/fluorite-mcp/',
   ignoreDeadLinks: true,
   cleanUrls: true,
