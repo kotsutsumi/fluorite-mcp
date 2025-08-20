@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-datadog-dd-trace-minimal",
+  "name": "Next.js Datadog dd-trace 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "datadog"],
+  "tags": ["observability", "apm"],
+  "description": "dd-trace を初期化する最小サンプル（実運用は起動順序に注意）",
+  "params": [ { "name": "app_name", "default": "next-dd-trace-min" } ],
+  "files": [
+    { "path": "{{app_name}}/instrumentation.ts", "template": "import tracer from 'dd-trace';\nexport async function register(){ if(!(tracer as any)._initialized){ tracer.init({ logInjection: true }); } }\n" }
+  ]
+}
+

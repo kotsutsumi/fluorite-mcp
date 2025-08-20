@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-rsc-file-upload-minimal",
+  "name": "Next.js RSC File Upload 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["rsc", "upload"],
+  "description": "Server Actions でファイルを受け取りサイズだけ検査する最小例",
+  "params": [ { "name": "app_name", "default": "next-rsc-upload" } ],
+  "files": [
+    { "path": "{{app_name}}/app/actions/upload.ts", "template": "'use server';\nexport async function upload(formData: FormData){ const file = formData.get('file') as File | null; if(!file) return { ok:false }; return { ok:true, size: file.size }; }\n" }
+  ]
+}
+

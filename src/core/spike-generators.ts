@@ -849,6 +849,28 @@ function makeFiles(id: string, lib: string, pattern: string, style: string, lang
     files.push({ path: `.github/workflows/lint.yml`, template: `name: Lint\non: [push, pull_request]\njobs:\n  lint:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: '20' }\n      - run: npm ci\n      - run: npm run lint --if-present\n      - run: npm run format:check --if-present\n` });
     files.push({ path: `.github/workflows/affected-tests.yml`, template: `name: Affected Tests\non: [pull_request]\njobs:\n  affected:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: '20' }\n      - run: npm ci\n      - run: echo "Run only affected tests (stub)"\n` });
   }
+  // Redux Toolkit
+  if (lib === 'redux' && (pattern === 'init' || pattern === 'config' || pattern === 'service' || pattern === 'store' || pattern === 'slice')) {
+    files.push({ path: `src/store/store.ts`, template: `import { configureStore } from '@reduxjs/toolkit';\nimport counter from './counterSlice';\nexport const store = configureStore({ reducer: { counter } });\nexport type RootState = ReturnType<typeof store.getState>;\nexport type AppDispatch = typeof store.dispatch;\n` });
+    files.push({ path: `src/store/counterSlice.ts`, template: `import { createSlice, PayloadAction } from '@reduxjs/toolkit';\ninterface State { value: number }\nconst initialState: State = { value: 0 };\nconst slice = createSlice({ name: 'counter', initialState, reducers: { inc: (s)=> { s.value += 1; }, add: (s, a: PayloadAction<number>)=> { s.value += a.payload; } } });\nexport const { inc, add } = slice.actions;\nexport default slice.reducer;\n` });
+  }
+
+  // SWR
+  if (lib === 'swr' && (pattern === 'hook' || pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/hooks/useHello.ts`, template: `import useSWR from 'swr';\nconst fetcher = (url: string)=> fetch(url).then(r=> r.json());\nexport function useHello(){ return useSWR('/api/hello', fetcher); }\n` });
+  }
+
+  // Radix UI
+  if (lib === 'radix-ui' && (pattern === 'component' || pattern === 'init')) {
+    files.push({ path: `src/components/RadixDialog.tsx`, template: `import * as Dialog from '@radix-ui/react-dialog';\nexport function RadixDialog(){ return (<Dialog.Root><Dialog.Trigger>Open</Dialog.Trigger><Dialog.Portal><Dialog.Overlay /><Dialog.Content><Dialog.Title>Title</Dialog.Title><Dialog.Close>Close</Dialog.Close></Dialog.Content></Dialog.Portal></Dialog.Root>); }\n` });
+  }
+
+  // TailwindCSS
+  if (lib === 'tailwindcss' && (pattern === 'config' || pattern === 'init')) {
+    files.push({ path: `tailwind.config.ts`, template: `import type { Config } from 'tailwindcss';\nexport default { content: ['./index.html','./src/**/*.{ts,tsx,js,jsx}'], theme: { extend: {} }, plugins: [] } satisfies Config;\n` });
+    files.push({ path: `postcss.config.js`, template: `module.exports = { plugins: { tailwindcss: {}, autoprefixer: {} } };\n` });
+    files.push({ path: `src/index.css`, template: `@tailwind base;\n@tailwind components;\n@tailwind utilities;\n` });
+  }
   // Zod schemas
   if (lib === 'zod' && (pattern === 'schema' || pattern === 'config' || pattern === 'init' || pattern === 'service')) {
     files.push({ path: `src/validation/schemas.ts`, template: `import { z } from 'zod';

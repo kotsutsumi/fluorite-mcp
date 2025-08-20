@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-sentry-performance-minimal",
+  "name": "Next.js Sentry Performance 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "sentry"],
+  "tags": ["observability", "performance"],
+  "description": "Sentry Performance の最小構成（tracesSampleRateのみ設定）",
+  "params": [ { "name": "app_name", "default": "next-sentry-perf" } ],
+  "files": [
+    { "path": "{{app_name}}/sentry.server.config.ts", "template": "import * as Sentry from '@sentry/nextjs';\nSentry.init({ dsn: process.env.SENTRY_DSN || '', tracesSampleRate: 1.0 });\n" },
+    { "path": "{{app_name}}/sentry.client.config.ts", "template": "import * as Sentry from '@sentry/nextjs';\nSentry.init({ dsn: process.env.SENTRY_DSN || '', tracesSampleRate: 1.0 });\n" }
+  ]
+}
+

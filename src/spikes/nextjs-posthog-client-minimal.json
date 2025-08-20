@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-posthog-client-minimal",
+  "name": "Next.js PostHog Client 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "posthog"],
+  "tags": ["analytics"],
+  "description": "Next.js で PostHog を初期化する最小例（client）",
+  "params": [ { "name": "app_name", "default": "next-posthog" } ],
+  "files": [
+    { "path": "{{app_name}}/app/providers.tsx", "template": "'use client';\nimport posthog from 'posthog-js';\nimport { useEffect } from 'react';\nexport default function Providers({ children }: { children: React.ReactNode }){ useEffect(()=>{ posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY||'', { api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST||'https://app.posthog.com' }); },[]); return <>{children}</>; }\n" }
+  ]
+}
+

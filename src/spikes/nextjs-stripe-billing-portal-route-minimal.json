@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-stripe-billing-portal-route-minimal",
+  "name": "Next.js Stripe Billing Portal Route 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "stripe"],
+  "tags": ["payments", "billing-portal"],
+  "description": "App Router の Route Handler で Billing Portal セッション作成",
+  "params": [ { "name": "app_name", "default": "next-stripe-portal" }, { "name": "customer_id", "default": "cus_123" } ],
+  "files": [
+    { "path": "{{app_name}}/app/api/billing/portal/route.ts", "template": "import { NextResponse } from 'next/server';\nimport Stripe from 'stripe';\nexport async function POST(){ const stripe = new Stripe(process.env.STRIPE_API_KEY || '', { apiVersion: '2024-06-20' as any }); const session = await stripe.billingPortal.sessions.create({ customer: '{{customer_id}}', return_url: 'https://example.com/account' }); return NextResponse.json({ url: session.url }); }\n" }
+  ]
+}
+

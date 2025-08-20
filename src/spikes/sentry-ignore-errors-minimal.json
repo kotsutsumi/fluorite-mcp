@@ -1,0 +1,13 @@
+{
+  "id": "sentry-ignore-errors-minimal",
+  "name": "Sentry ignoreErrors 最小",
+  "version": "1.0.0",
+  "stack": ["sentry"],
+  "tags": ["observability"],
+  "description": "ignoreErrors で特定のエラーを無視する最小設定",
+  "params": [ { "name": "app_name", "default": "sentry-ignore" } ],
+  "files": [
+    { "path": "{{app_name}}/sentry.client.config.ts", "template": "import * as Sentry from '@sentry/nextjs';\nSentry.init({ dsn: process.env.SENTRY_DSN || '', ignoreErrors: ['ResizeObserver loop limit exceeded'] });\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-datadog-dd-trace-env-tags-minimal",
+  "name": "Next.js Datadog dd-trace env/tags 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "datadog"],
+  "tags": ["observability", "apm"],
+  "description": "DD_SERVICE/DD_ENV/DD_VERSION とタグ適用の最小例",
+  "params": [ { "name": "app_name", "default": "next-dd-trace-env" } ],
+  "files": [
+    { "path": "{{app_name}}/instrumentation.ts", "template": "import tracer from 'dd-trace';\nexport async function register(){ if(!(tracer as any)._initialized){ tracer.init({ env: process.env.DD_ENV, service: process.env.DD_SERVICE, version: process.env.DD_VERSION, tags: { 'service.version': process.env.DD_VERSION || '0.0.0' } }); } }\n" }
+  ]
+}
+

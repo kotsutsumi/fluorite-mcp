@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-rsc-action-zod-error-format-minimal",
+  "name": "Next.js RSC Action Zod エラーフォーマット最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "zod"],
+  "tags": ["rsc", "validation", "error"],
+  "description": "Zod の flatten() を使ってUIで扱いやすいエラー形に整形",
+  "params": [ { "name": "app_name", "default": "next-rsc-zod-errors" } ],
+  "files": [
+    { "path": "{{app_name}}/app/actions/save.ts", "template": "'use server';\nimport { z } from 'zod';\nexport type Result<T> = { ok: true; data: T } | { ok: false; errors: any };\nconst Schema = z.object({ email: z.string().email(), name: z.string().min(1) });\nexport async function save(data: unknown): Promise<Result<{ email:string; name:string }>>{ const v = Schema.safeParse(data); if(!v.success){ return { ok:false, errors: v.error.flatten() }; } return { ok:true, data: v.data }; }\n" }
+  ]
+}
+

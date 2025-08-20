@@ -1,0 +1,13 @@
+{
+  "id": "tailwind-forms-plugin-minimal",
+  "name": "Tailwind Forms Plugin 最小",
+  "version": "1.0.0",
+  "stack": ["tailwindcss"],
+  "tags": ["css", "forms"],
+  "description": "@tailwindcss/forms の最小設定",
+  "params": [ { "name": "app_name", "default": "tw-forms" } ],
+  "files": [
+    { "path": "{{app_name}}/tailwind.config.ts", "template": "import type { Config } from 'tailwindcss';\nimport forms from '@tailwindcss/forms';\nexport default { content: ['./index.html','./src/**/*.{ts,tsx,js,jsx}'], theme: { extend: {} }, plugins: [forms] } satisfies Config;\n" }
+  ]
+}
+

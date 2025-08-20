@@ -1,0 +1,13 @@
+{
+  "id": "prisma-interactive-transactions-minimal",
+  "name": "Prisma インタラクティブトランザクション最小",
+  "version": "1.0.0",
+  "stack": ["prisma"],
+  "tags": ["db", "transaction"],
+  "description": "$transaction(async(tx)=>{ ... }) の最小例",
+  "params": [ { "name": "app_name", "default": "prisma-itx" } ],
+  "files": [
+    { "path": "{{app_name}}/src/tx.ts", "template": "import { PrismaClient } from '@prisma/client';\nconst prisma = new PrismaClient();\nawait prisma.$transaction(async (tx)=>{ await tx.user.create({ data: { email: 'a@example.com' } }); });\nconsole.log('done');\n" }
+  ]
+}
+

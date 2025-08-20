@@ -1,0 +1,13 @@
+{
+  "id": "apollo-client-cache-evict-invalidate-minimal",
+  "name": "Apollo Client cache evict/invalidate 最小",
+  "version": "1.0.0",
+  "stack": ["react", "apollo"],
+  "tags": ["graphql", "client", "cache"],
+  "description": "cache.evict と cache.gc による無効化の最小例",
+  "params": [ { "name": "app_name", "default": "apollo-evict" } ],
+  "files": [
+    { "path": "{{app_name}}/src/apollo/invalidate.ts", "template": "import type { ApolloCache } from '@apollo/client';\nexport function invalidateUser(cache: ApolloCache<any>, email: string){ cache.evict({ id: cache.identify({ __typename:'User', email }) }); cache.gc(); }\n" }
+  ]
+}
+

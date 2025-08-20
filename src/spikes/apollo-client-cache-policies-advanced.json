@@ -1,0 +1,13 @@
+{
+  "id": "apollo-client-cache-policies-advanced",
+  "name": "Apollo Client キャッシュポリシー 高度",
+  "version": "1.0.0",
+  "stack": ["react", "apollo"],
+  "tags": ["graphql", "client", "cache"],
+  "description": "InMemoryCache の typePolicies/fieldPolicy を使ったキャッシュ制御",
+  "params": [ { "name": "app_name", "default": "apollo-cache-adv" } ],
+  "files": [
+    { "path": "{{app_name}}/src/apollo/cache.ts", "template": "import { InMemoryCache } from '@apollo/client';\nexport const cache = new InMemoryCache({ typePolicies: { Query: { fields: { feed: { keyArgs: false, merge(existing = [], incoming: any[]){ return [...existing, ...incoming]; } } } } } });\n" }
+  ]
+}
+

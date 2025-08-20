@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-sentry-setup-minimal",
+  "name": "Next.js Sentry 最小セットアップ",
+  "version": "1.0.0",
+  "stack": ["nextjs", "sentry"],
+  "tags": ["observability", "apm"],
+  "description": "Next.js (App Router) で Sentry 初期化の最小サンプル（server/client分割）",
+  "params": [ { "name": "app_name", "default": "next-sentry" } ],
+  "files": [
+    { "path": "{{app_name}}/sentry.server.config.ts", "template": "import * as Sentry from '@sentry/nextjs';\nSentry.init({ dsn: process.env.SENTRY_DSN || '', tracesSampleRate: 1.0 });\n" },
+    { "path": "{{app_name}}/sentry.client.config.ts", "template": "import * as Sentry from '@sentry/nextjs';\nSentry.init({ dsn: process.env.SENTRY_DSN || '', tracesSampleRate: 1.0 });\n" }
+  ]
+}
+

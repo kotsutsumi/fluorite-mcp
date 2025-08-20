@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-rsc-action-result-zod-minimal",
+  "name": "Next.js RSC Action × Result型 × Zod 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "zod"],
+  "tags": ["rsc", "validation", "result"],
+  "description": "Actionの戻り値をResult型({ok:boolean,data?,error?})にしZodで検証",
+  "params": [ { "name": "app_name", "default": "next-rsc-result-zod" } ],
+  "files": [
+    { "path": "{{app_name}}/app/actions/save.ts", "template": "'use server';\nimport { z } from 'zod';\nexport type Result<T> = { ok: true; data: T } | { ok: false; error: string };\nconst Schema = z.object({ email: z.string().email() });\nexport async function save(input: unknown): Promise<Result<{ email: string }>>{ try { const v = Schema.parse(input); return { ok: true, data: v }; } catch{ return { ok: false, error: 'invalid' }; } }\n" }
+  ]
+}
+

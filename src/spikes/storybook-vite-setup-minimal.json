@@ -1,0 +1,16 @@
+{
+  "id": "storybook-vite-setup-minimal",
+  "name": "Storybook × Vite 最小セットアップ",
+  "version": "1.0.0",
+  "stack": ["storybook", "vite", "react"],
+  "tags": ["storybook", "vite"],
+  "description": "Storybook@latest を Vite で最小起動",
+  "params": [ { "name": "app_name", "default": "sb-vite" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"storybook\": \"storybook dev -p 6006\" }, \"devDependencies\": { \"@storybook/react-vite\": \"latest\", \"storybook\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/.storybook/main.ts", "template": "import type { StorybookConfig } from 'storybook/react-vite';\nconst config: StorybookConfig = { framework: '@storybook/react-vite', stories: ['../src/**/*.stories.@(js|jsx|ts|tsx)'] };\nexport default config;\n" },
+    { "path": "{{app_name}}/src/Button.tsx", "template": "export function Button(props:{children:any}){ return <button>{props.children}</button>; }\n" },
+    { "path": "{{app_name}}/src/Button.stories.tsx", "template": "import type { Meta, StoryObj } from '@storybook/react';\nimport { Button } from './Button';\nexport default { component: Button } as Meta<typeof Button>;\nexport const Primary: StoryObj<typeof Button> = { args: { children: 'Hello' } };\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "apollo-server-subscriptions-minimal",
+  "name": "Apollo Server Subscriptions 最小",
+  "version": "1.0.0",
+  "stack": ["apollo", "graphql"],
+  "tags": ["server", "subscriptions"],
+  "description": "Apollo Server v4 での Subscription（概念サンプル）",
+  "params": [ { "name": "app_name", "default": "apollo-subscriptions" } ],
+  "files": [
+    { "path": "{{app_name}}/src/server.ts", "template": "// 概念サンプル: 実運用では graphql-ws 等のセットアップが必要です。\nimport { ApolloServer } from '@apollo/server';\nconst typeDefs = `type Query { ok: Boolean! }`;\nconst resolvers = { Query: { ok: () => true } };\nconst server = new ApolloServer({ typeDefs, resolvers });\nconsole.log('Subscriptionsは別途WebSocketサーバを用意してください');\n" }
+  ]
+}
+

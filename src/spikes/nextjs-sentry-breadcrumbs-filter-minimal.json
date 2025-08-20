@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-sentry-breadcrumbs-filter-minimal",
+  "name": "Next.js Sentry breadcrumbs フィルタ最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "sentry"],
+  "tags": ["observability", "breadcrumbs"],
+  "description": "不要なbreadcrumbsを beforeBreadcrumb で除外する最小設定",
+  "params": [ { "name": "app_name", "default": "next-sentry-bc" } ],
+  "files": [
+    { "path": "{{app_name}}/sentry.client.config.ts", "template": "import * as Sentry from '@sentry/nextjs';\nSentry.init({ dsn: process.env.SENTRY_DSN || '', beforeBreadcrumb(b){ if(b?.category==='console' && b?.level==='log'){ return null; } return b; } });\n" }
+  ]
+}
+

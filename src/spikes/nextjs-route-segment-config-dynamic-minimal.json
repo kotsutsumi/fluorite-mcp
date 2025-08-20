@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-route-segment-config-dynamic-minimal",
+  "name": "Next.js Route Segment Config dynamic 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["route", "config"],
+  "description": "route.ts で dynamic:'force-dynamic' を指定する最小例",
+  "params": [ { "name": "app_name", "default": "next-route-config" } ],
+  "files": [
+    { "path": "{{app_name}}/app/api/time/route.ts", "template": "export const dynamic = 'force-dynamic';\nexport async function GET(){ return Response.json({ now: Date.now() }); }\n" }
+  ]
+}
+

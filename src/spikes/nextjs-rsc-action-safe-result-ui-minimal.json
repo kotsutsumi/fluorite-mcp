@@ -1,0 +1,15 @@
+{
+  "id": "nextjs-rsc-action-safe-result-ui-minimal",
+  "name": "Next.js RSC Action Safe Result UI 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "zod"],
+  "tags": ["rsc", "validation", "ui"],
+  "description": "Result型のActionをUIで安全に扱う最小例",
+  "params": [ { "name": "app_name", "default": "next-rsc-safe-ui" } ],
+  "files": [
+    { "path": "{{app_name}}/app/actions/save.ts", "template": "'use server';\nimport { z } from 'zod';\nexport type Result<T> = { ok: true; data: T } | { ok: false; error: string };\nconst Schema = z.object({ email: z.string().email() });\nexport async function save(data: unknown): Promise<Result<{ email:string }>>{ try { const v = Schema.parse(data); return { ok:true, data: v }; } catch{ return { ok:false, error: 'invalid' }; } }\n" },
+    { "path": "{{app_name}}/app/page.tsx", "template": "'use client';\nimport { useState } from 'react';\nexport default function Page(){ const [msg,setMsg] = useState(''); async function onSubmit(e:any){ e.preventDefault(); const email = new FormData(e.currentTarget).get('email'); const res = await (await fetch('/api/save',{ method:'POST', body: JSON.stringify({ email }), headers:{ 'content-type':'application/json' } })).json(); setMsg(res.ok ? 'OK' : 'INVALID'); } return (<form onSubmit={onSubmit}><input name='email' /><button>送信</button><div>{msg}</div></form>); }\n" },
+    { "path": "{{app_name}}/app/api/save/route.ts", "template": "import { NextResponse } from 'next/server';\nimport { save } from '../../actions/save';\nexport async function POST(req: Request){ const json = await req.json(); const out = await save(json); return NextResponse.json(out); }\n" }
+  ]
+}
+

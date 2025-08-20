@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-sentry-performance-toggle-minimal",
+  "name": "Next.js Sentry Performance Toggle 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "sentry"],
+  "tags": ["observability", "performance"],
+  "description": "環境変数で Performance を ON/OFF する最小例",
+  "params": [ { "name": "app_name", "default": "next-sentry-perf-toggle" } ],
+  "files": [
+    { "path": "{{app_name}}/sentry.server.config.ts", "template": "import * as Sentry from '@sentry/nextjs';\nconst rate = process.env.SENTRY_PERF === '1' ? 1.0 : 0.0;\nSentry.init({ dsn: process.env.SENTRY_DSN || '', tracesSampleRate: rate });\n" },
+    { "path": "{{app_name}}/sentry.client.config.ts", "template": "import * as Sentry from '@sentry/nextjs';\nconst rate = process.env.SENTRY_PERF === '1' ? 1.0 : 0.0;\nSentry.init({ dsn: process.env.SENTRY_DSN || '', tracesSampleRate: rate });\n" }
+  ]
+}
+

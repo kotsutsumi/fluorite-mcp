@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-middleware-role-guard-rsc-minimal",
+  "name": "Next.js Middleware × Role Guard × RSC 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["middleware", "auth", "role"],
+  "description": "Middlewareでロールを判定し、RSC側ではroleを前提に分岐する最小例",
+  "params": [ { "name": "app_name", "default": "next-role-guard" } ],
+  "files": [
+    { "path": "{{app_name}}/middleware.ts", "template": "import { NextResponse } from 'next/server';\nexport const config = { matcher: ['/admin/:path*'] };\nexport function middleware(req: Request){ const url = new URL(req.url); const role = url.searchParams.get('role') || 'user'; if(role !== 'admin'){ return NextResponse.redirect(new URL('/403', url)); } return NextResponse.next(); }\n" },
+    { "path": "{{app_name}}/app/403/page.tsx", "template": "export default function Page(){ return <div>Forbidden</div>; }\n" }
+  ]
+}
+

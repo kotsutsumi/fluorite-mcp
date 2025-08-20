@@ -1,0 +1,13 @@
+{
+  "id": "apollo-client-normalized-cache-custom-id",
+  "name": "Apollo Client normalized cache カスタムID",
+  "version": "1.0.0",
+  "stack": ["react", "apollo"],
+  "tags": ["graphql", "client", "cache"],
+  "description": "typePolicies.keyFields でIDをカスタマイズする例",
+  "params": [ { "name": "app_name", "default": "apollo-norm-id" } ],
+  "files": [
+    { "path": "{{app_name}}/src/apollo/cache.ts", "template": "import { InMemoryCache } from '@apollo/client';\nexport const cache = new InMemoryCache({ typePolicies: { User: { keyFields: ['email'] } } });\n" }
+  ]
+}
+

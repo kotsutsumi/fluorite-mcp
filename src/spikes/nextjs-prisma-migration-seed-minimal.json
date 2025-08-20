@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-prisma-migration-seed-minimal",
+  "name": "Next.js Prisma Migration/Seed 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "prisma"],
+  "tags": ["db", "migration", "seed"],
+  "description": "Prisma の schema と最小 seed スクリプト",
+  "params": [ { "name": "app_name", "default": "next-prisma" } ],
+  "files": [
+    { "path": "{{app_name}}/prisma/schema.prisma", "template": "datasource db { provider = \"sqlite\" url = \"file:./dev.db\" }\ngenerator client { provider = \"prisma-client-js\" }\nmodel Post { id Int @id @default(autoincrement()) title String }\n" },
+    { "path": "{{app_name}}/src/seed.ts", "template": "import { PrismaClient } from '@prisma/client';\nconst prisma = new PrismaClient();\nawait prisma.post.create({ data: { title: 'hello' } });\nconsole.log('seeded');\n" }
+  ]
+}
+

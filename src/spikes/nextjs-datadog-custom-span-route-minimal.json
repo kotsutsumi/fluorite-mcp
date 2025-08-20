@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-datadog-custom-span-route-minimal",
+  "name": "Next.js Datadog custom span Route 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "datadog"],
+  "tags": ["observability", "apm"],
+  "description": "Route Handler 内でカスタムスパンを作成する最小例",
+  "params": [ { "name": "app_name", "default": "next-dd-span" } ],
+  "files": [
+    { "path": "{{app_name}}/app/api/hello/route.ts", "template": "import { NextResponse } from 'next/server';\nimport tracer from 'dd-trace';\nexport async function GET(){ const span = tracer?.scope()?.active()?.tracer()?.startSpan('custom.work'); try { /* do work */ return NextResponse.json({ ok:true }); } finally { span && span.finish?.(); } }\n" }
+  ]
+}
+

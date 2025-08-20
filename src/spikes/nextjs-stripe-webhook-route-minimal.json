@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-stripe-webhook-route-minimal",
+  "name": "Next.js Stripe Webhook Route 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "stripe"],
+  "tags": ["webhook", "payments"],
+  "description": "App Router の Route Handler で Stripe Webhook を受ける最小例（署名検証はコメント）",
+  "params": [ { "name": "app_name", "default": "next-stripe-webhook" } ],
+  "files": [
+    { "path": "{{app_name}}/app/api/stripe/webhook/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(req: Request){ const buf = await req.text(); /* TODO: verify signature with STRIPE_WEBHOOK_SECRET */ return NextResponse.json({ ok: true, received: !!buf }); }\n" }
+  ]
+}
+

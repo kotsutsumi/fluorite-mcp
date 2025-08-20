@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-datadog-dd-trace-concept",
+  "name": "Next.js Datadog dd-trace 概念",
+  "version": "1.0.0",
+  "stack": ["nextjs", "datadog"],
+  "tags": ["observability", "apm"],
+  "description": "Next.js で dd-trace を初期化する際の概念的配置（実装ガイド付）」,
+  "params": [ { "name": "app_name", "default": "next-dd-trace" } ],
+  "files": [
+    { "path": "{{app_name}}/instrumentation.ts", "template": "// Next.js 13+ の計測エントリポイント。ここで dd-trace を初期化する案。\n// import 'dd-trace/init'; // または import tracer from 'dd-trace'; tracer.init({...})\nexport async function register() { /* runtimeで必要な初期化を行う */ }\n" },
+    { "path": "{{app_name}}/README.md", "template": "# Next.js dd-trace 概念\n- Next.js のサーバ起動前に `dd-trace` を初期化する必要があります。\n- `instrumentation.ts` は App Router 環境での初期化ポイントの一案です。\n- 実運用では `DD_SERVICE`, `DD_ENV`, `DD_VERSION` などの環境変数を利用します。\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "apollo-link-error-retry-minimal",
+  "name": "Apollo Link error/retry 最小",
+  "version": "1.0.0",
+  "stack": ["react", "apollo"],
+  "tags": ["graphql", "client", "link"],
+  "description": "@apollo/client/link/error と retry の最小構成",
+  "params": [ { "name": "app_name", "default": "apollo-links" } ],
+  "files": [
+    { "path": "{{app_name}}/src/apollo/links.ts", "template": "import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';\nimport { onError } from '@apollo/client/link/error';\nimport { RetryLink } from '@apollo/client/link/retry';\nconst errorLink = onError(({ graphQLErrors, networkError }) => { if (graphQLErrors) console.log(graphQLErrors); if (networkError) console.log(networkError); });\nconst retryLink = new RetryLink();\nconst httpLink = new HttpLink({ uri: '/graphql' });\nexport const client = new ApolloClient({ link: retryLink.concat(errorLink).concat(httpLink), cache: new InMemoryCache() });\n" }
+  ]
+}
+

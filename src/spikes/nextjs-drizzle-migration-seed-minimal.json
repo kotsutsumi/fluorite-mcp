@@ -1,0 +1,15 @@
+{
+  "id": "nextjs-drizzle-migration-seed-minimal",
+  "name": "Next.js × Drizzle Migration/Seed 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "drizzle", "sqlite"],
+  "tags": ["db", "migration", "seed"],
+  "description": "Drizzle の基本スキーマ＋migration/seed の最小セット",
+  "params": [ { "name": "app_name", "default": "next-drizzle" } ],
+  "files": [
+    { "path": "{{app_name}}/drizzle.config.ts", "template": "import type { Config } from 'drizzle-kit';\nexport default { schema: './src/db/schema.ts', out: './drizzle', driver: 'better-sqlite', dbCredentials: { url: 'app.db' } } satisfies Config;\n" },
+    { "path": "{{app_name}}/src/db/schema.ts", "template": "import { sqliteTable, integer, text } from 'drizzle-orm/sqlite-core';\nexport const posts = sqliteTable('posts', { id: integer('id').primaryKey(), title: text('title').notNull() });\n" },
+    { "path": "{{app_name}}/src/db/seed.ts", "template": "import { drizzle } from 'drizzle-orm/better-sqlite3';\nimport Database from 'better-sqlite3';\nimport { posts } from './schema';\nconst sqlite = new Database('app.db');\nconst db = drizzle(sqlite);\nawait db.insert(posts).values([{ title: 'hello' }]);\nconsole.log('seeded');\n" }
+  ]
+}
+

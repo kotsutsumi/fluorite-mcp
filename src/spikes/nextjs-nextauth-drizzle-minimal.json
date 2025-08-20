@@ -1,0 +1,15 @@
+{
+  "id": "nextjs-nextauth-drizzle-minimal",
+  "name": "Next.js × NextAuth × Drizzle 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "next-auth", "drizzle", "sqlite"],
+  "tags": ["auth", "db", "app-router"],
+  "description": "NextAuthのApp Router構成とDrizzle(SQLite)の最小連携",
+  "params": [ { "name": "app_name", "default": "next-auth-drizzle" } ],
+  "files": [
+    { "path": "{{app_name}}/app/api/auth/[...nextauth]/route.ts", "template": "import NextAuth from 'next-auth';\nimport Credentials from 'next-auth/providers/credentials';\nconst handler = NextAuth({ providers: [Credentials({ name: 'Credentials', credentials: { email: {}, password: {} }, authorize: async (c)=> c?.email ? ({ id: '1', name: c.email }) : null })] });\nexport { handler as GET, handler as POST };\n" },
+    { "path": "{{app_name}}/src/db/schema.ts", "template": "import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core';\nexport const users = sqliteTable('users', { id: integer('id').primaryKey(), email: text('email').notNull().unique(), name: text('name') });\n" },
+    { "path": "{{app_name}}/src/db/client.ts", "template": "import { drizzle } from 'drizzle-orm/better-sqlite3';\nimport Database from 'better-sqlite3';\nconst sqlite = new Database('app.db');\nexport const db = drizzle(sqlite);\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "apollo-client-fragment-merge-advanced",
+  "name": "Apollo Client fragment merge 高度",
+  "version": "1.0.0",
+  "stack": ["react", "apollo"],
+  "tags": ["graphql", "client", "cache"],
+  "description": "fragment での正規化＋部分更新（merge関数）例",
+  "params": [ { "name": "app_name", "default": "apollo-fragments" } ],
+  "files": [
+    { "path": "{{app_name}}/src/apollo/cache.ts", "template": "import { InMemoryCache } from '@apollo/client';\nexport const cache = new InMemoryCache({ typePolicies: { Post: { fields: { title: { merge(_ex, inb){ return inb; } } } } } });\n" }
+  ]
+}
+

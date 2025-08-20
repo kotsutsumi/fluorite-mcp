@@ -1,0 +1,14 @@
+{
+  "id": "zustand-selector-shallow-minimal",
+  "name": "Zustand selector × shallow 最小",
+  "version": "1.0.0",
+  "stack": ["react", "zustand"],
+  "tags": ["state", "selector"],
+  "description": "selector + shallow 比較を使った再レンダリング最小化",
+  "params": [ { "name": "app_name", "default": "zustand-selector" } ],
+  "files": [
+    { "path": "{{app_name}}/src/store.ts", "template": "import { create } from 'zustand';\nexport const useStore = create<{ a:number; b:number; setA:(n:number)=>void; setB:(n:number)=>void }>((set)=>({ a:0,b:0,setA:(n)=>set({a:n}),setB:(n)=>set({b:n}) }));\n" },
+    { "path": "{{app_name}}/src/useAB.ts", "template": "import { shallow } from 'zustand/shallow';\nimport { useStore } from './store';\nexport function useAB(){ return useStore((s)=>({ a:s.a, b:s.b }), shallow); }\n" }
+  ]
+}
+

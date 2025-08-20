@@ -1,0 +1,13 @@
+{
+  "id": "apollo-client-pagination-merge-minimal",
+  "name": "Apollo Client pagination merge 最小",
+  "version": "1.0.0",
+  "stack": ["react", "apollo"],
+  "tags": ["graphql", "client", "cache"],
+  "description": "ページネーションで既存と新規をマージする最小設定",
+  "params": [ { "name": "app_name", "default": "apollo-paginate" } ],
+  "files": [
+    { "path": "{{app_name}}/src/apollo/cache.ts", "template": "import { InMemoryCache } from '@apollo/client';\nexport const cache = new InMemoryCache({ typePolicies: { Query: { fields: { items: { keyArgs: false, merge(existing = [], incoming: any[]){ return [...existing, ...incoming]; } } } } } });\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-rsc-action-formdata-zod-minimal",
+  "name": "Next.js RSC Action × FormData × Zod 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "zod"],
+  "tags": ["rsc", "validation", "formdata"],
+  "description": "Server Actions で FormData を Zod で検証する最小例",
+  "params": [ { "name": "app_name", "default": "next-rsc-formdata-zod" } ],
+  "files": [
+    { "path": "{{app_name}}/app/actions/save.ts", "template": "'use server';\nimport { z } from 'zod';\nconst Schema = z.object({ email: z.string().email() });\nexport async function save(formData: FormData){ const data = { email: String(formData.get('email')||'') }; const v = Schema.safeParse(data); if(!v.success) return { ok:false, error:'invalid' }; return { ok:true }; }\n" }
+  ]
+}
+

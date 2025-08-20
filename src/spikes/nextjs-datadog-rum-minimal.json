@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-datadog-rum-minimal",
+  "name": "Next.js Datadog RUM 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "datadog"],
+  "tags": ["observability", "rum"],
+  "description": "Datadog RUM をクライアントで初期化する最小例",
+  "params": [ { "name": "app_name", "default": "next-dd-rum" } ],
+  "files": [
+    { "path": "{{app_name}}/app/providers.tsx", "template": "'use client';\nimport { datadogRum } from '@datadog/browser-rum';\nimport { useEffect } from 'react';\nexport default function Providers({ children }: { children: React.ReactNode }){ useEffect(()=>{ datadogRum.init({ applicationId: process.env.NEXT_PUBLIC_DD_RUM_APP_ID||'', clientToken: process.env.NEXT_PUBLIC_DD_RUM_CLIENT_TOKEN||'', site: 'datadoghq.com', service: 'app', env: 'dev', version: '0.0.1', sampleRate: 100, trackInteractions: true }); },[]); return <>{children}</>; }\n" }
+  ]
+}
+

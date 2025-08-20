@@ -1,0 +1,15 @@
+{
+  "id": "trpc-drizzle-crud-minimal",
+  "name": "tRPC × Drizzle CRUD 最小",
+  "version": "1.0.0",
+  "stack": ["trpc", "drizzle", "sqlite"],
+  "tags": ["api", "crud"],
+  "description": "tRPC の最小ルータと Drizzle(SQLite) の CRUD スタブ",
+  "params": [ { "name": "app_name", "default": "trpc-drizzle" } ],
+  "files": [
+    { "path": "{{app_name}}/src/db/schema.ts", "template": "import { sqliteTable, integer, text } from 'drizzle-orm/sqlite-core';\nexport const items = sqliteTable('items', { id: integer('id').primaryKey(), title: text('title').notNull() });\n" },
+    { "path": "{{app_name}}/src/db/client.ts", "template": "import { drizzle } from 'drizzle-orm/better-sqlite3';\nimport Database from 'better-sqlite3';\nconst sqlite = new Database('app.db');\nexport const db = drizzle(sqlite);\n" },
+    { "path": "{{app_name}}/src/trpc/router.ts", "template": "import { initTRPC } from '@trpc/server';\nimport { db } from '../db/client';\nimport { items } from '../db/schema';\nconst t = initTRPC.context<{}>().create();\nexport const appRouter = t.router({\n  list: t.procedure.query(async ()=> { return []; /* await db.select().from(items) */ }),\n  add: t.procedure.mutation(async ()=> { return { ok: true }; /* await db.insert(items).values({ title:'x' }) */ })\n});\nexport type AppRouter = typeof appRouter;\n" }
+  ]
+}
+

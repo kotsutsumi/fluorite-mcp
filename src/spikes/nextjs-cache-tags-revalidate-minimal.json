@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-cache-tags-revalidate-minimal",
+  "name": "Next.js Cache Tags Revalidate 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["cache", "revalidate"],
+  "description": "route.ts で revalidateTag を呼び、fetch 側で tags を付与する最小例",
+  "params": [ { "name": "app_name", "default": "next-cache-tags" } ],
+  "files": [
+    { "path": "{{app_name}}/app/page.tsx", "template": "export default async function Page(){ const res = await fetch('https://example.com/api', { next: { tags: ['items'] } }); return <div>OK</div>; }\n" },
+    { "path": "{{app_name}}/app/api/revalidate/route.ts", "template": "import { revalidateTag } from 'next/cache';\nexport async function POST(){ revalidateTag('items'); return new Response('ok'); }\n" }
+  ]
+}
+

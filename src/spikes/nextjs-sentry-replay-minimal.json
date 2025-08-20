@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-sentry-replay-minimal",
+  "name": "Next.js Sentry Replay 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "sentry"],
+  "tags": ["observability", "replay"],
+  "description": "Sentry Replay の最小構成（client側のみの概念サンプル）",
+  "params": [ { "name": "app_name", "default": "next-sentry-replay" } ],
+  "files": [
+    { "path": "{{app_name}}/sentry.client.config.ts", "template": "import * as Sentry from '@sentry/nextjs';\nimport { replayIntegration } from '@sentry/replay';\nSentry.init({ dsn: process.env.SENTRY_DSN || '', integrations: [replayIntegration()], tracesSampleRate: 1.0, replaysSessionSampleRate: 1.0, replaysOnErrorSampleRate: 1.0 });\n" }
+  ]
+}
+
