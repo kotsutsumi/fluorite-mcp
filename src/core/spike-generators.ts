@@ -44,11 +44,34 @@ const LIBRARIES = [
   'docker','kubernetes','helm','terraform','pulumi','ansible','serverless','aws-lambda','gcp-cloud-functions','azure-functions',
   'auth0','passport','next-auth','keycloak','firebase-auth','cognito','supabase-auth','clerk','lucia','ory',
   'openai','anthropic','langchain','llamaindex','transformers','whisper','weaviate','pinecone','milvus','qdrant',
-  'github-actions'
+  'github-actions',
+  // newly specialized libraries
+  'sentry','stripe','posthog','shadcn','supabase',
+  // auth providers
+  'auth0','clerk','lucia','keycloak','firebase-auth','cognito','supabase-auth','ory',
+  // storage, logging, metrics
+  's3','gcs','azure-blob','pino','winston','prometheus',
+  // email providers
+  'resend','sendgrid','postmark','nodemailer',
+  // search/index providers
+  'algolia','meilisearch','typesense',
+  // realtime, apm, flags, secrets, extra storage/search
+  'socket.io','pusher','ably','datadog','newrelic','launchdarkly','unleash','vault','doppler','minio','elasticsearch','opensearch','mqtt','memcached','cloudflare-workers'
+  ,
+  // i18n, CMS, AI, analytics, bug tracking, config, uploads
+  'i18next','next-intl','strapi','contentful','sanity','ghost',
+  'groq','mistral','cohere',
+  'segment','amplitude','mixpanel',
+  'bugsnag','honeybadger',
+  'dotenv','cloudinary','uploadthing','mailgun','lru-cache','paddle',
+  // frontend state/forms/utilities (new)
+  'zod','react-hook-form','zustand','redux','swr','radix-ui','tailwindcss','storybook','nx','turborepo'
 ];
 
 const PATTERNS = [
-  'minimal','init','config','route','controller','service','client','crud','webhook','job'
+  'minimal','init','config','route','controller','service','client','crud','webhook','job',
+  // additional common patterns
+  'middleware','schema','component','hook','provider','adapter','plugin','worker','listener','migration','seed'
 ];
 
 const STYLES = ['basic','typed','advanced','secure','testing'];
@@ -196,6 +219,33 @@ function makeFiles(id: string, lib: string, pattern: string, style: string, lang
     files.push({ path: `src/apollo/client.ts`, template: `import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';\nexport const client = new ApolloClient({ link: new HttpLink({ uri: '/api/graphql' }), cache: new InMemoryCache() });\n` });
   }
 
+  // OpenAI
+  if (lib === 'openai' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/openai/chat.ts`, template: `import OpenAI from 'openai';\nconst apiKey = process.env.OPENAI_API_KEY!;\nconst client = new OpenAI({ apiKey });\nexport async function chat(prompt: string){\n  const res = await client.chat.completions.create({ model: 'gpt-4o-mini', messages: [{ role: 'user', content: prompt }] });\n  return res.choices[0]?.message?.content || '';\n}\n` });
+  }
+
+  // LangChain
+  if (lib === 'langchain' && (pattern === 'service' || pattern === 'client')) {
+    files.push({ path: `src/langchain/basic.ts`, template: `import { ChatOpenAI } from '@langchain/openai';\nimport { ChatPromptTemplate } from '@langchain/core/prompts';\nexport async function run(prompt: string){\n  const llm = new ChatOpenAI({ model: 'gpt-4o-mini', apiKey: process.env.OPENAI_API_KEY });\n  const tpl = ChatPromptTemplate.fromMessages([['system','You are helpful.'],['human','{input}']]);\n  const chain = tpl.pipe(llm);\n  const res = await chain.invoke({ input: prompt });\n  return res?.content?.toString?.() || String(res);\n}\n` });
+  }
+
+  // BullMQ
+  if (lib === 'bullmq' && (pattern === 'service' || pattern === 'job')) {
+    files.push({ path: `src/queue/queue.ts`, template: `import { Queue } from 'bullmq';\nexport const queue = new Queue('jobs', { connection: { host: '127.0.0.1', port: 6379 } });\nexport async function enqueue(name: string, data: any){ return queue.add(name, data); }\n` });
+    files.push({ path: `src/queue/worker.ts`, template: `import { Worker } from 'bullmq';\nexport const worker = new Worker('jobs', async (job)=>{ console.log('job', job.name, job.data); }, { connection: { host: '127.0.0.1', port: 6379 } });\n` });
+  }
+
+  // AWS Lambda
+  if (lib === 'aws-lambda' && (pattern === 'service' || pattern === 'route')) {
+    files.push({ path: `src/lambda/handler.ts`, template: `import type { APIGatewayProxyEventV2, APIGatewayProxyResultV2 } from 'aws-lambda';\nexport async function handler(_event: APIGatewayProxyEventV2): Promise<APIGatewayProxyResultV2>{\n  return { statusCode: 200, body: JSON.stringify({ ok: true }) };\n}\n` });
+  }
+
+  // Cypress
+  if (lib === 'cypress' && (pattern === 'config' || pattern === 'init')) {
+    files.push({ path: `cypress.config.ts`, template: `import { defineConfig } from 'cypress';\nexport default defineConfig({ e2e: { baseUrl: 'http://localhost:3000' } });\n` });
+    files.push({ path: `cypress/e2e/spec.cy.ts`, template: `describe('home', () => { it('loads', () => { cy.visit('/'); cy.contains('html'); }); });\n` });
+  }
+
   // tRPC
   if (lib === 'trpc' && (pattern === 'service' || pattern === 'server')) {
     files.push({ path: `src/trpc/context.ts`, template: `export type Context = {};\nexport async function createContext(): Promise<Context> { return {}; }\n` });
@@ -211,12 +261,18 @@ function makeFiles(id: string, lib: string, pattern: string, style: string, lang
     files.push({ path: `drizzle.config.ts`, template: `import type { Config } from 'drizzle-kit';\nexport default { schema: './src/db/schema.ts', out: './drizzle', driver: 'pg', dbCredentials: { connectionString: process.env.DATABASE_URL! } } satisfies Config;\n` });
     files.push({ path: `src/db/schema.ts`, template: `import { pgTable, serial, text, timestamp } from 'drizzle-orm/pg-core';\nexport const posts = pgTable('posts', { id: serial('id').primaryKey(), title: text('title').notNull(), createdAt: timestamp('created_at').defaultNow() });\n` });
     files.push({ path: `src/db/client.ts`, template: `import { drizzle } from 'drizzle-orm/node-postgres';\nimport { Pool } from 'pg';\nconst pool = new Pool({ connectionString: process.env.DATABASE_URL });\nexport const db = drizzle(pool);\n` });
+    files.push({ path: `src/db/migrate.ts`, template: `import { migrate } from 'drizzle-orm/node-postgres/migrator';\nimport { db } from './client';\nimport { Client } from 'pg';\n(async()=>{ const client = new Client({ connectionString: process.env.DATABASE_URL }); await client.connect(); await migrate(db, { migrationsFolder: 'drizzle' }); await client.end(); })().catch(e=>{ console.error(e); process.exit(1); });\n` });
   }
 
   // Docker
   if (lib === 'docker' && (pattern === 'config' || pattern === 'init')) {
     files.push({ path: `Dockerfile`, template: `FROM node:20-alpine\nWORKDIR /app\nCOPY package*.json ./\nRUN npm ci\nCOPY . .\nCMD [\"npm\", \"start\"]\n` });
     files.push({ path: `docker-compose.yml`, template: `version: '3.9'\nservices:\n  app:\n    build: .\n    ports:\n      - '3000:3000'\n    environment:\n      - NODE_ENV=production\n` });
+    if (style === 'advanced') {
+      files.push({ path: `cloudrun.yaml`, template: `apiVersion: serving.knative.dev/v1\nkind: Service\nmetadata: { name: app }\nspec: { template: { spec: { containers: [{ image: gcr.io/PROJECT/IMAGE:TAG }], containerConcurrency: 80 } } }\n` });
+      files.push({ path: `render.yaml`, template: `services:\n  - type: web\n    name: app\n    env: node\n    plan: starter\n    buildCommand: npm ci && npm run build\n    startCommand: npm start\n` });
+      files.push({ path: `fly.toml`, template: `app = \"app\"\n[[services]]\n  internal_port = 3000\n  processes = [\"app\"]\n` });
+    }
   }
 
   // Kafka
@@ -229,6 +285,540 @@ function makeFiles(id: string, lib: string, pattern: string, style: string, lang
   if (lib === 'playwright' && (pattern === 'config' || pattern === 'init')) {
     files.push({ path: `playwright.config.ts`, template: `import { defineConfig } from '@playwright/test';\nexport default defineConfig({ use: { headless: true } });\n` });
     files.push({ path: `tests/example.spec.ts`, template: `import { test, expect } from '@playwright/test';\ntest('homepage', async ({ page }) => { await page.goto('https://example.com'); await expect(page).toHaveTitle(/Example/); });\n` });
+  }
+
+  // Fastify
+  if (lib === 'fastify' && (pattern === 'service' || pattern === 'route')) {
+    files.push({ path: `src/fastify/server.ts`, template: `import Fastify from 'fastify';\nconst app = Fastify();\napp.get('/', async ()=> ({ ok: true }));\napp.listen({ port: 3000 });\n` });
+  }
+
+  // Hono
+  if (lib === 'hono' && (pattern === 'route' || pattern === 'service')) {
+    files.push({ path: `src/hono/server.ts`, template: `import { Hono } from 'hono';\nconst app = new Hono();\napp.get('/hello', (c)=> c.json({ ok: true }));\nexport default app;\n` });
+  }
+
+  // RabbitMQ
+  if (lib === 'rabbitmq' && (pattern === 'service' || pattern === 'job')) {
+    files.push({ path: `src/rabbitmq/publisher.ts`, template: `import amqplib from 'amqplib';\nexport async function publish(queue: string, msg: string){ const conn = await amqplib.connect('amqp://localhost'); const ch = await conn.createChannel(); await ch.assertQueue(queue); ch.sendToQueue(queue, Buffer.from(msg)); await ch.close(); await conn.close(); }\n` });
+    files.push({ path: `src/rabbitmq/consumer.ts`, template: `import amqplib from 'amqplib';\nexport async function consume(queue: string){ const conn = await amqplib.connect('amqp://localhost'); const ch = await conn.createChannel(); await ch.assertQueue(queue); await ch.consume(queue, (msg)=>{ if(msg){ console.log(msg.content.toString()); ch.ack(msg); } }); }\n` });
+  }
+
+  // NATS
+  if (lib === 'nats' && (pattern === 'service' || pattern === 'client')) {
+    files.push({ path: `src/nats/pub.ts`, template: `import { connect, StringCodec } from 'nats';\nexport async function pub(subject: string, message: string){ const nc = await connect({ servers: 'localhost:4222' }); const sc = StringCodec(); nc.publish(subject, sc.encode(message)); await nc.drain(); }\n` });
+    files.push({ path: `src/nats/sub.ts`, template: `import { connect, StringCodec } from 'nats';\nexport async function sub(subject: string){ const nc = await connect({ servers: 'localhost:4222' }); const sc = StringCodec(); const sub = nc.subscribe(subject); for await (const m of sub){ console.log(sc.decode(m.data)); } }\n` });
+  }
+
+  // AWS SQS
+  if (lib === 'sqs' && (pattern === 'service' || pattern === 'client')) {
+    files.push({ path: `src/aws/sqs.ts`, template: `import { SQSClient, SendMessageCommand, ReceiveMessageCommand, DeleteMessageCommand } from '@aws-sdk/client-sqs';\nconst client = new SQSClient({});\nexport async function send(queueUrl: string, body: string){ await client.send(new SendMessageCommand({ QueueUrl: queueUrl, MessageBody: body })); }\nexport async function receive(queueUrl: string){ const out = await client.send(new ReceiveMessageCommand({ QueueUrl: queueUrl, MaxNumberOfMessages: 1 })); const msg = out.Messages?.[0]; if(msg){ await client.send(new DeleteMessageCommand({ QueueUrl: queueUrl, ReceiptHandle: msg.ReceiptHandle! })); return msg.Body; } return undefined; }\n` });
+  }
+
+  // AWS SNS
+  if (lib === 'sns' && (pattern === 'service' || pattern === 'client')) {
+    files.push({ path: `src/aws/sns.ts`, template: `import { SNSClient, PublishCommand } from '@aws-sdk/client-sns';\nconst client = new SNSClient({});\nexport async function publish(topicArn: string, message: string){ await client.send(new PublishCommand({ TopicArn: topicArn, Message: message })); }\n` });
+  }
+
+  // AWS Kinesis
+  if (lib === 'kinesis' && (pattern === 'service' || pattern === 'client')) {
+    files.push({ path: `src/aws/kinesis.ts`, template: `import { KinesisClient, PutRecordCommand } from '@aws-sdk/client-kinesis';\nconst client = new KinesisClient({});\nexport async function put(streamName: string, data: string, partitionKey='pk'){ await client.send(new PutRecordCommand({ StreamName: streamName, Data: new TextEncoder().encode(data), PartitionKey: partitionKey })); }\n` });
+  }
+
+  // Koa
+  if (lib === 'koa' && (pattern === 'service' || pattern === 'route')) {
+    files.push({ path: `src/koa/server.ts`, template: `import Koa from 'koa';\nconst app = new Koa();\napp.use(async (ctx)=>{ ctx.body = { ok: true }; });\napp.listen(3000);\n` });
+  }
+
+  // NestJS
+  if (lib === 'nestjs' && (pattern === 'service' || pattern === 'init')) {
+    files.push({ path: `src/nest/main.ts`, template: `import { NestFactory } from '@nestjs/core';\nimport { AppModule } from './app.module';\nasync function bootstrap(){ const app = await NestFactory.create(AppModule); await app.listen(3000); }\nbootstrap();\n` });
+    files.push({ path: `src/nest/app.module.ts`, template: `import { Module } from '@nestjs/common';\nimport { AppController } from './app.controller';\n@Module({ controllers: [AppController] })\nexport class AppModule {}\n` });
+    files.push({ path: `src/nest/app.controller.ts`, template: `import { Controller, Get } from '@nestjs/common';\n@Controller()\nexport class AppController { @Get() hello(){ return { ok: true }; } }\n` });
+  }
+
+  // Hapi
+  if (lib === 'hapi' && (pattern === 'service' || pattern === 'route')) {
+    files.push({ path: `src/hapi/server.ts`, template: `import Hapi from '@hapi/hapi';\nasync function start(){ const server = Hapi.server({ port:3000, host:'localhost' }); server.route({ method: 'GET', path: '/', handler: ()=> ({ ok: true }) }); await server.start(); }\nstart();\n` });
+  }
+
+  // Mongoose
+  if (lib === 'mongoose' && (pattern === 'config' || pattern === 'service')) {
+    files.push({ path: `src/mongoose/conn.ts`, template: `import mongoose from 'mongoose';\nexport async function connect(uri: string){ await mongoose.connect(uri); }\n` });
+    files.push({ path: `src/mongoose/user.model.ts`, template: `import { Schema, model } from 'mongoose';\nconst schema = new Schema({ email: { type: String, unique: true }, name: String });\nexport const User = model('User', schema);\n` });
+  }
+
+  // Sequelize
+  if (lib === 'sequelize' && (pattern === 'config' || pattern === 'service')) {
+    files.push({ path: `src/sequelize/index.ts`, template: `import { Sequelize, DataTypes } from 'sequelize';\nexport const sequelize = new Sequelize(process.env.DATABASE_URL || 'sqlite::memory:');\nexport const User = sequelize.define('User', { email: { type: DataTypes.STRING, unique: true }, name: DataTypes.STRING });\n` });
+  }
+
+  // TypeORM
+  if (lib === 'typeorm' && (pattern === 'config' || pattern === 'service')) {
+    files.push({ path: `src/typeorm/data-source.ts`, template: `import 'reflect-metadata';\nimport { DataSource } from 'typeorm';\nexport const AppDataSource = new DataSource({ type: 'sqlite', database: ':memory:', entities: [__dirname + '/**/*.ts'], synchronize: true });\n` });
+    files.push({ path: `src/typeorm/User.ts`, template: `import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';\n@Entity() export class User { @PrimaryGeneratedColumn() id!: number; @Column({ unique: true }) email!: string; @Column({ nullable: true }) name?: string; }\n` });
+  }
+
+  // Neo4j
+  if (lib === 'neo4j' && (pattern === 'config' || pattern === 'service')) {
+    files.push({ path: `src/neo4j/driver.ts`, template: `import neo4j from 'neo4j-driver';\nexport const driver = neo4j.driver('bolt://localhost:7687', neo4j.auth.basic('neo4j','password'));\n` });
+  }
+
+  // OpenAPI / Swagger
+  if (lib === 'openapi' && (pattern === 'config' || pattern === 'service')) {
+    files.push({ path: `openapi.yaml`, template: `openapi: 3.0.0\ninfo: { title: API, version: 1.0.0 }\npaths:\n  /hello:\n    get:\n      responses:\n        '200': { description: ok }\n` });
+    if (pattern === 'service') {
+      files.push({ path: `src/openapi/server.ts`, template: `import express from 'express';\nimport swaggerUi from 'swagger-ui-express';\nimport fs from 'node:fs';\nimport path from 'node:path';\nimport YAML from 'yaml';\nconst app = express();\nconst spec = YAML.parse(fs.readFileSync(path.resolve('openapi.yaml'), 'utf-8'));\napp.use('/docs', swaggerUi.serve, swaggerUi.setup(spec));\napp.listen(3000);\n` });
+    }
+  }
+  if (lib === 'swagger' && (pattern === 'config' || pattern === 'service')) {
+    files.push({ path: `src/swagger/server.ts`, template: `import express from 'express';\nimport swaggerUi from 'swagger-ui-express';\nimport YAML from 'yamljs';\nconst app = express();\nconst doc = YAML.parse('openapi: 3.0.0\\ninfo: { title: API, version: 1.0.0 }');\napp.use('/docs', swaggerUi.serve, swaggerUi.setup(doc));\napp.listen(3000);\n` });
+  }
+
+  // Express Security and OpenTelemetry
+  if (lib === 'express' && pattern === 'config') {
+    files.push({ path: `src/express/security.ts`, template: `import express from 'express';\nimport helmet from 'helmet';\nimport cors from 'cors';\nexport function createApp(){ const app = express(); app.use(helmet()); app.use(cors()); return app; }\n` });
+    if (style === 'advanced') {
+      files.push({ path: `src/otel/tracer.ts`, template: `import { NodeSDK } from '@opentelemetry/sdk-node';\nimport { ConsoleSpanExporter } from '@opentelemetry/sdk-trace-base';\nimport { SimpleSpanProcessor } from '@opentelemetry/sdk-trace-base';\nexport function setupOtel(){ const sdk = new NodeSDK(); (sdk as any)._tracerProvider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter())); sdk.start(); return sdk; }\n` });
+      files.push({ path: `src/otel/instrument.ts`, template: `import { setupOtel } from './tracer';\nconst sdk = setupOtel();\nprocess.on('SIGTERM', ()=> sdk.shutdown().finally(()=> process.exit(0)));\n` });
+    }
+  }
+
+  // Fastify OpenTelemetry stub (advanced)
+  if (lib === 'fastify' && style === 'advanced') {
+    files.push({ path: `src/otel/fastify.ts`, template: `// Fastify OpenTelemetry setup (stub)\nexport function setupFastifyOtel(){ /* integrate @opentelemetry/instrumentation-fastify here */ }\n` });
+  }
+
+  // Next.js security headers helper (advanced)
+  if (lib === 'nextjs' && style === 'advanced') {
+    files.push({ path: `src/next/security-headers.ts`, template: `export const securityHeaders = [\n  { key: 'X-Frame-Options', value: 'DENY' },\n  { key: 'X-Content-Type-Options', value: 'nosniff' },\n  { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' }\n];\n` });
+  }
+
+  // CI workflows for migrations/deploy (advanced)
+  if (lib === 'drizzle' && style === 'advanced') {
+    files.push({ path: `.github/workflows/drizzle-migrate.yml`, template: `name: Drizzle Migrate\non: [push]\njobs:\n  migrate:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: '20' }\n      - run: npm ci\n      - run: node src/db/migrate.ts\n` });
+  }
+  if (lib === 'knex' && style === 'advanced') {
+    files.push({ path: `.github/workflows/knex-migrate.yml`, template: `name: Knex Migrate\non: [push]\njobs:\n  migrate:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: '20' }\n      - run: npm ci\n      - run: npx knex migrate:latest --knexfile knexfile.ts\n` });
+  }
+  if (lib === 'docker' && style === 'advanced') {
+    files.push({ path: `.github/workflows/cloudrun-deploy.yml`, template: `name: Deploy Cloud Run\non: [workflow_dispatch]\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - run: echo 'stub deploy to Cloud Run'\n` });
+  }
+
+  // Relay
+  if (lib === 'relay' && (pattern === 'client' || pattern === 'config')) {
+    files.push({ path: `src/relay/environment.ts`, template: `import { Environment, Network, RecordSource, Store } from 'relay-runtime';\nfunction fetchQuery(_operation: any, _variables: any){ return Promise.resolve({ data: {} }); }\nexport const relayEnv = new Environment({ network: Network.create(fetchQuery), store: new Store(new RecordSource()) });\n` });
+  }
+
+  // URQL
+  if (lib === 'urql' && (pattern === 'client' || pattern === 'config')) {
+    files.push({ path: `src/urql/client.ts`, template: `import { createClient } from 'urql';\nexport const client = createClient({ url: '/graphql' });\n` });
+  }
+
+  // GraphQL Yoga
+  if (lib === 'graphql-yoga' && (pattern === 'service' || pattern === 'route')) {
+    files.push({ path: `src/graphql/yoga.ts`, template: `import { createYoga, createSchema } from 'graphql-yoga';\nimport http from 'node:http';\nconst yoga = createYoga({ schema: createSchema({ typeDefs: 'type Query { hello: String! }', resolvers: { Query: { hello: ()=> 'world' } } }) });\nhttp.createServer(yoga).listen(4000);\n` });
+  }
+
+  // Sentry
+  if (lib === 'sentry' && (pattern === 'config' || pattern === 'init')) {
+    files.push({ path: `src/sentry/init.ts`, template: `import * as Sentry from '@sentry/node';\nexport function initSentry(){\n  Sentry.init({ dsn: process.env.SENTRY_DSN, tracesSampleRate: 1.0 });\n}\n` });
+  }
+
+  // Stripe
+  if (lib === 'stripe' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/stripe/client.ts`, template: `import Stripe from 'stripe';\nexport const stripe = new Stripe(process.env.STRIPE_API_KEY || '', { apiVersion: '2024-06-20' as any });\n` });
+  }
+
+  // PostHog
+  if (lib === 'posthog' && (pattern === 'client' || pattern === 'config')) {
+    files.push({ path: `src/analytics/posthog.ts`, template: `import { PostHog } from 'posthog-node';\nexport const posthog = new PostHog(process.env.POSTHOG_KEY || '', { host: process.env.POSTHOG_HOST || 'https://app.posthog.com' });\n` });
+  }
+
+  // shadcn/ui (very light stub)
+  if (lib === 'shadcn' && (pattern === 'init' || pattern === 'config')) {
+    files.push({ path: `components/ui/button.tsx`, template: `import * as React from 'react';\nexport function Button(props: React.ButtonHTMLAttributes<HTMLButtonElement>){ return <button {...props} className={(props.className||'') + ' inline-flex items-center justify-center rounded-md px-3 py-2 text-sm font-medium'} /> }\n` });
+  }
+
+  // Supabase
+  if (lib === 'supabase' && (pattern === 'service' || pattern === 'client' || pattern === 'config')) {
+    files.push({ path: `src/supabase/client.ts`, template: `import { createClient } from '@supabase/supabase-js';\nexport const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL || '', process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '');\n` });
+    if (style === 'advanced' && pattern === 'service') {
+      files.push({ path: `src/supabase/auth.ts`, template: `import { supabase } from './client';\nexport async function getUser(){ const { data } = await supabase.auth.getUser(); return data.user; }\n` });
+    }
+  }
+
+  // Auth providers: basic init stubs
+  if (lib === 'auth0' && (pattern === 'config' || pattern === 'init')) {
+    files.push({ path: `src/auth0/client.ts`, template: `export function createAuth0(){ return { domain: process.env.AUTH0_DOMAIN, clientId: process.env.AUTH0_CLIENT_ID }; }\n` });
+  }
+  if (lib === 'clerk' && (pattern === 'config' || pattern === 'init')) {
+    files.push({ path: `src/clerk/client.ts`, template: `export function createClerk(){ return { publishableKey: process.env.CLERK_PUBLISHABLE_KEY }; }\n` });
+  }
+  if (lib === 'lucia' && (pattern === 'config' || pattern === 'init')) {
+    files.push({ path: `src/lucia/auth.ts`, template: `export function lucia(){ /* configure lucia here */ return {}; }\n` });
+  }
+  if (lib === 'keycloak' && (pattern === 'config' || pattern === 'init')) {
+    files.push({ path: `src/keycloak/client.ts`, template: `export function keycloak(){ return { serverUrl: process.env.KEYCLOAK_URL, realm: process.env.KEYCLOAK_REALM }; }\n` });
+  }
+  if (lib === 'firebase-auth' && (pattern === 'config' || pattern === 'init')) {
+    files.push({ path: `src/firebase/auth.ts`, template: `export function initFirebaseAuth(){ return { projectId: process.env.FIREBASE_PROJECT_ID }; }\n` });
+  }
+  if (lib === 'cognito' && (pattern === 'config' || pattern === 'init')) {
+    files.push({ path: `src/cognito/client.ts`, template: `export function createCognito(){ return { userPoolId: process.env.COGNITO_USER_POOL_ID, clientId: process.env.COGNITO_CLIENT_ID }; }\n` });
+  }
+  if (lib === 'supabase-auth' && (pattern === 'config' || pattern === 'init' || pattern === 'service')) {
+    files.push({ path: `src/supabase/auth-server.ts`, template: `export function supabaseAuth(){ return { url: process.env.SUPABASE_URL, key: process.env.SUPABASE_SERVICE_KEY }; }\n` });
+  }
+  if (lib === 'ory' && (pattern === 'config' || pattern === 'init')) {
+    files.push({ path: `src/ory/client.ts`, template: `export function createOry(){ return { project: process.env.ORY_PROJECT_ID }; }\n` });
+  }
+
+  // Storage clients
+  if (lib === 's3' && (pattern === 'client' || pattern === 'service' || pattern === 'config')) {
+    files.push({ path: `src/aws/s3.ts`, template: `export function s3(){ return { bucket: process.env.S3_BUCKET }; }\n` });
+  }
+  if (lib === 'gcs' && (pattern === 'client' || pattern === 'service' || pattern === 'config')) {
+    files.push({ path: `src/gcp/storage.ts`, template: `export function gcs(){ return { bucket: process.env.GCS_BUCKET }; }\n` });
+  }
+  if (lib === 'azure-blob' && (pattern === 'client' || pattern === 'service' || pattern === 'config')) {
+    files.push({ path: `src/azure/blob.ts`, template: `export function azureBlob(){ return { container: process.env.AZURE_BLOB_CONTAINER }; }\n` });
+  }
+
+  // Logging/metrics
+  if (lib === 'pino' && (pattern === 'config' || pattern === 'init')) {
+    files.push({ path: `src/logging/pino.ts`, template: `export function logger(){ return { info: console.log, error: console.error }; }\n` });
+  }
+  if (lib === 'winston' && (pattern === 'config' || pattern === 'init')) {
+    files.push({ path: `src/logging/winston.ts`, template: `export function logger(){ return { info: console.log, error: console.error }; }\n` });
+  }
+  if (lib === 'prometheus' && (pattern === 'config' || pattern === 'init' || pattern === 'service')) {
+    files.push({ path: `src/metrics/prometheus.ts`, template: `export function metrics(){ return { register: {} as any }; }\n` });
+  }
+
+  // AWS/GCP messaging clients specializations
+  if (lib === 'sns' && (pattern === 'service' || pattern === 'client' || pattern === 'config')) {
+    files.push({ path: `src/aws/sns.ts`, template: `export async function publishSNS(topicArn: string, message: string){ /* stub */ return { topicArn, message }; }\n` });
+  }
+  if (lib === 'kinesis' && (pattern === 'service' || pattern === 'client' || pattern === 'config')) {
+    files.push({ path: `src/aws/kinesis.ts`, template: `export async function putRecord(stream: string, data: string){ /* stub */ return { stream, data }; }\n` });
+  }
+  if (lib === 'pubsub' && (pattern === 'service' || pattern === 'client' || pattern === 'config')) {
+    files.push({ path: `src/gcp/pubsub.ts`, template: `export async function publish(topic: string, msg: string){ /* stub */ return { topic, msg }; }\n` });
+  }
+
+  // Redis
+  if (lib === 'redis' && (pattern === 'config' || pattern === 'service' || pattern === 'client')) {
+    files.push({ path: `src/redis/client.ts`, template: `export function redis(){ return { url: process.env.REDIS_URL || 'redis://localhost:6379' }; }\n` });
+  }
+
+  // Vector DB clients
+  if (lib === 'pinecone' && (pattern === 'client' || pattern === 'service' || pattern === 'config')) {
+    files.push({ path: `src/vectors/pinecone.ts`, template: `export function pinecone(){ return { apiKey: process.env.PINECONE_API_KEY, index: process.env.PINECONE_INDEX }; }\n` });
+  }
+  if (lib === 'weaviate' && (pattern === 'client' || pattern === 'service' || pattern === 'config')) {
+    files.push({ path: `src/vectors/weaviate.ts`, template: `export function weaviate(){ return { url: process.env.WEAVIATE_URL, apiKey: process.env.WEAVIATE_API_KEY }; }\n` });
+  }
+  if (lib === 'milvus' && (pattern === 'client' || pattern === 'service' || pattern === 'config')) {
+    files.push({ path: `src/vectors/milvus.ts`, template: `export function milvus(){ return { address: process.env.MILVUS_ADDR || 'localhost:19530' }; }\n` });
+  }
+  if (lib === 'qdrant' && (pattern === 'client' || pattern === 'service' || pattern === 'config')) {
+    files.push({ path: `src/vectors/qdrant.ts`, template: `export function qdrant(){ return { url: process.env.QDRANT_URL || 'http://localhost:6333' }; }\n` });
+  }
+
+  // Email providers
+  if (lib === 'resend' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/email/resend.ts`, template: `export async function sendEmail(to: string, subject: string){ /* stub */ return { to, subject }; }\n` });
+  }
+  if (lib === 'resend' && pattern === 'route') {
+    files.push({ path: `app/api/email/send/route.ts`, template: `import { NextResponse } from 'next/server';\nimport { sendEmail } from '@/src/email/resend';\nexport async function POST(req: Request){ const json = await req.json(); await sendEmail(json.to, json.subject); return NextResponse.json({ ok: true }); }\n` });
+  }
+  if (lib === 'sendgrid' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/email/sendgrid.ts`, template: `export async function sendEmail(to: string, subject: string){ /* stub */ return { to, subject }; }\n` });
+  }
+  if (lib === 'sendgrid' && pattern === 'route') {
+    files.push({ path: `app/api/email/send/route.ts`, template: `import { NextResponse } from 'next/server';\nimport { sendEmail } from '@/src/email/sendgrid';\nexport async function POST(req: Request){ const json = await req.json(); await sendEmail(json.to, json.subject); return NextResponse.json({ ok: true }); }\n` });
+  }
+  if (lib === 'postmark' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/email/postmark.ts`, template: `export async function sendEmail(to: string, subject: string){ /* stub */ return { to, subject }; }\n` });
+  }
+  if (lib === 'nodemailer' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/email/nodemailer.ts`, template: `export async function sendEmail(to: string, subject: string){ /* stub */ return { to, subject }; }\n` });
+  }
+
+  // Search/index providers
+  if (lib === 'algolia' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/search/algolia.ts`, template: `export function algolia(){ return { appId: process.env.ALGOLIA_APP_ID, apiKey: process.env.ALGOLIA_API_KEY, index: process.env.ALGOLIA_INDEX }; }\n` });
+  }
+  if (lib === 'meilisearch' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/search/meilisearch.ts`, template: `export function meilisearch(){ return { host: process.env.MEILI_HOST || 'http://localhost:7700', apiKey: process.env.MEILI_API_KEY }; }\n` });
+  }
+  if (lib === 'typesense' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/search/typesense.ts`, template: `export function typesense(){ return { host: process.env.TYPESENSE_HOST || 'localhost', apiKey: process.env.TYPESENSE_API_KEY }; }\n` });
+  }
+
+  // Realtime
+  if (lib === 'socket.io' && (pattern === 'service' || pattern === 'server' || pattern === 'config')) {
+    files.push({ path: `src/realtime/socketio.ts`, template: `export function socketio(){ return { server: 'stub' }; }\n` });
+  }
+  if (lib === 'pusher' && pattern === 'route') {
+    files.push({ path: `app/api/realtime/publish/route.ts`, template: `import { NextResponse } from 'next/server';\nimport { pusher } from '@/src/realtime/pusher';\nexport async function POST(req: Request){ const json = await req.json(); const client = pusher(); return NextResponse.json({ ok: true, channel: json.channel }); }\n` });
+  }
+  if (lib === 'pusher' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/realtime/pusher.ts`, template: `export function pusher(){ return { appId: process.env.PUSHER_APP_ID }; }\n` });
+  }
+  if (lib === 'ably' && pattern === 'route') {
+    files.push({ path: `app/api/realtime/publish/route.ts`, template: `import { NextResponse } from 'next/server';\nimport { ably } from '@/src/realtime/ably';\nexport async function POST(req: Request){ const json = await req.json(); const client = ably(); return NextResponse.json({ ok: true, channel: json.channel }); }\n` });
+  }
+  if (lib === 'ably' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/realtime/ably.ts`, template: `export function ably(){ return { apiKey: process.env.ABLY_API_KEY }; }\n` });
+  }
+
+  // APM/Monitoring
+  if (lib === 'datadog' && (pattern === 'config' || pattern === 'init' || pattern === 'service')) {
+    files.push({ path: `src/apm/datadog.ts`, template: `export function datadog(){ return { enabled: true }; }\n` });
+  }
+  if (lib === 'newrelic' && (pattern === 'config' || pattern === 'init' || pattern === 'service')) {
+    files.push({ path: `src/apm/newrelic.ts`, template: `export function newrelic(){ return { enabled: true }; }\n` });
+  }
+
+  // Feature flags
+  if (lib === 'launchdarkly' && (pattern === 'client' || pattern === 'service' || pattern === 'config')) {
+    files.push({ path: `src/flags/launchdarkly.ts`, template: `export function ld(){ return { sdkKey: process.env.LD_SDK_KEY }; }\n` });
+  }
+  if (lib === 'launchdarkly' && pattern === 'route') {
+    files.push({ path: `app/api/flags/get/route.ts`, template: `import { NextResponse } from 'next/server';\nimport { ld } from '@/src/flags/launchdarkly';\nexport async function GET(){ const client = ld(); return NextResponse.json({ ok: true, flag: 'example', value: true }); }\n` });
+  }
+  if (lib === 'unleash' && (pattern === 'client' || pattern === 'service' || pattern === 'config')) {
+    files.push({ path: `src/flags/unleash.ts`, template: `export function unleash(){ return { url: process.env.UNLEASH_URL }; }\n` });
+  }
+
+  // Secrets
+  if (lib === 'vault' && (pattern === 'client' || pattern === 'service' || pattern === 'config')) {
+    files.push({ path: `src/secrets/vault.ts`, template: `export function vault(){ return { addr: process.env.VAULT_ADDR || 'http://127.0.0.1:8200' }; }\n` });
+  }
+  if (lib === 'vault' && pattern === 'route') {
+    files.push({ path: `app/api/secrets/get/route.ts`, template: `import { NextResponse } from 'next/server';\nimport { vault } from '@/src/secrets/vault';\nexport async function GET(){ const v = vault(); return NextResponse.json({ ok: true }); }\n` });
+  }
+  if (lib === 'doppler' && (pattern === 'client' || pattern === 'service' || pattern === 'config')) {
+    files.push({ path: `src/secrets/doppler.ts`, template: `export function doppler(){ return { project: process.env.DOPPLER_PROJECT }; }\n` });
+  }
+
+  // Extra storage/search
+  if (lib === 'minio' && (pattern === 'client' || pattern === 'service' || pattern === 'config')) {
+    files.push({ path: `src/storage/minio.ts`, template: `export function minio(){ return { endpoint: process.env.MINIO_ENDPOINT || 'http://localhost:9000' }; }\n` });
+  }
+  if (lib === 'elasticsearch' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/search/elasticsearch.ts`, template: `export function elastic(){ return { node: process.env.ELASTIC_NODE || 'http://localhost:9200' }; }\n` });
+  }
+  if (lib === 'opensearch' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/search/opensearch.ts`, template: `export function opensearch(){ return { node: process.env.OPENSEARCH_NODE || 'http://localhost:9200' }; }\n` });
+  }
+
+  // IoT/Cache/CDN
+  if (lib === 'mqtt' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/iot/mqtt.ts`, template: `export function mqtt(){ return { url: process.env.MQTT_URL || 'mqtt://localhost:1883' }; }\n` });
+  }
+  if (lib === 'memcached' && (pattern === 'client' || pattern === 'service' || pattern === 'config')) {
+    files.push({ path: `src/cache/memcached.ts`, template: `export function memcached(){ return { server: process.env.MEMCACHED_SERVER || '127.0.0.1:11211' }; }\n` });
+  }
+  if (lib === 'cloudflare-workers' && (pattern === 'config' || pattern === 'init' || pattern === 'service')) {
+    files.push({ path: `src/cloudflare/worker.ts`, template: `export default { fetch(){ return new Response('ok'); } };\n` });
+  }
+
+  // i18n
+  if (lib === 'i18next' && (pattern === 'config' || pattern === 'init')) {
+    files.push({ path: `src/i18n/i18next.ts`, template: `export const i18n = { lng: 'en', resources: { en: { translation: { hello: 'Hello' } } } };\n` });
+  }
+  if (lib === 'next-intl' && (pattern === 'config' || pattern === 'init' || pattern === 'route')) {
+    files.push({ path: `src/i18n/next-intl.ts`, template: `export const messages = { en: { hello: 'Hello' }, ja: { hello: 'こんにちは' } };\n` });
+    if (pattern === 'route') {
+      files.push({ path: `app/api/i18n/hello/route.ts`, template: `import { NextResponse } from 'next/server';\nimport { messages } from '@/src/i18n/next-intl';\nexport async function GET(){ return NextResponse.json({ msg: messages.en.hello }); }\n` });
+    }
+  }
+
+  // CMS
+  if (lib === 'strapi' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/cms/strapi.ts`, template: `export function strapi(){ return { url: process.env.STRAPI_URL || 'http://localhost:1337' }; }\n` });
+  }
+  if (lib === 'contentful' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/cms/contentful.ts`, template: `export function contentful(){ return { space: process.env.CONTENTFUL_SPACE_ID }; }\n` });
+  }
+  if (lib === 'sanity' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/cms/sanity.ts`, template: `export function sanity(){ return { projectId: process.env.SANITY_PROJECT_ID }; }\n` });
+  }
+  if (lib === 'ghost' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/cms/ghost.ts`, template: `export function ghost(){ return { url: process.env.GHOST_URL }; }\n` });
+  }
+
+  // Additional AI providers
+  if (lib === 'groq' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/ai/groq.ts`, template: `export function groq(){ return { apiKey: process.env.GROQ_API_KEY }; }\n` });
+  }
+  if (lib === 'mistral' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/ai/mistral.ts`, template: `export function mistral(){ return { apiKey: process.env.MISTRAL_API_KEY }; }\n` });
+  }
+  if (lib === 'cohere' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/ai/cohere.ts`, template: `export function cohere(){ return { apiKey: process.env.COHERE_API_KEY }; }\n` });
+  }
+
+  // Analytics
+  if (lib === 'segment' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/analytics/segment.ts`, template: `export function segment(){ return { writeKey: process.env.SEGMENT_WRITE_KEY }; }\n` });
+  }
+  if (lib === 'amplitude' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/analytics/amplitude.ts`, template: `export function amplitude(){ return { apiKey: process.env.AMPLITUDE_API_KEY }; }\n` });
+  }
+  if (lib === 'mixpanel' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/analytics/mixpanel.ts`, template: `export function mixpanel(){ return { token: process.env.MIXPANEL_TOKEN }; }\n` });
+  }
+
+  // Bug tracking
+  if (lib === 'bugsnag' && (pattern === 'config' || pattern === 'init' || pattern === 'service')) {
+    files.push({ path: `src/monitoring/bugsnag.ts`, template: `export function bugsnag(){ return { apiKey: process.env.BUGSNAG_API_KEY }; }\n` });
+  }
+  if (lib === 'honeybadger' && (pattern === 'config' || pattern === 'init' || pattern === 'service')) {
+    files.push({ path: `src/monitoring/honeybadger.ts`, template: `export function honeybadger(){ return { apiKey: process.env.HONEYBADGER_API_KEY }; }\n` });
+  }
+
+  // Config/util
+  if (lib === 'dotenv' && (pattern === 'config' || pattern === 'init')) {
+    files.push({ path: `src/config/dotenv.ts`, template: `export function loadEnv(){ return { NODE_ENV: process.env.NODE_ENV || 'development' }; }\n` });
+  }
+  if (lib === 'lru-cache' && (pattern === 'config' || pattern === 'service' || pattern === 'client')) {
+    files.push({ path: `src/cache/lru.ts`, template: `export function lru(){ return new Map<string, any>(); }\n` });
+  }
+
+  // Uploads/storage extras
+  if (lib === 'cloudinary' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/uploads/cloudinary.ts`, template: `export function cloudinary(){ return { cloudName: process.env.CLOUDINARY_CLOUD_NAME }; }\n` });
+  }
+  if (lib === 'uploadthing' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/uploads/uploadthing.ts`, template: `export function uploadthing(){ return { token: process.env.UPLOADTHING_TOKEN }; }\n` });
+  }
+  if (lib === 'mailgun' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/email/mailgun.ts`, template: `export async function sendEmail(to: string, subject: string){ return { to, subject }; }\n` });
+  }
+  if (lib === 'paddle' && (pattern === 'client' || pattern === 'service' || pattern === 'route')) {
+    files.push({ path: `src/payments/paddle.ts`, template: `export function paddle(){ return { vendorId: process.env.PADDLE_VENDOR_ID }; }\n` });
+  }
+
+  // Payments
+  if (lib === 'paypal' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/payments/paypal.ts`, template: `export function paypal(){ return { clientId: process.env.PAYPAL_CLIENT_ID }; }\n` });
+  }
+  if (lib === 'paypal' && pattern === 'route') {
+    files.push({ path: `app/api/payments/create/route.ts`, template: `import { NextResponse } from 'next/server';\nimport { paypal } from '@/src/payments/paypal';\nexport async function POST(){ const client = paypal(); return NextResponse.json({ ok: true }); }\n` });
+  }
+  if (lib === 'braintree' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/payments/braintree.ts`, template: `export function braintree(){ return { merchantId: process.env.BRAINTREE_MERCHANT_ID }; }\n` });
+  }
+
+  // Error tracking
+  if (lib === 'rollbar' && (pattern === 'config' || pattern === 'init' || pattern === 'service')) {
+    files.push({ path: `src/monitoring/rollbar.ts`, template: `export function rollbar(){ return { accessToken: process.env.ROLLBAR_ACCESS_TOKEN }; }\n` });
+  }
+
+  // Service discovery / KV
+  if (lib === 'consul' && (pattern === 'config' || pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/config/consul.ts`, template: `export function consul(){ return { host: process.env.CONSUL_HOST || '127.0.0.1:8500' }; }\n` });
+  }
+  if (lib === 'etcd' && (pattern === 'config' || pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/config/etcd.ts`, template: `export function etcd(){ return { endpoints: (process.env.ETCD_ENDPOINTS||'http://127.0.0.1:2379').split(',') }; }\n` });
+  }
+
+  // Job scheduler
+  if (lib === 'agenda' && (pattern === 'job' || pattern === 'service' || pattern === 'config')) {
+    files.push({ path: `src/jobs/agenda.ts`, template: `export function agenda(){ return { mongoUrl: process.env.MONGODB_URI || 'mongodb://127.0.0.1/agenda' }; }\n` });
+  }
+
+  // Terraform
+  if (lib === 'terraform' && (pattern === 'config' || pattern === 'init')) {
+    files.push({ path: `main.tf`, template: `terraform { required_version = ">= 1.5.0" }\n` });
+  }
+
+  // Pulumi
+  if (lib === 'pulumi' && (pattern === 'config' || pattern === 'init')) {
+    files.push({ path: `Pulumi.yaml`, template: `name: app\nruntime: nodejs\n` });
+    files.push({ path: `index.ts`, template: `import * as aws from '@pulumi/aws';\nconst bucket = new aws.s3.Bucket('bucket');\nexport const bucketName = bucket.id;\n` });
+  }
+
+  // Knex
+  if (lib === 'knex' && (pattern === 'config' || pattern === 'init')) {
+    files.push({ path: `knexfile.ts`, template: `import type { Knex } from 'knex';\nconst config: { [key: string]: Knex.Config } = { development: { client: 'sqlite3', connection: { filename: './dev.sqlite3' }, useNullAsDefault: true, migrations: { directory: './migrations' } } };\nexport default config;\n` });
+    files.push({ path: `migrations/0001_init.ts`, template: `import { Knex } from 'knex';\nexport async function up(knex: Knex){ await knex.schema.createTable('users', (t)=>{ t.increments('id'); t.string('email').unique(); t.string('name'); }); }\nexport async function down(knex: Knex){ await knex.schema.dropTable('users'); }\n` });
+  }
+
+  // Postgres (pg)
+  if (lib === 'postgres' && (pattern === 'config' || pattern === 'service')) {
+    files.push({ path: `src/pg/client.ts`, template: `import { Pool } from 'pg';\nexport const pg = new Pool({ connectionString: process.env.DATABASE_URL || 'postgres://localhost:5432/postgres' });\n` });
+  }
+
+  // MySQL (mysql2)
+  if (lib === 'mysql' && (pattern === 'config' || pattern === 'service')) {
+    files.push({ path: `src/mysql/client.ts`, template: `import mysql from 'mysql2/promise';\nexport const mysqlPool = mysql.createPool({ uri: process.env.DATABASE_URL || 'mysql://root:password@localhost:3306/app' });\n` });
+  }
+
+  // SQLite (better-sqlite3)
+  if (lib === 'sqlite' && (pattern === 'config' || pattern === 'service')) {
+    files.push({ path: `src/sqlite/db.ts`, template: `import Database from 'better-sqlite3';\nexport const db = new Database('app.sqlite');\n` });
+  }
+
+  // Kubernetes
+  if (lib === 'kubernetes' && (pattern === 'config' || pattern === 'init')) {
+    files.push({ path: `k8s/deployment.yaml`, template: `apiVersion: apps/v1\nkind: Deployment\nmetadata: { name: app }\nspec:\n  replicas: 1\n  selector: { matchLabels: { app: app } }\n  template:\n    metadata: { labels: { app: app } }\n    spec:\n      containers:\n        - name: app\n          image: node:20-alpine\n          args: ['node','index.js']\n` });
+    files.push({ path: `k8s/service.yaml`, template: `apiVersion: v1\nkind: Service\nmetadata: { name: app }\nspec:\n  type: ClusterIP\n  selector: { app: app }\n  ports: [{ port: 80, targetPort: 3000 }]\n` });
+  }
+
+  // Helm
+  if (lib === 'helm' && (pattern === 'config' || pattern === 'init')) {
+    files.push({ path: `chart/Chart.yaml`, template: `apiVersion: v2\nname: app\nversion: 0.1.0\n` });
+    files.push({ path: `chart/templates/deployment.yaml`, template: `apiVersion: apps/v1\nkind: Deployment\nmetadata: { name: app }\nspec: { replicas: 1, selector: { matchLabels: { app: app } }, template: { metadata: { labels: { app: app } }, spec: { containers: [{ name: app, image: node:20-alpine }] } } }\n` });
+  }
+
+  // Serverless Framework
+  if (lib === 'serverless' && (pattern === 'config' || pattern === 'init')) {
+    files.push({ path: `serverless.yml`, template: `service: app\nframeworkVersion: '3'\nprovider: { name: aws, runtime: nodejs20.x }\nfunctions: { hello: { handler: src/lambda/handler.handler, events: [{ httpApi: { path: /hello, method: get } }] } }\n` });
+  }
+
+  // GCP Cloud Functions
+  if (lib === 'gcp-cloud-functions' && (pattern === 'config' || pattern === 'service')) {
+    files.push({ path: `src/gcp/functions.ts`, template: `export async function helloHttp(req: any, res: any){ res.json({ ok: true }); }\n` });
+  }
+
+  // Azure Functions
+  if (lib === 'azure-functions' && (pattern === 'config' || pattern === 'service')) {
+    files.push({ path: `AzureFunctions/HttpTrigger1/function.json`, template: `{ \"bindings\": [{ \"authLevel\": \"function\", \"type\": \"httpTrigger\", \"direction\": \"in\", \"name\": \"req\", \"methods\": [\"get\"] }, { \"type\": \"http\", \"direction\": \"out\", \"name\": \"res\" }] }\n` });
+    files.push({ path: `AzureFunctions/HttpTrigger1/index.ts`, template: `import type { Context, HttpRequest } from '@azure/functions';\nexport default async function (context: Context, _req: HttpRequest){ context.res = { status: 200, body: { ok: true } }; }\n` });
+  }
+
+  // ESLint
+  if (lib === 'eslint' && (pattern === 'config' || pattern === 'init')) {
+    files.push({ path: `.eslintrc.cjs`, template: `module.exports = { env: { es2022: true, node: true }, extends: ['eslint:recommended'], parserOptions: { ecmaVersion: 'latest', sourceType: 'module' }, rules: {} };\n` });
+  }
+
+  // Prettier
+  if (lib === 'prettier' && (pattern === 'config' || pattern === 'init')) {
+    files.push({ path: `.prettierrc.json`, template: `{ \"singleQuote\": true, \"semi\": true }\n` });
+  }
+
+  // Vite
+  if (lib === 'vite' && (pattern === 'config' || pattern === 'init')) {
+    files.push({ path: `vite.config.ts`, template: `import { defineConfig } from 'vite';\nexport default defineConfig({});\n` });
+  }
+
+  // Webpack
+  if (lib === 'webpack' && (pattern === 'config' || pattern === 'init')) {
+    files.push({ path: `webpack.config.js`, template: `module.exports = { mode: 'development', entry: './src/index.ts', module: { rules: [ { test: /\\.ts$/, use: 'ts-loader', exclude: /node_modules/ } ] }, resolve: { extensions: ['.ts','.js'] } };\n` });
+  }
+
+  // tsup
+  if (lib === 'tsup' && (pattern === 'config' || pattern === 'init')) {
+    files.push({ path: `tsup.config.ts`, template: `import { defineConfig } from 'tsup';\nexport default defineConfig({ entry: ['src/index.ts'], format: ['esm'], dts: false, clean: true });\n` });
+  }
+
+  // Ansible
+  if (lib === 'ansible' && (pattern === 'config' || pattern === 'init')) {
+    files.push({ path: `ansible/playbook.yml`, template: `- hosts: all\n  tasks:\n    - name: Ping\n      ping:\n` });
   }
 
   // NextAuth
@@ -259,6 +849,29 @@ function makeFiles(id: string, lib: string, pattern: string, style: string, lang
     files.push({ path: `.github/workflows/lint.yml`, template: `name: Lint\non: [push, pull_request]\njobs:\n  lint:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: '20' }\n      - run: npm ci\n      - run: npm run lint --if-present\n      - run: npm run format:check --if-present\n` });
     files.push({ path: `.github/workflows/affected-tests.yml`, template: `name: Affected Tests\non: [pull_request]\njobs:\n  affected:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: '20' }\n      - run: npm ci\n      - run: echo "Run only affected tests (stub)"\n` });
   }
+  // Zod schemas
+  if (lib === 'zod' && (pattern === 'schema' || pattern === 'config' || pattern === 'init' || pattern === 'service')) {
+    files.push({ path: `src/validation/schemas.ts`, template: `import { z } from 'zod';
+export const UserSchema = z.object({ id: z.number().int().positive(), email: z.string().email(), name: z.string().optional() });
+export type User = z.infer<typeof UserSchema>;
+` });
+  }
+  // React Hook Form
+  if (lib === 'react-hook-form' && (pattern === 'component' || pattern === 'hook' || pattern === 'init')) {
+    files.push({ path: `src/components/LoginForm.tsx`, template: `import { useForm } from 'react-hook-form';
+type Inputs = { email: string; password: string };
+export function LoginForm(){ const { register, handleSubmit, formState:{ errors } } = useForm<Inputs>(); const onSubmit = (data: Inputs)=> console.log(data); return (<form onSubmit={handleSubmit(onSubmit)}><input {...register('email',{ required:true })} /><input type='password' {...register('password',{ required:true })} /><button type='submit'>Sign in</button>{errors.email && 'email req'}</form>); }
+` });
+  }
+
+  // Zustand
+  if (lib === 'zustand' && (pattern === 'store' || pattern === 'init' || pattern === 'service' || pattern === 'client')) {
+    files.push({ path: `src/stores/useCounter.ts`, template: `import { create } from 'zustand';
+export const useCounter = create<{ count:number; inc:()=>void; }>((set)=>({ count:0, inc:()=> set((s)=> ({ count: s.count+1 })) }));
+` });
+  }
+
+
 
   // Always include the generic stub and README
   files.push({ path: `spikes/${id}.${ext}.txt`, template: codeSnippet(lib, pattern, lang, style) });

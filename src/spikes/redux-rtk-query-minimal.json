@@ -1,0 +1,15 @@
+{
+  "id": "redux-rtk-query-minimal",
+  "name": "Redux Toolkit RTK Query 最小",
+  "version": "1.0.0",
+  "stack": ["react", "redux"],
+  "tags": ["state", "rtk-query"],
+  "description": "RTK Query の最小 API サービス",
+  "params": [ { "name": "app_name", "default": "rtk-query-app" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@reduxjs/toolkit\": \"latest\", \"react-redux\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/src/services/api.ts", "template": "import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';\nexport const api = createApi({ reducerPath: 'api', baseQuery: fetchBaseQuery({ baseUrl: 'https://example.com' }), endpoints: (b)=>({ hello: b.query<string, void>({ query: ()=> '/hello' }) }) });\nexport const { useHelloQuery } = api;\n" },
+    { "path": "{{app_name}}/src/store.ts", "template": "import { configureStore } from '@reduxjs/toolkit';\nimport { api } from './services/api';\nexport const store = configureStore({ reducer: { [api.reducerPath]: api.reducer }, middleware: (g)=> g().concat(api.middleware) });\nexport type RootState = ReturnType<typeof store.getState>;\n" }
+  ]
+}
+

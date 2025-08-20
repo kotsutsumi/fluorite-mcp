@@ -1,0 +1,14 @@
+{
+  "id": "swr-infinite-minimal",
+  "name": "SWR Infinite 最小",
+  "version": "1.0.0",
+  "stack": ["react", "swr"],
+  "tags": ["data-fetching", "infinite"],
+  "description": "swr/infinite の最小ページング例",
+  "params": [ { "name": "app_name", "default": "swr-infinite" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"swr\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/App.tsx", "template": "import useSWRInfinite from 'swr/infinite';\nconst fetcher = (url: string)=> fetch(url).then(r=>r.json());\nexport default function App(){ const getKey = (i:number)=> `https://example.com/api/items?page=${i+1}`; const { data, size, setSize } = useSWRInfinite(getKey, fetcher); const items = (data||[]).flat(); return (<div>{items.map((x:any,i:number)=>(<div key={i}>{x.id}</div>))}<button onClick={()=> setSize(size+1)}>もっと読む</button></div>); }\n" }
+  ]
+}
+

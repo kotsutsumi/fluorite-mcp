@@ -50,7 +50,8 @@ Prevent issues before they occur with intelligent analysis:
 ### 🧪 Accelerated Development with Spike Templates
 Bridge the gap between idea and implementation:
 
-- **🏭 2,900+ Production Templates**: Battle-tested scaffolds for authentication, APIs, testing, deployment, and speech processing
+- **🏭 3,100+ Production Templates**: Battle-tested scaffolds for authentication, APIs, testing, deployment, and speech processing
+  - New generator coverage: zod, react-hook-form, zustand, redux, swr, radix-ui, tailwindcss, storybook, nx, turborepo
 - **🗣️ Natural Language Interface**: Describe features in plain English—no complex syntax to learn
 - **🎯 Intelligent Selection**: AI-powered template matching based on your project context and requirements
 - **🔄 Iterative Refinement**: Built-in quality validation and improvement loops

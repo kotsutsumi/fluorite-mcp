@@ -1,0 +1,14 @@
+{
+  "id": "zustand-immer-middleware-minimal",
+  "name": "Zustand × Immer ミドルウェア 最小",
+  "version": "1.0.0",
+  "stack": ["react", "zustand"],
+  "tags": ["state", "immer"],
+  "description": "zustand に immer ミドルウェアを適用した最小サンプル",
+  "params": [ { "name": "app_name", "default": "zustand-immer" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"zustand\": \"latest\", \"immer\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/src/store.ts", "template": "import { create } from 'zustand';\nimport { immer } from 'zustand/middleware/immer';\nexport const useTodos = create(immer<{ todos: string[]; add:(t:string)=>void }>((set)=>({ todos: [], add: (t)=> set((s)=> { s.todos.push(t); }) })));\n" }
+  ]
+}
+

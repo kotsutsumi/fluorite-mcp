@@ -1,0 +1,14 @@
+{
+  "id": "radix-ui-themes-minimal",
+  "name": "Radix UI Themes 最小構成",
+  "version": "1.0.0",
+  "stack": ["react", "radix-ui"],
+  "tags": ["ui", "theme", "radix"],
+  "description": "@radix-ui/themes を最小セットアップ",
+  "params": [ { "name": "app_name", "default": "radix-themes-app" } ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"dependencies\": { \"react\": \"latest\", \"react-dom\": \"latest\", \"@radix-ui/themes\": \"latest\" } }\n" },
+    { "path": "{{app_name}}/App.tsx", "template": "import { Theme, Button } from '@radix-ui/themes';\nexport default function App(){ return (<Theme appearance='light' accentColor='indigo'><Button>こんにちは</Button></Theme>); }\n" }
+  ]
+}
+
