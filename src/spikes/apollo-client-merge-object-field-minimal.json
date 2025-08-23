@@ -1,0 +1,13 @@
+{
+  "id": "apollo-client-merge-object-field-minimal",
+  "name": "Apollo Client merge object field 最小",
+  "version": "1.0.0",
+  "stack": ["react", "apollo"],
+  "tags": ["graphql", "client", "cache"],
+  "description": "オブジェクトフィールドのmerge関数で部分更新",
+  "params": [ { "name": "app_name", "default": "apollo-merge-obj" } ],
+  "files": [
+    { "path": "{{app_name}}/src/apollo/cache.ts", "template": "import { InMemoryCache } from '@apollo/client';\nexport const cache = new InMemoryCache({ typePolicies: { User: { fields: { profile: { merge(existing = {}, incoming){ return { ...existing, ...incoming }; } } } } } });\n" }
+  ]
+}
+

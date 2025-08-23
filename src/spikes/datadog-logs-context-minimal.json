@@ -1,0 +1,13 @@
+{
+  "id": "datadog-logs-context-minimal",
+  "name": "Datadog Logs コンテキスト 最小",
+  "version": "1.0.0",
+  "stack": ["datadog"],
+  "tags": ["observability", "logs"],
+  "description": "logger.setContext で共通フィールドを追加",
+  "params": [ { "name": "app_name", "default": "dd-logs-ctx" } ],
+  "files": [
+    { "path": "{{app_name}}/index.html", "template": "<!doctype html>\n<html><body><script src='https://www.datadoghq-browser-agent.com/datadog-logs.js'></script><script>window.DD_LOGS && DD_LOGS.init({ clientToken:'token', site:'datadoghq.com' }); DD_LOGS && DD_LOGS.setLoggerGlobalContext({ env:'dev' }); DD_LOGS && DD_LOGS.logger.info('hello');</script></body></html>\n" }
+  ]
+}
+

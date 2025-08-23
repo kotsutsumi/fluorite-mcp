@@ -1,0 +1,12 @@
+{
+  "id": "strike-stripe-portal-link-route",
+  "name": "Stripe 顧客ポータル リンク ルート",
+  "version": "1.0.0",
+  "stack": ["stripe","nextjs"],
+  "tags": ["billing","portal","strike"],
+  "description": "Stripe顧客ポータルURLを返すRoute雛形（擬似実装）。",
+  "files": [
+    { "path": "app/api/billing/portal/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(){ return NextResponse.json({ url: 'https://billing.stripe.com/p/session/mock' }); }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "strike-config-schema-zod-namespaces",
+  "name": "Zod Config スキーマ(名前空間)",
+  "version": "1.0.0",
+  "stack": ["zod","config"],
+  "tags": ["config","validation","strike"],
+  "description": "config.* の名前空間ごとにZodで検証する雛形。",
+  "files": [
+    { "path": "src/config/schema.ts", "template": "import { z } from 'zod';\nexport const Schema = z.object({ app: z.object({ env: z.enum(['dev','prod']) }), db: z.object({ url: z.string() }) });\n" }
+  ]
+}
+

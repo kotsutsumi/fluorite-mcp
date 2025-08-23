@@ -1,0 +1,12 @@
+{
+  "id": "react-hook-form-field-array-zod-minimal",
+  "name": "React Hook Form FieldArray × Zod 最小",
+  "version": "1.0.0",
+  "stack": ["react", "react-hook-form", "zod"],
+  "tags": ["forms"],
+  "description": "useFieldArray と zodResolver の最小例",
+  "params": [ { "name": "app_name", "default": "rhf-fieldarray" } ],
+  "files": [
+    { "path": "{{app_name}}/src/Form.tsx", "template": "import { useForm, useFieldArray } from 'react-hook-form';\nimport { z } from 'zod';\nimport { zodResolver } from '@hookform/resolvers/zod';\nconst Item = z.object({ name: z.string().min(1) });\nconst Schema = z.object({ items: z.array(Item).min(1) });\ntype Form = z.infer<typeof Schema>;\nexport default function FormCmp(){ const { control, register, handleSubmit } = useForm<Form>({ resolver: zodResolver(Schema), defaultValues: { items:[{ name:'' }] } }); const { fields, append } = useFieldArray({ control, name: 'items' }); return (<form onSubmit={handleSubmit(()=>{})}>{fields.map((f,i)=>(<input key={f.id} {...register(`items.${i}.name` as const)} />))}<button type='button' onClick={()=>append({ name:'' })}>追加</button></form>); }\n" }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "react-hook-form-form-provider-minimal",
+  "name": "React Hook Form FormProvider 最小",
+  "version": "1.0.0",
+  "stack": ["react", "react-hook-form"],
+  "tags": ["forms"],
+  "description": "FormProvider で子コンポーネントから useFormContext を使う最小例",
+  "params": [ { "name": "app_name", "default": "rhf-provider" } ],
+  "files": [
+    { "path": "{{app_name}}/src/App.tsx", "template": "import { useForm, FormProvider, useFormContext } from 'react-hook-form';\nfunction Child(){ const { register } = useFormContext<{ name:string }>(); return <input {...register('name')} />; }\nexport default function App(){ const methods = useForm<{ name:string }>(); return <FormProvider {...methods}><form><Child/></form></FormProvider>; }\n" }
+  ]
+}
+

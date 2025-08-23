@@ -1,0 +1,12 @@
+{
+  "id": "strike-trpc-procedure-input-output-zod",
+  "name": "tRPC Procedure 入出力Zod型",
+  "version": "1.0.0",
+  "stack": ["trpc","zod"],
+  "tags": ["api","validation","strike"],
+  "description": "入力・出力のZodスキーマを揃えたtRPC手続き雛形。",
+  "files": [
+    { "path": "src/trpc/router.ts", "template": "import { initTRPC } from '@trpc/server';\nimport { z } from 'zod';\nconst t = initTRPC.create();\nconst Out = z.object({ message: z.string() });\nexport const appRouter = t.router({\n  hello: t.procedure.input(z.object({ name: z.string() })).output(Out).query(({ input })=> ({ message: 'Hello '+input.name }))\n});\nexport type AppRouter = typeof appRouter;\n" }
+  ]
+}
+

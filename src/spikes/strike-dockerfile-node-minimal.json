@@ -1,14 +1,13 @@
 {
   "id": "strike-dockerfile-node-minimal",
-  "name": "(Merge) Dockerfile Node Meta",
-  "stack": [
-    "docker"
-  ],
-  "tags": [
-    "ops",
-    "merge",
-    "best-practices"
-  ],
-  "patches": [],
-  "params": []
+  "name": "Dockerfile Node 最小",
+  "version": "1.0.0",
+  "stack": ["docker", "node"],
+  "tags": ["docker"],
+  "description": "Node.js最小Dockerfile",
+  "params": [],
+  "files": [
+    { "path": "Dockerfile", "template": "FROM node:18-alpine\nWORKDIR /app\nCOPY . .\nRUN npm ci --omit=dev || true\nCMD [\"node\", \"dist/server.js\"]\n" }
+  ]
 }
+

@@ -1,0 +1,13 @@
+{
+  "id": "drizzle-migrations-config-minimal",
+  "name": "Drizzle Migrations 設定 最小",
+  "version": "1.0.0",
+  "stack": ["drizzle", "sqlite"],
+  "tags": ["db", "migration"],
+  "description": "drizzle-kit の設定ファイル最小例",
+  "params": [ { "name": "app_name", "default": "drizzle-migrations" } ],
+  "files": [
+    { "path": "{{app_name}}/drizzle.config.ts", "template": "import type { Config } from 'drizzle-kit';\nexport default { schema: './src/db/schema.ts', out: './drizzle', driver: 'better-sqlite', dbCredentials: { url: 'app.db' } } satisfies Config;\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "strike-azure-blob-sas-route",
+  "name": "Azure Blob SAS ルート",
+  "version": "1.0.0",
+  "stack": ["azure-blob","nextjs"],
+  "tags": ["storage","upload","strike"],
+  "description": "Azure Blob Storage向けのSAS発行ルート雛形（擬似実装）。",
+  "files": [
+    { "path": "app/api/azure/sas/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function GET(){ return NextResponse.json({ sas: 'sp=rw&st=...' }); }\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "trpc-nextjs-websockets-minimal",
+  "name": "tRPC × Next.js WebSockets 最小",
+  "version": "1.0.0",
+  "stack": ["trpc", "nextjs"],
+  "tags": ["api", "ws"],
+  "description": "wsLink を使う概念最小（サーバー側は別途wsサーバ必要）",
+  "params": [ { "name": "app_name", "default": "trpc-ws" } ],
+  "files": [
+    { "path": "{{app_name}}/src/trpc/client.ts", "template": "import { createWSClient, wsLink, createTRPCProxyClient } from '@trpc/client';\nimport type { AppRouter } from '../server/router';\nconst ws = createWSClient({ url: 'ws://localhost:3001' });\nexport const client = createTRPCProxyClient<AppRouter>({ links: [wsLink({ client: ws })] });\n" }
+  ]
+}
+

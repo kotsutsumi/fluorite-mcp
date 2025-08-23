@@ -1,0 +1,13 @@
+{
+  "id": "prisma-composite-unique-minimal",
+  "name": "Prisma 複合一意キー 最小",
+  "version": "1.0.0",
+  "stack": ["prisma"],
+  "tags": ["db", "unique"],
+  "description": "@@unique([a,b]) の複合ユニークキー最小例",
+  "params": [ { "name": "app_name", "default": "prisma-composite" } ],
+  "files": [
+    { "path": "{{app_name}}/prisma/schema.prisma", "template": "datasource db { provider = \"sqlite\" url = \"file:./dev.db\" }\ngenerator client { provider = \"prisma-client-js\" }\nmodel Entry { id Int @id @default(autoincrement()) a String b String @@unique([a,b]) }\n" }
+  ]
+}
+

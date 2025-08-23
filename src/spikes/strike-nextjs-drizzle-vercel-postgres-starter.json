@@ -1,0 +1,13 @@
+{
+  "id": "strike-nextjs-drizzle-vercel-postgres-starter",
+  "name": "Next.js + Drizzle + Vercel Postgres スターター",
+  "version": "1.0.0",
+  "stack": ["nextjs","drizzle","vercel-postgres"],
+  "tags": ["db","starter","strike"],
+  "description": "Vercel Postgres向けのDrizzle初期構成（雛形）。",
+  "files": [
+    { "path": "drizzle.config.ts", "template": "import type { Config } from 'drizzle-kit';\nexport default { schema: './src/db/schema.ts', out: './drizzle', driver: 'pg', dbCredentials: { connectionString: process.env.DATABASE_URL! } } satisfies Config;\n" },
+    { "path": "src/db/schema.ts", "template": "import { pgTable, serial, text } from 'drizzle-orm/pg-core';\nexport const items = pgTable('items', { id: serial('id').primaryKey(), name: text('name').notNull() });\n" }
+  ]
+}
+

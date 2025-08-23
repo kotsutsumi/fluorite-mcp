@@ -1,0 +1,12 @@
+{
+  "id": "strike-unleash-client-middleware",
+  "name": "Unleash Client + middleware",
+  "version": "1.0.0",
+  "stack": ["unleash","nextjs"],
+  "tags": ["flags","middleware","strike"],
+  "description": "Unleashのフラグ値をレスポンスヘッダに乗せるミドルウェア（擬似実装）。",
+  "files": [
+    { "path": "middleware.ts", "template": "import { NextResponse } from 'next/server';\nexport function middleware(){ const res = NextResponse.next(); res.headers.set('x-flag-beta', 'true'); return res; }\n" }
+  ]
+}
+

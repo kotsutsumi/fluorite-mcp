@@ -1,0 +1,13 @@
+{
+  "id": "zod-preprocess-coerce-minimal",
+  "name": "Zod preprocess/coerce 最小",
+  "version": "1.0.0",
+  "stack": ["zod"],
+  "tags": ["validation"],
+  "description": "preprocess と coerce を使った変換の最小例",
+  "params": [ { "name": "app_name", "default": "zod-pre" } ],
+  "files": [
+    { "path": "{{app_name}}/schema.ts", "template": "import { z } from 'zod';\nexport const S = z.object({ age: z.coerce.number().int().min(0), date: z.preprocess((v)=> typeof v==='string'? new Date(v): v, z.date()) });\n" }
+  ]
+}
+

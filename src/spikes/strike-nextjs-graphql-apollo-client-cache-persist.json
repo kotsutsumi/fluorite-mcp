@@ -1,0 +1,13 @@
+{
+  "id": "strike-nextjs-graphql-apollo-client-cache-persist",
+  "name": "Next.js + Apollo Client (persist-cache)",
+  "version": "1.0.0",
+  "stack": ["nextjs","apollo-client"],
+  "tags": ["graphql","cache","strike"],
+  "description": "永続化キャッシュを使うApollo Clientの最小構成。",
+  "files": [
+    { "path": "src/graphql/apolloClient.ts", "template": "import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';\nexport const client = new ApolloClient({ link: new HttpLink({ uri: '/api/graphql' }), cache: new InMemoryCache() });\n" },
+    { "path": "src/graphql/persist.ts", "template": "// 実際には apollo3-cache-persist 等を使ってキャッシュ永続化を実装してください。\nexport async function setupPersistedCache(){ return true; }\n" }
+  ]
+}
+

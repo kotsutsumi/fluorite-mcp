@@ -1,0 +1,12 @@
+{
+  "id": "strike-nextjs-uploadthing-s3-presigned",
+  "name": "Next.js + Upload (S3 presigned)",
+  "version": "1.0.0",
+  "stack": ["nextjs","s3"],
+  "tags": ["upload","storage","strike"],
+  "description": "S3向けのプリサインURLを発行するAPIの雛形。",
+  "files": [
+    { "path": "app/api/upload/presign/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function GET(){\n  // 実装時に @aws-sdk/s3-request-presigner 等で署名URLを作成してください。\n  return NextResponse.json({ url: 'https://s3.example/presigned' });\n}\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "sentry-set-user-capture-exception-minimal",
+  "name": "Sentry setUser + captureException 最小",
+  "version": "1.0.0",
+  "stack": ["sentry"],
+  "tags": ["observability", "errors"],
+  "description": "スコープでユーザを設定して例外を送信",
+  "params": [ { "name": "app_name", "default": "sentry-user-ex" } ],
+  "files": [
+    { "path": "{{app_name}}/run.js", "template": "const Sentry = require('@sentry/node');\nSentry.init({ dsn: '' });\nSentry.configureScope((scope)=>{ scope.setUser({ id: '1', email: 'a@example.com' }); });\nSentry.captureException(new Error('boom'));\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "strike-nextjs-edge-config-feature-flag",
+  "name": "Next.js Edge Config フィーチャーフラグ",
+  "version": "1.0.0",
+  "stack": ["nextjs","edge"],
+  "tags": ["flags","edge","strike"],
+  "description": "Edge Configからフラグを読む雛形（擬似実装）。",
+  "files": [
+    { "path": "app/api/flags/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function GET(){ /* 実際は @vercel/edge-config 等を利用 */ return NextResponse.json({ newUI: true }); }\n" }
+  ]
+}
+

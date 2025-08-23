@@ -1,0 +1,13 @@
+{
+  "id": "prisma-upsert-minimal",
+  "name": "Prisma upsert 最小",
+  "version": "1.0.0",
+  "stack": ["prisma"],
+  "tags": ["db"],
+  "description": "upsert の最小例",
+  "params": [ { "name": "app_name", "default": "prisma-upsert" } ],
+  "files": [
+    { "path": "{{app_name}}/src/upsert.ts", "template": "import { PrismaClient } from '@prisma/client';\nconst prisma = new PrismaClient();\nexport async function upsert(email: string){ return prisma.user.upsert({ where: { email }, create: { email }, update: {} }); }\n" }
+  ]
+}
+

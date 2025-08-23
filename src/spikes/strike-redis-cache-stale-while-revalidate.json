@@ -1,0 +1,12 @@
+{
+  "id": "strike-redis-cache-stale-while-revalidate",
+  "name": "Redis SWR(Cache) パターン",
+  "version": "1.0.0",
+  "stack": ["redis"],
+  "tags": ["cache","swr","strike"],
+  "description": "期限切れ直後は古い値を返し裏で再取得する雛形（概念）。",
+  "files": [
+    { "path": "src/cache/swr.ts", "template": "export async function getWithSWR(_key: string, _fetcher: ()=>Promise<any>){ return { data: null, revalidating: true }; }\n" }
+  ]
+}
+

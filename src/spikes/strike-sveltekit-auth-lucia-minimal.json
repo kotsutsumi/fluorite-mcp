@@ -1,0 +1,13 @@
+{
+  "id": "strike-sveltekit-auth-lucia-minimal",
+  "name": "SvelteKit + Lucia Auth 最小",
+  "version": "1.0.0",
+  "stack": ["sveltekit", "lucia"],
+  "tags": ["auth", "ui"],
+  "description": "SvelteKitにLuciaを組み合わせる最小",
+  "params": [],
+  "files": [
+    { "path": "src/routes/+page.svelte", "template": "<script>let email='';</script><form><input bind:value={email} placeholder=\"email\" /></form>" }
+  ]
+}
+

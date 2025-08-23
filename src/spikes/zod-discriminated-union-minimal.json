@@ -1,0 +1,13 @@
+{
+  "id": "zod-discriminated-union-minimal",
+  "name": "Zod discriminatedUnion 最小",
+  "version": "1.0.0",
+  "stack": ["zod"],
+  "tags": ["validation"],
+  "description": "discriminatedUnion('type', […]) の最小例",
+  "params": [ { "name": "app_name", "default": "zod-du" } ],
+  "files": [
+    { "path": "{{app_name}}/schema.ts", "template": "import { z } from 'zod';\nexport const Shape = z.discriminatedUnion('type', [ z.object({ type: z.literal('circle'), r: z.number().positive() }), z.object({ type: z.literal('rect'), w: z.number().positive(), h: z.number().positive() }) ]);\n" }
+  ]
+}
+

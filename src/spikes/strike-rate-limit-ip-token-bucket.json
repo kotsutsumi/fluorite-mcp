@@ -1,0 +1,12 @@
+{
+  "id": "strike-rate-limit-ip-token-bucket",
+  "name": "IPベース Token Bucket レート制限",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["security","rate-limit","strike"],
+  "description": "簡易トークンバケット実装の雛形（擬似）。",
+  "files": [
+    { "path": "src/security/rateLimit.ts", "template": "export function allow(_ip: string){ return true; }\n" }
+  ]
+}
+

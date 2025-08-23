@@ -1,0 +1,12 @@
+{
+  "id": "strike-mysql-read-replica-router-pattern",
+  "name": "MySQL Read Replica ルータ パターン",
+  "version": "1.0.0",
+  "stack": ["mysql"],
+  "tags": ["db","replica","strike"],
+  "description": "読み取りはレプリカ、書き込みはマスターへ振り分ける雛形（概念）。",
+  "files": [
+    { "path": "src/db/router.ts", "template": "export function getConn(kind: 'read'|'write'){ return { kind }; }\n" }
+  ]
+}
+

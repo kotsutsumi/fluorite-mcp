@@ -1,0 +1,12 @@
+{
+  "id": "strike-cloudinary-transform-url-minimal",
+  "name": "Cloudinary 変換URL(最小)",
+  "version": "1.0.0",
+  "stack": ["cloudinary"],
+  "tags": ["media","transform","strike"],
+  "description": "Cloudinaryの変換URLを生成する最小例。",
+  "files": [
+    { "path": "src/media/cloudinary.ts", "template": "export function transform(publicId: string){ return `https://res.cloudinary.com/demo/image/upload/w_800/${publicId}.jpg`; }\n" }
+  ]
+}
+

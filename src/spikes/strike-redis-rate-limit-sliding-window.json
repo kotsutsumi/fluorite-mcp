@@ -1,0 +1,12 @@
+{
+  "id": "strike-redis-rate-limit-sliding-window",
+  "name": "Redis スライディングウィンドウ レート制限",
+  "version": "1.0.0",
+  "stack": ["redis"],
+  "tags": ["rate-limit","security","strike"],
+  "description": "スライディングウィンドウ式のレート制限（擬似）。",
+  "files": [
+    { "path": "src/security/redisRate.ts", "template": "export async function allow(_ip: string){ return true; }\n" }
+  ]
+}
+

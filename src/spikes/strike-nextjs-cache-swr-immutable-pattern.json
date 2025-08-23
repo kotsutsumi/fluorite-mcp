@@ -1,0 +1,12 @@
+{
+  "id": "strike-nextjs-cache-swr-immutable-pattern",
+  "name": "Next.js SWR immutable キャッシュパターン",
+  "version": "1.0.0",
+  "stack": ["nextjs","swr"],
+  "tags": ["cache","pattern","strike"],
+  "description": "SWR immutableを用いたキャッシュパターンの雛形。",
+  "files": [
+    { "path": "app/swr/page.tsx", "template": "'use client';\nimport useSWRImmutable from 'swr/immutable';\nexport default function Page(){ const { data } = useSWRImmutable('/api/data', (u)=>fetch(u).then(r=>r.json())); return <pre>{JSON.stringify(data)}</pre>; }\n" }
+  ]
+}
+

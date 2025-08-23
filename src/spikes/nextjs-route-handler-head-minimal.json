@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-route-handler-head-minimal",
+  "name": "Next.js Route Handler HEAD 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["route"],
+  "description": "HEAD メソッドの最小実装",
+  "params": [ { "name": "app_name", "default": "next-head" } ],
+  "files": [
+    { "path": "{{app_name}}/app/api/ping/route.ts", "template": "export async function HEAD(){ return new Response(null, { status: 200 }); }\n" }
+  ]
+}
+

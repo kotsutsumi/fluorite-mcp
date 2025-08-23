@@ -67,4 +67,4 @@ This directory contains the comprehensive architectural documentation for the Fl
 
 - **Repository**: [github.com/kotsutsumi/fluorite-mcp](https://github.com/kotsutsumi/fluorite-mcp)
 - **Issues**: [GitHub Issues](https://github.com/kotsutsumi/fluorite-mcp/issues)
-- **Documentation**: [kotsutsumi.github.io/fluorite-mcp](https://kotsutsumi.github.io/fluorite-mcp)
+- **Documentation**: README.mdおよびdocs/フォルダを参照

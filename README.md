@@ -575,7 +575,7 @@ fluorite-mcp --apply-spike nextjs-auth-nextauth-credentials --params '{"app_name
 fluorite-mcp --preview-spike fastapi-jwt-auth --params '{"project_name":"MyAPI"}'
 ```
 
-Note: In addition to thousands of file-based spikes under `src/spikes`, Fluorite MCP synthesizes 10k+ virtual spikes at runtime. These generated templates have IDs prefixed with `gen-` (e.g., `gen-express-route-basic-ts`). Use the environment variable `FLUORITE_GENERATED_SPIKES_LIMIT` to cap generation for testing, and `FLUORITE_SPIKE_LIST_LIMIT` to cap overall listing size.
+Note: In addition to thousands of file-based spikes under `src/spikes`, Fluorite MCP synthesizes 10k+ virtual spikes at runtime. These generated templates have IDs prefixed with `gen-` (e.g., `gen-express-route-basic-ts`) and also support Strike-branded IDs prefixed with `strike-` (e.g., `strike-express-route-basic-ts`). Use the environment variable `FLUORITE_GENERATED_SPIKES_LIMIT` to cap generation for testing, and `FLUORITE_SPIKE_LIST_LIMIT` to cap overall listing size.
 
 To inspect current spike coverage and duplicates, use the new `spike-stats` tool (exposed via MCP): it reports total spikes, counts by source (file vs generated), duplicates, and a small sample of IDs.
 

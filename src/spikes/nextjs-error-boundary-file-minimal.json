@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-error-boundary-file-minimal",
+  "name": "Next.js error.tsx 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["error", "rsc"],
+  "description": "App Routerのerror.tsxでエラーを表示する最小例",
+  "params": [ { "name": "app_name", "default": "next-error" } ],
+  "files": [
+    { "path": "{{app_name}}/app/error.tsx", "template": "'use client';\nexport default function Error({ error }: { error: Error }){ return <div role='alert'>Error: {error.message}</div>; }\n" }
+  ]
+}
+

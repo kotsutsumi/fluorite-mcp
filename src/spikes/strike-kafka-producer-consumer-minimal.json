@@ -1,0 +1,12 @@
+{
+  "id": "strike-kafka-producer-consumer-minimal",
+  "name": "Kafka Producer/Consumer(最小)",
+  "version": "1.0.0",
+  "stack": ["kafka"],
+  "tags": ["stream","queue","strike"],
+  "description": "Kafkaの送受信の最小雛形（概念）。",
+  "files": [
+    { "path": "src/stream/kafka.ts", "template": "export async function produce(_topic: string, _value: string){ return true; }\nexport async function consume(_topic: string){ return true; }\n" }
+  ]
+}
+

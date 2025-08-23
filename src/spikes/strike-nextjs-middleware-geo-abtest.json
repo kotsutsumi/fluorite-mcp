@@ -1,0 +1,12 @@
+{
+  "id": "strike-nextjs-middleware-geo-abtest",
+  "name": "Next.js GeoベースA/Bテスト middleware",
+  "version": "1.0.0",
+  "stack": ["nextjs","middleware"],
+  "tags": ["abtest","geo","strike"],
+  "description": "国情報ヘッダに応じてA/Bを切り替えるmiddleware雛形。",
+  "files": [
+    { "path": "middleware.ts", "template": "import { NextResponse } from 'next/server';\nexport function middleware(req: Request){ const c = (req as any).geo?.country || 'US'; const res = NextResponse.next(); res.headers.set('x-ab-variant', c==='JP'?'B':'A'); return res; }\n" }
+  ]
+}
+

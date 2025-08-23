@@ -1,0 +1,12 @@
+{
+  "id": "strike-zod-openapi-error-shape",
+  "name": "Zod + OpenAPI エラー形状整形",
+  "version": "1.0.0",
+  "stack": ["zod","openapi"],
+  "tags": ["error","api","strike"],
+  "description": "ZodエラーをOpenAPI風の形に整形して返す雛形。",
+  "files": [
+    { "path": "src/api/error.ts", "template": "import { z } from 'zod';\nexport function toOpenApiError(err: unknown){ if(err instanceof z.ZodError){ return { errors: err.issues.map(i=>({ path: i.path.join('.'), message: i.message })) }; } return { errors: [{ message: String(err) }] }; }\n" }
+  ]
+}
+

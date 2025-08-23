@@ -1,0 +1,12 @@
+{
+  "id": "strike-prisma-soft-delete-pattern",
+  "name": "Prisma ソフトデリート パターン",
+  "version": "1.0.0",
+  "stack": ["prisma"],
+  "tags": ["db","soft-delete","strike"],
+  "description": "deletedAtを使ったソフトデリートの雛形（概念）。",
+  "files": [
+    { "path": "prisma/schema.prisma", "template": "datasource db { provider = \"postgresql\" url = env(\"DATABASE_URL\") }\nmodel Item { id String @id @default(cuid()) name String deletedAt DateTime? }\n" }
+  ]
+}
+

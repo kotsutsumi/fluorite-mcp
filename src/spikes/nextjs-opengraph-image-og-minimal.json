@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-opengraph-image-og-minimal",
+  "name": "Next.js @vercel/og でOG画像 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["seo", "image"],
+  "description": "@vercel/og を用いたOG画像生成の概念最小",
+  "params": [ { "name": "app_name", "default": "next-og-vercel" } ],
+  "files": [
+    { "path": "{{app_name}}/app/og/route.ts", "template": "// 実運用には @vercel/og のインストールが必要\nexport const runtime = 'edge';\nexport async function GET(){ const png = new Uint8Array([137,80,78,71]); return new Response(png, { headers: { 'Content-Type': 'image/png' } }); }\n" }
+  ]
+}
+

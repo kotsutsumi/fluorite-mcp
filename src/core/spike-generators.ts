@@ -32,6 +32,8 @@ export interface SpikeSpec {
 
 // Prefix for generated spike IDs
 const GEN_PREFIX = 'gen-';
+// Also support Strike-branded generated IDs
+const STRIKE_PREFIX = 'strike-';
 
 // Dimensions to combine into many spikes
 const LIBRARIES = [
@@ -86,19 +88,27 @@ function getLimit(): number | undefined {
 }
 
 export function isGeneratedId(id: string): boolean {
-  return id.startsWith(GEN_PREFIX);
+  // Treat both prefixes as generated (virtual) spikes
+  return id.startsWith(GEN_PREFIX) || id.startsWith(STRIKE_PREFIX);
 }
 
 export function listGeneratedSpikeIds(): string[] {
   const ids: string[] = [];
   const limit = getLimit();
+  // Helper to push with optional cap
+  const pushWithCap = (id: string) => {
+    ids.push(id);
+    return limit !== undefined && ids.length >= limit;
+  };
+
   outer: for (const lib of LIBRARIES) {
     for (const pat of PATTERNS) {
       for (const style of STYLES) {
         for (const lang of LANGS) {
-          const id = `${GEN_PREFIX}${lib}-${pat}-${style}-${lang}`;
-          ids.push(id);
-          if (limit !== undefined && ids.length >= limit) break outer;
+          // Standard generated id
+          if (pushWithCap(`${GEN_PREFIX}${lib}-${pat}-${style}-${lang}`)) break outer;
+          // Strike-branded generated id (same content, different id and extra tag)
+          if (pushWithCap(`${STRIKE_PREFIX}${lib}-${pat}-${style}-${lang}`)) break outer;
         }
       }
     }
@@ -914,7 +924,10 @@ export function generateSpike(id: string): SpikeSpec {
   if (!isGeneratedId(id)) {
     throw new Error(`Not a generated spike id: ${id}`);
   }
-  const without = id.replace(new RegExp(`^${GEN_PREFIX}`), '');
+  // Remove either prefix when parsing id components
+  const without = id
+    .replace(new RegExp(`^${GEN_PREFIX}`), '')
+    .replace(new RegExp(`^${STRIKE_PREFIX}`), '');
   const parts = without.split('-');
   if (parts.length < 4) {
     throw new Error(`Invalid generated spike id: ${id}`);
@@ -929,7 +942,7 @@ export function generateSpike(id: string): SpikeSpec {
     name,
     version: '0.1.0',
     stack: [lib, lang],
-    tags: [pat, style, 'generated'],
+    tags: [pat, style, 'generated'].concat(id.startsWith(STRIKE_PREFIX) ? ['strike'] : []),
     description: `Auto-generated spike for ${lib} ${pat} in ${lang} (${style}).`,
     params: [{ name: 'app_name', default: `${lib}-${pat}-app` }],
     files: makeFiles(id, lib, pat, style, lang),

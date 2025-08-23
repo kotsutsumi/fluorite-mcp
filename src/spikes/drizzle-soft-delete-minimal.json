@@ -1,0 +1,14 @@
+{
+  "id": "drizzle-soft-delete-minimal",
+  "name": "Drizzle ソフトデリート 最小",
+  "version": "1.0.0",
+  "stack": ["drizzle", "sqlite"],
+  "tags": ["db", "soft-delete"],
+  "description": "deletedAt による論理削除の最小例",
+  "params": [ { "name": "app_name", "default": "drizzle-soft-delete" } ],
+  "files": [
+    { "path": "{{app_name}}/src/db/schema.ts", "template": "import { sqliteTable, integer, text } from 'drizzle-orm/sqlite-core';\nexport const users = sqliteTable('users', { id: integer('id').primaryKey(), email: text('email').unique().notNull(), deletedAt: integer('deleted_at', { mode: 'timestamp' }) });\n" },
+    { "path": "{{app_name}}/src/db/soft.ts", "template": "import { drizzle } from 'drizzle-orm/better-sqlite3';\nimport Database from 'better-sqlite3';\nimport { users } from './schema';\nconst sqlite = new Database('app.db');\nexport const db = drizzle(sqlite);\nexport async function softDeleteUser(id: number){ await db.update(users).set({ deletedAt: new Date() as any }).where((users as any).id.eq(id)); }\n" }
+  ]
+}
+

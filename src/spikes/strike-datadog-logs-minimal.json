@@ -1,0 +1,12 @@
+{
+  "id": "strike-datadog-logs-minimal",
+  "name": "Datadog Logs 送信(最小)",
+  "version": "1.0.0",
+  "stack": ["datadog"],
+  "tags": ["logs","observability","strike"],
+  "description": "Datadogログ送信の最小雛形（概念）。",
+  "files": [
+    { "path": "src/logs/datadog.ts", "template": "export async function log(message: string, fields: Record<string, any> = {}){ return { message, fields }; }\n" }
+  ]
+}
+

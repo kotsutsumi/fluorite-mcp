@@ -1,0 +1,12 @@
+{
+  "id": "strike-rabbitmq-producer-consumer-minimal",
+  "name": "RabbitMQ Producer/Consumer(最小)",
+  "version": "1.0.0",
+  "stack": ["rabbitmq"],
+  "tags": ["queue","strike"],
+  "description": "RabbitMQでの送受信（最小の擬似実装）。",
+  "files": [
+    { "path": "src/queue/rabbit.ts", "template": "export async function publish(_queue: string, _payload: any){ return true; }\nexport async function subscribe(_queue: string, _handler: (msg: any)=>void){ return true; }\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "sentry-profiling-nextjs-minimal",
+  "name": "Sentry Profiling Next.js 最小",
+  "version": "1.0.0",
+  "stack": ["sentry", "nextjs"],
+  "tags": ["observability", "profiling"],
+  "description": "@sentry/profiling-node を使う概念最小（実運用は要設定）",
+  "params": [ { "name": "app_name", "default": "sentry-profile" } ],
+  "files": [
+    { "path": "{{app_name}}/sentry.server.config.ts", "template": "import * as Sentry from '@sentry/nextjs';\nimport { nodeProfilingIntegration } from '@sentry/profiling-node';\nSentry.init({ dsn: process.env.SENTRY_DSN || '', integrations: [nodeProfilingIntegration()] });\n" }
+  ]
+}
+

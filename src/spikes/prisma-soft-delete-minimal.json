@@ -1,0 +1,14 @@
+{
+  "id": "prisma-soft-delete-minimal",
+  "name": "Prisma ソフトデリート 最小",
+  "version": "1.0.0",
+  "stack": ["prisma"],
+  "tags": ["db", "soft-delete"],
+  "description": "deletedAt によるソフトデリートの最小例（論理削除）",
+  "params": [ { "name": "app_name", "default": "prisma-soft-delete" } ],
+  "files": [
+    { "path": "{{app_name}}/prisma/schema.prisma", "template": "datasource db { provider = \"sqlite\" url = \"file:./dev.db\" }\ngenerator client { provider = \"prisma-client-js\" }\nmodel User { id Int @id @default(autoincrement()) email String @unique deletedAt DateTime? }\n" },
+    { "path": "{{app_name}}/src/soft.ts", "template": "import { PrismaClient } from '@prisma/client';\nconst prisma = new PrismaClient();\nexport async function softDeleteUser(id: number){ await prisma.user.update({ where: { id }, data: { deletedAt: new Date() } }); }\n" }
+  ]
+}
+

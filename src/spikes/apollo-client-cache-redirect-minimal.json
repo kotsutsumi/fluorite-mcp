@@ -1,0 +1,13 @@
+{
+  "id": "apollo-client-cache-redirect-minimal",
+  "name": "Apollo Client cache redirect 最小",
+  "version": "1.0.0",
+  "stack": ["react", "apollo"],
+  "tags": ["graphql", "client", "cache"],
+  "description": "read 関数でキャッシュから別エンティティへリダイレクト",
+  "params": [ { "name": "app_name", "default": "apollo-redirect" } ],
+  "files": [
+    { "path": "{{app_name}}/src/apollo/cache.ts", "template": "import { InMemoryCache } from '@apollo/client';\nexport const cache = new InMemoryCache({ typePolicies: { Query: { fields: { me: { read(_, { toReference }){ return toReference({ __typename:'User', email:'me@example.com' }); } } } } } });\n" }
+  ]
+}
+

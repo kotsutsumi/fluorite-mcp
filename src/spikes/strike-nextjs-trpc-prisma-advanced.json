@@ -1,0 +1,16 @@
+{
+  "id": "strike-nextjs-trpc-prisma-advanced",
+  "name": "Next.js + tRPC + Prisma 上級",
+  "version": "1.0.0",
+  "stack": ["nextjs", "trpc", "prisma"],
+  "tags": ["api", "db", "typed"],
+  "description": "Next.js App RouterでtRPCとPrismaを使った型安全API",
+  "params": [],
+  "files": [
+    { "path": "src/server/trpc.ts", "template": "import { initTRPC } from '@trpc/server';\nconst t = initTRPC.create();\nexport const router = t.router;\nexport const publicProcedure = t.procedure;\n" },
+    { "path": "src/server/routers/posts.ts", "template": "import { router, publicProcedure } from '../trpc';\nexport const postsRouter = router({ list: publicProcedure.query(async ()=>[{ id: 1, title: 'hello' }]) });\n" },
+    { "path": "src/server/root.ts", "template": "import { router } from './trpc';\nimport { postsRouter } from './routers/posts';\nexport const appRouter = router({ posts: postsRouter });\nexport type AppRouter = typeof appRouter;\n" },
+    { "path": "prisma/schema.prisma", "template": "datasource db { provider = \"postgresql\" url = env(\"DATABASE_URL\") }\ngenerator client { provider = \"prisma-client-js\" }\nmodel Post { id Int @id @default(autoincrement()) title String }\n" }
+  ]
+}
+

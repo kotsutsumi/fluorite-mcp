@@ -1,0 +1,13 @@
+{
+  "id": "sentry-before-send-sanitize-minimal",
+  "name": "Sentry beforeSend サニタイズ 最小",
+  "version": "1.0.0",
+  "stack": ["sentry"],
+  "tags": ["observability"],
+  "description": "beforeSend でイベントの個人情報らしきフィールドを削除",
+  "params": [ { "name": "app_name", "default": "sentry-sanitize" } ],
+  "files": [
+    { "path": "{{app_name}}/sentry.client.config.ts", "template": "import * as Sentry from '@sentry/nextjs';\nSentry.init({ dsn: '', beforeSend(event){ if(event.user){ delete (event.user as any).email; } return event; } });\n" }
+  ]
+}
+

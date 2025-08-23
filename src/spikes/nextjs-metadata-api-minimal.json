@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-metadata-api-minimal",
+  "name": "Next.js Metadata API 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["metadata"],
+  "description": "App Router の generateMetadata の最小例",
+  "params": [ { "name": "app_name", "default": "next-metadata" } ],
+  "files": [
+    { "path": "{{app_name}}/app/page.tsx", "template": "export const metadata = { title: 'Home' };\nexport default function Page(){ return <div>Home</div>; }\n" },
+    { "path": "{{app_name}}/app/about/page.tsx", "template": "export async function generateMetadata(){ return { title: 'About' }; }\nexport default function Page(){ return <div>About</div>; }\n" }
+  ]
+}
+

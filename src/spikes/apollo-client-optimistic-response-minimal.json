@@ -1,0 +1,13 @@
+{
+  "id": "apollo-client-optimistic-response-minimal",
+  "name": "Apollo Client optimistic response 最小",
+  "version": "1.0.0",
+  "stack": ["react", "apollo"],
+  "tags": ["graphql", "client"],
+  "description": "楽観的更新の最小例",
+  "params": [ { "name": "app_name", "default": "apollo-optimistic" } ],
+  "files": [
+    { "path": "{{app_name}}/src/apollo/optimistic.ts", "template": "import { gql, ApolloClient, InMemoryCache } from '@apollo/client';\nconst client = new ApolloClient({ uri: '/graphql', cache: new InMemoryCache() });\nconst MUT = gql`mutation Add($title:String!){ add(title:$title){ id title } }`;\nexport async function add(title: string){ await client.mutate({ mutation: MUT, variables: { title }, optimisticResponse: { add: { __typename:'Post', id: 'temp', title } } }); }\n" }
+  ]
+}
+

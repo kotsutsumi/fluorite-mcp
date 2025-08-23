@@ -1,0 +1,12 @@
+{
+  "id": "strike-drizzle-partial-index-concept",
+  "name": "Drizzle 部分インデックス(概念)",
+  "version": "1.0.0",
+  "stack": ["drizzle","postgres"],
+  "tags": ["db","index","strike"],
+  "description": "部分インデックスの概念スキーマ雛形。",
+  "files": [
+    { "path": "src/db/indexes.sql", "template": "-- CREATE INDEX CONCURRENTLY idx_active ON items (user_id) WHERE active = true;\n" }
+  ]
+}
+

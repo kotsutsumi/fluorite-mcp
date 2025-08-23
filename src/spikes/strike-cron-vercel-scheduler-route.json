@@ -1,0 +1,12 @@
+{
+  "id": "strike-cron-vercel-scheduler-route",
+  "name": "Vercel Scheduler Cron ルート",
+  "version": "1.0.0",
+  "stack": ["nextjs","vercel"],
+  "tags": ["cron","schedule","strike"],
+  "description": "Vercel Schedulerから叩かれるcron用Routeの雛形。",
+  "files": [
+    { "path": "app/api/cron/daily/route.ts", "template": "export async function GET(){ return new Response('ok'); }\n" }
+  ]
+}
+

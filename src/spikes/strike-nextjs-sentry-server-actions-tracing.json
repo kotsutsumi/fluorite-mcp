@@ -1,0 +1,13 @@
+{
+  "id": "strike-nextjs-sentry-server-actions-tracing",
+  "name": "Next.js + Sentry (Server Actions Tracing)",
+  "version": "1.0.0",
+  "stack": ["nextjs","sentry"],
+  "tags": ["observability","tracing","strike"],
+  "description": "Server Actionsも含めたSentryトレーシングの最小構成。",
+  "files": [
+    { "path": "sentry.server.config.ts", "template": "import * as Sentry from '@sentry/nextjs';\nSentry.init({ dsn: process.env.SENTRY_DSN, tracesSampleRate: 1.0 });\n" },
+    { "path": "app/actions/slow.ts", "template": "'use server';\nexport async function slow(){ await new Promise(r=>setTimeout(r, 50)); return { ok: true }; }\n" }
+  ]
+}
+

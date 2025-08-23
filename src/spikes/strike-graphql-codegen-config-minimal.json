@@ -1,0 +1,12 @@
+{
+  "id": "strike-graphql-codegen-config-minimal",
+  "name": "GraphQL Codegen 設定(最小)",
+  "version": "1.0.0",
+  "stack": ["graphql","codegen"],
+  "tags": ["graphql","typing","strike"],
+  "description": "GraphQL Code Generatorの最小設定例。",
+  "files": [
+    { "path": "codegen.ts", "template": "export default { schema: 'schema.graphql', documents: 'src/**/*.graphql', generates: { 'src/gql/': { preset: 'client' } } };\n" }
+  ]
+}
+

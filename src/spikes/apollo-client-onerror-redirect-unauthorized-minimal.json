@@ -1,0 +1,13 @@
+{
+  "id": "apollo-client-onerror-redirect-unauthorized-minimal",
+  "name": "Apollo Client onError リダイレクト 最小",
+  "version": "1.0.0",
+  "stack": ["react", "apollo"],
+  "tags": ["graphql", "client", "error"],
+  "description": "401エラーで/loginへ遷移する最小例（概念）",
+  "params": [ { "name": "app_name", "default": "apollo-unauth" } ],
+  "files": [
+    { "path": "{{app_name}}/src/apollo/link.ts", "template": "import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';\nimport { onError } from '@apollo/client/link/error';\nconst http = new HttpLink({ uri: '/graphql' });\nconst err = onError(({ networkError })=>{ if((networkError as any)?.statusCode===401){ if(typeof window!=='undefined') window.location.href='/login'; } });\nexport const client = new ApolloClient({ link: err.concat(http), cache: new InMemoryCache() });\n" }
+  ]
+}
+

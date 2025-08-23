@@ -1,0 +1,12 @@
+{
+  "id": "strike-otel-fastify-tracing",
+  "name": "OpenTelemetry Tracing (Fastify)",
+  "version": "1.0.0",
+  "stack": ["fastify","opentelemetry"],
+  "tags": ["tracing","observability","strike"],
+  "description": "FastifyでのOTELトレーシング初期化（概念）。",
+  "files": [
+    { "path": "server.js", "template": "import Fastify from 'fastify';\nexport async function build(){ const app = Fastify(); app.get('/health', async ()=> ({ ok: true })); return app; }\n" }
+  ]
+}
+

@@ -1,0 +1,15 @@
+{
+  "id": "nextjs-rsc-a11y-error-ui-minimal",
+  "name": "Next.js RSC アクセシブルなエラーUI 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "zod"],
+  "tags": ["rsc", "a11y", "validation"],
+  "description": "aria-live と role='alert' を使ったエラー表示の最小例",
+  "params": [ { "name": "app_name", "default": "next-rsc-a11y" } ],
+  "files": [
+    { "path": "{{app_name}}/app/actions/save.ts", "template": "'use server';\nimport { z } from 'zod';\nexport type Result<T> = { ok:true; data:T }|{ ok:false; errors:any };\nconst Schema = z.object({ email: z.string().email() });\nexport async function save(data: any): Promise<Result<{ email:string }>>{ const v = Schema.safeParse(data); if(!v.success) return { ok:false, errors: v.error.flatten() }; return { ok:true, data: v.data }; }\n" },
+    { "path": "{{app_name}}/app/page.tsx", "template": "'use client';\nimport { useState } from 'react';\nexport default function Page(){ const [msg,setMsg] = useState(''); async function onSubmit(e:any){ e.preventDefault(); const email = new FormData(e.currentTarget).get('email'); const out = await fetch('/api/save',{ method:'POST', body: JSON.stringify({ email }), headers: { 'content-type':'application/json' } }).then(r=>r.json()); setMsg(out.ok ? 'OK' : 'メールが不正です'); } return (<form onSubmit={onSubmit}><label htmlFor='email'>Email</label><input id='email' name='email' aria-invalid={msg?true:undefined} aria-describedby='err' /><button>送信</button><div id='err' role='alert' aria-live='polite'>{msg}</div></form>); }\n" },
+    { "path": "{{app_name}}/app/api/save/route.ts", "template": "import { NextResponse } from 'next/server';\nimport { save } from '../../actions/save';\nexport async function POST(req: Request){ const json = await req.json(); return NextResponse.json(await save(json)); }\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "trpc-nextjs-ssr-hydration-minimal",
+  "name": "tRPC × Next.js SSR Hydration 最小",
+  "version": "1.0.0",
+  "stack": ["trpc", "nextjs"],
+  "tags": ["api", "ssr"],
+  "description": "SSRで初期データを埋め込みclientでhydrateする概念最小",
+  "params": [ { "name": "app_name", "default": "trpc-ssr" } ],
+  "files": [
+    { "path": "{{app_name}}/app/page.tsx", "template": "export default async function Page(){ const initialData = { hello: 'world' }; return <pre>{JSON.stringify(initialData,null,2)}</pre>; }\n" }
+  ]
+}
+

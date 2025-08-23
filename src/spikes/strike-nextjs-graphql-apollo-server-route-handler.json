@@ -1,0 +1,12 @@
+{
+  "id": "strike-nextjs-graphql-apollo-server-route-handler",
+  "name": "Next.js + Apollo Server (Route Handler)",
+  "version": "1.0.0",
+  "stack": ["nextjs","apollo"],
+  "tags": ["graphql","server","strike"],
+  "description": "App RouterのRoute HandlerでApollo Serverを立てる雛形。",
+  "files": [
+    { "path": "app/api/graphql/route.ts", "template": "import { NextResponse } from 'next/server';\n// 実際は @apollo/server と @as-integrations/next を使って実装してください。\nexport async function POST(){ return NextResponse.json({ data: { hello: 'world' } }); }\n" }
+  ]
+}
+

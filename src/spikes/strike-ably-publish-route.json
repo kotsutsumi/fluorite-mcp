@@ -1,0 +1,12 @@
+{
+  "id": "strike-ably-publish-route",
+  "name": "Ably Publish ルート",
+  "version": "1.0.0",
+  "stack": ["ably","nextjs"],
+  "tags": ["realtime","strike"],
+  "description": "AblyへメッセージをPublishするRoute（擬似実装）。",
+  "files": [
+    { "path": "app/api/realtime/ably/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(req: Request){ const { channel, data } = await req.json(); return NextResponse.json({ ok: true, channel, data }); }\n" }
+  ]
+}
+

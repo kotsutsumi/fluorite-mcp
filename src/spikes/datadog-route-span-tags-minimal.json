@@ -1,0 +1,13 @@
+{
+  "id": "datadog-route-span-tags-minimal",
+  "name": "Datadog route span タグ付け 最小",
+  "version": "1.0.0",
+  "stack": ["datadog", "nextjs"],
+  "tags": ["observability", "apm"],
+  "description": "Route Handler 内でアクティブスパンにタグ付け",
+  "params": [ { "name": "app_name", "default": "dd-route-tags" } ],
+  "files": [
+    { "path": "{{app_name}}/app/api/tags/route.ts", "template": "import tracer from 'dd-trace';\nexport async function GET(){ const span: any = tracer?.scope()?.active(); span?.setTag?.('endpoint','tags'); return new Response('ok'); }\n" }
+  ]
+}
+

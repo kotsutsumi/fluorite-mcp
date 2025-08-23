@@ -1,0 +1,13 @@
+{
+  "id": "sentry-user-feedback-widget-minimal",
+  "name": "Sentry User Feedback Widget 最小",
+  "version": "1.0.0",
+  "stack": ["sentry"],
+  "tags": ["observability", "feedback"],
+  "description": "Sentry のユーザーフィードバックWidget起動の最小例",
+  "params": [ { "name": "app_name", "default": "sentry-feedback" } ],
+  "files": [
+    { "path": "{{app_name}}/public/index.html", "template": "<!doctype html>\n<html><body><button id='open'>Feedback</button><script src='https://browser.sentry-cdn.com/8.0.0/bundle.min.js' crossorigin='anonymous'></script><script>Sentry.init({ dsn: '' }); document.getElementById('open').onclick=()=>Sentry.showReportDialog();</script></body></html>\n" }
+  ]
+}
+

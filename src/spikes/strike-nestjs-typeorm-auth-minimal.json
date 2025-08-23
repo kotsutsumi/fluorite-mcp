@@ -1,0 +1,14 @@
+{
+  "id": "strike-nestjs-typeorm-auth-minimal",
+  "name": "NestJS + TypeORM + Auth 最小",
+  "version": "1.0.0",
+  "stack": ["nestjs", "typeorm", "auth"],
+  "tags": ["rest", "db", "auth"],
+  "description": "NestJSでTypeORMと簡易認証ガード",
+  "params": [],
+  "files": [
+    { "path": "src/app.module.ts", "template": "import { Module } from '@nestjs/common';\n@Module({})\nexport class AppModule {}\n" },
+    { "path": "src/auth.guard.ts", "template": "import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';\n@Injectable()\nexport class AuthGuard implements CanActivate { canActivate(_ctx: ExecutionContext){ return true; } }\n" }
+  ]
+}
+

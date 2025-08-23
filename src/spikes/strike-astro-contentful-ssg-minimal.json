@@ -1,0 +1,13 @@
+{
+  "id": "strike-astro-contentful-ssg-minimal",
+  "name": "Astro + Contentful SSG 最小",
+  "version": "1.0.0",
+  "stack": ["astro", "contentful"],
+  "tags": ["ssg", "cms"],
+  "description": "AstroでContentfulからSSG",
+  "params": [],
+  "files": [
+    { "path": "src/pages/index.astro", "template": "---\nconst entries = [{ title: 'Hello CMS' }];\n---\n<html><body><ul>{entries.map(e=> (<li>{e.title}</li>))}</ul></body></html>\n" }
+  ]
+}
+

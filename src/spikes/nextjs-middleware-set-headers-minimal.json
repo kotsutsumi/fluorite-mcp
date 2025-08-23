@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-middleware-set-headers-minimal",
+  "name": "Next.js Middleware でヘッダー設定 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["middleware", "headers"],
+  "description": "Middleware でレスポンスヘッダーを1つ追加する最小例",
+  "params": [ { "name": "app_name", "default": "next-mdw-headers" } ],
+  "files": [
+    { "path": "{{app_name}}/middleware.ts", "template": "import { NextResponse } from 'next/server';\nexport function middleware(req: Request){ const res = NextResponse.next(); res.headers.set('x-powered-by','fluorite'); return res; }\n" }
+  ]
+}
+

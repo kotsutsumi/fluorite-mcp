@@ -1,0 +1,13 @@
+{
+  "id": "strike-nextjs-stripe-checkout-recurring-i18n",
+  "name": "Next.js + Stripe Checkout (定期課金/i18n)",
+  "version": "1.0.0",
+  "stack": ["nextjs","stripe","i18n"],
+  "tags": ["billing","checkout","i18n","strike"],
+  "description": "Stripe Checkoutで定期課金を作成するルートとメッセージ雛形。",
+  "files": [
+    { "path": "app/api/checkout/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(req: Request){\n  const { priceId } = await req.json();\n  // 実装時に Stripe の Checkout Session を作成してください。\n  return NextResponse.json({ url: 'https://checkout.stripe.com/pay/mock' , priceId });\n}\n" },
+    { "path": "src/i18n/messages.ts", "template": "export const messages = {\n  en: { purchase: 'Purchase', success: 'Success' },\n  ja: { purchase: '購入', success: '成功' }\n};\n" }
+  ]
+}
+

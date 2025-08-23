@@ -1,0 +1,13 @@
+{
+  "id": "trpc-nextjs-file-upload-concept-minimal",
+  "name": "tRPC × Next.js ファイルアップロード 概念最小",
+  "version": "1.0.0",
+  "stack": ["trpc", "nextjs"],
+  "tags": ["api", "upload"],
+  "description": "tRPC でファイルを扱う場合の概念（実装要カスタム）",
+  "params": [ { "name": "app_name", "default": "trpc-upload" } ],
+  "files": [
+    { "path": "{{app_name}}/README.md", "template": "tRPC は標準でmultipartフォームを直接扱わないため、Next.jsのRoute HandlerやS3直PUT等と併用する構成が推奨です。\n" }
+  ]
+}
+

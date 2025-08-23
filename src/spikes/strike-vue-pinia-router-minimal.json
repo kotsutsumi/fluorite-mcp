@@ -1,0 +1,13 @@
+{
+  "id": "strike-vue-pinia-router-minimal",
+  "name": "Vue + Pinia + Router 最小",
+  "version": "1.0.0",
+  "stack": ["vue", "pinia", "vue-router"],
+  "tags": ["ui", "state", "routing"],
+  "description": "Vue3でPiniaとRouterの最小構成",
+  "params": [],
+  "files": [
+    { "path": "src/main.ts", "template": "import { createApp } from 'vue';\nimport { createPinia } from 'pinia';\nimport { createRouter, createWebHistory } from 'vue-router';\nconst app = createApp({ template: '<router-view />' });\nconst router = createRouter({ history: createWebHistory(), routes: [{ path: '/', component: { template: '<div>home</div>' } }] });\napp.use(createPinia()).use(router).mount('#app');\n" }
+  ]
+}
+

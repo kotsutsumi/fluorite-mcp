@@ -1,0 +1,12 @@
+{
+  "id": "strike-nextjs-s3-upload-presign-route",
+  "name": "Next.js S3 Presign Upload ルート",
+  "version": "1.0.0",
+  "stack": ["nextjs","s3"],
+  "tags": ["upload","storage","strike"],
+  "description": "S3プリサインURL発行APIの簡易版（GET/POST両対応）。",
+  "files": [
+    { "path": "app/api/s3/presign/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function GET(){ return NextResponse.json({ url: 'https://s3.example/presigned-get' }); }\nexport async function POST(){ return NextResponse.json({ url: 'https://s3.example/presigned-post' }); }\n" }
+  ]
+}
+

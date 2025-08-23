@@ -1,0 +1,13 @@
+{
+  "id": "swr-global-config-minimal",
+  "name": "SWR Global Config 最小",
+  "version": "1.0.0",
+  "stack": ["react", "swr"],
+  "tags": ["data-fetching"],
+  "description": "SWRConfig でfetcherやrevalidate設定を提供する最小例",
+  "params": [ { "name": "app_name", "default": "swr-config" } ],
+  "files": [
+    { "path": "{{app_name}}/App.tsx", "template": "import useSWR, { SWRConfig } from 'swr';\nconst fetcher = (u:string)=> fetch(u).then(r=>r.json());\nfunction Inner(){ const { data } = useSWR('/api', fetcher); return <div>{data? 'ok':'...'}</div>; }\nexport default function App(){ return <SWRConfig value={{ fetcher, revalidateOnFocus:false }}><Inner/></SWRConfig>; }\n" }
+  ]
+}
+

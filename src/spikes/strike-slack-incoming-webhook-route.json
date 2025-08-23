@@ -1,0 +1,12 @@
+{
+  "id": "strike-slack-incoming-webhook-route",
+  "name": "Slack Incoming Webhook 送信 ルート",
+  "version": "1.0.0",
+  "stack": ["slack"],
+  "tags": ["notification","strike"],
+  "description": "Slack Incoming Webhookに投稿するAPI雛形（擬似実装）。",
+  "files": [
+    { "path": "app/api/notify/slack/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(req: Request){ const { text } = await req.json(); return NextResponse.json({ ok: true, text }); }\n" }
+  ]
+}
+

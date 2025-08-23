@@ -1,0 +1,13 @@
+{
+  "id": "tanstack-query-persist-localstorage-minimal",
+  "name": "TanStack Query Persist LocalStorage 最小",
+  "version": "1.0.0",
+  "stack": ["react", "tanstack-query"],
+  "tags": ["data-fetching", "persist"],
+  "description": "persistQueryClient を使い localStorage に保存（概念最小）",
+  "params": [ { "name": "app_name", "default": "rq-persist" } ],
+  "files": [
+    { "path": "{{app_name}}/src/query.tsx", "template": "import { QueryClient, QueryClientProvider } from '@tanstack/react-query';\nimport { persistQueryClient } from '@tanstack/react-query-persist-client';\nimport { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister';\nconst qc = new QueryClient();\nif (typeof window !== 'undefined'){ persistQueryClient({ queryClient: qc, persister: createSyncStoragePersister({ storage: window.localStorage }) }); }\nexport default function App(){ return <QueryClientProvider client={qc}><div>OK</div></QueryClientProvider>; }\n" }
+  ]
+}
+

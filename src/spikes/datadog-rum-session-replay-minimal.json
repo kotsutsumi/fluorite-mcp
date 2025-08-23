@@ -1,0 +1,13 @@
+{
+  "id": "datadog-rum-session-replay-minimal",
+  "name": "Datadog RUM Session Replay 最小",
+  "version": "1.0.0",
+  "stack": ["datadog"],
+  "tags": ["observability", "rum"],
+  "description": "RUM のセッションリプレイを有効化する最小例",
+  "params": [ { "name": "app_name", "default": "dd-rum-replay" } ],
+  "files": [
+    { "path": "{{app_name}}/index.html", "template": "<!doctype html>\n<html><body><script src='https://www.datadoghq-browser-agent.com/datadog-rum.js'></script><script>window.DD_RUM && DD_RUM.init({ applicationId: 'app', clientToken: 'token', site: 'datadoghq.com', service: 'web', env: 'dev', sessionReplaySampleRate: 100, trackInteractions: true });</script></body></html>\n" }
+  ]
+}
+

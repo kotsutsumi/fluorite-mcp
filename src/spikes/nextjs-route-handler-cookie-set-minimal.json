@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-route-handler-cookie-set-minimal",
+  "name": "Next.js Route Handler Cookie 設定 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["route", "cookies"],
+  "description": "Route Handler で cookie を設定する最小例",
+  "params": [ { "name": "app_name", "default": "next-cookie" } ],
+  "files": [
+    { "path": "{{app_name}}/app/api/cookie/route.ts", "template": "import { cookies } from 'next/headers';\nexport async function GET(){ const c = cookies(); c.set('session','token',{ httpOnly:true, path:'/' }); return new Response('ok'); }\n" }
+  ]
+}
+

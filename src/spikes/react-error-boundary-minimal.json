@@ -1,0 +1,13 @@
+{
+  "id": "react-error-boundary-minimal",
+  "name": "React Error Boundary 最小",
+  "version": "1.0.0",
+  "stack": ["react"],
+  "tags": ["error"],
+  "description": "class コンポーネントの ErrorBoundary 最小例",
+  "params": [ { "name": "app_name", "default": "react-errb" } ],
+  "files": [
+    { "path": "{{app_name}}/App.tsx", "template": "import React from 'react';\nclass ErrorBoundary extends React.Component<{children:any},{hasError:boolean}>{ constructor(p:any){ super(p); this.state={hasError:false}; } static getDerivedStateFromError(){ return { hasError:true }; } componentDidCatch(){} render(){ return this.state.hasError ? <div role='alert'>Error</div> : this.props.children; } }\nexport default function App(){ return <ErrorBoundary><button onClick={()=>{ throw new Error('boom'); }}>Boom</button></ErrorBoundary>; }\n" }
+  ]
+}
+

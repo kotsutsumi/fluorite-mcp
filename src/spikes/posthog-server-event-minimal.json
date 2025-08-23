@@ -1,0 +1,13 @@
+{
+  "id": "posthog-server-event-minimal",
+  "name": "PostHog サーバーイベント 最小",
+  "version": "1.0.0",
+  "stack": ["posthog", "node"],
+  "tags": ["analytics"],
+  "description": "posthog-node を使ってサーバーからイベント送信の最小例",
+  "params": [ { "name": "app_name", "default": "posthog-server" } ],
+  "files": [
+    { "path": "{{app_name}}/send.js", "template": "import { PostHog } from 'posthog-node';\nconst ph = new PostHog(process.env.POSTHOG_KEY||'');\nawait ph.capture({ distinctId: 'user1', event: 'test' });\nawait ph.shutdown();\n" }
+  ]
+}
+

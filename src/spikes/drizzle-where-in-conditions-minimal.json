@@ -1,0 +1,13 @@
+{
+  "id": "drizzle-where-in-conditions-minimal",
+  "name": "Drizzle where/in 条件 最小",
+  "version": "1.0.0",
+  "stack": ["drizzle", "sqlite"],
+  "tags": ["db"],
+  "description": "in 条件の最小例（概念）",
+  "params": [ { "name": "app_name", "default": "drizzle-where-in" } ],
+  "files": [
+    { "path": "{{app_name}}/src/db/whereIn.ts", "template": "import { drizzle } from 'drizzle-orm/better-sqlite3';\nimport Database from 'better-sqlite3';\nimport { sqliteTable, integer, text, inArray } from 'drizzle-orm/sqlite-core';\nconst sqlite = new Database('app.db');\nconst db = drizzle(sqlite);\nconst posts = sqliteTable('posts', { id: integer('id').primaryKey(), title: text('title').notNull() });\nexport async function list(ids:number[]){ return db.select().from(posts).where(inArray((posts as any).id, ids)); }\n" }
+  ]
+}
+

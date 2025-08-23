@@ -1,0 +1,13 @@
+{
+  "id": "strike-nextjs-drizzle-planetscale-starter",
+  "name": "Next.js + Drizzle + PlanetScale スターター",
+  "version": "1.0.0",
+  "stack": ["nextjs","drizzle","mysql"],
+  "tags": ["db","starter","strike"],
+  "description": "PlanetScale(MySQL)向けのDrizzle初期構成（雛形）。",
+  "files": [
+    { "path": "drizzle.config.ts", "template": "import type { Config } from 'drizzle-kit';\nexport default { schema: './src/db/schema.ts', out: './drizzle', driver: 'mysql2', dbCredentials: { uri: process.env.DATABASE_URL! } } satisfies Config;\n" },
+    { "path": "src/db/schema.ts", "template": "import { mysqlTable, serial, varchar } from 'drizzle-orm/mysql-core';\nexport const users = mysqlTable('users', { id: serial('id').primaryKey(), email: varchar('email', { length: 255 }).notNull() });\n" }
+  ]
+}
+

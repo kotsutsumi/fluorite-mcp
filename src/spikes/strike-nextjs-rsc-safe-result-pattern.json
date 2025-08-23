@@ -1,0 +1,12 @@
+{
+  "id": "strike-nextjs-rsc-safe-result-pattern",
+  "name": "Next.js RSC Safe Result パターン",
+  "version": "1.0.0",
+  "stack": ["nextjs","rsc"],
+  "tags": ["pattern","error-handling","strike"],
+  "description": "RSCでの安全な結果返却パターン（ok/err整形）。",
+  "files": [
+    { "path": "src/next/result.ts", "template": "export type Ok<T> = { ok: true; data: T };\nexport type Err = { ok: false; error: string };\nexport const ok = <T>(data: T): Ok<T> => ({ ok: true, data });\nexport const err = (e: unknown, status = 400): Err => ({ ok: false, error: String(e) });\n" }
+  ]
+}
+

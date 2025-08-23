@@ -1,0 +1,13 @@
+{
+  "id": "strike-nextjs-auth-nextauth-prisma-2fa-totp",
+  "name": "Next.js + NextAuth + Prisma 2FA (TOTP)",
+  "version": "1.0.0",
+  "stack": ["nextjs","authjs","prisma"],
+  "tags": ["auth","2fa","totp","strike"],
+  "description": "TOTPによる2FAのベース実装（検証API・ユーティリティの雛形）。",
+  "files": [
+    { "path": "src/auth/totp.ts", "template": "// TOTP検証の雛形。\n// 実運用では speakeasy などのライブラリを導入してください。\nexport async function verifyTotp(_secret: string, _token: string){ return true; }\n" },
+    { "path": "app/api/auth/totp/route.ts", "template": "import { NextResponse } from 'next/server';\nimport { verifyTotp } from '@/src/auth/totp';\nexport async function POST(req: Request){\n  const { secret, token } = await req.json();\n  const ok = await verifyTotp(secret, token);\n  return NextResponse.json({ ok });\n}\n" }
+  ]
+}
+

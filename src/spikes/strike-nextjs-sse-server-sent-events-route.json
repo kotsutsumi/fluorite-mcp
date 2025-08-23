@@ -1,0 +1,12 @@
+{
+  "id": "strike-nextjs-sse-server-sent-events-route",
+  "name": "Next.js Server-Sent Events ルート",
+  "version": "1.0.0",
+  "stack": ["nextjs","sse"],
+  "tags": ["realtime","stream","strike"],
+  "description": "SSEでイベントストリームを返すRoute雛形（概念）。",
+  "files": [
+    { "path": "app/api/sse/route.ts", "template": "export async function GET(){ const encoder = new TextEncoder(); const stream = new ReadableStream({ start(controller){ controller.enqueue(encoder.encode('data: hello\\n\\n')); controller.close(); } }); return new Response(stream, { headers: { 'Content-Type': 'text/event-stream' } }); }\n" }
+  ]
+}
+

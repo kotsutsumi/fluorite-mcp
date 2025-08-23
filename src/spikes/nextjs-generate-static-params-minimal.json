@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-generate-static-params-minimal",
+  "name": "Next.js generateStaticParams 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["ssg"],
+  "description": "ダイナミックルートで generateStaticParams を使う最小例",
+  "params": [ { "name": "app_name", "default": "next-gsp" } ],
+  "files": [
+    { "path": "{{app_name}}/app/items/[id]/page.tsx", "template": "export async function generateStaticParams(){ return [{ id: '1' }, { id: '2' }]; }\nexport default function Page({ params }: { params: { id: string }}){ return <div>{params.id}</div>; }\n" }
+  ]
+}
+

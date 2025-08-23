@@ -1,0 +1,12 @@
+{
+  "id": "strike-urql-client-ssr-minimal",
+  "name": "urql クライアント SSR(最小)",
+  "version": "1.0.0",
+  "stack": ["urql","nextjs"],
+  "tags": ["graphql","client","strike"],
+  "description": "urqlクライアントのSSR最小構成（概念）。",
+  "files": [
+    { "path": "src/graphql/urql.ts", "template": "export function createClient(){ return { url: '/api/graphql' }; }\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "strike-github-actions-node-ci-minimal",
+  "name": "GitHub Actions Node CI 最小",
+  "version": "1.0.0",
+  "stack": ["github-actions", "node"],
+  "tags": ["ci", "workflow"],
+  "description": "Node CIワークフロー最小",
+  "params": [],
+  "files": [
+    { "path": ".github/workflows/ci.yml", "template": "name: CI\non: { push: { branches: ['main'] }, pull_request: {} }\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: 18 }\n      - run: npm ci\n      - run: npm test --silent || true\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "strike-drizzle-seed-factory-pattern",
+  "name": "Drizzle Seed Factory パターン",
+  "version": "1.0.0",
+  "stack": ["drizzle"],
+  "tags": ["db","seed","strike"],
+  "description": "テスト/開発用のシードファクトリ雛形。",
+  "files": [
+    { "path": "src/db/seed.ts", "template": "export function makeUser(i: number){ return { email: `user${i}@example.com` }; }\nexport function makePost(i: number, userId: number){ return { userId, title: `post-${i}` }; }\n" }
+  ]
+}
+

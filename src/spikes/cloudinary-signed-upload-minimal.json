@@ -1,0 +1,13 @@
+{
+  "id": "cloudinary-signed-upload-minimal",
+  "name": "Cloudinary 署名アップロード 最小",
+  "version": "1.0.0",
+  "stack": ["cloudinary"],
+  "tags": ["upload"],
+  "description": "署名パラメータ（timestamp/signature）を生成する最小例",
+  "params": [ { "name": "app_name", "default": "cloudinary-signed" } ],
+  "files": [
+    { "path": "{{app_name}}/sign.js", "template": "import crypto from 'node:crypto';\nexport function sign(timestamp, apiSecret){ const payload = `timestamp=${timestamp}`; return crypto.createHash('sha1').update(payload + apiSecret).digest('hex'); }\n" }
+  ]
+}
+

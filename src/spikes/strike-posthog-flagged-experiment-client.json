@@ -1,0 +1,12 @@
+{
+  "id": "strike-posthog-flagged-experiment-client",
+  "name": "PostHog フラグ付き実験(クライアント)",
+  "version": "1.0.0",
+  "stack": ["posthog","react"],
+  "tags": ["analytics","flags","strike"],
+  "description": "フラグに応じてUIを切り替える実験の最小例。",
+  "files": [
+    { "path": "react/Experiment.tsx", "template": "'use client';\nexport default function Experiment(){ const enabled = true; return <div>{enabled? 'VarA':'VarB'}</div>; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "strike-openai-rag-vector-qdrant",
+  "name": "OpenAI + RAG (Qdrant)",
+  "version": "1.0.0",
+  "stack": ["openai","qdrant"],
+  "tags": ["ai","rag","vector","strike"],
+  "description": "Qdrantへベクトル格納→クエリ→OpenAIで回答生成の雛形（概念）。",
+  "files": [
+    { "path": "src/ai/rag.ts", "template": "export async function answer(_q: string){ return 'answer'; }\n" }
+  ]
+}
+

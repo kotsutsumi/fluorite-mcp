@@ -1,0 +1,12 @@
+{
+  "id": "strike-prisma-unique-violation-retry",
+  "name": "Prisma 一意制約違反 リトライ",
+  "version": "1.0.0",
+  "stack": ["prisma"],
+  "tags": ["db","retry","strike"],
+  "description": "一意制約違反時に値を変えて再挿入する雛形（概念）。",
+  "files": [
+    { "path": "src/prisma/uniqueRetry.ts", "template": "export async function createWithRetry(make: ()=>Promise<any>, mutate: ()=>void, attempts=3){ let i=0; while(true){ try{ return await make(); } catch(e){ if(++i>=attempts) throw e; mutate(); } } }\n" }
+  ]
+}
+

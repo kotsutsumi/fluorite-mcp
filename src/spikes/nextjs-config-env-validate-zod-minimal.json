@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-config-env-validate-zod-minimal",
+  "name": "Next.js 環境変数 Zod 検証 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "zod"],
+  "tags": ["config", "env"],
+  "description": "Zod で環境変数を検証する最小例",
+  "params": [ { "name": "app_name", "default": "next-env-zod" } ],
+  "files": [
+    { "path": "{{app_name}}/src/env.ts", "template": "import { z } from 'zod';\nconst Env = z.object({ NEXT_PUBLIC_API: z.string().url() });\nexport const env = Env.parse({ NEXT_PUBLIC_API: process.env.NEXT_PUBLIC_API });\n" }
+  ]
+}
+

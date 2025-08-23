@@ -1,0 +1,13 @@
+{
+  "id": "aws-s3-presign-put-minimal",
+  "name": "AWS S3 presign PUT 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "s3"],
+  "tags": ["storage", "presign"],
+  "description": "@aws-sdk/s3-request-presigner を用いたPUT用署名URL生成の最小例",
+  "params": [ { "name": "app_name", "default": "s3-presign" } ],
+  "files": [
+    { "path": "{{app_name}}/src/presign.ts", "template": "import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';\nimport { getSignedUrl } from '@aws-sdk/s3-request-presigner';\nexport async function presign(bucket: string, key: string){ const s3 = new S3Client({}); const url = await getSignedUrl(s3, new PutObjectCommand({ Bucket: bucket, Key: key }), { expiresIn: 300 }); return url; }\n" }
+  ]
+}
+

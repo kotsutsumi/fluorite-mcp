@@ -1,0 +1,12 @@
+{
+  "id": "strike-trpc-router-middleware-role-guard",
+  "name": "tRPC Router Middleware 役割ガード",
+  "version": "1.0.0",
+  "stack": ["trpc"],
+  "tags": ["api","auth","strike"],
+  "description": "tRPCのミドルウェアでroleによるガードを行う雛形。",
+  "files": [
+    { "path": "src/trpc/router.ts", "template": "import { initTRPC } from '@trpc/server';\nconst t = initTRPC.context<{ role?: 'user'|'admin' }>().create();\nconst isAdmin = t.middleware(({ ctx, next })=>{ if(ctx.role!=='admin') throw new Error('forbidden'); return next(); });\nexport const appRouter = t.router({ secret: t.procedure.use(isAdmin).query(()=> 'top-secret') });\nexport type AppRouter = typeof appRouter;\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "strike-hono-openapi-swagger-ui-route",
+  "name": "Hono OpenAPI + Swagger UI ルート",
+  "version": "1.0.0",
+  "stack": ["hono","openapi"],
+  "tags": ["api","docs","strike"],
+  "description": "HonoでSwagger UIをホストする雛形（概念）。",
+  "files": [
+    { "path": "src/hono/swagger.ts", "template": "export function swagger(){ return '<html>swagger</html>'; }\n" }
+  ]
+}
+

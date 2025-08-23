@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-middleware-rate-limit-headers-minimal",
+  "name": "Next.js Middleware レート制限ヘッダ 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["middleware", "rate-limit"],
+  "description": "X-RateLimit-* を付与する概念最小",
+  "params": [ { "name": "app_name", "default": "next-rl" } ],
+  "files": [
+    { "path": "{{app_name}}/middleware.ts", "template": "import { NextResponse } from 'next/server';\nexport function middleware(){ const res = NextResponse.next(); res.headers.set('X-RateLimit-Limit','60'); res.headers.set('X-RateLimit-Remaining','59'); return res; }\n" }
+  ]
+}
+

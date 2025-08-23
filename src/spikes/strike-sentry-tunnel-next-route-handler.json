@@ -1,0 +1,12 @@
+{
+  "id": "strike-sentry-tunnel-next-route-handler",
+  "name": "Sentry トンネル (Next Route Handler)",
+  "version": "1.0.0",
+  "stack": ["nextjs","sentry"],
+  "tags": ["observability","tunnel","strike"],
+  "description": "SentryトンネルエンドポイントのRoute Handler雛形。",
+  "files": [
+    { "path": "app/api/sentry-tunnel/route.ts", "template": "export async function POST(){ return new Response('', { status: 204 }); }\n" }
+  ]
+}
+

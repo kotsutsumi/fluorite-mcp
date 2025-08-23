@@ -1,0 +1,13 @@
+{
+  "id": "tanstack-query-mutation-invalidate-minimal",
+  "name": "TanStack Query Mutation+Invalidate 最小",
+  "version": "1.0.0",
+  "stack": ["react", "tanstack-query"],
+  "tags": ["data-fetching"],
+  "description": "mutation 後に queryClient.invalidateQueries する最小例",
+  "params": [ { "name": "app_name", "default": "rq-mutation" } ],
+  "files": [
+    { "path": "{{app_name}}/src/query.tsx", "template": "import { QueryClient, QueryClientProvider, useQuery, useMutation, useQueryClient } from '@tanstack/react-query';\nconst qc = new QueryClient();\nfunction Inner(){ const client = useQueryClient(); const q = useQuery({ queryKey:['items'], queryFn: async()=>[] }); const m = useMutation({ mutationFn: async()=>{}, onSuccess: ()=> client.invalidateQueries({ queryKey:['items'] }) }); return <button onClick={()=>m.mutate()}>mutate</button>; }\nexport default function App(){ return <QueryClientProvider client={qc}><Inner/></QueryClientProvider>; }\n" }
+  ]
+}
+

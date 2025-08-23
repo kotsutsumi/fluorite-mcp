@@ -1,0 +1,12 @@
+{
+  "id": "strike-drizzle-schema-relations-advanced",
+  "name": "Drizzle スキーマ リレーション(上級)",
+  "version": "1.0.0",
+  "stack": ["drizzle","postgres"],
+  "tags": ["db","schema","strike"],
+  "description": "1対多/多対多の定義を含むDrizzleスキーマ雛形。",
+  "files": [
+    { "path": "src/db/schema.ts", "template": "import { pgTable, serial, text, integer } from 'drizzle-orm/pg-core';\nexport const users = pgTable('users', { id: serial('id').primaryKey(), email: text('email').notNull() });\nexport const posts = pgTable('posts', { id: serial('id').primaryKey(), userId: integer('user_id').notNull(), title: text('title').notNull() });\n" }
+  ]
+}
+

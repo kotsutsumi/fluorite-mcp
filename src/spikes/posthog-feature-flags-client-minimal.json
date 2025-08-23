@@ -1,0 +1,13 @@
+{
+  "id": "posthog-feature-flags-client-minimal",
+  "name": "PostHog Feature Flags client 最小",
+  "version": "1.0.0",
+  "stack": ["posthog", "react"],
+  "tags": ["analytics", "flags"],
+  "description": "client で feature flag を評価して分岐",
+  "params": [ { "name": "app_name", "default": "posthog-flags" } ],
+  "files": [
+    { "path": "{{app_name}}/App.tsx", "template": "import posthog from 'posthog-js';\nimport { useEffect, useState } from 'react';\nexport default function App(){ const [on,setOn] = useState(false); useEffect(()=>{ posthog.init('key'); setOn(posthog.isFeatureEnabled('beta')); },[]); return <div>{on ? 'ON' : 'OFF'}</div>; }\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "prisma-include-select-minimal",
+  "name": "Prisma include/select 最小",
+  "version": "1.0.0",
+  "stack": ["prisma"],
+  "tags": ["db"],
+  "description": "include と select の最小使用例",
+  "params": [ { "name": "app_name", "default": "prisma-include" } ],
+  "files": [
+    { "path": "{{app_name}}/src/include.ts", "template": "import { PrismaClient } from '@prisma/client';\nconst prisma = new PrismaClient();\nexport async function getPost(id:number){ return prisma.post.findUnique({ where:{ id }, include: { author: { select: { email: true } } } }); }\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "apollo-client-typepolicy-keyfields-fn-minimal",
+  "name": "Apollo Client keyFields 関数 最小",
+  "version": "1.0.0",
+  "stack": ["react", "apollo"],
+  "tags": ["graphql", "client", "cache"],
+  "description": "keyFields を関数で定義してID生成をカスタム",
+  "params": [ { "name": "app_name", "default": "apollo-keyfn" } ],
+  "files": [
+    { "path": "{{app_name}}/src/apollo/cache.ts", "template": "import { InMemoryCache } from '@apollo/client';\nexport const cache = new InMemoryCache({ typePolicies: { Item: { keyFields: (obj)=> `${obj.category}:${obj.id}` } } });\n" }
+  ]
+}
+

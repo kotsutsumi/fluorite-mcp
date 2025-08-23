@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-opengraph-image-route-minimal",
+  "name": "Next.js OpenGraph Image Route 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["seo", "image"],
+  "description": "OG画像を返す route.ts の最小例（ダミー画像）",
+  "params": [ { "name": "app_name", "default": "next-og" } ],
+  "files": [
+    { "path": "{{app_name}}/app/og/route.ts", "template": "export async function GET(){ const data = new Uint8Array([137,80,78,71]); return new Response(data, { headers: { 'Content-Type': 'image/png' } }); }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "strike-paddle-webhook-minimal",
+  "name": "Paddle Webhook 受信(最小)",
+  "version": "1.0.0",
+  "stack": ["paddle","nextjs"],
+  "tags": ["billing","webhook","strike"],
+  "description": "PaddleのWebhook受信の最小雛形（擬似実装）。",
+  "files": [
+    { "path": "app/api/webhooks/paddle/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(req: Request){ const json = await req.json(); return NextResponse.json({ received: true, event: json?.event_type }); }\n" }
+  ]
+}
+

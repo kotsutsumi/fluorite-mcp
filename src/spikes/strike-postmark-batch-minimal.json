@@ -1,0 +1,12 @@
+{
+  "id": "strike-postmark-batch-minimal",
+  "name": "Postmark バッチ送信(最小)",
+  "version": "1.0.0",
+  "stack": ["postmark"],
+  "tags": ["email","batch","strike"],
+  "description": "Postmarkのバッチ送信の雛形（擬似実装）。",
+  "files": [
+    { "path": "src/email/postmark.ts", "template": "export async function sendBatch(items: { to: string; subject: string; html: string }[]){ return { count: items.length }; }\n" }
+  ]
+}
+

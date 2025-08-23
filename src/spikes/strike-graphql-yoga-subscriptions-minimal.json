@@ -1,0 +1,13 @@
+{
+  "id": "strike-graphql-yoga-subscriptions-minimal",
+  "name": "GraphQL Yoga Subscriptions 最小",
+  "version": "1.0.0",
+  "stack": ["graphql-yoga"],
+  "tags": ["graphql", "realtime"],
+  "description": "GraphQL YogaでSubscriptionの最小構成（スタブ）",
+  "params": [],
+  "files": [
+    { "path": "src/graphql/server.ts", "template": "export const typeDefs = `type Query { hello: String! }`;\nexport const resolvers = { Query: { hello: () => 'world' } };\n" }
+  ]
+}
+

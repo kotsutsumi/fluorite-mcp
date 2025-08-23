@@ -1,0 +1,13 @@
+{
+  "id": "zod-transform-datetime-iso-minimal",
+  "name": "Zod transform ISO日時 最小",
+  "version": "1.0.0",
+  "stack": ["zod"],
+  "tags": ["validation", "transform"],
+  "description": "文字列→Date→ISO文字列への変換最小例",
+  "params": [ { "name": "app_name", "default": "zod-iso" } ],
+  "files": [
+    { "path": "{{app_name}}/schema.ts", "template": "import { z } from 'zod';\nexport const S = z.string().transform((s)=> new Date(s)).transform((d)=> d.toISOString());\n" }
+  ]
+}
+

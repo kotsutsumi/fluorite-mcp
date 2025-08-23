@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-edge-runtime-route-minimal",
+  "name": "Next.js Edge runtime Route 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["edge", "route"],
+  "description": "runtime を edge に設定した最小 Route Handler",
+  "params": [ { "name": "app_name", "default": "next-edge-route" } ],
+  "files": [
+    { "path": "{{app_name}}/app/api/edge/route.ts", "template": "export const runtime = 'edge';\nexport async function GET(){ return new Response('edge'); }\n" }
+  ]
+}
+

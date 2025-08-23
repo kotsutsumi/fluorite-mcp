@@ -1,0 +1,13 @@
+{
+  "id": "strike-posthog-nextjs-capture-minimal",
+  "name": "PostHog + Next.js イベント最小",
+  "version": "1.0.0",
+  "stack": ["posthog", "nextjs"],
+  "tags": ["analytics", "ui"],
+  "description": "PostHogのイベント送信スタブ",
+  "params": [],
+  "files": [
+    { "path": "app/page.tsx", "template": "export default function Page(){ return <button onClick={()=>console.log('capture')}>capture</button>; }\n" }
+  ]
+}
+

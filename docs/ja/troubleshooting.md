@@ -297,7 +297,7 @@ chmod -R 755 ~/.fluorite/
    - URL: https://github.com/kotsutsumi/fluorite-mcp/issues
 
 3. **ドキュメント**: 包括的なガイド
-   - URL: https://kotsutsumi.github.io/fluorite-mcp
+   - README.mdおよびdocs/フォルダを参照
 
 ### バグ報告時の情報
 

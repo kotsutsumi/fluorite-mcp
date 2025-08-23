@@ -1,0 +1,12 @@
+{
+  "id": "strike-nextjs-openapi-hono-handler",
+  "name": "Next.js + Hono(OpenAPI) Route Handler",
+  "version": "1.0.0",
+  "stack": ["nextjs","hono","openapi"],
+  "tags": ["api","openapi","strike"],
+  "description": "HonoベースのRoute Handler雛形（OpenAPI連携前提の最小）。",
+  "files": [
+    { "path": "app/api/hono/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function GET(){ return NextResponse.json({ hello: 'hono' }); }\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "trpc-nextjs-batch-link-minimal",
+  "name": "tRPC × Next.js batchLink 最小",
+  "version": "1.0.0",
+  "stack": ["trpc", "nextjs"],
+  "tags": ["api"],
+  "description": "clientでhttpBatchLinkを使う最小例（概念）",
+  "params": [ { "name": "app_name", "default": "trpc-batch" } ],
+  "files": [
+    { "path": "{{app_name}}/src/trpc/client.ts", "template": "import { httpBatchLink, createTRPCProxyClient } from '@trpc/client';\nimport type { AppRouter } from '../server/router';\nexport const client = createTRPCProxyClient<AppRouter>({ links: [httpBatchLink({ url: '/api/trpc' })] });\n" }
+  ]
+}
+

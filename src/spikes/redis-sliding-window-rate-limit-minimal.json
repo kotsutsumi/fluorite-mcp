@@ -1,0 +1,13 @@
+{
+  "id": "redis-sliding-window-rate-limit-minimal",
+  "name": "Redis スライディングウィンドウレート制限 最小",
+  "version": "1.0.0",
+  "stack": ["redis"],
+  "tags": ["rate-limit"],
+  "description": "ZSETを使ったスライディングウィンドウ制限の最小例",
+  "params": [ { "name": "app_name", "default": "redis-rate" } ],
+  "files": [
+    { "path": "{{app_name}}/rate.js", "template": "import Redis from 'ioredis';\nconst r = new Redis();\nexport async function allow(key, limit=60, windowMs=60000){ const now=Date.now(); const min=now-windowMs; await r.zremrangebyscore(key, 0, min); await r.zadd(key, now, String(now)); const count = await r.zcard(key); await r.pexpire(key, windowMs); return count <= limit; }\n" }
+  ]
+}
+

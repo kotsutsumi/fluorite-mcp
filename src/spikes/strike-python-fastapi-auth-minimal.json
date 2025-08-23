@@ -1,0 +1,13 @@
+{
+  "id": "strike-python-fastapi-auth-minimal",
+  "name": "Python FastAPI 認証 最小",
+  "version": "1.0.0",
+  "stack": ["python", "fastapi"],
+  "tags": ["rest", "auth"],
+  "description": "FastAPIでの簡易認証付きAPIの最小",
+  "params": [],
+  "files": [
+    { "path": "py/app.py", "template": "from fastapi import FastAPI, HTTPException, Header\napp = FastAPI()\n@app.get('/health')\nasync def health():\n    return { 'ok': True }\n@app.get('/secure')\nasync def secure(x_token: str | None = Header(default=None)):\n    if x_token != 'secret':\n        raise HTTPException(status_code=401, detail='unauthorized')\n    return { 'ok': True }\n" }
+  ]
+}
+

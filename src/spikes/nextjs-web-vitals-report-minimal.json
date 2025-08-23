@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-web-vitals-report-minimal",
+  "name": "Next.js Web Vitals Report 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["observability", "web-vitals"],
+  "description": "App Router で web vitals を console ログ送出する最小例",
+  "params": [ { "name": "app_name", "default": "next-vitals" } ],
+  "files": [
+    { "path": "{{app_name}}/app/vitals.ts", "template": "export function reportWebVitals(metric: any){ console.log(metric); }\n" }
+  ]
+}
+

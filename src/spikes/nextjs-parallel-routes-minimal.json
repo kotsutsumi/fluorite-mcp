@@ -1,0 +1,15 @@
+{
+  "id": "nextjs-parallel-routes-minimal",
+  "name": "Next.js Parallel Routes 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["routes"],
+  "description": "parallel routes(@slot) の最小例",
+  "params": [ { "name": "app_name", "default": "next-parallel" } ],
+  "files": [
+    { "path": "{{app_name}}/app/@a/page.tsx", "template": "export default function A(){ return <div>A</div>; }\n" },
+    { "path": "{{app_name}}/app/@b/page.tsx", "template": "export default function B(){ return <div>B</div>; }\n" },
+    { "path": "{{app_name}}/app/page.tsx", "template": "export default function Page({ a, b }: any){ return (<div>{a}{b}</div>); }\n" }
+  ]
+}
+

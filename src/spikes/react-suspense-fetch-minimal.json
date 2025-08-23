@@ -1,0 +1,13 @@
+{
+  "id": "react-suspense-fetch-minimal",
+  "name": "React Suspense fetch 最小",
+  "version": "1.0.0",
+  "stack": ["react"],
+  "tags": ["suspense"],
+  "description": "簡易的なラッパでSuspense対応fetchの最小例（概念）",
+  "params": [ { "name": "app_name", "default": "react-suspense" } ],
+  "files": [
+    { "path": "{{app_name}}/App.tsx", "template": "import React, { Suspense } from 'react';\nfunction wrap(p){ let s='pending', v; const pr = p.then(r=>{ s='success'; v=r; }, e=>{ s='error'; v=e; }); return { read(){ if(s==='pending') throw pr; if(s==='error') throw v; return v; } }; }\nconst resource = wrap(fetch('https://example.com').then(r=>r.text()));\nfunction Inner(){ return <div>{resource.read()}</div>; }\nexport default function App(){ return <Suspense fallback={<div>...</div>}><Inner/></Suspense>; }\n" }
+  ]
+}
+

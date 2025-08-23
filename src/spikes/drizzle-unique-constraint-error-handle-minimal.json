@@ -1,0 +1,13 @@
+{
+  "id": "drizzle-unique-constraint-error-handle-minimal",
+  "name": "Drizzle 一意制約エラーハンドリング 最小",
+  "version": "1.0.0",
+  "stack": ["drizzle", "sqlite"],
+  "tags": ["db", "error"],
+  "description": "一意制約違反時の最小try/catchハンドリング（概念）",
+  "params": [ { "name": "app_name", "default": "drizzle-unique" } ],
+  "files": [
+    { "path": "{{app_name}}/src/db/unique.ts", "template": "import { drizzle } from 'drizzle-orm/better-sqlite3';\nimport Database from 'better-sqlite3';\nimport { sqliteTable, integer, text } from 'drizzle-orm/sqlite-core';\nconst sqlite = new Database('app.db');\nconst db = drizzle(sqlite);\nconst users = sqliteTable('users', { id: integer('id').primaryKey(), email: text('email').unique().notNull() });\nexport async function createUser(email: string){ try { await db.insert(users).values({ email }); return { ok:true }; } catch(e){ return { ok:false, reason:'maybe-duplicate' }; } }\n" }
+  ]
+}
+

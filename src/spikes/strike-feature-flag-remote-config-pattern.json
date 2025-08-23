@@ -1,0 +1,12 @@
+{
+  "id": "strike-feature-flag-remote-config-pattern",
+  "name": "リモート設定 + フィーチャーフラグ パターン",
+  "version": "1.0.0",
+  "stack": ["flags"],
+  "tags": ["config","flags","strike"],
+  "description": "リモート設定を取得しフラグ評価する共通パターン（擬似）。",
+  "files": [
+    { "path": "src/flags/config.ts", "template": "export async function getConfig(){ return { newUI: true }; }\n" }
+  ]
+}
+

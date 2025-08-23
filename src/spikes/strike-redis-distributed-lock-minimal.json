@@ -1,0 +1,12 @@
+{
+  "id": "strike-redis-distributed-lock-minimal",
+  "name": "Redis 分散ロック(最小)",
+  "version": "1.0.0",
+  "stack": ["redis"],
+  "tags": ["lock","concurrency","strike"],
+  "description": "Redisを使った分散ロックの最小雛形（概念）。",
+  "files": [
+    { "path": "src/lock/redis.ts", "template": "export async function withLock(_key: string, fn: ()=>Promise<any>){ return await fn(); }\n" }
+  ]
+}
+

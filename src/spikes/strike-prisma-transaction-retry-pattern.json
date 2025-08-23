@@ -1,0 +1,12 @@
+{
+  "id": "strike-prisma-transaction-retry-pattern",
+  "name": "Prisma トランザクション リトライ パターン",
+  "version": "1.0.0",
+  "stack": ["prisma"],
+  "tags": ["db","retry","strike"],
+  "description": "一時的失敗時にリトライするトランザクション雛形（概念）。",
+  "files": [
+    { "path": "src/prisma/retry.ts", "template": "export async function withRetry<T>(fn: ()=>Promise<T>, attempts=3){ let i=0; while(true){ try{ return await fn(); } catch(e){ if(++i>=attempts) throw e; await new Promise(r=>setTimeout(r, i*100)); } } }\n" }
+  ]
+}
+

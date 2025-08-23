@@ -1,0 +1,13 @@
+{
+  "id": "strike-nextjs-rsc-form-action-zod",
+  "name": "Next.js RSC Form Action + Zod",
+  "version": "1.0.0",
+  "stack": ["nextjs","zod","rsc"],
+  "tags": ["form","validation","strike"],
+  "description": "RSCのフォームアクションでZodバリデーションを行う雛形。",
+  "files": [
+    { "path": "app/actions/submit.ts", "template": "'use server';\nimport { z } from 'zod';\nconst Form = z.object({ name: z.string().min(1) });\nexport async function submit(formData: FormData){ const parsed = Form.safeParse({ name: String(formData.get('name')||'') }); if(!parsed.success) return { ok:false, error: parsed.error.flatten() }; return { ok:true, data: parsed.data }; }\n" },
+    { "path": "app/form/page.tsx", "template": "export default function Page(){ return (<form action={async (fd)=>{ 'use server'; /* bind to submit action */ }}>{/* name */}<input name=\"name\" /><button>Save</button></form>); }\n" }
+  ]
+}
+

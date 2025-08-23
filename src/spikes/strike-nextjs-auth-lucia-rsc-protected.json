@@ -1,0 +1,12 @@
+{
+  "id": "strike-nextjs-auth-lucia-rsc-protected",
+  "name": "Next.js + Lucia (RSC保護)",
+  "version": "1.0.0",
+  "stack": ["nextjs","lucia","rsc"],
+  "tags": ["auth","rsc","strike"],
+  "description": "Luciaを用いたRSCの保護ページ雛形。",
+  "files": [
+    { "path": "app/protected/page.tsx", "template": "export default async function Page(){ /* 実際は lucia で認証確認 */ return <div>Protected (Lucia)</div>; }\n" }
+  ]
+}
+

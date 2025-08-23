@@ -1,0 +1,13 @@
+{
+  "id": "react-hook-form-controller-minimal",
+  "name": "React Hook Form Controller 最小",
+  "version": "1.0.0",
+  "stack": ["react", "react-hook-form"],
+  "tags": ["forms"],
+  "description": "Controller でカスタムコンポーネントを制御する最小例",
+  "params": [ { "name": "app_name", "default": "rhf-controller" } ],
+  "files": [
+    { "path": "{{app_name}}/src/Form.tsx", "template": "import { useForm, Controller } from 'react-hook-form';\nexport default function FormCmp(){ const { control, handleSubmit } = useForm<{ name:string }>(); return (<form onSubmit={handleSubmit(()=>{})}><Controller control={control} name='name' render={({ field })=> (<input {...field} />)} /></form>); }\n" }
+  ]
+}
+

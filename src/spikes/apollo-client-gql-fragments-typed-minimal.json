@@ -1,0 +1,13 @@
+{
+  "id": "apollo-client-gql-fragments-typed-minimal",
+  "name": "Apollo Client gql fragments 型付け 最小",
+  "version": "1.0.0",
+  "stack": ["react", "apollo"],
+  "tags": ["graphql", "client"],
+  "description": "フラグメントをgqlで分割し再利用する最小例",
+  "params": [ { "name": "app_name", "default": "apollo-frags" } ],
+  "files": [
+    { "path": "{{app_name}}/src/apollo/fragments.ts", "template": "import { gql } from '@apollo/client';\nexport const POST_FIELDS = gql`fragment PostFields on Post { id title }`;\nexport const GET_POSTS = gql`query { posts { ...PostFields } } ${POST_FIELDS}`;\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "strike-resend-transactional-minimal",
+  "name": "Resend 取引メール 送信(最小)",
+  "version": "1.0.0",
+  "stack": ["resend"],
+  "tags": ["email","strike"],
+  "description": "Resendでの取引メール送信の最小例（擬似実装）。",
+  "files": [
+    { "path": "src/email/resend.ts", "template": "export async function sendTransactional(to: string, subject: string, html: string){ return { to, subject, html }; }\n" }
+  ]
+}
+

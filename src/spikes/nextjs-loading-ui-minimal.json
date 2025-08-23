@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-loading-ui-minimal",
+  "name": "Next.js loading.tsx 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["loading", "rsc"],
+  "description": "App Routerのloading.tsxの最小例",
+  "params": [ { "name": "app_name", "default": "next-loading" } ],
+  "files": [
+    { "path": "{{app_name}}/app/loading.tsx", "template": "export default function Loading(){ return <div>Loading...</div>; }\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "strike-nextjs-feature-flags-launchdarkly-middleware",
+  "name": "Next.js Feature Flags (LaunchDarkly + middleware)",
+  "version": "1.0.0",
+  "stack": ["nextjs","launchdarkly"],
+  "tags": ["flags","middleware","strike"],
+  "description": "LaunchDarklyのフラグをミドルウェアで読み取り反映する雛形。",
+  "files": [
+    { "path": "src/flags/launchdarkly.ts", "template": "export async function getFlag(_key: string){ return true; }\n" },
+    { "path": "middleware.ts", "template": "import { NextResponse } from 'next/server';\nimport { getFlag } from '@/src/flags/launchdarkly';\nexport async function middleware(){ const on = await getFlag('new-ui'); const res = NextResponse.next(); res.headers.set('x-flag-new-ui', String(on)); return res; }\n" }
+  ]
+}
+

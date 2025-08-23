@@ -1,0 +1,13 @@
+{
+  "id": "strike-openapi-express-zod-minimal",
+  "name": "OpenAPI + Express + Zod 最小",
+  "version": "1.0.0",
+  "stack": ["openapi", "express", "zod"],
+  "tags": ["api", "validation"],
+  "description": "OpenAPI契約を意識したExpress + Zodバリデーションの最小",
+  "params": [],
+  "files": [
+    { "path": "src/server.ts", "template": "import express from 'express';\nimport { z } from 'zod';\nconst app = express();\napp.use(express.json());\nconst Body = z.object({ name: z.string() });\napp.post('/users', (req, res)=>{ const parsed = Body.safeParse(req.body); if(!parsed.success) return res.status(400).json(parsed.error.format()); res.json({ id: 1, name: parsed.data.name }); });\napp.listen(3000);\n" }
+  ]
+}
+

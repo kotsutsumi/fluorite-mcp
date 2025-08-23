@@ -1,0 +1,14 @@
+{
+  "id": "trpc-nextjs-app-router-protected-minimal",
+  "name": "tRPC × Next.js App Router Protected 最小",
+  "version": "1.0.0",
+  "stack": ["trpc", "nextjs"],
+  "tags": ["api", "auth"],
+  "description": "簡易な認証コンテキスト付き tRPC ルータの最小例",
+  "params": [ { "name": "app_name", "default": "trpc-protected" } ],
+  "files": [
+    { "path": "{{app_name}}/src/trpc/context.ts", "template": "export type Context = { userId?: string };\nexport async function createContext(): Promise<Context>{ return { userId: process.env.DEMO_USER_ID }; }\n" },
+    { "path": "{{app_name}}/src/trpc/router.ts", "template": "import { initTRPC } from '@trpc/server';\nimport type { Context } from './context';\nconst t = initTRPC.context<Context>().create();\nconst isAuthed = t.middleware(({ ctx, next }) => { if (!ctx.userId) throw new Error('UNAUTHORIZED'); return next(); });\nexport const appRouter = t.router({ me: t.procedure.use(isAuthed).query(({ ctx })=> ({ id: ctx.userId })) });\nexport type AppRouter = typeof appRouter;\n" }
+  ]
+}
+

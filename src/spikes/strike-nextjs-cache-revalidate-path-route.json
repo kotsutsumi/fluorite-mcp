@@ -1,0 +1,12 @@
+{
+  "id": "strike-nextjs-cache-revalidate-path-route",
+  "name": "Next.js Revalidate Path ルート",
+  "version": "1.0.0",
+  "stack": ["nextjs","cache"],
+  "tags": ["revalidate","path","strike"],
+  "description": "Path指定で再検証を行うAPI雛形（擬似実装）。",
+  "files": [
+    { "path": "app/api/revalidate/path/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(req: Request){ const { path } = await req.json(); return NextResponse.json({ revalidated: true, path }); }\n" }
+  ]
+}
+

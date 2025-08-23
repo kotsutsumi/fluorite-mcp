@@ -1,0 +1,13 @@
+{
+  "id": "apollo-server-usage-logging-plugin-minimal",
+  "name": "Apollo Server usage logging plugin 最小",
+  "version": "1.0.0",
+  "stack": ["apollo", "graphql"],
+  "tags": ["server", "logging"],
+  "description": "リクエスト/レスポンス時間をログする最小プラグイン",
+  "params": [ { "name": "app_name", "default": "apollo-usage-log" } ],
+  "files": [
+    { "path": "{{app_name}}/src/server.ts", "template": "import { ApolloServer } from '@apollo/server';\nimport { startStandaloneServer } from '@apollo/server/standalone';\nconst typeDefs = `type Query { ok: Boolean! }`;\nconst resolvers = { Query: { ok: ()=> true } };\nconst server = new ApolloServer({ typeDefs, resolvers, plugins: [{ async requestDidStart(){ const start = Date.now(); return { async willSendResponse(){ console.log('duration', Date.now()-start); } }; } }] });\nstartStandaloneServer(server, { listen: { port: 4000 } });\n" }
+  ]
+}
+

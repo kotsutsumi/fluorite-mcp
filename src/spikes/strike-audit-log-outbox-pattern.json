@@ -1,0 +1,12 @@
+{
+  "id": "strike-audit-log-outbox-pattern",
+  "name": "監査ログ Outbox パターン",
+  "version": "1.0.0",
+  "stack": ["audit","outbox"],
+  "tags": ["pattern","reliability","strike"],
+  "description": "DBにOutboxを蓄積し、非同期で配信するパターン（概念）。",
+  "files": [
+    { "path": "src/outbox/store.ts", "template": "export async function add(event: any){ return true; }\nexport async function pullBatch(){ return []; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "strike-otel-nextjs-tracing",
+  "name": "OpenTelemetry Tracing (Next.js)",
+  "version": "1.0.0",
+  "stack": ["nextjs","opentelemetry"],
+  "tags": ["tracing","observability","strike"],
+  "description": "Next.jsでOTELトレーシングを初期化する雛形（概念）。",
+  "files": [
+    { "path": "src/otel/init.ts", "template": "export function initOTel(){ /* 実装時に @opentelemetry/sdk-node 等を利用 */ return true; }\n" }
+  ]
+}
+

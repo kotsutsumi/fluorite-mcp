@@ -1,0 +1,13 @@
+{
+  "id": "strike-bullmq-queue-worker-starter",
+  "name": "BullMQ Queue/Worker スタータ",
+  "version": "1.0.0",
+  "stack": ["bullmq"],
+  "tags": ["queue","worker","strike"],
+  "description": "Queue追加とWorker処理の最小スタータ（擬似実装）。",
+  "files": [
+    { "path": "src/queue/queue.ts", "template": "export async function enqueue(name: string, data: any){ return { name, data }; }\n" },
+    { "path": "src/queue/worker.ts", "template": "export async function startWorker(){ /* 実装時に bullmq を利用 */ return true; }\n" }
+  ]
+}
+

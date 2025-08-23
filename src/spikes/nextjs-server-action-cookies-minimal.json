@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-server-action-cookies-minimal",
+  "name": "Next.js Server Action cookies 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["rsc", "cookies"],
+  "description": "Server Action で cookies() を読む最小例",
+  "params": [ { "name": "app_name", "default": "next-sa-cookies" } ],
+  "files": [
+    { "path": "{{app_name}}/app/actions/readCookies.ts", "template": "'use server';\nimport { cookies } from 'next/headers';\nexport async function readCookies(){ const c = cookies(); return { session: c.get('session')?.value || null }; }\n" }
+  ]
+}
+

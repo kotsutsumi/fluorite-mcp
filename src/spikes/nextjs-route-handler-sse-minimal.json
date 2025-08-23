@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-route-handler-sse-minimal",
+  "name": "Next.js Route Handler SSE 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["route", "sse"],
+  "description": "text/event-stream でサーバー送信イベントを返す最小例",
+  "params": [ { "name": "app_name", "default": "next-sse" } ],
+  "files": [
+    { "path": "{{app_name}}/app/api/sse/route.ts", "template": "export async function GET(){ const stream = new ReadableStream({ start(c){ c.enqueue(new TextEncoder().encode('data: hello\\n\\n')); c.close(); } }); return new Response(stream, { headers: { 'Content-Type': 'text/event-stream' } }); }\n" }
+  ]
+}
+

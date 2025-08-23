@@ -1,0 +1,12 @@
+{
+  "id": "strike-graphql-yoga-next-route-minimal",
+  "name": "GraphQL Yoga Next Route(最小)",
+  "version": "1.0.0",
+  "stack": ["graphql-yoga","nextjs"],
+  "tags": ["graphql","server","strike"],
+  "description": "GraphQL YogaをNext.js Route Handlerで使う最小雛形（概念）。",
+  "files": [
+    { "path": "app/api/yoga/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(){ return NextResponse.json({ data: { hello: 'world' } }); }\n" }
+  ]
+}
+

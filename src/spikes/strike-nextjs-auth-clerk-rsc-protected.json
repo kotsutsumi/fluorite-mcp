@@ -1,0 +1,12 @@
+{
+  "id": "strike-nextjs-auth-clerk-rsc-protected",
+  "name": "Next.js + Clerk (RSC保護)",
+  "version": "1.0.0",
+  "stack": ["nextjs","clerk","rsc"],
+  "tags": ["auth","rsc","strike"],
+  "description": "Clerkを用いたRSCの保護ページ雛形。",
+  "files": [
+    { "path": "app/protected/page.tsx", "template": "export default async function Page(){ /* 実際は auth() 等で認証確認 */ return <div>Protected</div>; }\n" }
+  ]
+}
+

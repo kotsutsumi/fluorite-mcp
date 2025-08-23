@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-route-handler-cors-preflight-minimal",
+  "name": "Next.js Route Handler CORS preflight 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["route", "cors"],
+  "description": "OPTIONS で簡易CORS応答を返す最小例",
+  "params": [ { "name": "app_name", "default": "next-cors" } ],
+  "files": [
+    { "path": "{{app_name}}/app/api/items/route.ts", "template": "export async function OPTIONS(){ return new Response(null, { headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS', 'Access-Control-Allow-Headers': 'content-type' } }); }\nexport async function GET(){ return new Response('ok', { headers: { 'Access-Control-Allow-Origin': '*' } }); }\n" }
+  ]
+}
+

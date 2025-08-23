@@ -162,9 +162,9 @@ jobs:
                       'npm install -g fluorite-mcp\n' +
                       '```\n\n' +
                       '### Documentation\n' +
-                      '- 📚 [Full Documentation](https://kotsutsumi.github.io/fluorite-mcp/)\n' +
-                      '- 🧪 [Spike Templates](https://kotsutsumi.github.io/fluorite-mcp/spike-templates)\n' +
-                      '- 🛡️ [Static Analysis](https://kotsutsumi.github.io/fluorite-mcp/static-analysis)\n\n' +
+                      '- 📚 完全なドキュメント: README.md および docs/ フォルダを参照\n' +
+                      '- 🧪 スパイクテンプレート: プロジェクト内のテンプレートカタログ\n' +
+                      '- 🛡️ 静的解析: 組み込み解析機能\n\n' +
                       '### Changes\n' +
                       '```\n' +
                       context.payload.head_commit.message + '\n' +
@@ -267,7 +267,7 @@ jobs:
           echo ""
           echo "🔗 Links:"
           echo "   📦 NPM: https://www.npmjs.com/package/fluorite-mcp"
-          echo "   📚 Docs: https://kotsutsumi.github.io/fluorite-mcp/"
+          echo "   📚 Docs: README.mdおよびdocs/フォルダを参照"
           echo "   🐙 GitHub: https://github.com/kotsutsumi/fluorite-mcp"
           echo ""
           echo "📝 To publish to NPM manually, run:"

@@ -1,0 +1,12 @@
+{
+  "id": "strike-nextjs-webpush-notifications-route",
+  "name": "Next.js Web Push 通知 ルート",
+  "version": "1.0.0",
+  "stack": ["nextjs","webpush"],
+  "tags": ["notifications","strike"],
+  "description": "Web Push通知をトリガーするAPI雛形（概念）。",
+  "files": [
+    { "path": "app/api/notify/push/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(){ return NextResponse.json({ ok: true }); }\n" }
+  ]
+}
+

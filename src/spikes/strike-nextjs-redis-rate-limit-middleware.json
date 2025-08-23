@@ -1,0 +1,13 @@
+{
+  "id": "strike-nextjs-redis-rate-limit-middleware",
+  "name": "Next.js + Redis レートリミット (middleware)",
+  "version": "1.0.0",
+  "stack": ["nextjs","redis"],
+  "tags": ["middleware","rate-limit","strike"],
+  "description": "簡易レートリミットのミドルウェア雛形。",
+  "files": [
+    { "path": "src/redis/client.ts", "template": "export async function incr(_key: string){ return 1; }\n" },
+    { "path": "middleware.ts", "template": "import { NextResponse } from 'next/server';\nimport { incr } from '@/src/redis/client';\nexport async function middleware(){ const hits = await incr('ip'); if(hits > 100) return new Response('Too Many Requests', { status: 429 }); return NextResponse.next(); }\n" }
+  ]
+}
+

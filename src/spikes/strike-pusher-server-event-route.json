@@ -1,0 +1,12 @@
+{
+  "id": "strike-pusher-server-event-route",
+  "name": "Pusher サーバイベント ルート",
+  "version": "1.0.0",
+  "stack": ["pusher","nextjs"],
+  "tags": ["realtime","strike"],
+  "description": "Pusherへイベントを送るRoute雛形（擬似実装）。",
+  "files": [
+    { "path": "app/api/realtime/pusher/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(req: Request){ const { channel, event, data } = await req.json(); return NextResponse.json({ ok: true, channel, event, data }); }\n" }
+  ]
+}
+

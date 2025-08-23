@@ -1,0 +1,12 @@
+{
+  "id": "strike-nextjs-headers-cache-control-immutable",
+  "name": "Next.js Cache-Control immutable ヘッダ",
+  "version": "1.0.0",
+  "stack": ["nextjs","cache"],
+  "tags": ["headers","cache","strike"],
+  "description": "静的アセット向けにimmutableを返すmiddleware雛形。",
+  "files": [
+    { "path": "middleware.ts", "template": "import { NextResponse } from 'next/server';\nexport function middleware(){ const res = NextResponse.next(); res.headers.set('cache-control','public, max-age=31536000, immutable'); return res; }\n" }
+  ]
+}
+

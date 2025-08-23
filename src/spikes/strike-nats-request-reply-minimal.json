@@ -1,0 +1,12 @@
+{
+  "id": "strike-nats-request-reply-minimal",
+  "name": "NATS Request/Reply(最小)",
+  "version": "1.0.0",
+  "stack": ["nats"],
+  "tags": ["messaging","strike"],
+  "description": "NATSでリクエスト/レスポンスの最小雛形（概念）。",
+  "files": [
+    { "path": "src/messaging/nats.ts", "template": "export async function request(_subject: string, _data: any){ return { data: 'ok' }; }\n" }
+  ]
+}
+

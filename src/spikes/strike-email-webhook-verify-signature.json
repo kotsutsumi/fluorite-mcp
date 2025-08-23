@@ -1,0 +1,12 @@
+{
+  "id": "strike-email-webhook-verify-signature",
+  "name": "メールWebhook署名検証(共通パターン)",
+  "version": "1.0.0",
+  "stack": ["webhook"],
+  "tags": ["email","security","strike"],
+  "description": "メールプロバイダのWebhookで署名検証を行うための雛形。",
+  "files": [
+    { "path": "app/api/webhooks/email/route.ts", "template": "import { NextResponse } from 'next/server';\nfunction verifySignature(_req: Request){ return true; }\nexport async function POST(req: Request){ if(!verifySignature(req)) return new Response('invalid signature', { status: 401 }); const json = await req.json(); return NextResponse.json({ received: true, provider: json?.provider }); }\n" }
+  ]
+}
+

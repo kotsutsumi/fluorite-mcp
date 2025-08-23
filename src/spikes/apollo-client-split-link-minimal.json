@@ -1,0 +1,13 @@
+{
+  "id": "apollo-client-split-link-minimal",
+  "name": "Apollo Client split link 最小",
+  "version": "1.0.0",
+  "stack": ["react", "apollo"],
+  "tags": ["graphql", "client"],
+  "description": "split で条件に応じてリンクを切り替える最小例",
+  "params": [ { "name": "app_name", "default": "apollo-split" } ],
+  "files": [
+    { "path": "{{app_name}}/src/apollo/links.ts", "template": "import { ApolloClient, InMemoryCache, HttpLink, split } from '@apollo/client';\nimport { getMainDefinition } from '@apollo/client/utilities';\nconst httpLink = new HttpLink({ uri: '/graphql' });\nconst altLink = new HttpLink({ uri: '/alt' });\nconst link = split(({ query })=> { const def = getMainDefinition(query); return def.kind==='OperationDefinition' && def.operation==='subscription'; }, altLink, httpLink);\nexport const client = new ApolloClient({ link, cache: new InMemoryCache() });\n" }
+  ]
+}
+

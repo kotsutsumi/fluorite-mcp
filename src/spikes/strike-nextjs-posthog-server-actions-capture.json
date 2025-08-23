@@ -1,0 +1,13 @@
+{
+  "id": "strike-nextjs-posthog-server-actions-capture",
+  "name": "Next.js + PostHog (Server Actions capture)",
+  "version": "1.0.0",
+  "stack": ["nextjs","posthog"],
+  "tags": ["analytics","server-actions","strike"],
+  "description": "Server Actionsからイベントを送るための雛形。",
+  "files": [
+    { "path": "src/analytics/posthog.ts", "template": "export async function capture(event: string, props: Record<string, any>){ /* 実装時に posthog-js/ server sdk 利用 */ return { event, props }; }\n" },
+    { "path": "app/actions/track.ts", "template": "'use server';\nimport { capture } from '@/src/analytics/posthog';\nexport async function trackSignup(userId: string){ await capture('signup', { userId }); return { ok: true }; }\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "apollo-client-reactive-var-minimal",
+  "name": "Apollo Client reactive vars 最小",
+  "version": "1.0.0",
+  "stack": ["react", "apollo"],
+  "tags": ["graphql", "client", "state"],
+  "description": "makeVar と useReactiveVar の最小例",
+  "params": [ { "name": "app_name", "default": "apollo-rvar" } ],
+  "files": [
+    { "path": "{{app_name}}/src/apollo/vars.ts", "template": "import { makeVar, useReactiveVar } from '@apollo/client';\nexport const counterVar = makeVar(0);\nexport function useCounter(){ const v = useReactiveVar(counterVar); return { v, inc: ()=> counterVar(v+1) }; }\n" }
+  ]
+}
+

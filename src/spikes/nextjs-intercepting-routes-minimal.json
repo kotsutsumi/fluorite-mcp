@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-intercepting-routes-minimal",
+  "name": "Next.js Intercepting Routes 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["routes"],
+  "description": "(.) でのインターセプトルートの最小例",
+  "params": [ { "name": "app_name", "default": "next-intercept" } ],
+  "files": [
+    { "path": "{{app_name}}/app/feed/page.tsx", "template": "export default function Feed(){ return <div>Feed</div>; }\n" },
+    { "path": "{{app_name}}/app/(.)feed/post/page.tsx", "template": "export default function Post(){ return <div>Post Modal</div>; }\n" }
+  ]
+}
+

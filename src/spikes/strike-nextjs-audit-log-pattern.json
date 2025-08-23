@@ -1,0 +1,12 @@
+{
+  "id": "strike-nextjs-audit-log-pattern",
+  "name": "Next.js 監査ログ パターン",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["audit","logging","strike"],
+  "description": "重要操作の監査ログ記録のための雛形。",
+  "files": [
+    { "path": "src/logs/audit.ts", "template": "export async function audit(action: string, who: string, meta: Record<string, any> = {}){ return { action, who, meta, at: Date.now() }; }\n" }
+  ]
+}
+

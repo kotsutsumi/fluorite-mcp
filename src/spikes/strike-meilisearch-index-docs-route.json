@@ -1,0 +1,12 @@
+{
+  "id": "strike-meilisearch-index-docs-route",
+  "name": "Meilisearch ドキュメント登録 ルート",
+  "version": "1.0.0",
+  "stack": ["meilisearch","nextjs"],
+  "tags": ["search","strike"],
+  "description": "Meilisearchにドキュメントを登録するRoute（擬似実装）。",
+  "files": [
+    { "path": "app/api/search/index/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(req: Request){ const docs = await req.json(); return NextResponse.json({ indexed: docs?.length || 0 }); }\n" }
+  ]
+}
+

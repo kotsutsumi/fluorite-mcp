@@ -1,0 +1,13 @@
+{
+  "id": "bullmq-delayed-job-minimal",
+  "name": "BullMQ 遅延ジョブ 最小",
+  "version": "1.0.0",
+  "stack": ["bullmq"],
+  "tags": ["queue"],
+  "description": "delay オプションで遅延ジョブを投入する最小例",
+  "params": [ { "name": "app_name", "default": "bullmq-delay" } ],
+  "files": [
+    { "path": "{{app_name}}/queue.js", "template": "import { Queue, Worker } from 'bullmq';\nconst queue = new Queue('jobs');\nnew Worker('jobs', async (job)=>{ console.log('run', job.name); });\nawait queue.add('hello', {}, { delay: 5000 });\n" }
+  ]
+}
+

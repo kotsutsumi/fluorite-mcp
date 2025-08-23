@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-revalidate-path-minimal",
+  "name": "Next.js revalidatePath 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["cache", "revalidate"],
+  "description": "サーバアクションで revalidatePath を呼ぶ最小例",
+  "params": [ { "name": "app_name", "default": "next-revalidate-path" } ],
+  "files": [
+    { "path": "{{app_name}}/app/actions/rev.ts", "template": "'use server';\nimport { revalidatePath } from 'next/cache';\nexport async function revalidate(){ revalidatePath('/'); return { ok: true }; }\n" }
+  ]
+}
+

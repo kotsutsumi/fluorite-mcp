@@ -1,0 +1,13 @@
+{
+  "id": "prisma-json-field-minimal",
+  "name": "Prisma JSON フィールド 最小",
+  "version": "1.0.0",
+  "stack": ["prisma"],
+  "tags": ["db", "json"],
+  "description": "JSON型フィールドの最小例",
+  "params": [ { "name": "app_name", "default": "prisma-json" } ],
+  "files": [
+    { "path": "{{app_name}}/prisma/schema.prisma", "template": "datasource db { provider = \"sqlite\" url = \"file:./dev.db\" }\ngenerator client { provider = \"prisma-client-js\" }\nmodel Doc { id Int @id @default(autoincrement()) data Json }\n" }
+  ]
+}
+

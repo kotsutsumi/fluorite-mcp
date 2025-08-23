@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-response-cache-control-header-minimal",
+  "name": "Next.js Response Cache-Control ヘッダ 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["cache", "headers"],
+  "description": "Route Handler で Cache-Control を明示",
+  "params": [ { "name": "app_name", "default": "next-cache-hdr" } ],
+  "files": [
+    { "path": "{{app_name}}/app/api/cache/route.ts", "template": "export async function GET(){ return new Response('ok', { headers: { 'Cache-Control': 'public, max-age=60' } }); }\n" }
+  ]
+}
+

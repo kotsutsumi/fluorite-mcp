@@ -1,0 +1,12 @@
+{
+  "id": "strike-stripe-customer-portal-config",
+  "name": "Stripe 顧客ポータル 設定(概念)",
+  "version": "1.0.0",
+  "stack": ["stripe"],
+  "tags": ["billing","portal","strike"],
+  "description": "Stripe顧客ポータル機能の設定例（概念）。",
+  "files": [
+    { "path": "src/billing/portal.ts", "template": "export const portalConfig = { features: ['invoice_history','cancel'], locale: 'auto' } as const;\n" }
+  ]
+}
+

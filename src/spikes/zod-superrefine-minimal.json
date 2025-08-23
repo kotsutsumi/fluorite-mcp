@@ -1,0 +1,13 @@
+{
+  "id": "zod-superrefine-minimal",
+  "name": "Zod superRefine 最小",
+  "version": "1.0.0",
+  "stack": ["zod"],
+  "tags": ["validation"],
+  "description": "相関検証に superRefine を使う最小例",
+  "params": [ { "name": "app_name", "default": "zod-super" } ],
+  "files": [
+    { "path": "{{app_name}}/schema.ts", "template": "import { z } from 'zod';\nexport const S = z.object({ start: z.date(), end: z.date() }).superRefine((v, ctx)=>{ if(v.end < v.start){ ctx.addIssue({ code: z.ZodIssueCode.custom, path:['end'], message:'must be after start' }); } });\n" }
+  ]
+}
+

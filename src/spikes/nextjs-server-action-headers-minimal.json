@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-server-action-headers-minimal",
+  "name": "Next.js Server Action headers 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["rsc", "headers"],
+  "description": "Server Action で headers() を読む最小例",
+  "params": [ { "name": "app_name", "default": "next-sa-headers" } ],
+  "files": [
+    { "path": "{{app_name}}/app/actions/readHeaders.ts", "template": "'use server';\nimport { headers } from 'next/headers';\nexport async function readHeaders(){ const h = headers(); return { ua: h.get('user-agent') }; }\n" }
+  ]
+}
+

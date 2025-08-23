@@ -1,0 +1,13 @@
+{
+  "id": "sentry-sampling-rules-minimal",
+  "name": "Sentry sampling rules 最小",
+  "version": "1.0.0",
+  "stack": ["sentry"],
+  "tags": ["observability", "performance"],
+  "description": "tracesSampler でURLに応じてサンプルレート変更",
+  "params": [ { "name": "app_name", "default": "sentry-sampler" } ],
+  "files": [
+    { "path": "{{app_name}}/sentry.client.config.ts", "template": "import * as Sentry from '@sentry/nextjs';\nSentry.init({ dsn: process.env.SENTRY_DSN || '', tracesSampler(ctx){ return ctx.request?.url?.includes('/admin') ? 1.0 : 0.1; } });\n" }
+  ]
+}
+

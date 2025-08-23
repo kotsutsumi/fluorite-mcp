@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-cache-nostore-minimal",
+  "name": "Next.js noStore 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["cache"],
+  "description": "RSCで noStore() を使用する最小例",
+  "params": [ { "name": "app_name", "default": "next-nostore" } ],
+  "files": [
+    { "path": "{{app_name}}/app/page.tsx", "template": "import { noStore } from 'next/cache';\nexport default function Page(){ noStore(); return <div>No cache</div>; }\n" }
+  ]
+}
+

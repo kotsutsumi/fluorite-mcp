@@ -1,0 +1,13 @@
+{
+  "id": "zustand-subscribe-with-selector-minimal",
+  "name": "Zustand subscribeWithSelector 最小",
+  "version": "1.0.0",
+  "stack": ["react", "zustand"],
+  "tags": ["state"],
+  "description": "subscribeWithSelector ミドルウェアの最小例",
+  "params": [ { "name": "app_name", "default": "zustand-subsel" } ],
+  "files": [
+    { "path": "{{app_name}}/src/store.ts", "template": "import { create } from 'zustand';\nimport { subscribeWithSelector } from 'zustand/middleware';\nexport const useStore = create(subscribeWithSelector<{ a:number; setA:(n:number)=>void }>((set)=>({ a:0, setA:(n)=> set({ a:n }) })));\n" }
+  ]
+}
+

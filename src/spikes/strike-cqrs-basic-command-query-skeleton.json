@@ -1,0 +1,13 @@
+{
+  "id": "strike-cqrs-basic-command-query-skeleton",
+  "name": "CQRS 基本スケルトン",
+  "version": "1.0.0",
+  "stack": ["cqrs"],
+  "tags": ["pattern","architecture","strike"],
+  "description": "Command/Queryを分離した基本スケルトン。",
+  "files": [
+    { "path": "src/cqrs/command.ts", "template": "export async function createItem(){ return { id: '1' }; }\n" },
+    { "path": "src/cqrs/query.ts", "template": "export async function getItem(_id: string){ return { id: '1' }; }\n" }
+  ]
+}
+

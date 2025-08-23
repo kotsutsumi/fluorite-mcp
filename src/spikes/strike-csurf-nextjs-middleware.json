@@ -1,0 +1,12 @@
+{
+  "id": "strike-csurf-nextjs-middleware",
+  "name": "CSRF対策 middleware (Next.js)",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["security","csrf","strike"],
+  "description": "CSRFトークンをヘッダで検証する簡易ミドルウェア（概念）。",
+  "files": [
+    { "path": "middleware.ts", "template": "import { NextResponse } from 'next/server';\nexport function middleware(req: Request){ const token = (req.headers as any).get?.('x-csrf-token'); if(!token) return new Response('forbidden', { status: 403 }); return NextResponse.next(); }\n" }
+  ]
+}
+

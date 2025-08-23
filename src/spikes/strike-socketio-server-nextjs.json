@@ -1,0 +1,12 @@
+{
+  "id": "strike-socketio-server-nextjs",
+  "name": "Socket.IO Server (Next.js統合)",
+  "version": "1.0.0",
+  "stack": ["socket.io","nextjs"],
+  "tags": ["realtime","strike"],
+  "description": "Next.jsアプリとSocket.IOサーバの最小統合（概念）。",
+  "files": [
+    { "path": "src/realtime/socket.ts", "template": "export function start(){ /* 実装時に http.Server と socket.io を連携 */ return true; }\n" }
+  ]
+}
+

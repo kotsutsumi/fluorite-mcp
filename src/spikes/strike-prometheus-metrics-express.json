@@ -1,0 +1,12 @@
+{
+  "id": "strike-prometheus-metrics-express",
+  "name": "Prometheus Metrics (Express)",
+  "version": "1.0.0",
+  "stack": ["node","express","prometheus"],
+  "tags": ["metrics","observability","strike"],
+  "description": "/metricsエンドポイントでメトリクスを返すExpress雛形。",
+  "files": [
+    { "path": "index.js", "template": "const express = require('express');\nconst app = express();\napp.get('/metrics', (_req,res)=> res.type('text/plain').send('# HELP up 1\n# TYPE up gauge\nup 1'))\napp.listen(3000);\n" }
+  ]
+}
+

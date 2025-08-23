@@ -1,0 +1,13 @@
+{
+  "id": "apollo-server-cors-minimal",
+  "name": "Apollo Server CORS 最小",
+  "version": "1.0.0",
+  "stack": ["apollo", "graphql"],
+  "tags": ["server", "cors"],
+  "description": "Apollo Server v4 で CORS を有効化する概念最小",
+  "params": [ { "name": "app_name", "default": "apollo-cors" } ],
+  "files": [
+    { "path": "{{app_name}}/src/server.ts", "template": "import { ApolloServer } from '@apollo/server';\nimport { startStandaloneServer } from '@apollo/server/standalone';\nconst typeDefs = `type Query { ok: Boolean! }`;\nconst resolvers = { Query: { ok: ()=> true } };\nconst server = new ApolloServer({ typeDefs, resolvers });\nstartStandaloneServer(server, { listen: { port: 4000 }, context: async () => ({}), cors: { origin: '*' } });\n" }
+  ]
+}
+

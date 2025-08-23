@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-route-handler-put-delete-minimal",
+  "name": "Next.js Route Handler PUT/DELETE 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["route"],
+  "description": "PUT と DELETE を実装する最小例",
+  "params": [ { "name": "app_name", "default": "next-put-del" } ],
+  "files": [
+    { "path": "{{app_name}}/app/api/items/route.ts", "template": "export async function PUT(){ return new Response('updated'); }\nexport async function DELETE(){ return new Response('deleted'); }\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "apollo-client-persist-cache-minimal",
+  "name": "Apollo Client persist cache 最小",
+  "version": "1.0.0",
+  "stack": ["react", "apollo"],
+  "tags": ["graphql", "client", "cache"],
+  "description": "localStorage へのキャッシュ永続化（概念最小）",
+  "params": [ { "name": "app_name", "default": "apollo-persist" } ],
+  "files": [
+    { "path": "{{app_name}}/src/apollo/persist.ts", "template": "import { InMemoryCache, ApolloClient, HttpLink } from '@apollo/client';\nconst cache = new InMemoryCache();\nconst client = new ApolloClient({ cache, link: new HttpLink({ uri: '/graphql' }) });\n// 概念: 実運用は apollo3-cache-persist 等の利用を検討\nif (typeof window !== 'undefined') { try { const raw = localStorage.getItem('apollo'); if (raw) cache.restore(JSON.parse(raw)); cache.watch({ optimistic: true, callback(){ localStorage.setItem('apollo', JSON.stringify(cache.extract())); } }); } catch {} }\nexport { client, cache };\n" }
+  ]
+}
+

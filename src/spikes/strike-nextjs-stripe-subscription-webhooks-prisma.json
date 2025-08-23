@@ -1,0 +1,13 @@
+{
+  "id": "strike-nextjs-stripe-subscription-webhooks-prisma",
+  "name": "Next.js + Stripe サブスク + Webhook + Prisma",
+  "version": "1.0.0",
+  "stack": ["nextjs","stripe","prisma"],
+  "tags": ["billing","webhook","db","strike"],
+  "description": "Stripeのサブスクリプション作成とWebhook受信、Prismaでの保存の雛形。",
+  "files": [
+    { "path": "app/api/webhooks/stripe/route.ts", "template": "import { NextResponse } from 'next/server';\n// NOTE: 実際は stripe の署名検証を行ってください。\nexport async function POST(req: Request){\n  const json = await req.json();\n  // event.typeに応じた処理を行い、DBへ保存\n  return NextResponse.json({ received: true, type: json?.type });\n}\n" },
+    { "path": "src/billing/stripe.ts", "template": "// サブスクリプション作成処理の雛形\nexport async function createSubscription(_customerId: string, _priceId: string){\n  // 実装時に stripe SDK を利用してください。\n  return { id: 'sub_123' };\n}\n" }
+  ]
+}
+

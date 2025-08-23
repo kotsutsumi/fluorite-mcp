@@ -1,0 +1,13 @@
+{
+  "id": "strike-keycloak-express-protect-route-minimal",
+  "name": "Keycloak + Express ルート保護 最小",
+  "version": "1.0.0",
+  "stack": ["keycloak", "express"],
+  "tags": ["auth", "rest"],
+  "description": "Keycloakを想定した簡易Bearer検証スタブ",
+  "params": [],
+  "files": [
+    { "path": "src/server.ts", "template": "import express from 'express';\nconst app = express();\napp.get('/secure', (req, res)=>{ const token = req.headers['authorization']; if(!token) return res.status(401).end(); return res.json({ ok: true }); });\napp.listen(3000);\n" }
+  ]
+}
+

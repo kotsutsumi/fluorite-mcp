@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-image-optimization-minimal",
+  "name": "Next.js 画像最適化 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["image"],
+  "description": "next/image の最小使用例",
+  "params": [ { "name": "app_name", "default": "next-image" } ],
+  "files": [
+    { "path": "{{app_name}}/app/page.tsx", "template": "import Image from 'next/image';\nexport default function Page(){ return <Image src='https://picsum.photos/200' alt='demo' width={200} height={200}/> }\n" }
+  ]
+}
+

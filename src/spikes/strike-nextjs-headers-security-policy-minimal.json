@@ -1,0 +1,12 @@
+{
+  "id": "strike-nextjs-headers-security-policy-minimal",
+  "name": "Next.js Security Headers (CSP/Strict-Transport)",
+  "version": "1.0.0",
+  "stack": ["nextjs","security"],
+  "tags": ["headers","csp","strike"],
+  "description": "CSP等のセキュリティヘッダを付与するmiddleware雛形。",
+  "files": [
+    { "path": "middleware.ts", "template": "import { NextResponse } from 'next/server';\nexport function middleware(){ const res = NextResponse.next(); res.headers.set('content-security-policy', \"default-src 'self'\"); res.headers.set('strict-transport-security','max-age=63072000; includeSubDomains; preload'); return res; }\n" }
+  ]
+}
+

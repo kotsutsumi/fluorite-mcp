@@ -1,0 +1,13 @@
+{
+  "id": "react-hook-form-zod-error-map-minimal",
+  "name": "React Hook Form × Zod エラーマップ最小",
+  "version": "1.0.0",
+  "stack": ["react", "react-hook-form", "zod"],
+  "tags": ["forms", "validation"],
+  "description": "zodResolver と独自エラーマップの最小例",
+  "params": [ { "name": "app_name", "default": "rhf-zod-emap" } ],
+  "files": [
+    { "path": "{{app_name}}/src/Form.tsx", "template": "import { useForm } from 'react-hook-form';\nimport { z } from 'zod';\nimport { zodResolver } from '@hookform/resolvers/zod';\nz.setErrorMap((issue, ctx)=> ({ message: issue.code==='invalid_string' ? '無効な文字列' : ctx.defaultError }));\nconst Schema = z.object({ email: z.string().email() });\ntype Form = z.infer<typeof Schema>;\nexport default function FormCmp(){ const { register, handleSubmit, formState:{ errors } } = useForm<Form>({ resolver: zodResolver(Schema) }); return (<form onSubmit={handleSubmit(()=>{})}><input {...register('email')} />{errors.email?.message}</form>); }\n" }
+  ]
+}
+

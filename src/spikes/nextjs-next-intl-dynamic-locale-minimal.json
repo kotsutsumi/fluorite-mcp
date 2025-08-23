@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-next-intl-dynamic-locale-minimal",
+  "name": "Next.js next-intl 動的ロケール 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "next-intl"],
+  "tags": ["i18n"],
+  "description": "URLのロケールに合わせてProviderを切り替える最小例",
+  "params": [ { "name": "app_name", "default": "next-intl-dyn" } ],
+  "files": [
+    { "path": "{{app_name}}/app/[locale]/layout.tsx", "template": "import { NextIntlClientProvider } from 'next-intl';\nexport default function RootLayout({ children, params }: any){ const messages = { hello: params.locale==='ja' ? 'こんにちは' : 'Hello' }; return <html><body><NextIntlClientProvider locale={params.locale} messages={messages}>{children}</NextIntlClientProvider></body></html>; }\n" },
+    { "path": "{{app_name}}/app/[locale]/page.tsx", "template": "export default function Page(){ return <div>i18n</div>; }\n" }
+  ]
+}
+

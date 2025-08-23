@@ -1,0 +1,13 @@
+{
+  "id": "apollo-nextjs-app-provider-minimal",
+  "name": "Apollo × Next.js App Provider 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "apollo"],
+  "tags": ["graphql", "client"],
+  "description": "App Router で ApolloProvider を設定する最小例",
+  "params": [ { "name": "app_name", "default": "next-apollo" } ],
+  "files": [
+    { "path": "{{app_name}}/app/providers.tsx", "template": "'use client';\nimport { ApolloClient, InMemoryCache, ApolloProvider, HttpLink } from '@apollo/client';\nconst client = new ApolloClient({ link: new HttpLink({ uri: '/api/graphql' }), cache: new InMemoryCache() });\nexport default function Providers({ children }: { children: React.ReactNode }){ return <ApolloProvider client={client}>{children}</ApolloProvider>; }\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "prisma-unique-constraint-error-handle-minimal",
+  "name": "Prisma 一意制約エラーハンドリング 最小",
+  "version": "1.0.0",
+  "stack": ["prisma"],
+  "tags": ["db", "error"],
+  "description": "P2002 一意制約違反エラーの最小ハンドリング",
+  "params": [ { "name": "app_name", "default": "prisma-unique" } ],
+  "files": [
+    { "path": "{{app_name}}/src/unique.ts", "template": "import { PrismaClient } from '@prisma/client';\nconst prisma = new PrismaClient();\nexport async function createUser(email: string){ try { await prisma.user.create({ data: { email } }); } catch(e: any){ if(e.code==='P2002') return { ok:false, reason:'duplicate' }; throw e; } return { ok:true }; }\n" }
+  ]
+}
+

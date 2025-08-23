@@ -1,0 +1,12 @@
+{
+  "id": "strike-queue-retry-backoff-pattern",
+  "name": "Queue リトライ + バックオフ パターン",
+  "version": "1.0.0",
+  "stack": ["queue"],
+  "tags": ["retry","pattern","strike"],
+  "description": "指数バックオフによる再試行の擬似実装。",
+  "files": [
+    { "path": "src/queue/retry.ts", "template": "export async function retry<T>(fn: ()=>Promise<T>, attempts=3){ let i=0; while(true){ try { return await fn(); } catch(e){ if(++i>=attempts) throw e; await new Promise(r=>setTimeout(r, Math.pow(2,i)*100)); } } }\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "strike-terraform-aws-s3-static-site-minimal",
+  "name": "Terraform AWS S3 静的サイト 最小",
+  "version": "1.0.0",
+  "stack": ["terraform", "aws", "s3"],
+  "tags": ["iac", "aws"],
+  "description": "S3静的ウェブサイトを定義する最小Terraform",
+  "params": [],
+  "files": [
+    { "path": "infra/main.tf", "template": "terraform { required_version = \">= 1.5.0\" required_providers { aws = { source = \"hashicorp/aws\" version = \">= 5.0.0\" } } }\nprovider \"aws\" { region = var.region }\nvariable \"region\" { type = string default = \"us-east-1\" }\nresource \"aws_s3_bucket\" \"site\" { bucket = \"example-static-site-123\" website { index_document = \"index.html\" } }\n" }
+  ]
+}
+

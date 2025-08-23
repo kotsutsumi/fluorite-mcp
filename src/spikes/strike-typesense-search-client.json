@@ -1,0 +1,12 @@
+{
+  "id": "strike-typesense-search-client",
+  "name": "Typesense Search クライアント(最小)",
+  "version": "1.0.0",
+  "stack": ["typesense"],
+  "tags": ["search","strike"],
+  "description": "Typesenseへの検索クエリ発行（概念）。",
+  "files": [
+    { "path": "src/search/typesense.ts", "template": "export async function search(_q: string){ return { hits: [] }; }\n" }
+  ]
+}
+

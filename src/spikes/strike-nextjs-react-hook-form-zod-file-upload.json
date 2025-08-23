@@ -1,0 +1,12 @@
+{
+  "id": "strike-nextjs-react-hook-form-zod-file-upload",
+  "name": "Next.js + RHF + Zod (ファイルアップロード)",
+  "version": "1.0.0",
+  "stack": ["nextjs","react-hook-form","zod"],
+  "tags": ["form","validation","upload","strike"],
+  "description": "ファイル入力を含むフォーム例（クライアントコンポーネント）。",
+  "files": [
+    { "path": "app/form-upload/page.tsx", "template": "'use client';\nimport { useForm } from 'react-hook-form';\nexport default function Page(){ const { register, handleSubmit } = useForm(); return (<form onSubmit={handleSubmit(()=>{})}><input type='file' {...register('file')} /><button>Submit</button></form>); }\n" }
+  ]
+}
+

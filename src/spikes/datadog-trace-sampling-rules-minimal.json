@@ -1,0 +1,13 @@
+{
+  "id": "datadog-trace-sampling-rules-minimal",
+  "name": "Datadog trace sampling rules 最小",
+  "version": "1.0.0",
+  "stack": ["datadog"],
+  "tags": ["observability", "apm"],
+  "description": "サンプリングルールを指定する概念最小（dd-trace）",
+  "params": [ { "name": "app_name", "default": "dd-sampling" } ],
+  "files": [
+    { "path": "{{app_name}}/init.ts", "template": "import tracer from 'dd-trace';\ntracer.init({ samplingRules: [{ service: 'api', name: 'GET /api', sampleRate: 1.0 }] });\n" }
+  ]
+}
+

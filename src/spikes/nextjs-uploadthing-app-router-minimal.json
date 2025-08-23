@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-uploadthing-app-router-minimal",
+  "name": "Next.js Uploadthing App Router 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "uploadthing"],
+  "tags": ["upload"],
+  "description": "Uploadthing のエンドポイントを App Router で最小構築（概念）",
+  "params": [ { "name": "app_name", "default": "next-uploadthing" } ],
+  "files": [
+    { "path": "{{app_name}}/app/api/uploadthing/route.ts", "template": "// 概念サンプル: 実運用は uploadthing ライブラリの公式ハンドラを使用\nexport async function POST(){ return Response.json({ ok:true }); }\n" }
+  ]
+}
+

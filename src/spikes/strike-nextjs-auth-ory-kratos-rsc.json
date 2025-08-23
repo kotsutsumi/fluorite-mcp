@@ -1,0 +1,12 @@
+{
+  "id": "strike-nextjs-auth-ory-kratos-rsc",
+  "name": "Next.js + Ory Kratos (RSC保護)",
+  "version": "1.0.0",
+  "stack": ["nextjs","ory","rsc"],
+  "tags": ["auth","rsc","strike"],
+  "description": "Ory Kratosを用いたRSCの保護ページ雛形。",
+  "files": [
+    { "path": "app/protected/page.tsx", "template": "export default async function Page(){ /* 実際は Ory SDKでセッション確認 */ return <div>Protected (Ory)</div>; }\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "sentry-add-breadcrumb-manual-minimal",
+  "name": "Sentry 手動 Breadcrumb 追加 最小",
+  "version": "1.0.0",
+  "stack": ["sentry"],
+  "tags": ["observability", "breadcrumbs"],
+  "description": "Sentry.addBreadcrumb の最小例",
+  "params": [ { "name": "app_name", "default": "sentry-bc" } ],
+  "files": [
+    { "path": "{{app_name}}/run.js", "template": "const Sentry = require('@sentry/node');\nSentry.init({ dsn: '' });\nSentry.addBreadcrumb({ category: 'job', message: 'start' });\nconsole.log('ok');\n" }
+  ]
+}
+

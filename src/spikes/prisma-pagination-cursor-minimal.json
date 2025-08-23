@@ -1,0 +1,13 @@
+{
+  "id": "prisma-pagination-cursor-minimal",
+  "name": "Prisma カーソルページネーション 最小",
+  "version": "1.0.0",
+  "stack": ["prisma"],
+  "tags": ["db", "pagination"],
+  "description": "cursor/skip/take の最小例",
+  "params": [ { "name": "app_name", "default": "prisma-cursor" } ],
+  "files": [
+    { "path": "{{app_name}}/src/paginate.ts", "template": "import { PrismaClient } from '@prisma/client';\nconst prisma = new PrismaClient();\nexport async function list(after?: number){ return prisma.post.findMany({ take: 10, ...(after ? { skip: 1, cursor: { id: after } } : {}) }); }\n" }
+  ]
+}
+

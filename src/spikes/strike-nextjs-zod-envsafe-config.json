@@ -1,0 +1,12 @@
+{
+  "id": "strike-nextjs-zod-envsafe-config",
+  "name": "Next.js + Zod 環境変数バリデーション",
+  "version": "1.0.0",
+  "stack": ["nextjs","zod"],
+  "tags": ["config","validation","strike"],
+  "description": "Zodで環境変数を検証する雛形。",
+  "files": [
+    { "path": "src/config/env.ts", "template": "import { z } from 'zod';\nconst Env = z.object({ NODE_ENV: z.enum(['development','test','production']), DATABASE_URL: z.string().url().optional() });\nexport const env = Env.parse({ NODE_ENV: process.env.NODE_ENV, DATABASE_URL: process.env.DATABASE_URL });\n" }
+  ]
+}
+

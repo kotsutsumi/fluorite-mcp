@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-next-intl-provider-minimal",
+  "name": "Next.js next-intl Provider 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "next-intl"],
+  "tags": ["i18n"],
+  "description": "App Router で next-intl の最小Provider構成",
+  "params": [ { "name": "app_name", "default": "next-intl" } ],
+  "files": [
+    { "path": "{{app_name}}/app/providers.tsx", "template": "'use client';\nimport { NextIntlClientProvider } from 'next-intl';\nexport default function Providers({ children }: { children: React.ReactNode }){ return <NextIntlClientProvider locale='en' messages={{ hello: 'Hello' }}>{children}</NextIntlClientProvider>; }\n" }
+  ]
+}
+

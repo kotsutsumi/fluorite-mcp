@@ -1,0 +1,12 @@
+{
+  "id": "strike-sendgrid-template-dynamic-minimal",
+  "name": "SendGrid テンプレ + Dynamic Data(最小)",
+  "version": "1.0.0",
+  "stack": ["sendgrid"],
+  "tags": ["email","template","strike"],
+  "description": "テンプレートIDと動的データでメール送信（擬似実装）。",
+  "files": [
+    { "path": "src/email/sendgrid.ts", "template": "export async function sendTemplate(to: string, templateId: string, data: Record<string, any>){ return { to, templateId, data }; }\n" }
+  ]
+}
+

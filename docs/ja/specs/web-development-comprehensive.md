@@ -421,20 +421,18 @@ mqttClient.on('message', (topic, message) => {
 ## 📚 推奨学習リソース
 
 ### 公式ドキュメント
-- [Vite Guide](https://vitejs.dev/guide/) - 最新フロントエンド開発手法
-- [TypeScript Handbook](https://www.typescriptlang.org/docs/) - 型安全開発の基礎
-- [Playwright Documentation](https://playwright.dev/) - モダンテスト手法
-- [React Documentation](https://react.dev/) - コンポーネントベース開発
+- Vite: プロジェクト内のViteエコシステムカタログを参照
+- TypeScript: プロジェクト内のTypeScriptエコシステムカタログを参照
+- Playwright: プロジェクト内のテスト関連スパイクテンプレートを参照  
+- React: プロジェクト内のReactエコシステムカタログを参照
 
 ### 実践的学習リソース
-- [Web.dev](https://web.dev/) - Google によるWeb 開発ベストプラクティス
-- [MDN Web Docs](https://developer.mozilla.org/) - Web標準リファレンス
-- 公式ドキュメント - 各技術の公式ガイドとチュートリアル
-- コミュニティ学習リソース - 実践的な開発パターンと事例
+- 各技術の公式ドキュメント - 本プロジェクトのカタログから参照可能
+- プロジェクト内のスパイクテンプレート - 実践的な開発パターンと事例
 
 ### コミュニティ・情報収集
-- [GitHub](https://github.com/) - オープンソースプロジェクト参加
-- [Discord/Slack コミュニティ](https://discord.com/) - リアルタイム技術討論
+- オープンソースプロジェクト: プロジェクト内のGitHub関連スパイクテンプレートを参照
+- 技術コミュニティ: プロジェクト内のコミュニケーション関連カタログを参照
 
 ---
 

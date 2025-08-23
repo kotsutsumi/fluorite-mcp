@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-next-config-images-remote-patterns-minimal",
+  "name": "Next.js next.config images.remotePatterns 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["config", "images"],
+  "description": "next.config で remotePatterns を設定する最小例",
+  "params": [ { "name": "app_name", "default": "next-images" } ],
+  "files": [
+    { "path": "{{app_name}}/next.config.js", "template": "/** @type {import('next').NextConfig} */\nconst nextConfig = { images: { remotePatterns: [{ protocol: 'https', hostname: 'picsum.photos' }] } };\nmodule.exports = nextConfig;\n" }
+  ]
+}
+

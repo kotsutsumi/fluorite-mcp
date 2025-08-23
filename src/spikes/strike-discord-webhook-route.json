@@ -1,0 +1,12 @@
+{
+  "id": "strike-discord-webhook-route",
+  "name": "Discord Webhook 送信 ルート",
+  "version": "1.0.0",
+  "stack": ["discord"],
+  "tags": ["notification","strike"],
+  "description": "Discord Webhookへメッセージを送るAPI雛形（擬似実装）。",
+  "files": [
+    { "path": "app/api/notify/discord/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(req: Request){ const { content } = await req.json(); return NextResponse.json({ ok: true, content }); }\n" }
+  ]
+}
+

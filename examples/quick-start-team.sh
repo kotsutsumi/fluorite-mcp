@@ -355,7 +355,7 @@ echo "3. Try 'fluorite-mcp --discover-spikes --query \"your framework\"' to expl
 echo "4. Use Claude Code CLI with natural language requests"
 echo ""
 echo "📖 Resources:"
-echo "- Documentation: https://kotsutsumi.github.io/fluorite-mcp"
+echo "- Documentation: README.mdおよびdocs/フォルダを参照"
 echo "- Use Cases Guide: ./docs/use-cases-examples.md"
 echo "- Troubleshooting: ./docs/troubleshooting.md"
 echo "- GitHub Discussions: https://github.com/kotsutsumi/fluorite-mcp/discussions"

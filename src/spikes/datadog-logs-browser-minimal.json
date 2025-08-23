@@ -1,0 +1,13 @@
+{
+  "id": "datadog-logs-browser-minimal",
+  "name": "Datadog Logs Browser 最小",
+  "version": "1.0.0",
+  "stack": ["datadog"],
+  "tags": ["observability", "logs"],
+  "description": "@datadog/browser-logs の最小初期化",
+  "params": [ { "name": "app_name", "default": "dd-logs" } ],
+  "files": [
+    { "path": "{{app_name}}/index.html", "template": "<!doctype html>\n<html><body><script type='module'>import { datadogLogs } from 'https://cdn.skypack.dev/@datadog/browser-logs'; datadogLogs.init({ clientToken: 'token', site: 'datadoghq.com', forwardErrorsToLogs: true, sampleRate: 100 }); datadogLogs.logger.info('hello');</script></body></html>\n" }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "nextjs-robots-sitemap-minimal",
+  "name": "Next.js robots/sitemap 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["seo"],
+  "description": "App Router の robots/sitemap の最小例",
+  "params": [ { "name": "app_name", "default": "next-seo" } ],
+  "files": [
+    { "path": "{{app_name}}/app/robots.ts", "template": "export default function robots(){ return { rules: [{ userAgent: '*', allow: '/' }], sitemap: 'https://example.com/sitemap.xml' }; }\n" },
+    { "path": "{{app_name}}/app/sitemap.ts", "template": "export default function sitemap(){ return [{ url: 'https://example.com/', lastModified: new Date() }]; }\n" }
+  ]
+}
+

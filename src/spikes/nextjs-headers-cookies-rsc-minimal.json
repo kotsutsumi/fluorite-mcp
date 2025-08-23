@@ -1,0 +1,13 @@
+{
+  "id": "nextjs-headers-cookies-rsc-minimal",
+  "name": "Next.js headers/cookies RSC 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["rsc", "headers", "cookies"],
+  "description": "RSCで headers() と cookies() を使う最小例",
+  "params": [ { "name": "app_name", "default": "next-rsc-headers" } ],
+  "files": [
+    { "path": "{{app_name}}/app/page.tsx", "template": "import { headers, cookies } from 'next/headers';\nexport default function Page(){ const h = headers(); const c = cookies(); return <pre>{JSON.stringify({ ua: h.get('user-agent'), hasSession: !!c.get('session') }, null, 2)}</pre>; }\n" }
+  ]
+}
+

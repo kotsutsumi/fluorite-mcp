@@ -1,0 +1,12 @@
+{
+  "id": "strike-nextjs-cache-revalidate-tag-route",
+  "name": "Next.js Revalidate Tag ルート",
+  "version": "1.0.0",
+  "stack": ["nextjs","cache"],
+  "tags": ["revalidate","tag","strike"],
+  "description": "Tag指定で再検証を行うAPI雛形（擬似実装）。",
+  "files": [
+    { "path": "app/api/revalidate/tag/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(req: Request){ const { tag } = await req.json(); return NextResponse.json({ revalidated: true, tag }); }\n" }
+  ]
+}
+

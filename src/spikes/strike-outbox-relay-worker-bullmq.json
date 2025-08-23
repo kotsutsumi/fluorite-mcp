@@ -1,0 +1,12 @@
+{
+  "id": "strike-outbox-relay-worker-bullmq",
+  "name": "Outbox Relay Worker (BullMQ)",
+  "version": "1.0.0",
+  "stack": ["outbox","bullmq"],
+  "tags": ["reliability","worker","strike"],
+  "description": "OutboxをBullMQで配信するWorker雛形（概念）。",
+  "files": [
+    { "path": "src/outbox/relay.ts", "template": "export async function relay(){ return true; }\n" }
+  ]
+}
+

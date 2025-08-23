@@ -1,0 +1,13 @@
+{
+  "id": "tanstack-query-basic-minimal",
+  "name": "TanStack Query 基本 最小",
+  "version": "1.0.0",
+  "stack": ["react", "tanstack-query"],
+  "tags": ["data-fetching"],
+  "description": "@tanstack/react-query の最小 useQuery 例",
+  "params": [ { "name": "app_name", "default": "rq-basic" } ],
+  "files": [
+    { "path": "{{app_name}}/src/query.tsx", "template": "import { useQuery, QueryClient, QueryClientProvider } from '@tanstack/react-query';\nconst qc = new QueryClient();\nfunction Inner(){ const q = useQuery({ queryKey: ['hello'], queryFn: async()=>({ ok:true }) }); return <div>{String(q.data?.ok)}</div>; }\nexport default function App(){ return <QueryClientProvider client={qc}><Inner/></QueryClientProvider>; }\n" }
+  ]
+}
+

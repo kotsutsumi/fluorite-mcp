@@ -1,0 +1,13 @@
+{
+  "id": "sentry-tunnel-route-minimal",
+  "name": "Sentry tunnel Route 最小",
+  "version": "1.0.0",
+  "stack": ["sentry", "nextjs"],
+  "tags": ["observability", "tunnel"],
+  "description": "Sentryイベント送信をトンネル経由にする概念最小",
+  "params": [ { "name": "app_name", "default": "sentry-tunnel" } ],
+  "files": [
+    { "path": "{{app_name}}/app/api/sentry/route.ts", "template": "export async function POST(req: Request){ const body = await req.text(); // 実運用はSentryのDSNへ転送\nreturn new Response('ok'); }\n" }
+  ]
+}
+

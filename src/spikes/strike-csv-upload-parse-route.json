@@ -1,0 +1,12 @@
+{
+  "id": "strike-csv-upload-parse-route",
+  "name": "CSV アップロード + パース ルート",
+  "version": "1.0.0",
+  "stack": ["nextjs","csv"],
+  "tags": ["data-import","strike"],
+  "description": "CSVをアップロードしサーバ側でパースする雛形（概念）。",
+  "files": [
+    { "path": "app/api/upload/csv/route.ts", "template": "export async function POST(){ /* 実装時に csv-parse 等で処理 */ return new Response('ok'); }\n" }
+  ]
+}
+

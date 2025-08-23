@@ -1,0 +1,13 @@
+{
+  "id": "zustand-devtools-minimal",
+  "name": "Zustand devtools 最小",
+  "version": "1.0.0",
+  "stack": ["react", "zustand"],
+  "tags": ["state", "devtools"],
+  "description": "devtools ミドルウェアの最小例",
+  "params": [ { "name": "app_name", "default": "zustand-devtools" } ],
+  "files": [
+    { "path": "{{app_name}}/src/store.ts", "template": "import { create } from 'zustand';\nimport { devtools } from 'zustand/middleware';\nexport const useStore = create(devtools<{ count:number; inc:()=>void }>((set)=>({ count:0, inc:()=> set((s)=> ({ count: s.count+1 })) }), { name: 'app' }));\n" }
+  ]
+}
+

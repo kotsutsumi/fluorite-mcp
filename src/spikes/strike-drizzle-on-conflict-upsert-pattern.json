@@ -1,0 +1,12 @@
+{
+  "id": "strike-drizzle-on-conflict-upsert-pattern",
+  "name": "Drizzle onConflict UPSERT パターン",
+  "version": "1.0.0",
+  "stack": ["drizzle"],
+  "tags": ["db","upsert","strike"],
+  "description": "onConflictを使ったUPSERTの雛形（概念）。",
+  "files": [
+    { "path": "src/db/upsert.ts", "template": "export async function upsert(){ /* drizzle upsert pattern */ return true; }\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "posthog-client-identify-capture-minimal",
+  "name": "PostHog client identify/capture 最小",
+  "version": "1.0.0",
+  "stack": ["posthog", "react"],
+  "tags": ["analytics"],
+  "description": "clientでidentifyとcaptureを行う最小例",
+  "params": [ { "name": "app_name", "default": "posthog-identify" } ],
+  "files": [
+    { "path": "{{app_name}}/App.tsx", "template": "import posthog from 'posthog-js';\nimport { useEffect } from 'react';\nexport default function App(){ useEffect(()=>{ posthog.init('key'); posthog.identify('user1'); posthog.capture('view'); },[]); return <div>OK</div>; }\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "strike-hono-edge-runtime-minimal",
+  "name": "Hono Edge Runtime 最小",
+  "version": "1.0.0",
+  "stack": ["hono", "edge"],
+  "tags": ["edge", "rest"],
+  "description": "HonoでEdge Runtime向け最小API",
+  "params": [],
+  "files": [
+    { "path": "src/index.ts", "template": "import { Hono } from 'hono';\nconst app = new Hono();\napp.get('/health', (c)=> c.json({ ok: true }));\nexport default app;\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "github-webhook-signature-verify-minimal",
+  "name": "GitHub Webhook 署名検証 最小",
+  "version": "1.0.0",
+  "stack": ["node", "github"],
+  "tags": ["webhook", "security"],
+  "description": "X-Hub-Signature-256 を HMACで検証する最小例",
+  "params": [ { "name": "app_name", "default": "gh-webhook-verify" } ],
+  "files": [
+    { "path": "{{app_name}}/verify.js", "template": "import crypto from 'node:crypto';\nexport function verify(signature, secret, body){ const h = 'sha256=' + crypto.createHmac('sha256', secret).update(body).digest('hex'); return crypto.timingSafeEqual(Buffer.from(h), Buffer.from(signature)); }\n" }
+  ]
+}
+

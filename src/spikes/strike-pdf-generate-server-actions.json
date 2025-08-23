@@ -1,0 +1,12 @@
+{
+  "id": "strike-pdf-generate-server-actions",
+  "name": "PDF 生成 (Server Actions)",
+  "version": "1.0.0",
+  "stack": ["nextjs","pdf"],
+  "tags": ["export","strike"],
+  "description": "Server ActionsでPDFを生成する雛形（概念）。",
+  "files": [
+    { "path": "app/actions/pdf.ts", "template": "'use server';\nexport async function generatePdf(html: string){ /* 実装時に puppeteer 等を利用 */ return Buffer.from(html); }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "strike-sqs-producer-consumer-minimal",
+  "name": "AWS SQS Producer/Consumer(最小)",
+  "version": "1.0.0",
+  "stack": ["aws","sqs"],
+  "tags": ["queue","strike"],
+  "description": "SQSへ送受信の最小雛形（概念）。",
+  "files": [
+    { "path": "src/queue/sqs.ts", "template": "export async function send(_q: string, _msg: string){ return true; }\nexport async function consume(_q: string){ return []; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "strike-cloudinary-upload-signed-server",
+  "name": "Cloudinary 署名付きアップロード(サーバ)",
+  "version": "1.0.0",
+  "stack": ["cloudinary","nextjs"],
+  "tags": ["upload","media","strike"],
+  "description": "Cloudinaryの署名生成エンドポイント雛形（擬似実装）。",
+  "files": [
+    { "path": "app/api/cloudinary/sign/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(){ return NextResponse.json({ signature: 'signed', timestamp: Date.now() }); }\n" }
+  ]
+}
+

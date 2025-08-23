@@ -1,0 +1,12 @@
+{
+  "id": "strike-gcs-presigned-route",
+  "name": "GCS プリサインURL ルート",
+  "version": "1.0.0",
+  "stack": ["gcs","nextjs"],
+  "tags": ["storage","upload","strike"],
+  "description": "GCS向けの署名付きURL発行API雛形（擬似実装）。",
+  "files": [
+    { "path": "app/api/gcs/presign/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function GET(){ return NextResponse.json({ url: 'https://storage.googleapis.com/bucket/object?signature=...' }); }\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "strike-nextjs-i18n-next-intl-routes",
+  "name": "Next.js i18n (next-intl ルート構成)",
+  "version": "1.0.0",
+  "stack": ["nextjs","i18n","next-intl"],
+  "tags": ["i18n","routing","strike"],
+  "description": "next-intl風のメッセージ定義と簡易ミドルウェア。",
+  "files": [
+    { "path": "src/i18n/messages.ts", "template": "export const messages = { en: { hello: 'Hello' }, ja: { hello: 'こんにちは' } };\n" },
+    { "path": "middleware.ts", "template": "import { NextResponse } from 'next/server';\nexport function middleware(){ return NextResponse.next(); }\n" }
+  ]
+}
+

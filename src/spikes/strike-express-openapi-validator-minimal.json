@@ -1,0 +1,12 @@
+{
+  "id": "strike-express-openapi-validator-minimal",
+  "name": "Express OpenAPI Validator(最小)",
+  "version": "1.0.0",
+  "stack": ["express","openapi"],
+  "tags": ["validation","api","strike"],
+  "description": "OpenAPIスキーマでリクエスト検証する雛形（概念）。",
+  "files": [
+    { "path": "index.js", "template": "const express = require('express');\nconst app = express();\napp.use(express.json());\napp.post('/items', (req,res)=> res.json({ ok: true, body: req.body }));\napp.listen(3000);\n" }
+  ]
+}
+

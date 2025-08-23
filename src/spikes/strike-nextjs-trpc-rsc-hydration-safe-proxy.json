@@ -1,0 +1,13 @@
+{
+  "id": "strike-nextjs-trpc-rsc-hydration-safe-proxy",
+  "name": "Next.js + tRPC (RSC/SSR Hydration Safe Proxy)",
+  "version": "1.0.0",
+  "stack": ["nextjs","trpc"],
+  "tags": ["api","rsc","hydration","strike"],
+  "description": "RSC向けにtRPCクライアントを安全にプロキシするための雛形。",
+  "files": [
+    { "path": "src/trpc/router.ts", "template": "import { initTRPC } from '@trpc/server';\nconst t = initTRPC.create();\nexport const appRouter = t.router({ hello: t.procedure.query(()=> 'world') });\nexport type AppRouter = typeof appRouter;\n" },
+    { "path": "src/trpc/rscClient.ts", "template": "// RSCで使う安全なProxyクライアント（雛形）\nimport { createTRPCProxyClient, httpBatchLink } from '@trpc/client';\nimport type { AppRouter } from './router';\nexport function rscClient(){\n  return createTRPCProxyClient<AppRouter>({ links: [httpBatchLink({ url: '/api/trpc' })] });\n}\n" }
+  ]
+}
+

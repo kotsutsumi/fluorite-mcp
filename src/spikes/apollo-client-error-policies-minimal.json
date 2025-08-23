@@ -1,0 +1,13 @@
+{
+  "id": "apollo-client-error-policies-minimal",
+  "name": "Apollo Client errorPolicy 最小",
+  "version": "1.0.0",
+  "stack": ["react", "apollo"],
+  "tags": ["graphql", "client"],
+  "description": "errorPolicy: 'all' を使ってエラーとデータを両方扱う最小例",
+  "params": [ { "name": "app_name", "default": "apollo-errorpolicy" } ],
+  "files": [
+    { "path": "{{app_name}}/src/apollo/client.ts", "template": "import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';\nexport const client = new ApolloClient({ link: new HttpLink({ uri: '/graphql' }), cache: new InMemoryCache(), defaultOptions: { watchQuery: { errorPolicy: 'all' }, query: { errorPolicy: 'all' } } });\n" }
+  ]
+}
+
