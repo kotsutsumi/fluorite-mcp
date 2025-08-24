@@ -1,0 +1,12 @@
+{
+  "id": "custom-aws-batch-submit-job-minimal",
+  "name": "AWS Batch SubmitJob 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "batch"],
+  "tags": ["batch"],
+  "description": "Batchジョブ投入の概念スタブ",
+  "files": [
+    { "path": "src/aws/batch.ts", "template": "export async function submit(jobName:string){ return { jobName, jobId: 'job_1' }; }\n" }
+  ]
+}
+

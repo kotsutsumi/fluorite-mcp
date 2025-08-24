@@ -1,0 +1,12 @@
+{
+  "id": "custom-rabbitmq-delayed-exchange-minimal",
+  "name": "RabbitMQ Delayed Exchange 最小",
+  "version": "1.0.0",
+  "stack": ["rabbitmq"],
+  "tags": ["messaging"],
+  "description": "遅延交換の概念スタブ",
+  "files": [
+    { "path": "src/queue/rabbitmq.delayed.ts", "template": "export async function publishWithDelay(exchange:string, msg:string, delayMs:number){ return { exchange, msg, delayMs }; }\n" }
+  ]
+}
+

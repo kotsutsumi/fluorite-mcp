@@ -1,0 +1,12 @@
+{
+  "id": "custom-auth0-rotate-jwks-key-minimal",
+  "name": "Auth0 JWKS キー ローテーション 最小",
+  "version": "1.0.0",
+  "stack": ["auth0"],
+  "tags": ["auth", "security"],
+  "description": "JWKSキーのローテーション概念",
+  "files": [
+    { "path": "src/auth/auth0.jwks.ts", "template": "export async function rotate(){ return { rotated: true }; }\n" }
+  ]
+}
+

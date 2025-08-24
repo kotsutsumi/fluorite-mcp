@@ -1,0 +1,12 @@
+{
+  "id": "custom-terraform-aws-cloudwatch-synthetics-canary-minimal",
+  "name": "Terraform AWS CloudWatch Synthetics Canary 最小",
+  "version": "1.0.0",
+  "stack": ["terraform", "aws"],
+  "tags": ["monitoring"],
+  "description": "Canary定義の概念",
+  "files": [
+    { "path": "infra/canary.tf", "template": "# cloudwatch synthetics canary placeholder\n" }
+  ]
+}
+

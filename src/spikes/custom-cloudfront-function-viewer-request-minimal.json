@@ -1,0 +1,12 @@
+{
+  "id": "custom-cloudfront-function-viewer-request-minimal",
+  "name": "CloudFront Function Viewer Request 最小",
+  "version": "1.0.0",
+  "stack": ["cloudfront"],
+  "tags": ["edge"],
+  "description": "CloudFront Functionの最小",
+  "files": [
+    { "path": "src/edge/cf.function.js", "template": "function handler(event){ return event.request; }\n" }
+  ]
+}
+

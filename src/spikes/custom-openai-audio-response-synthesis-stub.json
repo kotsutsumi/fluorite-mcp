@@ -1,0 +1,12 @@
+{
+  "id": "custom-openai-audio-response-synthesis-stub",
+  "name": "OpenAI Audio 応答合成 スタブ",
+  "version": "1.0.0",
+  "stack": ["openai"],
+  "tags": ["audio"],
+  "description": "Audio response合成（概念）",
+  "files": [
+    { "path": "src/ai/openai.audio.ts", "template": "export async function synthesize(text:string){ return new Uint8Array(); }\n" }
+  ]
+}
+

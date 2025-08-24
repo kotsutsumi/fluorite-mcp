@@ -1,0 +1,17 @@
+{
+  "id": "strike-elasticsearch-bulk-minimal",
+  "name": "Elasticsearch Bulk",
+  "stack": [
+    "elasticsearch"
+  ],
+  "tags": [
+    "search"
+  ],
+  "files": [
+    {
+      "path": "src/search/elasticsearch.ts",
+      "template": "export async function bulk(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

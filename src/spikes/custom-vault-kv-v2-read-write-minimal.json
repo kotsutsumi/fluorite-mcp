@@ -1,0 +1,12 @@
+{
+  "id": "custom-vault-kv-v2-read-write-minimal",
+  "name": "Vault KV v2 読み書き 最小",
+  "version": "1.0.0",
+  "stack": ["vault"],
+  "tags": ["secrets"],
+  "description": "KV v2でのread/write（概念）",
+  "files": [
+    { "path": "src/secrets/vault.kv2.ts", "template": "export async function read(path:string){ return { path, data: {} }; }\nexport async function write(path:string, data:any){ return { path, ok: true }; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-mysql-partition-pruning-status-minimal",
+  "name": "MySQL パーティションPruning 状態 最小",
+  "version": "1.0.0",
+  "stack": ["mysql"],
+  "tags": ["db"],
+  "description": "Pruning動作の概念",
+  "files": [
+    { "path": "src/db/mysql.partition.prune.ts", "template": "export async function status(){ return { pruned: true }; }\n" }
+  ]
+}
+

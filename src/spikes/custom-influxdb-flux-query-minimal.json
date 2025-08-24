@@ -1,0 +1,12 @@
+{
+  "id": "custom-influxdb-flux-query-minimal",
+  "name": "InfluxDB Flux クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["influxdb"],
+  "tags": ["db"],
+  "description": "Fluxクエリの概念",
+  "files": [
+    { "path": "src/db/influx.flux.ts", "template": "export async function flux(q:string){ return { tables: [] }; }\n" }
+  ]
+}
+

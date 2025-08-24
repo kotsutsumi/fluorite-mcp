@@ -1,0 +1,12 @@
+{
+  "id": "custom-cognito-pre-signup-lambda-minimal",
+  "name": "Cognito Pre Sign-up Lambda 最小",
+  "version": "1.0.0",
+  "stack": ["cognito"],
+  "tags": ["auth"],
+  "description": "Pre Sign-upトリガの概念",
+  "files": [
+    { "path": "src/auth/cognito.presignup.ts", "template": "export async function handler(e:any){ return e; }\n" }
+  ]
+}
+

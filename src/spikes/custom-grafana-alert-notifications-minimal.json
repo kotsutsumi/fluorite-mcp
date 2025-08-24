@@ -1,0 +1,12 @@
+{
+  "id": "custom-grafana-alert-notifications-minimal",
+  "name": "Grafana Alert Notifications 最小",
+  "version": "1.0.0",
+  "stack": ["grafana"],
+  "tags": ["alerting"],
+  "description": "通知チャネル定義の概念スタブ",
+  "files": [
+    { "path": "grafana/notifications.yml", "template": "contactPoints: []\n" }
+  ]
+}
+

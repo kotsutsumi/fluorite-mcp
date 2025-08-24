@@ -1,0 +1,12 @@
+{
+  "id": "custom-redis-streams-auto-claim-minimal",
+  "name": "Redis Streams AUTOCLAIM 最小",
+  "version": "1.0.0",
+  "stack": ["redis"],
+  "tags": ["messaging"],
+  "description": "AUTOCLAIMの概念",
+  "files": [
+    { "path": "src/redis/streams.autoclaim.ts", "template": "export async function autoclaim(group:string){ return { group, claimed: [] }; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-drizzle-raw-sql-template-minimal",
+  "name": "Drizzle Raw SQL テンプレート 最小",
+  "version": "1.0.0",
+  "stack": ["drizzle"],
+  "tags": ["db"],
+  "description": "Drizzle向け生SQLテンプレート（概念）",
+  "files": [
+    { "path": "src/drizzle/sql.ts", "template": "export function sql(strings:TemplateStringsArray,...vals:any[]){ return strings.reduce((a,s,i)=> a+s+(vals[i]??''),''); }\n" }
+  ]
+}
+

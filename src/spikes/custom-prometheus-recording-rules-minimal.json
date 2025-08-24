@@ -1,0 +1,12 @@
+{
+  "id": "custom-prometheus-recording-rules-minimal",
+  "name": "Prometheus Recording Rules 最小",
+  "version": "1.0.0",
+  "stack": ["prometheus"],
+  "tags": ["metrics"],
+  "description": "Recording Rulesの最小",
+  "files": [
+    { "path": "prometheus/recording.rules.yml", "template": "groups: []\n" }
+  ]
+}
+

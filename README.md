@@ -849,6 +849,15 @@ All library specifications include proper attribution and licensing information 
 | **🐛 Issue Tracker** | GitHub Issues | Bug reports, features | 48-72 hours |
 | **📈 Roadmap** | GitHub Projects | Development planning | Monthly updates |
 
+## Spike Synth (Strike 10k+)
+- List virtual generated spikes (default strike-*): `node dist/cli/index.js spikes synth --filter '^strike-' --max 50`
+- Materialize to files (use cautiously): `node dist/cli/index.js spikes synth --filter '^strike-' --max 12000 --write --pretty`
+- Env caps:
+  - `FLUORITE_GENERATED_SPIKES_LIMIT`: Cap number of virtual generated spikes
+  - `FLUORITE_SPIKE_LIST_LIMIT`: Cap total returned IDs in listing
+
+Note: synth は仮想生成テンプレート（gen-*/strike-*）を列挙し、必要に応じて `src/spikes/` に JSON を書き出します（`--write` 指定時のみ）。
+
 ---
 
 <div align="center">

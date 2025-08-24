@@ -1,0 +1,12 @@
+{
+  "id": "custom-redisjson-path-update-minimal",
+  "name": "RedisJSON パス更新 最小",
+  "version": "1.0.0",
+  "stack": ["redis"],
+  "tags": ["cache"],
+  "description": "$.pathでの部分更新（概念）",
+  "files": [
+    { "path": "src/redis/json.update.ts", "template": "export async function setPath(key:string, path:string, value:any){ return { key, path, value }; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-vonage-sms-send-minimal",
+  "name": "Vonage SMS 送信 最小",
+  "version": "1.0.0",
+  "stack": ["vonage"],
+  "tags": ["sms"],
+  "description": "Vonage SMS送信の概念",
+  "files": [
+    { "path": "src/sms/vonage.ts", "template": "export async function send(to:string,text:string){ return { to, text }; }\n" }
+  ]
+}
+

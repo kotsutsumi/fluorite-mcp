@@ -1,0 +1,12 @@
+{
+  "id": "custom-anthropic-tools-parallel-calls-stub",
+  "name": "Anthropic Tools 並列呼び出し スタブ",
+  "version": "1.0.0",
+  "stack": ["anthropic"],
+  "tags": ["ai"],
+  "description": "複数ツール並列呼び出しの概念スタブ",
+  "files": [
+    { "path": "src/ai/anthropic.parallel.ts", "template": "export async function run(tools:string[]){ return tools.map(t=>({ tool:t, ok:true })); }\n" }
+  ]
+}
+

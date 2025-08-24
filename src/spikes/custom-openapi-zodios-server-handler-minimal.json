@@ -1,0 +1,12 @@
+{
+  "id": "custom-openapi-zodios-server-handler-minimal",
+  "name": "OpenAPI Zodios サーバハンドラ 最小",
+  "version": "1.0.0",
+  "stack": ["openapi", "zodios"],
+  "tags": ["api"],
+  "description": "Zodiosサーバハンドラ概念",
+  "files": [
+    { "path": "src/api/server.ts", "template": "export const routes = [{ path: '/hello', method: 'get' }];\n" }
+  ]
+}
+

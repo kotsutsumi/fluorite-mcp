@@ -1,0 +1,12 @@
+{
+  "id": "custom-cloudflare-workers-do-kv-migration-minimal",
+  "name": "Workers DO→KV マイグレーション 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare-workers"],
+  "tags": ["edge"],
+  "description": "Durable ObjectsからKVへ移行の概念",
+  "files": [
+    { "path": "worker/do-kv.migrate.ts", "template": "export async function migrate(){ return { moved: 0 }; }\n" }
+  ]
+}
+

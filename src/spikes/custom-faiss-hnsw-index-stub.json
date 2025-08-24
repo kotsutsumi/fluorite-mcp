@@ -1,0 +1,12 @@
+{
+  "id": "custom-faiss-hnsw-index-stub",
+  "name": "FAISS HNSW インデックス スタブ",
+  "version": "1.0.0",
+  "stack": ["faiss"],
+  "tags": ["vector"],
+  "description": "HNSWインデックスの概念",
+  "files": [
+    { "path": "src/vectors/faiss.hnsw.ts", "template": "export const hnsw = { m: 32, efConstruction: 200 };\n" }
+  ]
+}
+

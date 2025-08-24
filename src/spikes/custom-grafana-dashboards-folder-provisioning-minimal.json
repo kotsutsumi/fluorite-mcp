@@ -1,0 +1,12 @@
+{
+  "id": "custom-grafana-dashboards-folder-provisioning-minimal",
+  "name": "Grafana Dashboards フォルダプロビジョニング 最小",
+  "version": "1.0.0",
+  "stack": ["grafana"],
+  "tags": ["monitoring"],
+  "description": "ダッシュボードフォルダの最小",
+  "files": [
+    { "path": "grafana/provisioning/folders.yml", "template": "apiVersion: 1\nfolders: [{ name: 'Service' }]\n" }
+  ]
+}
+

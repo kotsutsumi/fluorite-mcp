@@ -1,0 +1,12 @@
+{
+  "id": "custom-rabbitmq-priority-queue-minimal",
+  "name": "RabbitMQ プライオリティキュー 最小",
+  "version": "1.0.0",
+  "stack": ["rabbitmq"],
+  "tags": ["messaging"],
+  "description": "優先度付きキューの概念",
+  "files": [
+    { "path": "src/queue/rabbitmq.priority.ts", "template": "export const queue = { name: 'q', maxPriority: 10 };\n" }
+  ]
+}
+

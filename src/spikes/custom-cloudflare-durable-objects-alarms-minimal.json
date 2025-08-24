@@ -1,0 +1,12 @@
+{
+  "id": "custom-cloudflare-durable-objects-alarms-minimal",
+  "name": "Durable Objects Alarms 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare-workers"],
+  "tags": ["edge"],
+  "description": "DOのアラーム概念スタブ",
+  "files": [
+    { "path": "worker/do-alarms.ts", "template": "export class Counter { n=0; alarm(){ this.n++; return this.n; } }\n" }
+  ]
+}
+

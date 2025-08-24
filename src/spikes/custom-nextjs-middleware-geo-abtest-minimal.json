@@ -1,0 +1,12 @@
+{
+  "id": "custom-nextjs-middleware-geo-abtest-minimal",
+  "name": "Next.js Middleware Geo A/B テスト 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["abtest"],
+  "description": "GeoでA/Bテスト（概念）",
+  "files": [
+    { "path": "middleware.ts", "template": "export function middleware(){ return Response.next(); }\n" }
+  ]
+}
+

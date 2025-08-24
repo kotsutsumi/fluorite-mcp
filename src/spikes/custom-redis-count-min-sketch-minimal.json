@@ -1,0 +1,12 @@
+{
+  "id": "custom-redis-count-min-sketch-minimal",
+  "name": "Redis Count-Min Sketch 最小",
+  "version": "1.0.0",
+  "stack": ["redis"],
+  "tags": ["approx"],
+  "description": "CMSの概念",
+  "files": [
+    { "path": "src/redis/cms.ts", "template": "export const cms = { width: 200, depth: 7 };\n" }
+  ]
+}
+

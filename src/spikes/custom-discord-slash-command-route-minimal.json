@@ -1,0 +1,12 @@
+{
+  "id": "custom-discord-slash-command-route-minimal",
+  "name": "Discord Slash Command ルート 最小",
+  "version": "1.0.0",
+  "stack": ["discord", "nextjs"],
+  "tags": ["chat"],
+  "description": "スラッシュコマンド受信ルート",
+  "files": [
+    { "path": "app/api/discord/command/route.ts", "template": "import { NextResponse } from 'next/server'; export async function POST(){ return NextResponse.json({ ok: true }); }\n" }
+  ]
+}
+

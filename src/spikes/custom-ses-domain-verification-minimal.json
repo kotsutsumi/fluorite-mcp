@@ -1,0 +1,12 @@
+{
+  "id": "custom-ses-domain-verification-minimal",
+  "name": "SES ドメイン検証 最小",
+  "version": "1.0.0",
+  "stack": ["ses", "aws"],
+  "tags": ["email"],
+  "description": "SESドメイン検証の概念",
+  "files": [
+    { "path": "src/email/ses.verify.ts", "template": "export async function verifyDomain(domain:string){ return { domain, verified: true }; }\n" }
+  ]
+}
+

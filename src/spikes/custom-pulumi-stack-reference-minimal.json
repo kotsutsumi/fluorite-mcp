@@ -1,0 +1,12 @@
+{
+  "id": "custom-pulumi-stack-reference-minimal",
+  "name": "Pulumi Stack Reference 最小",
+  "version": "1.0.0",
+  "stack": ["pulumi"],
+  "tags": ["iac"],
+  "description": "StackReferenceの概念",
+  "files": [
+    { "path": "pulumi/stackref.ts", "template": "export const ref = { stack: 'org/proj/dev' };\n" }
+  ]
+}
+

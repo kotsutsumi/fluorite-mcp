@@ -1,0 +1,12 @@
+{
+  "id": "custom-opensearch-ingest-geoip-minimal",
+  "name": "OpenSearch Ingest GeoIP 最小",
+  "version": "1.0.0",
+  "stack": ["opensearch"],
+  "tags": ["search"],
+  "description": "GeoIPプロセッサ概念",
+  "files": [
+    { "path": "src/search/opensearch.geoip.ts", "template": "export const pipeline = { processors: [{ geoip: { field: 'ip' } }] };\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-openai-assistants-code-interpreter-stub",
+  "name": "OpenAI Assistants Code Interpreter スタブ",
+  "version": "1.0.0",
+  "stack": ["openai"],
+  "tags": ["ai"],
+  "description": "Code Interpreterの概念",
+  "files": [
+    { "path": "src/ai/openai.codeinterpreter.ts", "template": "export async function run(code:string){ return { output: '' }; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-keycloak-email-verification-flow-minimal",
+  "name": "Keycloak Email Verification Flow 最小",
+  "version": "1.0.0",
+  "stack": ["keycloak"],
+  "tags": ["auth"],
+  "description": "メール検証フローの最小スタブ",
+  "files": [
+    { "path": "src/auth/keycloak.email.ts", "template": "export async function sendVerify(email:string){ return { email, sent: true }; }\n" }
+  ]
+}
+

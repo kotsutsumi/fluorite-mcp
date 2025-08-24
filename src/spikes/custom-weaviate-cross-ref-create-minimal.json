@@ -1,0 +1,12 @@
+{
+  "id": "custom-weaviate-cross-ref-create-minimal",
+  "name": "Weaviate Cross-Ref 作成 最小",
+  "version": "1.0.0",
+  "stack": ["weaviate"],
+  "tags": ["vector"],
+  "description": "交差参照作成の概念スタブ",
+  "files": [
+    { "path": "src/vectors/weaviate.ref.ts", "template": "export async function crossRef(){ return { ok: true }; }\n" }
+  ]
+}
+

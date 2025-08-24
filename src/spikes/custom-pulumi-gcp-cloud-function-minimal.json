@@ -1,0 +1,12 @@
+{
+  "id": "custom-pulumi-gcp-cloud-function-minimal",
+  "name": "Pulumi GCP Cloud Function 最小",
+  "version": "1.0.0",
+  "stack": ["pulumi", "gcp"],
+  "tags": ["iac"],
+  "description": "GCP Cloud Functionの最小",
+  "files": [
+    { "path": "pulumi/gcp-fn.ts", "template": "export const fn = { name: 'gcf' };\n" }
+  ]
+}
+

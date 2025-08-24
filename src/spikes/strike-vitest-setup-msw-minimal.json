@@ -1,0 +1,18 @@
+{
+  "id": "strike-vitest-setup-msw-minimal",
+  "name": "Vitest + MSW Setup",
+  "stack": [
+    "vitest",
+    "msw"
+  ],
+  "tags": [
+    "testing"
+  ],
+  "files": [
+    {
+      "path": "src/test/setup.ts",
+      "template": "export async function setup(){ /* msw setup */ }\n"
+    }
+  ],
+  "patches": []
+}

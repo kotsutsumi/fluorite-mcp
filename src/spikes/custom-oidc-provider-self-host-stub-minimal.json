@@ -1,0 +1,12 @@
+{
+  "id": "custom-oidc-provider-self-host-stub-minimal",
+  "name": "OIDC Provider 自前ホスト スタブ 最小",
+  "version": "1.0.0",
+  "stack": ["oidc"],
+  "tags": ["auth"],
+  "description": "自前OIDC Providerの最小スタブ",
+  "files": [
+    { "path": "src/auth/oidc.provider.ts", "template": "export const provider = { issuer: 'https://example.com', jwks: [] as any[] };\n" }
+  ]
+}
+

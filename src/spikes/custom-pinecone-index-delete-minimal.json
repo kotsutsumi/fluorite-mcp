@@ -1,0 +1,12 @@
+{
+  "id": "custom-pinecone-index-delete-minimal",
+  "name": "Pinecone インデックス削除 最小",
+  "version": "1.0.0",
+  "stack": ["pinecone"],
+  "tags": ["vector"],
+  "description": "インデックス削除の概念スタブ",
+  "files": [
+    { "path": "src/vectors/pinecone.delete.ts", "template": "export async function drop(name:string){ return { name, dropped: true }; }\n" }
+  ]
+}
+

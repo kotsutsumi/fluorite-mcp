@@ -1,0 +1,17 @@
+{
+  "id": "strike-opensearch-ingest-minimal",
+  "name": "OpenSearch Ingest",
+  "stack": [
+    "opensearch"
+  ],
+  "tags": [
+    "search"
+  ],
+  "files": [
+    {
+      "path": "src/search/opensearch.ts",
+      "template": "export async function ingest(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

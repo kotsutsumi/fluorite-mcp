@@ -1,0 +1,12 @@
+{
+  "id": "custom-mysql-generated-columns-minimal",
+  "name": "MySQL 生成列 最小",
+  "version": "1.0.0",
+  "stack": ["mysql"],
+  "tags": ["db"],
+  "description": "生成列の概念スタブ",
+  "files": [
+    { "path": "src/db/mysql.generated.ts", "template": "export const generated = { column: 'lower_name' };\n" }
+  ]
+}
+

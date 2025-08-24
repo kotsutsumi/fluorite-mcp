@@ -1,0 +1,12 @@
+{
+  "id": "custom-auth0-logout-url-minimal",
+  "name": "Auth0 Logout URL 最小",
+  "version": "1.0.0",
+  "stack": ["auth0"],
+  "tags": ["auth"],
+  "description": "ログアウトURL生成の概念",
+  "files": [
+    { "path": "src/auth/auth0.logout.ts", "template": "export function logoutUrl(returnTo:string){ return `https://auth0/logout?returnTo=${returnTo}`; }\n" }
+  ]
+}
+

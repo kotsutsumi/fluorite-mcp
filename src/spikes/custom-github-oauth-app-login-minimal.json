@@ -1,0 +1,12 @@
+{
+  "id": "custom-github-oauth-app-login-minimal",
+  "name": "GitHub OAuth App ログイン 最小",
+  "version": "1.0.0",
+  "stack": ["github", "oauth2"],
+  "tags": ["auth"],
+  "description": "GitHub OAuth Appでのログイン概念スタブ",
+  "files": [
+    { "path": "src/auth/github.ts", "template": "export function authorizeUrl(){ return 'https://github.com/login/oauth/authorize?client_id=app'; }\n" }
+  ]
+}
+

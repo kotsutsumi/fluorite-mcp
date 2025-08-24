@@ -1,0 +1,12 @@
+{
+  "id": "custom-opentelemetry-baggage-context-minimal",
+  "name": "OpenTelemetry Baggage Context 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry"],
+  "tags": ["tracing"],
+  "description": "Baggageコンテキストの概念スタブ",
+  "files": [
+    { "path": "src/otel/baggage.ts", "template": "export const baggage = { userId: '1' };\n" }
+  ]
+}
+

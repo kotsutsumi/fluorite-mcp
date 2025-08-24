@@ -1,0 +1,12 @@
+{
+  "id": "custom-auth0-action-pre-user-registration-minimal",
+  "name": "Auth0 Action Pre User Registration 最小",
+  "version": "1.0.0",
+  "stack": ["auth0"],
+  "tags": ["auth"],
+  "description": "ユーザー登録前アクション（スタブ）",
+  "files": [
+    { "path": "auth0/actions/pre-user.ts", "template": "export default function onExecutePreUserRegistration(event:any, api:any){ api.user.setAppMetadata('plan','free'); }\n" }
+  ]
+}
+

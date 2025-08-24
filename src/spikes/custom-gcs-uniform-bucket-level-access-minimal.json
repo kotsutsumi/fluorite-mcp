@@ -1,0 +1,12 @@
+{
+  "id": "custom-gcs-uniform-bucket-level-access-minimal",
+  "name": "GCS Uniform Bucket-Level Access 最小",
+  "version": "1.0.0",
+  "stack": ["gcs"],
+  "tags": ["storage"],
+  "description": "UBLA設定の概念",
+  "files": [
+    { "path": "src/gcp/gcs.ubla.ts", "template": "export const ubla = { enabled: true };\n" }
+  ]
+}
+

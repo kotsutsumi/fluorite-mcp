@@ -1,0 +1,12 @@
+{
+  "id": "custom-pinecone-delete-by-metadata-minimal",
+  "name": "Pinecone メタデータ削除 最小",
+  "version": "1.0.0",
+  "stack": ["pinecone"],
+  "tags": ["vector"],
+  "description": "メタデータ条件での削除概念",
+  "files": [
+    { "path": "src/vectors/pinecone.delete.meta.ts", "template": "export async function dropByMeta(filter:any){ return { deleted: 1, filter }; }\n" }
+  ]
+}
+

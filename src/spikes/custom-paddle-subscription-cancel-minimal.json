@@ -1,0 +1,12 @@
+{
+  "id": "custom-paddle-subscription-cancel-minimal",
+  "name": "Paddle Subscription 解約 最小",
+  "version": "1.0.0",
+  "stack": ["paddle"],
+  "tags": ["payments"],
+  "description": "サブスクリプション解約の概念",
+  "files": [
+    { "path": "src/payments/paddle.cancel.ts", "template": "export async function cancel(subId:string){ return { subId, cancelled: true }; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-cloudflare-workers-r2-binding-minimal",
+  "name": "Workers R2 バインディング 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare-workers", "r2"],
+  "tags": ["edge"],
+  "description": "R2バインディングの概念",
+  "files": [
+    { "path": "worker/r2.bind.ts", "template": "export const binding = { bucket: 'R2_BUCKET' };\n" }
+  ]
+}
+

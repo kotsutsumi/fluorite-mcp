@@ -1,0 +1,12 @@
+{
+  "id": "custom-mysql-partitioning-range-minimal",
+  "name": "MySQL RANGE パーティショニング 最小",
+  "version": "1.0.0",
+  "stack": ["mysql"],
+  "tags": ["db"],
+  "description": "RANGEパーティション定義の概念スタブ",
+  "files": [
+    { "path": "src/db/mysql.partition.ts", "template": "export const partition = { type: 'RANGE', key: 'created_at' };\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-gh-actions-reusable-call-consumer-minimal",
+  "name": "GH Actions Reusable 呼び出し側 最小",
+  "version": "1.0.0",
+  "stack": ["github-actions"],
+  "tags": ["ci"],
+  "description": "reusable workflow呼び出し（概念）",
+  "files": [
+    { "path": ".github/workflows/use-reusable.yml", "template": "name: Use Reusable\non: [workflow_dispatch]\njobs:\n  call:\n    uses: ./.github/workflows/reusable.yml\n" }
+  ]
+}
+

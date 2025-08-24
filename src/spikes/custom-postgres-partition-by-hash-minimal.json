@@ -1,0 +1,12 @@
+{
+  "id": "custom-postgres-partition-by-hash-minimal",
+  "name": "Postgres PARTITION BY HASH 最小",
+  "version": "1.0.0",
+  "stack": ["postgres"],
+  "tags": ["db"],
+  "description": "HASHパーティションの概念",
+  "files": [
+    { "path": "src/db/pg.partition.hash.ts", "template": "export const partition = { by: 'HASH', key: 'user_id' };\n" }
+  ]
+}
+

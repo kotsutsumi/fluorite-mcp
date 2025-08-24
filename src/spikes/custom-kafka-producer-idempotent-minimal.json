@@ -1,0 +1,12 @@
+{
+  "id": "custom-kafka-producer-idempotent-minimal",
+  "name": "Kafka Idempotent Producer 最小",
+  "version": "1.0.0",
+  "stack": ["kafka"],
+  "tags": ["messaging"],
+  "description": "冪等プロデューサの概念スタブ",
+  "files": [
+    { "path": "src/kafka/idempotent.ts", "template": "export async function produce(topic:string,msg:string){ return { topic, msg, idempotent: true }; }\n" }
+  ]
+}
+

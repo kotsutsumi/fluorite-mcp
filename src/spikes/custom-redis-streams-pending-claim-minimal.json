@@ -1,0 +1,12 @@
+{
+  "id": "custom-redis-streams-pending-claim-minimal",
+  "name": "Redis Streams PENDING/CLAIM 最小",
+  "version": "1.0.0",
+  "stack": ["redis"],
+  "tags": ["messaging"],
+  "description": "保留メッセージのCLAIM概念スタブ",
+  "files": [
+    { "path": "src/redis/streams.claim.ts", "template": "export async function claim(group:string, id:string){ return { group, id, claimed: true }; }\n" }
+  ]
+}
+

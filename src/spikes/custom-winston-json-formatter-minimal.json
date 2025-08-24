@@ -1,0 +1,12 @@
+{
+  "id": "custom-winston-json-formatter-minimal",
+  "name": "Winston JSON フォーマッタ 最小",
+  "version": "1.0.0",
+  "stack": ["winston"],
+  "tags": ["logging"],
+  "description": "JSONフォーマット（概念）",
+  "files": [
+    { "path": "src/logging/winston.json.ts", "template": "export function json(){ return (info:any)=> JSON.stringify(info); }\n" }
+  ]
+}
+

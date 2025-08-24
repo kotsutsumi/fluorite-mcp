@@ -1,0 +1,12 @@
+{
+  "id": "custom-openai-reasoning-models-stub",
+  "name": "OpenAI Reasoning Models スタブ",
+  "version": "1.0.0",
+  "stack": ["openai"],
+  "tags": ["ai"],
+  "description": "Reasoning系モデルの概念",
+  "files": [
+    { "path": "src/ai/openai.reasoning.ts", "template": "export async function generate(prompt:string){ return { thought: [], answer: 'ok' }; }\n" }
+  ]
+}
+

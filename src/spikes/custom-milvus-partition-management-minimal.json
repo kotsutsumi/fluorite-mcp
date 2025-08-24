@@ -1,0 +1,12 @@
+{
+  "id": "custom-milvus-partition-management-minimal",
+  "name": "Milvus パーティション管理 最小",
+  "version": "1.0.0",
+  "stack": ["milvus"],
+  "tags": ["vector"],
+  "description": "Milvusのパーティション作成/一覧の概念",
+  "files": [
+    { "path": "src/vectors/milvus.partitions.ts", "template": "export async function list(){ return []; }\n" }
+  ]
+}
+

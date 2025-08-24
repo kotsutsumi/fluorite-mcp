@@ -1,0 +1,12 @@
+{
+  "id": "custom-postgres-jsonb-index-gin-minimal",
+  "name": "Postgres JSONB GIN インデックス 最小",
+  "version": "1.0.0",
+  "stack": ["postgres"],
+  "tags": ["db"],
+  "description": "GINインデックスの概念",
+  "files": [
+    { "path": "src/db/pg.jsonb.ts", "template": "export const index = { using: 'GIN', field: 'data' };\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-anthropic-cache-control-stub",
+  "name": "Anthropic Cache-Control スタブ",
+  "version": "1.0.0",
+  "stack": ["anthropic"],
+  "tags": ["ai"],
+  "description": "cache controlの概念",
+  "files": [
+    { "path": "src/ai/anthropic.cache.ts", "template": "export const cache = { ttl: 60 };\n" }
+  ]
+}
+

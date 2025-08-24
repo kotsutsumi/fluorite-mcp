@@ -1,0 +1,12 @@
+{
+  "id": "custom-cloudflare-workers-durable-objects-storage-list-minimal",
+  "name": "Workers DO Storage list 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare-workers"],
+  "tags": ["edge"],
+  "description": "DO storageのlist概念",
+  "files": [
+    { "path": "worker/do-storage.ts", "template": "export class Store { async list(){ return []; } }\n" }
+  ]
+}
+

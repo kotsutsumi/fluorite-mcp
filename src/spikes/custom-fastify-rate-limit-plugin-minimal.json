@@ -1,0 +1,12 @@
+{
+  "id": "custom-fastify-rate-limit-plugin-minimal",
+  "name": "Fastify RateLimit プラグイン 最小",
+  "version": "1.0.0",
+  "stack": ["fastify"],
+  "tags": ["rate-limit"],
+  "description": "Fastifyのレート制限概念",
+  "files": [
+    { "path": "src/fastify/ratelimit.ts", "template": "export function rateLimit(){ return { max: 10, timeWindow: '1m' }; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-rag-chunking-strategy-examples-minimal",
+  "name": "RAG チャンク戦略 例 最小",
+  "version": "1.0.0",
+  "stack": ["rag"],
+  "tags": ["ai"],
+  "description": "チャンク戦略（固定/オーバーラップ）例の概念",
+  "files": [
+    { "path": "src/ai/rag.chunk.ts", "template": "export const strategies = ['fixed','sliding-overlap'];\n" }
+  ]
+}
+

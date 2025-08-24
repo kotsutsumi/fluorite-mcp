@@ -1,0 +1,12 @@
+{
+  "id": "custom-postgres-table-partition-attach-detach-minimal",
+  "name": "Postgres テーブルパーティション Attach/Detach 最小",
+  "version": "1.0.0",
+  "stack": ["postgres"],
+  "tags": ["db"],
+  "description": "パーティションのAttach/Detach概念",
+  "files": [
+    { "path": "src/db/pg.partition.attach.ts", "template": "export async function attach(partition:string){ return { partition, attached: true }; }\nexport async function detach(partition:string){ return { partition, detached: true }; }\n" }
+  ]
+}
+

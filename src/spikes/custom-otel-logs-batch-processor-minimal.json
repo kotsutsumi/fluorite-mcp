@@ -1,0 +1,12 @@
+{
+  "id": "custom-otel-logs-batch-processor-minimal",
+  "name": "OpenTelemetry Logs Batch Processor 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry"],
+  "tags": ["logging"],
+  "description": "ログのバッチプロセッサ概念",
+  "files": [
+    { "path": "src/otel/logs.batch.ts", "template": "export const batch = { maxQueueSize: 2048 };\n" }
+  ]
+}
+

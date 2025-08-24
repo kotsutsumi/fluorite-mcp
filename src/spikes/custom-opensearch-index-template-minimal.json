@@ -1,0 +1,12 @@
+{
+  "id": "custom-opensearch-index-template-minimal",
+  "name": "OpenSearch Index Template 最小",
+  "version": "1.0.0",
+  "stack": ["opensearch"],
+  "tags": ["search"],
+  "description": "インデックステンプレートの概念",
+  "files": [
+    { "path": "src/search/opensearch.template.ts", "template": "export const template = { index_patterns: ['logs-*'], template: { settings: {} } };\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-oauth2-token-revocation-endpoint-minimal",
+  "name": "OAuth2 Token Revocation エンドポイント 最小",
+  "version": "1.0.0",
+  "stack": ["oauth2"],
+  "tags": ["auth"],
+  "description": "トークン失効エンドポイントの概念",
+  "files": [
+    { "path": "src/auth/revoke.ts", "template": "export async function revoke(token:string){ return { token, revoked: true }; }\n" }
+  ]
+}
+

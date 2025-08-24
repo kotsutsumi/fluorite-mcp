@@ -1,0 +1,12 @@
+{
+  "id": "custom-fluent-bit-config-minimal",
+  "name": "Fluent Bit Config 最小",
+  "version": "1.0.0",
+  "stack": ["fluent-bit"],
+  "tags": ["logging"],
+  "description": "Fluent Bitの最小設定",
+  "files": [
+    { "path": "fluent-bit/fluent-bit.conf", "template": "[SERVICE]\n Flush        1\n[INPUT]\n Name         dummy\n[OUTPUT]\n Name         stdout\n" }
+  ]
+}
+

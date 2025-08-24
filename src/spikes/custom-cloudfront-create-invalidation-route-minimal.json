@@ -1,0 +1,12 @@
+{
+  "id": "custom-cloudfront-create-invalidation-route-minimal",
+  "name": "CloudFront Invalidation 作成 ルート 最小",
+  "version": "1.0.0",
+  "stack": ["cloudfront"],
+  "tags": ["cdn"],
+  "description": "Invalidation作成ルートの概念",
+  "files": [
+    { "path": "app/api/cloudfront/invalidate/route.ts", "template": "import { NextResponse } from 'next/server'; export async function POST(){ return NextResponse.json({ invalidationId: 'I1' }); }\n" }
+  ]
+}
+

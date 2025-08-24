@@ -1,0 +1,12 @@
+{
+  "id": "custom-azure-managed-identity-token-minimal",
+  "name": "Azure Managed Identity トークン 最小",
+  "version": "1.0.0",
+  "stack": ["azure"],
+  "tags": ["auth"],
+  "description": "MSIトークン取得の概念",
+  "files": [
+    { "path": "src/azure/msi.ts", "template": "export async function token(resource:string){ return { resource, token: 'abc' }; }\n" }
+  ]
+}
+

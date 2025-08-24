@@ -1,0 +1,18 @@
+{
+  "id": "strike-valibot-schema-minimal",
+  "name": "Valibot Schema Minimal",
+  "stack": [
+    "valibot",
+    "typescript"
+  ],
+  "tags": [
+    "validation"
+  ],
+  "files": [
+    {
+      "path": "src/validation/user.ts",
+      "template": "export const User = { id: 'number', email: 'string' };\n"
+    }
+  ],
+  "patches": []
+}

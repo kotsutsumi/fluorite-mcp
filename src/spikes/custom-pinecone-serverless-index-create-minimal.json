@@ -1,0 +1,12 @@
+{
+  "id": "custom-pinecone-serverless-index-create-minimal",
+  "name": "Pinecone Serverless インデックス作成 最小",
+  "version": "1.0.0",
+  "stack": ["pinecone"],
+  "tags": ["vector"],
+  "description": "Serverlessインデックスの概念",
+  "files": [
+    { "path": "src/vectors/pinecone.serverless.ts", "template": "export async function create(name:string){ return { name, serverless: true }; }\n" }
+  ]
+}
+

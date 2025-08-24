@@ -1,0 +1,12 @@
+{
+  "id": "custom-langchain-branching-graph-state-minimal",
+  "name": "LangChain 分岐グラフ状態 最小",
+  "version": "1.0.0",
+  "stack": ["langchain"],
+  "tags": ["ai"],
+  "description": "分岐状態管理の概念",
+  "files": [
+    { "path": "src/ai/langchain.branch.ts", "template": "export const state = { nodes: [], edges: [] };\n" }
+  ]
+}
+

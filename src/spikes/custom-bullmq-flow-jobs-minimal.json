@@ -1,0 +1,12 @@
+{
+  "id": "custom-bullmq-flow-jobs-minimal",
+  "name": "BullMQ Flow Jobs 最小",
+  "version": "1.0.0",
+  "stack": ["bullmq"],
+  "tags": ["queue"],
+  "description": "フロージョブの概念スタブ",
+  "files": [
+    { "path": "src/queue/bullmq.flow.ts", "template": "export const flow = { name: 'flow', children: [] };\n" }
+  ]
+}
+

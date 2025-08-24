@@ -1,0 +1,17 @@
+{
+  "id": "strike-weaviate-schema-class-add-minimal",
+  "name": "Weaviate Add Class",
+  "stack": [
+    "weaviate"
+  ],
+  "tags": [
+    "vector"
+  ],
+  "files": [
+    {
+      "path": "src/vectors/weaviate.ts",
+      "template": "export async function addClass(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

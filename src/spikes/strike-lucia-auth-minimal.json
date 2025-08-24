@@ -1,0 +1,17 @@
+{
+  "id": "strike-lucia-auth-minimal",
+  "name": "Lucia Auth Minimal",
+  "stack": [
+    "lucia"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "src/auth/lucia.ts",
+      "template": "export const lucia = { adapter: 'stub' };\n"
+    }
+  ],
+  "patches": []
+}

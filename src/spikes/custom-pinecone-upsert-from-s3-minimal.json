@@ -1,0 +1,12 @@
+{
+  "id": "custom-pinecone-upsert-from-s3-minimal",
+  "name": "Pinecone S3 からUpsert 最小",
+  "version": "1.0.0",
+  "stack": ["pinecone", "s3"],
+  "tags": ["vector"],
+  "description": "S3取り込みUpsertの概念",
+  "files": [
+    { "path": "src/vectors/pinecone.s3.ts", "template": "export async function upsertFromS3(bucket:string, key:string){ return { count: 1 }; }\n" }
+  ]
+}
+

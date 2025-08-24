@@ -1,0 +1,12 @@
+{
+  "id": "custom-stripe-refund-payment-intent-minimal",
+  "name": "Stripe Refund Payment Intent 最小",
+  "version": "1.0.0",
+  "stack": ["stripe"],
+  "tags": ["payments"],
+  "description": "決済の返金（概念）",
+  "files": [
+    { "path": "src/payments/stripe.refund.ts", "template": "export async function refund(paymentIntentId:string){ return { id: 're_1', paymentIntentId }; }\n" }
+  ]
+}
+

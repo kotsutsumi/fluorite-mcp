@@ -1,0 +1,12 @@
+{
+  "id": "custom-oidc-rp-initiate-minimal",
+  "name": "OIDC RP Initiate 最小",
+  "version": "1.0.0",
+  "stack": ["oidc"],
+  "tags": ["auth"],
+  "description": "RPイニシエイトの最小スタブ",
+  "files": [
+    { "path": "src/auth/oidc.rp.ts", "template": "export function authorizeUrl(){ return 'https://issuer/authorize?client_id=app'; }\n" }
+  ]
+}
+

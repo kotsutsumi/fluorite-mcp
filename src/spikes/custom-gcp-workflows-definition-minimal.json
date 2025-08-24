@@ -1,0 +1,12 @@
+{
+  "id": "custom-gcp-workflows-definition-minimal",
+  "name": "GCP Workflows 定義 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "workflows"],
+  "tags": ["workflow"],
+  "description": "Workflows YAMLの最小",
+  "files": [
+    { "path": "gcp/workflows.yaml", "template": "main:\n  steps:\n    - init:\n        assign: [{ ok: true }]\n" }
+  ]
+}
+

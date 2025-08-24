@@ -1,0 +1,12 @@
+{
+  "id": "custom-pgvector-hnsw-index-config-minimal",
+  "name": "pgvector HNSW インデックス設定 最小",
+  "version": "1.0.0",
+  "stack": ["pgvector"],
+  "tags": ["vector"],
+  "description": "HNSWパラメータ設定の概念スタブ",
+  "files": [
+    { "path": "src/vectors/pgvector.hnsw.ts", "template": "export const hnsw = { m: 16, efConstruction: 200 };\n" }
+  ]
+}
+

@@ -1,0 +1,17 @@
+{
+  "id": "strike-qdrant-collection-create-minimal",
+  "name": "Qdrant Create Collection",
+  "stack": [
+    "qdrant"
+  ],
+  "tags": [
+    "vector"
+  ],
+  "files": [
+    {
+      "path": "src/vectors/qdrant.ts",
+      "template": "export async function create(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

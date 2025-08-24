@@ -1,0 +1,12 @@
+{
+  "id": "custom-oauth2-introspection-endpoint-minimal",
+  "name": "OAuth2 Introspection エンドポイント 最小",
+  "version": "1.0.0",
+  "stack": ["oauth2"],
+  "tags": ["auth"],
+  "description": "トークン内省の概念スタブ",
+  "files": [
+    { "path": "src/auth/introspection.ts", "template": "export async function introspect(token:string){ return { active: !!token }; }\n" }
+  ]
+}
+

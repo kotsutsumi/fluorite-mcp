@@ -1,0 +1,12 @@
+{
+  "id": "custom-milvus-index-ivf-flat-config-minimal",
+  "name": "Milvus IVF_FLAT インデックス設定 最小",
+  "version": "1.0.0",
+  "stack": ["milvus"],
+  "tags": ["vector"],
+  "description": "IVF_FLAT設定の概念",
+  "files": [
+    { "path": "src/vectors/milvus.ivf.flat.ts", "template": "export const ivfFlat = { nlist: 1024 };\n" }
+  ]
+}
+

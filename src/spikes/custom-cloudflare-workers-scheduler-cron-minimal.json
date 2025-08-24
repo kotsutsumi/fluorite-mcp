@@ -1,0 +1,12 @@
+{
+  "id": "custom-cloudflare-workers-scheduler-cron-minimal",
+  "name": "Workers Scheduler Cron 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare-workers"],
+  "tags": ["edge", "cron"],
+  "description": "WorkersのCronスケジュール概念",
+  "files": [
+    { "path": "worker/scheduler.ts", "template": "export default { async scheduled(){ return; } };\n" }
+  ]
+}
+

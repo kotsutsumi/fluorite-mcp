@@ -1,0 +1,12 @@
+{
+  "id": "custom-cloudflare-workers-kv-namespace-binding-minimal",
+  "name": "Workers KV Namespace Binding 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare-workers"],
+  "tags": ["edge"],
+  "description": "KVバインディングの概念スタブ",
+  "files": [
+    { "path": "worker/kv.bind.ts", "template": "export const binding = { name: 'KV', namespace: 'APP_KV' };\n" }
+  ]
+}
+

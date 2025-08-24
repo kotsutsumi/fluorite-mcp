@@ -1,0 +1,12 @@
+{
+  "id": "custom-grafana-annotations-api-minimal",
+  "name": "Grafana Annotations API 最小",
+  "version": "1.0.0",
+  "stack": ["grafana"],
+  "tags": ["observability"],
+  "description": "注釈APIの概念スタブ",
+  "files": [
+    { "path": "src/observability/grafana.annotations.ts", "template": "export async function annotate(text:string){ return { id: 1, text }; }\n" }
+  ]
+}
+

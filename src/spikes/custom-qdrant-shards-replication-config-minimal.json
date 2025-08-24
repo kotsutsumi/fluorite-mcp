@@ -1,0 +1,12 @@
+{
+  "id": "custom-qdrant-shards-replication-config-minimal",
+  "name": "Qdrant シャード/レプリケーション設定 最小",
+  "version": "1.0.0",
+  "stack": ["qdrant"],
+  "tags": ["vector"],
+  "description": "シャード/レプリカ設定の概念",
+  "files": [
+    { "path": "src/vectors/qdrant.shards.ts", "template": "export const shards = { replicas: 2, shardNumber: 4 };\n" }
+  ]
+}
+

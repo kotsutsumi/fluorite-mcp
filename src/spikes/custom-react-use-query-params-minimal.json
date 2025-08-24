@@ -1,0 +1,11 @@
+{
+  "id": "custom-react-use-query-params-minimal",
+  "name": "React useQueryParams 最小",
+  "version": "1.0.0",
+  "stack": ["react"],
+  "tags": ["ui"],
+  "description": "クエリパラメータ処理の最小フック",
+  "files": [
+    { "path": "src/hooks/useQuery.ts", "template": "export function useQuery(){ return new URLSearchParams('?a=1'); }\n" }
+  ]}
+

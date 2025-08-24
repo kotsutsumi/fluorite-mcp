@@ -1,0 +1,12 @@
+{
+  "id": "custom-prisma-raw-sql-safe-tagged-template-minimal",
+  "name": "Prisma Raw SQL 安全タグテンプレート 最小",
+  "version": "1.0.0",
+  "stack": ["prisma"],
+  "tags": ["db"],
+  "description": "タグ付きテンプレートでのSQL（概念）",
+  "files": [
+    { "path": "src/prisma.raw.ts", "template": "export function sql(strings:TemplateStringsArray,...vals:any[]){ return strings.reduce((acc,s,i)=> acc + s + (vals[i]??''), ''); }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-drone-ci-pipeline-minimal",
+  "name": "Drone CI パイプライン 最小",
+  "version": "1.0.0",
+  "stack": ["drone"],
+  "tags": ["ci"],
+  "description": "Droneの最小パイプライン",
+  "files": [
+    { "path": ".drone.yml", "template": "kind: pipeline\nname: default\nsteps: [{ name: build, image: node:18, commands: ['npm ci'] }]\n" }
+  ]
+}
+

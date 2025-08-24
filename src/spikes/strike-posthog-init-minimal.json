@@ -1,0 +1,17 @@
+{
+  "id": "strike-posthog-init-minimal",
+  "name": "PostHog Init Minimal",
+  "stack": [
+    "posthog"
+  ],
+  "tags": [
+    "analytics"
+  ],
+  "files": [
+    {
+      "path": "src/posthog.ts",
+      "template": "export const posthog = { key: process.env.POSTHOG_KEY };\n"
+    }
+  ],
+  "patches": []
+}

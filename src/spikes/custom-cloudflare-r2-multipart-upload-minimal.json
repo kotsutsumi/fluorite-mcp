@@ -1,0 +1,12 @@
+{
+  "id": "custom-cloudflare-r2-multipart-upload-minimal",
+  "name": "Cloudflare R2 マルチパートアップロード 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare-r2"],
+  "tags": ["storage"],
+  "description": "R2のマルチパートアップロード概念",
+  "files": [
+    { "path": "worker/r2.multipart.ts", "template": "export async function initiate(key:string){ return { uploadId: 'u_1', key }; }\n" }
+  ]
+}
+

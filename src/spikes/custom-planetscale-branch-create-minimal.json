@@ -1,0 +1,12 @@
+{
+  "id": "custom-planetscale-branch-create-minimal",
+  "name": "PlanetScale ブランチ作成 最小",
+  "version": "1.0.0",
+  "stack": ["planetscale"],
+  "tags": ["db"],
+  "description": "PSブランチ作成の概念スタブ",
+  "files": [
+    { "path": "src/db/planetscale.branch.ts", "template": "export async function create(name:string){ return { name, created: true }; }\n" }
+  ]
+}
+

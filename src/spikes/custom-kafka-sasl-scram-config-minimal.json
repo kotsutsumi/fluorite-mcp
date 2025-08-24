@@ -1,0 +1,12 @@
+{
+  "id": "custom-kafka-sasl-scram-config-minimal",
+  "name": "Kafka SASL/SCRAM 設定 最小",
+  "version": "1.0.0",
+  "stack": ["kafka"],
+  "tags": ["messaging", "security"],
+  "description": "SASL/SCRAM設定の概念",
+  "files": [
+    { "path": "src/kafka/sasl.scram.ts", "template": "export const sasl = { mechanism: 'SCRAM-SHA-256' };\n" }
+  ]
+}
+

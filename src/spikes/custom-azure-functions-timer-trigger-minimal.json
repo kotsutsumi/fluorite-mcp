@@ -1,0 +1,12 @@
+{
+  "id": "custom-azure-functions-timer-trigger-minimal",
+  "name": "Azure Functions Timer Trigger 最小",
+  "version": "1.0.0",
+  "stack": ["azure-functions"],
+  "tags": ["serverless", "cron"],
+  "description": "タイマートリガーの最小スタブ",
+  "files": [
+    { "path": "azure/functions/timer/index.ts", "template": "export async function run(){ return { ok: true }; }\n" }
+  ]
+}
+

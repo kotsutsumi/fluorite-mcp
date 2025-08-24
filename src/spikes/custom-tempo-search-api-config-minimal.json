@@ -1,0 +1,12 @@
+{
+  "id": "custom-tempo-search-api-config-minimal",
+  "name": "Tempo Search API 設定 最小",
+  "version": "1.0.0",
+  "stack": ["tempo"],
+  "tags": ["tracing"],
+  "description": "Search API有効化の概念",
+  "files": [
+    { "path": "tempo/search.yml", "template": "search_enabled: true\n" }
+  ]
+}
+

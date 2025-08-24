@@ -1,0 +1,12 @@
+{
+  "id": "custom-sqs-message-attributes-filter-minimal",
+  "name": "SQS メッセージ属性フィルタ 最小",
+  "version": "1.0.0",
+  "stack": ["sqs"],
+  "tags": ["messaging", "aws"],
+  "description": "属性フィルタの概念スタブ",
+  "files": [
+    { "path": "src/aws/sqs.filter.ts", "template": "export function match(attrs:any){ return !!attrs; }\n" }
+  ]
+}
+

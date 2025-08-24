@@ -1,0 +1,12 @@
+{
+  "id": "custom-paypal-capture-order-minimal",
+  "name": "PayPal Capture Order 最小",
+  "version": "1.0.0",
+  "stack": ["paypal"],
+  "tags": ["payments"],
+  "description": "注文キャプチャの概念",
+  "files": [
+    { "path": "src/payments/paypal.capture.ts", "template": "export async function capture(orderId:string){ return { orderId, status: 'COMPLETED' }; }\n" }
+  ]
+}
+

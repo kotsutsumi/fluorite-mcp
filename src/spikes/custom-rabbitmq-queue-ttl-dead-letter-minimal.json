@@ -1,0 +1,12 @@
+{
+  "id": "custom-rabbitmq-queue-ttl-dead-letter-minimal",
+  "name": "RabbitMQ Queue TTL + DLX 最小",
+  "version": "1.0.0",
+  "stack": ["rabbitmq"],
+  "tags": ["messaging"],
+  "description": "TTLとDLXの概念",
+  "files": [
+    { "path": "src/queue/rabbitmq.ttl.ts", "template": "export const queue = { name: 'q', ttlMs: 60000, deadLetter: 'q-dlx' };\n" }
+  ]
+}
+

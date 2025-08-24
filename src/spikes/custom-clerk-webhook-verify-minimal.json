@@ -1,0 +1,12 @@
+{
+  "id": "custom-clerk-webhook-verify-minimal",
+  "name": "Clerk Webhook 署名検証 最小",
+  "version": "1.0.0",
+  "stack": ["clerk"],
+  "tags": ["auth", "webhook"],
+  "description": "Clerk Webhook署名の概念",
+  "files": [
+    { "path": "src/auth/clerk.webhook.ts", "template": "export function verify(sig:string, body:string){ return sig.length>0 && body.length>=0; }\n" }
+  ]
+}
+

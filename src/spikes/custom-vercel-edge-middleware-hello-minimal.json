@@ -1,0 +1,12 @@
+{
+  "id": "custom-vercel-edge-middleware-hello-minimal",
+  "name": "Vercel Edge Middleware hello 最小",
+  "version": "1.0.0",
+  "stack": ["vercel"],
+  "tags": ["edge"],
+  "description": "Vercel Edge Middlewareの最小",
+  "files": [
+    { "path": "middleware.ts", "template": "export function middleware(){ return Response.next(); }\n" }
+  ]
+}
+

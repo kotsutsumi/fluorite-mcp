@@ -1,0 +1,17 @@
+{
+  "id": "strike-gcs-signed-url-minimal",
+  "name": "GCS Signed URL",
+  "stack": [
+    "gcs"
+  ],
+  "tags": [
+    "storage"
+  ],
+  "files": [
+    {
+      "path": "src/storage/gcs.ts",
+      "template": "export async function signedUrl(){ return '' }\n"
+    }
+  ],
+  "patches": []
+}

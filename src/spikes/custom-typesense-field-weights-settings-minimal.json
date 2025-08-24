@@ -1,0 +1,12 @@
+{
+  "id": "custom-typesense-field-weights-settings-minimal",
+  "name": "Typesense フィールド重み 設定 最小",
+  "version": "1.0.0",
+  "stack": ["typesense"],
+  "tags": ["search"],
+  "description": "フィールド重みの概念",
+  "files": [
+    { "path": "src/search/typesense.weights.ts", "template": "export const weights = { title: 2, body: 1 };\n" }
+  ]
+}
+

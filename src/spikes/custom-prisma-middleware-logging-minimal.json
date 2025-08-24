@@ -1,0 +1,12 @@
+{
+  "id": "custom-prisma-middleware-logging-minimal",
+  "name": "Prisma Middleware ロギング 最小",
+  "version": "1.0.0",
+  "stack": ["prisma"],
+  "tags": ["db"],
+  "description": "Prismaミドルウェアでロギング（概念）",
+  "files": [
+    { "path": "src/prisma.middleware.ts", "template": "export const mw = async (params:any, next:any)=>{ const result = await next(params); return result; };\n" }
+  ]
+}
+

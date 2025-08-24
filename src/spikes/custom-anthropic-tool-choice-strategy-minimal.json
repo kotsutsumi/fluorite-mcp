@@ -1,0 +1,12 @@
+{
+  "id": "custom-anthropic-tool-choice-strategy-minimal",
+  "name": "Anthropic Tool Choice 戦略 最小",
+  "version": "1.0.0",
+  "stack": ["anthropic"],
+  "tags": ["ai"],
+  "description": "ツール選択戦略の概念スタブ",
+  "files": [
+    { "path": "src/ai/anthropic.choice.ts", "template": "export function choose(tools:string[]){ return tools[0] || 'none'; }\n" }
+  ]
+}
+

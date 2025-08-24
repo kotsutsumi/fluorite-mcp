@@ -1,0 +1,12 @@
+{
+  "id": "custom-langchain-memory-buffer-minimal",
+  "name": "LangChain Memory Buffer 最小",
+  "version": "1.0.0",
+  "stack": ["langchain"],
+  "tags": ["ai"],
+  "description": "バッファメモリの概念スタブ",
+  "files": [
+    { "path": "src/ai/langchain.memory.ts", "template": "export const memory = { messages: [] as any[] };\n" }
+  ]
+}
+

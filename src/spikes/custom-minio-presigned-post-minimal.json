@@ -1,0 +1,12 @@
+{
+  "id": "custom-minio-presigned-post-minimal",
+  "name": "MinIO Presigned POST 最小",
+  "version": "1.0.0",
+  "stack": ["minio"],
+  "tags": ["storage"],
+  "description": "Presigned POSTの概念",
+  "files": [
+    { "path": "src/storage/minio.post.ts", "template": "export async function presign(path:string){ return { url: 'http://minio/upload', fields: { key: path } }; }\n" }
+  ]
+}
+

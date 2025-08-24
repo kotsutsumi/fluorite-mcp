@@ -1,0 +1,12 @@
+{
+  "id": "custom-prisma-view-refresh-minimal",
+  "name": "Prisma VIEW Refresh 最小",
+  "version": "1.0.0",
+  "stack": ["prisma"],
+  "tags": ["db"],
+  "description": "VIEWのリフレッシュ（概念）",
+  "files": [
+    { "path": "src/prisma.view.refresh.ts", "template": "export async function refresh(name:string){ return { name, refreshed: true }; }\n" }
+  ]
+}
+

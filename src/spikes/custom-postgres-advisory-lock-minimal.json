@@ -1,0 +1,12 @@
+{
+  "id": "custom-postgres-advisory-lock-minimal",
+  "name": "Postgres Advisory Lock 最小",
+  "version": "1.0.0",
+  "stack": ["postgres"],
+  "tags": ["db"],
+  "description": "助言ロックの概念スタブ",
+  "files": [
+    { "path": "src/db/pg.lock.ts", "template": "export async function withLock(key:number, fn:()=>Promise<any>){ return await fn(); }\n" }
+  ]
+}
+

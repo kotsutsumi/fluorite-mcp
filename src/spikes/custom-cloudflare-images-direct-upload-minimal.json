@@ -1,0 +1,12 @@
+{
+  "id": "custom-cloudflare-images-direct-upload-minimal",
+  "name": "Cloudflare Images ダイレクトアップロード 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare"],
+  "tags": ["image"],
+  "description": "CF Images直アップロードの概念スタブ",
+  "files": [
+    { "path": "src/image/cf.images.ts", "template": "export async function directUpload(){ return { url: 'https://upload.example' }; }\n" }
+  ]
+}
+

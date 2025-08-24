@@ -1,0 +1,12 @@
+{
+  "id": "custom-mongodb-ttl-index-create-minimal",
+  "name": "MongoDB TTL インデックス作成 最小",
+  "version": "1.0.0",
+  "stack": ["mongodb"],
+  "tags": ["db"],
+  "description": "TTLインデックスの概念",
+  "files": [
+    { "path": "src/db/mongo.ttl.ts", "template": "export async function createTTL(collection:string, seconds:number){ return { collection, seconds }; }\n" }
+  ]
+}
+

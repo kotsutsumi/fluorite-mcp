@@ -1,0 +1,18 @@
+{
+  "id": "strike-swr-hook-minimal",
+  "name": "SWR Hook Minimal",
+  "stack": [
+    "react",
+    "swr"
+  ],
+  "tags": [
+    "frontend"
+  ],
+  "files": [
+    {
+      "path": "src/useUser.ts",
+      "template": "import useSWR from 'swr';\nexport function useUser(){ return useSWR('/api/user', async(url)=> ({ email: 'user@example.com' })); }\n"
+    }
+  ],
+  "patches": []
+}

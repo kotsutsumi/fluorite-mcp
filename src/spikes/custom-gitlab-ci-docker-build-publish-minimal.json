@@ -1,0 +1,12 @@
+{
+  "id": "custom-gitlab-ci-docker-build-publish-minimal",
+  "name": "GitLab CI Docker build+publish 最小",
+  "version": "1.0.0",
+  "stack": ["gitlab-ci"],
+  "tags": ["ci"],
+  "description": "Dockerビルド/プッシュの最小",
+  "files": [
+    { "path": ".gitlab-ci.yml", "template": "stages: [build]\nbuild:\n  image: docker:24\n  services: [docker:24-dind]\n  script: ['echo build && echo push']\n" }
+  ]
+}
+

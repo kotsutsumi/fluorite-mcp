@@ -1,0 +1,12 @@
+{
+  "id": "custom-loki-promtail-scrape-config-minimal",
+  "name": "Loki promtail スクレイプ設定 最小",
+  "version": "1.0.0",
+  "stack": ["loki"],
+  "tags": ["logging"],
+  "description": "promtailのスクレイプ最小",
+  "files": [
+    { "path": "loki/promtail.yml", "template": "scrape_configs: []\n" }
+  ]
+}
+

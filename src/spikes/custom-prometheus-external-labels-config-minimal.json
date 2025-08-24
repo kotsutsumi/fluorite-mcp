@@ -1,0 +1,12 @@
+{
+  "id": "custom-prometheus-external-labels-config-minimal",
+  "name": "Prometheus external_labels 設定 最小",
+  "version": "1.0.0",
+  "stack": ["prometheus"],
+  "tags": ["metrics"],
+  "description": "external_labelsの概念",
+  "files": [
+    { "path": "prometheus/prometheus.yml", "template": "global: { external_labels: { cluster: 'dev' } }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-notion-api-page-create-minimal",
+  "name": "Notion API ページ作成 最小",
+  "version": "1.0.0",
+  "stack": ["notion"],
+  "tags": ["docs"],
+  "description": "Notionページ作成の概念",
+  "files": [
+    { "path": "src/docs/notion.ts", "template": "export async function createPage(title:string){ return { id: 'page_1', title }; }\n" }
+  ]
+}
+

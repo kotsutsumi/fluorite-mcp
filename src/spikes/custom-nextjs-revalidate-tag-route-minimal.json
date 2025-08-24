@@ -1,0 +1,12 @@
+{
+  "id": "custom-nextjs-revalidate-tag-route-minimal",
+  "name": "Next.js revalidateTag ルート 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["edge"],
+  "description": "revalidateTag呼び出しルート（スタブ）",
+  "files": [
+    { "path": "app/api/revalidate/tag/route.ts", "template": "import { NextResponse } from 'next/server'; export async function POST(){ return NextResponse.json({ revalidated: true }); }\n" }
+  ]
+}
+

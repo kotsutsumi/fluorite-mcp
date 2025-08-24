@@ -1,0 +1,12 @@
+{
+  "id": "custom-postgres-partition-by-list-minimal",
+  "name": "Postgres PARTITION BY LIST 最小",
+  "version": "1.0.0",
+  "stack": ["postgres"],
+  "tags": ["db"],
+  "description": "LISTパーティション定義の概念",
+  "files": [
+    { "path": "src/db/pg.partition.list.ts", "template": "export const partition = { by: 'LIST', key: 'country' };\n" }
+  ]
+}
+

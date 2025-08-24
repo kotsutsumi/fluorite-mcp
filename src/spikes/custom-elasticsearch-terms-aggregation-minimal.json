@@ -1,0 +1,12 @@
+{
+  "id": "custom-elasticsearch-terms-aggregation-minimal",
+  "name": "Elasticsearch Terms Aggregation 最小",
+  "version": "1.0.0",
+  "stack": ["elasticsearch"],
+  "tags": ["search"],
+  "description": "Terms集計の概念スタブ",
+  "files": [
+    { "path": "src/search/es.aggs.ts", "template": "export async function terms(field:string){ return { buckets: [] }; }\n" }
+  ]
+}
+

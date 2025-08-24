@@ -1,0 +1,12 @@
+{
+  "id": "custom-prometheus-pushgateway-push-minimal",
+  "name": "Prometheus Pushgateway Push 最小",
+  "version": "1.0.0",
+  "stack": ["prometheus"],
+  "tags": ["metrics"],
+  "description": "Pushgatewayへpushの概念スタブ",
+  "files": [
+    { "path": "src/metrics/push.ts", "template": "export async function push(job:string){ return { job, ok: true }; }\n" }
+  ]
+}
+

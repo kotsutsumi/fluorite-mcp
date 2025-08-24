@@ -1,0 +1,12 @@
+{
+  "id": "custom-nextjs-request-timeout-route-minimal",
+  "name": "Next.js Request Timeout ルート 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["timeout"],
+  "description": "タイムアウト検知の最小ルート",
+  "files": [
+    { "path": "app/api/timeout/route.ts", "template": "import { NextResponse } from 'next/server'; export async function GET(){ return NextResponse.json({ ok: true }); }\n" }
+  ]
+}
+

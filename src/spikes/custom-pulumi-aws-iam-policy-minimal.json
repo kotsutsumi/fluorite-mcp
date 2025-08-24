@@ -1,0 +1,12 @@
+{
+  "id": "custom-pulumi-aws-iam-policy-minimal",
+  "name": "Pulumi AWS IAM Policy 最小",
+  "version": "1.0.0",
+  "stack": ["pulumi", "aws"],
+  "tags": ["iac"],
+  "description": "IAMポリシーの最小",
+  "files": [
+    { "path": "pulumi/iam.ts", "template": "export const policy = { Statement: [] };\n" }
+  ]
+}
+

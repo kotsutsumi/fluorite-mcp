@@ -1,0 +1,12 @@
+{
+  "id": "custom-supabase-realtime-broadcast-route-minimal",
+  "name": "Supabase Realtime Broadcast ルート 最小",
+  "version": "1.0.0",
+  "stack": ["supabase", "nextjs"],
+  "tags": ["realtime"],
+  "description": "Broadcast APIの最小ルート",
+  "files": [
+    { "path": "app/api/supabase/broadcast/route.ts", "template": "import { NextResponse } from 'next/server'; export async function POST(){ return NextResponse.json({ broadcast: true }); }\n" }
+  ]
+}
+

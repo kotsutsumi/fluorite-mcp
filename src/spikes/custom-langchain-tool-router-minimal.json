@@ -1,0 +1,12 @@
+{
+  "id": "custom-langchain-tool-router-minimal",
+  "name": "LangChain Tool Router 最小",
+  "version": "1.0.0",
+  "stack": ["langchain"],
+  "tags": ["ai"],
+  "description": "ツールルータの概念",
+  "files": [
+    { "path": "src/ai/langchain.toolrouter.ts", "template": "export const router = { tools: [] };\n" }
+  ]
+}
+

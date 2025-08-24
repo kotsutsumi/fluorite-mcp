@@ -1,0 +1,12 @@
+{
+  "id": "custom-qwik-city-endpoint-minimal",
+  "name": "Qwik City エンドポイント 最小",
+  "version": "1.0.0",
+  "stack": ["qwik"],
+  "tags": ["ui"],
+  "description": "Qwik Cityエンドポイント最小",
+  "files": [
+    { "path": "src/routes/api/hello/index.ts", "template": "export const onGet = async ()=> new Response('ok');\n" }
+  ]
+}
+

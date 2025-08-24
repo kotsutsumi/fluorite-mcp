@@ -1,0 +1,12 @@
+{
+  "id": "custom-sns-sqs-dlq-setup-minimal",
+  "name": "SNS/SQS DLQ 設定 最小",
+  "version": "1.0.0",
+  "stack": ["sns", "sqs"],
+  "tags": ["messaging", "aws"],
+  "description": "DLQ構成の概念スタブ",
+  "files": [
+    { "path": "src/aws/dlq.setup.ts", "template": "export const dlq = { main: 'q', dead: 'q-dlq' };\n" }
+  ]
+}
+

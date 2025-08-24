@@ -1,0 +1,12 @@
+{
+  "id": "custom-anthropic-tool-result-merging-minimal",
+  "name": "Anthropic ツール結果マージ 最小",
+  "version": "1.0.0",
+  "stack": ["anthropic"],
+  "tags": ["ai"],
+  "description": "複数結果のマージ概念",
+  "files": [
+    { "path": "src/ai/anthropic.merge.ts", "template": "export function merge(results:any[]){ return Object.assign({}, ...results); }\n" }
+  ]
+}
+

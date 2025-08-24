@@ -1,0 +1,12 @@
+{
+  "id": "custom-opensearch-rollover-policy-minimal",
+  "name": "OpenSearch Rollover Policy 最小",
+  "version": "1.0.0",
+  "stack": ["opensearch"],
+  "tags": ["search"],
+  "description": "ロールオーバーポリシー概念",
+  "files": [
+    { "path": "src/search/opensearch.rollover.ts", "template": "export const policy = { max_age: '7d', max_docs: 1000000 };\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-gh-actions-composite-action-skeleton-minimal",
+  "name": "GH Actions Composite Action スケルトン 最小",
+  "version": "1.0.0",
+  "stack": ["github-actions"],
+  "tags": ["ci"],
+  "description": "Composite Actionの最小スケルトン",
+  "files": [
+    { "path": ".github/actions/demo/action.yml", "template": "name: demo\nruns: { using: 'composite', steps: [{ run: 'echo hi' }] }\n" }
+  ]
+}
+

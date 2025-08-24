@@ -1,0 +1,12 @@
+{
+  "id": "custom-okta-assign-user-to-group-minimal",
+  "name": "Okta ユーザーをグループに追加 最小",
+  "version": "1.0.0",
+  "stack": ["okta"],
+  "tags": ["auth"],
+  "description": "Oktaでユーザーをグループへ追加（概念）",
+  "files": [
+    { "path": "src/auth/okta.group.ts", "template": "export async function addUserToGroup(userId:string, groupId:string){ return { userId, groupId }; }\n" }
+  ]
+}
+

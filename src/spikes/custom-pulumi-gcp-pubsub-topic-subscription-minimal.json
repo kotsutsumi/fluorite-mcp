@@ -1,0 +1,12 @@
+{
+  "id": "custom-pulumi-gcp-pubsub-topic-subscription-minimal",
+  "name": "Pulumi GCP Pub/Sub Topic/Subscription 最小",
+  "version": "1.0.0",
+  "stack": ["pulumi", "gcp", "pubsub"],
+  "tags": ["iac", "gcp"],
+  "description": "Topic/Subscriptionの最小",
+  "files": [
+    { "path": "pulumi/pubsub.ts", "template": "export const topic = { name: 'events' }; export const subscription = { name: 'events-sub' };\n" }
+  ]
+}
+

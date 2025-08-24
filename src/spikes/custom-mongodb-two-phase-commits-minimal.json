@@ -1,0 +1,12 @@
+{
+  "id": "custom-mongodb-two-phase-commits-minimal",
+  "name": "MongoDB 2PC 最小",
+  "version": "1.0.0",
+  "stack": ["mongodb"],
+  "tags": ["db", "transaction"],
+  "description": "二段階コミットの概念",
+  "files": [
+    { "path": "src/db/mongo.2pc.ts", "template": "export async function twoPhase(){ return { ok: true }; }\n" }
+  ]
+}
+

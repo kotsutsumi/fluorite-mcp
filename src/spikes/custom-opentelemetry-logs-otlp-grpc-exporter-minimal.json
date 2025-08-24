@@ -1,0 +1,12 @@
+{
+  "id": "custom-opentelemetry-logs-otlp-grpc-exporter-minimal",
+  "name": "Otel Logs OTLP gRPC Exporter 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry"],
+  "tags": ["logging"],
+  "description": "LogsのOTLP gRPCエクスポート概念",
+  "files": [
+    { "path": "src/otel/logs.otlp.grpc.ts", "template": "export function exporter(){ return { url: 'http://localhost:4317' }; }\n" }
+  ]
+}
+

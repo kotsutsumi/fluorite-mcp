@@ -1,0 +1,12 @@
+{
+  "id": "custom-jwt-jwks-fetch-cache-minimal",
+  "name": "JWT JWKS 取得/キャッシュ 最小",
+  "version": "1.0.0",
+  "stack": ["jwt"],
+  "tags": ["security"],
+  "description": "JWKSフェッチとキャッシュ概念スタブ",
+  "files": [
+    { "path": "src/security/jwks.ts", "template": "export async function getJwks(url:string){ return { keys: [] }; }\n" }
+  ]
+}
+

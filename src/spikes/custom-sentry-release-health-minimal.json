@@ -1,0 +1,12 @@
+{
+  "id": "custom-sentry-release-health-minimal",
+  "name": "Sentry Release Health 最小",
+  "version": "1.0.0",
+  "stack": ["sentry"],
+  "tags": ["monitoring"],
+  "description": "リリースヘルスの概念",
+  "files": [
+    { "path": "src/sentry/release.ts", "template": "export function release(name:string){ return { release: name, sessions: 0 }; }\n" }
+  ]
+}
+

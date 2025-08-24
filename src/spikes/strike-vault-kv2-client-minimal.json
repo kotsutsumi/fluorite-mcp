@@ -1,0 +1,17 @@
+{
+  "id": "strike-vault-kv2-client-minimal",
+  "name": "Vault KV v2 Client",
+  "stack": [
+    "vault"
+  ],
+  "tags": [
+    "secrets"
+  ],
+  "files": [
+    {
+      "path": "src/secrets/vault.ts",
+      "template": "export const vault = {};\n"
+    }
+  ],
+  "patches": []
+}

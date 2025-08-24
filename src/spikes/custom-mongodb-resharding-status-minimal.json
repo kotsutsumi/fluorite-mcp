@@ -1,0 +1,12 @@
+{
+  "id": "custom-mongodb-resharding-status-minimal",
+  "name": "MongoDB Resharding 状態 最小",
+  "version": "1.0.0",
+  "stack": ["mongodb"],
+  "tags": ["db"],
+  "description": "Reshardingの状態取得概念",
+  "files": [
+    { "path": "src/db/mongo.reshard.ts", "template": "export async function status(){ return { state: 'idle' }; }\n" }
+  ]
+}
+

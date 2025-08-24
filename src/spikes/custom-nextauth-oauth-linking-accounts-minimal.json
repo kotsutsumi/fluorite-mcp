@@ -1,0 +1,12 @@
+{
+  "id": "custom-nextauth-oauth-linking-accounts-minimal",
+  "name": "NextAuth OAuth アカウント連携 最小",
+  "version": "1.0.0",
+  "stack": ["next-auth", "nextjs"],
+  "tags": ["auth"],
+  "description": "OAuthアカウントの連携概念",
+  "files": [
+    { "path": "app/api/auth/link/route.ts", "template": "import { NextResponse } from 'next/server'; export async function POST(){ return NextResponse.json({ linked: true }); }\n" }
+  ]
+}
+

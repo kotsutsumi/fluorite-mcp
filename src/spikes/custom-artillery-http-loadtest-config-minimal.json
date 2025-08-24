@@ -1,0 +1,12 @@
+{
+  "id": "custom-artillery-http-loadtest-config-minimal",
+  "name": "Artillery HTTP 負荷試験 最小",
+  "version": "1.0.0",
+  "stack": ["artillery"],
+  "tags": ["loadtest"],
+  "description": "Artilleryの最小設定",
+  "files": [
+    { "path": "artillery/config.yml", "template": "config: { target: 'http://localhost' }\nscenarios: [{ flow: [{ get: { url: '/' } }] }]\n" }
+  ]
+}
+

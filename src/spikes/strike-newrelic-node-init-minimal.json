@@ -1,0 +1,17 @@
+{
+  "id": "strike-newrelic-node-init-minimal",
+  "name": "NewRelic Node Init",
+  "stack": [
+    "newrelic"
+  ],
+  "tags": [
+    "apm"
+  ],
+  "files": [
+    {
+      "path": "src/apm/newrelic.ts",
+      "template": "export const newrelic = {};\n"
+    }
+  ],
+  "patches": []
+}

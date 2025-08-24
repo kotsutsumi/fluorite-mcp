@@ -1,0 +1,12 @@
+{
+  "id": "custom-gh-actions-cache-restore-save-minimal",
+  "name": "GH Actions Cache Restore/Save 最小",
+  "version": "1.0.0",
+  "stack": ["github-actions"],
+  "tags": ["ci", "cache"],
+  "description": "Cache復元/保存の概念",
+  "files": [
+    { "path": ".github/workflows/cache.yml", "template": "name: Cache\non: [push]\njobs:\n  cache:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/cache@v4\n        with: { path: node_modules, key: cache-${{ hashFiles('package-lock.json') }} }\n" }
+  ]
+}
+

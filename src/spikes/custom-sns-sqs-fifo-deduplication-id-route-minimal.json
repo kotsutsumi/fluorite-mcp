@@ -1,0 +1,12 @@
+{
+  "id": "custom-sns-sqs-fifo-deduplication-id-route-minimal",
+  "name": "SNS/SQS FIFO 重複排除ID ルート 最小",
+  "version": "1.0.0",
+  "stack": ["sns", "sqs", "nextjs"],
+  "tags": ["messaging", "aws"],
+  "description": "DeduplicationId生成のルート",
+  "files": [
+    { "path": "app/api/aws/dedup/route.ts", "template": "import { NextResponse } from 'next/server'; export async function GET(){ return NextResponse.json({ id: 'dedup-1' }); }\n" }
+  ]
+}
+

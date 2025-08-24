@@ -1,0 +1,12 @@
+{
+  "id": "custom-cloudflare-vectorize-index-minimal",
+  "name": "Cloudflare Vectorize インデックス 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare", "vector"],
+  "tags": ["vector"],
+  "description": "Workers AI Vectorizeの概念",
+  "files": [
+    { "path": "src/vectors/cf.vectorize.ts", "template": "export const index = { name: 'docs' };\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-meilisearch-searchable-attributes-minimal",
+  "name": "Meilisearch Searchable Attributes 最小",
+  "version": "1.0.0",
+  "stack": ["meilisearch"],
+  "tags": ["search"],
+  "description": "searchableAttributesの概念",
+  "files": [
+    { "path": "src/search/meili.searchable.ts", "template": "export const searchable = ['title','body'];\n" }
+  ]
+}
+

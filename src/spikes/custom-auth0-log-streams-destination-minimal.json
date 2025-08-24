@@ -1,0 +1,12 @@
+{
+  "id": "custom-auth0-log-streams-destination-minimal",
+  "name": "Auth0 Log Streams 宛先設定 最小",
+  "version": "1.0.0",
+  "stack": ["auth0"],
+  "tags": ["auth", "logs"],
+  "description": "ログストリーム宛先の概念スタブ",
+  "files": [
+    { "path": "src/auth/auth0.logs.ts", "template": "export async function createDestination(type:'http'|'datadog'){ return { id: 'dest_1', type }; }\n" }
+  ]
+}
+

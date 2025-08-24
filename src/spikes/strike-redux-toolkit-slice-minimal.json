@@ -1,0 +1,18 @@
+{
+  "id": "strike-redux-toolkit-slice-minimal",
+  "name": "Redux Toolkit Slice",
+  "stack": [
+    "redux",
+    "typescript"
+  ],
+  "tags": [
+    "state"
+  ],
+  "files": [
+    {
+      "path": "src/features/app/slice.ts",
+      "template": "import { createSlice } from '@reduxjs/toolkit';\nconst slice = createSlice({ name: 'app', initialState: { ready:false }, reducers: { ready: s=>{s.ready=true} } });\nexport const { ready } = slice.actions;\nexport default slice.reducer;\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,12 @@
+{
+  "id": "custom-opentelemetry-file-span-exporter-minimal",
+  "name": "OpenTelemetry File Span Exporter 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry"],
+  "tags": ["tracing"],
+  "description": "スパンのファイル出力（概念）",
+  "files": [
+    { "path": "src/otel/file.exporter.ts", "template": "export function exporter(path:string){ return { path }; }\n" }
+  ]
+}
+

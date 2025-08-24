@@ -1,0 +1,12 @@
+{
+  "id": "custom-rabbitmq-quorum-queue-minimal",
+  "name": "RabbitMQ Quorum Queue 最小",
+  "version": "1.0.0",
+  "stack": ["rabbitmq"],
+  "tags": ["messaging"],
+  "description": "Quorum Queueの概念スタブ",
+  "files": [
+    { "path": "src/queue/rabbitmq.quorum.ts", "template": "export const queue = { name: 'q', quorum: true };\n" }
+  ]
+}
+

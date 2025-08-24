@@ -1,0 +1,12 @@
+{
+  "id": "custom-github-actions-oidc-aws-assume-role-minimal",
+  "name": "GH Actions OIDC AWS AssumeRole 最小",
+  "version": "1.0.0",
+  "stack": ["github-actions", "aws"],
+  "tags": ["ci", "oidc"],
+  "description": "OIDCでAWS AssumeRole（概念）",
+  "files": [
+    { "path": ".github/workflows/oidc-aws.yml", "template": "name: OIDC AWS\non: [workflow_dispatch]\njobs: { assume: { runs-on: ubuntu-latest, steps: [{ run: 'echo assume role' }] } }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-weaviate-bm25-search-minimal",
+  "name": "Weaviate BM25 検索 最小",
+  "version": "1.0.0",
+  "stack": ["weaviate"],
+  "tags": ["search"],
+  "description": "BM25検索の概念",
+  "files": [
+    { "path": "src/search/weaviate.bm25.ts", "template": "export async function search(q:string){ return { hits: [] }; }\n" }
+  ]
+}
+

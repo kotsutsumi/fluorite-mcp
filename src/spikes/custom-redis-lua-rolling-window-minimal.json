@@ -1,0 +1,12 @@
+{
+  "id": "custom-redis-lua-rolling-window-minimal",
+  "name": "Redis Lua Rolling Window 最小",
+  "version": "1.0.0",
+  "stack": ["redis"],
+  "tags": ["rate-limit"],
+  "description": "Luaでローリングウィンドウ概念",
+  "files": [
+    { "path": "src/redis/rolling.lua", "template": "-- rolling window stub\n" }
+  ]
+}
+

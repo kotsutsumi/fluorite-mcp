@@ -1,0 +1,12 @@
+{
+  "id": "custom-sqs-long-polling-minimal",
+  "name": "SQS Long Polling 最小",
+  "version": "1.0.0",
+  "stack": ["sqs"],
+  "tags": ["messaging", "aws"],
+  "description": "ロングポーリングの概念",
+  "files": [
+    { "path": "src/aws/sqs.longpoll.ts", "template": "export async function receive(wait:number){ return { wait, messages: [] }; }\n" }
+  ]
+}
+

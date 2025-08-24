@@ -1,0 +1,18 @@
+{
+  "id": "strike-aws-s3-presign-upload-minimal",
+  "name": "AWS S3 Presign Upload",
+  "stack": [
+    "aws",
+    "s3"
+  ],
+  "tags": [
+    "storage"
+  ],
+  "files": [
+    {
+      "path": "src/s3/presign.ts",
+      "template": "export async function presign(){ return { url: 'https://example.com' }; }\n"
+    }
+  ],
+  "patches": []
+}

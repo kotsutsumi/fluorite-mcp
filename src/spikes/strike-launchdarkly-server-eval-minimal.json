@@ -1,0 +1,17 @@
+{
+  "id": "strike-launchdarkly-server-eval-minimal",
+  "name": "LaunchDarkly Server Eval",
+  "stack": [
+    "launchdarkly"
+  ],
+  "tags": [
+    "flags"
+  ],
+  "files": [
+    {
+      "path": "src/flags/ld.ts",
+      "template": "export const ld = {};\n"
+    }
+  ],
+  "patches": []
+}

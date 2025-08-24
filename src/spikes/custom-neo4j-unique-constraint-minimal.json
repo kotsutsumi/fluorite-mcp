@@ -1,0 +1,12 @@
+{
+  "id": "custom-neo4j-unique-constraint-minimal",
+  "name": "Neo4j 一意制約 最小",
+  "version": "1.0.0",
+  "stack": ["neo4j"],
+  "tags": ["db"],
+  "description": "一意制約の概念",
+  "files": [
+    { "path": "src/graph/neo4j.constraint.ts", "template": "export async function ensureUnique(label:string, field:string){ return { label, field }; }\n" }
+  ]
+}
+

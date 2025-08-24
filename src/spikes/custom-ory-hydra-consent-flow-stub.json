@@ -1,0 +1,12 @@
+{
+  "id": "custom-ory-hydra-consent-flow-stub",
+  "name": "ORY Hydra Consent Flow スタブ",
+  "version": "1.0.0",
+  "stack": ["ory", "hydra"],
+  "tags": ["auth"],
+  "description": "Consentフローの概念スタブ",
+  "files": [
+    { "path": "src/ory/hydra.consent.ts", "template": "export function start(){ return { consent: true }; }\n" }
+  ]
+}
+

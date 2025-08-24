@@ -1,0 +1,12 @@
+{
+  "id": "custom-jenkins-pipeline-minimal",
+  "name": "Jenkins Pipeline 最小",
+  "version": "1.0.0",
+  "stack": ["jenkins"],
+  "tags": ["ci"],
+  "description": "Jenkinsパイプラインの最小",
+  "files": [
+    { "path": "Jenkinsfile", "template": "pipeline { agent any stages { stage('Build'){ steps { echo 'ok' } } } }\n" }
+  ]
+}
+

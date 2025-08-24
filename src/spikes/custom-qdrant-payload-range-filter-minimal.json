@@ -1,0 +1,12 @@
+{
+  "id": "custom-qdrant-payload-range-filter-minimal",
+  "name": "Qdrant Payload 範囲フィルタ 最小",
+  "version": "1.0.0",
+  "stack": ["qdrant"],
+  "tags": ["vector"],
+  "description": "範囲フィルタの概念スタブ",
+  "files": [
+    { "path": "src/vectors/qdrant.filter.ts", "template": "export const filter = { must: [{ range: { score: { gte: 0.8 } } }] };\n" }
+  ]
+}
+

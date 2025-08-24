@@ -1,0 +1,12 @@
+{
+  "id": "custom-prisma-materialized-view-minimal",
+  "name": "Prisma マテビュー 最小",
+  "version": "1.0.0",
+  "stack": ["prisma"],
+  "tags": ["db"],
+  "description": "Prismaでマテビューを扱う概念",
+  "files": [
+    { "path": "src/prisma.view.ts", "template": "export const mv = { name: 'mv_users' };\n" }
+  ]
+}
+

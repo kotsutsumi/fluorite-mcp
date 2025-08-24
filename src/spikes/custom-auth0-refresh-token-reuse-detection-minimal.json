@@ -1,0 +1,12 @@
+{
+  "id": "custom-auth0-refresh-token-reuse-detection-minimal",
+  "name": "Auth0 Refresh Token 再利用検知 最小",
+  "version": "1.0.0",
+  "stack": ["auth0"],
+  "tags": ["auth", "security"],
+  "description": "再利用検知の概念",
+  "files": [
+    { "path": "src/auth/auth0.reuse.ts", "template": "export function detected(token:string){ return false; }\n" }
+  ]
+}
+

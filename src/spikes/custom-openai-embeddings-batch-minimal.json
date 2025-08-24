@@ -1,0 +1,12 @@
+{
+  "id": "custom-openai-embeddings-batch-minimal",
+  "name": "OpenAI Embeddings バッチ 最小",
+  "version": "1.0.0",
+  "stack": ["openai"],
+  "tags": ["ai"],
+  "description": "埋め込みバッチ生成の概念スタブ",
+  "files": [
+    { "path": "src/ai/openai.embed.ts", "template": "export async function embed(texts:string[]){ return texts.map(()=>[0.1,0.2]); }\n" }
+  ]
+}
+

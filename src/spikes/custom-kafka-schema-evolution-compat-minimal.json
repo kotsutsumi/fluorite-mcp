@@ -1,0 +1,12 @@
+{
+  "id": "custom-kafka-schema-evolution-compat-minimal",
+  "name": "Kafka Schema Evolution 互換性 最小",
+  "version": "1.0.0",
+  "stack": ["kafka"],
+  "tags": ["messaging"],
+  "description": "後方互換などの概念",
+  "files": [
+    { "path": "src/kafka/schema.compat.ts", "template": "export const compat = { mode: 'BACKWARD' };\n" }
+  ]
+}
+

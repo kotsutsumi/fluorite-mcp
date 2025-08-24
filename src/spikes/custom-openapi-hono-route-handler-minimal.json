@@ -1,0 +1,12 @@
+{
+  "id": "custom-openapi-hono-route-handler-minimal",
+  "name": "OpenAPI Hono Route Handler 最小",
+  "version": "1.0.0",
+  "stack": ["openapi", "hono"],
+  "tags": ["api"],
+  "description": "HonoでOpenAPIルート（概念）",
+  "files": [
+    { "path": "src/hono/openapi.routes.ts", "template": "export const routes = [{ method: 'GET', path: '/hello' }];\n" }
+  ]
+}
+

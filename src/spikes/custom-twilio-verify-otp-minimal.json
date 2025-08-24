@@ -1,0 +1,12 @@
+{
+  "id": "custom-twilio-verify-otp-minimal",
+  "name": "Twilio Verify OTP 最小",
+  "version": "1.0.0",
+  "stack": ["twilio"],
+  "tags": ["otp"],
+  "description": "OTP検証の概念",
+  "files": [
+    { "path": "src/otp/twilio.ts", "template": "export async function verify(phone:string, code:string){ return { phone, code, ok: true }; }\n" }
+  ]
+}
+

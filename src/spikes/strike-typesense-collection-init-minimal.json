@@ -1,0 +1,17 @@
+{
+  "id": "strike-typesense-collection-init-minimal",
+  "name": "Typesense Collection Init",
+  "stack": [
+    "typesense"
+  ],
+  "tags": [
+    "search"
+  ],
+  "files": [
+    {
+      "path": "src/search/typesense.ts",
+      "template": "export async function init(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

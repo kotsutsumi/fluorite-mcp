@@ -1,0 +1,12 @@
+{
+  "id": "custom-redis-streams-consumer-lag-minimal",
+  "name": "Redis Streams Consumer Lag 最小",
+  "version": "1.0.0",
+  "stack": ["redis"],
+  "tags": ["messaging"],
+  "description": "コンシューマラグの概念スタブ",
+  "files": [
+    { "path": "src/redis/streams.lag.ts", "template": "export async function lag(group:string){ return { group, lag: 0 }; }\n" }
+  ]
+}
+

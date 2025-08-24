@@ -1,0 +1,17 @@
+{
+  "id": "strike-pino-transport-advanced",
+  "name": "Pino Transport Advanced",
+  "stack": [
+    "pino"
+  ],
+  "tags": [
+    "logging"
+  ],
+  "files": [
+    {
+      "path": "src/logging/pino.ts",
+      "template": "export function logger(){ return { level: 'info' }; }\n"
+    }
+  ],
+  "patches": []
+}

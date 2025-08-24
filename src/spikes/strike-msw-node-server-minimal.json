@@ -1,0 +1,17 @@
+{
+  "id": "strike-msw-node-server-minimal",
+  "name": "MSW Node Server Minimal",
+  "stack": [
+    "msw"
+  ],
+  "tags": [
+    "testing"
+  ],
+  "files": [
+    {
+      "path": "src/test/msw.ts",
+      "template": "export const server = { listen(){}, close(){} };\n"
+    }
+  ],
+  "patches": []
+}

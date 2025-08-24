@@ -1,0 +1,12 @@
+{
+  "id": "custom-cognito-hosted-ui-callback-minimal",
+  "name": "Cognito Hosted UI Callback 最小",
+  "version": "1.0.0",
+  "stack": ["cognito"],
+  "tags": ["auth"],
+  "description": "Hosted UIコールバックの概念",
+  "files": [
+    { "path": "src/auth/cognito.callback.ts", "template": "export async function handle(code:string){ return { code, ok: true }; }\n" }
+  ]
+}
+

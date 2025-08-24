@@ -1,0 +1,12 @@
+{
+  "id": "custom-csp-frame-ancestors-config-minimal",
+  "name": "CSP frame-ancestors 設定 最小",
+  "version": "1.0.0",
+  "stack": ["security"],
+  "tags": ["security"],
+  "description": "frame-ancestors設定の概念",
+  "files": [
+    { "path": "src/security/csp.frame.ts", "template": "export const csp = { frameAncestors: ['\'self\''] };\n" }
+  ]
+}
+

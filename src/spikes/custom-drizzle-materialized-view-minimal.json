@@ -1,0 +1,12 @@
+{
+  "id": "custom-drizzle-materialized-view-minimal",
+  "name": "Drizzle マテビュー 最小",
+  "version": "1.0.0",
+  "stack": ["drizzle"],
+  "tags": ["db"],
+  "description": "マテリアライズドビューの概念スタブ",
+  "files": [
+    { "path": "src/drizzle/views.ts", "template": "export const materialized = { name: 'mv_reports' };\n" }
+  ]
+}
+

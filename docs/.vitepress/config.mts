@@ -37,7 +37,7 @@ const englishSidebar = {
       text: '⚡ Essential Features',
       collapsed: false,
       items: [
-        { text: '🧪 Spike Templates (3,111+)', link: '/spike-templates' },
+        { text: '🧪 Spike Templates (6,200+)', link: '/spike-templates' },
         { text: '📚 Spike Templates Detailed Guide', link: '/spike-templates-detailed' },
         { text: '📱 /fl: Commands System', link: '/fl-commands' },
         { text: '📋 /fl: Commands Detailed Reference', link: '/fl-commands-detailed' },
@@ -176,7 +176,7 @@ const japaneseSidebar = {
       text: '⚡ 主要機能',
       collapsed: false,
       items: [
-        { text: '🧪 スパイクテンプレート (3,111+)', link: '/ja/spike-templates' },
+        { text: '🧪 スパイクテンプレート (6,200+)', link: '/ja/spike-templates' },
         { text: '📚 スパイクテンプレート詳細ガイド', link: '/ja/spike-templates-detailed' },
         { text: '📱 /fl: コマンドシステム', link: '/ja/fl-commands' },
         { text: '📋 /fl: コマンド詳細リファレンス', link: '/ja/fl-commands-detailed' },
@@ -307,7 +307,7 @@ const specsSidebar = {
 
 export default defineConfig({
   title: 'Fluorite MCP',
-  description: 'Enterprise-grade MCP server for Claude Code CLI with 3,111+ spike templates, 86 library specs, intelligent memory engine, speech processing capabilities, and continuous learning',
+  description: 'Enterprise-grade MCP server for Claude Code CLI with 6,200+ spike templates, 86 library specs, intelligent memory engine, speech processing capabilities, and continuous learning',
   base: '/fluorite-mcp/',
   ignoreDeadLinks: true,
   cleanUrls: true,

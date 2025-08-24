@@ -6,7 +6,8 @@
     "sentry"
   ],
   "tags": [
-    "observability"
+    "observability",
+    "monitoring"
   ],
   "files": [
     {
@@ -14,5 +15,6 @@
       "template": "import * as Sentry from '@sentry/node';\nSentry.init({ dsn: 'YOUR_DSN' });\n"
     }
   ],
-  "patches": []
+  "patches": [],
+  "params": []
 }

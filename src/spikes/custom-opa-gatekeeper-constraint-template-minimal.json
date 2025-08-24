@@ -1,0 +1,12 @@
+{
+  "id": "custom-opa-gatekeeper-constraint-template-minimal",
+  "name": "OPA Gatekeeper ConstraintTemplate 最小",
+  "version": "1.0.0",
+  "stack": ["opa", "kubernetes"],
+  "tags": ["policy"],
+  "description": "ConstraintTemplateの最小",
+  "files": [
+    { "path": "k8s/constrainttemplate.yml", "template": "apiVersion: templates.gatekeeper.sh/v1beta1\nkind: ConstraintTemplate\nmetadata: { name: k8sallowedimages }\nspec: { crd: { spec: { names: { kind: K8sAllowedImages } } }, targets: [{ target: 'admission.k8s.gatekeeper.sh', rego: '// rego' }] }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-tempo-exemplar-config-minimal",
+  "name": "Tempo Exemplar Config 最小",
+  "version": "1.0.0",
+  "stack": ["tempo"],
+  "tags": ["tracing"],
+  "description": "Tempoのエグザンプラー設定最小",
+  "files": [
+    { "path": "tempo/config.yml", "template": "exemplars: { enabled: true }\n" }
+  ]
+}
+

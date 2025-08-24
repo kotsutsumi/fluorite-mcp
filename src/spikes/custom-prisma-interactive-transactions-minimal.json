@@ -1,0 +1,12 @@
+{
+  "id": "custom-prisma-interactive-transactions-minimal",
+  "name": "Prisma Interactive Transactions 最小",
+  "version": "1.0.0",
+  "stack": ["prisma"],
+  "tags": ["db", "transaction"],
+  "description": "Interactive Transactionsの概念",
+  "files": [
+    { "path": "src/prisma.interactive.ts", "template": "export async function tx<T>(fn:()=>Promise<T>){ return await fn(); }\n" }
+  ]
+}
+

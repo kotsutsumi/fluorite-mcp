@@ -1,0 +1,12 @@
+{
+  "id": "custom-grafana-contact-points-email-minimal",
+  "name": "Grafana Contact Points Email 最小",
+  "version": "1.0.0",
+  "stack": ["grafana"],
+  "tags": ["alerting"],
+  "description": "Emailコンタクトポイントの概念",
+  "files": [
+    { "path": "grafana/contactpoints.yml", "template": "contactPoints: [{ name: 'email', email: { to: 'ops@example.com' } }]\n" }
+  ]
+}
+

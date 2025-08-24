@@ -1,0 +1,12 @@
+{
+  "id": "custom-redis-timeseries-create-minimal",
+  "name": "RedisTimeSeries シリーズ作成 最小",
+  "version": "1.0.0",
+  "stack": ["redis-timeseries"],
+  "tags": ["db", "timeseries"],
+  "description": "RedisTimeSeriesの概念",
+  "files": [
+    { "path": "src/redis/ts.create.ts", "template": "export async function create(key:string){ return { key, created: true }; }\n" }
+  ]
+}
+

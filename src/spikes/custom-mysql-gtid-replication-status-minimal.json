@@ -1,0 +1,12 @@
+{
+  "id": "custom-mysql-gtid-replication-status-minimal",
+  "name": "MySQL GTID レプリケーション状態 最小",
+  "version": "1.0.0",
+  "stack": ["mysql"],
+  "tags": ["db"],
+  "description": "GTIDベースの状態確認（概念）",
+  "files": [
+    { "path": "src/db/mysql.gtid.ts", "template": "export async function status(){ return { gtid: 'uuid:1' }; }\n" }
+  ]
+}
+

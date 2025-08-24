@@ -1,0 +1,12 @@
+{
+  "id": "custom-redisearch-create-index-minimal",
+  "name": "RediSearch Create Index 最小",
+  "version": "1.0.0",
+  "stack": ["redisearch"],
+  "tags": ["search"],
+  "description": "RediSearchインデックスの概念",
+  "files": [
+    { "path": "src/search/redisearch.ts", "template": "export async function createIndex(name:string){ return { name, created: true }; }\n" }
+  ]
+}
+

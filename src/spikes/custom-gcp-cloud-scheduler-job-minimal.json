@@ -1,0 +1,12 @@
+{
+  "id": "custom-gcp-cloud-scheduler-job-minimal",
+  "name": "GCP Cloud Scheduler ジョブ 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "cloud-scheduler"],
+  "tags": ["cron"],
+  "description": "Cloud Schedulerジョブの概念",
+  "files": [
+    { "path": "gcp/scheduler.json", "template": "{ \"name\": \"jobs/hello\", \"schedule\": \"* * * * *\" }\n" }
+  ]
+}
+

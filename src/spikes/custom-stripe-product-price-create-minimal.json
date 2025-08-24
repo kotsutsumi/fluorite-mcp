@@ -1,0 +1,12 @@
+{
+  "id": "custom-stripe-product-price-create-minimal",
+  "name": "Stripe Product/Price 作成 最小",
+  "version": "1.0.0",
+  "stack": ["stripe"],
+  "tags": ["payments"],
+  "description": "ProductとPriceの作成（概念）",
+  "files": [
+    { "path": "src/payments/stripe.product.ts", "template": "export async function createProduct(name:string, amount:number){ return { product: { id: 'prod_1', name }, price: { id: 'price_1', unitAmount: amount } }; }\n" }
+  ]
+}
+

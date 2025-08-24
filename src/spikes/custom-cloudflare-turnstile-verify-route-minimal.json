@@ -1,0 +1,12 @@
+{
+  "id": "custom-cloudflare-turnstile-verify-route-minimal",
+  "name": "Cloudflare Turnstile Verify ルート 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare"],
+  "tags": ["security"],
+  "description": "Turnstile検証の最小ルート",
+  "files": [
+    { "path": "app/api/turnstile/verify/route.ts", "template": "import { NextResponse } from 'next/server'; export async function POST(){ return NextResponse.json({ verified: true }); }\n" }
+  ]
+}
+

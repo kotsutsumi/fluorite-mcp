@@ -1,0 +1,12 @@
+{
+  "id": "custom-vercel-storage-kv-get-put-minimal",
+  "name": "Vercel Storage KV Get/Put 最小",
+  "version": "1.0.0",
+  "stack": ["vercel"],
+  "tags": ["edge"],
+  "description": "Vercel KVの最小スタブ",
+  "files": [
+    { "path": "src/kv/vercel.ts", "template": "export async function get(k:string){ return null as any }\nexport async function put(k:string,v:string){ return { k, v }; }\n" }
+  ]
+}
+

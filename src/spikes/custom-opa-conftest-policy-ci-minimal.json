@@ -1,0 +1,12 @@
+{
+  "id": "custom-opa-conftest-policy-ci-minimal",
+  "name": "OPA Conftest Policy CI 最小",
+  "version": "1.0.0",
+  "stack": ["opa", "conftest"],
+  "tags": ["policy"],
+  "description": "Conftestでポリシー検査の最小",
+  "files": [
+    { "path": "policy/policy.rego", "template": "package policy\nallow { true }\n" }
+  ]
+}
+

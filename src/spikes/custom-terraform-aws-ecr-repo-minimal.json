@@ -1,0 +1,12 @@
+{
+  "id": "custom-terraform-aws-ecr-repo-minimal",
+  "name": "Terraform AWS ECR リポジトリ 最小",
+  "version": "1.0.0",
+  "stack": ["terraform", "aws", "ecr"],
+  "tags": ["iac"],
+  "description": "ECRリポの最小",
+  "files": [
+    { "path": "infra/ecr.tf", "template": "# ecr repo placeholder\n" }
+  ]
+}
+

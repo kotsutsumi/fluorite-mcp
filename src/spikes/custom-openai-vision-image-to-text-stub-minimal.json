@@ -1,0 +1,12 @@
+{
+  "id": "custom-openai-vision-image-to-text-stub-minimal",
+  "name": "OpenAI Vision 画像→テキスト スタブ 最小",
+  "version": "1.0.0",
+  "stack": ["openai"],
+  "tags": ["vision"],
+  "description": "画像→テキスト変換の概念スタブ",
+  "files": [
+    { "path": "src/ai/openai.vision.ts", "template": "export async function describe(_url:string){ return { text: 'a picture' }; }\n" }
+  ]
+}
+

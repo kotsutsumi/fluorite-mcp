@@ -1,0 +1,12 @@
+{
+  "id": "custom-kafka-streams-join-topology-stub",
+  "name": "Kafka Streams JOIN トポロジ スタブ",
+  "version": "1.0.0",
+  "stack": ["kafka"],
+  "tags": ["stream"],
+  "description": "JOINトポロジの概念スタブ",
+  "files": [
+    { "path": "src/kafka/streams.join.ts", "template": "export const join = { left: 'A', right: 'B', windowMs: 60000 };\n" }
+  ]
+}
+

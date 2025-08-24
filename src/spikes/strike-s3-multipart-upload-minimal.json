@@ -1,0 +1,17 @@
+{
+  "id": "strike-s3-multipart-upload-minimal",
+  "name": "S3 Multipart Upload",
+  "stack": [
+    "s3"
+  ],
+  "tags": [
+    "storage"
+  ],
+  "files": [
+    {
+      "path": "src/storage/s3-multipart.ts",
+      "template": "export async function upload(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

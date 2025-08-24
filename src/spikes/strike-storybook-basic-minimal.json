@@ -1,0 +1,17 @@
+{
+  "id": "strike-storybook-basic-minimal",
+  "name": "Storybook Basic Minimal",
+  "stack": [
+    "storybook"
+  ],
+  "tags": [
+    "frontend"
+  ],
+  "files": [
+    {
+      "path": ".storybook/main.ts",
+      "template": "export default { stories: ['../src/**/*.stories.@(ts|tsx)'] };\n"
+    }
+  ],
+  "patches": []
+}

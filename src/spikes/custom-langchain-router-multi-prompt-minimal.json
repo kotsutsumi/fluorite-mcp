@@ -1,0 +1,12 @@
+{
+  "id": "custom-langchain-router-multi-prompt-minimal",
+  "name": "LangChain Router Multi-Prompt 最小",
+  "version": "1.0.0",
+  "stack": ["langchain"],
+  "tags": ["ai"],
+  "description": "複数プロンプトのルーティング概念",
+  "files": [
+    { "path": "src/ai/langchain.router.ts", "template": "export const router = { prompts: [] };\n" }
+  ]
+}
+

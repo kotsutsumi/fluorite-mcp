@@ -1,0 +1,12 @@
+{
+  "id": "custom-nuxt-route-rules-cdn-cache-minimal",
+  "name": "Nuxt routeRules CDNキャッシュ 最小",
+  "version": "1.0.0",
+  "stack": ["nuxt"],
+  "tags": ["ui"],
+  "description": "routeRulesでCDNキャッシュの概念",
+  "files": [
+    { "path": "nuxt.config.ts", "template": "export default defineNuxtConfig({ routeRules: { '/': { isr: 60 } } })\n" }
+  ]
+}
+

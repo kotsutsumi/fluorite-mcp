@@ -1,0 +1,17 @@
+{
+  "id": "strike-minio-presign-minimal",
+  "name": "MinIO Presign Minimal",
+  "stack": [
+    "minio"
+  ],
+  "tags": [
+    "storage"
+  ],
+  "files": [
+    {
+      "path": "src/storage/minio.ts",
+      "template": "export const minio = {};\n"
+    }
+  ],
+  "patches": []
+}

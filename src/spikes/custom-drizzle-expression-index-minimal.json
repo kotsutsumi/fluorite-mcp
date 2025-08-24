@@ -1,0 +1,12 @@
+{
+  "id": "custom-drizzle-expression-index-minimal",
+  "name": "Drizzle Expression Index 最小",
+  "version": "1.0.0",
+  "stack": ["drizzle"],
+  "tags": ["db"],
+  "description": "式インデックスの概念",
+  "files": [
+    { "path": "src/drizzle/index.expr.ts", "template": "export const exprIndex = { on: 'lower(name)' };\n" }
+  ]
+}
+

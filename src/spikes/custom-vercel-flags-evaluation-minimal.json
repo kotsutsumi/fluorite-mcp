@@ -1,0 +1,12 @@
+{
+  "id": "custom-vercel-flags-evaluation-minimal",
+  "name": "Vercel Flags 評価 最小",
+  "version": "1.0.0",
+  "stack": ["vercel"],
+  "tags": ["flags"],
+  "description": "Vercel Flagsの概念",
+  "files": [
+    { "path": "src/flags/vercel.ts", "template": "export async function isEnabled(flag:string){ return true; }\n" }
+  ]
+}
+

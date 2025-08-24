@@ -1,0 +1,12 @@
+{
+  "id": "custom-mysql-json-search-index-minimal",
+  "name": "MySQL JSON 検索インデックス 最小",
+  "version": "1.0.0",
+  "stack": ["mysql"],
+  "tags": ["db"],
+  "description": "JSON検索インデックスの概念",
+  "files": [
+    { "path": "src/db/mysql.json.index.ts", "template": "export const jsonIndex = { field: 'data', path: '$.tag' };\n" }
+  ]
+}
+

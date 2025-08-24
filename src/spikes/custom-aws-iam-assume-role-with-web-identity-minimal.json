@@ -1,0 +1,12 @@
+{
+  "id": "custom-aws-iam-assume-role-with-web-identity-minimal",
+  "name": "AWS STS AssumeRoleWithWebIdentity 最小",
+  "version": "1.0.0",
+  "stack": ["aws"],
+  "tags": ["auth"],
+  "description": "WebIdentityでロール引受（概念）",
+  "files": [
+    { "path": "src/aws/sts.web.ts", "template": "export async function assume(roleArn:string){ return { roleArn, credentials: {} }; }\n" }
+  ]
+}
+

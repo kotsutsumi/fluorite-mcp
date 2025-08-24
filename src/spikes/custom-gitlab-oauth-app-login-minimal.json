@@ -1,0 +1,12 @@
+{
+  "id": "custom-gitlab-oauth-app-login-minimal",
+  "name": "GitLab OAuth App ログイン 最小",
+  "version": "1.0.0",
+  "stack": ["gitlab", "oauth2"],
+  "tags": ["auth"],
+  "description": "GitLab OAuth Appでのログイン概念スタブ",
+  "files": [
+    { "path": "src/auth/gitlab.ts", "template": "export function authorizeUrl(){ return 'https://gitlab.com/oauth/authorize?client_id=app'; }\n" }
+  ]
+}
+

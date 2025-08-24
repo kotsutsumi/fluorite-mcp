@@ -1,0 +1,12 @@
+{
+  "id": "custom-meilisearch-stop-words-settings-minimal",
+  "name": "Meilisearch Stop Words 設定 最小",
+  "version": "1.0.0",
+  "stack": ["meilisearch"],
+  "tags": ["search"],
+  "description": "ストップワード設定の概念",
+  "files": [
+    { "path": "src/search/meili.stopwords.ts", "template": "export const stopWords = ['the','a','an'];\n" }
+  ]
+}
+

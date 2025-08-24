@@ -1,0 +1,17 @@
+{
+  "id": "strike-milvus-collection-create-minimal",
+  "name": "Milvus Create Collection",
+  "stack": [
+    "milvus"
+  ],
+  "tags": [
+    "vector"
+  ],
+  "files": [
+    {
+      "path": "src/vectors/milvus.ts",
+      "template": "export async function create(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

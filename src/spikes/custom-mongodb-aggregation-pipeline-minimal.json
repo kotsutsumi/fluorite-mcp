@@ -1,0 +1,12 @@
+{
+  "id": "custom-mongodb-aggregation-pipeline-minimal",
+  "name": "MongoDB Aggregation Pipeline 最小",
+  "version": "1.0.0",
+  "stack": ["mongodb"],
+  "tags": ["db"],
+  "description": "集計パイプラインの概念",
+  "files": [
+    { "path": "src/db/mongo.aggregate.ts", "template": "export async function aggregate(pipeline:any[]){ return { pipeline, result: [] }; }\n" }
+  ]
+}
+

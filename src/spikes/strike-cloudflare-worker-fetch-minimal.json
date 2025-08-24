@@ -1,0 +1,17 @@
+{
+  "id": "strike-cloudflare-worker-fetch-minimal",
+  "name": "Cloudflare Worker Fetch",
+  "stack": [
+    "cloudflare-workers"
+  ],
+  "tags": [
+    "edge"
+  ],
+  "files": [
+    {
+      "path": "src/worker.ts",
+      "template": "export default { fetch(){ return new Response('ok'); } };\n"
+    }
+  ],
+  "patches": []
+}

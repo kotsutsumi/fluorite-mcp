@@ -1,0 +1,12 @@
+{
+  "id": "custom-mysql-binlog-position-status-minimal",
+  "name": "MySQL Binlog ポジション 状態 最小",
+  "version": "1.0.0",
+  "stack": ["mysql"],
+  "tags": ["db"],
+  "description": "binlogポジション取得の概念",
+  "files": [
+    { "path": "src/db/mysql.binlog.ts", "template": "export async function position(){ return { file: 'binlog.000001', pos: 4 }; }\n" }
+  ]
+}
+

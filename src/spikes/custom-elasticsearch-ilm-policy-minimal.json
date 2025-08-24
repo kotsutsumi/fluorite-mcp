@@ -1,0 +1,12 @@
+{
+  "id": "custom-elasticsearch-ilm-policy-minimal",
+  "name": "Elasticsearch ILM ポリシー 最小",
+  "version": "1.0.0",
+  "stack": ["elasticsearch"],
+  "tags": ["search"],
+  "description": "ILMポリシー設定の概念",
+  "files": [
+    { "path": "src/search/es.ilm.ts", "template": "export const ilm = { policy: {} };\n" }
+  ]
+}
+

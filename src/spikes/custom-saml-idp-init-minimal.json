@@ -1,0 +1,12 @@
+{
+  "id": "custom-saml-idp-init-minimal",
+  "name": "SAML IdP Initiated 最小",
+  "version": "1.0.0",
+  "stack": ["saml"],
+  "tags": ["auth"],
+  "description": "IdPイニシエイトの概念スタブ",
+  "files": [
+    { "path": "src/auth/saml.idp.ts", "template": "export function consumeAssertion(){ return { ok: true }; }\n" }
+  ]
+}
+

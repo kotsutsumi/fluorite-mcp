@@ -1,0 +1,12 @@
+{
+  "id": "custom-sns-sms-sandbox-verify-minimal",
+  "name": "SNS SMS Sandbox Verify 最小",
+  "version": "1.0.0",
+  "stack": ["sns"],
+  "tags": ["sms", "aws"],
+  "description": "Sandbox検証の概念スタブ",
+  "files": [
+    { "path": "src/aws/sns.sandbox.ts", "template": "export async function verify(phone:string){ return { phone, verified: true }; }\n" }
+  ]
+}
+

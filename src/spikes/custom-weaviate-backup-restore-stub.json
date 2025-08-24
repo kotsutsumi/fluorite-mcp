@@ -1,0 +1,12 @@
+{
+  "id": "custom-weaviate-backup-restore-stub",
+  "name": "Weaviate Backup/Restore スタブ",
+  "version": "1.0.0",
+  "stack": ["weaviate"],
+  "tags": ["vector"],
+  "description": "バックアップ/リストアの概念",
+  "files": [
+    { "path": "src/vectors/weaviate.backup.ts", "template": "export async function backup(){ return { ok: true }; }\nexport async function restore(){ return { ok: true }; }\n" }
+  ]
+}
+

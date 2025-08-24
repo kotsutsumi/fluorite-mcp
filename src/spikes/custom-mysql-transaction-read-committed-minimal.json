@@ -1,0 +1,12 @@
+{
+  "id": "custom-mysql-transaction-read-committed-minimal",
+  "name": "MySQL Transaction Read Committed 最小",
+  "version": "1.0.0",
+  "stack": ["mysql"],
+  "tags": ["db"],
+  "description": "READ COMMITTED分離レベル（概念）",
+  "files": [
+    { "path": "src/db/mysql.isolation.ts", "template": "export type Isolation='READ-COMMITTED';\n" }
+  ]
+}
+

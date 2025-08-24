@@ -1,0 +1,12 @@
+{
+  "id": "custom-hasura-event-trigger-minimal",
+  "name": "Hasura Event Trigger 最小",
+  "version": "1.0.0",
+  "stack": ["hasura"],
+  "tags": ["graphql"],
+  "description": "イベントトリガの概念",
+  "files": [
+    { "path": "src/graphql/hasura.event.ts", "template": "export async function handle(evt:any){ return { ok: true }; }\n" }
+  ]
+}
+

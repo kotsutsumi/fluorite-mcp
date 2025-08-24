@@ -1,0 +1,12 @@
+{
+  "id": "custom-argocd-notifications-config-minimal",
+  "name": "ArgoCD Notifications Config 最小",
+  "version": "1.0.0",
+  "stack": ["argocd"],
+  "tags": ["gitops", "alerting"],
+  "description": "通知コンフィグの最小",
+  "files": [
+    { "path": "argocd/notifications.yaml", "template": "apiVersion: v1\nkind: ConfigMap\nmetadata: { name: argocd-notifications-cm }\ndata: { config.yaml: 'triggers: {}' }\n" }
+  ]
+}
+

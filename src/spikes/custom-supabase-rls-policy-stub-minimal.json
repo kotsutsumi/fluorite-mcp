@@ -1,0 +1,12 @@
+{
+  "id": "custom-supabase-rls-policy-stub-minimal",
+  "name": "Supabase RLS Policy スタブ 最小",
+  "version": "1.0.0",
+  "stack": ["supabase"],
+  "tags": ["db", "security"],
+  "description": "RLSポリシーの概念スタブ",
+  "files": [
+    { "path": "src/supabase/rls.ts", "template": "export const policy = { table: 'posts', using: 'auth.uid() = user_id' };\n" }
+  ]
+}
+

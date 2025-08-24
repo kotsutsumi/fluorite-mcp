@@ -1,0 +1,12 @@
+{
+  "id": "custom-k8s-networkpolicy-deny-all-minimal",
+  "name": "K8s NetworkPolicy 全拒否 最小",
+  "version": "1.0.0",
+  "stack": ["kubernetes"],
+  "tags": ["k8s"],
+  "description": "Namespace全拒否の最小",
+  "files": [
+    { "path": "k8s/networkpolicy.yml", "template": "apiVersion: networking.k8s.io/v1\nkind: NetworkPolicy\nmetadata: { name: deny-all }\nspec: { podSelector: {}, policyTypes: ['Ingress','Egress'] }\n" }
+  ]
+}
+

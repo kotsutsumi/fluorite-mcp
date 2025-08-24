@@ -1,0 +1,12 @@
+{
+  "id": "custom-anthropic-vision-ocr-stub",
+  "name": "Anthropic Vision OCR スタブ",
+  "version": "1.0.0",
+  "stack": ["anthropic"],
+  "tags": ["vision"],
+  "description": "OCRの概念",
+  "files": [
+    { "path": "src/ai/anthropic.ocr.ts", "template": "export async function ocr(url:string){ return { text: '' }; }\n" }
+  ]
+}
+

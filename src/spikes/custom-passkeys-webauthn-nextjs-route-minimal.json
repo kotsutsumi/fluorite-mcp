@@ -1,0 +1,13 @@
+{
+  "id": "custom-passkeys-webauthn-nextjs-route-minimal",
+  "name": "Passkeys WebAuthn Next.js ルート 最小",
+  "version": "1.0.0",
+  "stack": ["webauthn", "nextjs"],
+  "tags": ["auth"],
+  "description": "Passkeys/WebAuthn登録・検証ルート（スタブ）",
+  "files": [
+    { "path": "app/api/webauthn/register/route.ts", "template": "import { NextResponse } from 'next/server'; export async function POST(){ return NextResponse.json({ challenge: '...' }); }\n" },
+    { "path": "app/api/webauthn/verify/route.ts", "template": "import { NextResponse } from 'next/server'; export async function POST(){ return NextResponse.json({ ok: true }); }\n" }
+  ]
+}
+

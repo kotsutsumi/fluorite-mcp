@@ -1,0 +1,12 @@
+{
+  "id": "custom-prometheus-remote-write-config-minimal",
+  "name": "Prometheus remote_write 設定 最小",
+  "version": "1.0.0",
+  "stack": ["prometheus"],
+  "tags": ["metrics"],
+  "description": "remote_write設定の概念",
+  "files": [
+    { "path": "prometheus/remote_write.yml", "template": "remote_write: [{ url: 'http://remote-write' }]\n" }
+  ]
+}
+

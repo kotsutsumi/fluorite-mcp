@@ -1,0 +1,17 @@
+{
+  "id": "strike-kafka-producer-minimal",
+  "name": "Kafka Producer Minimal",
+  "stack": [
+    "kafkajs"
+  ],
+  "tags": [
+    "stream"
+  ],
+  "files": [
+    {
+      "path": "src/kafka/producer.ts",
+      "template": "export async function produce(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

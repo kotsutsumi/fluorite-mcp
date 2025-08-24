@@ -1,0 +1,12 @@
+{
+  "id": "custom-oidc-dpop-protected-request-minimal",
+  "name": "OIDC DPoP 保護リクエスト 最小",
+  "version": "1.0.0",
+  "stack": ["oidc"],
+  "tags": ["auth", "security"],
+  "description": "DPoPの概念",
+  "files": [
+    { "path": "src/auth/oidc.dpop.ts", "template": "export function proof(){ return { htm: 'GET', htu: 'https://api', ath: '...' }; }\n" }
+  ]
+}
+

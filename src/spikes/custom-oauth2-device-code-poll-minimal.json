@@ -1,0 +1,12 @@
+{
+  "id": "custom-oauth2-device-code-poll-minimal",
+  "name": "OAuth2 Device Code Poll 最小",
+  "version": "1.0.0",
+  "stack": ["oauth2"],
+  "tags": ["auth"],
+  "description": "デバイスコードのポーリング概念",
+  "files": [
+    { "path": "src/auth/device.poll.ts", "template": "export async function poll(deviceCode:string){ return { deviceCode, approved: false }; }\n" }
+  ]
+}
+

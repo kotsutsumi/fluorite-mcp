@@ -1,0 +1,12 @@
+{
+  "id": "custom-mysql-json-table-function-minimal",
+  "name": "MySQL JSON_TABLE 関数 最小",
+  "version": "1.0.0",
+  "stack": ["mysql"],
+  "tags": ["db"],
+  "description": "JSON_TABLEの概念",
+  "files": [
+    { "path": "src/db/mysql.json.table.ts", "template": "export async function jsonTable(){ return []; }\n" }
+  ]
+}
+

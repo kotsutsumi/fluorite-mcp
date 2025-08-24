@@ -6,7 +6,9 @@
     "stripe"
   ],
   "tags": [
-    "payments"
+    "payments",
+    "billing",
+    "webhook"
   ],
   "files": [
     {
@@ -14,5 +16,6 @@
       "template": "import Stripe from 'stripe';\nconst stripe = new Stripe('sk');\n// verify signature & handle events...\n"
     }
   ],
-  "patches": []
+  "patches": [],
+  "params": []
 }

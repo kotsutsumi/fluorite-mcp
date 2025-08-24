@@ -1,0 +1,12 @@
+{
+  "id": "custom-vercel-middleware-country-routing-minimal",
+  "name": "Vercel Middleware 国別ルーティング 最小",
+  "version": "1.0.0",
+  "stack": ["vercel"],
+  "tags": ["edge"],
+  "description": "国別での振分け（概念）",
+  "files": [
+    { "path": "middleware.ts", "template": "export function middleware(){ return Response.next(); }\n" }
+  ]
+}
+

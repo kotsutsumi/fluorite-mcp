@@ -1,0 +1,12 @@
+{
+  "id": "custom-sns-platform-application-apns-minimal",
+  "name": "SNS Platform Application APNS 最小",
+  "version": "1.0.0",
+  "stack": ["sns"],
+  "tags": ["push", "aws"],
+  "description": "APNSプラットフォームアプリの概念",
+  "files": [
+    { "path": "src/aws/sns.apns.ts", "template": "export async function createEndpoint(token:string){ return { endpoint: 'arn:aws:sns:...', token }; }\n" }
+  ]
+}
+

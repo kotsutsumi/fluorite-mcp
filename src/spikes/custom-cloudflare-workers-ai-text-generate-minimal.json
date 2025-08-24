@@ -1,0 +1,12 @@
+{
+  "id": "custom-cloudflare-workers-ai-text-generate-minimal",
+  "name": "Workers AI テキスト生成 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare", "ai"],
+  "tags": ["edge", "ai"],
+  "description": "Workers AIでテキスト生成（概念）",
+  "files": [
+    { "path": "worker/ai.ts", "template": "export async function generate(prompt:string){ return { text: 'hi' }; }\n" }
+  ]
+}
+

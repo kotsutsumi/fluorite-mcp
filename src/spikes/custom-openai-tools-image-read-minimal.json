@@ -1,0 +1,12 @@
+{
+  "id": "custom-openai-tools-image-read-minimal",
+  "name": "OpenAI Tools 画像読み取り 最小",
+  "version": "1.0.0",
+  "stack": ["openai"],
+  "tags": ["tools", "vision"],
+  "description": "画像読み取りツール（概念）",
+  "files": [
+    { "path": "src/ai/openai.tools.image.ts", "template": "export const tools = [{ name:'read_image', description:'reads image' }];\n" }
+  ]
+}
+

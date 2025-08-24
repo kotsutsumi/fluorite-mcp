@@ -1,0 +1,12 @@
+{
+  "id": "custom-faiss-ivfpq-index-stub",
+  "name": "FAISS IVF-PQ インデックス スタブ",
+  "version": "1.0.0",
+  "stack": ["faiss"],
+  "tags": ["vector"],
+  "description": "IVF-PQの概念",
+  "files": [
+    { "path": "src/vectors/faiss.ivfpq.ts", "template": "export const ivfpq = { nlist: 1024, m: 16 };\n" }
+  ]
+}
+

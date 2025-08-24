@@ -1,0 +1,12 @@
+{
+  "id": "custom-llamaindex-vector-store-qdrant-minimal",
+  "name": "LlamaIndex VectorStore Qdrant 最小",
+  "version": "1.0.0",
+  "stack": ["llamaindex", "qdrant"],
+  "tags": ["ai", "vector"],
+  "description": "LlamaIndexのQdrantストア概念",
+  "files": [
+    { "path": "src/ai/llamaindex.qdrant.ts", "template": "export const store = { url: 'http://localhost:6333' };\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-azure-functions-queue-trigger-minimal",
+  "name": "Azure Functions Queue Trigger 最小",
+  "version": "1.0.0",
+  "stack": ["azure-functions"],
+  "tags": ["serverless", "queue"],
+  "description": "キュートリガーの最小スタブ",
+  "files": [
+    { "path": "azure/functions/queue/index.ts", "template": "export async function run(_msg:any){ return { ok: true }; }\n" }
+  ]
+}
+

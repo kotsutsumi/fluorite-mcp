@@ -1,0 +1,12 @@
+{
+  "id": "custom-anthropic-structured-json-output-minimal",
+  "name": "Anthropic 構造化JSON出力 最小",
+  "version": "1.0.0",
+  "stack": ["anthropic"],
+  "tags": ["ai"],
+  "description": "構造化JSON出力の概念",
+  "files": [
+    { "path": "src/ai/anthropic.json.ts", "template": "export const schema = { type: 'object', properties: { ok: { type:'boolean' } }, required:['ok'] };\n" }
+  ]
+}
+

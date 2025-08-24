@@ -1,0 +1,12 @@
+{
+  "id": "custom-oauth2-device-code-verify-minimal",
+  "name": "OAuth2 Device Code Verify 最小",
+  "version": "1.0.0",
+  "stack": ["oauth2"],
+  "tags": ["auth"],
+  "description": "デバイスコード承認確認の最小",
+  "files": [
+    { "path": "src/auth/device.verify.ts", "template": "export async function verify(userCode:string){ return { userCode, approved: true }; }\n" }
+  ]
+}
+

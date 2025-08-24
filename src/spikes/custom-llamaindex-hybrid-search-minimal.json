@@ -1,0 +1,12 @@
+{
+  "id": "custom-llamaindex-hybrid-search-minimal",
+  "name": "LlamaIndex ハイブリッド検索 最小",
+  "version": "1.0.0",
+  "stack": ["llamaindex"],
+  "tags": ["ai", "search"],
+  "description": "ベクター+BM25の概念",
+  "files": [
+    { "path": "src/ai/llamaindex.hybrid.ts", "template": "export const hybrid = { alpha: 0.5 };\n" }
+  ]
+}
+

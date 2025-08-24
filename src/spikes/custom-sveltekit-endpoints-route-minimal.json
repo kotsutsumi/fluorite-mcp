@@ -1,0 +1,12 @@
+{
+  "id": "custom-sveltekit-endpoints-route-minimal",
+  "name": "SvelteKit Endpoints ルート 最小",
+  "version": "1.0.0",
+  "stack": ["sveltekit"],
+  "tags": ["api"],
+  "description": "SvelteKit endpointの最小",
+  "files": [
+    { "path": "src/routes/api/hello/+server.ts", "template": "export const GET = async ()=> new Response('ok');\n" }
+  ]
+}
+

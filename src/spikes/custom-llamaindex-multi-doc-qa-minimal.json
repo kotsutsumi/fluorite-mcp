@@ -1,0 +1,12 @@
+{
+  "id": "custom-llamaindex-multi-doc-qa-minimal",
+  "name": "LlamaIndex Multi-Doc QA 最小",
+  "version": "1.0.0",
+  "stack": ["llamaindex"],
+  "tags": ["ai"],
+  "description": "複数ドキュメントQAの概念",
+  "files": [
+    { "path": "src/ai/llamaindex.qa.ts", "template": "export async function answer(q:string){ return { answer: '...' }; }\n" }
+  ]
+}
+

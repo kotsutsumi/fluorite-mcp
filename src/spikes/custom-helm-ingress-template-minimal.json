@@ -1,0 +1,12 @@
+{
+  "id": "custom-helm-ingress-template-minimal",
+  "name": "Helm Ingress テンプレート 最小",
+  "version": "1.0.0",
+  "stack": ["helm"],
+  "tags": ["k8s"],
+  "description": "Ingressの最小テンプレート",
+  "files": [
+    { "path": "chart/templates/ingress.yaml", "template": "apiVersion: networking.k8s.io/v1\nkind: Ingress\nmetadata: { name: {{ .Chart.Name }} }\nspec: {}\n" }
+  ]
+}
+

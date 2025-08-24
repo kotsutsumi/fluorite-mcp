@@ -1,0 +1,12 @@
+{
+  "id": "custom-weaviate-hybrid-rerank-minimal",
+  "name": "Weaviate ハイブリッド Rerank 最小",
+  "version": "1.0.0",
+  "stack": ["weaviate"],
+  "tags": ["vector"],
+  "description": "BM25+VectorのRerank概念",
+  "files": [
+    { "path": "src/vectors/weaviate.rerank.ts", "template": "export async function rerank(q:string){ return { hits: [] }; }\n" }
+  ]
+}
+

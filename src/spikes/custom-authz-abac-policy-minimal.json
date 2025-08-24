@@ -1,0 +1,12 @@
+{
+  "id": "custom-authz-abac-policy-minimal",
+  "name": "ABAC ポリシー 最小",
+  "version": "1.0.0",
+  "stack": ["authz"],
+  "tags": ["auth"],
+  "description": "属性ベースアクセス制御の概念スタブ",
+  "files": [
+    { "path": "src/authz/abac.ts", "template": "export function allow(attrs:any){ return !!attrs?.role; }\n" }
+  ]
+}
+

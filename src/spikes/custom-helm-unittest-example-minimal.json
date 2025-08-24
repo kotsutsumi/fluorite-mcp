@@ -1,0 +1,12 @@
+{
+  "id": "custom-helm-unittest-example-minimal",
+  "name": "Helm unittest 例 最小",
+  "version": "1.0.0",
+  "stack": ["helm"],
+  "tags": ["k8s", "test"],
+  "description": "helm-unittestの最小",
+  "files": [
+    { "path": "chart/tests/deploy_test.yaml", "template": "suite: deploy\ntemplates: ['templates/deploy.yaml']\nasserts: []\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-slack-incoming-webhook-send-minimal",
+  "name": "Slack Incoming Webhook 送信 最小",
+  "version": "1.0.0",
+  "stack": ["slack"],
+  "tags": ["chat"],
+  "description": "Slack Webhook送信の概念",
+  "files": [
+    { "path": "src/chat/slack.ts", "template": "export async function send(text:string){ return { ok: true, text }; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-azure-blob-lifecycle-management-minimal",
+  "name": "Azure Blob ライフサイクル管理 最小",
+  "version": "1.0.0",
+  "stack": ["azure-blob"],
+  "tags": ["storage"],
+  "description": "ライフサイクル管理の概念",
+  "files": [
+    { "path": "src/azure/blob.lifecycle.ts", "template": "export const lifecycle = { deleteAfterDays: 90 };\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-nats-jetstream-stream-retention-minimal",
+  "name": "NATS JetStream Stream Retention 最小",
+  "version": "1.0.0",
+  "stack": ["nats"],
+  "tags": ["messaging"],
+  "description": "保持方針の概念",
+  "files": [
+    { "path": "src/nats/stream.retention.ts", "template": "export const retention = { policy: 'limits', maxAge: '24h' };\n" }
+  ]
+}
+

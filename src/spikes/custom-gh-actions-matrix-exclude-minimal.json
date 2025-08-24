@@ -1,0 +1,12 @@
+{
+  "id": "custom-gh-actions-matrix-exclude-minimal",
+  "name": "GH Actions マトリクス除外 最小",
+  "version": "1.0.0",
+  "stack": ["github-actions"],
+  "tags": ["ci"],
+  "description": "matrix.excludeの最小",
+  "files": [
+    { "path": ".github/workflows/matrix.yml", "template": "name: Matrix\non: [push]\njobs:\n  test:\n    runs-on: ubuntu-latest\n    strategy:\n      matrix: { os: [ubuntu-latest, macos-latest], node: [18,20], exclude: [{ os: macos-latest, node: 18 }] }\n    steps: [{ run: 'echo ok' }]\n" }
+  ]
+}
+

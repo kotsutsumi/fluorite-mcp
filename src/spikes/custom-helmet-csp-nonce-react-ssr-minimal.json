@@ -1,0 +1,12 @@
+{
+  "id": "custom-helmet-csp-nonce-react-ssr-minimal",
+  "name": "helmet CSP Nonce React SSR 最小",
+  "version": "1.0.0",
+  "stack": ["helmet", "react"],
+  "tags": ["security"],
+  "description": "React SSRでCSP Nonceを付与（概念）",
+  "files": [
+    { "path": "src/security/csp.nonce.ts", "template": "export function nonce(){ return 'abc123'; }\n" }
+  ]
+}
+

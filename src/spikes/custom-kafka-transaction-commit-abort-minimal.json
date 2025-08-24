@@ -1,0 +1,12 @@
+{
+  "id": "custom-kafka-transaction-commit-abort-minimal",
+  "name": "Kafka Transaction Commit/Abort 最小",
+  "version": "1.0.0",
+  "stack": ["kafka"],
+  "tags": ["messaging"],
+  "description": "トランザクションのコミット/アボート概念",
+  "files": [
+    { "path": "src/kafka/tx.ts", "template": "export async function commit(){ return { committed: true }; }\nexport async function abort(){ return { aborted: true }; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-kysely-cte-recursive-minimal",
+  "name": "Kysely 再帰CTE 最小",
+  "version": "1.0.0",
+  "stack": ["kysely"],
+  "tags": ["db"],
+  "description": "WITH RECURSIVEの概念",
+  "files": [
+    { "path": "src/db/kysely.cte.ts", "template": "export async function tree(){ return []; }\n" }
+  ]
+}
+

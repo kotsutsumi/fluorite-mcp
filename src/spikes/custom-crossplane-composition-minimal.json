@@ -1,0 +1,12 @@
+{
+  "id": "custom-crossplane-composition-minimal",
+  "name": "Crossplane Composition 最小",
+  "version": "1.0.0",
+  "stack": ["crossplane"],
+  "tags": ["iac"],
+  "description": "Compositionの最小",
+  "files": [
+    { "path": "crossplane/composition.yaml", "template": "apiVersion: apiextensions.crossplane.io/v1\nkind: Composition\nmetadata: { name: xapp }\nspec: { compositeTypeRef: { apiVersion: 'x.io/v1', kind: XApp } }\n" }
+  ]
+}
+

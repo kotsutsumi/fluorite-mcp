@@ -1,0 +1,12 @@
+{
+  "id": "custom-gcp-workload-identity-federation-minimal",
+  "name": "GCP Workload Identity Federation 最小",
+  "version": "1.0.0",
+  "stack": ["gcp"],
+  "tags": ["auth"],
+  "description": "WIFの概念",
+  "files": [
+    { "path": "src/gcp/wif.ts", "template": "export async function exchange(aud:string){ return { aud, token: 'wif' }; }\n" }
+  ]
+}
+

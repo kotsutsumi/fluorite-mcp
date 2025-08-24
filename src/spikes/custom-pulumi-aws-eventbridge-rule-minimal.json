@@ -1,0 +1,12 @@
+{
+  "id": "custom-pulumi-aws-eventbridge-rule-minimal",
+  "name": "Pulumi AWS EventBridge Rule 最小",
+  "version": "1.0.0",
+  "stack": ["pulumi", "aws"],
+  "tags": ["iac"],
+  "description": "EventBridgeルールの概念",
+  "files": [
+    { "path": "pulumi/events.ts", "template": "export const rule = { pattern: {} };\n" }
+  ]
+}
+

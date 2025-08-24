@@ -1,0 +1,12 @@
+{
+  "id": "custom-saml-sp-metadata-generate-minimal",
+  "name": "SAML SP Metadata 生成 最小",
+  "version": "1.0.0",
+  "stack": ["saml"],
+  "tags": ["auth"],
+  "description": "SPメタデータ生成の概念スタブ",
+  "files": [
+    { "path": "src/auth/saml.metadata.ts", "template": "export function metadata(){ return '<EntityDescriptor></EntityDescriptor>'; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-kafka-streams-windowed-aggregation-minimal",
+  "name": "Kafka Streams 窓集計 最小",
+  "version": "1.0.0",
+  "stack": ["kafka"],
+  "tags": ["stream"],
+  "description": "時間窓での集計概念",
+  "files": [
+    { "path": "src/kafka/streams.window.ts", "template": "export const windowed = { sizeMs: 60000, graceMs: 5000 };\n" }
+  ]
+}
+

@@ -1,0 +1,18 @@
+{
+  "id": "strike-tanstack-query-hook-minimal",
+  "name": "TanStack Query Hook Minimal",
+  "stack": [
+    "react",
+    "tanstack-query"
+  ],
+  "tags": [
+    "frontend"
+  ],
+  "files": [
+    {
+      "path": "src/useHello.ts",
+      "template": "import { useQuery } from '@tanstack/react-query';\nexport function useHello(){ return useQuery({ queryKey: ['hello'], queryFn: async()=> 'world' }); }\n"
+    }
+  ],
+  "patches": []
+}

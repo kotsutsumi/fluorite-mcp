@@ -1,0 +1,12 @@
+{
+  "id": "custom-trpc-procedure-middleware-minimal",
+  "name": "tRPC Procedure Middleware 最小",
+  "version": "1.0.0",
+  "stack": ["trpc"],
+  "tags": ["api"],
+  "description": "tRPCの手続きミドルウェア概念",
+  "files": [
+    { "path": "src/trpc/mw.ts", "template": "export const mw = { before: ()=>{}, after: ()=>{} };\n" }
+  ]
+}
+

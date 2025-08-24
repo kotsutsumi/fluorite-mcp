@@ -1,0 +1,12 @@
+{
+  "id": "custom-openapi-fastify-route-generation-minimal",
+  "name": "OpenAPI Fastify ルート生成 最小",
+  "version": "1.0.0",
+  "stack": ["openapi", "fastify"],
+  "tags": ["api"],
+  "description": "OpenAPI仕様からルート生成（概念）",
+  "files": [
+    { "path": "src/fastify/openapi.routes.ts", "template": "export const routes = [{ method: 'GET', url: '/hello' }];\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-kysely-typed-schema-declaration-minimal",
+  "name": "Kysely 型付きスキーマ宣言 最小",
+  "version": "1.0.0",
+  "stack": ["kysely"],
+  "tags": ["db"],
+  "description": "型付きスキーマ宣言（概念）",
+  "files": [
+    { "path": "src/db/kysely.schema.ts", "template": "export interface DB { users: { id:number; name:string } }\n" }
+  ]
+}
+

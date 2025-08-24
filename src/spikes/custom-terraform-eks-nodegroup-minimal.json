@@ -1,0 +1,12 @@
+{
+  "id": "custom-terraform-eks-nodegroup-minimal",
+  "name": "Terraform EKS Node Group 最小",
+  "version": "1.0.0",
+  "stack": ["terraform", "eks"],
+  "tags": ["iac"],
+  "description": "EKSノードグループの最小",
+  "files": [
+    { "path": "infra/eks-nodegroup.tf", "template": "# eks nodegroup placeholder\n" }
+  ]
+}
+

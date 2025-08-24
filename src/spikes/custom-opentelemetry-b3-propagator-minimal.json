@@ -1,0 +1,12 @@
+{
+  "id": "custom-opentelemetry-b3-propagator-minimal",
+  "name": "OpenTelemetry B3 Propagator 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry"],
+  "tags": ["tracing"],
+  "description": "B3伝播の概念スタブ",
+  "files": [
+    { "path": "src/otel/propagator.b3.ts", "template": "export const b3 = { enabled: true };\n" }
+  ]
+}
+

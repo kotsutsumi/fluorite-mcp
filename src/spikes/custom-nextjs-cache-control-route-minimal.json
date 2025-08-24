@@ -1,0 +1,12 @@
+{
+  "id": "custom-nextjs-cache-control-route-minimal",
+  "name": "Next.js Cache-Control ルート 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["cache"],
+  "description": "Cache-Controlヘッダ設定の最小",
+  "files": [
+    { "path": "app/api/cache/route.ts", "template": "export async function GET(){ return new Response('ok', { headers: { 'Cache-Control': 'public, max-age=60' } }); }\n" }
+  ]
+}
+

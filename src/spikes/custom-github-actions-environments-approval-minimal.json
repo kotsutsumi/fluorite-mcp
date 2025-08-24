@@ -1,0 +1,12 @@
+{
+  "id": "custom-github-actions-environments-approval-minimal",
+  "name": "GH Actions 環境承認 最小",
+  "version": "1.0.0",
+  "stack": ["github-actions"],
+  "tags": ["ci", "approval"],
+  "description": "環境承認の最小設定",
+  "files": [
+    { "path": ".github/workflows/env-approval.yml", "template": "name: Env Approval\non: [workflow_dispatch]\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n    environment: { name: production }\n    steps: [{ run: 'echo deploy' }]\n" }
+  ]
+}
+

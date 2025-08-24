@@ -1,0 +1,12 @@
+{
+  "id": "custom-k8s-poddisruptionbudget-minimal",
+  "name": "K8s PodDisruptionBudget 最小",
+  "version": "1.0.0",
+  "stack": ["kubernetes"],
+  "tags": ["k8s"],
+  "description": "PDBの最小",
+  "files": [
+    { "path": "k8s/pdb.yml", "template": "apiVersion: policy/v1\nkind: PodDisruptionBudget\nmetadata: { name: app }\nspec: { minAvailable: 1, selector: { matchLabels: { app: app } } }\n" }
+  ]
+}
+

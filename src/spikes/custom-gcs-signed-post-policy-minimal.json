@@ -1,0 +1,12 @@
+{
+  "id": "custom-gcs-signed-post-policy-minimal",
+  "name": "GCS Signed POST Policy 最小",
+  "version": "1.0.0",
+  "stack": ["gcs"],
+  "tags": ["storage"],
+  "description": "署名付きPOSTポリシーの概念",
+  "files": [
+    { "path": "src/gcp/gcs.post.ts", "template": "export async function signPost(path:string){ return { url: 'https://storage.googleapis.com/'+path }; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-openai-tools-multipart-minimal",
+  "name": "OpenAI Tools Multipart 最小",
+  "version": "1.0.0",
+  "stack": ["openai"],
+  "tags": ["tools"],
+  "description": "multipartツール呼び出し概念",
+  "files": [
+    { "path": "src/ai/openai.multipart.ts", "template": "export async function callWithFile(name:string, file:Uint8Array){ return { name, ok: true }; }\n" }
+  ]
+}
+

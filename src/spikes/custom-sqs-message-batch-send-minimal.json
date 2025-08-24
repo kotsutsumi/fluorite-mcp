@@ -1,0 +1,12 @@
+{
+  "id": "custom-sqs-message-batch-send-minimal",
+  "name": "SQS メッセージ バッチ送信 最小",
+  "version": "1.0.0",
+  "stack": ["sqs"],
+  "tags": ["messaging", "aws"],
+  "description": "バッチ送信の概念",
+  "files": [
+    { "path": "src/aws/sqs.batch.send.ts", "template": "export async function sendBatch(msgs:any[]){ return { sent: msgs.length }; }\n" }
+  ]
+}
+

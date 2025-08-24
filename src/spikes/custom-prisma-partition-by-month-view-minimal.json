@@ -1,0 +1,12 @@
+{
+  "id": "custom-prisma-partition-by-month-view-minimal",
+  "name": "Prisma 月次パーティションVIEW 最小",
+  "version": "1.0.0",
+  "stack": ["prisma"],
+  "tags": ["db"],
+  "description": "月ごとVIEWの概念",
+  "files": [
+    { "path": "src/prisma.view.month.ts", "template": "export const view = { name: 'v_sales_2025_01' };\n" }
+  ]
+}
+

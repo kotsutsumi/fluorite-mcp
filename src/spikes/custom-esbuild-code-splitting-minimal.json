@@ -1,0 +1,12 @@
+{
+  "id": "custom-esbuild-code-splitting-minimal",
+  "name": "esbuild コードスプリッティング 最小",
+  "version": "1.0.0",
+  "stack": ["esbuild"],
+  "tags": ["build"],
+  "description": "コードスプリットの最小",
+  "files": [
+    { "path": "esbuild.split.mjs", "template": "export default { entryPoints: { a: 'src/a.ts', b: 'src/b.ts' }, outdir: 'dist', splitting: true, format: 'esm', bundle: true };\n" }
+  ]
+}
+

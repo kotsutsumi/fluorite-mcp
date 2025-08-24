@@ -1,0 +1,12 @@
+{
+  "id": "custom-auth0-email-template-render-minimal",
+  "name": "Auth0 メールテンプレート レンダリング 最小",
+  "version": "1.0.0",
+  "stack": ["auth0"],
+  "tags": ["auth", "email"],
+  "description": "メールテンプレートのプレビュー（概念）",
+  "files": [
+    { "path": "src/auth/auth0.email.ts", "template": "export function render(template:string, vars:any){ return template.replace('{{name}}', vars.name||''); }\n" }
+  ]
+}
+

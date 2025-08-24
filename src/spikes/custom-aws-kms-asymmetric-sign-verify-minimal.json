@@ -1,0 +1,12 @@
+{
+  "id": "custom-aws-kms-asymmetric-sign-verify-minimal",
+  "name": "AWS KMS 非対称 署名/検証 最小",
+  "version": "1.0.0",
+  "stack": ["kms", "aws"],
+  "tags": ["security"],
+  "description": "KMSで非対称鍵の署名/検証スタブ",
+  "files": [
+    { "path": "src/aws/kms.sign.ts", "template": "export async function sign(msg:string){ return { signature: '...' }; }\nexport async function verify(sig:string){ return { valid: true }; }\n" }
+  ]
+}
+

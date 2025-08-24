@@ -1,0 +1,12 @@
+{
+  "id": "custom-hono-jwt-middleware-minimal",
+  "name": "Hono JWT Middleware 最小",
+  "version": "1.0.0",
+  "stack": ["hono"],
+  "tags": ["auth"],
+  "description": "JWT検証ミドルウェア概念スタブ",
+  "files": [
+    { "path": "src/hono/jwt.ts", "template": "export function jwt(){ return (_c:any,next:any)=> next(); }\n" }
+  ]
+}
+

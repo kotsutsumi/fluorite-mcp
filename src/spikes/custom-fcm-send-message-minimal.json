@@ -1,0 +1,12 @@
+{
+  "id": "custom-fcm-send-message-minimal",
+  "name": "FCM メッセージ送信 最小",
+  "version": "1.0.0",
+  "stack": ["fcm"],
+  "tags": ["push"],
+  "description": "Firebase Cloud Messaging送信",
+  "files": [
+    { "path": "src/push/fcm.ts", "template": "export async function send(token:string, data:any){ return { token, data }; }\n" }
+  ]
+}
+

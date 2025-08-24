@@ -1,0 +1,12 @@
+{
+  "id": "custom-keda-scaledobject-queue-minimal",
+  "name": "KEDA ScaledObject Queue 最小",
+  "version": "1.0.0",
+  "stack": ["keda", "kubernetes"],
+  "tags": ["k8s", "scaling"],
+  "description": "キューベーススケーリング最小",
+  "files": [
+    { "path": "k8s/keda.yml", "template": "apiVersion: keda.sh/v1alpha1\nkind: ScaledObject\nmetadata: { name: app }\nspec: { scaleTargetRef: { name: app }, triggers: [{ type: 'sqs', metadata: { queueURL: 'url' } }] }\n" }
+  ]
+}
+

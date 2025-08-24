@@ -1,0 +1,12 @@
+{
+  "id": "custom-apollo-federation-gateway-minimal",
+  "name": "Apollo Federation Gateway 最小",
+  "version": "1.0.0",
+  "stack": ["apollo", "federation"],
+  "tags": ["graphql"],
+  "description": "Gateway最小スタブ",
+  "files": [
+    { "path": "src/graphql/gateway.ts", "template": "export const services = [{ name: 'users', url: 'http://localhost:4001' }];\n" }
+  ]
+}
+

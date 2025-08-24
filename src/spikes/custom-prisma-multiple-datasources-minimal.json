@@ -1,0 +1,12 @@
+{
+  "id": "custom-prisma-multiple-datasources-minimal",
+  "name": "Prisma 複数データソース 最小",
+  "version": "1.0.0",
+  "stack": ["prisma"],
+  "tags": ["db"],
+  "description": "複数datasource設定の概念スタブ",
+  "files": [
+    { "path": "prisma/schema.prisma", "template": "datasource db { provider='postgresql' url='env(DATABASE_URL)' }\ndatasource analytics { provider='postgresql' url='env(ANALYTICS_URL)' }\n" }
+  ]
+}
+

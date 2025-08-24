@@ -1,0 +1,12 @@
+{
+  "id": "custom-weaviate-near-text-search-minimal",
+  "name": "Weaviate nearText 検索 最小",
+  "version": "1.0.0",
+  "stack": ["weaviate"],
+  "tags": ["vector"],
+  "description": "nearText検索の概念",
+  "files": [
+    { "path": "src/vectors/weaviate.neartext.ts", "template": "export async function search(text:string){ return { matches: [] }; }\n" }
+  ]
+}
+

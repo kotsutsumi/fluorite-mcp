@@ -1,0 +1,12 @@
+{
+  "id": "custom-pact-consumer-contract-minimal",
+  "name": "Pact Consumer Contract 最小",
+  "version": "1.0.0",
+  "stack": ["pact"],
+  "tags": ["contract-test"],
+  "description": "Pactの最小コンシューマ契約",
+  "files": [
+    { "path": "contract/pact.json", "template": "{ \"consumer\": { \"name\": \"web\" }, \"provider\": { \"name\": \"api\" } }\n" }
+  ]
+}
+

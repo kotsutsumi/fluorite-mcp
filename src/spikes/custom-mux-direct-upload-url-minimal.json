@@ -1,0 +1,12 @@
+{
+  "id": "custom-mux-direct-upload-url-minimal",
+  "name": "Mux 直接アップロードURL 最小",
+  "version": "1.0.0",
+  "stack": ["mux"],
+  "tags": ["video"],
+  "description": "Mux直アップロードの概念",
+  "files": [
+    { "path": "src/video/mux.ts", "template": "export async function createUploadUrl(){ return { url: 'https://stream.mux.com/upload' }; }\n" }
+  ]
+}
+

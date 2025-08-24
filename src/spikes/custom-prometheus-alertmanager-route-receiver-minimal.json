@@ -1,0 +1,12 @@
+{
+  "id": "custom-prometheus-alertmanager-route-receiver-minimal",
+  "name": "Alertmanager route/receiver 最小",
+  "version": "1.0.0",
+  "stack": ["prometheus", "alertmanager"],
+  "tags": ["alerting"],
+  "description": "route/receiversの最小",
+  "files": [
+    { "path": "alertmanager/config.yml", "template": "route: {}\nreceivers: []\n" }
+  ]
+}
+

@@ -1,0 +1,18 @@
+{
+  "id": "strike-unleash-edge-config-nextjs",
+  "name": "Unleash Edge Config Next.js",
+  "stack": [
+    "unleash",
+    "nextjs"
+  ],
+  "tags": [
+    "flags"
+  ],
+  "files": [
+    {
+      "path": "src/flags/unleash-edge.ts",
+      "template": "export const edge = {};\n"
+    }
+  ],
+  "patches": []
+}

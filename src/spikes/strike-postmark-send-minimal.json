@@ -1,0 +1,17 @@
+{
+  "id": "strike-postmark-send-minimal",
+  "name": "Postmark Send Minimal",
+  "stack": [
+    "postmark"
+  ],
+  "tags": [
+    "email"
+  ],
+  "files": [
+    {
+      "path": "src/email/postmark.ts",
+      "template": "export async function send(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

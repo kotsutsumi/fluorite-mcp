@@ -1,0 +1,12 @@
+{
+  "id": "custom-nats-js-durable-consumer-minimal",
+  "name": "NATS JetStream Durable Consumer 最小",
+  "version": "1.0.0",
+  "stack": ["nats"],
+  "tags": ["messaging"],
+  "description": "Durable Consumerの概念",
+  "files": [
+    { "path": "src/nats/js.durable.ts", "template": "export async function durable(name:string){ return { name, created: true }; }\n" }
+  ]
+}
+

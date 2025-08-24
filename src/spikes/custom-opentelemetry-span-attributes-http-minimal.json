@@ -1,0 +1,12 @@
+{
+  "id": "custom-opentelemetry-span-attributes-http-minimal",
+  "name": "OpenTelemetry Span Attributes HTTP 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry"],
+  "tags": ["tracing"],
+  "description": "HTTP属性付与の概念",
+  "files": [
+    { "path": "src/otel/span.http.ts", "template": "export const httpAttrs = { method: 'GET', route: '/hello', status: 200 };\n" }
+  ]
+}
+

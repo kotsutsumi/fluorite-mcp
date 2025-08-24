@@ -1,0 +1,12 @@
+{
+  "id": "custom-meilisearch-filterable-sortable-attributes-minimal",
+  "name": "Meilisearch Filterable/Sortable Attributes 最小",
+  "version": "1.0.0",
+  "stack": ["meilisearch"],
+  "tags": ["search"],
+  "description": "フィルタ/ソート属性の概念",
+  "files": [
+    { "path": "src/search/meili.attrs.ts", "template": "export const filterable = ['tag']; export const sortable = ['createdAt'];\n" }
+  ]
+}
+

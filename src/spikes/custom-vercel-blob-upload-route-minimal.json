@@ -1,0 +1,12 @@
+{
+  "id": "custom-vercel-blob-upload-route-minimal",
+  "name": "Vercel Blob アップロード ルート 最小",
+  "version": "1.0.0",
+  "stack": ["vercel", "nextjs"],
+  "tags": ["storage"],
+  "description": "Vercel Blobのアップロードルート",
+  "files": [
+    { "path": "app/api/blob/upload/route.ts", "template": "import { NextResponse } from 'next/server'; export async function POST(){ return NextResponse.json({ ok: true }); }\n" }
+  ]
+}
+

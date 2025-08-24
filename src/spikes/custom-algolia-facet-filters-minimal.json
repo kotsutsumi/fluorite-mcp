@@ -1,0 +1,12 @@
+{
+  "id": "custom-algolia-facet-filters-minimal",
+  "name": "Algolia Facet Filters 最小",
+  "version": "1.0.0",
+  "stack": ["algolia"],
+  "tags": ["search"],
+  "description": "Facet Filtersの概念",
+  "files": [
+    { "path": "src/search/algolia.facets.ts", "template": "export const facetFilters = [['category:tech']];\n" }
+  ]
+}
+

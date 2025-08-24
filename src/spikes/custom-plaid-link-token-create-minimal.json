@@ -1,0 +1,12 @@
+{
+  "id": "custom-plaid-link-token-create-minimal",
+  "name": "Plaid Link Token 作成 最小",
+  "version": "1.0.0",
+  "stack": ["plaid"],
+  "tags": ["fintech"],
+  "description": "Link Token作成概念",
+  "files": [
+    { "path": "src/fintech/plaid.ts", "template": "export async function createLinkToken(){ return { token: 'link-123' }; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-otel-metrics-otlp-grpc-exporter-minimal",
+  "name": "Otel Metrics OTLP gRPC Exporter 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry"],
+  "tags": ["metrics"],
+  "description": "OTLP gRPCのメトリクスエクスポータ",
+  "files": [
+    { "path": "src/otel/metrics.otlp.ts", "template": "export function exporter(){ return { url: 'http://localhost:4317' }; }\n" }
+  ]
+}
+

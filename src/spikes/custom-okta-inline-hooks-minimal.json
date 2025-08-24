@@ -1,0 +1,12 @@
+{
+  "id": "custom-okta-inline-hooks-minimal",
+  "name": "Okta Inline Hooks 最小",
+  "version": "1.0.0",
+  "stack": ["okta"],
+  "tags": ["auth"],
+  "description": "Inline Hooksの概念",
+  "files": [
+    { "path": "src/auth/okta.inline.ts", "template": "export async function hook(event:any){ return { allow: true, event }; }\n" }
+  ]
+}
+

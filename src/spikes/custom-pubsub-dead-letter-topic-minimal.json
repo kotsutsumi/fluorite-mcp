@@ -1,0 +1,12 @@
+{
+  "id": "custom-pubsub-dead-letter-topic-minimal",
+  "name": "GCP Pub/Sub Dead Letter Topic 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "pubsub"],
+  "tags": ["messaging", "gcp"],
+  "description": "DLT設定の概念",
+  "files": [
+    { "path": "src/gcp/pubsub.dlt.ts", "template": "export const dlt = { topic: 'dlt' };\n" }
+  ]
+}
+

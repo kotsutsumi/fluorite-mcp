@@ -1,0 +1,12 @@
+{
+  "id": "custom-clickhouse-mergetree-table-create-minimal",
+  "name": "ClickHouse MergeTree テーブル作成 最小",
+  "version": "1.0.0",
+  "stack": ["clickhouse"],
+  "tags": ["db"],
+  "description": "MergeTreeテーブル作成の概念",
+  "files": [
+    { "path": "src/db/clickhouse.table.ts", "template": "export const table = { engine: 'MergeTree', orderBy: 'id' };\n" }
+  ]
+}
+

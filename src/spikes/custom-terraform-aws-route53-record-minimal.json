@@ -1,0 +1,12 @@
+{
+  "id": "custom-terraform-aws-route53-record-minimal",
+  "name": "Terraform AWS Route53 Record 最小",
+  "version": "1.0.0",
+  "stack": ["terraform", "aws", "route53"],
+  "tags": ["iac"],
+  "description": "レコード定義の概念",
+  "files": [
+    { "path": "infra/route53.tf", "template": "# route53 record placeholder\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-kafka-consumer-rebalance-listener-minimal",
+  "name": "Kafka Consumer Rebalance Listener 最小",
+  "version": "1.0.0",
+  "stack": ["kafka"],
+  "tags": ["messaging"],
+  "description": "リバランスリスナー概念スタブ",
+  "files": [
+    { "path": "src/kafka/rebalance.ts", "template": "export const listener = { onAssigned: ()=>{}, onRevoked: ()=>{} };\n" }
+  ]
+}
+

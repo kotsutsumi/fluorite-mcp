@@ -1,0 +1,12 @@
+{
+  "id": "custom-postgres-notify-json-payload-minimal",
+  "name": "Postgres NOTIFY JSON ペイロード 最小",
+  "version": "1.0.0",
+  "stack": ["postgres"],
+  "tags": ["db", "realtime"],
+  "description": "JSONペイロード通知の概念スタブ",
+  "files": [
+    { "path": "src/db/pg.notify.ts", "template": "export async function notify(channel:string, json:any){ return { channel, json }; }\n" }
+  ]
+}
+

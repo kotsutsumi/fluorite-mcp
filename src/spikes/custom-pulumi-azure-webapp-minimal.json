@@ -1,0 +1,12 @@
+{
+  "id": "custom-pulumi-azure-webapp-minimal",
+  "name": "Pulumi Azure Web App 最小",
+  "version": "1.0.0",
+  "stack": ["pulumi", "azure"],
+  "tags": ["iac"],
+  "description": "Azure Web Appの最小",
+  "files": [
+    { "path": "pulumi/azure-webapp.ts", "template": "export const app = { name: 'web' };\n" }
+  ]
+}
+

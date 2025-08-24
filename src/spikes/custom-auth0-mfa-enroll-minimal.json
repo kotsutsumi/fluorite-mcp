@@ -1,0 +1,12 @@
+{
+  "id": "custom-auth0-mfa-enroll-minimal",
+  "name": "Auth0 MFA 登録 最小",
+  "version": "1.0.0",
+  "stack": ["auth0"],
+  "tags": ["auth", "mfa"],
+  "description": "MFA登録の概念スタブ",
+  "files": [
+    { "path": "src/auth/auth0.mfa.ts", "template": "export async function enroll(){ return { enrolled: true }; }\n" }
+  ]
+}
+

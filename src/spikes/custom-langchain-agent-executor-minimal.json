@@ -1,0 +1,12 @@
+{
+  "id": "custom-langchain-agent-executor-minimal",
+  "name": "LangChain Agent Executor 最小",
+  "version": "1.0.0",
+  "stack": ["langchain"],
+  "tags": ["ai"],
+  "description": "Agent Executorの概念",
+  "files": [
+    { "path": "src/ai/langchain.agent.ts", "template": "export const agent = { tools: [], run: async (_i:string)=> 'ok' };\n" }
+  ]
+}
+

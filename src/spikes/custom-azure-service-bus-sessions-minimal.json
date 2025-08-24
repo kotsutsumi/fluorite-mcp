@@ -1,0 +1,12 @@
+{
+  "id": "custom-azure-service-bus-sessions-minimal",
+  "name": "Azure Service Bus Sessions 最小",
+  "version": "1.0.0",
+  "stack": ["azure-service-bus"],
+  "tags": ["messaging", "azure"],
+  "description": "セッション受信の概念",
+  "files": [
+    { "path": "src/azure/service-bus.sessions.ts", "template": "export async function receive(sessionId:string){ return { sessionId, messages: [] }; }\n" }
+  ]
+}
+

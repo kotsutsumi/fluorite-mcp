@@ -1,0 +1,12 @@
+{
+  "id": "custom-jose-jwk-generate-keypair-minimal",
+  "name": "jose JWK 鍵ペア生成 最小",
+  "version": "1.0.0",
+  "stack": ["jose"],
+  "tags": ["security"],
+  "description": "JWK鍵ペア生成の概念",
+  "files": [
+    { "path": "src/security/jwk.ts", "template": "export async function generate(){ return { kty: 'OKP', crv: 'Ed25519' }; }\n" }
+  ]
+}
+

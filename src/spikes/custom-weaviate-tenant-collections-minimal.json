@@ -1,0 +1,12 @@
+{
+  "id": "custom-weaviate-tenant-collections-minimal",
+  "name": "Weaviate テナントコレクション 最小",
+  "version": "1.0.0",
+  "stack": ["weaviate"],
+  "tags": ["vector"],
+  "description": "テナントコレクションの概念",
+  "files": [
+    { "path": "src/vectors/weaviate.tenants.ts", "template": "export async function tenants(){ return []; }\n" }
+  ]
+}
+

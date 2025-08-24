@@ -1,0 +1,12 @@
+{
+  "id": "custom-aws-lambda-edge-viewer-request-minimal",
+  "name": "Lambda@Edge Viewer Request 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "lambda@edge"],
+  "tags": ["edge"],
+  "description": "Viewer Requestの概念スタブ",
+  "files": [
+    { "path": "src/edge/lambda-viewer.ts", "template": "export function handler(_event:any){ return { status: '200' }; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-mongodb-schema-validation-rule-minimal",
+  "name": "MongoDB Schema Validation ルール 最小",
+  "version": "1.0.0",
+  "stack": ["mongodb"],
+  "tags": ["db"],
+  "description": "$jsonSchemaの概念",
+  "files": [
+    { "path": "src/db/mongo.schema.ts", "template": "export const jsonSchema = { bsonType: 'object', required: ['name'] };\n" }
+  ]
+}
+

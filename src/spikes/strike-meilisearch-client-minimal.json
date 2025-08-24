@@ -1,0 +1,17 @@
+{
+  "id": "strike-meilisearch-client-minimal",
+  "name": "Meilisearch Client Minimal",
+  "stack": [
+    "meilisearch"
+  ],
+  "tags": [
+    "search"
+  ],
+  "files": [
+    {
+      "path": "src/search/meilisearch.ts",
+      "template": "export function meilisearch(){ return { host: 'http://localhost:7700' }; }\n"
+    }
+  ],
+  "patches": []
+}

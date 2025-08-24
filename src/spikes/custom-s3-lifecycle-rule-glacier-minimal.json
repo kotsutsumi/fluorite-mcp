@@ -1,0 +1,12 @@
+{
+  "id": "custom-s3-lifecycle-rule-glacier-minimal",
+  "name": "S3 ライフサイクル GLACIER 最小",
+  "version": "1.0.0",
+  "stack": ["s3"],
+  "tags": ["storage"],
+  "description": "Glacier移行の概念",
+  "files": [
+    { "path": "src/aws/s3.lifecycle.ts", "template": "export const rule = { transitionAfterDays: 30, storageClass: 'GLACIER' };\n" }
+  ]
+}
+

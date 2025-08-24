@@ -1,0 +1,12 @@
+{
+  "id": "custom-auth0-organization-invite-minimal",
+  "name": "Auth0 Organization Invite 最小",
+  "version": "1.0.0",
+  "stack": ["auth0"],
+  "tags": ["auth"],
+  "description": "組織招待の概念スタブ",
+  "files": [
+    { "path": "src/auth/auth0.org.ts", "template": "export async function invite(email:string){ return { email, sent: true }; }\n" }
+  ]
+}
+

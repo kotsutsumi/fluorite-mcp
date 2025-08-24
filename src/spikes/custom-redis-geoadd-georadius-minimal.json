@@ -1,0 +1,12 @@
+{
+  "id": "custom-redis-geoadd-georadius-minimal",
+  "name": "Redis GEOADD/GEORADIUS 最小",
+  "version": "1.0.0",
+  "stack": ["redis"],
+  "tags": ["geo"],
+  "description": "地理情報操作の概念",
+  "files": [
+    { "path": "src/redis/geo.ts", "template": "export async function add(key:string, lng:number, lat:number, member:string){ return { key, member }; }\nexport async function radius(key:string, lng:number, lat:number, meters:number){ return []; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-okta-refresh-token-rotation-minimal",
+  "name": "Okta Refresh Token Rotation 最小",
+  "version": "1.0.0",
+  "stack": ["okta"],
+  "tags": ["auth"],
+  "description": "Refresh Token Rotationの概念（Okta）",
+  "files": [
+    { "path": "src/auth/okta.refresh.ts", "template": "export async function rotate(){ return { rotated: true }; }\n" }
+  ]
+}
+

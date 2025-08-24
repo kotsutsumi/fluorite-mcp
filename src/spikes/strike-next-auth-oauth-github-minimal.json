@@ -1,0 +1,18 @@
+{
+  "id": "strike-next-auth-oauth-github-minimal",
+  "name": "NextAuth GitHub OAuth",
+  "stack": [
+    "next-auth"
+  ],
+  "tags": [
+    "auth",
+    "oauth"
+  ],
+  "files": [
+    {
+      "path": "src/auth-github.ts",
+      "template": "export function auth(){ return { providers: ['github'] }; }\n"
+    }
+  ],
+  "patches": []
+}

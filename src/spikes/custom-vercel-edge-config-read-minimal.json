@@ -1,0 +1,12 @@
+{
+  "id": "custom-vercel-edge-config-read-minimal",
+  "name": "Vercel Edge Config Read 最小",
+  "version": "1.0.0",
+  "stack": ["vercel"],
+  "tags": ["edge", "config"],
+  "description": "Edge Config参照の概念スタブ",
+  "files": [
+    { "path": "src/edge/vercel.config.ts", "template": "export async function get(key:string){ return { key, value: 'v' }; }\n" }
+  ]
+}
+

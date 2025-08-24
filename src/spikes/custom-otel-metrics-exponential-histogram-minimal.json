@@ -1,0 +1,12 @@
+{
+  "id": "custom-otel-metrics-exponential-histogram-minimal",
+  "name": "Otel Metrics Exponential Histogram 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry"],
+  "tags": ["metrics"],
+  "description": "指数ヒストグラムの概念",
+  "files": [
+    { "path": "src/otel/metrics.expHist.ts", "template": "export const expHist = { maxSize: 160 };\n" }
+  ]
+}
+

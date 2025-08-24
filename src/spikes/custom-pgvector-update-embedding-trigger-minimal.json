@@ -1,0 +1,12 @@
+{
+  "id": "custom-pgvector-update-embedding-trigger-minimal",
+  "name": "pgvector 埋め込み更新トリガ 最小",
+  "version": "1.0.0",
+  "stack": ["pgvector", "postgres"],
+  "tags": ["vector"],
+  "description": "更新時に埋め込み再生成（概念）",
+  "files": [
+    { "path": "src/vectors/pgvector.trigger.ts", "template": "export const trigger = { table: 'docs', event: 'UPDATE' };\n" }
+  ]
+}
+

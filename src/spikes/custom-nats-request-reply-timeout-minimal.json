@@ -1,0 +1,12 @@
+{
+  "id": "custom-nats-request-reply-timeout-minimal",
+  "name": "NATS Request/Reply タイムアウト 最小",
+  "version": "1.0.0",
+  "stack": ["nats"],
+  "tags": ["messaging"],
+  "description": "リクエスト応答のタイムアウト概念",
+  "files": [
+    { "path": "src/nats/rr.timeout.ts", "template": "export async function request(subj:string, ms:number){ return { subj, timeoutMs: ms }; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-meilisearch-ranking-rules-settings-minimal",
+  "name": "Meilisearch Ranking Rules 設定 最小",
+  "version": "1.0.0",
+  "stack": ["meilisearch"],
+  "tags": ["search"],
+  "description": "ランキングルール設定の概念",
+  "files": [
+    { "path": "src/search/meili.ranking.ts", "template": "export const rankingRules = ['words','typo','proximity','attribute','exactness'];\n" }
+  ]
+}
+

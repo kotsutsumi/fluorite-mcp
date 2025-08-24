@@ -1,0 +1,12 @@
+{
+  "id": "custom-opensearch-snapshot-repository-minimal",
+  "name": "OpenSearch Snapshot Repository 最小",
+  "version": "1.0.0",
+  "stack": ["opensearch"],
+  "tags": ["search"],
+  "description": "スナップショットリポジトリ設定",
+  "files": [
+    { "path": "src/search/opensearch.snapshot.ts", "template": "export const repo = { type: 'fs', location: '/snapshots' };\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-otel-view-aggregation-minimal",
+  "name": "OpenTelemetry View Aggregation 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry"],
+  "tags": ["metrics"],
+  "description": "Viewと集約の概念",
+  "files": [
+    { "path": "src/otel/metrics.view.ts", "template": "export const view = { instrument: 'http.server.duration', aggregation: 'histogram' };\n" }
+  ]
+}
+

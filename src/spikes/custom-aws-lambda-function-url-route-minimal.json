@@ -1,0 +1,12 @@
+{
+  "id": "custom-aws-lambda-function-url-route-minimal",
+  "name": "AWS Lambda Function URL ルート 最小",
+  "version": "1.0.0",
+  "stack": ["aws-lambda"],
+  "tags": ["serverless"],
+  "description": "Lambda Function URLを想定したハンドラ（スタブ）",
+  "files": [
+    { "path": "src/edge/lambda-fnurl.ts", "template": "export async function handler(){ return { statusCode: 200, body: 'ok' }; }\n" }
+  ]
+}
+

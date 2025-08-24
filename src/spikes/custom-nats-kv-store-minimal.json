@@ -1,0 +1,12 @@
+{
+  "id": "custom-nats-kv-store-minimal",
+  "name": "NATS KV ストア 最小",
+  "version": "1.0.0",
+  "stack": ["nats"],
+  "tags": ["kv"],
+  "description": "NATSのKV概念スタブ",
+  "files": [
+    { "path": "src/nats/kv.ts", "template": "export async function put(k:string,v:string){ return { k, v }; }\n" }
+  ]
+}
+

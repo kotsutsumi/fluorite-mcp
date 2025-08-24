@@ -1,0 +1,12 @@
+{
+  "id": "custom-kafka-connect-transformations-stub",
+  "name": "Kafka Connect Transformations スタブ",
+  "version": "1.0.0",
+  "stack": ["kafka"],
+  "tags": ["connect"],
+  "description": "SMT変換の概念",
+  "files": [
+    { "path": "src/kafka/connect.smt.ts", "template": "export const smt = [{ type: 'org.apache.kafka.connect.transforms.MaskField$Value', config: { fields: 'secret' } }];\n" }
+  ]
+}
+

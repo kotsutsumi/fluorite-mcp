@@ -1,0 +1,12 @@
+{
+  "id": "custom-postgres-list-partitions-minimal",
+  "name": "Postgres パーティション一覧 最小",
+  "version": "1.0.0",
+  "stack": ["postgres"],
+  "tags": ["db"],
+  "description": "パーティション一覧取得の概念スタブ",
+  "files": [
+    { "path": "src/db/pg.partitions.ts", "template": "export async function list(table:string){ return { table, partitions: [] }; }\n" }
+  ]
+}
+

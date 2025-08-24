@@ -1,0 +1,12 @@
+{
+  "id": "custom-shopify-admin-graphql-mutation-minimal",
+  "name": "Shopify Admin GraphQL Mutation 最小",
+  "version": "1.0.0",
+  "stack": ["shopify"],
+  "tags": ["ecommerce", "graphql"],
+  "description": "Admin GraphQLミューテーションの最小",
+  "files": [
+    { "path": "src/shopify/admin.ts", "template": "export async function mutate(_gql:string){ return { ok: true }; }\n" }
+  ]
+}
+

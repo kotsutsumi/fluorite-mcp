@@ -1,0 +1,12 @@
+{
+  "id": "custom-cognito-post-confirmation-trigger-minimal",
+  "name": "Cognito Post Confirmation Trigger 最小",
+  "version": "1.0.0",
+  "stack": ["cognito"],
+  "tags": ["auth"],
+  "description": "PostConfirmationトリガの概念",
+  "files": [
+    { "path": "src/auth/cognito.postconfirm.ts", "template": "export async function handler(event:any){ return event; }\n" }
+  ]
+}
+

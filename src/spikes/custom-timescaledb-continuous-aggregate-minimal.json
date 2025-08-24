@@ -1,0 +1,12 @@
+{
+  "id": "custom-timescaledb-continuous-aggregate-minimal",
+  "name": "TimescaleDB Continuous Aggregate 最小",
+  "version": "1.0.0",
+  "stack": ["timescaledb"],
+  "tags": ["db"],
+  "description": "連続集約の概念",
+  "files": [
+    { "path": "src/db/timescaledb.ca.ts", "template": "export const cagg = { view: 'metrics_1h' };\n" }
+  ]
+}
+

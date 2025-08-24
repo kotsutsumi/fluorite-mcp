@@ -1,0 +1,12 @@
+{
+  "id": "custom-typesense-multi-tenant-collections-minimal",
+  "name": "Typesense マルチテナント コレクション 最小",
+  "version": "1.0.0",
+  "stack": ["typesense"],
+  "tags": ["search"],
+  "description": "テナント別コレクションの概念",
+  "files": [
+    { "path": "src/search/typesense.tenants.ts", "template": "export const collections = (tenant:string)=> ({ name: `docs_${tenant}` });\n" }
+  ]
+}
+

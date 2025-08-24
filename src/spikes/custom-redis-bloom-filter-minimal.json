@@ -3,9 +3,10 @@
   "name": "Redis Bloom Filter 最小",
   "version": "1.0.0",
   "stack": ["redis"],
-  "tags": ["cache"],
-  "description": "Bloom Filterの概念スタブ",
+  "tags": ["approx"],
+  "description": "Bloomフィルタの概念",
   "files": [
-    { "path": "src/redis/bloom.ts", "template": "export const bloom = { add: async (_k:string,_v:string)=> true, mightContain: async ()=> false };\n" }
-  ]}
+    { "path": "src/redis/bloom.filter.ts", "template": "export const bloom = { errorRate: 0.01, capacity: 10000 };\n" }
+  ]
+}
 

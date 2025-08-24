@@ -1,0 +1,12 @@
+{
+  "id": "custom-imgproxy-signed-url-minimal",
+  "name": "imgproxy 署名URL 最小",
+  "version": "1.0.0",
+  "stack": ["imgproxy"],
+  "tags": ["image"],
+  "description": "imgproxyの署名URL概念",
+  "files": [
+    { "path": "src/image/imgproxy.ts", "template": "export function sign(url:string){ return url+'?sig=img'; }\n" }
+  ]
+}
+

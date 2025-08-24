@@ -1,0 +1,17 @@
+{
+  "id": "strike-algolia-client-minimal",
+  "name": "Algolia Client Minimal",
+  "stack": [
+    "algolia"
+  ],
+  "tags": [
+    "search"
+  ],
+  "files": [
+    {
+      "path": "src/search/algolia.ts",
+      "template": "export function algolia(){ return { appId: '', apiKey: '' }; }\n"
+    }
+  ],
+  "patches": []
+}

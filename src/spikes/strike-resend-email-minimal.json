@@ -1,0 +1,17 @@
+{
+  "id": "strike-resend-email-minimal",
+  "name": "Resend Email Minimal",
+  "stack": [
+    "resend"
+  ],
+  "tags": [
+    "email"
+  ],
+  "files": [
+    {
+      "path": "src/email/resend.ts",
+      "template": "export async function sendEmail(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

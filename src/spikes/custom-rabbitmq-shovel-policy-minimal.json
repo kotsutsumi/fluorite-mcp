@@ -1,0 +1,12 @@
+{
+  "id": "custom-rabbitmq-shovel-policy-minimal",
+  "name": "RabbitMQ Shovel Policy 最小",
+  "version": "1.0.0",
+  "stack": ["rabbitmq"],
+  "tags": ["messaging"],
+  "description": "Shovelポリシーの概念",
+  "files": [
+    { "path": "src/queue/rabbitmq.shovel.ts", "template": "export const shovel = { src: 'amqp://a', dst: 'amqp://b' };\n" }
+  ]
+}
+

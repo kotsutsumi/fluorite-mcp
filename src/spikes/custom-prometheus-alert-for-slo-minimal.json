@@ -1,0 +1,12 @@
+{
+  "id": "custom-prometheus-alert-for-slo-minimal",
+  "name": "Prometheus SLO アラート 最小",
+  "version": "1.0.0",
+  "stack": ["prometheus"],
+  "tags": ["alerting"],
+  "description": "SLOに基づくアラート概念",
+  "files": [
+    { "path": "prometheus/slo.alerts.yml", "template": "groups: []\n" }
+  ]
+}
+

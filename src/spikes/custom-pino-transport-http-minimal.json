@@ -1,0 +1,12 @@
+{
+  "id": "custom-pino-transport-http-minimal",
+  "name": "Pino HTTP Transport 最小",
+  "version": "1.0.0",
+  "stack": ["pino"],
+  "tags": ["logging"],
+  "description": "PinoのHTTPトランスポート（概念）",
+  "files": [
+    { "path": "src/logging/pino.http.ts", "template": "export const transport = { url: 'http://localhost:3100' };\n" }
+  ]
+}
+

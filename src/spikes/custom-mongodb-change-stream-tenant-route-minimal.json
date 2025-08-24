@@ -1,0 +1,12 @@
+{
+  "id": "custom-mongodb-change-stream-tenant-route-minimal",
+  "name": "MongoDB Change Stream テナント ルート 最小",
+  "version": "1.0.0",
+  "stack": ["mongodb", "nextjs"],
+  "tags": ["db", "realtime"],
+  "description": "テナント毎のChange Stream（概念）",
+  "files": [
+    { "path": "app/api/mongo/changes/route.ts", "template": "import { NextResponse } from 'next/server'; export async function GET(){ return NextResponse.json({ tenant: 't1', changes: [] }); }\n" }
+  ]
+}
+

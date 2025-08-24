@@ -1,0 +1,12 @@
+{
+  "id": "custom-nats-jetstream-pull-consumer-ack-minimal",
+  "name": "NATS JetStream Pull Consumer ACK 最小",
+  "version": "1.0.0",
+  "stack": ["nats"],
+  "tags": ["messaging"],
+  "description": "Pull ConsumerのACK概念",
+  "files": [
+    { "path": "src/nats/jetstream.pull.ts", "template": "export async function pull(stream:string){ return { stream, msgs: [] }; }\n" }
+  ]
+}
+

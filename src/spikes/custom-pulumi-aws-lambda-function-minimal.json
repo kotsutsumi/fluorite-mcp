@@ -1,0 +1,12 @@
+{
+  "id": "custom-pulumi-aws-lambda-function-minimal",
+  "name": "Pulumi AWS Lambda Function 最小",
+  "version": "1.0.0",
+  "stack": ["pulumi", "aws-lambda"],
+  "tags": ["iac"],
+  "description": "PulumiでLambda関数作成の最小",
+  "files": [
+    { "path": "pulumi/lambda.ts", "template": "export const fn = { name: 'fn' };\n" }
+  ]
+}
+

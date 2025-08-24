@@ -1,0 +1,12 @@
+{
+  "id": "custom-milvus-collection-load-release-minimal",
+  "name": "Milvus コレクション Load/Release 最小",
+  "version": "1.0.0",
+  "stack": ["milvus"],
+  "tags": ["vector"],
+  "description": "Load/Releaseの概念スタブ",
+  "files": [
+    { "path": "src/vectors/milvus.load.ts", "template": "export async function load(name:string){ return { name, loaded: true }; }\nexport async function release(name:string){ return { name, released: true }; }\n" }
+  ]
+}
+

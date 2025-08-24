@@ -1,0 +1,12 @@
+{
+  "id": "custom-milvus-index-hnsw-config-minimal",
+  "name": "Milvus HNSW インデックス設定 最小",
+  "version": "1.0.0",
+  "stack": ["milvus"],
+  "tags": ["vector"],
+  "description": "HNSW設定の概念",
+  "files": [
+    { "path": "src/vectors/milvus.hnsw.ts", "template": "export const hnsw = { M: 16, efConstruction: 200 };\n" }
+  ]
+}
+

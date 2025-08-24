@@ -1,0 +1,12 @@
+{
+  "id": "custom-cloudflare-workers-kv-list-namespaces-minimal",
+  "name": "Workers KV Namespaces 一覧 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare-workers"],
+  "tags": ["edge"],
+  "description": "KV Namespaces一覧の概念",
+  "files": [
+    { "path": "worker/kv.namespaces.ts", "template": "export async function list(){ return [{ id: '1', title: 'KV' }]; }\n" }
+  ]
+}
+

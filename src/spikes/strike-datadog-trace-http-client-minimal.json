@@ -1,0 +1,17 @@
+{
+  "id": "strike-datadog-trace-http-client-minimal",
+  "name": "Datadog Trace HTTP Client",
+  "stack": [
+    "datadog"
+  ],
+  "tags": [
+    "apm"
+  ],
+  "files": [
+    {
+      "path": "src/apm/datadog.ts",
+      "template": "export const dd = {};\n"
+    }
+  ],
+  "patches": []
+}

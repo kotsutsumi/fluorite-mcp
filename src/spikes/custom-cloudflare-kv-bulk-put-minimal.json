@@ -1,0 +1,12 @@
+{
+  "id": "custom-cloudflare-kv-bulk-put-minimal",
+  "name": "Cloudflare KV Bulk Put 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare-workers"],
+  "tags": ["edge"],
+  "description": "KV bulk putの概念",
+  "files": [
+    { "path": "worker/kv.bulk.ts", "template": "export async function bulk(items:{key:string,value:string}[]){ return { count: items.length }; }\n" }
+  ]
+}
+

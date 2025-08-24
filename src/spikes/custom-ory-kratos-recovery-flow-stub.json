@@ -1,0 +1,12 @@
+{
+  "id": "custom-ory-kratos-recovery-flow-stub",
+  "name": "ORY Kratos Recovery Flow スタブ",
+  "version": "1.0.0",
+  "stack": ["ory", "kratos"],
+  "tags": ["auth"],
+  "description": "リカバリーフローの概念スタブ",
+  "files": [
+    { "path": "src/ory/kratos.recovery.ts", "template": "export function start(){ return { flow: 'recovery' }; }\n" }
+  ]
+}
+

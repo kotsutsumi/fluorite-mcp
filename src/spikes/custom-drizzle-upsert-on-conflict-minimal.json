@@ -1,0 +1,12 @@
+{
+  "id": "custom-drizzle-upsert-on-conflict-minimal",
+  "name": "Drizzle Upsert ON CONFLICT 最小",
+  "version": "1.0.0",
+  "stack": ["drizzle"],
+  "tags": ["db"],
+  "description": "ON CONFLICT upsertの概念",
+  "files": [
+    { "path": "src/drizzle/upsert.ts", "template": "export async function upsert(){ return { ok: true }; }\n" }
+  ]
+}
+

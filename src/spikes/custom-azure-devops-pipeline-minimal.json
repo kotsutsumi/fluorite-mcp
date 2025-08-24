@@ -1,0 +1,12 @@
+{
+  "id": "custom-azure-devops-pipeline-minimal",
+  "name": "Azure DevOps Pipeline 最小",
+  "version": "1.0.0",
+  "stack": ["azure-devops"],
+  "tags": ["ci"],
+  "description": "ADOパイプラインの最小",
+  "files": [
+    { "path": ".azure-pipelines.yml", "template": "trigger: none\npool: { vmImage: 'ubuntu-latest' }\nsteps: [{ script: 'echo ok' }]\n" }
+  ]
+}
+

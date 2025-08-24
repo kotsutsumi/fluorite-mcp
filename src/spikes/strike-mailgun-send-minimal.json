@@ -1,0 +1,17 @@
+{
+  "id": "strike-mailgun-send-minimal",
+  "name": "Mailgun Send Minimal",
+  "stack": [
+    "mailgun"
+  ],
+  "tags": [
+    "email"
+  ],
+  "files": [
+    {
+      "path": "src/email/mailgun.ts",
+      "template": "export async function send(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

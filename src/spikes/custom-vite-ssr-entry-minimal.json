@@ -1,0 +1,12 @@
+{
+  "id": "custom-vite-ssr-entry-minimal",
+  "name": "Vite SSR エントリ 最小",
+  "version": "1.0.0",
+  "stack": ["vite"],
+  "tags": ["build"],
+  "description": "Vite SSRの最小",
+  "files": [
+    { "path": "src/entry-server.ts", "template": "export function render(){ return '<html></html>'; }\n" }
+  ]
+}
+

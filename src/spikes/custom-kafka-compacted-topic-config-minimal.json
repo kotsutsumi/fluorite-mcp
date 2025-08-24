@@ -1,0 +1,12 @@
+{
+  "id": "custom-kafka-compacted-topic-config-minimal",
+  "name": "Kafka Compacted Topic 設定 最小",
+  "version": "1.0.0",
+  "stack": ["kafka"],
+  "tags": ["messaging"],
+  "description": "log.compactionの概念",
+  "files": [
+    { "path": "src/kafka/compaction.ts", "template": "export const topic = { cleanupPolicy: 'compact' };\n" }
+  ]
+}
+
