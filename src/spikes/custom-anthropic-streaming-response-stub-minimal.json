@@ -1,0 +1,12 @@
+{
+  "id": "custom-anthropic-streaming-response-stub-minimal",
+  "name": "Anthropic Streaming Response スタブ 最小",
+  "version": "1.0.0",
+  "stack": ["anthropic"],
+  "tags": ["ai"],
+  "description": "ストリーミング応答の概念スタブ",
+  "files": [
+    { "path": "src/ai/anthropic.stream.ts", "template": "export async function stream(prompt:string){ return { chunks: ['...'] }; }\n" }
+  ]
+}
+

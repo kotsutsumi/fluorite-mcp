@@ -1,0 +1,12 @@
+{
+  "id": "custom-astro-ssr-endpoint-minimal",
+  "name": "Astro SSR エンドポイント 最小",
+  "version": "1.0.0",
+  "stack": ["astro"],
+  "tags": ["ssr"],
+  "description": "AstroのSSRエンドポイント最小",
+  "files": [
+    { "path": "src/pages/api/hello.ts", "template": "export async function get(){ return new Response('ok'); }\n" }
+  ]
+}
+

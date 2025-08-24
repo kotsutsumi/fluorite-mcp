@@ -1,0 +1,12 @@
+{
+  "id": "custom-sns-sms-publish-minimal",
+  "name": "SNS SMS Publish 最小",
+  "version": "1.0.0",
+  "stack": ["sns"],
+  "tags": ["messaging", "aws"],
+  "description": "SMSへのPublish概念スタブ",
+  "files": [
+    { "path": "src/aws/sns.sms.ts", "template": "export async function sendSMS(phone:string, msg:string){ return { phone, msg }; }\n" }
+  ]
+}
+

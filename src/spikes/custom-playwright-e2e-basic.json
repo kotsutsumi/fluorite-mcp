@@ -1,0 +1,12 @@
+{
+  "id": "custom-playwright-e2e-basic",
+  "name": "Playwright E2E 基本",
+  "version": "1.0.0",
+  "stack": ["playwright"],
+  "tags": ["e2e"],
+  "description": "Playwrightの基本E2Eテスト構成",
+  "files": [
+    { "path": "playwright.config.ts", "template": "export default { use: { headless: true } };\n" }
+  ]
+}
+

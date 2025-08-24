@@ -1,0 +1,11 @@
+{
+  "id": "custom-weaviate-metadata-filter-search-minimal",
+  "name": "Weaviate メタデータ検索 最小",
+  "version": "1.0.0",
+  "stack": ["weaviate"],
+  "tags": ["vector"],
+  "description": "メタデータフィルタでの検索スタブ",
+  "files": [
+    { "path": "src/vectors/weaviate.search.ts", "template": "export async function search(meta:any){ return { matches: [] }; }\n" }
+  ]}
+

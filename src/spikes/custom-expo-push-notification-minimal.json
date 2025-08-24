@@ -1,0 +1,12 @@
+{
+  "id": "custom-expo-push-notification-minimal",
+  "name": "Expo Push Notification 最小",
+  "version": "1.0.0",
+  "stack": ["expo"],
+  "tags": ["push"],
+  "description": "Expo Push送信の最小スタブ",
+  "files": [
+    { "path": "src/push/expo.ts", "template": "export async function send(token:string, msg:string){ return { token, msg }; }\n" }
+  ]
+}
+

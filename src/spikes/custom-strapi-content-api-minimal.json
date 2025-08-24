@@ -1,0 +1,12 @@
+{
+  "id": "custom-strapi-content-api-minimal",
+  "name": "Strapi Content API 最小",
+  "version": "1.0.0",
+  "stack": ["strapi"],
+  "tags": ["cms"],
+  "description": "StrapiのContent APIクライアント（スタブ）",
+  "files": [
+    { "path": "src/cms/strapi.ts", "template": "export async function fetchPosts(){ return []; }\n" }
+  ]
+}
+

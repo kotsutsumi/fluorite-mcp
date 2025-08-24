@@ -1,0 +1,12 @@
+{
+  "id": "custom-aws-eventbridge-publish-rule-minimal",
+  "name": "AWS EventBridge ルール+Publish 最小",
+  "version": "1.0.0",
+  "stack": ["eventbridge"],
+  "tags": ["aws", "events"],
+  "description": "EventBridgeにイベント送信の最小スタブ",
+  "files": [
+    { "path": "src/aws/eventbridge.ts", "template": "export async function putEvent(detail:any){ return { ok: true, detail }; }\n" }
+  ]
+}
+

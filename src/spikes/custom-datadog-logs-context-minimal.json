@@ -1,0 +1,12 @@
+{
+  "id": "custom-datadog-logs-context-minimal",
+  "name": "Datadog Logs コンテキスト 最小",
+  "version": "1.0.0",
+  "stack": ["datadog"],
+  "tags": ["logs"],
+  "description": "ログにトレースIDなどの文脈を付与する最小スタブ",
+  "files": [
+    { "path": "src/logs/datadog.ts", "template": "export function withContext(msg:string, ctx:any){ return { msg, ...ctx }; }\n" }
+  ]
+}
+

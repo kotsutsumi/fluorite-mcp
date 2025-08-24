@@ -1,0 +1,12 @@
+{
+  "id": "custom-clerk-webhooks-route-minimal",
+  "name": "Clerk Webhooks ルート最小",
+  "version": "1.0.0",
+  "stack": ["clerk", "nextjs"],
+  "tags": ["auth", "webhook"],
+  "description": "Clerk Webhooksを受けるNext.jsルートの最小プレースホルダ",
+  "files": [
+    { "path": "app/api/webhooks/clerk/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(){ return NextResponse.json({ received: true }); }\n" }
+  ]
+}
+

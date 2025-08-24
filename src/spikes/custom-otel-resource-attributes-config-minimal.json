@@ -1,0 +1,12 @@
+{
+  "id": "custom-otel-resource-attributes-config-minimal",
+  "name": "OpenTelemetry Resource Attributes 設定 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry"],
+  "tags": ["tracing"],
+  "description": "Resource属性設定の最小スタブ",
+  "files": [
+    { "path": "src/otel/resource.ts", "template": "export const resource = { service: 'app', version: '1.0.0' };\n" }
+  ]
+}
+

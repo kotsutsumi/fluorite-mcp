@@ -1,0 +1,12 @@
+{
+  "id": "custom-kong-route-plugin-config-minimal",
+  "name": "Kong ルート+プラグイン設定 最小",
+  "version": "1.0.0",
+  "stack": ["kong"],
+  "tags": ["gateway"],
+  "description": "Kongのルート+プラグイン設定の概念スタブ",
+  "files": [
+    { "path": "gateway/kong.yaml", "template": "_format_version: '3.0'\nservices: []\n" }
+  ]
+}
+

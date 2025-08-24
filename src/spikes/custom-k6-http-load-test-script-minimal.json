@@ -1,0 +1,12 @@
+{
+  "id": "custom-k6-http-load-test-script-minimal",
+  "name": "k6 HTTP 負荷試験スクリプト 最小",
+  "version": "1.0.0",
+  "stack": ["k6"],
+  "tags": ["loadtest"],
+  "description": "k6の最小スクリプト",
+  "files": [
+    { "path": "k6/script.js", "template": "export default function(){ /* http.get('http://localhost') */ }\n" }
+  ]
+}
+

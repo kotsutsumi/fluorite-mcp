@@ -1,0 +1,12 @@
+{
+  "id": "custom-magiclink-email-login-route-minimal",
+  "name": "Magic Link Email ログイン ルート 最小",
+  "version": "1.0.0",
+  "stack": ["magic-link", "nextjs"],
+  "tags": ["auth"],
+  "description": "メールマジックリンク発行のルート（スタブ）",
+  "files": [
+    { "path": "app/api/auth/magic/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(){ return NextResponse.json({ sent: true }); }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-supabase-realtime-channel-minimal",
+  "name": "Supabase Realtime チャンネル最小",
+  "version": "1.0.0",
+  "stack": ["supabase"],
+  "tags": ["realtime"],
+  "description": "Supabase Realtimeチャンネル購読の最小スタブ",
+  "files": [
+    { "path": "src/supabase/realtime.ts", "template": "export function subscribe(ch:string){ return { channel: ch, unsub: ()=>{} }; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-s3-list-objects-v2-minimal",
+  "name": "S3 ListObjectsV2 最小",
+  "version": "1.0.0",
+  "stack": ["s3"],
+  "tags": ["storage"],
+  "description": "S3のListObjectsV2最小スタブ",
+  "files": [
+    { "path": "src/aws/s3.list.ts", "template": "export async function list(prefix:string){ return { keys: [] }; }\n" }
+  ]
+}
+

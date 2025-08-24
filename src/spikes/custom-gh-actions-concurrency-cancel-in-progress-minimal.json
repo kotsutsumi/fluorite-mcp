@@ -1,0 +1,12 @@
+{
+  "id": "custom-gh-actions-concurrency-cancel-in-progress-minimal",
+  "name": "GH Actions Concurrency キャンセル 最小",
+  "version": "1.0.0",
+  "stack": ["github-actions"],
+  "tags": ["ci"],
+  "description": "並行ジョブのキャンセル設定サンプル",
+  "files": [
+    { "path": ".github/workflows/concurrency.yml", "template": "name: Concurrency\non: [push]\nconcurrency: { group: 'main', cancel-in-progress: true }\njobs: { noop: { runs-on: ubuntu-latest, steps: [{ run: 'echo ok' }] } }\n" }
+  ]
+}
+

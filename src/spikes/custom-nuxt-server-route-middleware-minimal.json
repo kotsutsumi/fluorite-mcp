@@ -1,0 +1,12 @@
+{
+  "id": "custom-nuxt-server-route-middleware-minimal",
+  "name": "Nuxt サーバルートミドルウェア 最小",
+  "version": "1.0.0",
+  "stack": ["nuxt"],
+  "tags": ["middleware"],
+  "description": "Nuxtサーバミドルウェアの最小",
+  "files": [
+    { "path": "server/middleware/demo.ts", "template": "export default defineEventHandler((_e)=>{})\n" }
+  ]
+}
+

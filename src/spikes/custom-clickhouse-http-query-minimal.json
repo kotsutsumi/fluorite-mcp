@@ -1,0 +1,12 @@
+{
+  "id": "custom-clickhouse-http-query-minimal",
+  "name": "ClickHouse HTTP クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["clickhouse"],
+  "tags": ["db"],
+  "description": "ClickHouse HTTPクエリの最小スタブ",
+  "files": [
+    { "path": "src/db/clickhouse.ts", "template": "export async function query(_sql:string){ return { rows: [] }; }\n" }
+  ]
+}
+

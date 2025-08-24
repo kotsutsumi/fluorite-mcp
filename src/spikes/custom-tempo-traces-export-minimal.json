@@ -1,0 +1,12 @@
+{
+  "id": "custom-tempo-traces-export-minimal",
+  "name": "Grafana Tempo トレース出力 最小",
+  "version": "1.0.0",
+  "stack": ["tempo"],
+  "tags": ["tracing"],
+  "description": "Tempoへのトレース送信概念スタブ",
+  "files": [
+    { "path": "src/tracing/tempo.ts", "template": "export const tempo = { endpoint: 'http://localhost:4317' };\n" }
+  ]
+}
+

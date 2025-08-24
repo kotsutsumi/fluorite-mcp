@@ -1,0 +1,12 @@
+{
+  "id": "custom-otel-instrumentation-express-minimal",
+  "name": "OpenTelemetry Express 計装 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry", "express"],
+  "tags": ["tracing"],
+  "description": "Expressの自動計装概念スタブ",
+  "files": [
+    { "path": "src/otel/express.ts", "template": "export function instrument(){ return { enabled: true }; }\n" }
+  ]
+}
+

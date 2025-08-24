@@ -1,0 +1,12 @@
+{
+  "id": "custom-nextjs-server-actions-s3-upload-minimal",
+  "name": "Next.js Server Actions S3 アップロード 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "s3"],
+  "tags": ["upload"],
+  "description": "Server ActionsでS3アップロード（スタブ）",
+  "files": [
+    { "path": "app/actions/upload.ts", "template": "'use server'\nexport async function upload(){ return { ok: true }; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-prisma-partial-update-typed",
+  "name": "Prisma 部分更新 型付け",
+  "version": "1.0.0",
+  "stack": ["prisma"],
+  "tags": ["db"],
+  "description": "部分更新の型安全ユーティリティ（スタブ）",
+  "files": [
+    { "path": "src/prisma.partial.ts", "template": "export function partial<T>(patch: Partial<T>): Partial<T>{ return patch; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-grafana-slo-recording-rule-stub",
+  "name": "Grafana SLO Recording Rule スタブ",
+  "version": "1.0.0",
+  "stack": ["grafana", "prometheus"],
+  "tags": ["slo"],
+  "description": "SLO記録ルールの概念スタブ",
+  "files": [
+    { "path": "grafana/slo.rules.yaml", "template": "groups: []\n" }
+  ]
+}
+

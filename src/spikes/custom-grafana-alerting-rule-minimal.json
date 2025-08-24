@@ -1,0 +1,12 @@
+{
+  "id": "custom-grafana-alerting-rule-minimal",
+  "name": "Grafana アラートルール 最小",
+  "version": "1.0.0",
+  "stack": ["grafana"],
+  "tags": ["alerting"],
+  "description": "Grafanaアラートの最小プロビジョニング",
+  "files": [
+    { "path": "grafana/provisioning/alerting.yml", "template": "apiVersion: 1\npolicies: []\n" }
+  ]
+}
+

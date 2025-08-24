@@ -1,0 +1,12 @@
+{
+  "id": "custom-anthropic-vision-stub",
+  "name": "Anthropic Vision スタブ",
+  "version": "1.0.0",
+  "stack": ["anthropic"],
+  "tags": ["ai", "vision"],
+  "description": "画像入力の概念スタブ",
+  "files": [
+    { "path": "src/ai/anthropic.vision.ts", "template": "export async function vision(url:string){ return { labels: [] }; }\n" }
+  ]
+}
+

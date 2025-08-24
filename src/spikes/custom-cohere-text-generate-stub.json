@@ -1,0 +1,12 @@
+{
+  "id": "custom-cohere-text-generate-stub",
+  "name": "Cohere テキスト生成 スタブ",
+  "version": "1.0.0",
+  "stack": ["cohere"],
+  "tags": ["ai"],
+  "description": "Cohereテキスト生成の概念スタブ",
+  "files": [
+    { "path": "src/ai/cohere.ts", "template": "export async function generate(prompt:string){ return { text: 'hello' }; }\n" }
+  ]
+}
+

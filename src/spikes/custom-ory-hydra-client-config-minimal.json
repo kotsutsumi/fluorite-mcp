@@ -1,0 +1,12 @@
+{
+  "id": "custom-ory-hydra-client-config-minimal",
+  "name": "ORY Hydra クライアント設定 最小",
+  "version": "1.0.0",
+  "stack": ["ory", "hydra"],
+  "tags": ["auth"],
+  "description": "Hydraクライアント作成の最小スタブ",
+  "files": [
+    { "path": "src/ory/hydra.ts", "template": "export function createClient(){ return { client_id: 'app', redirect_uris: [] }; }\n" }
+  ]
+}
+

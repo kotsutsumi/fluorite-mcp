@@ -1,0 +1,12 @@
+{
+  "id": "custom-sentry-cron-monitor-minimal",
+  "name": "Sentry Cron Monitor 最小",
+  "version": "1.0.0",
+  "stack": ["sentry"],
+  "tags": ["monitoring"],
+  "description": "Cron Monitorの概念スタブ",
+  "files": [
+    { "path": "src/sentry/cron.ts", "template": "export async function ping(name:string){ return { name, ok: true }; }\n" }
+  ]
+}
+

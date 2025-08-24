@@ -1,0 +1,12 @@
+{
+  "id": "custom-rollup-code-splitting-minimal",
+  "name": "Rollup コードスプリッティング 最小",
+  "version": "1.0.0",
+  "stack": ["rollup"],
+  "tags": ["build"],
+  "description": "コード分割の最小設定",
+  "files": [
+    { "path": "rollup.config.mjs", "template": "export default { input: { a: 'src/a.ts', b: 'src/b.ts' }, output: { dir: 'dist', format: 'esm' } };\n" }
+  ]
+}
+

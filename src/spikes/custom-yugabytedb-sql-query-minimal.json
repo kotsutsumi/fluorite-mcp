@@ -1,0 +1,12 @@
+{
+  "id": "custom-yugabytedb-sql-query-minimal",
+  "name": "YugabyteDB SQL クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["yugabytedb"],
+  "tags": ["db"],
+  "description": "Yugabyte SQLの最小スタブ",
+  "files": [
+    { "path": "src/db/yugabyte.ts", "template": "export async function query(sql:string){ return { rows: [] }; }\n" }
+  ]
+}
+

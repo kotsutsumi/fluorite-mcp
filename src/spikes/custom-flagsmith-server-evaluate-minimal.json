@@ -1,0 +1,11 @@
+{
+  "id": "custom-flagsmith-server-evaluate-minimal",
+  "name": "Flagsmith サーバ評価 最小",
+  "version": "1.0.0",
+  "stack": ["flagsmith"],
+  "tags": ["flags"],
+  "description": "Flagsmithのフラグ評価スタブ",
+  "files": [
+    { "path": "src/flags/flagsmith.ts", "template": "export async function isEnabled(flag:string, userId?:string){ return true; }\n" }
+  ]}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-llamaindex-query-engine-minimal",
+  "name": "LlamaIndex Query Engine 最小",
+  "version": "1.0.0",
+  "stack": ["llamaindex"],
+  "tags": ["ai"],
+  "description": "Query Engineの概念スタブ",
+  "files": [
+    { "path": "src/ai/llamaindex.query.ts", "template": "export async function query(q:string){ return { answer: '...' }; }\n" }
+  ]
+}
+

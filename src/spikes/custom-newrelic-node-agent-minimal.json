@@ -1,0 +1,12 @@
+{
+  "id": "custom-newrelic-node-agent-minimal",
+  "name": "New Relic Node Agent 最小",
+  "version": "1.0.0",
+  "stack": ["newrelic"],
+  "tags": ["apm"],
+  "description": "New Relic Agent初期化の概念スタブ",
+  "files": [
+    { "path": "src/apm/newrelic.ts", "template": "export function init(){ return { app: 'app' }; }\n" }
+  ]
+}
+

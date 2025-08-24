@@ -1,0 +1,12 @@
+{
+  "id": "custom-cognito-device-tracking-minimal",
+  "name": "Cognito デバイス追跡 最小",
+  "version": "1.0.0",
+  "stack": ["cognito"],
+  "tags": ["auth"],
+  "description": "Cognitoデバイス追跡の概念スタブ",
+  "files": [
+    { "path": "src/auth/cognito.device.ts", "template": "export async function remember(){ return { remembered: true }; }\n" }
+  ]
+}
+

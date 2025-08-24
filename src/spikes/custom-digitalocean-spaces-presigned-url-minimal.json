@@ -1,0 +1,12 @@
+{
+  "id": "custom-digitalocean-spaces-presigned-url-minimal",
+  "name": "DigitalOcean Spaces 署名URL 最小",
+  "version": "1.0.0",
+  "stack": ["digitalocean", "spaces"],
+  "tags": ["storage"],
+  "description": "DO Spacesの署名URLスタブ",
+  "files": [
+    { "path": "src/storage/spaces.ts", "template": "export async function presign(path:string){ return { url: 'https://spaces.example/'+path }; }\n" }
+  ]
+}
+

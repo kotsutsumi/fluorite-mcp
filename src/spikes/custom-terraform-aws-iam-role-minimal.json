@@ -1,0 +1,12 @@
+{
+  "id": "custom-terraform-aws-iam-role-minimal",
+  "name": "Terraform AWS IAM Role 最小",
+  "version": "1.0.0",
+  "stack": ["terraform", "aws"],
+  "tags": ["iac"],
+  "description": "IAMロール定義の最小",
+  "files": [
+    { "path": "infra/main.tf", "template": "terraform { required_providers { aws = { source = 'hashicorp/aws' } } }\nprovider 'aws' { region = 'us-east-1' }\n# IAM role placeholder\n" }
+  ]
+}
+

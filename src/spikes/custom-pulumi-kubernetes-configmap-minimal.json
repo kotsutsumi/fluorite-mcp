@@ -1,0 +1,12 @@
+{
+  "id": "custom-pulumi-kubernetes-configmap-minimal",
+  "name": "Pulumi Kubernetes ConfigMap 最小",
+  "version": "1.0.0",
+  "stack": ["pulumi", "kubernetes"],
+  "tags": ["iac"],
+  "description": "PulumiでConfigMap作成の最小",
+  "files": [
+    { "path": "pulumi/k8s-config.ts", "template": "export const configMap = { name: 'app-cm', data: { HELLO: 'world' } };\n" }
+  ]
+}
+

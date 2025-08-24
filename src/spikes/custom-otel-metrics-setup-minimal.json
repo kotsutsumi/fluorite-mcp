@@ -1,0 +1,12 @@
+{
+  "id": "custom-otel-metrics-setup-minimal",
+  "name": "OpenTelemetry Metrics セットアップ 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry", "metrics"],
+  "tags": ["metrics"],
+  "description": "Otelメトリクス初期化の最小スタブ",
+  "files": [
+    { "path": "src/otel/metrics.ts", "template": "export function initMetrics(){ return { meterProvider: 'stub' }; }\n" }
+  ]
+}
+

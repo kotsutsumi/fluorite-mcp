@@ -1,0 +1,12 @@
+{
+  "id": "custom-redisvector-index-search-minimal",
+  "name": "Redis Vector Index 検索 最小",
+  "version": "1.0.0",
+  "stack": ["redis", "vector"],
+  "tags": ["vector"],
+  "description": "Redis Vector Index検索の概念スタブ",
+  "files": [
+    { "path": "src/vectors/redis.vector.ts", "template": "export async function search(vec:number[]){ return { matches: [] }; }\n" }
+  ]
+}
+

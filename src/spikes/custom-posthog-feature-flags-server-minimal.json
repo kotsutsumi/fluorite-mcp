@@ -1,0 +1,12 @@
+{
+  "id": "custom-posthog-feature-flags-server-minimal",
+  "name": "PostHog フィーチャーフラグ（サーバ）最小",
+  "version": "1.0.0",
+  "stack": ["posthog"],
+  "tags": ["flags"],
+  "description": "サーバ側でフラグ評価する最小スタブ",
+  "files": [
+    { "path": "src/flags/posthog.ts", "template": "export async function isEnabled(flag:string,userId:string){ return true; }\n" }
+  ]
+}
+

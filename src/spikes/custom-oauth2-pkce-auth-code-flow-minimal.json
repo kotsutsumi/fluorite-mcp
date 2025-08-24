@@ -1,0 +1,12 @@
+{
+  "id": "custom-oauth2-pkce-auth-code-flow-minimal",
+  "name": "OAuth2 PKCE 認可コードフロー 最小",
+  "version": "1.0.0",
+  "stack": ["oauth2"],
+  "tags": ["auth"],
+  "description": "PKCEフローの概念スタブ",
+  "files": [
+    { "path": "src/auth/pkce.ts", "template": "export function pkce(){ return { verifier: 'v', challenge: 'c' }; }\n" }
+  ]
+}
+

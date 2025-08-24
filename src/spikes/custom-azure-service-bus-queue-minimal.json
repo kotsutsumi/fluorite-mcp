@@ -1,0 +1,12 @@
+{
+  "id": "custom-azure-service-bus-queue-minimal",
+  "name": "Azure Service Bus Queue 最小",
+  "version": "1.0.0",
+  "stack": ["azure-service-bus"],
+  "tags": ["messaging", "azure"],
+  "description": "Azure Service Bus Queueの最小スタブ",
+  "files": [
+    { "path": "src/azure/service-bus.ts", "template": "export async function send(q:string,msg:string){ return { q, msg }; }\n" }
+  ]
+}
+

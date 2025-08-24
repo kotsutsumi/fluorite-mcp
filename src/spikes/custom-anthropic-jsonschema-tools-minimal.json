@@ -1,0 +1,11 @@
+{
+  "id": "custom-anthropic-jsonschema-tools-minimal",
+  "name": "Anthropic JSON Schema Tools 最小",
+  "version": "1.0.0",
+  "stack": ["anthropic"],
+  "tags": ["ai"],
+  "description": "JSON Schemaツール呼び出しの最小スタブ",
+  "files": [
+    { "path": "src/ai/anthropic.schema.ts", "template": "export const tools = [{ name: 'search', schema: { type: 'object', properties: { q: { type: 'string' } }, required: ['q'] } }];\n" }
+  ]}
+

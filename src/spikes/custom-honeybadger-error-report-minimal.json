@@ -1,0 +1,12 @@
+{
+  "id": "custom-honeybadger-error-report-minimal",
+  "name": "Honeybadger エラー送信 最小",
+  "version": "1.0.0",
+  "stack": ["honeybadger"],
+  "tags": ["error"],
+  "description": "エラーレポート送信の概念スタブ",
+  "files": [
+    { "path": "src/errors/honeybadger.ts", "template": "export async function notify(err:any){ return { sent: true }; }\n" }
+  ]
+}
+

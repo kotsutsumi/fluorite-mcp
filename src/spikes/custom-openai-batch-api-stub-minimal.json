@@ -1,0 +1,12 @@
+{
+  "id": "custom-openai-batch-api-stub-minimal",
+  "name": "OpenAI Batch API スタブ 最小",
+  "version": "1.0.0",
+  "stack": ["openai"],
+  "tags": ["ai"],
+  "description": "OpenAI Batch APIの概念スタブ",
+  "files": [
+    { "path": "src/ai/openai.batch.ts", "template": "export async function submit(_items:any[]){ return { id: 'batch_1', status: 'submitted' }; }\n" }
+  ]
+}
+

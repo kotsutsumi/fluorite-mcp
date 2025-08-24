@@ -1,0 +1,11 @@
+{
+  "id": "custom-pulumi-aws-s3-bucket-minimal",
+  "name": "Pulumi AWS S3 最小",
+  "version": "1.0.0",
+  "stack": ["pulumi", "aws"],
+  "tags": ["iac"],
+  "description": "PulumiでS3作成の最小",
+  "files": [
+    { "path": "pulumi/index.ts", "template": "export const bucket = { name: 'example' };\n" }
+  ]}
+

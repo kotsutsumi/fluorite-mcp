@@ -1,0 +1,12 @@
+{
+  "id": "custom-cockroachdb-transaction-batch-minimal",
+  "name": "CockroachDB トランザクションバッチ 最小",
+  "version": "1.0.0",
+  "stack": ["cockroachdb"],
+  "tags": ["db"],
+  "description": "トランザクションバッチの概念スタブ",
+  "files": [
+    { "path": "src/db/cockroach.ts", "template": "export async function batch(sqls:string[]){ return { count: sqls.length }; }\n" }
+  ]
+}
+

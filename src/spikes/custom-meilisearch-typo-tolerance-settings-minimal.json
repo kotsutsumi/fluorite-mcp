@@ -1,0 +1,12 @@
+{
+  "id": "custom-meilisearch-typo-tolerance-settings-minimal",
+  "name": "Meilisearch Typo Tolerance 設定 最小",
+  "version": "1.0.0",
+  "stack": ["meilisearch"],
+  "tags": ["search"],
+  "description": "誤字許容の最小設定スタブ",
+  "files": [
+    { "path": "src/search/meili.typo.ts", "template": "export const typo = { enabled: true, minWordSizeForTypos: { oneTypo: 4, twoTypos: 8 } };\n" }
+  ]
+}
+

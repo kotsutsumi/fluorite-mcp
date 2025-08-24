@@ -1,0 +1,12 @@
+{
+  "id": "custom-argo-workflows-template-minimal",
+  "name": "Argo Workflows テンプレート 最小",
+  "version": "1.0.0",
+  "stack": ["argo-workflows"],
+  "tags": ["workflow"],
+  "description": "Argo Workflowsの最小テンプレート",
+  "files": [
+    { "path": "argo/workflow.yaml", "template": "apiVersion: argoproj.io/v1alpha1\nkind: Workflow\nmetadata: { generateName: demo- }\nspec: { entrypoint: main, templates: [{ name: main, container: { image: 'alpine', command: ['echo','hi'] } }] }\n" }
+  ]
+}
+

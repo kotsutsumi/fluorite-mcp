@@ -1,0 +1,12 @@
+{
+  "id": "custom-redis-token-bucket-rate-limit-minimal",
+  "name": "Redis Token Bucket レート制限 最小",
+  "version": "1.0.0",
+  "stack": ["redis"],
+  "tags": ["rate-limit"],
+  "description": "トークンバケット方式の概念スタブ",
+  "files": [
+    { "path": "src/redis/token-bucket.ts", "template": "export async function allow(key:string, capacity:number, refill:number){ return { allowed: true, remaining: capacity-1 }; }\n" }
+  ]
+}
+

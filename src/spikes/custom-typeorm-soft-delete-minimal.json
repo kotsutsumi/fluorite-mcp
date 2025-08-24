@@ -1,0 +1,12 @@
+{
+  "id": "custom-typeorm-soft-delete-minimal",
+  "name": "TypeORM ソフトデリート 最小",
+  "version": "1.0.0",
+  "stack": ["typeorm"],
+  "tags": ["db"],
+  "description": "ソフトデリートの概念スタブ",
+  "files": [
+    { "path": "src/typeorm/soft-delete.ts", "template": "export function softDelete(){ return { affected: 1 }; }\n" }
+  ]
+}
+

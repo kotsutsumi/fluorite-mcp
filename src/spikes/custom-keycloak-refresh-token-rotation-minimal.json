@@ -1,0 +1,12 @@
+{
+  "id": "custom-keycloak-refresh-token-rotation-minimal",
+  "name": "Keycloak リフレッシュトークンローテーション 最小",
+  "version": "1.0.0",
+  "stack": ["keycloak"],
+  "tags": ["auth"],
+  "description": "RTローテーションの概念スタブ",
+  "files": [
+    { "path": "src/auth/keycloak.refresh.ts", "template": "export async function rotate(){ return { rotated: true }; }\n" }
+  ]
+}
+

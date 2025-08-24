@@ -1,0 +1,12 @@
+{
+  "id": "custom-pubsub-push-jwt-verify-minimal",
+  "name": "Pub/Sub Push JWT 検証 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "pubsub"],
+  "tags": ["messaging", "security"],
+  "description": "PushメッセージのJWTヘッダ検証概念スタブ",
+  "files": [
+    { "path": "src/gcp/pubsub.verify.ts", "template": "export async function verify(_jwt:string){ return true; }\n" }
+  ]
+}
+

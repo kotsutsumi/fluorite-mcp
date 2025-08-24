@@ -1,0 +1,12 @@
+{
+  "id": "custom-aws-eventbridge-schedule-rule-minimal",
+  "name": "AWS EventBridge スケジュール ルール 最小",
+  "version": "1.0.0",
+  "stack": ["eventbridge"],
+  "tags": ["aws", "cron"],
+  "description": "スケジュールルールの概念スタブ",
+  "files": [
+    { "path": "src/aws/eventbridge.schedule.ts", "template": "export const schedule = { rate: 'rate(5 minutes)' };\n" }
+  ]
+}
+

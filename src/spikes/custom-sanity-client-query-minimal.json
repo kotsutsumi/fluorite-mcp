@@ -1,0 +1,12 @@
+{
+  "id": "custom-sanity-client-query-minimal",
+  "name": "Sanity Client クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["sanity"],
+  "tags": ["cms"],
+  "description": "Sanityクエリの最小スタブ",
+  "files": [
+    { "path": "src/cms/sanity.ts", "template": "export async function query(q:string){ return { result: [] }; }\n" }
+  ]
+}
+

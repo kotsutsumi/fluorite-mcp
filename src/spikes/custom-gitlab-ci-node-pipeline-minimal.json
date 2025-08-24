@@ -1,0 +1,12 @@
+{
+  "id": "custom-gitlab-ci-node-pipeline-minimal",
+  "name": "GitLab CI Node パイプライン 最小",
+  "version": "1.0.0",
+  "stack": ["gitlab-ci"],
+  "tags": ["ci"],
+  "description": "GitLabのNodeパイプライン最小",
+  "files": [
+    { "path": ".gitlab-ci.yml", "template": "stages: [build]\nbuild:\n  image: node:18\n  script: ['npm ci', 'npm test --silent || true']\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "custom-bazel-minimal-workspace-build",
+  "name": "Bazel WORKSPACE/BUILD 最小",
+  "version": "1.0.0",
+  "stack": ["bazel"],
+  "tags": ["build"],
+  "description": "Bazelの最小構成",
+  "files": [
+    { "path": "WORKSPACE", "template": "# bazel workspace\n" },
+    { "path": "BUILD.bazel", "template": "# build\n" }
+  ]
+}
+

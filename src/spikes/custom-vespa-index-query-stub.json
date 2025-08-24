@@ -1,0 +1,12 @@
+{
+  "id": "custom-vespa-index-query-stub",
+  "name": "Vespa インデックス/クエリ スタブ",
+  "version": "1.0.0",
+  "stack": ["vespa"],
+  "tags": ["vector", "search"],
+  "description": "Vespa検索の概念スタブ",
+  "files": [
+    { "path": "src/search/vespa.ts", "template": "export async function query(q:string){ return { hits: [] }; }\n" }
+  ]
+}
+

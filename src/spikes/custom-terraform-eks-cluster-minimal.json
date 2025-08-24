@@ -1,0 +1,12 @@
+{
+  "id": "custom-terraform-eks-cluster-minimal",
+  "name": "Terraform EKS クラスタ 最小",
+  "version": "1.0.0",
+  "stack": ["terraform", "eks"],
+  "tags": ["iac"],
+  "description": "EKSクラスタ最小スタブ",
+  "files": [
+    { "path": "infra/eks.tf", "template": "# eks cluster placeholder\n" }
+  ]
+}
+

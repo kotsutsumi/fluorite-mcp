@@ -1,0 +1,12 @@
+{
+  "id": "custom-typesense-curation-rules-minimal",
+  "name": "Typesense Curation Rules 最小",
+  "version": "1.0.0",
+  "stack": ["typesense"],
+  "tags": ["search"],
+  "description": "Curationルールの最小スタブ",
+  "files": [
+    { "path": "src/search/typesense.curation.ts", "template": "export const curation = { rules: [] };\n" }
+  ]
+}
+

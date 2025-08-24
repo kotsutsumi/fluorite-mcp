@@ -1,0 +1,12 @@
+{
+  "id": "custom-typesense-collections-setup-minimal",
+  "name": "Typesense コレクション設定 最小",
+  "version": "1.0.0",
+  "stack": ["typesense"],
+  "tags": ["search"],
+  "description": "Typesenseコレクション作成の最小スタブ",
+  "files": [
+    { "path": "src/search/typesense.settings.ts", "template": "export const collection = { name: 'docs', fields: [{ name: 'title', type: 'string' }] };\n" }
+  ]
+}
+

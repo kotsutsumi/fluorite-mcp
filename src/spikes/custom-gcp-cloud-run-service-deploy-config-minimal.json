@@ -1,0 +1,12 @@
+{
+  "id": "custom-gcp-cloud-run-service-deploy-config-minimal",
+  "name": "GCP Cloud Run サービスデプロイ設定 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "cloud-run"],
+  "tags": ["deploy"],
+  "description": "Cloud Runの最小デプロイ設定スタブ",
+  "files": [
+    { "path": "cloudrun/service.yaml", "template": "apiVersion: serving.knative.dev/v1\nkind: Service\nmetadata: { name: app }\nspec: { template: { spec: { containers: [{ image: 'gcr.io/demo/app' }] } } }\n" }
+  ]
+}
+

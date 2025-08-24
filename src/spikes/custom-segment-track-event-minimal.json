@@ -1,0 +1,11 @@
+{
+  "id": "custom-segment-track-event-minimal",
+  "name": "Segment Track イベント 最小",
+  "version": "1.0.0",
+  "stack": ["segment"],
+  "tags": ["analytics"],
+  "description": "SegmentのTrackイベント送信スタブ",
+  "files": [
+    { "path": "src/analytics/segment.ts", "template": "export async function track(event:string, props:any){ return { event }; }\n" }
+  ]}
+

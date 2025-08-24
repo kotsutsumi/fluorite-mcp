@@ -1,0 +1,12 @@
+{
+  "id": "custom-openai-image-generation-minimal",
+  "name": "OpenAI 画像生成 最小",
+  "version": "1.0.0",
+  "stack": ["openai"],
+  "tags": ["ai", "image"],
+  "description": "画像生成の概念スタブ",
+  "files": [
+    { "path": "src/ai/openai.image.ts", "template": "export async function generate(prompt:string){ return { url: 'https://example.com/img.png' }; }\n" }
+  ]
+}
+

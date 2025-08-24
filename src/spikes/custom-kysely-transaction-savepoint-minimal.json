@@ -1,0 +1,12 @@
+{
+  "id": "custom-kysely-transaction-savepoint-minimal",
+  "name": "Kysely トランザクション Savepoint 最小",
+  "version": "1.0.0",
+  "stack": ["kysely"],
+  "tags": ["db", "transaction"],
+  "description": "Savepointを用いたトランザクションの概念スタブ",
+  "files": [
+    { "path": "src/db/kysely.tx.ts", "template": "export async function withTx(){ return { committed: true }; }\n" }
+  ]
+}
+

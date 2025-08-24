@@ -1,0 +1,12 @@
+{
+  "id": "custom-keycloak-adapter-express-minimal",
+  "name": "Keycloak Adapter + Express 最小",
+  "version": "1.0.0",
+  "stack": ["keycloak", "express"],
+  "tags": ["auth"],
+  "description": "Keycloakアダプタを想定したExpressミドルウェアの最小スタブ",
+  "files": [
+    { "path": "src/auth/keycloak.ts", "template": "export function protect(){ return (_req:any,_res:any,next:any)=> next(); }\n" }
+  ]
+}
+

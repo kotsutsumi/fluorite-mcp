@@ -1,0 +1,12 @@
+{
+  "id": "custom-chromadb-upsert-search-minimal",
+  "name": "ChromaDB Upsert/Search 最小",
+  "version": "1.0.0",
+  "stack": ["chromadb"],
+  "tags": ["vector"],
+  "description": "ChromaDBのUpsert/Search概念スタブ",
+  "files": [
+    { "path": "src/vectors/chromadb.ts", "template": "export async function upsert(items:any[]){ return { count: items.length }; }\nexport async function search(q:string){ return { results: [] }; }\n" }
+  ]
+}
+

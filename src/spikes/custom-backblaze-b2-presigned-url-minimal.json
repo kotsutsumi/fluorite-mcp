@@ -1,0 +1,12 @@
+{
+  "id": "custom-backblaze-b2-presigned-url-minimal",
+  "name": "Backblaze B2 署名URL 最小",
+  "version": "1.0.0",
+  "stack": ["backblaze-b2"],
+  "tags": ["storage"],
+  "description": "B2署名URLの最小スタブ",
+  "files": [
+    { "path": "src/storage/b2.ts", "template": "export async function presign(path:string){ return { url: 'https://b2.example/'+path }; }\n" }
+  ]
+}
+

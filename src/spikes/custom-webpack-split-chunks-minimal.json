@@ -1,0 +1,12 @@
+{
+  "id": "custom-webpack-split-chunks-minimal",
+  "name": "Webpack SplitChunks 最小",
+  "version": "1.0.0",
+  "stack": ["webpack"],
+  "tags": ["build"],
+  "description": "SplitChunksの最小設定",
+  "files": [
+    { "path": "webpack.config.js", "template": "module.exports = { optimization: { splitChunks: { chunks: 'all' } } };\n" }
+  ]
+}
+

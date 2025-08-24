@@ -1,0 +1,12 @@
+{
+  "id": "custom-dkim-email-signing-stub",
+  "name": "DKIM メール署名 スタブ",
+  "version": "1.0.0",
+  "stack": ["dkim"],
+  "tags": ["email"],
+  "description": "DKIM署名の概念スタブ",
+  "files": [
+    { "path": "src/email/dkim.ts", "template": "export async function sign(_raw:string){ return { signed: true }; }\n" }
+  ]
+}
+

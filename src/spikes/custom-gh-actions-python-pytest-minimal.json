@@ -1,0 +1,12 @@
+{
+  "id": "custom-gh-actions-python-pytest-minimal",
+  "name": "GH Actions Python Pytest 最小",
+  "version": "1.0.0",
+  "stack": ["github-actions", "python"],
+  "tags": ["ci"],
+  "description": "Python + pytest の最小ワークフロー",
+  "files": [
+    { "path": ".github/workflows/pytest.yml", "template": "name: Pytest\non: [push]\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-python@v5\n        with: { python-version: '3.11' }\n      - run: echo 'pytest -q'\n" }
+  ]
+}
+

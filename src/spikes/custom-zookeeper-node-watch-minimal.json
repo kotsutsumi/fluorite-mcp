@@ -1,0 +1,12 @@
+{
+  "id": "custom-zookeeper-node-watch-minimal",
+  "name": "ZooKeeper ノード監視 最小",
+  "version": "1.0.0",
+  "stack": ["zookeeper"],
+  "tags": ["coordination"],
+  "description": "ZKノードのウォッチ概念スタブ",
+  "files": [
+    { "path": "src/zk/watch.ts", "template": "export async function watch(path:string){ return { path, changed: false }; }\n" }
+  ]
+}
+

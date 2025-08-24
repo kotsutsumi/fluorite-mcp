@@ -1,0 +1,12 @@
+{
+  "id": "custom-cloudflare-queues-producer-consumer-minimal",
+  "name": "Cloudflare Queues Producer/Consumer 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare-workers"],
+  "tags": ["edge", "messaging"],
+  "description": "Queuesでの送受信概念スタブ",
+  "files": [
+    { "path": "worker/queues.ts", "template": "export async function produce(q:string,msg:string){ return { q, msg }; }\nexport async function consume(q:string){ return [{ msg: 'hello' }]; }\n" }
+  ]
+}
+

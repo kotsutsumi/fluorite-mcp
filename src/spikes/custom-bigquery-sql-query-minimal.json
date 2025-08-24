@@ -1,0 +1,12 @@
+{
+  "id": "custom-bigquery-sql-query-minimal",
+  "name": "BigQuery SQL クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["bigquery"],
+  "tags": ["db"],
+  "description": "BigQuery SQLの最小スタブ",
+  "files": [
+    { "path": "src/db/bigquery.ts", "template": "export async function query(sql:string){ return { rows: [] }; }\n" }
+  ]
+}
+

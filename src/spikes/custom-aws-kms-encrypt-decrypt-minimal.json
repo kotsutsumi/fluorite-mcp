@@ -1,0 +1,11 @@
+{
+  "id": "custom-aws-kms-encrypt-decrypt-minimal",
+  "name": "AWS KMS 暗号化/復号 最小",
+  "version": "1.0.0",
+  "stack": ["kms", "aws"],
+  "tags": ["secrets"],
+  "description": "KMSで暗号化/復号のスタブ",
+  "files": [
+    { "path": "src/aws/kms.ts", "template": "export async function encrypt(p:string){ return { ciphertext: '...' }; }\nexport async function decrypt(c:string){ return { plaintext: '...' }; }\n" }
+  ]}
+

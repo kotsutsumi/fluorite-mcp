@@ -1,0 +1,12 @@
+{
+  "id": "custom-cohere-rerank-minimal",
+  "name": "Cohere Rerank 最小",
+  "version": "1.0.0",
+  "stack": ["cohere"],
+  "tags": ["ai"],
+  "description": "Rerankの概念スタブ",
+  "files": [
+    { "path": "src/ai/cohere.rerank.ts", "template": "export async function rerank(query:string, docs:string[]){ return docs.map((d,i)=>({ doc:d, score:1-i*0.1 })); }\n" }
+  ]
+}
+

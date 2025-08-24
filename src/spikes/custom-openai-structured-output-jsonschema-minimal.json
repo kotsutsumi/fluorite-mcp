@@ -1,0 +1,11 @@
+{
+  "id": "custom-openai-structured-output-jsonschema-minimal",
+  "name": "OpenAI 構造化出力 JSON Schema 最小",
+  "version": "1.0.0",
+  "stack": ["openai"],
+  "tags": ["ai"],
+  "description": "JSON Schemaを意識した構造化出力の最小スタブ",
+  "files": [
+    { "path": "src/ai/openai.schema.ts", "template": "export const schema = { type: 'object', properties: { name: { type: 'string' } }, required: ['name'] };\n" }
+  ]}
+

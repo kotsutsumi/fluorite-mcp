@@ -1,0 +1,12 @@
+{
+  "id": "custom-snyk-ci-scan-workflow-minimal",
+  "name": "Snyk CI スキャン 最小",
+  "version": "1.0.0",
+  "stack": ["github-actions", "snyk"],
+  "tags": ["security", "ci"],
+  "description": "Snykスキャンの最小ワークフロー",
+  "files": [
+    { "path": ".github/workflows/snyk.yml", "template": "name: Snyk\non: [push]\njobs:\n  scan:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - run: echo 'snyk scan'\n" }
+  ]
+}
+

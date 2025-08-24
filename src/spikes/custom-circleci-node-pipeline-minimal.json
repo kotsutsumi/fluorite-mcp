@@ -1,0 +1,12 @@
+{
+  "id": "custom-circleci-node-pipeline-minimal",
+  "name": "CircleCI Node パイプライン 最小",
+  "version": "1.0.0",
+  "stack": ["circleci"],
+  "tags": ["ci"],
+  "description": "CircleCIの最小パイプライン",
+  "files": [
+    { "path": ".circleci/config.yml", "template": "version: 2.1\njobs: { build: { docker: [{ image: 'cimg/node:18.19' }], steps: ['checkout', { run: 'npm ci' }] } }\nworkflows: { build: { jobs: ['build'] } }\n" }
+  ]
+}
+

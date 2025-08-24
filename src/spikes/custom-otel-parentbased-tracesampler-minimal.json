@@ -1,0 +1,12 @@
+{
+  "id": "custom-otel-parentbased-tracesampler-minimal",
+  "name": "Otel ParentBased TraceSampler 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry"],
+  "tags": ["tracing"],
+  "description": "ParentBasedサンプラーの概念スタブ",
+  "files": [
+    { "path": "src/otel/sampler.parent.ts", "template": "export function sampler(){ return { parentbased: true }; }\n" }
+  ]
+}
+

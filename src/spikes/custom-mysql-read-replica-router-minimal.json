@@ -1,0 +1,12 @@
+{
+  "id": "custom-mysql-read-replica-router-minimal",
+  "name": "MySQL リードレプリカ ルータ 最小",
+  "version": "1.0.0",
+  "stack": ["mysql"],
+  "tags": ["db"],
+  "description": "R/W分離の簡易ルーティング概念スタブ",
+  "files": [
+    { "path": "src/db/mysql.router.ts", "template": "export function route(query:string){ return query.startsWith('SELECT') ? 'replica' : 'primary'; }\n" }
+  ]
+}
+

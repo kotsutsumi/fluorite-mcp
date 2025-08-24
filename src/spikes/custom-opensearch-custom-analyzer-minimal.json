@@ -1,0 +1,12 @@
+{
+  "id": "custom-opensearch-custom-analyzer-minimal",
+  "name": "OpenSearch カスタムアナライザ 最小",
+  "version": "1.0.0",
+  "stack": ["opensearch"],
+  "tags": ["search"],
+  "description": "カスタムアナライザ設定のスタブ",
+  "files": [
+    { "path": "src/search/opensearch.analyzer.ts", "template": "export const analyzer = { analysis: { analyzer: { custom: { type: 'custom', tokenizer: 'standard' } } } };\n" }
+  ]
+}
+

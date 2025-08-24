@@ -1,0 +1,11 @@
+{
+  "id": "custom-openpolicyagent-rego-policy-minimal",
+  "name": "Open Policy Agent Rego ポリシー 最小",
+  "version": "1.0.0",
+  "stack": ["opa"],
+  "tags": ["policy"],
+  "description": "Regoポリシーの最小スケルトン",
+  "files": [
+    { "path": "policy/example.rego", "template": "package example\nallow { true }\n" }
+  ]}
+

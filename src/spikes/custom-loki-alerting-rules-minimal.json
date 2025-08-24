@@ -1,0 +1,12 @@
+{
+  "id": "custom-loki-alerting-rules-minimal",
+  "name": "Loki Alerting Rules 最小",
+  "version": "1.0.0",
+  "stack": ["loki"],
+  "tags": ["logging"],
+  "description": "Lokiアラートルールの最小",
+  "files": [
+    { "path": "loki/alerts.yml", "template": "groups: []\n" }
+  ]
+}
+

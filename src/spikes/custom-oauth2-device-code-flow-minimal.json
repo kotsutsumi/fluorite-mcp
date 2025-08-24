@@ -1,0 +1,12 @@
+{
+  "id": "custom-oauth2-device-code-flow-minimal",
+  "name": "OAuth2 デバイスコードフロー 最小",
+  "version": "1.0.0",
+  "stack": ["oauth2"],
+  "tags": ["auth"],
+  "description": "デバイスコードフローの概念スタブ",
+  "files": [
+    { "path": "src/auth/device-code.ts", "template": "export async function start(){ return { device_code: 'dev', user_code: 'user' }; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-contentful-graphql-query-minimal",
+  "name": "Contentful GraphQL クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["contentful"],
+  "tags": ["cms"],
+  "description": "Contentful GraphQLクエリの最小スタブ",
+  "files": [
+    { "path": "src/cms/contentful.graphql.ts", "template": "export async function query(_gql:string){ return { data: {} }; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-gcp-pubsub-pull-subscriber-minimal",
+  "name": "GCP Pub/Sub Pull Subscriber 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "pubsub"],
+  "tags": ["messaging"],
+  "description": "Pull購読の最小スタブ",
+  "files": [
+    { "path": "src/gcp/pubsub.pull.ts", "template": "export async function pull(sub:string){ return [{ data: 'hello' }]; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-kinesis-data-streams-putrecord-minimal",
+  "name": "Kinesis Data Streams PutRecord 最小",
+  "version": "1.0.0",
+  "stack": ["kinesis"],
+  "tags": ["messaging", "aws"],
+  "description": "Kinesis PutRecordの概念スタブ",
+  "files": [
+    { "path": "src/aws/kinesis.put.ts", "template": "export async function put(stream:string, data:string){ return { stream, sequenceNumber: '1' }; }\n" }
+  ]
+}
+

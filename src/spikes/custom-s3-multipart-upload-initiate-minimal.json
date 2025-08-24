@@ -1,0 +1,12 @@
+{
+  "id": "custom-s3-multipart-upload-initiate-minimal",
+  "name": "S3 マルチパートアップロード 初期化 最小",
+  "version": "1.0.0",
+  "stack": ["s3"],
+  "tags": ["storage"],
+  "description": "マルチパートアップロード初期化の最小スタブ",
+  "files": [
+    { "path": "src/aws/s3.multipart.ts", "template": "export async function initiate(key:string){ return { uploadId: 'u_123', key }; }\n" }
+  ]
+}
+

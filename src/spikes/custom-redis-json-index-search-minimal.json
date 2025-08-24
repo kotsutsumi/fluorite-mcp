@@ -1,0 +1,12 @@
+{
+  "id": "custom-redis-json-index-search-minimal",
+  "name": "RedisJSON インデックス検索 最小",
+  "version": "1.0.0",
+  "stack": ["redis"],
+  "tags": ["search"],
+  "description": "JSONインデックスの検索概念スタブ",
+  "files": [
+    { "path": "src/redis/json.search.ts", "template": "export async function search(q:string){ return { hits: [] }; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-csp-nonce-inject-nextjs-middleware-minimal",
+  "name": "CSP Nonce注入 Next.js Middleware 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["security"],
+  "description": "CSP Nonceをミドルウェアで注入（概念）",
+  "files": [
+    { "path": "middleware.ts", "template": "export function middleware(){ return Response.next(); }\n" }
+  ]
+}
+

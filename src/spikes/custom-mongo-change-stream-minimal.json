@@ -1,0 +1,12 @@
+{
+  "id": "custom-mongo-change-stream-minimal",
+  "name": "MongoDB Change Stream 最小",
+  "version": "1.0.0",
+  "stack": ["mongodb"],
+  "tags": ["db", "realtime"],
+  "description": "Change Stream購読の概念スタブ",
+  "files": [
+    { "path": "src/db/mongo.change.ts", "template": "export async function watch(coll:string){ return { coll, changes: [] }; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-mistral-text-generate-stub",
+  "name": "Mistral テキスト生成 スタブ",
+  "version": "1.0.0",
+  "stack": ["mistral"],
+  "tags": ["ai"],
+  "description": "Mistralテキスト生成の概念スタブ",
+  "files": [
+    { "path": "src/ai/mistral.ts", "template": "export async function generate(prompt:string){ return { text: 'hello' }; }\n" }
+  ]
+}
+

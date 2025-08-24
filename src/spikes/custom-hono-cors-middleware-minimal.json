@@ -1,0 +1,12 @@
+{
+  "id": "custom-hono-cors-middleware-minimal",
+  "name": "Hono CORS Middleware 最小",
+  "version": "1.0.0",
+  "stack": ["hono"],
+  "tags": ["middleware"],
+  "description": "HonoのCORSミドルウェア概念",
+  "files": [
+    { "path": "src/hono/cors.ts", "template": "export function cors(){ return (_c:any,next:any)=> next(); }\n" }
+  ]
+}
+

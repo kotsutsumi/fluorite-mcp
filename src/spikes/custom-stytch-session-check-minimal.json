@@ -1,0 +1,12 @@
+{
+  "id": "custom-stytch-session-check-minimal",
+  "name": "Stytch セッション確認 最小",
+  "version": "1.0.0",
+  "stack": ["stytch"],
+  "tags": ["auth"],
+  "description": "Stytchセッション確認の概念スタブ",
+  "files": [
+    { "path": "src/auth/stytch.ts", "template": "export async function session(){ return { valid: true }; }\n" }
+  ]
+}
+

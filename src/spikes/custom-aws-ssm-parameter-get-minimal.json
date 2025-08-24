@@ -1,0 +1,12 @@
+{
+  "id": "custom-aws-ssm-parameter-get-minimal",
+  "name": "AWS SSM Parameter 取得 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "ssm"],
+  "tags": ["config"],
+  "description": "SSMパラメータ取得スタブ",
+  "files": [
+    { "path": "src/config/ssm.ts", "template": "export async function get(name:string){ return { name, value: 'v' }; }\n" }
+  ]
+}
+

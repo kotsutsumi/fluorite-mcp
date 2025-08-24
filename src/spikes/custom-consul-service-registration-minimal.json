@@ -1,0 +1,12 @@
+{
+  "id": "custom-consul-service-registration-minimal",
+  "name": "Consul サービス登録 最小",
+  "version": "1.0.0",
+  "stack": ["consul"],
+  "tags": ["service-discovery"],
+  "description": "Consulサービス登録の最小",
+  "files": [
+    { "path": "consul/service.json", "template": "{ \"service\": { \"name\": \"app\", \"port\": 3000 } }\n" }
+  ]
+}
+

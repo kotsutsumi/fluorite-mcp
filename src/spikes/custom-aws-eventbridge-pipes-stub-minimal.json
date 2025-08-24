@@ -1,0 +1,12 @@
+{
+  "id": "custom-aws-eventbridge-pipes-stub-minimal",
+  "name": "AWS EventBridge Pipes スタブ 最小",
+  "version": "1.0.0",
+  "stack": ["aws", "eventbridge"],
+  "tags": ["events"],
+  "description": "Pipesの概念スタブ",
+  "files": [
+    { "path": "src/aws/pipes.ts", "template": "export const pipe = { source: 'sqs', target: 'eventbus' };\n" }
+  ]
+}
+

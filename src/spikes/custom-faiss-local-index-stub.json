@@ -1,0 +1,12 @@
+{
+  "id": "custom-faiss-local-index-stub",
+  "name": "FAISS ローカルインデックス スタブ",
+  "version": "1.0.0",
+  "stack": ["faiss"],
+  "tags": ["vector"],
+  "description": "FAISSインデックスの概念スタブ",
+  "files": [
+    { "path": "src/vectors/faiss.ts", "template": "export function add(_vec:number[]){ return { ok: true }; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-okta-oidc-login-minimal",
+  "name": "Okta OIDC ログイン 最小",
+  "version": "1.0.0",
+  "stack": ["okta", "oidc"],
+  "tags": ["auth"],
+  "description": "Okta OIDCの最小スタブ",
+  "files": [
+    { "path": "src/auth/okta.ts", "template": "export async function login(){ return { ok: true }; }\n" }
+  ]
+}
+

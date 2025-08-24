@@ -1,0 +1,12 @@
+{
+  "id": "custom-sqs-dlq-redrive-policy-minimal",
+  "name": "SQS DLQ Redrive Policy 最小",
+  "version": "1.0.0",
+  "stack": ["sqs"],
+  "tags": ["messaging", "aws"],
+  "description": "DLQとRedriveの概念スタブ",
+  "files": [
+    { "path": "src/aws/sqs.redrive.ts", "template": "export const redrive = { maxReceiveCount: 5 };\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-braintree-payment-route-minimal",
+  "name": "Braintree 決済 ルート 最小",
+  "version": "1.0.0",
+  "stack": ["braintree", "nextjs"],
+  "tags": ["payments"],
+  "description": "Braintreeトランザクション作成ルート（スタブ）",
+  "files": [
+    { "path": "app/api/payments/braintree/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(){ return NextResponse.json({ ok: true, id: 'tr_xxx' }); }\n" }
+  ]
+}
+

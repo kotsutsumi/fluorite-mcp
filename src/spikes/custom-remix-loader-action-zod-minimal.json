@@ -1,0 +1,12 @@
+{
+  "id": "custom-remix-loader-action-zod-minimal",
+  "name": "Remix loader/action + Zod 最小",
+  "version": "1.0.0",
+  "stack": ["remix", "zod"],
+  "tags": ["validation"],
+  "description": "loader/actionのZodバリデーション最小",
+  "files": [
+    { "path": "app/routes/form.tsx", "template": "export async function loader(){ return null }\nexport async function action(){ return null }\nexport default function Form(){ return null }\n" }
+  ]
+}
+

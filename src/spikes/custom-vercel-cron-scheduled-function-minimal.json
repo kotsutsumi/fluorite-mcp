@@ -1,0 +1,12 @@
+{
+  "id": "custom-vercel-cron-scheduled-function-minimal",
+  "name": "Vercel Cron スケジュールド関数 最小",
+  "version": "1.0.0",
+  "stack": ["vercel"],
+  "tags": ["cron", "edge"],
+  "description": "Vercel Cronを想定した最小ハンドラ",
+  "files": [
+    { "path": "api/cron.ts", "template": "export default async function handler(){ return new Response('ok'); }\n" }
+  ]
+}
+

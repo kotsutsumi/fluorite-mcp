@@ -1,0 +1,12 @@
+{
+  "id": "custom-uploadthing-nextjs-advanced-route",
+  "name": "UploadThing Next.js 高度ルート",
+  "version": "1.0.0",
+  "stack": ["uploadthing", "nextjs"],
+  "tags": ["upload"],
+  "description": "UploadThingの高度ルート構成スタブ",
+  "files": [
+    { "path": "app/api/uploadthing/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(){ return NextResponse.json({ ok: true }); }\n" }
+  ]
+}
+

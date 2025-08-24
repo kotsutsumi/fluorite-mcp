@@ -1,0 +1,12 @@
+{
+  "id": "custom-gcp-pubsub-ordering-keys-minimal",
+  "name": "GCP Pub/Sub Ordering Keys 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "pubsub"],
+  "tags": ["messaging"],
+  "description": "Ordering Keys利用の概念スタブ",
+  "files": [
+    { "path": "src/gcp/pubsub.order.ts", "template": "export async function publishWithKey(topic:string,key:string,msg:string){ return { topic, key, msg }; }\n" }
+  ]
+}
+

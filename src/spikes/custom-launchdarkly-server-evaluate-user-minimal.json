@@ -1,0 +1,12 @@
+{
+  "id": "custom-launchdarkly-server-evaluate-user-minimal",
+  "name": "LaunchDarkly サーバ評価 ユーザー最小",
+  "version": "1.0.0",
+  "stack": ["launchdarkly"],
+  "tags": ["flags"],
+  "description": "ユーザーコンテキストでフラグ評価する最小スタブ",
+  "files": [
+    { "path": "src/flags/ld.server.ts", "template": "export async function evalFlag(flag:string,user:{ key:string }){ return true; }\n" }
+  ]
+}
+

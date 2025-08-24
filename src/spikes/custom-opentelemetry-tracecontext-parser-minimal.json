@@ -1,0 +1,12 @@
+{
+  "id": "custom-opentelemetry-tracecontext-parser-minimal",
+  "name": "TraceContext ヘッダ パーサ 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry"],
+  "tags": ["tracing"],
+  "description": "traceparentヘッダの簡易パーサ",
+  "files": [
+    { "path": "src/otel/tracecontext.ts", "template": "export function parseTraceparent(h:string){ return { traceId: h?.slice(3,35) || '' }; }\n" }
+  ]
+}
+

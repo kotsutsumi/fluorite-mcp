@@ -1,0 +1,12 @@
+{
+  "id": "custom-terragrunt-hcl-minimal",
+  "name": "Terragrunt HCL 最小",
+  "version": "1.0.0",
+  "stack": ["terragrunt"],
+  "tags": ["iac"],
+  "description": "Terragruntの最小設定",
+  "files": [
+    { "path": "terragrunt.hcl", "template": "locals { app = \"example\" }\n" }
+  ]
+}
+

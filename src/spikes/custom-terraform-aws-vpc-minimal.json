@@ -1,0 +1,12 @@
+{
+  "id": "custom-terraform-aws-vpc-minimal",
+  "name": "Terraform AWS VPC 最小",
+  "version": "1.0.0",
+  "stack": ["terraform", "aws"],
+  "tags": ["iac"],
+  "description": "VPCの最小定義",
+  "files": [
+    { "path": "infra/main.tf", "template": "terraform { required_providers { aws = { source = 'hashicorp/aws' } } }\nprovider 'aws' { region = 'us-east-1' }\n# vpc placeholder\n" }
+  ]
+}
+

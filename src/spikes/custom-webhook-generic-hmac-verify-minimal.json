@@ -1,0 +1,12 @@
+{
+  "id": "custom-webhook-generic-hmac-verify-minimal",
+  "name": "Webhook HMAC 検証汎用 最小",
+  "version": "1.0.0",
+  "stack": ["webhook"],
+  "tags": ["security"],
+  "description": "HMAC署名検証の汎用スタブ",
+  "files": [
+    { "path": "src/webhook/hmac.ts", "template": "export function verify(sig:string, body:string, secret:string){ return sig.length>0 && body.length>=0 && secret.length>0; }\n" }
+  ]
+}
+

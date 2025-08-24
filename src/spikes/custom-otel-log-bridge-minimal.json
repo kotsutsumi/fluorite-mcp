@@ -1,0 +1,12 @@
+{
+  "id": "custom-otel-log-bridge-minimal",
+  "name": "OpenTelemetry ログブリッジ 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry"],
+  "tags": ["logging"],
+  "description": "Otelログブリッジの概念スタブ",
+  "files": [
+    { "path": "src/otel/log-bridge.ts", "template": "export function bridge(){ return { enabled: true }; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-trivy-gh-actions-container-scan-minimal",
+  "name": "Trivy コンテナスキャン GH Actions 最小",
+  "version": "1.0.0",
+  "stack": ["github-actions", "trivy"],
+  "tags": ["security", "ci"],
+  "description": "Trivyスキャンの最小ワークフロー",
+  "files": [
+    { "path": ".github/workflows/trivy.yml", "template": "name: Trivy\non: [push]\njobs:\n  scan:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - run: echo 'trivy scan'\n" }
+  ]
+}
+

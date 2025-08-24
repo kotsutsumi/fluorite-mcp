@@ -1,0 +1,12 @@
+{
+  "id": "custom-zod-openapi-schema-minimal",
+  "name": "Zod OpenAPI スキーマ 最小",
+  "version": "1.0.0",
+  "stack": ["zod", "openapi"],
+  "tags": ["schema"],
+  "description": "ZodからOpenAPIスキーマ化の概念スタブ",
+  "files": [
+    { "path": "src/schema/zod.openapi.ts", "template": "export const schema = { openapi: '3.0.0' };\n" }
+  ]
+}
+

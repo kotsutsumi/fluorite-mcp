@@ -1,0 +1,12 @@
+{
+  "id": "custom-kafka-consumer-group-offsets-minimal",
+  "name": "Kafka コンシューマグループ オフセット最小",
+  "version": "1.0.0",
+  "stack": ["kafka"],
+  "tags": ["messaging"],
+  "description": "グループとオフセット管理の最小スタブ",
+  "files": [
+    { "path": "src/kafka/group.ts", "template": "export async function commitOffset(topic:string, partition:number, offset:string){ return { topic, partition, offset }; }\n" }
+  ]
+}
+

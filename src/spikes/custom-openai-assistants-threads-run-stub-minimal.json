@@ -1,0 +1,12 @@
+{
+  "id": "custom-openai-assistants-threads-run-stub-minimal",
+  "name": "OpenAI Assistants Threads Run スタブ 最小",
+  "version": "1.0.0",
+  "stack": ["openai"],
+  "tags": ["ai"],
+  "description": "Assistants Threads Runの概念スタブ",
+  "files": [
+    { "path": "src/ai/openai.assist.run.ts", "template": "export async function run(threadId:string){ return { threadId, status: 'completed' }; }\n" }
+  ]
+}
+

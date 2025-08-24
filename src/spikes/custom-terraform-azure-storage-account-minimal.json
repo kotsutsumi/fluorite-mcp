@@ -1,0 +1,11 @@
+{
+  "id": "custom-terraform-azure-storage-account-minimal",
+  "name": "Terraform Azure Storage Account 最小",
+  "version": "1.0.0",
+  "stack": ["terraform", "azure"],
+  "tags": ["iac"],
+  "description": "Azure Storageの最小Terraform",
+  "files": [
+    { "path": "infra/main.tf", "template": "terraform { required_providers { azurerm = { source = 'hashicorp/azurerm' } } }\nprovider 'azurerm' { features {} }\n# storage account placeholder\n" }
+  ]}
+

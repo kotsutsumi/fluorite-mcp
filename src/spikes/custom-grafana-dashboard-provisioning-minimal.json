@@ -1,0 +1,12 @@
+{
+  "id": "custom-grafana-dashboard-provisioning-minimal",
+  "name": "Grafana ダッシュボード プロビジョニング 最小",
+  "version": "1.0.0",
+  "stack": ["grafana"],
+  "tags": ["monitoring"],
+  "description": "Grafanaダッシュボードの最小プロビジョニング設定スタブ",
+  "files": [
+    { "path": "grafana/provisioning/dashboards.yml", "template": "apiVersion: 1\ndependent_resources: []\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-sailsjs-hook-minimal",
+  "name": "Sails.js Hook 最小",
+  "version": "1.0.0",
+  "stack": ["sails"],
+  "tags": ["api"],
+  "description": "Sailsフックの最小スケルトン",
+  "files": [
+    { "path": "src/sails/hook.js", "template": "module.exports = function(sails){ return { initialize: function(cb){ cb(); } }; };\n" }
+  ]
+}
+

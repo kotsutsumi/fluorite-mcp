@@ -1,0 +1,12 @@
+{
+  "id": "custom-gh-actions-changesets-release-minimal",
+  "name": "GH Actions Changesets Release 最小",
+  "version": "1.0.0",
+  "stack": ["github-actions", "changesets"],
+  "tags": ["ci", "release"],
+  "description": "Changesetsでのリリースワークフロー最小",
+  "files": [
+    { "path": ".github/workflows/release.yml", "template": "name: Release\non: [push]\njobs:\n  release:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - run: echo 'changesets version && changesets publish'\n" }
+  ]
+}
+

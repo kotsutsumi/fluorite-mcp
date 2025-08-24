@@ -1,0 +1,12 @@
+{
+  "id": "custom-sqlite-wal-config-minimal",
+  "name": "SQLite WAL 設定 最小",
+  "version": "1.0.0",
+  "stack": ["sqlite"],
+  "tags": ["db"],
+  "description": "WALモード設定の概念スタブ",
+  "files": [
+    { "path": "src/sqlite/wal.ts", "template": "export function enableWAL(){ return true; }\n" }
+  ]
+}
+

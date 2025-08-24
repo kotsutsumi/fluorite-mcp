@@ -1,0 +1,12 @@
+{
+  "id": "custom-ksqldb-streams-topology-stub",
+  "name": "ksqlDB Streams トポロジ スタブ",
+  "version": "1.0.0",
+  "stack": ["ksqldb"],
+  "tags": ["stream"],
+  "description": "ksqlDBのトポロジ概念スタブ",
+  "files": [
+    { "path": "src/kafka/ksqldb.ts", "template": "export const streams = { statements: [] };\n" }
+  ]
+}
+

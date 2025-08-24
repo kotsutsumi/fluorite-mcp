@@ -1,0 +1,12 @@
+{
+  "id": "custom-influxdb-write-query-minimal",
+  "name": "InfluxDB Write/Query 最小",
+  "version": "1.0.0",
+  "stack": ["influxdb"],
+  "tags": ["db"],
+  "description": "InfluxDBのwrite/queryスタブ",
+  "files": [
+    { "path": "src/db/influx.ts", "template": "export async function write(line:string){ return { ok: true }; }\nexport async function query(q:string){ return { result: [] }; }\n" }
+  ]
+}
+

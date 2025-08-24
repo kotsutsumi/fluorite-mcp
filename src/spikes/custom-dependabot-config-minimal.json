@@ -1,0 +1,12 @@
+{
+  "id": "custom-dependabot-config-minimal",
+  "name": "Dependabot 設定 最小",
+  "version": "1.0.0",
+  "stack": ["dependabot"],
+  "tags": ["security"],
+  "description": "Dependabotの最小設定",
+  "files": [
+    { "path": ".github/dependabot.yml", "template": "version: 2\nupdates: [{ package-ecosystem: npm, directory: '/', schedule: { interval: weekly } }]\n" }
+  ]
+}
+

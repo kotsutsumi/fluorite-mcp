@@ -1,0 +1,12 @@
+{
+  "id": "custom-algolia-insights-event-minimal",
+  "name": "Algolia Insights Event 最小",
+  "version": "1.0.0",
+  "stack": ["algolia"],
+  "tags": ["analytics"],
+  "description": "Insightsイベント送信の最小スタブ",
+  "files": [
+    { "path": "src/analytics/algolia.insights.ts", "template": "export async function trackEvent(_e:any){ return { ok: true }; }\n" }
+  ]
+}
+

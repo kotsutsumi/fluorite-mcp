@@ -1,0 +1,12 @@
+{
+  "id": "custom-adyen-checkout-session-minimal",
+  "name": "Adyen Checkout セッション 最小",
+  "version": "1.0.0",
+  "stack": ["adyen"],
+  "tags": ["payments"],
+  "description": "AdyenのCheckoutセッション作成スタブ",
+  "files": [
+    { "path": "src/payments/adyen.ts", "template": "export async function createSession(){ return { id: 'session_123' }; }\n" }
+  ]
+}
+

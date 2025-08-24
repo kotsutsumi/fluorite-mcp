@@ -1,0 +1,12 @@
+{
+  "id": "custom-nextjs-middleware-rate-limit-sliding-window",
+  "name": "Next.js Middleware レート制限 スライディングウィンドウ",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["rate-limit"],
+  "description": "ミドルウェアでの簡易レート制限（スタブ）",
+  "files": [
+    { "path": "middleware.ts", "template": "export function middleware(){ return Response.next(); }\n" }
+  ]
+}
+

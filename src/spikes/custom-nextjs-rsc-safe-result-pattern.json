@@ -1,0 +1,11 @@
+{
+  "id": "custom-nextjs-rsc-safe-result-pattern",
+  "name": "Next.js RSC Safe Result パターン",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["pattern"],
+  "description": "RSCでの結果型Safeパターン（スタブ）",
+  "files": [
+    { "path": "src/rsc/safe.ts", "template": "export type Ok<T>={ ok:true; data:T }; export type Err={ ok:false; error:string }; export const ok= <T>(data:T):Ok<T>=>({ ok:true, data }); export const err= (e:string):Err=>({ ok:false, error:e });\n" }
+  ]}
+

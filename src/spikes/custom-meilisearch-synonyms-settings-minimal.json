@@ -1,0 +1,12 @@
+{
+  "id": "custom-meilisearch-synonyms-settings-minimal",
+  "name": "Meilisearch Synonyms 設定 最小",
+  "version": "1.0.0",
+  "stack": ["meilisearch"],
+  "tags": ["search"],
+  "description": "MeilisearchのSynonyms設定スタブ",
+  "files": [
+    { "path": "src/search/meili.settings.ts", "template": "export const synonyms = { tv: ['television'] };\n" }
+  ]
+}
+

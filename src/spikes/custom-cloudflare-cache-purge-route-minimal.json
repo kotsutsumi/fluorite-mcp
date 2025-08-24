@@ -1,0 +1,12 @@
+{
+  "id": "custom-cloudflare-cache-purge-route-minimal",
+  "name": "Cloudflare Cache Purge ルート 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare", "nextjs"],
+  "tags": ["cdn"],
+  "description": "CFキャッシュパージの最小スタブ",
+  "files": [
+    { "path": "app/api/cf/purge/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(){ return NextResponse.json({ purged: true }); }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-gh-actions-matrix-os-node-pnpm-minimal",
+  "name": "GH Actions Matrix OS/Node+pnpm 最小",
+  "version": "1.0.0",
+  "stack": ["github-actions"],
+  "tags": ["ci"],
+  "description": "OS/Nodeのマトリクス + pnpm",
+  "files": [
+    { "path": ".github/workflows/ci-matrix.yml", "template": "name: CI\non: [push]\njobs:\n  build:\n    runs-on: ${{ matrix.os }}\n    strategy:\n      matrix:\n        os: [ubuntu-latest, macos-latest]\n        node: [18, 20]\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: ${{ matrix.node }} }\n      - run: corepack enable && pnpm -v || echo 'pnpm'\n" }
+  ]
+}
+

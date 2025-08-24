@@ -1,0 +1,12 @@
+{
+  "id": "custom-kafka-connect-connector-config-stub",
+  "name": "Kafka Connect Connector 設定 スタブ",
+  "version": "1.0.0",
+  "stack": ["kafka"],
+  "tags": ["connect"],
+  "description": "Kafka Connectコネクタ設定の概念スタブ",
+  "files": [
+    { "path": "src/kafka/connect.ts", "template": "export const connector = { name: 'jdbc-sink', config: {} };\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-fastly-compute-edge-route-minimal",
+  "name": "Fastly Compute@Edge ルート 最小",
+  "version": "1.0.0",
+  "stack": ["fastly"],
+  "tags": ["edge"],
+  "description": "Fastly Compute@Edgeの最小ハンドラ（スタブ）",
+  "files": [
+    { "path": "fastly/main.ts", "template": "export default async function handle(){ return new Response('ok'); }\n" }
+  ]
+}
+

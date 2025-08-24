@@ -1,0 +1,12 @@
+{
+  "id": "custom-mongoose-soft-delete-plugin-minimal",
+  "name": "Mongoose ソフトデリート プラグイン 最小",
+  "version": "1.0.0",
+  "stack": ["mongoose"],
+  "tags": ["db"],
+  "description": "deletedAtを使う簡易プラグイン（スタブ）",
+  "files": [
+    { "path": "src/mongoose/softDelete.ts", "template": "export function softDeletePlugin(schema:any){ schema.add({ deletedAt: Date }); }\n" }
+  ]
+}
+

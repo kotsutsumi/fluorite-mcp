@@ -1,0 +1,12 @@
+{
+  "id": "custom-sequelize-transaction-managed-minimal",
+  "name": "Sequelize マネージドトランザクション 最小",
+  "version": "1.0.0",
+  "stack": ["sequelize"],
+  "tags": ["db", "transaction"],
+  "description": "managed transactionの概念スタブ",
+  "files": [
+    { "path": "src/sequelize/tx.ts", "template": "export async function withTx(fn:Function){ return await fn(); }\n" }
+  ]
+}
+

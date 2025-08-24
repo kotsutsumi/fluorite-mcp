@@ -1,0 +1,12 @@
+{
+  "id": "custom-solr-index-search-minimal",
+  "name": "Apache Solr インデックス+検索 最小",
+  "version": "1.0.0",
+  "stack": ["solr"],
+  "tags": ["search"],
+  "description": "Solrにドキュメント追加/検索の概念スタブ",
+  "files": [
+    { "path": "src/search/solr.ts", "template": "export async function index(doc:any){ return { ok: true }; }\nexport async function search(q:string){ return { hits: [] }; }\n" }
+  ]
+}
+

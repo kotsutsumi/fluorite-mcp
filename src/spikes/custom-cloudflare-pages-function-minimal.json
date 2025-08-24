@@ -1,0 +1,12 @@
+{
+  "id": "custom-cloudflare-pages-function-minimal",
+  "name": "Cloudflare Pages Function 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare-pages"],
+  "tags": ["edge"],
+  "description": "Pages Functionの最小ハンドラ",
+  "files": [
+    { "path": "functions/api/hello.ts", "template": "export const onRequest = async ()=> new Response('ok');\n" }
+  ]
+}
+

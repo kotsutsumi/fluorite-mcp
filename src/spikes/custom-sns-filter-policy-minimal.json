@@ -1,0 +1,11 @@
+{
+  "id": "custom-sns-filter-policy-minimal",
+  "name": "SNS サブスクリプション フィルタポリシー 最小",
+  "version": "1.0.0",
+  "stack": ["sns"],
+  "tags": ["messaging", "aws"],
+  "description": "属性ベースフィルタの最小スタブ",
+  "files": [
+    { "path": "src/aws/sns.filter.ts", "template": "export const filter = { eventType: ['created'] };\n" }
+  ]}
+

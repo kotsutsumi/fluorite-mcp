@@ -1,0 +1,12 @@
+{
+  "id": "custom-csrf-double-submit-cookie-pattern-minimal",
+  "name": "CSRF Double Submit Cookie パターン 最小",
+  "version": "1.0.0",
+  "stack": ["security"],
+  "tags": ["security"],
+  "description": "二重送信Cookieパターンの概念スタブ",
+  "files": [
+    { "path": "src/security/csrf.ts", "template": "export function tokens(){ return { cookie: 't1', header: 't1' }; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-vault-transit-encrypt-decrypt-minimal",
+  "name": "Vault Transit 暗号/復号 最小",
+  "version": "1.0.0",
+  "stack": ["vault"],
+  "tags": ["secrets"],
+  "description": "Vault Transitの暗号/復号スタブ",
+  "files": [
+    { "path": "src/secrets/vault.transit.ts", "template": "export async function encrypt(p:string){ return { ciphertext: 'v1:...' }; }\nexport async function decrypt(c:string){ return { plaintext: '...' }; }\n" }
+  ]
+}
+

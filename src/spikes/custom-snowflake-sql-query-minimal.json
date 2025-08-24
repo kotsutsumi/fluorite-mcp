@@ -1,0 +1,12 @@
+{
+  "id": "custom-snowflake-sql-query-minimal",
+  "name": "Snowflake SQL クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["snowflake"],
+  "tags": ["db"],
+  "description": "Snowflake SQLの最小スタブ",
+  "files": [
+    { "path": "src/db/snowflake.ts", "template": "export async function query(sql:string){ return { rows: [] }; }\n" }
+  ]
+}
+

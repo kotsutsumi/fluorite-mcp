@@ -1,0 +1,12 @@
+{
+  "id": "custom-mqtt-retained-messages-minimal",
+  "name": "MQTT Retained Messages 最小",
+  "version": "1.0.0",
+  "stack": ["mqtt"],
+  "tags": ["messaging"],
+  "description": "Retainedメッセージ扱いの概念スタブ",
+  "files": [
+    { "path": "src/mqtt/retained.ts", "template": "export async function publishRetained(topic:string,msg:string){ return { topic, msg, retained: true }; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-timescaledb-hypertable-create-minimal",
+  "name": "TimescaleDB Hypertable 作成 最小",
+  "version": "1.0.0",
+  "stack": ["timescaledb"],
+  "tags": ["db"],
+  "description": "ハイパーテーブル作成の概念スタブ",
+  "files": [
+    { "path": "src/db/timescaledb.ts", "template": "export const hypertable = { table: 'metrics', timeColumn: 'ts' };\n" }
+  ]
+}
+

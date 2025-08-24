@@ -1,0 +1,12 @@
+{
+  "id": "custom-jaeger-tracing-config-minimal",
+  "name": "Jaeger トレース設定 最小",
+  "version": "1.0.0",
+  "stack": ["jaeger"],
+  "tags": ["tracing"],
+  "description": "Jaegerエクスポート設定の概念スタブ",
+  "files": [
+    { "path": "src/tracing/jaeger.ts", "template": "export const jaeger = { endpoint: 'http://localhost:14268' };\n" }
+  ]
+}
+

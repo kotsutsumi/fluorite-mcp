@@ -1,0 +1,12 @@
+{
+  "id": "custom-apple-signin-jwt-verify-minimal",
+  "name": "Apple Sign In JWT 検証 最小",
+  "version": "1.0.0",
+  "stack": ["apple", "jwt"],
+  "tags": ["auth"],
+  "description": "Apple JWT検証の概念スタブ",
+  "files": [
+    { "path": "src/auth/apple.ts", "template": "export async function verify(_jwt:string){ return { sub: 'user' }; }\n" }
+  ]
+}
+

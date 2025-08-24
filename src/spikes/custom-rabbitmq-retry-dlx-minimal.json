@@ -1,0 +1,12 @@
+{
+  "id": "custom-rabbitmq-retry-dlx-minimal",
+  "name": "RabbitMQ Retry DLX 最小",
+  "version": "1.0.0",
+  "stack": ["rabbitmq"],
+  "tags": ["messaging"],
+  "description": "DLXでのリトライ概念スタブ",
+  "files": [
+    { "path": "src/queue/rabbitmq.retry.ts", "template": "export const dlx = { exchange: 'dlx' };\n" }
+  ]
+}
+

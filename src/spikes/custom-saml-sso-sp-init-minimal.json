@@ -1,0 +1,12 @@
+{
+  "id": "custom-saml-sso-sp-init-minimal",
+  "name": "SAML SSO SP Initiated 最小",
+  "version": "1.0.0",
+  "stack": ["saml"],
+  "tags": ["auth"],
+  "description": "SPイニシエイトの概念スタブ",
+  "files": [
+    { "path": "src/auth/saml.sp.ts", "template": "export function loginUrl(){ return 'https://idp.example.com/sso'; }\n" }
+  ]
+}
+

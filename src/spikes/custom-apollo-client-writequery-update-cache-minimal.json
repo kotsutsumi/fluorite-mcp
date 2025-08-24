@@ -1,0 +1,11 @@
+{
+  "id": "custom-apollo-client-writequery-update-cache-minimal",
+  "name": "Apollo Client writeQuery キャッシュ更新 最小",
+  "version": "1.0.0",
+  "stack": ["apollo"],
+  "tags": ["graphql", "client"],
+  "description": "writeQueryでキャッシュ更新の最小スタブ",
+  "files": [
+    { "path": "src/apollo/cache.update.ts", "template": "export function writeTitle(cache:any,id:string,title:string){ cache.modify({ id, fields: { title: ()=> title } }); }\n" }
+  ]}
+

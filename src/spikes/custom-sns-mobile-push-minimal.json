@@ -1,0 +1,12 @@
+{
+  "id": "custom-sns-mobile-push-minimal",
+  "name": "SNS Mobile Push 最小",
+  "version": "1.0.0",
+  "stack": ["sns"],
+  "tags": ["push", "aws"],
+  "description": "SNSモバイルプッシュの概念スタブ",
+  "files": [
+    { "path": "src/aws/sns.push.ts", "template": "export async function push(token:string,msg:string){ return { token, msg }; }\n" }
+  ]
+}
+

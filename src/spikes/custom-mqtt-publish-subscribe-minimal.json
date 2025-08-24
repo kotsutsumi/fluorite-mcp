@@ -1,0 +1,11 @@
+{
+  "id": "custom-mqtt-publish-subscribe-minimal",
+  "name": "MQTT Publish/Subscribe 最小",
+  "version": "1.0.0",
+  "stack": ["mqtt"],
+  "tags": ["messaging"],
+  "description": "MQTTの最小pub/subスタブ",
+  "files": [
+    { "path": "src/mqtt/client.ts", "template": "export async function publish(topic:string,msg:string){ return { topic, msg }; }\nexport async function subscribe(topic:string){ return [{ topic, msg: 'hello' }]; }\n" }
+  ]}
+

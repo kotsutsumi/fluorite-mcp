@@ -1,0 +1,12 @@
+{
+  "id": "custom-sns-sqs-fanout-pattern-minimal",
+  "name": "SNS→SQS ファンアウト パターン 最小",
+  "version": "1.0.0",
+  "stack": ["sns", "sqs"],
+  "tags": ["messaging", "aws"],
+  "description": "SNS→複数SQSの概念スタブ",
+  "files": [
+    { "path": "src/aws/sns.sqs.fanout.ts", "template": "export async function fanout(msg:string, queues:string[]){ return { delivered: queues.length }; }\n" }
+  ]
+}
+

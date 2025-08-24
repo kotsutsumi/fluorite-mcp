@@ -1,0 +1,12 @@
+{
+  "id": "custom-loki-tenant-header-config-minimal",
+  "name": "Loki テナントヘッダ設定 最小",
+  "version": "1.0.0",
+  "stack": ["loki"],
+  "tags": ["logging"],
+  "description": "X-Scope-OrgID相当のテナントヘッダ設定スタブ",
+  "files": [
+    { "path": "src/logging/loki.tenant.ts", "template": "export const tenant = { header: 'X-Scope-OrgID', value: 'dev' };\n" }
+  ]
+}
+

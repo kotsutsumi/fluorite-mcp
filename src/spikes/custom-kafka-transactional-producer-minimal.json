@@ -1,0 +1,12 @@
+{
+  "id": "custom-kafka-transactional-producer-minimal",
+  "name": "Kafka トランザクショナルプロデューサ 最小",
+  "version": "1.0.0",
+  "stack": ["kafka"],
+  "tags": ["messaging"],
+  "description": "Transactional Producerの概念スタブ",
+  "files": [
+    { "path": "src/kafka/tx-producer.ts", "template": "export async function produce(txId:string, topic:string, msg:string){ return { txId, topic, msg }; }\n" }
+  ]
+}
+

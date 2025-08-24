@@ -1,0 +1,12 @@
+{
+  "id": "custom-unleash-proxy-config-minimal",
+  "name": "Unleash プロキシ設定 最小",
+  "version": "1.0.0",
+  "stack": ["unleash"],
+  "tags": ["flags"],
+  "description": "Unleash Proxyの最小設定スタブ",
+  "files": [
+    { "path": "src/flags/unleash.proxy.ts", "template": "export const proxy = { url: process.env.UNLEASH_PROXY_URL };\n" }
+  ]
+}
+

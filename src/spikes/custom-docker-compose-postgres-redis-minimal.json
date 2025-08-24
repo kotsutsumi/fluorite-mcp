@@ -1,0 +1,12 @@
+{
+  "id": "custom-docker-compose-postgres-redis-minimal",
+  "name": "Docker Compose Postgres+Redis 最小",
+  "version": "1.0.0",
+  "stack": ["docker"],
+  "tags": ["compose"],
+  "description": "PostgresとRedisの最小Compose",
+  "files": [
+    { "path": "docker-compose.yml", "template": "version: '3'\nservices:\n  db:\n    image: postgres:15\n  redis:\n    image: redis:7\n" }
+  ]
+}
+

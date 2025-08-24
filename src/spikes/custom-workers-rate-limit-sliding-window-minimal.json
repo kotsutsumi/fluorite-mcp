@@ -1,0 +1,11 @@
+{
+  "id": "custom-workers-rate-limit-sliding-window-minimal",
+  "name": "Workers レート制限 スライディングウィンドウ 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare-workers"],
+  "tags": ["edge", "rate-limit"],
+  "description": "Workersでのスライディングウィンドウ例（スタブ）",
+  "files": [
+    { "path": "worker/rate-limit.ts", "template": "export function allow(){ return { allowed: true, remaining: 10 }; }\n" }
+  ]}
+

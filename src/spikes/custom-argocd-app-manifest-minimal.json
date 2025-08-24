@@ -1,0 +1,12 @@
+{
+  "id": "custom-argocd-app-manifest-minimal",
+  "name": "ArgoCD Application マニフェスト 最小",
+  "version": "1.0.0",
+  "stack": ["argocd"],
+  "tags": ["gitops"],
+  "description": "ArgoCDのApplication定義最小",
+  "files": [
+    { "path": "argocd/app.yaml", "template": "apiVersion: argoproj.io/v1alpha1\nkind: Application\nmetadata: { name: app }\nspec: { project: default }\n" }
+  ]
+}
+

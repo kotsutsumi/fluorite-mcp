@@ -1,0 +1,12 @@
+{
+  "id": "custom-nextjs-websocket-client-minimal",
+  "name": "Next.js WebSocket クライアント 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "react"],
+  "tags": ["realtime"],
+  "description": "WebSocketクライアントの最小フック",
+  "files": [
+    { "path": "src/hooks/useWS.ts", "template": "export function useWS(_url:string){ return { send: (_m:string)=>{}, messages: [] as string[] }; }\n" }
+  ]
+}
+

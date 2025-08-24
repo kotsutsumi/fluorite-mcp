@@ -1,0 +1,12 @@
+{
+  "id": "custom-milvus-collection-create-minimal",
+  "name": "Milvus コレクション作成 最小",
+  "version": "1.0.0",
+  "stack": ["milvus"],
+  "tags": ["vector"],
+  "description": "Milvusコレクション作成の概念スタブ",
+  "files": [
+    { "path": "src/vectors/milvus.collection.ts", "template": "export async function create(name:string){ return { name, created: true }; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-clerk-middleware-auth-protect-minimal",
+  "name": "Clerk Middleware ルート保護 最小",
+  "version": "1.0.0",
+  "stack": ["clerk", "nextjs"],
+  "tags": ["auth"],
+  "description": "Clerkミドルウェアでルート保護する最小スタブ",
+  "files": [
+    { "path": "middleware.ts", "template": "export function middleware(){ return Response.next(); }\n" }
+  ]
+}
+

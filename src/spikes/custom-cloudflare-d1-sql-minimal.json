@@ -1,0 +1,12 @@
+{
+  "id": "custom-cloudflare-d1-sql-minimal",
+  "name": "Cloudflare D1 SQL 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare-workers", "d1"],
+  "tags": ["edge", "db"],
+  "description": "D1のSQL発行概念スタブ",
+  "files": [
+    { "path": "worker/d1.ts", "template": "export async function query(sql:string){ return { rows: [] }; }\n" }
+  ]
+}
+

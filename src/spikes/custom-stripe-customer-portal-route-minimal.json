@@ -1,0 +1,12 @@
+{
+  "id": "custom-stripe-customer-portal-route-minimal",
+  "name": "Stripe Customer Portal ルート 最小",
+  "version": "1.0.0",
+  "stack": ["stripe", "nextjs"],
+  "tags": ["payments"],
+  "description": "Customer PortalのURL生成ルート最小",
+  "files": [
+    { "path": "app/api/stripe/portal/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(){ return NextResponse.json({ url: 'https://billing.stripe.com/p/session' }); }\n" }
+  ]
+}
+

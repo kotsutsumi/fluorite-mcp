@@ -1,0 +1,12 @@
+{
+  "id": "custom-azure-event-grid-topic-minimal",
+  "name": "Azure Event Grid カスタムトピック 最小",
+  "version": "1.0.0",
+  "stack": ["azure", "event-grid"],
+  "tags": ["events", "azure"],
+  "description": "カスタムトピック定義の概念スタブ",
+  "files": [
+    { "path": "src/azure/eventgrid.topic.ts", "template": "export const topic = { name: 'topic' };\n" }
+  ]
+}
+

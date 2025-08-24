@@ -1,0 +1,12 @@
+{
+  "id": "custom-bullmq-rate-limited-queue-minimal",
+  "name": "BullMQ レート制限キュー 最小",
+  "version": "1.0.0",
+  "stack": ["bullmq"],
+  "tags": ["queue"],
+  "description": "レート制限付きキューの概念スタブ",
+  "files": [
+    { "path": "src/queue/bullmq.rate.ts", "template": "export const queue = { add: async ()=>({ id: 1 }) };\n" }
+  ]
+}
+

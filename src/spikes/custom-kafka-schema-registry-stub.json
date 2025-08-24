@@ -1,0 +1,12 @@
+{
+  "id": "custom-kafka-schema-registry-stub",
+  "name": "Kafka Schema Registry スタブ",
+  "version": "1.0.0",
+  "stack": ["kafka"],
+  "tags": ["messaging"],
+  "description": "スキーマ登録の概念スタブ",
+  "files": [
+    { "path": "src/kafka/schema-registry.ts", "template": "export async function register(subject:string, schema:any){ return { id: 1, subject }; }\n" }
+  ]
+}
+

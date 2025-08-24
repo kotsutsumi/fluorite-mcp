@@ -1,0 +1,12 @@
+{
+  "id": "custom-bullmq-cron-scheduler-minimal",
+  "name": "BullMQ Cron Scheduler 最小",
+  "version": "1.0.0",
+  "stack": ["bullmq"],
+  "tags": ["queue"],
+  "description": "Cronスケジューラの概念スタブ",
+  "files": [
+    { "path": "src/queue/bullmq.cron.ts", "template": "export function schedule(cron:string){ return { cron }; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-knex-migrations-config-minimal",
+  "name": "Knex マイグレーション設定 最小",
+  "version": "1.0.0",
+  "stack": ["knex"],
+  "tags": ["db", "migration"],
+  "description": "Knexのマイグレーション設定スタブ",
+  "files": [
+    { "path": "knexfile.ts", "template": "export default { migrations: { directory: './migrations' } };\n" }
+  ]
+}
+

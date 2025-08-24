@@ -1,0 +1,12 @@
+{
+  "id": "custom-stripe-webhook-signature-verify-minimal",
+  "name": "Stripe Webhook シグネチャ検証 最小",
+  "version": "1.0.0",
+  "stack": ["stripe", "nextjs"],
+  "tags": ["payments", "webhook"],
+  "description": "Stripe Webhookの署名検証スタブ",
+  "files": [
+    { "path": "app/api/webhooks/stripe/verify/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(){ return NextResponse.json({ verified: true }); }\n" }
+  ]
+}
+

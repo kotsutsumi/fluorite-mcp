@@ -1,0 +1,12 @@
+{
+  "id": "custom-sentencetransformers-embeddings-stub",
+  "name": "SentenceTransformers Embeddings スタブ",
+  "version": "1.0.0",
+  "stack": ["embeddings"],
+  "tags": ["ai"],
+  "description": "SentenceTransformers埋め込みの概念スタブ",
+  "files": [
+    { "path": "src/ai/sentencetransformers.ts", "template": "export async function embed(text:string){ return new Array(384).fill(0); }\n" }
+  ]
+}
+

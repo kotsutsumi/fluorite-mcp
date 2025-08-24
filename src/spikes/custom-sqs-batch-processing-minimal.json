@@ -1,0 +1,12 @@
+{
+  "id": "custom-sqs-batch-processing-minimal",
+  "name": "SQS バッチ処理 最小",
+  "version": "1.0.0",
+  "stack": ["sqs"],
+  "tags": ["messaging", "aws"],
+  "description": "SQSバッチの処理概念スタブ",
+  "files": [
+    { "path": "src/aws/sqs.batch.ts", "template": "export async function handleBatch(events:any[]){ return { processed: events.length }; }\n" }
+  ]
+}
+

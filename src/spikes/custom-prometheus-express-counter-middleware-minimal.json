@@ -1,0 +1,12 @@
+{
+  "id": "custom-prometheus-express-counter-middleware-minimal",
+  "name": "Prometheus Express カウンタMiddleware 最小",
+  "version": "1.0.0",
+  "stack": ["prometheus", "express"],
+  "tags": ["metrics"],
+  "description": "HTTPリクエストカウンタの最小スタブ",
+  "files": [
+    { "path": "src/metrics/counter.ts", "template": "export function counter(){ return (_req:any,_res:any,next:any)=> next(); }\n" }
+  ]
+}
+

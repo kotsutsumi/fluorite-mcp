@@ -1,0 +1,12 @@
+{
+  "id": "custom-grafana-loki-json-pipeline-stage-minimal",
+  "name": "Grafana Loki JSON パイプラインステージ 最小",
+  "version": "1.0.0",
+  "stack": ["loki"],
+  "tags": ["logging"],
+  "description": "JSON解析ステージの概念スタブ",
+  "files": [
+    { "path": "src/logging/loki.pipeline.ts", "template": "export const pipeline = { stages: ['json'] };\n" }
+  ]
+}
+

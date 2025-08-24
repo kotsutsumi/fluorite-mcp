@@ -1,0 +1,12 @@
+{
+  "id": "custom-kafka-kstreams-topology-stub",
+  "name": "Kafka Streams トポロジ スタブ",
+  "version": "1.0.0",
+  "stack": ["kafka"],
+  "tags": ["stream"],
+  "description": "KStreamsトポロジの概念スタブ",
+  "files": [
+    { "path": "src/kafka/streams.topology.ts", "template": "export const topology = { sources: [], processors: [], sinks: [] };\n" }
+  ]
+}
+

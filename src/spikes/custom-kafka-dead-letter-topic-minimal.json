@@ -1,0 +1,12 @@
+{
+  "id": "custom-kafka-dead-letter-topic-minimal",
+  "name": "Kafka デッドレター トピック 最小",
+  "version": "1.0.0",
+  "stack": ["kafka"],
+  "tags": ["messaging"],
+  "description": "DLT運用の最小スタブ",
+  "files": [
+    { "path": "src/kafka/dlt.ts", "template": "export async function sendToDLT(topic:string, msg:string){ return { topic, msg }; }\n" }
+  ]
+}
+

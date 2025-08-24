@@ -1,0 +1,12 @@
+{
+  "id": "custom-pulumi-azure-blob-minimal",
+  "name": "Pulumi Azure Blob 最小",
+  "version": "1.0.0",
+  "stack": ["pulumi", "azure"],
+  "tags": ["iac"],
+  "description": "Azure Blobの最小Pulumiスタブ",
+  "files": [
+    { "path": "pulumi/azure.ts", "template": "export const container = { name: 'app' };\n" }
+  ]
+}
+

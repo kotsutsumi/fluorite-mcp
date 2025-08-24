@@ -1,0 +1,12 @@
+{
+  "id": "custom-gh-actions-release-please-minimal",
+  "name": "GH Actions release-please 最小",
+  "version": "1.0.0",
+  "stack": ["github-actions"],
+  "tags": ["release", "ci"],
+  "description": "release-pleaseの最小ワークフロー",
+  "files": [
+    { "path": ".github/workflows/release-please.yml", "template": "name: Release Please\non: [push]\njobs:\n  rp:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: google-github-actions/release-please-action@v4\n        with: { release-type: node }\n" }
+  ]
+}
+

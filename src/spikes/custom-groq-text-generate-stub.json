@@ -1,0 +1,12 @@
+{
+  "id": "custom-groq-text-generate-stub",
+  "name": "Grok/Groq テキスト生成 スタブ",
+  "version": "1.0.0",
+  "stack": ["groq"],
+  "tags": ["ai"],
+  "description": "Groqテキスト生成の概念スタブ",
+  "files": [
+    { "path": "src/ai/groq.ts", "template": "export async function generate(prompt:string){ return { text: 'hello' }; }\n" }
+  ]
+}
+

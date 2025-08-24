@@ -1,0 +1,12 @@
+{
+  "id": "custom-firebase-auth-oncall-verify-token-minimal",
+  "name": "Firebase Auth onCall トークン検証 最小",
+  "version": "1.0.0",
+  "stack": ["firebase", "functions"],
+  "tags": ["auth"],
+  "description": "onCall関数内でIDトークン検証（スタブ）",
+  "files": [
+    { "path": "firebase/functions/auth.ts", "template": "export async function verifyToken(_idToken:string){ return { uid: 'user_1' }; }\n" }
+  ]
+}
+

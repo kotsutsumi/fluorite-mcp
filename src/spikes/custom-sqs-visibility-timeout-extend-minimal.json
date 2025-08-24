@@ -1,0 +1,12 @@
+{
+  "id": "custom-sqs-visibility-timeout-extend-minimal",
+  "name": "SQS Visibility Timeout 延長 最小",
+  "version": "1.0.0",
+  "stack": ["sqs"],
+  "tags": ["messaging", "aws"],
+  "description": "メッセージ処理中の可視性延長スタブ",
+  "files": [
+    { "path": "src/aws/sqs.visibility.ts", "template": "export async function extend(receipt:string, seconds:number){ return { receipt, seconds }; }\n" }
+  ]
+}
+

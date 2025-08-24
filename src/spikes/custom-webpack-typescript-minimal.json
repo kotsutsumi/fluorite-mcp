@@ -1,0 +1,12 @@
+{
+  "id": "custom-webpack-typescript-minimal",
+  "name": "Webpack TypeScript 最小",
+  "version": "1.0.0",
+  "stack": ["webpack", "typescript"],
+  "tags": ["build"],
+  "description": "Webpack + TSの最小設定スタブ",
+  "files": [
+    { "path": "webpack.config.js", "template": "module.exports = { entry: './src/index.ts', module: { rules: [{ test: /\\\.ts$/, use: 'ts-loader' }] } };\n" }
+  ]
+}
+

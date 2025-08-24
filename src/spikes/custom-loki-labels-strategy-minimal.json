@@ -1,0 +1,12 @@
+{
+  "id": "custom-loki-labels-strategy-minimal",
+  "name": "Loki ラベル設計 最小",
+  "version": "1.0.0",
+  "stack": ["loki"],
+  "tags": ["logging"],
+  "description": "Lokiラベル設計の最小ガイド",
+  "files": [
+    { "path": "src/logging/loki.labels.ts", "template": "export const labels = { app: 'app', env: 'dev' };\n" }
+  ]
+}
+

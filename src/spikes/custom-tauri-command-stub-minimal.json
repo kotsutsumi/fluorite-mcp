@@ -1,0 +1,12 @@
+{
+  "id": "custom-tauri-command-stub-minimal",
+  "name": "Tauri コマンド スタブ 最小",
+  "version": "1.0.0",
+  "stack": ["tauri"],
+  "tags": ["desktop"],
+  "description": "Tauriコマンドの最小スタブ",
+  "files": [
+    { "path": "src/tauri/cmd.rs", "template": "pub fn hello()->String{ \"hello\".into() }\n" }
+  ]
+}
+

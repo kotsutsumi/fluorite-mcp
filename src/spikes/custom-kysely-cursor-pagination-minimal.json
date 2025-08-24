@@ -1,0 +1,12 @@
+{
+  "id": "custom-kysely-cursor-pagination-minimal",
+  "name": "Kysely カーソルページング 最小",
+  "version": "1.0.0",
+  "stack": ["kysely"],
+  "tags": ["db", "pagination"],
+  "description": "Kyselyのカーソルページング概念スタブ",
+  "files": [
+    { "path": "src/db/kysely.page.ts", "template": "export function page<T>(items:T[], limit:number){ return { items, nextCursor: undefined as any }; }\n" }
+  ]
+}
+

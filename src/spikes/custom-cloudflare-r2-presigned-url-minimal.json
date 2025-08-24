@@ -1,0 +1,12 @@
+{
+  "id": "custom-cloudflare-r2-presigned-url-minimal",
+  "name": "Cloudflare R2 署名URL 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare-r2"],
+  "tags": ["storage", "edge"],
+  "description": "R2の署名URLを返す最小スタブ",
+  "files": [
+    { "path": "worker/r2.ts", "template": "export async function presign(key:string){ return { url: 'https://r2.example.com/'+key }; }\n" }
+  ]
+}
+

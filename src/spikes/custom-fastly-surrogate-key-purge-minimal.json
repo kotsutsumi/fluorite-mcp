@@ -1,0 +1,12 @@
+{
+  "id": "custom-fastly-surrogate-key-purge-minimal",
+  "name": "Fastly Surrogate-Key Purge 最小",
+  "version": "1.0.0",
+  "stack": ["fastly"],
+  "tags": ["cdn"],
+  "description": "Surrogate-Keyベースのパージ概念スタブ",
+  "files": [
+    { "path": "src/cdn/fastly.ts", "template": "export async function purge(key:string){ return { key, ok: true }; }\n" }
+  ]
+}
+

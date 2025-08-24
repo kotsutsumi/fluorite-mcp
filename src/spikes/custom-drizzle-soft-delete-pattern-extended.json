@@ -1,0 +1,12 @@
+{
+  "id": "custom-drizzle-soft-delete-pattern-extended",
+  "name": "Drizzle ソフトデリート パターン拡張",
+  "version": "1.0.0",
+  "stack": ["drizzle"],
+  "tags": ["db"],
+  "description": "deleted_at列を用いた拡張ソフトデリート",
+  "files": [
+    { "path": "src/drizzle/soft-delete.ts", "template": "export const softDelete = { field: 'deleted_at' };\n" }
+  ]
+}
+

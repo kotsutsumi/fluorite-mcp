@@ -1,0 +1,12 @@
+{
+  "id": "custom-express-cors-config-minimal",
+  "name": "Express CORS 設定 最小",
+  "version": "1.0.0",
+  "stack": ["express"],
+  "tags": ["security"],
+  "description": "CORS設定の最小スタブ",
+  "files": [
+    { "path": "src/security/cors.ts", "template": "export function cors(){ return (_req:any,_res:any,next:any)=> next(); }\n" }
+  ]
+}
+

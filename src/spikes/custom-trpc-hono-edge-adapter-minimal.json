@@ -1,0 +1,11 @@
+{
+  "id": "custom-trpc-hono-edge-adapter-minimal",
+  "name": "tRPC Hono Edge Adapter 最小",
+  "version": "1.0.0",
+  "stack": ["trpc", "hono"],
+  "tags": ["api", "edge"],
+  "description": "Hono EdgeでtRPCを扱う最小スタブ",
+  "files": [
+    { "path": "src/trpc/hono.ts", "template": "export const app = { route: '/trpc' };\n" }
+  ]}
+

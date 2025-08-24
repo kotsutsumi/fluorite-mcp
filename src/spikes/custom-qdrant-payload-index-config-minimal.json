@@ -1,0 +1,12 @@
+{
+  "id": "custom-qdrant-payload-index-config-minimal",
+  "name": "Qdrant Payload Index 設定 最小",
+  "version": "1.0.0",
+  "stack": ["qdrant"],
+  "tags": ["vector"],
+  "description": "Payloadインデックスの設定スタブ",
+  "files": [
+    { "path": "src/vectors/qdrant.payload.ts", "template": "export const payloadIndex = { field: 'tag', type: 'keyword' };\n" }
+  ]
+}
+

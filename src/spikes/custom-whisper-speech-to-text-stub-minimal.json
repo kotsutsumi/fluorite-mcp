@@ -1,0 +1,12 @@
+{
+  "id": "custom-whisper-speech-to-text-stub-minimal",
+  "name": "Whisper 音声→テキスト スタブ 最小",
+  "version": "1.0.0",
+  "stack": ["whisper"],
+  "tags": ["speech"],
+  "description": "音声→テキストの概念スタブ",
+  "files": [
+    { "path": "src/ai/whisper.ts", "template": "export async function transcribe(_audio:Uint8Array){ return { text: 'hello' }; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-typesense-synonyms-settings-minimal",
+  "name": "Typesense Synonyms 設定 最小",
+  "version": "1.0.0",
+  "stack": ["typesense"],
+  "tags": ["search"],
+  "description": "TypesenseのSynonyms設定スタブ",
+  "files": [
+    { "path": "src/search/typesense.synonyms.ts", "template": "export const synonyms = { tv: ['television'] };\n" }
+  ]
+}
+

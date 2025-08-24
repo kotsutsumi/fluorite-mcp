@@ -1,0 +1,12 @@
+{
+  "id": "custom-dynamodb-partiql-query-minimal",
+  "name": "DynamoDB PartiQL クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["dynamodb"],
+  "tags": ["db"],
+  "description": "PartiQLでのクエリ概念スタブ",
+  "files": [
+    { "path": "src/db/dynamodb.ts", "template": "export async function query(q:string){ return { items: [] }; }\n" }
+  ]
+}
+

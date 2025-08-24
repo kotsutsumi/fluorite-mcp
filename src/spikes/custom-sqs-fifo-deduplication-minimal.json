@@ -1,0 +1,12 @@
+{
+  "id": "custom-sqs-fifo-deduplication-minimal",
+  "name": "SQS FIFO 重複排除 最小",
+  "version": "1.0.0",
+  "stack": ["sqs"],
+  "tags": ["messaging", "aws"],
+  "description": "FIFOキューの重複排除IDの最小スタブ",
+  "files": [
+    { "path": "src/aws/sqs.fifo.ts", "template": "export function dedupId(payload:string){ return 'id-'+payload.length; }\n" }
+  ]
+}
+

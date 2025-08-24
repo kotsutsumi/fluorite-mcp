@@ -1,0 +1,12 @@
+{
+  "id": "custom-otel-metrics-prometheus-exporter-minimal",
+  "name": "OpenTelemetry Metrics Prometheus Exporter 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry", "prometheus"],
+  "tags": ["metrics"],
+  "description": "Prometheus Exporterの概念スタブ",
+  "files": [
+    { "path": "src/otel/metrics.prom.ts", "template": "export function exporter(){ return { path: '/metrics' }; }\n" }
+  ]
+}
+

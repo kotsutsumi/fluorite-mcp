@@ -1,0 +1,11 @@
+{
+  "id": "custom-nats-request-timeout-minimal",
+  "name": "NATS リクエストタイムアウト 最小",
+  "version": "1.0.0",
+  "stack": ["nats"],
+  "tags": ["messaging"],
+  "description": "タイムアウト付きリクエストの最小スタブ",
+  "files": [
+    { "path": "src/nats/request.ts", "template": "export async function request(subj:string, data:string, timeoutMs=1000){ return { subj, data, timeoutMs }; }\n" }
+  ]}
+

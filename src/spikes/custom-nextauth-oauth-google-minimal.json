@@ -1,0 +1,12 @@
+{
+  "id": "custom-nextauth-oauth-google-minimal",
+  "name": "NextAuth OAuth Google 最小",
+  "version": "1.0.0",
+  "stack": ["next-auth", "nextjs"],
+  "tags": ["auth"],
+  "description": "Google OAuthプロバイダの最小",
+  "files": [
+    { "path": "app/api/auth/[...nextauth]/route.ts", "template": "export const GET = async ()=> new Response('ok'); export const POST = GET;\n" }
+  ]
+}
+

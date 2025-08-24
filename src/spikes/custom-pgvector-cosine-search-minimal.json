@@ -1,0 +1,12 @@
+{
+  "id": "custom-pgvector-cosine-search-minimal",
+  "name": "pgvector コサイン検索 最小",
+  "version": "1.0.0",
+  "stack": ["pgvector", "postgres"],
+  "tags": ["vector"],
+  "description": "コサイン類似度での検索概念スタブ",
+  "files": [
+    { "path": "src/vectors/pgvector.search.ts", "template": "export async function search(vec:number[]){ return { matches: [] }; }\n" }
+  ]
+}
+

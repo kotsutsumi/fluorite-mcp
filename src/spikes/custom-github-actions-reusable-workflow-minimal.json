@@ -1,0 +1,12 @@
+{
+  "id": "custom-github-actions-reusable-workflow-minimal",
+  "name": "GH Actions 再利用ワークフロー 最小",
+  "version": "1.0.0",
+  "stack": ["github-actions"],
+  "tags": ["ci"],
+  "description": "reusable workflowの呼び出し例",
+  "files": [
+    { "path": ".github/workflows/reusable.yml", "template": "name: Reusable\non: [workflow_call]\njobs: { echo: { runs-on: ubuntu-latest, steps: [{ run: 'echo hi' }] } }\n" }
+  ]
+}
+

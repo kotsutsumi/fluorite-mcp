@@ -1,0 +1,12 @@
+{
+  "id": "custom-web-push-vapid-send-minimal",
+  "name": "Web Push VAPID 送信 最小",
+  "version": "1.0.0",
+  "stack": ["web-push"],
+  "tags": ["push"],
+  "description": "VAPID想定の送信スタブ",
+  "files": [
+    { "path": "src/push/webpush.ts", "template": "export async function send(sub:any,payload:any){ return { ok: true }; }\n" }
+  ]
+}
+

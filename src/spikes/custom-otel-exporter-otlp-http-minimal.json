@@ -1,0 +1,12 @@
+{
+  "id": "custom-otel-exporter-otlp-http-minimal",
+  "name": "OTLP HTTP Exporter 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry"],
+  "tags": ["exporter", "otlp"],
+  "description": "OTLP HTTPエクスポート設定スタブ",
+  "files": [
+    { "path": "src/otel/otlp-http.ts", "template": "export function exporter(){ return { url: process.env.OTLP_HTTP_URL || 'http://localhost:4318' }; }\n" }
+  ]
+}
+

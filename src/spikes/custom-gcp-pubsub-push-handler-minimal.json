@@ -1,0 +1,12 @@
+{
+  "id": "custom-gcp-pubsub-push-handler-minimal",
+  "name": "GCP Pub/Sub Push ハンドラ最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "pubsub", "nextjs"],
+  "tags": ["gcp", "messaging"],
+  "description": "Pub/Sub Pushを受けるNext.jsルート最小",
+  "files": [
+    { "path": "app/api/gcp/pubsub/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(){ return NextResponse.json({ ack: true }); }\n" }
+  ]
+}
+

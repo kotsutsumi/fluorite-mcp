@@ -1,0 +1,12 @@
+{
+  "id": "custom-pulumi-gcp-storage-bucket-minimal",
+  "name": "Pulumi GCP Storage バケット 最小",
+  "version": "1.0.0",
+  "stack": ["pulumi", "gcp"],
+  "tags": ["iac"],
+  "description": "GCP Storageバケットの最小スタブ",
+  "files": [
+    { "path": "pulumi/gcp.ts", "template": "export const bucket = { name: 'example' };\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-ga4-measurement-protocol-minimal",
+  "name": "GA4 Measurement Protocol 最小",
+  "version": "1.0.0",
+  "stack": ["ga4"],
+  "tags": ["analytics"],
+  "description": "GA4計測プロトコルのイベント送信スタブ",
+  "files": [
+    { "path": "src/analytics/ga4.ts", "template": "export async function sendEvent(name:string, params:any){ return { name, params }; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-sqlite-fts5-search-minimal",
+  "name": "SQLite FTS5 検索 最小",
+  "version": "1.0.0",
+  "stack": ["sqlite"],
+  "tags": ["db", "search"],
+  "description": "FTS5での全文検索概念スタブ",
+  "files": [
+    { "path": "src/sqlite/fts5.ts", "template": "export async function search(q:string){ return { hits: [] }; }\n" }
+  ]
+}
+

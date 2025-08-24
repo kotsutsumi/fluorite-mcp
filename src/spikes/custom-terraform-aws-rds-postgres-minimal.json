@@ -1,0 +1,12 @@
+{
+  "id": "custom-terraform-aws-rds-postgres-minimal",
+  "name": "Terraform AWS RDS Postgres 最小",
+  "version": "1.0.0",
+  "stack": ["terraform", "aws", "postgres"],
+  "tags": ["iac"],
+  "description": "RDS Postgresの最小Terraform",
+  "files": [
+    { "path": "infra/main.tf", "template": "terraform { required_providers { aws = { source = 'hashicorp/aws' } } }\nprovider 'aws' { region = 'us-east-1' }\n# rds instance placeholder\n" }
+  ]
+}
+

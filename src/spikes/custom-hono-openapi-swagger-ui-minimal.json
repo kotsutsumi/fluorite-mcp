@@ -1,0 +1,11 @@
+{
+  "id": "custom-hono-openapi-swagger-ui-minimal",
+  "name": "Hono OpenAPI + SwaggerUI 最小",
+  "version": "1.0.0",
+  "stack": ["hono", "openapi"],
+  "tags": ["api"],
+  "description": "HonoでOpenAPI/SwaggerUI統合の最小スタブ",
+  "files": [
+    { "path": "src/hono/openapi.ts", "template": "export const spec = { openapi: '3.0.0', info: { title: 'API', version: '1.0.0' } };\n" }
+  ]}
+

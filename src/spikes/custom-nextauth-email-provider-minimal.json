@@ -1,0 +1,12 @@
+{
+  "id": "custom-nextauth-email-provider-minimal",
+  "name": "NextAuth Email Provider 最小",
+  "version": "1.0.0",
+  "stack": ["next-auth", "nextjs"],
+  "tags": ["auth"],
+  "description": "メールリンクプロバイダの最小スタブ",
+  "files": [
+    { "path": "app/api/auth/[...nextauth]/route.ts", "template": "export const GET = async ()=> new Response('ok'); export const POST = GET;\n" }
+  ]
+}
+

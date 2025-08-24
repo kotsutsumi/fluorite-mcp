@@ -1,0 +1,11 @@
+{
+  "id": "custom-amplitude-http-track-minimal",
+  "name": "Amplitude HTTP Track 最小",
+  "version": "1.0.0",
+  "stack": ["amplitude"],
+  "tags": ["analytics"],
+  "description": "Amplitude HTTP APIの最小スタブ",
+  "files": [
+    { "path": "src/analytics/amplitude.ts", "template": "export async function track(event:string, userId:string){ return { event, userId }; }\n" }
+  ]}
+

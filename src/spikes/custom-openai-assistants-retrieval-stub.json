@@ -1,0 +1,12 @@
+{
+  "id": "custom-openai-assistants-retrieval-stub",
+  "name": "OpenAI Assistants Retrieval スタブ",
+  "version": "1.0.0",
+  "stack": ["openai"],
+  "tags": ["ai"],
+  "description": "Assistants + Retrievalの概念スタブ",
+  "files": [
+    { "path": "src/ai/openai.assistants.ts", "template": "export async function retrieve(q:string){ return { answer: '...' }; }\n" }
+  ]
+}
+

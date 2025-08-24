@@ -1,0 +1,12 @@
+{
+  "id": "custom-nextjs-route-handler-file-uploadstream-minimal",
+  "name": "Next.js Route Handler ファイルストリーム 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["upload"],
+  "description": "Route Handlerでストリーム処理（スタブ）",
+  "files": [
+    { "path": "app/api/upload/stream/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(){ return NextResponse.json({ ok: true }); }\n" }
+  ]
+}
+

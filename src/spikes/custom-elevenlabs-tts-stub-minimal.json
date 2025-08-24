@@ -1,0 +1,12 @@
+{
+  "id": "custom-elevenlabs-tts-stub-minimal",
+  "name": "ElevenLabs TTS スタブ 最小",
+  "version": "1.0.0",
+  "stack": ["elevenlabs"],
+  "tags": ["tts"],
+  "description": "テキスト→音声の概念スタブ",
+  "files": [
+    { "path": "src/ai/tts.elevenlabs.ts", "template": "export async function speak(text:string){ return { audio: new Uint8Array() }; }\n" }
+  ]
+}
+

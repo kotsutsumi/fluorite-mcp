@@ -1,0 +1,12 @@
+{
+  "id": "custom-terraform-gcp-cloud-functions-minimal",
+  "name": "Terraform GCP Cloud Functions 最小",
+  "version": "1.0.0",
+  "stack": ["terraform", "gcp"],
+  "tags": ["iac"],
+  "description": "GCFの最小Terraform",
+  "files": [
+    { "path": "infra/main.tf", "template": "terraform { required_providers { google = { source = 'hashicorp/google' } } }\nprovider 'google' { project = 'demo' region = 'us-central1' }\n# function resource placeholder\n" }
+  ]
+}
+

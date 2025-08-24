@@ -1,0 +1,12 @@
+{
+  "id": "custom-ldap-simple-bind-check-minimal",
+  "name": "LDAP Simple Bind チェック 最小",
+  "version": "1.0.0",
+  "stack": ["ldap"],
+  "tags": ["auth"],
+  "description": "LDAP Simple Bindの概念スタブ",
+  "files": [
+    { "path": "src/auth/ldap.ts", "template": "export async function bind(user:string, pass:string){ return user.length>0 && pass.length>0; }\n" }
+  ]
+}
+

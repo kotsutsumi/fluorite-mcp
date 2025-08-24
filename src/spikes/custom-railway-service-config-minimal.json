@@ -1,0 +1,12 @@
+{
+  "id": "custom-railway-service-config-minimal",
+  "name": "Railway サービス設定 最小",
+  "version": "1.0.0",
+  "stack": ["railway"],
+  "tags": ["deploy"],
+  "description": "Railwayサービスの最小設定スタブ",
+  "files": [
+    { "path": "railway.json", "template": "{ \"services\": [{ \"name\": \"web\" }] }\n" }
+  ]
+}
+

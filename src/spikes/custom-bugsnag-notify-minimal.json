@@ -1,0 +1,12 @@
+{
+  "id": "custom-bugsnag-notify-minimal",
+  "name": "Bugsnag 通知 最小",
+  "version": "1.0.0",
+  "stack": ["bugsnag"],
+  "tags": ["error"],
+  "description": "Bugsnag通知の概念スタブ",
+  "files": [
+    { "path": "src/errors/bugsnag.ts", "template": "export async function notify(err:any){ return { sent: true }; }\n" }
+  ]
+}
+

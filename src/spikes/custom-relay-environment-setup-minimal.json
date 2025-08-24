@@ -1,0 +1,11 @@
+{
+  "id": "custom-relay-environment-setup-minimal",
+  "name": "Relay Environment 設定 最小",
+  "version": "1.0.0",
+  "stack": ["relay"],
+  "tags": ["graphql", "client"],
+  "description": "Relay環境の最小スタブ",
+  "files": [
+    { "path": "src/relay/environment.ts", "template": "export const environment = { network: {}, store: {} };\n" }
+  ]}
+

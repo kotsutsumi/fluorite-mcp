@@ -1,0 +1,12 @@
+{
+  "id": "custom-cloudflare-workers-cache-api-minimal",
+  "name": "Workers Cache API 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare-workers"],
+  "tags": ["edge"],
+  "description": "Cache APIの概念スタブ",
+  "files": [
+    { "path": "worker/cache.ts", "template": "export async function cacheGet(key:string){ return null as any; }\n" }
+  ]
+}
+

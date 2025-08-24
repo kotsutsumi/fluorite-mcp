@@ -1,0 +1,12 @@
+{
+  "id": "custom-pwa-service-worker-minimal",
+  "name": "PWA Service Worker 最小",
+  "version": "1.0.0",
+  "stack": ["pwa"],
+  "tags": ["pwa"],
+  "description": "最小のService Workerスケルトン",
+  "files": [
+    { "path": "public/sw.js", "template": "self.addEventListener('install', ()=>{}); self.addEventListener('fetch', ()=>{});\n" }
+  ]
+}
+

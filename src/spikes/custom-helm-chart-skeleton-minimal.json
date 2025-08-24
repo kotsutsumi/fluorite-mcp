@@ -1,0 +1,13 @@
+{
+  "id": "custom-helm-chart-skeleton-minimal",
+  "name": "Helm Chart スケルトン 最小",
+  "version": "1.0.0",
+  "stack": ["helm"],
+  "tags": ["k8s"],
+  "description": "Chart.yaml/values.yamlの最小",
+  "files": [
+    { "path": "chart/Chart.yaml", "template": "apiVersion: v2\nname: app\nversion: 0.1.0\n" },
+    { "path": "chart/values.yaml", "template": "replicaCount: 1\n" }
+  ]
+}
+

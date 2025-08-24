@@ -1,0 +1,12 @@
+{
+  "id": "custom-opensearch-knn-vector-index-minimal",
+  "name": "OpenSearch k-NN ベクターインデックス 最小",
+  "version": "1.0.0",
+  "stack": ["opensearch"],
+  "tags": ["vector"],
+  "description": "k-NNベクターインデックスの概念スタブ",
+  "files": [
+    { "path": "src/search/opensearch.knn.ts", "template": "export const knn = { dimension: 1536, engine: 'nmslib' };\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-algolia-rules-create-minimal",
+  "name": "Algolia ルール作成 最小",
+  "version": "1.0.0",
+  "stack": ["algolia"],
+  "tags": ["search"],
+  "description": "Algolia検索ルール作成の最小スタブ",
+  "files": [
+    { "path": "src/search/algolia.rules.ts", "template": "export async function createRule(){ return { created: true }; }\n" }
+  ]
+}
+

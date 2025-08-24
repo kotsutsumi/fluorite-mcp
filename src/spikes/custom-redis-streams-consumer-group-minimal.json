@@ -1,0 +1,12 @@
+{
+  "id": "custom-redis-streams-consumer-group-minimal",
+  "name": "Redis Streams コンシューマグループ 最小",
+  "version": "1.0.0",
+  "stack": ["redis"],
+  "tags": ["messaging"],
+  "description": "Redis Streamsのコンシューマグループ最小スタブ",
+  "files": [
+    { "path": "src/redis/streams.ts", "template": "export async function xreadgroup(group:string, consumer:string){ return []; }\n" }
+  ]
+}
+

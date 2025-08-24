@@ -1,0 +1,12 @@
+{
+  "id": "custom-astro-image-service-cloudinary-minimal",
+  "name": "Astro Image Service Cloudinary 最小",
+  "version": "1.0.0",
+  "stack": ["astro", "cloudinary"],
+  "tags": ["image"],
+  "description": "AstroのCloudinaryイメージサービススタブ",
+  "files": [
+    { "path": "src/astro/image.cloudinary.ts", "template": "export function url(src:string){ return src+'?q=75'; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-nats-queue-group-minimal",
+  "name": "NATS Queue Group 最小",
+  "version": "1.0.0",
+  "stack": ["nats"],
+  "tags": ["messaging"],
+  "description": "キューグループ購読の概念スタブ",
+  "files": [
+    { "path": "src/nats/queue.ts", "template": "export async function subscribe(subject:string, group:string){ return { subject, group }; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-cloudfront-signed-url-minimal",
+  "name": "CloudFront 署名URL 最小",
+  "version": "1.0.0",
+  "stack": ["cloudfront", "aws"],
+  "tags": ["cdn"],
+  "description": "CloudFrontの署名URLスタブ",
+  "files": [
+    { "path": "src/cdn/cloudfront.ts", "template": "export function sign(url:string){ return url+'?sig=123'; }\n" }
+  ]
+}
+

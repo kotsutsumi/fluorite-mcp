@@ -1,0 +1,12 @@
+{
+  "id": "custom-cloudinary-transform-url-minimal",
+  "name": "Cloudinary 変換URL 最小",
+  "version": "1.0.0",
+  "stack": ["cloudinary"],
+  "tags": ["image"],
+  "description": "Cloudinary変換URL生成の最小スタブ",
+  "files": [
+    { "path": "src/image/cloudinary.ts", "template": "export function transform(src:string){ return src + '?w=800'; }\n" }
+  ]
+}
+

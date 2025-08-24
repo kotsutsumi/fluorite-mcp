@@ -1,0 +1,12 @@
+{
+  "id": "custom-nomad-job-spec-minimal",
+  "name": "HashiCorp Nomad Job Spec 最小",
+  "version": "1.0.0",
+  "stack": ["nomad"],
+  "tags": ["orchestration"],
+  "description": "Nomadジョブ仕様の最小",
+  "files": [
+    { "path": "nomad/app.nomad", "template": "job \"app\" { datacenters = [\"dc1\"] }\n" }
+  ]
+}
+

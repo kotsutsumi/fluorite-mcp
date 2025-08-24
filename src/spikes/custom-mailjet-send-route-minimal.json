@@ -1,0 +1,12 @@
+{
+  "id": "custom-mailjet-send-route-minimal",
+  "name": "Mailjet 送信 ルート 最小",
+  "version": "1.0.0",
+  "stack": ["mailjet", "nextjs"],
+  "tags": ["email"],
+  "description": "Mailjet送信のNext.jsルート最小",
+  "files": [
+    { "path": "app/api/mailjet/send/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(){ return NextResponse.json({ ok: true }); }\n" }
+  ]
+}
+

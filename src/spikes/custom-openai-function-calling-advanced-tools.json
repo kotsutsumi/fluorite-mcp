@@ -1,0 +1,12 @@
+{
+  "id": "custom-openai-function-calling-advanced-tools",
+  "name": "OpenAI Function Calling 高度ツール",
+  "version": "1.0.0",
+  "stack": ["openai"],
+  "tags": ["ai"],
+  "description": "複数ツール定義の最小スタブ",
+  "files": [
+    { "path": "src/ai/openai.tools.ts", "template": "export const tools=[{name:'search'},{name:'calc'}];\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-prometheus-histogram-latency-minimal",
+  "name": "Prometheus ヒストグラム レイテンシ 最小",
+  "version": "1.0.0",
+  "stack": ["prometheus"],
+  "tags": ["metrics"],
+  "description": "レイテンシ計測ヒストグラムの概念スタブ",
+  "files": [
+    { "path": "src/metrics/histogram.ts", "template": "export function histogram(){ return { observe: (_v:number)=>{} }; }\n" }
+  ]
+}
+

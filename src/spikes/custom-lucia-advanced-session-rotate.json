@@ -1,0 +1,12 @@
+{
+  "id": "custom-lucia-advanced-session-rotate",
+  "name": "Lucia 高度: セッションローテート",
+  "version": "1.0.0",
+  "stack": ["lucia"],
+  "tags": ["auth"],
+  "description": "セッションローテーションの概念スタブ",
+  "files": [
+    { "path": "src/auth/lucia.ts", "template": "export async function rotateSession(){ return { ok: true }; }\n" }
+  ]
+}
+

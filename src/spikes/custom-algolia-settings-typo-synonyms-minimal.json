@@ -1,0 +1,12 @@
+{
+  "id": "custom-algolia-settings-typo-synonyms-minimal",
+  "name": "Algolia 設定 Typo+Synonyms 最小",
+  "version": "1.0.0",
+  "stack": ["algolia"],
+  "tags": ["search"],
+  "description": "TypoとSynonyms設定の最小",
+  "files": [
+    { "path": "src/search/algolia.settings.ts", "template": "export const settings = { typoTolerance: 'min', synonyms: [{ objectID: 'tv', synonyms: ['television'] }] };\n" }
+  ]
+}
+

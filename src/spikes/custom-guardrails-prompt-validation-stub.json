@@ -1,0 +1,12 @@
+{
+  "id": "custom-guardrails-prompt-validation-stub",
+  "name": "Guardrails プロンプト検証 スタブ",
+  "version": "1.0.0",
+  "stack": ["guardrails"],
+  "tags": ["ai", "security"],
+  "description": "プロンプト検証/制約の概念スタブ",
+  "files": [
+    { "path": "src/ai/guardrails.ts", "template": "export function validate(prompt:string){ return prompt.length < 1000; }\n" }
+  ]
+}
+

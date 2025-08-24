@@ -1,0 +1,12 @@
+{
+  "id": "custom-k8s-horizontal-pod-autoscaler-minimal",
+  "name": "K8s HorizontalPodAutoscaler 最小",
+  "version": "1.0.0",
+  "stack": ["kubernetes"],
+  "tags": ["k8s"],
+  "description": "HPAの最小定義",
+  "files": [
+    { "path": "k8s/hpa.yml", "template": "apiVersion: autoscaling/v2\nkind: HorizontalPodAutoscaler\nmetadata: { name: app }\nspec: { minReplicas: 1, maxReplicas: 3, scaleTargetRef: { apiVersion: 'apps/v1', kind: 'Deployment', name: 'app' }, metrics: [] }\n" }
+  ]
+}
+

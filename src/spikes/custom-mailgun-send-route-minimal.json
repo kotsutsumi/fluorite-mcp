@@ -1,0 +1,12 @@
+{
+  "id": "custom-mailgun-send-route-minimal",
+  "name": "Mailgun 送信 ルート 最小",
+  "version": "1.0.0",
+  "stack": ["mailgun", "nextjs"],
+  "tags": ["email"],
+  "description": "Mailgun送信のNext.jsルート最小",
+  "files": [
+    { "path": "app/api/mailgun/send/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(){ return NextResponse.json({ ok: true }); }\n" }
+  ]
+}
+

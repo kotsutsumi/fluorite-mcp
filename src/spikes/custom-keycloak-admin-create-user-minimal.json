@@ -1,0 +1,12 @@
+{
+  "id": "custom-keycloak-admin-create-user-minimal",
+  "name": "Keycloak Admin ユーザー作成 最小",
+  "version": "1.0.0",
+  "stack": ["keycloak"],
+  "tags": ["auth"],
+  "description": "Keycloak Admin APIでユーザー作成（スタブ）",
+  "files": [
+    { "path": "src/auth/keycloak.admin.ts", "template": "export async function createUser(username:string){ return { id: 1, username }; }\n" }
+  ]
+}
+

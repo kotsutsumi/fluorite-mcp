@@ -1,0 +1,12 @@
+{
+  "id": "custom-hapi-route-minimal",
+  "name": "hapi ルート 最小",
+  "version": "1.0.0",
+  "stack": ["hapi"],
+  "tags": ["api"],
+  "description": "hapiの最小ルート",
+  "files": [
+    { "path": "src/hapi/server.ts", "template": "export function create(){ return { route: '/health' }; }\n" }
+  ]
+}
+

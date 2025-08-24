@@ -1,0 +1,12 @@
+{
+  "id": "custom-drizzle-partial-index-example",
+  "name": "Drizzle パーシャルインデックス 例",
+  "version": "1.0.0",
+  "stack": ["drizzle"],
+  "tags": ["db"],
+  "description": "条件付きインデックスの概念スタブ",
+  "files": [
+    { "path": "src/drizzle/indexes.ts", "template": "export const partialIndex = { on: 'post', where: 'deleted_at IS NULL' };\n" }
+  ]
+}
+

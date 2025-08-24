@@ -1,0 +1,12 @@
+{
+  "id": "custom-kysely-upsert-on-conflict-minimal",
+  "name": "Kysely Upsert ON CONFLICT 最小",
+  "version": "1.0.0",
+  "stack": ["kysely"],
+  "tags": ["db"],
+  "description": "ON CONFLICT upsertの概念スタブ",
+  "files": [
+    { "path": "src/db/kysely.upsert.ts", "template": "export async function upsert(){ return { ok: true }; }\n" }
+  ]
+}
+

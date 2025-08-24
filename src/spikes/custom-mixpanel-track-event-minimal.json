@@ -1,0 +1,11 @@
+{
+  "id": "custom-mixpanel-track-event-minimal",
+  "name": "Mixpanel Track イベント 最小",
+  "version": "1.0.0",
+  "stack": ["mixpanel"],
+  "tags": ["analytics"],
+  "description": "MixpanelのTrackイベント送信スタブ",
+  "files": [
+    { "path": "src/analytics/mixpanel.ts", "template": "export async function track(event:string, props:any){ return { event }; }\n" }
+  ]}
+

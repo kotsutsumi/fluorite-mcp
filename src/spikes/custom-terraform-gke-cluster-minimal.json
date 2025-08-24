@@ -1,0 +1,12 @@
+{
+  "id": "custom-terraform-gke-cluster-minimal",
+  "name": "Terraform GKE クラスタ 最小",
+  "version": "1.0.0",
+  "stack": ["terraform", "gke"],
+  "tags": ["iac"],
+  "description": "GKEクラスタ最小スタブ",
+  "files": [
+    { "path": "infra/gke.tf", "template": "# gke cluster placeholder\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-sentry-sampling-rules-server-minimal",
+  "name": "Sentry サンプリングルール（サーバ）最小",
+  "version": "1.0.0",
+  "stack": ["sentry"],
+  "tags": ["monitoring", "tracing"],
+  "description": "サーバ側のサンプリングルール設定スタブ",
+  "files": [
+    { "path": "src/sentry.sampling.ts", "template": "export const tracesSampler = (_ctx:any)=> 0.2;\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-webauthn-register-verify-minimal",
+  "name": "WebAuthn 登録/検証 最小",
+  "version": "1.0.0",
+  "stack": ["webauthn"],
+  "tags": ["auth"],
+  "description": "WebAuthn登録と検証の概念スタブ",
+  "files": [
+    { "path": "src/auth/webauthn.ts", "template": "export async function register(){ return { id: 'cred' }; }\nexport async function verify(){ return { ok: true }; }\n" }
+  ]
+}
+

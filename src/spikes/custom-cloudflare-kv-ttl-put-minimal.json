@@ -1,0 +1,12 @@
+{
+  "id": "custom-cloudflare-kv-ttl-put-minimal",
+  "name": "Cloudflare KV TTL put 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare-workers"],
+  "tags": ["edge"],
+  "description": "KVにTTL付きputの概念",
+  "files": [
+    { "path": "worker/kv.ttl.ts", "template": "export async function put(k:string,v:string,ttl:number){ return { k, v, ttl }; }\n" }
+  ]
+}
+

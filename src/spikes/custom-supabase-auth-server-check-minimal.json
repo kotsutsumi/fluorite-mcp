@@ -1,0 +1,12 @@
+{
+  "id": "custom-supabase-auth-server-check-minimal",
+  "name": "Supabase Auth サーバチェック 最小",
+  "version": "1.0.0",
+  "stack": ["supabase-auth", "nextjs"],
+  "tags": ["auth"],
+  "description": "サーバ側でSupabaseセッションを確認する最小スタブ",
+  "files": [
+    { "path": "app/api/auth/check/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function GET(){ return NextResponse.json({ authenticated: true }); }\n" }
+  ]
+}
+

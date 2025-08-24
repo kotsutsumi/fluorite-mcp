@@ -1,0 +1,12 @@
+{
+  "id": "custom-mysql-json-field-query-minimal",
+  "name": "MySQL JSONフィールド クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["mysql"],
+  "tags": ["db"],
+  "description": "JSON_EXTRACTなどの概念スタブ",
+  "files": [
+    { "path": "src/db/mysql.json.ts", "template": "export function queryPath(path:string){ return { path }; }\n" }
+  ]
+}
+

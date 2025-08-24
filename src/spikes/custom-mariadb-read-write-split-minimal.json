@@ -1,0 +1,12 @@
+{
+  "id": "custom-mariadb-read-write-split-minimal",
+  "name": "MariaDB 読み書き分離 最小",
+  "version": "1.0.0",
+  "stack": ["mariadb"],
+  "tags": ["db"],
+  "description": "R/W分離ルーティングの概念スタブ",
+  "files": [
+    { "path": "src/db/mariadb.router.ts", "template": "export function route(sql:string){ return sql.trim().toUpperCase().startsWith('SELECT') ? 'replica' : 'primary'; }\n" }
+  ]
+}
+

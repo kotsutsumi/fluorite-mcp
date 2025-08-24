@@ -1,0 +1,12 @@
+{
+  "id": "custom-rollup-library-ts-minimal",
+  "name": "Rollup ライブラリ TS 最小",
+  "version": "1.0.0",
+  "stack": ["rollup", "typescript"],
+  "tags": ["build"],
+  "description": "RollupでTSライブラリをビルドする最小設定",
+  "files": [
+    { "path": "rollup.config.mjs", "template": "export default { input: 'src/index.ts', output: [{ file: 'dist/index.js', format: 'esm' }] };\n" }
+  ]
+}
+

@@ -1,0 +1,11 @@
+{
+  "id": "custom-gcp-kms-encrypt-decrypt-minimal",
+  "name": "GCP KMS 暗号化/復号 最小",
+  "version": "1.0.0",
+  "stack": ["gcp-kms"],
+  "tags": ["secrets"],
+  "description": "GCP KMSの暗号化/復号スタブ",
+  "files": [
+    { "path": "src/gcp/kms.ts", "template": "export async function encrypt(p:string){ return { ciphertext: '...' }; }\nexport async function decrypt(c:string){ return { plaintext: '...' }; }\n" }
+  ]}
+

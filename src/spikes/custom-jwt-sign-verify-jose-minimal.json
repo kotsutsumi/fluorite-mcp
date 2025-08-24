@@ -1,0 +1,12 @@
+{
+  "id": "custom-jwt-sign-verify-jose-minimal",
+  "name": "jose JWT 署名/検証 最小",
+  "version": "1.0.0",
+  "stack": ["jose"],
+  "tags": ["security"],
+  "description": "joseでの署名/検証の概念スタブ",
+  "files": [
+    { "path": "src/security/jwt.ts", "template": "export async function sign(_p:any){ return 'token'; }\nexport async function verify(_t:string){ return { sub: '1' }; }\n" }
+  ]
+}
+

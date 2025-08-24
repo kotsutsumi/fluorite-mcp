@@ -1,0 +1,12 @@
+{
+  "id": "custom-cloudflare-kv-list-keys-minimal",
+  "name": "Cloudflare KV キー一覧 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare-workers"],
+  "tags": ["edge"],
+  "description": "KVのキー一覧取得スタブ",
+  "files": [
+    { "path": "worker/kv.list.ts", "template": "export async function list(){ return { keys: [] }; }\n" }
+  ]
+}
+

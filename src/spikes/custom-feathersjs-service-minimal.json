@@ -1,0 +1,12 @@
+{
+  "id": "custom-feathersjs-service-minimal",
+  "name": "Feathers.js サービス 最小",
+  "version": "1.0.0",
+  "stack": ["feathers"],
+  "tags": ["api"],
+  "description": "Feathersサービスの最小スケルトン",
+  "files": [
+    { "path": "src/feathers/service.ts", "template": "export const service = { find: async ()=> [] };\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-shopify-webhook-route-minimal",
+  "name": "Shopify Webhook ルート 最小",
+  "version": "1.0.0",
+  "stack": ["shopify", "nextjs"],
+  "tags": ["ecommerce", "webhook"],
+  "description": "Shopify Webhook受信ルート（スタブ）",
+  "files": [
+    { "path": "app/api/webhooks/shopify/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(){ return NextResponse.json({ ok: true }); }\n" }
+  ]
+}
+

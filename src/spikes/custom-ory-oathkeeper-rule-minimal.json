@@ -1,0 +1,12 @@
+{
+  "id": "custom-ory-oathkeeper-rule-minimal",
+  "name": "ORY Oathkeeper ルール 最小",
+  "version": "1.0.0",
+  "stack": ["ory", "oathkeeper"],
+  "tags": ["auth"],
+  "description": "Oathkeeperアクセスルールの最小スタブ",
+  "files": [
+    { "path": "src/ory/oathkeeper.rule.ts", "template": "export const rule = { id: 'allow-all', match: { url: '<http|https>://<.*>' } };\n" }
+  ]
+}
+

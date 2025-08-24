@@ -1,0 +1,12 @@
+{
+  "id": "custom-openapi-zodios-client-minimal",
+  "name": "OpenAPI Zodios クライアント最小",
+  "version": "1.0.0",
+  "stack": ["openapi", "zodios"],
+  "tags": ["api", "client"],
+  "description": "Zodiosクライアントの最小プレースホルダ",
+  "files": [
+    { "path": "src/api/client.ts", "template": "export const client = { get: async (_:string)=> ({ ok: true }) };\n" }
+  ]
+}
+

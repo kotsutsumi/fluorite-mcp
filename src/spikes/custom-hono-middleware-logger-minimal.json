@@ -1,0 +1,12 @@
+{
+  "id": "custom-hono-middleware-logger-minimal",
+  "name": "Hono Middleware Logger 最小",
+  "version": "1.0.0",
+  "stack": ["hono"],
+  "tags": ["middleware"],
+  "description": "Honoのロガーミドルウェア（スタブ）",
+  "files": [
+    { "path": "src/hono/logger.ts", "template": "export function logger(){ return (_c:any,next:any)=> next(); }\n" }
+  ]
+}
+

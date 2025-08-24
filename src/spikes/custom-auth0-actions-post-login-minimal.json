@@ -1,0 +1,12 @@
+{
+  "id": "custom-auth0-actions-post-login-minimal",
+  "name": "Auth0 Actions Post-Login 最小",
+  "version": "1.0.0",
+  "stack": ["auth0"],
+  "tags": ["auth"],
+  "description": "Auth0 Post-Loginアクションの最小スタブ",
+  "files": [
+    { "path": "auth0/actions/post-login.ts", "template": "export default function onExecutePostLogin(event:any, api:any){ api.idToken.setCustomClaim('x-demo', true); }\n" }
+  ]
+}
+

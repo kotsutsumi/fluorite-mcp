@@ -1,0 +1,12 @@
+{
+  "id": "custom-paypal-create-order-minimal",
+  "name": "PayPal Create Order 最小",
+  "version": "1.0.0",
+  "stack": ["paypal"],
+  "tags": ["payments"],
+  "description": "注文作成の概念スタブ",
+  "files": [
+    { "path": "src/payments/paypal.ts", "template": "export async function createOrder(amount:number){ return { id: 'order_123', amount }; }\n" }
+  ]
+}
+

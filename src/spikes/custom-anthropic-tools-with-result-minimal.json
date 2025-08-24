@@ -1,0 +1,12 @@
+{
+  "id": "custom-anthropic-tools-with-result-minimal",
+  "name": "Anthropic ツール呼び出し with Result 最小",
+  "version": "1.0.0",
+  "stack": ["anthropic"],
+  "tags": ["ai"],
+  "description": "ツール呼び出し結果取り扱いの概念スタブ",
+  "files": [
+    { "path": "src/ai/anthropic.tools.result.ts", "template": "export async function runTool(name:string,args:any){ return { name, result: {} }; }\n" }
+  ]
+}
+

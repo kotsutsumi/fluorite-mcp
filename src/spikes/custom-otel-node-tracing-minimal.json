@@ -1,0 +1,12 @@
+{
+  "id": "custom-otel-node-tracing-minimal",
+  "name": "OpenTelemetry Node トレース最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry", "node"],
+  "tags": ["tracing"],
+  "description": "OpenTelemetryの最小トレース初期化スタブ",
+  "files": [
+    { "path": "src/otel.ts", "template": "export function initTracing(){ return { serviceName: 'app' }; }\n" }
+  ]
+}
+

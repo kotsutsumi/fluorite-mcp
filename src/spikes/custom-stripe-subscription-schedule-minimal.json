@@ -1,0 +1,12 @@
+{
+  "id": "custom-stripe-subscription-schedule-minimal",
+  "name": "Stripe Subscription Schedule 最小",
+  "version": "1.0.0",
+  "stack": ["stripe"],
+  "tags": ["payments"],
+  "description": "定期購読スケジュール作成の概念スタブ",
+  "files": [
+    { "path": "src/payments/stripe.schedule.ts", "template": "export async function createSchedule(cust:string){ return { id: 'sch_123', customer: cust }; }\n" }
+  ]
+}
+

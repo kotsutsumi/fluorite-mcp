@@ -1,0 +1,12 @@
+{
+  "id": "custom-hono-basic-auth-middleware-minimal",
+  "name": "Hono Basic Auth Middleware 最小",
+  "version": "1.0.0",
+  "stack": ["hono"],
+  "tags": ["auth"],
+  "description": "HonoのBasic認証ミドルウェア概念スタブ",
+  "files": [
+    { "path": "src/hono/basic-auth.ts", "template": "export function basicAuth(){ return (_c:any,next:any)=> next(); }\n" }
+  ]
+}
+

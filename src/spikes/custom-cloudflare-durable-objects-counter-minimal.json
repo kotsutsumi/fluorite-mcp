@@ -1,0 +1,11 @@
+{
+  "id": "custom-cloudflare-durable-objects-counter-minimal",
+  "name": "Durable Objects カウンタ 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare-workers"],
+  "tags": ["edge"],
+  "description": "Durable Objectsのカウンタ概念スタブ",
+  "files": [
+    { "path": "worker/do-counter.ts", "template": "export class Counter { n=0; increment(){ this.n+=1; return this.n; } }\n" }
+  ]}
+

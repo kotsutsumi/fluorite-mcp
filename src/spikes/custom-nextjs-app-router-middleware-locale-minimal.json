@@ -1,0 +1,12 @@
+{
+  "id": "custom-nextjs-app-router-middleware-locale-minimal",
+  "name": "Next.js App Router ロケールMiddleware 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["i18n"],
+  "description": "ロケール付与ミドルウェアの最小",
+  "files": [
+    { "path": "middleware.ts", "template": "export function middleware(){ return Response.next(); }\n" }
+  ]
+}
+

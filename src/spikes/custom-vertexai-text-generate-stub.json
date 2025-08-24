@@ -1,0 +1,12 @@
+{
+  "id": "custom-vertexai-text-generate-stub",
+  "name": "Vertex AI Text Generate スタブ",
+  "version": "1.0.0",
+  "stack": ["vertexai"],
+  "tags": ["ai"],
+  "description": "Vertex AIテキスト生成の概念スタブ",
+  "files": [
+    { "path": "src/ai/vertexai.ts", "template": "export async function generate(prompt:string){ return { text: 'hello' }; }\n" }
+  ]
+}
+

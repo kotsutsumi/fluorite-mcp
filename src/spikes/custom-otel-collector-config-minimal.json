@@ -1,0 +1,12 @@
+{
+  "id": "custom-otel-collector-config-minimal",
+  "name": "Otel Collector Config 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry"],
+  "tags": ["observability"],
+  "description": "Otel Collectorの最小設定",
+  "files": [
+    { "path": "otel/collector.yaml", "template": "receivers: {}\nexporters: {}\nservice: { pipelines: {} }\n" }
+  ]
+}
+

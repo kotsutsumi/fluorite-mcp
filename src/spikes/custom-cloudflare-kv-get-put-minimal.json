@@ -1,0 +1,11 @@
+{
+  "id": "custom-cloudflare-kv-get-put-minimal",
+  "name": "Cloudflare KV Get/Put 最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare-workers"],
+  "tags": ["edge"],
+  "description": "KVのget/put最小スタブ",
+  "files": [
+    { "path": "worker/kv.ts", "template": "export async function put(k:string,v:string){ return { k, v }; }\nexport async function get(k:string){ return { k, v: null as any }; }\n" }
+  ]}
+

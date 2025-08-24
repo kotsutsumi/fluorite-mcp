@@ -1,0 +1,12 @@
+{
+  "id": "custom-nextjs-security-headers-csp-minimal",
+  "name": "Next.js セキュリティヘッダ CSP 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs"],
+  "tags": ["security"],
+  "description": "CSP/セキュリティヘッダの最小設定（スタブ）",
+  "files": [
+    { "path": "next.config.js", "template": "module.exports = { headers: async ()=> [{ source: '/(.*)', headers: [{ key: 'Content-Security-Policy', value: " + "'default-src \'self\'' }] }] } };\n" }
+  ]
+}
+

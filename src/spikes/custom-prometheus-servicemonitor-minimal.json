@@ -1,0 +1,12 @@
+{
+  "id": "custom-prometheus-servicemonitor-minimal",
+  "name": "Prometheus ServiceMonitor 最小",
+  "version": "1.0.0",
+  "stack": ["prometheus", "kubernetes"],
+  "tags": ["metrics"],
+  "description": "ServiceMonitor CRの最小",
+  "files": [
+    { "path": "k8s/servicemonitor.yml", "template": "apiVersion: monitoring.coreos.com/v1\nkind: ServiceMonitor\nmetadata: { name: app }\nspec: { selector: { matchLabels: { app: app } }, endpoints: [{ port: 'http' }] }\n" }
+  ]
+}
+

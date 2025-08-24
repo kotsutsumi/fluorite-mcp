@@ -1,0 +1,12 @@
+{
+  "id": "custom-aws-ses-email-send-minimal",
+  "name": "AWS SES メール送信 最小",
+  "version": "1.0.0",
+  "stack": ["ses", "aws"],
+  "tags": ["email"],
+  "description": "SESでメール送信の最小スタブ",
+  "files": [
+    { "path": "src/email/ses.ts", "template": "export async function send(to:string, subject:string){ return { to, subject }; }\n" }
+  ]
+}
+

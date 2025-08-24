@@ -1,0 +1,12 @@
+{
+  "id": "custom-prisma-seed-factory-minimal",
+  "name": "Prisma Seed Factory 最小",
+  "version": "1.0.0",
+  "stack": ["prisma"],
+  "tags": ["db", "seed"],
+  "description": "シードデータのファクトリー最小",
+  "files": [
+    { "path": "src/seed/factory.ts", "template": "export function user(i:number){ return { email: `user${i}@example.com` }; }\n" }
+  ]
+}
+

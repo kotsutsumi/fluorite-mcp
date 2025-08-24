@@ -1,0 +1,12 @@
+{
+  "id": "custom-azure-event-grid-webhook-verify-minimal",
+  "name": "Azure Event Grid Webhook 検証 最小",
+  "version": "1.0.0",
+  "stack": ["azure", "event-grid"],
+  "tags": ["messaging", "security"],
+  "description": "Event Grid Webhookの検証スタブ",
+  "files": [
+    { "path": "src/azure/event-grid.verify.ts", "template": "export async function verify(){ return true; }\n" }
+  ]
+}
+

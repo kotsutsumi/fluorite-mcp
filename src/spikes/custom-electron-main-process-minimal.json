@@ -1,0 +1,12 @@
+{
+  "id": "custom-electron-main-process-minimal",
+  "name": "Electron メインプロセス 最小",
+  "version": "1.0.0",
+  "stack": ["electron"],
+  "tags": ["desktop"],
+  "description": "Electronメインの最小スケルトン",
+  "files": [
+    { "path": "electron/main.ts", "template": "export function start(){ return { window: null as any }; }\n" }
+  ]
+}
+

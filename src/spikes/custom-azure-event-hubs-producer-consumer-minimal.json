@@ -1,0 +1,12 @@
+{
+  "id": "custom-azure-event-hubs-producer-consumer-minimal",
+  "name": "Azure Event Hubs Producer/Consumer 最小",
+  "version": "1.0.0",
+  "stack": ["azure-event-hubs"],
+  "tags": ["messaging", "azure"],
+  "description": "Event Hubsの送受信スタブ",
+  "files": [
+    { "path": "src/azure/eventhubs.ts", "template": "export async function send(evt:any){ return { ok: true }; }\nexport async function consume(){ return [{ body: 'hello' }]; }\n" }
+  ]
+}
+

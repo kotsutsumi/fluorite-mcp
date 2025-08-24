@@ -1,0 +1,12 @@
+{
+  "id": "custom-etcd-put-get-minimal",
+  "name": "etcd Put/Get 最小",
+  "version": "1.0.0",
+  "stack": ["etcd"],
+  "tags": ["kv"],
+  "description": "etcdにPut/Getする最小",
+  "files": [
+    { "path": "src/kv/etcd.ts", "template": "export async function put(k:string,v:string){ return { k, v }; }\nexport async function get(k:string){ return { k, v: null as any }; }\n" }
+  ]
+}
+

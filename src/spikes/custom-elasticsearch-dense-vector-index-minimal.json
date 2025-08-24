@@ -1,0 +1,12 @@
+{
+  "id": "custom-elasticsearch-dense-vector-index-minimal",
+  "name": "Elasticsearch Dense Vector インデックス 最小",
+  "version": "1.0.0",
+  "stack": ["elasticsearch"],
+  "tags": ["vector"],
+  "description": "dense_vectorマッピングの概念スタブ",
+  "files": [
+    { "path": "src/search/elasticsearch.vector.ts", "template": "export const mapping = { properties: { embedding: { type: 'dense_vector', dims: 1536 } } };\n" }
+  ]
+}
+

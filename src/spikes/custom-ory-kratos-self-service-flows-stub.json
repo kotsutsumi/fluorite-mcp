@@ -1,0 +1,12 @@
+{
+  "id": "custom-ory-kratos-self-service-flows-stub",
+  "name": "ORY Kratos Self-Service Flows スタブ",
+  "version": "1.0.0",
+  "stack": ["ory", "kratos"],
+  "tags": ["auth"],
+  "description": "Self-Serviceフローの概念スタブ",
+  "files": [
+    { "path": "src/ory/kratos.flows.ts", "template": "export const flows = { login: '/self-service/login', register: '/self-service/registration' };\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-msw-service-mocks-minimal",
+  "name": "MSW サービスモック 最小",
+  "version": "1.0.0",
+  "stack": ["msw"],
+  "tags": ["test"],
+  "description": "MSWの基本モックハンドラ",
+  "files": [
+    { "path": "src/test/msw.ts", "template": "export const handlers = [{ path: '/api/hello', method: 'GET' }];\n" }
+  ]
+}
+

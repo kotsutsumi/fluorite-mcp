@@ -1,0 +1,12 @@
+{
+  "id": "custom-neo4j-cypher-query-minimal",
+  "name": "Neo4j Cypher クエリ 最小",
+  "version": "1.0.0",
+  "stack": ["neo4j"],
+  "tags": ["db"],
+  "description": "簡易Cypherクエリの概念スタブ",
+  "files": [
+    { "path": "src/graph/neo4j.ts", "template": "export async function cypher(q:string){ return { q, result: [] }; }\n" }
+  ]
+}
+

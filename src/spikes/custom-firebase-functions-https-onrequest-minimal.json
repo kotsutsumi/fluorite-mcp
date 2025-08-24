@@ -1,0 +1,12 @@
+{
+  "id": "custom-firebase-functions-https-onrequest-minimal",
+  "name": "Firebase Functions HTTPS onRequest 最小",
+  "version": "1.0.0",
+  "stack": ["firebase", "functions"],
+  "tags": ["serverless"],
+  "description": "HTTPS onRequestの最小ハンドラ",
+  "files": [
+    { "path": "firebase/functions/index.ts", "template": "export async function onRequest(){ return { status: 200, body: 'ok' }; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-koa-router-minimal",
+  "name": "Koa Router 最小",
+  "version": "1.0.0",
+  "stack": ["koa"],
+  "tags": ["api"],
+  "description": "Koa Routerの最小",
+  "files": [
+    { "path": "src/koa/server.ts", "template": "export function create(){ return { route: '/health' }; }\n" }
+  ]
+}
+

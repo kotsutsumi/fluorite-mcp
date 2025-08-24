@@ -1,0 +1,12 @@
+{
+  "id": "custom-aws-step-functions-stub",
+  "name": "AWS Step Functions スタブ",
+  "version": "1.0.0",
+  "stack": ["aws-step-functions"],
+  "tags": ["workflow", "aws"],
+  "description": "ステートマシン定義の最小スタブ",
+  "files": [
+    { "path": "infra/state-machine.json", "template": "{ \"StartAt\": \"Hello\", \"States\": { \"Hello\": { \"Type\": \"Pass\", \"End\": true } } }\n" }
+  ]
+}
+

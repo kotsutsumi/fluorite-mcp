@@ -1,0 +1,12 @@
+{
+  "id": "custom-flyio-deploy-config-minimal",
+  "name": "Fly.io デプロイ設定 最小",
+  "version": "1.0.0",
+  "stack": ["flyio"],
+  "tags": ["deploy"],
+  "description": "Fly.ioの最小app設定スタブ",
+  "files": [
+    { "path": "fly.toml", "template": "app = 'example'\n[http_service]\n  internal_port = 3000\n" }
+  ]
+}
+

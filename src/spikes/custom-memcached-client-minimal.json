@@ -1,0 +1,12 @@
+{
+  "id": "custom-memcached-client-minimal",
+  "name": "Memcached クライアント 最小",
+  "version": "1.0.0",
+  "stack": ["memcached"],
+  "tags": ["cache"],
+  "description": "Memcachedクライアントの概念スタブ",
+  "files": [
+    { "path": "src/cache/memcached.ts", "template": "export async function get(k:string){ return null as any }\nexport async function set(k:string,v:string){ return { k, v }; }\n" }
+  ]
+}
+

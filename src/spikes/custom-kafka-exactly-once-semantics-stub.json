@@ -1,0 +1,12 @@
+{
+  "id": "custom-kafka-exactly-once-semantics-stub",
+  "name": "Kafka Exactly-Once セマンティクス スタブ",
+  "version": "1.0.0",
+  "stack": ["kafka"],
+  "tags": ["messaging"],
+  "description": "EOSの概念スタブ",
+  "files": [
+    { "path": "src/kafka/eos.ts", "template": "export const eos = { enabled: true };\n" }
+  ]
+}
+

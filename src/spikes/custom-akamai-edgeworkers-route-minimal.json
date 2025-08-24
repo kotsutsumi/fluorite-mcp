@@ -1,0 +1,12 @@
+{
+  "id": "custom-akamai-edgeworkers-route-minimal",
+  "name": "Akamai EdgeWorkers ルート 最小",
+  "version": "1.0.0",
+  "stack": ["akamai"],
+  "tags": ["edge"],
+  "description": "Akamai EdgeWorkersの最小ハンドラ（スタブ）",
+  "files": [
+    { "path": "akamai/main.js", "template": "export function onClientRequest(){ /* stub */ }\n" }
+  ]
+}
+

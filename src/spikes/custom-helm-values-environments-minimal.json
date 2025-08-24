@@ -1,0 +1,13 @@
+{
+  "id": "custom-helm-values-environments-minimal",
+  "name": "Helm values 環境別 最小",
+  "version": "1.0.0",
+  "stack": ["helm"],
+  "tags": ["k8s"],
+  "description": "values.{env}.yamlの概念スタブ",
+  "files": [
+    { "path": "chart/values.prod.yaml", "template": "replicaCount: 2\n" },
+    { "path": "chart/values.dev.yaml", "template": "replicaCount: 1\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-passport-jwt-express-guard-minimal",
+  "name": "Passport JWT + Express ガード 最小",
+  "version": "1.0.0",
+  "stack": ["passport", "express", "jwt"],
+  "tags": ["auth"],
+  "description": "JWT想定の簡易ガードミドルウェア（スタブ）",
+  "files": [
+    { "path": "src/auth/jwt-guard.ts", "template": "export function jwtGuard(){ return (_req:any,_res:any,next:any)=> next(); }\n" }
+  ]
+}
+

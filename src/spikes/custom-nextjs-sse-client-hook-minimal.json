@@ -1,0 +1,12 @@
+{
+  "id": "custom-nextjs-sse-client-hook-minimal",
+  "name": "Next.js SSE クライアントフック 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "react"],
+  "tags": ["realtime"],
+  "description": "SSE購読の最小クライアントフック",
+  "files": [
+    { "path": "src/hooks/useSSE.ts", "template": "export function useSSE(_url:string){ return { data: null as any }; }\n" }
+  ]
+}
+

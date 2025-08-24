@@ -1,0 +1,12 @@
+{
+  "id": "custom-tsup-library-bundle-minimal",
+  "name": "tsup ライブラリ バンドル 最小",
+  "version": "1.0.0",
+  "stack": ["tsup"],
+  "tags": ["build"],
+  "description": "tsupの最小設定",
+  "files": [
+    { "path": "tsup.config.ts", "template": "export default { entry: ['src/index.ts'], dts: true, format: ['esm'] };\n" }
+  ]
+}
+

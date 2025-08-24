@@ -1,0 +1,11 @@
+{
+  "id": "custom-qdrant-collection-create-minimal",
+  "name": "Qdrant コレクション作成 最小",
+  "version": "1.0.0",
+  "stack": ["qdrant"],
+  "tags": ["vector"],
+  "description": "Qdrantコレクション作成の最小スタブ",
+  "files": [
+    { "path": "src/vectors/qdrant.collection.ts", "template": "export async function createCollection(name:string){ return { name, created: true }; }\n" }
+  ]}
+

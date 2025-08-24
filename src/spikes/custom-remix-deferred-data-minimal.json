@@ -1,0 +1,12 @@
+{
+  "id": "custom-remix-deferred-data-minimal",
+  "name": "Remix deferred data 最小",
+  "version": "1.0.0",
+  "stack": ["remix"],
+  "tags": ["ssr"],
+  "description": "Remixのdeferred data概念スタブ",
+  "files": [
+    { "path": "app/routes/deferred.tsx", "template": "export async function loader(){ return null }\nexport default function Page(){ return null }\n" }
+  ]
+}
+

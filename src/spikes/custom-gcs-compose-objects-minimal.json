@@ -1,0 +1,12 @@
+{
+  "id": "custom-gcs-compose-objects-minimal",
+  "name": "GCS Compose Objects 最小",
+  "version": "1.0.0",
+  "stack": ["gcs"],
+  "tags": ["storage"],
+  "description": "GCSオブジェクト結合の最小スタブ",
+  "files": [
+    { "path": "src/gcp/gcs.compose.ts", "template": "export async function compose(dst:string, parts:string[]){ return { dst, parts }; }\n" }
+  ]
+}
+

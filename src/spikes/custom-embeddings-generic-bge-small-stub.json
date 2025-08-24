@@ -1,0 +1,12 @@
+{
+  "id": "custom-embeddings-generic-bge-small-stub",
+  "name": "Embeddings bge-small スタブ",
+  "version": "1.0.0",
+  "stack": ["embeddings"],
+  "tags": ["ai"],
+  "description": "bge-smallモデルの概念スタブ",
+  "files": [
+    { "path": "src/ai/embeddings.ts", "template": "export async function embed(text:string){ return [0.1,0.2,0.3]; }\n" }
+  ]
+}
+

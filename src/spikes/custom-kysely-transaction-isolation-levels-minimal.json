@@ -1,0 +1,12 @@
+{
+  "id": "custom-kysely-transaction-isolation-levels-minimal",
+  "name": "Kysely トランザクション分離レベル 最小",
+  "version": "1.0.0",
+  "stack": ["kysely"],
+  "tags": ["db"],
+  "description": "分離レベルの概念スタブ",
+  "files": [
+    { "path": "src/db/kysely.isolation.ts", "template": "export type Isolation = 'read committed'|'repeatable read'|'serializable';\n" }
+  ]
+}
+

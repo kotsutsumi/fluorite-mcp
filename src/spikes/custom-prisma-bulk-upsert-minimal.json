@@ -1,0 +1,12 @@
+{
+  "id": "custom-prisma-bulk-upsert-minimal",
+  "name": "Prisma バルクUpsert 最小",
+  "version": "1.0.0",
+  "stack": ["prisma"],
+  "tags": ["db"],
+  "description": "バルクUpsertの最小スタブ",
+  "files": [
+    { "path": "src/prisma.bulk.ts", "template": "export async function bulkUpsert(items:any[]){ return { upserted: items.length }; }\n" }
+  ]
+}
+

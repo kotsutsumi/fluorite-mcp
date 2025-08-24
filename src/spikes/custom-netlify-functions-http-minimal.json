@@ -1,0 +1,12 @@
+{
+  "id": "custom-netlify-functions-http-minimal",
+  "name": "Netlify Functions HTTP 最小",
+  "version": "1.0.0",
+  "stack": ["netlify"],
+  "tags": ["serverless"],
+  "description": "Netlify関数のHTTPハンドラ最小",
+  "files": [
+    { "path": "netlify/functions/hello.ts", "template": "export const handler = async()=>({ statusCode:200, body: 'ok' });\n" }
+  ]
+}
+

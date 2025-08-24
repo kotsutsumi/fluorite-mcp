@@ -1,0 +1,12 @@
+{
+  "id": "custom-cloud-tasks-enqueue-http-task-minimal",
+  "name": "Cloud Tasks HTTP Task Enqueue 最小",
+  "version": "1.0.0",
+  "stack": ["gcp", "cloud-tasks"],
+  "tags": ["queue", "gcp"],
+  "description": "Cloud TasksのHTTPタスク投入",
+  "files": [
+    { "path": "src/gcp/tasks.ts", "template": "export async function enqueue(url:string){ return { name: 'task-1', url }; }\n" }
+  ]
+}
+

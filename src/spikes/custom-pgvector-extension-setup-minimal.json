@@ -1,0 +1,12 @@
+{
+  "id": "custom-pgvector-extension-setup-minimal",
+  "name": "pgvector 拡張セットアップ 最小",
+  "version": "1.0.0",
+  "stack": ["postgres", "pgvector"],
+  "tags": ["vector"],
+  "description": "pgvector拡張のセットアップ概念スタブ",
+  "files": [
+    { "path": "src/vectors/pgvector.ts", "template": "export const extension = { enabled: true };\n" }
+  ]
+}
+

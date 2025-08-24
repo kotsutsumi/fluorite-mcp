@@ -1,0 +1,11 @@
+{
+  "id": "custom-sentry-user-feedback-server-route-minimal",
+  "name": "Sentry User Feedback サーバ ルート 最小",
+  "version": "1.0.0",
+  "stack": ["sentry", "nextjs"],
+  "tags": ["monitoring"],
+  "description": "ユーザーフィードバック受信用サーバルート（スタブ）",
+  "files": [
+    { "path": "app/api/sentry/feedback/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(){ return NextResponse.json({ ok: true }); }\n" }
+  ]}
+

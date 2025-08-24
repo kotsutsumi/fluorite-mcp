@@ -1,0 +1,11 @@
+{
+  "id": "custom-redis-json-document-store-minimal",
+  "name": "RedisJSON ドキュメントストア 最小",
+  "version": "1.0.0",
+  "stack": ["redis"],
+  "tags": ["cache"],
+  "description": "RedisJSONを想定した最小スタブ",
+  "files": [
+    { "path": "src/redis/json.ts", "template": "export async function setDoc(key:string, doc:any){ return { key, ok: true }; }\nexport async function getDoc(key:string){ return { key, doc: {} }; }\n" }
+  ]}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-keycloak-uma-resource-permission-minimal",
+  "name": "Keycloak UMA リソース権限 最小",
+  "version": "1.0.0",
+  "stack": ["keycloak", "uma"],
+  "tags": ["auth"],
+  "description": "UMAリソースの権限チェック概念スタブ",
+  "files": [
+    { "path": "src/auth/keycloak.uma.ts", "template": "export function hasPermission(resource:string, scope:string){ return true; }\n" }
+  ]
+}
+

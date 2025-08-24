@@ -1,0 +1,12 @@
+{
+  "id": "custom-pinecone-namespace-upsert-minimal",
+  "name": "Pinecone Namespace Upsert 最小",
+  "version": "1.0.0",
+  "stack": ["pinecone"],
+  "tags": ["vector"],
+  "description": "Namespace単位のUpsertスタブ",
+  "files": [
+    { "path": "src/vectors/pinecone.ns.ts", "template": "export async function upsert(ns:string){ return { ns, upserted: 1 }; }\n" }
+  ]
+}
+

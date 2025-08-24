@@ -1,0 +1,12 @@
+{
+  "id": "custom-ollama-local-model-stub",
+  "name": "Ollama ローカルモデル スタブ",
+  "version": "1.0.0",
+  "stack": ["ollama"],
+  "tags": ["ai"],
+  "description": "Ollamaローカル推論の概念スタブ",
+  "files": [
+    { "path": "src/ai/ollama.ts", "template": "export async function generate(prompt:string){ return { text: '...' }; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-redis-queue-brpoplpush-minimal",
+  "name": "Redis BRPOPLPUSH キュー 最小",
+  "version": "1.0.0",
+  "stack": ["redis"],
+  "tags": ["queue"],
+  "description": "BRPOPLPUSHによるキューの概念スタブ",
+  "files": [
+    { "path": "src/redis/queue.ts", "template": "export async function brpoplpush(src:string, dst:string){ return { src, dst }; }\n" }
+  ]
+}
+

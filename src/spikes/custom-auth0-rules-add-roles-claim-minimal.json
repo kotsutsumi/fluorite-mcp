@@ -1,0 +1,12 @@
+{
+  "id": "custom-auth0-rules-add-roles-claim-minimal",
+  "name": "Auth0 Rules 役割クレーム付与 最小",
+  "version": "1.0.0",
+  "stack": ["auth0"],
+  "tags": ["auth"],
+  "description": "Rulesでrolesクレームを追加する最小スタブ",
+  "files": [
+    { "path": "auth0/rules/add-roles.js", "template": "function(user, context, callback){ context.idToken['https://example.com/roles'] = ['user']; callback(null, user, context); }\n" }
+  ]
+}
+

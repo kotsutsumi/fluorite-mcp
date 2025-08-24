@@ -1,0 +1,11 @@
+{
+  "id": "custom-websocket-ws-server-minimal",
+  "name": "ws WebSocket サーバ 最小",
+  "version": "1.0.0",
+  "stack": ["ws"],
+  "tags": ["realtime"],
+  "description": "wsライブラリによる最小サーバ",
+  "files": [
+    { "path": "src/realtime/ws.ts", "template": "export function start(){ return { port: 3001 }; }\n" }
+  ]}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-paddle-webhook-route-minimal",
+  "name": "Paddle Webhook ルート 最小",
+  "version": "1.0.0",
+  "stack": ["paddle", "nextjs"],
+  "tags": ["payments", "webhook"],
+  "description": "Paddle Webhook受信の最小スタブ",
+  "files": [
+    { "path": "app/api/webhooks/paddle/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(){ return NextResponse.json({ received: true }); }\n" }
+  ]
+}
+

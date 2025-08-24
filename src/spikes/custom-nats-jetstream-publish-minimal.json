@@ -1,0 +1,12 @@
+{
+  "id": "custom-nats-jetstream-publish-minimal",
+  "name": "NATS JetStream Publish 最小",
+  "version": "1.0.0",
+  "stack": ["nats"],
+  "tags": ["messaging"],
+  "description": "JetStreamにPublishする最小スタブ",
+  "files": [
+    { "path": "src/nats/jetstream.ts", "template": "export async function publish(stream:string, subj:string, data:string){ return { stream, subj, data }; }\n" }
+  ]
+}
+

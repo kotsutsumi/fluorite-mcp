@@ -1,0 +1,12 @@
+{
+  "id": "custom-cloudflare-workers-kv-rate-limit-composite",
+  "name": "Workers KV レート制限 コンポジット",
+  "version": "1.0.0",
+  "stack": ["cloudflare-workers"],
+  "tags": ["edge", "rate-limit"],
+  "description": "KVを用いた複合レート制限の概念スタブ",
+  "files": [
+    { "path": "worker/kv-rate.ts", "template": "export function allow(){ return { allowed: true }; }\n" }
+  ]
+}
+

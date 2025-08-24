@@ -1,0 +1,12 @@
+{
+  "id": "custom-loki-log-shipper-minimal",
+  "name": "Loki ログシッパー 最小",
+  "version": "1.0.0",
+  "stack": ["loki"],
+  "tags": ["logging"],
+  "description": "Lokiへログ送信の最小スタブ",
+  "files": [
+    { "path": "src/logging/loki.ts", "template": "export async function ship(line:string){ return { ok: true, line }; }\n" }
+  ]
+}
+

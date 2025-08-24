@@ -1,0 +1,12 @@
+{
+  "id": "custom-esbuild-bundle-ts-minimal",
+  "name": "esbuild バンドル TS 最小",
+  "version": "1.0.0",
+  "stack": ["esbuild", "typescript"],
+  "tags": ["build"],
+  "description": "esbuildでTSバンドルの最小",
+  "files": [
+    { "path": "esbuild.config.mjs", "template": "export default { entryPoints: ['src/index.ts'], outfile: 'dist/index.js', bundle: true };\n" }
+  ]
+}
+

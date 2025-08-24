@@ -1,0 +1,12 @@
+{
+  "id": "custom-totp-generate-verify-minimal",
+  "name": "TOTP 生成/検証 最小",
+  "version": "1.0.0",
+  "stack": ["totp"],
+  "tags": ["auth"],
+  "description": "TOTP生成と検証の概念スタブ",
+  "files": [
+    { "path": "src/auth/totp.ts", "template": "export function generate(){ return { secret: 'S', uri: 'otpauth://...' }; }\nexport function verify(_token:string){ return true; }\n" }
+  ]
+}
+

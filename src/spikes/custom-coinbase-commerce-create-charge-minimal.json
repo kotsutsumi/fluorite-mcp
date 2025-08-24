@@ -1,0 +1,12 @@
+{
+  "id": "custom-coinbase-commerce-create-charge-minimal",
+  "name": "Coinbase Commerce Create Charge 最小",
+  "version": "1.0.0",
+  "stack": ["coinbase"],
+  "tags": ["payments"],
+  "description": "Coinbase Commerce請求作成スタブ",
+  "files": [
+    { "path": "src/payments/coinbase.ts", "template": "export async function createCharge(amount:number, currency:string){ return { id: 'chg_1', amount, currency }; }\n" }
+  ]
+}
+

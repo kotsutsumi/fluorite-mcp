@@ -1,0 +1,11 @@
+{
+  "id": "custom-redis-bloom-filter-minimal",
+  "name": "Redis Bloom Filter 最小",
+  "version": "1.0.0",
+  "stack": ["redis"],
+  "tags": ["cache"],
+  "description": "Bloom Filterの概念スタブ",
+  "files": [
+    { "path": "src/redis/bloom.ts", "template": "export const bloom = { add: async (_k:string,_v:string)=> true, mightContain: async ()=> false };\n" }
+  ]}
+

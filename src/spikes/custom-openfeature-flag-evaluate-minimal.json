@@ -1,0 +1,12 @@
+{
+  "id": "custom-openfeature-flag-evaluate-minimal",
+  "name": "OpenFeature フラグ評価 最小",
+  "version": "1.0.0",
+  "stack": ["openfeature"],
+  "tags": ["flags"],
+  "description": "OpenFeatureでのフラグ評価スタブ",
+  "files": [
+    { "path": "src/flags/openfeature.ts", "template": "export async function getBoolean(flag:string){ return true; }\n" }
+  ]
+}
+

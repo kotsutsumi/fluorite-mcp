@@ -1,0 +1,12 @@
+{
+  "id": "custom-square-payment-link-create-minimal",
+  "name": "Square Payment Link 作成 最小",
+  "version": "1.0.0",
+  "stack": ["square"],
+  "tags": ["payments"],
+  "description": "Squareペイメントリンク作成スタブ",
+  "files": [
+    { "path": "src/payments/square.ts", "template": "export async function createLink(amount:number){ return { url: 'https://square.link/abc', amount }; }\n" }
+  ]
+}
+

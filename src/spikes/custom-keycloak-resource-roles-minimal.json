@@ -1,0 +1,12 @@
+{
+  "id": "custom-keycloak-resource-roles-minimal",
+  "name": "Keycloak リソースロール 最小",
+  "version": "1.0.0",
+  "stack": ["keycloak"],
+  "tags": ["auth"],
+  "description": "リソースベースロールの概念スタブ",
+  "files": [
+    { "path": "src/auth/keycloak.roles.ts", "template": "export const roles = { resource: 'docs', permissions: ['read'] };\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-netlify-edge-functions-minimal",
+  "name": "Netlify Edge Functions 最小",
+  "version": "1.0.0",
+  "stack": ["netlify", "edge"],
+  "tags": ["edge"],
+  "description": "Netlify Edgeの最小ハンドラ",
+  "files": [
+    { "path": "netlify/edge.ts", "template": "export default async ()=> new Response('ok');\n" }
+  ]
+}
+

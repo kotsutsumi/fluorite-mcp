@@ -1,0 +1,12 @@
+{
+  "id": "custom-vllm-inference-proxy-stub",
+  "name": "vLLM 推論プロキシ スタブ",
+  "version": "1.0.0",
+  "stack": ["vllm"],
+  "tags": ["ai"],
+  "description": "vLLM推論プロキシの概念スタブ",
+  "files": [
+    { "path": "src/ai/vllm.ts", "template": "export async function infer(prompt:string){ return { text: '...' }; }\n" }
+  ]
+}
+

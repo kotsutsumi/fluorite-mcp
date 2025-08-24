@@ -1,0 +1,12 @@
+{
+  "id": "custom-prisma-soft-delete-pattern-custom",
+  "name": "Prisma ソフトデリート パターン（拡張）",
+  "version": "1.0.0",
+  "stack": ["prisma"],
+  "tags": ["db", "pattern"],
+  "description": "deletedAtを用いたソフトデリートの拡張スタブ",
+  "files": [
+    { "path": "src/prisma.soft-delete.ts", "template": "export function whereAlive(){ return { deletedAt: null }; }\nexport function markDeleted(){ return { deletedAt: new Date() }; }\n" }
+  ]
+}
+

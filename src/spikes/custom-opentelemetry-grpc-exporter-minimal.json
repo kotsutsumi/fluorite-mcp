@@ -1,0 +1,12 @@
+{
+  "id": "custom-opentelemetry-grpc-exporter-minimal",
+  "name": "OpenTelemetry gRPC Exporter 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry"],
+  "tags": ["tracing"],
+  "description": "gRPCエクスポーター設定の概念スタブ",
+  "files": [
+    { "path": "src/otel/otlp-grpc.ts", "template": "export function exporter(){ return { url: 'http://localhost:4317' }; }\n" }
+  ]
+}
+
