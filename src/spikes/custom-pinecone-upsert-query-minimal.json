@@ -1,0 +1,12 @@
+{
+  "id": "custom-pinecone-upsert-query-minimal",
+  "name": "Pinecone Upsert/Query 最小",
+  "version": "1.0.0",
+  "stack": ["pinecone"],
+  "tags": ["vector", "db"],
+  "description": "PineconeのUpsertとQueryスタブ",
+  "files": [
+    { "path": "src/vectors/pinecone.ts", "template": "export async function upsert(){ return { upserted: 1 }; }\nexport async function query(){ return { matches: [] }; }\n" }
+  ]
+}
+

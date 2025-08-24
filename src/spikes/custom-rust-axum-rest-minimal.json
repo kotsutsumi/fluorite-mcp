@@ -1,0 +1,13 @@
+{
+  "id": "custom-rust-axum-rest-minimal",
+  "name": "Rust axum REST 最小",
+  "version": "1.0.0",
+  "stack": ["rust", "axum"],
+  "tags": ["rest", "rust"],
+  "description": "Rust axumでのREST最小",
+  "params": [],
+  "files": [
+    { "path": "rs/main.rs", "template": "use axum::{routing::get, Router};\n#[tokio::main]\nasync fn main(){ let app = Router::new().route(\"/health\", get(|| async { axum::Json(serde_json::json!({\"ok\": true})) })); axum::Server::bind(&\"0.0.0.0:3000\".parse().unwrap()).serve(app.into_make_service()).await.unwrap(); }\n" }
+  ]
+}
+

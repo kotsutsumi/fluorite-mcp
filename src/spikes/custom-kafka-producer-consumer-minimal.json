@@ -1,0 +1,12 @@
+{
+  "id": "custom-kafka-producer-consumer-minimal",
+  "name": "Kafka Producer/Consumer 最小",
+  "version": "1.0.0",
+  "stack": ["kafka"],
+  "tags": ["messaging"],
+  "description": "Kafkaのプロデューサ・コンシューマスタブ",
+  "files": [
+    { "path": "src/kafka.ts", "template": "export async function produce(topic:string,msg:string){ return { topic, msg }; }\nexport async function consume(topic:string){ return [{ topic, msg: 'hello' }] as const; }\n" }
+  ]
+}
+

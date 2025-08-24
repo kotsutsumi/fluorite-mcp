@@ -1,0 +1,12 @@
+{
+  "id": "custom-launchdarkly-evaluate-flag-route",
+  "name": "LaunchDarkly フラグ評価 ルート",
+  "version": "1.0.0",
+  "stack": ["launchdarkly", "nextjs"],
+  "tags": ["flags"],
+  "description": "LaunchDarklyのフラグ評価を返すNext.jsルート（スタブ）",
+  "files": [
+    { "path": "app/api/flags/ld/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function GET(){ return NextResponse.json({ flag: 'beta', value: true }); }\n" }
+  ]
+}
+

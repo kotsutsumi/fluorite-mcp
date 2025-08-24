@@ -1,0 +1,12 @@
+{
+  "id": "custom-unleash-client-minimal",
+  "name": "Unleash クライアント 最小",
+  "version": "1.0.0",
+  "stack": ["unleash"],
+  "tags": ["flags"],
+  "description": "Unleashクライアントの最小スタブ",
+  "files": [
+    { "path": "src/flags/unleash.ts", "template": "export const unleash = ()=> ({ url: process.env.UNLEASH_URL });\n" }
+  ]
+}
+

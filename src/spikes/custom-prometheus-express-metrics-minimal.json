@@ -1,0 +1,13 @@
+{
+  "id": "custom-prometheus-express-metrics-minimal",
+  "name": "Prometheus + Express メトリクス最小",
+  "version": "1.0.0",
+  "stack": ["prometheus", "express"],
+  "tags": ["monitoring", "metrics"],
+  "description": "ExpressでPrometheusメトリクスの最小スタブ",
+  "files": [
+    { "path": "src/metrics.ts", "template": "export const registry = { metrics: ()=> '' };\n" },
+    { "path": "src/server.ts", "template": "import express from 'express';\nimport { registry } from './metrics';\nconst app = express();\napp.get('/metrics', (_req,res)=>{ res.type('text/plain').send(registry.metrics()); });\napp.listen(3000);\n" }
+  ]
+}
+

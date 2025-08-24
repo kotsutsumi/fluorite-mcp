@@ -1,0 +1,12 @@
+{
+  "id": "custom-minio-client-minimal",
+  "name": "MinIO S3 互換 クライアント最小",
+  "version": "1.0.0",
+  "stack": ["minio"],
+  "tags": ["storage"],
+  "description": "MinIOクライアントの最小スタブ",
+  "files": [
+    { "path": "src/storage/minio.ts", "template": "export function minio(){ return { endpoint: process.env.MINIO_ENDPOINT }; }\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "custom-go-fiber-rest-minimal",
+  "name": "Go Fiber REST 最小",
+  "version": "1.0.0",
+  "stack": ["go", "fiber"],
+  "tags": ["rest", "go"],
+  "description": "Go FiberでのREST最小",
+  "params": [],
+  "files": [
+    { "path": "go/main.go", "template": "package main\nimport (\n  \"github.com/gofiber/fiber/v2\"\n)\nfunc main(){ app := fiber.New(); app.Get(\"/health\", func(c *fiber.Ctx) error { return c.JSON(fiber.Map{\"ok\": true}) }); app.Listen(\":3000\"); }\n" }
+  ]
+}
+

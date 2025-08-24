@@ -1,0 +1,15 @@
+{
+  "id": "custom-nextjs-auth-prisma-rsc",
+  "name": "Next.js + NextAuth + Prisma + RSC",
+  "version": "1.0.0",
+  "stack": ["nextjs", "next-auth", "prisma", "rsc"],
+  "tags": ["auth", "db", "route", "rsc"],
+  "description": "NextAuthとPrismaを用いたNext.js RSC最小構成",
+  "params": [],
+  "files": [
+    { "path": "app/api/auth/[...nextauth]/route.ts", "template": "import NextAuth from 'next-auth';\nimport Credentials from 'next-auth/providers/credentials';\nconst handler = NextAuth({ providers: [Credentials({ name: 'Credentials', credentials: { email: { label: 'Email', type: 'text' }, password: { label: 'Password', type: 'password' } }, async authorize(){ return { id: '1', name: 'demo', email: 'demo@example.com' }; } })] });\nexport { handler as GET, handler as POST };\n" },
+    { "path": "prisma/schema.prisma", "template": "datasource db { provider = \"postgresql\" url = env(\"DATABASE_URL\") }\ngenerator client { provider = \"prisma-client-js\" }\nmodel User { id Int @id @default(autoincrement()) email String @unique name String? }\n" },
+    { "path": "app/page.tsx", "template": "export default async function Page(){ return <div>Auth + Prisma RSC</div>; }\n" }
+  ]
+}
+

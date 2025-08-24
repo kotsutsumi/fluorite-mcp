@@ -1,0 +1,12 @@
+{
+  "id": "custom-typesense-search-route",
+  "name": "Typesense 検索 ルート",
+  "version": "1.0.0",
+  "stack": ["typesense", "nextjs"],
+  "tags": ["search"],
+  "description": "Typesenseで検索するNext.jsルート（スタブ）",
+  "files": [
+    { "path": "app/api/search/typesense/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function GET(){ return NextResponse.json({ hits: [] }); }\n" }
+  ]
+}
+

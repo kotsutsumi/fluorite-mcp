@@ -1,0 +1,12 @@
+{
+  "id": "custom-cloudflare-workers-router-minimal",
+  "name": "Cloudflare Workers ルータ最小",
+  "version": "1.0.0",
+  "stack": ["cloudflare-workers"],
+  "tags": ["edge"],
+  "description": "Workersのルータ最小スタブ",
+  "files": [
+    { "path": "worker/index.ts", "template": "export default { async fetch(){ return new Response('ok'); } };\n" }
+  ]
+}
+

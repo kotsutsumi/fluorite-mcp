@@ -1,0 +1,12 @@
+{
+  "id": "custom-socketio-express-server-minimal",
+  "name": "Socket.IO + Express サーバ最小",
+  "version": "1.0.0",
+  "stack": ["socket.io", "express"],
+  "tags": ["realtime"],
+  "description": "Socket.IOサーバの最小スタブ（Express連携）",
+  "files": [
+    { "path": "src/realtime/socketio.ts", "template": "export function start(){ return { url: 'http://localhost:3000' }; }\n" }
+  ]
+}
+

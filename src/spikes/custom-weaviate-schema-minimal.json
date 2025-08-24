@@ -1,0 +1,12 @@
+{
+  "id": "custom-weaviate-schema-minimal",
+  "name": "Weaviate スキーマ 最小",
+  "version": "1.0.0",
+  "stack": ["weaviate"],
+  "tags": ["vector", "db"],
+  "description": "Weaviateスキーマ定義の最小プレースホルダ",
+  "files": [
+    { "path": "src/vectors/weaviate.ts", "template": "export const schema = { classes: [] };\n" }
+  ]
+}
+

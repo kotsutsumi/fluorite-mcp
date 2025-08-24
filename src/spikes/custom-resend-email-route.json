@@ -1,0 +1,12 @@
+{
+  "id": "custom-resend-email-route",
+  "name": "Resend メール送信 ルート",
+  "version": "1.0.0",
+  "stack": ["resend", "nextjs"],
+  "tags": ["email"],
+  "description": "Resendでメール送信するNext.jsルート（スタブ）",
+  "files": [
+    { "path": "app/api/email/send/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(){ return NextResponse.json({ ok: true }); }\n" }
+  ]
+}
+

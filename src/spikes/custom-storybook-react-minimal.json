@@ -1,0 +1,12 @@
+{
+  "id": "custom-storybook-react-minimal",
+  "name": "Storybook React 最小",
+  "version": "1.0.0",
+  "stack": ["storybook", "react"],
+  "tags": ["ui", "docs"],
+  "description": "Storybookの最小構成（スタブ）",
+  "files": [
+    { "path": ".storybook/main.ts", "template": "export default { stories: ['../src/**/*.stories.@(js|jsx|ts|tsx)'] };\n" }
+  ]
+}
+

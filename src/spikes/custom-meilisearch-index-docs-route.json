@@ -1,0 +1,12 @@
+{
+  "id": "custom-meilisearch-index-docs-route",
+  "name": "Meilisearch ドキュメント追加 ルート",
+  "version": "1.0.0",
+  "stack": ["meilisearch", "nextjs"],
+  "tags": ["search"],
+  "description": "Meilisearchにドキュメント追加するNext.jsルート（スタブ）",
+  "files": [
+    { "path": "app/api/search/index/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(){ return NextResponse.json({ indexed: 1 }); }\n" }
+  ]
+}
+

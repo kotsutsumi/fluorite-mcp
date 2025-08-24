@@ -1,0 +1,12 @@
+{
+  "id": "custom-winston-logger-config-minimal",
+  "name": "Winston ロガー設定 最小",
+  "version": "1.0.0",
+  "stack": ["winston"],
+  "tags": ["logging"],
+  "description": "Winstonロガー設定の最小スタブ",
+  "files": [
+    { "path": "src/logging/winston.ts", "template": "export function logger(){ return { info: console.log, error: console.error }; }\n" }
+  ]
+}
+

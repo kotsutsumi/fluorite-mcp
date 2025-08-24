@@ -1,0 +1,12 @@
+{
+  "id": "custom-terraform-aws-lambda-minimal",
+  "name": "Terraform AWS Lambda 最小",
+  "version": "1.0.0",
+  "stack": ["terraform", "aws-lambda"],
+  "tags": ["iac", "aws"],
+  "description": "Lambda1関数のみの最小Terraform",
+  "files": [
+    { "path": "infra/main.tf", "template": "terraform { required_version=\">=1.5.0\" required_providers { aws = { source=\"hashicorp/aws\" version=\">=5.0.0\" } } }\nprovider \"aws\" { region = var.region }\nvariable \"region\" { type = string default = \"us-east-1\" }\nresource \"aws_lambda_function\" \"fn\" { function_name=\"example\" runtime=\"nodejs18.x\" role=\"arn:aws:iam::123456789012:role/demo\" handler=\"index.handler\" filename=\"function.zip\" }\n" }
+  ]
+}
+

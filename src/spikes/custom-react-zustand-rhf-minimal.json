@@ -1,0 +1,13 @@
+{
+  "id": "custom-react-zustand-rhf-minimal",
+  "name": "React + Zustand + RHF 最小",
+  "version": "1.0.0",
+  "stack": ["react", "zustand", "react-hook-form"],
+  "tags": ["ui", "state", "form"],
+  "description": "ZustandとReact Hook Formの最小",
+  "params": [],
+  "files": [
+    { "path": "src/App.tsx", "template": "import { useForm } from 'react-hook-form';\nimport { create } from 'zustand';\nconst useStore = create<{ name: string; setName: (s:string)=>void }>((set)=>({ name: '', setName: (name)=>set({ name }) }));\nexport default function App(){ const { register, handleSubmit } = useForm<{ name:string }>(); const { name, setName } = useStore(); return <form onSubmit={handleSubmit(v=>setName(v.name))}><input {...register('name')} /><button>save</button><pre>{name}</pre></form>; }\n" }
+  ]
+}
+

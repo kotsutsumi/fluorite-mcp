@@ -1,0 +1,13 @@
+{
+  "id": "custom-nextauth-prisma-2fa-totp",
+  "name": "NextAuth + Prisma 2FA TOTP 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "next-auth", "prisma"],
+  "tags": ["auth", "2fa", "totp"],
+  "description": "NextAuth + Prisma構成のTOTP二段階認証の土台（スタブ）",
+  "files": [
+    { "path": "app/api/auth/[...nextauth]/route.ts", "template": "export const GET = async ()=> new Response('ok'); export const POST = GET;\n" },
+    { "path": "prisma/schema.prisma", "template": "datasource db { provider=\"postgresql\" url=env(\"DATABASE_URL\") }\ngenerator client { provider=\"prisma-client-js\" }\nmodel User { id Int @id @default(autoincrement()) email String @unique totpSecret String? }\n" }
+  ]
+}
+

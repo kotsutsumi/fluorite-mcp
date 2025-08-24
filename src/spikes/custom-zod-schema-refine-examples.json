@@ -1,0 +1,12 @@
+{
+  "id": "custom-zod-schema-refine-examples",
+  "name": "Zod スキーマ refine 例",
+  "version": "1.0.0",
+  "stack": ["zod"],
+  "tags": ["validation"],
+  "description": "refine/transformの最小例テンプレート",
+  "files": [
+    { "path": "src/validation/user.ts", "template": "import { z } from 'zod';\nexport const User = z.object({ email: z.string().email(), age: z.number().int().nonnegative() }).refine(v=> v.age >= 13, 'too young');\n" }
+  ]
+}
+

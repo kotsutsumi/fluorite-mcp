@@ -1,0 +1,12 @@
+{
+  "id": "custom-sendgrid-email-route",
+  "name": "SendGrid メール送信 ルート",
+  "version": "1.0.0",
+  "stack": ["sendgrid", "nextjs"],
+  "tags": ["email"],
+  "description": "SendGridでメール送信するNext.jsルート（スタブ）",
+  "files": [
+    { "path": "app/api/sendgrid/send/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(){ return NextResponse.json({ ok: true }); }\n" }
+  ]
+}
+

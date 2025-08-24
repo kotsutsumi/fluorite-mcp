@@ -1,0 +1,12 @@
+{
+  "id": "custom-opensearch-index-search-minimal",
+  "name": "OpenSearch インデックス+検索 最小",
+  "version": "1.0.0",
+  "stack": ["opensearch"],
+  "tags": ["search"],
+  "description": "OpenSearchのインデックスと検索スタブ",
+  "files": [
+    { "path": "src/search/opensearch.ts", "template": "export async function index(doc:any){ return { indexed: true }; }\nexport async function search(q:string){ return { hits: [] }; }\n" }
+  ]
+}
+

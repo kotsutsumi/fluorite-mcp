@@ -1,0 +1,12 @@
+{
+  "id": "custom-pusher-publish-route-minimal",
+  "name": "Pusher Publish ルート 最小",
+  "version": "1.0.0",
+  "stack": ["pusher", "nextjs"],
+  "tags": ["realtime"],
+  "description": "PusherにpublishするNext.jsルートの最小プレースホルダ",
+  "files": [
+    { "path": "app/api/pusher/publish/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(){ return NextResponse.json({ published: true }); }\n" }
+  ]
+}
+

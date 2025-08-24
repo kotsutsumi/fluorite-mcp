@@ -1,0 +1,12 @@
+{
+  "id": "custom-sentry-nextjs-tracing-minimal",
+  "name": "Sentry + Next.js トレース最小",
+  "version": "1.0.0",
+  "stack": ["sentry", "nextjs"],
+  "tags": ["monitoring", "tracing"],
+  "description": "Sentryトレースの最小プレースホルダ",
+  "files": [
+    { "path": "src/sentry.ts", "template": "export const sentry = { init: ()=>{} };\n" }
+  ]
+}
+

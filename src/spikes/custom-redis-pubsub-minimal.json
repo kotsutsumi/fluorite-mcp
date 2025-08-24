@@ -1,0 +1,12 @@
+{
+  "id": "custom-redis-pubsub-minimal",
+  "name": "Redis Pub/Sub 最小",
+  "version": "1.0.0",
+  "stack": ["redis"],
+  "tags": ["messaging"],
+  "description": "RedisのPub/Sub最小スタブ",
+  "files": [
+    { "path": "src/redis/pubsub.ts", "template": "export async function publish(ch:string,msg:string){ return { ch, msg }; }\nexport async function subscribe(ch:string){ return [{ ch, msg: 'hello' }]; }\n" }
+  ]
+}
+

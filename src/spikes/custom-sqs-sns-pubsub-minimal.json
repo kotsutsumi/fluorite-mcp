@@ -1,0 +1,13 @@
+{
+  "id": "custom-sqs-sns-pubsub-minimal",
+  "name": "AWS SQS/SNS PubSub 最小",
+  "version": "1.0.0",
+  "stack": ["sqs", "sns"],
+  "tags": ["messaging", "aws"],
+  "description": "SQS/SNSのPublish/Subscribeスタブ",
+  "files": [
+    { "path": "src/aws/sns.ts", "template": "export async function publish(topicArn:string,msg:string){ return { topicArn, msg }; }\n" },
+    { "path": "src/aws/sqs.ts", "template": "export async function poll(queueUrl:string){ return [{ body: 'hello' }]; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-postmark-email-route-minimal",
+  "name": "Postmark メール送信 ルート 最小",
+  "version": "1.0.0",
+  "stack": ["postmark", "nextjs"],
+  "tags": ["email"],
+  "description": "Postmarkの送信ルートの最小プレースホルダ",
+  "files": [
+    { "path": "app/api/postmark/send/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(){ return NextResponse.json({ ok: true }); }\n" }
+  ]
+}
+

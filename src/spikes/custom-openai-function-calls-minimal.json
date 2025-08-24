@@ -1,0 +1,12 @@
+{
+  "id": "custom-openai-function-calls-minimal",
+  "name": "OpenAI ツール（関数呼び出し）最小",
+  "version": "1.0.0",
+  "stack": ["openai"],
+  "tags": ["ai", "tools"],
+  "description": "OpenAIツール呼び出し（関数）を想定した最小スタブ",
+  "files": [
+    { "path": "src/ai/tools.ts", "template": "export const tools = [{ name: 'get_time', description: 'returns time' }];\n" }
+  ]
+}
+

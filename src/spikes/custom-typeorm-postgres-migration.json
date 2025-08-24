@@ -1,0 +1,13 @@
+{
+  "id": "custom-typeorm-postgres-migration",
+  "name": "TypeORM + Postgres マイグレーション",
+  "version": "1.0.0",
+  "stack": ["typeorm", "postgres"],
+  "tags": ["db", "migration"],
+  "description": "TypeORMの最小エンティティとマイグレーションスケルトン",
+  "files": [
+    { "path": "src/entity/User.ts", "template": "export class User { id!: number; email!: string }\n" },
+    { "path": "src/migration/1700000000000-init.ts", "template": "export class Init1700000000000 { async up(){ } async down(){ } }\n" }
+  ]
+}
+

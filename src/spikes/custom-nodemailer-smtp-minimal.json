@@ -1,0 +1,12 @@
+{
+  "id": "custom-nodemailer-smtp-minimal",
+  "name": "Nodemailer SMTP 最小",
+  "version": "1.0.0",
+  "stack": ["nodemailer"],
+  "tags": ["email"],
+  "description": "Nodemailer SMTP送信の最小スタブ",
+  "files": [
+    { "path": "src/email/nodemailer.ts", "template": "export async function send(to:string, subject:string){ return { to, subject }; }\n" }
+  ]
+}
+

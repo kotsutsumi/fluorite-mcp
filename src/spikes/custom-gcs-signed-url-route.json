@@ -1,0 +1,12 @@
+{
+  "id": "custom-gcs-signed-url-route",
+  "name": "GCS 署名URL ルート",
+  "version": "1.0.0",
+  "stack": ["gcs", "nextjs"],
+  "tags": ["storage", "gcp"],
+  "description": "GCS署名URLを返すNext.jsルート（スタブ）",
+  "files": [
+    { "path": "app/api/gcs/presign/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function GET(){ return NextResponse.json({ url: 'https://storage.googleapis.com/bucket/upload' }); }\n" }
+  ]
+}
+

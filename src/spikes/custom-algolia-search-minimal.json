@@ -1,0 +1,12 @@
+{
+  "id": "custom-algolia-search-minimal",
+  "name": "Algolia 検索 最小",
+  "version": "1.0.0",
+  "stack": ["algolia"],
+  "tags": ["search"],
+  "description": "Algolia検索の最小スタブ",
+  "files": [
+    { "path": "src/search/algolia.ts", "template": "export async function search(q:string){ return { hits: [] }; }\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "custom-go-chi-rest-minimal",
+  "name": "Go chi REST 最小",
+  "version": "1.0.0",
+  "stack": ["go", "chi"],
+  "tags": ["rest", "go"],
+  "description": "go-chiでのREST最小",
+  "params": [],
+  "files": [
+    { "path": "go/main.go", "template": "package main\nimport (\n  \"net/http\"\n  \"github.com/go-chi/chi/v5\"\n)\nfunc main(){ r := chi.NewRouter(); r.Get(\"/health\", func(w http.ResponseWriter, _ *http.Request){ w.Header().Set(\"Content-Type\", \"application/json\"); w.Write([]byte(`{\\\"ok\\\":true}`)) }); http.ListenAndServe(\":3000\", r) }\n" }
+  ]
+}
+

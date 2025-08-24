@@ -870,7 +870,7 @@ When reporting issues, include:
 
 - **[GitHub Issues](https://github.com/kotsutsumi/fluorite-mcp/issues)** - Bug reports and feature requests
 - **[GitHub Discussions](https://github.com/kotsutsumi/fluorite-mcp/discussions)** - Community help
-- **[Documentation](https://kotsutsumi.github.io/fluorite-mcp)** - Complete documentation
+- **Documentation** - README.md and docs/ folder for complete documentation
 
 ### Emergency Contacts
 

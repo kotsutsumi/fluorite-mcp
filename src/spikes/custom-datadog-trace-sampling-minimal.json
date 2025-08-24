@@ -1,0 +1,12 @@
+{
+  "id": "custom-datadog-trace-sampling-minimal",
+  "name": "Datadog トレース サンプリング最小",
+  "version": "1.0.0",
+  "stack": ["datadog"],
+  "tags": ["monitoring", "tracing"],
+  "description": "Datadogのトレースサンプリング設定スタブ",
+  "files": [
+    { "path": "src/dd-trace.ts", "template": "export const tracing = { rate: 1.0 };\n" }
+  ]
+}
+

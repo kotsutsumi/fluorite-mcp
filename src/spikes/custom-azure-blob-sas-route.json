@@ -1,0 +1,12 @@
+{
+  "id": "custom-azure-blob-sas-route",
+  "name": "Azure Blob SAS ルート",
+  "version": "1.0.0",
+  "stack": ["azure-blob", "nextjs"],
+  "tags": ["storage", "azure"],
+  "description": "Azure BlobのSAS URL返却ルート（スタブ）",
+  "files": [
+    { "path": "app/api/azure/sas/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function GET(){ return NextResponse.json({ url: 'https://example.blob.core.windows.net/...' }); }\n" }
+  ]
+}
+

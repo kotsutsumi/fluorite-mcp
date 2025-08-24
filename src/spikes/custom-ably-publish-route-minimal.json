@@ -1,0 +1,12 @@
+{
+  "id": "custom-ably-publish-route-minimal",
+  "name": "Ably Publish ルート 最小",
+  "version": "1.0.0",
+  "stack": ["ably", "nextjs"],
+  "tags": ["realtime"],
+  "description": "AblyにpublishするNext.jsルートの最小プレースホルダ",
+  "files": [
+    { "path": "app/api/ably/publish/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(){ return NextResponse.json({ published: true }); }\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "custom-kysely-postgres-crud",
+  "name": "Kysely + Postgres CRUD 最小",
+  "version": "1.0.0",
+  "stack": ["kysely", "postgres"],
+  "tags": ["db", "crud"],
+  "description": "Kyselyの最小CRUDサンプル",
+  "files": [
+    { "path": "src/db.ts", "template": "export const db = { query: async ()=> [] };\n" },
+    { "path": "src/user.repo.ts", "template": "export async function listUsers(){ return []; }\n" }
+  ]
+}
+

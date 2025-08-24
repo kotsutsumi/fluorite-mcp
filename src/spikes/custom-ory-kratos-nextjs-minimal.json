@@ -1,0 +1,13 @@
+{
+  "id": "custom-ory-kratos-nextjs-minimal",
+  "name": "ORY Kratos + Next.js 最小",
+  "version": "1.0.0",
+  "stack": ["ory", "nextjs"],
+  "tags": ["auth"],
+  "description": "Kratos連携を想定した最小ページとクライアントスタブ",
+  "files": [
+    { "path": "src/ory/client.ts", "template": "export const kratos = ()=>({ baseUrl: process.env.ORY_KRATOS_URL });\n" },
+    { "path": "app/page.tsx", "template": "export default function Page(){ return <div>ORY Kratos</div>; }\n" }
+  ]
+}
+

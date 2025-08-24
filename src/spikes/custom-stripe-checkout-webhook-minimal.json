@@ -1,0 +1,13 @@
+{
+  "id": "custom-stripe-checkout-webhook-minimal",
+  "name": "Stripe Checkout + Webhook 最小",
+  "version": "1.0.0",
+  "stack": ["stripe", "nextjs"],
+  "tags": ["payments", "webhook"],
+  "description": "Checkout作成とWebhook受信の最小プレースホルダ",
+  "files": [
+    { "path": "app/api/checkout/session/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(){ return NextResponse.json({ id: 'cs_test_123' }); }\n" },
+    { "path": "app/api/webhooks/stripe/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function POST(){ return NextResponse.json({ received: true }); }\n" }
+  ]
+}
+

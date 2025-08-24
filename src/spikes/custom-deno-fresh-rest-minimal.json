@@ -1,0 +1,13 @@
+{
+  "id": "custom-deno-fresh-rest-minimal",
+  "name": "Deno Fresh REST 最小",
+  "version": "1.0.0",
+  "stack": ["deno-fresh"],
+  "tags": ["rest", "deno"],
+  "description": "Deno FreshでのREST最小",
+  "params": [],
+  "files": [
+    { "path": "routes/api/health.ts", "template": "import { Handlers } from '$fresh/server.ts';\nexport const handler: Handlers = { GET(){ return new Response(JSON.stringify({ ok: true }), { headers: { 'content-type': 'application/json' } }); } };\n" }
+  ]
+}
+

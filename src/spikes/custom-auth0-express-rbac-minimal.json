@@ -1,0 +1,12 @@
+{
+  "id": "custom-auth0-express-rbac-minimal",
+  "name": "Auth0 + Express RBAC 最小",
+  "version": "1.0.0",
+  "stack": ["auth0", "express"],
+  "tags": ["auth", "rbac"],
+  "description": "Auth0アクセストークンを想定した簡易RBACミドルウェア（スタブ）",
+  "files": [
+    { "path": "src/server.ts", "template": "import express from 'express';\nconst app = express();\nfunction requireRole(role:string){ return (_req:any,res:any,next:any)=> next(); }\napp.get('/admin', requireRole('admin'), (_req,res)=> res.json({ ok: true }));\napp.listen(3000);\n" }
+  ]
+}
+

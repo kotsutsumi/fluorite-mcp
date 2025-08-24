@@ -1,0 +1,13 @@
+{
+  "id": "custom-bun-elysia-rest-minimal",
+  "name": "Bun Elysia REST 最小",
+  "version": "1.0.0",
+  "stack": ["bun-elysia"],
+  "tags": ["rest", "bun"],
+  "description": "BunランタイムのElysiaでREST最小",
+  "params": [],
+  "files": [
+    { "path": "src/index.ts", "template": "import { Elysia } from 'elysia';\nconst app = new Elysia().get('/health', () => ({ ok: true }));\napp.listen(3000);\n" }
+  ]
+}
+

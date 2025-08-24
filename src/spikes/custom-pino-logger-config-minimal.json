@@ -1,0 +1,12 @@
+{
+  "id": "custom-pino-logger-config-minimal",
+  "name": "Pino ロガー設定 最小",
+  "version": "1.0.0",
+  "stack": ["pino"],
+  "tags": ["logging"],
+  "description": "Pinoロガー設定の最小スタブ",
+  "files": [
+    { "path": "src/logging/pino.ts", "template": "export function logger(){ return { info: console.log, error: console.error }; }\n" }
+  ]
+}
+

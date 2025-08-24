@@ -1,0 +1,12 @@
+{
+  "id": "custom-nats-request-reply-minimal",
+  "name": "NATS Request/Reply 最小",
+  "version": "1.0.0",
+  "stack": ["nats"],
+  "tags": ["messaging"],
+  "description": "NATSのリクエスト/リプライスタブ",
+  "files": [
+    { "path": "src/nats.ts", "template": "export async function request(subj:string,payload:string){ return { subj, payload, reply: 'ok' }; }\n" }
+  ]
+}
+

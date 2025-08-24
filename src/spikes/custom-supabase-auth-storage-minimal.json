@@ -1,0 +1,14 @@
+{
+  "id": "custom-supabase-auth-storage-minimal",
+  "name": "Supabase Auth + Storage 最小",
+  "version": "1.0.0",
+  "stack": ["supabase-auth", "supabase"],
+  "tags": ["auth", "storage"],
+  "description": "SupabaseのAuthとStorageクライアントスタブ",
+  "params": [],
+  "files": [
+    { "path": "src/supabase/client.ts", "template": "export function supabase(){ return { url: process.env.SUPABASE_URL, key: process.env.SUPABASE_ANON_KEY }; }\n" },
+    { "path": "src/supabase/storage.ts", "template": "export async function upload(bucket: string, path: string){ return { bucket, path }; }\n" }
+  ]
+}
+

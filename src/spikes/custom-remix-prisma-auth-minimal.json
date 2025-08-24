@@ -1,0 +1,14 @@
+{
+  "id": "custom-remix-prisma-auth-minimal",
+  "name": "Remix + Prisma + Auth 最小",
+  "version": "1.0.0",
+  "stack": ["remix", "prisma", "auth"],
+  "tags": ["auth", "db"],
+  "description": "RemixでPrismaと簡易セッション",
+  "params": [],
+  "files": [
+    { "path": "app/routes/health.tsx", "template": "import type { LoaderFunctionArgs } from '@remix-run/node';\nexport async function loader(_args: LoaderFunctionArgs){ return Response.json({ ok: true }); }\nexport default function Health(){ return <pre>ok</pre>; }\n" },
+    { "path": "prisma/schema.prisma", "template": "datasource db { provider = \"sqlite\" url = \"file:dev.db\" }\ngenerator client { provider = \"prisma-client-js\" }\nmodel User { id Int @id @default(autoincrement()) email String @unique }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-s3-presigned-upload-route",
+  "name": "S3 署名付きアップロード ルート",
+  "version": "1.0.0",
+  "stack": ["s3", "nextjs"],
+  "tags": ["storage", "aws"],
+  "description": "S3署名URLを返すNext.jsルート（スタブ）",
+  "files": [
+    { "path": "app/api/upload/presign/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function GET(){ return NextResponse.json({ url: 'https://example.com/upload' }); }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-elasticsearch-index-search-minimal",
+  "name": "Elasticsearch インデックス+検索 最小",
+  "version": "1.0.0",
+  "stack": ["elasticsearch"],
+  "tags": ["search"],
+  "description": "Elasticsearchのインデックスと検索スタブ",
+  "files": [
+    { "path": "src/search/elasticsearch.ts", "template": "export async function index(doc:any){ return { indexed: true }; }\nexport async function search(q:string){ return { hits: [] }; }\n" }
+  ]
+}
+

@@ -67,4 +67,4 @@
 
 - **リポジトリ**: [github.com/kotsutsumi/fluorite-mcp](https://github.com/kotsutsumi/fluorite-mcp)
 - **イシュー**: [GitHub Issues](https://github.com/kotsutsumi/fluorite-mcp/issues)
-- **ドキュメント**: [kotsutsumi.github.io/fluorite-mcp](https://kotsutsumi.github.io/fluorite-mcp)
+- **ドキュメント**: README.mdおよびdocs/フォルダを参照

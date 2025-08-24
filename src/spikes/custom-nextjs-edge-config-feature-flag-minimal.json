@@ -1,0 +1,12 @@
+{
+  "id": "custom-nextjs-edge-config-feature-flag-minimal",
+  "name": "Next.js Edge Config フィーチャーフラグ最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "edge"],
+  "tags": ["edge", "flags"],
+  "description": "Edge Configを想定したフラグ判定の最小プレースホルダ",
+  "files": [
+    { "path": "app/api/flags/get/route.ts", "template": "import { NextResponse } from 'next/server';\nexport async function GET(){ return NextResponse.json({ flag: 'example', value: true }); }\n" }
+  ]
+}
+

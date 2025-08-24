@@ -1,0 +1,12 @@
+{
+  "id": "custom-turborepo-pipelines-basic",
+  "name": "Turborepo パイプライン 基本",
+  "version": "1.0.0",
+  "stack": ["turborepo"],
+  "tags": ["monorepo"],
+  "description": "Turborepoの最小パイプライン配置",
+  "files": [
+    { "path": "turbo.json", "template": "{ \"pipeline\": { \"build\": { \"outputs\": [\"dist/**\"] }, \"test\": {} } }\n" }
+  ]
+}
+

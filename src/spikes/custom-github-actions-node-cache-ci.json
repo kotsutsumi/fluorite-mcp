@@ -1,0 +1,12 @@
+{
+  "id": "custom-github-actions-node-cache-ci",
+  "name": "GitHub Actions Node キャッシュCI",
+  "version": "1.0.0",
+  "stack": ["github-actions", "node"],
+  "tags": ["ci", "cache"],
+  "description": "NodeプロジェクトのキャッシュCI最小",
+  "files": [
+    { "path": ".github/workflows/ci-cache.yml", "template": "name: CI\non: [push, pull_request]\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: 18, cache: 'npm' }\n      - run: npm ci\n      - run: npm test --silent || true\n" }
+  ]
+}
+

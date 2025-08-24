@@ -1,0 +1,12 @@
+{
+  "id": "custom-rabbitmq-producer-consumer-minimal",
+  "name": "RabbitMQ Producer/Consumer 最小",
+  "version": "1.0.0",
+  "stack": ["rabbitmq"],
+  "tags": ["messaging"],
+  "description": "RabbitMQのpub/sub最小スタブ",
+  "files": [
+    { "path": "src/queue/rabbitmq.ts", "template": "export async function publish(q:string,msg:string){ return { q, msg }; }\nexport async function consume(q:string){ return [{ q, msg: 'hello' }]; }\n" }
+  ]
+}
+

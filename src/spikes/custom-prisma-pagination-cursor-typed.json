@@ -1,0 +1,12 @@
+{
+  "id": "custom-prisma-pagination-cursor-typed",
+  "name": "Prisma カーソルページング型付け",
+  "version": "1.0.0",
+  "stack": ["prisma"],
+  "tags": ["db", "pagination"],
+  "description": "カーソルベースページングの型付きヘルパ",
+  "files": [
+    { "path": "src/prisma.pagination.ts", "template": "export interface Page<T>{ items:T[]; nextCursor?:number }\nexport async function list<T>(limit:number, cursor?:number): Promise<Page<T>>{ return { items: [] }; }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "custom-doppler-fetch-config-minimal",
+  "name": "Doppler 設定取得 最小",
+  "version": "1.0.0",
+  "stack": ["doppler"],
+  "tags": ["secrets", "config"],
+  "description": "Dopplerから設定値を取得する最小スタブ",
+  "files": [
+    { "path": "src/secrets/doppler.ts", "template": "export async function config(){ return { KEY: 'value' }; }\n" }
+  ]
+}
+

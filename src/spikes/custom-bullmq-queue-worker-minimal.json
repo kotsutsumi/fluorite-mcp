@@ -1,0 +1,13 @@
+{
+  "id": "custom-bullmq-queue-worker-minimal",
+  "name": "BullMQ キュー+ワーカー 最小",
+  "version": "1.0.0",
+  "stack": ["bullmq", "redis"],
+  "tags": ["queue", "worker"],
+  "description": "BullMQのキュー作成とワーカースタブ",
+  "files": [
+    { "path": "src/queue.ts", "template": "export const queue = { add: async ()=>({ id:1 }) };\n" },
+    { "path": "src/worker.ts", "template": "export const worker = { on: ()=>{} };\n" }
+  ]
+}
+

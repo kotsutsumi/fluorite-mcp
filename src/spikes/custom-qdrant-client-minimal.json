@@ -1,0 +1,12 @@
+{
+  "id": "custom-qdrant-client-minimal",
+  "name": "Qdrant クライアント 最小",
+  "version": "1.0.0",
+  "stack": ["qdrant"],
+  "tags": ["vector", "db"],
+  "description": "Qdrantクライアントの最小スタブ",
+  "files": [
+    { "path": "src/vectors/qdrant.ts", "template": "export function qdrant(){ return { url: process.env.QDRANT_URL || 'http://localhost:6333' }; }\n" }
+  ]
+}
+

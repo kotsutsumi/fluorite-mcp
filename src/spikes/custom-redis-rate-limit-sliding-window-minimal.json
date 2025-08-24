@@ -1,0 +1,12 @@
+{
+  "id": "custom-redis-rate-limit-sliding-window-minimal",
+  "name": "Redis スライディングウィンドウ レート制限 最小",
+  "version": "1.0.0",
+  "stack": ["redis"],
+  "tags": ["rate-limit"],
+  "description": "Redisベースのスライディングウィンドウ・レート制限スタブ",
+  "files": [
+    { "path": "src/redis/rate-limit.ts", "template": "export async function allow(key:string, limit:number){ return { allowed: true, remaining: limit-1 }; }\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "custom-aws-lambda-api-gateway-minimal",
+  "name": "AWS Lambda + API Gateway 最小",
+  "version": "1.0.0",
+  "stack": ["aws-lambda", "api-gateway"],
+  "tags": ["serverless", "aws"],
+  "description": "Lambdaハンドラの最小（APIGW統合）",
+  "params": [],
+  "files": [
+    { "path": "src/handler.ts", "template": "export async function handler(event: any){ return { statusCode: 200, headers: { 'content-type': 'application/json' }, body: JSON.stringify({ ok: true, path: event.path }) }; }\n" }
+  ]
+}
+

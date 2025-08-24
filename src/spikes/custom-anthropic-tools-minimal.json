@@ -1,0 +1,12 @@
+{
+  "id": "custom-anthropic-tools-minimal",
+  "name": "Anthropic ツール呼び出し 最小",
+  "version": "1.0.0",
+  "stack": ["anthropic"],
+  "tags": ["ai", "tools"],
+  "description": "Anthropicツール呼び出しを想定した最小スタブ",
+  "files": [
+    { "path": "src/ai/anthropic-tools.ts", "template": "export const tools = [{ name: 'lookup', description: 'returns info' }];\n" }
+  ]
+}
+
