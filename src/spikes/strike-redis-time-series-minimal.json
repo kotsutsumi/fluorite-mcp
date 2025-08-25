@@ -1,0 +1,17 @@
+{
+  "id": "strike-redis-time-series-minimal",
+  "name": "strike-redis-time-series-minimal",
+  "stack": [
+    "redis"
+  ],
+  "tags": [
+    "time-series"
+  ],
+  "files": [
+    {
+      "path": "src/cache/redis-ts.ts",
+      "template": "export const rts = {};\n"
+    }
+  ],
+  "patches": []
+}

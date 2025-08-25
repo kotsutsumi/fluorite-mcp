@@ -1,0 +1,17 @@
+{
+  "id": "strike-nsq-producer-consumer-minimal",
+  "name": "strike-nsq-producer-consumer-minimal",
+  "stack": [
+    "nsq"
+  ],
+  "tags": [
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "src/queue/nsq.ts",
+      "template": "export const nsq = {};\n"
+    }
+  ],
+  "patches": []
+}

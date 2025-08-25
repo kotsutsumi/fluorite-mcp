@@ -1,0 +1,19 @@
+{
+  "id": "strike-lucia-session-store-redis-secure",
+  "name": "strike-lucia-session-store-redis-secure",
+  "stack": [
+    "lucia",
+    "redis"
+  ],
+  "tags": [
+    "auth",
+    "secure"
+  ],
+  "files": [
+    {
+      "path": "src/auth/lucia-redis-store.ts",
+      "template": "export const store = {};\n"
+    }
+  ],
+  "patches": []
+}

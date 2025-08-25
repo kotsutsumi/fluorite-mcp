@@ -1,0 +1,17 @@
+{
+  "id": "strike-grafana-alerting-provisioning-minimal",
+  "name": "strike-grafana-alerting-provisioning-minimal",
+  "stack": [
+    "grafana"
+  ],
+  "tags": [
+    "monitoring"
+  ],
+  "files": [
+    {
+      "path": "monitoring/grafana-provisioning.yml",
+      "template": "apiVersion: 1\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-serverless-sqs-trigger-lambda-minimal",
+  "name": "strike-serverless-sqs-trigger-lambda-minimal",
+  "stack": [
+    "serverless"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "serverless.sqs.yml",
+      "template": "service: sqs\n"
+    }
+  ],
+  "patches": []
+}

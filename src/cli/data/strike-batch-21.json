@@ -1,0 +1,46 @@
+{
+  "items": [
+    { "id": "aws-eventbridge-pipes-stub-minimal", "stack": ["aws"], "tags": ["events"], "files": [ { "path": "infra/eventbridge-pipes.json", "template": "{ }\n" } ] },
+    { "id": "aws-step-functions-map-state-minimal", "stack": ["aws"], "tags": ["workflow"], "files": [ { "path": "infra/stepfunctions-map.json", "template": "{ }\n" } ] },
+    { "id": "aws-sqs-fifo-deduplication-id-minimal", "stack": ["aws"], "tags": ["queue"], "files": [ { "path": "src/queue/sqs-fifo-dedupe.ts", "template": "export const dedupe = {};\n" } ] },
+    { "id": "azure-service-bus-queue-client-minimal", "stack": ["azure"], "tags": ["queue"], "files": [ { "path": "src/queue/azure-sb.ts", "template": "export const sb = {};\n" } ] },
+    { "id": "azure-blob-sas-generate-advanced", "stack": ["azure"], "tags": ["storage"], "files": [ { "path": "src/storage/azure-sas.ts", "template": "export async function sas(){ return ''; }\n" } ] },
+    { "id": "gcp-bigquery-query-minimal", "stack": ["gcp"], "tags": ["db"], "files": [ { "path": "src/db/bigquery.ts", "template": "export async function query(){ return []; }\n" } ] },
+    { "id": "gcp-bigtable-client-minimal", "stack": ["gcp"], "tags": ["db", "time-series"], "files": [ { "path": "src/db/bigtable.ts", "template": "export const bigtable = {};\n" } ] },
+    { "id": "gcp-pubsub-push-subscription-config-minimal", "stack": ["gcp"], "tags": ["queue"], "files": [ { "path": "infra/pubsub-push.json", "template": "{ }\n" } ] },
+
+    { "id": "cockroachdb-client-stub-minimal", "stack": ["cockroachdb"], "tags": ["db"], "files": [ { "path": "src/db/cockroach.ts", "template": "export const cockroach = {};\n" } ] },
+    { "id": "yugabytedb-client-stub-minimal", "stack": ["yugabytedb"], "tags": ["db"], "files": [ { "path": "src/db/yugabyte.ts", "template": "export const yugabyte = {};\n" } ] },
+    { "id": "cassandra-driver-client-minimal", "stack": ["cassandra"], "tags": ["db"], "files": [ { "path": "src/db/cassandra.ts", "template": "export const cassandra = {};\n" } ] },
+
+    { "id": "solr-search-client-stub-minimal", "stack": ["solr"], "tags": ["search"], "files": [ { "path": "src/search/solr.ts", "template": "export const solr = {};\n" } ] },
+    { "id": "elastic-vector-search-stub-minimal", "stack": ["elasticsearch"], "tags": ["search", "vector"], "files": [ { "path": "src/search/es-vector.ts", "template": "export const vector = {};\n" } ] },
+    { "id": "chroma-client-stub-minimal", "stack": ["chroma"], "tags": ["vector"], "files": [ { "path": "src/vectors/chroma.ts", "template": "export const chroma = {};\n" } ] },
+
+    { "id": "opentelemetry-traces-otlp-exporter-minimal", "stack": ["observability"], "tags": ["apm"], "files": [ { "path": "src/otel/traces.ts", "template": "export const traces = {};\n" } ] },
+    { "id": "opentelemetry-resource-detectors-minimal", "stack": ["observability"], "tags": ["apm"], "files": [ { "path": "src/otel/resource.ts", "template": "export const resource = {};\n" } ] },
+    { "id": "jaeger-exporter-config-minimal", "stack": ["jaeger"], "tags": ["apm"], "files": [ { "path": "src/otel/jaeger.ts", "template": "export const jaeger = {};\n" } ] },
+
+    { "id": "fastly-compute-stub-minimal", "stack": ["fastly"], "tags": ["edge"], "files": [ { "path": "fastly/compute.ts", "template": "export const compute = {};\n" } ] },
+    { "id": "cloudflare-cache-api-usage-minimal", "stack": ["cloudflare-workers"], "tags": ["edge", "cache"], "files": [ { "path": "src/cloudflare/cache.ts", "template": "export const cfCache = {};\n" } ] },
+
+    { "id": "qwik-route-endpoint-minimal", "stack": ["qwik"], "tags": ["frontend"], "files": [ { "path": "src/routes/api/health/index.ts", "template": "export const onGet = ()=> new Response('ok');\n" } ] },
+    { "id": "vue-pinia-store-minimal", "stack": ["vue", "pinia"], "tags": ["frontend", "state"], "files": [ { "path": "src/stores/app.ts", "template": "export const useApp = ()=> ({ ready: true });\n" } ] },
+    { "id": "svelte-derived-store-minimal", "stack": ["svelte"], "tags": ["frontend", "state"], "files": [ { "path": "src/stores/derived.ts", "template": "export const derivedStore = {};\n" } ] },
+    { "id": "solidjs-signal-store-minimal", "stack": ["solid"], "tags": ["frontend", "state"], "files": [ { "path": "src/state/solid-signal.ts", "template": "export const signalStore = {};\n" } ] },
+    { "id": "react-suspense-streaming-stub-minimal", "stack": ["react"], "tags": ["frontend"], "files": [ { "path": "src/app/SuspenseStream.tsx", "template": "export default function S(){ return null }\n" } ] },
+
+    { "id": "nextjs-dynamic-og-image-route-minimal", "stack": ["nextjs"], "tags": ["og"], "files": [ { "path": "app/api/og/route.ts", "template": "export async function GET(){ return new Response('OG'); }\n" } ] },
+    { "id": "pusher-socket-auth-route-minimal", "stack": ["pusher"], "tags": ["realtime"], "files": [ { "path": "src/realtime/pusher-auth.ts", "template": "export const auth = {};\n" } ] },
+    { "id": "socketio-namespaces-server-minimal", "stack": ["socket.io"], "tags": ["realtime"], "files": [ { "path": "src/realtime/socketio-ns.ts", "template": "export const ns = {};\n" } ] },
+
+    { "id": "pact-contract-test-stub-minimal", "stack": ["pact"], "tags": ["testing"], "files": [ { "path": "src/test/pact.ts", "template": "export const pact = {};\n" } ] },
+    { "id": "dredd-openapi-test-stub-minimal", "stack": ["dredd"], "tags": ["testing"], "files": [ { "path": "src/test/dredd.ts", "template": "export const dredd = {};\n" } ] },
+    { "id": "k6-load-test-config-minimal", "stack": ["k6"], "tags": ["testing", "performance"], "files": [ { "path": "k6/script.js", "template": "export default function(){}\n" } ] },
+    { "id": "artillery-load-test-config-minimal", "stack": ["artillery"], "tags": ["testing", "performance"], "files": [ { "path": "artillery.yml", "template": "config: {}\n" } ] },
+
+    { "id": "nix-flake-stub-minimal", "stack": ["nix"], "tags": ["devx"], "files": [ { "path": "flake.nix", "template": "{ }\n" } ] },
+    { "id": "devcontainer-config-minimal", "stack": ["devcontainer"], "tags": ["devx"], "files": [ { "path": ".devcontainer/devcontainer.json", "template": "{ }\n" } ] },
+    { "id": "makefile-taskfile-stub-minimal", "stack": ["automation"], "tags": ["devx"], "files": [ { "path": "Taskfile.yml", "template": "version: '3'\n" } ] }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-dotenv-multi-stage-config-minimal",
+  "name": "strike-dotenv-multi-stage-config-minimal",
+  "stack": [
+    "dotenv"
+  ],
+  "tags": [
+    "config"
+  ],
+  "files": [
+    {
+      "path": "src/config/stages.ts",
+      "template": "export const stages = ['dev','staging','prod'];\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-loki-http-ingest-minimal",
+  "name": "strike-loki-http-ingest-minimal",
+  "stack": [
+    "loki"
+  ],
+  "tags": [
+    "logging"
+  ],
+  "files": [
+    {
+      "path": "src/logging/loki.ts",
+      "template": "export const loki = {};\n"
+    }
+  ],
+  "patches": []
+}

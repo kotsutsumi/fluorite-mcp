@@ -75,7 +75,7 @@ cd fluorite-mcp
 npm install -g fluorite-mcp
 
 # Claude Code CLI に追加
-claude mcp add fluorite -- fluorite-mcp-server
+claude mcp add fluorite-mcp -- fluorite-mcp
 ```
 
 ### 方法 2: ローカルインストール
@@ -90,8 +90,8 @@ cd ~/.claude-mcp-servers
 # ローカルにインストール
 npm install fluorite-mcp
 
-# 完全パスで Claude Code CLI に追加（重要: fluorite-mcp-server を使用）
-claude mcp add fluorite -- $(pwd)/node_modules/.bin/fluorite-mcp-server
+# 完全パスで Claude Code CLI に追加（重要: fluorite-mcp を使用）
+claude mcp add fluorite -- $(pwd)/node_modules/.bin/fluorite-mcp
 ```
 
 ### 方法 3: ソースから（開発用）
@@ -113,7 +113,7 @@ npm run build
 npm link
 
 # Claude Code CLI に追加
-claude mcp add fluorite -- fluorite-mcp-server
+claude mcp add fluorite-mcp -- fluorite-mcp
 ```
 
 ### 方法 4: パッケージマネージャーの使用
@@ -125,7 +125,7 @@ claude mcp add fluorite -- fluorite-mcp-server
 yarn global add fluorite-mcp
 
 # Claude Code CLI に追加
-claude mcp add fluorite -- fluorite-mcp-server
+claude mcp add fluorite-mcp -- fluorite-mcp
 ```
 
 #### pnpm を使用
@@ -135,7 +135,7 @@ claude mcp add fluorite -- fluorite-mcp-server
 pnpm add -g fluorite-mcp
 
 # Claude Code CLI に追加
-claude mcp add fluorite -- fluorite-mcp-server
+claude mcp add fluorite-mcp -- fluorite-mcp
 ```
 
 ## 設定
@@ -325,7 +325,7 @@ yarn global add fluorite-mcp
 ```bash
 # 正しいバイナリでサーバーを削除・再追加
 claude mcp remove fluorite
-claude mcp add fluorite -- fluorite-mcp-server
+claude mcp add fluorite-mcp -- fluorite-mcp
 
 # 現在の MCP サーバーステータスを確認
 claude mcp list
@@ -336,9 +336,9 @@ claude mcp get fluorite
 
 #### 5. "Wrong Binary" 接続エラー
 
-**問題**: MCP 接続で `fluorite-mcp-server` の代わりに `fluorite-mcp` を使用
+**問題**: MCP 接続で `fluorite-mcp` の代わりに `fluorite-mcp` を使用
 
-**重要**: `fluorite-mcp` コマンドは CLI ツールであり、`fluorite-mcp-server` は MCP サーバーバイナリです。Claude Code MCP 接続には常に `fluorite-mcp-server` を使用してください。
+**重要**: `fluorite-mcp` コマンドは CLI ツールであり、`fluorite-mcp` は MCP サーバーバイナリです。Claude Code MCP 接続には常に `fluorite-mcp` を使用してください。
 
 **解決策**:
 ```bash
@@ -347,11 +347,11 @@ claude mcp get fluorite
 # コマンドが "fluorite-mcp" を表示する場合、削除して正しく再追加
 
 claude mcp remove fluorite
-claude mcp add fluorite -- fluorite-mcp-server
+claude mcp add fluorite-mcp -- fluorite-mcp
 
 # 接続を確認
 claude mcp list
-# 表示例: "fluorite: fluorite-mcp-server - ✓ Connected"
+# 表示例: "fluorite: fluorite-mcp - ✓ Connected"
 ```
 
 ### プラットフォーム固有の問題
@@ -478,9 +478,9 @@ export FLUORITE_FRAMEWORK_HINT="nextjs"  # または "react", "vue"
 
 ## よくある質問（FAQ）
 
-### Q: なぜ `fluorite-mcp` の代わりに `fluorite-mcp-server` を使うのですか？
+### Q: なぜ `fluorite-mcp` の代わりに `fluorite-mcp` を使うのですか？
 
-A: `fluorite-mcp` は CLI ツールで、`fluorite-mcp-server` は MCP プロトコルサーバーです。Claude Code CLI は MCP サーバーと通信するため、`fluorite-mcp-server` バイナリが必要です。
+A: `fluorite-mcp` は CLI ツールで、`fluorite-mcp` は MCP プロトコルサーバーです。Claude Code CLI は MCP サーバーと通信するため、`fluorite-mcp` バイナリが必要です。
 
 ### Q: インストール後に機能しない場合は？
 

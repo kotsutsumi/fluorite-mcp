@@ -1,0 +1,17 @@
+{
+  "id": "strike-bullmq-worker-events-minimal",
+  "name": "strike-bullmq-worker-events-minimal",
+  "stack": [
+    "bullmq"
+  ],
+  "tags": [
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "src/queue/events.ts",
+      "template": "export const events = {};\n"
+    }
+  ],
+  "patches": []
+}

@@ -205,7 +205,7 @@ console.log(rhythmAnalysis.rhythm.regularity); // 0-1スケール
 ```bash
 # Fluorite MCPの音声処理機能を有効化
 npm install fluorite-mcp
-claude mcp add fluorite -- fluorite-mcp-server-server
+claude mcp add fluorite-mcp -- fluorite-mcp
 
 # 音声処理依存関係（オプション）
 npm install audio-buffer fft-js

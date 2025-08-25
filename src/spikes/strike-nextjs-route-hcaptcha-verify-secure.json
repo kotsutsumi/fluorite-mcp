@@ -1,0 +1,17 @@
+{
+  "id": "strike-nextjs-route-hcaptcha-verify-secure",
+  "name": "strike-nextjs-route-hcaptcha-verify-secure",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "app/api/hcaptcha/route.ts",
+      "template": "export async function POST(){ return Response.json({ ok:true }) }\n"
+    }
+  ],
+  "patches": []
+}

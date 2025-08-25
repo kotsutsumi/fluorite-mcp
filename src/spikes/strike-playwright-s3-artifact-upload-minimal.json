@@ -1,0 +1,17 @@
+{
+  "id": "strike-playwright-s3-artifact-upload-minimal",
+  "name": "strike-playwright-s3-artifact-upload-minimal",
+  "stack": [
+    "playwright"
+  ],
+  "tags": [
+    "testing"
+  ],
+  "files": [
+    {
+      "path": "src/test/s3-artifact.ts",
+      "template": "export const upload = {};\n"
+    }
+  ],
+  "patches": []
+}

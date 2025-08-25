@@ -1,0 +1,17 @@
+{
+  "id": "strike-nextjs-incremental-static-revalidate-minimal",
+  "name": "strike-nextjs-incremental-static-revalidate-minimal",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "cache"
+  ],
+  "files": [
+    {
+      "path": "src/next/isr.ts",
+      "template": "export const revalidate = 60;\n"
+    }
+  ],
+  "patches": []
+}

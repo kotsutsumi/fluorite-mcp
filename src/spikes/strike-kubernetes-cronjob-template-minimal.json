@@ -1,0 +1,17 @@
+{
+  "id": "strike-kubernetes-cronjob-template-minimal",
+  "name": "strike-kubernetes-cronjob-template-minimal",
+  "stack": [
+    "kubernetes"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "k8s/cronjob.yaml",
+      "template": "apiVersion: batch/v1\nkind: CronJob\n"
+    }
+  ],
+  "patches": []
+}

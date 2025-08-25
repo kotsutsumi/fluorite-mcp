@@ -1,0 +1,18 @@
+{
+  "id": "strike-prisma-multi-tenant-schema-advanced",
+  "name": "strike-prisma-multi-tenant-schema-advanced",
+  "stack": [
+    "prisma"
+  ],
+  "tags": [
+    "db",
+    "tenant"
+  ],
+  "files": [
+    {
+      "path": "src/db/prisma-multitenant.ts",
+      "template": "export const tenants = [];\n"
+    }
+  ],
+  "patches": []
+}

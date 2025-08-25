@@ -1812,4 +1812,4 @@ const metrics = await client.callTool('server-metrics', {});
 
 ---
 
-*Function Reference v0.12.1 - Last updated: January 2025*
+*Function Reference v0.20.0 - Last updated: January 2025*

@@ -1,0 +1,17 @@
+{
+  "id": "strike-upstash-kafka-producer-minimal",
+  "name": "strike-upstash-kafka-producer-minimal",
+  "stack": [
+    "kafka"
+  ],
+  "tags": [
+    "stream"
+  ],
+  "files": [
+    {
+      "path": "src/stream/upstash-kafka.ts",
+      "template": "export const producer = {};\n"
+    }
+  ],
+  "patches": []
+}

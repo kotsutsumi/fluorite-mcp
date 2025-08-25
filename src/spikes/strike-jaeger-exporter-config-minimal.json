@@ -1,0 +1,17 @@
+{
+  "id": "strike-jaeger-exporter-config-minimal",
+  "name": "strike-jaeger-exporter-config-minimal",
+  "stack": [
+    "jaeger"
+  ],
+  "tags": [
+    "apm"
+  ],
+  "files": [
+    {
+      "path": "src/otel/jaeger.ts",
+      "template": "export const jaeger = {};\n"
+    }
+  ],
+  "patches": []
+}

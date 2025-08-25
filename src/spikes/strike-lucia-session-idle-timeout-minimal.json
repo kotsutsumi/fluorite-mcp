@@ -1,0 +1,17 @@
+{
+  "id": "strike-lucia-session-idle-timeout-minimal",
+  "name": "strike-lucia-session-idle-timeout-minimal",
+  "stack": [
+    "lucia"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "src/auth/lucia-idle.ts",
+      "template": "export const idle = {};\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-cloudflare-security-headers-minimal",
+  "name": "strike-cloudflare-security-headers-minimal",
+  "stack": [
+    "cloudflare-workers"
+  ],
+  "tags": [
+    "edge",
+    "security"
+  ],
+  "files": [
+    {
+      "path": "src/cloudflare/security-headers.ts",
+      "template": "export const headers = {};\n"
+    }
+  ],
+  "patches": []
+}

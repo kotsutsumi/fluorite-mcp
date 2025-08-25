@@ -1,0 +1,17 @@
+{
+  "id": "strike-kustomize-base-overlay-minimal",
+  "name": "strike-kustomize-base-overlay-minimal",
+  "stack": [
+    "kustomize"
+  ],
+  "tags": [
+    "kubernetes"
+  ],
+  "files": [
+    {
+      "path": "k8s/kustomization.yaml",
+      "template": "resources: []\n"
+    }
+  ],
+  "patches": []
+}

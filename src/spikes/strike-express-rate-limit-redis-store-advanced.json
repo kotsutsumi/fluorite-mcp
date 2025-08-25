@@ -1,0 +1,17 @@
+{
+  "id": "strike-express-rate-limit-redis-store-advanced",
+  "name": "strike-express-rate-limit-redis-store-advanced",
+  "stack": [
+    "express"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "src/security/express-redis-rate.ts",
+      "template": "export const rate = {};\n"
+    }
+  ],
+  "patches": []
+}

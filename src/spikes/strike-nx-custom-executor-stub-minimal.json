@@ -1,0 +1,17 @@
+{
+  "id": "strike-nx-custom-executor-stub-minimal",
+  "name": "strike-nx-custom-executor-stub-minimal",
+  "stack": [
+    "nx"
+  ],
+  "tags": [
+    "monorepo"
+  ],
+  "files": [
+    {
+      "path": "tools/executors/custom.ts",
+      "template": "export default async()=>({ success:true });\n"
+    }
+  ],
+  "patches": []
+}

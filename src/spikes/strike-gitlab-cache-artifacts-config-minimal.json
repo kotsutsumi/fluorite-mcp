@@ -1,0 +1,17 @@
+{
+  "id": "strike-gitlab-cache-artifacts-config-minimal",
+  "name": "strike-gitlab-cache-artifacts-config-minimal",
+  "stack": [
+    "gitlab"
+  ],
+  "tags": [
+    "cicd"
+  ],
+  "files": [
+    {
+      "path": ".gitlab-ci-cache.yml",
+      "template": "stages: []\n"
+    }
+  ],
+  "patches": []
+}

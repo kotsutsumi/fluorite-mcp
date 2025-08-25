@@ -1,0 +1,17 @@
+{
+  "id": "strike-neon-postgres-client-minimal",
+  "name": "strike-neon-postgres-client-minimal",
+  "stack": [
+    "postgres"
+  ],
+  "tags": [
+    "db"
+  ],
+  "files": [
+    {
+      "path": "src/db/neon.ts",
+      "template": "export const neon = {};\n"
+    }
+  ],
+  "patches": []
+}

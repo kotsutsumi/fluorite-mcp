@@ -1,0 +1,18 @@
+{
+  "id": "strike-cloudflare-cache-api-usage-minimal",
+  "name": "strike-cloudflare-cache-api-usage-minimal",
+  "stack": [
+    "cloudflare-workers"
+  ],
+  "tags": [
+    "edge",
+    "cache"
+  ],
+  "files": [
+    {
+      "path": "src/cloudflare/cache.ts",
+      "template": "export const cfCache = {};\n"
+    }
+  ],
+  "patches": []
+}

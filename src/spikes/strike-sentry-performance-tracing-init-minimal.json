@@ -1,0 +1,17 @@
+{
+  "id": "strike-sentry-performance-tracing-init-minimal",
+  "name": "strike-sentry-performance-tracing-init-minimal",
+  "stack": [
+    "sentry"
+  ],
+  "tags": [
+    "monitoring"
+  ],
+  "files": [
+    {
+      "path": "src/sentry/perf.ts",
+      "template": "export const perf = {};\n"
+    }
+  ],
+  "patches": []
+}

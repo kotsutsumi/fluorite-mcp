@@ -1,0 +1,17 @@
+{
+  "id": "strike-pino-transport-grafana-loki-minimal",
+  "name": "strike-pino-transport-grafana-loki-minimal",
+  "stack": [
+    "pino"
+  ],
+  "tags": [
+    "logging"
+  ],
+  "files": [
+    {
+      "path": "src/logging/pino-loki.ts",
+      "template": "export const loki = {};\n"
+    }
+  ],
+  "patches": []
+}

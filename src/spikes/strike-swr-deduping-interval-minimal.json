@@ -1,0 +1,17 @@
+{
+  "id": "strike-swr-deduping-interval-minimal",
+  "name": "strike-swr-deduping-interval-minimal",
+  "stack": [
+    "swr"
+  ],
+  "tags": [
+    "frontend"
+  ],
+  "files": [
+    {
+      "path": "src/swr/dedup.ts",
+      "template": "export const deduping = 2000;\n"
+    }
+  ],
+  "patches": []
+}

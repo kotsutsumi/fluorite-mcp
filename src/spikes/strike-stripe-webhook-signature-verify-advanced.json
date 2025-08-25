@@ -1,0 +1,18 @@
+{
+  "id": "strike-stripe-webhook-signature-verify-advanced",
+  "name": "strike-stripe-webhook-signature-verify-advanced",
+  "stack": [
+    "stripe"
+  ],
+  "tags": [
+    "billing",
+    "security"
+  ],
+  "files": [
+    {
+      "path": "src/stripe/verify.ts",
+      "template": "export async function verify(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

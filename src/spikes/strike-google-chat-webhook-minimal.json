@@ -1,0 +1,17 @@
+{
+  "id": "strike-google-chat-webhook-minimal",
+  "name": "strike-google-chat-webhook-minimal",
+  "stack": [
+    "google"
+  ],
+  "tags": [
+    "integration"
+  ],
+  "files": [
+    {
+      "path": "src/integrations/google-chat.ts",
+      "template": "export async function post(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-elasticsearch-snapshot-lifecycle-minimal",
+  "name": "strike-elasticsearch-snapshot-lifecycle-minimal",
+  "stack": [
+    "elasticsearch"
+  ],
+  "tags": [
+    "search"
+  ],
+  "files": [
+    {
+      "path": "src/search/es-slm.ts",
+      "template": "export const slm = {};\n"
+    }
+  ],
+  "patches": []
+}

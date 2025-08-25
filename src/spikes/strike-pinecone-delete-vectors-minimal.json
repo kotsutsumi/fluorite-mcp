@@ -1,0 +1,17 @@
+{
+  "id": "strike-pinecone-delete-vectors-minimal",
+  "name": "strike-pinecone-delete-vectors-minimal",
+  "stack": [
+    "pinecone"
+  ],
+  "tags": [
+    "vector"
+  ],
+  "files": [
+    {
+      "path": "src/vectors/pinecone-delete.ts",
+      "template": "export async function del(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

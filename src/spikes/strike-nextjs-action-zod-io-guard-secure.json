@@ -1,0 +1,19 @@
+{
+  "id": "strike-nextjs-action-zod-io-guard-secure",
+  "name": "strike-nextjs-action-zod-io-guard-secure",
+  "stack": [
+    "nextjs",
+    "zod"
+  ],
+  "tags": [
+    "server-actions",
+    "secure"
+  ],
+  "files": [
+    {
+      "path": "app/actions/guard-io.ts",
+      "template": "import { z } from 'zod';\nconst In = z.object({ id: z.string() });\nconst Out = z.object({ ok: z.literal(true), id: z.string() });\nexport async function guarded(input: unknown){ const v = In.parse(input); return Out.parse({ ok: true, id: v.id }); }\n"
+    }
+  ],
+  "patches": []
+}

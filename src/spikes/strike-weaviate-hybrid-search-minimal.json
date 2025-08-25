@@ -1,0 +1,17 @@
+{
+  "id": "strike-weaviate-hybrid-search-minimal",
+  "name": "strike-weaviate-hybrid-search-minimal",
+  "stack": [
+    "weaviate"
+  ],
+  "tags": [
+    "vector"
+  ],
+  "files": [
+    {
+      "path": "src/vectors/weaviate-hybrid.ts",
+      "template": "export async function search(){ return [] }\n"
+    }
+  ],
+  "patches": []
+}

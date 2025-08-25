@@ -1,0 +1,18 @@
+{
+  "id": "strike-serverless-azure-functions-config-minimal",
+  "name": "strike-serverless-azure-functions-config-minimal",
+  "stack": [
+    "serverless",
+    "azure"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "serverless.azure.yml",
+      "template": "service: azure\n"
+    }
+  ],
+  "patches": []
+}

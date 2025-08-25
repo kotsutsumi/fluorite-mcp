@@ -1,0 +1,17 @@
+{
+  "id": "strike-kafka-rebalance-handlers-minimal",
+  "name": "strike-kafka-rebalance-handlers-minimal",
+  "stack": [
+    "kafkajs"
+  ],
+  "tags": [
+    "stream"
+  ],
+  "files": [
+    {
+      "path": "src/kafka/rebalance.ts",
+      "template": "export const rebalance = {};\n"
+    }
+  ],
+  "patches": []
+}

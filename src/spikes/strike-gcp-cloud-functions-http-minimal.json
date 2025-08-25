@@ -1,0 +1,17 @@
+{
+  "id": "strike-gcp-cloud-functions-http-minimal",
+  "name": "strike-gcp-cloud-functions-http-minimal",
+  "stack": [
+    "gcp"
+  ],
+  "tags": [
+    "serverless"
+  ],
+  "files": [
+    {
+      "path": "functions/http.ts",
+      "template": "export const http = (req:any,res:any)=> res.send('ok');\n"
+    }
+  ],
+  "patches": []
+}

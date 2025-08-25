@@ -75,7 +75,7 @@ This is the most common and recommended installation method:
 npm install -g fluorite-mcp
 
 # Add to Claude Code CLI
-claude mcp add fluorite -- fluorite-mcp-server
+claude mcp add fluorite-mcp -- fluorite-mcp
 ```
 
 ### Method 2: Local Installation
@@ -90,8 +90,8 @@ cd ~/.claude-mcp-servers
 # Install locally
 npm install fluorite-mcp
 
-# Add to Claude Code CLI with full path (IMPORTANT: Use fluorite-mcp-server)
-claude mcp add fluorite -- $(pwd)/node_modules/.bin/fluorite-mcp-server
+# Add to Claude Code CLI with full path
+claude mcp add fluorite-mcp -- $(pwd)/node_modules/.bin/fluorite-mcp
 ```
 
 ### Method 3: From Source (Development)
@@ -113,7 +113,7 @@ npm run build
 npm link
 
 # Add to Claude Code CLI
-claude mcp add fluorite -- fluorite-mcp-server
+claude mcp add fluorite-mcp -- fluorite-mcp
 ```
 
 ### Method 4: Using Package Managers
@@ -125,7 +125,7 @@ claude mcp add fluorite -- fluorite-mcp-server
 yarn global add fluorite-mcp
 
 # Add to Claude Code CLI
-claude mcp add fluorite -- fluorite-mcp-server
+claude mcp add fluorite-mcp -- fluorite-mcp
 ```
 
 #### Using pnpm
@@ -135,7 +135,7 @@ claude mcp add fluorite -- fluorite-mcp-server
 pnpm add -g fluorite-mcp
 
 # Add to Claude Code CLI
-claude mcp add fluorite -- fluorite-mcp-server
+claude mcp add fluorite-mcp -- fluorite-mcp
 ```
 
 ## Configuration
@@ -325,7 +325,7 @@ yarn global add fluorite-mcp
 ```bash
 # Remove and re-add the server with correct binary
 claude mcp remove fluorite
-claude mcp add fluorite -- fluorite-mcp-server
+claude mcp add fluorite-mcp -- fluorite-mcp
 
 # Check current MCP server status
 claude mcp list
@@ -336,9 +336,9 @@ claude mcp get fluorite
 
 #### 5. "Wrong Binary" Connection Error
 
-**Problem**: Using `fluorite-mcp` instead of `fluorite-mcp-server` for MCP connection
+**Problem**: Using `fluorite-mcp` instead of `fluorite-mcp` for MCP connection
 
-**Important**: The `fluorite-mcp` command is the CLI tool, while `fluorite-mcp-server` is the MCP server binary. Always use `fluorite-mcp-server` for Claude Code MCP connections.
+**Important**: The `fluorite-mcp` command is the CLI tool, while `fluorite-mcp` is the MCP server binary. Always use `fluorite-mcp` for Claude Code MCP connections.
 
 **Solutions**:
 ```bash
@@ -347,11 +347,11 @@ claude mcp get fluorite
 # If command shows: "fluorite-mcp", remove and re-add correctly
 
 claude mcp remove fluorite
-claude mcp add fluorite -- fluorite-mcp-server
+claude mcp add fluorite-mcp -- fluorite-mcp
 
 # Verify the connection
 claude mcp list
-# Should show: "fluorite: fluorite-mcp-server - ✓ Connected"
+# Should show: "fluorite: fluorite-mcp - ✓ Connected"
 ```
 
 ### Platform-Specific Issues

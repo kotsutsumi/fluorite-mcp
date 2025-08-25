@@ -1,0 +1,17 @@
+{
+  "id": "strike-kafka-retry-backoff-controller-minimal",
+  "name": "strike-kafka-retry-backoff-controller-minimal",
+  "stack": [
+    "kafkajs"
+  ],
+  "tags": [
+    "stream"
+  ],
+  "files": [
+    {
+      "path": "src/kafka/backoff-controller.ts",
+      "template": "export const controller = {};\n"
+    }
+  ],
+  "patches": []
+}

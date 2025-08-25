@@ -1,0 +1,18 @@
+{
+  "id": "strike-redis-pubsub-pattern-minimal",
+  "name": "strike-redis-pubsub-pattern-minimal",
+  "stack": [
+    "redis"
+  ],
+  "tags": [
+    "cache",
+    "realtime"
+  ],
+  "files": [
+    {
+      "path": "src/cache/redis-pubsub.ts",
+      "template": "export const pubsub = {};\n"
+    }
+  ],
+  "patches": []
+}

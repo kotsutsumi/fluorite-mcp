@@ -1,0 +1,17 @@
+{
+  "id": "strike-otel-logs-exporter-stub-minimal",
+  "name": "strike-otel-logs-exporter-stub-minimal",
+  "stack": [
+    "observability"
+  ],
+  "tags": [
+    "apm"
+  ],
+  "files": [
+    {
+      "path": "src/otel/logs-exporter.ts",
+      "template": "export const logs = {};\n"
+    }
+  ],
+  "patches": []
+}

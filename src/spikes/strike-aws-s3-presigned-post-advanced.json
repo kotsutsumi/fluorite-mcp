@@ -1,0 +1,18 @@
+{
+  "id": "strike-aws-s3-presigned-post-advanced",
+  "name": "strike-aws-s3-presigned-post-advanced",
+  "stack": [
+    "aws",
+    "s3"
+  ],
+  "tags": [
+    "upload"
+  ],
+  "files": [
+    {
+      "path": "src/storage/s3-presigned-post.ts",
+      "template": "export async function presignedPost(){ return {}; }\n"
+    }
+  ],
+  "patches": []
+}

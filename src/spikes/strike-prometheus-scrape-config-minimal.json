@@ -1,0 +1,17 @@
+{
+  "id": "strike-prometheus-scrape-config-minimal",
+  "name": "strike-prometheus-scrape-config-minimal",
+  "stack": [
+    "prometheus"
+  ],
+  "tags": [
+    "monitoring"
+  ],
+  "files": [
+    {
+      "path": "monitoring/prometheus.yml",
+      "template": "scrape_configs: []\n"
+    }
+  ],
+  "patches": []
+}

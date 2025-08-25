@@ -1,0 +1,18 @@
+{
+  "id": "strike-traefik-middleware-rate-limit-minimal",
+  "name": "strike-traefik-middleware-rate-limit-minimal",
+  "stack": [
+    "traefik"
+  ],
+  "tags": [
+    "gateway",
+    "security"
+  ],
+  "files": [
+    {
+      "path": "infra/traefik/dynamic.yaml",
+      "template": "http: { middlewares: {} }\n"
+    }
+  ],
+  "patches": []
+}

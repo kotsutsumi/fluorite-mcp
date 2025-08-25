@@ -1,0 +1,17 @@
+{
+  "id": "strike-alertmanager-config-stub-minimal",
+  "name": "strike-alertmanager-config-stub-minimal",
+  "stack": [
+    "prometheus"
+  ],
+  "tags": [
+    "monitoring"
+  ],
+  "files": [
+    {
+      "path": "monitoring/alertmanager.yml",
+      "template": "route: {}\n"
+    }
+  ],
+  "patches": []
+}

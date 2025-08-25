@@ -1,0 +1,18 @@
+{
+  "id": "strike-clickhouse-kafka-engine-stub-minimal",
+  "name": "strike-clickhouse-kafka-engine-stub-minimal",
+  "stack": [
+    "clickhouse"
+  ],
+  "tags": [
+    "db",
+    "stream"
+  ],
+  "files": [
+    {
+      "path": "src/db/clickhouse-kafka.ts",
+      "template": "export const kafkaEngine = {};\n"
+    }
+  ],
+  "patches": []
+}

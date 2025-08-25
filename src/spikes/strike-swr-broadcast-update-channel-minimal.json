@@ -1,0 +1,17 @@
+{
+  "id": "strike-swr-broadcast-update-channel-minimal",
+  "name": "strike-swr-broadcast-update-channel-minimal",
+  "stack": [
+    "swr"
+  ],
+  "tags": [
+    "frontend"
+  ],
+  "files": [
+    {
+      "path": "src/swr/broadcast.ts",
+      "template": "export const channel = 'updates';\n"
+    }
+  ],
+  "patches": []
+}

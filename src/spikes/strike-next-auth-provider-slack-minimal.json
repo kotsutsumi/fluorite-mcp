@@ -1,0 +1,17 @@
+{
+  "id": "strike-next-auth-provider-slack-minimal",
+  "name": "strike-next-auth-provider-slack-minimal",
+  "stack": [
+    "next-auth"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "src/auth/nextauth-slack.ts",
+      "template": "export const slack = { clientId: '', clientSecret: '' };\n"
+    }
+  ],
+  "patches": []
+}

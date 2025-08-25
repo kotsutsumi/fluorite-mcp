@@ -1,0 +1,17 @@
+{
+  "id": "strike-pinecone-namespace-list-minimal",
+  "name": "strike-pinecone-namespace-list-minimal",
+  "stack": [
+    "pinecone"
+  ],
+  "tags": [
+    "vector"
+  ],
+  "files": [
+    {
+      "path": "src/vectors/pinecone-list.ts",
+      "template": "export async function list(){ return []; }\n"
+    }
+  ],
+  "patches": []
+}

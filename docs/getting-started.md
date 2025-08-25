@@ -21,7 +21,7 @@ npm i -g fluorite-mcp
 
 ```bash
 # Connect to Claude Code CLI
-claude mcp add fluorite -- fluorite-mcp-server
+claude mcp add fluorite-mcp -- fluorite-mcp
 ```
 
 ### Step 3: Verify Installation

@@ -1,0 +1,17 @@
+{
+  "id": "strike-milvus-index-hnsw-minimal",
+  "name": "strike-milvus-index-hnsw-minimal",
+  "stack": [
+    "milvus"
+  ],
+  "tags": [
+    "vector"
+  ],
+  "files": [
+    {
+      "path": "src/vectors/milvus-index.ts",
+      "template": "export const index = {};\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-upstash-redis-rest-minimal",
+  "name": "strike-upstash-redis-rest-minimal",
+  "stack": [
+    "redis"
+  ],
+  "tags": [
+    "cache"
+  ],
+  "files": [
+    {
+      "path": "src/cache/upstash.ts",
+      "template": "export const upstash = {};\n"
+    }
+  ],
+  "patches": []
+}

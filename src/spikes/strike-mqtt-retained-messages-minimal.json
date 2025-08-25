@@ -1,0 +1,17 @@
+{
+  "id": "strike-mqtt-retained-messages-minimal",
+  "name": "strike-mqtt-retained-messages-minimal",
+  "stack": [
+    "mqtt"
+  ],
+  "tags": [
+    "iot"
+  ],
+  "files": [
+    {
+      "path": "src/iot/mqtt-retain.ts",
+      "template": "export const retained = {};\n"
+    }
+  ],
+  "patches": []
+}

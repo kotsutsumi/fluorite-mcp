@@ -1,0 +1,18 @@
+{
+  "id": "strike-lucia-session-storage-redis-json-minimal",
+  "name": "strike-lucia-session-storage-redis-json-minimal",
+  "stack": [
+    "lucia",
+    "redis"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "src/auth/lucia-redis-json.ts",
+      "template": "export const storage = {};\n"
+    }
+  ],
+  "patches": []
+}

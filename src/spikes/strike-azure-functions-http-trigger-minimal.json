@@ -1,0 +1,17 @@
+{
+  "id": "strike-azure-functions-http-trigger-minimal",
+  "name": "strike-azure-functions-http-trigger-minimal",
+  "stack": [
+    "azure-functions"
+  ],
+  "tags": [
+    "serverless"
+  ],
+  "files": [
+    {
+      "path": "api/HttpTrigger/index.ts",
+      "template": "export default async function(context:any, req:any){ context.res = { body: 'ok' }; }\n"
+    }
+  ],
+  "patches": []
+}

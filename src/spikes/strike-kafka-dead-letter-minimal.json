@@ -1,0 +1,17 @@
+{
+  "id": "strike-kafka-dead-letter-minimal",
+  "name": "strike-kafka-dead-letter-minimal",
+  "stack": [
+    "kafkajs"
+  ],
+  "tags": [
+    "stream"
+  ],
+  "files": [
+    {
+      "path": "src/kafka/dead-letter.ts",
+      "template": "export const deadLetter = {};\n"
+    }
+  ],
+  "patches": []
+}

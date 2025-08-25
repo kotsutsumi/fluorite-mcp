@@ -1,0 +1,17 @@
+{
+  "id": "strike-playwright-ci-parallel-shards-minimal",
+  "name": "strike-playwright-ci-parallel-shards-minimal",
+  "stack": [
+    "playwright"
+  ],
+  "tags": [
+    "testing"
+  ],
+  "files": [
+    {
+      "path": "src/test/ci-shards.ts",
+      "template": "export const shards = {};\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-cloudflare-workers-routes-minimal",
+  "name": "strike-cloudflare-workers-routes-minimal",
+  "stack": [
+    "cloudflare-workers"
+  ],
+  "tags": [
+    "edge"
+  ],
+  "files": [
+    {
+      "path": "src/cloudflare/routes.ts",
+      "template": "export const routes = [];\n"
+    }
+  ],
+  "patches": []
+}

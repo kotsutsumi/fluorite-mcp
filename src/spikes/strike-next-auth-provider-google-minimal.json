@@ -1,0 +1,17 @@
+{
+  "id": "strike-next-auth-provider-google-minimal",
+  "name": "strike-next-auth-provider-google-minimal",
+  "stack": [
+    "next-auth"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "src/auth/nextauth-google.ts",
+      "template": "export const google = { clientId: '', clientSecret: '' };\n"
+    }
+  ],
+  "patches": []
+}

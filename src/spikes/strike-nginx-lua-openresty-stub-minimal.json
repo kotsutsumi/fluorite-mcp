@@ -1,0 +1,17 @@
+{
+  "id": "strike-nginx-lua-openresty-stub-minimal",
+  "name": "strike-nginx-lua-openresty-stub-minimal",
+  "stack": [
+    "nginx"
+  ],
+  "tags": [
+    "gateway"
+  ],
+  "files": [
+    {
+      "path": "infra/nginx/lua.conf",
+      "template": "http { server { location / { content_by_lua_block { } } } }\n"
+    }
+  ],
+  "patches": []
+}

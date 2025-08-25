@@ -1,0 +1,42 @@
+{
+  "items": [
+    { "id": "aws-ssm-parameter-store-minimal", "stack": ["aws"], "tags": ["config"], "files": [ { "path": "src/config/aws-ssm.ts", "template": "export const ssm = {};\n" } ] },
+    { "id": "azure-app-configuration-minimal", "stack": ["azure"], "tags": ["config"], "files": [ { "path": "src/config/azure-appconfig.ts", "template": "export const appconfig = {};\n" } ] },
+    { "id": "onepassword-connect-secrets-minimal", "stack": ["1password"], "tags": ["secrets"], "files": [ { "path": "src/secrets/op-connect.ts", "template": "export const op = {};\n" } ] },
+
+    { "id": "apache-pulsar-producer-consumer-minimal", "stack": ["pulsar"], "tags": ["stream"], "files": [ { "path": "src/stream/pulsar.ts", "template": "export const pulsar = {};\n" } ] },
+    { "id": "redisearch-query-advanced", "stack": ["redis"], "tags": ["search"], "files": [ { "path": "src/search/redisearch.ts", "template": "export const redisearch = {};\n" } ] },
+    { "id": "clickhouse-kafka-engine-stub-minimal", "stack": ["clickhouse"], "tags": ["db", "stream"], "files": [ { "path": "src/db/clickhouse-kafka.ts", "template": "export const kafkaEngine = {};\n" } ] },
+    { "id": "lancedb-client-stub-minimal", "stack": ["lancedb"], "tags": ["vector"], "files": [ { "path": "src/vectors/lancedb.ts", "template": "export const lancedb = {};\n" } ] },
+
+    { "id": "dagster-asset-job-stub-minimal", "stack": ["dagster"], "tags": ["data"], "files": [ { "path": "src/data/dagster.ts", "template": "export const dagster = {};\n" } ] },
+    { "id": "mollie-payment-stub-minimal", "stack": ["mollie"], "tags": ["billing"], "files": [ { "path": "src/billing/mollie.ts", "template": "export const mollie = {};\n" } ] },
+    { "id": "hashicorp-vault-agent-template-stub", "stack": ["vault"], "tags": ["secrets"], "files": [ { "path": "infra/vault/agent.hcl", "template": "template {}\n" } ] },
+
+    { "id": "fluxcd-kustomization-stub-minimal", "stack": ["fluxcd"], "tags": ["gitops"], "files": [ { "path": "infra/flux/kustomization.yaml", "template": "apiVersion: kustomize.toolkit.fluxcd.io/v1\nkind: Kustomization\n" } ] },
+    { "id": "argocd-image-updater-config-minimal", "stack": ["argocd"], "tags": ["cicd"], "files": [ { "path": "infra/argocd/image-updater.yaml", "template": "apiVersion: argoproj.io/v1alpha1\n" } ] },
+    { "id": "kubernetes-cronjob-template-minimal", "stack": ["kubernetes"], "tags": ["infra"], "files": [ { "path": "k8s/cronjob.yaml", "template": "apiVersion: batch/v1\nkind: CronJob\n" } ] },
+    { "id": "aws-ecs-fargate-service-stub-minimal", "stack": ["aws"], "tags": ["infra"], "files": [ { "path": "infra/ecs-fargate.json", "template": "{ }\n" } ] },
+
+    { "id": "cloudfront-function-stub-minimal", "stack": ["aws"], "tags": ["cdn", "edge"], "files": [ { "path": "src/cdn/cloudfront-fn.js", "template": "function handler(event){ return event.request }\n" } ] },
+    { "id": "fastly-edge-acl-config-minimal", "stack": ["fastly"], "tags": ["edge"], "files": [ { "path": "fastly/acl.json", "template": "{ }\n" } ] },
+    { "id": "webtransport-server-stub-minimal", "stack": ["webtransport"], "tags": ["realtime"], "files": [ { "path": "src/realtime/webtransport.ts", "template": "export const wt = {};\n" } ] },
+    { "id": "ipfs-pinata-upload-minimal", "stack": ["ipfs"], "tags": ["storage"], "files": [ { "path": "src/storage/pinata.ts", "template": "export const pin = {};\n" } ] },
+    { "id": "web3-storage-upload-minimal", "stack": ["web3.storage"], "tags": ["storage"], "files": [ { "path": "src/storage/web3.ts", "template": "export const web3 = {};\n" } ] },
+
+    { "id": "sentry-cron-monitor-minimal", "stack": ["sentry"], "tags": ["monitoring"], "files": [ { "path": "src/sentry/cron.ts", "template": "export const cron = {};\n" } ] },
+    { "id": "grafana-oncall-webhook-stub-minimal", "stack": ["grafana"], "tags": ["monitoring"], "files": [ { "path": "monitoring/oncall.json", "template": "{ }\n" } ] },
+    { "id": "sloth-slo-config-stub-minimal", "stack": ["sloth"], "tags": ["sre"], "files": [ { "path": "monitoring/sloth.yaml", "template": "version: 'prometheus/v1'\n" } ] },
+    { "id": "alertmanager-config-stub-minimal", "stack": ["prometheus"], "tags": ["monitoring"], "files": [ { "path": "monitoring/alertmanager.yml", "template": "route: {}\n" } ] },
+
+    { "id": "openai-embeddings-chunker-minimal", "stack": ["openai"], "tags": ["ai"], "files": [ { "path": "src/ai/chunker.ts", "template": "export const chunk = (t:string)=> t.split(' ');\n" } ] },
+    { "id": "langchain-agent-executor-stub-minimal", "stack": ["langchain"], "tags": ["ai"], "files": [ { "path": "src/ai/agent.ts", "template": "export const agent = {};\n" } ] },
+    { "id": "llamaindex-web-reader-stub-minimal", "stack": ["llamaindex"], "tags": ["ai"], "files": [ { "path": "src/ai/web-reader.ts", "template": "export const reader = {};\n" } ] },
+
+    { "id": "nextjs-ratelimit-swr-middleware-minimal", "stack": ["nextjs"], "tags": ["security", "perf"], "files": [ { "path": "src/middleware/rate-swr.ts", "template": "export const rate = {};\n" } ] },
+    { "id": "nextjs-edge-cf-turnstile-verify-minimal", "stack": ["nextjs", "cloudflare-workers"], "tags": ["edge", "security"], "files": [ { "path": "src/edge/cf-turnstile.ts", "template": "export const verify = {};\n" } ] },
+
+    { "id": "pactflow-ci-integration-stub-minimal", "stack": ["pactflow"], "tags": ["testing"], "files": [ { "path": "src/test/pactflow.md", "template": "# pactflow\n" } ] },
+    { "id": "lighthouse-ci-budget-assertions-minimal", "stack": ["lighthouse"], "tags": ["testing", "performance"], "files": [ { "path": "lighthouse.assert.json", "template": "{ }\n" } ] }
+  ]
+}

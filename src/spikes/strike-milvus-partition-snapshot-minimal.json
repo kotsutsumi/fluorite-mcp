@@ -1,0 +1,17 @@
+{
+  "id": "strike-milvus-partition-snapshot-minimal",
+  "name": "strike-milvus-partition-snapshot-minimal",
+  "stack": [
+    "milvus"
+  ],
+  "tags": [
+    "vector"
+  ],
+  "files": [
+    {
+      "path": "src/vectors/milvus-snapshot.ts",
+      "template": "export const snapshot = {};\n"
+    }
+  ],
+  "patches": []
+}

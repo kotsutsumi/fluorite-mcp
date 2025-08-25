@@ -1,0 +1,17 @@
+{
+  "id": "strike-gitlab-ci-templates-minimal",
+  "name": "strike-gitlab-ci-templates-minimal",
+  "stack": [
+    "gitlab"
+  ],
+  "tags": [
+    "cicd"
+  ],
+  "files": [
+    {
+      "path": ".gitlab-ci.yml",
+      "template": "stages: []\n"
+    }
+  ],
+  "patches": []
+}

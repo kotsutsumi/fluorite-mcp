@@ -1,0 +1,19 @@
+{
+  "id": "strike-nextjs-action-zod-typed-response-advanced",
+  "name": "strike-nextjs-action-zod-typed-response-advanced",
+  "stack": [
+    "nextjs",
+    "zod"
+  ],
+  "tags": [
+    "server-actions",
+    "secure"
+  ],
+  "files": [
+    {
+      "path": "app/actions/typed-response.ts",
+      "template": "import { z } from 'zod';\nconst In = z.object({ name: z.string().min(1) });\nconst Out = z.object({ ok: z.literal(true), message: z.string() });\nexport async function action(input: unknown){ const v = In.parse(input); return Out.parse({ ok: true, message: `Hello ${v.name}` }); }\n"
+    }
+  ],
+  "patches": []
+}

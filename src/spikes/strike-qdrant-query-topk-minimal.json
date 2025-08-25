@@ -1,0 +1,17 @@
+{
+  "id": "strike-qdrant-query-topk-minimal",
+  "name": "strike-qdrant-query-topk-minimal",
+  "stack": [
+    "qdrant"
+  ],
+  "tags": [
+    "vector"
+  ],
+  "files": [
+    {
+      "path": "src/vectors/qdrant-query.ts",
+      "template": "export async function topk(){ return [] }\n"
+    }
+  ],
+  "patches": []
+}

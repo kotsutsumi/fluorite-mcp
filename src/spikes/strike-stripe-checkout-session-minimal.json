@@ -1,0 +1,17 @@
+{
+  "id": "strike-stripe-checkout-session-minimal",
+  "name": "strike-stripe-checkout-session-minimal",
+  "stack": [
+    "stripe"
+  ],
+  "tags": [
+    "billing"
+  ],
+  "files": [
+    {
+      "path": "src/stripe/checkout.ts",
+      "template": "export async function createCheckout(){ return {}; }\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-cloudflare-security-headers-env-aware-secure",
+  "name": "strike-cloudflare-security-headers-env-aware-secure",
+  "stack": [
+    "cloudflare-workers"
+  ],
+  "tags": [
+    "edge",
+    "security"
+  ],
+  "files": [
+    {
+      "path": "src/cloudflare/security-env.ts",
+      "template": "export const headers = {};\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-openai-guardrails-json-schema-secure",
+  "name": "strike-openai-guardrails-json-schema-secure",
+  "stack": [
+    "openai"
+  ],
+  "tags": [
+    "ai",
+    "secure"
+  ],
+  "files": [
+    {
+      "path": "src/ai/openai-guardrails.ts",
+      "template": "export async function guarded(){ return {}; }\n"
+    }
+  ],
+  "patches": []
+}

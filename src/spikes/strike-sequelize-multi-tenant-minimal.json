@@ -1,0 +1,18 @@
+{
+  "id": "strike-sequelize-multi-tenant-minimal",
+  "name": "strike-sequelize-multi-tenant-minimal",
+  "stack": [
+    "sequelize"
+  ],
+  "tags": [
+    "db",
+    "tenant"
+  ],
+  "files": [
+    {
+      "path": "src/db/sequelize-tenant.ts",
+      "template": "export const tenant = {};\n"
+    }
+  ],
+  "patches": []
+}

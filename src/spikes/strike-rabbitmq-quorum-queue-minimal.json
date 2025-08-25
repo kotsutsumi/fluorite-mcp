@@ -1,0 +1,17 @@
+{
+  "id": "strike-rabbitmq-quorum-queue-minimal",
+  "name": "strike-rabbitmq-quorum-queue-minimal",
+  "stack": [
+    "amqplib"
+  ],
+  "tags": [
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "src/rabbit/quorum.ts",
+      "template": "export const quorum = {};\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-nextjs-route-s3-multipart-advanced",
+  "name": "strike-nextjs-route-s3-multipart-advanced",
+  "stack": [
+    "nextjs",
+    "s3"
+  ],
+  "tags": [
+    "upload"
+  ],
+  "files": [
+    {
+      "path": "app/api/s3/multipart/route.ts",
+      "template": "export async function POST(){ return Response.json({ ok:true }); }\n"
+    }
+  ],
+  "patches": []
+}

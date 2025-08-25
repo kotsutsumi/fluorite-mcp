@@ -1,0 +1,18 @@
+{
+  "id": "strike-nextjs-edge-sign-cookie-secure",
+  "name": "strike-nextjs-edge-sign-cookie-secure",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "edge",
+    "security"
+  ],
+  "files": [
+    {
+      "path": "src/edge/sign-cookie.ts",
+      "template": "export async function signCookie(){ return 'sig'; }\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-next-auth-provider-facebook-minimal",
+  "name": "strike-next-auth-provider-facebook-minimal",
+  "stack": [
+    "next-auth"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "src/auth/nextauth-facebook.ts",
+      "template": "export const facebook = { clientId: '', clientSecret: '' };\n"
+    }
+  ],
+  "patches": []
+}

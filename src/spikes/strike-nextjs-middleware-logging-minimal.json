@@ -1,0 +1,17 @@
+{
+  "id": "strike-nextjs-middleware-logging-minimal",
+  "name": "strike-nextjs-middleware-logging-minimal",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "edge"
+  ],
+  "files": [
+    {
+      "path": "middleware.ts",
+      "template": "export function middleware(req:Request){ return Response.next(); }\n"
+    }
+  ],
+  "patches": []
+}

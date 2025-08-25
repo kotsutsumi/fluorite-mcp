@@ -1,0 +1,18 @@
+{
+  "id": "strike-pgvector-setup-minimal",
+  "name": "strike-pgvector-setup-minimal",
+  "stack": [
+    "postgres",
+    "pgvector"
+  ],
+  "tags": [
+    "vector"
+  ],
+  "files": [
+    {
+      "path": "src/vectors/pgvector.ts",
+      "template": "export const pgvector = {};\n"
+    }
+  ],
+  "patches": []
+}

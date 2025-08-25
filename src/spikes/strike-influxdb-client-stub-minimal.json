@@ -1,0 +1,17 @@
+{
+  "id": "strike-influxdb-client-stub-minimal",
+  "name": "strike-influxdb-client-stub-minimal",
+  "stack": [
+    "influxdb"
+  ],
+  "tags": [
+    "time-series"
+  ],
+  "files": [
+    {
+      "path": "src/db/influx.ts",
+      "template": "export const influx = {};\n"
+    }
+  ],
+  "patches": []
+}

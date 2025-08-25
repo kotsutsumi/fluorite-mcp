@@ -1,0 +1,18 @@
+{
+  "id": "strike-nginx-rate-limit-config-minimal",
+  "name": "strike-nginx-rate-limit-config-minimal",
+  "stack": [
+    "nginx"
+  ],
+  "tags": [
+    "gateway",
+    "security"
+  ],
+  "files": [
+    {
+      "path": "infra/nginx/nginx.conf",
+      "template": "events {}\nhttp { limit_req_zone $binary_remote_addr zone=mylimit:10m rate=1r/s; }\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-helm-ingress-nginx-values-advanced",
+  "name": "strike-helm-ingress-nginx-values-advanced",
+  "stack": [
+    "helm"
+  ],
+  "tags": [
+    "kubernetes"
+  ],
+  "files": [
+    {
+      "path": "deploy/ingress-nginx-values.yaml",
+      "template": "controller: {}\n"
+    }
+  ],
+  "patches": []
+}

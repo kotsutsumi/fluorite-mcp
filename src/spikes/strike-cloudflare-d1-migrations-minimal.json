@@ -1,0 +1,18 @@
+{
+  "id": "strike-cloudflare-d1-migrations-minimal",
+  "name": "strike-cloudflare-d1-migrations-minimal",
+  "stack": [
+    "cloudflare-workers"
+  ],
+  "tags": [
+    "edge",
+    "db"
+  ],
+  "files": [
+    {
+      "path": "migrations/0001.sql",
+      "template": "-- sql\n"
+    }
+  ],
+  "patches": []
+}

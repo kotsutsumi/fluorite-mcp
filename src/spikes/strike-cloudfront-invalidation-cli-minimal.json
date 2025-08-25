@@ -1,0 +1,17 @@
+{
+  "id": "strike-cloudfront-invalidation-cli-minimal",
+  "name": "strike-cloudfront-invalidation-cli-minimal",
+  "stack": [
+    "aws"
+  ],
+  "tags": [
+    "cdn"
+  ],
+  "files": [
+    {
+      "path": "src/cdn/cloudfront-invalidate.ts",
+      "template": "export async function invalidate(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

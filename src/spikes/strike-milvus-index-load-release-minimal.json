@@ -1,0 +1,17 @@
+{
+  "id": "strike-milvus-index-load-release-minimal",
+  "name": "strike-milvus-index-load-release-minimal",
+  "stack": [
+    "milvus"
+  ],
+  "tags": [
+    "vector"
+  ],
+  "files": [
+    {
+      "path": "src/vectors/milvus-load.ts",
+      "template": "export async function load(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

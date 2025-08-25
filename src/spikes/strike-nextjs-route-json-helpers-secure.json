@@ -1,0 +1,17 @@
+{
+  "id": "strike-nextjs-route-json-helpers-secure",
+  "name": "strike-nextjs-route-json-helpers-secure",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "api"
+  ],
+  "files": [
+    {
+      "path": "src/next/json.ts",
+      "template": "export const ok = (data:any)=> Response.json({ ok:true, data });\nexport const err = (e:any, status=400)=> Response.json({ ok:false, error:String(e) }, { status });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-next-auth-provider-apple-minimal",
+  "name": "strike-next-auth-provider-apple-minimal",
+  "stack": [
+    "next-auth"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "src/auth/nextauth-apple.ts",
+      "template": "export const apple = { clientId: '', teamId: '' };\n"
+    }
+  ],
+  "patches": []
+}

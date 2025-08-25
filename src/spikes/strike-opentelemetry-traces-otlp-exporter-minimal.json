@@ -1,0 +1,17 @@
+{
+  "id": "strike-opentelemetry-traces-otlp-exporter-minimal",
+  "name": "strike-opentelemetry-traces-otlp-exporter-minimal",
+  "stack": [
+    "observability"
+  ],
+  "tags": [
+    "apm"
+  ],
+  "files": [
+    {
+      "path": "src/otel/traces.ts",
+      "template": "export const traces = {};\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-aws-ssm-parameter-store-minimal",
+  "name": "strike-aws-ssm-parameter-store-minimal",
+  "stack": [
+    "aws"
+  ],
+  "tags": [
+    "config"
+  ],
+  "files": [
+    {
+      "path": "src/config/aws-ssm.ts",
+      "template": "export const ssm = {};\n"
+    }
+  ],
+  "patches": []
+}

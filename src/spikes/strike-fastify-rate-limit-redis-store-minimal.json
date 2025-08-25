@@ -1,0 +1,18 @@
+{
+  "id": "strike-fastify-rate-limit-redis-store-minimal",
+  "name": "strike-fastify-rate-limit-redis-store-minimal",
+  "stack": [
+    "fastify"
+  ],
+  "tags": [
+    "backend",
+    "security"
+  ],
+  "files": [
+    {
+      "path": "src/fastify/rate-redis.ts",
+      "template": "export const rate = {};\n"
+    }
+  ],
+  "patches": []
+}

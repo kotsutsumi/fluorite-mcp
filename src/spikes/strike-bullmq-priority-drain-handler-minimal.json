@@ -1,0 +1,17 @@
+{
+  "id": "strike-bullmq-priority-drain-handler-minimal",
+  "name": "strike-bullmq-priority-drain-handler-minimal",
+  "stack": [
+    "bullmq"
+  ],
+  "tags": [
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "src/queue/drain.ts",
+      "template": "export const drain = {};\n"
+    }
+  ],
+  "patches": []
+}

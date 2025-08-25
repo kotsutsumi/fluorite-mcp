@@ -1,0 +1,17 @@
+{
+  "id": "strike-argocd-applicationset-stub-minimal",
+  "name": "strike-argocd-applicationset-stub-minimal",
+  "stack": [
+    "argocd"
+  ],
+  "tags": [
+    "cicd"
+  ],
+  "files": [
+    {
+      "path": "infra/argocd/applicationset.yaml",
+      "template": "apiVersion: argoproj.io/v1alpha1\nkind: ApplicationSet\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-rabbitmq-lazy-queue-minimal",
+  "name": "strike-rabbitmq-lazy-queue-minimal",
+  "stack": [
+    "amqplib"
+  ],
+  "tags": [
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "src/rabbit/lazy-queue.ts",
+      "template": "export const lazy = {};\n"
+    }
+  ],
+  "patches": []
+}

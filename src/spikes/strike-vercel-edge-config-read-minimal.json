@@ -1,0 +1,17 @@
+{
+  "id": "strike-vercel-edge-config-read-minimal",
+  "name": "strike-vercel-edge-config-read-minimal",
+  "stack": [
+    "vercel"
+  ],
+  "tags": [
+    "edge"
+  ],
+  "files": [
+    {
+      "path": "src/edge/vercel-config.ts",
+      "template": "export const edgeConfig = {};\n"
+    }
+  ],
+  "patches": []
+}

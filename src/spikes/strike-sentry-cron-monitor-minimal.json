@@ -1,0 +1,17 @@
+{
+  "id": "strike-sentry-cron-monitor-minimal",
+  "name": "strike-sentry-cron-monitor-minimal",
+  "stack": [
+    "sentry"
+  ],
+  "tags": [
+    "monitoring"
+  ],
+  "files": [
+    {
+      "path": "src/sentry/cron.ts",
+      "template": "export const cron = {};\n"
+    }
+  ],
+  "patches": []
+}

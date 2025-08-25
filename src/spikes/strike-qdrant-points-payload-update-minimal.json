@@ -1,0 +1,17 @@
+{
+  "id": "strike-qdrant-points-payload-update-minimal",
+  "name": "strike-qdrant-points-payload-update-minimal",
+  "stack": [
+    "qdrant"
+  ],
+  "tags": [
+    "vector"
+  ],
+  "files": [
+    {
+      "path": "src/vectors/qdrant-update.ts",
+      "template": "export async function update(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

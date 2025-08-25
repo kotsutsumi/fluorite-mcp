@@ -1,0 +1,17 @@
+{
+  "id": "strike-kafka-consumer-retry-dlq-advanced",
+  "name": "strike-kafka-consumer-retry-dlq-advanced",
+  "stack": [
+    "kafkajs"
+  ],
+  "tags": [
+    "stream"
+  ],
+  "files": [
+    {
+      "path": "src/kafka/retry-dlq.ts",
+      "template": "export const retryDLQ = {};\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-nextjs-middleware-edge-headers-secure",
+  "name": "strike-nextjs-middleware-edge-headers-secure",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "edge"
+  ],
+  "files": [
+    {
+      "path": "middleware.ts",
+      "template": "export function middleware(){ const res = Response.next(); res.headers.set('x-edge','1'); return res; }\n"
+    }
+  ],
+  "patches": []
+}

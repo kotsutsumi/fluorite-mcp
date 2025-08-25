@@ -1,0 +1,18 @@
+{
+  "id": "strike-auth0-mgmnt-api-rotate-keys-stub",
+  "name": "strike-auth0-mgmnt-api-rotate-keys-stub",
+  "stack": [
+    "auth0"
+  ],
+  "tags": [
+    "auth",
+    "security"
+  ],
+  "files": [
+    {
+      "path": "src/auth/auth0-mgmt.ts",
+      "template": "export async function rotate(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

@@ -36,10 +36,10 @@ Fluorite MCPは、Claude Code CLIとのシームレスな統合を提供する�
 
 ```bash
 # Claude Code CLI経由の標準接続
-claude mcp add fluorite -- fluorite-mcp-server
+claude mcp add fluorite-mcp -- fluorite-mcp
 
 # 開発用直接接続
-fluorite-mcp-server --stdio
+fluorite-mcp --stdio
 ```
 
 ---
@@ -460,7 +460,7 @@ class FluoriteMCPClient {
 
   constructor() {
     this.client = new MCPClient({
-      command: 'fluorite-mcp-server',
+      command: 'fluorite-mcp',
       args: ['--stdio']
     });
   }

@@ -1,0 +1,17 @@
+{
+  "id": "strike-nextjs-route-ratelimit-ip-secure",
+  "name": "strike-nextjs-route-ratelimit-ip-secure",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "app/api/limited/route.ts",
+      "template": "export async function GET(){ return Response.json({ ok:true }) }\n"
+    }
+  ],
+  "patches": []
+}

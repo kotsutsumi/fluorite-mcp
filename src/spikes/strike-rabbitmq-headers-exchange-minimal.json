@@ -1,0 +1,17 @@
+{
+  "id": "strike-rabbitmq-headers-exchange-minimal",
+  "name": "strike-rabbitmq-headers-exchange-minimal",
+  "stack": [
+    "amqplib"
+  ],
+  "tags": [
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "src/rabbit/headers-exchange.ts",
+      "template": "export const headers = {};\n"
+    }
+  ],
+  "patches": []
+}

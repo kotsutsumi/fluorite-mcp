@@ -1,0 +1,17 @@
+{
+  "id": "strike-next-auth-provider-bitbucket-minimal",
+  "name": "strike-next-auth-provider-bitbucket-minimal",
+  "stack": [
+    "next-auth"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "src/auth/nextauth-bitbucket.ts",
+      "template": "export const bitbucket = { clientId: '', clientSecret: '' };\n"
+    }
+  ],
+  "patches": []
+}

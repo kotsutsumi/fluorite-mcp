@@ -1,0 +1,17 @@
+{
+  "id": "strike-redis-json-schema-validate-minimal",
+  "name": "strike-redis-json-schema-validate-minimal",
+  "stack": [
+    "redis"
+  ],
+  "tags": [
+    "cache"
+  ],
+  "files": [
+    {
+      "path": "src/cache/redis-json-validate.ts",
+      "template": "export const validate = {};\n"
+    }
+  ],
+  "patches": []
+}

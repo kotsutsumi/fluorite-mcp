@@ -2,12 +2,21 @@
   "id": "strike-fastify-zod-route-minimal",
   "name": "Fastify + Zod ルート 最小",
   "version": "1.0.0",
-  "stack": ["fastify", "zod"],
-  "tags": ["rest", "validation"],
+  "stack": [
+    "fastify",
+    "zod"
+  ],
+  "tags": [
+    "rest",
+    "validation",
+    "api"
+  ],
   "description": "FastifyルートでZodバリデーション",
   "params": [],
   "files": [
-    { "path": "src/server.ts", "template": "import Fastify from 'fastify';\nimport { z } from 'zod';\nconst app = Fastify();\napp.post('/echo', async (req, reply)=>{ const Body=z.object({ msg:z.string() }); const parsed=Body.safeParse(req.body); if(!parsed.success) return reply.status(400).send(parsed.error.format()); return { echo: parsed.data.msg }; });\napp.listen({ port: 3000 });\n" }
+    {
+      "path": "src/server.ts",
+      "template": "import Fastify from 'fastify';\nimport { z } from 'zod';\nconst app = Fastify();\napp.post('/echo', async (req, reply)=>{ const Body=z.object({ msg:z.string() }); const parsed=Body.safeParse(req.body); if(!parsed.success) return reply.status(400).send(parsed.error.format()); return { echo: parsed.data.msg }; });\napp.listen({ port: 3000 });\n"
+    }
   ]
 }
-

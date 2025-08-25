@@ -1,0 +1,17 @@
+{
+  "id": "strike-next-auth-provider-gitlab-minimal",
+  "name": "strike-next-auth-provider-gitlab-minimal",
+  "stack": [
+    "next-auth"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "src/auth/nextauth-gitlab.ts",
+      "template": "export const gitlab = { clientId: '', clientSecret: '' };\n"
+    }
+  ],
+  "patches": []
+}

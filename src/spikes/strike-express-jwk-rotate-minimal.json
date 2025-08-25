@@ -1,0 +1,17 @@
+{
+  "id": "strike-express-jwk-rotate-minimal",
+  "name": "strike-express-jwk-rotate-minimal",
+  "stack": [
+    "express"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "src/security/jwk-rotate.ts",
+      "template": "export const jwk = {};\n"
+    }
+  ],
+  "patches": []
+}

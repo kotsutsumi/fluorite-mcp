@@ -1,0 +1,17 @@
+{
+  "id": "strike-stripe-customer-portal-stub-minimal",
+  "name": "strike-stripe-customer-portal-stub-minimal",
+  "stack": [
+    "stripe"
+  ],
+  "tags": [
+    "billing"
+  ],
+  "files": [
+    {
+      "path": "src/stripe/portal.ts",
+      "template": "export async function portal(){ return {}; }\n"
+    }
+  ],
+  "patches": []
+}

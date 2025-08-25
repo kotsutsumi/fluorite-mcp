@@ -1,0 +1,17 @@
+{
+  "id": "strike-nextjs-rate-limit-rsc-secure",
+  "name": "strike-nextjs-rate-limit-rsc-secure",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "src/security/rate-rsc.ts",
+      "template": "export function rate(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

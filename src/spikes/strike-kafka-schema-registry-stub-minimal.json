@@ -1,0 +1,17 @@
+{
+  "id": "strike-kafka-schema-registry-stub-minimal",
+  "name": "strike-kafka-schema-registry-stub-minimal",
+  "stack": [
+    "kafkajs"
+  ],
+  "tags": [
+    "stream"
+  ],
+  "files": [
+    {
+      "path": "src/kafka/schema-registry.ts",
+      "template": "export const registry = {};\n"
+    }
+  ],
+  "patches": []
+}

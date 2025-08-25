@@ -1,0 +1,17 @@
+{
+  "id": "strike-segment-track-event-minimal",
+  "name": "strike-segment-track-event-minimal",
+  "stack": [
+    "segment"
+  ],
+  "tags": [
+    "analytics"
+  ],
+  "files": [
+    {
+      "path": "src/analytics/segment.ts",
+      "template": "export async function track(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

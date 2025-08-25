@@ -1,0 +1,17 @@
+{
+  "id": "strike-keycloak-protect-middleware-minimal",
+  "name": "strike-keycloak-protect-middleware-minimal",
+  "stack": [
+    "keycloak"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "src/auth/keycloak.ts",
+      "template": "export function protect(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-docker-buildkit-config-minimal",
+  "name": "strike-docker-buildkit-config-minimal",
+  "stack": [
+    "docker"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "docker-buildkit.toml",
+      "template": "[registry]\n"
+    }
+  ],
+  "patches": []
+}

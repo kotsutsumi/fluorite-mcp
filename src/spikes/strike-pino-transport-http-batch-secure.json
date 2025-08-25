@@ -1,0 +1,18 @@
+{
+  "id": "strike-pino-transport-http-batch-secure",
+  "name": "strike-pino-transport-http-batch-secure",
+  "stack": [
+    "pino"
+  ],
+  "tags": [
+    "logging",
+    "secure"
+  ],
+  "files": [
+    {
+      "path": "src/logging/pino-http-batch.ts",
+      "template": "export const httpBatch = {};\n"
+    }
+  ],
+  "patches": []
+}

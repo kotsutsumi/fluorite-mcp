@@ -1,0 +1,17 @@
+{
+  "id": "strike-honeybadger-init-minimal",
+  "name": "strike-honeybadger-init-minimal",
+  "stack": [
+    "honeybadger"
+  ],
+  "tags": [
+    "monitoring"
+  ],
+  "files": [
+    {
+      "path": "src/monitor/honeybadger.ts",
+      "template": "export const hb = {};\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-redis-json-indexing-minimal",
+  "name": "strike-redis-json-indexing-minimal",
+  "stack": [
+    "redis"
+  ],
+  "tags": [
+    "cache"
+  ],
+  "files": [
+    {
+      "path": "src/cache/redis-json-index.ts",
+      "template": "export const index = {};\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-keycloak-adapter-config-minimal",
+  "name": "strike-keycloak-adapter-config-minimal",
+  "stack": [
+    "keycloak"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "src/auth/keycloak-adapter.ts",
+      "template": "export const adapter = {};\n"
+    }
+  ],
+  "patches": []
+}

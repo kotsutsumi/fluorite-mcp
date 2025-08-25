@@ -1,0 +1,17 @@
+{
+  "id": "strike-winston-transport-gcp-minimal",
+  "name": "strike-winston-transport-gcp-minimal",
+  "stack": [
+    "winston"
+  ],
+  "tags": [
+    "logging"
+  ],
+  "files": [
+    {
+      "path": "src/logging/winston-gcp.ts",
+      "template": "export const gcp = {};\n"
+    }
+  ],
+  "patches": []
+}

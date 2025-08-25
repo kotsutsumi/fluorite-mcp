@@ -1,0 +1,17 @@
+{
+  "id": "strike-playwright-github-actions-artifact-minimal",
+  "name": "strike-playwright-github-actions-artifact-minimal",
+  "stack": [
+    "playwright"
+  ],
+  "tags": [
+    "testing"
+  ],
+  "files": [
+    {
+      "path": "src/test/gha-artifact.ts",
+      "template": "export const artifact = {};\n"
+    }
+  ],
+  "patches": []
+}

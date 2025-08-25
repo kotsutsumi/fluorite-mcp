@@ -1,0 +1,17 @@
+{
+  "id": "strike-flyio-app-config-stub-minimal",
+  "name": "strike-flyio-app-config-stub-minimal",
+  "stack": [
+    "fly.io"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "fly.toml",
+      "template": "app = \"app\"\n"
+    }
+  ],
+  "patches": []
+}

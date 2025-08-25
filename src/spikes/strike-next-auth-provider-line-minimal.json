@@ -1,0 +1,17 @@
+{
+  "id": "strike-next-auth-provider-line-minimal",
+  "name": "strike-next-auth-provider-line-minimal",
+  "stack": [
+    "next-auth"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "src/auth/nextauth-line.ts",
+      "template": "export const line = { clientId: '', clientSecret: '' };\n"
+    }
+  ],
+  "patches": []
+}

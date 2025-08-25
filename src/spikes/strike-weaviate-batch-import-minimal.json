@@ -1,0 +1,17 @@
+{
+  "id": "strike-weaviate-batch-import-minimal",
+  "name": "strike-weaviate-batch-import-minimal",
+  "stack": [
+    "weaviate"
+  ],
+  "tags": [
+    "vector"
+  ],
+  "files": [
+    {
+      "path": "src/vectors/weaviate-batch.ts",
+      "template": "export const batch = {};\n"
+    }
+  ],
+  "patches": []
+}

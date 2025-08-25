@@ -1,0 +1,18 @@
+{
+  "id": "strike-lucia-sso-oidc-minimal",
+  "name": "strike-lucia-sso-oidc-minimal",
+  "stack": [
+    "lucia"
+  ],
+  "tags": [
+    "auth",
+    "sso"
+  ],
+  "files": [
+    {
+      "path": "src/auth/lucia-oidc.ts",
+      "template": "export const oidc = { issuer: '' };\n"
+    }
+  ],
+  "patches": []
+}

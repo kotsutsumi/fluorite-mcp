@@ -1,0 +1,17 @@
+{
+  "id": "strike-kong-route-service-stub-minimal",
+  "name": "strike-kong-route-service-stub-minimal",
+  "stack": [
+    "kong"
+  ],
+  "tags": [
+    "gateway"
+  ],
+  "files": [
+    {
+      "path": "infra/kong/kong.yaml",
+      "template": "_format_version: '3.0'\nservices: []\n"
+    }
+  ],
+  "patches": []
+}

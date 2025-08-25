@@ -1,0 +1,17 @@
+{
+  "id": "strike-sqs-fifo-message-grouping-minimal",
+  "name": "strike-sqs-fifo-message-grouping-minimal",
+  "stack": [
+    "aws"
+  ],
+  "tags": [
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "src/queue/sqs-fifo.ts",
+      "template": "export const fifo = {};\n"
+    }
+  ],
+  "patches": []
+}

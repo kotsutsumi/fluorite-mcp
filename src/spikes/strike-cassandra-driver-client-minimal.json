@@ -1,0 +1,17 @@
+{
+  "id": "strike-cassandra-driver-client-minimal",
+  "name": "strike-cassandra-driver-client-minimal",
+  "stack": [
+    "cassandra"
+  ],
+  "tags": [
+    "db"
+  ],
+  "files": [
+    {
+      "path": "src/db/cassandra.ts",
+      "template": "export const cassandra = {};\n"
+    }
+  ],
+  "patches": []
+}

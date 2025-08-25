@@ -38,7 +38,7 @@ claude --version
 # MCP設定の確認
 claude mcp list
 claude mcp remove fluorite  # 既存設定削除
-claude mcp add fluorite -- fluorite-mcp-server  # 再追加
+claude mcp add fluorite-mcp -- fluorite-mcp  # 再追加
 ```
 
 ### 実行時エラー
@@ -128,7 +128,7 @@ cat ~/.claude/mcp_settings.json
 {
   "mcpServers": {
     "fluorite": {
-      "command": "fluorite-mcp-server",
+      "command": "fluorite-mcp",
       "args": []
     }
   }
@@ -309,7 +309,7 @@ chmod -R 755 ~/.fluorite/
 - Node.js: v20.8.0
 - NPM: v10.1.0
 - Claude CLI: v1.2.0
-- Fluorite MCP: v0.12.1
+- Fluorite MCP: v0.20.0
 
 ## 問題の詳細
 - 発生したエラー: [エラーメッセージ]

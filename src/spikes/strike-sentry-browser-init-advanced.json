@@ -1,0 +1,17 @@
+{
+  "id": "strike-sentry-browser-init-advanced",
+  "name": "strike-sentry-browser-init-advanced",
+  "stack": [
+    "sentry"
+  ],
+  "tags": [
+    "monitoring"
+  ],
+  "files": [
+    {
+      "path": "src/sentry/browser.ts",
+      "template": "export const sentry = {};\n"
+    }
+  ],
+  "patches": []
+}

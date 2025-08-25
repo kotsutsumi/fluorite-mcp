@@ -1,0 +1,17 @@
+{
+  "id": "strike-nuxt-server-route-minimal",
+  "name": "strike-nuxt-server-route-minimal",
+  "stack": [
+    "nuxt"
+  ],
+  "tags": [
+    "frontend"
+  ],
+  "files": [
+    {
+      "path": "server/api/health.get.ts",
+      "template": "export default defineEventHandler(()=> ({ ok:true }))\n"
+    }
+  ],
+  "patches": []
+}

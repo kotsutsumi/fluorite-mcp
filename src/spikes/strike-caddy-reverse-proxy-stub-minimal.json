@@ -1,0 +1,17 @@
+{
+  "id": "strike-caddy-reverse-proxy-stub-minimal",
+  "name": "strike-caddy-reverse-proxy-stub-minimal",
+  "stack": [
+    "caddy"
+  ],
+  "tags": [
+    "gateway"
+  ],
+  "files": [
+    {
+      "path": "Caddyfile",
+      "template": ":80 {\n\treverse_proxy localhost:3000\n}\n"
+    }
+  ],
+  "patches": []
+}

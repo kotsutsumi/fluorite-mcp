@@ -1,0 +1,18 @@
+{
+  "id": "strike-nextjs-route-cache-revalidate-tag-advanced",
+  "name": "strike-nextjs-route-cache-revalidate-tag-advanced",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "api",
+    "cache"
+  ],
+  "files": [
+    {
+      "path": "src/next/cache-revalidate.ts",
+      "template": "export async function revalidate(tag:string){ return { tag }; }\n"
+    }
+  ],
+  "patches": []
+}

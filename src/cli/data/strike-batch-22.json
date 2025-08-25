@@ -1,0 +1,41 @@
+{
+  "items": [
+    { "id": "redpanda-kafka-producer-minimal", "stack": ["redpanda"], "tags": ["stream"], "files": [ { "path": "src/stream/redpanda-producer.ts", "template": "export const produce = async ()=> true;\n" } ] },
+    { "id": "nsq-producer-consumer-minimal", "stack": ["nsq"], "tags": ["queue"], "files": [ { "path": "src/queue/nsq.ts", "template": "export const nsq = {};\n" } ] },
+    { "id": "consul-kv-client-minimal", "stack": ["consul"], "tags": ["config"], "files": [ { "path": "src/config/consul.ts", "template": "export const consul = {};\n" } ] },
+    { "id": "etcd-kv-client-minimal", "stack": ["etcd"], "tags": ["config"], "files": [ { "path": "src/config/etcd.ts", "template": "export const etcd = {};\n" } ] },
+    { "id": "growthbook-feature-flags-minimal", "stack": ["growthbook"], "tags": ["flags"], "files": [ { "path": "src/flags/growthbook.ts", "template": "export const gb = {};\n" } ] },
+    { "id": "configcat-flags-client-minimal", "stack": ["configcat"], "tags": ["flags"], "files": [ { "path": "src/flags/configcat.ts", "template": "export const cc = {};\n" } ] },
+    { "id": "openrouter-client-stub-minimal", "stack": ["openrouter"], "tags": ["ai"], "files": [ { "path": "src/ai/openrouter.ts", "template": "export const openrouter = {};\n" } ] },
+    { "id": "langgraph-basic-workflow-stub-minimal", "stack": ["langgraph"], "tags": ["ai"], "files": [ { "path": "src/ai/langgraph.ts", "template": "export const graph = {};\n" } ] },
+    { "id": "pgvector-setup-minimal", "stack": ["postgres", "pgvector"], "tags": ["vector"], "files": [ { "path": "src/vectors/pgvector.ts", "template": "export const pgvector = {};\n" } ] },
+    { "id": "redis-vector-search-minimal", "stack": ["redis"], "tags": ["vector"], "files": [ { "path": "src/vectors/redis-vector.ts", "template": "export const rvs = {};\n" } ] },
+    { "id": "chargebee-checkout-stub-minimal", "stack": ["chargebee"], "tags": ["billing"], "files": [ { "path": "src/billing/chargebee.ts", "template": "export const chargebee = {};\n" } ] },
+    { "id": "backblaze-b2-upload-minimal", "stack": ["backblaze"], "tags": ["storage"], "files": [ { "path": "src/storage/b2.ts", "template": "export const b2 = {};\n" } ] },
+    { "id": "ansible-playbook-stub-minimal", "stack": ["ansible"], "tags": ["iac"], "files": [ { "path": "infra/ansible/playbook.yml", "template": "- hosts: all\n  tasks: []\n" } ] },
+    { "id": "packer-template-stub-minimal", "stack": ["packer"], "tags": ["iac"], "files": [ { "path": "infra/packer/template.json", "template": "{ }\n" } ] },
+    { "id": "akamai-edgeworkers-stub-minimal", "stack": ["akamai"], "tags": ["edge"], "files": [ { "path": "akamai/edgeworker.js", "template": "export function onClientRequest(){}\n" } ] },
+    { "id": "vespa-search-client-stub-minimal", "stack": ["vespa"], "tags": ["search"], "files": [ { "path": "src/search/vespa.ts", "template": "export const vespa = {};\n" } ] },
+    { "id": "statsd-metrics-client-minimal", "stack": ["statsd"], "tags": ["monitoring"], "files": [ { "path": "src/metrics/statsd.ts", "template": "export const statsd = {};\n" } ] },
+    { "id": "sharp-image-resize-minimal", "stack": ["sharp"], "tags": ["image"], "files": [ { "path": "src/image/sharp.ts", "template": "export const resize = async()=> Buffer.from([]);\n" } ] },
+    { "id": "imgproxy-signed-url-stub-minimal", "stack": ["imgproxy"], "tags": ["image"], "files": [ { "path": "src/image/imgproxy.ts", "template": "export const signedUrl = ()=> '';\n" } ] },
+
+    { "id": "koa-cors-config-minimal", "stack": ["koa"], "tags": ["backend", "security"], "files": [ { "path": "src/koa/cors-config.ts", "template": "export const cors = {};\n" } ] },
+    { "id": "express-jwk-rotate-minimal", "stack": ["express"], "tags": ["security"], "files": [ { "path": "src/security/jwk-rotate.ts", "template": "export const jwk = {};\n" } ] },
+    { "id": "jose-jwt-sign-verify-minimal", "stack": ["jose"], "tags": ["security"], "files": [ { "path": "src/security/jose.ts", "template": "export const jwt = {};\n" } ] },
+    { "id": "livekit-server-client-stub-minimal", "stack": ["livekit"], "tags": ["realtime"], "files": [ { "path": "src/realtime/livekit.ts", "template": "export const livekit = {};\n" } ] },
+    { "id": "webrtc-peer-connection-stub-minimal", "stack": ["webrtc"], "tags": ["realtime"], "files": [ { "path": "src/realtime/webrtc.ts", "template": "export const pc = {};\n" } ] },
+
+    { "id": "schemathesis-openapi-testing-minimal", "stack": ["schemathesis"], "tags": ["testing"], "files": [ { "path": "src/test/schemathesis.md", "template": "# schemathesis\n" } ] },
+    { "id": "smoke-tests-minimal", "stack": ["testing"], "tags": ["testing"], "files": [ { "path": "src/test/smoke.test.ts", "template": "export const smoke = {};\n" } ] },
+
+    { "id": "minio-event-to-kafka-stub-minimal", "stack": ["minio"], "tags": ["events"], "files": [ { "path": "src/storage/minio-kafka.ts", "template": "export const pipeline = {};\n" } ] },
+    { "id": "cloudflare-image-resize-worker-minimal", "stack": ["cloudflare-workers"], "tags": ["edge", "image"], "files": [ { "path": "src/cloudflare/image-resize.ts", "template": "export const resize = {};\n" } ] },
+
+    { "id": "nestjs-throttler-guard-minimal", "stack": ["nestjs"], "tags": ["backend", "security"], "files": [ { "path": "src/nest/throttler.ts", "template": "export const throttler = {};\n" } ] },
+    { "id": "hapi-validation-joi-minimal", "stack": ["hapi", "joi"], "tags": ["backend", "validation"], "files": [ { "path": "src/hapi/joi.ts", "template": "export const joi = {};\n" } ] },
+    { "id": "koa-router-zod-validate-minimal", "stack": ["koa", "zod"], "tags": ["backend", "validation"], "files": [ { "path": "src/koa/zod.ts", "template": "export const validate = {};\n" } ] },
+
+    { "id": "fastify-rate-limit-redis-store-minimal", "stack": ["fastify"], "tags": ["backend", "security"], "files": [ { "path": "src/fastify/rate-redis.ts", "template": "export const rate = {};\n" } ] }
+  ]
+}

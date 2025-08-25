@@ -1,0 +1,18 @@
+{
+  "id": "strike-playwright-msw-mock-minimal",
+  "name": "strike-playwright-msw-mock-minimal",
+  "stack": [
+    "playwright",
+    "msw"
+  ],
+  "tags": [
+    "testing"
+  ],
+  "files": [
+    {
+      "path": "src/test/msw-playwright.ts",
+      "template": "export const mock = {};\n"
+    }
+  ],
+  "patches": []
+}

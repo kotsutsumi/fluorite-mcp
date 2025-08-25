@@ -19,7 +19,7 @@ Transform Claude Code CLI into an **enterprise-grade development platform** with
 
 | 🎯 **Core Systems** | 📊 **Statistics** | 🚀 **Key Value** |
 |---|---|---|
-| **🧪 Spike Templates** | 3,100+ production-ready | Ideas→Implementation in seconds |
+| **🧪 Spike Templates** | 6,200+ production-ready | Ideas→Implementation in seconds |
 | **📚 Library Specs** | 86+ professional | Perfect integration patterns |
 | **🔍 Static Analysis Engine** | 50+ validation rules | Error prevention & quality assurance |
 | **🎯 /fl: Commands** | 17+ extensions | SuperClaude integration |
@@ -34,9 +34,11 @@ Transform Claude Code CLI into an **enterprise-grade development platform** with
 3. [🔍 Static Analysis & Validation](#🔍-static-analysis--validation)
 4. [🎯 /fl: Command Integration](#🎯-fl-command-integration)
 5. [🤖 MCP Server Architecture](#🤖-mcp-server-architecture)
-6. [⚡ Performance Optimization](#⚡-performance-optimization)
-7. [🔒 Security & Quality Assurance](#🔒-security--quality-assurance)
-8. [🚀 Practical Use Cases](#🚀-practical-use-cases)
+6. [📖 Documentation & Localization](#📖-documentation--localization)
+7. [🎵 Speech Processing Engine](#🎵-speech-processing-engine)
+8. [⚡ Performance Optimization](#⚡-performance-optimization)
+9. [🔒 Security & Quality Assurance](#🔒-security--quality-assurance)
+10. [🚀 Practical Use Cases](#🚀-practical-use-cases)
 
 ---
 
@@ -159,7 +161,7 @@ fluorite-mcp catalog-stats
 ## Spike Template Engine
 
 ### Overview
-Spike templates are production-ready code scaffolds that accelerate development by providing proven implementations of common patterns. With 3,100+ templates covering authentication, APIs, testing, deployment, and more, you can go from idea to working code in seconds.
+Spike templates are production-ready code scaffolds that accelerate development by providing proven implementations of common patterns. With 6,200+ templates covering authentication, APIs, testing, deployment, and more, you can go from idea to working code in seconds.
 
 ### Template Categories
 
@@ -394,6 +396,133 @@ fluorite-mcp --help
 claude code --mcp fluorite-mcp analyze-project
 claude code --mcp fluorite-mcp discover-spikes "authentication"
 ```
+
+---
+
+## Documentation & Localization
+
+### Comprehensive Documentation System
+
+Fluorite MCP features enterprise-grade documentation with full bilingual support for English and Japanese, delivered through VitePress for optimal developer experience.
+
+#### Multi-Language Documentation
+- **🌐 Full Bilingual Support**: Complete documentation in English and Japanese
+- **🔄 Synchronized Content**: Consistent information across both languages
+- **📱 Responsive Design**: Perfect display on all devices and screen sizes
+- **🔍 Searchable Content**: Full-text search in both languages
+
+#### Documentation Architecture
+```typescript
+// VitePress configuration structure
+export interface DocConfig {
+  locales: {
+    root: LocaleConfig;
+    en: LocaleConfig;
+  };
+  themeConfig: {
+    nav: NavItem[];
+    sidebar: SidebarConfig;
+    search: SearchConfig;
+  };
+}
+
+interface LocaleConfig {
+  label: string;
+  lang: string;
+  title: string;
+  description: string;
+  themeConfig: LocaleThemeConfig;
+}
+```
+
+#### Content Categories
+- **🚀 Getting Started**: Installation, quick start, and basic setup
+- **🎯 Core Features**: Comprehensive feature documentation with examples
+- **📋 API Reference**: Complete API documentation with TypeScript definitions
+- **🏗️ Architecture**: System design and technical architecture guides
+- **📚 Specifications**: Library and framework specification documentation
+
+### Professional Documentation Standards
+
+#### TSDoc Integration
+- **200+ Documented Functions**: Complete TSDoc coverage for all public APIs
+- **Parameter Documentation**: Detailed parameter descriptions with types
+- **Usage Examples**: Real-world code examples for every function
+- **Error Handling**: Documented error conditions and recovery strategies
+
+#### Quality Assurance
+- **Version Synchronization**: Automatic version consistency across all docs
+- **Link Validation**: Automated checking of internal and external links
+- **Content Review**: Manual review process for accuracy and clarity
+- **Continuous Updates**: Documentation updated with every release
+
+---
+
+## Speech Processing Engine
+
+### Advanced Phonetic Analysis
+
+Fluorite MCP includes comprehensive speech processing capabilities for multilingual phonetic analysis and synthesis.
+
+#### Core Features
+
+##### X-SAMPA/IPA Conversion
+```typescript
+interface PhoneticConverter {
+  convertToIPA(text: string, language: string): IPAResult;
+  convertToXSAMPA(ipa: string): XSAMPAResult;
+  validatePhoneticString(input: string, format: 'ipa' | 'xsampa'): ValidationResult;
+}
+
+interface IPAResult {
+  ipa: string;
+  confidence: number;
+  alternatives?: string[];
+  syllableBreakdown: Syllable[];
+}
+```
+
+##### ToBI Prosodic Annotation
+- **Prosodic Structure**: Automatic prosodic boundary detection
+- **Accent Marking**: Primary and secondary stress identification
+- **Intonational Patterns**: Rising, falling, and complex contours
+- **Break Indices**: Prosodic boundary strength classification
+
+#### Multilingual Support
+- **Language Detection**: Automatic language identification
+- **Cross-Language Synthesis**: Mixed-language text processing
+- **Dialect Variants**: Regional pronunciation variations
+- **Custom Phonemes**: User-defined phonetic inventories
+
+#### Processing Pipeline
+```typescript
+interface SpeechProcessor {
+  // Text preprocessing
+  preprocessText(text: string, options: PreprocessOptions): string;
+  
+  // Phonetic analysis
+  analyzePhonetics(text: string, language: string): PhoneticAnalysis;
+  
+  // Prosodic annotation
+  annotateProsody(phonetics: PhoneticAnalysis): ProsodicAnnotation;
+  
+  // Synthesis preparation
+  prepareSynthesis(annotation: ProsodicAnnotation): SynthesisData;
+}
+
+interface PhoneticAnalysis {
+  segments: PhoneticSegment[];
+  syllables: SyllableStructure[];
+  stress: StressPattern[];
+  timing: TimingInfo;
+}
+```
+
+#### Use Cases
+- **Language Learning**: Pronunciation training and feedback
+- **Speech Synthesis**: High-quality TTS preparation
+- **Linguistic Research**: Phonetic analysis and documentation
+- **Accessibility Tools**: Screen readers and pronunciation guides
 
 ---
 

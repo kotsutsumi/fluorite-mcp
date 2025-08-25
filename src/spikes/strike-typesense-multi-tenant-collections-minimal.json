@@ -1,0 +1,18 @@
+{
+  "id": "strike-typesense-multi-tenant-collections-minimal",
+  "name": "strike-typesense-multi-tenant-collections-minimal",
+  "stack": [
+    "typesense"
+  ],
+  "tags": [
+    "search",
+    "tenant"
+  ],
+  "files": [
+    {
+      "path": "src/search/typesense-tenant.ts",
+      "template": "export const tenant = {};\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-serverless-api-gateway-cors-minimal",
+  "name": "strike-serverless-api-gateway-cors-minimal",
+  "stack": [
+    "serverless"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "serverless.cors.yml",
+      "template": "service: cors\n"
+    }
+  ],
+  "patches": []
+}

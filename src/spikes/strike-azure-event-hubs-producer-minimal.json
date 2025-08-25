@@ -1,0 +1,17 @@
+{
+  "id": "strike-azure-event-hubs-producer-minimal",
+  "name": "strike-azure-event-hubs-producer-minimal",
+  "stack": [
+    "azure"
+  ],
+  "tags": [
+    "stream"
+  ],
+  "files": [
+    {
+      "path": "src/stream/event-hubs-producer.ts",
+      "template": "export async function send(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

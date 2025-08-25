@@ -1,0 +1,17 @@
+{
+  "id": "strike-recaptcha-enterprise-verify-minimal",
+  "name": "strike-recaptcha-enterprise-verify-minimal",
+  "stack": [
+    "gcp"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "src/security/recaptcha-enterprise.ts",
+      "template": "export async function verify(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

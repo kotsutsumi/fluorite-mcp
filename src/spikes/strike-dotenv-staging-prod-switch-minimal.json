@@ -1,0 +1,17 @@
+{
+  "id": "strike-dotenv-staging-prod-switch-minimal",
+  "name": "strike-dotenv-staging-prod-switch-minimal",
+  "stack": [
+    "dotenv"
+  ],
+  "tags": [
+    "config"
+  ],
+  "files": [
+    {
+      "path": "src/config/env.ts",
+      "template": "export const env = { stage: process.env.NODE_ENV };\n"
+    }
+  ],
+  "patches": []
+}

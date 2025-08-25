@@ -1,0 +1,17 @@
+{
+  "id": "strike-opentelemetry-collector-config-minimal",
+  "name": "strike-opentelemetry-collector-config-minimal",
+  "stack": [
+    "observability"
+  ],
+  "tags": [
+    "apm"
+  ],
+  "files": [
+    {
+      "path": "otel/collector.yaml",
+      "template": "receivers: {}\nexporters: {}\nservice: {}\n"
+    }
+  ],
+  "patches": []
+}

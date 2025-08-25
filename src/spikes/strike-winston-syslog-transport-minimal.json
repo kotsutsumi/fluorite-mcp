@@ -1,0 +1,17 @@
+{
+  "id": "strike-winston-syslog-transport-minimal",
+  "name": "strike-winston-syslog-transport-minimal",
+  "stack": [
+    "winston"
+  ],
+  "tags": [
+    "logging"
+  ],
+  "files": [
+    {
+      "path": "src/logging/winston-syslog.ts",
+      "template": "export const syslog = {};\n"
+    }
+  ],
+  "patches": []
+}

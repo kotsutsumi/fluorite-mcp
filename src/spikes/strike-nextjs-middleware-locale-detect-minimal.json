@@ -1,0 +1,17 @@
+{
+  "id": "strike-nextjs-middleware-locale-detect-minimal",
+  "name": "strike-nextjs-middleware-locale-detect-minimal",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "i18n"
+  ],
+  "files": [
+    {
+      "path": "middleware.ts",
+      "template": "export function middleware(req:Request){ return Response.next(); }\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-clerk-webhook-verify-minimal",
+  "name": "strike-clerk-webhook-verify-minimal",
+  "stack": [
+    "clerk"
+  ],
+  "tags": [
+    "auth",
+    "webhook"
+  ],
+  "files": [
+    {
+      "path": "src/auth/clerk-webhook.ts",
+      "template": "export async function verify(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-paypal-capture-payment-stub-minimal",
+  "name": "strike-paypal-capture-payment-stub-minimal",
+  "stack": [
+    "paypal"
+  ],
+  "tags": [
+    "billing"
+  ],
+  "files": [
+    {
+      "path": "src/billing/paypal.ts",
+      "template": "export async function capture(){ return {}; }\n"
+    }
+  ],
+  "patches": []
+}

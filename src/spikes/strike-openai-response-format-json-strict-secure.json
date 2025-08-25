@@ -1,0 +1,18 @@
+{
+  "id": "strike-openai-response-format-json-strict-secure",
+  "name": "strike-openai-response-format-json-strict-secure",
+  "stack": [
+    "openai"
+  ],
+  "tags": [
+    "ai",
+    "secure"
+  ],
+  "files": [
+    {
+      "path": "src/ai/openai-json-strict.ts",
+      "template": "export async function call(){ return {}; }\n"
+    }
+  ],
+  "patches": []
+}

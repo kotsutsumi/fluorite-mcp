@@ -1,0 +1,17 @@
+{
+  "id": "strike-datadog-rum-init-minimal",
+  "name": "strike-datadog-rum-init-minimal",
+  "stack": [
+    "datadog"
+  ],
+  "tags": [
+    "apm"
+  ],
+  "files": [
+    {
+      "path": "src/apm/datadog-rum.ts",
+      "template": "export const rum = {};\n"
+    }
+  ],
+  "patches": []
+}

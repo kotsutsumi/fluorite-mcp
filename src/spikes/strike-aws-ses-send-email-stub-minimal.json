@@ -1,0 +1,17 @@
+{
+  "id": "strike-aws-ses-send-email-stub-minimal",
+  "name": "strike-aws-ses-send-email-stub-minimal",
+  "stack": [
+    "aws"
+  ],
+  "tags": [
+    "email"
+  ],
+  "files": [
+    {
+      "path": "src/email/ses.ts",
+      "template": "export async function send(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

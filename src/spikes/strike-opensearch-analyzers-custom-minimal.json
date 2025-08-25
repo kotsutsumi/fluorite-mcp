@@ -1,0 +1,17 @@
+{
+  "id": "strike-opensearch-analyzers-custom-minimal",
+  "name": "strike-opensearch-analyzers-custom-minimal",
+  "stack": [
+    "opensearch"
+  ],
+  "tags": [
+    "search"
+  ],
+  "files": [
+    {
+      "path": "src/search/opensearch-analyzers.ts",
+      "template": "export const analyzers = {};\n"
+    }
+  ],
+  "patches": []
+}

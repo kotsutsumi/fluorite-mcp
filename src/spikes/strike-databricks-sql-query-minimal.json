@@ -1,0 +1,17 @@
+{
+  "id": "strike-databricks-sql-query-minimal",
+  "name": "strike-databricks-sql-query-minimal",
+  "stack": [
+    "databricks"
+  ],
+  "tags": [
+    "data"
+  ],
+  "files": [
+    {
+      "path": "src/data/databricks.ts",
+      "template": "export async function query(){ return []; }\n"
+    }
+  ],
+  "patches": []
+}

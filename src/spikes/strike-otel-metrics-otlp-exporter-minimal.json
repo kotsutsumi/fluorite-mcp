@@ -1,0 +1,17 @@
+{
+  "id": "strike-otel-metrics-otlp-exporter-minimal",
+  "name": "strike-otel-metrics-otlp-exporter-minimal",
+  "stack": [
+    "observability"
+  ],
+  "tags": [
+    "apm"
+  ],
+  "files": [
+    {
+      "path": "src/otel/metrics.ts",
+      "template": "export const metrics = {};\n"
+    }
+  ],
+  "patches": []
+}

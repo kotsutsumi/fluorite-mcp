@@ -1,0 +1,17 @@
+{
+  "id": "strike-service-worker-background-sync-minimal",
+  "name": "strike-service-worker-background-sync-minimal",
+  "stack": [
+    "pwa"
+  ],
+  "tags": [
+    "web"
+  ],
+  "files": [
+    {
+      "path": "public/sw-sync.js",
+      "template": "self.addEventListener('sync',()=>{});\n"
+    }
+  ],
+  "patches": []
+}

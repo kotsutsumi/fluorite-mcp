@@ -149,7 +149,7 @@ Claude Code CLI と Fluorite MCP を今すぐ始めましょう。
 npm install -g fluorite-mcp
 
 # 2. Claude Code CLIに追加
-claude mcp add fluorite -- fluorite-mcp-server-server
+claude mcp add fluorite-mcp -- fluorite-mcp
 
 # 3. インストール確認
 claude mcp list

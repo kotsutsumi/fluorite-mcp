@@ -1,0 +1,17 @@
+{
+  "id": "strike-paypal-subscription-stub-minimal",
+  "name": "strike-paypal-subscription-stub-minimal",
+  "stack": [
+    "paypal"
+  ],
+  "tags": [
+    "billing"
+  ],
+  "files": [
+    {
+      "path": "src/billing/paypal-subscription.ts",
+      "template": "export async function subscribe(){ return {}; }\n"
+    }
+  ],
+  "patches": []
+}

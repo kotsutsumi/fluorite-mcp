@@ -1,0 +1,17 @@
+{
+  "id": "strike-aws-sqs-fifo-deduplication-id-minimal",
+  "name": "strike-aws-sqs-fifo-deduplication-id-minimal",
+  "stack": [
+    "aws"
+  ],
+  "tags": [
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "src/queue/sqs-fifo-dedupe.ts",
+      "template": "export const dedupe = {};\n"
+    }
+  ],
+  "patches": []
+}

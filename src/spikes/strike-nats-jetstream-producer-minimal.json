@@ -1,0 +1,17 @@
+{
+  "id": "strike-nats-jetstream-producer-minimal",
+  "name": "strike-nats-jetstream-producer-minimal",
+  "stack": [
+    "nats"
+  ],
+  "tags": [
+    "stream"
+  ],
+  "files": [
+    {
+      "path": "src/stream/nats-producer.ts",
+      "template": "export async function produce(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

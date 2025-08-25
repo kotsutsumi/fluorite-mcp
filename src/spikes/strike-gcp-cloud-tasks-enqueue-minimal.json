@@ -1,0 +1,17 @@
+{
+  "id": "strike-gcp-cloud-tasks-enqueue-minimal",
+  "name": "strike-gcp-cloud-tasks-enqueue-minimal",
+  "stack": [
+    "gcp"
+  ],
+  "tags": [
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "src/queue/gcp-tasks.ts",
+      "template": "export async function enqueue(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

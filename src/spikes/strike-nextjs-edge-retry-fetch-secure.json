@@ -1,0 +1,17 @@
+{
+  "id": "strike-nextjs-edge-retry-fetch-secure",
+  "name": "strike-nextjs-edge-retry-fetch-secure",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "edge"
+  ],
+  "files": [
+    {
+      "path": "src/edge/retry-fetch.ts",
+      "template": "export async function retryFetch(url:string, init?:RequestInit){ return fetch(url, init); }\n"
+    }
+  ],
+  "patches": []
+}

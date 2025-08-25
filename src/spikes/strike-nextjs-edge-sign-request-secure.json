@@ -1,0 +1,18 @@
+{
+  "id": "strike-nextjs-edge-sign-request-secure",
+  "name": "strike-nextjs-edge-sign-request-secure",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "edge",
+    "security"
+  ],
+  "files": [
+    {
+      "path": "src/edge/sign.ts",
+      "template": "export async function sign(req:Request){ return req; }\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-nextjs-rsc-safe-action-guarded-advanced",
+  "name": "strike-nextjs-rsc-safe-action-guarded-advanced",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "server-actions"
+  ],
+  "files": [
+    {
+      "path": "app/actions/guarded.ts",
+      "template": "export async function guarded<T>(input:T){ return { ok:true, data: input }; }\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-launchdarkly-experiment-config-minimal",
+  "name": "strike-launchdarkly-experiment-config-minimal",
+  "stack": [
+    "launchdarkly"
+  ],
+  "tags": [
+    "flags"
+  ],
+  "files": [
+    {
+      "path": "src/flags/ld-experiment.ts",
+      "template": "export const exp = {};\n"
+    }
+  ],
+  "patches": []
+}

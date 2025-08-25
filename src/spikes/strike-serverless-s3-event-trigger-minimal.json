@@ -1,0 +1,17 @@
+{
+  "id": "strike-serverless-s3-event-trigger-minimal",
+  "name": "strike-serverless-s3-event-trigger-minimal",
+  "stack": [
+    "serverless"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "serverless.s3.yml",
+      "template": "service: s3\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-arangodb-client-stub-minimal",
+  "name": "strike-arangodb-client-stub-minimal",
+  "stack": [
+    "arangodb"
+  ],
+  "tags": [
+    "db"
+  ],
+  "files": [
+    {
+      "path": "src/db/arangodb.ts",
+      "template": "export const arango = {};\n"
+    }
+  ],
+  "patches": []
+}

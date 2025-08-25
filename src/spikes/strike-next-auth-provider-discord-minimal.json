@@ -1,0 +1,17 @@
+{
+  "id": "strike-next-auth-provider-discord-minimal",
+  "name": "strike-next-auth-provider-discord-minimal",
+  "stack": [
+    "next-auth"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "src/auth/nextauth-discord.ts",
+      "template": "export const discord = { clientId: '', clientSecret: '' };\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-auth0-enterprise-connection-stub",
+  "name": "strike-auth0-enterprise-connection-stub",
+  "stack": [
+    "auth0"
+  ],
+  "tags": [
+    "auth",
+    "enterprise"
+  ],
+  "files": [
+    {
+      "path": "src/auth/auth0-enterprise.ts",
+      "template": "export const connection = { strategy: 'saml' };\n"
+    }
+  ],
+  "patches": []
+}

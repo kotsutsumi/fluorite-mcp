@@ -1,0 +1,17 @@
+{
+  "id": "strike-bazel-workspace-stub-minimal",
+  "name": "strike-bazel-workspace-stub-minimal",
+  "stack": [
+    "bazel"
+  ],
+  "tags": [
+    "build"
+  ],
+  "files": [
+    {
+      "path": "WORKSPACE",
+      "template": "workspace(name = \"app\")\n"
+    }
+  ],
+  "patches": []
+}

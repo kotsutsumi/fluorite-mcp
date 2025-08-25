@@ -1,0 +1,17 @@
+{
+  "id": "strike-questdb-http-ingest-minimal",
+  "name": "strike-questdb-http-ingest-minimal",
+  "stack": [
+    "questdb"
+  ],
+  "tags": [
+    "time-series"
+  ],
+  "files": [
+    {
+      "path": "src/db/questdb.ts",
+      "template": "export const quest = {};\n"
+    }
+  ],
+  "patches": []
+}

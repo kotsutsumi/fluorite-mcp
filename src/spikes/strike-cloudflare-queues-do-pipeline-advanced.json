@@ -1,0 +1,17 @@
+{
+  "id": "strike-cloudflare-queues-do-pipeline-advanced",
+  "name": "strike-cloudflare-queues-do-pipeline-advanced",
+  "stack": [
+    "cloudflare-workers"
+  ],
+  "tags": [
+    "edge"
+  ],
+  "files": [
+    {
+      "path": "src/cloudflare/queues-do.ts",
+      "template": "export const pipeline = {};\n"
+    }
+  ],
+  "patches": []
+}

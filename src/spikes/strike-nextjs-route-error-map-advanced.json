@@ -1,0 +1,17 @@
+{
+  "id": "strike-nextjs-route-error-map-advanced",
+  "name": "strike-nextjs-route-error-map-advanced",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "api"
+  ],
+  "files": [
+    {
+      "path": "src/next/error-map.ts",
+      "template": "export function toJson(e:unknown){ return { ok:false, error:String(e) }; }\n"
+    }
+  ],
+  "patches": []
+}

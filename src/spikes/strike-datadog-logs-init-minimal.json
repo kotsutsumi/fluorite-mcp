@@ -1,0 +1,17 @@
+{
+  "id": "strike-datadog-logs-init-minimal",
+  "name": "strike-datadog-logs-init-minimal",
+  "stack": [
+    "datadog"
+  ],
+  "tags": [
+    "apm"
+  ],
+  "files": [
+    {
+      "path": "src/apm/datadog-logs.ts",
+      "template": "export const logs = {};\n"
+    }
+  ],
+  "patches": []
+}

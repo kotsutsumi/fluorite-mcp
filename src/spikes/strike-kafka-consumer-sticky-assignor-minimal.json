@@ -1,0 +1,17 @@
+{
+  "id": "strike-kafka-consumer-sticky-assignor-minimal",
+  "name": "strike-kafka-consumer-sticky-assignor-minimal",
+  "stack": [
+    "kafkajs"
+  ],
+  "tags": [
+    "stream"
+  ],
+  "files": [
+    {
+      "path": "src/kafka/sticky.ts",
+      "template": "export const sticky = {};\n"
+    }
+  ],
+  "patches": []
+}

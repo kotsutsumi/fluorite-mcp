@@ -1,0 +1,17 @@
+{
+  "id": "strike-rabbitmq-dlx-retry-minimal",
+  "name": "strike-rabbitmq-dlx-retry-minimal",
+  "stack": [
+    "amqplib"
+  ],
+  "tags": [
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "src/rabbit/dlx-retry.ts",
+      "template": "export const retry = {};\n"
+    }
+  ],
+  "patches": []
+}

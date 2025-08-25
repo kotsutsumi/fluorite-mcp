@@ -1,0 +1,17 @@
+{
+  "id": "strike-minio-event-to-kafka-stub-minimal",
+  "name": "strike-minio-event-to-kafka-stub-minimal",
+  "stack": [
+    "minio"
+  ],
+  "tags": [
+    "events"
+  ],
+  "files": [
+    {
+      "path": "src/storage/minio-kafka.ts",
+      "template": "export const pipeline = {};\n"
+    }
+  ],
+  "patches": []
+}

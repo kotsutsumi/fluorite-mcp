@@ -1,0 +1,18 @@
+{
+  "id": "strike-pino-redaction-secure",
+  "name": "strike-pino-redaction-secure",
+  "stack": [
+    "pino"
+  ],
+  "tags": [
+    "logging",
+    "secure"
+  ],
+  "files": [
+    {
+      "path": "src/logging/pino-redact.ts",
+      "template": "export const redact = [];\n"
+    }
+  ],
+  "patches": []
+}

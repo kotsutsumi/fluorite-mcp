@@ -1,0 +1,17 @@
+{
+  "id": "strike-netlify-edge-function-stub-minimal",
+  "name": "strike-netlify-edge-function-stub-minimal",
+  "stack": [
+    "netlify"
+  ],
+  "tags": [
+    "edge"
+  ],
+  "files": [
+    {
+      "path": "netlify/edge-functions/hello.ts",
+      "template": "export default () => new Response('ok');\n"
+    }
+  ],
+  "patches": []
+}

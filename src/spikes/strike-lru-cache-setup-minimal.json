@@ -1,0 +1,17 @@
+{
+  "id": "strike-lru-cache-setup-minimal",
+  "name": "strike-lru-cache-setup-minimal",
+  "stack": [
+    "lru-cache"
+  ],
+  "tags": [
+    "cache"
+  ],
+  "files": [
+    {
+      "path": "src/cache/lru.ts",
+      "template": "export const cache = {};\n"
+    }
+  ],
+  "patches": []
+}

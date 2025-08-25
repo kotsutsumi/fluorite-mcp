@@ -1,0 +1,17 @@
+{
+  "id": "strike-milvus-search-partitions-minimal",
+  "name": "strike-milvus-search-partitions-minimal",
+  "stack": [
+    "milvus"
+  ],
+  "tags": [
+    "vector"
+  ],
+  "files": [
+    {
+      "path": "src/vectors/milvus-partitions.ts",
+      "template": "export const partitions = [];\n"
+    }
+  ],
+  "patches": []
+}

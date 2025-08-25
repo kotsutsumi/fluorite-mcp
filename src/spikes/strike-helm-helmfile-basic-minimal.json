@@ -1,0 +1,17 @@
+{
+  "id": "strike-helm-helmfile-basic-minimal",
+  "name": "strike-helm-helmfile-basic-minimal",
+  "stack": [
+    "helm"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "deploy/helmfile.yaml",
+      "template": "repositories: []\n"
+    }
+  ],
+  "patches": []
+}

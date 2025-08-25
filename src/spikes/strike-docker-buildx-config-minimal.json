@@ -1,0 +1,17 @@
+{
+  "id": "strike-docker-buildx-config-minimal",
+  "name": "strike-docker-buildx-config-minimal",
+  "stack": [
+    "docker"
+  ],
+  "tags": [
+    "build"
+  ],
+  "files": [
+    {
+      "path": "docker-bake.hcl",
+      "template": "group \"default\" { targets = [] }\n"
+    }
+  ],
+  "patches": []
+}

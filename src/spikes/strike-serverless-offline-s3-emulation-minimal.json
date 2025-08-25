@@ -1,0 +1,17 @@
+{
+  "id": "strike-serverless-offline-s3-emulation-minimal",
+  "name": "strike-serverless-offline-s3-emulation-minimal",
+  "stack": [
+    "serverless"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "serverless.offline.s3.yml",
+      "template": "service: s3offline\n"
+    }
+  ],
+  "patches": []
+}

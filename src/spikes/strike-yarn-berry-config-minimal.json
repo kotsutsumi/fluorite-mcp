@@ -1,0 +1,17 @@
+{
+  "id": "strike-yarn-berry-config-minimal",
+  "name": "strike-yarn-berry-config-minimal",
+  "stack": [
+    "yarn"
+  ],
+  "tags": [
+    "monorepo"
+  ],
+  "files": [
+    {
+      "path": ".yarnrc.yml",
+      "template": "nodeLinker: node-modules\n"
+    }
+  ],
+  "patches": []
+}

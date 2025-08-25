@@ -1,0 +1,17 @@
+{
+  "id": "strike-helm-values-staging-env-minimal",
+  "name": "strike-helm-values-staging-env-minimal",
+  "stack": [
+    "helm"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "deploy/values.staging.yaml",
+      "template": "env: staging\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-nextjs-route-zod-validated-secure",
+  "name": "strike-nextjs-route-zod-validated-secure",
+  "stack": [
+    "nextjs",
+    "zod"
+  ],
+  "tags": [
+    "api"
+  ],
+  "files": [
+    {
+      "path": "app/api/validated/route.ts",
+      "template": "import { z } from 'zod';\nconst Body = z.object({ message: z.string().min(1) });\nexport async function POST(req: Request){ const json = await req.json(); const p=Body.safeParse(json); if(!p.success) return Response.json({ error:p.error.format() }, { status:400 }); return Response.json({ ok:true, echo:p.data.message }); }\n"
+    }
+  ],
+  "patches": []
+}

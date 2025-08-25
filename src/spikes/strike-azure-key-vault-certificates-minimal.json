@@ -1,0 +1,17 @@
+{
+  "id": "strike-azure-key-vault-certificates-minimal",
+  "name": "strike-azure-key-vault-certificates-minimal",
+  "stack": [
+    "azure"
+  ],
+  "tags": [
+    "secrets"
+  ],
+  "files": [
+    {
+      "path": "src/secrets/azure-kv-cert.ts",
+      "template": "export const kvcert = {};\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-redis-bloom-filter-minimal",
+  "name": "strike-redis-bloom-filter-minimal",
+  "stack": [
+    "redis"
+  ],
+  "tags": [
+    "cache"
+  ],
+  "files": [
+    {
+      "path": "src/cache/redis-bloom.ts",
+      "template": "export const bloom = {};\n"
+    }
+  ],
+  "patches": []
+}

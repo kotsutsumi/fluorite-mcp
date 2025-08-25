@@ -1,0 +1,17 @@
+{
+  "id": "strike-vitest-workers-shard-config-minimal",
+  "name": "strike-vitest-workers-shard-config-minimal",
+  "stack": [
+    "vitest"
+  ],
+  "tags": [
+    "testing"
+  ],
+  "files": [
+    {
+      "path": "src/test/shard.ts",
+      "template": "export const shard = {};\n"
+    }
+  ],
+  "patches": []
+}

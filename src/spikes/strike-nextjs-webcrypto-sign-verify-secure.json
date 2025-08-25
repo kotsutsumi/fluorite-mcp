@@ -1,0 +1,17 @@
+{
+  "id": "strike-nextjs-webcrypto-sign-verify-secure",
+  "name": "strike-nextjs-webcrypto-sign-verify-secure",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "src/next/webcrypto.ts",
+      "template": "export async function sign(){ return new Uint8Array(); }\n"
+    }
+  ],
+  "patches": []
+}

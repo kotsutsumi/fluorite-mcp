@@ -1,0 +1,18 @@
+{
+  "id": "strike-timescaledb-hypertable-create-minimal",
+  "name": "strike-timescaledb-hypertable-create-minimal",
+  "stack": [
+    "timescaledb"
+  ],
+  "tags": [
+    "db",
+    "time-series"
+  ],
+  "files": [
+    {
+      "path": "src/db/timescale.ts",
+      "template": "export const hypertable = {};\n"
+    }
+  ],
+  "patches": []
+}

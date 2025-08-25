@@ -1,0 +1,19 @@
+{
+  "id": "strike-vitest-msw-playwright-setup-advanced",
+  "name": "strike-vitest-msw-playwright-setup-advanced",
+  "stack": [
+    "vitest",
+    "msw",
+    "playwright"
+  ],
+  "tags": [
+    "testing"
+  ],
+  "files": [
+    {
+      "path": "src/test/setup-all.ts",
+      "template": "export async function setupAll(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

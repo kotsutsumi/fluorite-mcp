@@ -1,0 +1,17 @@
+{
+  "id": "strike-rabbitmq-rpc-pattern-minimal",
+  "name": "strike-rabbitmq-rpc-pattern-minimal",
+  "stack": [
+    "amqplib"
+  ],
+  "tags": [
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "src/rabbit/rpc.ts",
+      "template": "export const rpc = {};\n"
+    }
+  ],
+  "patches": []
+}

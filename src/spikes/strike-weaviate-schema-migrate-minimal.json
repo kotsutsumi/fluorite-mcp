@@ -1,0 +1,17 @@
+{
+  "id": "strike-weaviate-schema-migrate-minimal",
+  "name": "strike-weaviate-schema-migrate-minimal",
+  "stack": [
+    "weaviate"
+  ],
+  "tags": [
+    "vector"
+  ],
+  "files": [
+    {
+      "path": "src/vectors/weaviate-migrate.ts",
+      "template": "export async function migrate(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

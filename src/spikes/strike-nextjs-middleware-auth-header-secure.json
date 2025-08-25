@@ -1,0 +1,17 @@
+{
+  "id": "strike-nextjs-middleware-auth-header-secure",
+  "name": "strike-nextjs-middleware-auth-header-secure",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "middleware.ts",
+      "template": "export function middleware(req: Request){ return Response.next(); }\n"
+    }
+  ],
+  "patches": []
+}

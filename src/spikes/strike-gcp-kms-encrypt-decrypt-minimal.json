@@ -1,0 +1,17 @@
+{
+  "id": "strike-gcp-kms-encrypt-decrypt-minimal",
+  "name": "strike-gcp-kms-encrypt-decrypt-minimal",
+  "stack": [
+    "gcp"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "src/security/gcp-kms.ts",
+      "template": "export async function encrypt(){ return ''; }\n"
+    }
+  ],
+  "patches": []
+}

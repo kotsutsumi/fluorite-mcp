@@ -1,0 +1,17 @@
+{
+  "id": "strike-dotenv-override-priority-minimal",
+  "name": "strike-dotenv-override-priority-minimal",
+  "stack": [
+    "dotenv"
+  ],
+  "tags": [
+    "config"
+  ],
+  "files": [
+    {
+      "path": "src/config/dotenv-priority.ts",
+      "template": "export const priority = [];\n"
+    }
+  ],
+  "patches": []
+}

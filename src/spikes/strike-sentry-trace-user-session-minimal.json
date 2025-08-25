@@ -1,0 +1,17 @@
+{
+  "id": "strike-sentry-trace-user-session-minimal",
+  "name": "strike-sentry-trace-user-session-minimal",
+  "stack": [
+    "sentry"
+  ],
+  "tags": [
+    "monitoring"
+  ],
+  "files": [
+    {
+      "path": "src/sentry/trace.ts",
+      "template": "export const trace = {};\n"
+    }
+  ],
+  "patches": []
+}

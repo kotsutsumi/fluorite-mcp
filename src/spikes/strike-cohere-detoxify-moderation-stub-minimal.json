@@ -1,0 +1,18 @@
+{
+  "id": "strike-cohere-detoxify-moderation-stub-minimal",
+  "name": "strike-cohere-detoxify-moderation-stub-minimal",
+  "stack": [
+    "cohere"
+  ],
+  "tags": [
+    "ai",
+    "secure"
+  ],
+  "files": [
+    {
+      "path": "src/ai/cohere-moderation.ts",
+      "template": "export async function moderate(){ return {}; }\n"
+    }
+  ],
+  "patches": []
+}

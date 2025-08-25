@@ -1,0 +1,17 @@
+{
+  "id": "strike-fluxcd-kustomization-stub-minimal",
+  "name": "strike-fluxcd-kustomization-stub-minimal",
+  "stack": [
+    "fluxcd"
+  ],
+  "tags": [
+    "gitops"
+  ],
+  "files": [
+    {
+      "path": "infra/flux/kustomization.yaml",
+      "template": "apiVersion: kustomize.toolkit.fluxcd.io/v1\nkind: Kustomization\n"
+    }
+  ],
+  "patches": []
+}

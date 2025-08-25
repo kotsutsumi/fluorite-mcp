@@ -1,0 +1,17 @@
+{
+  "id": "strike-helm-values-prod-staging-minimal",
+  "name": "strike-helm-values-prod-staging-minimal",
+  "stack": [
+    "helm"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "deploy/values.yaml",
+      "template": "env: prod\n"
+    }
+  ],
+  "patches": []
+}

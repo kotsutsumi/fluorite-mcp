@@ -1,0 +1,17 @@
+{
+  "id": "strike-edge-caching-strategy-stale-while-revalidate-minimal",
+  "name": "strike-edge-caching-strategy-stale-while-revalidate-minimal",
+  "stack": [
+    "edge"
+  ],
+  "tags": [
+    "perf"
+  ],
+  "files": [
+    {
+      "path": "src/edge/cache-swr.ts",
+      "template": "export const swr = {};\n"
+    }
+  ],
+  "patches": []
+}

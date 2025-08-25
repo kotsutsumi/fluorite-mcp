@@ -1,0 +1,17 @@
+{
+  "id": "strike-playwright-axe-integration-minimal",
+  "name": "strike-playwright-axe-integration-minimal",
+  "stack": [
+    "playwright"
+  ],
+  "tags": [
+    "a11y"
+  ],
+  "files": [
+    {
+      "path": "src/test/axe-playwright.ts",
+      "template": "export async function run(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

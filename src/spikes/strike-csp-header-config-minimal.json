@@ -1,0 +1,17 @@
+{
+  "id": "strike-csp-header-config-minimal",
+  "name": "strike-csp-header-config-minimal",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "src/security/csp.ts",
+      "template": "export const csp = {};\n"
+    }
+  ],
+  "patches": []
+}

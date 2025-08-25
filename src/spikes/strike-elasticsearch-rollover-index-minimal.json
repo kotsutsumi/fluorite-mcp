@@ -1,0 +1,17 @@
+{
+  "id": "strike-elasticsearch-rollover-index-minimal",
+  "name": "strike-elasticsearch-rollover-index-minimal",
+  "stack": [
+    "elasticsearch"
+  ],
+  "tags": [
+    "search"
+  ],
+  "files": [
+    {
+      "path": "src/search/es-rollover.ts",
+      "template": "export const rollover = {};\n"
+    }
+  ],
+  "patches": []
+}

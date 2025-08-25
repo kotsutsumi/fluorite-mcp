@@ -1,0 +1,17 @@
+{
+  "id": "strike-prometheus-recording-rules-slo-minimal",
+  "name": "strike-prometheus-recording-rules-slo-minimal",
+  "stack": [
+    "prometheus"
+  ],
+  "tags": [
+    "monitoring"
+  ],
+  "files": [
+    {
+      "path": "monitoring/recording-rules.yml",
+      "template": "groups: []\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-keycloak-proxy-protection-minimal",
+  "name": "strike-keycloak-proxy-protection-minimal",
+  "stack": [
+    "keycloak"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "src/auth/keycloak-proxy.ts",
+      "template": "export const proxy = {};\n"
+    }
+  ],
+  "patches": []
+}

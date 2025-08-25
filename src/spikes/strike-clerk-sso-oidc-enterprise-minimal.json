@@ -1,0 +1,18 @@
+{
+  "id": "strike-clerk-sso-oidc-enterprise-minimal",
+  "name": "strike-clerk-sso-oidc-enterprise-minimal",
+  "stack": [
+    "clerk"
+  ],
+  "tags": [
+    "auth",
+    "enterprise"
+  ],
+  "files": [
+    {
+      "path": "src/auth/clerk-oidc.ts",
+      "template": "export const oidc = {};\n"
+    }
+  ],
+  "patches": []
+}

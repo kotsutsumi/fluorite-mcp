@@ -1,0 +1,17 @@
+{
+  "id": "strike-nextjs-route-streaming-minimal",
+  "name": "strike-nextjs-route-streaming-minimal",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "api"
+  ],
+  "files": [
+    {
+      "path": "app/api/stream/route.ts",
+      "template": "export async function GET(){ const enc = new TextEncoder(); const stream = new ReadableStream({ start(c){ c.enqueue(enc.encode('hello')); c.close(); } }); return new Response(stream); }\n"
+    }
+  ],
+  "patches": []
+}

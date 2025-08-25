@@ -1,0 +1,17 @@
+{
+  "id": "strike-redis-rate-limiter-minimal",
+  "name": "strike-redis-rate-limiter-minimal",
+  "stack": [
+    "redis"
+  ],
+  "tags": [
+    "cache"
+  ],
+  "files": [
+    {
+      "path": "src/cache/redis-rate.ts",
+      "template": "export const limiter = {};\n"
+    }
+  ],
+  "patches": []
+}

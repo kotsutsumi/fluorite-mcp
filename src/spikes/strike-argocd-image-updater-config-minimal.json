@@ -1,0 +1,17 @@
+{
+  "id": "strike-argocd-image-updater-config-minimal",
+  "name": "strike-argocd-image-updater-config-minimal",
+  "stack": [
+    "argocd"
+  ],
+  "tags": [
+    "cicd"
+  ],
+  "files": [
+    {
+      "path": "infra/argocd/image-updater.yaml",
+      "template": "apiVersion: argoproj.io/v1alpha1\n"
+    }
+  ],
+  "patches": []
+}

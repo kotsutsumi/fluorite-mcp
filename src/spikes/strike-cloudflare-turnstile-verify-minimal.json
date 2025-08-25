@@ -1,0 +1,17 @@
+{
+  "id": "strike-cloudflare-turnstile-verify-minimal",
+  "name": "strike-cloudflare-turnstile-verify-minimal",
+  "stack": [
+    "cloudflare-workers"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "src/cloudflare/turnstile.ts",
+      "template": "export async function verify(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

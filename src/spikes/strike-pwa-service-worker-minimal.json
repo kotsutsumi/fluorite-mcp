@@ -1,0 +1,17 @@
+{
+  "id": "strike-pwa-service-worker-minimal",
+  "name": "strike-pwa-service-worker-minimal",
+  "stack": [
+    "pwa"
+  ],
+  "tags": [
+    "web"
+  ],
+  "files": [
+    {
+      "path": "public/sw.js",
+      "template": "self.addEventListener('install',()=>{});\n"
+    }
+  ],
+  "patches": []
+}

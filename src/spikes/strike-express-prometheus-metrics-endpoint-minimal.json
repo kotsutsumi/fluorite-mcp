@@ -1,0 +1,17 @@
+{
+  "id": "strike-express-prometheus-metrics-endpoint-minimal",
+  "name": "strike-express-prometheus-metrics-endpoint-minimal",
+  "stack": [
+    "express"
+  ],
+  "tags": [
+    "monitoring"
+  ],
+  "files": [
+    {
+      "path": "src/monitor/metrics.ts",
+      "template": "export const metrics = {};\n"
+    }
+  ],
+  "patches": []
+}

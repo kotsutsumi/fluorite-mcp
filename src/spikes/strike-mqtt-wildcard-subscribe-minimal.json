@@ -1,0 +1,17 @@
+{
+  "id": "strike-mqtt-wildcard-subscribe-minimal",
+  "name": "strike-mqtt-wildcard-subscribe-minimal",
+  "stack": [
+    "mqtt"
+  ],
+  "tags": [
+    "iot"
+  ],
+  "files": [
+    {
+      "path": "src/iot/mqtt-wildcard.ts",
+      "template": "export const wildcard = '#';\n"
+    }
+  ],
+  "patches": []
+}

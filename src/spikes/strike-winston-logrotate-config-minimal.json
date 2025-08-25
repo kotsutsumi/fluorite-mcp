@@ -1,0 +1,17 @@
+{
+  "id": "strike-winston-logrotate-config-minimal",
+  "name": "strike-winston-logrotate-config-minimal",
+  "stack": [
+    "winston"
+  ],
+  "tags": [
+    "logging"
+  ],
+  "files": [
+    {
+      "path": "src/logging/winston-rotate.ts",
+      "template": "export const rotate = {};\n"
+    }
+  ],
+  "patches": []
+}

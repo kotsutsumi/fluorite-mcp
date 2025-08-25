@@ -1,0 +1,17 @@
+{
+  "id": "strike-weaviate-backup-restore-minimal",
+  "name": "strike-weaviate-backup-restore-minimal",
+  "stack": [
+    "weaviate"
+  ],
+  "tags": [
+    "vector"
+  ],
+  "files": [
+    {
+      "path": "src/vectors/weaviate-backup.ts",
+      "template": "export const backup = {};\n"
+    }
+  ],
+  "patches": []
+}

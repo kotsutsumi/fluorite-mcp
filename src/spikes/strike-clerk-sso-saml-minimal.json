@@ -1,0 +1,18 @@
+{
+  "id": "strike-clerk-sso-saml-minimal",
+  "name": "strike-clerk-sso-saml-minimal",
+  "stack": [
+    "clerk"
+  ],
+  "tags": [
+    "auth",
+    "sso"
+  ],
+  "files": [
+    {
+      "path": "src/auth/clerk-sso.ts",
+      "template": "export const saml = { issuer: '' };\n"
+    }
+  ],
+  "patches": []
+}

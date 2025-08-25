@@ -1,0 +1,17 @@
+{
+  "id": "strike-hono-cloudflare-adapter-route-minimal",
+  "name": "strike-hono-cloudflare-adapter-route-minimal",
+  "stack": [
+    "hono"
+  ],
+  "tags": [
+    "edge"
+  ],
+  "files": [
+    {
+      "path": "src/hono/cf-route.ts",
+      "template": "export const route = {};\n"
+    }
+  ],
+  "patches": []
+}

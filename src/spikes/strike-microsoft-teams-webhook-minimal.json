@@ -1,0 +1,17 @@
+{
+  "id": "strike-microsoft-teams-webhook-minimal",
+  "name": "strike-microsoft-teams-webhook-minimal",
+  "stack": [
+    "msteams"
+  ],
+  "tags": [
+    "integration"
+  ],
+  "files": [
+    {
+      "path": "src/integrations/teams.ts",
+      "template": "export async function post(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

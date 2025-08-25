@@ -1,0 +1,17 @@
+{
+  "id": "strike-milvus-compact-collection-minimal",
+  "name": "strike-milvus-compact-collection-minimal",
+  "stack": [
+    "milvus"
+  ],
+  "tags": [
+    "vector"
+  ],
+  "files": [
+    {
+      "path": "src/vectors/milvus-compact.ts",
+      "template": "export async function compact(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-victoriametrics-remote-write-minimal",
+  "name": "strike-victoriametrics-remote-write-minimal",
+  "stack": [
+    "victoriametrics"
+  ],
+  "tags": [
+    "monitoring"
+  ],
+  "files": [
+    {
+      "path": "src/metrics/vm.ts",
+      "template": "export const vm = {};\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-clerk-webhook-events-router-minimal",
+  "name": "strike-clerk-webhook-events-router-minimal",
+  "stack": [
+    "clerk"
+  ],
+  "tags": [
+    "auth",
+    "webhook"
+  ],
+  "files": [
+    {
+      "path": "src/auth/clerk-events.ts",
+      "template": "export const events = {};\n"
+    }
+  ],
+  "patches": []
+}

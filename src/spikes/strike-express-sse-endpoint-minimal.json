@@ -1,0 +1,18 @@
+{
+  "id": "strike-express-sse-endpoint-minimal",
+  "name": "strike-express-sse-endpoint-minimal",
+  "stack": [
+    "express"
+  ],
+  "tags": [
+    "backend",
+    "realtime"
+  ],
+  "files": [
+    {
+      "path": "src/api/sse.ts",
+      "template": "export function sse(){ return null }\n"
+    }
+  ],
+  "patches": []
+}

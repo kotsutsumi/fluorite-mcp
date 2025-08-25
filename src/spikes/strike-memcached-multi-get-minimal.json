@@ -1,0 +1,17 @@
+{
+  "id": "strike-memcached-multi-get-minimal",
+  "name": "strike-memcached-multi-get-minimal",
+  "stack": [
+    "memcached"
+  ],
+  "tags": [
+    "cache"
+  ],
+  "files": [
+    {
+      "path": "src/cache/memcached-mget.ts",
+      "template": "export const mget = {};\n"
+    }
+  ],
+  "patches": []
+}

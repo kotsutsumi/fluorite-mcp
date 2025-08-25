@@ -1,0 +1,18 @@
+{
+  "id": "strike-mongodb-change-streams-minimal",
+  "name": "strike-mongodb-change-streams-minimal",
+  "stack": [
+    "mongodb"
+  ],
+  "tags": [
+    "db",
+    "realtime"
+  ],
+  "files": [
+    {
+      "path": "src/db/mongo-change.ts",
+      "template": "export async function watch(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-nextjs-app-cache-control-wrapper-minimal",
+  "name": "strike-nextjs-app-cache-control-wrapper-minimal",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "cache"
+  ],
+  "files": [
+    {
+      "path": "src/next/cache-control.ts",
+      "template": "export const cacheControl = (res: Response)=> res;\n"
+    }
+  ],
+  "patches": []
+}

@@ -43,7 +43,7 @@ fluorite-mcp setup
 
 ```bash
 # セットアップ中に自動実行:
-claude mcp add fluorite -- fluorite-mcp-server
+claude mcp add fluorite-mcp -- fluorite-mcp
 
 # これにより ~/.claude/mcp_servers.yaml が作成/更新される:
 ```

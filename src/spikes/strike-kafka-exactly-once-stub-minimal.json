@@ -1,0 +1,17 @@
+{
+  "id": "strike-kafka-exactly-once-stub-minimal",
+  "name": "strike-kafka-exactly-once-stub-minimal",
+  "stack": [
+    "kafkajs"
+  ],
+  "tags": [
+    "stream"
+  ],
+  "files": [
+    {
+      "path": "src/kafka/exactly-once.ts",
+      "template": "export const exactlyOnce = {};\n"
+    }
+  ],
+  "patches": []
+}

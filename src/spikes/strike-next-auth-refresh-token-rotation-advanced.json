@@ -1,0 +1,18 @@
+{
+  "id": "strike-next-auth-refresh-token-rotation-advanced",
+  "name": "strike-next-auth-refresh-token-rotation-advanced",
+  "stack": [
+    "next-auth"
+  ],
+  "tags": [
+    "auth",
+    "secure"
+  ],
+  "files": [
+    {
+      "path": "src/auth/refresh-rotation.ts",
+      "template": "export const rotation = { enabled: true };\n"
+    }
+  ],
+  "patches": []
+}

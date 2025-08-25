@@ -1,0 +1,17 @@
+{
+  "id": "strike-nats-jetstream-consumer-minimal",
+  "name": "strike-nats-jetstream-consumer-minimal",
+  "stack": [
+    "nats"
+  ],
+  "tags": [
+    "stream"
+  ],
+  "files": [
+    {
+      "path": "src/stream/nats-consumer.ts",
+      "template": "export async function consume(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

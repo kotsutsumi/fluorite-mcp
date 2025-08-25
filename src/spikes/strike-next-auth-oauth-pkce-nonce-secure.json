@@ -1,0 +1,18 @@
+{
+  "id": "strike-next-auth-oauth-pkce-nonce-secure",
+  "name": "strike-next-auth-oauth-pkce-nonce-secure",
+  "stack": [
+    "next-auth"
+  ],
+  "tags": [
+    "auth",
+    "secure"
+  ],
+  "files": [
+    {
+      "path": "src/auth/nextauth-oauth-secure.ts",
+      "template": "export const oauth = {};\n"
+    }
+  ],
+  "patches": []
+}

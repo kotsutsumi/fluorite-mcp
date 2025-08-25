@@ -27,7 +27,7 @@ Comprehensive guide for integrating Fluorite MCP with development workflows, CI/
 npm install -g fluorite-mcp
 
 # Add to Claude Code CLI with correct server binary
-claude mcp add fluorite -- fluorite-mcp-server
+claude mcp add fluorite-mcp -- fluorite-mcp
 
 # Verify installation
 claude mcp list
@@ -186,7 +186,7 @@ class FluoriteCodeReview {
   
   constructor() {
     this.client = new MCPClient({
-      command: 'fluorite-mcp-server',
+      command: 'fluorite-mcp',
       args: []
     });
   }
@@ -640,7 +640,7 @@ import { MCPClient } from '@modelcontextprotocol/sdk';
 
 export function activate(context: vscode.ExtensionContext) {
     const client = new MCPClient({
-        command: 'fluorite-mcp-server',
+        command: 'fluorite-mcp',
         args: []
     });
     
@@ -844,7 +844,7 @@ M.client = {
       return
     end
     
-    self.process = uv.spawn('fluorite-mcp-server', {
+    self.process = uv.spawn('fluorite-mcp', {
       stdio = {nil, nil, nil}
     }, function(code, signal)
       print("Fluorite MCP server exited with code " .. code)
@@ -1030,7 +1030,7 @@ export class FluoriteIntegration {
   
   constructor() {
     this.transport = new StdioClientTransport({
-      command: 'fluorite-mcp-server',
+      command: 'fluorite-mcp',
       args: []
     });
     
@@ -1953,7 +1953,7 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
 EXPOSE 3000
 
 # Start the MCP server
-CMD ["fluorite-mcp-server"]
+CMD ["fluorite-mcp"]
 ```
 
 #### Docker Compose Configuration
@@ -1966,7 +1966,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.fluorite-mcp
-    container_name: fluorite-mcp-server
+    container_name: fluorite-mcp
     restart: unless-stopped
     environment:
       - NODE_ENV=production
@@ -2669,7 +2669,7 @@ echo "=================================="
 
 # 1. Install for team lead
 npm install -g fluorite-mcp
-claude mcp add fluorite -- fluorite-mcp-server
+claude mcp add fluorite-mcp -- fluorite-mcp
 
 # 2. Verify installation
 echo "✅ Testing installation..."
@@ -2700,7 +2700,7 @@ claude-code "Analyze this React component for best practices and suggest improve
 
 echo "✅ Setup complete! Share these commands with your team:"
 echo "  npm install -g fluorite-mcp"
-echo "  claude mcp add fluorite -- fluorite-mcp-server"
+echo "  claude mcp add fluorite-mcp -- fluorite-mcp"
 ```
 
 ### Instant Project Analysis
@@ -3113,7 +3113,7 @@ claude mcp logs fluorite --tail 50
 ```bash
 # Remove and re-add server
 claude mcp remove fluorite
-claude mcp add fluorite -- fluorite-mcp-server
+claude mcp add fluorite-mcp -- fluorite-mcp
 
 # Check for port conflicts
 lsof -i :3000
@@ -3122,7 +3122,7 @@ lsof -i :3000
 node --version  # Should be >= 18.0
 
 # Check permissions
-ls -la $(which fluorite-mcp-server)
+ls -la $(which fluorite-mcp)
 ```
 
 ### Issue 2: Performance Problems
@@ -3190,4 +3190,4 @@ export FLUORITE_DISABLED_RULES="rule-id-1,rule-id-2"
 
 This comprehensive integration guide provides detailed patterns for integrating Fluorite MCP across development workflows, CI/CD pipelines, team collaboration, and enterprise deployment scenarios. Each section includes practical examples and production-ready configurations that can be adapted to specific organizational needs.
 
-*Integration Guide v0.12.1 - Last updated: January 2025*
+*Integration Guide v0.20.0 - Last updated: January 2025*

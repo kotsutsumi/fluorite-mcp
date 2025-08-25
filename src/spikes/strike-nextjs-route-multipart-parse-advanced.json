@@ -1,0 +1,18 @@
+{
+  "id": "strike-nextjs-route-multipart-parse-advanced",
+  "name": "strike-nextjs-route-multipart-parse-advanced",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "api",
+    "upload"
+  ],
+  "files": [
+    {
+      "path": "app/api/multipart/route.ts",
+      "template": "export async function POST(req: Request){ const f = await req.formData(); return Response.json({ keys: Array.from(f.keys()) }); }\n"
+    }
+  ],
+  "patches": []
+}

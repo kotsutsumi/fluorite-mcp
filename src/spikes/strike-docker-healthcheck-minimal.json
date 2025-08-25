@@ -1,0 +1,17 @@
+{
+  "id": "strike-docker-healthcheck-minimal",
+  "name": "strike-docker-healthcheck-minimal",
+  "stack": [
+    "docker"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "Dockerfile",
+      "template": "HEALTHCHECK CMD node -e \"console.log('ok')\"\n"
+    }
+  ],
+  "patches": []
+}

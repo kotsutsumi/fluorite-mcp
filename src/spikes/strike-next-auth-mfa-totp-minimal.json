@@ -1,0 +1,18 @@
+{
+  "id": "strike-next-auth-mfa-totp-minimal",
+  "name": "strike-next-auth-mfa-totp-minimal",
+  "stack": [
+    "next-auth"
+  ],
+  "tags": [
+    "auth",
+    "mfa"
+  ],
+  "files": [
+    {
+      "path": "src/auth/nextauth-mfa-totp.ts",
+      "template": "export const totp = { enabled: true };\n"
+    }
+  ],
+  "patches": []
+}

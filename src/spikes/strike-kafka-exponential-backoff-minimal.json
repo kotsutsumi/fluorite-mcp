@@ -1,0 +1,17 @@
+{
+  "id": "strike-kafka-exponential-backoff-minimal",
+  "name": "strike-kafka-exponential-backoff-minimal",
+  "stack": [
+    "kafkajs"
+  ],
+  "tags": [
+    "stream"
+  ],
+  "files": [
+    {
+      "path": "src/kafka/backoff.ts",
+      "template": "export const backoff = {};\n"
+    }
+  ],
+  "patches": []
+}

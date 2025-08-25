@@ -1,0 +1,17 @@
+{
+  "id": "strike-kafka-consumer-pause-resume-minimal",
+  "name": "strike-kafka-consumer-pause-resume-minimal",
+  "stack": [
+    "kafkajs"
+  ],
+  "tags": [
+    "stream"
+  ],
+  "files": [
+    {
+      "path": "src/kafka/pause-resume.ts",
+      "template": "export const pr = {};\n"
+    }
+  ],
+  "patches": []
+}

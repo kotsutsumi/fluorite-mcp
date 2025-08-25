@@ -1437,4 +1437,4 @@ const metrics = await client.callTool('server-metrics', {});
 
 ---
 
-*関数リファレンス v0.12.1 - 最終更新: 2025年1月*
+*関数リファレンス v0.20.0 - 最終更新: 2025年1月*

@@ -1,0 +1,18 @@
+{
+  "id": "strike-k6-load-test-config-minimal",
+  "name": "strike-k6-load-test-config-minimal",
+  "stack": [
+    "k6"
+  ],
+  "tags": [
+    "testing",
+    "performance"
+  ],
+  "files": [
+    {
+      "path": "k6/script.js",
+      "template": "export default function(){}\n"
+    }
+  ],
+  "patches": []
+}

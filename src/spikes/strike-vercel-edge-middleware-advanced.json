@@ -1,0 +1,18 @@
+{
+  "id": "strike-vercel-edge-middleware-advanced",
+  "name": "strike-vercel-edge-middleware-advanced",
+  "stack": [
+    "vercel"
+  ],
+  "tags": [
+    "edge",
+    "security"
+  ],
+  "files": [
+    {
+      "path": "src/edge/vercel-mw.ts",
+      "template": "export const mw = {};\n"
+    }
+  ],
+  "patches": []
+}

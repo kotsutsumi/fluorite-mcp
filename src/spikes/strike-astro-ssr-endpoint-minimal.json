@@ -1,0 +1,17 @@
+{
+  "id": "strike-astro-ssr-endpoint-minimal",
+  "name": "strike-astro-ssr-endpoint-minimal",
+  "stack": [
+    "astro"
+  ],
+  "tags": [
+    "frontend"
+  ],
+  "files": [
+    {
+      "path": "src/pages/api/ssr.ts",
+      "template": "export async function get(){ return new Response('ok') }\n"
+    }
+  ],
+  "patches": []
+}

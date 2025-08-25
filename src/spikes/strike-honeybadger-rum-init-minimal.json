@@ -1,0 +1,17 @@
+{
+  "id": "strike-honeybadger-rum-init-minimal",
+  "name": "strike-honeybadger-rum-init-minimal",
+  "stack": [
+    "honeybadger"
+  ],
+  "tags": [
+    "monitoring"
+  ],
+  "files": [
+    {
+      "path": "src/monitor/honeybadger-rum.ts",
+      "template": "export const rum = {};\n"
+    }
+  ],
+  "patches": []
+}

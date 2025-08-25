@@ -1,0 +1,17 @@
+{
+  "id": "strike-pinecone-fetch-delete-namespace-minimal",
+  "name": "strike-pinecone-fetch-delete-namespace-minimal",
+  "stack": [
+    "pinecone"
+  ],
+  "tags": [
+    "vector"
+  ],
+  "files": [
+    {
+      "path": "src/vectors/pinecone-ns.ts",
+      "template": "export async function purge(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

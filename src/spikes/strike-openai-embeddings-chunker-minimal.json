@@ -1,0 +1,17 @@
+{
+  "id": "strike-openai-embeddings-chunker-minimal",
+  "name": "strike-openai-embeddings-chunker-minimal",
+  "stack": [
+    "openai"
+  ],
+  "tags": [
+    "ai"
+  ],
+  "files": [
+    {
+      "path": "src/ai/chunker.ts",
+      "template": "export const chunk = (t:string)=> t.split(' ');\n"
+    }
+  ],
+  "patches": []
+}

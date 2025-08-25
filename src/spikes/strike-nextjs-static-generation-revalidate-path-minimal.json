@@ -1,0 +1,17 @@
+{
+  "id": "strike-nextjs-static-generation-revalidate-path-minimal",
+  "name": "strike-nextjs-static-generation-revalidate-path-minimal",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "cache"
+  ],
+  "files": [
+    {
+      "path": "src/next/revalidate-path.ts",
+      "template": "export async function revalidatePath(p:string){ return p; }\n"
+    }
+  ],
+  "patches": []
+}

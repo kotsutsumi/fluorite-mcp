@@ -1,0 +1,17 @@
+{
+  "id": "strike-ansible-playbook-stub-minimal",
+  "name": "strike-ansible-playbook-stub-minimal",
+  "stack": [
+    "ansible"
+  ],
+  "tags": [
+    "iac"
+  ],
+  "files": [
+    {
+      "path": "infra/ansible/playbook.yml",
+      "template": "- hosts: all\n  tasks: []\n"
+    }
+  ],
+  "patches": []
+}

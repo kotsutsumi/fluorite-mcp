@@ -2,11 +2,20 @@
   "id": "strike-postgres-listen-notify-minimal",
   "name": "PostgreSQL LISTEN/NOTIFY(最小)",
   "version": "1.0.0",
-  "stack": ["postgres"],
-  "tags": ["db","realtime","strike"],
+  "stack": [
+    "postgres"
+  ],
+  "tags": [
+    "db",
+    "realtime",
+    "strike"
+  ],
   "description": "LISTEN/NOTIFYを受け取る最小雛形（概念）。",
   "files": [
-    { "path": "src/db/listen.ts", "template": "export async function listen(_channel: string){ return true; }\n" }
-  ]
+    {
+      "path": "src/db/listen.ts",
+      "template": "export async function listen(_channel: string){ return true; }\n"
+    }
+  ],
+  "params": []
 }
-

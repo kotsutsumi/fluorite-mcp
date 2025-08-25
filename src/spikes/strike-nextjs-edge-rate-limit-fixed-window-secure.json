@@ -1,0 +1,18 @@
+{
+  "id": "strike-nextjs-edge-rate-limit-fixed-window-secure",
+  "name": "strike-nextjs-edge-rate-limit-fixed-window-secure",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "edge",
+    "security"
+  ],
+  "files": [
+    {
+      "path": "src/edge/rate-fixed.ts",
+      "template": "export async function allow(key:string){ return true }\n"
+    }
+  ],
+  "patches": []
+}

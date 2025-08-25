@@ -1,0 +1,17 @@
+{
+  "id": "strike-lucia-oauth-github-minimal",
+  "name": "strike-lucia-oauth-github-minimal",
+  "stack": [
+    "lucia"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "src/auth/lucia-github.ts",
+      "template": "export const github = { clientId: '', clientSecret: '' };\n"
+    }
+  ],
+  "patches": []
+}

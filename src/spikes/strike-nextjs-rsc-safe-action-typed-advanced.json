@@ -1,0 +1,17 @@
+{
+  "id": "strike-nextjs-rsc-safe-action-typed-advanced",
+  "name": "strike-nextjs-rsc-safe-action-typed-advanced",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "server-actions"
+  ],
+  "files": [
+    {
+      "path": "app/actions/safe-typed.ts",
+      "template": "export async function action<T extends { id: string }>(input: T){ return { ok:true, data: input }; }\n"
+    }
+  ],
+  "patches": []
+}

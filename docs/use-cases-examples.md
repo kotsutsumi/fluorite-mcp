@@ -36,7 +36,7 @@ echo "🚀 Setting up Fluorite MCP for startup team..."
 npm install -g fluorite-mcp
 
 # Add to Claude Code CLI
-claude mcp add fluorite -- fluorite-mcp-server
+claude mcp add fluorite-mcp -- fluorite-mcp
 
 # Create team configuration
 mkdir -p .fluorite

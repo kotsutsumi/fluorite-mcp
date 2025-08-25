@@ -1,0 +1,18 @@
+{
+  "id": "strike-appsync-vtl-resolver-stub-minimal",
+  "name": "strike-appsync-vtl-resolver-stub-minimal",
+  "stack": [
+    "aws",
+    "appsync"
+  ],
+  "tags": [
+    "graphql"
+  ],
+  "files": [
+    {
+      "path": "infra/appsync/resolver.vtl",
+      "template": "#set($ctx.result = $util.toJson({}))\n"
+    }
+  ],
+  "patches": []
+}

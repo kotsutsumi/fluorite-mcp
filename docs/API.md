@@ -36,10 +36,10 @@ Fluorite MCP implements the Model Context Protocol (MCP) to provide seamless int
 
 ```bash
 # Standard connection via Claude Code CLI
-claude mcp add fluorite -- fluorite-mcp-server
+claude mcp add fluorite-mcp -- fluorite-mcp
 
 # Direct connection for development
-fluorite-mcp-server --stdio
+fluorite-mcp --stdio
 ```
 
 ---
@@ -460,7 +460,7 @@ class FluoriteMCPClient {
 
   constructor() {
     this.client = new MCPClient({
-      command: 'fluorite-mcp-server',
+      command: 'fluorite-mcp',
       args: ['--stdio']
     });
   }

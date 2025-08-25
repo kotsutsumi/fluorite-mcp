@@ -1,0 +1,19 @@
+{
+  "id": "strike-nextjs-route-s3-signedurl-v4-secure",
+  "name": "strike-nextjs-route-s3-signedurl-v4-secure",
+  "stack": [
+    "nextjs",
+    "s3"
+  ],
+  "tags": [
+    "upload",
+    "security"
+  ],
+  "files": [
+    {
+      "path": "app/api/s3/signed/route.ts",
+      "template": "export async function GET(){ return Response.json({ url: '' }) }\n"
+    }
+  ],
+  "patches": []
+}

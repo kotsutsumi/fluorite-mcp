@@ -1,0 +1,17 @@
+{
+  "id": "strike-deno-fresh-route-minimal",
+  "name": "strike-deno-fresh-route-minimal",
+  "stack": [
+    "deno-fresh"
+  ],
+  "tags": [
+    "frontend"
+  ],
+  "files": [
+    {
+      "path": "routes/api/health.ts",
+      "template": "export const handler = { GET(){ return new Response('ok') } };\n"
+    }
+  ],
+  "patches": []
+}

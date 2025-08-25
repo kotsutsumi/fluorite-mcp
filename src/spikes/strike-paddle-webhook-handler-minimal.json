@@ -1,0 +1,17 @@
+{
+  "id": "strike-paddle-webhook-handler-minimal",
+  "name": "strike-paddle-webhook-handler-minimal",
+  "stack": [
+    "paddle"
+  ],
+  "tags": [
+    "billing"
+  ],
+  "files": [
+    {
+      "path": "src/billing/paddle-webhook.ts",
+      "template": "export async function handle(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

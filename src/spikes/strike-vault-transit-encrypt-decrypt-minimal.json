@@ -1,0 +1,17 @@
+{
+  "id": "strike-vault-transit-encrypt-decrypt-minimal",
+  "name": "strike-vault-transit-encrypt-decrypt-minimal",
+  "stack": [
+    "vault"
+  ],
+  "tags": [
+    "secrets"
+  ],
+  "files": [
+    {
+      "path": "src/secrets/vault-transit.ts",
+      "template": "export const transit = {};\n"
+    }
+  ],
+  "patches": []
+}

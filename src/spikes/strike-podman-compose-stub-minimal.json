@@ -1,0 +1,17 @@
+{
+  "id": "strike-podman-compose-stub-minimal",
+  "name": "strike-podman-compose-stub-minimal",
+  "stack": [
+    "podman"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "podman-compose.yml",
+      "template": "version: '3.9'\nservices: {}\n"
+    }
+  ],
+  "patches": []
+}

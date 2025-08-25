@@ -1,0 +1,17 @@
+{
+  "id": "strike-kafka-idempotent-producer-minimal",
+  "name": "strike-kafka-idempotent-producer-minimal",
+  "stack": [
+    "kafkajs"
+  ],
+  "tags": [
+    "stream"
+  ],
+  "files": [
+    {
+      "path": "src/kafka/idempotent.ts",
+      "template": "export const idempotent = {};\n"
+    }
+  ],
+  "patches": []
+}

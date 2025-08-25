@@ -1,0 +1,17 @@
+{
+  "id": "strike-knex-read-replica-config-minimal",
+  "name": "strike-knex-read-replica-config-minimal",
+  "stack": [
+    "knex"
+  ],
+  "tags": [
+    "db"
+  ],
+  "files": [
+    {
+      "path": "src/db/knex-read-replica.ts",
+      "template": "export const rr = {};\n"
+    }
+  ],
+  "patches": []
+}

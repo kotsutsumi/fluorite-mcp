@@ -1,0 +1,17 @@
+{
+  "id": "strike-vault-token-renewal-minimal",
+  "name": "strike-vault-token-renewal-minimal",
+  "stack": [
+    "vault"
+  ],
+  "tags": [
+    "secrets"
+  ],
+  "files": [
+    {
+      "path": "src/secrets/vault-renew.ts",
+      "template": "export async function renew(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

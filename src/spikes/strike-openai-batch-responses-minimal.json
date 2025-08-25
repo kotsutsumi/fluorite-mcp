@@ -1,0 +1,17 @@
+{
+  "id": "strike-openai-batch-responses-minimal",
+  "name": "strike-openai-batch-responses-minimal",
+  "stack": [
+    "openai"
+  ],
+  "tags": [
+    "ai"
+  ],
+  "files": [
+    {
+      "path": "src/ai/openai-batch.ts",
+      "template": "export async function batch(){ return []; }\n"
+    }
+  ],
+  "patches": []
+}

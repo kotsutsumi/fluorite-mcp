@@ -1,0 +1,17 @@
+{
+  "id": "strike-crossplane-composition-stub-minimal",
+  "name": "strike-crossplane-composition-stub-minimal",
+  "stack": [
+    "crossplane"
+  ],
+  "tags": [
+    "iac"
+  ],
+  "files": [
+    {
+      "path": "infra/crossplane/composition.yaml",
+      "template": "apiVersion: apiextensions.crossplane.io/v1\nkind: Composition\n"
+    }
+  ],
+  "patches": []
+}

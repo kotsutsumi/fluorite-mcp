@@ -1,0 +1,17 @@
+{
+  "id": "strike-opentelemetry-node-tracing-init-minimal",
+  "name": "strike-opentelemetry-node-tracing-init-minimal",
+  "stack": [
+    "observability"
+  ],
+  "tags": [
+    "apm"
+  ],
+  "files": [
+    {
+      "path": "src/otel/tracing.ts",
+      "template": "export const tracing = {};\n"
+    }
+  ],
+  "patches": []
+}

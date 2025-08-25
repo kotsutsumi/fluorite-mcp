@@ -1,0 +1,17 @@
+{
+  "id": "strike-pinecone-namespace-gc-minimal",
+  "name": "strike-pinecone-namespace-gc-minimal",
+  "stack": [
+    "pinecone"
+  ],
+  "tags": [
+    "vector"
+  ],
+  "files": [
+    {
+      "path": "src/vectors/pinecone-gc.ts",
+      "template": "export const gc = {};\n"
+    }
+  ],
+  "patches": []
+}

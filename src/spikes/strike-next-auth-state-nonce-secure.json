@@ -1,0 +1,18 @@
+{
+  "id": "strike-next-auth-state-nonce-secure",
+  "name": "strike-next-auth-state-nonce-secure",
+  "stack": [
+    "next-auth"
+  ],
+  "tags": [
+    "auth",
+    "secure"
+  ],
+  "files": [
+    {
+      "path": "src/auth/state-nonce.ts",
+      "template": "export const antiCsrf = { state:true, nonce:true };\n"
+    }
+  ],
+  "patches": []
+}

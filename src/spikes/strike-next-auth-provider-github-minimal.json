@@ -1,0 +1,17 @@
+{
+  "id": "strike-next-auth-provider-github-minimal",
+  "name": "strike-next-auth-provider-github-minimal",
+  "stack": [
+    "next-auth"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "src/auth/nextauth-github.ts",
+      "template": "export const github = { clientId: '', clientSecret: '' };\n"
+    }
+  ],
+  "patches": []
+}

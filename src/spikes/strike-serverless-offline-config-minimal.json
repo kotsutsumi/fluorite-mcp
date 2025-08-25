@@ -1,0 +1,17 @@
+{
+  "id": "strike-serverless-offline-config-minimal",
+  "name": "strike-serverless-offline-config-minimal",
+  "stack": [
+    "serverless"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "serverless.offline.yml",
+      "template": "service: api-offline\n"
+    }
+  ],
+  "patches": []
+}

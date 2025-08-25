@@ -1,0 +1,17 @@
+{
+  "id": "strike-pinecone-upsert-batch-advanced",
+  "name": "strike-pinecone-upsert-batch-advanced",
+  "stack": [
+    "pinecone"
+  ],
+  "tags": [
+    "vector"
+  ],
+  "files": [
+    {
+      "path": "src/vectors/pinecone-upsert.ts",
+      "template": "export async function upsert(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

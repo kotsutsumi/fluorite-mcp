@@ -1,0 +1,17 @@
+{
+  "id": "strike-cloudfront-signed-cookies-stub-minimal",
+  "name": "strike-cloudfront-signed-cookies-stub-minimal",
+  "stack": [
+    "aws"
+  ],
+  "tags": [
+    "cdn"
+  ],
+  "files": [
+    {
+      "path": "src/cdn/cloudfront.ts",
+      "template": "export const signed = {};\n"
+    }
+  ],
+  "patches": []
+}

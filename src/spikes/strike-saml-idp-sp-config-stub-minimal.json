@@ -1,0 +1,18 @@
+{
+  "id": "strike-saml-idp-sp-config-stub-minimal",
+  "name": "strike-saml-idp-sp-config-stub-minimal",
+  "stack": [
+    "saml"
+  ],
+  "tags": [
+    "auth",
+    "enterprise"
+  ],
+  "files": [
+    {
+      "path": "src/auth/saml.ts",
+      "template": "export const saml = {};\n"
+    }
+  ],
+  "patches": []
+}

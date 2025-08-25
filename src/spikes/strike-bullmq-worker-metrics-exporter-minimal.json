@@ -1,0 +1,18 @@
+{
+  "id": "strike-bullmq-worker-metrics-exporter-minimal",
+  "name": "strike-bullmq-worker-metrics-exporter-minimal",
+  "stack": [
+    "bullmq"
+  ],
+  "tags": [
+    "queue",
+    "monitoring"
+  ],
+  "files": [
+    {
+      "path": "src/queue/metrics.ts",
+      "template": "export const metrics = {};\n"
+    }
+  ],
+  "patches": []
+}

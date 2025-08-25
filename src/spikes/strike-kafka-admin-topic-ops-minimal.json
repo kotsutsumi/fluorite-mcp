@@ -1,0 +1,18 @@
+{
+  "id": "strike-kafka-admin-topic-ops-minimal",
+  "name": "strike-kafka-admin-topic-ops-minimal",
+  "stack": [
+    "kafkajs"
+  ],
+  "tags": [
+    "stream",
+    "admin"
+  ],
+  "files": [
+    {
+      "path": "src/kafka/admin.ts",
+      "template": "export const admin = {};\n"
+    }
+  ],
+  "patches": []
+}

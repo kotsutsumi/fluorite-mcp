@@ -1,0 +1,17 @@
+{
+  "id": "strike-nextjs-middleware-session-cookie-secure",
+  "name": "strike-nextjs-middleware-session-cookie-secure",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "middleware.ts",
+      "template": "export function middleware(){ return Response.next(); }\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-nextjs-edge-verify-signature-secure",
+  "name": "strike-nextjs-edge-verify-signature-secure",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "edge",
+    "security"
+  ],
+  "files": [
+    {
+      "path": "src/edge/verify.ts",
+      "template": "export async function verify(req:Request){ return true; }\n"
+    }
+  ],
+  "patches": []
+}

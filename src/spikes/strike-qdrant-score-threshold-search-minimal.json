@@ -1,0 +1,17 @@
+{
+  "id": "strike-qdrant-score-threshold-search-minimal",
+  "name": "strike-qdrant-score-threshold-search-minimal",
+  "stack": [
+    "qdrant"
+  ],
+  "tags": [
+    "vector"
+  ],
+  "files": [
+    {
+      "path": "src/vectors/qdrant-threshold.ts",
+      "template": "export const threshold = 0.5;\n"
+    }
+  ],
+  "patches": []
+}

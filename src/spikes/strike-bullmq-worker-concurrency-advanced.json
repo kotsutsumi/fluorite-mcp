@@ -1,0 +1,17 @@
+{
+  "id": "strike-bullmq-worker-concurrency-advanced",
+  "name": "strike-bullmq-worker-concurrency-advanced",
+  "stack": [
+    "bullmq"
+  ],
+  "tags": [
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "src/queue/concurrency.ts",
+      "template": "export const concurrency = 5;\n"
+    }
+  ],
+  "patches": []
+}

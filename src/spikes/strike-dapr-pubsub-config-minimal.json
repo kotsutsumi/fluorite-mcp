@@ -1,0 +1,17 @@
+{
+  "id": "strike-dapr-pubsub-config-minimal",
+  "name": "strike-dapr-pubsub-config-minimal",
+  "stack": [
+    "dapr"
+  ],
+  "tags": [
+    "microservices"
+  ],
+  "files": [
+    {
+      "path": "dapr/components/pubsub.yaml",
+      "template": "apiVersion: dapr.io/v1alpha1\nkind: Component\n"
+    }
+  ],
+  "patches": []
+}

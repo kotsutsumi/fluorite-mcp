@@ -1,0 +1,19 @@
+{
+  "id": "strike-nextjs-edge-cf-turnstile-verify-minimal",
+  "name": "strike-nextjs-edge-cf-turnstile-verify-minimal",
+  "stack": [
+    "nextjs",
+    "cloudflare-workers"
+  ],
+  "tags": [
+    "edge",
+    "security"
+  ],
+  "files": [
+    {
+      "path": "src/edge/cf-turnstile.ts",
+      "template": "export const verify = {};\n"
+    }
+  ],
+  "patches": []
+}

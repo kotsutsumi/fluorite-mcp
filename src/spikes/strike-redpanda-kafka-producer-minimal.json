@@ -1,0 +1,17 @@
+{
+  "id": "strike-redpanda-kafka-producer-minimal",
+  "name": "strike-redpanda-kafka-producer-minimal",
+  "stack": [
+    "redpanda"
+  ],
+  "tags": [
+    "stream"
+  ],
+  "files": [
+    {
+      "path": "src/stream/redpanda-producer.ts",
+      "template": "export const produce = async ()=> true;\n"
+    }
+  ],
+  "patches": []
+}

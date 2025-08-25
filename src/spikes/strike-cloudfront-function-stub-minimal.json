@@ -1,0 +1,18 @@
+{
+  "id": "strike-cloudfront-function-stub-minimal",
+  "name": "strike-cloudfront-function-stub-minimal",
+  "stack": [
+    "aws"
+  ],
+  "tags": [
+    "cdn",
+    "edge"
+  ],
+  "files": [
+    {
+      "path": "src/cdn/cloudfront-fn.js",
+      "template": "function handler(event){ return event.request }\n"
+    }
+  ],
+  "patches": []
+}

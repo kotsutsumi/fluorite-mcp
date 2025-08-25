@@ -1,0 +1,17 @@
+{
+  "id": "strike-aws-kms-encrypt-decrypt-minimal",
+  "name": "strike-aws-kms-encrypt-decrypt-minimal",
+  "stack": [
+    "aws"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "src/security/aws-kms.ts",
+      "template": "export async function encrypt(){ return ''; }\n"
+    }
+  ],
+  "patches": []
+}

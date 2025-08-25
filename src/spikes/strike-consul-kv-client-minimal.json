@@ -1,0 +1,17 @@
+{
+  "id": "strike-consul-kv-client-minimal",
+  "name": "strike-consul-kv-client-minimal",
+  "stack": [
+    "consul"
+  ],
+  "tags": [
+    "config"
+  ],
+  "files": [
+    {
+      "path": "src/config/consul.ts",
+      "template": "export const consul = {};\n"
+    }
+  ],
+  "patches": []
+}

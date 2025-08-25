@@ -1,0 +1,17 @@
+{
+  "id": "strike-nextjs-route-json-error-wrapper-secure",
+  "name": "strike-nextjs-route-json-error-wrapper-secure",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "api"
+  ],
+  "files": [
+    {
+      "path": "src/next/error.ts",
+      "template": "export function jsonError(e: unknown, status=400){ return Response.json({ ok:false, error:String(e) }, { status }); }\n"
+    }
+  ],
+  "patches": []
+}

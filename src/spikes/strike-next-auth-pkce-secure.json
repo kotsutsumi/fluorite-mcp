@@ -1,0 +1,18 @@
+{
+  "id": "strike-next-auth-pkce-secure",
+  "name": "strike-next-auth-pkce-secure",
+  "stack": [
+    "next-auth"
+  ],
+  "tags": [
+    "auth",
+    "secure"
+  ],
+  "files": [
+    {
+      "path": "src/auth/pkce.ts",
+      "template": "export const pkce = { enabled: true };\n"
+    }
+  ],
+  "patches": []
+}

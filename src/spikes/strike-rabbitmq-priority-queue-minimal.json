@@ -1,0 +1,17 @@
+{
+  "id": "strike-rabbitmq-priority-queue-minimal",
+  "name": "strike-rabbitmq-priority-queue-minimal",
+  "stack": [
+    "amqplib"
+  ],
+  "tags": [
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "src/rabbit/priority.ts",
+      "template": "export const priority = {};\n"
+    }
+  ],
+  "patches": []
+}

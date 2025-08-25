@@ -1,0 +1,17 @@
+{
+  "id": "strike-qwik-route-endpoint-minimal",
+  "name": "strike-qwik-route-endpoint-minimal",
+  "stack": [
+    "qwik"
+  ],
+  "tags": [
+    "frontend"
+  ],
+  "files": [
+    {
+      "path": "src/routes/api/health/index.ts",
+      "template": "export const onGet = ()=> new Response('ok');\n"
+    }
+  ],
+  "patches": []
+}

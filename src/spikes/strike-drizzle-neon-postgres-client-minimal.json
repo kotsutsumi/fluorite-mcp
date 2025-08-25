@@ -1,0 +1,18 @@
+{
+  "id": "strike-drizzle-neon-postgres-client-minimal",
+  "name": "strike-drizzle-neon-postgres-client-minimal",
+  "stack": [
+    "drizzle",
+    "postgres"
+  ],
+  "tags": [
+    "db"
+  ],
+  "files": [
+    {
+      "path": "src/db/drizzle-neon.ts",
+      "template": "export const neon = {};\n"
+    }
+  ],
+  "patches": []
+}

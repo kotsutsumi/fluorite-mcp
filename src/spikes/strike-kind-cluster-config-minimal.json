@@ -1,0 +1,17 @@
+{
+  "id": "strike-kind-cluster-config-minimal",
+  "name": "strike-kind-cluster-config-minimal",
+  "stack": [
+    "kind"
+  ],
+  "tags": [
+    "kubernetes"
+  ],
+  "files": [
+    {
+      "path": "k8s/kind.yaml",
+      "template": "kind: Cluster\napiVersion: kind.x-k8s.io/v1alpha4\n"
+    }
+  ],
+  "patches": []
+}

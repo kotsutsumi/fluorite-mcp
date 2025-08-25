@@ -1,0 +1,17 @@
+{
+  "id": "strike-express-rate-limit-minimal",
+  "name": "strike-express-rate-limit-minimal",
+  "stack": [
+    "express"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "src/security/rate-limit.ts",
+      "template": "export const rate = {};\n"
+    }
+  ],
+  "patches": []
+}

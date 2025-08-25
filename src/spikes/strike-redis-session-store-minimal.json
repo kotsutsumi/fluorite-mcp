@@ -1,0 +1,17 @@
+{
+  "id": "strike-redis-session-store-minimal",
+  "name": "strike-redis-session-store-minimal",
+  "stack": [
+    "redis"
+  ],
+  "tags": [
+    "cache"
+  ],
+  "files": [
+    {
+      "path": "src/cache/redis-session.ts",
+      "template": "export const session = {};\n"
+    }
+  ],
+  "patches": []
+}

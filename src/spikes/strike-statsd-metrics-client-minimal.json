@@ -1,0 +1,17 @@
+{
+  "id": "strike-statsd-metrics-client-minimal",
+  "name": "strike-statsd-metrics-client-minimal",
+  "stack": [
+    "statsd"
+  ],
+  "tags": [
+    "monitoring"
+  ],
+  "files": [
+    {
+      "path": "src/metrics/statsd.ts",
+      "template": "export const statsd = {};\n"
+    }
+  ],
+  "patches": []
+}

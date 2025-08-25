@@ -1,0 +1,17 @@
+{
+  "id": "strike-swr-global-fetcher-minimal",
+  "name": "strike-swr-global-fetcher-minimal",
+  "stack": [
+    "swr"
+  ],
+  "tags": [
+    "frontend"
+  ],
+  "files": [
+    {
+      "path": "src/swr/fetcher.ts",
+      "template": "export const fetcher = (url:string)=> fetch(url).then(r=>r.json());\n"
+    }
+  ],
+  "patches": []
+}

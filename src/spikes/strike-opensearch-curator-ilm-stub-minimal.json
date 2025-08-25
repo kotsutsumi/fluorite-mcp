@@ -1,0 +1,17 @@
+{
+  "id": "strike-opensearch-curator-ilm-stub-minimal",
+  "name": "strike-opensearch-curator-ilm-stub-minimal",
+  "stack": [
+    "opensearch"
+  ],
+  "tags": [
+    "search"
+  ],
+  "files": [
+    {
+      "path": "src/search/opensearch-curator.ts",
+      "template": "export const curator = {};\n"
+    }
+  ],
+  "patches": []
+}

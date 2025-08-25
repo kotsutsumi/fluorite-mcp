@@ -1,0 +1,17 @@
+{
+  "id": "strike-gcp-bigquery-query-minimal",
+  "name": "strike-gcp-bigquery-query-minimal",
+  "stack": [
+    "gcp"
+  ],
+  "tags": [
+    "db"
+  ],
+  "files": [
+    {
+      "path": "src/db/bigquery.ts",
+      "template": "export async function query(){ return []; }\n"
+    }
+  ],
+  "patches": []
+}

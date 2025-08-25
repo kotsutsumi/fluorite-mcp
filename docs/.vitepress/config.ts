@@ -35,7 +35,7 @@ export default defineConfig({
           { text: 'コマンド', link: '/ja/fl-commands' },
           { text: 'API', link: '/ja/API' },
           {
-            text: 'v0.20.8',
+            text: 'v0.20.0',
             items: [
               { text: '変更履歴', link: '/ja/CHANGELOG' },
               { text: 'リリースノート', link: 'https://github.com/kotsutsumi/fluorite-mcp/releases' }
@@ -80,8 +80,8 @@ export default defineConfig({
               items: [
                 { text: '📖 API リファレンス', link: '/ja/API' },
                 { text: '🏛️ アーキテクチャ', link: '/ja/architecture/' },
-                { text: '🤝 コントリビューション', link: '/ja/CONTRIBUTING' },
-                { text: '🔒 セキュリティ', link: '/ja/SECURITY' },
+                { text: '🤝 コントリビューション', link: '/CONTRIBUTING' },
+                { text: '🔒 セキュリティ', link: '/SECURITY' },
                 { text: '🧑‍💻 開発者ガイド', link: '/ja/developer' },
               ]
             },
@@ -110,8 +110,8 @@ export default defineConfig({
               items: [
                 { text: '🔧 トラブルシューティング', link: '/ja/troubleshooting' },
                 { text: '❓ FAQ', link: '/ja/faq' },
-                { text: '📈 変更履歴', link: '/ja/CHANGELOG' },
-                { text: '📄 ライセンス', link: '/ja/LICENSE' },
+                { text: '📈 変更履歴', link: '/CHANGELOG' },
+                { text: '📄 ライセンス', link: '/LICENSE' },
               ]
             }
           ]
@@ -130,7 +130,7 @@ export default defineConfig({
           { text: 'Commands', link: '/fl-commands' },
           { text: 'API', link: '/API' },
           {
-            text: 'v0.20.8',
+            text: 'v0.20.0',
             items: [
               { text: 'Changelog', link: '/CHANGELOG' },
               { text: 'Releases', link: 'https://github.com/kotsutsumi/fluorite-mcp/releases' }

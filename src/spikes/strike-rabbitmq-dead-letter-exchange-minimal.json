@@ -1,0 +1,17 @@
+{
+  "id": "strike-rabbitmq-dead-letter-exchange-minimal",
+  "name": "strike-rabbitmq-dead-letter-exchange-minimal",
+  "stack": [
+    "amqplib"
+  ],
+  "tags": [
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "src/rabbit/dlx.ts",
+      "template": "export const dlx = {};\n"
+    }
+  ],
+  "patches": []
+}

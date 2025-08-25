@@ -1,0 +1,17 @@
+{
+  "id": "strike-supabase-storage-upload-minimal",
+  "name": "strike-supabase-storage-upload-minimal",
+  "stack": [
+    "supabase"
+  ],
+  "tags": [
+    "storage"
+  ],
+  "files": [
+    {
+      "path": "src/storage/supabase.ts",
+      "template": "export async function upload(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

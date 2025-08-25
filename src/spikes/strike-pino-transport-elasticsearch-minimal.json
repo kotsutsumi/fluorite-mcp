@@ -1,0 +1,17 @@
+{
+  "id": "strike-pino-transport-elasticsearch-minimal",
+  "name": "strike-pino-transport-elasticsearch-minimal",
+  "stack": [
+    "pino"
+  ],
+  "tags": [
+    "logging"
+  ],
+  "files": [
+    {
+      "path": "src/logging/pino-elastic.ts",
+      "template": "export const elastic = {};\n"
+    }
+  ],
+  "patches": []
+}

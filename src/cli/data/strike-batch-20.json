@@ -1,0 +1,45 @@
+{
+  "items": [
+    { "id": "edgedb-client-stub-minimal", "stack": ["edgedb"], "tags": ["db"], "files": [ { "path": "src/db/edgedb.ts", "template": "export const edgedb = {};\n" } ] },
+    { "id": "surrealdb-http-client-minimal", "stack": ["surrealdb"], "tags": ["db"], "files": [ { "path": "src/db/surreal.ts", "template": "export const surreal = {};\n" } ] },
+    { "id": "tidb-pool-client-minimal", "stack": ["tidb"], "tags": ["db"], "files": [ { "path": "src/db/tidb.ts", "template": "export const tidb = {};\n" } ] },
+    { "id": "questdb-http-ingest-minimal", "stack": ["questdb"], "tags": ["time-series"], "files": [ { "path": "src/db/questdb.ts", "template": "export const quest = {};\n" } ] },
+    { "id": "victoriametrics-remote-write-minimal", "stack": ["victoriametrics"], "tags": ["monitoring"], "files": [ { "path": "src/metrics/vm.ts", "template": "export const vm = {};\n" } ] },
+    { "id": "influxdb-client-stub-minimal", "stack": ["influxdb"], "tags": ["time-series"], "files": [ { "path": "src/db/influx.ts", "template": "export const influx = {};\n" } ] },
+    { "id": "loki-http-ingest-minimal", "stack": ["loki"], "tags": ["logging"], "files": [ { "path": "src/logging/loki.ts", "template": "export const loki = {};\n" } ] },
+    { "id": "otel-logs-exporter-stub-minimal", "stack": ["observability"], "tags": ["apm"], "files": [ { "path": "src/otel/logs-exporter.ts", "template": "export const logs = {};\n" } ] },
+
+    { "id": "saml-idp-sp-config-stub-minimal", "stack": ["saml"], "tags": ["auth", "enterprise"], "files": [ { "path": "src/auth/saml.ts", "template": "export const saml = {};\n" } ] },
+    { "id": "webauthn-passkey-routes-minimal", "stack": ["webauthn"], "tags": ["auth", "secure"], "files": [ { "path": "src/auth/webauthn.ts", "template": "export const webauthn = {};\n" } ] },
+
+    { "id": "adyen-checkout-session-stub-minimal", "stack": ["adyen"], "tags": ["billing"], "files": [ { "path": "src/billing/adyen.ts", "template": "export const adyen = {};\n" } ] },
+    { "id": "braintree-payment-intent-stub-minimal", "stack": ["braintree"], "tags": ["billing"], "files": [ { "path": "src/billing/braintree.ts", "template": "export const braintree = {};\n" } ] },
+
+    { "id": "notion-api-client-minimal", "stack": ["notion"], "tags": ["integration"], "files": [ { "path": "src/integrations/notion.ts", "template": "export const notion = {};\n" } ] },
+    { "id": "google-sheets-api-minimal", "stack": ["google"], "tags": ["integration"], "files": [ { "path": "src/integrations/sheets.ts", "template": "export const sheets = {};\n" } ] },
+    { "id": "google-drive-upload-minimal", "stack": ["google"], "tags": ["integration"], "files": [ { "path": "src/integrations/drive.ts", "template": "export const drive = {};\n" } ] },
+    { "id": "dropbox-upload-minimal", "stack": ["dropbox"], "tags": ["integration"], "files": [ { "path": "src/integrations/dropbox.ts", "template": "export const dropbox = {};\n" } ] },
+    { "id": "box-upload-minimal", "stack": ["box"], "tags": ["integration"], "files": [ { "path": "src/integrations/box.ts", "template": "export const box = {};\n" } ] },
+    { "id": "onedrive-graph-upload-minimal", "stack": ["onedrive"], "tags": ["integration"], "files": [ { "path": "src/integrations/onedrive.ts", "template": "export const onedrive = {};\n" } ] },
+    { "id": "jira-issue-create-minimal", "stack": ["jira"], "tags": ["integration"], "files": [ { "path": "src/integrations/jira.ts", "template": "export const jira = {};\n" } ] },
+    { "id": "linear-issue-create-minimal", "stack": ["linear"], "tags": ["integration"], "files": [ { "path": "src/integrations/linear.ts", "template": "export const linear = {};\n" } ] },
+    { "id": "asana-task-create-minimal", "stack": ["asana"], "tags": ["integration"], "files": [ { "path": "src/integrations/asana.ts", "template": "export const asana = {};\n" } ] },
+    { "id": "trello-card-create-minimal", "stack": ["trello"], "tags": ["integration"], "files": [ { "path": "src/integrations/trello.ts", "template": "export const trello = {};\n" } ] },
+
+    { "id": "twilio-sms-send-minimal", "stack": ["twilio"], "tags": ["sms"], "files": [ { "path": "src/sms/twilio.ts", "template": "export const twilio = {};\n" } ] },
+    { "id": "sendbird-chat-client-minimal", "stack": ["sendbird"], "tags": ["chat"], "files": [ { "path": "src/chat/sendbird.ts", "template": "export const sendbird = {};\n" } ] },
+    { "id": "pubnub-publish-subscribe-minimal", "stack": ["pubnub"], "tags": ["realtime"], "files": [ { "path": "src/realtime/pubnub.ts", "template": "export const pubnub = {};\n" } ] },
+    { "id": "fcm-push-notify-minimal", "stack": ["firebase"], "tags": ["push"], "files": [ { "path": "src/push/fcm.ts", "template": "export const fcm = {};\n" } ] },
+    { "id": "apns-push-token-auth-minimal", "stack": ["apns"], "tags": ["push"], "files": [ { "path": "src/push/apns.ts", "template": "export const apns = {};\n" } ] },
+
+    { "id": "nextjs-permissions-policy-headers-secure", "stack": ["nextjs"], "tags": ["security"], "files": [ { "path": "src/security/permissions-policy.ts", "template": "export const policy = {};\n" } ] },
+    { "id": "pwa-manifest-json-minimal", "stack": ["pwa"], "tags": ["web"], "files": [ { "path": "public/manifest.json", "template": "{ }\n" } ] },
+    { "id": "service-worker-background-sync-minimal", "stack": ["pwa"], "tags": ["web"], "files": [ { "path": "public/sw-sync.js", "template": "self.addEventListener('sync',()=>{});\n" } ] },
+
+    { "id": "cloudflare-d1-prepared-statement-minimal", "stack": ["cloudflare-workers"], "tags": ["edge", "db"], "files": [ { "path": "src/cloudflare/d1-prepared.ts", "template": "export const prepared = {};\n" } ] },
+    { "id": "github-actions-annotations-stub-minimal", "stack": ["github-actions"], "tags": ["cicd"], "files": [ { "path": ".github/annotations.md", "template": "# annotations\n" } ] },
+
+    { "id": "openai-streaming-sse-nextjs-route-minimal", "stack": ["openai"], "tags": ["ai"], "files": [ { "path": "app/api/ai/stream/route.ts", "template": "export async function GET(){ return new Response(''); }\n" } ] },
+    { "id": "langchain-zod-output-parser-minimal", "stack": ["langchain", "zod"], "tags": ["ai"], "files": [ { "path": "src/ai/zod-parser.ts", "template": "export const parser = {};\n" } ] }
+  ]
+}

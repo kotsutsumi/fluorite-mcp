@@ -1,0 +1,17 @@
+{
+  "id": "strike-cockroachdb-client-stub-minimal",
+  "name": "strike-cockroachdb-client-stub-minimal",
+  "stack": [
+    "cockroachdb"
+  ],
+  "tags": [
+    "db"
+  ],
+  "files": [
+    {
+      "path": "src/db/cockroach.ts",
+      "template": "export const cockroach = {};\n"
+    }
+  ],
+  "patches": []
+}

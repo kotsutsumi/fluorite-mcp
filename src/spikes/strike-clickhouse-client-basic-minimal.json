@@ -1,0 +1,17 @@
+{
+  "id": "strike-clickhouse-client-basic-minimal",
+  "name": "strike-clickhouse-client-basic-minimal",
+  "stack": [
+    "clickhouse"
+  ],
+  "tags": [
+    "db"
+  ],
+  "files": [
+    {
+      "path": "src/db/clickhouse.ts",
+      "template": "export const clickhouse = {};\n"
+    }
+  ],
+  "patches": []
+}

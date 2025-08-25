@@ -1,0 +1,17 @@
+{
+  "id": "strike-meilisearch-synonyms-export-minimal",
+  "name": "strike-meilisearch-synonyms-export-minimal",
+  "stack": [
+    "meilisearch"
+  ],
+  "tags": [
+    "search"
+  ],
+  "files": [
+    {
+      "path": "src/search/meili-export.ts",
+      "template": "export const exportSynonyms = [];\n"
+    }
+  ],
+  "patches": []
+}

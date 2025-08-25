@@ -1,0 +1,17 @@
+{
+  "id": "strike-next-auth-provider-azuread-minimal",
+  "name": "strike-next-auth-provider-azuread-minimal",
+  "stack": [
+    "next-auth"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "src/auth/nextauth-azuread.ts",
+      "template": "export const azuread = { tenantId: '', clientId: '', clientSecret: '' };\n"
+    }
+  ],
+  "patches": []
+}

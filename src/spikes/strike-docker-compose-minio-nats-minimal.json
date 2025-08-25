@@ -1,0 +1,17 @@
+{
+  "id": "strike-docker-compose-minio-nats-minimal",
+  "name": "strike-docker-compose-minio-nats-minimal",
+  "stack": [
+    "docker"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "docker-compose.tools.yml",
+      "template": "version: '3.9'\nservices: {}\n"
+    }
+  ],
+  "patches": []
+}

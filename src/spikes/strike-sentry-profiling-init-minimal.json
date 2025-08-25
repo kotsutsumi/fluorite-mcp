@@ -1,0 +1,17 @@
+{
+  "id": "strike-sentry-profiling-init-minimal",
+  "name": "strike-sentry-profiling-init-minimal",
+  "stack": [
+    "sentry"
+  ],
+  "tags": [
+    "monitoring"
+  ],
+  "files": [
+    {
+      "path": "src/sentry/profiling.ts",
+      "template": "export const profiling = {};\n"
+    }
+  ],
+  "patches": []
+}

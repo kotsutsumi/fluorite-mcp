@@ -1,0 +1,17 @@
+{
+  "id": "strike-cloudflare-workers-durable-kv-mix-minimal",
+  "name": "strike-cloudflare-workers-durable-kv-mix-minimal",
+  "stack": [
+    "cloudflare-workers"
+  ],
+  "tags": [
+    "edge"
+  ],
+  "files": [
+    {
+      "path": "src/cloudflare/durable-kv.ts",
+      "template": "export const durableKV = {};\n"
+    }
+  ],
+  "patches": []
+}

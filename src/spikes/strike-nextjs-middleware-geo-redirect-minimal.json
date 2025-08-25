@@ -1,0 +1,17 @@
+{
+  "id": "strike-nextjs-middleware-geo-redirect-minimal",
+  "name": "strike-nextjs-middleware-geo-redirect-minimal",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "i18n"
+  ],
+  "files": [
+    {
+      "path": "middleware.ts",
+      "template": "export function middleware(){ return Response.next(); }\n"
+    }
+  ],
+  "patches": []
+}

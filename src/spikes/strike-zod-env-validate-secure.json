@@ -1,0 +1,18 @@
+{
+  "id": "strike-zod-env-validate-secure",
+  "name": "strike-zod-env-validate-secure",
+  "stack": [
+    "zod"
+  ],
+  "tags": [
+    "config",
+    "secure"
+  ],
+  "files": [
+    {
+      "path": "src/config/env-zod.ts",
+      "template": "export const Env = {};\n"
+    }
+  ],
+  "patches": []
+}

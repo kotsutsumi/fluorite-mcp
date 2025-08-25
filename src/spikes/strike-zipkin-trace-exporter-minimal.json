@@ -1,0 +1,17 @@
+{
+  "id": "strike-zipkin-trace-exporter-minimal",
+  "name": "strike-zipkin-trace-exporter-minimal",
+  "stack": [
+    "zipkin"
+  ],
+  "tags": [
+    "apm"
+  ],
+  "files": [
+    {
+      "path": "src/otel/zipkin.ts",
+      "template": "export const zipkin = {};\n"
+    }
+  ],
+  "patches": []
+}

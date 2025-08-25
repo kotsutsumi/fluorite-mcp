@@ -1,0 +1,17 @@
+{
+  "id": "strike-rabbitmq-delayed-exchange-plugin-minimal",
+  "name": "strike-rabbitmq-delayed-exchange-plugin-minimal",
+  "stack": [
+    "amqplib"
+  ],
+  "tags": [
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "src/rabbit/delayed-exchange.ts",
+      "template": "export const delayed = {};\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-terraform-aws-cloudwatch-logs-retention-minimal",
+  "name": "strike-terraform-aws-cloudwatch-logs-retention-minimal",
+  "stack": [
+    "terraform"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "infra/cloudwatch-logs.tf",
+      "template": "# logs retention\n"
+    }
+  ],
+  "patches": []
+}

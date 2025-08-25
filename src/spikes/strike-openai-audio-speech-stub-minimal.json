@@ -1,0 +1,18 @@
+{
+  "id": "strike-openai-audio-speech-stub-minimal",
+  "name": "strike-openai-audio-speech-stub-minimal",
+  "stack": [
+    "openai"
+  ],
+  "tags": [
+    "ai",
+    "audio"
+  ],
+  "files": [
+    {
+      "path": "src/ai/openai-speech.ts",
+      "template": "export async function speak(){ return new Uint8Array(); }\n"
+    }
+  ],
+  "patches": []
+}

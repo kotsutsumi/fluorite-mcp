@@ -1,0 +1,17 @@
+{
+  "id": "strike-opentelemetry-resource-detectors-minimal",
+  "name": "strike-opentelemetry-resource-detectors-minimal",
+  "stack": [
+    "observability"
+  ],
+  "tags": [
+    "apm"
+  ],
+  "files": [
+    {
+      "path": "src/otel/resource.ts",
+      "template": "export const resource = {};\n"
+    }
+  ],
+  "patches": []
+}

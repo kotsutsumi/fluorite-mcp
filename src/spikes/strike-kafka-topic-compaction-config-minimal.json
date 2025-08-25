@@ -1,0 +1,17 @@
+{
+  "id": "strike-kafka-topic-compaction-config-minimal",
+  "name": "strike-kafka-topic-compaction-config-minimal",
+  "stack": [
+    "kafkajs"
+  ],
+  "tags": [
+    "stream"
+  ],
+  "files": [
+    {
+      "path": "src/kafka/compaction.ts",
+      "template": "export const compaction = {};\n"
+    }
+  ],
+  "patches": []
+}

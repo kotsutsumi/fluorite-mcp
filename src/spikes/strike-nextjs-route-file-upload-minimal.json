@@ -1,0 +1,18 @@
+{
+  "id": "strike-nextjs-route-file-upload-minimal",
+  "name": "strike-nextjs-route-file-upload-minimal",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "api",
+    "upload"
+  ],
+  "files": [
+    {
+      "path": "app/api/upload/route.ts",
+      "template": "export async function POST(req: Request){ const form = await req.formData(); return Response.json({ files: Array.from(form.keys()) }); }\n"
+    }
+  ],
+  "patches": []
+}

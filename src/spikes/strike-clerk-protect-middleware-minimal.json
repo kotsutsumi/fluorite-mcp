@@ -1,0 +1,18 @@
+{
+  "id": "strike-clerk-protect-middleware-minimal",
+  "name": "strike-clerk-protect-middleware-minimal",
+  "stack": [
+    "clerk",
+    "nextjs"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "src/auth/clerk-middleware.ts",
+      "template": "export function requireAuth(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

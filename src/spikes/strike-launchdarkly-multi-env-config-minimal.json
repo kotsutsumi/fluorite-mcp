@@ -1,0 +1,17 @@
+{
+  "id": "strike-launchdarkly-multi-env-config-minimal",
+  "name": "strike-launchdarkly-multi-env-config-minimal",
+  "stack": [
+    "launchdarkly"
+  ],
+  "tags": [
+    "flags"
+  ],
+  "files": [
+    {
+      "path": "src/flags/ld-envs.ts",
+      "template": "export const envs = {};\n"
+    }
+  ],
+  "patches": []
+}

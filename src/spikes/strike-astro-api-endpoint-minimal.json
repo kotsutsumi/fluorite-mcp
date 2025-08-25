@@ -1,0 +1,17 @@
+{
+  "id": "strike-astro-api-endpoint-minimal",
+  "name": "strike-astro-api-endpoint-minimal",
+  "stack": [
+    "astro"
+  ],
+  "tags": [
+    "frontend"
+  ],
+  "files": [
+    {
+      "path": "src/pages/api/health.ts",
+      "template": "export async function get(){ return new Response(JSON.stringify({ ok:true })) }\n"
+    }
+  ],
+  "patches": []
+}

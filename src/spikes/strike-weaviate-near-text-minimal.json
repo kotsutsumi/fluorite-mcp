@@ -1,0 +1,17 @@
+{
+  "id": "strike-weaviate-near-text-minimal",
+  "name": "strike-weaviate-near-text-minimal",
+  "stack": [
+    "weaviate"
+  ],
+  "tags": [
+    "vector"
+  ],
+  "files": [
+    {
+      "path": "src/vectors/weaviate-neartext.ts",
+      "template": "export async function near(){ return []; }\n"
+    }
+  ],
+  "patches": []
+}

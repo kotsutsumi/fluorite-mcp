@@ -1,0 +1,17 @@
+{
+  "id": "strike-serverless-cors-authorizer-minimal",
+  "name": "strike-serverless-cors-authorizer-minimal",
+  "stack": [
+    "serverless"
+  ],
+  "tags": [
+    "infra"
+  ],
+  "files": [
+    {
+      "path": "serverless.authorizer.yml",
+      "template": "service: authorizer\n"
+    }
+  ],
+  "patches": []
+}

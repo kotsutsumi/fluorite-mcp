@@ -1,0 +1,17 @@
+{
+  "id": "strike-kyverno-policy-stub-minimal",
+  "name": "strike-kyverno-policy-stub-minimal",
+  "stack": [
+    "kyverno"
+  ],
+  "tags": [
+    "policy"
+  ],
+  "files": [
+    {
+      "path": "policy/kyverno.yaml",
+      "template": "apiVersion: kyverno.io/v1\nkind: ClusterPolicy\n"
+    }
+  ],
+  "patches": []
+}

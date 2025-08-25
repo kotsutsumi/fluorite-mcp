@@ -1,0 +1,18 @@
+{
+  "id": "strike-nextjs-route-signed-webhook-secure",
+  "name": "strike-nextjs-route-signed-webhook-secure",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "api",
+    "security"
+  ],
+  "files": [
+    {
+      "path": "app/api/webhook/route.ts",
+      "template": "export async function POST(){ return Response.json({ ok:true }); }\n"
+    }
+  ],
+  "patches": []
+}

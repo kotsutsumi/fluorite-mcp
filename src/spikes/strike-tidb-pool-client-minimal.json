@@ -1,0 +1,17 @@
+{
+  "id": "strike-tidb-pool-client-minimal",
+  "name": "strike-tidb-pool-client-minimal",
+  "stack": [
+    "tidb"
+  ],
+  "tags": [
+    "db"
+  ],
+  "files": [
+    {
+      "path": "src/db/tidb.ts",
+      "template": "export const tidb = {};\n"
+    }
+  ],
+  "patches": []
+}

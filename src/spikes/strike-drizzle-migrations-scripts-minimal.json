@@ -1,0 +1,17 @@
+{
+  "id": "strike-drizzle-migrations-scripts-minimal",
+  "name": "strike-drizzle-migrations-scripts-minimal",
+  "stack": [
+    "drizzle"
+  ],
+  "tags": [
+    "db"
+  ],
+  "files": [
+    {
+      "path": "src/db/migrations.ts",
+      "template": "export async function migrate(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

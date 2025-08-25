@@ -1,0 +1,17 @@
+{
+  "id": "strike-prometheus-alert-rules-minimal",
+  "name": "strike-prometheus-alert-rules-minimal",
+  "stack": [
+    "prometheus"
+  ],
+  "tags": [
+    "monitoring"
+  ],
+  "files": [
+    {
+      "path": "monitoring/alerts.yml",
+      "template": "groups: []\n"
+    }
+  ],
+  "patches": []
+}

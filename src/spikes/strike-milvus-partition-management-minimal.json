@@ -1,0 +1,17 @@
+{
+  "id": "strike-milvus-partition-management-minimal",
+  "name": "strike-milvus-partition-management-minimal",
+  "stack": [
+    "milvus"
+  ],
+  "tags": [
+    "vector"
+  ],
+  "files": [
+    {
+      "path": "src/vectors/milvus-partitions-manage.ts",
+      "template": "export const manage = {};\n"
+    }
+  ],
+  "patches": []
+}

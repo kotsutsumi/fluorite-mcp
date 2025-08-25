@@ -1,0 +1,17 @@
+{
+  "id": "strike-opa-rego-policy-stub-minimal",
+  "name": "strike-opa-rego-policy-stub-minimal",
+  "stack": [
+    "opa"
+  ],
+  "tags": [
+    "policy"
+  ],
+  "files": [
+    {
+      "path": "policy/policy.rego",
+      "template": "package policy\nallow := true\n"
+    }
+  ],
+  "patches": []
+}

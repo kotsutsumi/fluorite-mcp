@@ -1,0 +1,18 @@
+{
+  "id": "strike-cloudflare-d1-minimal",
+  "name": "strike-cloudflare-d1-minimal",
+  "stack": [
+    "cloudflare-workers"
+  ],
+  "tags": [
+    "edge",
+    "db"
+  ],
+  "files": [
+    {
+      "path": "src/cloudflare/d1.ts",
+      "template": "export const d1 = {};\n"
+    }
+  ],
+  "patches": []
+}

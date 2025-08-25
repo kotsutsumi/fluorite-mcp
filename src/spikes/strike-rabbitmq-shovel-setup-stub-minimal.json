@@ -1,0 +1,17 @@
+{
+  "id": "strike-rabbitmq-shovel-setup-stub-minimal",
+  "name": "strike-rabbitmq-shovel-setup-stub-minimal",
+  "stack": [
+    "amqplib"
+  ],
+  "tags": [
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "src/rabbit/shovel.ts",
+      "template": "export const shovel = {};\n"
+    }
+  ],
+  "patches": []
+}

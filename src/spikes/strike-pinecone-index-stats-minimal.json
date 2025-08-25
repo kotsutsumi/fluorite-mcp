@@ -1,0 +1,17 @@
+{
+  "id": "strike-pinecone-index-stats-minimal",
+  "name": "strike-pinecone-index-stats-minimal",
+  "stack": [
+    "pinecone"
+  ],
+  "tags": [
+    "vector"
+  ],
+  "files": [
+    {
+      "path": "src/vectors/pinecone-stats.ts",
+      "template": "export async function stats(){ return {}; }\n"
+    }
+  ],
+  "patches": []
+}

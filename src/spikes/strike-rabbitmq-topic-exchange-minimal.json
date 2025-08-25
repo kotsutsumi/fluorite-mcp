@@ -1,0 +1,17 @@
+{
+  "id": "strike-rabbitmq-topic-exchange-minimal",
+  "name": "strike-rabbitmq-topic-exchange-minimal",
+  "stack": [
+    "amqplib"
+  ],
+  "tags": [
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "src/rabbit/topic.ts",
+      "template": "export const topic = {};\n"
+    }
+  ],
+  "patches": []
+}

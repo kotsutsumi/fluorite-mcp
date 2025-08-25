@@ -1,0 +1,18 @@
+{
+  "id": "strike-cloudflare-d1-prepared-statement-minimal",
+  "name": "strike-cloudflare-d1-prepared-statement-minimal",
+  "stack": [
+    "cloudflare-workers"
+  ],
+  "tags": [
+    "edge",
+    "db"
+  ],
+  "files": [
+    {
+      "path": "src/cloudflare/d1-prepared.ts",
+      "template": "export const prepared = {};\n"
+    }
+  ],
+  "patches": []
+}

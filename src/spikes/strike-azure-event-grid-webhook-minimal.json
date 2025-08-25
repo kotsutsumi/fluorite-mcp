@@ -1,0 +1,17 @@
+{
+  "id": "strike-azure-event-grid-webhook-minimal",
+  "name": "strike-azure-event-grid-webhook-minimal",
+  "stack": [
+    "azure"
+  ],
+  "tags": [
+    "events"
+  ],
+  "files": [
+    {
+      "path": "src/events/azure-eventgrid.ts",
+      "template": "export async function handler(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

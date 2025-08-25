@@ -1,0 +1,17 @@
+{
+  "id": "strike-nextjs-route-webpush-notify-minimal",
+  "name": "strike-nextjs-route-webpush-notify-minimal",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "web"
+  ],
+  "files": [
+    {
+      "path": "app/api/push/route.ts",
+      "template": "export async function POST(){ return Response.json({ ok:true }) }\n"
+    }
+  ],
+  "patches": []
+}

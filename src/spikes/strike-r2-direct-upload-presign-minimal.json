@@ -1,0 +1,18 @@
+{
+  "id": "strike-r2-direct-upload-presign-minimal",
+  "name": "strike-r2-direct-upload-presign-minimal",
+  "stack": [
+    "cloudflare-workers"
+  ],
+  "tags": [
+    "edge",
+    "upload"
+  ],
+  "files": [
+    {
+      "path": "src/cloudflare/r2-direct.ts",
+      "template": "export const r2 = {};\n"
+    }
+  ],
+  "patches": []
+}

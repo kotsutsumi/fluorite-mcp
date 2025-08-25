@@ -1,0 +1,17 @@
+{
+  "id": "strike-next-auth-provider-linkedin-minimal",
+  "name": "strike-next-auth-provider-linkedin-minimal",
+  "stack": [
+    "next-auth"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "src/auth/nextauth-linkedin.ts",
+      "template": "export const linkedin = { clientId: '', clientSecret: '' };\n"
+    }
+  ],
+  "patches": []
+}

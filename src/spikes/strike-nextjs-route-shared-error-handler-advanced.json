@@ -1,0 +1,17 @@
+{
+  "id": "strike-nextjs-route-shared-error-handler-advanced",
+  "name": "strike-nextjs-route-shared-error-handler-advanced",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "api"
+  ],
+  "files": [
+    {
+      "path": "src/next/error-shared.ts",
+      "template": "export function handle(e:unknown, status=400){ return Response.json({ ok:false, error:String(e) }, { status }); }\n"
+    }
+  ],
+  "patches": []
+}

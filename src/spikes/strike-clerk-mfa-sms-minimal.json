@@ -1,0 +1,18 @@
+{
+  "id": "strike-clerk-mfa-sms-minimal",
+  "name": "strike-clerk-mfa-sms-minimal",
+  "stack": [
+    "clerk"
+  ],
+  "tags": [
+    "auth",
+    "mfa"
+  ],
+  "files": [
+    {
+      "path": "src/auth/clerk-mfa-sms.ts",
+      "template": "export const sms = { enabled: true };\n"
+    }
+  ],
+  "patches": []
+}

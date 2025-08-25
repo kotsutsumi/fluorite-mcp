@@ -1,0 +1,17 @@
+{
+  "id": "strike-elasticsearch-ilm-policy-minimal",
+  "name": "strike-elasticsearch-ilm-policy-minimal",
+  "stack": [
+    "elasticsearch"
+  ],
+  "tags": [
+    "search"
+  ],
+  "files": [
+    {
+      "path": "src/search/es-ilm.ts",
+      "template": "export const ilm = {};\n"
+    }
+  ],
+  "patches": []
+}

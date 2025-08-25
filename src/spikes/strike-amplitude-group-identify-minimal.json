@@ -1,0 +1,17 @@
+{
+  "id": "strike-amplitude-group-identify-minimal",
+  "name": "strike-amplitude-group-identify-minimal",
+  "stack": [
+    "amplitude"
+  ],
+  "tags": [
+    "analytics"
+  ],
+  "files": [
+    {
+      "path": "src/analytics/amplitude.ts",
+      "template": "export async function identify(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

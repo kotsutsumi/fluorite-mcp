@@ -1,0 +1,17 @@
+{
+  "id": "strike-swr-global-config-provider-minimal",
+  "name": "strike-swr-global-config-provider-minimal",
+  "stack": [
+    "swr"
+  ],
+  "tags": [
+    "frontend"
+  ],
+  "files": [
+    {
+      "path": "src/swr/provider.tsx",
+      "template": "export function SWRProvider(){ return null }\n"
+    }
+  ],
+  "patches": []
+}

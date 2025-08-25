@@ -1,0 +1,17 @@
+{
+  "id": "strike-nextjs-dynamic-og-image-route-minimal",
+  "name": "strike-nextjs-dynamic-og-image-route-minimal",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "og"
+  ],
+  "files": [
+    {
+      "path": "app/api/og/route.ts",
+      "template": "export async function GET(){ return new Response('OG'); }\n"
+    }
+  ],
+  "patches": []
+}

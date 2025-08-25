@@ -1,0 +1,17 @@
+{
+  "id": "strike-helmet-hsts-config-minimal",
+  "name": "strike-helmet-hsts-config-minimal",
+  "stack": [
+    "express"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "src/security/hsts.ts",
+      "template": "export const hsts = {};\n"
+    }
+  ],
+  "patches": []
+}

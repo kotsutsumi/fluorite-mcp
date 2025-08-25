@@ -1,0 +1,17 @@
+{
+  "id": "strike-gh-apps-webhook-verify-minimal",
+  "name": "strike-gh-apps-webhook-verify-minimal",
+  "stack": [
+    "github"
+  ],
+  "tags": [
+    "webhook"
+  ],
+  "files": [
+    {
+      "path": "src/webhooks/github-app.ts",
+      "template": "export async function verify(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

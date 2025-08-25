@@ -1,0 +1,17 @@
+{
+  "id": "strike-memcached-client-basic-minimal",
+  "name": "strike-memcached-client-basic-minimal",
+  "stack": [
+    "memcached"
+  ],
+  "tags": [
+    "cache"
+  ],
+  "files": [
+    {
+      "path": "src/cache/memcached.ts",
+      "template": "export const client = {};\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-cloudflare-image-resize-worker-minimal",
+  "name": "strike-cloudflare-image-resize-worker-minimal",
+  "stack": [
+    "cloudflare-workers"
+  ],
+  "tags": [
+    "edge",
+    "image"
+  ],
+  "files": [
+    {
+      "path": "src/cloudflare/image-resize.ts",
+      "template": "export const resize = {};\n"
+    }
+  ],
+  "patches": []
+}

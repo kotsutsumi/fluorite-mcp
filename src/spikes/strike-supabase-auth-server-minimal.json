@@ -1,0 +1,17 @@
+{
+  "id": "strike-supabase-auth-server-minimal",
+  "name": "strike-supabase-auth-server-minimal",
+  "stack": [
+    "supabase-auth"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "src/auth/supabase.ts",
+      "template": "export const supabase = {};\n"
+    }
+  ],
+  "patches": []
+}

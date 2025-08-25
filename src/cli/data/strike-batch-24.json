@@ -1,0 +1,43 @@
+{
+  "items": [
+    { "id": "aws-secrets-manager-get-put-minimal", "stack": ["aws"], "tags": ["secrets"], "files": [ { "path": "src/secrets/aws-secrets.ts", "template": "export const sm = {};\n" } ] },
+    { "id": "gcp-secret-manager-read-write-minimal", "stack": ["gcp"], "tags": ["secrets"], "files": [ { "path": "src/secrets/gcp-secret.ts", "template": "export const gsm = {};\n" } ] },
+    { "id": "azure-key-vault-certificates-minimal", "stack": ["azure"], "tags": ["secrets"], "files": [ { "path": "src/secrets/azure-kv-cert.ts", "template": "export const kvcert = {};\n" } ] },
+
+    { "id": "mailchimp-marketing-client-minimal", "stack": ["mailchimp"], "tags": ["email"], "files": [ { "path": "src/email/mailchimp.ts", "template": "export const mailchimp = {};\n" } ] },
+    { "id": "brevo-send-email-minimal", "stack": ["brevo"], "tags": ["email"], "files": [ { "path": "src/email/brevo.ts", "template": "export const brevo = {};\n" } ] },
+    { "id": "vonage-sms-send-minimal", "stack": ["vonage"], "tags": ["sms"], "files": [ { "path": "src/sms/vonage.ts", "template": "export const vonage = {};\n" } ] },
+    { "id": "plivo-sms-send-minimal", "stack": ["plivo"], "tags": ["sms"], "files": [ { "path": "src/sms/plivo.ts", "template": "export const plivo = {};\n" } ] },
+
+    { "id": "arangodb-client-stub-minimal", "stack": ["arangodb"], "tags": ["db"], "files": [ { "path": "src/db/arangodb.ts", "template": "export const arango = {};\n" } ] },
+    { "id": "couchdb-http-client-minimal", "stack": ["couchdb"], "tags": ["db"], "files": [ { "path": "src/db/couchdb.ts", "template": "export const couch = {};\n" } ] },
+    { "id": "rethinkdb-client-stub-minimal", "stack": ["rethinkdb"], "tags": ["db"], "files": [ { "path": "src/db/rethinkdb.ts", "template": "export const rethink = {};\n" } ] },
+    { "id": "dgraph-graphql-client-minimal", "stack": ["dgraph"], "tags": ["db", "graphql"], "files": [ { "path": "src/db/dgraph.ts", "template": "export const dgraph = {};\n" } ] },
+
+    { "id": "opensearch-knn-vector-search-minimal", "stack": ["opensearch"], "tags": ["search", "vector"], "files": [ { "path": "src/search/opensearch-knn.ts", "template": "export const knn = {};\n" } ] },
+    { "id": "typesense-synonyms-manage-minimal", "stack": ["typesense"], "tags": ["search"], "files": [ { "path": "src/search/typesense-synonyms.ts", "template": "export const synonyms = [];\n" } ] },
+    { "id": "meilisearch-ranking-rules-advanced2", "stack": ["meilisearch"], "tags": ["search"], "files": [ { "path": "src/search/meili-ranking-adv.ts", "template": "export const rules = [];\n" } ] },
+
+    { "id": "deepgram-speech-to-text-minimal", "stack": ["deepgram"], "tags": ["ai", "audio"], "files": [ { "path": "src/ai/deepgram.ts", "template": "export const deepgram = {};\n" } ] },
+    { "id": "assemblyai-transcribe-minimal", "stack": ["assemblyai"], "tags": ["ai", "audio"], "files": [ { "path": "src/ai/assemblyai.ts", "template": "export const assembly = {};\n" } ] },
+    { "id": "elevenlabs-tts-minimal", "stack": ["elevenlabs"], "tags": ["ai", "audio"], "files": [ { "path": "src/ai/elevenlabs.ts", "template": "export const tts = {};\n" } ] },
+    { "id": "huggingface-inference-stub-minimal", "stack": ["huggingface"], "tags": ["ai"], "files": [ { "path": "src/ai/hf.ts", "template": "export const hf = {};\n" } ] },
+
+    { "id": "cloudflare-images-direct-upload-minimal", "stack": ["cloudflare-workers"], "tags": ["edge", "upload"], "files": [ { "path": "src/cloudflare/images-upload.ts", "template": "export const images = {};\n" } ] },
+    { "id": "netlify-graph-query-stub-minimal", "stack": ["netlify"], "tags": ["edge"], "files": [ { "path": "netlify/graph.ts", "template": "export const graph = {};\n" } ] },
+    { "id": "vercel-edge-middleware-advanced", "stack": ["vercel"], "tags": ["edge", "security"], "files": [ { "path": "src/edge/vercel-mw.ts", "template": "export const mw = {};\n" } ] },
+
+    { "id": "zipkin-trace-exporter-minimal", "stack": ["zipkin"], "tags": ["apm"], "files": [ { "path": "src/otel/zipkin.ts", "template": "export const zipkin = {};\n" } ] },
+    { "id": "fluent-bit-config-stub-minimal", "stack": ["fluentbit"], "tags": ["logging"], "files": [ { "path": "infra/fluent-bit.conf", "template": "[SERVICE]\n    Flush        1\n" } ] },
+    { "id": "web-vitals-collection-nextjs-minimal", "stack": ["nextjs"], "tags": ["perf"], "files": [ { "path": "src/next/web-vitals.ts", "template": "export const vitals = {};\n" } ] },
+
+    { "id": "stryker-mutation-testing-config-minimal", "stack": ["stryker"], "tags": ["testing"], "files": [ { "path": "stryker.conf.json", "template": "{ }\n" } ] },
+    { "id": "fast-check-property-tests-minimal", "stack": ["fast-check"], "tags": ["testing"], "files": [ { "path": "src/test/property.test.ts", "template": "export const property = {};\n" } ] },
+
+    { "id": "wasabi-s3-compatible-upload-minimal", "stack": ["wasabi"], "tags": ["storage"], "files": [ { "path": "src/storage/wasabi.ts", "template": "export const wasabi = {};\n" } ] },
+    { "id": "r2-direct-upload-presign-minimal", "stack": ["cloudflare-workers"], "tags": ["edge", "upload"], "files": [ { "path": "src/cloudflare/r2-direct.ts", "template": "export const r2 = {};\n" } ] },
+
+    { "id": "nextjs-middleware-security-headers-advanced", "stack": ["nextjs"], "tags": ["security"], "files": [ { "path": "src/security/next-headers.ts", "template": "export const headers = {};\n" } ] },
+    { "id": "nextjs-webhooks-verify-github-minimal", "stack": ["nextjs", "github"], "tags": ["webhook"], "files": [ { "path": "app/api/github/webhook/route.ts", "template": "export async function POST(){ return Response.json({ ok:true }) }\n" } ] }
+  ]
+}

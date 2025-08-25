@@ -1,0 +1,17 @@
+{
+  "id": "strike-azure-app-configuration-minimal",
+  "name": "strike-azure-app-configuration-minimal",
+  "stack": [
+    "azure"
+  ],
+  "tags": [
+    "config"
+  ],
+  "files": [
+    {
+      "path": "src/config/azure-appconfig.ts",
+      "template": "export const appconfig = {};\n"
+    }
+  ],
+  "patches": []
+}

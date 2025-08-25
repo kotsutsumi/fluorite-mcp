@@ -1,0 +1,18 @@
+{
+  "id": "strike-koa-cors-config-minimal",
+  "name": "strike-koa-cors-config-minimal",
+  "stack": [
+    "koa"
+  ],
+  "tags": [
+    "backend",
+    "security"
+  ],
+  "files": [
+    {
+      "path": "src/koa/cors-config.ts",
+      "template": "export const cors = {};\n"
+    }
+  ],
+  "patches": []
+}

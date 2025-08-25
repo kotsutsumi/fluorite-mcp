@@ -1,0 +1,17 @@
+{
+  "id": "strike-rabbitmq-delayed-message-minimal",
+  "name": "strike-rabbitmq-delayed-message-minimal",
+  "stack": [
+    "amqplib"
+  ],
+  "tags": [
+    "queue"
+  ],
+  "files": [
+    {
+      "path": "src/rabbit/delayed.ts",
+      "template": "export const delayed = {};\n"
+    }
+  ],
+  "patches": []
+}

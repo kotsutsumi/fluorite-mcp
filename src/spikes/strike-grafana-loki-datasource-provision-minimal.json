@@ -1,0 +1,17 @@
+{
+  "id": "strike-grafana-loki-datasource-provision-minimal",
+  "name": "strike-grafana-loki-datasource-provision-minimal",
+  "stack": [
+    "grafana"
+  ],
+  "tags": [
+    "monitoring"
+  ],
+  "files": [
+    {
+      "path": "monitoring/datasource-loki.yaml",
+      "template": "apiVersion: 1\n"
+    }
+  ],
+  "patches": []
+}

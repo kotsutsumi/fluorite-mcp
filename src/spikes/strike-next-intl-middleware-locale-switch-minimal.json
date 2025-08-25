@@ -1,0 +1,17 @@
+{
+  "id": "strike-next-intl-middleware-locale-switch-minimal",
+  "name": "strike-next-intl-middleware-locale-switch-minimal",
+  "stack": [
+    "next-intl"
+  ],
+  "tags": [
+    "i18n"
+  ],
+  "files": [
+    {
+      "path": "middleware.ts",
+      "template": "export function middleware(){ return Response.next(); }\n"
+    }
+  ],
+  "patches": []
+}

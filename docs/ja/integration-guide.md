@@ -27,7 +27,7 @@
 npm install -g fluorite-mcp
 
 # 正しいサーバーバイナリでClaude Code CLIに追加
-claude mcp add fluorite -- fluorite-mcp-server
+claude mcp add fluorite-mcp -- fluorite-mcp
 
 # インストール確認
 claude mcp list
@@ -186,7 +186,7 @@ class FluoriteCodeReview {
   
   constructor() {
     this.client = new MCPClient({
-      command: 'fluorite-mcp-server',
+      command: 'fluorite-mcp',
       args: []
     });
   }
@@ -863,7 +863,7 @@ export class FluoriteMCPIntegration {
 
   constructor(private config: FluoriteConfig = {}) {
     this.client = new MCPClient({
-      command: 'fluorite-mcp-server',
+      command: 'fluorite-mcp',
       args: this.buildServerArgs()
     });
   }
@@ -1614,11 +1614,11 @@ interface ReviewComment {
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fluorite-mcp-server
+  name: fluorite-mcp
   namespace: development-tools
   labels:
     app: fluorite-mcp
-    version: v0.12.1
+    version: v0.20.0
 spec:
   replicas: 3
   strategy:
@@ -1636,7 +1636,7 @@ spec:
     spec:
       containers:
       - name: fluorite-mcp
-        image: fluorite-mcp:0.12.1
+        image: fluorite-mcp:0.20.0
         ports:
         - containerPort: 3000
         env:
@@ -2032,7 +2032,7 @@ const jaegerExporter = new JaegerExporter({
 const sdk = new NodeSDK({
   resource: new Resource({
     [SemanticResourceAttributes.SERVICE_NAME]: 'fluorite-mcp',
-    [SemanticResourceAttributes.SERVICE_VERSION]: '0.12.1',
+    [SemanticResourceAttributes.SERVICE_VERSION]: '0.20.0',
   }),
   traceExporter: jaegerExporter,
 });

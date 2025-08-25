@@ -1,0 +1,17 @@
+{
+  "id": "strike-qdrant-snapshot-backup-minimal",
+  "name": "strike-qdrant-snapshot-backup-minimal",
+  "stack": [
+    "qdrant"
+  ],
+  "tags": [
+    "vector"
+  ],
+  "files": [
+    {
+      "path": "src/vectors/qdrant-snapshot.ts",
+      "template": "export const snapshot = {};\n"
+    }
+  ],
+  "patches": []
+}

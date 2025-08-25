@@ -1,0 +1,17 @@
+{
+  "id": "strike-couchdb-http-client-minimal",
+  "name": "strike-couchdb-http-client-minimal",
+  "stack": [
+    "couchdb"
+  ],
+  "tags": [
+    "db"
+  ],
+  "files": [
+    {
+      "path": "src/db/couchdb.ts",
+      "template": "export const couch = {};\n"
+    }
+  ],
+  "patches": []
+}

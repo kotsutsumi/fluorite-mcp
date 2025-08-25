@@ -1,0 +1,18 @@
+{
+  "id": "strike-gcp-bigtable-client-minimal",
+  "name": "strike-gcp-bigtable-client-minimal",
+  "stack": [
+    "gcp"
+  ],
+  "tags": [
+    "db",
+    "time-series"
+  ],
+  "files": [
+    {
+      "path": "src/db/bigtable.ts",
+      "template": "export const bigtable = {};\n"
+    }
+  ],
+  "patches": []
+}

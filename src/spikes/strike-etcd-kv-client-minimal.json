@@ -1,0 +1,17 @@
+{
+  "id": "strike-etcd-kv-client-minimal",
+  "name": "strike-etcd-kv-client-minimal",
+  "stack": [
+    "etcd"
+  ],
+  "tags": [
+    "config"
+  ],
+  "files": [
+    {
+      "path": "src/config/etcd.ts",
+      "template": "export const etcd = {};\n"
+    }
+  ],
+  "patches": []
+}

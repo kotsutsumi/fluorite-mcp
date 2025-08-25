@@ -1,0 +1,17 @@
+{
+  "id": "strike-unleash-proxy-config-minimal",
+  "name": "strike-unleash-proxy-config-minimal",
+  "stack": [
+    "unleash"
+  ],
+  "tags": [
+    "flags"
+  ],
+  "files": [
+    {
+      "path": "src/flags/unleash-proxy.ts",
+      "template": "export const proxy = {};\n"
+    }
+  ],
+  "patches": []
+}

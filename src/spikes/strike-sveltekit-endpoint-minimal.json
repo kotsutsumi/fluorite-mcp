@@ -1,0 +1,17 @@
+{
+  "id": "strike-sveltekit-endpoint-minimal",
+  "name": "strike-sveltekit-endpoint-minimal",
+  "stack": [
+    "svelte"
+  ],
+  "tags": [
+    "frontend"
+  ],
+  "files": [
+    {
+      "path": "src/routes/api/health/+server.ts",
+      "template": "export const GET = ()=> new Response(JSON.stringify({ ok:true }))\n"
+    }
+  ],
+  "patches": []
+}

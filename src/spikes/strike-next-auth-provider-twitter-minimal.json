@@ -1,0 +1,17 @@
+{
+  "id": "strike-next-auth-provider-twitter-minimal",
+  "name": "strike-next-auth-provider-twitter-minimal",
+  "stack": [
+    "next-auth"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "src/auth/nextauth-twitter.ts",
+      "template": "export const twitter = { clientId: '', clientSecret: '' };\n"
+    }
+  ],
+  "patches": []
+}

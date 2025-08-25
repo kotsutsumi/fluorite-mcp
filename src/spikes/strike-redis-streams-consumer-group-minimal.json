@@ -1,0 +1,18 @@
+{
+  "id": "strike-redis-streams-consumer-group-minimal",
+  "name": "strike-redis-streams-consumer-group-minimal",
+  "stack": [
+    "redis"
+  ],
+  "tags": [
+    "cache",
+    "stream"
+  ],
+  "files": [
+    {
+      "path": "src/cache/redis-streams.ts",
+      "template": "export const xgroup = {};\n"
+    }
+  ],
+  "patches": []
+}

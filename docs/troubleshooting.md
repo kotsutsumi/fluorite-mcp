@@ -152,7 +152,7 @@ claude mcp logs fluorite
 ```bash
 # Remove and re-add server
 claude mcp remove fluorite
-claude mcp add fluorite -- fluorite-mcp-server
+claude mcp add fluorite-mcp -- fluorite-mcp
 
 # Test with verbose output
 claude mcp status fluorite --verbose
@@ -188,7 +188,7 @@ npm install -g fluorite-mcp --force
 # Use different port
 export FLUORITE_PORT=3001
 claude mcp remove fluorite
-claude mcp add fluorite -- fluorite-mcp-server
+claude mcp add fluorite-mcp -- fluorite-mcp
 
 # Check system resources
 free -h  # Linux
@@ -630,7 +630,7 @@ rm -rf ~/.npm/_cacache/fluorite-mcp
 npm uninstall -g fluorite-mcp
 claude mcp remove fluorite
 npm install -g fluorite-mcp
-claude mcp add fluorite -- fluorite-mcp-server
+claude mcp add fluorite-mcp -- fluorite-mcp
 
 # Verify installation
 fluorite-mcp --self-test
@@ -670,7 +670,7 @@ claude --version
 
 # 4. Re-register the server
 claude mcp remove fluorite
-claude mcp add fluorite -- fluorite-mcp-server-server
+claude mcp add fluorite-mcp -- fluorite-mcp
 claude mcp status fluorite
 
 # 5. Test with direct command

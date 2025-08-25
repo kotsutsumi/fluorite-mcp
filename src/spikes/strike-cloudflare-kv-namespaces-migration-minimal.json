@@ -1,0 +1,17 @@
+{
+  "id": "strike-cloudflare-kv-namespaces-migration-minimal",
+  "name": "strike-cloudflare-kv-namespaces-migration-minimal",
+  "stack": [
+    "cloudflare-workers"
+  ],
+  "tags": [
+    "edge"
+  ],
+  "files": [
+    {
+      "path": "src/cloudflare/kv-migrate.ts",
+      "template": "export async function migrate(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

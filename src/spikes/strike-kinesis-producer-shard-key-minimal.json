@@ -1,0 +1,17 @@
+{
+  "id": "strike-kinesis-producer-shard-key-minimal",
+  "name": "strike-kinesis-producer-shard-key-minimal",
+  "stack": [
+    "aws"
+  ],
+  "tags": [
+    "stream"
+  ],
+  "files": [
+    {
+      "path": "src/stream/kinesis.ts",
+      "template": "export const kinesis = {};\n"
+    }
+  ],
+  "patches": []
+}

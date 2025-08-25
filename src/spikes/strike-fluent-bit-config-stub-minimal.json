@@ -1,0 +1,17 @@
+{
+  "id": "strike-fluent-bit-config-stub-minimal",
+  "name": "strike-fluent-bit-config-stub-minimal",
+  "stack": [
+    "fluentbit"
+  ],
+  "tags": [
+    "logging"
+  ],
+  "files": [
+    {
+      "path": "infra/fluent-bit.conf",
+      "template": "[SERVICE]\n    Flush        1\n"
+    }
+  ],
+  "patches": []
+}

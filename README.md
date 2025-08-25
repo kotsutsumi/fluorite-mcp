@@ -1,16 +1,20 @@
 # Fluorite MCP - Enterprise-Grade Development Context for Claude Code CLI
 
-**NPM Version**: fluorite-mcp  
-**License**: MIT  
-**Node.js Version**: 18.0+  
-**TypeScript**: 5.0+  
-**Documentation**: Available in this repository
+[![NPM Version](https://img.shields.io/npm/v/fluorite-mcp)](https://www.npmjs.com/package/fluorite-mcp)
+[![License](https://img.shields.io/npm/l/fluorite-mcp)](./LICENSE)
+[![Node.js](https://img.shields.io/node/v/fluorite-mcp)](https://nodejs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0%2B-blue)](https://www.typescriptlang.org/)
+[![Documentation](https://img.shields.io/badge/docs-latest-brightgreen)](./docs/)
 
-Transform Claude Code CLI into a comprehensive development powerhouse with **Fluorite MCP**. Experience professional-grade code generation, intelligent error prevention, and accelerated prototyping through our extensive library of specifications and proven patterns.
+Transform Claude Code CLI into a comprehensive development powerhouse with **Fluorite MCP v0.20.0**. Experience professional-grade code generation, intelligent error prevention, and accelerated prototyping through our extensive library of 6,200+ spike templates, 86 library specifications, and proven patterns.
 
-> **Enterprise Solution**: From rapid prototyping to production deployment - all specifications validated, maintained, and optimized for professional development workflows.
+> **Enterprise Solution**: From rapid prototyping to production deployment - all specifications validated, maintained, and optimized for professional development workflows with continuous learning capabilities.
 
-**Quick Installation**: `npm i -g fluorite-mcp && claude mcp add fluorite -- fluorite-mcp-server-server`
+**Quick Installation**:
+```bash
+npm install -g fluorite-mcp
+claude mcp add fluorite-mcp -- fluorite-mcp
+```
 
 ## 🎯 What is Fluorite MCP?
 
@@ -34,7 +38,7 @@ Fluorite MCP is a comprehensive Model Context Protocol server that enhances Clau
 ### 📚 Extensive Library Knowledge Base
 Transform your development workflow with professionally curated specifications:
 
-- **📖 94+ Library Specifications**: Detailed usage patterns, configuration examples, and architectural guidance
+- **📖 86+ Library Specifications**: Detailed usage patterns, configuration examples, and architectural guidance
 - **🌍 12+ Language Ecosystems**: Full-stack coverage from TypeScript to Rust, Python to Go
 - **🏗️ Framework Mastery**: Deep integration with Next.js, React, Vue, FastAPI, Express, and emerging frameworks
 - **🎯 Best Practices Integration**: Every specification includes production-ready patterns and security considerations
@@ -50,7 +54,7 @@ Prevent issues before they occur with intelligent analysis:
 ### 🧪 Accelerated Development with Spike Templates
 Bridge the gap between idea and implementation:
 
-- **🏭 3,100+ Production Templates**: Battle-tested scaffolds for authentication, APIs, testing, deployment, and speech processing
+- **🏭 6,200+ Production Templates**: Battle-tested scaffolds for authentication, APIs, testing, deployment, and speech processing
   - New generator coverage: zod, react-hook-form, zustand, redux, swr, radix-ui, tailwindcss, storybook, nx, turborepo
 - **🗣️ Natural Language Interface**: Describe features in plain English—no complex syntax to learn
 - **🎯 Intelligent Selection**: AI-powered template matching based on your project context and requirements
@@ -90,7 +94,7 @@ Advanced Rust-based learning system that evolves continuously:
 npm install -g fluorite-mcp
 
 # 2. Add to Claude Code CLI
-claude mcp add fluorite -- fluorite-mcp-server-server
+claude mcp add fluorite-mcp -- fluorite-mcp
 
 # 3. Verify installation
 claude mcp list
@@ -200,7 +204,7 @@ Fluorite MCP bridges the gap between natural language requirements and productio
 
 Transform ideas into working prototypes in minutes with our comprehensive template ecosystem:
 
-#### **2500+ Production-Ready Templates**
+#### **6,200+ Production-Ready Templates**
 
 | **Category** | **Templates** | **Key Features** | **Time Savings** |
 |--------------|---------------|------------------|------------------|
@@ -361,7 +365,7 @@ Join our mission to democratize professional development patterns:
 #### **🧪 スパイクテンプレートによる開発加速**
 アイデアと実装の間のギャップを橋渡し：
 
-- **🏭 2500以上の本番テンプレート**: 認証、API、テスト、デプロイ向けの実戦テスト済みスキャフォールド
+- **🏭 6,200以上の本番テンプレート**: 認証、API、テスト、デプロイ向けの実戦テスト済みスキャフォールド
 - **🗣️ 自然言語インターフェース**: プレーンな日本語で機能を記述 - 複雑な構文を学ぶ必要なし
 - **🎯 インテリジェント選択**: プロジェクトコンテキストと要件に基づくAI駆動テンプレートマッチング
 - **🔄 反復改良**: 組み込み品質検証と改善ループ
@@ -381,7 +385,7 @@ Join our mission to democratize professional development patterns:
 npm install -g fluorite-mcp
 
 # 2. Claude Code CLIに追加
-claude mcp add fluorite -- fluorite-mcp-server
+claude mcp add fluorite-mcp -- fluorite-mcp
 
 # 3. インストール確認
 claude mcp list
@@ -520,7 +524,7 @@ claude mcp list
 | **Library Coverage** | 86+ specifications | 100% production-tested | Leading in MCP ecosystem |
 | **Language Ecosystems** | 12+ comprehensive | Full-stack coverage | Most comprehensive available |
 | **Static Analysis Rules** | 50+ framework-specific | Zero false positives | Advanced error prediction |
-| **Template Ecosystem** | 2500+ production templates | Enterprise-grade quality | Largest collection |
+| **Template Ecosystem** | 6,200+ production templates | Enterprise-grade quality | Largest collection |
 | **Documentation Quality** | 100+ pages, searchable | Professional technical writing | Award-winning clarity |
 
 ### **Developer Impact Metrics**
@@ -535,7 +539,7 @@ claude mcp list
 ```bash
 # 5-minute team setup
 npm install -g fluorite-mcp
-claude mcp add fluorite -- fluorite-mcp-server-server
+claude mcp add fluorite-mcp -- fluorite-mcp
 fluorite-mcp --self-test
 
 # Instant project analysis
@@ -722,7 +726,7 @@ graph TB
 fluorite-mcp/                    # Enterprise MCP server
 ├── 📁 src/catalog/             # Library specifications (86+ YAML files)
 ├── 📁 src/core/                # Core MCP functionality & analysis engine
-├── 📁 src/spikes/              # Spike template ecosystem (2500+ templates)
+├── 📁 src/spikes/              # Spike template ecosystem (6,200+ templates)
 ├── 📁 memory-engine/           # Rust-based intelligent memory system
 │   ├── 📁 fluorite-memory/     # Core chunk storage implementation
 │   ├── 📁 fluorite-ml/         # ML integration with PyO3
@@ -851,13 +855,21 @@ All library specifications include proper attribution and licensing information 
 
 ## Spike Synth (Strike 10k+)
 - List virtual generated spikes (default strike-*): `node dist/cli/index.js spikes synth --filter '^strike-' --max 50`
-- Materialize to files (use cautiously): `node dist/cli/index.js spikes synth --filter '^strike-' --max 12000 --write --pretty`
+- Materialize generated spikes to files: `node dist/cli/index.js spikes synth --filter '^strike-' --max 12000 --write --pretty`
 - Env caps:
   - `FLUORITE_GENERATED_SPIKES_LIMIT`: Cap number of virtual generated spikes
   - `FLUORITE_SPIKE_LIST_LIMIT`: Cap total returned IDs in listing
 
 Note: synth は仮想生成テンプレート（gen-*/strike-*）を列挙し、必要に応じて `src/spikes/` に JSON を書き出します（`--write` 指定時のみ）。
 
+#### 運用のコツ（重複回避と段階投入）
+- まず dry-run で重複確認: `node dist/cli/index.js spikes synth --filter '^strike-' --max 1000`
+- 既存ファイルはデフォルトで skip。上書きは基本禁止。どうしても必要なら `--overwrite` を明示
+- 既存にメタデータだけ連結する場合は `--merge-metadata` を利用
+- 大量投入は段階的に（例: 500〜1,000件/回）。統計は `Materialized: written=..., overwritten=..., skipped=...`
+- コマンド例（安全な投入）:
+  - プレビュー: `node dist/cli/index.js spikes generate src/cli/data/strike-batch-XX.json --prefix strike --out-dir src/spikes --merge-metadata --dry-run`
+  - 実行: `node dist/cli/index.js spikes generate src/cli/data/strike-batch-XX.json --prefix strike --out-dir src/spikes --merge-metadata`
 ---
 
 <div align="center">

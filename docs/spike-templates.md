@@ -571,7 +571,7 @@ All Spike templates work with full SuperClaude parameter bypass:
 **Coverage**: 15+ technology stacks, 50+ frameworks and libraries  
 **Quality**: Enterprise-grade patterns with security and performance built-in
 
-### Latest Additions (v0.12.1)
+### Latest Additions (v0.20.0)
 - **Quality & Security**: OpenAPI contract testing, secret detection, vulnerability scanning
 - **GitHub Actions**: Artifact upload, Cloudflare Pages preview, CloudFront invalidation, Snyk scanning, Turborepo cache
 - **Next.js Components**: shadcn/ui Badge and async Combobox components

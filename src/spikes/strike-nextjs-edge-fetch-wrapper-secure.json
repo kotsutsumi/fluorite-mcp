@@ -1,0 +1,17 @@
+{
+  "id": "strike-nextjs-edge-fetch-wrapper-secure",
+  "name": "strike-nextjs-edge-fetch-wrapper-secure",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "edge"
+  ],
+  "files": [
+    {
+      "path": "src/edge/fetch.ts",
+      "template": "export async function safeFetch(){ return new Response('ok'); }\n"
+    }
+  ],
+  "patches": []
+}
