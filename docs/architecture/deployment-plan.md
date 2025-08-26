@@ -45,7 +45,7 @@ channels:
     "url": "git+https://github.com/kotsutsumi/fluorite-mcp.git"
   },
   "bugs": {
-    "url": "https://github.com/kotsutsumi/fluorite-mcp/issues"
+    "url": "Contact repository maintainer"
   },
   "author": "kotsutsumi",
   "license": "MIT",
@@ -213,7 +213,8 @@ fluorite-mcp:
 ### 3. Direct Download
 ```bash
 # Download latest release
-curl -L https://github.com/kotsutsumi/fluorite-mcp/releases/latest/download/fluorite-mcp.tar.gz | tar xz
+# Download from npm registry
+npm install -g fluorite-mcp
 
 # Install from source
 git clone https://github.com/kotsutsumi/fluorite-mcp.git

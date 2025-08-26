@@ -123,6 +123,79 @@ Test your installation with a simple request:
 - ✅ **Performance Optimization**: Minimal bundle impact and optimized rendering
 - ✅ **Testing Ready**: Includes test examples and accessibility test patterns
 
+
+## 🧩 Using Spikes in Claude Code
+
+FluoriteはClaude Codeの`/fl:`コマンド実行時にスパイク（テンプレート）を自動活用します。
+
+- 自動選定: まずMCPツール`auto-spike`にユーザー入力全文を`task`として渡します。
+- 安全フロー: 十分なカバレッジなら`preview-spike`→`apply-spike`で差分を提示しつつ適用（サーバーはdiffのみ返却、実適用はクライアント側）。
+- 代替: カバレッジが低い場合は`discover-spikes`で候補列挙→ユーザー確認。
+- 専用コマンド: `/fl:spike`で`discover`/`auto`/`preview`/`apply`の運用が可能。
+
+Claude内の例:
+
+```
+/fl:implement "Bun Elysia の typed worker を TS で作る"
+/fl:design "API Gateway + 認可 + RateLimit"
+/fl:spike auto "Elysia のセキュアな plugin scaffolding"
+/fl:spike discover "elysia worker typed"
+```
+
+セットアップ/更新:
+
+```
+fluorite setup
+```
+
+### Popular Spike Prompt Examples
+
+Try these ready-made prompts inside Claude Code to trigger automatic spike selection and previews:
+
+- Elysia listener (typed, TS):
+  - `/fl:implement "Bun Elysia の typed listener を TypeScript で: /health と /metrics を実装"`
+  - `/fl:design "Elysia listener に CORS/Helmet/RateLimit を適用したセキュア構成"`
+- Elysia plugin (secure, TS):
+  - `/fl:spike auto "Elysia のセキュアな plugin scaffolding (auth middleware, schema validation)"`
+  - `/fl:spike discover "elysia plugin secure ts"`
+- Elysia worker (typed + testing):
+  - `/fl:implement "Elysia の typed worker を TS で、Vitest 付きで"`
+  - `/fl:spike discover "elysia worker testing ts"`
+- Elysia migration (basic → advanced → secure):
+  - `/fl:spike auto "Elysia の基本的な migration セットアップを TS で"`
+  - `/fl:spike auto "Elysia migration をセキュア構成へアップグレード"`
+- Seeding (typed, TS):
+  - `/fl:spike auto "Elysia の typed seed スクリプト (TS) を作成"`
+
+ヒント: `auto-spike` の結果で `coverage_score` が低い場合は `discover-spikes` に自動フォールバックします。`preview-spike` の差分を確認してから `apply-spike` を実行してください。
+
+### Stack-Specific Quick Prompts
+
+React/Next.js:
+
+- `/fl:implement "Next.js で OAuth ログイン付きのダッシュボード（Rechartsでグラフ、TanStack Tableで表）」`
+- `/fl:design "Next.js App Router で認可ミドルウェア＋RSC パターンのアーキテクチャ"`
+
+FastAPI（Python）:
+
+- `/fl:spike auto "FastAPI のJWT認証＋Refreshトークン＋/auth/* エンドポイントを実装"`
+- `/fl:implement "FastAPI WebSocket チャット（Redis PubSub、pytest 付き）"`
+
+Rust/Axum:
+
+- `/fl:spike auto "Axum で認証ミドルウェア＋typed routing＋tower-limits を構成"`
+- `/fl:design "Axum + SQLx + Tokio でAPIサーバのベストプラクティス構成"`
+
+Go（Gin or Fiber）:
+
+- `/fl:spike discover "gin middleware secure"`
+- `/fl:implement "Fiber で REST API（validator + logger + rate limit + unit test）"`
+
+Vue（Vite + Pinia）:
+
+- `/fl:spike auto "Vue 3 + Pinia + Vue Router で認証付きダッシュボード"`
+- `/fl:implement "Vite + Vitest 構成で UI コンポーネントとテストを追加"`
+
 ## 🎯 Comprehensive Technology Coverage
 
 ### Enterprise-Grade Library Specifications

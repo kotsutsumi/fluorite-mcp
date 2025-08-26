@@ -239,8 +239,92 @@ export function scoreSpikeMatch(task: string, spec: SpikeSpec): number;
 export function scoreSpikeMatch(task: string, meta: SpikeMetadata): number;
 export function scoreSpikeMatch(task: string, specOrMeta: SpikeSpec | SpikeMetadata): number {
   const hay = `${specOrMeta.id} ${specOrMeta.name} ${(specOrMeta.stack||[]).join(' ')} ${(specOrMeta.tags||[]).join(' ')} ${specOrMeta.description||''}`.toLowerCase();
-  const words = Array.from(new Set(task.toLowerCase().split(/[^a-z0-9_@#:+.-]+/i))).filter(Boolean);
+
+  // Tokenize task with basic latin split + lightweight JP keyword mapping
+  const words = tokenizeTask(task);
   if (words.length === 0) return 0;
   const hits = words.reduce((acc,w)=> acc + (hay.includes(w) ? 1 : 0), 0);
   return hits / words.length; // simple ratio 0..1
+}
+
+function tokenizeTask(task: string): string[] {
+  const lower = task.toLowerCase();
+  let words = lower.split(/[^a-z0-9_@#:+.-]+/i).filter(Boolean);
+
+  // Lightweight JP→EN keywords（and some EN synonyms→canonical tokens）
+  // intentionally small to keep logic fast and predictable.
+  const jpHints: Array<[RegExp, string]> = [
+    [/セキュア|安全|安全化/, 'secure'],
+    [/型付|型付き|型安全/, 'typed'],
+    [/プラグイン/, 'plugin'],
+    [/ワーカー/, 'worker'],
+    [/リスナー/, 'listener'],
+    [/移行|マイグレーション/, 'migration'],
+    [/シード|seed/i, 'seed'],
+    [/テスト|試験|検証/, 'testing'],
+    [/プレビュー/, 'preview'],
+    [/適用/, 'apply'],
+    [/typescript|タイプスクリプト/, 'typescript'],
+    [/javascript|ジャバスクリプト|js/i, 'js'],
+    [/python|パイソン|py/i, 'py'],
+    [/rust|ラスティ|rs/i, 'rs'],
+    [/go|ゴー言語|golang/i, 'go'],
+    [/bun/i, 'bun'],
+    [/elysia/i, 'elysia'],
+    [/next\.?js|\bnext\b|app\s*router|rsc/i, 'nextjs'],
+    [/react/i, 'react'],
+    [/trpc/i, 'trpc'],
+    [/hono/i, 'hono'],
+    [/graphql|apollo|urql|relay/i, 'graphql'],
+    [/zod/i, 'zod'],
+    [/react[- ]?hook[- ]?form|rhf/i, 'react-hook-form'],
+    [/radix[- ]?ui/i, 'radix-ui'],
+    [/tailwind|tailwindcss/i, 'tailwindcss'],
+    [/storybook/i, 'storybook'],
+    [/nx\b/i, 'nx'],
+    [/turborepo|turbo\b/i, 'turborepo'],
+    [/fastapi|ファストapi/i, 'fastapi'],
+    [/api|エンドポイント/i, 'route'],
+    [/認証|oauth|認可|ログイン/i, 'auth'],
+    [/next-?auth/i, 'next-auth'],
+    [/auth0/i, 'auth0'],
+    [/clerk/i, 'clerk'],
+    [/lucia/i, 'lucia'],
+    [/prisma/i, 'prisma'],
+    [/drizzle/i, 'drizzle'],
+    [/スキーマ|schema/i, 'schema']
+    ,[/postgres|postgre|psql/i, 'postgres']
+    ,[/mysql/i, 'mysql']
+    ,[/sqlite/i, 'sqlite']
+    ,[/redis/i, 'redis']
+    ,[/vitest/i, 'vitest']
+    ,[/jest/i, 'jest']
+    ,[/playwright/i, 'playwright']
+    ,[/cypress/i, 'cypress']
+    ,[/oauth2?|oidc/i, 'auth']
+    ,[/supabase[- ]?auth|supabase/i, 'supabase']
+    ,[/stripe/i, 'stripe']
+    ,[/sentry/i, 'sentry']
+    ,[/posthog/i, 'posthog']
+    ,[/shadcn/i, 'shadcn']
+    ,[/prometheus/i, 'prometheus']
+    ,[/pino/i, 'pino']
+    ,[/winston/i, 'winston']
+    ,[/datadog/i, 'datadog']
+    ,[/new\s?relic|newrelic/i, 'newrelic']
+    ,[/opensearch/i, 'opensearch']
+    ,[/elasticsearch|es\b/i, 'elasticsearch']
+  ];
+
+  const hintWords: string[] = [];
+  for (const [re, kw] of jpHints) {
+    if (re.test(lower)) hintWords.push(kw);
+  }
+
+  // Merge and uniq
+  if (hintWords.length) {
+    words = Array.from(new Set([...words, ...hintWords]));
+  }
+
+  return Array.from(new Set(words));
 }

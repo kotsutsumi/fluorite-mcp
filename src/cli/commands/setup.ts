@@ -140,26 +140,36 @@ ${cmd.description.charAt(0).toUpperCase() + cmd.description.slice(1)} enhanced w
 
 ## Usage
 \`\`\`
-/fl:${cmd.name} ${cmd.usage || '[arguments]'} [--spike-aware]
+/fl:${cmd.name} ${cmd.usage || '[arguments]'}
 \`\`\`
 
-## Arguments
-${cmd.usage ? `- Arguments: ${cmd.usage}` : '- Standard command arguments'}
-${cmd.flags ? cmd.flags.map((flag: string) => `- \`${flag}\` - ${getFlagDescription(flag)}`).join('\n') : ''}
-- \`--spike-aware\` - Enable spike template integration
+## Spike Auto-Selector
+Always begin by leveraging fluorite’s spike tools:
+- Call MCP tool \`auto-spike\` with the user’s full request as \`task\`.
+- If \`coverage_score >= 0.4\`, follow \`next_actions\` (usually \`preview-spike\` → \`apply-spike\`).
+- If coverage is low, call \`discover-spikes\` to list candidates, then confirm.
+- Do not mutate files directly on the server; present diffs and confirm before applying.
+
+Low coverage guidance:
+- Ask 2–3 clarifying questions to raise coverage (e.g., framework version, language, security level).
+- Then re-run \`auto-spike\` with the clarified task.
+
+Example input:
+\`\`\`
+{ "task": "<user input>" }
+\`\`\`
 
 ## Fluorite Enhancements
 - **SuperClaude Mapping**: Maps to \`/sc:${cmd.name}\` with intelligent preprocessing
-- **Spike Integration**: Automatic spike template discovery and application
+- **Spike Integration**: Automatic spike discovery/selection (auto-spike first)
 - **Token Optimization**: Enhanced with \`--persona-smart --token-optimize\` flags
 - **Enhanced Intelligence**: Advanced ${cmd.category.toLowerCase()} capabilities
 
 ## Execution
-1. Parse ${cmd.name} requirements with natural language understanding
-2. Apply fluorite-specific enhancements and spike template matching
-3. Execute enhanced SuperClaude command with preprocessing
-4. Integrate with MCP servers for specialized functionality
-5. Provide comprehensive results with optimization recommendations
+1. Parse ${cmd.name} requirements and invoke \`auto-spike\`
+2. Preview the suggested spike and show diffs
+3. Confirm and apply via \`apply-spike\`, then validate
+4. Continue with mapped SuperClaude action using generated assets
 
 ## Examples
 \`\`\`
@@ -211,10 +221,78 @@ All \`/fl:\` commands are enhanced versions of SuperClaude \`/sc:\` commands wit
 2. Try \`/fl:build\` for building with optimizations
 3. Use \`/fl:implement\` for feature development
 4. Run \`/fl:analyze\` for comprehensive project analysis
+
+## Quick Spike Flow
+Shortcuts for maximum leverage inside Claude:
+- Start with \`/fl:implement\` or \`/fl:design\` — these call \`auto-spike\` first
+- If coverage is low, ask 2–3 clarifying questions (framework, language, style)
+- Preview diffs via \`preview-spike\`, then apply with \`apply-spike\`
+- Use \`/fl:spike\` for direct spike operations (discover/auto/preview/apply)
+
+## Post-Apply Checks
+- Run \`validate-spike\` to perform a quick sanity check
+- Optionally run static analysis tools and tests in your project
 `;
 
   const helpFilePath = path.join(flCommandsDir, 'help.md');
   await fs.writeFile(helpFilePath, helpContent, 'utf8');
+  
+  // Dedicated spike workflow command
+  const spikeContent = `---
+allowed-tools: [discover-spikes, auto-spike, preview-spike, apply-spike, validate-spike, explain-spike]
+description: "Spike template discovery, selection, preview, and application"
+---
+
+# /fl:spike - Spike Templates
+
+## Purpose
+Work with fluorite spike templates end-to-end inside Claude.
+
+## Usage
+\`\`\`
+/fl:spike discover <query>
+/fl:spike auto <task>
+/fl:spike preview <id> [key=value ...]
+/fl:spike apply <id> [key=value ...]
+\`\`\`
+
+## Flow
+1. Use \`auto\` to select the best spike for the task
+2. Preview with \`preview-spike\` and confirm diffs
+3. Apply via \`apply-spike\`, then run \`validate-spike\`
+
+## Clarifying Questions (Low Coverage)
+- 対象フレームワーク/ランタイムは？（例: Bun Elysia / Next.js）
+- 言語は？（TypeScript / JavaScript / Python / Go / Rust / Kotlin）
+- 望むスタイルは？（typed / secure / testing / advanced / basic）
+- 機能パターンは？（listener / plugin / worker / migration / seed / route）
+- 既存構成の前提は？（ルーティング/ミドルウェア/テストフレームワーク など）
+
+## FAQ
+- Q. apply の衝突はどう扱う？
+  A. サーバは差分のみ返却します。クライアント側で \`three_way_merge\` を前提に手動確認してください。上書きが必要なら \`overwrite\` を選び、危険そうなら \`abort\` を選んでから再計画します。
+- Q. カバレッジが低い時は？
+  A. 上記の Clarifying Questions を2–3個ぶつけ、再度 \`auto-spike\` を実行してください。\`discover-spikes\` で候補列挙→選択でもOKです。
+- Q. 既存の構成にフィットさせたい
+  A. \`preview-spike\` の出力（files/patches）を見て、パスや命名規則を合わせるようパラメータを渡してください。微調整の指示も自然言語でOKです。
+
+### Apply 戦略の例
+- 衝突を安全に解決: \`apply-spike\` の \`strategy\` を \`three_way_merge\` に設定し、差分をレビューしてから最小変更で解決。
+- 明示上書き: 既存ファイルを置き換えて良い場合のみ \`overwrite\` を選択（要レビュー）。
+- いったん停止: 複雑な衝突や前提不一致がある場合は \`abort\` を選び、要件を再定義してから \`auto-spike\` を再実行。
+
+### Diffの読み方のコツ
+- 大きな追加/削除は、目的と一致しているか（ファイル/ディレクトリ単位）を先に確認
+- 既存コードと命名・パスがズレていないか（src配下の構造、importパス）
+- セキュリティ/型の重要ポイント（auth/validation/型定義）は必ずレビュー
+
+### よくある競合と対処
+- import の競合: 既存のaliasやbaseUrl(tsconfig)と衝突しやすい。importパスを相対/絶対に統一し、tsconfigの\`paths\`を確認。
+- tsconfig差異: \`strict\`/\`jsx\`/\`moduleResolution\` が違うと型エラーに。差分を参考に、既存設定を優先しつつ必要最小限を取り込む。
+- linter/formatter: ESLint/Prettier設定で差分が大きく見える場合は、まずコード意図を確認してから整形する。
+`
+  const spikeFilePath = path.join(flCommandsDir, 'spike.md');
+  await fs.writeFile(spikeFilePath, spikeContent, 'utf8');
 }
 
 /**
@@ -233,8 +311,17 @@ All \`/fl:\` commands are enhanced versions of SuperClaude \`/sc:\` commands wit
  * ```
  */
 function getToolsForCommand(commandName: string): string[] {
+  const spikeTools = [
+    'discover-spikes',
+    'auto-spike',
+    'preview-spike',
+    'apply-spike',
+    'validate-spike',
+    'explain-spike'
+  ];
   const toolMap: { [key: string]: string[] } = {
     'build': ['Read', 'Bash', 'Glob', 'TodoWrite', 'Edit', 'MultiEdit', 'Task'],
+    'ui': ['Read', 'Write', 'Edit', 'MultiEdit', 'TodoWrite', 'Task', 'WebSearch', 'WebFetch'],
     'implement': ['Read', 'Write', 'Edit', 'MultiEdit', 'Bash', 'Glob', 'TodoWrite', 'Task'],
     'analyze': ['Read', 'Grep', 'Glob', 'TodoWrite', 'Task'],
     'improve': ['Read', 'Grep', 'Edit', 'MultiEdit', 'TodoWrite', 'Task'],
@@ -252,7 +339,8 @@ function getToolsForCommand(commandName: string): string[] {
     'spawn': ['Read', 'TodoWrite', 'Task'],
     'help': ['Read']
   };
-  return toolMap[commandName] || ['Read', 'TodoWrite'];
+  const base = toolMap[commandName] || ['Read', 'TodoWrite'];
+  return commandName === 'help' ? base : Array.from(new Set([...base, ...spikeTools]));
 }
 
 /**
@@ -307,6 +395,7 @@ function getFlagDescription(flag: string): string {
 function getExampleUsage(commandName: string): string {
   const examples: { [key: string]: string } = {
     'build': '--framework react --optimize',
+    'ui': '"modern login form with social auth" --framework react --dark --responsive',
     'implement': '"user authentication system" --type feature --test',
     'analyze': '--focus security --depth comprehensive',
     'improve': 'src/components --focus performance',

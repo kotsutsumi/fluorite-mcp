@@ -38,7 +38,7 @@ export default defineConfig({
             text: 'v0.20.0',
             items: [
               { text: '変更履歴', link: '/ja/CHANGELOG' },
-              { text: 'リリースノート', link: 'https://github.com/kotsutsumi/fluorite-mcp/releases' }
+              { text: 'リリースノート', link: '/ja/CHANGELOG' }
             ]
           }
         ],
@@ -133,7 +133,7 @@ export default defineConfig({
             text: 'v0.20.0',
             items: [
               { text: 'Changelog', link: '/CHANGELOG' },
-              { text: 'Releases', link: 'https://github.com/kotsutsumi/fluorite-mcp/releases' }
+              { text: 'Releases', link: '/CHANGELOG' }
             ]
           }
         ],

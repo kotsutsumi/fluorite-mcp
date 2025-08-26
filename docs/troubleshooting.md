@@ -868,7 +868,7 @@ When reporting issues, include:
 
 ### Community Resources
 
-- **[GitHub Issues](https://github.com/kotsutsumi/fluorite-mcp/issues)** - Bug reports and feature requests
+- **Bug Reports** - Contact repository maintainer for bug reports and feature requests
 - **Documentation** - README.md and docs/ folder for complete documentation
 
 ### Emergency Contacts

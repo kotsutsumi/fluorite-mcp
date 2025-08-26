@@ -363,4 +363,4 @@ fluorite-mcp --factory-reset
 
 ---
 
-**問題が解決しない場合**: [GitHub Issues](https://github.com/kotsutsumi/fluorite-mcp/issues) で詳細なバグ報告をお願いします。
+**問題が解決しない場合**: リポジトリメンテナーに詳細なバグ報告を連絡してください。

@@ -65,6 +65,6 @@
 
 ## 連絡先
 
-- **リポジトリ**: [github.com/kotsutsumi/fluorite-mcp](https://github.com/kotsutsumi/fluorite-mcp)
-- **イシュー**: [GitHub Issues](https://github.com/kotsutsumi/fluorite-mcp/issues)
+- **リポジトリ**: fluorite-mcp
+- **イシュー**: リポジトリメンテナーに連絡
 - **ドキュメント**: README.mdおよびdocs/フォルダを参照

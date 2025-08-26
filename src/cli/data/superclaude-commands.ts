@@ -21,6 +21,13 @@ export class SuperClaudeCommands {
       flags: ['--framework', '--optimize', '--watch', '--production']
     },
     {
+      name: 'ui',
+      description: 'Natural language UI component generation with TailwindCSS and shadcn/ui',
+      usage: '[description] [--framework react|vue|next] [--style modern|minimal|glass]',
+      category: 'Development',
+      flags: ['--framework', '--style', '--dark', '--responsive', '--a11y', '--preview']
+    },
+    {
       name: 'implement',
       description: 'Feature and code implementation',
       usage: '[description] [--type component|api|service] [--framework name]',

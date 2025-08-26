@@ -177,8 +177,17 @@ export async function handleAutoSpikeTool(input: AutoSpikeInput): Promise<ToolCa
       }
     }
     
-    // Sort and get top candidates (cap via env)
+    // Heuristic alias: infer common strike IDs from shorthand (e.g., Elysia worker typed ts)
+    const aliasIds = inferStrikeAliasIds(input.task);
+    for (const aid of aliasIds) {
+      // Push alias with strong score so it survives top-N cut
+      topCandidates.push({ id: aid, score: 2.0 });
+    }
+
+    // Sort and get top candidates (cap via env); de-duplicate by id
+    const seen = new Set<string>();
     topCandidates.sort((a, b) => b.score - a.score);
+    topCandidates = topCandidates.filter(c => (seen.has(c.id) ? false : (seen.add(c.id), true)));
     const topEnv = process.env.FLUORITE_AUTO_SPIKE_TOP;
     const topN = (() => { const n = topEnv ? parseInt(topEnv, 10) : 5; return Number.isNaN(n) ? 5 : Math.max(1, Math.min(20, n)); })();
     const topFive = topCandidates.slice(0, topN);
@@ -225,3 +234,91 @@ export async function handleAutoSpikeTool(input: AutoSpikeInput): Promise<ToolCa
   }
 }
 
+// Lightweight alias resolver for common strike-* IDs from natural language
+// Supports direct short aliases and heuristic inference.
+function inferStrikeAliasIds(task: string): string[] {
+  const text = (task || '').toLowerCase();
+
+  // 1) Short alias tokens mapping (easy to remember, fast path)
+  const SHORT_ALIASES: Record<string, string> = {
+    'elysia-worker-ts': 'strike-bun-elysia-worker-typed-ts',
+    'elysia-plugin-secure-ts': 'strike-bun-elysia-plugin-secure-ts',
+    'next-route-ts': 'strike-nextjs-route-typed-ts',
+    'next-mw-ts': 'strike-nextjs-middleware-typed-ts',
+    'fastapi-secure-py': 'strike-fastapi-route-secure-py',
+    'react-component-ts': 'strike-react-component-typed-ts',
+    'react-hook-ts': 'strike-react-hook-typed-ts'
+  };
+
+  const directTokens: string[] = [];
+  for (const key of Object.keys(SHORT_ALIASES)) {
+    const re = new RegExp(`(?:\\balias[:=]\s*${key}\\b|\\b${key}\\b)`, 'i');
+    if (re.test(text)) directTokens.push(SHORT_ALIASES[key]);
+  }
+  if (directTokens.length) return directTokens;
+
+  // Direct short alias patterns for popular spikes
+  const direct: Array<[RegExp, string]> = [
+    [/elysia[^\n]*typed[^\n]*worker[^\n]*(typescript|ts)/, 'strike-bun-elysia-worker-typed-ts'],
+    [/elysia[^\n]*(secure|セキュア)[^\n]*plugin[^\n]*(typescript|ts)/, 'strike-bun-elysia-plugin-secure-ts'],
+    [/next\.?js[^\n]*typed[^\n]*(api|route|エンドポイント)[^\n]*(typescript|ts)/, 'strike-nextjs-route-typed-ts'],
+    [/next\.?js[^\n]*(middleware|ミドルウェア)[^\n]*(typescript|ts)/, 'strike-nextjs-middleware-typed-ts'],
+    [/fastapi[^\n]*(secure|セキュア)[^\n]*(api|route|エンドポイント)[^\n]*(python|py)/, 'strike-fastapi-route-secure-py'],
+    [/react[^\n]*typed[^\n]*component[^\n]*(typescript|ts)/, 'strike-react-component-typed-ts'],
+    [/react[^\n]*typed[^\n]*hook[^\n]*(typescript|ts)/, 'strike-react-hook-typed-ts']
+  ];
+  const matches: string[] = [];
+  for (const [re, id] of direct) {
+    if (re.test(text)) matches.push(id);
+  }
+  if (matches.length) return matches;
+
+  // library inference (currently scoped to popular sets available/generated)
+  const lib = (() => {
+    if (/elysia/.test(text)) return 'bun-elysia';
+    if (/next\.?js|\bnext\b/.test(text)) return 'nextjs';
+    if (/fastapi/.test(text)) return 'fastapi';
+    if (/\breact\b/.test(text)) return 'react';
+    return '';
+  })();
+  if (!lib) return [];
+
+  const pattern = (() => {
+    if (/worker/.test(text)) return 'worker';
+    if (/plugin|プラグイン/.test(text)) return 'plugin';
+    if (/listener|リスナー/.test(text)) return 'listener';
+    if (/middleware|ミドルウェア/.test(text)) return 'middleware';
+    if (/migration|移行|マイグレーション/.test(text)) return 'migration';
+    if (/seed|シード/.test(text)) return 'seed';
+    if (/route|api|エンドポイント/.test(text)) return 'route';
+    if (lib === 'react' && (/component|コンポーネント/.test(text))) return 'component';
+    if (lib === 'react' && (/hook|フック/.test(text))) return 'hook';
+    if (lib === 'react' && (/provider|プロバイダ/.test(text))) return 'provider';
+    if (lib === 'react' && (/adapter|アダプタ/.test(text))) return 'adapter';
+    return lib === 'nextjs' ? 'route' : (lib === 'react' ? 'component' : 'listener'); // sensible defaults
+  })();
+
+  const style = (() => {
+    if (/secure|セキュア|安全/.test(text)) return 'secure';
+    if (/testing|テスト|試験|検証/.test(text)) return 'testing';
+    if (/typed|型付|型付き|型安全/.test(text)) return 'typed';
+    if (/(auth|oauth|認証|認可|ログイン)/.test(text)) return 'secure';
+    if (/advanced|高度/.test(text)) return 'advanced';
+    return 'basic';
+  })();
+
+  const lang = (() => {
+    if (/typescript|ts|タイプスクリプト/.test(text)) return 'ts';
+    if (/javascript|js|ジャバスクリプト/.test(text)) return 'js';
+    if (/python|py|パイソン/.test(text)) return 'py';
+    if (/(^|\W)go(\W|$)|golang|ゴー言語/.test(text)) return 'go';
+    if (/rust|rs|ラスティ/.test(text)) return 'rs';
+    if (/kotlin|kt/.test(text)) return 'kt';
+    // Heuristic defaults per lib
+    if (lib === 'fastapi') return 'py';
+    return 'ts';
+  })();
+
+  const id = `strike-${lib}-${pattern}-${style}-${lang}`;
+  return [id];
+}

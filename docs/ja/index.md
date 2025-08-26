@@ -4,7 +4,7 @@ layout: home
 hero:
   name: "Fluorite MCP"
   text: "エンタープライズグレード開発コンテキスト"
-  tagline: "6,200+のスパイクテンプレート、86のライブラリ仕様、Claude Code CLIのためのインテリジェント開発プラットフォーム - v0.20.2"
+  tagline: "6,200+のスパイクテンプレート、86のライブラリ仕様、Claude Code CLIのためのインテリジェント開発プラットフォーム - v0.20.3"
   actions:
     - theme: brand
       text: はじめる

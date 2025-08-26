@@ -116,7 +116,7 @@ I need to experiment with drag-and-drop functionality for a tree component
 
 | Resource | When to Use | Link |
 |----------|-------------|------|
-| **GitHub Issues** | Bug reports, feature requests | [Report Issues](https://github.com/kotsutsumi/fluorite-mcp/issues) |
+| **Bug Reports** | Bug reports, feature requests | Contact repository maintainer |
 | **Contributing Guide** | Want to help improve Fluorite MCP | [Contributing](../CONTRIBUTING.md) |
 | **Troubleshooting** | Having problems? | [Troubleshooting Guide](./troubleshooting.md) |
 

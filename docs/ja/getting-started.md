@@ -116,7 +116,7 @@ JWT 認証と Pydantic 検証を含む FastAPI エンドポイントを作成
 
 | リソース | 使用時 | リンク |
 |----------|-------------|------|
-| **GitHub Issues** | バグ報告、機能リクエスト | [イシューを報告](https://github.com/kotsutsumi/fluorite-mcp/issues) |
+| **バグ報告** | バグ報告、機能リクエスト | リポジトリメンテナーに連絡 |
 | **貢献ガイド** | Fluorite MCP の改善に協力したい | [貢献](../CONTRIBUTING.md) |
 | **トラブルシューティング** | 問題が発生している場合 | [トラブルシューティングガイド](./troubleshooting.md) |
 
