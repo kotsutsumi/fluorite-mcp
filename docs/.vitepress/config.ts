@@ -90,19 +90,44 @@ export default defineConfig({
               text: '📋 フレームワーク仕様',
               collapsed: true,
               items: [
-                { text: '⚡ FastAPI', link: '/ja/specs/fastapi' },
-                { text: '▲ Next.js', link: '/ja/specs/nextjs' },
-                { text: '💚 Nuxt', link: '/ja/specs/nuxt' },
-                { text: '📱 React Native', link: '/ja/specs/expo-react-native' },
-                { text: '💎 Ruby on Rails', link: '/ja/specs/ruby-rails' },
-                { text: '🦀 Rust Tauri', link: '/ja/specs/rust-tauri' },
-                { text: '📚 VitePress', link: '/ja/specs/vitepress' },
-                { text: '🌐 モダン技術', link: '/ja/specs/modern-tech' },
-                { text: '🛠️ プログラミング言語', link: '/ja/specs/langs' },
-                { text: '🐚 シェルツール', link: '/ja/specs/shell-tools' },
-                { text: '🎨 UIコンポーネント品質', link: '/ja/specs/ui-component-quality' },
-                { text: '⚡ スパイク開発', link: '/ja/specs/spike-development' },
-                { text: '📱 モバイルネイティブ', link: '/ja/specs/mobile-native' },
+                {
+                  text: '🌐 フロントエンド',
+                  collapsed: true,
+                  items: [
+                    { text: '▲ Next.js', link: '/ja/specs/nextjs' },
+                    { text: '⚛️ React エコシステム', link: '/ja/specs/react-ecosystem' },
+                    { text: '💚 Vue & Nuxt', link: '/ja/specs/nuxt' },
+                    { text: '📚 VitePress', link: '/ja/specs/vitepress' },
+                    { text: '🎨 UI コンポーネント', link: '/ja/specs/ui-component-quality' },
+                  ]
+                },
+                {
+                  text: '⚡ バックエンド & API',
+                  collapsed: true,
+                  items: [
+                    { text: '⚡ FastAPI', link: '/ja/specs/fastapi' },
+                    { text: '💎 Ruby on Rails', link: '/ja/specs/ruby-rails' },
+                    { text: '🌐 モダン技術スタック', link: '/ja/specs/modern-tech' },
+                  ]
+                },
+                {
+                  text: '📱 モバイル & デスクトップ',
+                  collapsed: true,
+                  items: [
+                    { text: '📱 React Native & Expo', link: '/ja/specs/expo-react-native' },
+                    { text: '🦀 Rust & Tauri', link: '/ja/specs/rust-tauri' },
+                    { text: '📱 ネイティブ開発', link: '/ja/specs/mobile-native' },
+                  ]
+                },
+                {
+                  text: '🛠️ 開発ツール',
+                  collapsed: true,
+                  items: [
+                    { text: '🛠️ プログラミング言語', link: '/ja/specs/langs' },
+                    { text: '🐚 シェルツール', link: '/ja/specs/shell-tools' },
+                    { text: '⚡ スパイク開発', link: '/ja/specs/spike-development' },
+                  ]
+                }
               ]
             },
             {
@@ -186,19 +211,44 @@ export default defineConfig({
               text: '📋 Framework Specifications',
               collapsed: true,
               items: [
-                { text: '⚡ FastAPI', link: '/specs/fastapi' },
-                { text: '▲ Next.js', link: '/specs/nextjs' },
-                { text: '💚 Nuxt', link: '/specs/nuxt' },
-                { text: '📱 React Native', link: '/specs/expo-react-native-comprehensive' },
-                { text: '💎 Ruby on Rails', link: '/specs/ruby-rails' },
-                { text: '🦀 Rust Tauri', link: '/specs/rust-tauri' },
-                { text: '📚 VitePress', link: '/specs/vitepress' },
-                { text: '🌐 Modern Technologies', link: '/specs/additional-modern-technologies' },
-                { text: '🛠️ Programming Languages', link: '/specs/langs' },
-                { text: '🐚 Shell Tools', link: '/specs/shell-tools' },
-                { text: '🎨 UI Component Quality', link: '/specs/ui-component-quality' },
-                { text: '⚡ Spike Development', link: '/specs/spike-development' },
-                { text: '📱 Mobile Native', link: '/specs/mobile-native' },
+                {
+                  text: '🌐 Frontend Frameworks',
+                  collapsed: true,
+                  items: [
+                    { text: '▲ Next.js', link: '/specs/nextjs' },
+                    { text: '⚛️ React Ecosystem', link: '/specs/react-ecosystem' },
+                    { text: '💚 Vue & Nuxt', link: '/specs/nuxt' },
+                    { text: '📚 VitePress', link: '/specs/vitepress' },
+                    { text: '🎨 UI Components', link: '/specs/ui-component-quality' },
+                  ]
+                },
+                {
+                  text: '⚡ Backend & APIs',
+                  collapsed: true,
+                  items: [
+                    { text: '⚡ FastAPI', link: '/specs/fastapi' },
+                    { text: '💎 Ruby on Rails', link: '/specs/ruby-rails' },
+                    { text: '🌐 Modern Stack', link: '/specs/additional-modern-technologies' },
+                  ]
+                },
+                {
+                  text: '📱 Mobile & Desktop',
+                  collapsed: true,
+                  items: [
+                    { text: '📱 React Native & Expo', link: '/specs/expo-react-native-comprehensive' },
+                    { text: '🦀 Rust & Tauri', link: '/specs/rust-tauri' },
+                    { text: '📱 Native Development', link: '/specs/mobile-native' },
+                  ]
+                },
+                {
+                  text: '🛠️ Development Tools',
+                  collapsed: true,
+                  items: [
+                    { text: '🛠️ Programming Languages', link: '/specs/langs' },
+                    { text: '🐚 Shell Tools', link: '/specs/shell-tools' },
+                    { text: '⚡ Spike Development', link: '/specs/spike-development' },
+                  ]
+                }
               ]
             },
             {
