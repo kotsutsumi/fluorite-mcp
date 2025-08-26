@@ -1,0 +1,37 @@
+{
+  "id": "strike-fastify-middleware-advanced-rs",
+  "name": "fastify middleware advanced rs",
+  "version": "0.1.0",
+  "stack": [
+    "fastify",
+    "rs"
+  ],
+  "tags": [
+    "middleware",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastify middleware in rs (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastify-middleware-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/otel/fastify.ts",
+      "template": "// Fastify OpenTelemetry setup (stub)\nexport function setupFastifyOtel(){ /* integrate @opentelemetry/instrumentation-fastify here */ }\n"
+    },
+    {
+      "path": "spikes/strike-fastify-middleware-advanced-rs.rs.txt",
+      "template": "# Spike: fastify middleware (rs)\n// Auto-generated spike stub for fastify (middleware)\npub fn demo(){ println!(\"use fastify - middleware (advanced)\"); }\n"
+    },
+    {
+      "path": "spikes/strike-fastify-middleware-advanced-rs.md",
+      "template": "# fastify middleware (advanced, rs)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

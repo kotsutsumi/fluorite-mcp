@@ -95,3 +95,72 @@ spikesCommand.addCommand(
       console.log(`Materialized: written=${written}, overwritten=${overwritten}, skipped=${skipped}, failed=${failed}, outDir=${outDir}`);
     })
 );
+
+// Incremental synthesizer with persisted progress (avoids re-scanning from start)
+spikesCommand.addCommand(
+  new Command('synth-next')
+    .description('Incrementally materialize generated spikes using a persisted progress state')
+    .option('-f, --filter <regex>', 'ID filter (regex)', '^strike-')
+    .option('-m, --max <n>', 'Max items to write this run', (v)=>parseInt(v,10), 50)
+    .option('-o, --out-dir <outDir>', 'Output directory', 'src/spikes')
+    .option('--state-file <file>', 'Progress state file', 'src/cli/data/synth-state.json')
+    .option('--generated-only', 'Process only virtual/generated spikes (e.g., strike-*, gen-*)')
+    .option('--pretty', 'Pretty-print JSON when writing')
+    .action(async (opts) => {
+      const filter = String(opts.filter || '');
+      const max = Number.isFinite(opts.max) ? Number(opts.max) : 50;
+      const outDir = path.resolve(opts.outDir || 'src/spikes');
+      const stateFile = path.resolve(opts.stateFile || 'src/cli/data/synth-state.json');
+      await fs.mkdir(path.dirname(stateFile), { recursive: true });
+      await fs.mkdir(outDir, { recursive: true });
+
+      // Load previous state if exists
+      let state: { startIndex: number } = { startIndex: 0 };
+      try {
+        const raw = await fs.readFile(stateFile, 'utf8');
+        const json = JSON.parse(raw);
+        if (typeof json?.startIndex === 'number') state.startIndex = json.startIndex;
+      } catch {}
+
+      const ids = await listSpikeIds(filter);
+      const pool = opts.generatedOnly ? ids.filter((id) => isGeneratedId(id)) : ids;
+
+      let start = Math.max(0, Math.min(state.startIndex || 0, pool.length));
+      const selected: string[] = [];
+      const exists = await import('fs/promises');
+
+      // Collect up to `max` nonexistent items from current start index, advance start as we scan
+      for (let i = start; i < pool.length && selected.length < max; i++) {
+        const id = pool[i];
+        const file = path.join(outDir, `${id}.json`);
+        try { await exists.access(file); /* present */ }
+        catch { selected.push(id); }
+        start = i + 1;
+      }
+
+      if (selected.length === 0) {
+        console.log(`No new spikes to materialize (startIndex=${state.startIndex}, pool=${pool.length}).`);
+        // Still advance a little to prevent infinite loop on fully populated window
+        await fs.writeFile(stateFile, JSON.stringify({ startIndex: start }, null, 2) + '\n', 'utf8');
+        return;
+      }
+
+      let written = 0; let failed = 0; let overwritten = 0; let skipped = 0;
+      for (const id of selected) {
+        try {
+          const spec = await loadSpike(id);
+          const file = path.join(outDir, `${id}.json`);
+          let existsFlag = false;
+          try { await exists.access(file); existsFlag = true; } catch {}
+          if (existsFlag) { skipped++; continue; }
+          const data = opts.pretty ? JSON.stringify(spec, null, 2) + '\n' : JSON.stringify(spec);
+          await fs.writeFile(file, data, 'utf8');
+          if (existsFlag) overwritten++; else written++;
+        } catch { failed++; }
+      }
+
+      // Persist next start index for subsequent runs
+      await fs.writeFile(stateFile, JSON.stringify({ startIndex: start }, null, 2) + '\n', 'utf8');
+      console.log(`Materialized(next): written=${written}, overwritten=${overwritten}, skipped=${skipped}, failed=${failed}, startIndex=${start}, outDir=${outDir}`);
+    })
+);

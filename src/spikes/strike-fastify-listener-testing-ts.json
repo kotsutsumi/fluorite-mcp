@@ -1,0 +1,37 @@
+{
+  "id": "strike-fastify-listener-testing-ts",
+  "name": "fastify listener testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "fastify",
+    "ts"
+  ],
+  "tags": [
+    "listener",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastify listener in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastify-listener-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-fastify-listener-testing-ts.ts.txt",
+      "template": "# Spike: fastify listener (ts)\n// Auto-generated spike stub for fastify (listener)\nexport function demo() {\n  console.log('use fastify - listener (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-fastify-listener-testing-ts.md",
+      "template": "# fastify listener (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-fastify-listener-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-fastify-route-testing-js",
+  "name": "fastify route testing js",
+  "version": "0.1.0",
+  "stack": [
+    "fastify",
+    "js"
+  ],
+  "tags": [
+    "route",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastify route in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastify-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/fastify/server.ts",
+      "template": "import Fastify from 'fastify';\nconst app = Fastify();\napp.get('/', async ()=> ({ ok: true }));\napp.listen({ port: 3000 });\n"
+    },
+    {
+      "path": "spikes/strike-fastify-route-testing-js.js.txt",
+      "template": "# Spike: fastify route (js)\n// Auto-generated spike stub for fastify (route)\nmodule.exports = function demo(){\n  console.log('use fastify - route (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-fastify-route-testing-js.md",
+      "template": "# fastify route (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-fastify-route-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

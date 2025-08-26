@@ -1,0 +1,37 @@
+{
+  "id": "strike-koa-route-advanced-rs",
+  "name": "koa route advanced rs",
+  "version": "0.1.0",
+  "stack": [
+    "koa",
+    "rs"
+  ],
+  "tags": [
+    "route",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for koa route in rs (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "koa-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/koa/server.ts",
+      "template": "import Koa from 'koa';\nconst app = new Koa();\napp.use(async (ctx)=>{ ctx.body = { ok: true }; });\napp.listen(3000);\n"
+    },
+    {
+      "path": "spikes/strike-koa-route-advanced-rs.rs.txt",
+      "template": "# Spike: koa route (rs)\n// Auto-generated spike stub for koa (route)\npub fn demo(){ println!(\"use koa - route (advanced)\"); }\n"
+    },
+    {
+      "path": "spikes/strike-koa-route-advanced-rs.md",
+      "template": "# koa route (advanced, rs)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

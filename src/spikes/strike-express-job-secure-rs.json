@@ -1,0 +1,33 @@
+{
+  "id": "strike-express-job-secure-rs",
+  "name": "express job secure rs",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "rs"
+  ],
+  "tags": [
+    "job",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express job in rs (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-express-job-secure-rs.rs.txt",
+      "template": "# Spike: express job (rs)\n// Auto-generated spike stub for express (job)\npub fn demo(){ println!(\"use express - job (secure)\"); }\n"
+    },
+    {
+      "path": "spikes/strike-express-job-secure-rs.md",
+      "template": "# express job (secure, rs)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

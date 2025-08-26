@@ -1,0 +1,33 @@
+{
+  "id": "strike-fastify-crud-basic-go",
+  "name": "fastify crud basic go",
+  "version": "0.1.0",
+  "stack": [
+    "fastify",
+    "go"
+  ],
+  "tags": [
+    "crud",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastify crud in go (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastify-crud-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-fastify-crud-basic-go.go.txt",
+      "template": "# Spike: fastify crud (go)\n// Auto-generated spike stub for fastify (crud)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use fastify - crud (basic)\") }\n"
+    },
+    {
+      "path": "spikes/strike-fastify-crud-basic-go.md",
+      "template": "# fastify crud (basic, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

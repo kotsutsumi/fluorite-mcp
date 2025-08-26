@@ -90,8 +90,8 @@ cd ~/.claude-mcp-servers
 # ローカルにインストール
 npm install fluorite-mcp
 
-# 完全パスで Claude Code CLI に追加（重要: fluorite-mcp を使用）
-claude mcp add fluorite -- $(pwd)/node_modules/.bin/fluorite-mcp
+# 完全パスで Claude Code CLI に追加
+claude mcp add fluorite-mcp -- $(pwd)/node_modules/.bin/fluorite-mcp
 ```
 
 ### 方法 3: ソースから（開発用）
@@ -462,8 +462,8 @@ export FLUORITE_FRAMEWORK_HINT="nextjs"  # または "react", "vue"
 
 インストール成功後：
 
-1. **[はじめにガイド](./getting-started.ja.md)** - 基本的な使用法と最初のコマンド
-2. **[コマンドリファレンス](./commands.ja.md)** - 利用可能な機能の完全一覧  
+1. **[はじめにガイド](./getting-started.md)** - 基本的な使用法と最初のコマンド
+2. **[コマンドリファレンス](./commands.md)** - 利用可能な機能の完全一覧  
 3. **[スパイクテンプレート](./spike-templates.md)** - 高速プロトタイピングを学ぶ
 4. **[API ドキュメント](../API.md)** - プログラム的使用向け
 

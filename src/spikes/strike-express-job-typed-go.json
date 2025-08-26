@@ -1,0 +1,33 @@
+{
+  "id": "strike-express-job-typed-go",
+  "name": "express job typed go",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "go"
+  ],
+  "tags": [
+    "job",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express job in go (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-express-job-typed-go.go.txt",
+      "template": "# Spike: express job (go)\n// Auto-generated spike stub for express (job)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use express - job (typed)\") }\n"
+    },
+    {
+      "path": "spikes/strike-express-job-typed-go.md",
+      "template": "# express job (typed, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,33 @@
+{
+  "id": "strike-fastify-controller-typed-go",
+  "name": "fastify controller typed go",
+  "version": "0.1.0",
+  "stack": [
+    "fastify",
+    "go"
+  ],
+  "tags": [
+    "controller",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastify controller in go (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastify-controller-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-fastify-controller-typed-go.go.txt",
+      "template": "# Spike: fastify controller (go)\n// Auto-generated spike stub for fastify (controller)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use fastify - controller (typed)\") }\n"
+    },
+    {
+      "path": "spikes/strike-fastify-controller-typed-go.md",
+      "template": "# fastify controller (typed, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

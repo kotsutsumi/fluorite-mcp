@@ -1,0 +1,33 @@
+{
+  "id": "strike-fastify-provider-secure-go",
+  "name": "fastify provider secure go",
+  "version": "0.1.0",
+  "stack": [
+    "fastify",
+    "go"
+  ],
+  "tags": [
+    "provider",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastify provider in go (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastify-provider-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-fastify-provider-secure-go.go.txt",
+      "template": "# Spike: fastify provider (go)\n// Auto-generated spike stub for fastify (provider)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use fastify - provider (secure)\") }\n"
+    },
+    {
+      "path": "spikes/strike-fastify-provider-secure-go.md",
+      "template": "# fastify provider (secure, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

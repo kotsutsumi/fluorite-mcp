@@ -1,0 +1,33 @@
+{
+  "id": "strike-express-provider-secure-go",
+  "name": "express provider secure go",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "go"
+  ],
+  "tags": [
+    "provider",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express provider in go (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-provider-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-express-provider-secure-go.go.txt",
+      "template": "# Spike: express provider (go)\n// Auto-generated spike stub for express (provider)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use express - provider (secure)\") }\n"
+    },
+    {
+      "path": "spikes/strike-express-provider-secure-go.md",
+      "template": "# express provider (secure, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

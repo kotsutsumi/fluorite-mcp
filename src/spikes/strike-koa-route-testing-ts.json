@@ -1,0 +1,41 @@
+{
+  "id": "strike-koa-route-testing-ts",
+  "name": "koa route testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "koa",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for koa route in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "koa-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/koa/server.ts",
+      "template": "import Koa from 'koa';\nconst app = new Koa();\napp.use(async (ctx)=>{ ctx.body = { ok: true }; });\napp.listen(3000);\n"
+    },
+    {
+      "path": "spikes/strike-koa-route-testing-ts.ts.txt",
+      "template": "# Spike: koa route (ts)\n// Auto-generated spike stub for koa (route)\nexport function demo() {\n  console.log('use koa - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-koa-route-testing-ts.md",
+      "template": "# koa route (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-koa-route-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

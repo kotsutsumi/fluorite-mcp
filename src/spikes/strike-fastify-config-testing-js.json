@@ -1,0 +1,37 @@
+{
+  "id": "strike-fastify-config-testing-js",
+  "name": "fastify config testing js",
+  "version": "0.1.0",
+  "stack": [
+    "fastify",
+    "js"
+  ],
+  "tags": [
+    "config",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastify config in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastify-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-fastify-config-testing-js.js.txt",
+      "template": "# Spike: fastify config (js)\n// Auto-generated spike stub for fastify (config)\nmodule.exports = function demo(){\n  console.log('use fastify - config (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-fastify-config-testing-js.md",
+      "template": "# fastify config (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-fastify-config-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

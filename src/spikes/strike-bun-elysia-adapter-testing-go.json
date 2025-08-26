@@ -1,0 +1,33 @@
+{
+  "id": "strike-bun-elysia-adapter-testing-go",
+  "name": "bun-elysia adapter testing go",
+  "version": "0.1.0",
+  "stack": [
+    "bun-elysia",
+    "go"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for bun-elysia adapter in go (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "bun-elysia-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-bun-elysia-adapter-testing-go.go.txt",
+      "template": "# Spike: bun-elysia adapter (go)\n// Auto-generated spike stub for bun-elysia (adapter)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use bun-elysia - adapter (testing)\") }\n"
+    },
+    {
+      "path": "spikes/strike-bun-elysia-adapter-testing-go.md",
+      "template": "# bun-elysia adapter (testing, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

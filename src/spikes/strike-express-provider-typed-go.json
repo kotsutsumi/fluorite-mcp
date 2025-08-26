@@ -1,0 +1,33 @@
+{
+  "id": "strike-express-provider-typed-go",
+  "name": "express provider typed go",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "go"
+  ],
+  "tags": [
+    "provider",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express provider in go (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-provider-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-express-provider-typed-go.go.txt",
+      "template": "# Spike: express provider (go)\n// Auto-generated spike stub for express (provider)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use express - provider (typed)\") }\n"
+    },
+    {
+      "path": "spikes/strike-express-provider-typed-go.md",
+      "template": "# express provider (typed, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

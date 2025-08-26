@@ -1,0 +1,33 @@
+{
+  "id": "strike-bun-elysia-plugin-typed-go",
+  "name": "bun-elysia plugin typed go",
+  "version": "0.1.0",
+  "stack": [
+    "bun-elysia",
+    "go"
+  ],
+  "tags": [
+    "plugin",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for bun-elysia plugin in go (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "bun-elysia-plugin-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-bun-elysia-plugin-typed-go.go.txt",
+      "template": "# Spike: bun-elysia plugin (go)\n// Auto-generated spike stub for bun-elysia (plugin)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use bun-elysia - plugin (typed)\") }\n"
+    },
+    {
+      "path": "spikes/strike-bun-elysia-plugin-typed-go.md",
+      "template": "# bun-elysia plugin (typed, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

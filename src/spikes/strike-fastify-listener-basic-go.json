@@ -1,0 +1,33 @@
+{
+  "id": "strike-fastify-listener-basic-go",
+  "name": "fastify listener basic go",
+  "version": "0.1.0",
+  "stack": [
+    "fastify",
+    "go"
+  ],
+  "tags": [
+    "listener",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastify listener in go (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastify-listener-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-fastify-listener-basic-go.go.txt",
+      "template": "# Spike: fastify listener (go)\n// Auto-generated spike stub for fastify (listener)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use fastify - listener (basic)\") }\n"
+    },
+    {
+      "path": "spikes/strike-fastify-listener-basic-go.md",
+      "template": "# fastify listener (basic, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

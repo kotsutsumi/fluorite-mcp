@@ -1,0 +1,37 @@
+{
+  "id": "strike-fastify-listener-advanced-ts",
+  "name": "fastify listener advanced ts",
+  "version": "0.1.0",
+  "stack": [
+    "fastify",
+    "ts"
+  ],
+  "tags": [
+    "listener",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastify listener in ts (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastify-listener-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/otel/fastify.ts",
+      "template": "// Fastify OpenTelemetry setup (stub)\nexport function setupFastifyOtel(){ /* integrate @opentelemetry/instrumentation-fastify here */ }\n"
+    },
+    {
+      "path": "spikes/strike-fastify-listener-advanced-ts.ts.txt",
+      "template": "# Spike: fastify listener (ts)\n// Auto-generated spike stub for fastify (listener)\nexport function demo() {\n  console.log('use fastify - listener (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-fastify-listener-advanced-ts.md",
+      "template": "# fastify listener (advanced, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

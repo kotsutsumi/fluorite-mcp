@@ -1,0 +1,33 @@
+{
+  "id": "strike-express-job-basic-rs",
+  "name": "express job basic rs",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "rs"
+  ],
+  "tags": [
+    "job",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express job in rs (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-express-job-basic-rs.rs.txt",
+      "template": "# Spike: express job (rs)\n// Auto-generated spike stub for express (job)\npub fn demo(){ println!(\"use express - job (basic)\"); }\n"
+    },
+    {
+      "path": "spikes/strike-express-job-basic-rs.md",
+      "template": "# express job (basic, rs)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,37 @@
+{
+  "id": "strike-fastify-route-typed-rs",
+  "name": "fastify route typed rs",
+  "version": "0.1.0",
+  "stack": [
+    "fastify",
+    "rs"
+  ],
+  "tags": [
+    "route",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastify route in rs (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastify-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/fastify/server.ts",
+      "template": "import Fastify from 'fastify';\nconst app = Fastify();\napp.get('/', async ()=> ({ ok: true }));\napp.listen({ port: 3000 });\n"
+    },
+    {
+      "path": "spikes/strike-fastify-route-typed-rs.rs.txt",
+      "template": "# Spike: fastify route (rs)\n// Auto-generated spike stub for fastify (route)\npub fn demo(){ println!(\"use fastify - route (typed)\"); }\n"
+    },
+    {
+      "path": "spikes/strike-fastify-route-typed-rs.md",
+      "template": "# fastify route (typed, rs)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

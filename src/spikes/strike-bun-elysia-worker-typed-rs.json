@@ -1,0 +1,33 @@
+{
+  "id": "strike-bun-elysia-worker-typed-rs",
+  "name": "bun-elysia worker typed rs",
+  "version": "0.1.0",
+  "stack": [
+    "bun-elysia",
+    "rs"
+  ],
+  "tags": [
+    "worker",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for bun-elysia worker in rs (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "bun-elysia-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-bun-elysia-worker-typed-rs.rs.txt",
+      "template": "# Spike: bun-elysia worker (rs)\n// Auto-generated spike stub for bun-elysia (worker)\npub fn demo(){ println!(\"use bun-elysia - worker (typed)\"); }\n"
+    },
+    {
+      "path": "spikes/strike-bun-elysia-worker-typed-rs.md",
+      "template": "# bun-elysia worker (typed, rs)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

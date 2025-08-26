@@ -1,0 +1,37 @@
+{
+  "id": "strike-fastify-init-testing-js",
+  "name": "fastify init testing js",
+  "version": "0.1.0",
+  "stack": [
+    "fastify",
+    "js"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastify init in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastify-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-fastify-init-testing-js.js.txt",
+      "template": "# Spike: fastify init (js)\n// Auto-generated spike stub for fastify (init)\nmodule.exports = function demo(){\n  console.log('use fastify - init (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-fastify-init-testing-js.md",
+      "template": "# fastify init (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-fastify-init-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

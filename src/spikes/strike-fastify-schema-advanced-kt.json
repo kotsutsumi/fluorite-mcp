@@ -1,0 +1,37 @@
+{
+  "id": "strike-fastify-schema-advanced-kt",
+  "name": "fastify schema advanced kt",
+  "version": "0.1.0",
+  "stack": [
+    "fastify",
+    "kt"
+  ],
+  "tags": [
+    "schema",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastify schema in kt (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastify-schema-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/otel/fastify.ts",
+      "template": "// Fastify OpenTelemetry setup (stub)\nexport function setupFastifyOtel(){ /* integrate @opentelemetry/instrumentation-fastify here */ }\n"
+    },
+    {
+      "path": "spikes/strike-fastify-schema-advanced-kt.kt.txt",
+      "template": "# Spike: fastify schema (kt)\n// Auto-generated spike stub for fastify (schema)\nfun demo(){ println(\"use fastify - schema (advanced)\") }\n"
+    },
+    {
+      "path": "spikes/strike-fastify-schema-advanced-kt.md",
+      "template": "# fastify schema (advanced, kt)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

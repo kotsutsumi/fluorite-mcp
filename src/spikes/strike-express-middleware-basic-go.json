@@ -1,0 +1,33 @@
+{
+  "id": "strike-express-middleware-basic-go",
+  "name": "express middleware basic go",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "go"
+  ],
+  "tags": [
+    "middleware",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express middleware in go (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-middleware-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-express-middleware-basic-go.go.txt",
+      "template": "# Spike: express middleware (go)\n// Auto-generated spike stub for express (middleware)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use express - middleware (basic)\") }\n"
+    },
+    {
+      "path": "spikes/strike-express-middleware-basic-go.md",
+      "template": "# express middleware (basic, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

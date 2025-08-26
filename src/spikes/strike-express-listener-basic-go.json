@@ -1,0 +1,33 @@
+{
+  "id": "strike-express-listener-basic-go",
+  "name": "express listener basic go",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "go"
+  ],
+  "tags": [
+    "listener",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express listener in go (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-listener-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-express-listener-basic-go.go.txt",
+      "template": "# Spike: express listener (go)\n// Auto-generated spike stub for express (listener)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use express - listener (basic)\") }\n"
+    },
+    {
+      "path": "spikes/strike-express-listener-basic-go.md",
+      "template": "# express listener (basic, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

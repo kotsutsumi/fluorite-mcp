@@ -1,0 +1,37 @@
+{
+  "id": "strike-fastify-minimal-testing-js",
+  "name": "fastify minimal testing js",
+  "version": "0.1.0",
+  "stack": [
+    "fastify",
+    "js"
+  ],
+  "tags": [
+    "minimal",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastify minimal in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastify-minimal-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-fastify-minimal-testing-js.js.txt",
+      "template": "# Spike: fastify minimal (js)\n// Auto-generated spike stub for fastify (minimal)\nmodule.exports = function demo(){\n  console.log('use fastify - minimal (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-fastify-minimal-testing-js.md",
+      "template": "# fastify minimal (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-fastify-minimal-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

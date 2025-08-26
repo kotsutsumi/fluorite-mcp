@@ -1,0 +1,33 @@
+{
+  "id": "strike-fastify-init-testing-go",
+  "name": "fastify init testing go",
+  "version": "0.1.0",
+  "stack": [
+    "fastify",
+    "go"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastify init in go (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastify-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-fastify-init-testing-go.go.txt",
+      "template": "# Spike: fastify init (go)\n// Auto-generated spike stub for fastify (init)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use fastify - init (testing)\") }\n"
+    },
+    {
+      "path": "spikes/strike-fastify-init-testing-go.md",
+      "template": "# fastify init (testing, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

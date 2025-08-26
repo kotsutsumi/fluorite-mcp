@@ -1,0 +1,33 @@
+{
+  "id": "strike-fastify-init-typed-go",
+  "name": "fastify init typed go",
+  "version": "0.1.0",
+  "stack": [
+    "fastify",
+    "go"
+  ],
+  "tags": [
+    "init",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastify init in go (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastify-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-fastify-init-typed-go.go.txt",
+      "template": "# Spike: fastify init (go)\n// Auto-generated spike stub for fastify (init)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use fastify - init (typed)\") }\n"
+    },
+    {
+      "path": "spikes/strike-fastify-init-typed-go.md",
+      "template": "# fastify init (typed, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

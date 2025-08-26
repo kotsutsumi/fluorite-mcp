@@ -94,4 +94,4 @@
 
 ---
 
-完全なリリース履歴については、[GitHub Releases](https://github.com/kotsutsumi/fluorite-mcp/releases)をご確認ください。
+このファイルには主要なリリース情報が記載されています。

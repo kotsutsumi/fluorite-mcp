@@ -1,0 +1,33 @@
+{
+  "id": "strike-fastify-config-basic-go",
+  "name": "fastify config basic go",
+  "version": "0.1.0",
+  "stack": [
+    "fastify",
+    "go"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastify config in go (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastify-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-fastify-config-basic-go.go.txt",
+      "template": "# Spike: fastify config (go)\n// Auto-generated spike stub for fastify (config)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use fastify - config (basic)\") }\n"
+    },
+    {
+      "path": "spikes/strike-fastify-config-basic-go.md",
+      "template": "# fastify config (basic, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

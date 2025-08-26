@@ -1,0 +1,37 @@
+{
+  "id": "strike-fastify-route-secure-rs",
+  "name": "fastify route secure rs",
+  "version": "0.1.0",
+  "stack": [
+    "fastify",
+    "rs"
+  ],
+  "tags": [
+    "route",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastify route in rs (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastify-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/fastify/server.ts",
+      "template": "import Fastify from 'fastify';\nconst app = Fastify();\napp.get('/', async ()=> ({ ok: true }));\napp.listen({ port: 3000 });\n"
+    },
+    {
+      "path": "spikes/strike-fastify-route-secure-rs.rs.txt",
+      "template": "# Spike: fastify route (rs)\n// Auto-generated spike stub for fastify (route)\npub fn demo(){ println!(\"use fastify - route (secure)\"); }\n"
+    },
+    {
+      "path": "spikes/strike-fastify-route-secure-rs.md",
+      "template": "# fastify route (secure, rs)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,33 @@
+{
+  "id": "strike-express-worker-secure-rs",
+  "name": "express worker secure rs",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "rs"
+  ],
+  "tags": [
+    "worker",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express worker in rs (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-express-worker-secure-rs.rs.txt",
+      "template": "# Spike: express worker (rs)\n// Auto-generated spike stub for express (worker)\npub fn demo(){ println!(\"use express - worker (secure)\"); }\n"
+    },
+    {
+      "path": "spikes/strike-express-worker-secure-rs.md",
+      "template": "# express worker (secure, rs)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

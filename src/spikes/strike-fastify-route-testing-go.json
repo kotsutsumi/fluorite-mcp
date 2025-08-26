@@ -1,0 +1,37 @@
+{
+  "id": "strike-fastify-route-testing-go",
+  "name": "fastify route testing go",
+  "version": "0.1.0",
+  "stack": [
+    "fastify",
+    "go"
+  ],
+  "tags": [
+    "route",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastify route in go (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastify-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/fastify/server.ts",
+      "template": "import Fastify from 'fastify';\nconst app = Fastify();\napp.get('/', async ()=> ({ ok: true }));\napp.listen({ port: 3000 });\n"
+    },
+    {
+      "path": "spikes/strike-fastify-route-testing-go.go.txt",
+      "template": "# Spike: fastify route (go)\n// Auto-generated spike stub for fastify (route)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use fastify - route (testing)\") }\n"
+    },
+    {
+      "path": "spikes/strike-fastify-route-testing-go.md",
+      "template": "# fastify route (testing, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,33 @@
+{
+  "id": "strike-bun-elysia-worker-secure-rs",
+  "name": "bun-elysia worker secure rs",
+  "version": "0.1.0",
+  "stack": [
+    "bun-elysia",
+    "rs"
+  ],
+  "tags": [
+    "worker",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for bun-elysia worker in rs (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "bun-elysia-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-bun-elysia-worker-secure-rs.rs.txt",
+      "template": "# Spike: bun-elysia worker (rs)\n// Auto-generated spike stub for bun-elysia (worker)\npub fn demo(){ println!(\"use bun-elysia - worker (secure)\"); }\n"
+    },
+    {
+      "path": "spikes/strike-bun-elysia-worker-secure-rs.md",
+      "template": "# bun-elysia worker (secure, rs)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

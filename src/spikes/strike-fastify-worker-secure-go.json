@@ -1,0 +1,33 @@
+{
+  "id": "strike-fastify-worker-secure-go",
+  "name": "fastify worker secure go",
+  "version": "0.1.0",
+  "stack": [
+    "fastify",
+    "go"
+  ],
+  "tags": [
+    "worker",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastify worker in go (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastify-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-fastify-worker-secure-go.go.txt",
+      "template": "# Spike: fastify worker (go)\n// Auto-generated spike stub for fastify (worker)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use fastify - worker (secure)\") }\n"
+    },
+    {
+      "path": "spikes/strike-fastify-worker-secure-go.md",
+      "template": "# fastify worker (secure, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

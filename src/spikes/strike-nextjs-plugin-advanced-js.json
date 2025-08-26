@@ -1,0 +1,53 @@
+{
+  "id": "strike-nextjs-plugin-advanced-js",
+  "name": "nextjs plugin advanced js",
+  "version": "0.1.0",
+  "stack": [
+    "nextjs",
+    "js"
+  ],
+  "tags": [
+    "plugin",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nextjs plugin in js (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nextjs-plugin-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "app/rsc/page.tsx",
+      "template": "export default function Page(){ return <div>Server Component (RSC)</div>; }\n"
+    },
+    {
+      "path": "app/csr/page.tsx",
+      "template": "'use client';\nexport default function Page(){ return <div>Client Component (CSR)</div>; }\n"
+    },
+    {
+      "path": "app/api/typed/route.ts",
+      "template": "import { z } from 'zod';\nimport { ok, err } from '@/src/next/response';\nconst Payload = z.object({ name: z.string().min(1) });\nexport async function POST(req: Request){ try { const json = await req.json(); const parsed = Payload.parse(json); return ok({ message: 'Hello ' + parsed.name }); } catch(e){ return err(e, 400); } }\n"
+    },
+    {
+      "path": "src/next/withRole.ts",
+      "template": "import type { NextRequest } from 'next/server';\nexport function withRole(required: 'user'|'admin', handler: (req: NextRequest)=>Promise<Response>|Response){\n  return async (req: NextRequest) => {\n    const role = (req.headers.get('x-role') as 'user'|'admin') || 'user';\n    if (required === 'admin' && role !== 'admin') {\n      return new Response('Forbidden', { status: 403 });\n    }\n    return handler(req);\n  };\n}\n"
+    },
+    {
+      "path": "src/next/security-headers.ts",
+      "template": "export const securityHeaders = [\n  { key: 'X-Frame-Options', value: 'DENY' },\n  { key: 'X-Content-Type-Options', value: 'nosniff' },\n  { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' }\n];\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-plugin-advanced-js.js.txt",
+      "template": "# Spike: nextjs plugin (js)\n// Auto-generated spike stub for nextjs (plugin)\nmodule.exports = function demo(){\n  console.log('use nextjs - plugin (advanced)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-plugin-advanced-js.md",
+      "template": "# nextjs plugin (advanced, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

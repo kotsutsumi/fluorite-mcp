@@ -1,0 +1,33 @@
+{
+  "id": "strike-koa-controller-basic-go",
+  "name": "koa controller basic go",
+  "version": "0.1.0",
+  "stack": [
+    "koa",
+    "go"
+  ],
+  "tags": [
+    "controller",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for koa controller in go (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "koa-controller-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-koa-controller-basic-go.go.txt",
+      "template": "# Spike: koa controller (go)\n// Auto-generated spike stub for koa (controller)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use koa - controller (basic)\") }\n"
+    },
+    {
+      "path": "spikes/strike-koa-controller-basic-go.md",
+      "template": "# koa controller (basic, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

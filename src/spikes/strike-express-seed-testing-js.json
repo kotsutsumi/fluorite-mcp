@@ -1,0 +1,37 @@
+{
+  "id": "strike-express-seed-testing-js",
+  "name": "express seed testing js",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "js"
+  ],
+  "tags": [
+    "seed",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express seed in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-seed-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-express-seed-testing-js.js.txt",
+      "template": "# Spike: express seed (js)\n// Auto-generated spike stub for express (seed)\nmodule.exports = function demo(){\n  console.log('use express - seed (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-express-seed-testing-js.md",
+      "template": "# express seed (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-express-seed-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

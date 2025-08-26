@@ -1,0 +1,37 @@
+{
+  "id": "strike-express-component-testing-js",
+  "name": "express component testing js",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "js"
+  ],
+  "tags": [
+    "component",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express component in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-component-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-express-component-testing-js.js.txt",
+      "template": "# Spike: express component (js)\n// Auto-generated spike stub for express (component)\nmodule.exports = function demo(){\n  console.log('use express - component (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-express-component-testing-js.md",
+      "template": "# express component (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-express-component-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

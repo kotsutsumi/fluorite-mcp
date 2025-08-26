@@ -1,0 +1,37 @@
+{
+  "id": "strike-express-hook-testing-js",
+  "name": "express hook testing js",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "js"
+  ],
+  "tags": [
+    "hook",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express hook in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-hook-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-express-hook-testing-js.js.txt",
+      "template": "# Spike: express hook (js)\n// Auto-generated spike stub for express (hook)\nmodule.exports = function demo(){\n  console.log('use express - hook (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-express-hook-testing-js.md",
+      "template": "# express hook (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-express-hook-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

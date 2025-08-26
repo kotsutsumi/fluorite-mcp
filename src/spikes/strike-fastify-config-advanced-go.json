@@ -1,0 +1,37 @@
+{
+  "id": "strike-fastify-config-advanced-go",
+  "name": "fastify config advanced go",
+  "version": "0.1.0",
+  "stack": [
+    "fastify",
+    "go"
+  ],
+  "tags": [
+    "config",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastify config in go (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastify-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/otel/fastify.ts",
+      "template": "// Fastify OpenTelemetry setup (stub)\nexport function setupFastifyOtel(){ /* integrate @opentelemetry/instrumentation-fastify here */ }\n"
+    },
+    {
+      "path": "spikes/strike-fastify-config-advanced-go.go.txt",
+      "template": "# Spike: fastify config (go)\n// Auto-generated spike stub for fastify (config)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use fastify - config (advanced)\") }\n"
+    },
+    {
+      "path": "spikes/strike-fastify-config-advanced-go.md",
+      "template": "# fastify config (advanced, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

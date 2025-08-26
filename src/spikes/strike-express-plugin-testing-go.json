@@ -1,0 +1,33 @@
+{
+  "id": "strike-express-plugin-testing-go",
+  "name": "express plugin testing go",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "go"
+  ],
+  "tags": [
+    "plugin",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express plugin in go (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-plugin-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-express-plugin-testing-go.go.txt",
+      "template": "# Spike: express plugin (go)\n// Auto-generated spike stub for express (plugin)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use express - plugin (testing)\") }\n"
+    },
+    {
+      "path": "spikes/strike-express-plugin-testing-go.md",
+      "template": "# express plugin (testing, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

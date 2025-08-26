@@ -1,0 +1,33 @@
+{
+  "id": "strike-fastify-webhook-typed-rs",
+  "name": "fastify webhook typed rs",
+  "version": "0.1.0",
+  "stack": [
+    "fastify",
+    "rs"
+  ],
+  "tags": [
+    "webhook",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastify webhook in rs (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastify-webhook-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-fastify-webhook-typed-rs.rs.txt",
+      "template": "# Spike: fastify webhook (rs)\n// Auto-generated spike stub for fastify (webhook)\npub fn demo(){ println!(\"use fastify - webhook (typed)\"); }\n"
+    },
+    {
+      "path": "spikes/strike-fastify-webhook-typed-rs.md",
+      "template": "# fastify webhook (typed, rs)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

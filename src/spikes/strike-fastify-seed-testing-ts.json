@@ -1,0 +1,37 @@
+{
+  "id": "strike-fastify-seed-testing-ts",
+  "name": "fastify seed testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "fastify",
+    "ts"
+  ],
+  "tags": [
+    "seed",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastify seed in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastify-seed-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-fastify-seed-testing-ts.ts.txt",
+      "template": "# Spike: fastify seed (ts)\n// Auto-generated spike stub for fastify (seed)\nexport function demo() {\n  console.log('use fastify - seed (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-fastify-seed-testing-ts.md",
+      "template": "# fastify seed (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-fastify-seed-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

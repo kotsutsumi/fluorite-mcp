@@ -1,0 +1,37 @@
+{
+  "id": "strike-nuxt-init-testing-js",
+  "name": "nuxt init testing js",
+  "version": "0.1.0",
+  "stack": [
+    "nuxt",
+    "js"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nuxt init in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nuxt-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-nuxt-init-testing-js.js.txt",
+      "template": "# Spike: nuxt init (js)\n// Auto-generated spike stub for nuxt (init)\nmodule.exports = function demo(){\n  console.log('use nuxt - init (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-nuxt-init-testing-js.md",
+      "template": "# nuxt init (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-nuxt-init-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}
