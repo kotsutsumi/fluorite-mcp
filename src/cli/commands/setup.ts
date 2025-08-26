@@ -232,6 +232,11 @@ Shortcuts for maximum leverage inside Claude:
 ## Post-Apply Checks
 - Run \`validate-spike\` to perform a quick sanity check
 - Optionally run static analysis tools and tests in your project
+
+### Example Prompts
+- Static analysis: \`/fl:analyze --focus quality\` または \`/fl:analyze --focus security\`
+- Run tests: \`/fl:test unit --coverage\`
+- Improve performance: \`/fl:improve src --focus performance\`
 `;
 
   const helpFilePath = path.join(flCommandsDir, 'help.md');
@@ -267,6 +272,7 @@ Work with fluorite spike templates end-to-end inside Claude.
 - 望むスタイルは？（typed / secure / testing / advanced / basic）
 - 機能パターンは？（listener / plugin / worker / migration / seed / route）
 - 既存構成の前提は？（ルーティング/ミドルウェア/テストフレームワーク など）
+
 
 ## FAQ
 - Q. apply の衝突はどう扱う？

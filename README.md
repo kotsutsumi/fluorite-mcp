@@ -148,6 +148,44 @@ Claude内の例:
 fluorite setup
 ```
 
+### Short Aliases (quick tokens)
+自然言語に短縮トークンを含めることで、人気スパイクをダイレクト指定できます。`[alias: <token>]` 形式でもOK。
+
+- Elysia Worker (typed, TS): `elysia-worker-ts`
+- Elysia Plugin (secure, TS): `elysia-plugin-secure-ts`
+- Next.js Route (typed, TS): `next-route-ts`
+- Next.js Middleware (typed, TS): `next-mw-ts`
+- FastAPI Route (secure, Py): `fastapi-secure-py`
+- React Component (typed, TS): `react-component-ts`
+- React Hook (typed, TS): `react-hook-ts`
+- Prisma Schema (typed, TS): `prisma-schema-ts`
+- Drizzle Schema (typed, TS): `drizzle-schema-ts`
+- Next.js Service (typed, TS): `next-service-ts`
+- React Provider/Adapter (typed, TS): `react-provider-ts`, `react-adapter-ts`
+
+例:
+
+```
+/fl:implement "Next.js に typed middleware を追加 [alias: next-mw-ts]"
+/fl:implement "Prisma schema を TS で生成 [alias: prisma-schema-ts]"
+```
+
+パラメータ（constraints）を渡すと、`preview-spike` の `params` に引き継がれます:
+
+```
+// 例: Prismaのモデル名を指定
+/fl:implement "[alias: prisma-schema-ts]" model=User
+```
+
+### Tuning
+環境変数で自動選定の挙動を調整できます。
+
+- `FLUORITE_AUTO_SPIKE_THRESHOLD`（既定 0.4）: coverage がこの値未満のときは `discover-spikes` と確認質問を提示
+- `FLUORITE_AUTO_SPIKE_TOP`（既定 5）: 詳細評価に進める候補数
+- `FLUORITE_AUTO_SPIKE_BATCH`（既定 50）: メタデータバッチサイズ
+- `FLUORITE_SPIKE_METADATA_MULTIPLIER`（既定 2）: discovery時のスコアリング対象拡大
+- `FLUORITE_SPIKE_LIST_LIMIT`: スパイク露出数の上限（パフォーマンス調整）
+
 ### Popular Spike Prompt Examples
 
 Try these ready-made prompts inside Claude Code to trigger automatic spike selection and previews:

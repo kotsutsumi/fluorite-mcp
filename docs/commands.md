@@ -15,6 +15,60 @@ This guide covers all available commands, features, and usage patterns for Fluor
 
 Fluorite MCP works transparently with Claude Code CLI through natural language. Simply describe what you want to build, and Claude will automatically access relevant specifications.
 
+## `/fl:ui` Command - v0.io-Style UI Generation
+
+The `/fl:ui` command provides v0.io-style natural language UI component generation with TailwindCSS v4.1+ and shadcn/ui v2+ integration.
+
+### Quick Examples
+
+```bash
+# Generate a login form
+fluorite-mcp ui "Create a modern login form with email and password"
+
+# Generate a data table  
+fluorite-mcp ui "Build an advanced data table with sorting and filtering"
+
+# Generate with specific framework
+fluorite-mcp ui "Create a responsive modal dialog" --framework next --preview
+
+# Generate with custom styling
+fluorite-mcp ui "Make a dashboard with charts" --style glass --dark
+```
+
+### Features
+
+- **🤖 Natural Language Processing**: Analyzes descriptions to determine component type and complexity
+- **🎨 Modern UI Generation**: Creates TypeScript components with TailwindCSS v4.1+ and shadcn/ui v2+
+- **🚀 Framework Support**: React, Next.js, and Vue components
+- **♿ Accessibility**: WCAG 2.1 AA compliant components by default
+- **📱 Responsive Design**: Mobile-first responsive components
+- **🌙 Dark Mode**: Optional dark mode support
+- **📊 Component Statistics**: Lines of code, dependencies, and accessibility scores
+
+### Component Types Detected
+
+- **Forms**: login, signup, contact forms
+- **Tables**: data tables with sorting/filtering  
+- **Modals**: dialogs, popups, overlays
+- **Navigation**: menus, navbars, breadcrumbs
+- **Cards**: content cards, metric cards
+- **Buttons**: various button types and variants
+- **Dashboards**: analytics dashboards with charts
+- **Custom**: any other component description
+
+### Command Options
+
+| Option | Description | Default |
+|--------|-------------|---------|
+| `--framework` | Target framework (react/next/vue) | `react` |
+| `--style` | Design style (modern/minimal/glass/card) | `modern` |
+| `--preview` | Preview without writing files | `false` |
+| `--dark` | Include dark mode support | `false` |
+| `--component-name` | Custom component name | Auto-detected |
+| `--output` | Output directory | `./components` |
+
+See [UI Command Documentation](./ui-command.md) for complete details.
+
 ### UI Component Development
 
 #### Basic Component Creation

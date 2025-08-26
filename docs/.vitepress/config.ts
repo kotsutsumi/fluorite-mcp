@@ -59,6 +59,7 @@ export default defineConfig({
               items: [
                 { text: '🛠️ FLコマンド', link: '/ja/fl-commands' },
                 { text: '📋 FLコマンド詳細', link: '/ja/fl-commands-detailed' },
+                { text: '🎨 UI生成コマンド', link: '/ja/ui-command' },
                 { text: '⚙️ 機能一覧', link: '/ja/features' },
                 { text: '🧩 スパイクテンプレート', link: '/ja/spike-templates' },
                 { text: '🔍 静的解析', link: '/ja/static-analysis' },
@@ -154,6 +155,7 @@ export default defineConfig({
               items: [
                 { text: '🛠️ FL Commands', link: '/fl-commands' },
                 { text: '📋 FL Commands Detailed', link: '/fl-commands-detailed' },
+                { text: '🎨 UI Generation', link: '/ui-command' },
                 { text: '⚙️ Features', link: '/features' },
                 { text: '🧩 Spike Templates', link: '/spike-templates' },
                 { text: '🔍 Static Analysis', link: '/static-analysis' },

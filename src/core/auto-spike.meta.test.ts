@@ -66,4 +66,29 @@ describe('auto-spike meta flow (lightweight)', () => {
     const hasPreview = Array.isArray(next) && next.some((n: any) => n?.tool === 'preview-spike');
     expect(hasPreview).toBe(true);
   });
+
+  it('passes constraints into next_actions for preview', async () => {
+    const res = await handleAutoSpikeTool({ task: '生成: [alias: prisma-schema-ts]', constraints: { model: 'User' } });
+    expect(String(res?.metadata?.selected_spike?.id || '')).toContain('strike-prisma-schema-typed-ts');
+    const next = res?.metadata?.next_actions || [];
+    const preview = Array.isArray(next) && next.find((n: any) => n?.tool === 'preview-spike');
+    expect(preview).toBeTruthy();
+    expect(preview.args?.params?.model).toBe('User');
+  });
+  
+  it('accepts next-auth provider alias', async () => {
+    const res = await handleAutoSpikeTool({ task: '認証プロバイダを導入 [alias: next-auth-ts]' });
+    expect(String(res?.metadata?.selected_spike?.id || '')).toContain('strike-next-auth-provider-typed-ts');
+    const next = res?.metadata?.next_actions || [];
+    const hasPreview = Array.isArray(next) && next.some((n: any) => n?.tool === 'preview-spike');
+    expect(hasPreview).toBe(true);
+  });
+  
+  it('accepts stripe service alias', async () => {
+    const res = await handleAutoSpikeTool({ task: '決済実装 [alias: stripe-service-ts]' });
+    expect(String(res?.metadata?.selected_spike?.id || '')).toContain('strike-stripe-service-typed-ts');
+    const next = res?.metadata?.next_actions || [];
+    const hasPreview = Array.isArray(next) && next.some((n: any) => n?.tool === 'preview-spike');
+    expect(hasPreview).toBe(true);
+  });
 });

@@ -4,6 +4,7 @@ import { setupCommand } from './commands/setup.js';
 import { versionCommand } from './commands/version.js';
 import { flHelpCommand } from './commands/fl-help.js';
 import { initCommand } from './commands/init.js';
+import { uiCommand } from './commands/ui.js';
 import { getPackageVersion } from '../utils.js';
 import { spikesCommand } from './commands/spikes.js';
 
@@ -19,6 +20,7 @@ program.addCommand(setupCommand);
 program.addCommand(versionCommand);
 program.addCommand(flHelpCommand);
 program.addCommand(initCommand);
+program.addCommand(uiCommand);
 program.addCommand(spikesCommand);
 
 // Parse command line arguments

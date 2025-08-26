@@ -32,6 +32,23 @@ features:
   - icon: 🎯
     title: Built-in Best Practices
     details: Security, performance, and design patterns embedded in every implementation.
+  - icon: 🚀
+    title: Continuous Learning
+    details: Intelligent memory engine learns usage patterns and provides adaptive recommendations for enhanced productivity.
+  - icon: 🛡️
+    title: Security-First Approach
+    details: Comprehensive input validation, vulnerability scanning, and secure defaults across all implementations.
+  - icon: 📊
+    title: Real-time Validation
+    details: Instant validation on file changes with error prediction for quality assurance.
 ---
+
+# Fluorite MCP Documentation
+
+Complete documentation for **Fluorite MCP**, the Model Context Protocol server that transforms Claude Code CLI into a comprehensive development tool. Enhance Claude Code CLI with library knowledge, static analysis, and rapid prototyping capabilities.
+
+## 📚 Documentation Overview
+
+This documentation provides everything you need to integrate and maximize Fluorite MCP with Claude Code CLI for enhanced AI-powered development workflows.
 
 

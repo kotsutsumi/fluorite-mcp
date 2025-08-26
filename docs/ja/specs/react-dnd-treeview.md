@@ -252,7 +252,6 @@ const FileExplorer: React.FC = () => {
 - [APIリファレンス](https://github.com/minop1205/react-dnd-treeview/blob/main/docs/api.md)
 - [サンプル](https://github.com/minop1205/react-dnd-treeview/tree/main/examples)
 - [変更履歴](https://github.com/minop1205/react-dnd-treeview/blob/main/CHANGELOG.md)
-- [GitHub Issues](https://github.com/minop1205/react-dnd-treeview/issues)
 
 ## パッケージ統計
 

@@ -214,9 +214,27 @@ export async function handleAutoSpikeTool(input: AutoSpikeInput): Promise<ToolCa
       return { content: [{ type: 'text', text: 'Failed to load matching spikes' }], metadata: { items: [] } };
     }
     
-    const coverage = Math.round(Math.min(1, Math.max(0.1, best.score)) * 100) / 100;
-    const next = [{ tool: 'preview-spike', args: { id: best.spec.id, params: input.constraints || {} } }];
-    const text = `Selected spike: ${best.spec.id} (coverage_score=${coverage})`;
+    // Decide next actions based on coverage threshold (tunable via env)
+    const rawScore = best.score;
+    const thresholdEnv = process.env.FLUORITE_AUTO_SPIKE_THRESHOLD;
+    const threshold = (() => { const n = thresholdEnv ? parseFloat(thresholdEnv) : 0.4; return Number.isNaN(n) ? 0.4 : Math.max(0, Math.min(1, n)); })();
+    const coverage = Math.round(Math.min(1, Math.max(0, rawScore)) * 100) / 100;
+
+    const next: Array<any> = [];
+    const clarifying: string[] = [];
+    if (rawScore < threshold) {
+      // Suggest discover + clarifying questions when coverage is low
+      next.push({ tool: 'discover-spikes', args: { query: input.task, limit: 10 } });
+      clarifying.push(
+        '対象フレームワーク/ランタイム（例: Bun Elysia / Next.js / FastAPI）',
+        '言語（TypeScript / JavaScript / Python / Go / Rust / Kotlin）',
+        '望むスタイル（typed / secure / testing / advanced / basic）',
+        '機能パターン（listener / plugin / worker / migration / seed / route）',
+      );
+    }
+    // Always allow preview with current constraints as the next step
+    next.push({ tool: 'preview-spike', args: { id: best.spec.id, params: input.constraints || {} } });
+    const text = `Selected spike: ${best.spec.id} (coverage_score=${coverage}, threshold=${threshold})`;
     
     return { 
       content: [{ type: 'text', text }], 
@@ -224,6 +242,7 @@ export async function handleAutoSpikeTool(input: AutoSpikeInput): Promise<ToolCa
         selected_spike: best.spec, 
         coverage_score: coverage, 
         residual_work: [], 
+        clarifying_questions: clarifying,
         next_actions: next,
         candidates_evaluated: topCandidates.length
       } 
@@ -247,7 +266,34 @@ function inferStrikeAliasIds(task: string): string[] {
     'next-mw-ts': 'strike-nextjs-middleware-typed-ts',
     'fastapi-secure-py': 'strike-fastapi-route-secure-py',
     'react-component-ts': 'strike-react-component-typed-ts',
-    'react-hook-ts': 'strike-react-hook-typed-ts'
+    'react-hook-ts': 'strike-react-hook-typed-ts',
+    'prisma-schema-ts': 'strike-prisma-schema-typed-ts',
+    'drizzle-schema-ts': 'strike-drizzle-schema-typed-ts',
+    'next-service-ts': 'strike-nextjs-service-typed-ts',
+    'react-provider-ts': 'strike-react-provider-typed-ts',
+    'react-adapter-ts': 'strike-react-adapter-typed-ts',
+    // Auth providers
+    'next-auth-ts': 'strike-next-auth-provider-typed-ts',
+    'auth0-ts': 'strike-auth0-provider-typed-ts',
+    'clerk-ts': 'strike-clerk-provider-typed-ts',
+    'lucia-ts': 'strike-lucia-provider-typed-ts',
+    // Payments
+    'stripe-service-ts': 'strike-stripe-service-typed-ts',
+    // Storage adapters
+    's3-adapter-ts': 'strike-s3-adapter-typed-ts',
+    'gcs-adapter-ts': 'strike-gcs-adapter-typed-ts',
+    'azure-blob-adapter-ts': 'strike-azure-blob-adapter-typed-ts',
+    'minio-adapter-ts': 'strike-minio-adapter-typed-ts',
+    // Monitoring/APM middleware
+    'sentry-middleware-ts': 'strike-sentry-middleware-typed-ts',
+    'posthog-middleware-ts': 'strike-posthog-middleware-typed-ts',
+    'datadog-middleware-ts': 'strike-datadog-middleware-typed-ts',
+    'newrelic-middleware-ts': 'strike-newrelic-middleware-typed-ts',
+    // Search clients
+    'es-client-ts': 'strike-elasticsearch-client-typed-ts',
+    'opensearch-client-ts': 'strike-opensearch-client-typed-ts',
+    // Caching/queue
+    'redis-service-ts': 'strike-redis-service-typed-ts'
   };
 
   const directTokens: string[] = [];
