@@ -1,0 +1,37 @@
+{
+  "id": "strike-nuxt-adapter-testing-ts",
+  "name": "nuxt adapter testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "nuxt",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nuxt adapter in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nuxt-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-nuxt-adapter-testing-ts.ts.txt",
+      "template": "# Spike: nuxt adapter (ts)\n// Auto-generated spike stub for nuxt (adapter)\nexport function demo() {\n  console.log('use nuxt - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nuxt-adapter-testing-ts.md",
+      "template": "# nuxt adapter (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-nuxt-adapter-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

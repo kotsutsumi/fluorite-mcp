@@ -1,0 +1,37 @@
+{
+  "id": "strike-solid-minimal-testing-ts",
+  "name": "solid minimal testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "solid",
+    "ts"
+  ],
+  "tags": [
+    "minimal",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for solid minimal in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "solid-minimal-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-solid-minimal-testing-ts.ts.txt",
+      "template": "# Spike: solid minimal (ts)\n// Auto-generated spike stub for solid (minimal)\nexport function demo() {\n  console.log('use solid - minimal (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-solid-minimal-testing-ts.md",
+      "template": "# solid minimal (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-solid-minimal-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

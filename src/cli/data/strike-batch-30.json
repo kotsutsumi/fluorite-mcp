@@ -1,0 +1,37 @@
+{
+  "items": [
+    { "id": "rollbar-error-report-minimal", "stack": ["rollbar"], "tags": ["monitoring"], "files": [ { "path": "src/monitor/rollbar.ts", "template": "export const rollbar = {};\n" } ] },
+    { "id": "splunk-hec-client-minimal", "stack": ["splunk"], "tags": ["logging"], "files": [ { "path": "src/logging/splunk.ts", "template": "export const hec = {};\n" } ] },
+    { "id": "sumologic-http-collector-minimal", "stack": ["sumologic"], "tags": ["logging"], "files": [ { "path": "src/logging/sumologic.ts", "template": "export const sumo = {};\n" } ] },
+    { "id": "datadog-monitor-create-minimal", "stack": ["datadog"], "tags": ["monitoring"], "files": [ { "path": "src/monitor/datadog-monitor.ts", "template": "export const monitor = {};\n" } ] },
+    { "id": "newrelic-apm-logforward-minimal", "stack": ["newrelic"], "tags": ["monitoring"], "files": [ { "path": "src/monitor/newrelic-log.ts", "template": "export const nr = {};\n" } ] },
+
+    { "id": "aws-cognito-userpool-client-minimal", "stack": ["aws", "cognito"], "tags": ["auth"], "files": [ { "path": "src/auth/cognito.ts", "template": "export const cognito = {};\n" } ] },
+    { "id": "ory-keto-check-permission-minimal", "stack": ["ory"], "tags": ["authz"], "files": [ { "path": "src/security/ory-keto.ts", "template": "export const keto = {};\n" } ] },
+
+    { "id": "workbox-service-worker-precaching-minimal", "stack": ["workbox"], "tags": ["pwa"], "files": [ { "path": "public/sw-workbox.js", "template": "self.__WB_MANIFEST = [];\n" } ] },
+    { "id": "knative-service-stub-minimal", "stack": ["knative"], "tags": ["kubernetes"], "files": [ { "path": "k8s/knative-service.yaml", "template": "apiVersion: serving.knative.dev/v1\nkind: Service\n" } ] },
+    { "id": "bitbucket-pipelines-config-minimal", "stack": ["bitbucket"], "tags": ["cicd"], "files": [ { "path": "bitbucket-pipelines.yml", "template": "pipelines: {}\n" } ] },
+
+    { "id": "apache-beam-pipeline-stub-minimal", "stack": ["beam"], "tags": ["data"], "files": [ { "path": "src/data/beam.ts", "template": "export const beam = {};\n" } ] },
+    { "id": "faunadb-client-stub-minimal", "stack": ["faunadb"], "tags": ["db"], "files": [ { "path": "src/db/faunadb.ts", "template": "export const fauna = {};\n" } ] },
+    { "id": "vultr-object-storage-upload-minimal", "stack": ["vultr"], "tags": ["storage"], "files": [ { "path": "src/storage/vultr.ts", "template": "export const vultr = {};\n" } ] },
+
+    { "id": "playwright-generate-pdf-minimal", "stack": ["playwright"], "tags": ["pdf", "testing"], "files": [ { "path": "src/pdf/playwright.ts", "template": "export async function pdf(){ return new Uint8Array(); }\n" } ] },
+    { "id": "github-graphql-v4-client-minimal", "stack": ["github"], "tags": ["api"], "files": [ { "path": "src/api/github-graphql.ts", "template": "export const gh = {};\n" } ] },
+
+    { "id": "swr-infinite-scrolling-minimal", "stack": ["swr"], "tags": ["frontend"], "files": [ { "path": "src/swr/infinite.ts", "template": "export const useInfinite = ()=> null;\n" } ] },
+    { "id": "tanstack-query-optimistic-updates-minimal", "stack": ["tanstack-query"], "tags": ["frontend"], "files": [ { "path": "src/query/optimistic.ts", "template": "export const optimistic = {};\n" } ] },
+    { "id": "zod-date-time-coercion-minimal", "stack": ["zod"], "tags": ["validation"], "files": [ { "path": "src/validation/zod-datetime.ts", "template": "export const coerce = {};\n" } ] },
+
+    { "id": "trpc-react-query-ssr-hydration-minimal", "stack": ["trpc", "nextjs"], "tags": ["api"], "files": [ { "path": "src/trpc/ssr-hydrate.ts", "template": "export const hydrate = {};\n" } ] },
+    { "id": "apollo-link-context-auth-minimal", "stack": ["apollo"], "tags": ["graphql"], "files": [ { "path": "src/apollo/link-context.ts", "template": "export const ctx = {};\n" } ] },
+    { "id": "urql-devtools-exchange-minimal", "stack": ["urql"], "tags": ["graphql"], "files": [ { "path": "src/graphql/urql-devtools.ts", "template": "export const devtools = {};\n" } ] },
+
+    { "id": "cloudflare-queues-retry-policy-minimal", "stack": ["cloudflare-workers"], "tags": ["edge"], "files": [ { "path": "src/cloudflare/queues-retry.ts", "template": "export const retry = {};\n" } ] },
+    { "id": "fastly-dictionary-update-cli-minimal", "stack": ["fastly"], "tags": ["edge"], "files": [ { "path": "fastly/dict-update.sh", "template": "#!/bin/sh\n" } ] },
+
+    { "id": "kinesis-firehose-delivery-stream-minimal", "stack": ["aws"], "tags": ["stream"], "files": [ { "path": "infra/kinesis-firehose.json", "template": "{ }\n" } ] },
+    { "id": "aws-glue-crawler-stub-minimal", "stack": ["aws"], "tags": ["data"], "files": [ { "path": "infra/glue-crawler.json", "template": "{ }\n" } ] }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "id": "strike-astro-service-typed-go",
+  "name": "astro service typed go",
+  "version": "0.1.0",
+  "stack": [
+    "astro",
+    "go"
+  ],
+  "tags": [
+    "service",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for astro service in go (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "astro-service-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-astro-service-typed-go.go.txt",
+      "template": "# Spike: astro service (go)\n// Auto-generated spike stub for astro (service)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use astro - service (typed)\") }\n"
+    },
+    {
+      "path": "spikes/strike-astro-service-typed-go.md",
+      "template": "# astro service (typed, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

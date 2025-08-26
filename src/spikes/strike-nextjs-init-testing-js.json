@@ -1,0 +1,41 @@
+{
+  "id": "strike-nextjs-init-testing-js",
+  "name": "nextjs init testing js",
+  "version": "0.1.0",
+  "stack": [
+    "nextjs",
+    "js"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nextjs init in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nextjs-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "middleware.ts",
+      "template": "import { NextResponse } from 'next/server';\nexport function middleware(){ return NextResponse.next(); }\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-init-testing-js.js.txt",
+      "template": "# Spike: nextjs init (js)\n// Auto-generated spike stub for nextjs (init)\nmodule.exports = function demo(){\n  console.log('use nextjs - init (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-init-testing-js.md",
+      "template": "# nextjs init (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-init-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

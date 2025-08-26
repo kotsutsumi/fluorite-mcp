@@ -1,0 +1,33 @@
+{
+  "id": "strike-astro-worker-secure-rs",
+  "name": "astro worker secure rs",
+  "version": "0.1.0",
+  "stack": [
+    "astro",
+    "rs"
+  ],
+  "tags": [
+    "worker",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for astro worker in rs (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "astro-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-astro-worker-secure-rs.rs.txt",
+      "template": "# Spike: astro worker (rs)\n// Auto-generated spike stub for astro (worker)\npub fn demo(){ println!(\"use astro - worker (secure)\"); }\n"
+    },
+    {
+      "path": "spikes/strike-astro-worker-secure-rs.md",
+      "template": "# astro worker (secure, rs)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

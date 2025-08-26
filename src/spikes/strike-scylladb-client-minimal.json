@@ -1,0 +1,17 @@
+{
+  "id": "strike-scylladb-client-minimal",
+  "name": "strike-scylladb-client-minimal",
+  "stack": [
+    "scylladb"
+  ],
+  "tags": [
+    "db"
+  ],
+  "files": [
+    {
+      "path": "src/db/scylla.ts",
+      "template": "export const scylla = {};\n"
+    }
+  ],
+  "patches": []
+}

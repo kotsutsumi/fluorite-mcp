@@ -1,0 +1,37 @@
+{
+  "id": "strike-solid-plugin-testing-ts",
+  "name": "solid plugin testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "solid",
+    "ts"
+  ],
+  "tags": [
+    "plugin",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for solid plugin in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "solid-plugin-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-solid-plugin-testing-ts.ts.txt",
+      "template": "# Spike: solid plugin (ts)\n// Auto-generated spike stub for solid (plugin)\nexport function demo() {\n  console.log('use solid - plugin (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-solid-plugin-testing-ts.md",
+      "template": "# solid plugin (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-solid-plugin-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-rollbar-error-report-minimal",
+  "name": "strike-rollbar-error-report-minimal",
+  "stack": [
+    "rollbar"
+  ],
+  "tags": [
+    "monitoring"
+  ],
+  "files": [
+    {
+      "path": "src/monitor/rollbar.ts",
+      "template": "export const rollbar = {};\n"
+    }
+  ],
+  "patches": []
+}

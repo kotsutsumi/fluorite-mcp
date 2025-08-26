@@ -1,0 +1,33 @@
+{
+  "id": "strike-vue-worker-testing-go",
+  "name": "vue worker testing go",
+  "version": "0.1.0",
+  "stack": [
+    "vue",
+    "go"
+  ],
+  "tags": [
+    "worker",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for vue worker in go (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "vue-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-vue-worker-testing-go.go.txt",
+      "template": "# Spike: vue worker (go)\n// Auto-generated spike stub for vue (worker)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use vue - worker (testing)\") }\n"
+    },
+    {
+      "path": "spikes/strike-vue-worker-testing-go.md",
+      "template": "# vue worker (testing, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

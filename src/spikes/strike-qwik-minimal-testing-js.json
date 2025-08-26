@@ -1,0 +1,37 @@
+{
+  "id": "strike-qwik-minimal-testing-js",
+  "name": "qwik minimal testing js",
+  "version": "0.1.0",
+  "stack": [
+    "qwik",
+    "js"
+  ],
+  "tags": [
+    "minimal",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for qwik minimal in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "qwik-minimal-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-qwik-minimal-testing-js.js.txt",
+      "template": "# Spike: qwik minimal (js)\n// Auto-generated spike stub for qwik (minimal)\nmodule.exports = function demo(){\n  console.log('use qwik - minimal (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-qwik-minimal-testing-js.md",
+      "template": "# qwik minimal (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-qwik-minimal-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-ga4-measurement-protocol-event-minimal",
+  "name": "strike-ga4-measurement-protocol-event-minimal",
+  "stack": [
+    "ga4"
+  ],
+  "tags": [
+    "analytics"
+  ],
+  "files": [
+    {
+      "path": "src/analytics/ga4.ts",
+      "template": "export async function event(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

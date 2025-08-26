@@ -1,0 +1,17 @@
+{
+  "id": "strike-flyway-migration-config-minimal",
+  "name": "strike-flyway-migration-config-minimal",
+  "stack": [
+    "flyway"
+  ],
+  "tags": [
+    "db"
+  ],
+  "files": [
+    {
+      "path": "flyway.conf",
+      "template": "flyway.url=jdbc:postgresql://localhost/db\n"
+    }
+  ],
+  "patches": []
+}

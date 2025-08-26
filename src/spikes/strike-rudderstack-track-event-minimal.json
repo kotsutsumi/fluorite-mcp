@@ -1,0 +1,17 @@
+{
+  "id": "strike-rudderstack-track-event-minimal",
+  "name": "strike-rudderstack-track-event-minimal",
+  "stack": [
+    "rudderstack"
+  ],
+  "tags": [
+    "analytics"
+  ],
+  "files": [
+    {
+      "path": "src/analytics/rudder.ts",
+      "template": "export async function track(){ return true }\n"
+    }
+  ],
+  "patches": []
+}

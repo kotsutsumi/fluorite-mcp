@@ -1,0 +1,37 @@
+{
+  "id": "strike-solid-middleware-testing-ts",
+  "name": "solid middleware testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "solid",
+    "ts"
+  ],
+  "tags": [
+    "middleware",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for solid middleware in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "solid-middleware-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-solid-middleware-testing-ts.ts.txt",
+      "template": "# Spike: solid middleware (ts)\n// Auto-generated spike stub for solid (middleware)\nexport function demo() {\n  console.log('use solid - middleware (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-solid-middleware-testing-ts.md",
+      "template": "# solid middleware (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-solid-middleware-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

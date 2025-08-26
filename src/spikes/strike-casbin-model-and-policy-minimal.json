@@ -1,0 +1,21 @@
+{
+  "id": "strike-casbin-model-and-policy-minimal",
+  "name": "strike-casbin-model-and-policy-minimal",
+  "stack": [
+    "casbin"
+  ],
+  "tags": [
+    "authz"
+  ],
+  "files": [
+    {
+      "path": "infra/casbin/model.conf",
+      "template": "[request_definition]\nr = sub, obj, act\n"
+    },
+    {
+      "path": "infra/casbin/policy.csv",
+      "template": "p, alice, data1, read\n"
+    }
+  ],
+  "patches": []
+}

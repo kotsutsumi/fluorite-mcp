@@ -1,0 +1,33 @@
+{
+  "id": "strike-express-crud-typed-go",
+  "name": "express crud typed go",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "go"
+  ],
+  "tags": [
+    "crud",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express crud in go (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-crud-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-express-crud-typed-go.go.txt",
+      "template": "# Spike: express crud (go)\n// Auto-generated spike stub for express (crud)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use express - crud (typed)\") }\n"
+    },
+    {
+      "path": "spikes/strike-express-crud-typed-go.md",
+      "template": "# express crud (typed, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

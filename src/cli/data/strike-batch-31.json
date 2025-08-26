@@ -1,0 +1,40 @@
+{
+  "items": [
+    { "id": "nextjs-route-robust-error-boundary-advanced", "stack": ["nextjs"], "tags": ["api", "secure"], "files": [ { "path": "src/next/error-boundary.ts", "template": "export const toHttp = (e:unknown)=> Response.json({ ok:false, error:String(e) }, { status:500 });\n" } ] },
+    { "id": "nextjs-route-signed-download-url-secure", "stack": ["nextjs", "s3"], "tags": ["download", "security"], "files": [ { "path": "app/api/download/route.ts", "template": "export async function GET(){ return Response.json({ url:'' }) }\n" } ] },
+    { "id": "nextjs-middleware-bot-protection-minimal", "stack": ["nextjs"], "tags": ["security"], "files": [ { "path": "src/middleware/bot.ts", "template": "export const protect = {};\n" } ] },
+
+    { "id": "apollo-client-error-boundary-link-minimal", "stack": ["apollo"], "tags": ["graphql"], "files": [ { "path": "src/apollo/error-boundary-link.ts", "template": "export const errorBoundary = {};\n" } ] },
+    { "id": "relay-suspense-ssr-hydration-minimal", "stack": ["relay"], "tags": ["graphql"], "files": [ { "path": "src/graphql/relay-ssr.ts", "template": "export const hydrate = {};\n" } ] },
+    { "id": "urql-cache-updates-optimistic-minimal", "stack": ["urql"], "tags": ["graphql"], "files": [ { "path": "src/graphql/urql-optimistic.ts", "template": "export const optimistic = {};\n" } ] },
+
+    { "id": "openai-tools-parallel-calls-advanced", "stack": ["openai"], "tags": ["ai"], "files": [ { "path": "src/ai/openai-parallel-tools.ts", "template": "export const parallel = [];\n" } ] },
+    { "id": "langchain-multi-retriever-router-advanced", "stack": ["langchain"], "tags": ["ai"], "files": [ { "path": "src/ai/router-multiretriever.ts", "template": "export const route = {};\n" } ] },
+    { "id": "llamaindex-query-transformers-stub-minimal", "stack": ["llamaindex"], "tags": ["ai"], "files": [ { "path": "src/ai/query-transformers.ts", "template": "export const transformers = [];\n" } ] },
+
+    { "id": "pinecone-filtered-delete-batch-advanced", "stack": ["pinecone"], "tags": ["vector"], "files": [ { "path": "src/vectors/pinecone-delete-batch.ts", "template": "export const del = {};\n" } ] },
+    { "id": "redis-hnsw-index-search-minimal", "stack": ["redis"], "tags": ["vector"], "files": [ { "path": "src/vectors/redis-hnsw.ts", "template": "export const hnsw = {};\n" } ] },
+    { "id": "faiss-index-flat-l2-minimal", "stack": ["faiss"], "tags": ["vector"], "files": [ { "path": "src/vectors/faiss-flat.ts", "template": "export const flat = {};\n" } ] },
+
+    { "id": "cloudflare-workers-timed-cache-minimal", "stack": ["cloudflare-workers"], "tags": ["edge", "cache"], "files": [ { "path": "src/cloudflare/timed-cache.ts", "template": "export const cache = {};\n" } ] },
+    { "id": "fastly-compute-cache-key-normalizer-minimal", "stack": ["fastly"], "tags": ["edge", "cache"], "files": [ { "path": "fastly/cache-key.js", "template": "export function key(u){ return u }\n" } ] },
+
+    { "id": "datadog-ci-coverage-upload-minimal", "stack": ["datadog"], "tags": ["ci"], "files": [ { "path": "src/ci/datadog-coverage.ts", "template": "export const upload = {};\n" } ] },
+    { "id": "github-codeowners-strategy-minimal", "stack": ["github"], "tags": ["repo"], "files": [ { "path": ".github/CODEOWNERS", "template": "* @owners\n" } ] },
+    { "id": "bitbucket-deployments-environments-minimal", "stack": ["bitbucket"], "tags": ["cicd"], "files": [ { "path": "bitbucket-deployments.yml", "template": "deployments: {}\n" } ] },
+
+    { "id": "playwright-visual-snapshots-advanced", "stack": ["playwright"], "tags": ["testing"], "files": [ { "path": "src/test/visual-adv.ts", "template": "export const visual = {};\n" } ] },
+    { "id": "vitest-snapshot-formatters-minimal", "stack": ["vitest"], "tags": ["testing"], "files": [ { "path": "src/test/formatters.ts", "template": "export const fmt = {};\n" } ] },
+    { "id": "cypress-axe-config-minimal", "stack": ["cypress"], "tags": ["testing", "a11y"], "files": [ { "path": "cypress/axe.conf.ts", "template": "export {};\n" } ] },
+
+    { "id": "grafana-tempo-traceql-examples-minimal", "stack": ["tempo"], "tags": ["apm"], "files": [ { "path": "src/otel/traceql.ts", "template": "export const traceql = [];\n" } ] },
+    { "id": "prometheus-blackbox-exporter-probe-minimal", "stack": ["prometheus"], "tags": ["monitoring"], "files": [ { "path": "monitoring/blackbox.yml", "template": "modules: {}\n" } ] },
+    { "id": "sentry-release-deploy-track-minimal", "stack": ["sentry"], "tags": ["monitoring"], "files": [ { "path": "src/sentry/release.ts", "template": "export const release = {};\n" } ] },
+
+    { "id": "prisma-seed-rbac-users-advanced", "stack": ["prisma"], "tags": ["db", "seed"], "files": [ { "path": "prisma/seed.rbac.ts", "template": "export async function seed(){ return true }\n" } ] },
+    { "id": "drizzle-sharding-config-minimal", "stack": ["drizzle"], "tags": ["db"], "files": [ { "path": "src/db/drizzle-shard.ts", "template": "export const shard = {};\n" } ] },
+
+    { "id": "turbo-remote-cache-minio-minimal", "stack": ["turborepo"], "tags": ["monorepo"], "files": [ { "path": "turbo.remote.minio.json", "template": "{ }\n" } ] },
+    { "id": "nx-custom-linter-rule-stub-minimal", "stack": ["nx"], "tags": ["monorepo"], "files": [ { "path": "tools/eslint-rules/custom.ts", "template": "export default {};\n" } ] }
+  ]
+}

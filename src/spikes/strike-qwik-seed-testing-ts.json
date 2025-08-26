@@ -1,0 +1,37 @@
+{
+  "id": "strike-qwik-seed-testing-ts",
+  "name": "qwik seed testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "qwik",
+    "ts"
+  ],
+  "tags": [
+    "seed",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for qwik seed in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "qwik-seed-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-qwik-seed-testing-ts.ts.txt",
+      "template": "# Spike: qwik seed (ts)\n// Auto-generated spike stub for qwik (seed)\nexport function demo() {\n  console.log('use qwik - seed (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-qwik-seed-testing-ts.md",
+      "template": "# qwik seed (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-qwik-seed-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

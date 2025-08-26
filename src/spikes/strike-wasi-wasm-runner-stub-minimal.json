@@ -1,0 +1,17 @@
+{
+  "id": "strike-wasi-wasm-runner-stub-minimal",
+  "name": "strike-wasi-wasm-runner-stub-minimal",
+  "stack": [
+    "wasi"
+  ],
+  "tags": [
+    "runtime"
+  ],
+  "files": [
+    {
+      "path": "src/runtime/wasi.ts",
+      "template": "export const wasi = {};\n"
+    }
+  ],
+  "patches": []
+}

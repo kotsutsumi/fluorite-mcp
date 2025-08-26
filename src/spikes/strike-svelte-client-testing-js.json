@@ -1,0 +1,37 @@
+{
+  "id": "strike-svelte-client-testing-js",
+  "name": "svelte client testing js",
+  "version": "0.1.0",
+  "stack": [
+    "svelte",
+    "js"
+  ],
+  "tags": [
+    "client",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for svelte client in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "svelte-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-svelte-client-testing-js.js.txt",
+      "template": "# Spike: svelte client (js)\n// Auto-generated spike stub for svelte (client)\nmodule.exports = function demo(){\n  console.log('use svelte - client (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-svelte-client-testing-js.md",
+      "template": "# svelte client (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-svelte-client-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

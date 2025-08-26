@@ -1,0 +1,17 @@
+{
+  "id": "strike-newrelic-apm-logforward-minimal",
+  "name": "strike-newrelic-apm-logforward-minimal",
+  "stack": [
+    "newrelic"
+  ],
+  "tags": [
+    "monitoring"
+  ],
+  "files": [
+    {
+      "path": "src/monitor/newrelic-log.ts",
+      "template": "export const nr = {};\n"
+    }
+  ],
+  "patches": []
+}

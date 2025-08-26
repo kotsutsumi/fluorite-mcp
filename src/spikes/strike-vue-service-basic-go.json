@@ -1,0 +1,33 @@
+{
+  "id": "strike-vue-service-basic-go",
+  "name": "vue service basic go",
+  "version": "0.1.0",
+  "stack": [
+    "vue",
+    "go"
+  ],
+  "tags": [
+    "service",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for vue service in go (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "vue-service-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-vue-service-basic-go.go.txt",
+      "template": "# Spike: vue service (go)\n// Auto-generated spike stub for vue (service)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use vue - service (basic)\") }\n"
+    },
+    {
+      "path": "spikes/strike-vue-service-basic-go.md",
+      "template": "# vue service (basic, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

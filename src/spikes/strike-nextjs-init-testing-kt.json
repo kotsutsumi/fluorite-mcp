@@ -1,0 +1,37 @@
+{
+  "id": "strike-nextjs-init-testing-kt",
+  "name": "nextjs init testing kt",
+  "version": "0.1.0",
+  "stack": [
+    "nextjs",
+    "kt"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nextjs init in kt (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nextjs-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "middleware.ts",
+      "template": "import { NextResponse } from 'next/server';\nexport function middleware(){ return NextResponse.next(); }\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-init-testing-kt.kt.txt",
+      "template": "# Spike: nextjs init (kt)\n// Auto-generated spike stub for nextjs (init)\nfun demo(){ println(\"use nextjs - init (testing)\") }\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-init-testing-kt.md",
+      "template": "# nextjs init (testing, kt)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

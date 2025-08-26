@@ -1,0 +1,33 @@
+{
+  "id": "strike-vue-worker-basic-go",
+  "name": "vue worker basic go",
+  "version": "0.1.0",
+  "stack": [
+    "vue",
+    "go"
+  ],
+  "tags": [
+    "worker",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for vue worker in go (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "vue-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-vue-worker-basic-go.go.txt",
+      "template": "# Spike: vue worker (go)\n// Auto-generated spike stub for vue (worker)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use vue - worker (basic)\") }\n"
+    },
+    {
+      "path": "spikes/strike-vue-worker-basic-go.md",
+      "template": "# vue worker (basic, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

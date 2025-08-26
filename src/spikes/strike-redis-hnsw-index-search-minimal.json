@@ -1,0 +1,17 @@
+{
+  "id": "strike-redis-hnsw-index-search-minimal",
+  "name": "strike-redis-hnsw-index-search-minimal",
+  "stack": [
+    "redis"
+  ],
+  "tags": [
+    "vector"
+  ],
+  "files": [
+    {
+      "path": "src/vectors/redis-hnsw.ts",
+      "template": "export const hnsw = {};\n"
+    }
+  ],
+  "patches": []
+}

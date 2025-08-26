@@ -268,7 +268,7 @@ description: A comprehensive UI component library with TypeScript support
 category: ui-components
 subcategory: component-libraries
 homepage: # ライブラリのホームページURL
-repository: # GitリポジトリURL
+repository: [local repository]
 language: TypeScript
 
 # Classification
@@ -433,7 +433,7 @@ tools:
     name: My Framework
     description: Core application framework
     homepage: # フレームワークのホームページURL
-    repository: # GitリポジトリURL
+    repository: [local repository]
     language: TypeScript
     features:
       - Server-side rendering
@@ -831,7 +831,7 @@ git push origin main
 # install-templates.sh
 
 TEMPLATE_DIR="$HOME/.fluorite/custom-templates"
-REPO_URL="# テンプレートリポジトリURL"
+REPO_URL="[local repository]"
 
 # Create directory
 mkdir -p "$TEMPLATE_DIR"

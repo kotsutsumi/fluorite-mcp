@@ -1,0 +1,33 @@
+{
+  "id": "strike-svelte-webhook-basic-go",
+  "name": "svelte webhook basic go",
+  "version": "0.1.0",
+  "stack": [
+    "svelte",
+    "go"
+  ],
+  "tags": [
+    "webhook",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for svelte webhook in go (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "svelte-webhook-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-svelte-webhook-basic-go.go.txt",
+      "template": "# Spike: svelte webhook (go)\n// Auto-generated spike stub for svelte (webhook)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use svelte - webhook (basic)\") }\n"
+    },
+    {
+      "path": "spikes/strike-svelte-webhook-basic-go.md",
+      "template": "# svelte webhook (basic, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

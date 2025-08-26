@@ -1,0 +1,18 @@
+{
+  "id": "strike-aws-dynamodb-streams-consumer-minimal",
+  "name": "strike-aws-dynamodb-streams-consumer-minimal",
+  "stack": [
+    "aws",
+    "dynamodb"
+  ],
+  "tags": [
+    "stream"
+  ],
+  "files": [
+    {
+      "path": "src/db/dynamodb-streams.ts",
+      "template": "export const consume = {};\n"
+    }
+  ],
+  "patches": []
+}

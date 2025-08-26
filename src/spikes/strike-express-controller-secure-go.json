@@ -1,0 +1,33 @@
+{
+  "id": "strike-express-controller-secure-go",
+  "name": "express controller secure go",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "go"
+  ],
+  "tags": [
+    "controller",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express controller in go (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-controller-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-express-controller-secure-go.go.txt",
+      "template": "# Spike: express controller (go)\n// Auto-generated spike stub for express (controller)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use express - controller (secure)\") }\n"
+    },
+    {
+      "path": "spikes/strike-express-controller-secure-go.md",
+      "template": "# express controller (secure, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

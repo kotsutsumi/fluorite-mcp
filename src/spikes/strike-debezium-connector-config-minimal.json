@@ -1,0 +1,17 @@
+{
+  "id": "strike-debezium-connector-config-minimal",
+  "name": "strike-debezium-connector-config-minimal",
+  "stack": [
+    "debezium"
+  ],
+  "tags": [
+    "cdc"
+  ],
+  "files": [
+    {
+      "path": "infra/debezium/connector.json",
+      "template": "{ }\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,33 @@
+{
+  "id": "strike-qwik-service-typed-go",
+  "name": "qwik service typed go",
+  "version": "0.1.0",
+  "stack": [
+    "qwik",
+    "go"
+  ],
+  "tags": [
+    "service",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for qwik service in go (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "qwik-service-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-qwik-service-typed-go.go.txt",
+      "template": "# Spike: qwik service (go)\n// Auto-generated spike stub for qwik (service)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use qwik - service (typed)\") }\n"
+    },
+    {
+      "path": "spikes/strike-qwik-service-typed-go.md",
+      "template": "# qwik service (typed, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

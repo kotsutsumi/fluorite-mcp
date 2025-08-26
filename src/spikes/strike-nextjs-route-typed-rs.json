@@ -1,0 +1,41 @@
+{
+  "id": "strike-nextjs-route-typed-rs",
+  "name": "nextjs route typed rs",
+  "version": "0.1.0",
+  "stack": [
+    "nextjs",
+    "rs"
+  ],
+  "tags": [
+    "route",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nextjs route in rs (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nextjs-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "app/api/health/route.ts",
+      "template": "import { NextResponse } from 'next/server';\nexport async function GET(){ return NextResponse.json({ ok: true }); }\n"
+    },
+    {
+      "path": "app/api/echo/route.ts",
+      "template": "import { NextResponse } from 'next/server';\nimport { z } from 'zod';\nconst Body = z.object({ message: z.string().min(1) });\nexport async function POST(req: Request){ const json = await req.json(); const parsed = Body.safeParse(json); if(!parsed.success) return NextResponse.json({ error: parsed.error.format() }, { status: 400 }); return NextResponse.json({ echo: parsed.data.message }); }\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-route-typed-rs.rs.txt",
+      "template": "# Spike: nextjs route (rs)\n// Auto-generated spike stub for nextjs (route)\npub fn demo(){ println!(\"use nextjs - route (typed)\"); }\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-route-typed-rs.md",
+      "template": "# nextjs route (typed, rs)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

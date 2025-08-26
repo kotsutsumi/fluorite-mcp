@@ -1,0 +1,18 @@
+{
+  "id": "strike-aws-cognito-userpool-client-minimal",
+  "name": "strike-aws-cognito-userpool-client-minimal",
+  "stack": [
+    "aws",
+    "cognito"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "src/auth/cognito.ts",
+      "template": "export const cognito = {};\n"
+    }
+  ],
+  "patches": []
+}

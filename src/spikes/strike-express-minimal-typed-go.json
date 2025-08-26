@@ -1,0 +1,33 @@
+{
+  "id": "strike-express-minimal-typed-go",
+  "name": "express minimal typed go",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "go"
+  ],
+  "tags": [
+    "minimal",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express minimal in go (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-minimal-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-express-minimal-typed-go.go.txt",
+      "template": "# Spike: express minimal (go)\n// Auto-generated spike stub for express (minimal)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use express - minimal (typed)\") }\n"
+    },
+    {
+      "path": "spikes/strike-express-minimal-typed-go.md",
+      "template": "# express minimal (typed, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

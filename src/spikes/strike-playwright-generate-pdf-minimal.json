@@ -1,0 +1,18 @@
+{
+  "id": "strike-playwright-generate-pdf-minimal",
+  "name": "strike-playwright-generate-pdf-minimal",
+  "stack": [
+    "playwright"
+  ],
+  "tags": [
+    "pdf",
+    "testing"
+  ],
+  "files": [
+    {
+      "path": "src/pdf/playwright.ts",
+      "template": "export async function pdf(){ return new Uint8Array(); }\n"
+    }
+  ],
+  "patches": []
+}

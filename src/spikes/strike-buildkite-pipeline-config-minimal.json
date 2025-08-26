@@ -1,0 +1,17 @@
+{
+  "id": "strike-buildkite-pipeline-config-minimal",
+  "name": "strike-buildkite-pipeline-config-minimal",
+  "stack": [
+    "buildkite"
+  ],
+  "tags": [
+    "cicd"
+  ],
+  "files": [
+    {
+      "path": ".buildkite/pipeline.yml",
+      "template": "steps: []\n"
+    }
+  ],
+  "patches": []
+}

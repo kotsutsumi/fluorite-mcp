@@ -290,11 +290,8 @@ chmod -R 755 ~/.fluorite/
 
 ### コミュニティサポート
 
-1. **GitHub Discussions**: 一般的な質問と議論
-   - URL: https://github.com/kotsutsumi/fluorite-mcp/discussions
-
-2. **GitHub Issues**: バグ報告と機能リクエスト
-   - URL: https://github.com/kotsutsumi/fluorite-mcp/issues
+1. **ドキュメンテーション**: 包括的なガイド
+2. **コミュニティサポート**: 専用チャネルで質問
 
 3. **ドキュメント**: 包括的なガイド
    - README.mdおよびdocs/フォルダを参照
@@ -331,7 +328,7 @@ chmod -R 755 ~/.fluorite/
 ### エスカレーション手順
 
 1. **セルフサービス**: このガイドとドキュメント確認
-2. **コミュニティ**: GitHub Discussionsで質問
+2. **コミュニティ**: サポートチャネルで質問
 3. **バグ報告**: GitHub Issuesで報告
 4. **緊急時**: メンテナと直接連絡
 

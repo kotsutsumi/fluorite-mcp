@@ -463,4 +463,4 @@ AWS ECS、RDS、CloudFront、Route53でスケーラブルな本番環境を構�
 
 ---
 
-**質問やサポートが必要ですか？** [GitHub Discussions](https://github.com/kotsutsumi/fluorite-mcp/discussions) でコミュニティと交流しましょう！
+**質問やサポートが必要ですか？** ドキュメンテーションやサポートチャネルをご利用ください！

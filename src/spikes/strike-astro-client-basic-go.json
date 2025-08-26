@@ -1,0 +1,33 @@
+{
+  "id": "strike-astro-client-basic-go",
+  "name": "astro client basic go",
+  "version": "0.1.0",
+  "stack": [
+    "astro",
+    "go"
+  ],
+  "tags": [
+    "client",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for astro client in go (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "astro-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-astro-client-basic-go.go.txt",
+      "template": "# Spike: astro client (go)\n// Auto-generated spike stub for astro (client)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use astro - client (basic)\") }\n"
+    },
+    {
+      "path": "spikes/strike-astro-client-basic-go.md",
+      "template": "# astro client (basic, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

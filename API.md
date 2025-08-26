@@ -414,8 +414,8 @@ subcategory: subcategory       # オプション
 tags:                          # オプション
   - tag1
   - tag2
-homepage: # ライブラリのホームページURL（オプション）
-repository: # GitリポジトリURL（オプション）
+homepage: # Library homepage (optional)
+repository: # Git repository (optional)
 language: TypeScript           # オプション
 
 # シンプルなライブラリ用
@@ -432,8 +432,8 @@ tools:                        # エコシステムに必須
   tool_name:
     name: Tool Name
     description: Tool description
-    homepage: # ツールのホームページURL
-    repository: # ツールのリポジトリURL
+    homepage: # Tool homepage
+    repository: # Tool repository
     language: TypeScript
     features:
       - Feature 1
@@ -1172,10 +1172,8 @@ const result = await client.callTool('static-analysis', {
 - **[Command Reference](./docs/commands.md)** - 完全なコマンドドキュメント
 - **[Developer Guide](./docs/developer.md)** - 高度な開発と貢献
 
-### コミュニティサポート
+### ドキュメントサポート
 
-- **GitHub Issues** - バグレポートと機能リクエスト
-- **GitHub Discussions** - コミュニティヘルプとディスカッション
 - **Official Documentation** - 完全なドキュメントサイト
 
 ### 商用サポート
@@ -1185,8 +1183,6 @@ const result = await client.callTool('static-analysis', {
 - カスタム仕様開発
 - 優先サポートとSLA
 - トレーニングとオンボーディング
-
-お問い合わせ: GitHub Discussions でのコマーシャルお問い合わせ
 
 ---
 

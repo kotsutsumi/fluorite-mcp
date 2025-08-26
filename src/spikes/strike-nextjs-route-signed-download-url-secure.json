@@ -1,0 +1,19 @@
+{
+  "id": "strike-nextjs-route-signed-download-url-secure",
+  "name": "strike-nextjs-route-signed-download-url-secure",
+  "stack": [
+    "nextjs",
+    "s3"
+  ],
+  "tags": [
+    "download",
+    "security"
+  ],
+  "files": [
+    {
+      "path": "app/api/download/route.ts",
+      "template": "export async function GET(){ return Response.json({ url:'' }) }\n"
+    }
+  ],
+  "patches": []
+}

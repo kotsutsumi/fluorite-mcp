@@ -1,0 +1,37 @@
+{
+  "id": "strike-astro-component-testing-js",
+  "name": "astro component testing js",
+  "version": "0.1.0",
+  "stack": [
+    "astro",
+    "js"
+  ],
+  "tags": [
+    "component",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for astro component in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "astro-component-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-astro-component-testing-js.js.txt",
+      "template": "# Spike: astro component (js)\n// Auto-generated spike stub for astro (component)\nmodule.exports = function demo(){\n  console.log('use astro - component (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-astro-component-testing-js.md",
+      "template": "# astro component (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-astro-component-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

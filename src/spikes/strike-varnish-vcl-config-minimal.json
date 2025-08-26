@@ -1,0 +1,17 @@
+{
+  "id": "strike-varnish-vcl-config-minimal",
+  "name": "strike-varnish-vcl-config-minimal",
+  "stack": [
+    "varnish"
+  ],
+  "tags": [
+    "cache"
+  ],
+  "files": [
+    {
+      "path": "infra/varnish/default.vcl",
+      "template": "vcl 4.0;\n"
+    }
+  ],
+  "patches": []
+}

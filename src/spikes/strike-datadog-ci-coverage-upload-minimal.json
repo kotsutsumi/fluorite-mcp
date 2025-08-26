@@ -1,0 +1,17 @@
+{
+  "id": "strike-datadog-ci-coverage-upload-minimal",
+  "name": "strike-datadog-ci-coverage-upload-minimal",
+  "stack": [
+    "datadog"
+  ],
+  "tags": [
+    "ci"
+  ],
+  "files": [
+    {
+      "path": "src/ci/datadog-coverage.ts",
+      "template": "export const upload = {};\n"
+    }
+  ],
+  "patches": []
+}

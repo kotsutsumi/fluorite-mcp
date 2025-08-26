@@ -1,0 +1,33 @@
+{
+  "id": "strike-solid-plugin-testing-go",
+  "name": "solid plugin testing go",
+  "version": "0.1.0",
+  "stack": [
+    "solid",
+    "go"
+  ],
+  "tags": [
+    "plugin",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for solid plugin in go (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "solid-plugin-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-solid-plugin-testing-go.go.txt",
+      "template": "# Spike: solid plugin (go)\n// Auto-generated spike stub for solid (plugin)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use solid - plugin (testing)\") }\n"
+    },
+    {
+      "path": "spikes/strike-solid-plugin-testing-go.md",
+      "template": "# solid plugin (testing, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

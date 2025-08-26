@@ -1,0 +1,33 @@
+{
+  "id": "strike-express-init-secure-go",
+  "name": "express init secure go",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "go"
+  ],
+  "tags": [
+    "init",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express init in go (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-express-init-secure-go.go.txt",
+      "template": "# Spike: express init (go)\n// Auto-generated spike stub for express (init)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use express - init (secure)\") }\n"
+    },
+    {
+      "path": "spikes/strike-express-init-secure-go.md",
+      "template": "# express init (secure, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

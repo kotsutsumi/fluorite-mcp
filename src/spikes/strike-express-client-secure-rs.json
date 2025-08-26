@@ -1,0 +1,33 @@
+{
+  "id": "strike-express-client-secure-rs",
+  "name": "express client secure rs",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "rs"
+  ],
+  "tags": [
+    "client",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express client in rs (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-express-client-secure-rs.rs.txt",
+      "template": "# Spike: express client (rs)\n// Auto-generated spike stub for express (client)\npub fn demo(){ println!(\"use express - client (secure)\"); }\n"
+    },
+    {
+      "path": "spikes/strike-express-client-secure-rs.md",
+      "template": "# express client (secure, rs)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

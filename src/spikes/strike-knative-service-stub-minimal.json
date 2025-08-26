@@ -1,0 +1,17 @@
+{
+  "id": "strike-knative-service-stub-minimal",
+  "name": "strike-knative-service-stub-minimal",
+  "stack": [
+    "knative"
+  ],
+  "tags": [
+    "kubernetes"
+  ],
+  "files": [
+    {
+      "path": "k8s/knative-service.yaml",
+      "template": "apiVersion: serving.knative.dev/v1\nkind: Service\n"
+    }
+  ],
+  "patches": []
+}

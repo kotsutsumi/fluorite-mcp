@@ -1,0 +1,37 @@
+{
+  "id": "strike-vue-config-testing-ts",
+  "name": "vue config testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "vue",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for vue config in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "vue-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-vue-config-testing-ts.ts.txt",
+      "template": "# Spike: vue config (ts)\n// Auto-generated spike stub for vue (config)\nexport function demo() {\n  console.log('use vue - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-vue-config-testing-ts.md",
+      "template": "# vue config (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-vue-config-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

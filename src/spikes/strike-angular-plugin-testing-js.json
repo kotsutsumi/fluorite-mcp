@@ -1,0 +1,37 @@
+{
+  "id": "strike-angular-plugin-testing-js",
+  "name": "angular plugin testing js",
+  "version": "0.1.0",
+  "stack": [
+    "angular",
+    "js"
+  ],
+  "tags": [
+    "plugin",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for angular plugin in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "angular-plugin-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-angular-plugin-testing-js.js.txt",
+      "template": "# Spike: angular plugin (js)\n// Auto-generated spike stub for angular (plugin)\nmodule.exports = function demo(){\n  console.log('use angular - plugin (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-angular-plugin-testing-js.md",
+      "template": "# angular plugin (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-angular-plugin-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

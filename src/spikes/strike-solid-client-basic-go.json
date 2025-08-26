@@ -1,0 +1,33 @@
+{
+  "id": "strike-solid-client-basic-go",
+  "name": "solid client basic go",
+  "version": "0.1.0",
+  "stack": [
+    "solid",
+    "go"
+  ],
+  "tags": [
+    "client",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for solid client in go (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "solid-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-solid-client-basic-go.go.txt",
+      "template": "# Spike: solid client (go)\n// Auto-generated spike stub for solid (client)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use solid - client (basic)\") }\n"
+    },
+    {
+      "path": "spikes/strike-solid-client-basic-go.md",
+      "template": "# solid client (basic, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

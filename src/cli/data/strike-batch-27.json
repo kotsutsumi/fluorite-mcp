@@ -1,0 +1,45 @@
+{
+  "items": [
+    { "id": "aws-apigateway-http-api-route-minimal", "stack": ["aws"], "tags": ["api"], "files": [ { "path": "infra/apigw-http.json", "template": "{ }\n" } ] },
+    { "id": "aws-cloudwatch-logs-subscription-filter-minimal", "stack": ["aws"], "tags": ["logging"], "files": [ { "path": "infra/cloudwatch-subscription.json", "template": "{ }\n" } ] },
+    { "id": "aws-stepfunctions-express-workflow-minimal", "stack": ["aws"], "tags": ["workflow"], "files": [ { "path": "infra/sfn-express.json", "template": "{ }\n" } ] },
+
+    { "id": "debezium-connector-config-minimal", "stack": ["debezium"], "tags": ["cdc"], "files": [ { "path": "infra/debezium/connector.json", "template": "{ }\n" } ] },
+    { "id": "kafka-connect-s3-sink-config-minimal", "stack": ["kafka"], "tags": ["stream"], "files": [ { "path": "infra/kafka-connect/s3-sink.json", "template": "{ }\n" } ] },
+    { "id": "nifi-flow-template-stub-minimal", "stack": ["nifi"], "tags": ["data"], "files": [ { "path": "infra/nifi/flow.json", "template": "{ }\n" } ] },
+    { "id": "dbt-profile-and-model-stub-minimal", "stack": ["dbt"], "tags": ["data"], "files": [ { "path": "dbt/profiles.yml", "template": "default: {}\n" }, { "path": "dbt/models/example.sql", "template": "select 1;\n" } ] },
+    { "id": "great-expectations-checkpoint-stub-minimal", "stack": ["great-expectations"], "tags": ["data"], "files": [ { "path": "ge/checkpoint.yml", "template": "checkpoint: {}\n" } ] },
+    { "id": "mlflow-tracking-init-minimal", "stack": ["mlflow"], "tags": ["ml"], "files": [ { "path": "src/ml/mlflow.ts", "template": "export const mlflow = {};\n" } ] },
+    { "id": "kubeflow-pipeline-stub-minimal", "stack": ["kubeflow"], "tags": ["ml"], "files": [ { "path": "infra/kubeflow/pipeline.yaml", "template": "apiVersion: argoproj.io/v1alpha1\nkind: Workflow\n" } ] },
+    { "id": "prefect-flow-stub-minimal", "stack": ["prefect"], "tags": ["workflow"], "files": [ { "path": "src/data/prefect.ts", "template": "export const flow = {};\n" } ] },
+    { "id": "airbyte-connection-config-minimal", "stack": ["airbyte"], "tags": ["data"], "files": [ { "path": "infra/airbyte/connection.json", "template": "{ }\n" } ] },
+
+    { "id": "trino-client-stub-minimal", "stack": ["trino"], "tags": ["data"], "files": [ { "path": "src/data/trino.ts", "template": "export const trino = {};\n" } ] },
+    { "id": "presto-client-stub-minimal", "stack": ["presto"], "tags": ["data"], "files": [ { "path": "src/data/presto.ts", "template": "export const presto = {};\n" } ] },
+    { "id": "apache-pinot-query-stub-minimal", "stack": ["pinot"], "tags": ["data"], "files": [ { "path": "src/data/pinot.ts", "template": "export const pinot = {};\n" } ] },
+    { "id": "apache-druid-query-stub-minimal", "stack": ["druid"], "tags": ["data"], "files": [ { "path": "src/data/druid.ts", "template": "export const druid = {};\n" } ] },
+
+    { "id": "openfga-authz-check-minimal", "stack": ["openfga"], "tags": ["authz"], "files": [ { "path": "src/security/openfga.ts", "template": "export const check = {};\n" } ] },
+    { "id": "casbin-model-and-policy-minimal", "stack": ["casbin"], "tags": ["authz"], "files": [ { "path": "infra/casbin/model.conf", "template": "[request_definition]\nr = sub, obj, act\n" }, { "path": "infra/casbin/policy.csv", "template": "p, alice, data1, read\n" } ] },
+    { "id": "paseto-sign-verify-minimal", "stack": ["paseto"], "tags": ["security"], "files": [ { "path": "src/security/paseto.ts", "template": "export const paseto = {};\n" } ] },
+    { "id": "libsodium-sealed-box-minimal", "stack": ["libsodium"], "tags": ["security"], "files": [ { "path": "src/security/libsodium.ts", "template": "export const sealed = {};\n" } ] },
+    { "id": "totp-otplib-generate-verify-minimal", "stack": ["otplib"], "tags": ["security"], "files": [ { "path": "src/security/totp.ts", "template": "export const totp = {};\n" } ] },
+    { "id": "jwks-endpoint-route-minimal", "stack": ["security"], "tags": ["security", "api"], "files": [ { "path": "app/api/jwks/route.ts", "template": "export async function GET(){ return Response.json({ keys: [] }) }\n" } ] },
+    { "id": "rsa-key-rotation-pattern-minimal", "stack": ["security"], "tags": ["security"], "files": [ { "path": "src/security/key-rotation.ts", "template": "export const rotate = {};\n" } ] },
+    { "id": "sops-encrypted-file-stub-minimal", "stack": ["sops"], "tags": ["secrets"], "files": [ { "path": "infra/sops/secrets.enc.yaml", "template": "# encrypted\n" } ] },
+
+    { "id": "argo-rollouts-canary-stub-minimal", "stack": ["argo-rollouts"], "tags": ["kubernetes"], "files": [ { "path": "k8s/rollout.yaml", "template": "apiVersion: argoproj.io/v1alpha1\nkind: Rollout\n" } ] },
+    { "id": "istio-envoyfilter-rate-limit-stub-minimal", "stack": ["istio"], "tags": ["kubernetes"], "files": [ { "path": "k8s/envoyfilter.yaml", "template": "apiVersion: networking.istio.io/v1alpha3\nkind: EnvoyFilter\n" } ] },
+    { "id": "envoy-proxy-filterchain-stub-minimal", "stack": ["envoy"], "tags": ["gateway"], "files": [ { "path": "infra/envoy/envoy.yaml", "template": "static_resources: {}\n" } ] },
+
+    { "id": "edgio-edge-route-stub-minimal", "stack": ["edgio"], "tags": ["edge"], "files": [ { "path": "edgio.config.js", "template": "module.exports = {};\n" } ] },
+    { "id": "mux-video-upload-stub-minimal", "stack": ["mux"], "tags": ["video"], "files": [ { "path": "src/video/mux.ts", "template": "export const mux = {};\n" } ] },
+    { "id": "cloudflare-stream-direct-upload-minimal", "stack": ["cloudflare-workers"], "tags": ["video"], "files": [ { "path": "src/cloudflare/stream.js", "template": "export default {};\n" } ] },
+
+    { "id": "wasi-wasm-runner-stub-minimal", "stack": ["wasi"], "tags": ["runtime"], "files": [ { "path": "src/runtime/wasi.ts", "template": "export const wasi = {};\n" } ] },
+    { "id": "bun-scripts-task-runner-minimal", "stack": ["bun"], "tags": ["runtime"], "files": [ { "path": "bunfig.toml", "template": "[tasks]\n" } ] },
+
+    { "id": "turbo-remote-cache-azure-blob-minimal", "stack": ["turborepo", "azure"], "tags": ["monorepo"], "files": [ { "path": "turbo.remote.azure.json", "template": "{ }\n" } ] },
+    { "id": "nx-custom-task-runner-minimal", "stack": ["nx"], "tags": ["monorepo"], "files": [ { "path": "tools/runners/custom.ts", "template": "export default async()=>({ success: true });\n" } ] }
+  ]
+}

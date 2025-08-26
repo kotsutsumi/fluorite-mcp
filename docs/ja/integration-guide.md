@@ -1618,7 +1618,7 @@ metadata:
   namespace: development-tools
   labels:
     app: fluorite-mcp
-    version: v0.20.0
+    version: v0.20.1
 spec:
   replicas: 3
   strategy:

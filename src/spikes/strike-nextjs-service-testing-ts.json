@@ -1,0 +1,41 @@
+{
+  "id": "strike-nextjs-service-testing-ts",
+  "name": "nextjs service testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "nextjs",
+    "ts"
+  ],
+  "tags": [
+    "service",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nextjs service in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nextjs-service-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "app/actions/demo.ts",
+      "template": "'use server';\nexport async function demoAction(){ return { ok: true }; }\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-service-testing-ts.ts.txt",
+      "template": "# Spike: nextjs service (ts)\n// Auto-generated spike stub for nextjs (service)\nexport function demo() {\n  console.log('use nextjs - service (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-service-testing-ts.md",
+      "template": "# nextjs service (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-service-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

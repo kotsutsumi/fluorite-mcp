@@ -1,0 +1,17 @@
+{
+  "id": "strike-aws-codebuild-spec-minimal",
+  "name": "strike-aws-codebuild-spec-minimal",
+  "stack": [
+    "aws"
+  ],
+  "tags": [
+    "cicd"
+  ],
+  "files": [
+    {
+      "path": "buildspec.yml",
+      "template": "version: 0.2\n"
+    }
+  ],
+  "patches": []
+}

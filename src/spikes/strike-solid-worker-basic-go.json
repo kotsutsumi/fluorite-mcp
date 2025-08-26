@@ -1,0 +1,33 @@
+{
+  "id": "strike-solid-worker-basic-go",
+  "name": "solid worker basic go",
+  "version": "0.1.0",
+  "stack": [
+    "solid",
+    "go"
+  ],
+  "tags": [
+    "worker",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for solid worker in go (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "solid-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-solid-worker-basic-go.go.txt",
+      "template": "# Spike: solid worker (go)\n// Auto-generated spike stub for solid (worker)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use solid - worker (basic)\") }\n"
+    },
+    {
+      "path": "spikes/strike-solid-worker-basic-go.md",
+      "template": "# solid worker (basic, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

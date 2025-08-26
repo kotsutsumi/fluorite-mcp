@@ -4,7 +4,7 @@ layout: home
 hero:
   name: "Fluorite MCP"
   text: "Enterprise-Grade Development Context"
-  tagline: "3,100+ spike templates, 86 library specifications, and intelligent development context for Claude Code CLI"
+  tagline: "6,200+ spike templates, 86 library specifications, and intelligent development context for Claude Code CLI"
   actions:
     - theme: brand
       text: Get Started
@@ -15,7 +15,7 @@ hero:
 
 features:
   - icon: 🧪
-    title: 3,100+ Spike Templates
+    title: 6,200+ Spike Templates
     details: Production-ready scaffolds for rapid prototyping. From authentication to deployment, get working code instantly.
   - icon: 📚
     title: 86 Library Specifications

@@ -1,0 +1,17 @@
+{
+  "id": "strike-openfga-authz-check-minimal",
+  "name": "strike-openfga-authz-check-minimal",
+  "stack": [
+    "openfga"
+  ],
+  "tags": [
+    "authz"
+  ],
+  "files": [
+    {
+      "path": "src/security/openfga.ts",
+      "template": "export const check = {};\n"
+    }
+  ],
+  "patches": []
+}

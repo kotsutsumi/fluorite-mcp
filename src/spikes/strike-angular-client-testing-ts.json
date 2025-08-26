@@ -1,0 +1,37 @@
+{
+  "id": "strike-angular-client-testing-ts",
+  "name": "angular client testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "angular",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for angular client in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "angular-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-angular-client-testing-ts.ts.txt",
+      "template": "# Spike: angular client (ts)\n// Auto-generated spike stub for angular (client)\nexport function demo() {\n  console.log('use angular - client (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-angular-client-testing-ts.md",
+      "template": "# angular client (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-angular-client-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,37 @@
+{
+  "id": "strike-vue-adapter-testing-js",
+  "name": "vue adapter testing js",
+  "version": "0.1.0",
+  "stack": [
+    "vue",
+    "js"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for vue adapter in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "vue-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-vue-adapter-testing-js.js.txt",
+      "template": "# Spike: vue adapter (js)\n// Auto-generated spike stub for vue (adapter)\nmodule.exports = function demo(){\n  console.log('use vue - adapter (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-vue-adapter-testing-js.md",
+      "template": "# vue adapter (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-vue-adapter-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

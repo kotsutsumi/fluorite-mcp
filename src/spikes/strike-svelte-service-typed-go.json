@@ -1,0 +1,33 @@
+{
+  "id": "strike-svelte-service-typed-go",
+  "name": "svelte service typed go",
+  "version": "0.1.0",
+  "stack": [
+    "svelte",
+    "go"
+  ],
+  "tags": [
+    "service",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for svelte service in go (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "svelte-service-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-svelte-service-typed-go.go.txt",
+      "template": "# Spike: svelte service (go)\n// Auto-generated spike stub for svelte (service)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use svelte - service (typed)\") }\n"
+    },
+    {
+      "path": "spikes/strike-svelte-service-typed-go.md",
+      "template": "# svelte service (typed, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

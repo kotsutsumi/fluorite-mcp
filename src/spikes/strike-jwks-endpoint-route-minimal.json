@@ -1,0 +1,18 @@
+{
+  "id": "strike-jwks-endpoint-route-minimal",
+  "name": "strike-jwks-endpoint-route-minimal",
+  "stack": [
+    "security"
+  ],
+  "tags": [
+    "security",
+    "api"
+  ],
+  "files": [
+    {
+      "path": "app/api/jwks/route.ts",
+      "template": "export async function GET(){ return Response.json({ keys: [] }) }\n"
+    }
+  ],
+  "patches": []
+}

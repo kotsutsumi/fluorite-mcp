@@ -1,0 +1,33 @@
+{
+  "id": "strike-svelte-worker-typed-go",
+  "name": "svelte worker typed go",
+  "version": "0.1.0",
+  "stack": [
+    "svelte",
+    "go"
+  ],
+  "tags": [
+    "worker",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for svelte worker in go (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "svelte-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-svelte-worker-typed-go.go.txt",
+      "template": "# Spike: svelte worker (go)\n// Auto-generated spike stub for svelte (worker)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use svelte - worker (typed)\") }\n"
+    },
+    {
+      "path": "spikes/strike-svelte-worker-typed-go.md",
+      "template": "# svelte worker (typed, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

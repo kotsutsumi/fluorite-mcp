@@ -1,0 +1,33 @@
+{
+  "id": "strike-angular-init-secure-go",
+  "name": "angular init secure go",
+  "version": "0.1.0",
+  "stack": [
+    "angular",
+    "go"
+  ],
+  "tags": [
+    "init",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for angular init in go (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "angular-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-angular-init-secure-go.go.txt",
+      "template": "# Spike: angular init (go)\n// Auto-generated spike stub for angular (init)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use angular - init (secure)\") }\n"
+    },
+    {
+      "path": "spikes/strike-angular-init-secure-go.md",
+      "template": "# angular init (secure, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

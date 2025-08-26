@@ -1,0 +1,37 @@
+{
+  "id": "strike-svelte-provider-testing-ts",
+  "name": "svelte provider testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "svelte",
+    "ts"
+  ],
+  "tags": [
+    "provider",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for svelte provider in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "svelte-provider-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-svelte-provider-testing-ts.ts.txt",
+      "template": "# Spike: svelte provider (ts)\n// Auto-generated spike stub for svelte (provider)\nexport function demo() {\n  console.log('use svelte - provider (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-svelte-provider-testing-ts.md",
+      "template": "# svelte provider (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-svelte-provider-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

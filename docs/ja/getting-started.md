@@ -116,7 +116,6 @@ JWT 認証と Pydantic 検証を含む FastAPI エンドポイントを作成
 
 | リソース | 使用時 | リンク |
 |----------|-------------|------|
-| **GitHub Discussions** | 質問、経験の共有 | [ディスカッションにアクセス](https://github.com/kotsutsumi/fluorite-mcp/discussions) |
 | **GitHub Issues** | バグ報告、機能リクエスト | [イシューを報告](https://github.com/kotsutsumi/fluorite-mcp/issues) |
 | **貢献ガイド** | Fluorite MCP の改善に協力したい | [貢献](../CONTRIBUTING.md) |
 | **トラブルシューティング** | 問題が発生している場合 | [トラブルシューティングガイド](./troubleshooting.md) |
@@ -221,6 +220,6 @@ Happy coding! 🎉
 
 ---
 
-*助けが必要ですか？[トラブルシューティングガイド](./troubleshooting.md) をチェックするか、[GitHub Discussions](https://github.com/kotsutsumi/fluorite-mcp/discussions) で質問してください。*
+*助けが必要ですか？[トラブルシューティングガイド](./troubleshooting.md) をチェックしてください。*
 
 *最終更新: 2025年1月*

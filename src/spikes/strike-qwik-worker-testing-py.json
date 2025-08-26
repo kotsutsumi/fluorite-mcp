@@ -1,0 +1,37 @@
+{
+  "id": "strike-qwik-worker-testing-py",
+  "name": "qwik worker testing py",
+  "version": "0.1.0",
+  "stack": [
+    "qwik",
+    "py"
+  ],
+  "tags": [
+    "worker",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for qwik worker in py (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "qwik-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-qwik-worker-testing-py.py.txt",
+      "template": "# Spike: qwik worker (py)\n# Auto-generated spike stub for qwik (worker)\ndef demo():\n    print('use qwik - worker (testing)')\n"
+    },
+    {
+      "path": "spikes/strike-qwik-worker-testing-py.md",
+      "template": "# qwik worker (testing, py)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-qwik-worker-testing-py_test.py",
+      "template": "def test_demo():\n    assert True\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-tekton-pipeline-stub-minimal",
+  "name": "strike-tekton-pipeline-stub-minimal",
+  "stack": [
+    "tekton"
+  ],
+  "tags": [
+    "cicd"
+  ],
+  "files": [
+    {
+      "path": "k8s/tekton-pipeline.yaml",
+      "template": "apiVersion: tekton.dev/v1beta1\nkind: Pipeline\n"
+    }
+  ],
+  "patches": []
+}

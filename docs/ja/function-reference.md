@@ -108,7 +108,7 @@ version: 1.0.0
 description: 専門機能のためのカスタムライブラリ
 category: custom-tools
 homepage: # ライブラリのホームページURL
-repository: # GitリポジトリURL
+repository: [local repository]
 language: TypeScript
 
 features:
@@ -1437,4 +1437,4 @@ const metrics = await client.callTool('server-metrics', {});
 
 ---
 
-*関数リファレンス v0.20.0 - 最終更新: 2025年1月*
+*関数リファレンス v0.20.1 - 最終更新: 2025年1月*

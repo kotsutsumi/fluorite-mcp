@@ -1,0 +1,17 @@
+{
+  "id": "strike-kubeflow-pipeline-stub-minimal",
+  "name": "strike-kubeflow-pipeline-stub-minimal",
+  "stack": [
+    "kubeflow"
+  ],
+  "tags": [
+    "ml"
+  ],
+  "files": [
+    {
+      "path": "infra/kubeflow/pipeline.yaml",
+      "template": "apiVersion: argoproj.io/v1alpha1\nkind: Workflow\n"
+    }
+  ],
+  "patches": []
+}

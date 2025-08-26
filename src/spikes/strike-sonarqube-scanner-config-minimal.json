@@ -1,0 +1,17 @@
+{
+  "id": "strike-sonarqube-scanner-config-minimal",
+  "name": "strike-sonarqube-scanner-config-minimal",
+  "stack": [
+    "sonarqube"
+  ],
+  "tags": [
+    "quality"
+  ],
+  "files": [
+    {
+      "path": "sonar-project.properties",
+      "template": "sonar.projectKey=app\n"
+    }
+  ],
+  "patches": []
+}

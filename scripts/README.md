@@ -53,7 +53,7 @@ This directory contains utility scripts for setting up and maintaining Fluorite 
 ### New Installation
 ```bash
 # Clone the repository
-git clone リポジトリURL
+git clone [local repository]
 cd fluorite-mcp
 
 # Run automated setup

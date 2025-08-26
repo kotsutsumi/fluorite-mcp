@@ -1,0 +1,17 @@
+{
+  "id": "strike-honeycomb-otel-exporter-minimal",
+  "name": "strike-honeycomb-otel-exporter-minimal",
+  "stack": [
+    "honeycomb"
+  ],
+  "tags": [
+    "apm"
+  ],
+  "files": [
+    {
+      "path": "src/otel/honeycomb.ts",
+      "template": "export const honey = {};\n"
+    }
+  ],
+  "patches": []
+}

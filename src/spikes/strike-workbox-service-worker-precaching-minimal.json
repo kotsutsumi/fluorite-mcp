@@ -1,0 +1,17 @@
+{
+  "id": "strike-workbox-service-worker-precaching-minimal",
+  "name": "strike-workbox-service-worker-precaching-minimal",
+  "stack": [
+    "workbox"
+  ],
+  "tags": [
+    "pwa"
+  ],
+  "files": [
+    {
+      "path": "public/sw-workbox.js",
+      "template": "self.__WB_MANIFEST = [];\n"
+    }
+  ],
+  "patches": []
+}

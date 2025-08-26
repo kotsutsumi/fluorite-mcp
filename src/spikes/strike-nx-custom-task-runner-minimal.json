@@ -1,0 +1,17 @@
+{
+  "id": "strike-nx-custom-task-runner-minimal",
+  "name": "strike-nx-custom-task-runner-minimal",
+  "stack": [
+    "nx"
+  ],
+  "tags": [
+    "monorepo"
+  ],
+  "files": [
+    {
+      "path": "tools/runners/custom.ts",
+      "template": "export default async()=>({ success: true });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "strike-aws-dynamodb-partiql-query-minimal",
+  "name": "strike-aws-dynamodb-partiql-query-minimal",
+  "stack": [
+    "aws",
+    "dynamodb"
+  ],
+  "tags": [
+    "db"
+  ],
+  "files": [
+    {
+      "path": "src/db/dynamodb-partiql.ts",
+      "template": "export const partiql = {};\n"
+    }
+  ],
+  "patches": []
+}

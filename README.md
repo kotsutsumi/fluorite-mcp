@@ -1,12 +1,6 @@
 # Fluorite MCP - Enterprise-Grade Development Context for Claude Code CLI
 
-[![NPM Version](https://img.shields.io/npm/v/fluorite-mcp)](https://www.npmjs.com/package/fluorite-mcp)
-[![License](https://img.shields.io/npm/l/fluorite-mcp)](./LICENSE)
-[![Node.js](https://img.shields.io/node/v/fluorite-mcp)](https://nodejs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0%2B-blue)](https://www.typescriptlang.org/)
-[![Documentation](https://img.shields.io/badge/docs-latest-brightgreen)](./docs/)
-
-Transform Claude Code CLI into a comprehensive development powerhouse with **Fluorite MCP v0.20.0**. Experience professional-grade code generation, intelligent error prevention, and accelerated prototyping through our extensive library of 6,200+ spike templates, 86 library specifications, and proven patterns.
+Transform Claude Code CLI into a comprehensive development powerhouse with **Fluorite MCP v0.20.1**. Experience professional-grade code generation, intelligent error prevention, and accelerated prototyping through our extensive library of 6,200+ spike templates, 86 library specifications, and proven patterns.
 
 > **Enterprise Solution**: From rapid prototyping to production deployment - all specifications validated, maintained, and optimized for professional development workflows with continuous learning capabilities.
 
@@ -109,7 +103,7 @@ yarn global add fluorite-mcp
 pnpm add -g fluorite-mcp
 
 # From source (developers)
-git clone リポジトリURL
+git clone [local repository]
 cd fluorite-mcp && npm install && npm run build
 ```
 
@@ -282,8 +276,6 @@ Generated Output:
 | **Support Channel** | **Response Time** | **Best For** | **Access** |
 |--------------------|------------------|--------------|------------|
 | **[🔧 Troubleshooting Guide](./docs/troubleshooting.md)** | Immediate | Common issues, error resolution | Self-service |
-| **💬 GitHub Discussions** | 24-48 hours | Questions, feature requests, community help | Free, community-driven |
-| **🐛 Issue Tracker** | 48-72 hours | Bug reports, feature requests | Free, maintainer support |
 | **🌐 Online Documentation** | Immediate | Searchable docs, latest updates | Comprehensive reference |
 
 ### 📖 Library Specifications Reference
@@ -303,7 +295,7 @@ Explore our comprehensive library knowledge base:
 
 ```bash
 # Clone and setup
-git clone リポジトリURL
+git clone [local repository]
 cd fluorite-mcp && npm install
 
 # Development workflow
@@ -484,8 +476,6 @@ claude mcp list
 | **サポートチャンネル** | **応答時間** | **最適な用途** | **アクセス** |
 |--------------------|-------------|-------------|-----------|
 | **[🔧 トラブルシューティングガイド](./docs/troubleshooting.md)** | 即時 | 一般的な問題、エラー解決 | セルフサービス |
-| **💬 GitHub Discussions** | 24-48時間 | 質問、機能リクエスト、コミュニティヘルプ | 無料、コミュニティ主導 |
-| **🐛 Issue Tracker** | 48-72時間 | バグ報告、機能リクエスト | 無料、メンテナーサポート |
 | **🌐 オンラインドキュメント** | 即時 | 検索可能ドキュメント、最新更新 | 包括的リファレンス |
 
 ### **💡 プロのヒント**
@@ -849,8 +839,6 @@ All library specifications include proper attribution and licensing information 
 ### **Community & Support**
 | **Platform** | **Description** | **Best For** | **Response Time** |
 |--------------|----------------|--------------|------------------|
-| **💬 Discussions** | GitHub Discussions | Questions, features, community | 24-48 hours |
-| **🐛 Issue Tracker** | GitHub Issues | Bug reports, features | 48-72 hours |
 | **📈 Roadmap** | GitHub Projects | Development planning | Monthly updates |
 
 ## Spike Synth (Strike 10k+)

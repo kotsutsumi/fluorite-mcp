@@ -1,0 +1,18 @@
+{
+  "id": "strike-nextjs-route-robust-error-boundary-advanced",
+  "name": "strike-nextjs-route-robust-error-boundary-advanced",
+  "stack": [
+    "nextjs"
+  ],
+  "tags": [
+    "api",
+    "secure"
+  ],
+  "files": [
+    {
+      "path": "src/next/error-boundary.ts",
+      "template": "export const toHttp = (e:unknown)=> Response.json({ ok:false, error:String(e) }, { status:500 });\n"
+    }
+  ],
+  "patches": []
+}

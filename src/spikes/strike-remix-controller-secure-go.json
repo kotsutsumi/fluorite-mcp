@@ -1,0 +1,33 @@
+{
+  "id": "strike-remix-controller-secure-go",
+  "name": "remix controller secure go",
+  "version": "0.1.0",
+  "stack": [
+    "remix",
+    "go"
+  ],
+  "tags": [
+    "controller",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for remix controller in go (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "remix-controller-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-remix-controller-secure-go.go.txt",
+      "template": "# Spike: remix controller (go)\n// Auto-generated spike stub for remix (controller)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use remix - controller (secure)\") }\n"
+    },
+    {
+      "path": "spikes/strike-remix-controller-secure-go.md",
+      "template": "# remix controller (secure, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

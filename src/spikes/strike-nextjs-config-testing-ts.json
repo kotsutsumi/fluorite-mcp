@@ -1,0 +1,41 @@
+{
+  "id": "strike-nextjs-config-testing-ts",
+  "name": "nextjs config testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "nextjs",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nextjs config in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nextjs-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "middleware.ts",
+      "template": "import { NextResponse } from 'next/server';\nexport function middleware(){ return NextResponse.next(); }\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-config-testing-ts.ts.txt",
+      "template": "# Spike: nextjs config (ts)\n// Auto-generated spike stub for nextjs (config)\nexport function demo() {\n  console.log('use nextjs - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-config-testing-ts.md",
+      "template": "# nextjs config (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-config-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

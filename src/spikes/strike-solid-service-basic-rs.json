@@ -1,0 +1,33 @@
+{
+  "id": "strike-solid-service-basic-rs",
+  "name": "solid service basic rs",
+  "version": "0.1.0",
+  "stack": [
+    "solid",
+    "rs"
+  ],
+  "tags": [
+    "service",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for solid service in rs (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "solid-service-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-solid-service-basic-rs.rs.txt",
+      "template": "# Spike: solid service (rs)\n// Auto-generated spike stub for solid (service)\npub fn demo(){ println!(\"use solid - service (basic)\"); }\n"
+    },
+    {
+      "path": "spikes/strike-solid-service-basic-rs.md",
+      "template": "# solid service (basic, rs)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

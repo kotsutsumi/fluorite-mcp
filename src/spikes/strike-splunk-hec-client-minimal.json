@@ -1,0 +1,17 @@
+{
+  "id": "strike-splunk-hec-client-minimal",
+  "name": "strike-splunk-hec-client-minimal",
+  "stack": [
+    "splunk"
+  ],
+  "tags": [
+    "logging"
+  ],
+  "files": [
+    {
+      "path": "src/logging/splunk.ts",
+      "template": "export const hec = {};\n"
+    }
+  ],
+  "patches": []
+}

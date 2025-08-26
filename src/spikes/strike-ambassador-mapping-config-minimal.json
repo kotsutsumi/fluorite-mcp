@@ -1,0 +1,17 @@
+{
+  "id": "strike-ambassador-mapping-config-minimal",
+  "name": "strike-ambassador-mapping-config-minimal",
+  "stack": [
+    "ambassador"
+  ],
+  "tags": [
+    "gateway"
+  ],
+  "files": [
+    {
+      "path": "k8s/ambassador-mapping.yaml",
+      "template": "apiVersion: getambassador.io/v3alpha1\nkind: Mapping\n"
+    }
+  ],
+  "patches": []
+}

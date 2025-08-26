@@ -1,0 +1,33 @@
+{
+  "id": "strike-astro-worker-basic-go",
+  "name": "astro worker basic go",
+  "version": "0.1.0",
+  "stack": [
+    "astro",
+    "go"
+  ],
+  "tags": [
+    "worker",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for astro worker in go (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "astro-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-astro-worker-basic-go.go.txt",
+      "template": "# Spike: astro worker (go)\n// Auto-generated spike stub for astro (worker)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use astro - worker (basic)\") }\n"
+    },
+    {
+      "path": "spikes/strike-astro-worker-basic-go.md",
+      "template": "# astro worker (basic, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -3,6 +3,7 @@ import * as path from 'path';
 import * as fs from 'fs/promises';
 import { generateSpikesFromSeed } from '../utils/spike-generator.js';
 import { listSpikeIds, loadSpike } from '../../core/spike-catalog.js';
+import { isGeneratedId } from '../../core/spike-generators.js';
 
 export const spikesCommand = new Command('spikes')
   .description('Spike template utilities')
@@ -34,18 +35,38 @@ spikesCommand.addCommand(
     .description('List or materialize generated spikes (e.g., strike-*)')
     .option('-f, --filter <regex>', 'ID filter (regex)', '^strike-')
     .option('-m, --max <n>', 'Max items to process', (v)=>parseInt(v,10), 2000)
+    .option('-s, --skip <n>', 'Skip first N items before processing', (v)=>parseInt(v,10), 0)
     .option('-o, --out-dir <outDir>', 'Output directory when --write is set', 'src/spikes')
     .option('--write', 'Write JSON files instead of listing')
     .option('--pretty', 'Pretty-print JSON when writing')
     .option('--overwrite', 'Overwrite if file exists (default: skip)')
+    .option('--generated-only', 'Process only virtual/generated spikes (e.g., strike-*, gen-*)')
+    .option('--nonexistent-only', 'Exclude IDs that already have a physical file')
     .action(async (opts) => {
       const filter = String(opts.filter || '');
       const max = Number.isFinite(opts.max) ? Number(opts.max) : 2000;
+      const skip = Number.isFinite(opts.skip) ? Number(opts.skip) : 0;
       const ids = await listSpikeIds(filter);
-      const selected = ids.slice(0, max);
+
+      // Optional narrowing to generated-only
+      const pool = opts.generatedOnly ? ids.filter((id) => isGeneratedId(id)) : ids;
+
+      // Optionally exclude IDs that already exist on disk
+      const poolFiltered: string[] = [];
+      if (opts.nonexistentOnly) {
+        const fs = await import('fs/promises');
+        const path = await import('path');
+        for (const id of pool) {
+          const file = path.resolve(opts.outDir || 'src/spikes', `${id}.json`);
+          try { await fs.access(file); /* exists */ }
+          catch { poolFiltered.push(id); }
+        }
+      }
+      const effective = opts.nonexistentOnly ? poolFiltered : pool;
+      const selected = effective.slice(skip, skip + max);
 
       if (!opts.write) {
-        console.log(`Matched ${ids.length} (showing first ${selected.length}) by /${filter}/`);
+        console.log(`Matched ${ids.length} (effective ${effective.length}); showing ${selected.length} from offset ${skip} by /${filter}/`);
         selected.forEach((id) => console.log(id));
         return;
       }
@@ -55,16 +76,22 @@ spikesCommand.addCommand(
       let written = 0;
       let skipped = 0;
       let overwritten = 0;
+      let failed = 0;
       for (const id of selected) {
-        const spec = await loadSpike(id);
-        const file = path.join(outDir, `${id}.json`);
-        let exists = false;
-        try { await fs.access(file); exists = true; } catch {}
-        if (exists && !opts.overwrite) { skipped++; continue; }
-        const data = opts.pretty ? JSON.stringify(spec, null, 2) + '\n' : JSON.stringify(spec);
-        await fs.writeFile(file, data, 'utf8');
-        if (exists) overwritten++; else written++;
+        try {
+          const spec = await loadSpike(id);
+          const file = path.join(outDir, `${id}.json`);
+          let exists = false;
+          try { await fs.access(file); exists = true; } catch {}
+          if (exists && !opts.overwrite) { skipped++; continue; }
+          const data = opts.pretty ? JSON.stringify(spec, null, 2) + '\n' : JSON.stringify(spec);
+          await fs.writeFile(file, data, 'utf8');
+          if (exists) overwritten++; else written++;
+        } catch (e) {
+          failed++;
+          // Continue processing next items instead of aborting the entire run
+        }
       }
-      console.log(`Materialized: written=${written}, overwritten=${overwritten}, skipped=${skipped}, outDir=${outDir}`);
+      console.log(`Materialized: written=${written}, overwritten=${overwritten}, skipped=${skipped}, failed=${failed}, outDir=${outDir}`);
     })
 );

@@ -1,0 +1,17 @@
+{
+  "id": "strike-promtail-config-stub-minimal",
+  "name": "strike-promtail-config-stub-minimal",
+  "stack": [
+    "promtail"
+  ],
+  "tags": [
+    "logging"
+  ],
+  "files": [
+    {
+      "path": "infra/promtail.yaml",
+      "template": "server: {}\n"
+    }
+  ],
+  "patches": []
+}

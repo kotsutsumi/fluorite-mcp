@@ -1,0 +1,37 @@
+{
+  "id": "strike-qwik-plugin-testing-js",
+  "name": "qwik plugin testing js",
+  "version": "0.1.0",
+  "stack": [
+    "qwik",
+    "js"
+  ],
+  "tags": [
+    "plugin",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for qwik plugin in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "qwik-plugin-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-qwik-plugin-testing-js.js.txt",
+      "template": "# Spike: qwik plugin (js)\n// Auto-generated spike stub for qwik (plugin)\nmodule.exports = function demo(){\n  console.log('use qwik - plugin (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-qwik-plugin-testing-js.md",
+      "template": "# qwik plugin (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-qwik-plugin-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

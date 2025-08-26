@@ -1,0 +1,33 @@
+{
+  "id": "strike-remix-listener-typed-go",
+  "name": "remix listener typed go",
+  "version": "0.1.0",
+  "stack": [
+    "remix",
+    "go"
+  ],
+  "tags": [
+    "listener",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for remix listener in go (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "remix-listener-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-remix-listener-typed-go.go.txt",
+      "template": "# Spike: remix listener (go)\n// Auto-generated spike stub for remix (listener)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use remix - listener (typed)\") }\n"
+    },
+    {
+      "path": "spikes/strike-remix-listener-typed-go.md",
+      "template": "# remix listener (typed, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

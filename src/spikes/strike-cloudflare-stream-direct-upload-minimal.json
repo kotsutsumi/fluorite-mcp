@@ -1,0 +1,17 @@
+{
+  "id": "strike-cloudflare-stream-direct-upload-minimal",
+  "name": "strike-cloudflare-stream-direct-upload-minimal",
+  "stack": [
+    "cloudflare-workers"
+  ],
+  "tags": [
+    "video"
+  ],
+  "files": [
+    {
+      "path": "src/cloudflare/stream.js",
+      "template": "export default {};\n"
+    }
+  ],
+  "patches": []
+}

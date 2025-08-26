@@ -1,0 +1,17 @@
+{
+  "id": "strike-ory-hydra-oauth-config-minimal",
+  "name": "strike-ory-hydra-oauth-config-minimal",
+  "stack": [
+    "ory"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "infra/ory/hydra.yaml",
+      "template": "serve: {}\n"
+    }
+  ],
+  "patches": []
+}

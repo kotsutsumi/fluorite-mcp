@@ -1,0 +1,33 @@
+{
+  "id": "strike-astro-client-secure-go",
+  "name": "astro client secure go",
+  "version": "0.1.0",
+  "stack": [
+    "astro",
+    "go"
+  ],
+  "tags": [
+    "client",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for astro client in go (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "astro-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-astro-client-secure-go.go.txt",
+      "template": "# Spike: astro client (go)\n// Auto-generated spike stub for astro (client)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use astro - client (secure)\") }\n"
+    },
+    {
+      "path": "spikes/strike-astro-client-secure-go.md",
+      "template": "# astro client (secure, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-grafana-mimir-remote-write-minimal",
+  "name": "strike-grafana-mimir-remote-write-minimal",
+  "stack": [
+    "mimir"
+  ],
+  "tags": [
+    "metrics"
+  ],
+  "files": [
+    {
+      "path": "src/metrics/mimir.ts",
+      "template": "export const mimir = {};\n"
+    }
+  ],
+  "patches": []
+}

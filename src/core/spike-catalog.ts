@@ -141,37 +141,39 @@ export async function loadSpike(id: string, cfg: SpikeCatalogConfig = DEFAULT_SP
     return cached;
   }
 
-  // Generated spikes are synthesized on the fly
+  // Prefer on-disk JSON if it exists (even for strike-* ids)
+  const file = path.resolve(cfg.baseDir, `${id}.json`);
+  try {
+    await access(file, constants.F_OK);
+    const raw = await readFile(file, 'utf-8');
+    const spec = JSON.parse(raw) as SpikeSpec;
+    if (!spec.id) spec.id = id;
+    spikeCache.set(id, spec);
+    return spec;
+  } catch {
+    // File does not exist; fall through to generated handling if applicable
+  }
+
+  // If no physical file, generated spikes are synthesized on the fly
   if (isGeneratedId(id)) {
     const spec = generateSpike(id);
     spikeCache.set(id, spec);
     return spec;
   }
 
-  const file = path.resolve(cfg.baseDir, `${id}.json`);
-  const raw = await readFile(file, 'utf-8');
-  try {
-    const spec = JSON.parse(raw) as SpikeSpec;
-    if (!spec.id) spec.id = id;
-    
-    // Cache the loaded spike
-    spikeCache.set(id, spec);
-    
-    return spec;
-  } catch (e) {
-    log.error('Failed to parse spike JSON', e as Error, { id, file });
-    throw e;
-  }
+  // If we get here, it's neither a file nor a recognizable generated id
+  const err = new Error(`Spike not found: ${id}`);
+  log.error('Failed to load spike (not found)', err, { id, file });
+  throw err;
 }
 
 // Load only metadata from spike files for efficient indexing
 export async function loadSpikeMetadata(id: string, cfg: SpikeCatalogConfig = DEFAULT_SPIKE_CONFIG): Promise<SpikeMetadata> {
-  if (isGeneratedId(id)) {
-    return generateMetadata(id);
-  }
+  // Prefer metadata from on-disk JSON if present
   const file = path.resolve(cfg.baseDir, `${id}.json`);
-  const raw = await readFile(file, 'utf-8');
   try {
+    await access(file, constants.F_OK);
+    const raw = await readFile(file, 'utf-8');
     const spec = JSON.parse(raw) as SpikeSpec;
     return {
       id: spec.id || id,
@@ -183,9 +185,14 @@ export async function loadSpikeMetadata(id: string, cfg: SpikeCatalogConfig = DE
       fileCount: spec.files?.length || 0,
       patchCount: spec.patches?.length || 0
     };
-  } catch (e) {
-    log.error('Failed to parse spike JSON metadata', e as Error, { id, file });
-    throw e;
+  } catch {
+    // No physical file; use generated metadata if applicable
+    if (isGeneratedId(id)) {
+      return generateMetadata(id);
+    }
+    const err = new Error(`Spike not found: ${id}`);
+    log.error('Failed to load spike metadata (not found)', err, { id, file });
+    throw err;
   }
 }
 

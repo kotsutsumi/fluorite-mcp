@@ -1,0 +1,17 @@
+{
+  "id": "strike-sentry-release-deploy-track-minimal",
+  "name": "strike-sentry-release-deploy-track-minimal",
+  "stack": [
+    "sentry"
+  ],
+  "tags": [
+    "monitoring"
+  ],
+  "files": [
+    {
+      "path": "src/sentry/release.ts",
+      "template": "export const release = {};\n"
+    }
+  ],
+  "patches": []
+}

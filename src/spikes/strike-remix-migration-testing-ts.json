@@ -1,0 +1,37 @@
+{
+  "id": "strike-remix-migration-testing-ts",
+  "name": "remix migration testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "remix",
+    "ts"
+  ],
+  "tags": [
+    "migration",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for remix migration in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "remix-migration-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-remix-migration-testing-ts.ts.txt",
+      "template": "# Spike: remix migration (ts)\n// Auto-generated spike stub for remix (migration)\nexport function demo() {\n  console.log('use remix - migration (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-remix-migration-testing-ts.md",
+      "template": "# remix migration (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-remix-migration-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

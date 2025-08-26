@@ -1,0 +1,33 @@
+{
+  "id": "strike-remix-worker-secure-rs",
+  "name": "remix worker secure rs",
+  "version": "0.1.0",
+  "stack": [
+    "remix",
+    "rs"
+  ],
+  "tags": [
+    "worker",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for remix worker in rs (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "remix-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-remix-worker-secure-rs.rs.txt",
+      "template": "# Spike: remix worker (rs)\n// Auto-generated spike stub for remix (worker)\npub fn demo(){ println!(\"use remix - worker (secure)\"); }\n"
+    },
+    {
+      "path": "spikes/strike-remix-worker-secure-rs.md",
+      "template": "# remix worker (secure, rs)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,37 @@
+{
+  "id": "strike-angular-service-testing-ts",
+  "name": "angular service testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "angular",
+    "ts"
+  ],
+  "tags": [
+    "service",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for angular service in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "angular-service-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-angular-service-testing-ts.ts.txt",
+      "template": "# Spike: angular service (ts)\n// Auto-generated spike stub for angular (service)\nexport function demo() {\n  console.log('use angular - service (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-angular-service-testing-ts.md",
+      "template": "# angular service (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-angular-service-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

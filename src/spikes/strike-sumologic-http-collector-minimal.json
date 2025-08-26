@@ -1,0 +1,17 @@
+{
+  "id": "strike-sumologic-http-collector-minimal",
+  "name": "strike-sumologic-http-collector-minimal",
+  "stack": [
+    "sumologic"
+  ],
+  "tags": [
+    "logging"
+  ],
+  "files": [
+    {
+      "path": "src/logging/sumologic.ts",
+      "template": "export const sumo = {};\n"
+    }
+  ],
+  "patches": []
+}

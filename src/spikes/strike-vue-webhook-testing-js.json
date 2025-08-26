@@ -1,0 +1,37 @@
+{
+  "id": "strike-vue-webhook-testing-js",
+  "name": "vue webhook testing js",
+  "version": "0.1.0",
+  "stack": [
+    "vue",
+    "js"
+  ],
+  "tags": [
+    "webhook",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for vue webhook in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "vue-webhook-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-vue-webhook-testing-js.js.txt",
+      "template": "# Spike: vue webhook (js)\n// Auto-generated spike stub for vue (webhook)\nmodule.exports = function demo(){\n  console.log('use vue - webhook (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-vue-webhook-testing-js.md",
+      "template": "# vue webhook (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-vue-webhook-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

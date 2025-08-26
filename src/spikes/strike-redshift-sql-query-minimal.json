@@ -1,0 +1,17 @@
+{
+  "id": "strike-redshift-sql-query-minimal",
+  "name": "strike-redshift-sql-query-minimal",
+  "stack": [
+    "redshift"
+  ],
+  "tags": [
+    "data"
+  ],
+  "files": [
+    {
+      "path": "src/data/redshift.ts",
+      "template": "export async function query(){ return []; }\n"
+    }
+  ],
+  "patches": []
+}

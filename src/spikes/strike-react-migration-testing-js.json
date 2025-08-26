@@ -1,0 +1,37 @@
+{
+  "id": "strike-react-migration-testing-js",
+  "name": "react migration testing js",
+  "version": "0.1.0",
+  "stack": [
+    "react",
+    "js"
+  ],
+  "tags": [
+    "migration",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for react migration in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "react-migration-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-react-migration-testing-js.js.txt",
+      "template": "# Spike: react migration (js)\n// Auto-generated spike stub for react (migration)\nmodule.exports = function demo(){\n  console.log('use react - migration (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-react-migration-testing-js.md",
+      "template": "# react migration (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-react-migration-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

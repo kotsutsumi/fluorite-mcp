@@ -1,0 +1,33 @@
+{
+  "id": "strike-remix-worker-typed-go",
+  "name": "remix worker typed go",
+  "version": "0.1.0",
+  "stack": [
+    "remix",
+    "go"
+  ],
+  "tags": [
+    "worker",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for remix worker in go (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "remix-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-remix-worker-typed-go.go.txt",
+      "template": "# Spike: remix worker (go)\n// Auto-generated spike stub for remix (worker)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use remix - worker (typed)\") }\n"
+    },
+    {
+      "path": "spikes/strike-remix-worker-typed-go.md",
+      "template": "# remix worker (typed, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

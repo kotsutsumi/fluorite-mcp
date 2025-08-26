@@ -1,0 +1,37 @@
+{
+  "id": "strike-solid-service-testing-js",
+  "name": "solid service testing js",
+  "version": "0.1.0",
+  "stack": [
+    "solid",
+    "js"
+  ],
+  "tags": [
+    "service",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for solid service in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "solid-service-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-solid-service-testing-js.js.txt",
+      "template": "# Spike: solid service (js)\n// Auto-generated spike stub for solid (service)\nmodule.exports = function demo(){\n  console.log('use solid - service (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-solid-service-testing-js.md",
+      "template": "# solid service (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-solid-service-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

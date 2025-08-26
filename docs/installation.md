@@ -51,7 +51,7 @@ For the quickest setup, use our automated installation script:
 
 ```bash
 # リポジトリをクローン（未実行の場合）
-git clone リポジトリURL
+git clone [local repository]
 cd fluorite-mcp
 
 # Run the automated setup script
@@ -100,7 +100,7 @@ For developers or latest features:
 
 ```bash
 # Clone the repository
-git clone リポジトリURL
+git clone [local repository]
 cd fluorite-mcp
 
 # Install dependencies
@@ -395,7 +395,7 @@ For contributors and advanced users:
 
 ```bash
 # Clone and setup development environment
-git clone リポジトリURL
+git clone [local repository]
 cd fluorite-mcp
 
 # Install dependencies
@@ -473,7 +473,7 @@ If you encounter issues not covered here:
 
 1. **Check the [Troubleshooting Guide](./troubleshooting.md)**
 2. **GitHub Issues で検索**
-3. **GitHub Discussions で質問**
+3. **コミュニティサポートを利用**
 4. **Report bugs**: Create a new issue with installation details
 
 ---

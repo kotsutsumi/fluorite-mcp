@@ -1,0 +1,33 @@
+{
+  "id": "strike-nuxt-worker-typed-go",
+  "name": "nuxt worker typed go",
+  "version": "0.1.0",
+  "stack": [
+    "nuxt",
+    "go"
+  ],
+  "tags": [
+    "worker",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nuxt worker in go (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nuxt-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-nuxt-worker-typed-go.go.txt",
+      "template": "# Spike: nuxt worker (go)\n// Auto-generated spike stub for nuxt (worker)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use nuxt - worker (typed)\") }\n"
+    },
+    {
+      "path": "spikes/strike-nuxt-worker-typed-go.md",
+      "template": "# nuxt worker (typed, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

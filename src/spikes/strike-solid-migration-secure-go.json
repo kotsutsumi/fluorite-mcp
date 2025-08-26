@@ -1,0 +1,33 @@
+{
+  "id": "strike-solid-migration-secure-go",
+  "name": "solid migration secure go",
+  "version": "0.1.0",
+  "stack": [
+    "solid",
+    "go"
+  ],
+  "tags": [
+    "migration",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for solid migration in go (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "solid-migration-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-solid-migration-secure-go.go.txt",
+      "template": "# Spike: solid migration (go)\n// Auto-generated spike stub for solid (migration)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use solid - migration (secure)\") }\n"
+    },
+    {
+      "path": "spikes/strike-solid-migration-secure-go.md",
+      "template": "# solid migration (secure, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

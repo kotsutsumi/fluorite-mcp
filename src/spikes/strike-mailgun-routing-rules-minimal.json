@@ -1,0 +1,17 @@
+{
+  "id": "strike-mailgun-routing-rules-minimal",
+  "name": "strike-mailgun-routing-rules-minimal",
+  "stack": [
+    "mailgun"
+  ],
+  "tags": [
+    "email"
+  ],
+  "files": [
+    {
+      "path": "src/email/mailgun-routing.ts",
+      "template": "export const routing = {};\n"
+    }
+  ],
+  "patches": []
+}

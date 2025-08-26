@@ -524,4 +524,4 @@ export class SecurityMiddleware implements Middleware {
 
 ---
 
-**開発に関する質問**: [GitHub Discussions](https://github.com/kotsutsumi/fluorite-mcp/discussions) の Developer カテゴリでお気軽にご質問ください。
+**開発に関する質問**: 開発者向けサポートチャネルでお気軽にご質問ください。

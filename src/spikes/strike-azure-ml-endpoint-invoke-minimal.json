@@ -1,0 +1,18 @@
+{
+  "id": "strike-azure-ml-endpoint-invoke-minimal",
+  "name": "strike-azure-ml-endpoint-invoke-minimal",
+  "stack": [
+    "azure",
+    "azml"
+  ],
+  "tags": [
+    "ml"
+  ],
+  "files": [
+    {
+      "path": "src/ml/azureml.ts",
+      "template": "export const invoke = async()=> ({});\n"
+    }
+  ],
+  "patches": []
+}

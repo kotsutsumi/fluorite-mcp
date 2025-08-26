@@ -1,0 +1,36 @@
+{
+  "items": [
+    { "id": "aws-sagemaker-runtime-invoke-minimal", "stack": ["aws", "sagemaker"], "tags": ["ml"], "files": [ { "path": "src/ml/sagemaker.ts", "template": "export const invoke = async()=> ({});\n" } ] },
+    { "id": "gcp-vertex-ai-predict-minimal", "stack": ["gcp", "vertex"], "tags": ["ml"], "files": [ { "path": "src/ml/vertex.ts", "template": "export const predict = async()=> ({});\n" } ] },
+    { "id": "azure-ml-endpoint-invoke-minimal", "stack": ["azure", "azml"], "tags": ["ml"], "files": [ { "path": "src/ml/azureml.ts", "template": "export const invoke = async()=> ({});\n" } ] },
+
+    { "id": "aws-batch-job-definition-stub-minimal", "stack": ["aws"], "tags": ["batch"], "files": [ { "path": "infra/aws-batch-job.json", "template": "{ }\n" } ] },
+    { "id": "azure-container-apps-revision-minimal", "stack": ["azure"], "tags": ["container"], "files": [ { "path": "infra/aca/revision.json", "template": "{ }\n" } ] },
+
+    { "id": "mapbox-geocoding-client-minimal", "stack": ["mapbox"], "tags": ["geo"], "files": [ { "path": "src/geo/mapbox.ts", "template": "export const geocode = async()=> [];\n" } ] },
+    { "id": "google-maps-geocoding-client-minimal", "stack": ["google"], "tags": ["geo"], "files": [ { "path": "src/geo/google-maps.ts", "template": "export const geocode = async()=> [];\n" } ] },
+
+    { "id": "graylog-gelf-udp-client-minimal", "stack": ["graylog"], "tags": ["logging"], "files": [ { "path": "src/logging/graylog.ts", "template": "export const gelf = {};\n" } ] },
+    { "id": "logzio-http-bulk-client-minimal", "stack": ["logzio"], "tags": ["logging"], "files": [ { "path": "src/logging/logzio.ts", "template": "export const bulk = {};\n" } ] },
+    { "id": "grafana-mimir-remote-write-minimal", "stack": ["mimir"], "tags": ["metrics"], "files": [ { "path": "src/metrics/mimir.ts", "template": "export const mimir = {};\n" } ] },
+
+    { "id": "faiss-vector-search-stub-minimal", "stack": ["faiss"], "tags": ["vector"], "files": [ { "path": "src/vectors/faiss.ts", "template": "export const faiss = {};\n" } ] },
+    { "id": "luigi-pipeline-stub-minimal", "stack": ["luigi"], "tags": ["data"], "files": [ { "path": "src/data/luigi.ts", "template": "export const luigi = {};\n" } ] },
+
+    { "id": "paystack-charge-minimal", "stack": ["paystack"], "tags": ["billing"], "files": [ { "path": "src/billing/paystack.ts", "template": "export const charge = {};\n" } ] },
+    { "id": "razorpay-order-create-minimal", "stack": ["razorpay"], "tags": ["billing"], "files": [ { "path": "src/billing/razorpay.ts", "template": "export const order = {};\n" } ] },
+    { "id": "gocardless-payment-create-minimal", "stack": ["gocardless"], "tags": ["billing"], "files": [ { "path": "src/billing/gocardless.ts", "template": "export const payment = {};\n" } ] },
+
+    { "id": "mailjet-send-email-minimal", "stack": ["mailjet"], "tags": ["email"], "files": [ { "path": "src/email/mailjet.ts", "template": "export const mailjet = {};\n" } ] },
+    { "id": "mailgun-routing-rules-minimal", "stack": ["mailgun"], "tags": ["email"], "files": [ { "path": "src/email/mailgun-routing.ts", "template": "export const routing = {};\n" } ] },
+
+    { "id": "docusaurus-config-minimal", "stack": ["docusaurus"], "tags": ["docs"], "files": [ { "path": "docs/docusaurus.config.js", "template": "module.exports = {};\n" } ] },
+    { "id": "mkdocs-config-minimal", "stack": ["mkdocs"], "tags": ["docs"], "files": [ { "path": "mkdocs.yml", "template": "site_name: Docs\n" } ] },
+
+    { "id": "statsig-feature-flag-client-minimal", "stack": ["statsig"], "tags": ["flags"], "files": [ { "path": "src/flags/statsig.ts", "template": "export const statsig = {};\n" } ] },
+    { "id": "optimizely-feature-flag-client-minimal", "stack": ["optimizely"], "tags": ["flags"], "files": [ { "path": "src/flags/optimizely.ts", "template": "export const opt = {};\n" } ] },
+
+    { "id": "crowdin-translation-upload-minimal", "stack": ["crowdin"], "tags": ["i18n"], "files": [ { "path": "src/i18n/crowdin.ts", "template": "export const crowdin = {};\n" } ] },
+    { "id": "transifex-translation-upload-minimal", "stack": ["transifex"], "tags": ["i18n"], "files": [ { "path": "src/i18n/transifex.ts", "template": "export const tx = {};\n" } ] }
+  ]
+}

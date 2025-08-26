@@ -1,0 +1,37 @@
+{
+  "id": "strike-nextjs-client-secure-ts",
+  "name": "nextjs client secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "nextjs",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nextjs client in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nextjs-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "app/client-demo/page.tsx",
+      "template": "'use client';\nexport default function Page(){ return <div>Client Component</div>; }\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-client-secure-ts.ts.txt",
+      "template": "# Spike: nextjs client (ts)\n// Auto-generated spike stub for nextjs (client)\nexport function demo() {\n  console.log('use nextjs - client (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-client-secure-ts.md",
+      "template": "# nextjs client (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

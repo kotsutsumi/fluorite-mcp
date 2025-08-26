@@ -1,0 +1,33 @@
+{
+  "id": "strike-express-init-basic-go",
+  "name": "express init basic go",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "go"
+  ],
+  "tags": [
+    "init",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express init in go (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-express-init-basic-go.go.txt",
+      "template": "# Spike: express init (go)\n// Auto-generated spike stub for express (init)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use express - init (basic)\") }\n"
+    },
+    {
+      "path": "spikes/strike-express-init-basic-go.md",
+      "template": "# express init (basic, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

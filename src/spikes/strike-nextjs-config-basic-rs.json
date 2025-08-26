@@ -1,0 +1,37 @@
+{
+  "id": "strike-nextjs-config-basic-rs",
+  "name": "nextjs config basic rs",
+  "version": "0.1.0",
+  "stack": [
+    "nextjs",
+    "rs"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nextjs config in rs (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nextjs-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "middleware.ts",
+      "template": "import { NextResponse } from 'next/server';\nexport function middleware(){ return NextResponse.next(); }\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-config-basic-rs.rs.txt",
+      "template": "# Spike: nextjs config (rs)\n// Auto-generated spike stub for nextjs (config)\npub fn demo(){ println!(\"use nextjs - config (basic)\"); }\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-config-basic-rs.md",
+      "template": "# nextjs config (basic, rs)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

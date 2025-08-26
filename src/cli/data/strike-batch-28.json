@@ -1,0 +1,45 @@
+{
+  "items": [
+    { "id": "okta-oidc-client-minimal", "stack": ["okta"], "tags": ["auth"], "files": [ { "path": "src/auth/okta.ts", "template": "export const okta = {};\n" } ] },
+    { "id": "fusionauth-client-minimal", "stack": ["fusionauth"], "tags": ["auth"], "files": [ { "path": "src/auth/fusionauth.ts", "template": "export const fusion = {};\n" } ] },
+    { "id": "stytch-passwordless-minimal", "stack": ["stytch"], "tags": ["auth"], "files": [ { "path": "src/auth/stytch.ts", "template": "export const stytch = {};\n" } ] },
+
+    { "id": "aws-iot-core-publish-minimal", "stack": ["aws"], "tags": ["iot"], "files": [ { "path": "src/iot/aws-iot.ts", "template": "export const iot = {};\n" } ] },
+    { "id": "azure-iot-hub-send-c2d-minimal", "stack": ["azure"], "tags": ["iot"], "files": [ { "path": "src/iot/azure-iot.ts", "template": "export const hub = {};\n" } ] },
+
+    { "id": "redshift-sql-query-minimal", "stack": ["redshift"], "tags": ["data"], "files": [ { "path": "src/data/redshift.ts", "template": "export async function query(){ return []; }\n" } ] },
+    { "id": "duckdb-query-client-minimal", "stack": ["duckdb"], "tags": ["data"], "files": [ { "path": "src/data/duckdb.ts", "template": "export const duckdb = {};\n" } ] },
+    { "id": "apache-iceberg-catalog-config-minimal", "stack": ["iceberg"], "tags": ["data"], "files": [ { "path": "infra/iceberg/catalog.yaml", "template": "catalog: {}\n" } ] },
+    { "id": "apache-hudi-config-stub-minimal", "stack": ["hudi"], "tags": ["data"], "files": [ { "path": "infra/hudi/config.yaml", "template": "hudi: {}\n" } ] },
+    { "id": "delta-lake-table-config-minimal", "stack": ["delta"], "tags": ["data"], "files": [ { "path": "infra/delta/table.yaml", "template": "table: {}\n" } ] },
+
+    { "id": "tyk-gateway-route-config-minimal", "stack": ["tyk"], "tags": ["gateway"], "files": [ { "path": "infra/tyk/apis.json", "template": "[]\n" } ] },
+    { "id": "ambassador-mapping-config-minimal", "stack": ["ambassador"], "tags": ["gateway"], "files": [ { "path": "k8s/ambassador-mapping.yaml", "template": "apiVersion: getambassador.io/v3alpha1\nkind: Mapping\n" } ] },
+    { "id": "varnish-vcl-config-minimal", "stack": ["varnish"], "tags": ["cache"], "files": [ { "path": "infra/varnish/default.vcl", "template": "vcl 4.0;\n" } ] },
+
+    { "id": "semgrep-config-minimal", "stack": ["semgrep"], "tags": ["security"], "files": [ { "path": ".semgrep.yml", "template": "rules: []\n" } ] },
+    { "id": "owasp-zap-baseline-config-minimal", "stack": ["zap"], "tags": ["security"], "files": [ { "path": "zap-baseline.conf", "template": "# zap\n" } ] },
+    { "id": "sonarqube-scanner-config-minimal", "stack": ["sonarqube"], "tags": ["quality"], "files": [ { "path": "sonar-project.properties", "template": "sonar.projectKey=app\n" } ] },
+
+    { "id": "flyway-migration-config-minimal", "stack": ["flyway"], "tags": ["db"], "files": [ { "path": "flyway.conf", "template": "flyway.url=jdbc:postgresql://localhost/db\n" } ] },
+    { "id": "liquibase-changelog-stub-minimal", "stack": ["liquibase"], "tags": ["db"], "files": [ { "path": "liquibase/changelog.xml", "template": "<databaseChangeLog/>\n" } ] },
+
+    { "id": "puppeteer-generate-pdf-minimal", "stack": ["puppeteer"], "tags": ["pdf"], "files": [ { "path": "src/pdf/puppeteer.ts", "template": "export async function pdf(){ return new Uint8Array(); }\n" } ] },
+
+    { "id": "ga4-measurement-protocol-event-minimal", "stack": ["ga4"], "tags": ["analytics"], "files": [ { "path": "src/analytics/ga4.ts", "template": "export async function event(){ return true }\n" } ] },
+    { "id": "heap-analytics-init-minimal", "stack": ["heap"], "tags": ["analytics"], "files": [ { "path": "src/analytics/heap.ts", "template": "export const heap = {};\n" } ] },
+    { "id": "rudderstack-track-event-minimal", "stack": ["rudderstack"], "tags": ["analytics"], "files": [ { "path": "src/analytics/rudder.ts", "template": "export async function track(){ return true }\n" } ] },
+
+    { "id": "getstream-chat-client-minimal", "stack": ["getstream"], "tags": ["chat"], "files": [ { "path": "src/chat/getstream.ts", "template": "export const stream = {};\n" } ] },
+    { "id": "label-studio-task-create-minimal", "stack": ["labelstudio"], "tags": ["ml"], "files": [ { "path": "src/ml/labelstudio.ts", "template": "export const label = {};\n" } ] },
+
+    { "id": "ray-serve-deployment-stub-minimal", "stack": ["ray"], "tags": ["ml"], "files": [ { "path": "src/ml/ray-serve.ts", "template": "export const serve = {};\n" } ] },
+    { "id": "bentoml-service-stub-minimal", "stack": ["bentoml"], "tags": ["ml"], "files": [ { "path": "src/ml/bentoml.ts", "template": "export const bento = {};\n" } ] },
+    { "id": "modal-serverless-function-stub-minimal", "stack": ["modal"], "tags": ["ml"], "files": [ { "path": "src/ml/modal.ts", "template": "export const modal = {};\n" } ] },
+
+    { "id": "aws-sam-template-stub-minimal", "stack": ["aws", "sam"], "tags": ["iac"], "files": [ { "path": "template.yaml", "template": "AWSTemplateFormatVersion: '2010-09-09'\n" } ] },
+    { "id": "azure-bicep-storage-account-minimal", "stack": ["azure", "bicep"], "tags": ["iac"], "files": [ { "path": "infra/azure/storage.bicep", "template": "targetScope='resourceGroup'\n" } ] },
+    { "id": "cdktf-aws-setup-minimal", "stack": ["cdktf"], "tags": ["iac"], "files": [ { "path": "infra/cdktf/main.ts", "template": "export {};\n" } ] },
+    { "id": "tekton-pipeline-stub-minimal", "stack": ["tekton"], "tags": ["cicd"], "files": [ { "path": "k8s/tekton-pipeline.yaml", "template": "apiVersion: tekton.dev/v1beta1\nkind: Pipeline\n" } ] }
+  ]
+}

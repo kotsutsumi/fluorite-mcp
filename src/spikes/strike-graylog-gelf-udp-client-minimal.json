@@ -1,0 +1,17 @@
+{
+  "id": "strike-graylog-gelf-udp-client-minimal",
+  "name": "strike-graylog-gelf-udp-client-minimal",
+  "stack": [
+    "graylog"
+  ],
+  "tags": [
+    "logging"
+  ],
+  "files": [
+    {
+      "path": "src/logging/graylog.ts",
+      "template": "export const gelf = {};\n"
+    }
+  ],
+  "patches": []
+}

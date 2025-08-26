@@ -1,0 +1,37 @@
+{
+  "id": "strike-remix-worker-testing-js",
+  "name": "remix worker testing js",
+  "version": "0.1.0",
+  "stack": [
+    "remix",
+    "js"
+  ],
+  "tags": [
+    "worker",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for remix worker in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "remix-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-remix-worker-testing-js.js.txt",
+      "template": "# Spike: remix worker (js)\n// Auto-generated spike stub for remix (worker)\nmodule.exports = function demo(){\n  console.log('use remix - worker (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-remix-worker-testing-js.md",
+      "template": "# remix worker (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-remix-worker-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

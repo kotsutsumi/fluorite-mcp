@@ -869,14 +869,13 @@ When reporting issues, include:
 ### Community Resources
 
 - **[GitHub Issues](https://github.com/kotsutsumi/fluorite-mcp/issues)** - Bug reports and feature requests
-- **[GitHub Discussions](https://github.com/kotsutsumi/fluorite-mcp/discussions)** - Community help
 - **Documentation** - README.md and docs/ folder for complete documentation
 
 ### Emergency Contacts
 
 For critical production issues:
 1. Check [Status Page] for known issues
-2. Post in GitHub Discussions with "urgent" label
+2. Contact support through available channels
 3. For enterprise users: Use priority support channel
 
 ---

@@ -1,0 +1,17 @@
+{
+  "id": "strike-sops-encrypted-file-stub-minimal",
+  "name": "strike-sops-encrypted-file-stub-minimal",
+  "stack": [
+    "sops"
+  ],
+  "tags": [
+    "secrets"
+  ],
+  "files": [
+    {
+      "path": "infra/sops/secrets.enc.yaml",
+      "template": "# encrypted\n"
+    }
+  ],
+  "patches": []
+}

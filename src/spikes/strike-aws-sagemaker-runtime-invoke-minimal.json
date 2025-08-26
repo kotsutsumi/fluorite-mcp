@@ -1,0 +1,18 @@
+{
+  "id": "strike-aws-sagemaker-runtime-invoke-minimal",
+  "name": "strike-aws-sagemaker-runtime-invoke-minimal",
+  "stack": [
+    "aws",
+    "sagemaker"
+  ],
+  "tags": [
+    "ml"
+  ],
+  "files": [
+    {
+      "path": "src/ml/sagemaker.ts",
+      "template": "export const invoke = async()=> ({});\n"
+    }
+  ],
+  "patches": []
+}

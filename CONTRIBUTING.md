@@ -94,8 +94,8 @@ name: Library Name
 version: 1.0.0
 description: Brief description of the library
 category: ui-components # or appropriate category
-homepage: # ライブラリのホームページURL
-repository: # GitリポジトリURL
+homepage: # Library homepage
+repository: # Git repository
 language: TypeScript
 
 tools:
@@ -299,8 +299,6 @@ fluorite-mcp/
 
 ### Getting Help
 
-- 💬 GitHub Discussions: 本プロジェクトのディスカッション
-- 🐛 Issue Tracker: 本プロジェクトのイシュートラッカー
 - 📧 Contact maintainers: README参照
 
 ### Recognition

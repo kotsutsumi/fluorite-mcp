@@ -1,0 +1,37 @@
+{
+  "id": "strike-nextjs-service-testing-kt",
+  "name": "nextjs service testing kt",
+  "version": "0.1.0",
+  "stack": [
+    "nextjs",
+    "kt"
+  ],
+  "tags": [
+    "service",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nextjs service in kt (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nextjs-service-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "app/actions/demo.ts",
+      "template": "'use server';\nexport async function demoAction(){ return { ok: true }; }\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-service-testing-kt.kt.txt",
+      "template": "# Spike: nextjs service (kt)\n// Auto-generated spike stub for nextjs (service)\nfun demo(){ println(\"use nextjs - service (testing)\") }\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-service-testing-kt.md",
+      "template": "# nextjs service (testing, kt)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

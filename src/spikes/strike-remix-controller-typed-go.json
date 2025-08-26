@@ -1,0 +1,33 @@
+{
+  "id": "strike-remix-controller-typed-go",
+  "name": "remix controller typed go",
+  "version": "0.1.0",
+  "stack": [
+    "remix",
+    "go"
+  ],
+  "tags": [
+    "controller",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for remix controller in go (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "remix-controller-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-remix-controller-typed-go.go.txt",
+      "template": "# Spike: remix controller (go)\n// Auto-generated spike stub for remix (controller)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use remix - controller (typed)\") }\n"
+    },
+    {
+      "path": "spikes/strike-remix-controller-typed-go.md",
+      "template": "# remix controller (typed, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

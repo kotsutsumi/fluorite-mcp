@@ -1,0 +1,17 @@
+{
+  "id": "strike-puppeteer-generate-pdf-minimal",
+  "name": "strike-puppeteer-generate-pdf-minimal",
+  "stack": [
+    "puppeteer"
+  ],
+  "tags": [
+    "pdf"
+  ],
+  "files": [
+    {
+      "path": "src/pdf/puppeteer.ts",
+      "template": "export async function pdf(){ return new Uint8Array(); }\n"
+    }
+  ],
+  "patches": []
+}

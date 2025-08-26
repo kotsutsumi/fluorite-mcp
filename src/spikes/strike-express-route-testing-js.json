@@ -1,0 +1,37 @@
+{
+  "id": "strike-express-route-testing-js",
+  "name": "express route testing js",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "js"
+  ],
+  "tags": [
+    "route",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express route in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-express-route-testing-js.js.txt",
+      "template": "# Spike: express route (js)\nconst express = require('express');\nconst app = express();\napp.get('/health', (req, res) => res.json({ ok: true }));\napp.listen(3000);\n"
+    },
+    {
+      "path": "spikes/strike-express-route-testing-js.md",
+      "template": "# express route (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-express-route-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,33 @@
+{
+  "id": "strike-remix-service-typed-go",
+  "name": "remix service typed go",
+  "version": "0.1.0",
+  "stack": [
+    "remix",
+    "go"
+  ],
+  "tags": [
+    "service",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for remix service in go (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "remix-service-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-remix-service-typed-go.go.txt",
+      "template": "# Spike: remix service (go)\n// Auto-generated spike stub for remix (service)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use remix - service (typed)\") }\n"
+    },
+    {
+      "path": "spikes/strike-remix-service-typed-go.md",
+      "template": "# remix service (typed, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

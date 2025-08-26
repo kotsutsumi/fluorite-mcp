@@ -1,0 +1,17 @@
+{
+  "id": "strike-travis-ci-config-minimal",
+  "name": "strike-travis-ci-config-minimal",
+  "stack": [
+    "travis"
+  ],
+  "tags": [
+    "cicd"
+  ],
+  "files": [
+    {
+      "path": ".travis.yml",
+      "template": "language: node_js\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,33 @@
+{
+  "id": "strike-express-client-typed-go",
+  "name": "express client typed go",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "go"
+  ],
+  "tags": [
+    "client",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express client in go (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-express-client-typed-go.go.txt",
+      "template": "# Spike: express client (go)\n// Auto-generated spike stub for express (client)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use express - client (typed)\") }\n"
+    },
+    {
+      "path": "spikes/strike-express-client-typed-go.md",
+      "template": "# express client (typed, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

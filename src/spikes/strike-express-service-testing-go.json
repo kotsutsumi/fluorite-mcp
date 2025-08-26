@@ -1,0 +1,33 @@
+{
+  "id": "strike-express-service-testing-go",
+  "name": "express service testing go",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "go"
+  ],
+  "tags": [
+    "service",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express service in go (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-service-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-express-service-testing-go.go.txt",
+      "template": "# Spike: express service (go)\n// Auto-generated spike stub for express (service)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use express - service (testing)\") }\n"
+    },
+    {
+      "path": "spikes/strike-express-service-testing-go.md",
+      "template": "# express service (testing, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-aws-iot-core-publish-minimal",
+  "name": "strike-aws-iot-core-publish-minimal",
+  "stack": [
+    "aws"
+  ],
+  "tags": [
+    "iot"
+  ],
+  "files": [
+    {
+      "path": "src/iot/aws-iot.ts",
+      "template": "export const iot = {};\n"
+    }
+  ],
+  "patches": []
+}

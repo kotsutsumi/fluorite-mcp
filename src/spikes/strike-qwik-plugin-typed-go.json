@@ -1,0 +1,33 @@
+{
+  "id": "strike-qwik-plugin-typed-go",
+  "name": "qwik plugin typed go",
+  "version": "0.1.0",
+  "stack": [
+    "qwik",
+    "go"
+  ],
+  "tags": [
+    "plugin",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for qwik plugin in go (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "qwik-plugin-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-qwik-plugin-typed-go.go.txt",
+      "template": "# Spike: qwik plugin (go)\n// Auto-generated spike stub for qwik (plugin)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use qwik - plugin (typed)\") }\n"
+    },
+    {
+      "path": "spikes/strike-qwik-plugin-typed-go.md",
+      "template": "# qwik plugin (typed, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

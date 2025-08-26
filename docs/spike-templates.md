@@ -1,6 +1,6 @@
 # Spike Templates - Enterprise Development Accelerators
 
-**3,100+ Production-Ready Templates** for instant prototyping and development acceleration. Transform ideas into working code in seconds with Fluorite MCP's comprehensive template library.
+**6,200+ Production-Ready Templates** for instant prototyping and development acceleration. Transform ideas into working code in seconds with Fluorite MCP's comprehensive template library.
 
 ## 🚀 Quick Start
 

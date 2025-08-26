@@ -1,0 +1,37 @@
+{
+  "id": "strike-nextjs-service-basic-ts",
+  "name": "nextjs service basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "nextjs",
+    "ts"
+  ],
+  "tags": [
+    "service",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nextjs service in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nextjs-service-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "app/actions/demo.ts",
+      "template": "'use server';\nexport async function demoAction(){ return { ok: true }; }\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-service-basic-ts.ts.txt",
+      "template": "# Spike: nextjs service (ts)\n// Auto-generated spike stub for nextjs (service)\nexport function demo() {\n  console.log('use nextjs - service (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-service-basic-ts.md",
+      "template": "# nextjs service (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

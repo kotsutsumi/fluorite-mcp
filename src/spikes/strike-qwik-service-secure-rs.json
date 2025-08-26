@@ -1,0 +1,33 @@
+{
+  "id": "strike-qwik-service-secure-rs",
+  "name": "qwik service secure rs",
+  "version": "0.1.0",
+  "stack": [
+    "qwik",
+    "rs"
+  ],
+  "tags": [
+    "service",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for qwik service in rs (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "qwik-service-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-qwik-service-secure-rs.rs.txt",
+      "template": "# Spike: qwik service (rs)\n// Auto-generated spike stub for qwik (service)\npub fn demo(){ println!(\"use qwik - service (secure)\"); }\n"
+    },
+    {
+      "path": "spikes/strike-qwik-service-secure-rs.md",
+      "template": "# qwik service (secure, rs)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

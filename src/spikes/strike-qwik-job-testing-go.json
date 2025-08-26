@@ -1,0 +1,33 @@
+{
+  "id": "strike-qwik-job-testing-go",
+  "name": "qwik job testing go",
+  "version": "0.1.0",
+  "stack": [
+    "qwik",
+    "go"
+  ],
+  "tags": [
+    "job",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for qwik job in go (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "qwik-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-qwik-job-testing-go.go.txt",
+      "template": "# Spike: qwik job (go)\n// Auto-generated spike stub for qwik (job)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use qwik - job (testing)\") }\n"
+    },
+    {
+      "path": "spikes/strike-qwik-job-testing-go.md",
+      "template": "# qwik job (testing, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

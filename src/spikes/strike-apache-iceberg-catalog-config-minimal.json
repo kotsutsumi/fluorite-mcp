@@ -1,0 +1,17 @@
+{
+  "id": "strike-apache-iceberg-catalog-config-minimal",
+  "name": "strike-apache-iceberg-catalog-config-minimal",
+  "stack": [
+    "iceberg"
+  ],
+  "tags": [
+    "data"
+  ],
+  "files": [
+    {
+      "path": "infra/iceberg/catalog.yaml",
+      "template": "catalog: {}\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "strike-prometheus-blackbox-exporter-probe-minimal",
+  "name": "strike-prometheus-blackbox-exporter-probe-minimal",
+  "stack": [
+    "prometheus"
+  ],
+  "tags": [
+    "monitoring"
+  ],
+  "files": [
+    {
+      "path": "monitoring/blackbox.yml",
+      "template": "modules: {}\n"
+    }
+  ],
+  "patches": []
+}

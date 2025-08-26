@@ -1,0 +1,33 @@
+{
+  "id": "strike-express-minimal-testing-go",
+  "name": "express minimal testing go",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "go"
+  ],
+  "tags": [
+    "minimal",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express minimal in go (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-minimal-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-express-minimal-testing-go.go.txt",
+      "template": "# Spike: express minimal (go)\n// Auto-generated spike stub for express (minimal)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use express - minimal (testing)\") }\n"
+    },
+    {
+      "path": "spikes/strike-express-minimal-testing-go.md",
+      "template": "# express minimal (testing, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

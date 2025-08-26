@@ -1,0 +1,37 @@
+{
+  "id": "strike-nuxt-controller-testing-ts",
+  "name": "nuxt controller testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "nuxt",
+    "ts"
+  ],
+  "tags": [
+    "controller",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nuxt controller in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nuxt-controller-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-nuxt-controller-testing-ts.ts.txt",
+      "template": "# Spike: nuxt controller (ts)\n// Auto-generated spike stub for nuxt (controller)\nexport function demo() {\n  console.log('use nuxt - controller (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nuxt-controller-testing-ts.md",
+      "template": "# nuxt controller (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-nuxt-controller-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

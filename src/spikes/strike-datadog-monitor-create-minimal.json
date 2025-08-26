@@ -1,0 +1,17 @@
+{
+  "id": "strike-datadog-monitor-create-minimal",
+  "name": "strike-datadog-monitor-create-minimal",
+  "stack": [
+    "datadog"
+  ],
+  "tags": [
+    "monitoring"
+  ],
+  "files": [
+    {
+      "path": "src/monitor/datadog-monitor.ts",
+      "template": "export const monitor = {};\n"
+    }
+  ],
+  "patches": []
+}

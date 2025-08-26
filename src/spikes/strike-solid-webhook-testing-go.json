@@ -1,0 +1,33 @@
+{
+  "id": "strike-solid-webhook-testing-go",
+  "name": "solid webhook testing go",
+  "version": "0.1.0",
+  "stack": [
+    "solid",
+    "go"
+  ],
+  "tags": [
+    "webhook",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for solid webhook in go (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "solid-webhook-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-solid-webhook-testing-go.go.txt",
+      "template": "# Spike: solid webhook (go)\n// Auto-generated spike stub for solid (webhook)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use solid - webhook (testing)\") }\n"
+    },
+    {
+      "path": "spikes/strike-solid-webhook-testing-go.md",
+      "template": "# solid webhook (testing, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

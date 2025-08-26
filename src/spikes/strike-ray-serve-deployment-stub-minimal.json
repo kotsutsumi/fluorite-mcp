@@ -1,0 +1,17 @@
+{
+  "id": "strike-ray-serve-deployment-stub-minimal",
+  "name": "strike-ray-serve-deployment-stub-minimal",
+  "stack": [
+    "ray"
+  ],
+  "tags": [
+    "ml"
+  ],
+  "files": [
+    {
+      "path": "src/ml/ray-serve.ts",
+      "template": "export const serve = {};\n"
+    }
+  ],
+  "patches": []
+}

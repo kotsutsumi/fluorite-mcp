@@ -1,0 +1,17 @@
+{
+  "id": "strike-tempo-tracing-exporter-minimal",
+  "name": "strike-tempo-tracing-exporter-minimal",
+  "stack": [
+    "tempo"
+  ],
+  "tags": [
+    "apm"
+  ],
+  "files": [
+    {
+      "path": "src/otel/tempo.ts",
+      "template": "export const tempo = {};\n"
+    }
+  ],
+  "patches": []
+}

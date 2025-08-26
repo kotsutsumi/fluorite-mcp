@@ -1,0 +1,17 @@
+{
+  "id": "strike-argo-rollouts-canary-stub-minimal",
+  "name": "strike-argo-rollouts-canary-stub-minimal",
+  "stack": [
+    "argo-rollouts"
+  ],
+  "tags": [
+    "kubernetes"
+  ],
+  "files": [
+    {
+      "path": "k8s/rollout.yaml",
+      "template": "apiVersion: argoproj.io/v1alpha1\nkind: Rollout\n"
+    }
+  ],
+  "patches": []
+}

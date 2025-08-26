@@ -1,0 +1,21 @@
+{
+  "id": "strike-dbt-profile-and-model-stub-minimal",
+  "name": "strike-dbt-profile-and-model-stub-minimal",
+  "stack": [
+    "dbt"
+  ],
+  "tags": [
+    "data"
+  ],
+  "files": [
+    {
+      "path": "dbt/profiles.yml",
+      "template": "default: {}\n"
+    },
+    {
+      "path": "dbt/models/example.sql",
+      "template": "select 1;\n"
+    }
+  ],
+  "patches": []
+}

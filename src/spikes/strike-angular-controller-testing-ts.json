@@ -1,0 +1,37 @@
+{
+  "id": "strike-angular-controller-testing-ts",
+  "name": "angular controller testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "angular",
+    "ts"
+  ],
+  "tags": [
+    "controller",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for angular controller in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "angular-controller-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-angular-controller-testing-ts.ts.txt",
+      "template": "# Spike: angular controller (ts)\n// Auto-generated spike stub for angular (controller)\nexport function demo() {\n  console.log('use angular - controller (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-angular-controller-testing-ts.md",
+      "template": "# angular controller (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-angular-controller-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

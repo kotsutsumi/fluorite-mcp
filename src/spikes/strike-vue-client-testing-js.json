@@ -1,0 +1,37 @@
+{
+  "id": "strike-vue-client-testing-js",
+  "name": "vue client testing js",
+  "version": "0.1.0",
+  "stack": [
+    "vue",
+    "js"
+  ],
+  "tags": [
+    "client",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for vue client in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "vue-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-vue-client-testing-js.js.txt",
+      "template": "# Spike: vue client (js)\n// Auto-generated spike stub for vue (client)\nmodule.exports = function demo(){\n  console.log('use vue - client (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-vue-client-testing-js.md",
+      "template": "# vue client (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-vue-client-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

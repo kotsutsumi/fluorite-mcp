@@ -1,0 +1,17 @@
+{
+  "id": "strike-envoy-proxy-filterchain-stub-minimal",
+  "name": "strike-envoy-proxy-filterchain-stub-minimal",
+  "stack": [
+    "envoy"
+  ],
+  "tags": [
+    "gateway"
+  ],
+  "files": [
+    {
+      "path": "infra/envoy/envoy.yaml",
+      "template": "static_resources: {}\n"
+    }
+  ],
+  "patches": []
+}

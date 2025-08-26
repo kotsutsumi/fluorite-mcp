@@ -1,0 +1,17 @@
+{
+  "id": "strike-libsodium-sealed-box-minimal",
+  "name": "strike-libsodium-sealed-box-minimal",
+  "stack": [
+    "libsodium"
+  ],
+  "tags": [
+    "security"
+  ],
+  "files": [
+    {
+      "path": "src/security/libsodium.ts",
+      "template": "export const sealed = {};\n"
+    }
+  ],
+  "patches": []
+}

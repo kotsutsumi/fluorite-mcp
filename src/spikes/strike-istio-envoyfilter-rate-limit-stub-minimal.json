@@ -1,0 +1,17 @@
+{
+  "id": "strike-istio-envoyfilter-rate-limit-stub-minimal",
+  "name": "strike-istio-envoyfilter-rate-limit-stub-minimal",
+  "stack": [
+    "istio"
+  ],
+  "tags": [
+    "kubernetes"
+  ],
+  "files": [
+    {
+      "path": "k8s/envoyfilter.yaml",
+      "template": "apiVersion: networking.istio.io/v1alpha3\nkind: EnvoyFilter\n"
+    }
+  ],
+  "patches": []
+}

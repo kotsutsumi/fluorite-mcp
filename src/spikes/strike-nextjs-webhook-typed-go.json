@@ -1,0 +1,33 @@
+{
+  "id": "strike-nextjs-webhook-typed-go",
+  "name": "nextjs webhook typed go",
+  "version": "0.1.0",
+  "stack": [
+    "nextjs",
+    "go"
+  ],
+  "tags": [
+    "webhook",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nextjs webhook in go (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nextjs-webhook-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-nextjs-webhook-typed-go.go.txt",
+      "template": "# Spike: nextjs webhook (go)\n// Auto-generated spike stub for nextjs (webhook)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use nextjs - webhook (typed)\") }\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-webhook-typed-go.md",
+      "template": "# nextjs webhook (typed, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

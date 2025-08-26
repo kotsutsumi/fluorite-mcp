@@ -1,0 +1,33 @@
+{
+  "id": "strike-express-client-typed-rs",
+  "name": "express client typed rs",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "rs"
+  ],
+  "tags": [
+    "client",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express client in rs (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-express-client-typed-rs.rs.txt",
+      "template": "# Spike: express client (rs)\n// Auto-generated spike stub for express (client)\npub fn demo(){ println!(\"use express - client (typed)\"); }\n"
+    },
+    {
+      "path": "spikes/strike-express-client-typed-rs.md",
+      "template": "# express client (typed, rs)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,33 @@
+{
+  "id": "strike-angular-worker-secure-go",
+  "name": "angular worker secure go",
+  "version": "0.1.0",
+  "stack": [
+    "angular",
+    "go"
+  ],
+  "tags": [
+    "worker",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for angular worker in go (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "angular-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-angular-worker-secure-go.go.txt",
+      "template": "# Spike: angular worker (go)\n// Auto-generated spike stub for angular (worker)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use angular - worker (secure)\") }\n"
+    },
+    {
+      "path": "spikes/strike-angular-worker-secure-go.md",
+      "template": "# angular worker (secure, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

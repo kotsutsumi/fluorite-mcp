@@ -1,0 +1,37 @@
+{
+  "id": "strike-express-minimal-testing-js",
+  "name": "express minimal testing js",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "js"
+  ],
+  "tags": [
+    "minimal",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express minimal in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-minimal-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-express-minimal-testing-js.js.txt",
+      "template": "# Spike: express minimal (js)\n// Auto-generated spike stub for express (minimal)\nmodule.exports = function demo(){\n  console.log('use express - minimal (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-express-minimal-testing-js.md",
+      "template": "# express minimal (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-express-minimal-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

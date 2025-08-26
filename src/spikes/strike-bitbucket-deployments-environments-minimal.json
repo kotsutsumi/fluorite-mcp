@@ -1,0 +1,17 @@
+{
+  "id": "strike-bitbucket-deployments-environments-minimal",
+  "name": "strike-bitbucket-deployments-environments-minimal",
+  "stack": [
+    "bitbucket"
+  ],
+  "tags": [
+    "cicd"
+  ],
+  "files": [
+    {
+      "path": "bitbucket-deployments.yml",
+      "template": "deployments: {}\n"
+    }
+  ],
+  "patches": []
+}

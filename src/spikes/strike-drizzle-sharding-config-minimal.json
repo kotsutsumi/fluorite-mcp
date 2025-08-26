@@ -1,0 +1,17 @@
+{
+  "id": "strike-drizzle-sharding-config-minimal",
+  "name": "strike-drizzle-sharding-config-minimal",
+  "stack": [
+    "drizzle"
+  ],
+  "tags": [
+    "db"
+  ],
+  "files": [
+    {
+      "path": "src/db/drizzle-shard.ts",
+      "template": "export const shard = {};\n"
+    }
+  ],
+  "patches": []
+}

@@ -123,8 +123,10 @@ const japaneseSpecsSidebar = {
         { text: '7つの言語エコシステム', link: '/ja/specs/langs' },
         { text: 'Laravel/PHP', link: '/ja/specs/laravel' },
         { text: 'FastAPI/Python', link: '/ja/specs/fastapi' },
+        { text: 'FastAPIスターター', link: '/ja/specs/fastapi-starter' },
         { text: 'Rust/Tauri', link: '/ja/specs/rust-tauri' },
         { text: 'Ruby on Rails', link: '/ja/specs/ruby-rails' },
+        { text: 'Lua/軽量スクリプト', link: '/ja/specs/lua' },
         { text: 'シェル・DevOpsツール', link: '/ja/specs/shell-tools' }
       ]
     },
@@ -155,6 +157,14 @@ const japaneseSpecsSidebar = {
       items: [
         { text: 'モバイルネイティブ (iOS/Android)', link: '/ja/specs/mobile-native' },
         { text: 'Expo/React Native', link: '/ja/specs/expo-react-native' }
+      ]
+    },
+    {
+      text: '🏗️ モダン開発スタック',
+      collapsed: true,
+      items: [
+        { text: 'モダンテック横断リファレンス', link: '/ja/specs/modern-tech' },
+        { text: 'Vercel/Next.jsスターター', link: '/ja/specs/next-starter' }
       ]
     }
   ]
@@ -279,9 +289,11 @@ const specsSidebar = {
       collapsed: true,
       items: [
         { text: 'FastAPI & Python Ecosystem', link: '/specs/fastapi' },
+        { text: 'FastAPI Starter', link: '/specs/fastapi-starter' },
         { text: 'Laravel & PHP Ecosystem', link: '/specs/laravel' },
         { text: 'Rust & Tauri Desktop Apps', link: '/specs/rust-tauri' },
         { text: 'Ruby on Rails Ecosystem', link: '/specs/ruby-rails' },
+        { text: 'Lua & Lightweight Scripting', link: '/specs/lua' },
         { text: 'Shell Scripting & DevOps Tools', link: '/specs/shell-tools' }
       ]
     },
@@ -300,6 +312,14 @@ const specsSidebar = {
       items: [
         { text: 'Mobile Native (iOS/Android)', link: '/specs/mobile-native' },
         { text: 'Expo/React Native (Cross-platform)', link: '/specs/expo-react-native' }
+      ]
+    },
+    {
+      text: '🏗️ Modern Development Stacks',
+      collapsed: true,
+      items: [
+        { text: 'Modern Technology Cross-Reference', link: '/specs/modern-tech' },
+        { text: 'Vercel / Next.js Starter', link: '/specs/next-starter' }
       ]
     }
   ]

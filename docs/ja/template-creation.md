@@ -447,4 +447,3 @@ fluorite-mcp check-dependencies ./my-template
 
 ---
 
-*テンプレート作成に関する質問は、[GitHub Discussions](https://github.com/kotsutsumi/fluorite-mcp/discussions) でお気軽にお尋ねください。*

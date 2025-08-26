@@ -1,0 +1,33 @@
+{
+  "id": "strike-vue-webhook-secure-go",
+  "name": "vue webhook secure go",
+  "version": "0.1.0",
+  "stack": [
+    "vue",
+    "go"
+  ],
+  "tags": [
+    "webhook",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for vue webhook in go (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "vue-webhook-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-vue-webhook-secure-go.go.txt",
+      "template": "# Spike: vue webhook (go)\n// Auto-generated spike stub for vue (webhook)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use vue - webhook (secure)\") }\n"
+    },
+    {
+      "path": "spikes/strike-vue-webhook-secure-go.md",
+      "template": "# vue webhook (secure, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

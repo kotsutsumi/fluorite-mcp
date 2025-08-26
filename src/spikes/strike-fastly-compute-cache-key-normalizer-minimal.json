@@ -1,0 +1,18 @@
+{
+  "id": "strike-fastly-compute-cache-key-normalizer-minimal",
+  "name": "strike-fastly-compute-cache-key-normalizer-minimal",
+  "stack": [
+    "fastly"
+  ],
+  "tags": [
+    "edge",
+    "cache"
+  ],
+  "files": [
+    {
+      "path": "fastly/cache-key.js",
+      "template": "export function key(u){ return u }\n"
+    }
+  ],
+  "patches": []
+}

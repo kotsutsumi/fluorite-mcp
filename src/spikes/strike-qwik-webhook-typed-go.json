@@ -1,0 +1,33 @@
+{
+  "id": "strike-qwik-webhook-typed-go",
+  "name": "qwik webhook typed go",
+  "version": "0.1.0",
+  "stack": [
+    "qwik",
+    "go"
+  ],
+  "tags": [
+    "webhook",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for qwik webhook in go (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "qwik-webhook-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-qwik-webhook-typed-go.go.txt",
+      "template": "# Spike: qwik webhook (go)\n// Auto-generated spike stub for qwik (webhook)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use qwik - webhook (typed)\") }\n"
+    },
+    {
+      "path": "spikes/strike-qwik-webhook-typed-go.md",
+      "template": "# qwik webhook (typed, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

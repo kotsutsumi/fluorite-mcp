@@ -1,0 +1,17 @@
+{
+  "id": "strike-imgix-signed-url-minimal",
+  "name": "strike-imgix-signed-url-minimal",
+  "stack": [
+    "imgix"
+  ],
+  "tags": [
+    "image"
+  ],
+  "files": [
+    {
+      "path": "src/image/imgix.ts",
+      "template": "export const sign = (path:string)=> path;\n"
+    }
+  ],
+  "patches": []
+}

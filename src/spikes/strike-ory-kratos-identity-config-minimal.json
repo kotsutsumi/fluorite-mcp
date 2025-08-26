@@ -1,0 +1,17 @@
+{
+  "id": "strike-ory-kratos-identity-config-minimal",
+  "name": "strike-ory-kratos-identity-config-minimal",
+  "stack": [
+    "ory"
+  ],
+  "tags": [
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "infra/ory/kratos.yaml",
+      "template": "selfservice: {}\n"
+    }
+  ],
+  "patches": []
+}

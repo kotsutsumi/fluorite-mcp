@@ -1,0 +1,37 @@
+{
+  "id": "strike-remix-listener-testing-ts",
+  "name": "remix listener testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "remix",
+    "ts"
+  ],
+  "tags": [
+    "listener",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for remix listener in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "remix-listener-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-remix-listener-testing-ts.ts.txt",
+      "template": "# Spike: remix listener (ts)\n// Auto-generated spike stub for remix (listener)\nexport function demo() {\n  console.log('use remix - listener (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-remix-listener-testing-ts.md",
+      "template": "# remix listener (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-remix-listener-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}
