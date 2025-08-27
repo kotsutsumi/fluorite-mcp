@@ -1,0 +1,37 @@
+{
+  "id": "strike-datadog-service-basic-ts",
+  "name": "datadog service basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "datadog",
+    "ts"
+  ],
+  "tags": [
+    "service",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for datadog service in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "datadog-service-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/apm/datadog.ts",
+      "template": "export function datadog(){ return { enabled: true }; }\n"
+    },
+    {
+      "path": "spikes/strike-datadog-service-basic-ts.ts.txt",
+      "template": "# Spike: datadog service (ts)\n// Auto-generated spike stub for datadog (service)\nexport function demo() {\n  console.log('use datadog - service (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-datadog-service-basic-ts.md",
+      "template": "# datadog service (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

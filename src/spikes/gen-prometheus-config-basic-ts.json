@@ -1,0 +1,36 @@
+{
+  "id": "gen-prometheus-config-basic-ts",
+  "name": "prometheus config basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "prometheus",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated"
+  ],
+  "description": "Auto-generated spike for prometheus config in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "prometheus-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/metrics/prometheus.ts",
+      "template": "export function metrics(){ return { register: {} as any }; }\n"
+    },
+    {
+      "path": "spikes/gen-prometheus-config-basic-ts.ts.txt",
+      "template": "# Spike: prometheus config (ts)\n// Auto-generated spike stub for prometheus (config)\nexport function demo() {\n  console.log('use prometheus - config (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/gen-prometheus-config-basic-ts.md",
+      "template": "# prometheus config (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-gcs-service-typed-ts",
+  "name": "gcs service typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "gcs",
+    "ts"
+  ],
+  "tags": [
+    "service",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for gcs service in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "gcs-service-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/storage/gcs.ts",
+      "template": "import { Storage } from '@google-cloud/storage';\nexport const gcs = new Storage();\nexport async function upload(bucket: string, filename: string, buffer: Buffer){ const b = gcs.bucket(bucket); const file = b.file(filename); await file.save(buffer); return file.publicUrl(); }\n"
+    },
+    {
+      "path": "src/gcp/storage.ts",
+      "template": "export function gcs(){ return { bucket: process.env.GCS_BUCKET }; }\n"
+    },
+    {
+      "path": "spikes/strike-gcs-service-typed-ts.ts.txt",
+      "template": "# Spike: gcs service (ts)\n// Auto-generated spike stub for gcs (service)\nexport function demo() {\n  console.log('use gcs - service (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-gcs-service-typed-ts.md",
+      "template": "# gcs service (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,32 @@
+{
+  "id": "gen-sentry-service-basic-ts",
+  "name": "sentry service basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "sentry",
+    "ts"
+  ],
+  "tags": [
+    "service",
+    "basic",
+    "generated"
+  ],
+  "description": "Auto-generated spike for sentry service in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sentry-service-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/gen-sentry-service-basic-ts.ts.txt",
+      "template": "# Spike: sentry service (ts)\n// Auto-generated spike stub for sentry (service)\nexport function demo() {\n  console.log('use sentry - service (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/gen-sentry-service-basic-ts.md",
+      "template": "# sentry service (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

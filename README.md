@@ -204,6 +204,27 @@ One-Pagers: docs/one-pagers.md
 Monitoring & Alerts (MVP): docs/monitoring-alerts.md
 Bulk Generation Guide: docs/BULK-GENERATION.md
 
+### Strike Packs（用途別パック）
+よく使う領域をパック化して、合成テンプレートを絞り込み・大量書き出しできます。
+
+- 一覧: `fluorite spikes packs`
+- 例: `fluorite spikes synth --pack search --generated-only --write --pretty --max 100`
+
+詳しくは以下を参照してください。
+- パックの使い方: `docs/ja/strike-packs.md`
+- 適用フロー/レシピ: `docs/ja/strike-recipes.md`
+- 検証チェックリスト: `docs/ja/pack-checklists.md`
+- 最小サンプル集: `docs/ja/pack-samples.md`
+ - クイックチュートリアル: `docs/ja/tutorials.md`
+
+Examples (runnable minis): examples/pack-examples
+ - MeiliSearch: `npx tsx examples/pack-examples/meili/index.ts`
+ - S3: `npx tsx examples/pack-examples/s3/index.ts`
+ - Pino: `npx tsx examples/pack-examples/pino/index.ts`
+ - Stripe (webhook verify demo): `npx tsx examples/pack-examples/stripe/index.ts`
+ - Monitoring full example (HTTP + /health + /metrics): `npx tsx examples/pack-examples/monitoring-full/index.ts`
+ - Search full example (HTTP + /search, Meili fallback to memory): `npx tsx examples/pack-examples/search-full/index.ts`
+
 ### 100K+ Strike テンプレート（大規模自動生成）
 `strike-*` を含む仮想スパイクを動的に合成し、10万件以上のテンプレートを提供します。詳細・チューニング・使い方の日本語ガイドは `docs/ja/strike-scale.md` を参照してください。
 

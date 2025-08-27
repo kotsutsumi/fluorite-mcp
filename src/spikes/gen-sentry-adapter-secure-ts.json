@@ -1,0 +1,32 @@
+{
+  "id": "gen-sentry-adapter-secure-ts",
+  "name": "sentry adapter secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "sentry",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "secure",
+    "generated"
+  ],
+  "description": "Auto-generated spike for sentry adapter in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sentry-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/gen-sentry-adapter-secure-ts.ts.txt",
+      "template": "# Spike: sentry adapter (ts)\n// Auto-generated spike stub for sentry (adapter)\nexport function demo() {\n  console.log('use sentry - adapter (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/gen-sentry-adapter-secure-ts.md",
+      "template": "# sentry adapter (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

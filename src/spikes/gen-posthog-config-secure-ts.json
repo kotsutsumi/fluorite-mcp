@@ -1,0 +1,36 @@
+{
+  "id": "gen-posthog-config-secure-ts",
+  "name": "posthog config secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "posthog",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "secure",
+    "generated"
+  ],
+  "description": "Auto-generated spike for posthog config in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "posthog-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/analytics/posthog.ts",
+      "template": "import { PostHog } from 'posthog-node';\nexport const posthog = new PostHog(process.env.POSTHOG_KEY || '', { host: process.env.POSTHOG_HOST || 'https://app.posthog.com' });\n"
+    },
+    {
+      "path": "spikes/gen-posthog-config-secure-ts.ts.txt",
+      "template": "# Spike: posthog config (ts)\n// Auto-generated spike stub for posthog (config)\nexport function demo() {\n  console.log('use posthog - config (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/gen-posthog-config-secure-ts.md",
+      "template": "# posthog config (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

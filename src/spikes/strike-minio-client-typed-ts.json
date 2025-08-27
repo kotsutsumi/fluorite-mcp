@@ -1,0 +1,41 @@
+{
+  "id": "strike-minio-client-typed-ts",
+  "name": "minio client typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "minio",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for minio client in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "minio-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/storage/minio.ts",
+      "template": "import * as Minio from 'minio';\nexport const minio = new Minio.Client({ endPoint: process.env.MINIO_ENDPOINT || 'localhost', port: parseInt(process.env.MINIO_PORT||'9000',10), useSSL: false, accessKey: process.env.MINIO_ACCESS_KEY||'', secretKey: process.env.MINIO_SECRET_KEY||'' });\nexport async function put(bucket: string, name: string, data: Buffer){ await minio.putObject(bucket, name, data); }\n"
+    },
+    {
+      "path": "src/storage/minio.ts",
+      "template": "export function minio(){ return { endpoint: process.env.MINIO_ENDPOINT || 'http://localhost:9000' }; }\n"
+    },
+    {
+      "path": "spikes/strike-minio-client-typed-ts.ts.txt",
+      "template": "# Spike: minio client (ts)\n// Auto-generated spike stub for minio (client)\nexport function demo() {\n  console.log('use minio - client (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-minio-client-typed-ts.md",
+      "template": "# minio client (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

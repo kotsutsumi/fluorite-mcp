@@ -264,6 +264,10 @@ function tokenizeTask(task: string): string[] {
     [/テスト|試験|検証/, 'testing'],
     [/プレビュー/, 'preview'],
     [/適用/, 'apply'],
+    [/コンポーネント/, 'component'],
+    [/フック/, 'hook'],
+    [/プロバイダ|プロバイダー/, 'provider'],
+    [/設定|コンフィグ|config/i, 'config'],
     [/typescript|タイプスクリプト/, 'typescript'],
     [/javascript|ジャバスクリプト|js/i, 'js'],
     [/python|パイソン|py/i, 'py'],
@@ -314,6 +318,26 @@ function tokenizeTask(task: string): string[] {
     ,[/new\s?relic|newrelic/i, 'newrelic']
     ,[/opensearch/i, 'opensearch']
     ,[/elasticsearch|es\b/i, 'elasticsearch']
+    ,[/検索|サーチ/i, 'search']
+    ,[/監視|モニタリング|apm|オブザーバビリティ/i, 'monitoring']
+    ,[/ログ|logging|log/i, 'log']
+    ,[/メトリクス|metrics|prometheus/i, 'prometheus']
+    ,[/決済|支払い|課金/i, 'payments']
+    ,[/ストレージ|保存|オブジェクトストレージ/i, 'storage']
+    ,[/s3\b/i, 's3']
+    ,[/gcs|google\s*cloud\s*storage/i, 'gcs']
+    ,[/azure\s*blob/i, 'azure-blob']
+    ,[/minio/i, 'minio']
+    ,[/sentry/i, 'sentry']
+    ,[/posthog/i, 'posthog']
+    ,[/newrelic|new\s*relic/i, 'newrelic']
+    ,[/pino/i, 'pino']
+    ,[/winston/i, 'winston']
+    ,[/meili(search)?/i, 'meilisearch']
+    ,[/typesense/i, 'typesense']
+    ,[/algolia/i, 'algolia']
+    ,[/stripe/i, 'stripe']
+    ,[/paddle/i, 'paddle']
   ];
 
   const hintWords: string[] = [];

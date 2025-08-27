@@ -30,6 +30,7 @@ import {
   handleApplySpikeTool,
   handleValidateSpikeTool,
   handleExplainSpikeTool,
+  handleListSpikePacksTool,
   handleAutoSpikeTool,
   type DiscoverInput
 } from "./core/spike-handlers.js";
@@ -192,6 +193,18 @@ server.registerTool(
     return await handleExplainSpikeTool(input as any);
   }
 );
+server.registerTool(
+  "list-spike-packs",
+  {
+    title: "List Spike Packs",
+    description: "用途別テンプレート・パック一覧を返します",
+    inputSchema: {}
+  },
+  async () => {
+    return await handleListSpikePacksTool();
+  }
+);
+
 server.registerTool(
   "catalog-stats",
   {

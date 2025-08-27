@@ -1,0 +1,33 @@
+{
+  "id": "strike-sentry-service-typed-ts",
+  "name": "sentry service typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "sentry",
+    "ts"
+  ],
+  "tags": [
+    "service",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for sentry service in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sentry-service-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-sentry-service-typed-ts.ts.txt",
+      "template": "# Spike: sentry service (ts)\n// Auto-generated spike stub for sentry (service)\nexport function demo() {\n  console.log('use sentry - service (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sentry-service-typed-ts.md",
+      "template": "# sentry service (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

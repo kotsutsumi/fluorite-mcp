@@ -1,0 +1,53 @@
+{
+  "id": "strike-s3-service-basic-ts",
+  "name": "s3 service basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "s3",
+    "ts"
+  ],
+  "tags": [
+    "service",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for s3 service in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "s3-service-app"
+    },
+    {
+      "name": "region",
+      "required": false,
+      "description": "AWS リージョン",
+      "default": "us-east-1"
+    },
+    {
+      "name": "bucket",
+      "required": false,
+      "description": "S3 バケット名",
+      "default": "my-bucket"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/storage/s3.ts",
+      "template": "import { S3Client, PutObjectCommand, GetObjectCommand } from '@aws-sdk/client-s3';\nconst region = process.env.AWS_REGION || '{{region}}';\nexport const s3 = new S3Client({ region });\nexport async function putObject(bucket: string, key: string, body: Uint8Array){ await s3.send(new PutObjectCommand({ Bucket: bucket, Key: key, Body: body })); }\nexport async function getObject(bucket: string, key: string){ return s3.send(new GetObjectCommand({ Bucket: bucket, Key: key })); }\n"
+    },
+    {
+      "path": "src/aws/s3.ts",
+      "template": "export function s3(){ return { bucket: process.env.S3_BUCKET }; }\n"
+    },
+    {
+      "path": "spikes/strike-s3-service-basic-ts.ts.txt",
+      "template": "# Spike: s3 service (ts)\n// Auto-generated spike stub for s3 (service)\nexport function demo() {\n  console.log('use s3 - service (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-s3-service-basic-ts.md",
+      "template": "# s3 service (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

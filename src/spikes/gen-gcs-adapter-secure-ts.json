@@ -1,0 +1,36 @@
+{
+  "id": "gen-gcs-adapter-secure-ts",
+  "name": "gcs adapter secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "gcs",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "secure",
+    "generated"
+  ],
+  "description": "Auto-generated spike for gcs adapter in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "gcs-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/storage/gcs.ts",
+      "template": "import { Storage } from '@google-cloud/storage';\nexport const gcs = new Storage();\nexport async function upload(bucket: string, filename: string, buffer: Buffer){ const b = gcs.bucket(bucket); const file = b.file(filename); await file.save(buffer); return file.publicUrl(); }\n"
+    },
+    {
+      "path": "spikes/gen-gcs-adapter-secure-ts.ts.txt",
+      "template": "# Spike: gcs adapter (ts)\n// Auto-generated spike stub for gcs (adapter)\nexport function demo() {\n  console.log('use gcs - adapter (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/gen-gcs-adapter-secure-ts.md",
+      "template": "# gcs adapter (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

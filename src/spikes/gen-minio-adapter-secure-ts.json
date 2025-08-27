@@ -1,0 +1,36 @@
+{
+  "id": "gen-minio-adapter-secure-ts",
+  "name": "minio adapter secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "minio",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "secure",
+    "generated"
+  ],
+  "description": "Auto-generated spike for minio adapter in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "minio-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/storage/minio.ts",
+      "template": "import * as Minio from 'minio';\nexport const minio = new Minio.Client({ endPoint: process.env.MINIO_ENDPOINT || 'localhost', port: parseInt(process.env.MINIO_PORT||'9000',10), useSSL: false, accessKey: process.env.MINIO_ACCESS_KEY||'', secretKey: process.env.MINIO_SECRET_KEY||'' });\nexport async function put(bucket: string, name: string, data: Buffer){ await minio.putObject(bucket, name, data); }\n"
+    },
+    {
+      "path": "spikes/gen-minio-adapter-secure-ts.ts.txt",
+      "template": "# Spike: minio adapter (ts)\n// Auto-generated spike stub for minio (adapter)\nexport function demo() {\n  console.log('use minio - adapter (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/gen-minio-adapter-secure-ts.md",
+      "template": "# minio adapter (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

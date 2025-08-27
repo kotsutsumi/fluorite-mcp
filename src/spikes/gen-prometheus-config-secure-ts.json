@@ -1,0 +1,36 @@
+{
+  "id": "gen-prometheus-config-secure-ts",
+  "name": "prometheus config secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "prometheus",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "secure",
+    "generated"
+  ],
+  "description": "Auto-generated spike for prometheus config in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "prometheus-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/metrics/prometheus.ts",
+      "template": "export function metrics(){ return { register: {} as any }; }\n"
+    },
+    {
+      "path": "spikes/gen-prometheus-config-secure-ts.ts.txt",
+      "template": "# Spike: prometheus config (ts)\n// Auto-generated spike stub for prometheus (config)\nexport function demo() {\n  console.log('use prometheus - config (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/gen-prometheus-config-secure-ts.md",
+      "template": "# prometheus config (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

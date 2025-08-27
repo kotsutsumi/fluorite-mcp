@@ -1,0 +1,36 @@
+{
+  "id": "gen-algolia-client-basic-ts",
+  "name": "algolia client basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "algolia",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "basic",
+    "generated"
+  ],
+  "description": "Auto-generated spike for algolia client in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "algolia-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/search/algolia.ts",
+      "template": "export function algolia(){ return { appId: process.env.ALGOLIA_APP_ID, apiKey: process.env.ALGOLIA_API_KEY, index: process.env.ALGOLIA_INDEX }; }\n"
+    },
+    {
+      "path": "spikes/gen-algolia-client-basic-ts.ts.txt",
+      "template": "# Spike: algolia client (ts)\n// Auto-generated spike stub for algolia (client)\nexport function demo() {\n  console.log('use algolia - client (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/gen-algolia-client-basic-ts.md",
+      "template": "# algolia client (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

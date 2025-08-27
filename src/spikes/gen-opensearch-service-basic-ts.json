@@ -1,0 +1,36 @@
+{
+  "id": "gen-opensearch-service-basic-ts",
+  "name": "opensearch service basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "opensearch",
+    "ts"
+  ],
+  "tags": [
+    "service",
+    "basic",
+    "generated"
+  ],
+  "description": "Auto-generated spike for opensearch service in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "opensearch-service-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/search/opensearch.ts",
+      "template": "export function opensearch(){ return { node: process.env.OPENSEARCH_NODE || 'http://localhost:9200' }; }\n"
+    },
+    {
+      "path": "spikes/gen-opensearch-service-basic-ts.ts.txt",
+      "template": "# Spike: opensearch service (ts)\n// Auto-generated spike stub for opensearch (service)\nexport function demo() {\n  console.log('use opensearch - service (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/gen-opensearch-service-basic-ts.md",
+      "template": "# opensearch service (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

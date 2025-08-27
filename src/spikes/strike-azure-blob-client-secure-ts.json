@@ -1,0 +1,41 @@
+{
+  "id": "strike-azure-blob-client-secure-ts",
+  "name": "azure-blob client secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "azure-blob",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for azure-blob client in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "azure-blob-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/storage/azureBlob.ts",
+      "template": "import { BlobServiceClient } from '@azure/storage-blob';\nconst conn = process.env.AZURE_STORAGE_CONNECTION_STRING || '';\nexport const blob = BlobServiceClient.fromConnectionString(conn);\nexport async function put(container: string, name: string, data: Uint8Array){ const c = blob.getContainerClient(container); const block = c.getBlockBlobClient(name); await block.uploadData(data); }\n"
+    },
+    {
+      "path": "src/azure/blob.ts",
+      "template": "export function azureBlob(){ return { container: process.env.AZURE_BLOB_CONTAINER }; }\n"
+    },
+    {
+      "path": "spikes/strike-azure-blob-client-secure-ts.ts.txt",
+      "template": "# Spike: azure-blob client (ts)\n// Auto-generated spike stub for azure-blob (client)\nexport function demo() {\n  console.log('use azure-blob - client (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-azure-blob-client-secure-ts.md",
+      "template": "# azure-blob client (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

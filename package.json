@@ -74,6 +74,7 @@
     "test:watch": "vitest",
     "test:server": "node -e \"console.log('Running basic server validation...'); const server = require('./dist/server.js'); console.log('✅ Server module loads successfully');\"",
     "test:ci": "npm run build && node --max-old-space-size=4096 ./node_modules/.bin/vitest run --config vitest.config.ci.ts",
+    "examples:dryrun": "timeout 3s npx tsx examples/pack-examples/pino/index.ts >/dev/null 2>&1 || true && timeout 3s PORT=3101 npx tsx examples/pack-examples/monitoring-full/index.ts >/dev/null 2>&1 || true",
     "lint": "tsc --noEmit --skipLibCheck",
     "validate": "npm run lint && npm run test:ci",
     "prepublishOnly": "npm run build && npm run build:check",

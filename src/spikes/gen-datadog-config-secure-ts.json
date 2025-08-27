@@ -1,0 +1,36 @@
+{
+  "id": "gen-datadog-config-secure-ts",
+  "name": "datadog config secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "datadog",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "secure",
+    "generated"
+  ],
+  "description": "Auto-generated spike for datadog config in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "datadog-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/apm/datadog.ts",
+      "template": "export function datadog(){ return { enabled: true }; }\n"
+    },
+    {
+      "path": "spikes/gen-datadog-config-secure-ts.ts.txt",
+      "template": "# Spike: datadog config (ts)\n// Auto-generated spike stub for datadog (config)\nexport function demo() {\n  console.log('use datadog - config (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/gen-datadog-config-secure-ts.md",
+      "template": "# datadog config (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

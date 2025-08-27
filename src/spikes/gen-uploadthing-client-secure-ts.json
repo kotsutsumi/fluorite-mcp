@@ -1,0 +1,36 @@
+{
+  "id": "gen-uploadthing-client-secure-ts",
+  "name": "uploadthing client secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "uploadthing",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "secure",
+    "generated"
+  ],
+  "description": "Auto-generated spike for uploadthing client in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "uploadthing-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/uploads/uploadthing.ts",
+      "template": "export function uploadthing(){ return { token: process.env.UPLOADTHING_TOKEN }; }\n"
+    },
+    {
+      "path": "spikes/gen-uploadthing-client-secure-ts.ts.txt",
+      "template": "# Spike: uploadthing client (ts)\n// Auto-generated spike stub for uploadthing (client)\nexport function demo() {\n  console.log('use uploadthing - client (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/gen-uploadthing-client-secure-ts.md",
+      "template": "# uploadthing client (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

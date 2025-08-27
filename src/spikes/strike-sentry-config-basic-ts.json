@@ -1,0 +1,37 @@
+{
+  "id": "strike-sentry-config-basic-ts",
+  "name": "sentry config basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "sentry",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for sentry config in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sentry-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/sentry/init.ts",
+      "template": "import * as Sentry from '@sentry/node';\nexport function initSentry(){\n  Sentry.init({ dsn: process.env.SENTRY_DSN, tracesSampleRate: 1.0 });\n}\n"
+    },
+    {
+      "path": "spikes/strike-sentry-config-basic-ts.ts.txt",
+      "template": "# Spike: sentry config (ts)\n// Auto-generated spike stub for sentry (config)\nexport function demo() {\n  console.log('use sentry - config (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sentry-config-basic-ts.md",
+      "template": "# sentry config (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -14,6 +14,7 @@ import {
   renderFiles,
   scoreSpikeMatch
 } from './spike-catalog.js';
+import { listPacks } from './spike-packs.js';
 
 interface ToolCallResult {
   content: Array<{ type: 'text'; text: string }>;
@@ -184,6 +185,21 @@ export async function handleExplainSpikeTool(input: ExplainInput): Promise<ToolC
   }
 }
 
+// List available spike packs (for clients that want high-level grouping)
+export async function handleListSpikePacksTool(): Promise<ToolCallResult> {
+  try {
+    const packs = listPacks();
+    const lines = [
+      `Available packs: ${packs.length}`,
+      ...packs.map(p => `• ${p.key}: ${p.description}`)
+    ];
+    return { content: [{ type: 'text', text: lines.join('\n') }], metadata: { packs } };
+  } catch (e) {
+    log.error('list-spike-packs failed', e as Error);
+    return { content: [{ type: 'text', text: `❌ list-spike-packs failed: ${(e as Error).message}` }], isError: true };
+  }
+}
+
 export interface AutoSpikeInput { task: string; constraints?: Record<string,string> }
 export async function handleAutoSpikeTool(input: AutoSpikeInput): Promise<ToolCallResult> {
   try {
@@ -326,6 +342,16 @@ function inferStrikeAliasIds(task: string): string[] {
     'next-service-ts': 'strike-nextjs-service-typed-ts',
     'react-provider-ts': 'strike-react-provider-typed-ts',
     'react-adapter-ts': 'strike-react-adapter-typed-ts',
+    // JP shortcuts
+    '検索-クライアント-ts': 'strike-meilisearch-client-typed-ts',
+    '検索-クライアント-typesense-ts': 'strike-typesense-client-typed-ts',
+    '決済-webhook-ts': 'strike-stripe-webhook-typed-ts',
+    'ストレージ-s3-ルート-ts': 'strike-s3-route-typed-ts',
+    // Storage/search quick tokens
+    's3-route-ts': 'strike-s3-route-typed-ts',
+    'meili-client-ts': 'strike-meilisearch-client-typed-ts',
+    'typesense-client-ts': 'strike-typesense-client-typed-ts',
+    'es-client-ts': 'strike-elasticsearch-client-typed-ts',
     // Auth providers
     'next-auth-ts': 'strike-next-auth-provider-typed-ts',
     'auth0-ts': 'strike-auth0-provider-typed-ts',
@@ -375,6 +401,17 @@ function inferStrikeAliasIds(task: string): string[] {
     [/fastapi[^\n]*(secure|セキュア)[^\n]*(api|route|エンドポイント)[^\n]*(python|py)/, 'strike-fastapi-route-secure-py'],
     [/react[^\n]*typed[^\n]*component[^\n]*(typescript|ts)/, 'strike-react-component-typed-ts'],
     [/react[^\n]*typed[^\n]*hook[^\n]*(typescript|ts)/, 'strike-react-hook-typed-ts']
+    ,[/stripe[^\n]*(webhook|route)[^\n]*(typescript|ts)/, 'strike-stripe-webhook-typed-ts']
+    ,[/s3[^\n]*(route|adapter)[^\n]*(typescript|ts)/, 'strike-s3-route-typed-ts']
+    ,[/meili[^\n]*(client|service)[^\n]*(typescript|ts)/, 'strike-meilisearch-client-typed-ts']
+    ,[/typesense[^\n]*(client|service)[^\n]*(typescript|ts)/, 'strike-typesense-client-typed-ts']
+    ,[/elastic(search)?[^\n]*(client|service)[^\n]*(typescript|ts)/, 'strike-elasticsearch-client-typed-ts']
+    // Japanese quick patterns
+    ,/[検索].*(クライアント|client).*(typescript|ts)/, 'strike-meilisearch-client-typed-ts']
+    ,/[検索].*(クライアント|client).*(typesense|タイプセンス).*(typescript|ts)/, 'strike-typesense-client-typed-ts']
+    ,/[監視|モニタリング].*(初期化|ミドルウェア|middleware).*(typescript|ts)/, 'strike-sentry-middleware-typed-ts']
+    ,/[決済].*(webhook|ウェブフック|ルート).*(typescript|ts)/, 'strike-stripe-webhook-typed-ts']
+    ,/[ストレージ].*(s3|gcs|azure|blob|minio).*(route|ルート|adapter|アダプタ|client|クライアント).*(typescript|ts)/, 'strike-s3-route-typed-ts']
   ];
   const matches: string[] = [];
   for (const [re, id] of direct) {

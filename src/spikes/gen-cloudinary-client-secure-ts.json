@@ -1,0 +1,36 @@
+{
+  "id": "gen-cloudinary-client-secure-ts",
+  "name": "cloudinary client secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "cloudinary",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "secure",
+    "generated"
+  ],
+  "description": "Auto-generated spike for cloudinary client in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "cloudinary-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/uploads/cloudinary.ts",
+      "template": "export function cloudinary(){ return { cloudName: process.env.CLOUDINARY_CLOUD_NAME }; }\n"
+    },
+    {
+      "path": "spikes/gen-cloudinary-client-secure-ts.ts.txt",
+      "template": "# Spike: cloudinary client (ts)\n// Auto-generated spike stub for cloudinary (client)\nexport function demo() {\n  console.log('use cloudinary - client (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/gen-cloudinary-client-secure-ts.md",
+      "template": "# cloudinary client (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,40 @@
+{
+  "id": "gen-gcs-client-basic-ts",
+  "name": "gcs client basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "gcs",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "basic",
+    "generated"
+  ],
+  "description": "Auto-generated spike for gcs client in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "gcs-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/storage/gcs.ts",
+      "template": "import { Storage } from '@google-cloud/storage';\nexport const gcs = new Storage();\nexport async function upload(bucket: string, filename: string, buffer: Buffer){ const b = gcs.bucket(bucket); const file = b.file(filename); await file.save(buffer); return file.publicUrl(); }\n"
+    },
+    {
+      "path": "src/gcp/storage.ts",
+      "template": "export function gcs(){ return { bucket: process.env.GCS_BUCKET }; }\n"
+    },
+    {
+      "path": "spikes/gen-gcs-client-basic-ts.ts.txt",
+      "template": "# Spike: gcs client (ts)\n// Auto-generated spike stub for gcs (client)\nexport function demo() {\n  console.log('use gcs - client (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/gen-gcs-client-basic-ts.md",
+      "template": "# gcs client (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

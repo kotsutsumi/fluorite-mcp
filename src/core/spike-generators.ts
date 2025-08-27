@@ -92,6 +92,27 @@ export function isGeneratedId(id: string): boolean {
   return id.startsWith(GEN_PREFIX) || id.startsWith(STRIKE_PREFIX);
 }
 
+export function listGeneratedSpikeIdsFiltered(opts: { libs?: string[]; patterns?: string[]; styles?: string[]; langs?: string[]; limit?: number } = {}): string[] {
+  const ids: string[] = [];
+  const limit = typeof opts.limit === 'number' && opts.limit > 0 ? opts.limit : getLimit();
+  const libs = opts.libs && opts.libs.length ? opts.libs : LIBRARIES;
+  const pats = opts.patterns && opts.patterns.length ? opts.patterns : PATTERNS;
+  const styles = opts.styles && opts.styles.length ? opts.styles : STYLES;
+  const langs = opts.langs && opts.langs.length ? opts.langs : LANGS;
+  const pushWithCap = (id: string) => { ids.push(id); return limit !== undefined && ids.length >= limit; };
+  outer: for (const lib of libs) {
+    for (const pat of pats) {
+      for (const style of styles) {
+        for (const lang of langs) {
+          if (pushWithCap(`${GEN_PREFIX}${lib}-${pat}-${style}-${lang}`)) break outer;
+          if (pushWithCap(`${STRIKE_PREFIX}${lib}-${pat}-${style}-${lang}`)) break outer;
+        }
+      }
+    }
+  }
+  return ids;
+}
+
 export function listGeneratedSpikeIds(): string[] {
   const ids: string[] = [];
   const limit = getLimit();

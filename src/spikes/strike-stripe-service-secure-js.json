@@ -1,0 +1,47 @@
+{
+  "id": "strike-stripe-service-secure-js",
+  "name": "stripe service secure js",
+  "version": "0.1.0",
+  "stack": [
+    "stripe",
+    "js"
+  ],
+  "tags": [
+    "service",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for stripe service in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "stripe-service-app"
+    },
+    {
+      "name": "priceId",
+      "required": false,
+      "description": "Stripe Price ID",
+      "default": "price_123"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/payments/stripe.ts",
+      "template": "import Stripe from 'stripe';\nconst apiKey = process.env.STRIPE_API_KEY || '';\nexport const stripe = new Stripe(apiKey, { apiVersion: '2024-06-20' as any });\nexport async function createCheckoutSession(priceId: string){\n  return stripe.checkout.sessions.create({ mode: 'subscription', line_items: [{ price: priceId, quantity: 1 }], success_url: 'https://example.com/success', cancel_url: 'https://example.com/cancel' });\n}\n"
+    },
+    {
+      "path": "src/stripe/client.ts",
+      "template": "import Stripe from 'stripe';\nexport const stripe = new Stripe(process.env.STRIPE_API_KEY || '', { apiVersion: '2024-06-20' as any });\n"
+    },
+    {
+      "path": "spikes/strike-stripe-service-secure-js.js.txt",
+      "template": "# Spike: stripe service (js)\n// Auto-generated spike stub for stripe (service)\nmodule.exports = function demo(){\n  console.log('use stripe - service (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-stripe-service-secure-js.md",
+      "template": "# stripe service (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

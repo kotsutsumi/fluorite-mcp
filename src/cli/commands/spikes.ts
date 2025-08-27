@@ -6,6 +6,32 @@ import { listSpikeIds, loadSpike } from '../../core/spike-catalog.js';
 import { listPacks, filterIdsByPack } from '../../core/spike-packs.js';
 import { isGeneratedId } from '../../core/spike-generators.js';
 
+// Helper: when a pack is provided and generated-only is true, prefer filtered generated IDs
+async function getIdsForPackOrAll(filter: string, opts: any): Promise<string[]> {
+  const ids = await listSpikeIds(filter);
+  let pool = opts.generatedOnly ? ids.filter((id) => isGeneratedId(id)) : ids;
+  if (!opts.pack) return pool;
+  // Try optimized path: generate only matching combos using pack definition
+  try {
+    const { SPIKE_PACKS } = await import('../../core/spike-packs.js');
+    const { listGeneratedSpikeIdsFiltered } = await import('../../core/spike-generators.js');
+    const def = (SPIKE_PACKS as any)[String(opts.pack)];
+    if (def && def.include && opts.generatedOnly) {
+      const combos = listGeneratedSpikeIdsFiltered({
+        libs: def.include.libs,
+        patterns: def.include.patterns,
+        styles: def.include.styles,
+        langs: def.include.langs,
+        limit: opts.max && Number.isFinite(opts.max) ? Number(opts.max) * 10 : undefined // fetch a bit more
+      });
+      // Optionally merge with physical ids already present that match regex filter
+      pool = combos;
+      return pool;
+    }
+  } catch {}
+  // Fallback to pack filter on the general list
+  return filterIdsByPack(pool, String(opts.pack));
+}
 export const spikesCommand = new Command('spikes')
   .description('Spike template utilities')
   .addCommand(
@@ -49,7 +75,7 @@ spikesCommand.addCommand(
       const filter = String(opts.filter || '');
       const max = Number.isFinite(opts.max) ? Number(opts.max) : 2000;
       const skip = Number.isFinite(opts.skip) ? Number(opts.skip) : 0;
-      const ids = await listSpikeIds(filter);
+      const ids = await getIdsForPackOrAll(filter, opts);
 
       // Optional narrowing to generated-only
       let pool = opts.generatedOnly ? ids.filter((id) => isGeneratedId(id)) : ids;
@@ -129,9 +155,8 @@ spikesCommand.addCommand(
         if (typeof json?.startIndex === 'number') state.startIndex = json.startIndex;
       } catch {}
 
-      const ids = await listSpikeIds(filter);
-      let pool = opts.generatedOnly ? ids.filter((id) => isGeneratedId(id)) : ids;
-      if (opts.pack) pool = filterIdsByPack(pool, String(opts.pack));
+      const ids = await getIdsForPackOrAll(filter, opts);
+      let pool = ids;
 
       let start = Math.max(0, Math.min(state.startIndex || 0, pool.length));
       const selected: string[] = [];
@@ -211,9 +236,8 @@ spikesCommand.addCommand(
       let writtenTotal = 0; let failedTotal = 0; let skippedTotal = 0; let overwrittenTotal = 0;
       let iterations = 0;
       for (; writtenTotal < total; iterations++) {
-      const ids = await listSpikeIds(filter);
-      let pool = opts.generatedOnly ? ids.filter((id) => isGeneratedId(id)) : ids;
-      if (opts.pack) pool = filterIdsByPack(pool, String(opts.pack));
+      const ids = await getIdsForPackOrAll(filter, opts);
+      let pool = ids;
         if (pool.length === 0) {
           console.log(`No spikes matched filter '${filter}'.`);
           break;

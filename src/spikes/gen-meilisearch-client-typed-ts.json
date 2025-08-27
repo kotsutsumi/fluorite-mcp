@@ -1,0 +1,40 @@
+{
+  "id": "gen-meilisearch-client-typed-ts",
+  "name": "meilisearch client typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "meilisearch",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "typed",
+    "generated"
+  ],
+  "description": "Auto-generated spike for meilisearch client in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "meilisearch-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/search/meilisearch.ts",
+      "template": "import { MeiliSearch } from 'meilisearch';\nexport const meili = new MeiliSearch({ host: process.env.MEILI_HOST || 'http://127.0.0.1:7700', apiKey: process.env.MEILI_API_KEY });\nexport async function indexDoc(index: string, doc: any){ const i = meili.index(index); return i.addDocuments([doc]); }\n"
+    },
+    {
+      "path": "src/search/meilisearch.ts",
+      "template": "export function meilisearch(){ return { host: process.env.MEILI_HOST || 'http://localhost:7700', apiKey: process.env.MEILI_API_KEY }; }\n"
+    },
+    {
+      "path": "spikes/gen-meilisearch-client-typed-ts.ts.txt",
+      "template": "# Spike: meilisearch client (ts)\n// Auto-generated spike stub for meilisearch (client)\nexport function demo() {\n  console.log('use meilisearch - client (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/gen-meilisearch-client-typed-ts.md",
+      "template": "# meilisearch client (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

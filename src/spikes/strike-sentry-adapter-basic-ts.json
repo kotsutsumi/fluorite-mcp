@@ -1,0 +1,33 @@
+{
+  "id": "strike-sentry-adapter-basic-ts",
+  "name": "sentry adapter basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "sentry",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for sentry adapter in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sentry-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "spikes/strike-sentry-adapter-basic-ts.ts.txt",
+      "template": "# Spike: sentry adapter (ts)\n// Auto-generated spike stub for sentry (adapter)\nexport function demo() {\n  console.log('use sentry - adapter (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sentry-adapter-basic-ts.md",
+      "template": "# sentry adapter (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}
