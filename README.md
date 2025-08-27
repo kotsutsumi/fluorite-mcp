@@ -154,6 +154,14 @@ Docs CLI（ローカルドキュメントの一覧/パス表示/内容出力）:
 fluorite docs
 fluorite docs --show recipes.md
 fluorite docs --cat one-pagers.md
+
+Bulk generation（大規模書き出し）:
+
+```
+# 1,000件 × 10回で10k+を目指す例
+fluorite spikes synth-bulk --generated-only --filter '^strike-' --total 1000 --batch 100 --pretty
+# 再実行で自動レジューム（stateファイル参照）
+```
 ```
 
 ### Short Aliases (quick tokens)
@@ -194,6 +202,7 @@ Queue/Brokerスニペット: docs/queue-snippets.md
 Search Index Tips: docs/search-index-tips.md
 One-Pagers: docs/one-pagers.md
 Monitoring & Alerts (MVP): docs/monitoring-alerts.md
+Bulk Generation Guide: docs/BULK-GENERATION.md
 
 ### Tuning
 環境変数で自動選定の挙動を調整できます。

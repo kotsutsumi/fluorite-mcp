@@ -164,3 +164,100 @@ spikesCommand.addCommand(
       console.log(`Materialized(next): written=${written}, overwritten=${overwritten}, skipped=${skipped}, failed=${failed}, startIndex=${start}, outDir=${outDir}`);
     })
 );
+
+// Bulk synthesizer to write many generated spikes in batches repeatedly
+spikesCommand.addCommand(
+  new Command('synth-bulk')
+    .description('Materialize many generated spikes in repeated batches using a persisted progress state')
+    .option('-f, --filter <regex>', 'ID filter (regex)', '^strike-')
+    .option('-t, --total <n>', 'Total number of items to write this run', (v)=>parseInt(v,10), 1000)
+    .option('-b, --batch <n>', 'Batch size per iteration', (v)=>parseInt(v,10), 100)
+    .option('-o, --out-dir <outDir>', 'Output directory', 'src/spikes')
+    .option('--state-file <file>', 'Progress state file', 'src/cli/data/synth-state.json')
+    .option('--generated-only', 'Process only virtual/generated spikes (e.g., strike-*, gen-*)')
+    .option('--pretty', 'Pretty-print JSON when writing')
+    .option('--overwrite', 'Overwrite if file exists (default: skip)')
+    .option('--start-index <n>', 'Override start index (advanced)', (v)=>parseInt(v,10))
+    .option('--dry-run', 'Preview what would be written without writing files')
+    .action(async (opts) => {
+      const filter = String(opts.filter || '');
+      const total = Number.isFinite(opts.total) ? Number(opts.total) : 1000;
+      const batch = Number.isFinite(opts.batch) ? Math.max(1, Number(opts.batch)) : 100;
+      const outDir = path.resolve(opts.outDir || 'src/spikes');
+      const stateFile = path.resolve(opts.stateFile || 'src/cli/data/synth-state.json');
+      await fs.mkdir(path.dirname(stateFile), { recursive: true });
+      await fs.mkdir(outDir, { recursive: true });
+
+      // Load previous state if exists
+      let state: { startIndex: number } = { startIndex: 0 };
+      try {
+        const raw = await fs.readFile(stateFile, 'utf8');
+        const json = JSON.parse(raw);
+        if (typeof json?.startIndex === 'number') state.startIndex = json.startIndex;
+      } catch {}
+      if (Number.isFinite(opts.startIndex)) {
+        state.startIndex = Math.max(0, Number(opts.startIndex));
+      }
+
+      let writtenTotal = 0; let failedTotal = 0; let skippedTotal = 0; let overwrittenTotal = 0;
+      let iterations = 0;
+      for (; writtenTotal < total; iterations++) {
+        const ids = await listSpikeIds(filter);
+        const pool = opts.generatedOnly ? ids.filter((id) => isGeneratedId(id)) : ids;
+        if (pool.length === 0) {
+          console.log(`No spikes matched filter '${filter}'.`);
+          break;
+        }
+
+        let start = Math.max(0, Math.min(state.startIndex || 0, pool.length));
+        const selected: string[] = [];
+        const exists = await import('fs/promises');
+
+        for (let i = start; i < pool.length && selected.length < batch; i++) {
+          const id = pool[i];
+          const file = path.join(outDir, `${id}.json`);
+          try { await exists.access(file); /* present */ }
+          catch { selected.push(id); }
+          start = i + 1;
+        }
+
+        if (selected.length === 0) {
+          // If we wrapped around and found nothing new, break
+          if (start >= pool.length) start = 0;
+          // Persist and stop to avoid infinite loop
+          await fs.writeFile(stateFile, JSON.stringify({ startIndex: start }, null, 2) + '\n', 'utf8');
+          console.log(`No new spikes to materialize in this window (startIndex=${state.startIndex}, pool=${pool.length}).`);
+          break;
+        }
+
+        let written = 0; let failed = 0; let overwritten = 0; let skipped = 0;
+        if (opts.dryRun) {
+          console.log(`[dry-run] Would write ${selected.length} items to ${outDir} (from index ${state.startIndex})`);
+          console.log(selected.join('\n'));
+        } else {
+          for (const id of selected) {
+            try {
+              const spec = await loadSpike(id);
+              const file = path.join(outDir, `${id}.json`);
+              let existsFlag = false;
+              try { await exists.access(file); existsFlag = true; } catch {}
+              if (existsFlag && !opts.overwrite) { skipped++; continue; }
+              const data = opts.pretty ? JSON.stringify(spec, null, 2) + '\n' : JSON.stringify(spec);
+              await fs.writeFile(file, data, 'utf8');
+              if (existsFlag) overwritten++; else written++;
+            } catch { failed++; }
+          }
+        }
+
+        // Accumulate totals
+        writtenTotal += written; failedTotal += failed; skippedTotal += skipped; overwrittenTotal += overwritten;
+        // Persist next start index (always persist to advance window, even in dry-run)
+        state.startIndex = start;
+        await fs.writeFile(stateFile, JSON.stringify({ startIndex: start }, null, 2) + '\n', 'utf8');
+        console.log(`Batch #${iterations+1}: ${opts.dryRun ? '[dry-run] ' : ''}written=${written}, overwritten=${overwritten}, skipped=${skipped}, failed=${failed}, startIndex=${start}`);
+        if (writtenTotal >= total) break;
+      }
+
+      console.log(`Bulk materialized total: written=${writtenTotal}, overwritten=${overwrittenTotal}, skipped=${skippedTotal}, failed=${failedTotal}, iterations=${iterations}`);
+    })
+);
