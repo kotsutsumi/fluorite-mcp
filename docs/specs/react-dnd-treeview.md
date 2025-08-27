@@ -3,7 +3,7 @@
 高機能なドラッグ&ドロップ対応のReactツリービューコンポーネント
 
 - **NPM**: `@minoru/react-dnd-treeview`  
-- **Repository**: <https://github.com/minop1205/react-dnd-treeview>
+- **Repository**: react-dnd-treeview
 - **Version**: ^3.4.4
 - **License**: MIT
 
@@ -247,11 +247,10 @@ The component includes comprehensive accessibility features:
 
 ## Resources
 
-- [Documentation](https://github.com/minop1205/react-dnd-treeview/blob/main/README.md)
-- [Live Demo](https://minop1205.github.io/react-dnd-treeview/)
-- [API Reference](https://github.com/minop1205/react-dnd-treeview/blob/main/docs/api.md)
-- [Examples](https://github.com/minop1205/react-dnd-treeview/tree/main/examples)
-- [Changelog](https://github.com/minop1205/react-dnd-treeview/blob/main/CHANGELOG.md)
+- Documentation: README.md
+- API Reference: docs/api.md
+- Examples: examples/
+- Changelog: CHANGELOG.md
 
 ## Package Stats
 

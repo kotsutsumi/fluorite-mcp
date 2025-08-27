@@ -59,16 +59,26 @@ export async function handleDiscoverSpikesTool(input: DiscoverInput = {}): Promi
       input.query ? `Query: "${input.query}"` : '',
       ...limited.map(i => `• ${i.id}${i.name && i.name !== i.id ? ` - ${i.name}` : ''} [score=${i.score}]`)
     ].filter(Boolean);
+
+    // Helpful docs hint for discover usage
+    lines.push('\nDocs: docs/short-aliases.md, docs/recipes.md (use `fluorite docs` to browse)');
     
-    return { 
-      content: [{ type: 'text', text: lines.join('\n') }], 
-      metadata: { 
-        items: limited, 
+    const resources = [
+      'docs/short-aliases.md',
+      'docs/file-structure-samples.md',
+      'docs/diff-samples.md',
+      'docs/recipes.md'
+    ];
+    return {
+      content: [{ type: 'text', text: lines.join('\n') }],
+      metadata: {
+        items: limited,
         total: allIds.length,
         limit,
         offset,
-        hasMore: offset + limit < allIds.length
-      } 
+        hasMore: offset + limit < allIds.length,
+        resources
+      }
     };
   } catch (e) {
     log.error('discover-spikes failed', e as Error);
@@ -87,9 +97,21 @@ export async function handlePreviewSpikeTool(input: PreviewInput): Promise<ToolC
       `Preview for spike '${spec.id}':`,
       `• files: ${files.length}`,
       `• patches: ${patches.length}`,
+      '',
+      'Next: apply-spike (three_way_merge) and then validate-spike',
+      'Docs: docs/diff-samples.md, docs/file-structure-samples.md'
     ].join('\n');
     const next = [{ tool: 'apply-spike', args: { id: spec.id, params, strategy: 'three_way_merge' }}];
-    return { content: [{ type: 'text', text }], metadata: { spec, files, patches, next_actions: next } };
+    const resources = [
+      'docs/short-aliases.md',
+      'docs/diff-samples.md',
+      'docs/file-structure-samples.md',
+      'docs/post-apply-checklists.md',
+      'docs/verification-examples.md',
+      'docs/recipes.md',
+      'docs/one-pagers.md'
+    ];
+    return { content: [{ type: 'text', text }], metadata: { spec, files, patches, resources, next_actions: next } };
   } catch (e) {
     log.error('preview-spike failed', e as Error, { id: input.id });
     return { content: [{ type: 'text', text: `❌ preview-spike failed: ${(e as Error).message}` }], isError: true };
@@ -108,10 +130,18 @@ export async function handleApplySpikeTool(input: ApplyInput): Promise<ToolCallR
       `Apply plan for '${spec.id}' (strategy: ${input.strategy || 'three_way_merge'}):`,
       `• files to create: ${files.length}`,
       `• patches to apply: ${patches.length}`,
-      `Note: Server returns diff only; client should apply.`
+      `Note: Server returns diff only; client should apply.`,
+      '',
+      'Next: validate-spike, then follow post-apply checklists',
+      'Docs: docs/post-apply-checklists.md, docs/verification-examples.md'
     ].join('\n');
     const next = [{ tool: 'validate-spike', args: { id: spec.id, params } }];
-    return { content: [{ type: 'text', text }], metadata: { spec, files, patches, applied: false, next_actions: next } };
+    const resources = [
+      'docs/post-apply-checklists.md',
+      'docs/verification-examples.md',
+      'docs/monitoring-alerts.md'
+    ];
+    return { content: [{ type: 'text', text }], metadata: { spec, files, patches, resources, applied: false, next_actions: next } };
   } catch (e) {
     log.error('apply-spike failed', e as Error, { id: input.id });
     return { content: [{ type: 'text', text: `❌ apply-spike failed: ${(e as Error).message}` }], isError: true };
@@ -126,7 +156,11 @@ export async function handleValidateSpikeTool(input: ValidateInput): Promise<Too
     const issues: Array<{ level: 'error'|'warn'; message: string }> = [];
     const status = issues.length ? 'warn' : 'pass';
     const next = [{ tool: 'explain-spike', args: { id: spec.id } }];
-    return { content: [{ type: 'text', text: `Validation: ${status} (issues: ${issues.length})` }], metadata: { status, issues, next_actions: next } };
+    const resources = [
+      'docs/post-apply-checklists.md',
+      'docs/verification-examples.md'
+    ];
+    return { content: [{ type: 'text', text: `Validation: ${status} (issues: ${issues.length})` }], metadata: { status, issues, resources, next_actions: next } };
   } catch (e) {
     log.error('validate-spike failed', e as Error, { id: input.id });
     return { content: [{ type: 'text', text: `❌ validate-spike failed: ${(e as Error).message}` }], isError: true };
@@ -143,7 +177,7 @@ export async function handleExplainSpikeTool(input: ExplainInput): Promise<ToolC
       spec.stack?.length ? `Stack: ${spec.stack.join(', ')}` : '',
       spec.tags?.length ? `Tags: ${spec.tags.join(', ')}` : ''
     ].filter(Boolean);
-    return { content: [{ type: 'text', text: lines.join('\n') }], metadata: { spec } };
+    return { content: [{ type: 'text', text: lines.join('\n') }], metadata: { spec, resources: ['docs/short-aliases.md', 'docs/one-pagers.md'] } };
   } catch (e) {
     log.error('explain-spike failed', e as Error, { id: input.id });
     return { content: [{ type: 'text', text: `❌ explain-spike failed: ${(e as Error).message}` }], isError: true };
@@ -179,9 +213,11 @@ export async function handleAutoSpikeTool(input: AutoSpikeInput): Promise<ToolCa
     
     // Heuristic alias: infer common strike IDs from shorthand (e.g., Elysia worker typed ts)
     const aliasIds = inferStrikeAliasIds(input.task);
+    const boostEnv = process.env.FLUORITE_ALIAS_BOOST;
+    const aliasBoost = (() => { const n = boostEnv ? parseFloat(boostEnv) : 2.0; return Number.isNaN(n) ? 2.0 : Math.max(0, Math.min(5, n)); })();
     for (const aid of aliasIds) {
-      // Push alias with strong score so it survives top-N cut
-      topCandidates.push({ id: aid, score: 2.0 });
+      // Push alias with strong score so it survives top-N cut (tunable)
+      topCandidates.push({ id: aid, score: aliasBoost });
     }
 
     // Sort and get top candidates (cap via env); de-duplicate by id
@@ -236,16 +272,25 @@ export async function handleAutoSpikeTool(input: AutoSpikeInput): Promise<ToolCa
     next.push({ tool: 'preview-spike', args: { id: best.spec.id, params: input.constraints || {} } });
     const text = `Selected spike: ${best.spec.id} (coverage_score=${coverage}, threshold=${threshold})`;
     
-    return { 
-      content: [{ type: 'text', text }], 
-      metadata: { 
+    const resources = [
+      'docs/short-aliases.md',
+      'docs/file-structure-samples.md',
+      'docs/diff-samples.md',
+      'docs/post-apply-checklists.md',
+      'docs/verification-examples.md'
+    ];
+
+    return {
+      content: [{ type: 'text', text }],
+      metadata: {
         selected_spike: best.spec, 
         coverage_score: coverage, 
         residual_work: [], 
         clarifying_questions: clarifying,
+        resources,
         next_actions: next,
         candidates_evaluated: topCandidates.length
-      } 
+      }
     };
   } catch (e) {
     log.error('auto-spike failed', e as Error);
@@ -257,6 +302,15 @@ export async function handleAutoSpikeTool(input: AutoSpikeInput): Promise<ToolCa
 // Supports direct short aliases and heuristic inference.
 function inferStrikeAliasIds(task: string): string[] {
   const text = (task || '').toLowerCase();
+
+  // Global toggle for alias inference (default: enabled)
+  const aliasEnv = process.env.FLUORITE_ALIAS_ENABLE;
+  const aliasEnabled = (() => {
+    if (aliasEnv === undefined) return true;
+    const v = String(aliasEnv).toLowerCase();
+    return v === '1' || v === 'true' || v === 'yes' || v === 'on';
+  })();
+  if (!aliasEnabled) return [];
 
   // 1) Short alias tokens mapping (easy to remember, fast path)
   const SHORT_ALIASES: Record<string, string> = {
@@ -293,7 +347,16 @@ function inferStrikeAliasIds(task: string): string[] {
     'es-client-ts': 'strike-elasticsearch-client-typed-ts',
     'opensearch-client-ts': 'strike-opensearch-client-typed-ts',
     // Caching/queue
-    'redis-service-ts': 'strike-redis-service-typed-ts'
+    'redis-service-ts': 'strike-redis-service-typed-ts',
+    // Queue/brokers
+    'bullmq-service-ts': 'strike-bullmq-service-typed-ts',
+    'kafka-service-ts': 'strike-kafka-service-typed-ts',
+    'rabbitmq-service-ts': 'strike-rabbitmq-service-typed-ts',
+    'nats-service-ts': 'strike-nats-service-typed-ts',
+    'sqs-service-ts': 'strike-sqs-service-typed-ts',
+    // Search clients
+    'meilisearch-client-ts': 'strike-meilisearch-client-typed-ts',
+    'typesense-client-ts': 'strike-typesense-client-typed-ts'
   };
 
   const directTokens: string[] = [];

@@ -91,4 +91,13 @@ describe('auto-spike meta flow (lightweight)', () => {
     const hasPreview = Array.isArray(next) && next.some((n: any) => n?.tool === 'preview-spike');
     expect(hasPreview).toBe(true);
   });
+
+  it('respects alias disable env (no alias inference)', async () => {
+    process.env.FLUORITE_ALIAS_ENABLE = '0';
+    const res = await handleAutoSpikeTool({ task: '適用: [alias: next-mw-ts]' });
+    const sel = String(res?.metadata?.selected_spike?.id || '');
+    expect(sel.includes('strike-nextjs-middleware-typed-ts')).toBe(false);
+    // reset
+    process.env.FLUORITE_ALIAS_ENABLE = '1';
+  });
 });

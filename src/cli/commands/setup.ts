@@ -237,6 +237,18 @@ Shortcuts for maximum leverage inside Claude:
 - Static analysis: \`/fl:analyze --focus quality\` または \`/fl:analyze --focus security\`
 - Run tests: \`/fl:test unit --coverage\`
 - Improve performance: \`/fl:improve src --focus performance\`
+
+See also: docs/short-aliases.md and docs/post-apply-checklists.md (verification: docs/verification-examples.md) and docs/diff-samples.md
+
+## Resources
+- docs/short-aliases.md — Short aliases and recipes
+- docs/file-structure-samples.md — Typical files by alias
+- docs/diff-samples.md — Minimal diffs to preview changes
+- docs/post-apply-checklists.md — What to verify after applying
+- docs/verification-examples.md — CLI/Dashboard commands to test
+- docs/queue-snippets.md — Retry/DLQ/shutdown snippets
+- docs/search-index-tips.md — Meilisearch/Typesense index tips
+ - docs/recipes.md — Integrated recipes (prompt → files → diff → verify)
 `;
 
   const helpFilePath = path.join(flCommandsDir, 'help.md');
@@ -261,6 +273,8 @@ Work with fluorite spike templates end-to-end inside Claude.
 /fl:spike apply <id> [key=value ...]
 \`\`\`
 
+See also: docs/short-aliases.md (quick alias tokens), docs/post-apply-checklists.md, docs/file-structure-samples.md, docs/diff-samples.md, docs/queue-snippets.md, docs/search-index-tips.md, docs/recipes.md, docs/one-pagers.md, and docs/monitoring-alerts.md
+
 ## Flow
 1. Use \`auto\` to select the best spike for the task
 2. Preview with \`preview-spike\` and confirm diffs
@@ -282,7 +296,7 @@ Work with fluorite spike templates end-to-end inside Claude.
 - Q. 既存の構成にフィットさせたい
   A. \`preview-spike\` の出力（files/patches）を見て、パスや命名規則を合わせるようパラメータを渡してください。微調整の指示も自然言語でOKです。
 
-### Apply 戦略の例
+### Apply 戦略の例（カテゴリ別の補足）
 - 衝突を安全に解決: \`apply-spike\` の \`strategy\` を \`three_way_merge\` に設定し、差分をレビューしてから最小変更で解決。
 - 明示上書き: 既存ファイルを置き換えて良い場合のみ \`overwrite\` を選択（要レビュー）。
 - いったん停止: 複雑な衝突や前提不一致がある場合は \`abort\` を選び、要件を再定義してから \`auto-spike\` を再実行。
@@ -292,10 +306,32 @@ Work with fluorite spike templates end-to-end inside Claude.
 - 既存コードと命名・パスがズレていないか（src配下の構造、importパス）
 - セキュリティ/型の重要ポイント（auth/validation/型定義）は必ずレビュー
 
-### よくある競合と対処
+### よくある競合と対処（カテゴリ別）
 - import の競合: 既存のaliasやbaseUrl(tsconfig)と衝突しやすい。importパスを相対/絶対に統一し、tsconfigの\`paths\`を確認。
 - tsconfig差異: \`strict\`/\`jsx\`/\`moduleResolution\` が違うと型エラーに。差分を参考に、既存設定を優先しつつ必要最小限を取り込む。
 - linter/formatter: ESLint/Prettier設定で差分が大きく見える場合は、まずコード意図を確認してから整形する。
+
+Auth（next-auth/auth0/clerk/lucia）：
+- セッション/コールバックURL/環境変数の命名を既存と合わせる
+- Middleware/Routeの保護ロジックを既存のrole/permissionと統一
+
+Storage（S3/GCS/Azure-Blob/MinIO）：
+- 認証情報の読み込み（環境変数/secret manager）を既存の規約へ統一
+- ACL/バケット命名/地域設定の差異に注意
+
+Payments（Stripe）：
+- Webhook secret・API key・イベント名を正しく設定
+- idempotencyキーや再試行戦略の取り扱いを既存に合わせる
+
+Monitoring/APM（Sentry/PostHog/Datadog/NewRelic）：
+- DSN/APIキー・環境名（env）・リリースバージョンの命名規約を合わせる
+- サンプリング率やPII取り扱いポリシーの整合性
+
+## Post-Apply Checklists
+- Auth: 環境変数・コールバックURL・保護ルートを確認し、ログイン動作の手動テストを実施
+- Storage: 認証情報の読み出し、バケット/コンテナの存在、read/writeサンプルの成功、IAM/ACLの適合
+- Payments: Webhookテストイベントの送信、再試行/冪等性（idempotency）の動作、エラーパスの確認
+- Monitoring/APM: DSN/APIキー設定、envタグ/リリース名、サンプルエラーの捕捉、PIIフィルタの確認
 `
   const spikeFilePath = path.join(flCommandsDir, 'spike.md');
   await fs.writeFile(spikeFilePath, spikeContent, 'utf8');

@@ -51,7 +51,7 @@ claude --version
 
 ```bash
 # リポジトリをクローン（まだ行っていない場合）
-git clone [local repository]
+# フォークまたはローカルコピーからクローン
 cd fluorite-mcp
 
 # 自動セットアップスクリプトを実行
@@ -100,7 +100,7 @@ claude mcp add fluorite-mcp -- $(pwd)/node_modules/.bin/fluorite-mcp
 
 ```bash
 # リポジトリをクローン
-git clone [local repository]
+# フォークまたはローカルコピーからクローン
 cd fluorite-mcp
 
 # 依存関係をインストール
@@ -395,7 +395,7 @@ source ~/.profile
 
 ```bash
 # 開発環境をクローンしてセットアップ
-git clone [local repository]
+# フォークまたはローカルコピーからクローン
 cd fluorite-mcp
 
 # 依存関係をインストール

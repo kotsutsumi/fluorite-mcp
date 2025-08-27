@@ -51,7 +51,7 @@ For the quickest setup, use our automated installation script:
 
 ```bash
 # リポジトリをクローン（未実行の場合）
-git clone [local repository]
+# Clone from your fork or local copy
 cd fluorite-mcp
 
 # Run the automated setup script
@@ -100,7 +100,7 @@ For developers or latest features:
 
 ```bash
 # Clone the repository
-git clone [local repository]
+# Clone from your fork or local copy
 cd fluorite-mcp
 
 # Install dependencies
@@ -395,7 +395,7 @@ For contributors and advanced users:
 
 ```bash
 # Clone and setup development environment
-git clone [local repository]
+# Clone from your fork or local copy
 cd fluorite-mcp
 
 # Install dependencies

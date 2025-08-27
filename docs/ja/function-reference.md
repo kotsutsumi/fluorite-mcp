@@ -108,7 +108,7 @@ version: 1.0.0
 description: 専門機能のためのカスタムライブラリ
 category: custom-tools
 homepage: # ライブラリのホームページURL
-repository: [local repository]
+repository: # リポジトリURL
 language: TypeScript
 
 features:

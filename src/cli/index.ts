@@ -7,6 +7,7 @@ import { initCommand } from './commands/init.js';
 import { uiCommand } from './commands/ui.js';
 import { getPackageVersion } from '../utils.js';
 import { spikesCommand } from './commands/spikes.js';
+import { docsCommand } from './commands/docs.js';
 
 const program = new Command();
 
@@ -22,6 +23,7 @@ program.addCommand(flHelpCommand);
 program.addCommand(initCommand);
 program.addCommand(uiCommand);
 program.addCommand(spikesCommand);
+program.addCommand(docsCommand);
 
 // Parse command line arguments
 program.parse();

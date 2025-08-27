@@ -268,7 +268,7 @@ description: A comprehensive UI component library with TypeScript support
 category: ui-components
 subcategory: component-libraries
 homepage: # ライブラリのホームページURL
-repository: [local repository]
+repository: # リポジトリURL
 language: TypeScript
 
 # Classification

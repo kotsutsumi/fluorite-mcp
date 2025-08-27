@@ -274,7 +274,7 @@ version: 2.1.0
 description: A comprehensive UI component library
 category: ui-components
 homepage: # ライブラリのホームページURL
-repository: [local repository]
+repository: # リポジトリURL
 
 features:
   - Accessible components
@@ -550,7 +550,7 @@ tags:
   - react
   - accessibility
 homepage: # ライブラリのホームページURL
-repository: [local repository]
+repository: # リポジトリURL
 language: TypeScript
 
 # Simple library format

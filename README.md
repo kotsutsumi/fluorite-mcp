@@ -103,7 +103,7 @@ yarn global add fluorite-mcp
 pnpm add -g fluorite-mcp
 
 # From source (developers)
-git clone [local repository]
+# Clone from your fork or local copy
 cd fluorite-mcp && npm install && npm run build
 ```
 
@@ -148,6 +148,14 @@ Claude内の例:
 fluorite setup
 ```
 
+Docs CLI（ローカルドキュメントの一覧/パス表示/内容出力）:
+
+```
+fluorite docs
+fluorite docs --show recipes.md
+fluorite docs --cat one-pagers.md
+```
+
 ### Short Aliases (quick tokens)
 自然言語に短縮トークンを含めることで、人気スパイクをダイレクト指定できます。`[alias: <token>]` 形式でもOK。
 
@@ -177,14 +185,26 @@ fluorite setup
 /fl:implement "[alias: prisma-schema-ts]" model=User
 ```
 
+詳しい一覧と使い方: docs/short-aliases.md
+適用後のチェックリスト: docs/post-apply-checklists.md（検証例: docs/verification-examples.md）
+ファイル構成サンプル: docs/file-structure-samples.md
+最小diffサンプル: docs/diff-samples.md
+統合レシピ: docs/recipes.md（Prompt → Files → Diff → Verify）
+Queue/Brokerスニペット: docs/queue-snippets.md
+Search Index Tips: docs/search-index-tips.md
+One-Pagers: docs/one-pagers.md
+Monitoring & Alerts (MVP): docs/monitoring-alerts.md
+
 ### Tuning
 環境変数で自動選定の挙動を調整できます。
 
+- `FLUORITE_ALIAS_ENABLE`（既定 true）: 短縮エイリアス推定を有効/無効にします（`0|false|no|off` で無効）
 - `FLUORITE_AUTO_SPIKE_THRESHOLD`（既定 0.4）: coverage がこの値未満のときは `discover-spikes` と確認質問を提示
 - `FLUORITE_AUTO_SPIKE_TOP`（既定 5）: 詳細評価に進める候補数
 - `FLUORITE_AUTO_SPIKE_BATCH`（既定 50）: メタデータバッチサイズ
 - `FLUORITE_SPIKE_METADATA_MULTIPLIER`（既定 2）: discovery時のスコアリング対象拡大
 - `FLUORITE_SPIKE_LIST_LIMIT`: スパイク露出数の上限（パフォーマンス調整）
+- `FLUORITE_ALIAS_BOOST`（既定 2.0）: 短縮エイリアス候補の優先度（0.0–5.0）
 
 ### Popular Spike Prompt Examples
 
