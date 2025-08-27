@@ -274,6 +274,50 @@ function makeFiles(id: string, lib: string, pattern: string, style: string, lang
     files.push({ path: `src/db/migrate.ts`, template: `import { migrate } from 'drizzle-orm/node-postgres/migrator';\nimport { db } from './client';\nimport { Client } from 'pg';\n(async()=>{ const client = new Client({ connectionString: process.env.DATABASE_URL }); await client.connect(); await migrate(db, { migrationsFolder: 'drizzle' }); await client.end(); })().catch(e=>{ console.error(e); process.exit(1); });\n` });
   }
 
+  // Prisma (schema/client)
+  if (lib === 'prisma' && pattern === 'schema') {
+    files.push({ path: `prisma/schema.prisma`, template: `generator client { provider = \"prisma-client-js\" }\ndatasource db { provider = \"postgresql\" url = env(\"DATABASE_URL\") }\n\nmodel {{model}} {\n  id    Int     @id @default(autoincrement())\n  name  String\n  createdAt DateTime @default(now())\n}\n` });
+    files.push({ path: `src/db/client.ts`, template: `import { PrismaClient } from '@prisma/client';\nexport const prisma = new PrismaClient();\n` });
+  }
+  if (lib === 'prisma' && (pattern === 'service' || pattern === 'client')) {
+    files.push({ path: `src/db/client.ts`, template: `import { PrismaClient } from '@prisma/client';\nexport const prisma = new PrismaClient();\n` });
+  }
+
+  // Redis
+  if (lib === 'redis' && (pattern === 'service' || pattern === 'client')) {
+    files.push({ path: `src/cache/redis.ts`, template: `import { createClient } from 'redis';\nconst url = process.env.REDIS_URL || 'redis://localhost:6379';\nexport const redis = createClient({ url });\nredis.on('error', (e)=> console.error('Redis error', e));\nexport async function connect(){ if(!redis.isOpen) await redis.connect(); }\nexport async function get(key: string){ await connect(); return redis.get(key); }\nexport async function set(key: string, val: string, ttl?: number){ await connect(); if (ttl) return redis.set(key, val, { EX: ttl }); return redis.set(key, val); }\n` });
+  }
+
+  // Stripe
+  if (lib === 'stripe' && (pattern === 'service' || pattern === 'webhook')) {
+    files.push({ path: `src/payments/stripe.ts`, template: `import Stripe from 'stripe';\nconst apiKey = process.env.STRIPE_API_KEY || '';\nexport const stripe = new Stripe(apiKey, { apiVersion: '2024-06-20' as any });\nexport async function createCheckoutSession(priceId: string){\n  return stripe.checkout.sessions.create({ mode: 'subscription', line_items: [{ price: priceId, quantity: 1 }], success_url: 'https://example.com/success', cancel_url: 'https://example.com/cancel' });\n}\n` });
+    if (pattern === 'webhook' || pattern === 'route') {
+      files.push({ path: `app/api/stripe/webhook/route.ts`, template: `import { NextResponse } from 'next/server';\nimport Stripe from 'stripe';\nconst stripe = new Stripe(process.env.STRIPE_API_KEY || '', { apiVersion: '2024-06-20' as any });\nconst endpointSecret = process.env.STRIPE_WEBHOOK_SECRET || '';\nexport async function POST(req: Request){\n  const sig = req.headers.get('stripe-signature') || '';\n  const body = await req.text();\n  let event: Stripe.Event;\n  try { event = stripe.webhooks.constructEvent(body, sig, endpointSecret); }\n  catch (err){ return new NextResponse('invalid signature', { status: 400 }); }\n  switch(event.type){ case 'checkout.session.completed': break; default: break; }\n  return NextResponse.json({ received: true });\n}\n` });
+    }
+  }
+
+  // Object storage adapters
+  if (lib === 's3' && (pattern === 'adapter' || pattern === 'service' || pattern === 'client')) {
+    files.push({ path: `src/storage/s3.ts`, template: `import { S3Client, PutObjectCommand, GetObjectCommand } from '@aws-sdk/client-s3';\nconst region = process.env.AWS_REGION || '{{region}}';\nexport const s3 = new S3Client({ region });\nexport async function putObject(bucket: string, key: string, body: Uint8Array){ await s3.send(new PutObjectCommand({ Bucket: bucket, Key: key, Body: body })); }\nexport async function getObject(bucket: string, key: string){ return s3.send(new GetObjectCommand({ Bucket: bucket, Key: key })); }\n` });
+  }
+  if (lib === 'gcs' && (pattern === 'adapter' || pattern === 'service' || pattern === 'client')) {
+    files.push({ path: `src/storage/gcs.ts`, template: `import { Storage } from '@google-cloud/storage';\nexport const gcs = new Storage();\nexport async function upload(bucket: string, filename: string, buffer: Buffer){ const b = gcs.bucket(bucket); const file = b.file(filename); await file.save(buffer); return file.publicUrl(); }\n` });
+  }
+  if (lib === 'azure-blob' && (pattern === 'adapter' || pattern === 'service' || pattern === 'client')) {
+    files.push({ path: `src/storage/azureBlob.ts`, template: `import { BlobServiceClient } from '@azure/storage-blob';\nconst conn = process.env.AZURE_STORAGE_CONNECTION_STRING || '';\nexport const blob = BlobServiceClient.fromConnectionString(conn);\nexport async function put(container: string, name: string, data: Uint8Array){ const c = blob.getContainerClient(container); const block = c.getBlockBlobClient(name); await block.uploadData(data); }\n` });
+  }
+  if (lib === 'minio' && (pattern === 'adapter' || pattern === 'service' || pattern === 'client')) {
+    files.push({ path: `src/storage/minio.ts`, template: `import * as Minio from 'minio';\nexport const minio = new Minio.Client({ endPoint: process.env.MINIO_ENDPOINT || 'localhost', port: parseInt(process.env.MINIO_PORT||'9000',10), useSSL: false, accessKey: process.env.MINIO_ACCESS_KEY||'', secretKey: process.env.MINIO_SECRET_KEY||'' });\nexport async function put(bucket: string, name: string, data: Buffer){ await minio.putObject(bucket, name, data); }\n` });
+  }
+
+  // Search clients
+  if (lib === 'meilisearch' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/search/meilisearch.ts`, template: `import { MeiliSearch } from 'meilisearch';\nexport const meili = new MeiliSearch({ host: process.env.MEILI_HOST || 'http://127.0.0.1:7700', apiKey: process.env.MEILI_API_KEY });\nexport async function indexDoc(index: string, doc: any){ const i = meili.index(index); return i.addDocuments([doc]); }\n` });
+  }
+  if (lib === 'typesense' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/search/typesense.ts`, template: `import Typesense from 'typesense';\nexport const typesense = new (Typesense as any)({ nodes: [{ host: process.env.TS_HOST || 'localhost', port: parseInt(process.env.TS_PORT||'8108',10), protocol: 'http' }], apiKey: process.env.TS_API_KEY || 'xyz' });\nexport async function indexDoc(collection: string, doc: any){ return typesense.collections(collection).documents().upsert(doc); }\n` });
+  }
+
   // Docker
   if (lib === 'docker' && (pattern === 'config' || pattern === 'init')) {
     files.push({ path: `Dockerfile`, template: `FROM node:20-alpine\nWORKDIR /app\nCOPY package*.json ./\nRUN npm ci\nCOPY . .\nCMD [\"npm\", \"start\"]\n` });
@@ -920,6 +964,24 @@ export const useCounter = create<{ count:number; inc:()=>void; }>((set)=>({ coun
   return files;
 }
 
+function extraParams(lib: string, pattern: string): Array<{ name: string; required?: boolean; description?: string; default?: string }>{
+  const params: Array<{ name: string; required?: boolean; description?: string; default?: string }> = [];
+  if (lib === 'prisma' && pattern === 'schema') {
+    params.push({ name: 'model', required: false, description: 'Prisma モデル名', default: 'Item' });
+  }
+  if (lib === 's3') {
+    params.push({ name: 'region', required: false, description: 'AWS リージョン', default: 'us-east-1' });
+    params.push({ name: 'bucket', required: false, description: 'S3 バケット名', default: 'my-bucket' });
+  }
+  if (lib === 'stripe' && (pattern === 'service' || pattern === 'webhook')) {
+    params.push({ name: 'priceId', required: false, description: 'Stripe Price ID', default: 'price_123' });
+  }
+  if (lib === 'redis') {
+    params.push({ name: 'redisUrl', required: false, description: 'Redis 接続URL', default: 'redis://localhost:6379' });
+  }
+  return params;
+}
+
 export function generateSpike(id: string): SpikeSpec {
   if (!isGeneratedId(id)) {
     throw new Error(`Not a generated spike id: ${id}`);
@@ -944,7 +1006,7 @@ export function generateSpike(id: string): SpikeSpec {
     stack: [lib, lang],
     tags: [pat, style, 'generated'].concat(id.startsWith(STRIKE_PREFIX) ? ['strike'] : []),
     description: `Auto-generated spike for ${lib} ${pat} in ${lang} (${style}).`,
-    params: [{ name: 'app_name', default: `${lib}-${pat}-app` }],
+    params: [{ name: 'app_name', default: `${lib}-${pat}-app` }, ...extraParams(lib, pat)],
     files: makeFiles(id, lib, pat, style, lang),
     patches: [] as SpikePatch[]
   };

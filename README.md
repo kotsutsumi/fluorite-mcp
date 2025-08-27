@@ -204,6 +204,9 @@ One-Pagers: docs/one-pagers.md
 Monitoring & Alerts (MVP): docs/monitoring-alerts.md
 Bulk Generation Guide: docs/BULK-GENERATION.md
 
+### 100K+ Strike テンプレート（大規模自動生成）
+`strike-*` を含む仮想スパイクを動的に合成し、10万件以上のテンプレートを提供します。詳細・チューニング・使い方の日本語ガイドは `docs/ja/strike-scale.md` を参照してください。
+
 ### Tuning
 環境変数で自動選定の挙動を調整できます。
 

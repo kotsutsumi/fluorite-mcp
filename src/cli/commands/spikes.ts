@@ -3,6 +3,7 @@ import * as path from 'path';
 import * as fs from 'fs/promises';
 import { generateSpikesFromSeed } from '../utils/spike-generator.js';
 import { listSpikeIds, loadSpike } from '../../core/spike-catalog.js';
+import { listPacks, filterIdsByPack } from '../../core/spike-packs.js';
 import { isGeneratedId } from '../../core/spike-generators.js';
 
 export const spikesCommand = new Command('spikes')
@@ -38,8 +39,10 @@ spikesCommand.addCommand(
     .option('-s, --skip <n>', 'Skip first N items before processing', (v)=>parseInt(v,10), 0)
     .option('-o, --out-dir <outDir>', 'Output directory when --write is set', 'src/spikes')
     .option('--write', 'Write JSON files instead of listing')
+    .option('--pack <name>', 'Filter by predefined Strike Pack (e.g., nextjs-secure, payments)')
     .option('--pretty', 'Pretty-print JSON when writing')
     .option('--overwrite', 'Overwrite if file exists (default: skip)')
+    .option('--prefix <prefix>', 'Optional prefix added to spike ids when writing (avoids collisions)')
     .option('--generated-only', 'Process only virtual/generated spikes (e.g., strike-*, gen-*)')
     .option('--nonexistent-only', 'Exclude IDs that already have a physical file')
     .action(async (opts) => {
@@ -49,7 +52,10 @@ spikesCommand.addCommand(
       const ids = await listSpikeIds(filter);
 
       // Optional narrowing to generated-only
-      const pool = opts.generatedOnly ? ids.filter((id) => isGeneratedId(id)) : ids;
+      let pool = opts.generatedOnly ? ids.filter((id) => isGeneratedId(id)) : ids;
+      if (opts.pack) {
+        pool = filterIdsByPack(pool, String(opts.pack));
+      }
 
       // Optionally exclude IDs that already exist on disk
       const poolFiltered: string[] = [];
@@ -106,6 +112,7 @@ spikesCommand.addCommand(
     .option('--state-file <file>', 'Progress state file', 'src/cli/data/synth-state.json')
     .option('--generated-only', 'Process only virtual/generated spikes (e.g., strike-*, gen-*)')
     .option('--pretty', 'Pretty-print JSON when writing')
+    .option('--pack <name>', 'Filter by predefined Strike Pack (e.g., nextjs-secure, payments)')
     .action(async (opts) => {
       const filter = String(opts.filter || '');
       const max = Number.isFinite(opts.max) ? Number(opts.max) : 50;
@@ -123,7 +130,8 @@ spikesCommand.addCommand(
       } catch {}
 
       const ids = await listSpikeIds(filter);
-      const pool = opts.generatedOnly ? ids.filter((id) => isGeneratedId(id)) : ids;
+      let pool = opts.generatedOnly ? ids.filter((id) => isGeneratedId(id)) : ids;
+      if (opts.pack) pool = filterIdsByPack(pool, String(opts.pack));
 
       let start = Math.max(0, Math.min(state.startIndex || 0, pool.length));
       const selected: string[] = [];
@@ -179,6 +187,7 @@ spikesCommand.addCommand(
     .option('--overwrite', 'Overwrite if file exists (default: skip)')
     .option('--start-index <n>', 'Override start index (advanced)', (v)=>parseInt(v,10))
     .option('--dry-run', 'Preview what would be written without writing files')
+    .option('--pack <name>', 'Filter by predefined Strike Pack (e.g., nextjs-secure, payments)')
     .action(async (opts) => {
       const filter = String(opts.filter || '');
       const total = Number.isFinite(opts.total) ? Number(opts.total) : 1000;
@@ -202,8 +211,9 @@ spikesCommand.addCommand(
       let writtenTotal = 0; let failedTotal = 0; let skippedTotal = 0; let overwrittenTotal = 0;
       let iterations = 0;
       for (; writtenTotal < total; iterations++) {
-        const ids = await listSpikeIds(filter);
-        const pool = opts.generatedOnly ? ids.filter((id) => isGeneratedId(id)) : ids;
+      const ids = await listSpikeIds(filter);
+      let pool = opts.generatedOnly ? ids.filter((id) => isGeneratedId(id)) : ids;
+      if (opts.pack) pool = filterIdsByPack(pool, String(opts.pack));
         if (pool.length === 0) {
           console.log(`No spikes matched filter '${filter}'.`);
           break;
@@ -238,7 +248,12 @@ spikesCommand.addCommand(
           for (const id of selected) {
             try {
               const spec = await loadSpike(id);
-              const file = path.join(outDir, `${id}.json`);
+              const effectiveId = opts.prefix ? `${opts.prefix}${id}` : id;
+              if (opts.prefix) {
+                // clone with new id to avoid collision
+                (spec as any).id = effectiveId;
+              }
+              const file = path.join(outDir, `${effectiveId}.json`);
               let existsFlag = false;
               try { await exists.access(file); existsFlag = true; } catch {}
               if (existsFlag && !opts.overwrite) { skipped++; continue; }
@@ -259,5 +274,18 @@ spikesCommand.addCommand(
       }
 
       console.log(`Bulk materialized total: written=${writtenTotal}, overwritten=${overwrittenTotal}, skipped=${skippedTotal}, failed=${failedTotal}, iterations=${iterations}`);
+    })
+);
+
+// Packs helper commands
+spikesCommand.addCommand(
+  new Command('packs')
+    .description('List available Strike Packs')
+    .action(() => {
+      const packs = listPacks();
+      console.log(`Available packs: ${packs.length}`);
+      for (const p of packs) {
+        console.log(`- ${p.key}: ${p.description}`);
+      }
     })
 );
