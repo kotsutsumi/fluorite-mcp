@@ -289,7 +289,7 @@ function makeFiles(id: string, lib: string, pattern: string, style: string, lang
   }
 
   // Stripe
-  if (lib === 'stripe' && (pattern === 'service' || pattern === 'webhook')) {
+  if (lib === 'stripe' && (pattern === 'service' || pattern === 'webhook' || pattern === 'route')) {
     files.push({ path: `src/payments/stripe.ts`, template: `import Stripe from 'stripe';\nconst apiKey = process.env.STRIPE_API_KEY || '';\nexport const stripe = new Stripe(apiKey, { apiVersion: '2024-06-20' as any });\nexport async function createCheckoutSession(priceId: string){\n  return stripe.checkout.sessions.create({ mode: 'subscription', line_items: [{ price: priceId, quantity: 1 }], success_url: 'https://example.com/success', cancel_url: 'https://example.com/cancel' });\n}\n` });
     if (pattern === 'webhook' || pattern === 'route') {
       files.push({ path: `app/api/stripe/webhook/route.ts`, template: `import { NextResponse } from 'next/server';\nimport Stripe from 'stripe';\nconst stripe = new Stripe(process.env.STRIPE_API_KEY || '', { apiVersion: '2024-06-20' as any });\nconst endpointSecret = process.env.STRIPE_WEBHOOK_SECRET || '';\nexport async function POST(req: Request){\n  const sig = req.headers.get('stripe-signature') || '';\n  const body = await req.text();\n  let event: Stripe.Event;\n  try { event = stripe.webhooks.constructEvent(body, sig, endpointSecret); }\n  catch (err){ return new NextResponse('invalid signature', { status: 400 }); }\n  switch(event.type){ case 'checkout.session.completed': break; default: break; }\n  return NextResponse.json({ received: true });\n}\n` });
