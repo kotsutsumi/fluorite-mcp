@@ -1,0 +1,28 @@
+{
+  "id": "starlight-docs-minimal",
+  "name": "Starlight (Astro) ドキュメント 最小構成",
+  "version": "1.0.0",
+  "stack": ["astro", "starlight"],
+  "tags": ["docs", "static-site", "astro", "starlight"],
+  "description": "Astro + @astrojs/starlight の最小ドキュメントサイト。ビルド/開発/プレビュー用スクリプトを含む。",
+  "params": [
+    { "name": "app_name", "default": "starlight-docs" },
+    { "name": "title", "default": "My Starlight Docs" },
+    { "name": "site_url", "default": "https://example.com" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/package.json",
+      "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": {\n    \"dev\": \"astro dev\",\n    \"build\": \"astro build\",\n    \"preview\": \"astro preview\"\n  },\n  \"devDependencies\": {\n    \"astro\": \"latest\",\n    \"@astrojs/starlight\": \"latest\"\n  }\n}\n"
+    },
+    {
+      "path": "{{app_name}}/astro.config.mjs",
+      "template": "import { defineConfig } from 'astro/config';\nimport starlight from '@astrojs/starlight';\n\nexport default defineConfig({\n  site: '{{site_url}}',\n  integrations: [\n    starlight({\n      title: '{{title}}',\n      sidebar: [{ label: 'Introduction', autogenerate: { directory: 'docs' } }],\n    }),\n  ],\n});\n"
+    },
+    {
+      "path": "{{app_name}}/src/content/docs/index.mdx",
+      "template": "---\ntitle: Introduction\n---\n\n# {{title}}\n\nStarlightの最小構成です。左のサイドバーは`src/content/docs`配下を自動生成します。\n\n- 開発: `npm run dev`\n- ビルド: `npm run build`\n- プレビュー: `npm run preview`\n"
+    }
+  ]
+}
+

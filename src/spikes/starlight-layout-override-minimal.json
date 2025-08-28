@@ -1,0 +1,36 @@
+{
+  "id": "starlight-layout-override-minimal",
+  "name": "Starlight レイアウト差し替え 最小",
+  "version": "1.0.0",
+  "stack": ["astro", "starlight"],
+  "tags": ["docs", "static-site", "layout", "starlight"],
+  "description": "Starlightのドキュメントページでフロントマター layout を使い、独自のレイアウト(ヘッダー/フッター)を適用する最小例。",
+  "params": [
+    { "name": "app_name", "default": "starlight-layout" },
+    { "name": "title", "default": "My Starlight Docs" },
+    { "name": "site_url", "default": "https://example.com" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/package.json",
+      "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"dev\": \"astro dev\", \"build\": \"astro build\", \"preview\": \"astro preview\" },\n  \"devDependencies\": { \"astro\": \"latest\", \"@astrojs/starlight\": \"latest\" }\n}\n"
+    },
+    {
+      "path": "{{app_name}}/astro.config.mjs",
+      "template": "import { defineConfig } from 'astro/config';\nimport starlight from '@astrojs/starlight';\nexport default defineConfig({\n  site: '{{site_url}}',\n  integrations: [ starlight({ title: '{{title}}', sidebar: [{ label: 'Introduction', autogenerate: { directory: 'docs' } }] }) ]\n});\n"
+    },
+    {
+      "path": "{{app_name}}/public/logo.svg",
+      "template": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 24'><rect width='100' height='24' fill='#0ea5e9'/><text x='50' y='16' font-size='12' fill='white' text-anchor='middle' font-family='sans-serif'>Docs</text></svg>\n"
+    },
+    {
+      "path": "{{app_name}}/src/layouts/DocsLayout.astro",
+      "template": "---\nconst { title = 'Docs' } = Astro.props;\n---\n<html lang=\"ja\">\n  <head>\n    <meta charset=\"utf-8\"/>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/>\n    <title>{title}</title>\n  </head>\n  <body style=\"font-family:sans-serif\">\n    <header style=\"display:flex;align-items:center;gap:12px;padding:8px 16px;border-bottom:1px solid #eee\">\n      <img src=\"/logo.svg\" alt=\"logo\" width=\"24\" height=\"24\" />\n      <strong>{title}</strong>\n      <nav style=\"margin-left:auto;display:flex;gap:12px\">\n        <a href=\"/\">Home</a>\n        <a href=\"/docs\">Docs</a>\n      </nav>\n    </header>\n    <main style=\"padding:16px\"><slot /></main>\n    <footer style=\"margin-top:32px;padding:16px;border-top:1px solid #eee;color:#666\">\n      <small>© 2025 Your Org. Built with Starlight.</small>\n    </footer>\n  </body>\n</html>\n"
+    },
+    {
+      "path": "{{app_name}}/src/content/docs/index.mdx",
+      "template": "---\nlayout: ../../layouts/DocsLayout.astro\ntitle: Introduction\n---\n\n# {{title}}\n\nこのページは layout フロントマターで独自レイアウト(ヘッダー/フッター)を適用しています。\nStarlight公式のテーマ拡張APIに合わせてグローバルに適用する場合は、レイアウトの差し替え手順に従ってください。\n"
+    }
+  ]
+}
+

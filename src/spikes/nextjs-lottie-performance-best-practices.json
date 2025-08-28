@@ -1,0 +1,16 @@
+{
+  "id": "nextjs-lottie-performance-best-practices",
+  "name": "Next.js Lottie パフォーマンス ベストプラクティス",
+  "version": "1.0.0",
+  "stack": ["nextjs", "react", "lottie"],
+  "tags": ["nextjs", "lottie", "performance", "best-practices"],
+  "description": "軽量化/省リソースのための実践Tips集（MD）と、低負荷設定の最小プレイヤー例。",
+  "params": [
+    { "name": "lottie_url", "default": "https://assets9.lottiefiles.com/packages/lf20_5ngs2ksb.json" }
+  ],
+  "files": [
+    { "path": "docs/lottie-performance.md", "template": "# Lottie Performance Best Practices\n\n- Prefer lighter JSONs (fewer layers, vectors over raster).\n- Limit playback area size; avoid full-viewport loops when possible.\n- Reduce FPS and duration in source animation if acceptable.\n- Toggle autoplay off with `prefers-reduced-motion`.\n- Pause when offscreen (IntersectionObserver).\n- Use `setSpeed` conservatively; high speed increases CPU load.\n- Abort fetch when unmounting.\n- Cache animation JSON via CDN with long max-age.\n- Lazy load animations below the fold.\n" },
+    { "path": "app/lottie-low/page.tsx", "template": "'use client';\nimport React, { useEffect, useRef, useState } from 'react';\nimport Lottie, { LottieRefCurrentProps } from 'lottie-react';\n\nexport default function Page(){\n  const ref = useRef<LottieRefCurrentProps>(null);\n  const [data, setData] = useState<any|null>(null);\n  const url = process.env.NEXT_PUBLIC_LOTTIE_URL || '{{lottie_url}}';\n  useEffect(()=>{ let alive=true; fetch(url).then(r=>r.json()).then(j=>{ if(alive) setData(j); }); return ()=>{ alive=false; }; },[url]);\n  useEffect(()=>{ if(ref.current) ref.current.setSpeed?.(0.7); },[]);\n  return (<main style={{ padding:24, fontFamily:'sans-serif' }}>\n    <h1>Low-impact Lottie</h1>\n    <div style={{ width:200, height:200, border:'1px solid #eee' }}>\n      {data ? <Lottie lottieRef={ref} animationData={data} loop autoplay style={{ width:200, height:200 }} /> : 'Loading...'}\n    </div>\n    <p>Small viewport, slight speed reduction to lower CPU usage.</p>\n  </main>);\n}\n" }
+  ]
+}
+

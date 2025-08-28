@@ -7,6 +7,8 @@ type Gauge = Counter;
 
 const counters: Record<string, Counter> = {
   http_requests_total: { name: 'http_requests_total', help: 'Total number of HTTP requests', value: 0 },
+  http_request_bytes_total: { name: 'http_request_bytes_total', help: 'Total HTTP request bytes', value: 0 },
+  http_response_bytes_total: { name: 'http_response_bytes_total', help: 'Total HTTP response bytes', value: 0 },
 };
 const gauges: Record<string, Gauge> = {
   process_uptime_seconds: { name: 'process_uptime_seconds', help: 'Process uptime in seconds', value: 0 },
@@ -76,6 +78,19 @@ const server = http.createServer(async (req, res) => {
   const started = process.hrtime.bigint();
   const route = (req.url || '').split('?')[0] || '/';
   inc('http_requests_total', 1);
+  // Tally request bytes (best-effort via content-length)
+  const cl = req.headers['content-length'];
+  if (cl) {
+    const n = Number(cl); if (!Number.isNaN(n) && n > 0) counters.http_request_bytes_total.value += n;
+  }
+  // Tally response bytes by wrapping write/end
+  let respBytes = 0;
+  const origWrite = res.write.bind(res);
+  const origEnd = res.end.bind(res);
+  // @ts-ignore
+  res.write = (chunk: any, encoding?: any, cb?: any) => { const b = Buffer.isBuffer(chunk) ? chunk.length : Buffer.byteLength(String(chunk), encoding||'utf8'); respBytes += b; return origWrite(chunk, encoding, cb); };
+  // @ts-ignore
+  res.end = (chunk?: any, encoding?: any, cb?: any) => { if (chunk) { const b = Buffer.isBuffer(chunk) ? chunk.length : Buffer.byteLength(String(chunk), encoding||'utf8'); respBytes += b; } return origEnd(chunk, encoding, cb); };
   setGauge('process_uptime_seconds', Math.floor(process.uptime()));
   try {
     if (req.url === '/health') {
@@ -96,6 +111,7 @@ const server = http.createServer(async (req, res) => {
     const ended = process.hrtime.bigint();
     const dur = Number(ended - started) / 1e9; // seconds
     observeHistogram('http_request_duration_seconds', dur, { path: route, code: String(res.statusCode) });
+    counters.http_response_bytes_total.value += respBytes;
   }
 });
 

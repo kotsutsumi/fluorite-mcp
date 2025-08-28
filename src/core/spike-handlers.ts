@@ -370,7 +370,6 @@ function inferStrikeAliasIds(task: string): string[] {
     'datadog-middleware-ts': 'strike-datadog-middleware-typed-ts',
     'newrelic-middleware-ts': 'strike-newrelic-middleware-typed-ts',
     // Search clients
-    'es-client-ts': 'strike-elasticsearch-client-typed-ts',
     'opensearch-client-ts': 'strike-opensearch-client-typed-ts',
     // Caching/queue
     'redis-service-ts': 'strike-redis-service-typed-ts',
@@ -380,9 +379,8 @@ function inferStrikeAliasIds(task: string): string[] {
     'rabbitmq-service-ts': 'strike-rabbitmq-service-typed-ts',
     'nats-service-ts': 'strike-nats-service-typed-ts',
     'sqs-service-ts': 'strike-sqs-service-typed-ts',
-    // Search clients
-    'meilisearch-client-ts': 'strike-meilisearch-client-typed-ts',
-    'typesense-client-ts': 'strike-typesense-client-typed-ts'
+    // Additional search clients
+    'meilisearch-client-ts': 'strike-meilisearch-client-typed-ts'
   };
 
   const directTokens: string[] = [];
@@ -407,11 +405,11 @@ function inferStrikeAliasIds(task: string): string[] {
     ,[/typesense[^\n]*(client|service)[^\n]*(typescript|ts)/, 'strike-typesense-client-typed-ts']
     ,[/elastic(search)?[^\n]*(client|service)[^\n]*(typescript|ts)/, 'strike-elasticsearch-client-typed-ts']
     // Japanese quick patterns
-    ,/[検索].*(クライアント|client).*(typescript|ts)/, 'strike-meilisearch-client-typed-ts']
-    ,/[検索].*(クライアント|client).*(typesense|タイプセンス).*(typescript|ts)/, 'strike-typesense-client-typed-ts']
-    ,/[監視|モニタリング].*(初期化|ミドルウェア|middleware).*(typescript|ts)/, 'strike-sentry-middleware-typed-ts']
-    ,/[決済].*(webhook|ウェブフック|ルート).*(typescript|ts)/, 'strike-stripe-webhook-typed-ts']
-    ,/[ストレージ].*(s3|gcs|azure|blob|minio).*(route|ルート|adapter|アダプタ|client|クライアント).*(typescript|ts)/, 'strike-s3-route-typed-ts']
+    ,[/[検索].*(クライアント|client).*(typescript|ts)/, 'strike-meilisearch-client-typed-ts']
+    ,[/[検索].*(クライアント|client).*(typesense|タイプセンス).*(typescript|ts)/, 'strike-typesense-client-typed-ts']
+    ,[/[監視|モニタリング].*(初期化|ミドルウェア|middleware).*(typescript|ts)/, 'strike-sentry-middleware-typed-ts']
+    ,[/[決済].*(webhook|ウェブフック|ルート).*(typescript|ts)/, 'strike-stripe-webhook-typed-ts']
+    ,[/[ストレージ].*(s3|gcs|azure|blob|minio).*(route|ルート|adapter|アダプタ|client|クライアント).*(typescript|ts)/, 'strike-s3-route-typed-ts']
   ];
   const matches: string[] = [];
   for (const [re, id] of direct) {

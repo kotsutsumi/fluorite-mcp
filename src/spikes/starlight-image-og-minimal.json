@@ -1,0 +1,21 @@
+{
+  "id": "starlight-image-og-minimal",
+  "name": "Starlight 画像最適化 + OG画像 最小",
+  "version": "1.0.0",
+  "stack": ["astro", "starlight", "image"],
+  "tags": ["docs", "static-site", "image", "og", "starlight"],
+  "description": "@astrojs/imageでの画像最適化と、静的OG画像の設定を行う最小例。",
+  "params": [
+    { "name": "app_name", "default": "starlight-image-og" },
+    { "name": "title", "default": "My Starlight Docs" },
+    { "name": "site_url", "default": "https://example.com" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"dev\": \"astro dev\", \"build\": \"astro build\", \"preview\": \"astro preview\" },\n  \"devDependencies\": { \"astro\": \"latest\", \"@astrojs/starlight\": \"latest\", \"@astrojs/image\": \"latest\" }\n}\n" },
+    { "path": "{{app_name}}/astro.config.mjs", "template": "import { defineConfig } from 'astro/config';\nimport starlight from '@astrojs/starlight';\nimport image from '@astrojs/image';\n\nexport default defineConfig({\n  site: '{{site_url}}',\n  integrations: [\n    starlight({ title: '{{title}}', sidebar: [{ label: 'Introduction', autogenerate: { directory: 'docs' } }] }),\n    image()\n  ]\n});\n" },
+    { "path": "{{app_name}}/public/og.png", "template": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQI12NgYGD4DwABWwEJ5J3QWQAAAABJRU5ErkJggg==\n" },
+    { "path": "{{app_name}}/src/content/docs/index.mdx", "template": "---\ntitle: Introduction\n---\n\nimport { Image } from 'astro:assets';\n\n# {{title}}\n\n<meta property=\"og:image\" content=\"/og.png\"/>\n\n> 下はastro:assetsの最小利用例（実際の最適化はビルド時に行われます）。\n\n<Image src={new URL('../../assets/sample.png', import.meta.url)} alt=\"sample\" width={320} height={180} />\n\n" },
+    { "path": "{{app_name}}/src/assets/sample.png", "template": "" }
+  ]
+}
+

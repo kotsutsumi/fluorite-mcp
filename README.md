@@ -55,6 +55,11 @@ Bridge the gap between idea and implementation:
 - **🔄 Iterative Refinement**: Built-in quality validation and improvement loops
 - **🎵 Advanced Speech Processing**: Complete phonetic analysis with X-SAMPA/IPA conversion, ToBI prosodic annotation, and multilingual speech synthesis
 
+#### Strike Templates (100k+)
+- On-demand generator provides 100k+ Strike templates (no heavy checkout)
+- Use discover/preview/apply tools via Claude Code CLI integrations
+- See docs/ja/strike-templates.md for Japanese usage and performance tips
+
 ### ⚡ Superior Developer Experience
 Professional-grade tooling that scales with your team:
 
@@ -215,7 +220,16 @@ Bulk Generation Guide: docs/BULK-GENERATION.md
 - 適用フロー/レシピ: `docs/ja/strike-recipes.md`
 - 検証チェックリスト: `docs/ja/pack-checklists.md`
 - 最小サンプル集: `docs/ja/pack-samples.md`
- - クイックチュートリアル: `docs/ja/tutorials.md`
+- クイックチュートリアル: `docs/ja/tutorials.md`
+ - PR前チェックリスト: `docs/ja/pr-checklist.md`
+- メトリクススクレイプ例（Prometheus/Grafana最小）: `docs/ja/metrics-scrape.md`
+ - Alertmanager 最小ルーティング: `docs/ja/metrics-alertmanager.md`
+ - Storage ファイル名ポリシー: `docs/ja/storage-filename-policy.md`
+ - CDN/inline 運用Tips: `docs/ja/storage-cdn-inline.md`
+ - CDN別レシピ（CloudFront/Cloudflare）: `docs/ja/storage-cdn-recipes.md`
+  - CDN UI 手順（CloudFront/Cloudflare）: `docs/ja/storage-cdn-ui.md`
+ - Payments 永続化設計指針: `docs/ja/payments-db-design.md`
+ - PR前チェックリスト: `docs/ja/pr-checklist.md`
 
 Examples (runnable minis): examples/pack-examples
  - MeiliSearch: `npx tsx examples/pack-examples/meili/index.ts`
@@ -223,7 +237,9 @@ Examples (runnable minis): examples/pack-examples
  - Pino: `npx tsx examples/pack-examples/pino/index.ts`
  - Stripe (webhook verify demo): `npx tsx examples/pack-examples/stripe/index.ts`
  - Monitoring full example (HTTP + /health + /metrics): `npx tsx examples/pack-examples/monitoring-full/index.ts`
- - Search full example (HTTP + /search, Meili fallback to memory): `npx tsx examples/pack-examples/search-full/index.ts`
+  - Search full example (HTTP + /search, Meili fallback to memory): `npx tsx examples/pack-examples/search-full/index.ts`
+  - Payments full example (Stripe webhook + metrics): `PORT=3003 STRIPE_WEBHOOK_SECRET=whsec_xxx npx tsx examples/pack-examples/payments-full/index.ts`
+  - Storage full example (S3 presigned PUT + CORS): `PORT=3004 AWS_REGION=us-east-1 npx tsx examples/pack-examples/storage-full/index.ts`
 
 ### 100K+ Strike テンプレート（大規模自動生成）
 `strike-*` を含む仮想スパイクを動的に合成し、10万件以上のテンプレートを提供します。詳細・チューニング・使い方の日本語ガイドは `docs/ja/strike-scale.md` を参照してください。

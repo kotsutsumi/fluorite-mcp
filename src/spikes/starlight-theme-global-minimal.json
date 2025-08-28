@@ -1,0 +1,21 @@
+{
+  "id": "starlight-theme-global-minimal",
+  "name": "Starlight テーマ(ロゴ/ソーシャル) 全体適用 最小",
+  "version": "1.0.0",
+  "stack": ["astro", "starlight"],
+  "tags": ["docs", "static-site", "theme", "branding", "starlight"],
+  "description": "Starlightの統合設定でロゴやソーシャルなどのブランド要素をグローバルに適用する最小例。",
+  "params": [
+    { "name": "app_name", "default": "starlight-themed-global" },
+    { "name": "title", "default": "My Starlight Docs" },
+    { "name": "site_url", "default": "https://example.com" },
+    { "name": "github_url", "default": "https://github.com/example/repo" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"dev\": \"astro dev\", \"build\": \"astro build\", \"preview\": \"astro preview\" },\n  \"devDependencies\": { \"astro\": \"latest\", \"@astrojs/starlight\": \"latest\" }\n}\n" },
+    { "path": "{{app_name}}/astro.config.mjs", "template": "import { defineConfig } from 'astro/config';\nimport starlight from '@astrojs/starlight';\n\nexport default defineConfig({\n  site: '{{site_url}}',\n  integrations: [\n    starlight({\n      title: '{{title}}',\n      logo: { src: '/logo.svg', alt: '{{title}}' },\n      social: { github: '{{github_url}}' },\n      sidebar: [{ label: 'Introduction', autogenerate: { directory: 'docs' } }],\n    })\n  ]\n});\n" },
+    { "path": "{{app_name}}/public/logo.svg", "template": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 24'><rect width='100' height='24' fill='#0ea5e9'/><text x='50' y='16' font-size='12' fill='white' text-anchor='middle' font-family='sans-serif'>Docs</text></svg>\n" },
+    { "path": "{{app_name}}/src/content/docs/index.mdx", "template": "---\ntitle: Introduction\n---\n\n# {{title}}\n\nこのサイトは Starlight の統合設定でロゴ/ソーシャルを全体適用しています。\n\n- ロゴ: public/logo.svg\n- ソーシャル: astro.config.mjs の social.github を参照\n- サイドバー: docs ディレクトリから自動生成\n" }
+  ]
+}
+

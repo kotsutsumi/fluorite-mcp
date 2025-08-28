@@ -7,6 +7,27 @@ const USE_MEILI = !!process.env.MEILI_HOST;
 const USE_TYPESENSE = !!(process.env.TS_HOST || process.env.TYPESENSE_HOST);
 const USE_ELASTIC = !!(process.env.ELASTIC_NODE || process.env.ELASTICSEARCH_NODE);
 
+// Minimal counters/metrics
+let HTTP_REQUESTS_TOTAL = 0;
+let SEARCH_REQUESTS_TOTAL = 0;
+let SEARCH_HITS_TOTAL = 0;
+function renderMetrics(): string {
+  const lines: string[] = [];
+  lines.push('# HELP http_requests_total Total HTTP requests');
+  lines.push('# TYPE http_requests_total counter');
+  lines.push(`http_requests_total ${HTTP_REQUESTS_TOTAL}`);
+  lines.push('# HELP search_requests_total Total search requests');
+  lines.push('# TYPE search_requests_total counter');
+  lines.push(`search_requests_total ${SEARCH_REQUESTS_TOTAL}`);
+  lines.push('# HELP search_hits_total Total search hits returned');
+  lines.push('# TYPE search_hits_total counter');
+  lines.push(`search_hits_total ${SEARCH_HITS_TOTAL}`);
+  lines.push('# HELP process_uptime_seconds Process uptime in seconds');
+  lines.push('# TYPE process_uptime_seconds gauge');
+  lines.push(`process_uptime_seconds ${Math.floor(process.uptime())}`);
+  return lines.join('\n') + '\n';
+}
+
 class InMemoryIndex {
   private docs: Doc[] = [];
   async index(doc: Doc){
@@ -70,16 +91,45 @@ function json(res: http.ServerResponse, code: number, body: unknown){
 async function main(){
   const backend = await createBackend();
   const port = parseInt(process.env.PORT || '3002', 10);
+  // Simple rate limiter (per-IP, per-window) and CORS
+  const RATE_LIMIT_MAX = parseInt(process.env.RATE_LIMIT_MAX || '60', 10);
+  const RATE_LIMIT_WINDOW_MS = parseInt(process.env.RATE_LIMIT_WINDOW_MS || '60000', 10);
+  const buckets = new Map<string, { count: number; start: number }>();
+  function rateLimit(ip: string): boolean {
+    const now = Date.now();
+    const b = buckets.get(ip) || { count: 0, start: now };
+    if (now - b.start > RATE_LIMIT_WINDOW_MS) { b.count = 0; b.start = now; }
+    b.count += 1; buckets.set(ip, b);
+    return b.count <= RATE_LIMIT_MAX;
+  }
+  function setCors(res: http.ServerResponse){
+    const origin = process.env.ORIGIN || process.env.CORS_ORIGIN || '*';
+    res.setHeader('access-control-allow-origin', origin);
+    res.setHeader('access-control-allow-methods', 'GET,POST,OPTIONS');
+    res.setHeader('access-control-allow-headers', 'content-type');
+  }
   const server = http.createServer(async (req, res) => {
     try {
-      if (req.method === 'GET' && req.url?.startsWith('/health')) return json(res, 200, { ok: true, backend: USE_MEILI ? 'meili' : 'memory' });
-      if (req.method === 'GET' && req.url?.startsWith('/search')){
+      setCors(res);
+      if ((req.method || '').toUpperCase() === 'OPTIONS') { res.statusCode = 204; res.end(); return; }
+      const ip = req.socket.remoteAddress || 'unknown';
+      if (!rateLimit(ip)) { json(res, 429, { error: 'rate_limited' }); return; }
+      HTTP_REQUESTS_TOTAL += 1;
+      const route = (req.url || '').split('?')[0] || '/';
+      const norm = ['/_seed','/_reset','/health','/metrics','/search','/index'].includes(route) ? route : '/unknown';
+      httpRequestsByPath[norm] = (httpRequestsByPath[norm] || 0) + 1;
+
+      if (req.method === 'GET' && norm === '/health') return json(res, 200, { ok: true, backend: USE_MEILI ? 'meili' : (USE_TYPESENSE ? 'typesense' : (USE_ELASTIC ? 'elastic' : 'memory')) });
+      if (req.method === 'GET' && norm === '/metrics') { res.statusCode = 200; res.setHeader('content-type','text/plain; version=0.0.4'); res.end(renderMetrics()); return; }
+      if (req.method === 'GET' && norm === '/search'){
         const url = new URL(req.url, 'http://localhost');
         const q = url.searchParams.get('q') || '';
         const hits = await backend.search(q);
+        SEARCH_REQUESTS_TOTAL += 1;
+        if (Array.isArray(hits)) SEARCH_HITS_TOTAL += hits.length;
         return json(res, 200, { hits });
       }
-      if (req.method === 'POST' && req.url === '/_seed'){
+      if (req.method === 'POST' && norm === '/_seed'){
         const chunks: Buffer[] = []; for await (const c of req) chunks.push(c as Buffer);
         const docs = JSON.parse(Buffer.concat(chunks).toString('utf8')) as Doc[];
         const hasSeed = typeof (backend as any).seed === 'function';
@@ -87,13 +137,13 @@ async function main(){
         await (backend as any).seed(docs);
         return json(res, 200, { ok: true, count: Array.isArray(docs)? docs.length : 0 });
       }
-      if (req.method === 'POST' && req.url === '/_reset'){
+      if (req.method === 'POST' && norm === '/_reset'){
         const hasReset = typeof (backend as any).reset === 'function';
         if (!hasReset) return json(res, 501, { error: 'reset-not-supported-for-external-backend' });
         await (backend as any).reset();
         return json(res, 200, { ok: true });
       }
-      if (req.method === 'POST' && req.url === '/index'){
+      if (req.method === 'POST' && norm === '/index'){
         const chunks: Buffer[] = []; for await (const c of req) chunks.push(c as Buffer);
         const doc = JSON.parse(Buffer.concat(chunks).toString('utf8')) as Doc;
         if (!doc?.id) return json(res, 400, { error: 'id required' });
@@ -103,6 +153,9 @@ async function main(){
       res.statusCode = 404; res.end('not found');
     } catch (e) {
       json(res, 500, { error: String(e) });
+    } finally {
+      const code = String(res.statusCode);
+      httpResponsesByCode[code] = (httpResponsesByCode[code] || 0) + 1;
     }
   });
   const backendName = USE_MEILI ? 'meili' : (USE_TYPESENSE ? 'typesense' : (USE_ELASTIC ? 'elastic' : 'memory'));

@@ -1,0 +1,33 @@
+{
+  "id": "starlight-i18n-minimal",
+  "name": "Starlight (Astro) i18n 最小構成",
+  "version": "1.0.0",
+  "stack": ["astro", "starlight", "i18n"],
+  "tags": ["docs", "static-site", "i18n", "astro", "starlight"],
+  "description": "Starlightの多言語(i18n)最小構成。英語(en)と日本語(ja)の2言語でサイドバーを自動生成。",
+  "params": [
+    { "name": "app_name", "default": "starlight-i18n" },
+    { "name": "title_en", "default": "My Starlight Docs" },
+    { "name": "title_ja", "default": "私のStarlightドキュメント" },
+    { "name": "site_url", "default": "https://example.com" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/package.json",
+      "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": {\n    \"dev\": \"astro dev\",\n    \"build\": \"astro build\",\n    \"preview\": \"astro preview\"\n  },\n  \"devDependencies\": {\n    \"astro\": \"latest\",\n    \"@astrojs/starlight\": \"latest\"\n  }\n}\n"
+    },
+    {
+      "path": "{{app_name}}/astro.config.mjs",
+      "template": "import { defineConfig } from 'astro/config';\nimport starlight from '@astrojs/starlight';\n\nexport default defineConfig({\n  site: '{{site_url}}',\n  integrations: [\n    starlight({\n      title: {\n        default: '{{title_en}}',\n        ja: '{{title_ja}}'\n      },\n      defaultLocale: 'en',\n      locales: {\n        en: { label: 'English' },\n        ja: { label: '日本語' }\n      },\n      sidebar: [\n        { label: 'Introduction', autogenerate: { directory: 'docs' } },\n        { label: 'はじめに', autogenerate: { directory: 'docs/ja' } }\n      ]\n    }),\n  ],\n});\n"
+    },
+    {
+      "path": "{{app_name}}/src/content/docs/index.mdx",
+      "template": "---\ntitle: Introduction\n---\n\n# {{title_en}}\n\nThis is the English index page.\n\n- dev: npm run dev\n- build: npm run build\n- preview: npm run preview\n"
+    },
+    {
+      "path": "{{app_name}}/src/content/docs/ja/index.mdx",
+      "template": "---\ntitle: はじめに\n---\n\n# {{title_ja}}\n\nこれは日本語のインデックスページです。\n\n- 開発: npm run dev\n- ビルド: npm run build\n- プレビュー: npm run preview\n"
+    }
+  ]
+}
+

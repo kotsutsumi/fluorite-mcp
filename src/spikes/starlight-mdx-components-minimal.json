@@ -1,0 +1,21 @@
+{
+  "id": "starlight-mdx-components-minimal",
+  "name": "Starlight MDXコンポーネント 最小",
+  "version": "1.0.0",
+  "stack": ["astro", "starlight"],
+  "tags": ["docs", "static-site", "mdx", "components", "starlight"],
+  "description": "StarlightでMDXから独自コンポーネントを利用する最小例（CalloutとTabのシンプル版）。",
+  "params": [
+    { "name": "app_name", "default": "starlight-mdx" },
+    { "name": "title", "default": "My Starlight Docs" },
+    { "name": "site_url", "default": "https://example.com" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"dev\": \"astro dev\", \"build\": \"astro build\", \"preview\": \"astro preview\" },\n  \"devDependencies\": { \"astro\": \"latest\", \"@astrojs/starlight\": \"latest\" }\n}\n" },
+    { "path": "{{app_name}}/astro.config.mjs", "template": "import { defineConfig } from 'astro/config';\nimport starlight from '@astrojs/starlight';\nexport default defineConfig({\n  site: '{{site_url}}',\n  integrations: [ starlight({ title: '{{title}}', sidebar: [{ label: 'Introduction', autogenerate: { directory: 'docs' } }] }) ]\n});\n" },
+    { "path": "{{app_name}}/src/components/Callout.astro", "template": "---\nconst { type = 'info', children } = Astro.props;\nconst color = type === 'warn' ? '#f59e0b' : type === 'error' ? '#ef4444' : '#0ea5e9';\n---\n<div style=\"border-left:4px solid {color}; background:#f8fafc; padding:8px 12px; border-radius:4px\">\n  <slot />\n</div>\n" },
+    { "path": "{{app_name}}/src/components/Tabs.astro", "template": "---\nconst { items = [] } = Astro.props;\n// 超簡易: items = [{ label, content }]\n---\n<div style=\"border:1px solid #eee; border-radius:8px; padding:8px\">\n  <div style=\"display:flex; gap:8px; margin-bottom:8px\">\n    {items.map((it, i) => (<a href={\`#tab-${i}\`} style=\"text-decoration:none\">{it.label}</a>))}\n  </div>\n  {items.map((it, i) => (<section id={\`tab-${i}\`} style=\"padding:8px 0\">{it.content}</section>))}\n</div>\n" },
+    { "path": "{{app_name}}/src/content/docs/index.mdx", "template": "---\ntitle: Introduction\n---\n\nimport Callout from '../../components/Callout.astro';\nimport Tabs from '../../components/Tabs.astro';\n\n# {{title}}\n\n<Callout type=\"info\">このボックスはカスタムMDXコンポーネントです。</Callout>\n\n<Tabs items={[{ label: 'TabA', content: 'Content A' }, { label: 'TabB', content: 'Content B' }]} />\n" }
+  ]
+}
+

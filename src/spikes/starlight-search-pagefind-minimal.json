@@ -1,0 +1,19 @@
+{
+  "id": "starlight-search-pagefind-minimal",
+  "name": "Starlight Pagefind 検索 最小",
+  "version": "1.0.0",
+  "stack": ["astro", "starlight", "search"],
+  "tags": ["docs", "static-site", "search", "pagefind", "starlight"],
+  "description": "ビルド後にPagefindで静的検索インデックスを作成し、CDNのpagefind-uiを読み込んで検索UIを表示する最小例。",
+  "params": [
+    { "name": "app_name", "default": "starlight-pagefind" },
+    { "name": "title", "default": "My Starlight Docs" },
+    { "name": "site_url", "default": "https://example.com" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"dev\": \"astro dev\", \"build\": \"astro build\", \"postbuild\": \"npx -y pagefind --site dist\", \"preview\": \"astro preview\" },\n  \"devDependencies\": { \"astro\": \"latest\", \"@astrojs/starlight\": \"latest\" },\n  \"dependencies\": { \"pagefind\": \"^1.0.0\" }\n}\n" },
+    { "path": "{{app_name}}/astro.config.mjs", "template": "import { defineConfig } from 'astro/config';\nimport starlight from '@astrojs/starlight';\nexport default defineConfig({\n  site: '{{site_url}}',\n  integrations: [ starlight({ title: '{{title}}', sidebar: [{ label: 'Introduction', autogenerate: { directory: 'docs' } }] }) ]\n});\n" },
+    { "path": "{{app_name}}/src/content/docs/index.mdx", "template": "---\ntitle: Introduction\n---\n\n# {{title}}\n\n<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@pagefind/default-ui@1/dist/pagefind-ui.css\"/>\n<div id=\"search\"></div>\n<script type=\"module\">\n  import PagefindUI from \"https://cdn.jsdelivr.net/npm/@pagefind/default-ui@1/dist/pagefind-ui.es.js\";\n  new PagefindUI({ element: \"#search\", showImages: false });\n</script>\n\n> ビルド後に `npx pagefind --site dist` により `dist/pagefind/` 配下へインデックスが生成されます。\n" }
+  ]
+}
+

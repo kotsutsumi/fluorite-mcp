@@ -1,0 +1,19 @@
+{
+  "id": "lottie-web-minimal",
+  "name": "Lottie Web 最小構成",
+  "version": "1.0.0",
+  "stack": ["browser", "lottie-web"],
+  "tags": ["animation", "lottie", "web"],
+  "description": "CDNからlottie-webを読み込み、任意のJSONアニメーションを表示する最小例。ビルド不要の静的HTML構成。",
+  "params": [
+    { "name": "app_name", "default": "lottie-web-demo" },
+    { "name": "lottie_url", "default": "https://assets9.lottiefiles.com/packages/lf20_5ngs2ksb.json" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/index.html",
+      "template": "<!doctype html>\n<html lang=\"ja\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/>\n    <title>Lottie Web Minimal</title>\n    <style>body{font-family:sans-serif;padding:24px} #anim{width:240px;height:240px;margin:16px 0}</style>\n  </head>\n  <body>\n    <h1>Lottie Web 最小構成</h1>\n    <p>下のボックスにLottieアニメーションを表示します。</p>\n    <div id=\"anim\"></div>\n    <script src=\"https://unpkg.com/lottie-web/build/player/lottie.min.js\"></script>\n    <script>\n      // 直接URLを指定してロード（SVGレンダラ）\n      const container = document.getElementById('anim');\n      lottie.loadAnimation({\n        container,\n        renderer: 'svg',\n        loop: true,\n        autoplay: true,\n        path: '{{lottie_url}}'\n      });\n    </script>\n  </body>\n</html>\n"
+    }
+  ]
+}
+

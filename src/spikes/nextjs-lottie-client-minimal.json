@@ -1,0 +1,18 @@
+{
+  "id": "nextjs-lottie-client-minimal",
+  "name": "Next.js Lottie クライアントコンポーネント 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "react", "lottie"],
+  "tags": ["nextjs", "app-router", "client", "lottie", "animation"],
+  "description": "Next.js (App Router) のクライアントコンポーネントで Lottie を表示する最小例。lottie-react を利用。",
+  "params": [
+    { "name": "lottie_url", "default": "https://assets9.lottiefiles.com/packages/lf20_5ngs2ksb.json" }
+  ],
+  "files": [
+    {
+      "path": "app/lottie/page.tsx",
+      "template": "'use client';\nimport React, { useEffect, useState } from 'react';\nimport Lottie from 'lottie-react';\n\nexport default function Page(){\n  const [data, setData] = useState<any | null>(null);\n  const url = process.env.NEXT_PUBLIC_LOTTIE_URL || '{{lottie_url}}';\n\n  useEffect(() => {\n    let alive = true;\n    fetch(url).then(r => r.json()).then(json => { if (alive) setData(json); });\n    return () => { alive = false; };\n  }, [url]);\n\n  return (\n    <main style={{ fontFamily: 'sans-serif', padding: 24 }}>\n      <h1>Lottie in Next.js (Client Component)</h1>\n      <div style={{ width: 240, height: 240, border: '1px solid #ddd', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>\n        {data ? <Lottie animationData={data} loop autoplay style={{ width: 240, height: 240 }} /> : 'Loading...'}\n      </div>\n    </main>\n  );\n}\n"
+    }
+  ]
+}
+

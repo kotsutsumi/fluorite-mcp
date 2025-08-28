@@ -1,0 +1,20 @@
+{
+  "id": "starlight-playground-minimal",
+  "name": "Starlight コードPlayground 最小",
+  "version": "1.0.0",
+  "stack": ["astro", "starlight"],
+  "tags": ["docs", "static-site", "playground", "mdx", "starlight"],
+  "description": "MDXから簡易コードプレイグラウンドを使う最小例（HTML/JSをiframeで実行）。",
+  "params": [
+    { "name": "app_name", "default": "starlight-playground" },
+    { "name": "title", "default": "My Starlight Docs" },
+    { "name": "site_url", "default": "https://example.com" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"dev\": \"astro dev\", \"build\": \"astro build\", \"preview\": \"astro preview\" },\n  \"devDependencies\": { \"astro\": \"latest\", \"@astrojs/starlight\": \"latest\" }\n}\n" },
+    { "path": "{{app_name}}/astro.config.mjs", "template": "import { defineConfig } from 'astro/config';\nimport starlight from '@astrojs/starlight';\nexport default defineConfig({\n  site: '{{site_url}}',\n  integrations: [ starlight({ title: '{{title}}', sidebar: [{ label: 'Introduction', autogenerate: { directory: 'docs' } }] }) ]\n});\n" },
+    { "path": "{{app_name}}/src/components/CodePlayground.astro", "template": "---\nconst { code = '<h1>Hello</h1><script>console.log(\\'hi\\')<\\/script>' } = Astro.props;\nlet frameId = 'pg-' + Math.random().toString(36).slice(2);\n---\n<div style=\"border:1px solid #eee; border-radius:8px; padding:8px; display:grid; gap:8px\">\n  <textarea id={frameId + '-src'} style=\"width:100%; height:120px; font-family:monospace\">{code}</textarea>\n  <div style=\"display:flex; gap:8px\">\n    <button onclick=\"(function(id){ const srcEl = document.getElementById(id+'-src'); const iframe = document.getElementById(id); const doc = (iframe.contentDocument||iframe.contentWindow.document); doc.open(); doc.write(srcEl.value); doc.close(); })(this.dataset.id)\" data-id={frameId}>Run</button>\n    <button onclick=\"(function(id){ const iframe = document.getElementById(id); const doc = (iframe.contentDocument||iframe.contentWindow.document); doc.open(); doc.write(''); doc.close(); })(this.dataset.id)\" data-id={frameId}>Clear</button>\n  </div>\n  <iframe id={frameId} style=\"width:100%; height:200px; background:#fff\"></iframe>\n</div>\n" },
+    { "path": "{{app_name}}/src/content/docs/index.mdx", "template": "---\ntitle: Introduction\n---\n\nimport CodePlayground from '../../components/CodePlayground.astro';\n\n# {{title}}\n\n<CodePlayground code={`<h1>Hi</h1><script>document.body.style.background='#f0f9ff';<\\/script>`} />\n" }
+  ]
+}
+

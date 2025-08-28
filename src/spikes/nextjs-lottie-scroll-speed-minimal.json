@@ -1,0 +1,18 @@
+{
+  "id": "nextjs-lottie-scroll-speed-minimal",
+  "name": "Next.js Lottie スクロール速度制御 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "react", "lottie"],
+  "tags": ["nextjs", "app-router", "client", "lottie", "scroll", "speed"],
+  "description": "スクロール量/速度に応じて Lottie の setSpeed を調整する最小例。",
+  "params": [
+    { "name": "lottie_url", "default": "https://assets9.lottiefiles.com/packages/lf20_5ngs2ksb.json" }
+  ],
+  "files": [
+    {
+      "path": "app/lottie-speed/page.tsx",
+      "template": "'use client';\nimport React, { useEffect, useRef, useState } from 'react';\nimport Lottie, { LottieRefCurrentProps } from 'lottie-react';\n\nexport default function Page(){\n  const lottieRef = useRef<LottieRefCurrentProps>(null);\n  const [data, setData] = useState<any | null>(null);\n  const url = process.env.NEXT_PUBLIC_LOTTIE_URL || '{{lottie_url}}';\n\n  useEffect(() => {\n    let alive = true;\n    fetch(url).then(r => r.json()).then(json => { if (alive) setData(json); });\n    return () => { alive = false; };\n  }, [url]);\n\n  useEffect(() => {\n    let lastY = window.scrollY;\n    let lastT = performance.now();\n    let raf = 0;\n    const clamp = (v:number, min:number, max:number) => Math.max(min, Math.min(max, v));\n    const onScroll = () => {\n      cancelAnimationFrame(raf);\n      raf = requestAnimationFrame(() => {\n        const nowY = window.scrollY;\n        const nowT = performance.now();\n        const dy = Math.abs(nowY - lastY);\n        const dt = Math.max(1, nowT - lastT);\n        const pxPerMs = dy / dt;\n        const speed = clamp(pxPerMs * 8, 0.2, 3); // スケール係数は経験値\n        (lottieRef.current as any)?.setSpeed?.(speed);\n        lastY = nowY;\n        lastT = nowT;\n      });\n    };\n    window.addEventListener('scroll', onScroll, { passive: true });\n    return () => { cancelAnimationFrame(raf); window.removeEventListener('scroll', onScroll as any); };\n  }, []);\n\n  return (\n    <main style={{ fontFamily: 'sans-serif' }}>\n      <div style={{ height: '120vh', display: 'grid', placeItems: 'center' }}><h1>Scroll to speed up</h1></div>\n      <section style={{ minHeight: '80vh', display: 'grid', placeItems: 'center' }}>\n        <div style={{ width: 320, height: 320, border: '1px solid #ddd', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>\n          {data ? (\n            <Lottie lottieRef={lottieRef} animationData={data} loop autoplay style={{ width: 320, height: 320 }} />\n          ) : 'Loading...'}\n        </div>\n        <p style={{ opacity: 0.6, marginTop: 12 }}>スクロールが速いほど再生速度が上がります</p>\n      </section>\n      <div style={{ height: '120vh' }} />\n    </main>\n  );\n}\n"
+    }
+  ]
+}
+

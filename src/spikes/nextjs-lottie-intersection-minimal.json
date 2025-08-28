@@ -1,0 +1,18 @@
+{
+  "id": "nextjs-lottie-intersection-minimal",
+  "name": "Next.js Lottie IntersectionObserver 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "react", "lottie"],
+  "tags": ["nextjs", "app-router", "client", "lottie", "intersection"],
+  "description": "IntersectionObserverで可視領域に入ったら再生、外れたら一時停止する最小例。",
+  "params": [
+    { "name": "lottie_url", "default": "https://assets9.lottiefiles.com/packages/lf20_5ngs2ksb.json" }
+  ],
+  "files": [
+    {
+      "path": "app/lottie-io/page.tsx",
+      "template": "'use client';\nimport React, { useEffect, useRef, useState } from 'react';\nimport Lottie, { LottieRefCurrentProps } from 'lottie-react';\n\nexport default function Page(){\n  const lottieRef = useRef<LottieRefCurrentProps>(null);\n  const holderRef = useRef<HTMLDivElement>(null);\n  const [data, setData] = useState<any | null>(null);\n  const url = process.env.NEXT_PUBLIC_LOTTIE_URL || '{{lottie_url}}';\n\n  useEffect(() => {\n    let alive = true;\n    fetch(url).then(r => r.json()).then(json => { if (alive) setData(json); });\n    return () => { alive = false; };\n  }, [url]);\n\n  useEffect(() => {\n    if (!holderRef.current) return;\n    const el = holderRef.current;\n    const observer = new IntersectionObserver((entries) => {\n      const entry = entries[0];\n      if (entry?.isIntersecting) { lottieRef.current?.play?.(); }\n      else { lottieRef.current?.pause?.(); }\n    }, { threshold: 0.25 });\n    observer.observe(el);\n    return () => observer.disconnect();\n  }, []);\n\n  return (\n    <main style={{ fontFamily: 'sans-serif' }}>\n      <div style={{ height: '120vh', display: 'grid', placeItems: 'center' }}><h1>Scroll to animate</h1></div>\n      <section style={{ minHeight: '80vh', display: 'grid', placeItems: 'center' }}>\n        <div ref={holderRef} style={{ width: 320, height: 320, border: '1px solid #ddd', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>\n          {data ? (\n            <Lottie lottieRef={lottieRef} animationData={data} loop autoplay={false} style={{ width: 320, height: 320 }} />\n          ) : 'Loading...'}\n        </div>\n        <p style={{ opacity: 0.6, marginTop: 12 }}>可視領域で自動再生 / 非可視で一時停止</p>\n      </section>\n      <div style={{ height: '120vh' }} />\n    </main>\n  );\n}\n"
+    }
+  ]
+}
+

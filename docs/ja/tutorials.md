@@ -47,5 +47,18 @@ curl -s -X POST localhost:3002/_reset
 —
 
 追加の例や注意事項は `docs/ja/strike-packs.md`, `docs/ja/strike-recipes.md`, `docs/ja/pack-samples.md` を参照してください。
+
+## PR前チェックリスト（おすすめ）
+
+- ビルドと型チェックが通る
+  - `npm run build` / `npm run lint`（必要に応じて）
+- 軽量健全性チェックに通る（ネット不要）
+  - `npm run examples:dryrun`（pino と monitoring-full の起動確認）
+  - CIで `examples-dryrun.yml` が /health をプローブ（search-full）
+- 追加/変更したサンプルやテンプレの最小動作確認
+  - search-full: `/health`, `/search`, `/metrics` が期待どおり
+  - monitoring-full: `/metrics` に request duration histogram が出力
+- 影響範囲のDocs更新
+  - pack-samples / pack-checklists / strike-packs / tutorials の該当箇所
 # 検索サービス（Meiliが無ければインメモリ）
 npx tsx examples/pack-examples/search-full/index.ts

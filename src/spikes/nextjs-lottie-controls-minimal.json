@@ -1,0 +1,18 @@
+{
+  "id": "nextjs-lottie-controls-minimal",
+  "name": "Next.js Lottie コントロール付き 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "react", "lottie"],
+  "tags": ["nextjs", "app-router", "client", "lottie", "controls"],
+  "description": "Next.js (App Router) のクライアントコンポーネントで lottie-react を使い、再生/一時停止/停止/速度/ループ切替を提供する最小例。",
+  "params": [
+    { "name": "lottie_url", "default": "https://assets9.lottiefiles.com/packages/lf20_5ngs2ksb.json" }
+  ],
+  "files": [
+    {
+      "path": "app/lottie-controls/page.tsx",
+      "template": "'use client';\nimport React, { useEffect, useRef, useState } from 'react';\nimport Lottie, { LottieRefCurrentProps } from 'lottie-react';\n\nexport default function Page(){\n  const lottieRef = useRef<LottieRefCurrentProps>(null);\n  const [data, setData] = useState<any | null>(null);\n  const [speed, setSpeed] = useState(1);\n  const [loop, setLoop] = useState(true);\n  const url = process.env.NEXT_PUBLIC_LOTTIE_URL || '{{lottie_url}}';\n\n  useEffect(() => {\n    let alive = true;\n    fetch(url).then(r => r.json()).then(json => { if (alive) setData(json); });\n    return () => { alive = false; };\n  }, [url]);\n\n  const play = () => lottieRef.current?.play();\n  const pause = () => lottieRef.current?.pause();\n  const stop = () => lottieRef.current?.stop();\n  const onSpeed = (v: number) => { setSpeed(v); lottieRef.current?.setSpeed?.(v); };\n\n  return (\n    <main style={{ fontFamily: 'sans-serif', padding: 24 }}>\n      <h1>Lottie Controls (Next.js)</h1>\n      <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>\n        <button onClick={play}>Play</button>\n        <button onClick={pause}>Pause</button>\n        <button onClick={stop}>Stop</button>\n        <label>Speed: <input type=\"range\" min=\"0.2\" max=\"3\" step=\"0.1\" value={speed} onChange={e=> onSpeed(parseFloat(e.target.value))} /></label>\n        <label><input type=\"checkbox\" checked={loop} onChange={e=> setLoop(e.target.checked)} /> Loop</label>\n      </div>\n      <div style={{ width: 240, height: 240, border: '1px solid #ddd', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 16 }}>\n        {data ? (\n          <Lottie\n            lottieRef={lottieRef}\n            animationData={data}\n            loop={loop}\n            autoplay\n            style={{ width: 240, height: 240 }}\n          />\n        ) : 'Loading...'}\n      </div>\n    </main>\n  );\n}\n"
+    }
+  ]
+}
+

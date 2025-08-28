@@ -1,0 +1,29 @@
+{
+  "id": "starlight-branding-assets-minimal",
+  "name": "Starlight ブランディング(ロゴ/フッター) 最小",
+  "version": "1.0.0",
+  "stack": ["astro", "starlight"],
+  "tags": ["docs", "static-site", "branding", "assets", "starlight"],
+  "description": "Starlightサイトのブランド用アセット(logo.svg)を配置し、ドキュメント内で使用する最小例。テーマ拡張は後続で適用。",
+  "params": [
+    { "name": "app_name", "default": "starlight-branding" },
+    { "name": "title", "default": "My Starlight Docs" },
+    { "name": "site_url", "default": "https://example.com" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/package.json",
+      "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"dev\": \"astro dev\", \"build\": \"astro build\", \"preview\": \"astro preview\" },\n  \"devDependencies\": { \"astro\": \"latest\", \"@astrojs/starlight\": \"latest\" }\n}\n"
+    },
+    {
+      "path": "{{app_name}}/astro.config.mjs",
+      "template": "import { defineConfig } from 'astro/config';\nimport starlight from '@astrojs/starlight';\nexport default defineConfig({\n  site: '{{site_url}}',\n  integrations: [ starlight({ title: '{{title}}', sidebar: [{ label: 'Introduction', autogenerate: { directory: 'docs' } }] }) ]\n});\n"
+    },
+    { "path": "{{app_name}}/public/logo.svg", "template": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 24'><rect width='100' height='24' fill='#0ea5e9'/><text x='50' y='16' font-size='12' fill='white' text-anchor='middle' font-family='sans-serif'>Docs</text></svg>\n" },
+    {
+      "path": "{{app_name}}/src/content/docs/index.mdx",
+      "template": "---\ntitle: Introduction\n---\n\n# {{title}}\n\n![Logo](/logo.svg)\n\nブランド用のロゴを `public/logo.svg` に配置しています。\nヘッダー/フッターのテーマ拡張は別スパイクで適用可能です。\n"
+    }
+  ]
+}
+

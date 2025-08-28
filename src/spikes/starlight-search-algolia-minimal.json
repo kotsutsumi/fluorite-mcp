@@ -1,0 +1,22 @@
+{
+  "id": "starlight-search-algolia-minimal",
+  "name": "Starlight Algolia DocSearch 最小",
+  "version": "1.0.0",
+  "stack": ["astro", "starlight", "algolia"],
+  "tags": ["docs", "static-site", "search", "algolia", "starlight"],
+  "description": "StarlightでAlgolia DocSearchを読み込む最小例。CDNのJS/CSSを読み込み、初期化スニペットを配置。",
+  "params": [
+    { "name": "app_name", "default": "starlight-docsearch" },
+    { "name": "title", "default": "My Starlight Docs" },
+    { "name": "site_url", "default": "https://example.com" },
+    { "name": "algolia_app_id", "default": "APP_ID" },
+    { "name": "algolia_api_key", "default": "API_KEY" },
+    { "name": "algolia_index_name", "default": "docs" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"dev\": \"astro dev\", \"build\": \"astro build\", \"preview\": \"astro preview\" },\n  \"devDependencies\": { \"astro\": \"latest\", \"@astrojs/starlight\": \"latest\" }\n}\n" },
+    { "path": "{{app_name}}/astro.config.mjs", "template": "import { defineConfig } from 'astro/config';\nimport starlight from '@astrojs/starlight';\nexport default defineConfig({\n  site: '{{site_url}}',\n  integrations: [ starlight({ title: '{{title}}', sidebar: [{ label: 'Introduction', autogenerate: { directory: 'docs' } }] }) ]\n});\n" },
+    { "path": "{{app_name}}/src/content/docs/index.mdx", "template": "---\ntitle: Introduction\n---\n\n# {{title}}\n\n<link rel=\"preconnect\" href=\"https://J8F9YV431P-dsn.algolia.net\" crossorigin>\n<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@docsearch/css@3\"/>\n\n<div id=\"docsearch\"></div>\n\n<script src=\"https://cdn.jsdelivr.net/npm/@docsearch/js@3\"></script>\n<script>\n  docsearch({\n    container: '#docsearch',\n    appId: '{{algolia_app_id}}',\n    apiKey: '{{algolia_api_key}}',\n    indexName: '{{algolia_index_name}}'\n  });\n</script>\n" }
+  ]
+}
+
