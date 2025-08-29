@@ -1,0 +1,15 @@
+{
+  "id": "nextjs-lottie-http-cache-guide",
+  "name": "Next.js Lottie HTTPキャッシュ ガイド",
+  "version": "1.0.0",
+  "stack": ["nextjs", "lottie", "docs"],
+  "tags": ["nextjs", "lottie", "http-cache", "etag", "docs"],
+  "description": "Lottie JSONのHTTPキャッシュ/ETag/ヘッダ設計と、プリロード/プリフェッチの使い分けをまとめたガイド。",
+  "files": [
+    {
+      "path": "docs/lottie-http-cache.md",
+      "template": "# Lottie HTTP Cache Guide\n\n## Headers\n- `Cache-Control: public, max-age=31536000, immutable` for versioned JSON assets\n- `ETag` for validation on CDN; prefer strong etags for JSON\n- Use versioned URLs (e.g., `/animations/foo@1.2.3.json`)\n\n## Preload/Prefetch\n- Preload when needed in the same navigation: `<link rel=\"preload\" as=\"fetch\" href=\"...json\" type=\"application/json\" crossorigin>`\n- Prefetch for likely next views; be mindful of user data and cost\n\n## Fetch Strategies\n- `fetch(url, { cache: 'force-cache' })` to leverage HTTP cache in the browser\n- Abort in-flight requests on unmount with `AbortController`\n\n## CDN Tips\n- Enable Gzip/Brotli for JSON\n- Long TTL with versioned assets; short TTL for unversioned\n- Place assets on fast edge CDN for lower TTFB\n"
+    }
+  ]
+}
+

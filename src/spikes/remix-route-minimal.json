@@ -1,0 +1,13 @@
+{
+  "id": "remix-route-minimal",
+  "name": "Remix ルート 最小",
+  "version": "1.0.0",
+  "stack": ["remix"],
+  "tags": ["route", "remix"],
+  "description": "Remix のルート/loader/action の最小例。",
+  "params": [{ "name": "app_name", "default": "remix-app" }],
+  "files": [
+    { "path": "{{app_name}}/app/routes/_index.tsx", "template": "import type { LoaderFunctionArgs, ActionFunctionArgs } from '@remix-run/node';\nimport { json } from '@remix-run/node';\nexport async function loader(_args: LoaderFunctionArgs){ return json({ ok: true }); }\nexport async function action(_args: ActionFunctionArgs){ return json({ ok: true }); }\nexport default function Index(){ return (<main><h1>Hello Remix</h1></main>); }\n" }
+  ]
+}
+

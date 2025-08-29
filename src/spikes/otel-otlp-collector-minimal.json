@@ -1,0 +1,14 @@
+{
+  "id": "otel-otlp-collector-minimal",
+  "name": "OpenTelemetry OTLP Collector 送信 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry", "otlp", "node"],
+  "tags": ["otel", "otlp", "collector"],
+  "description": "OTLP HTTP ExporterでローカルCollectorへトレース送信する最小例。",
+  "files": [
+    { "path": "otel/tracer.js", "template": "const { NodeTracerProvider } = require('@opentelemetry/sdk-trace-node');\nconst { BatchSpanProcessor } = require('@opentelemetry/sdk-trace-base');\nconst { OTLPTraceExporter } = require('@opentelemetry/exporter-trace-otlp-http');\nconst provider = new NodeTracerProvider();\nconst exporter = new OTLPTraceExporter({ url: process.env.OTLP_URL || 'http://localhost:4318/v1/traces' });\nprovider.addSpanProcessor(new BatchSpanProcessor(exporter));\nprovider.register();\nmodule.exports = require('@opentelemetry/api').trace.getTracer('otlp-demo');\n" },
+    { "path": "server.js", "template": "require('./otel/tracer');\nconst express = require('express');\nconst app = express();\napp.get('/work', (_req,res)=> { const span = require('@opentelemetry/api').trace.getTracer('otlp-demo').startSpan('work'); setTimeout(()=>{ span.end(); res.json({ ok: true }); }, 200); });\napp.listen(3000, ()=> console.log('listening on 3000'));\n" },
+    { "path": "docs/otel-collector-note.md", "template": "# Collector Note\n\n- Run local collector (otlp http receiver on :4318)\n- Set `OTLP_URL=http://localhost:4318/v1/traces`\n- Inspect spans in your backend or use logging exporter for tests\n" }
+  ]
+}
+

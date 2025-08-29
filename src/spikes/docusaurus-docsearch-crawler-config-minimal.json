@@ -1,0 +1,21 @@
+{
+  "id": "docusaurus-docsearch-crawler-config-minimal",
+  "name": "Docusaurus DocSearch クローラー設定 最小",
+  "version": "1.0.0",
+  "stack": ["react", "docusaurus", "algolia"],
+  "tags": ["docs", "static-site", "docsearch", "crawler", "algolia", "docusaurus"],
+  "description": "Algolia DocSearchのクローラー設定（docsearch.config.json）の最小雛形とREADMEを同梱。",
+  "params": [
+    { "name": "app_name", "default": "docusaurus-docsearch-crawler" },
+    { "name": "title", "default": "My Docusaurus Docs" },
+    { "name": "site_url", "default": "https://docs.example.com" },
+    { "name": "algolia_app_id", "default": "APP_ID" },
+    { "name": "algolia_api_key", "default": "API_KEY" },
+    { "name": "algolia_index_name", "default": "docs" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/docsearch.config.json", "template": "{\n  \"index_name\": \"{{algolia_index_name}}\",\n  \"start_urls\": [\"{{site_url}}\"],\n  \"sitemaps\": [\"{{site_url}}/sitemap.xml\"],\n  \"stop_urls\": [\n    "/blog/"\n  ],\n  \"selectors\": {\n    \"lvl0\": { \"selector\": \"nav >> a.active\", \"type\": \"default\" },\n    \"lvl1\": \"article h1\",\n    \"lvl2\": \"article h2\",\n    \"lvl3\": \"article h3\",\n    \"text\": \"article p, article li\"\n  },\n  \"custom_settings\": {\n    \"attributesForFaceting\": [\"type\", \"lang\"],\n    \"separatorsToIndex\": "-_"\n  }\n}\n" },
+    { "path": "{{app_name}}/README-DOCSEARCH.md", "template": "# DocSearch Crawler Config (Minimal)\n\n1. Replace values in `docsearch.config.json` (site_url, index_name, etc.)\n2. Submit this config to DocSearch team or run your own crawler if applicable.\n3. Use the same `ALGOLIA_*` keys in your Docusaurus site.\n\nNotes:\n- `selectors` are tuned for Docusaurus default theme; adjust as needed.\n- Exclude private routes via `stop_urls`.\n- For i18n, consider multiple `start_urls` and `rateLimit`.\n" }
+  ]
+}
+

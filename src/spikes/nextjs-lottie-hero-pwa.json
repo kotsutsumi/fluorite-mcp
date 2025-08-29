@@ -1,0 +1,20 @@
+{
+  "id": "nextjs-lottie-hero-pwa",
+  "name": "Next.js Lottie ヒーロー + PWA 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "react", "lottie", "pwa"],
+  "tags": ["nextjs", "lottie", "hero", "pwa", "manifest"],
+  "description": "ヒーローセクションにLottieを使い、PWA manifestとSW登録ページを同梱した最小構成。",
+  "params": [
+    { "name": "lottie_url", "default": "https://assets9.lottiefiles.com/packages/lf20_5ngs2ksb.json" },
+    { "name": "headline", "default": "Build delightful experiences" },
+    { "name": "subcopy", "default": "Fast, accessible, and beautiful by default." }
+  ],
+  "files": [
+    { "path": "public/manifest.json", "template": "{\n  \"name\": \"Lottie Hero\",\n  \"short_name\": \"Hero\",\n  \"start_url\": \"/\",\n  \"display\": \"standalone\",\n  \"background_color\": \"#ffffff\",\n  \"theme_color\": \"#0ea5e9\",\n  \"icons\": []\n}\n" },
+    { "path": "public/sw-basic.js", "template": "self.addEventListener('install', e=> self.skipWaiting()); self.addEventListener('activate', e=> self.clients.claim());" },
+    { "path": "app/hero/page.tsx", "template": "'use client';\nimport React, { useEffect, useRef, useState } from 'react';\nimport Lottie, { LottieRefCurrentProps } from 'lottie-react';\nfunction useReducedMotion(){ const [r,setR]=useState(false); useEffect(()=>{ const m=window.matchMedia('(prefers-reduced-motion: reduce)'); const on=()=>setR(!!m.matches); on(); m.addEventListener('change',on); return ()=>m.removeEventListener('change',on);},[]); return r;}\nexport default function Page(){\n  const ref = useRef<LottieRefCurrentProps>(null);\n  const [data, setData] = useState<any | null>(null);\n  const url = process.env.NEXT_PUBLIC_LOTTIE_URL || '{{lottie_url}}';\n  const reduced = useReducedMotion();\n  useEffect(()=>{ let a=true; fetch(url).then(r=>r.json()).then(j=>{ if(a) setData(j); }); return ()=>{ a=false; }; },[url]);\n  return (\n    <main style={{ fontFamily:'system-ui, sans-serif' }}>\n      <link rel=\"manifest\" href=\"/manifest.json\"/>\n      <section style={{ position:'relative', height:'70vh', display:'grid', placeItems:'center', overflow:'hidden' }}>\n        {data && (<Lottie lottieRef={ref} animationData={data} loop autoplay={!reduced} style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', opacity:0.5 }} />)}\n        <div style={{ position:'relative', textAlign:'center', padding:24 }}>\n          <h1 style={{ fontSize:48, margin:0, lineHeight:1.1 }}>{{headline}}</h1>\n          <p style={{ opacity:0.8, fontSize:18, marginTop:12 }}>{{subcopy}}</p>\n          <a href=\"/sw-register\" style={{ display:'inline-block', marginTop:24, background:'#0ea5e9', color:'#fff', padding:'10px 16px', borderRadius:8, textDecoration:'none' }}>Register SW</a>\n        </div>\n      </section>\n      <section style={{ padding:24, maxWidth:800, margin:'0 auto' }}><h2>Get Started</h2><p>ここに概要やセットアップ手順を記載します。</p></section>\n    </main>\n  );\n}\n" },
+    { "path": "app/sw-register/page.tsx", "template": "'use client';\nimport React, { useEffect } from 'react';\nexport default function Page(){ useEffect(()=>{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw-basic.js'); } },[]); return (<main style={{ fontFamily:'sans-serif', padding:24 }}><h1>SW Registered</h1></main>);}" }
+  ]
+}
+

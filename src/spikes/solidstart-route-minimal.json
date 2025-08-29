@@ -1,0 +1,14 @@
+{
+  "id": "solidstart-route-minimal",
+  "name": "SolidStart ルート 最小",
+  "version": "1.0.0",
+  "stack": ["solidstart"],
+  "tags": ["route", "solid"],
+  "description": "SolidStart のルートとAPIの最小例。",
+  "params": [{ "name": "app_name", "default": "solidstart-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/routes/index.tsx", "template": "export default function Home(){ return (<main><h1>Hello SolidStart</h1></main>); }\n" },
+    { "path": "{{app_name}}/src/routes/api/health.ts", "template": "import type { APIEvent } from 'solid-start/api';\nexport function GET(_e: APIEvent){ return new Response(JSON.stringify({ ok: true }), { headers: { 'content-type': 'application/json' } }); }\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "infra-ci-env-matrix-preview-prod",
+  "name": "Infra CI 環境マトリクス(Preview/Prod) 最小",
+  "version": "1.0.0",
+  "stack": ["helm", "kubernetes", "terraform", "ci"],
+  "tags": ["infra", "ci", "env", "matrix"],
+  "description": "Preview(プルリク)とProd(main)で処理を分岐する最小CI例（dry-run中心）。",
+  "files": [
+    { "path": ".github/workflows/infra-matrix.yml", "template": "name: Infra CI (Preview/Prod)\n\non:\n  push:\n    branches: [ main ]\n  pull_request:\n    branches: [ main ]\n\njobs:\n  validate:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - name: Terraform validate\n        run: |\n          cd terraform || exit 0\n          terraform init -backend=false\n          terraform validate\n      - name: Helm lint\n        run: |\n          helm lint helm/chart || true\n      - name: K8s dry run\n        run: |\n          kubectl apply --dry-run=client -f k8s/ || true\n  deploy:\n    needs: validate\n    runs-on: ubuntu-latest\n    environment: ${{ github.event_name == 'pull_request' && 'preview' || 'production' }}\n    steps:\n      - uses: actions/checkout@v4\n      - name: Helm upgrade\n        run: |\n          if [ \"${{ github.event_name }}\" = \"pull_request\" ]; then\n            echo 'Preview helm dry-run';\n            helm upgrade --install myapp helm/chart --set image=nginx:alpine --namespace preview --create-namespace --dry-run || true;\n          else\n            helm upgrade --install myapp helm/chart --set image=nginx:alpine --namespace prod --create-namespace || true;\n          fi\n      - name: K8s apply\n        run: |\n          if [ \"${{ github.event_name }}\" = \"pull_request\" ]; then\n            echo 'Preview k8s dry-run';\n            kubectl apply --dry-run=client -f k8s/ || true;\n          else\n            kubectl apply -f k8s/ || true;\n          fi\n" }
+  ]
+}
+

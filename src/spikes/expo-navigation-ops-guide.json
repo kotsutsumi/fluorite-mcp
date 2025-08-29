@@ -1,0 +1,15 @@
+{
+  "id": "expo-navigation-ops-guide",
+  "name": "Expo Navigation/Links/Notifications 運用Q&A",
+  "version": "1.0.0",
+  "stack": ["expo", "react-native", "react-navigation", "docs"],
+  "tags": ["mobile", "expo", "ops", "navigation", "deeplink", "notifications"],
+  "description": "Stack/Tabs/Deep Links/通知の運用でつまずきやすいポイントをQ&A形式で整理。",
+  "files": [
+    {
+      "path": "docs/expo-navigation-ops.md",
+      "template": "# Expo Navigation Ops Q&A\n\n## Q: TabsとStackのどちらを先に定義？\nA: 画面遷移の主要軸をStack、配下にTabsを置くのが一般的（逆も可）。\n\n## Q: Deep Linksのprefixは？\nA: devは`exp://`や`bare://`、prodはアプリスキーム（`myapp://`）や`https://example.com`。`linking.prefixes`を環境で切替。\n\n## Q: createNavigationContainerRefは必要？\nA: 画面外からの遷移（通知→画面）等で使う。refの同期タイミングに注意。\n\n## Q: 通知権限の取得タイミング？\nA: 起動直後ではなく、通知系機能を開いた時にリクエストする方が自然。\n\n## Q: iOS/Android固有の差分？\nA: iOSは権限周りが厳格。Androidはintent-filterでリンク設定。OS毎のガイドを確認。\n\nスパイク例: `expo-react-navigation-stack-tabs-minimal`, `expo-react-navigation-deeplinks-advanced`, `expo-notifications-permissions-minimal`, `expo-operational-preset-minimal`.\n"
+    }
+  ]
+}
+

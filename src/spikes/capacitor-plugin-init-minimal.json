@@ -1,0 +1,14 @@
+{
+  "id": "capacitor-plugin-init-minimal",
+  "name": "Capacitor プラグイン初期化 最小",
+  "version": "1.0.0",
+  "stack": ["capacitor"],
+  "tags": ["mobile", "capacitor"],
+  "description": "Capacitor プラグインの初期化と呼び出し最小例（TS側）。",
+  "params": [{ "name": "app_name", "default": "cap-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/main.ts", "template": "import { Capacitor } from '@capacitor/core';\nconsole.log('Platform:', Capacitor.getPlatform());\n" },
+    { "path": "{{app_name}}/index.html", "template": "<!doctype html><html><body><h1>Capacitor</h1><script type=module src=\"/src/main.ts\"></script></body></html>\n" }
+  ]
+}
+

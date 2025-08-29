@@ -1,0 +1,15 @@
+{
+  "id": "nextjs-lottie-rsc-notes",
+  "name": "Next.js Lottie RSC ノート",
+  "version": "1.0.0",
+  "stack": ["nextjs", "react", "lottie", "docs"],
+  "tags": ["nextjs", "lottie", "rsc", "docs"],
+  "description": "React Server Components環境でのLottie活用に関する注意点と実装パターンの短いノート。",
+  "files": [
+    {
+      "path": "docs/lottie-rsc-notes.md",
+      "template": "# Lottie and RSC (Notes)\n\n- LottieはDOM/API依存のため**クライアントコンポーネント**で扱う\n- RSCページからは `dynamic(() => import('...'), { ssr: false })` で分離\n- `use client` ヘッダのついたラッパーを用意して再利用\n- `prefers-reduced-motion` を尊重し自動再生を抑制\n- フェッチは`AbortController`で中断可能に\n- 大きなJSONはCDNに置き、HTTPキャッシュとプリロードを活用\n\n関連スパイク:\n- `nextjs-lottie-ssr-best-practices`\n- `nextjs-lottie-prefetch-minimal`\n- `nextjs-lottie-hero-theme-toggle-minimal`\n"
+    }
+  ]
+}
+

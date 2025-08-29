@@ -1,0 +1,13 @@
+{
+  "id": "otel-node-redis-tracing-minimal",
+  "name": "OpenTelemetry + Node + Redis トレース 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry", "node", "redis"],
+  "tags": ["otel", "redis", "tracing"],
+  "description": "http/redisの自動計装（ConsoleSpanExporter）を有効化する最小例。",
+  "files": [
+    { "path": "otel/tracer.js", "template": "const { NodeTracerProvider } = require('@opentelemetry/sdk-trace-node');\nconst { registerInstrumentations } = require('@opentelemetry/instrumentation');\nconst { HttpInstrumentation } = require('@opentelemetry/instrumentation-http');\nconst { IORedisInstrumentation } = require('@opentelemetry/instrumentation-ioredis');\nconst { SimpleSpanProcessor, ConsoleSpanExporter } = require('@opentelemetry/sdk-trace-base');\nconst provider = new NodeTracerProvider();\nprovider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));\nprovider.register();\nregisterInstrumentations({ instrumentations: [ new HttpInstrumentation(), new IORedisInstrumentation() ] });\nmodule.exports = require('@opentelemetry/api').trace.getTracer('node-redis');\n" },
+    { "path": "demo.js", "template": "require('./otel/tracer');\nconst Redis = require('ioredis');\nconst r = new Redis(process.env.REDIS_URL || 'redis://localhost:6379');\n(async ()=>{ await r.set('k','v'); const v = await r.get('k'); console.log({ v }); process.exit(0); })();\n" }
+  ]
+}
+

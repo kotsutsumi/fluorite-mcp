@@ -1,0 +1,15 @@
+{
+  "id": "docusaurus-docsearch-crawler-comparison-summary",
+  "name": "Docusaurus DocSearch クローラー比較サマリ",
+  "version": "1.0.0",
+  "stack": ["react", "docusaurus", "algolia", "guide"],
+  "tags": ["docs", "docsearch", "crawler", "comparison", "docusaurus"],
+  "description": "最小/高度/i18n/ランキング/ヒエラルキー最適化テンプレの選定フローと比較サマリ。",
+  "files": [
+    {
+      "path": "docs/docsearch-crawler-comparison.md",
+      "template": "# DocSearch Crawler Comparison\n\n## Decision Flow\n1. Multiple locales? → Use i18n template (start_urls with lang tags)\n2. Need fine-grained sections? → Advanced template (area tags, stop_urls)\n3. Ranking feels off? → Add ranking template (searchableAttributes/customRanking)\n4. Breadcrumb context weak? → Hierarchy template (lvl0..lvl4 selectors)\n\n## Summary\n- Minimal: quick start; good defaults\n- Advanced: section tags, noise exclusion\n- i18n: multi-locale start_urls/sitemaps, lang facets\n- Ranking: searchableAttributes first by hierarchy, then content\n- Hierarchy: precise heading selectors per theme\n\n## Tips\n- Prefer sitemap; limit crawl rate on large sites\n- Test with keyboard and screen readers\n- Re-run crawl after structural changes\n"
+    }
+  ]
+}
+

@@ -3,11 +3,12 @@
   "name": "Tauri コマンド 最小",
   "version": "1.0.0",
   "stack": ["tauri", "rust"],
-  "tags": ["desktop"],
-  "description": "Tauri commands の雛形 (概念)",
-  "params": [ ],
+  "tags": ["desktop", "tauri"],
+  "description": "Tauri のRustコマンドを呼び出す最小例（フロントHTML+Rust側コマンド）。",
+  "params": [{ "name": "app_name", "default": "tauri-app" }],
   "files": [
-    { "path": "tauri/command.rs", "template": "#[tauri::command]\nfn greet(name: &str) -> String { format!(\"Hello, {}!\", name) }\n" }
+    { "path": "{{app_name}}/src-tauri/src/main.rs", "template": "#![cfg_attr(not(debug_assertions), windows_subsystem = \"windows\")]\n#[tauri::command]\nfn greet(name: &str) -> String { format!(\"Hello, {}!\", name) }\nfn main(){ tauri::Builder::default().invoke_handler(tauri::generate_handler![greet]).run(tauri::generate_context!()).expect(\"error\"); }\n" },
+    { "path": "{{app_name}}/index.html", "template": "<!doctype html><html><body><h1>Tauri</h1><button id=btn>Greet</button><script>window.__TAURI__.invoke('greet',{ name: 'World' }).then(alert)</script></body></html>\n" }
   ]
 }
 

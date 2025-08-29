@@ -1,0 +1,13 @@
+{
+  "id": "expo-react-navigation-deeplinks-minimal",
+  "name": "Expo + React Navigation Deep Links 最小",
+  "version": "1.0.0",
+  "stack": ["expo", "react-native", "react-navigation"],
+  "tags": ["mobile", "expo", "react-native", "deeplink"],
+  "description": "React Navigationのリンク設定（Deep Links）の最小例。",
+  "params": [{ "name": "app_name", "default": "expo-links" }],
+  "files": [
+    { "path": "{{app_name}}/App.tsx", "template": "import React from 'react';\nimport { NavigationContainer } from '@react-navigation/native';\nimport { createNativeStackNavigator } from '@react-navigation/native-stack';\nimport { SafeAreaView, Text } from 'react-native';\nconst Stack = createNativeStackNavigator();\nfunction Home(){ return (<SafeAreaView><Text>Home</Text></SafeAreaView>); }\nfunction Details(){ return (<SafeAreaView><Text>Details</Text></SafeAreaView>); }\nconst linking = { prefixes: ['exp://localhost:19000', 'myapp://'], config: { screens: { Home: '', Details: 'details/:id' } } };\nexport default function App(){\n  return (\n    <NavigationContainer linking={linking}>\n      <Stack.Navigator>\n        <Stack.Screen name=\"Home\" component={Home} />\n        <Stack.Screen name=\"Details\" component={Details} />\n      </Stack.Navigator>\n    </NavigationContainer>\n  );\n}\n" }
+  ]
+}
+

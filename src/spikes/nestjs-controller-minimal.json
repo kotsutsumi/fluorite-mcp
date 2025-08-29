@@ -1,0 +1,13 @@
+{
+  "id": "nestjs-controller-minimal",
+  "name": "NestJS コントローラ 最小",
+  "version": "1.0.0",
+  "stack": ["nestjs"],
+  "tags": ["nestjs", "controller"],
+  "description": "NestJS の最小コントローラ（/health）。",
+  "params": [{ "name": "app_name", "default": "nestjs-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/app.controller.ts", "template": "import { Controller, Get } from '@nestjs/common';\n@Controller()\nexport class AppController {\n  @Get('health')\n  health(){ return { ok: true }; }\n}\n" }
+  ]
+}
+

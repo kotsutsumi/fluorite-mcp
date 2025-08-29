@@ -1,0 +1,17 @@
+{
+  "id": "nextjs-lottie-sw-precaching-minimal",
+  "name": "Next.js Lottie Service Worker プレキャッシュ 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "react", "lottie", "pwa"],
+  "tags": ["nextjs", "lottie", "service-worker", "precaching", "pwa"],
+  "description": "Lottie JSONをService Workerでプレキャッシュする最小例（手書きSWのfetch戦略）。",
+  "params": [
+    { "name": "lottie_url", "default": "https://assets9.lottiefiles.com/packages/lf20_5ngs2ksb.json" }
+  ],
+  "files": [
+    { "path": "public/sw.js", "template": "const CACHE='lottie-v1';\nconst ASSETS=[ '{{lottie_url}}' ];\nself.addEventListener('install', e=>{ e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS))); });\nself.addEventListener('activate', e=>{ e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k))))); });\nself.addEventListener('fetch', e=>{ const url=e.request.url; if(ASSETS.some(a=>url.startsWith(a))){ e.respondWith(caches.match(e.request).then(res=> res || fetch(e.request).then(r=>{ const copy=r.clone(); caches.open(CACHE).then(c=>c.put(e.request, copy)); return r; }))); } });\n" },
+    { "path": "app/sw-register/page.tsx", "template": "'use client';\nimport React, { useEffect } from 'react';\nexport default function Page(){\n  useEffect(()=>{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js'); } },[]);\n  return (<main style={{ fontFamily:'sans-serif', padding:24 }}><h1>SW Registered</h1><p>このページを開くと Service Worker を登録します。</p></main>);\n}\n" },
+    { "path": "app/lottie-sw/page.tsx", "template": "'use client';\nimport React, { useEffect, useRef, useState } from 'react';\nimport Lottie, { LottieRefCurrentProps } from 'lottie-react';\nexport default function Page(){\n  const ref = useRef<LottieRefCurrentProps>(null);\n  const [data, setData] = useState<any|null>(null);\n  const url = process.env.NEXT_PUBLIC_LOTTIE_URL || '{{lottie_url}}';\n  useEffect(()=>{ let alive=true; fetch(url).then(r=>r.json()).then(j=>{ if(alive) setData(j); }); return ()=>{ alive=false; }; },[url]);\n  return (<main style={{ padding:24, fontFamily:'sans-serif' }}>\n    <h1>Lottie with SW cache</h1>\n    <p>事前に <a href='/sw-register'>SW登録</a> を実行すると、JSONがプレキャッシュされます。</p>\n    <div style={{ width:240, height:240, border:'1px solid #eee' }}>{data ? <Lottie lottieRef={ref} animationData={data} loop autoplay style={{ width:240, height:240 }} /> : 'Loading...'}</div>\n  </main>);\n}\n" }
+  ]
+}
+

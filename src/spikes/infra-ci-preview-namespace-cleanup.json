@@ -1,0 +1,12 @@
+{
+  "id": "infra-ci-preview-namespace-cleanup",
+  "name": "Infra CI プレビューNS自動作成/削除 最小",
+  "version": "1.0.0",
+  "stack": ["kubernetes", "ci"],
+  "tags": ["infra", "ci", "k8s", "preview"],
+  "description": "PR番号に基づくプレビューnamespaceの作成と、PRクローズ時の削除を行う最小CI例。",
+  "files": [
+    { "path": ".github/workflows/preview-ns.yml", "template": "name: Preview Namespace\n\non:\n  pull_request:\n    types: [opened, synchronize, reopened, closed]\n    branches: [ main ]\n\njobs:\n  manage:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - name: Set NS\n        id: ns\n        run: echo \"ns=pr-${{ github.event.pull_request.number }}\" >> $GITHUB_OUTPUT\n      - name: Create/Apply on open/sync\n        if: github.event.action != 'closed'\n        run: |\n          kubectl create namespace ${{ steps.ns.outputs.ns }} --dry-run=client -o yaml | kubectl apply -f -\n          echo 'kubectl apply -n $NS -f k8s/'\n      - name: Cleanup on close\n        if: github.event.action == 'closed'\n        run: |\n          kubectl delete namespace ${{ steps.ns.outputs.ns }} --ignore-not-found=true\n" }
+  ]
+}
+

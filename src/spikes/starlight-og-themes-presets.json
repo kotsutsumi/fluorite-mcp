@@ -1,0 +1,14 @@
+{
+  "id": "starlight-og-themes-presets",
+  "name": "Starlight OG テーマプリセット 最小",
+  "version": "1.0.0",
+  "stack": ["astro", "starlight", "image"],
+  "tags": ["docs", "og", "image", "sharp", "theme", "starlight"],
+  "description": "プリセットJSONからブランドテーマ(primary/secondary/font)を読み取り、OG画像を生成する最小スクリプト。",
+  "files": [
+    { "path": "scripts/og-presets.json", "template": "{\n  \"default\": { \"primary\": \"#0ea5e9\", \"secondary\": \"#1e293b\", \"font\": \"system-ui, -apple-system, Segoe UI, Roboto\" },\n  \"brandA\": { \"primary\": \"#22c55e\", \"secondary\": \"#111827\", \"font\": \"Inter, system-ui, -apple-system\" },\n  \"brandB\": { \"primary\": \"#a855f7\", \"secondary\": \"#0f172a\", \"font\": \"Poppins, system-ui, -apple-system\" }\n}\n" },
+    { "path": "scripts/generate-og-from-preset.mjs", "template": "import fs from 'node:fs/promises';\nimport sharp from 'sharp';\nimport path from 'node:path';\nconst presetName = process.env.OG_PRESET || 'default';\nconst presets = JSON.parse(await fs.readFile(path.join('scripts','og-presets.json'),'utf8'));\nconst { primary, secondary, font } = presets[presetName] || presets.default;\nconst title = process.env.OG_TITLE || 'My Starlight Docs';\nconst svg = `<!DOCTYPE svg><svg width=\\\"1200\\\" height=\\\"630\\\" viewBox=\\\"0 0 1200 630\\\" xmlns=\\\"http://www.w3.org/2000/svg\\\"><defs><linearGradient id=\\\"g\\\" x1=\\\"0\\\" y1=\\\"0\\\" x2=\\\"1\\\" y2=\\\"1\\\"><stop offset=\\\"0\\\" stop-color=\\\"${primary}\\\"/><stop offset=\\\"1\\\" stop-color=\\\"${secondary}\\\"/></linearGradient></defs><rect width=\\\"1200\\\" height=\\\"630\\\" fill=\\\"url(#g)\\\"/><text x=\\\"60\\\" y=\\\"360\\\" font-family=\\\"${font}\\\" font-size=\\\"72\\\" fill=\\\"#fff\\\">${title}</text></svg>`;\nawait fs.mkdir('public',{recursive:true});\nnawait sharp(Buffer.from(svg)).png().toFile('public/og.png');\nconsole.log('OG generated: public/og.png (preset:', presetName, ')');\n" },
+    { "path": "docs/og-themes-presets.md", "template": "# OG Themes Presets\n\n- Edit `scripts/og-presets.json` to add brand themes\n- Run: `OG_PRESET=brandA node scripts/generate-og-from-preset.mjs`\n- Output: `public/og.png`\n" }
+  ]
+}
+

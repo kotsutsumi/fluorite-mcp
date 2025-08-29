@@ -1,0 +1,17 @@
+{
+  "id": "infra-combo-helm-k8s-terraform-minimal",
+  "name": "Infra: Helm + K8s + Terraform 最小セット",
+  "version": "1.0.0",
+  "stack": ["helm", "kubernetes", "terraform"],
+  "tags": ["infra", "helm", "k8s", "terraform"],
+  "description": "Helmチャート、K8sマニフェスト、TerraformのS3例を一式で示す最小セット。",
+  "files": [
+    { "path": "helm/chart/Chart.yaml", "template": "apiVersion: v2\nname: myapp\nversion: 0.1.0\n" },
+    { "path": "helm/chart/values.yaml", "template": "replicaCount: 1\nimage: nginx:alpine\nservice: { type: ClusterIP, port: 80 }\n" },
+    { "path": "helm/chart/templates/deployment.yaml", "template": "apiVersion: apps/v1\nkind: Deployment\nmetadata: { name: myapp }\nspec:\n  replicas: {{ .Values.replicaCount }}\n  selector: { matchLabels: { app: myapp } }\n  template:\n    metadata: { labels: { app: myapp } }\n    spec:\n      containers:\n        - name: app\n          image: {{ .Values.image }}\n          ports: [ { containerPort: 80 } ]\n" },
+    { "path": "k8s/deployment.yaml", "template": "apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: myapp\nspec:\n  replicas: 1\n  selector: { matchLabels: { app: myapp } }\n  template:\n    metadata: { labels: { app: myapp } }\n    spec:\n      containers:\n        - name: app\n          image: nginx:alpine\n          ports: [ { containerPort: 80 } ]\n" },
+    { "path": "k8s/service.yaml", "template": "apiVersion: v1\nkind: Service\nmetadata:\n  name: myapp\nspec:\n  type: ClusterIP\n  selector: { app: myapp }\n  ports: [ { port: 80, targetPort: 80 } ]\n" },
+    { "path": "terraform/main.tf", "template": "terraform { required_providers { aws = { source = \"hashicorp/aws\" } } }\nprovider \"aws\" { region = var.region }\nresource \"aws_s3_bucket\" \"bucket\" { bucket = var.bucket_name }\nvariable \"region\" { type = string }\nvariable \"bucket_name\" { type = string }\n" }
+  ]
+}
+

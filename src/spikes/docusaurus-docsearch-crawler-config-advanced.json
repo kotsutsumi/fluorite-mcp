@@ -1,0 +1,24 @@
+{
+  "id": "docusaurus-docsearch-crawler-config-advanced",
+  "name": "Docusaurus DocSearch クローラー設定 高度版",
+  "version": "1.0.0",
+  "stack": ["react", "docusaurus", "algolia"],
+  "tags": ["docs", "static-site", "docsearch", "crawler", "advanced", "docusaurus"],
+  "description": "複数セクション/除外/優先度を調整したDocSearchクローラー設定の高度テンプレート。",
+  "params": [
+    { "name": "app_name", "default": "docusaurus-docsearch-advanced" },
+    { "name": "site_url", "default": "https://docs.example.com" },
+    { "name": "algolia_index_name", "default": "docs" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/docsearch.config.json",
+      "template": "{\n  \"index_name\": \"{{algolia_index_name}}\",\n  \"start_urls\": [\n    { \"url\": \"{{site_url}}/guides/\", \"tags\": [\"area:guides\"] },\n    { \"url\": \"{{site_url}}/reference/\", \"tags\": [\"area:reference\"] },\n    { \"url\": \"{{site_url}}/tutorials/\", \"tags\": [\"area:tutorials\"] }\n  ],\n  \"sitemaps\": [\"{{site_url}}/sitemap.xml\"],\n  \"stop_urls\": [\n    "/changelog/", "/privacy/", "/terms/", "/search", "/tags/"\n  ],\n  \"selectors\": {\n    \"lvl0\": { \"selector\": \"nav[role=\\\"navigation\\\"] a[aria-current=\\\"page\\\"]\", \"type\": \"default\" },\n    \"lvl1\": \"article h1, main h1\",\n    \"lvl2\": \"article h2, main h2\",\n    \"lvl3\": \"article h3, main h3\",\n    \"text\": \"article p, article li, main p, main li\"\n  },\n  \"custom_settings\": {\n    \"attributesForFaceting\": [\"type\", \"area\"],\n    \"typoTolerance\": \"min\",\n    \"minWordSizefor1Typo\": 5,\n    \"minWordSizefor2Typos\": 9\n  }\n}\n"
+    },
+    {
+      "path": "{{app_name}}/README-DOCSEARCH-advanced.md",
+      "template": "# DocSearch Crawler (Advanced)\n\n- Split content by areas (guides/reference/tutorials) using `tags`.\n- Exclude low-value or non-docs pages via `stop_urls`.\n- Tune selectors for your theme structure.\n- Adjust ranking/typo tolerance with `custom_settings`.\n"
+    }
+  ]
+}
+

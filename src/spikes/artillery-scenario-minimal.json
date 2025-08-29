@@ -1,0 +1,13 @@
+{
+  "id": "artillery-scenario-minimal",
+  "name": "Artillery シナリオ 最小",
+  "version": "1.0.0",
+  "stack": ["artillery"],
+  "tags": ["load", "artillery"],
+  "description": "Artillery の最小シナリオ（HTTP GET）。",
+  "params": [{ "name": "url", "default": "https://example.com" }],
+  "files": [
+    { "path": "artillery/test.yml", "template": "config:\n  target: '{{url}}'\n  phases:\n    - duration: 10\n      arrivalRate: 1\nscenarios:\n  - flow:\n      - get:\n          url: /\n" }
+  ]
+}
+

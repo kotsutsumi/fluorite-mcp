@@ -1,0 +1,16 @@
+{
+  "id": "nextjs-lottie-prefetch-minimal",
+  "name": "Next.js Lottie Prefetch 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "react", "lottie"],
+  "tags": ["nextjs", "app-router", "client", "lottie", "prefetch"],
+  "description": "Lottie JSONの事前読み込み(link rel=preload)とローカルキャッシュ活用の最小例。",
+  "params": [
+    { "name": "lottie_url", "default": "https://assets9.lottiefiles.com/packages/lf20_5ngs2ksb.json" }
+  ],
+  "files": [
+    { "path": "app/lottie-prefetch/head.tsx", "template": "export default function Head(){\n  const url = process.env.NEXT_PUBLIC_LOTTIE_URL || '{{lottie_url}}';\n  return (\n    <>\n      <link rel=\"preload\" href={url} as=\"fetch\" crossOrigin=\"anonymous\" type=\"application/json\" />\n    </>\n  );\n}\n" },
+    { "path": "app/lottie-prefetch/page.tsx", "template": "'use client';\nimport React, { useEffect, useRef, useState } from 'react';\nimport Lottie, { LottieRefCurrentProps } from 'lottie-react';\n\nexport default function Page(){\n  const ref = useRef<LottieRefCurrentProps>(null);\n  const [data, setData] = useState<any|null>(null);\n  const url = process.env.NEXT_PUBLIC_LOTTIE_URL || '{{lottie_url}}';\n  useEffect(()=>{ let alive=true; fetch(url, { cache:'force-cache' }).then(r=>r.json()).then(j=>{ if(alive) setData(j); }); return ()=>{ alive=false; }; },[url]);\n  return (<main style={{ padding:24, fontFamily:'sans-serif' }}>\n    <h1>Lottie Prefetch</h1>\n    <div style={{ width:240, height:240, border:'1px solid #eee' }}>{data ? <Lottie lottieRef={ref} animationData={data} loop autoplay style={{ width:240, height:240 }} /> : 'Loading...'}</div>\n    <p>JSONをpreloadし、fetch(cache:'force-cache')でローカルキャッシュを活用します。</p>\n  </main>);\n}\n" }
+  ]
+}
+

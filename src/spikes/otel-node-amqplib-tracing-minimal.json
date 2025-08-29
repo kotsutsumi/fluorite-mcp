@@ -1,0 +1,13 @@
+{
+  "id": "otel-node-amqplib-tracing-minimal",
+  "name": "OpenTelemetry + amqplib(RabbitMQ) トレース 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry", "rabbitmq"],
+  "tags": ["otel", "rabbitmq", "tracing"],
+  "description": "amqplib の自動計装（ConsoleSpanExporter）を有効化する最小例。",
+  "files": [
+    { "path": "otel/tracer.js", "template": "const { NodeTracerProvider } = require('@opentelemetry/sdk-trace-node');\nconst { registerInstrumentations } = require('@opentelemetry/instrumentation');\nconst { AmqplibInstrumentation } = require('@opentelemetry/instrumentation-amqplib');\nconst { SimpleSpanProcessor, ConsoleSpanExporter } = require('@opentelemetry/sdk-trace-base');\nconst provider = new NodeTracerProvider();\nprovider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));\nprovider.register();\nregisterInstrumentations({ instrumentations: [ new AmqplibInstrumentation() ] });\nmodule.exports = require('@opentelemetry/api').trace.getTracer('amqplib');\n" },
+    { "path": "demo.js", "template": "require('./otel/tracer');\nconst amqplib = require('amqplib');\n(async ()=>{ const conn = await amqplib.connect(process.env.AMQP_URL || 'amqp://localhost'); const ch = await conn.createChannel(); await ch.assertQueue('q'); await ch.sendToQueue('q', Buffer.from('hello')); await ch.close(); await conn.close(); process.exit(0); })();\n" }
+  ]
+}
+

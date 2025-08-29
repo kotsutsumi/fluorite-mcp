@@ -1,0 +1,13 @@
+{
+  "id": "otel-node-kafkajs-tracing-minimal",
+  "name": "OpenTelemetry + kafkajs トレース 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry", "kafka"],
+  "tags": ["otel", "kafka", "tracing"],
+  "description": "kafkajs の自動計装（ConsoleSpanExporter）を有効化する最小例。",
+  "files": [
+    { "path": "otel/tracer.js", "template": "const { NodeTracerProvider } = require('@opentelemetry/sdk-trace-node');\nconst { registerInstrumentations } = require('@opentelemetry/instrumentation');\nconst { KafkaJsInstrumentation } = require('@opentelemetry/instrumentation-kafkajs');\nconst { SimpleSpanProcessor, ConsoleSpanExporter } = require('@opentelemetry/sdk-trace-base');\nconst provider = new NodeTracerProvider();\nprovider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));\nprovider.register();\nregisterInstrumentations({ instrumentations: [ new KafkaJsInstrumentation() ] });\nmodule.exports = require('@opentelemetry/api').trace.getTracer('kafkajs');\n" },
+    { "path": "demo.js", "template": "require('./otel/tracer');\nconst { Kafka } = require('kafkajs');\nconst kafka = new Kafka({ clientId: 'demo', brokers: (process.env.KAFKA_BROKERS||'localhost:9092').split(',') });\n(async ()=>{ const admin = kafka.admin(); await admin.connect(); await admin.createTopics({ topics: [{ topic: 'demo' }], waitForLeaders: true }); await admin.disconnect(); process.exit(0); })();\n" }
+  ]
+}
+

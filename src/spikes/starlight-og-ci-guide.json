@@ -1,0 +1,15 @@
+{
+  "id": "starlight-og-ci-guide",
+  "name": "Starlight OG生成 CI ガイド",
+  "version": "1.0.0",
+  "stack": ["astro", "starlight", "image", "ci"],
+  "tags": ["docs", "static-site", "og", "image", "ci", "starlight"],
+  "description": "OG画像の自動生成をCIに組み込む際の手順/注意点のガイド（GH Pages/Cloudflare双方）。",
+  "files": [
+    {
+      "path": "docs/starlight-og-ci-guide.md",
+      "template": "# Starlight OG Automation (CI Guide)\n\n## Options\n- Generate per-commit in CI before build (recommended)\n- Generate locally and commit artifacts (simple, but noisy diffs)\n\n## GitHub Pages (sample)\n```yaml\n- run: npm run og:gen\n- run: npm run build\n- uses: actions/upload-pages-artifact@v3\n  with: { path: dist }\n```\n\n## Cloudflare Pages (sample)\n```yaml\n- run: npm run og:gen\n- run: npm run build\n- uses: cloudflare/pages-action@v1\n  with:\n    apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}\n    accountId: $ACCOUNT\n    projectName: $PROJECT\n    directory: dist\n```\n\n## Tips\n- Source OG from frontmatter: `ogTitle` or `title` fallback\n- Dedicate `public/og/` for paths mirroring docs structure\n- Ensure `site` in `astro.config.mjs` matches deployment URL\n- Cache images in CDN with long TTL\n\nSee spikes: `starlight-og-auto-batch-minimal`, `starlight-og-auto-ci-ghpages`, `starlight-og-auto-ci-cloudflare`.\n"
+    }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "otel-express-pg-tracing-minimal",
+  "name": "OpenTelemetry + Express + pg トレーシング 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry", "express", "postgres"],
+  "tags": ["otel", "express", "pg", "tracing"],
+  "description": "Express/http/pgの自動計装を有効化した最小例（ConsoleSpanExporter）。",
+  "files": [
+    { "path": "otel/tracer.js", "template": "const { NodeTracerProvider } = require('@opentelemetry/sdk-trace-node');\nconst { registerInstrumentations } = require('@opentelemetry/instrumentation');\nconst { HttpInstrumentation } = require('@opentelemetry/instrumentation-http');\nconst { PgInstrumentation } = require('@opentelemetry/instrumentation-pg');\nconst { SimpleSpanProcessor, ConsoleSpanExporter } = require('@opentelemetry/sdk-trace-base');\nconst provider = new NodeTracerProvider();\nprovider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));\nprovider.register();\nregisterInstrumentations({ instrumentations: [ new HttpInstrumentation(), new PgInstrumentation() ] });\nmodule.exports = require('@opentelemetry/api').trace.getTracer('express-pg');\n" },
+    { "path": "server.js", "template": "require('./otel/tracer');\nconst express = require('express');\nconst { Client } = require('pg');\nconst app = express();\napp.get('/health', async (_req,res)=>{ const client = new Client({ connectionString: process.env.DATABASE_URL || '' }); try { await client.connect(); const r = await client.query('SELECT 1'); res.json({ ok: true, db: r.rows[0] }); } catch(e){ res.status(500).json({ ok: false }); } finally { try{ await client.end(); }catch(_){} } });\napp.listen(3000, ()=> console.log('listening on 3000'));\n" }
+  ]
+}
+

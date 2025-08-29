@@ -1,0 +1,14 @@
+{
+  "id": "electron-sandbox-devtools-limit-minimal",
+  "name": "Electron sandbox + DevTools制御 最小",
+  "version": "1.0.0",
+  "stack": ["electron"],
+  "tags": ["electron", "security", "sandbox"],
+  "description": "rendererをsandbox化し、DevToolsを環境で出し分ける最小例。",
+  "params": [{ "name": "app_name", "default": "electron-sandbox" }],
+  "files": [
+    { "path": "{{app_name}}/main.js", "template": "const { app, BrowserWindow } = require('electron');\nasync function createWindow(){ const prod = process.env.NODE_ENV === 'production'; const win = new BrowserWindow({ width: 800, height: 600, webPreferences: { sandbox: true, contextIsolation: true, nodeIntegration: false, devTools: !prod } }); await win.loadFile('index.html'); if (!prod) win.webContents.openDevTools(); }\napp.whenReady().then(createWindow);\n" },
+    { "path": "{{app_name}}/index.html", "template": "<!doctype html><html><body><h1>Sandboxed renderer</h1></body></html>\n" }
+  ]
+}
+

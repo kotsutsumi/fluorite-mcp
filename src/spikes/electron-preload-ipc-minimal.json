@@ -1,0 +1,15 @@
+{
+  "id": "electron-preload-ipc-minimal",
+  "name": "Electron Preload/IPC 最小",
+  "version": "1.0.0",
+  "stack": ["electron"],
+  "tags": ["desktop", "electron", "preload", "ipc"],
+  "description": "安全なpreloadでipcRendererを露出し、レンダラからinvokeする最小例。",
+  "params": [{ "name": "app_name", "default": "electron-ipc" }],
+  "files": [
+    { "path": "{{app_name}}/main.js", "template": "const { app, BrowserWindow, ipcMain } = require('electron');\nconst path = require('path');\nfunction createWindow(){ const win = new BrowserWindow({ width: 800, height: 600, webPreferences: { preload: path.join(__dirname, 'preload.js'), contextIsolation: true, nodeIntegration: false } }); win.loadFile('index.html'); }\nipcMain.handle('ping', async (_e, name)=> `Hello ${name}`);\napp.whenReady().then(createWindow);\n" },
+    { "path": "{{app_name}}/preload.js", "template": "const { contextBridge, ipcRenderer } = require('electron');\ncontextBridge.exposeInMainWorld('api', { ping: (name)=> ipcRenderer.invoke('ping', name) });\n" },
+    { "path": "{{app_name}}/index.html", "template": "<!doctype html><html><body><h1>IPC</h1><button id=btn>Ping</button><script>document.getElementById('btn').onclick=()=> window.api.ping('World').then(alert)</script></body></html>\n" }
+  ]
+}
+

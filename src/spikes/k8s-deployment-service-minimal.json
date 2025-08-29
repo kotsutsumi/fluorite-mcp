@@ -1,0 +1,13 @@
+{
+  "id": "k8s-deployment-service-minimal",
+  "name": "Kubernetes Deployment/Service 最小",
+  "version": "1.0.0",
+  "stack": ["kubernetes"],
+  "tags": ["k8s", "deployment", "service"],
+  "description": "Nginxの最小DeploymentとService。",
+  "files": [
+    { "path": "k8s/deployment.yaml", "template": "apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: myapp\nspec:\n  replicas: 1\n  selector: { matchLabels: { app: myapp } }\n  template:\n    metadata: { labels: { app: myapp } }\n    spec:\n      containers:\n        - name: app\n          image: nginx:alpine\n          ports: [ { containerPort: 80 } ]\n" },
+    { "path": "k8s/service.yaml", "template": "apiVersion: v1\nkind: Service\nmetadata:\n  name: myapp\nspec:\n  type: ClusterIP\n  selector: { app: myapp }\n  ports: [ { port: 80, targetPort: 80 } ]\n" }
+  ]
+}
+

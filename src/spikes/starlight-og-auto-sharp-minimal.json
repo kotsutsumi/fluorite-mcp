@@ -1,0 +1,20 @@
+{
+  "id": "starlight-og-auto-sharp-minimal",
+  "name": "Starlight 自動OG画像生成(Sharp) 最小",
+  "version": "1.0.0",
+  "stack": ["astro", "starlight", "image"],
+  "tags": ["docs", "static-site", "og", "image", "sharp", "starlight"],
+  "description": "SharpでSVGテンプレートをPNGに変換してOG画像を自動生成する最小スクリプト付き。",
+  "params": [
+    { "name": "app_name", "default": "starlight-og-auto" },
+    { "name": "title", "default": "My Starlight Docs" },
+    { "name": "site_url", "default": "https://example.com" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"dev\": \"astro dev\", \"build\": \"astro build\", \"preview\": \"astro preview\", \"og:gen\": \"node scripts/generate-og.mjs\" },\n  \"devDependencies\": { \"astro\": \"latest\", \"@astrojs/starlight\": \"latest\", \"sharp\": \"latest\" }\n}\n" },
+    { "path": "{{app_name}}/astro.config.mjs", "template": "import { defineConfig } from 'astro/config';\nimport starlight from '@astrojs/starlight';\nexport default defineConfig({\n  site: '{{site_url}}',\n  integrations: [ starlight({ title: '{{title}}', sidebar: [{ label: 'Introduction', autogenerate: { directory: 'docs' } }] }) ]\n});\n" },
+    { "path": "{{app_name}}/scripts/generate-og.mjs", "template": "import fs from 'node:fs/promises';\nimport sharp from 'sharp';\n\nconst title = process.env.OG_TITLE || '{{title}}';\nconst svg = `<!DOCTYPE svg PUBLIC \\\"-//W3C//DTD SVG 1.1//EN\\\" \\\"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\\\">\n<svg width=\\\"1200\\\" height=\\\"630\\\" viewBox=\\\"0 0 1200 630\\\" xmlns=\\\"http://www.w3.org/2000/svg\\\">\n  <defs>\n    <linearGradient id=\\\"g\\\" x1=\\\"0\\\" y1=\\\"0\\\" x2=\\\"1\\\" y2=\\\"1\\\">\n      <stop offset=\\\"0\\\" stop-color=\\\"#0ea5e9\\\"/>\n      <stop offset=\\\"1\\\" stop-color=\\\"#1e293b\\\"/>\n    </linearGradient>\n  </defs>\n  <rect width=\\\"1200\\\" height=\\\"630\\\" fill=\\\"url(#g)\\\"/>\n  <text x=\\\"60\\\" y=\\\"360\\\" font-family=\\\"system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial\\\" font-size=\\\"72\\\" fill=\\\"#fff\\\">${title}</text>\n</svg>`;\n\nconst out = 'public/og.png';\nawait fs.mkdir('public', { recursive: true });\nawait sharp(Buffer.from(svg)).png().toFile(out);\nconsole.log('OG generated:', out);\n" },
+    { "path": "{{app_name}}/src/content/docs/index.mdx", "template": "---\ntitle: Introduction\n---\n\n# {{title}}\n\n<meta property=\"og:image\" content=\"/og.png\"/>\n\n> `npm run og:gen` で `public/og.png` を生成できます。タイトルは `OG_TITLE` で上書き可能です。\n" }
+  ]
+}
+

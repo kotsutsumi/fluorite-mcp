@@ -1,0 +1,14 @@
+{
+  "id": "sveltekit-route-minimal",
+  "name": "SvelteKit ルート 最小",
+  "version": "1.0.0",
+  "stack": ["sveltekit"],
+  "tags": ["route", "sveltekit"],
+  "description": "SvelteKit のシンプルなルートと+serverハンドラの最小例。",
+  "params": [{ "name": "app_name", "default": "sveltekit-app" }],
+  "files": [
+    { "path": "{{app_name}}/src/routes/+page.svelte", "template": "<script lang=\"ts\"></script>\n<h1>Hello SvelteKit</h1>\n" },
+    { "path": "{{app_name}}/src/routes/api/health/+server.ts", "template": "import type { RequestHandler } from '@sveltejs/kit';\nexport const GET: RequestHandler = () => new Response(JSON.stringify({ ok: true }), { headers: { 'content-type': 'application/json' } });\n" }
+  ]
+}
+

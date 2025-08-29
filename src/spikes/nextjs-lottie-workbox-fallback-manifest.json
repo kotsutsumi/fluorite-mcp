@@ -1,0 +1,19 @@
+{
+  "id": "nextjs-lottie-workbox-fallback-manifest",
+  "name": "Next.js Lottie Workbox フォールバック + Manifest 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "react", "lottie", "pwa"],
+  "tags": ["nextjs", "lottie", "workbox", "fallback", "manifest", "pwa"],
+  "description": "WorkboxでLottie JSONをSWRキャッシュし、失敗時は静的画像へフォールバック。PWA manifest付き。",
+  "params": [
+    { "name": "lottie_url", "default": "https://assets9.lottiefiles.com/packages/lf20_5ngs2ksb.json" }
+  ],
+  "files": [
+    { "path": "public/manifest.json", "template": "{\n  \"name\": \"Lottie Demo\",\n  \"short_name\": \"Lottie\",\n  \"start_url\": \"/\",\n  \"display\": \"standalone\",\n  \"background_color\": \"#ffffff\",\n  \"theme_color\": \"#0ea5e9\",\n  \"icons\": []\n}\n" },
+    { "path": "public/fallback.png", "template": "" },
+    { "path": "public/sw-wb-fallback.js", "template": "importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.5.4/workbox-sw.js');\nif (self.workbox) {\n  const { registerRoute } = self.workbox.routing;\n  const { StaleWhileRevalidate } = self.workbox.strategies;\n  const { setCatchHandler } = self.workbox.routing;\n  const match = new RegExp('^(' + {{'"'}}{{lottie_url}}{{'"'}}.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\$&') + ')');\n  registerRoute(({url}) => match.test(url.href), new StaleWhileRevalidate({ cacheName: 'lottie-json' }));\n  setCatchHandler(async ({event}) => {\n    if (event.request.destination === 'image' || event.request.url.endsWith('.json')) {\n      return caches.match('/fallback.png');\n    }\n    return Response.error();\n  });\n}\n" },
+    { "path": "app/sw-wb-fallback-register/page.tsx", "template": "'use client';\nimport React, { useEffect } from 'react';\nexport default function Page(){\n  useEffect(()=>{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw-wb-fallback.js'); } },[]);\n  return (<main style={{ fontFamily:'sans-serif', padding:24 }}><h1>Workbox SW (fallback) Registered</h1><link rel=\"manifest\" href=\"/manifest.json\"/></main>);\n}\n" },
+    { "path": "app/lottie-sw-wb-fallback/page.tsx", "template": "'use client';\nimport React, { useEffect, useRef, useState } from 'react';\nimport Lottie, { LottieRefCurrentProps } from 'lottie-react';\nexport default function Page(){\n  const ref = useRef<LottieRefCurrentProps>(null);\n  const [data, setData] = useState<any|null>(null);\n  const [failed, setFailed] = useState(false);\n  const url = process.env.NEXT_PUBLIC_LOTTIE_URL || '{{lottie_url}}';\n  useEffect(()=>{ let alive=true; fetch(url).then(r=>{ if(!r.ok) throw new Error('fetch failed'); return r.json(); }).then(j=>{ if(alive) setData(j); }).catch(()=> setFailed(true)); return ()=>{ alive=false; }; },[url]);\n  return (<main style={{ padding:24, fontFamily:'sans-serif' }}><h1>Lottie with Workbox Fallback</h1>{failed ? <img src=\"/fallback.png\" alt=\"fallback\" width=\"240\" height=\"240\"/> : <div style={{ width:240, height:240, border:'1px solid #eee' }}>{data ? <Lottie lottieRef={ref} animationData={data} loop autoplay style={{ width:240, height:240 }} /> : 'Loading...'}</div>}</main>);\n}\n" }
+  ]
+}
+

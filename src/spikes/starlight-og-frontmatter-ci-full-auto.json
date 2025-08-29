@@ -1,0 +1,15 @@
+{
+  "id": "starlight-og-frontmatter-ci-full-auto",
+  "name": "Starlight OG(frontmatter) + CI 全自動化ガイド",
+  "version": "1.0.0",
+  "stack": ["astro", "starlight", "image", "ci"],
+  "tags": ["docs", "og", "image", "frontmatter", "ci", "starlight"],
+  "description": "frontmatterベースのOG生成をCIに組み込み、preview/main分岐で自動実行するガイド（GH Pages/CF両対応）。",
+  "files": [
+    {
+      "path": "docs/og-frontmatter-ci-full-auto.md",
+      "template": "# OG (Frontmatter) Full Automation\n\n## Branch Strategy\n- PR to main → Preview deploy (generate OG + build)\n- Push to main → Production deploy (generate OG + build)\n\n## GitHub Pages (workflow excerpt)\n```yaml\n- run: npm ci\n- run: npm run og:gen  # frontmatter batch\n- run: npm run build\n- uses: actions/upload-pages-artifact@v3\n  with: { path: dist }\n- uses: actions/deploy-pages@v4\n  with: { preview: ${{ github.event_name == 'pull_request' }} }\n```\n\n## Cloudflare Pages (workflow excerpt)\n```yaml\n- run: npm ci\n- run: npm run og:gen  # frontmatter batch\n- run: npm run build\n- uses: cloudflare/pages-action@v1\n  with:\n    apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}\n    accountId: $ACCOUNT\n    projectName: $PROJECT\n    directory: dist\n```\n\n## Tips\n- Frontmatter: `ogTitle`/`ogPrimary`/`ogSecondary`/`ogFont`\n- Output under `public/og/` following docs path structure\n- Cache OG images at CDN edge\n- Ensure `site` in `astro.config.mjs` matches final URL\n\nSee spikes: `starlight-og-frontmatter-themes-batch`, `starlight-og-auto-ci-ghpages`, `starlight-og-auto-ci-cloudflare`.\n"
+    }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "id": "logging-otel-combined-minimal",
+  "name": "Logging(pino/winston) + OTel 最小",
+  "version": "1.0.0",
+  "stack": ["node", "opentelemetry", "logging"],
+  "tags": ["otel", "pino", "winston", "logging"],
+  "description": "pinoまたはwinstonの最小ロガーとOTel tracerを併用するシンプル構成。",
+  "files": [
+    { "path": "otel/tracer.js", "template": "const { NodeTracerProvider } = require('@opentelemetry/sdk-trace-node');\nconst { SimpleSpanProcessor, ConsoleSpanExporter } = require('@opentelemetry/sdk-trace-base');\nconst provider = new NodeTracerProvider();\nprovider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));\nprovider.register();\nmodule.exports = require('@opentelemetry/api').trace.getTracer('logger-demo');\n" },
+    { "path": "server-pino.js", "template": "require('./otel/tracer');\nconst pino = require('pino')();\nconst span = require('@opentelemetry/api').trace.getTracer('logger-demo').startSpan('demo');\npino.info('hello');\nsetTimeout(()=>{ span.end(); }, 500);\n" },
+    { "path": "server-winston.js", "template": "require('./otel/tracer');\nconst { createLogger, transports, format } = require('winston');\nconst logger = createLogger({ level: 'info', format: format.json(), transports: [ new transports.Console() ] });\nconst span = require('@opentelemetry/api').trace.getTracer('logger-demo').startSpan('demo');\nlogger.info('hello');\nsetTimeout(()=>{ span.end(); }, 500);\n" }
+  ]
+}
+

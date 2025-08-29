@@ -1,0 +1,24 @@
+{
+  "id": "docusaurus-docsearch-ranking-weights-minimal",
+  "name": "Docusaurus DocSearch ランキング/重み付け 最小",
+  "version": "1.0.0",
+  "stack": ["react", "docusaurus", "algolia"],
+  "tags": ["docs", "static-site", "docsearch", "ranking", "weights", "docusaurus"],
+  "description": "DocSearchクローラー設定でsearchableAttributes/ranking/customRankingを最小設定する雛形。",
+  "params": [
+    { "name": "app_name", "default": "docusaurus-docsearch-ranking" },
+    { "name": "site_url", "default": "https://docs.example.com" },
+    { "name": "algolia_index_name", "default": "docs" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/docsearch.config.json",
+      "template": "{\n  \"index_name\": \"{{algolia_index_name}}\",\n  \"start_urls\": [\"{{site_url}}\"],\n  \"sitemaps\": [\"{{site_url}}/sitemap.xml\"],\n  \"selectors\": {\n    \"lvl0\": { \"selector\": \"nav >> a.active\", \"type\": \"default\" },\n    \"lvl1\": \"article h1\",\n    \"lvl2\": \"article h2\",\n    \"lvl3\": \"article h3\",\n    \"text\": \"article p, article li\"\n  },\n  \"custom_settings\": {\n    \"searchableAttributes\": [\n      \"unordered(hierarchy.lvl0)\",\n      \"unordered(hierarchy.lvl1)\",\n      \"unordered(hierarchy.lvl2)\",\n      \"unordered(hierarchy.lvl3)\",\n      \"content\"\n    ],\n    \"ranking\": [\n      \"words\", \"filters\", \"typo\", \"attribute\", \"proximity\", \"exact\", \"custom\"\n    ],\n    \"customRanking\": [\n      \"desc(pageRank)\", \"desc(level)\", \"asc(position)\"\n    ]\n  }\n}\n"
+    },
+    {
+      "path": "{{app_name}}/README-DOCSEARCH-ranking.md",
+      "template": "# DocSearch Ranking/Weights (Minimal)\n\n- `searchableAttributes`: hierarchy first, then content\n- `ranking`: keep default order with `custom` at the end\n- `customRanking`: prefer higher pageRank and deeper headings\n\nTune based on your docs structure and traffic patterns.\n"
+    }
+  ]
+}
+

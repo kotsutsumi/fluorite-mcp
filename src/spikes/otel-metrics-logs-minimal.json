@@ -1,0 +1,13 @@
+{
+  "id": "otel-metrics-logs-minimal",
+  "name": "OpenTelemetry Metrics + Logs 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry", "node", "metrics", "logs"],
+  "tags": ["otel", "metrics", "logs"],
+  "description": "OTelのメトリクス(コンソールエクスポータ)とpinoログを併用する最小例。",
+  "files": [
+    { "path": "otel/metrics.js", "template": "const { MeterProvider, PeriodicExportingMetricReader, ConsoleMetricExporter } = require('@opentelemetry/sdk-metrics');\nconst meterProvider = new MeterProvider();\nmeterProvider.addMetricReader(new PeriodicExportingMetricReader({ exporter: new ConsoleMetricExporter(), exportIntervalMillis: 2000 }));\nconst meter = meterProvider.getMeter('demo');\nconst counter = meter.createCounter('demo_counter');\nsetInterval(()=> counter.add(1), 1000);\n" },
+    { "path": "server-logs.js", "template": "require('./metrics');\nconst pino = require('pino')();\npino.info('app start');\nsetInterval(()=> pino.info('tick'), 3000);\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "expo-react-navigation-deeplinks-advanced",
+  "name": "Expo Deep Links 環境別prefix 最小",
+  "version": "1.0.0",
+  "stack": ["expo", "react-native", "react-navigation"],
+  "tags": ["mobile", "expo", "deeplink", "navigation"],
+  "description": "開発/本番でリンクprefixを切替える最小例（環境変数使用）。",
+  "params": [{ "name": "app_name", "default": "expo-links-adv" }],
+  "files": [
+    { "path": "{{app_name}}/App.tsx", "template": "import React from 'react';\nimport { NavigationContainer } from '@react-navigation/native';\nimport { createNativeStackNavigator } from '@react-navigation/native-stack';\nimport { SafeAreaView, Text } from 'react-native';\nconst Stack = createNativeStackNavigator();\nfunction Home(){ return (<SafeAreaView><Text>Home</Text></SafeAreaView>); }\nconst prefixes = (process.env.LINK_PREFIXES || 'exp://localhost:19000,myapp://').split(',');\nconst linking = { prefixes, config: { screens: { Home: '' } } };\nexport default function App(){\n  return (\n    <NavigationContainer linking={linking}>\n      <Stack.Navigator>\n        <Stack.Screen name=\"Home\" component={Home} />\n      </Stack.Navigator>\n    </NavigationContainer>\n  );\n}\n" }
+  ]
+}
+

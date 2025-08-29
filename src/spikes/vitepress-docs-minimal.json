@@ -1,0 +1,14 @@
+{
+  "id": "vitepress-docs-minimal",
+  "name": "VitePress ドキュメント 最小",
+  "version": "1.0.0",
+  "stack": ["vitepress"],
+  "tags": ["docs", "vitepress"],
+  "description": "VitePress の最小ドキュメント構成（config + トップページ）。",
+  "params": [{ "name": "app_name", "default": "vitepress-docs" }, { "name": "title", "default": "My Docs" }],
+  "files": [
+    { "path": "{{app_name}}/.vitepress/config.ts", "template": "import { defineConfig } from 'vitepress';\nexport default defineConfig({ title: '{{title}}' });\n" },
+    { "path": "{{app_name}}/index.md", "template": "# {{title}}\n\nWelcome to VitePress minimal.\n" }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "otel-service-observability-ministack",
+  "name": "OTel 観測ミニスタック(Express+pg+Redis+Kafka) 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry", "express", "postgres", "redis", "kafka"],
+  "tags": ["otel", "observability", "express", "pg", "redis", "kafka"],
+  "description": "Express+pg+ioredis+kafkajs を一括で自動計装し、簡単な処理を実行する最小例。",
+  "files": [
+    { "path": "otel/tracer.js", "template": "const { NodeTracerProvider } = require('@opentelemetry/sdk-trace-node');\nconst { registerInstrumentations } = require('@opentelemetry/instrumentation');\nconst { HttpInstrumentation } = require('@opentelemetry/instrumentation-http');\nconst { PgInstrumentation } = require('@opentelemetry/instrumentation-pg');\nconst { IORedisInstrumentation } = require('@opentelemetry/instrumentation-ioredis');\nconst { KafkaJsInstrumentation } = require('@opentelemetry/instrumentation-kafkajs');\nconst { SimpleSpanProcessor, ConsoleSpanExporter } = require('@opentelemetry/sdk-trace-base');\nconst provider = new NodeTracerProvider();\nprovider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));\nprovider.register();\nregisterInstrumentations({ instrumentations: [ new HttpInstrumentation(), new PgInstrumentation(), new IORedisInstrumentation(), new KafkaJsInstrumentation() ] });\nmodule.exports = require('@opentelemetry/api').trace.getTracer('observability-mini');\n" },
+    { "path": "server.js", "template": "require('./otel/tracer');\nconst express = require('express');\nconst { Client } = require('pg');\nconst Redis = require('ioredis');\nconst { Kafka } = require('kafkajs');\nconst app = express();\napp.get('/demo', async (_req,res)=>{\n  // pg\n  const pg = new Client({ connectionString: process.env.DATABASE_URL || '' });\n  try { await pg.connect(); await pg.query('SELECT 1'); } finally { try{ await pg.end(); }catch(_){} }\n  // redis\n  const r = new Redis(process.env.REDIS_URL || 'redis://localhost:6379');\n  await r.set('k','v'); await r.get('k'); await r.quit();\n  // kafka\n  const kafka = new Kafka({ clientId: 'demo', brokers: (process.env.KAFKA_BROKERS||'localhost:9092').split(',') });\n  const admin = kafka.admin(); await admin.connect(); await admin.createTopics({ topics: [{ topic: 'demo' }], waitForLeaders: true }); await admin.disconnect();\n  res.json({ ok: true });\n});\napp.listen(3000, ()=> console.log('listening on 3000'));\n" }
+  ]
+}
+

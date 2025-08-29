@@ -1,0 +1,13 @@
+{
+  "id": "expo-react-navigation-stack-tabs-minimal",
+  "name": "Expo React Navigation Stack+Tabs 最小",
+  "version": "1.0.0",
+  "stack": ["expo", "react-native", "react-navigation"],
+  "tags": ["mobile", "expo", "react-native", "navigation"],
+  "description": "Stack内にTabsを持つ最小構成（TypeScript）。",
+  "params": [{ "name": "app_name", "default": "expo-stack-tabs" }],
+  "files": [
+    { "path": "{{app_name}}/App.tsx", "template": "import React from 'react';\nimport { NavigationContainer } from '@react-navigation/native';\nimport { createNativeStackNavigator } from '@react-navigation/native-stack';\nimport { createBottomTabNavigator } from '@react-navigation/bottom-tabs';\nimport { SafeAreaView, Text, Button } from 'react-native';\nfunction Home({ navigation }: any){ return (<SafeAreaView><Text>Home</Text><Button title=\"Go Tabs\" onPress={()=> navigation.navigate('Tabs')} /></SafeAreaView>); }\nfunction A(){ return (<SafeAreaView><Text>Tab A</Text></SafeAreaView>); }\nfunction B(){ return (<SafeAreaView><Text>Tab B</Text></SafeAreaView>); }\nconst Stack = createNativeStackNavigator();\nconst Tab = createBottomTabNavigator();\nfunction Tabs(){\n  return (\n    <Tab.Navigator>\n      <Tab.Screen name=\"A\" component={A} />\n      <Tab.Screen name=\"B\" component={B} />\n    </Tab.Navigator>\n  );\n}\nexport default function App(){\n  return (\n    <NavigationContainer>\n      <Stack.Navigator>\n        <Stack.Screen name=\"Home\" component={Home} />\n        <Stack.Screen name=\"Tabs\" component={Tabs} />\n      </Stack.Navigator>\n    </NavigationContainer>\n  );\n}\n" }
+  ]
+}
+

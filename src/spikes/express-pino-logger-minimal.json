@@ -1,0 +1,12 @@
+{
+  "id": "express-pino-logger-minimal",
+  "name": "Express + pino ロガー 最小",
+  "version": "1.0.0",
+  "stack": ["express", "pino"],
+  "tags": ["express", "pino", "logging"],
+  "description": "pino-httpを使ったExpressの最小ロギング構成。",
+  "files": [
+    { "path": "server.js", "template": "const express = require('express');\nconst pino = require('pino-http')();\nconst app = express();\napp.use(pino);\napp.get('/health', (req,res)=> { req.log.info('health'); res.json({ ok: true }); });\napp.listen(3000,()=> console.log('listening on 3000'));\n" }
+  ]
+}
+

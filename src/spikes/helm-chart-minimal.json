@@ -2,13 +2,14 @@
   "id": "helm-chart-minimal",
   "name": "Helm Chart 最小",
   "version": "1.0.0",
-  "stack": ["helm", "kubernetes"],
-  "tags": ["k8s", "packaging"],
-  "description": "Chart.yaml と Deployment テンプレートの最小構成",
-  "params": [ { "name": "chart", "default": "my-chart" } ],
+  "stack": ["helm"],
+  "tags": ["helm", "k8s"],
+  "description": "最小のHelmチャート（Deployment+Service）。",
   "files": [
-    { "path": "charts/{{chart}}/Chart.yaml", "template": "apiVersion: v2\nname: {{chart}}\nversion: 0.1.0\n" },
-    { "path": "charts/{{chart}}/templates/deployment.yaml", "template": "apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: {{`{{ .Chart.Name }}`}}\nspec:\n  replicas: 1\n  selector:\n    matchLabels:\n      app: {{`{{ .Chart.Name }}`}}\n  template:\n    metadata:\n      labels:\n        app: {{`{{ .Chart.Name }}`}}\n    spec:\n      containers:\n        - name: app\n          image: nginx:alpine\n          ports:\n            - containerPort: 80\n" }
+    { "path": "chart/Chart.yaml", "template": "apiVersion: v2\nname: myapp\nversion: 0.1.0\n" },
+    { "path": "chart/values.yaml", "template": "replicaCount: 1\nimage: nginx:alpine\nservice: { type: ClusterIP, port: 80 }\n" },
+    { "path": "chart/templates/deployment.yaml", "template": "apiVersion: apps/v1\nkind: Deployment\nmetadata: { name: myapp }\nspec:\n  replicas: {{ .Values.replicaCount }}\n  selector: { matchLabels: { app: myapp } }\n  template:\n    metadata: { labels: { app: myapp } }\n    spec:\n      containers:\n        - name: app\n          image: {{ .Values.image }}\n          ports: [ { containerPort: 80 } ]\n" },
+    { "path": "chart/templates/service.yaml", "template": "apiVersion: v1\nkind: Service\nmetadata: { name: myapp }\nspec:\n  type: {{ .Values.service.type }}\n  selector: { app: myapp }\n  ports: [ { port: {{ .Values.service.port }}, targetPort: 80 } ]\n" }
   ]
 }
 

@@ -1,0 +1,13 @@
+{
+  "id": "k6-load-test-minimal",
+  "name": "k6 負荷試験 最小",
+  "version": "1.0.0",
+  "stack": ["k6"],
+  "tags": ["load", "k6"],
+  "description": "k6 の最小スクリプト（HTTP GETを実行）。",
+  "params": [{ "name": "url", "default": "https://example.com" }],
+  "files": [
+    { "path": "k6/script.js", "template": "import http from 'k6/http';\nimport { sleep } from 'k6';\nexport const options = { vus: 1, duration: '10s' };\nexport default function(){ http.get('{{url}}'); sleep(1); }\n" }
+  ]
+}
+

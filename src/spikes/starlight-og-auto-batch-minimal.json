@@ -1,0 +1,20 @@
+{
+  "id": "starlight-og-auto-batch-minimal",
+  "name": "Starlight 自動OG画像 一括生成 最小",
+  "version": "1.0.0",
+  "stack": ["astro", "starlight", "image"],
+  "tags": ["docs", "static-site", "og", "image", "sharp", "starlight"],
+  "description": "docs内のMDXフロントマター(title/ogTitle)を読み取り、public/og/<path>.png を一括生成する最小スクリプト。",
+  "params": [
+    { "name": "app_name", "default": "starlight-og-batch" },
+    { "name": "title", "default": "My Starlight Docs" },
+    { "name": "site_url", "default": "https://example.com" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"dev\": \"astro dev\", \"build\": \"astro build\", \"preview\": \"astro preview\", \"og:gen\": \"node scripts/generate-og-batch.mjs\" },\n  \"devDependencies\": { \"astro\": \"latest\", \"@astrojs/starlight\": \"latest\", \"sharp\": \"latest\" }\n}\n" },
+    { "path": "{{app_name}}/astro.config.mjs", "template": "import { defineConfig } from 'astro/config';\nimport starlight from '@astrojs/starlight';\nexport default defineConfig({\n  site: '{{site_url}}',\n  integrations: [ starlight({ title: '{{title}}', sidebar: [{ label: 'Introduction', autogenerate: { directory: 'docs' } }] }) ]\n});\n" },
+    { "path": "{{app_name}}/scripts/generate-og-batch.mjs", "template": "import fs from 'node:fs/promises';\nimport path from 'node:path';\nimport sharp from 'sharp';\n\nconst ROOT = process.cwd();\nconst DOCS = path.join(ROOT, 'src', 'content', 'docs');\nconst OUT = path.join(ROOT, 'public', 'og');\n\nasync function* walk(dir){\n  for (const ent of await fs.readdir(dir, { withFileTypes:true })) {\n    const p = path.join(dir, ent.name);\n    if (ent.isDirectory()) yield* walk(p);\n    else if (/\.(md|mdx)$/i.test(ent.name)) yield p;\n  }\n}\n\nfunction parseFrontmatter(txt){\n  const m = txt.match(/^---\n([\s\S]*?)\n---/);\n  if (!m) return {};\n  const body = m[1];\n  const res = {};\n  for (const line of body.split(/\n/)) {\n    const k = line.split(':')[0]?.trim();\n    const v = line.slice((k||'').length+1).trim();\n    if (k) res[k] = v?.replace(/^['\"]|['\"]$/g,'');\n  }\n  return res;\n}\n\nasync function genOne(rel, title){\n  const svg = `<!DOCTYPE svg>\n<svg width=\\\"1200\\\" height=\\\"630\\\" viewBox=\\\"0 0 1200 630\\\" xmlns=\\\"http://www.w3.org/2000/svg\\\">\n  <defs><linearGradient id=\\\"g\\\" x1=\\\"0\\\" y1=\\\"0\\\" x2=\\\"1\\\" y2=\\\"1\\\"><stop offset=\\\"0\\\" stop-color=\\\"#0ea5e9\\\"/><stop offset=\\\"1\\\" stop-color=\\\"#1e293b\\\"/></linearGradient></defs>\n  <rect width=\\\"1200\\\" height=\\\"630\\\" fill=\\\"url(#g)\\\"/>\n  <text x=\\\"60\\\" y=\\\"360\\\" font-family=\\\"system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial\\\" font-size=\\\"72\\\" fill=\\\"#fff\\\">${title}</text>\n</svg>`;\n  const outPath = path.join(OUT, rel.replace(/\.(md|mdx)$/i,'') + '.png');\n  await fs.mkdir(path.dirname(outPath), { recursive: true });\n  await sharp(Buffer.from(svg)).png().toFile(outPath);\n  console.log('OG generated:', outPath);\n}\n\nconst tasks = [];\nfor await (const p of walk(DOCS)) {\n  const rel = path.relative(DOCS, p);\n  const txt = await fs.readFile(p, 'utf8');\n  const fm = parseFrontmatter(txt);\n  const title = fm.ogTitle || fm.title || path.basename(p);\n  tasks.push(genOne(rel, title));\n}\nawait Promise.all(tasks);\n" },
+    { "path": "{{app_name}}/src/content/docs/index.mdx", "template": "---\ntitle: Introduction\n---\n\n# {{title}}\n\n<meta property=\"og:image\" content=\"/og/index.png\"/>\n\n> `npm run og:gen` で `src/content/docs/` 配下のMD/MDX分のOG画像を `public/og/` に生成します。\n> 各ページは `ogTitle` フロントマターがあれば優先、なければ `title` を使用します。\n" }
+  ]
+}
+

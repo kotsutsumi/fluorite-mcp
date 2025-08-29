@@ -1,0 +1,13 @@
+{
+  "id": "expo-react-native-screen-minimal",
+  "name": "Expo(React Native) 画面 最小",
+  "version": "1.0.0",
+  "stack": ["expo", "react-native"],
+  "tags": ["mobile", "expo", "react-native"],
+  "description": "Expoの最小画面コンポーネント（TypeScript）。",
+  "params": [{ "name": "app_name", "default": "expo-app" }],
+  "files": [
+    { "path": "{{app_name}}/App.tsx", "template": "import React from 'react';\nimport { SafeAreaView, Text } from 'react-native';\nexport default function App(){ return (<SafeAreaView><Text>Hello Expo</Text></SafeAreaView>); }\n" }
+  ]
+}
+

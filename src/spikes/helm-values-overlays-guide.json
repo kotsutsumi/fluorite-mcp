@@ -1,0 +1,14 @@
+{
+  "id": "helm-values-overlays-guide",
+  "name": "Helm values オーバレイ ガイド",
+  "version": "1.0.0",
+  "stack": ["helm", "docs"],
+  "tags": ["helm", "values", "overlays", "docs"],
+  "description": "values-dev.yaml / values-prod.yaml の使い分けとhelmコマンド例をまとめたガイド。",
+  "files": [
+    { "path": "helm/chart/values-dev.yaml", "template": "replicaCount: 1\nimage: nginx:alpine\nservice: { type: ClusterIP, port: 80 }\n" },
+    { "path": "helm/chart/values-prod.yaml", "template": "replicaCount: 3\nimage: nginx:alpine\nservice: { type: ClusterIP, port: 80 }\n" },
+    { "path": "docs/helm-values-overlays.md", "template": "# Helm Values Overlays\n\n- Dev: `helm upgrade --install myapp helm/chart -f helm/chart/values-dev.yaml`\n- Prod: `helm upgrade --install myapp helm/chart -f helm/chart/values-prod.yaml`\n- Additional: `--set image=...` や `-f` 複数指定でオーバレイ合成可能\n" }
+  ]
+}
+

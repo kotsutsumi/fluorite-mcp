@@ -1,0 +1,19 @@
+{
+  "id": "docusaurus-docsearch-crawler-config-i18n",
+  "name": "Docusaurus DocSearch クローラー設定 i18n",
+  "version": "1.0.0",
+  "stack": ["react", "docusaurus", "algolia", "i18n"],
+  "tags": ["docs", "static-site", "docsearch", "crawler", "algolia", "i18n", "docusaurus"],
+  "description": "i18n(en/ja)対応のDocSearchクローラー設定雛形（start_urls複数、langファセット、停止URL/セレクタ例）。",
+  "params": [
+    { "name": "app_name", "default": "docusaurus-docsearch-crawler-i18n" },
+    { "name": "site_url_en", "default": "https://docs.example.com/" },
+    { "name": "site_url_ja", "default": "https://docs.example.com/ja/" },
+    { "name": "algolia_index_name", "default": "docs" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/docsearch.config.json", "template": "{\n  \"index_name\": \"{{algolia_index_name}}\",\n  \"start_urls\": [\n    { \"url\": \"{{site_url_en}}\", \"tags\": [\"lang:en\"] },\n    { \"url\": \"{{site_url_ja}}\", \"tags\": [\"lang:ja\"] }\n  ],\n  \"sitemaps\": [\"{{site_url_en}}sitemap.xml\", \"{{site_url_ja}}sitemap.xml\"],\n  \"stop_urls\": [\n    "/blog/", "/tags/"\n  ],\n  \"selectors\": {\n    \"lvl0\": { \"selector\": \"nav >> a.active\", \"type\": \"default\" },\n    \"lvl1\": \"article h1\",\n    \"lvl2\": \"article h2\",\n    \"lvl3\": \"article h3\",\n    \"text\": \"article p, article li\"\n  },\n  \"custom_settings\": {\n    \"attributesForFaceting\": [\"type\", \"lang\"],\n    \"separatorsToIndex\": "-_"\n  },\n  \"rateLimit\": 8\n}\n" },
+    { "path": "{{app_name}}/README-DOCSEARCH-i18n.md", "template": "# DocSearch Crawler (i18n)\n\n- Update `start_urls` and `sitemaps` to match your locales.\n- Use `tags: ['lang:en']`/`['lang:ja']` for faceting.\n- Submit to DocSearch or run self-hosted crawler.\n" }
+  ]
+}
+

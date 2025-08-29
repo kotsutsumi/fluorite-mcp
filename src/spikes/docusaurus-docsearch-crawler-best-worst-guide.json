@@ -1,0 +1,15 @@
+{
+  "id": "docusaurus-docsearch-crawler-best-worst-guide",
+  "name": "Docusaurus DocSearch クローラー 最適化ベスト/ワースト集",
+  "version": "1.0.0",
+  "stack": ["react", "docusaurus", "algolia", "guide"],
+  "tags": ["docs", "docsearch", "crawler", "best-practices", "docusaurus"],
+  "description": "DocSearchクローラー設定の良い/悪い例を対比しながら調整ポイントを解説するガイド。",
+  "files": [
+    {
+      "path": "docs/docsearch-crawler-best-worst.md",
+      "template": "# DocSearch Crawler Best/Worst Practices (Docusaurus)\n\n## Best\n- Use `sitemaps` for discovery\n- Extract headings via `.theme-doc-markdown h1..h4`\n- Keep `searchableAttributes` ordered from hierarchy to content\n- Set `attributesForFaceting` (e.g., `lang`, `area`) if needed\n- Exclude noise with `stop_urls` (tags/search/privacy etc.)\n\n## Worst\n- Crawling with generic selectors that miss headings\n- Indexing low-value pages (changelog/privacy)\n- Putting `content` before hierarchy in `searchableAttributes`\n- Missing `sitemaps` / unrestricted start_urls\n\n## Example (Good)\n```json\n{\n  \"start_urls\": [\"https://docs.example.com\"],\n  \"sitemaps\": [\"https://docs.example.com/sitemap.xml\"],\n  \"selectors\": {\n    \"lvl1\": \".theme-doc-markdown h1\",\n    \"lvl2\": \".theme-doc-markdown h2\",\n    \"lvl3\": \".theme-doc-markdown h3\",\n    \"text\": \".theme-doc-markdown p, .theme-doc-markdown li\"\n  },\n  \"custom_settings\": {\n    \"searchableAttributes\": [\n      \"unordered(hierarchy.lvl1)\",\n      \"unordered(hierarchy.lvl2)\",\n      \"unordered(hierarchy.lvl3)\",\n      \"content\"\n    ]\n  }\n}\n```\n\n## Example (Bad)\n```json\n{\n  \"start_urls\": [\"https://docs.example.com\"],\n  \"selectors\": { \"text\": \"body *\" }\n}\n```\n\n## Checklist\n- [ ] Headings captured (lvl1..lvl3)\n- [ ] Noise excluded\n- [ ] Hierarchy prioritized\n- [ ] Rate limit set for large sites\n- [ ] i18n/tag facets configured if applicable\n"
+    }
+  ]
+}
+

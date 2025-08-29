@@ -1,0 +1,13 @@
+{
+  "id": "expo-react-navigation-tabs-minimal",
+  "name": "Expo + React Navigation Tabs 最小",
+  "version": "1.0.0",
+  "stack": ["expo", "react-native", "react-navigation"],
+  "tags": ["mobile", "expo", "react-native", "navigation"],
+  "description": "React Navigationのタブナビゲーション最小例（TypeScript）。",
+  "params": [{ "name": "app_name", "default": "expo-tabs" }],
+  "files": [
+    { "path": "{{app_name}}/App.tsx", "template": "import React from 'react';\nimport { NavigationContainer } from '@react-navigation/native';\nimport { createBottomTabNavigator } from '@react-navigation/bottom-tabs';\nimport { SafeAreaView, Text } from 'react-native';\nfunction A(){ return (<SafeAreaView><Text>Screen A</Text></SafeAreaView>); }\nfunction B(){ return (<SafeAreaView><Text>Screen B</Text></SafeAreaView>); }\nconst Tab = createBottomTabNavigator();\nexport default function App(){\n  return (\n    <NavigationContainer>\n      <Tab.Navigator>\n        <Tab.Screen name=\"A\" component={A} />\n        <Tab.Screen name=\"B\" component={B} />\n      </Tab.Navigator>\n    </NavigationContainer>\n  );\n}\n" }
+  ]
+}
+

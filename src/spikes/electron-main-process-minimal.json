@@ -2,12 +2,13 @@
   "id": "electron-main-process-minimal",
   "name": "Electron メインプロセス 最小",
   "version": "1.0.0",
-  "stack": ["electron", "node"],
-  "tags": ["desktop"],
-  "description": "Electron main プロセス雛形",
-  "params": [ ],
+  "stack": ["electron"],
+  "tags": ["desktop", "electron"],
+  "description": "Electron のメインプロセス/レンダラ最小例（BrowserWindow作成）。",
+  "params": [{ "name": "app_name", "default": "electron-app" }],
   "files": [
-    { "path": "electron/main.js", "template": "const { app, BrowserWindow } = require('electron');\napp.whenReady().then(()=>{ const w=new BrowserWindow(); w.loadURL('https://example.com'); });\n" }
+    { "path": "{{app_name}}/main.js", "template": "const { app, BrowserWindow } = require('electron');\nfunction createWindow(){ const win = new BrowserWindow({ width: 800, height: 600 }); win.loadFile('index.html'); }\napp.whenReady().then(createWindow);\n" },
+    { "path": "{{app_name}}/index.html", "template": "<!doctype html><html><body><h1>Hello Electron</h1></body></html>\n" }
   ]
 }
 

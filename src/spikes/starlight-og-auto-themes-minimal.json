@@ -1,0 +1,23 @@
+{
+  "id": "starlight-og-auto-themes-minimal",
+  "name": "Starlight OG自動生成 テーマ(色/フォント) 最小",
+  "version": "1.0.0",
+  "stack": ["astro", "starlight", "image"],
+  "tags": ["docs", "static-site", "og", "image", "sharp", "theme", "starlight"],
+  "description": "ブランドカラー/フォントを切替えてOG画像を生成する最小スクリプト（環境変数 or 引数で制御）。",
+  "params": [
+    { "name": "app_name", "default": "starlight-og-themes" },
+    { "name": "title", "default": "My Starlight Docs" },
+    { "name": "site_url", "default": "https://example.com" },
+    { "name": "primary", "default": "#0ea5e9" },
+    { "name": "secondary", "default": "#1e293b" },
+    { "name": "font", "default": "system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"dev\": \"astro dev\", \"build\": \"astro build\", \"preview\": \"astro preview\", \"og:gen\": \"PRIMARY={{primary}} SECONDARY={{secondary}} FONT=\\\"{{font}}\\\" node scripts/generate-og.mjs\" },\n  \"devDependencies\": { \"astro\": \"latest\", \"@astrojs/starlight\": \"latest\", \"sharp\": \"latest\" }\n}\n" },
+    { "path": "{{app_name}}/astro.config.mjs", "template": "import { defineConfig } from 'astro/config';\nimport starlight from '@astrojs/starlight';\nexport default defineConfig({\n  site: '{{site_url}}',\n  integrations: [ starlight({ title: '{{title}}', sidebar: [{ label: 'Introduction', autogenerate: { directory: 'docs' } }] }) ]\n});\n" },
+    { "path": "{{app_name}}/scripts/generate-og.mjs", "template": "import fs from 'node:fs/promises';\nimport sharp from 'sharp';\nconst title = process.env.OG_TITLE || '{{title}}';\nconst primary = process.env.PRIMARY || '{{primary}}';\nconst secondary = process.env.SECONDARY || '{{secondary}}';\nconst font = process.env.FONT || '{{font}}';\nconst svg = `<!DOCTYPE svg><svg width=\\\"1200\\\" height=\\\"630\\\" viewBox=\\\"0 0 1200 630\\\" xmlns=\\\"http://www.w3.org/2000/svg\\\"><defs><linearGradient id=\\\"g\\\" x1=\\\"0\\\" y1=\\\"0\\\" x2=\\\"1\\\" y2=\\\"1\\\"><stop offset=\\\"0\\\" stop-color=\\\"${primary}\\\"/><stop offset=\\\"1\\\" stop-color=\\\"${secondary}\\\"/></linearGradient></defs><rect width=\\\"1200\\\" height=\\\"630\\\" fill=\\\"url(#g)\\\"/><text x=\\\"60\\\" y=\\\"360\\\" font-family=\\\"${font}\\\" font-size=\\\"72\\\" fill=\\\"#fff\\\">${title}</text></svg>`;\nawait fs.mkdir('public', { recursive: true });\nawait sharp(Buffer.from(svg)).png().toFile('public/og.png');\nconsole.log('OG generated: public/og.png');\n" },
+    { "path": "{{app_name}}/src/content/docs/index.mdx", "template": "---\ntitle: Introduction\n---\n\n# {{title}}\n\n<meta property=\"og:image\" content=\"/og.png\"/>\n\n> `npm run og:gen` でブランドカラー/フォントを切替えつつOG画像を生成できます。\n" }
+  ]
+}
+

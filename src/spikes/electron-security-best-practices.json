@@ -1,0 +1,15 @@
+{
+  "id": "electron-security-best-practices",
+  "name": "Electron セキュリティ ベストプラクティス",
+  "version": "1.0.0",
+  "stack": ["electron", "docs"],
+  "tags": ["electron", "security", "csp", "preload", "ipc", "docs"],
+  "description": "ElectronにおけるCSP/contextIsolation/preload/IPCのベストプラクティスを短くまとめたガイド。",
+  "files": [
+    {
+      "path": "docs/electron-security.md",
+      "template": "# Electron Security Best Practices\n\n- Use `contextIsolation: true`, `nodeIntegration: false`\n- Expose minimal API via `preload` and `contextBridge`\n- Prefer `ipcMain.handle`/`ipcRenderer.invoke` (request/response)\n- Validate inputs on main process; never trust renderer\n- Set CSP meta in HTML: `default-src 'self'; script-src 'self';`\n- Disable `enableRemoteModule`; avoid unsafe-eval/inline scripts\n- Use `shell.openExternal` safely (validate URLs)\n- Keep Electron up-to-date; review advisories\n\nCode samples: see `electron-preload-ipc-minimal` spike.\n"
+    }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "id": "otel-express-tracing-minimal",
+  "name": "OpenTelemetry + Express トレース 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry", "express"],
+  "tags": ["otel", "express", "tracing"],
+  "description": "Express アプリにOpenTelemetryのトレーシングを最小導入。",
+  "files": [
+    { "path": "otel/tracer.js", "template": "const { NodeTracerProvider } = require('@opentelemetry/sdk-trace-node');\nconst { SimpleSpanProcessor } = require('@opentelemetry/sdk-trace-base');\nconst { ConsoleSpanExporter } = require('@opentelemetry/sdk-trace-base');\nconst provider = new NodeTracerProvider();\nprovider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));\nprovider.register();\nmodule.exports = require('@opentelemetry/api').trace.getTracer('express-demo');\n" },
+    { "path": "server.js", "template": "require('./otel/tracer');\nconst express = require('express');\nconst app = express();\napp.get('/health', (_req,res)=> res.json({ ok: true }));\napp.listen(3000, ()=> console.log('listening on 3000'));\n" }
+  ]
+}
+

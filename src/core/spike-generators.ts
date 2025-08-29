@@ -37,45 +37,58 @@ const STRIKE_PREFIX = 'strike-';
 
 // Dimensions to combine into many spikes
 const LIBRARIES = [
+  // core frameworks
   'react','vue','svelte','angular','solid','qwik','nextjs','nuxt','remix','astro',
-  'express','fastify','koa','hapi','nestjs','deno-fresh','bun-elysia','sails','adonis','feathers',
+  // meta-frameworks
+  'sveltekit','solidstart','vitepress',
+  // servers
+  'express','fastify','koa','hapi','nestjs','deno-fresh','bun-elysia','sails','adonis','feathers','fastapi',
+  // API/data
   'graphql','apollo','urql','relay','graphql-yoga','openapi','swagger','trpc','hono','elysia',
   'prisma','mongoose','sequelize','typeorm','drizzle','knex','postgres','mysql','sqlite','neo4j',
+  // messaging/streaming
   'redis','bullmq','kafka','rabbitmq','nats','sqs','sns','pubsub','kinesis','activemq',
+  // tooling
   'jest','vitest','playwright','cypress','eslint','prettier','rollup','vite','webpack','tsup',
+  // infra
   'docker','kubernetes','helm','terraform','pulumi','ansible','serverless','aws-lambda','gcp-cloud-functions','azure-functions',
+  // auth
   'auth0','passport','next-auth','keycloak','firebase-auth','cognito','supabase-auth','clerk','lucia','ory',
+  // ai
   'openai','anthropic','langchain','llamaindex','transformers','whisper','weaviate','pinecone','milvus','qdrant',
   'github-actions',
-  // newly specialized libraries
+  // specialized
   'sentry','stripe','posthog','shadcn','supabase',
-  // docs/site/animation ecosystems (new)
+  // docs/site/animation
   'starlight','docusaurus','lottie',
-  // auth providers
-  'auth0','clerk','lucia','keycloak','firebase-auth','cognito','supabase-auth','ory',
-  // storage, logging, metrics
+  // storage/logging/metrics
   's3','gcs','azure-blob','pino','winston','prometheus',
-  // email providers
+  // email
   'resend','sendgrid','postmark','nodemailer',
-  // search/index providers
+  // search
   'algolia','meilisearch','typesense',
-  // realtime, apm, flags, secrets, extra storage/search
-  'socket.io','pusher','ably','datadog','newrelic','launchdarkly','unleash','vault','doppler','minio','elasticsearch','opensearch','mqtt','memcached','cloudflare-workers'
-  ,
-  // i18n, CMS, AI, analytics, bug tracking, config, uploads
+  // realtime/apm/flags/secrets
+  'socket.io','pusher','ably','datadog','newrelic','launchdarkly','unleash','vault','doppler','minio','elasticsearch','opensearch','mqtt','memcached','cloudflare-workers',
+  // i18n/CMS/AI/analytics/bugtracking/config/uploads
   'i18next','next-intl','strapi','contentful','sanity','ghost',
   'groq','mistral','cohere',
   'segment','amplitude','mixpanel',
   'bugsnag','honeybadger',
   'dotenv','cloudinary','uploadthing','mailgun','lru-cache','paddle',
-  // frontend state/forms/utilities (new)
-  'zod','react-hook-form','zustand','redux','swr','radix-ui','tailwindcss','storybook','nx','turborepo'
+  // frontend utilities
+  'zod','react-hook-form','zustand','redux','swr','radix-ui','tailwindcss','storybook','nx','turborepo',
+  // desktop/mobile platforms
+  'electron','tauri','capacitor','expo','react-native',
+  // load testing / observability
+  'artillery','k6','opentelemetry'
 ];
 
 const PATTERNS = [
   'minimal','init','config','route','controller','service','client','crud','webhook','job',
   // additional common patterns
-  'middleware','schema','component','hook','provider','adapter','plugin','worker','listener','migration','seed'
+  'middleware','schema','component','hook','provider','adapter','plugin','worker','listener','migration','seed',
+  // expanded patterns
+  'cli','command','pipeline','scheduler','cron','benchmark','example','docs'
 ];
 
 const STYLES = ['basic','typed','advanced','secure','testing'];
@@ -183,6 +196,75 @@ function makeFiles(id: string, lib: string, pattern: string, style: string, lang
         template: `import { NextResponse } from 'next/server';\nimport { z } from 'zod';\nconst Query = z.object({ page: z.coerce.number().int().min(1).default(1), limit: z.coerce.number().int().min(1).max(100).default(20) });\nexport async function GET(req: Request){ const url = new URL(req.url); const parsed = Query.safeParse(Object.fromEntries(url.searchParams)); if(!parsed.success){ return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 }); } const { page, limit } = parsed.data; return NextResponse.json({ items: [], page, limit }); }\n`
       });
     }
+  }
+
+  // SvelteKit
+  if (lib === 'sveltekit' && (pattern === 'route' || pattern === 'minimal')) {
+    files.push({ path: `src/routes/+page.svelte`, template: `<script lang=\"ts\"></script>\n<h1>Hello SvelteKit</h1>\n` });
+    files.push({ path: `src/routes/api/health/+server.ts`, template: `import type { RequestHandler } from '@sveltejs/kit';\nexport const GET: RequestHandler = () => new Response(JSON.stringify({ ok: true }), { headers: { 'content-type': 'application/json' } });\n` });
+  }
+
+  // SolidStart
+  if (lib === 'solidstart' && (pattern === 'route' || pattern === 'minimal')) {
+    files.push({ path: `src/routes/index.tsx`, template: `export default function Home(){ return (<main><h1>Hello SolidStart</h1></main>); }\n` });
+    files.push({ path: `src/routes/api/health.ts`, template: `import type { APIEvent } from 'solid-start/api';\nexport function GET(_e: APIEvent){ return new Response(JSON.stringify({ ok: true }), { headers: { 'content-type': 'application/json' } }); }\n` });
+  }
+
+  // VitePress
+  if (lib === 'vitepress' && (pattern === 'docs' || pattern === 'minimal' || pattern === 'init')) {
+    files.push({ path: `.vitepress/config.ts`, template: `import { defineConfig } from 'vitepress';\nexport default defineConfig({ title: 'Docs' });\n` });
+    files.push({ path: `index.md`, template: `# Docs\n\nWelcome to VitePress.\n` });
+  }
+
+  // Remix
+  if (lib === 'remix' && (pattern === 'route' || pattern === 'minimal')) {
+    files.push({ path: `app/routes/_index.tsx`, template: `import type { LoaderFunctionArgs, ActionFunctionArgs } from '@remix-run/node';\nimport { json } from '@remix-run/node';\nexport async function loader(_args: LoaderFunctionArgs){ return json({ ok: true }); }\nexport async function action(_args: ActionFunctionArgs){ return json({ ok: true }); }\nexport default function Index(){ return (<main><h1>Hello Remix</h1></main>); }\n` });
+  }
+
+  // Electron
+  if (lib === 'electron' && (pattern === 'init' || pattern === 'minimal')) {
+    files.push({ path: `main.js`, template: `const { app, BrowserWindow } = require('electron');\nfunction createWindow(){ const win = new BrowserWindow({ width: 800, height: 600 }); win.loadFile('index.html'); }\napp.whenReady().then(createWindow);\n` });
+    files.push({ path: `index.html`, template: `<!doctype html><html><body><h1>Hello Electron</h1></body></html>\n` });
+  }
+  if (lib === 'electron' && (pattern === 'ipc' || pattern === 'plugin')) {
+    files.push({ path: `main.js`, template: `const { app, BrowserWindow, ipcMain } = require('electron');\nconst path = require('path');\nfunction createWindow(){ const win = new BrowserWindow({ width: 800, height: 600, webPreferences: { preload: path.join(__dirname, 'preload.js'), contextIsolation: true, nodeIntegration: false } }); win.loadFile('index.html'); }\nipcMain.handle('ping', async (_e, name)=> 'Hello ' + name);\napp.whenReady().then(createWindow);\n` });
+    files.push({ path: `preload.js`, template: `const { contextBridge, ipcRenderer } = require('electron');\ncontextBridge.exposeInMainWorld('api', { ping: (name)=> ipcRenderer.invoke('ping', name) });\n` });
+    files.push({ path: `index.html`, template: `<!doctype html><html><body><h1>IPC</h1><button id=btn>Ping</button><script>document.getElementById('btn').onclick=()=> window.api.ping('World').then(alert)</script></body></html>\n` });
+  }
+
+  // Tauri
+  if (lib === 'tauri' && (pattern === 'init' || pattern === 'minimal' || pattern === 'command')) {
+    files.push({ path: `src-tauri/src/main.rs`, template: `#![cfg_attr(not(debug_assertions), windows_subsystem = \"windows\")]\n#[tauri::command]\nfn greet(name: &str) -> String { format!(\"Hello, {}!\", name) }\nfn main(){ tauri::Builder::default().invoke_handler(tauri::generate_handler![greet]).run(tauri::generate_context!()).expect(\"error\"); }\n` });
+    files.push({ path: `index.html`, template: `<!doctype html><html><body><h1>Tauri</h1><button id=btn>Greet</button><script>window.__TAURI__.invoke('greet',{ name: 'World' }).then(alert)</script></body></html>\n` });
+  }
+
+  // Expo / React Native
+  if (lib === 'expo' && (pattern === 'component' || pattern === 'minimal')) {
+    files.push({ path: `App.tsx`, template: `import React from 'react';\nimport { SafeAreaView, Text } from 'react-native';\nexport default function App(){ return (<SafeAreaView><Text>Hello Expo</Text></SafeAreaView>); }\n` });
+  }
+  if (lib === 'expo' && (pattern === 'navigation' || pattern === 'tabs')) {
+    files.push({ path: `App.tsx`, template: `import React from 'react';\nimport { NavigationContainer } from '@react-navigation/native';\nimport { createBottomTabNavigator } from '@react-navigation/bottom-tabs';\nimport { SafeAreaView, Text } from 'react-native';\nfunction A(){ return (<SafeAreaView><Text>Screen A</Text></SafeAreaView>); }\nfunction B(){ return (<SafeAreaView><Text>Screen B</Text></SafeAreaView>); }\nconst Tab = createBottomTabNavigator();\nexport default function App(){\n  return (\n    <NavigationContainer>\n      <Tab.Navigator>\n        <Tab.Screen name=\"A\" component={A} />\n        <Tab.Screen name=\"B\" component={B} />\n      </Tab.Navigator>\n    </NavigationContainer>\n  );\n}\n` });
+  }
+
+  // Capacitor
+  if (lib === 'capacitor' && (pattern === 'init' || pattern === 'minimal')) {
+    files.push({ path: `src/main.ts`, template: `import { Capacitor } from '@capacitor/core';\nconsole.log('Platform:', Capacitor.getPlatform());\n` });
+    files.push({ path: `index.html`, template: `<!doctype html><html><body><h1>Capacitor</h1><script type=\"module\" src=\"/src/main.ts\"></script></body></html>\n` });
+  }
+
+  // k6 load test
+  if (lib === 'k6' && (pattern === 'benchmark' || pattern === 'minimal')) {
+    files.push({ path: `k6/script.js`, template: `import http from 'k6/http';\nimport { sleep } from 'k6';\nexport const options = { vus: 1, duration: '10s' };\nexport default function(){ http.get('https://example.com'); sleep(1); }\n` });
+  }
+
+  // Artillery
+  if (lib === 'artillery' && (pattern === 'benchmark' || pattern === 'minimal' || pattern === 'scenario')) {
+    files.push({ path: `artillery/test.yml`, template: `config:\n  target: 'https://example.com'\n  phases:\n    - duration: 10\n      arrivalRate: 1\nscenarios:\n  - flow:\n      - get:\n          url: /\n` });
+  }
+
+  // OpenTelemetry (generic node tracer)
+  if (lib === 'opentelemetry' && (pattern === 'config' || pattern === 'init' || pattern === 'minimal')) {
+    files.push({ path: `otel/tracer.js`, template: `const { NodeTracerProvider } = require('@opentelemetry/sdk-trace-node');\nconst { SimpleSpanProcessor, ConsoleSpanExporter } = require('@opentelemetry/sdk-trace-base');\nconst provider = new NodeTracerProvider();\nprovider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));\nprovider.register();\nmodule.exports = require('@opentelemetry/api').trace.getTracer('demo');\n` });
   }
   if (lib === 'nextjs' && (pattern === 'config' || pattern === 'init')) {
     files.push({ path: `middleware.ts`, template: `import { NextResponse } from 'next/server';\nexport function middleware(){ return NextResponse.next(); }\n` });

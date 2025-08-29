@@ -1,0 +1,23 @@
+{
+  "id": "starlight-og-auto-ci-cloudflare",
+  "name": "Starlight 自動OG生成 + Cloudflare Pages CI 最小",
+  "version": "1.0.0",
+  "stack": ["astro", "starlight", "image", "ci"],
+  "tags": ["docs", "static-site", "og", "image", "sharp", "ci", "cloudflare", "starlight"],
+  "description": "SharpでOG画像を生成し、Cloudflare Pagesへデプロイする最小CIテンプレート。",
+  "params": [
+    { "name": "app_name", "default": "starlight-og-ci-cf" },
+    { "name": "title", "default": "My Starlight Docs" },
+    { "name": "site_url", "default": "https://example.pages.dev" },
+    { "name": "account_id", "default": "YOUR_ACCOUNT_ID" },
+    { "name": "project_name", "default": "docs" }
+  ],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{\n  \"name\": \"{{app_name}}\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"dev\": \"astro dev\", \"build\": \"astro build\", \"preview\": \"astro preview\", \"og:gen\": \"node scripts/generate-og-batch.mjs\" },\n  \"devDependencies\": { \"astro\": \"latest\", \"@astrojs/starlight\": \"latest\", \"sharp\": \"latest\" }\n}\n" },
+    { "path": "{{app_name}}/astro.config.mjs", "template": "import { defineConfig } from 'astro/config';\nimport starlight from '@astrojs/starlight';\nexport default defineConfig({\n  site: '{{site_url}}',\n  integrations: [ starlight({ title: '{{title}}', sidebar: [{ label: 'Introduction', autogenerate: { directory: 'docs' } }] }) ]\n});\n" },
+    { "path": "{{app_name}}/scripts/generate-og-batch.mjs", "template": "import fs from 'node:fs/promises';\nimport path from 'node:path';\nimport sharp from 'sharp';\nconst ROOT = process.cwd();\nconst DOCS = path.join(ROOT, 'src', 'content', 'docs');\nconst OUT = path.join(ROOT, 'public', 'og');\nasync function* walk(dir){ for (const ent of await fs.readdir(dir, { withFileTypes:true })) { const p = path.join(dir, ent.name); if (ent.isDirectory()) yield* walk(p); else if (/\\.(md|mdx)$/i.test(ent.name)) yield p; } }\nfunction parseFrontmatter(txt){ const m = txt.match(/^---\n([\\s\\S]*?)\n---/); if (!m) return {}; const res={}; for (const line of m[1].split(/\n/)) { const k=line.split(':')[0]?.trim(); const v=line.slice((k||'').length+1).trim(); if(k) res[k]=v?.replace(/^['\"']|['\"']$/g,''); } return res; }\nasync function genOne(rel, title){ const svg = `<!DOCTYPE svg><svg width=\\\"1200\\\" height=\\\"630\\\" viewBox=\\\"0 0 1200 630\\\" xmlns=\\\"http://www.w3.org/2000/svg\\\"><defs><linearGradient id=\\\"g\\\" x1=\\\"0\\\" y1=\\\"0\\\" x2=\\\"1\\\" y2=\\\"1\\\"><stop offset=\\\"0\\\" stop-color=\\\"#0ea5e9\\\"/><stop offset=\\\"1\\\" stop-color=\\\"#1e293b\\\"/></linearGradient></defs><rect width=\\\"1200\\\" height=\\\"630\\\" fill=\\\"url(#g)\\\"/><text x=\\\"60\\\" y=\\\"360\\\" font-family=\\\"system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial\\\" font-size=\\\"72\\\" fill=\\\"#fff\\\">${title}</text></svg>`; const outPath = path.join(OUT, rel.replace(/\\.(md|mdx)$/i,'') + '.png'); await fs.mkdir(path.dirname(outPath), { recursive: true }); await sharp(Buffer.from(svg)).png().toFile(outPath); }\n(async ()=>{ const tasks=[]; for await (const p of walk(DOCS)) { const rel = path.relative(DOCS, p); const txt = await fs.readFile(p,'utf8'); const fm = parseFrontmatter(txt); const title = fm.ogTitle || fm.title || rel; tasks.push(genOne(rel, title)); } await Promise.all(tasks); console.log('OG batch generated'); })();\n" },
+    { "path": "{{app_name}}/.github/workflows/deploy-cloudflare.yml", "template": "name: Build Starlight with OG and Deploy to CF Pages\n\non:\n  push:\n    branches: [ main ]\n  workflow_dispatch: {}\n\njobs:\n  build-and-deploy:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 20\n      - run: npm ci\n      - run: npm run og:gen\n      - run: npm run build\n      - name: Publish to Cloudflare Pages\n        uses: cloudflare/pages-action@v1\n        with:\n          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}\n          accountId: {{account_id}}\n          projectName: {{project_name}}\n          directory: dist\n          gitHubToken: ${{ secrets.GITHUB_TOKEN }}\n" },
+    { "path": "{{app_name}}/src/content/docs/index.mdx", "template": "---\ntitle: Introduction\n---\n\n# {{title}}\n\n<meta property=\"og:image\" content=\"/og/index.png\"/>\n\n> CIで `npm run og:gen` 実行後にビルドし、Cloudflare Pagesにデプロイします。\n" }
+  ]
+}
+

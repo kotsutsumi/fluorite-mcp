@@ -1,0 +1,24 @@
+{
+  "id": "docusaurus-docsearch-hierarchy-optimized",
+  "name": "Docusaurus DocSearch ヒエラルキー最適化",
+  "version": "1.0.0",
+  "stack": ["react", "docusaurus", "algolia"],
+  "tags": ["docs", "static-site", "docsearch", "hierarchy", "selectors", "docusaurus"],
+  "description": "見出し階層を適切に抽出し、検索時のヒエラルキーを最適化するクローラー設定雛形。",
+  "params": [
+    { "name": "app_name", "default": "docusaurus-docsearch-hierarchy" },
+    { "name": "site_url", "default": "https://docs.example.com" },
+    { "name": "algolia_index_name", "default": "docs" }
+  ],
+  "files": [
+    {
+      "path": "{{app_name}}/docsearch.config.json",
+      "template": "{\n  \"index_name\": \"{{algolia_index_name}}\",\n  \"start_urls\": [\"{{site_url}}\"],\n  \"sitemaps\": [\"{{site_url}}/sitemap.xml\"],\n  \"stop_urls\": [\"/tags/\", \"/search\"],\n  \"selectors\": {\n    \"lvl0\": { \"selector\": \"header nav .navbar__link--active, .menu__link--active\", \"type\": \"default\" },\n    \"lvl1\": \"main article h1, .theme-doc-markdown h1\",\n    \"lvl2\": \"main article h2, .theme-doc-markdown h2\",\n    \"lvl3\": \"main article h3, .theme-doc-markdown h3\",\n    \"lvl4\": \"main article h4, .theme-doc-markdown h4\",\n    \"text\": \"main article p, main article li, .theme-doc-markdown p, .theme-doc-markdown li\"\n  },\n  \"custom_settings\": {\n    \"attributesForFaceting\": [\"type\"],\n    \"searchableAttributes\": [\n      \"unordered(hierarchy.lvl0)\",\n      \"unordered(hierarchy.lvl1)\",\n      \"unordered(hierarchy.lvl2)\",\n      \"unordered(hierarchy.lvl3)\",\n      \"unordered(hierarchy.lvl4)\",\n      \"content\"\n    ],\n    \"ranking\": [\"words\", \"filters\", \"typo\", \"attribute\", \"proximity\", \"exact\", \"custom\"],\n    \"customRanking\": [\"desc(pageRank)\", \"desc(level)\", \"asc(position)\"]\n  }\n}\n"
+    },
+    {
+      "path": "{{app_name}}/README-DOCSEARCH-hierarchy.md",
+      "template": "# DocSearch Hierarchy Optimization\n\n- Map headings to lvl1..lvl4 for better breadcrumb context.\n- Use `.theme-doc-markdown` selectors for default Docusaurus theme.\n- Exclude low-value pages via `stop_urls`.\n- Keep `searchableAttributes` ordered from hierarchy to content.\n"
+    }
+  ]
+}
+

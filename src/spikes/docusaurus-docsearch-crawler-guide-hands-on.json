@@ -1,0 +1,15 @@
+{
+  "id": "docusaurus-docsearch-crawler-guide-hands-on",
+  "name": "Docusaurus DocSearch クローラー比較ハンズオン",
+  "version": "1.0.0",
+  "stack": ["react", "docusaurus", "algolia"],
+  "tags": ["docs", "static-site", "docsearch", "crawler", "guide", "hands-on"],
+  "description": "基本/高度/i18n/ランキング/ヒエラルキー最適化の各テンプレ差分を比較しながら調整するハンズオン資料。",
+  "files": [
+    {
+      "path": "docs/docsearch-crawler-hands-on.md",
+      "template": "# DocSearch Crawler Hands-on (Docusaurus)\n\n## Goals\n- Compare minimal / advanced / i18n / ranking / hierarchy templates\n- Pick and merge the parts that fit your docs\n\n## Templates in this repo\n- docusaurus-docsearch-crawler-config-minimal\n- docusaurus-docsearch-crawler-config-advanced\n- docusaurus-docsearch-crawler-config-i18n\n- docusaurus-docsearch-ranking-weights-minimal\n- docusaurus-docsearch-hierarchy-optimized\n\n## Exercise\n1) Start from the minimal config, verify indexing\n2) Add `searchableAttributes` / `customRanking` from the ranking template\n3) Adjust selectors to match your theme (hierarchy template)\n4) For multi-locale, adopt i18n template `start_urls` and `tags`\n5) Exclude noisy routes via `stop_urls` (advanced template)\n\n## Submission\n- Replace placeholders (site/index name)\n- Submit to DocSearch program or run private crawler\n\n## Tips\n- Keep hierarchy ordered in `searchableAttributes`\n- Prefer sitemap-based discovery, add rateLimit if needed\n- Test search UX with keyboard/voice readers\n"
+    }
+  ]
+}
+

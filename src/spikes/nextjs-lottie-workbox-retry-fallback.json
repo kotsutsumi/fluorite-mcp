@@ -1,0 +1,17 @@
+{
+  "id": "nextjs-lottie-workbox-retry-fallback",
+  "name": "Next.js Lottie Workbox リトライ+フォールバック 最小",
+  "version": "1.0.0",
+  "stack": ["nextjs", "react", "lottie", "pwa"],
+  "tags": ["nextjs", "lottie", "workbox", "retry", "fallback", "pwa"],
+  "description": "WorkboxでJSONをSWRキャッシュ＋失敗時に数回リトライしてダメなら画像フォールバックする最小例。",
+  "params": [
+    { "name": "lottie_url", "default": "https://assets9.lottiefiles.com/packages/lf20_5ngs2ksb.json" }
+  ],
+  "files": [
+    { "path": "public/fallback.png", "template": "" },
+    { "path": "public/sw-wb-retry.js", "template": "importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.5.4/workbox-sw.js');\nif (self.workbox) {\n  const { registerRoute, setCatchHandler } = self.workbox.routing;\n  const { StaleWhileRevalidate } = self.workbox.strategies;\n  const match = new RegExp('^(' + {{'"'}}{{lottie_url}}{{'"'}}.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\$&') + ')');\n  registerRoute(async ({event, url}) => {\n    if (!match.test(url.href)) return false;\n    const swr = new StaleWhileRevalidate({ cacheName: 'lottie-json' });\n    for (let i=0; i<3; i++) {\n      try { return await swr.handle({ event, request: event.request }); }\n      catch (_) {}\n    }\n    throw new Error('retry-failed');\n  });\n  setCatchHandler(async ({event}) => {\n    if (event.request.url.endsWith('.json')) {\n      return caches.match('/fallback.png');\n    }\n    return Response.error();\n  });\n}\n" },
+    { "path": "app/sw-wb-retry-register/page.tsx", "template": "'use client';\nimport React, { useEffect } from 'react';\nexport default function Page(){\n  useEffect(()=>{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw-wb-retry.js'); } },[]);\n  return (<main style={{ fontFamily:'sans-serif', padding:24 }}><h1>Workbox SW (retry) Registered</h1></main>);\n}\n" }
+  ]
+}
+

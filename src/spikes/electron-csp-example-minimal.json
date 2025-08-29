@@ -1,0 +1,15 @@
+{
+  "id": "electron-csp-example-minimal",
+  "name": "Electron CSP/Preload/IPC 最小例",
+  "version": "1.0.0",
+  "stack": ["electron"],
+  "tags": ["electron", "csp", "preload", "ipc"],
+  "description": "CSPを設定し、preloadで安全にIPCを露出する最小例。",
+  "params": [{ "name": "app_name", "default": "electron-csp" }],
+  "files": [
+    { "path": "{{app_name}}/main.js", "template": "const { app, BrowserWindow, ipcMain, shell } = require('electron');\nconst path = require('path');\nfunction createWindow(){ const win = new BrowserWindow({ width: 800, height: 600, webPreferences: { preload: path.join(__dirname, 'preload.js'), contextIsolation: true, nodeIntegration: false, enableRemoteModule: false } }); win.loadFile('index.html'); }\nipcMain.handle('open-external', async (_e, url)=> { const safe = /^https?:\\/\\//i.test(url); if (!safe) throw new Error('invalid url'); await shell.openExternal(url); return true; });\napp.whenReady().then(createWindow);\n" },
+    { "path": "{{app_name}}/preload.js", "template": "const { contextBridge, ipcRenderer } = require('electron');\ncontextBridge.exposeInMainWorld('api', { openExternal: (url)=> ipcRenderer.invoke('open-external', url) });\n" },
+    { "path": "{{app_name}}/index.html", "template": "<!doctype html><html><head><meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;\"><meta charset=\"utf-8\"></head><body><h1>Electron CSP</h1><button id=btn>Open Example</button><script>document.getElementById('btn').onclick=()=> window.api.openExternal('https://example.com')</script></body></html>\n" }
+  ]
+}
+
