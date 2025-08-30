@@ -1,0 +1,41 @@
+{
+  "id": "strike-ory-init-basic-js",
+  "name": "ory init basic js",
+  "version": "0.1.0",
+  "stack": [
+    "ory",
+    "js"
+  ],
+  "tags": [
+    "init",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for ory init in js (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "ory-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/ory-init.js",
+      "template": "# Spike: ory init (js)\n// Auto-generated spike stub for ory (init)\nmodule.exports = function demo(){\n  console.log('use ory - init (basic)');\n};\n"
+    },
+    {
+      "path": "src/ory/client.ts",
+      "template": "export function createOry(){ return { project: process.env.ORY_PROJECT_ID }; }\n"
+    },
+    {
+      "path": "spikes/strike-ory-init-basic-js.js.txt",
+      "template": "# Spike: ory init (js)\n// Auto-generated spike stub for ory (init)\nmodule.exports = function demo(){\n  console.log('use ory - init (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-ory-init-basic-js.md",
+      "template": "# ory init (basic, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

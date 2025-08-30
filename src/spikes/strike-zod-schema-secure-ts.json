@@ -1,0 +1,41 @@
+{
+  "id": "strike-zod-schema-secure-ts",
+  "name": "zod schema secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "zod",
+    "ts"
+  ],
+  "tags": [
+    "schema",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for zod schema in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "zod-schema-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/zod-schema.ts",
+      "template": "# Spike: zod schema (ts)\n// Auto-generated spike stub for zod (schema)\nexport function demo() {\n  console.log('use zod - schema (secure)');\n}\n"
+    },
+    {
+      "path": "src/validation/schemas.ts",
+      "template": "import { z } from 'zod';\nexport const UserSchema = z.object({ id: z.number().int().positive(), email: z.string().email(), name: z.string().optional() });\nexport type User = z.infer<typeof UserSchema>;\n"
+    },
+    {
+      "path": "spikes/strike-zod-schema-secure-ts.ts.txt",
+      "template": "# Spike: zod schema (ts)\n// Auto-generated spike stub for zod (schema)\nexport function demo() {\n  console.log('use zod - schema (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-zod-schema-secure-ts.md",
+      "template": "# zod schema (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

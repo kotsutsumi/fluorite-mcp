@@ -1,0 +1,37 @@
+{
+  "id": "strike-expo-component-typed-ts",
+  "name": "expo component typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "expo",
+    "ts"
+  ],
+  "tags": [
+    "component",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for expo component in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "expo-component-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "App.tsx",
+      "template": "import React from 'react';\nimport { SafeAreaView, Text } from 'react-native';\nexport default function App(){ return (<SafeAreaView><Text>Hello Expo</Text></SafeAreaView>); }\n"
+    },
+    {
+      "path": "spikes/strike-expo-component-typed-ts.ts.txt",
+      "template": "# Spike: expo component (ts)\n// Auto-generated spike stub for expo (component)\nexport function demo() {\n  console.log('use expo - component (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-expo-component-typed-ts.md",
+      "template": "# expo component (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

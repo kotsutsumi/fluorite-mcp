@@ -1,0 +1,45 @@
+{
+  "id": "strike-datadog-init-testing-ts",
+  "name": "datadog init testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "datadog",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for datadog init in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "datadog-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/datadog-init.ts",
+      "template": "# Spike: datadog init (ts)\n// Auto-generated spike stub for datadog (init)\nexport function demo() {\n  console.log('use datadog - init (testing)');\n}\n"
+    },
+    {
+      "path": "src/apm/datadog.ts",
+      "template": "export function datadog(){ return { enabled: true }; }\n"
+    },
+    {
+      "path": "spikes/strike-datadog-init-testing-ts.ts.txt",
+      "template": "# Spike: datadog init (ts)\n// Auto-generated spike stub for datadog (init)\nexport function demo() {\n  console.log('use datadog - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-datadog-init-testing-ts.md",
+      "template": "# datadog init (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-datadog-init-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

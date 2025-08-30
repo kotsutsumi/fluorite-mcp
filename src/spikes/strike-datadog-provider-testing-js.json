@@ -1,0 +1,41 @@
+{
+  "id": "strike-datadog-provider-testing-js",
+  "name": "datadog provider testing js",
+  "version": "0.1.0",
+  "stack": [
+    "datadog",
+    "js"
+  ],
+  "tags": [
+    "provider",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for datadog provider in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "datadog-provider-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/datadog-provider.js",
+      "template": "# Spike: datadog provider (js)\n// Auto-generated spike stub for datadog (provider)\nmodule.exports = function demo(){\n  console.log('use datadog - provider (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-datadog-provider-testing-js.js.txt",
+      "template": "# Spike: datadog provider (js)\n// Auto-generated spike stub for datadog (provider)\nmodule.exports = function demo(){\n  console.log('use datadog - provider (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-datadog-provider-testing-js.md",
+      "template": "# datadog provider (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-datadog-provider-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

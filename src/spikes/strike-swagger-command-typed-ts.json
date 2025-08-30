@@ -1,0 +1,37 @@
+{
+  "id": "strike-swagger-command-typed-ts",
+  "name": "swagger command typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "swagger",
+    "ts"
+  ],
+  "tags": [
+    "command",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for swagger command in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "swagger-command-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/swagger-command.ts",
+      "template": "# Spike: swagger command (ts)\n// Auto-generated spike stub for swagger (command)\nexport function demo() {\n  console.log('use swagger - command (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-swagger-command-typed-ts.ts.txt",
+      "template": "# Spike: swagger command (ts)\n// Auto-generated spike stub for swagger (command)\nexport function demo() {\n  console.log('use swagger - command (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-swagger-command-typed-ts.md",
+      "template": "# swagger command (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

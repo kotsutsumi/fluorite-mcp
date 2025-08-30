@@ -1,0 +1,45 @@
+{
+  "id": "strike-playwright-config-basic-ts",
+  "name": "playwright config basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "playwright",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for playwright config in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "playwright-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/playwright-config.ts",
+      "template": "# Spike: playwright config (ts)\n// Auto-generated spike stub for playwright (config)\nexport function demo() {\n  console.log('use playwright - config (basic)');\n}\n"
+    },
+    {
+      "path": "playwright.config.ts",
+      "template": "import { defineConfig } from '@playwright/test';\nexport default defineConfig({ use: { headless: true } });\n"
+    },
+    {
+      "path": "tests/example.spec.ts",
+      "template": "import { test, expect } from '@playwright/test';\ntest('homepage', async ({ page }) => { await page.goto('https://example.com'); await expect(page).toHaveTitle(/Example/); });\n"
+    },
+    {
+      "path": "spikes/strike-playwright-config-basic-ts.ts.txt",
+      "template": "# Spike: playwright config (ts)\n// Auto-generated spike stub for playwright (config)\nexport function demo() {\n  console.log('use playwright - config (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-playwright-config-basic-ts.md",
+      "template": "# playwright config (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

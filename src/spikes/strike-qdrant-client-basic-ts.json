@@ -1,0 +1,41 @@
+{
+  "id": "strike-qdrant-client-basic-ts",
+  "name": "qdrant client basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "qdrant",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for qdrant client in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "qdrant-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/qdrant-client.ts",
+      "template": "# Spike: qdrant client (ts)\n// Auto-generated spike stub for qdrant (client)\nexport function demo() {\n  console.log('use qdrant - client (basic)');\n}\n"
+    },
+    {
+      "path": "src/vectors/qdrant.ts",
+      "template": "export function qdrant(){ return { url: process.env.QDRANT_URL || 'http://localhost:6333' }; }\n"
+    },
+    {
+      "path": "spikes/strike-qdrant-client-basic-ts.ts.txt",
+      "template": "# Spike: qdrant client (ts)\n// Auto-generated spike stub for qdrant (client)\nexport function demo() {\n  console.log('use qdrant - client (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-qdrant-client-basic-ts.md",
+      "template": "# qdrant client (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

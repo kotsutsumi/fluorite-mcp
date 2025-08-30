@@ -1,0 +1,41 @@
+{
+  "id": "strike-datadog-adapter-testing-ts",
+  "name": "datadog adapter testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "datadog",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for datadog adapter in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "datadog-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/datadog-adapter.ts",
+      "template": "# Spike: datadog adapter (ts)\n// Auto-generated spike stub for datadog (adapter)\nexport function demo() {\n  console.log('use datadog - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-datadog-adapter-testing-ts.ts.txt",
+      "template": "# Spike: datadog adapter (ts)\n// Auto-generated spike stub for datadog (adapter)\nexport function demo() {\n  console.log('use datadog - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-datadog-adapter-testing-ts.md",
+      "template": "# datadog adapter (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-datadog-adapter-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,37 @@
+{
+  "id": "strike-opentelemetry-config-basic-js",
+  "name": "opentelemetry config basic js",
+  "version": "0.1.0",
+  "stack": [
+    "opentelemetry",
+    "js"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for opentelemetry config in js (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "opentelemetry-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "otel/tracer.js",
+      "template": "const { NodeTracerProvider } = require('@opentelemetry/sdk-trace-node');\nconst { SimpleSpanProcessor, ConsoleSpanExporter } = require('@opentelemetry/sdk-trace-base');\nconst provider = new NodeTracerProvider();\nprovider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));\nprovider.register();\nmodule.exports = require('@opentelemetry/api').trace.getTracer('demo');\n"
+    },
+    {
+      "path": "spikes/strike-opentelemetry-config-basic-js.js.txt",
+      "template": "# Spike: opentelemetry config (js)\n// Auto-generated spike stub for opentelemetry (config)\nmodule.exports = function demo(){\n  console.log('use opentelemetry - config (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-opentelemetry-config-basic-js.md",
+      "template": "# opentelemetry config (basic, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

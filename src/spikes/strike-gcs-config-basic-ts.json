@@ -1,0 +1,41 @@
+{
+  "id": "strike-gcs-config-basic-ts",
+  "name": "gcs config basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "gcs",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for gcs config in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "gcs-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/gcs-config.ts",
+      "template": "# Spike: gcs config (ts)\n// Auto-generated spike stub for gcs (config)\nexport function demo() {\n  console.log('use gcs - config (basic)');\n}\n"
+    },
+    {
+      "path": "src/gcp/storage.ts",
+      "template": "export function gcs(){ return { bucket: process.env.GCS_BUCKET }; }\n"
+    },
+    {
+      "path": "spikes/strike-gcs-config-basic-ts.ts.txt",
+      "template": "# Spike: gcs config (ts)\n// Auto-generated spike stub for gcs (config)\nexport function demo() {\n  console.log('use gcs - config (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-gcs-config-basic-ts.md",
+      "template": "# gcs config (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

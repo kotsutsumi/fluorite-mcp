@@ -1,0 +1,41 @@
+{
+  "id": "strike-llamaindex-service-testing-ts",
+  "name": "llamaindex service testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "llamaindex",
+    "ts"
+  ],
+  "tags": [
+    "service",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for llamaindex service in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "llamaindex-service-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/llamaindex-service.ts",
+      "template": "# Spike: llamaindex service (ts)\n// Auto-generated spike stub for llamaindex (service)\nexport function demo() {\n  console.log('use llamaindex - service (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-llamaindex-service-testing-ts.ts.txt",
+      "template": "# Spike: llamaindex service (ts)\n// Auto-generated spike stub for llamaindex (service)\nexport function demo() {\n  console.log('use llamaindex - service (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-llamaindex-service-testing-ts.md",
+      "template": "# llamaindex service (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-llamaindex-service-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

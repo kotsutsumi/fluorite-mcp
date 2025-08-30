@@ -1,0 +1,41 @@
+{
+  "id": "strike-artillery-benchmark-testing-js",
+  "name": "artillery benchmark testing js",
+  "version": "0.1.0",
+  "stack": [
+    "artillery",
+    "js"
+  ],
+  "tags": [
+    "benchmark",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for artillery benchmark in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "artillery-benchmark-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "artillery/test.yml",
+      "template": "config:\n  target: 'https://example.com'\n  phases:\n    - duration: 10\n      arrivalRate: 1\nscenarios:\n  - flow:\n      - get:\n          url: /\n"
+    },
+    {
+      "path": "spikes/strike-artillery-benchmark-testing-js.js.txt",
+      "template": "# Spike: artillery benchmark (js)\n// Auto-generated spike stub for artillery (benchmark)\nmodule.exports = function demo(){\n  console.log('use artillery - benchmark (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-artillery-benchmark-testing-js.md",
+      "template": "# artillery benchmark (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-artillery-benchmark-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

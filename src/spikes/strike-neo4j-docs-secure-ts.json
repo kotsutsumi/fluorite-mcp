@@ -1,0 +1,37 @@
+{
+  "id": "strike-neo4j-docs-secure-ts",
+  "name": "neo4j docs secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "neo4j",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for neo4j docs in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "neo4j-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/neo4j-docs.ts",
+      "template": "# Spike: neo4j docs (ts)\n// Auto-generated spike stub for neo4j (docs)\nexport function demo() {\n  console.log('use neo4j - docs (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-neo4j-docs-secure-ts.ts.txt",
+      "template": "# Spike: neo4j docs (ts)\n// Auto-generated spike stub for neo4j (docs)\nexport function demo() {\n  console.log('use neo4j - docs (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-neo4j-docs-secure-ts.md",
+      "template": "# neo4j docs (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

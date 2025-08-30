@@ -1,0 +1,41 @@
+{
+  "id": "strike-langchain-config-testing-ts",
+  "name": "langchain config testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "langchain",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for langchain config in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "langchain-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/langchain-config.ts",
+      "template": "# Spike: langchain config (ts)\n// Auto-generated spike stub for langchain (config)\nexport function demo() {\n  console.log('use langchain - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-langchain-config-testing-ts.ts.txt",
+      "template": "# Spike: langchain config (ts)\n// Auto-generated spike stub for langchain (config)\nexport function demo() {\n  console.log('use langchain - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-langchain-config-testing-ts.md",
+      "template": "# langchain config (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-langchain-config-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

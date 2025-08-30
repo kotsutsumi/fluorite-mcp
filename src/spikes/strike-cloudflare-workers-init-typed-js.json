@@ -1,0 +1,41 @@
+{
+  "id": "strike-cloudflare-workers-init-typed-js",
+  "name": "cloudflare-workers init typed js",
+  "version": "0.1.0",
+  "stack": [
+    "cloudflare-workers",
+    "js"
+  ],
+  "tags": [
+    "init",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for cloudflare-workers init in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "cloudflare-workers-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/cloudflare-workers-init.js",
+      "template": "# Spike: cloudflare-workers init (js)\n// Auto-generated spike stub for cloudflare-workers (init)\nmodule.exports = function demo(){\n  console.log('use cloudflare-workers - init (typed)');\n};\n"
+    },
+    {
+      "path": "src/cloudflare/worker.ts",
+      "template": "export default { fetch(){ return new Response('ok'); } };\n"
+    },
+    {
+      "path": "spikes/strike-cloudflare-workers-init-typed-js.js.txt",
+      "template": "# Spike: cloudflare-workers init (js)\n// Auto-generated spike stub for cloudflare-workers (init)\nmodule.exports = function demo(){\n  console.log('use cloudflare-workers - init (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-cloudflare-workers-init-typed-js.md",
+      "template": "# cloudflare-workers init (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

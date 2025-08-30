@@ -1,0 +1,45 @@
+{
+  "id": "strike-cypress-config-typed-ts",
+  "name": "cypress config typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "cypress",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for cypress config in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "cypress-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/cypress-config.ts",
+      "template": "# Spike: cypress config (ts)\n// Auto-generated spike stub for cypress (config)\nexport function demo() {\n  console.log('use cypress - config (typed)');\n}\n"
+    },
+    {
+      "path": "cypress.config.ts",
+      "template": "import { defineConfig } from 'cypress';\nexport default defineConfig({ e2e: { baseUrl: 'http://localhost:3000' } });\n"
+    },
+    {
+      "path": "cypress/e2e/spec.cy.ts",
+      "template": "describe('home', () => { it('loads', () => { cy.visit('/'); cy.contains('html'); }); });\n"
+    },
+    {
+      "path": "spikes/strike-cypress-config-typed-ts.ts.txt",
+      "template": "# Spike: cypress config (ts)\n// Auto-generated spike stub for cypress (config)\nexport function demo() {\n  console.log('use cypress - config (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-cypress-config-typed-ts.md",
+      "template": "# cypress config (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

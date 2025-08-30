@@ -1,0 +1,37 @@
+{
+  "id": "strike-gcs-init-secure-ts",
+  "name": "gcs init secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "gcs",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for gcs init in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "gcs-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/gcs-init.ts",
+      "template": "# Spike: gcs init (ts)\n// Auto-generated spike stub for gcs (init)\nexport function demo() {\n  console.log('use gcs - init (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-gcs-init-secure-ts.ts.txt",
+      "template": "# Spike: gcs init (ts)\n// Auto-generated spike stub for gcs (init)\nexport function demo() {\n  console.log('use gcs - init (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-gcs-init-secure-ts.md",
+      "template": "# gcs init (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

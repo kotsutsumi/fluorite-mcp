@@ -1,0 +1,41 @@
+{
+  "id": "strike-expo-component-testing-ts",
+  "name": "expo component testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "expo",
+    "ts"
+  ],
+  "tags": [
+    "component",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for expo component in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "expo-component-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "App.tsx",
+      "template": "import React from 'react';\nimport { SafeAreaView, Text } from 'react-native';\nexport default function App(){ return (<SafeAreaView><Text>Hello Expo</Text></SafeAreaView>); }\n"
+    },
+    {
+      "path": "spikes/strike-expo-component-testing-ts.ts.txt",
+      "template": "# Spike: expo component (ts)\n// Auto-generated spike stub for expo (component)\nexport function demo() {\n  console.log('use expo - component (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-expo-component-testing-ts.md",
+      "template": "# expo component (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-expo-component-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

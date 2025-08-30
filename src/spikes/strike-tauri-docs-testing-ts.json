@@ -1,0 +1,41 @@
+{
+  "id": "strike-tauri-docs-testing-ts",
+  "name": "tauri docs testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "tauri",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for tauri docs in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "tauri-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/tauri-docs.ts",
+      "template": "# Spike: tauri docs (ts)\n// Auto-generated spike stub for tauri (docs)\nexport function demo() {\n  console.log('use tauri - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-tauri-docs-testing-ts.ts.txt",
+      "template": "# Spike: tauri docs (ts)\n// Auto-generated spike stub for tauri (docs)\nexport function demo() {\n  console.log('use tauri - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-tauri-docs-testing-ts.md",
+      "template": "# tauri docs (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-tauri-docs-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

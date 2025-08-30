@@ -1,0 +1,37 @@
+{
+  "id": "strike-tauri-plugin-typed-js",
+  "name": "tauri plugin typed js",
+  "version": "0.1.0",
+  "stack": [
+    "tauri",
+    "js"
+  ],
+  "tags": [
+    "plugin",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for tauri plugin in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "tauri-plugin-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/tauri-plugin.js",
+      "template": "# Spike: tauri plugin (js)\n// Auto-generated spike stub for tauri (plugin)\nmodule.exports = function demo(){\n  console.log('use tauri - plugin (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-tauri-plugin-typed-js.js.txt",
+      "template": "# Spike: tauri plugin (js)\n// Auto-generated spike stub for tauri (plugin)\nmodule.exports = function demo(){\n  console.log('use tauri - plugin (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-tauri-plugin-typed-js.md",
+      "template": "# tauri plugin (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

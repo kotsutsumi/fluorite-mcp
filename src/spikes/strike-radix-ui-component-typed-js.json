@@ -1,0 +1,41 @@
+{
+  "id": "strike-radix-ui-component-typed-js",
+  "name": "radix-ui component typed js",
+  "version": "0.1.0",
+  "stack": [
+    "radix-ui",
+    "js"
+  ],
+  "tags": [
+    "component",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for radix-ui component in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "radix-ui-component-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/radix-ui-component.js",
+      "template": "# Spike: radix-ui component (js)\n// Auto-generated spike stub for radix-ui (component)\nmodule.exports = function demo(){\n  console.log('use radix-ui - component (typed)');\n};\n"
+    },
+    {
+      "path": "src/components/RadixDialog.tsx",
+      "template": "import * as Dialog from '@radix-ui/react-dialog';\nexport function RadixDialog(){ return (<Dialog.Root><Dialog.Trigger>Open</Dialog.Trigger><Dialog.Portal><Dialog.Overlay /><Dialog.Content><Dialog.Title>Title</Dialog.Title><Dialog.Close>Close</Dialog.Close></Dialog.Content></Dialog.Portal></Dialog.Root>); }\n"
+    },
+    {
+      "path": "spikes/strike-radix-ui-component-typed-js.js.txt",
+      "template": "# Spike: radix-ui component (js)\n// Auto-generated spike stub for radix-ui (component)\nmodule.exports = function demo(){\n  console.log('use radix-ui - component (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-radix-ui-component-typed-js.md",
+      "template": "# radix-ui component (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

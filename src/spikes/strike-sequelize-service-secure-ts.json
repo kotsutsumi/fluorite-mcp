@@ -1,0 +1,41 @@
+{
+  "id": "strike-sequelize-service-secure-ts",
+  "name": "sequelize service secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "sequelize",
+    "ts"
+  ],
+  "tags": [
+    "service",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for sequelize service in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sequelize-service-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/sequelize-service.ts",
+      "template": "# Spike: sequelize service (ts)\n// Auto-generated spike stub for sequelize (service)\nexport function demo() {\n  console.log('use sequelize - service (secure)');\n}\n"
+    },
+    {
+      "path": "src/sequelize/index.ts",
+      "template": "import { Sequelize, DataTypes } from 'sequelize';\nexport const sequelize = new Sequelize(process.env.DATABASE_URL || 'sqlite::memory:');\nexport const User = sequelize.define('User', { email: { type: DataTypes.STRING, unique: true }, name: DataTypes.STRING });\n"
+    },
+    {
+      "path": "spikes/strike-sequelize-service-secure-ts.ts.txt",
+      "template": "# Spike: sequelize service (ts)\n// Auto-generated spike stub for sequelize (service)\nexport function demo() {\n  console.log('use sequelize - service (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sequelize-service-secure-ts.md",
+      "template": "# sequelize service (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,37 @@
+{
+  "id": "strike-mysql-example-secure-ts",
+  "name": "mysql example secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "mysql",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for mysql example in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "mysql-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/mysql-example.ts",
+      "template": "# Spike: mysql example (ts)\n// Auto-generated spike stub for mysql (example)\nexport function demo() {\n  console.log('use mysql - example (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-mysql-example-secure-ts.ts.txt",
+      "template": "# Spike: mysql example (ts)\n// Auto-generated spike stub for mysql (example)\nexport function demo() {\n  console.log('use mysql - example (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-mysql-example-secure-ts.md",
+      "template": "# mysql example (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,45 @@
+{
+  "id": "strike-datadog-config-testing-ts",
+  "name": "datadog config testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "datadog",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for datadog config in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "datadog-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/datadog-config.ts",
+      "template": "# Spike: datadog config (ts)\n// Auto-generated spike stub for datadog (config)\nexport function demo() {\n  console.log('use datadog - config (testing)');\n}\n"
+    },
+    {
+      "path": "src/apm/datadog.ts",
+      "template": "export function datadog(){ return { enabled: true }; }\n"
+    },
+    {
+      "path": "spikes/strike-datadog-config-testing-ts.ts.txt",
+      "template": "# Spike: datadog config (ts)\n// Auto-generated spike stub for datadog (config)\nexport function demo() {\n  console.log('use datadog - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-datadog-config-testing-ts.md",
+      "template": "# datadog config (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-datadog-config-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,37 @@
+{
+  "id": "strike-sentry-docs-typed-ts",
+  "name": "sentry docs typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "sentry",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for sentry docs in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sentry-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/sentry-docs.ts",
+      "template": "# Spike: sentry docs (ts)\n// Auto-generated spike stub for sentry (docs)\nexport function demo() {\n  console.log('use sentry - docs (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sentry-docs-typed-ts.ts.txt",
+      "template": "# Spike: sentry docs (ts)\n// Auto-generated spike stub for sentry (docs)\nexport function demo() {\n  console.log('use sentry - docs (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sentry-docs-typed-ts.md",
+      "template": "# sentry docs (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

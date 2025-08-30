@@ -1,0 +1,41 @@
+{
+  "id": "strike-playwright-docs-testing-js",
+  "name": "playwright docs testing js",
+  "version": "0.1.0",
+  "stack": [
+    "playwright",
+    "js"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for playwright docs in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "playwright-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/playwright-docs.js",
+      "template": "# Spike: playwright docs (js)\n// Auto-generated spike stub for playwright (docs)\nmodule.exports = function demo(){\n  console.log('use playwright - docs (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-playwright-docs-testing-js.js.txt",
+      "template": "# Spike: playwright docs (js)\n// Auto-generated spike stub for playwright (docs)\nmodule.exports = function demo(){\n  console.log('use playwright - docs (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-playwright-docs-testing-js.md",
+      "template": "# playwright docs (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-playwright-docs-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

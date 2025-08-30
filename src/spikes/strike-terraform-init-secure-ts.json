@@ -1,0 +1,41 @@
+{
+  "id": "strike-terraform-init-secure-ts",
+  "name": "terraform init secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "terraform",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for terraform init in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "terraform-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/terraform-init.ts",
+      "template": "# Spike: terraform init (ts)\n// Auto-generated spike stub for terraform (init)\nexport function demo() {\n  console.log('use terraform - init (secure)');\n}\n"
+    },
+    {
+      "path": "main.tf",
+      "template": "terraform { required_version = \">= 1.5.0\" }\n"
+    },
+    {
+      "path": "spikes/strike-terraform-init-secure-ts.ts.txt",
+      "template": "# Spike: terraform init (ts)\n// Auto-generated spike stub for terraform (init)\nexport function demo() {\n  console.log('use terraform - init (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-terraform-init-secure-ts.md",
+      "template": "# terraform init (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

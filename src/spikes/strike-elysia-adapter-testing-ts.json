@@ -1,0 +1,41 @@
+{
+  "id": "strike-elysia-adapter-testing-ts",
+  "name": "elysia adapter testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "elysia",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for elysia adapter in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "elysia-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/elysia-adapter.ts",
+      "template": "# Spike: elysia adapter (ts)\n// Auto-generated spike stub for elysia (adapter)\nexport function demo() {\n  console.log('use elysia - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-elysia-adapter-testing-ts.ts.txt",
+      "template": "# Spike: elysia adapter (ts)\n// Auto-generated spike stub for elysia (adapter)\nexport function demo() {\n  console.log('use elysia - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-elysia-adapter-testing-ts.md",
+      "template": "# elysia adapter (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-elysia-adapter-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-jest-docs-testing-js",
+  "name": "jest docs testing js",
+  "version": "0.1.0",
+  "stack": [
+    "jest",
+    "js"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for jest docs in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "jest-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/jest-docs.js",
+      "template": "# Spike: jest docs (js)\n// Auto-generated spike stub for jest (docs)\nmodule.exports = function demo(){\n  console.log('use jest - docs (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-jest-docs-testing-js.js.txt",
+      "template": "# Spike: jest docs (js)\n// Auto-generated spike stub for jest (docs)\nmodule.exports = function demo(){\n  console.log('use jest - docs (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-jest-docs-testing-js.md",
+      "template": "# jest docs (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-jest-docs-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

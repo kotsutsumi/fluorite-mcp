@@ -1,0 +1,41 @@
+{
+  "id": "strike-expo-adapter-testing-js",
+  "name": "expo adapter testing js",
+  "version": "0.1.0",
+  "stack": [
+    "expo",
+    "js"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for expo adapter in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "expo-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/expo-adapter.js",
+      "template": "# Spike: expo adapter (js)\n// Auto-generated spike stub for expo (adapter)\nmodule.exports = function demo(){\n  console.log('use expo - adapter (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-expo-adapter-testing-js.js.txt",
+      "template": "# Spike: expo adapter (js)\n// Auto-generated spike stub for expo (adapter)\nmodule.exports = function demo(){\n  console.log('use expo - adapter (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-expo-adapter-testing-js.md",
+      "template": "# expo adapter (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-expo-adapter-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

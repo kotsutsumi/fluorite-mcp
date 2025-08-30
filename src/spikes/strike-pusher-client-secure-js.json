@@ -1,0 +1,41 @@
+{
+  "id": "strike-pusher-client-secure-js",
+  "name": "pusher client secure js",
+  "version": "0.1.0",
+  "stack": [
+    "pusher",
+    "js"
+  ],
+  "tags": [
+    "client",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for pusher client in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "pusher-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/pusher-client.js",
+      "template": "# Spike: pusher client (js)\n// Auto-generated spike stub for pusher (client)\nmodule.exports = function demo(){\n  console.log('use pusher - client (secure)');\n};\n"
+    },
+    {
+      "path": "src/realtime/pusher.ts",
+      "template": "export function pusher(){ return { appId: process.env.PUSHER_APP_ID }; }\n"
+    },
+    {
+      "path": "spikes/strike-pusher-client-secure-js.js.txt",
+      "template": "# Spike: pusher client (js)\n// Auto-generated spike stub for pusher (client)\nmodule.exports = function demo(){\n  console.log('use pusher - client (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-pusher-client-secure-js.md",
+      "template": "# pusher client (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

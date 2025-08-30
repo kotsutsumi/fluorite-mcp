@@ -1,0 +1,41 @@
+{
+  "id": "strike-capacitor-docs-testing-js",
+  "name": "capacitor docs testing js",
+  "version": "0.1.0",
+  "stack": [
+    "capacitor",
+    "js"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for capacitor docs in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "capacitor-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/capacitor-docs.js",
+      "template": "# Spike: capacitor docs (js)\n// Auto-generated spike stub for capacitor (docs)\nmodule.exports = function demo(){\n  console.log('use capacitor - docs (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-capacitor-docs-testing-js.js.txt",
+      "template": "# Spike: capacitor docs (js)\n// Auto-generated spike stub for capacitor (docs)\nmodule.exports = function demo(){\n  console.log('use capacitor - docs (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-capacitor-docs-testing-js.md",
+      "template": "# capacitor docs (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-capacitor-docs-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

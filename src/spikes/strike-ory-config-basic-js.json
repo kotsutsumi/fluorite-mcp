@@ -1,0 +1,41 @@
+{
+  "id": "strike-ory-config-basic-js",
+  "name": "ory config basic js",
+  "version": "0.1.0",
+  "stack": [
+    "ory",
+    "js"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for ory config in js (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "ory-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/ory-config.js",
+      "template": "# Spike: ory config (js)\n// Auto-generated spike stub for ory (config)\nmodule.exports = function demo(){\n  console.log('use ory - config (basic)');\n};\n"
+    },
+    {
+      "path": "src/ory/client.ts",
+      "template": "export function createOry(){ return { project: process.env.ORY_PROJECT_ID }; }\n"
+    },
+    {
+      "path": "spikes/strike-ory-config-basic-js.js.txt",
+      "template": "# Spike: ory config (js)\n// Auto-generated spike stub for ory (config)\nmodule.exports = function demo(){\n  console.log('use ory - config (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-ory-config-basic-js.md",
+      "template": "# ory config (basic, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

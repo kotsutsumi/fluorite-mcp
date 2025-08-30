@@ -1,0 +1,37 @@
+{
+  "id": "strike-minio-init-secure-ts",
+  "name": "minio init secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "minio",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for minio init in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "minio-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/minio-init.ts",
+      "template": "# Spike: minio init (ts)\n// Auto-generated spike stub for minio (init)\nexport function demo() {\n  console.log('use minio - init (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-minio-init-secure-ts.ts.txt",
+      "template": "# Spike: minio init (ts)\n// Auto-generated spike stub for minio (init)\nexport function demo() {\n  console.log('use minio - init (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-minio-init-secure-ts.md",
+      "template": "# minio init (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

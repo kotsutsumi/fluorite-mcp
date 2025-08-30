@@ -1,0 +1,41 @@
+{
+  "id": "strike-sequelize-service-typed-ts",
+  "name": "sequelize service typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "sequelize",
+    "ts"
+  ],
+  "tags": [
+    "service",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for sequelize service in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sequelize-service-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/sequelize-service.ts",
+      "template": "# Spike: sequelize service (ts)\n// Auto-generated spike stub for sequelize (service)\nexport function demo() {\n  console.log('use sequelize - service (typed)');\n}\n"
+    },
+    {
+      "path": "src/sequelize/index.ts",
+      "template": "import { Sequelize, DataTypes } from 'sequelize';\nexport const sequelize = new Sequelize(process.env.DATABASE_URL || 'sqlite::memory:');\nexport const User = sequelize.define('User', { email: { type: DataTypes.STRING, unique: true }, name: DataTypes.STRING });\n"
+    },
+    {
+      "path": "spikes/strike-sequelize-service-typed-ts.ts.txt",
+      "template": "# Spike: sequelize service (ts)\n// Auto-generated spike stub for sequelize (service)\nexport function demo() {\n  console.log('use sequelize - service (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sequelize-service-typed-ts.md",
+      "template": "# sequelize service (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

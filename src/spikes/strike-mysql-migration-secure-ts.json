@@ -1,0 +1,37 @@
+{
+  "id": "strike-mysql-migration-secure-ts",
+  "name": "mysql migration secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "mysql",
+    "ts"
+  ],
+  "tags": [
+    "migration",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for mysql migration in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "mysql-migration-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/mysql-migration.ts",
+      "template": "# Spike: mysql migration (ts)\n// Auto-generated spike stub for mysql (migration)\nexport function demo() {\n  console.log('use mysql - migration (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-mysql-migration-secure-ts.ts.txt",
+      "template": "# Spike: mysql migration (ts)\n// Auto-generated spike stub for mysql (migration)\nexport function demo() {\n  console.log('use mysql - migration (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-mysql-migration-secure-ts.md",
+      "template": "# mysql migration (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

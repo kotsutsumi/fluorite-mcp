@@ -1,0 +1,41 @@
+{
+  "id": "strike-milvus-client-basic-ts",
+  "name": "milvus client basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "milvus",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for milvus client in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "milvus-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/milvus-client.ts",
+      "template": "# Spike: milvus client (ts)\n// Auto-generated spike stub for milvus (client)\nexport function demo() {\n  console.log('use milvus - client (basic)');\n}\n"
+    },
+    {
+      "path": "src/vectors/milvus.ts",
+      "template": "export function milvus(){ return { address: process.env.MILVUS_ADDR || 'localhost:19530' }; }\n"
+    },
+    {
+      "path": "spikes/strike-milvus-client-basic-ts.ts.txt",
+      "template": "# Spike: milvus client (ts)\n// Auto-generated spike stub for milvus (client)\nexport function demo() {\n  console.log('use milvus - client (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-milvus-client-basic-ts.md",
+      "template": "# milvus client (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

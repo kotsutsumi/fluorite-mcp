@@ -1,0 +1,41 @@
+{
+  "id": "strike-mistral-route-testing-ts",
+  "name": "mistral route testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "mistral",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for mistral route in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "mistral-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/mistral-route.ts",
+      "template": "# Spike: mistral route (ts)\n// Auto-generated spike stub for mistral (route)\nexport function demo() {\n  console.log('use mistral - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-mistral-route-testing-ts.ts.txt",
+      "template": "# Spike: mistral route (ts)\n// Auto-generated spike stub for mistral (route)\nexport function demo() {\n  console.log('use mistral - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-mistral-route-testing-ts.md",
+      "template": "# mistral route (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-mistral-route-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

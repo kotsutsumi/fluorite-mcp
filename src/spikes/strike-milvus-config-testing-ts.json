@@ -1,0 +1,45 @@
+{
+  "id": "strike-milvus-config-testing-ts",
+  "name": "milvus config testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "milvus",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for milvus config in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "milvus-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/milvus-config.ts",
+      "template": "# Spike: milvus config (ts)\n// Auto-generated spike stub for milvus (config)\nexport function demo() {\n  console.log('use milvus - config (testing)');\n}\n"
+    },
+    {
+      "path": "src/vectors/milvus.ts",
+      "template": "export function milvus(){ return { address: process.env.MILVUS_ADDR || 'localhost:19530' }; }\n"
+    },
+    {
+      "path": "spikes/strike-milvus-config-testing-ts.ts.txt",
+      "template": "# Spike: milvus config (ts)\n// Auto-generated spike stub for milvus (config)\nexport function demo() {\n  console.log('use milvus - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-milvus-config-testing-ts.md",
+      "template": "# milvus config (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-milvus-config-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

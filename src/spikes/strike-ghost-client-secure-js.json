@@ -1,0 +1,41 @@
+{
+  "id": "strike-ghost-client-secure-js",
+  "name": "ghost client secure js",
+  "version": "0.1.0",
+  "stack": [
+    "ghost",
+    "js"
+  ],
+  "tags": [
+    "client",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for ghost client in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "ghost-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/ghost-client.js",
+      "template": "# Spike: ghost client (js)\n// Auto-generated spike stub for ghost (client)\nmodule.exports = function demo(){\n  console.log('use ghost - client (secure)');\n};\n"
+    },
+    {
+      "path": "src/cms/ghost.ts",
+      "template": "export function ghost(){ return { url: process.env.GHOST_URL }; }\n"
+    },
+    {
+      "path": "spikes/strike-ghost-client-secure-js.js.txt",
+      "template": "# Spike: ghost client (js)\n// Auto-generated spike stub for ghost (client)\nmodule.exports = function demo(){\n  console.log('use ghost - client (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-ghost-client-secure-js.md",
+      "template": "# ghost client (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

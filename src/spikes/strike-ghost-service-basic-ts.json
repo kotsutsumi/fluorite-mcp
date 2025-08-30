@@ -1,0 +1,41 @@
+{
+  "id": "strike-ghost-service-basic-ts",
+  "name": "ghost service basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "ghost",
+    "ts"
+  ],
+  "tags": [
+    "service",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for ghost service in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "ghost-service-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/ghost-service.ts",
+      "template": "# Spike: ghost service (ts)\n// Auto-generated spike stub for ghost (service)\nexport function demo() {\n  console.log('use ghost - service (basic)');\n}\n"
+    },
+    {
+      "path": "src/cms/ghost.ts",
+      "template": "export function ghost(){ return { url: process.env.GHOST_URL }; }\n"
+    },
+    {
+      "path": "spikes/strike-ghost-service-basic-ts.ts.txt",
+      "template": "# Spike: ghost service (ts)\n// Auto-generated spike stub for ghost (service)\nexport function demo() {\n  console.log('use ghost - service (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-ghost-service-basic-ts.md",
+      "template": "# ghost service (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,37 @@
+{
+  "id": "strike-postgres-seed-basic-ts",
+  "name": "postgres seed basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "postgres",
+    "ts"
+  ],
+  "tags": [
+    "seed",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for postgres seed in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "postgres-seed-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/postgres-seed.ts",
+      "template": "# Spike: postgres seed (ts)\n// Auto-generated spike stub for postgres (seed)\nexport function demo() {\n  console.log('use postgres - seed (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-postgres-seed-basic-ts.ts.txt",
+      "template": "# Spike: postgres seed (ts)\n// Auto-generated spike stub for postgres (seed)\nexport function demo() {\n  console.log('use postgres - seed (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-postgres-seed-basic-ts.md",
+      "template": "# postgres seed (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

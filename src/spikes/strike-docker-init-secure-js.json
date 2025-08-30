@@ -1,0 +1,45 @@
+{
+  "id": "strike-docker-init-secure-js",
+  "name": "docker init secure js",
+  "version": "0.1.0",
+  "stack": [
+    "docker",
+    "js"
+  ],
+  "tags": [
+    "init",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for docker init in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "docker-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/docker-init.js",
+      "template": "# Spike: docker init (js)\n// Auto-generated spike stub for docker (init)\nmodule.exports = function demo(){\n  console.log('use docker - init (secure)');\n};\n"
+    },
+    {
+      "path": "Dockerfile",
+      "template": "FROM node:20-alpine\nWORKDIR /app\nCOPY package*.json ./\nRUN npm ci\nCOPY . .\nCMD [\"npm\", \"start\"]\n"
+    },
+    {
+      "path": "docker-compose.yml",
+      "template": "version: '3.9'\nservices:\n  app:\n    build: .\n    ports:\n      - '3000:3000'\n    environment:\n      - NODE_ENV=production\n"
+    },
+    {
+      "path": "spikes/strike-docker-init-secure-js.js.txt",
+      "template": "# Spike: docker init (js)\n// Auto-generated spike stub for docker (init)\nmodule.exports = function demo(){\n  console.log('use docker - init (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-docker-init-secure-js.md",
+      "template": "# docker init (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-github-actions-config-basic-js",
+  "name": "github-actions config basic js",
+  "version": "0.1.0",
+  "stack": [
+    "github-actions",
+    "js"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for github-actions config in js (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "github-actions-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/github-actions-config.js",
+      "template": "# Spike: github-actions config (js)\n// Auto-generated spike stub for github-actions (config)\nmodule.exports = function demo(){\n  console.log('use github-actions - config (basic)');\n};\n"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "template": "name: CI\non: [push, pull_request]\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: '20' }\n      - run: npm ci\n      - run: npm test\n"
+    },
+    {
+      "path": "spikes/strike-github-actions-config-basic-js.js.txt",
+      "template": "# Spike: github-actions config (js)\n// Auto-generated spike stub for github-actions (config)\nmodule.exports = function demo(){\n  console.log('use github-actions - config (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-github-actions-config-basic-js.md",
+      "template": "# github-actions config (basic, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

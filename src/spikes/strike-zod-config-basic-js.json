@@ -1,0 +1,41 @@
+{
+  "id": "strike-zod-config-basic-js",
+  "name": "zod config basic js",
+  "version": "0.1.0",
+  "stack": [
+    "zod",
+    "js"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for zod config in js (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "zod-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/zod-config.js",
+      "template": "# Spike: zod config (js)\n// Auto-generated spike stub for zod (config)\nmodule.exports = function demo(){\n  console.log('use zod - config (basic)');\n};\n"
+    },
+    {
+      "path": "src/validation/schemas.ts",
+      "template": "import { z } from 'zod';\nexport const UserSchema = z.object({ id: z.number().int().positive(), email: z.string().email(), name: z.string().optional() });\nexport type User = z.infer<typeof UserSchema>;\n"
+    },
+    {
+      "path": "spikes/strike-zod-config-basic-js.js.txt",
+      "template": "# Spike: zod config (js)\n// Auto-generated spike stub for zod (config)\nmodule.exports = function demo(){\n  console.log('use zod - config (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-zod-config-basic-js.md",
+      "template": "# zod config (basic, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

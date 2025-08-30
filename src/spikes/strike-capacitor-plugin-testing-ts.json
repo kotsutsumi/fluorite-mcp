@@ -1,0 +1,41 @@
+{
+  "id": "strike-capacitor-plugin-testing-ts",
+  "name": "capacitor plugin testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "capacitor",
+    "ts"
+  ],
+  "tags": [
+    "plugin",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for capacitor plugin in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "capacitor-plugin-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/capacitor-plugin.ts",
+      "template": "# Spike: capacitor plugin (ts)\n// Auto-generated spike stub for capacitor (plugin)\nexport function demo() {\n  console.log('use capacitor - plugin (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-capacitor-plugin-testing-ts.ts.txt",
+      "template": "# Spike: capacitor plugin (ts)\n// Auto-generated spike stub for capacitor (plugin)\nexport function demo() {\n  console.log('use capacitor - plugin (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-capacitor-plugin-testing-ts.md",
+      "template": "# capacitor plugin (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-capacitor-plugin-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

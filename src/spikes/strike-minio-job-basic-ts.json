@@ -1,0 +1,37 @@
+{
+  "id": "strike-minio-job-basic-ts",
+  "name": "minio job basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "minio",
+    "ts"
+  ],
+  "tags": [
+    "job",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for minio job in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "minio-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/minio-job.ts",
+      "template": "# Spike: minio job (ts)\n// Auto-generated spike stub for minio (job)\nexport function demo() {\n  console.log('use minio - job (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-minio-job-basic-ts.ts.txt",
+      "template": "# Spike: minio job (ts)\n// Auto-generated spike stub for minio (job)\nexport function demo() {\n  console.log('use minio - job (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-minio-job-basic-ts.md",
+      "template": "# minio job (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

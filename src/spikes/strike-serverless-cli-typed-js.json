@@ -1,0 +1,37 @@
+{
+  "id": "strike-serverless-cli-typed-js",
+  "name": "serverless cli typed js",
+  "version": "0.1.0",
+  "stack": [
+    "serverless",
+    "js"
+  ],
+  "tags": [
+    "cli",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for serverless cli in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "serverless-cli-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/serverless-cli.js",
+      "template": "# Spike: serverless cli (js)\n// Auto-generated spike stub for serverless (cli)\nmodule.exports = function demo(){\n  console.log('use serverless - cli (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-serverless-cli-typed-js.js.txt",
+      "template": "# Spike: serverless cli (js)\n// Auto-generated spike stub for serverless (cli)\nmodule.exports = function demo(){\n  console.log('use serverless - cli (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-serverless-cli-typed-js.md",
+      "template": "# serverless cli (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

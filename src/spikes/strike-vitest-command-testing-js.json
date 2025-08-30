@@ -1,0 +1,41 @@
+{
+  "id": "strike-vitest-command-testing-js",
+  "name": "vitest command testing js",
+  "version": "0.1.0",
+  "stack": [
+    "vitest",
+    "js"
+  ],
+  "tags": [
+    "command",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for vitest command in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "vitest-command-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/vitest-command.js",
+      "template": "# Spike: vitest command (js)\n// Auto-generated spike stub for vitest (command)\nmodule.exports = function demo(){\n  console.log('use vitest - command (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-vitest-command-testing-js.js.txt",
+      "template": "# Spike: vitest command (js)\n// Auto-generated spike stub for vitest (command)\nmodule.exports = function demo(){\n  console.log('use vitest - command (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-vitest-command-testing-js.md",
+      "template": "# vitest command (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-vitest-command-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

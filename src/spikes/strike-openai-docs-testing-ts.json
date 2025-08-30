@@ -1,0 +1,41 @@
+{
+  "id": "strike-openai-docs-testing-ts",
+  "name": "openai docs testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "openai",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for openai docs in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "openai-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/openai-docs.ts",
+      "template": "# Spike: openai docs (ts)\n// Auto-generated spike stub for openai (docs)\nexport function demo() {\n  console.log('use openai - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-openai-docs-testing-ts.ts.txt",
+      "template": "# Spike: openai docs (ts)\n// Auto-generated spike stub for openai (docs)\nexport function demo() {\n  console.log('use openai - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-openai-docs-testing-ts.md",
+      "template": "# openai docs (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-openai-docs-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

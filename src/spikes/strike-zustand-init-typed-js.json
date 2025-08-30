@@ -1,0 +1,41 @@
+{
+  "id": "strike-zustand-init-typed-js",
+  "name": "zustand init typed js",
+  "version": "0.1.0",
+  "stack": [
+    "zustand",
+    "js"
+  ],
+  "tags": [
+    "init",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for zustand init in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "zustand-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/zustand-init.js",
+      "template": "# Spike: zustand init (js)\n// Auto-generated spike stub for zustand (init)\nmodule.exports = function demo(){\n  console.log('use zustand - init (typed)');\n};\n"
+    },
+    {
+      "path": "src/stores/useCounter.ts",
+      "template": "import { create } from 'zustand';\nexport const useCounter = create<{ count:number; inc:()=>void; }>((set)=>({ count:0, inc:()=> set((s)=> ({ count: s.count+1 })) }));\n"
+    },
+    {
+      "path": "spikes/strike-zustand-init-typed-js.js.txt",
+      "template": "# Spike: zustand init (js)\n// Auto-generated spike stub for zustand (init)\nmodule.exports = function demo(){\n  console.log('use zustand - init (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-zustand-init-typed-js.md",
+      "template": "# zustand init (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

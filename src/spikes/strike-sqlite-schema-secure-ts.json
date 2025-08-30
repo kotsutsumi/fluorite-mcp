@@ -1,0 +1,37 @@
+{
+  "id": "strike-sqlite-schema-secure-ts",
+  "name": "sqlite schema secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "sqlite",
+    "ts"
+  ],
+  "tags": [
+    "schema",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for sqlite schema in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sqlite-schema-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/sqlite-schema.ts",
+      "template": "# Spike: sqlite schema (ts)\n// Auto-generated spike stub for sqlite (schema)\nexport function demo() {\n  console.log('use sqlite - schema (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sqlite-schema-secure-ts.ts.txt",
+      "template": "# Spike: sqlite schema (ts)\n// Auto-generated spike stub for sqlite (schema)\nexport function demo() {\n  console.log('use sqlite - schema (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sqlite-schema-secure-ts.md",
+      "template": "# sqlite schema (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-pinecone-route-testing-ts",
+  "name": "pinecone route testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "pinecone",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for pinecone route in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "pinecone-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/pinecone-route.ts",
+      "template": "# Spike: pinecone route (ts)\n// Auto-generated spike stub for pinecone (route)\nexport function demo() {\n  console.log('use pinecone - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pinecone-route-testing-ts.ts.txt",
+      "template": "# Spike: pinecone route (ts)\n// Auto-generated spike stub for pinecone (route)\nexport function demo() {\n  console.log('use pinecone - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pinecone-route-testing-ts.md",
+      "template": "# pinecone route (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-pinecone-route-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

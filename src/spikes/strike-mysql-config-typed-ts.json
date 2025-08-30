@@ -1,0 +1,41 @@
+{
+  "id": "strike-mysql-config-typed-ts",
+  "name": "mysql config typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "mysql",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for mysql config in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "mysql-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/mysql-config.ts",
+      "template": "# Spike: mysql config (ts)\n// Auto-generated spike stub for mysql (config)\nexport function demo() {\n  console.log('use mysql - config (typed)');\n}\n"
+    },
+    {
+      "path": "src/mysql/client.ts",
+      "template": "import mysql from 'mysql2/promise';\nexport const mysqlPool = mysql.createPool({ uri: process.env.DATABASE_URL || 'mysql://root:password@localhost:3306/app' });\n"
+    },
+    {
+      "path": "spikes/strike-mysql-config-typed-ts.ts.txt",
+      "template": "# Spike: mysql config (ts)\n// Auto-generated spike stub for mysql (config)\nexport function demo() {\n  console.log('use mysql - config (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-mysql-config-typed-ts.md",
+      "template": "# mysql config (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

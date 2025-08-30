@@ -1,0 +1,41 @@
+{
+  "id": "strike-cohere-config-testing-ts",
+  "name": "cohere config testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "cohere",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for cohere config in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "cohere-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/cohere-config.ts",
+      "template": "# Spike: cohere config (ts)\n// Auto-generated spike stub for cohere (config)\nexport function demo() {\n  console.log('use cohere - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-cohere-config-testing-ts.ts.txt",
+      "template": "# Spike: cohere config (ts)\n// Auto-generated spike stub for cohere (config)\nexport function demo() {\n  console.log('use cohere - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-cohere-config-testing-ts.md",
+      "template": "# cohere config (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-cohere-config-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

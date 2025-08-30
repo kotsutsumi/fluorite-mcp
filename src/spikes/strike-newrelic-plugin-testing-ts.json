@@ -1,0 +1,41 @@
+{
+  "id": "strike-newrelic-plugin-testing-ts",
+  "name": "newrelic plugin testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "newrelic",
+    "ts"
+  ],
+  "tags": [
+    "plugin",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for newrelic plugin in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "newrelic-plugin-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/newrelic-plugin.ts",
+      "template": "# Spike: newrelic plugin (ts)\n// Auto-generated spike stub for newrelic (plugin)\nexport function demo() {\n  console.log('use newrelic - plugin (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-newrelic-plugin-testing-ts.ts.txt",
+      "template": "# Spike: newrelic plugin (ts)\n// Auto-generated spike stub for newrelic (plugin)\nexport function demo() {\n  console.log('use newrelic - plugin (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-newrelic-plugin-testing-ts.md",
+      "template": "# newrelic plugin (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-newrelic-plugin-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

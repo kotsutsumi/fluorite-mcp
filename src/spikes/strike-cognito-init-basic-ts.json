@@ -1,0 +1,41 @@
+{
+  "id": "strike-cognito-init-basic-ts",
+  "name": "cognito init basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "cognito",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for cognito init in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "cognito-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/cognito-init.ts",
+      "template": "# Spike: cognito init (ts)\n// Auto-generated spike stub for cognito (init)\nexport function demo() {\n  console.log('use cognito - init (basic)');\n}\n"
+    },
+    {
+      "path": "src/cognito/client.ts",
+      "template": "export function createCognito(){ return { userPoolId: process.env.COGNITO_USER_POOL_ID, clientId: process.env.COGNITO_CLIENT_ID }; }\n"
+    },
+    {
+      "path": "spikes/strike-cognito-init-basic-ts.ts.txt",
+      "template": "# Spike: cognito init (ts)\n// Auto-generated spike stub for cognito (init)\nexport function demo() {\n  console.log('use cognito - init (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-cognito-init-basic-ts.md",
+      "template": "# cognito init (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

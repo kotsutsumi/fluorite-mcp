@@ -1,0 +1,41 @@
+{
+  "id": "strike-mqtt-client-secure-ts",
+  "name": "mqtt client secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "mqtt",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for mqtt client in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "mqtt-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/mqtt-client.ts",
+      "template": "# Spike: mqtt client (ts)\n// Auto-generated spike stub for mqtt (client)\nexport function demo() {\n  console.log('use mqtt - client (secure)');\n}\n"
+    },
+    {
+      "path": "src/iot/mqtt.ts",
+      "template": "export function mqtt(){ return { url: process.env.MQTT_URL || 'mqtt://localhost:1883' }; }\n"
+    },
+    {
+      "path": "spikes/strike-mqtt-client-secure-ts.ts.txt",
+      "template": "# Spike: mqtt client (ts)\n// Auto-generated spike stub for mqtt (client)\nexport function demo() {\n  console.log('use mqtt - client (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-mqtt-client-secure-ts.md",
+      "template": "# mqtt client (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

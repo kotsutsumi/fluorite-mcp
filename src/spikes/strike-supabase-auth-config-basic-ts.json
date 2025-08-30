@@ -1,0 +1,41 @@
+{
+  "id": "strike-supabase-auth-config-basic-ts",
+  "name": "supabase-auth config basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "supabase-auth",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for supabase-auth config in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "supabase-auth-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/supabase-auth-config.ts",
+      "template": "# Spike: supabase-auth config (ts)\n// Auto-generated spike stub for supabase-auth (config)\nexport function demo() {\n  console.log('use supabase-auth - config (basic)');\n}\n"
+    },
+    {
+      "path": "src/supabase/auth-server.ts",
+      "template": "export function supabaseAuth(){ return { url: process.env.SUPABASE_URL, key: process.env.SUPABASE_SERVICE_KEY }; }\n"
+    },
+    {
+      "path": "spikes/strike-supabase-auth-config-basic-ts.ts.txt",
+      "template": "# Spike: supabase-auth config (ts)\n// Auto-generated spike stub for supabase-auth (config)\nexport function demo() {\n  console.log('use supabase-auth - config (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-supabase-auth-config-basic-ts.md",
+      "template": "# supabase-auth config (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

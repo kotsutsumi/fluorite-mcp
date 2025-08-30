@@ -1,0 +1,37 @@
+{
+  "id": "strike-aws-lambda-job-secure-ts",
+  "name": "aws-lambda job secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "aws-lambda",
+    "ts"
+  ],
+  "tags": [
+    "job",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for aws-lambda job in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "aws-lambda-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/aws-lambda-job.ts",
+      "template": "# Spike: aws-lambda job (ts)\n// Auto-generated spike stub for aws-lambda (job)\nexport function demo() {\n  console.log('use aws-lambda - job (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-aws-lambda-job-secure-ts.ts.txt",
+      "template": "# Spike: aws-lambda job (ts)\n// Auto-generated spike stub for aws-lambda (job)\nexport function demo() {\n  console.log('use aws-lambda - job (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-aws-lambda-job-secure-ts.md",
+      "template": "# aws-lambda job (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

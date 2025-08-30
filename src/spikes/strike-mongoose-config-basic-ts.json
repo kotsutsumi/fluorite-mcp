@@ -1,0 +1,45 @@
+{
+  "id": "strike-mongoose-config-basic-ts",
+  "name": "mongoose config basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "mongoose",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for mongoose config in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "mongoose-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/mongoose-config.ts",
+      "template": "# Spike: mongoose config (ts)\n// Auto-generated spike stub for mongoose (config)\nexport function demo() {\n  console.log('use mongoose - config (basic)');\n}\n"
+    },
+    {
+      "path": "src/mongoose/conn.ts",
+      "template": "import mongoose from 'mongoose';\nexport async function connect(uri: string){ await mongoose.connect(uri); }\n"
+    },
+    {
+      "path": "src/mongoose/user.model.ts",
+      "template": "import { Schema, model } from 'mongoose';\nconst schema = new Schema({ email: { type: String, unique: true }, name: String });\nexport const User = model('User', schema);\n"
+    },
+    {
+      "path": "spikes/strike-mongoose-config-basic-ts.ts.txt",
+      "template": "# Spike: mongoose config (ts)\n// Auto-generated spike stub for mongoose (config)\nexport function demo() {\n  console.log('use mongoose - config (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-mongoose-config-basic-ts.md",
+      "template": "# mongoose config (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

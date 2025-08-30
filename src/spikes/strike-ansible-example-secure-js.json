@@ -1,0 +1,37 @@
+{
+  "id": "strike-ansible-example-secure-js",
+  "name": "ansible example secure js",
+  "version": "0.1.0",
+  "stack": [
+    "ansible",
+    "js"
+  ],
+  "tags": [
+    "example",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for ansible example in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "ansible-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/ansible-example.js",
+      "template": "# Spike: ansible example (js)\n// Auto-generated spike stub for ansible (example)\nmodule.exports = function demo(){\n  console.log('use ansible - example (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-ansible-example-secure-js.js.txt",
+      "template": "# Spike: ansible example (js)\n// Auto-generated spike stub for ansible (example)\nmodule.exports = function demo(){\n  console.log('use ansible - example (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-ansible-example-secure-js.md",
+      "template": "# ansible example (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-openai-docs-testing-py",
+  "name": "openai docs testing py",
+  "version": "0.1.0",
+  "stack": [
+    "openai",
+    "py"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for openai docs in py (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "openai-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/openai-docs.py",
+      "template": "# Spike: openai docs (py)\n# Auto-generated spike stub for openai (docs)\ndef demo():\n    print('use openai - docs (testing)')\n"
+    },
+    {
+      "path": "spikes/strike-openai-docs-testing-py.py.txt",
+      "template": "# Spike: openai docs (py)\n# Auto-generated spike stub for openai (docs)\ndef demo():\n    print('use openai - docs (testing)')\n"
+    },
+    {
+      "path": "spikes/strike-openai-docs-testing-py.md",
+      "template": "# openai docs (testing, py)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-openai-docs-testing-py_test.py",
+      "template": "def test_demo():\n    assert True\n"
+    }
+  ],
+  "patches": []
+}

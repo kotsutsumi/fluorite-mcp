@@ -1,0 +1,37 @@
+{
+  "id": "strike-openapi-docs-basic-ts",
+  "name": "openapi docs basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "openapi",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for openapi docs in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "openapi-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/openapi-docs.ts",
+      "template": "# Spike: openapi docs (ts)\n// Auto-generated spike stub for openapi (docs)\nexport function demo() {\n  console.log('use openapi - docs (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-openapi-docs-basic-ts.ts.txt",
+      "template": "# Spike: openapi docs (ts)\n// Auto-generated spike stub for openapi (docs)\nexport function demo() {\n  console.log('use openapi - docs (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-openapi-docs-basic-ts.md",
+      "template": "# openapi docs (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

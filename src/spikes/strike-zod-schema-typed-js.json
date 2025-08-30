@@ -1,0 +1,41 @@
+{
+  "id": "strike-zod-schema-typed-js",
+  "name": "zod schema typed js",
+  "version": "0.1.0",
+  "stack": [
+    "zod",
+    "js"
+  ],
+  "tags": [
+    "schema",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for zod schema in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "zod-schema-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/zod-schema.js",
+      "template": "# Spike: zod schema (js)\n// Auto-generated spike stub for zod (schema)\nmodule.exports = function demo(){\n  console.log('use zod - schema (typed)');\n};\n"
+    },
+    {
+      "path": "src/validation/schemas.ts",
+      "template": "import { z } from 'zod';\nexport const UserSchema = z.object({ id: z.number().int().positive(), email: z.string().email(), name: z.string().optional() });\nexport type User = z.infer<typeof UserSchema>;\n"
+    },
+    {
+      "path": "spikes/strike-zod-schema-typed-js.js.txt",
+      "template": "# Spike: zod schema (js)\n// Auto-generated spike stub for zod (schema)\nmodule.exports = function demo(){\n  console.log('use zod - schema (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-zod-schema-typed-js.md",
+      "template": "# zod schema (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-pinecone-example-testing-ts",
+  "name": "pinecone example testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "pinecone",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for pinecone example in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "pinecone-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/pinecone-example.ts",
+      "template": "# Spike: pinecone example (ts)\n// Auto-generated spike stub for pinecone (example)\nexport function demo() {\n  console.log('use pinecone - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pinecone-example-testing-ts.ts.txt",
+      "template": "# Spike: pinecone example (ts)\n// Auto-generated spike stub for pinecone (example)\nexport function demo() {\n  console.log('use pinecone - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pinecone-example-testing-ts.md",
+      "template": "# pinecone example (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-pinecone-example-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

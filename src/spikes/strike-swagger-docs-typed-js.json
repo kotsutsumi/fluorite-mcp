@@ -1,0 +1,37 @@
+{
+  "id": "strike-swagger-docs-typed-js",
+  "name": "swagger docs typed js",
+  "version": "0.1.0",
+  "stack": [
+    "swagger",
+    "js"
+  ],
+  "tags": [
+    "docs",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for swagger docs in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "swagger-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/swagger-docs.js",
+      "template": "# Spike: swagger docs (js)\n// Auto-generated spike stub for swagger (docs)\nmodule.exports = function demo(){\n  console.log('use swagger - docs (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-swagger-docs-typed-js.js.txt",
+      "template": "# Spike: swagger docs (js)\n// Auto-generated spike stub for swagger (docs)\nmodule.exports = function demo(){\n  console.log('use swagger - docs (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-swagger-docs-typed-js.md",
+      "template": "# swagger docs (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

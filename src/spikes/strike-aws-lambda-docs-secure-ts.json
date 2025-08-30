@@ -1,0 +1,37 @@
+{
+  "id": "strike-aws-lambda-docs-secure-ts",
+  "name": "aws-lambda docs secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "aws-lambda",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for aws-lambda docs in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "aws-lambda-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/aws-lambda-docs.ts",
+      "template": "# Spike: aws-lambda docs (ts)\n// Auto-generated spike stub for aws-lambda (docs)\nexport function demo() {\n  console.log('use aws-lambda - docs (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-aws-lambda-docs-secure-ts.ts.txt",
+      "template": "# Spike: aws-lambda docs (ts)\n// Auto-generated spike stub for aws-lambda (docs)\nexport function demo() {\n  console.log('use aws-lambda - docs (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-aws-lambda-docs-secure-ts.md",
+      "template": "# aws-lambda docs (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

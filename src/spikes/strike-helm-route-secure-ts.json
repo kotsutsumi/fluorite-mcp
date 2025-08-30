@@ -1,0 +1,37 @@
+{
+  "id": "strike-helm-route-secure-ts",
+  "name": "helm route secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "helm",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for helm route in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "helm-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/helm-route.ts",
+      "template": "# Spike: helm route (ts)\n// Auto-generated spike stub for helm (route)\nexport function demo() {\n  console.log('use helm - route (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-helm-route-secure-ts.ts.txt",
+      "template": "# Spike: helm route (ts)\n// Auto-generated spike stub for helm (route)\nexport function demo() {\n  console.log('use helm - route (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-helm-route-secure-ts.md",
+      "template": "# helm route (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

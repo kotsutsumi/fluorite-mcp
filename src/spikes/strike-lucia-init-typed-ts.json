@@ -1,0 +1,41 @@
+{
+  "id": "strike-lucia-init-typed-ts",
+  "name": "lucia init typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "lucia",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for lucia init in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "lucia-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/lucia-init.ts",
+      "template": "# Spike: lucia init (ts)\n// Auto-generated spike stub for lucia (init)\nexport function demo() {\n  console.log('use lucia - init (typed)');\n}\n"
+    },
+    {
+      "path": "src/lucia/auth.ts",
+      "template": "export function lucia(){ /* configure lucia here */ return {}; }\n"
+    },
+    {
+      "path": "spikes/strike-lucia-init-typed-ts.ts.txt",
+      "template": "# Spike: lucia init (ts)\n// Auto-generated spike stub for lucia (init)\nexport function demo() {\n  console.log('use lucia - init (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-lucia-init-typed-ts.md",
+      "template": "# lucia init (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

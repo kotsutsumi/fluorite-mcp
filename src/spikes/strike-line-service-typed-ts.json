@@ -1,0 +1,65 @@
+{
+  "id": "strike-line-service-typed-ts",
+  "name": "line service typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "line",
+    "ts"
+  ],
+  "tags": [
+    "service",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for line service in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "line-service-app"
+    },
+    {
+      "name": "channelId",
+      "required": false,
+      "description": "LINE Channel ID",
+      "default": "YOUR_CHANNEL_ID"
+    },
+    {
+      "name": "channelSecret",
+      "required": false,
+      "description": "LINE Channel Secret",
+      "default": "YOUR_CHANNEL_SECRET"
+    },
+    {
+      "name": "channelAccessToken",
+      "required": false,
+      "description": "LINE Channel Access Token",
+      "default": "YOUR_CHANNEL_ACCESS_TOKEN"
+    },
+    {
+      "name": "liffId",
+      "required": false,
+      "description": "LIFF App ID (optional)",
+      "default": "YOUR_LIFF_ID"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/line-service.ts",
+      "template": "# Spike: line service (ts)\n// Auto-generated spike stub for line (service)\nexport function demo() {\n  console.log('use line - service (typed)');\n}\n"
+    },
+    {
+      "path": "src/line/client.ts",
+      "template": "export class LineMessagingClient {\n  constructor(private token: string){}\n  async reply(replyToken: string, messages: Array<{ type:'text'; text:string }>){\n    await fetch('https://api.line.me/v2/bot/message/reply', {\n      method: 'POST',\n      headers: { 'Authorization': 'Bearer ' + this.token, 'Content-Type': 'application/json' },\n      body: JSON.stringify({ replyToken, messages })\n    });\n  }\n  async push(to: string, messages: Array<{ type:'text'; text:string }>){\n    await fetch('https://api.line.me/v2/bot/message/push', {\n      method: 'POST',\n      headers: { 'Authorization': 'Bearer ' + this.token, 'Content-Type': 'application/json' },\n      body: JSON.stringify({ to, messages })\n    });\n  }\n}\n"
+    },
+    {
+      "path": "spikes/strike-line-service-typed-ts.ts.txt",
+      "template": "# Spike: line service (ts)\n// Auto-generated spike stub for line (service)\nexport function demo() {\n  console.log('use line - service (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-line-service-typed-ts.md",
+      "template": "# line service (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

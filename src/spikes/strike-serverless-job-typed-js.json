@@ -1,0 +1,37 @@
+{
+  "id": "strike-serverless-job-typed-js",
+  "name": "serverless job typed js",
+  "version": "0.1.0",
+  "stack": [
+    "serverless",
+    "js"
+  ],
+  "tags": [
+    "job",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for serverless job in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "serverless-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/serverless-job.js",
+      "template": "# Spike: serverless job (js)\n// Auto-generated spike stub for serverless (job)\nmodule.exports = function demo(){\n  console.log('use serverless - job (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-serverless-job-typed-js.js.txt",
+      "template": "# Spike: serverless job (js)\n// Auto-generated spike stub for serverless (job)\nmodule.exports = function demo(){\n  console.log('use serverless - job (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-serverless-job-typed-js.md",
+      "template": "# serverless job (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

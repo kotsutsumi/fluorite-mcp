@@ -1,0 +1,41 @@
+{
+  "id": "strike-qdrant-adapter-testing-ts",
+  "name": "qdrant adapter testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "qdrant",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for qdrant adapter in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "qdrant-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/qdrant-adapter.ts",
+      "template": "# Spike: qdrant adapter (ts)\n// Auto-generated spike stub for qdrant (adapter)\nexport function demo() {\n  console.log('use qdrant - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-qdrant-adapter-testing-ts.ts.txt",
+      "template": "# Spike: qdrant adapter (ts)\n// Auto-generated spike stub for qdrant (adapter)\nexport function demo() {\n  console.log('use qdrant - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-qdrant-adapter-testing-ts.md",
+      "template": "# qdrant adapter (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-qdrant-adapter-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

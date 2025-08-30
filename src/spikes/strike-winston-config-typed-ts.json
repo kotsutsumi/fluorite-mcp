@@ -1,0 +1,41 @@
+{
+  "id": "strike-winston-config-typed-ts",
+  "name": "winston config typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "winston",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for winston config in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "winston-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/winston-config.ts",
+      "template": "# Spike: winston config (ts)\n// Auto-generated spike stub for winston (config)\nexport function demo() {\n  console.log('use winston - config (typed)');\n}\n"
+    },
+    {
+      "path": "src/logging/winston.ts",
+      "template": "export function logger(){ return { info: console.log, error: console.error }; }\n"
+    },
+    {
+      "path": "spikes/strike-winston-config-typed-ts.ts.txt",
+      "template": "# Spike: winston config (ts)\n// Auto-generated spike stub for winston (config)\nexport function demo() {\n  console.log('use winston - config (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-winston-config-typed-ts.md",
+      "template": "# winston config (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

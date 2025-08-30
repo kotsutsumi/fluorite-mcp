@@ -1,0 +1,37 @@
+{
+  "id": "strike-terraform-job-typed-ts",
+  "name": "terraform job typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "terraform",
+    "ts"
+  ],
+  "tags": [
+    "job",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for terraform job in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "terraform-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/terraform-job.ts",
+      "template": "# Spike: terraform job (ts)\n// Auto-generated spike stub for terraform (job)\nexport function demo() {\n  console.log('use terraform - job (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-terraform-job-typed-ts.ts.txt",
+      "template": "# Spike: terraform job (ts)\n// Auto-generated spike stub for terraform (job)\nexport function demo() {\n  console.log('use terraform - job (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-terraform-job-typed-ts.md",
+      "template": "# terraform job (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

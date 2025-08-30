@@ -1,0 +1,41 @@
+{
+  "id": "strike-jest-config-testing-ts",
+  "name": "jest config testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "jest",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for jest config in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "jest-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/jest-config.ts",
+      "template": "# Spike: jest config (ts)\n// Auto-generated spike stub for jest (config)\nexport function demo() {\n  console.log('use jest - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-jest-config-testing-ts.ts.txt",
+      "template": "# Spike: jest config (ts)\n// Auto-generated spike stub for jest (config)\nexport function demo() {\n  console.log('use jest - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-jest-config-testing-ts.md",
+      "template": "# jest config (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-jest-config-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

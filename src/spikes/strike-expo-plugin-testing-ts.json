@@ -1,0 +1,41 @@
+{
+  "id": "strike-expo-plugin-testing-ts",
+  "name": "expo plugin testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "expo",
+    "ts"
+  ],
+  "tags": [
+    "plugin",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for expo plugin in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "expo-plugin-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/expo-plugin.ts",
+      "template": "# Spike: expo plugin (ts)\n// Auto-generated spike stub for expo (plugin)\nexport function demo() {\n  console.log('use expo - plugin (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-expo-plugin-testing-ts.ts.txt",
+      "template": "# Spike: expo plugin (ts)\n// Auto-generated spike stub for expo (plugin)\nexport function demo() {\n  console.log('use expo - plugin (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-expo-plugin-testing-ts.md",
+      "template": "# expo plugin (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-expo-plugin-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

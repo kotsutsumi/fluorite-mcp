@@ -1,0 +1,41 @@
+{
+  "id": "strike-next-intl-config-secure-ts",
+  "name": "next-intl config secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "next-intl",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for next-intl config in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "next-intl-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/next-intl-config.ts",
+      "template": "# Spike: next-intl config (ts)\n// Auto-generated spike stub for next-intl (config)\nexport function demo() {\n  console.log('use next-intl - config (secure)');\n}\n"
+    },
+    {
+      "path": "src/i18n/next-intl.ts",
+      "template": "export const messages = { en: { hello: 'Hello' }, ja: { hello: 'こんにちは' } };\n"
+    },
+    {
+      "path": "spikes/strike-next-intl-config-secure-ts.ts.txt",
+      "template": "# Spike: next-intl config (ts)\n// Auto-generated spike stub for next-intl (config)\nexport function demo() {\n  console.log('use next-intl - config (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-next-intl-config-secure-ts.md",
+      "template": "# next-intl config (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

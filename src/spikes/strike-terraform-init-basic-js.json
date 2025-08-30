@@ -1,0 +1,41 @@
+{
+  "id": "strike-terraform-init-basic-js",
+  "name": "terraform init basic js",
+  "version": "0.1.0",
+  "stack": [
+    "terraform",
+    "js"
+  ],
+  "tags": [
+    "init",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for terraform init in js (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "terraform-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/terraform-init.js",
+      "template": "# Spike: terraform init (js)\n// Auto-generated spike stub for terraform (init)\nmodule.exports = function demo(){\n  console.log('use terraform - init (basic)');\n};\n"
+    },
+    {
+      "path": "main.tf",
+      "template": "terraform { required_version = \">= 1.5.0\" }\n"
+    },
+    {
+      "path": "spikes/strike-terraform-init-basic-js.js.txt",
+      "template": "# Spike: terraform init (js)\n// Auto-generated spike stub for terraform (init)\nmodule.exports = function demo(){\n  console.log('use terraform - init (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-terraform-init-basic-js.md",
+      "template": "# terraform init (basic, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

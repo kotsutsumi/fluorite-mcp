@@ -1,0 +1,37 @@
+{
+  "id": "strike-mysql-client-secure-ts",
+  "name": "mysql client secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "mysql",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for mysql client in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "mysql-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/mysql-client.ts",
+      "template": "# Spike: mysql client (ts)\n// Auto-generated spike stub for mysql (client)\nexport function demo() {\n  console.log('use mysql - client (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-mysql-client-secure-ts.ts.txt",
+      "template": "# Spike: mysql client (ts)\n// Auto-generated spike stub for mysql (client)\nexport function demo() {\n  console.log('use mysql - client (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-mysql-client-secure-ts.md",
+      "template": "# mysql client (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

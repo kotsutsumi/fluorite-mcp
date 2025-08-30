@@ -1,0 +1,41 @@
+{
+  "id": "strike-cypress-pipeline-testing-ts",
+  "name": "cypress pipeline testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "cypress",
+    "ts"
+  ],
+  "tags": [
+    "pipeline",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for cypress pipeline in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "cypress-pipeline-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/cypress-pipeline.ts",
+      "template": "# Spike: cypress pipeline (ts)\n// Auto-generated spike stub for cypress (pipeline)\nexport function demo() {\n  console.log('use cypress - pipeline (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-cypress-pipeline-testing-ts.ts.txt",
+      "template": "# Spike: cypress pipeline (ts)\n// Auto-generated spike stub for cypress (pipeline)\nexport function demo() {\n  console.log('use cypress - pipeline (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-cypress-pipeline-testing-ts.md",
+      "template": "# cypress pipeline (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-cypress-pipeline-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

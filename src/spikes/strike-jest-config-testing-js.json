@@ -1,0 +1,41 @@
+{
+  "id": "strike-jest-config-testing-js",
+  "name": "jest config testing js",
+  "version": "0.1.0",
+  "stack": [
+    "jest",
+    "js"
+  ],
+  "tags": [
+    "config",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for jest config in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "jest-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/jest-config.js",
+      "template": "# Spike: jest config (js)\n// Auto-generated spike stub for jest (config)\nmodule.exports = function demo(){\n  console.log('use jest - config (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-jest-config-testing-js.js.txt",
+      "template": "# Spike: jest config (js)\n// Auto-generated spike stub for jest (config)\nmodule.exports = function demo(){\n  console.log('use jest - config (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-jest-config-testing-js.md",
+      "template": "# jest config (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-jest-config-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

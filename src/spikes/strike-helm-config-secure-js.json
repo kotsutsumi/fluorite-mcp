@@ -1,0 +1,45 @@
+{
+  "id": "strike-helm-config-secure-js",
+  "name": "helm config secure js",
+  "version": "0.1.0",
+  "stack": [
+    "helm",
+    "js"
+  ],
+  "tags": [
+    "config",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for helm config in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "helm-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/helm-config.js",
+      "template": "# Spike: helm config (js)\n// Auto-generated spike stub for helm (config)\nmodule.exports = function demo(){\n  console.log('use helm - config (secure)');\n};\n"
+    },
+    {
+      "path": "chart/Chart.yaml",
+      "template": "apiVersion: v2\nname: app\nversion: 0.1.0\n"
+    },
+    {
+      "path": "chart/templates/deployment.yaml",
+      "template": "apiVersion: apps/v1\nkind: Deployment\nmetadata: { name: app }\nspec: { replicas: 1, selector: { matchLabels: { app: app } }, template: { metadata: { labels: { app: app } }, spec: { containers: [{ name: app, image: node:20-alpine }] } } }\n"
+    },
+    {
+      "path": "spikes/strike-helm-config-secure-js.js.txt",
+      "template": "# Spike: helm config (js)\n// Auto-generated spike stub for helm (config)\nmodule.exports = function demo(){\n  console.log('use helm - config (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-helm-config-secure-js.md",
+      "template": "# helm config (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

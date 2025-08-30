@@ -1,0 +1,41 @@
+{
+  "id": "strike-expo-init-testing-js",
+  "name": "expo init testing js",
+  "version": "0.1.0",
+  "stack": [
+    "expo",
+    "js"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for expo init in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "expo-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/expo-init.js",
+      "template": "# Spike: expo init (js)\n// Auto-generated spike stub for expo (init)\nmodule.exports = function demo(){\n  console.log('use expo - init (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-expo-init-testing-js.js.txt",
+      "template": "# Spike: expo init (js)\n// Auto-generated spike stub for expo (init)\nmodule.exports = function demo(){\n  console.log('use expo - init (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-expo-init-testing-js.md",
+      "template": "# expo init (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-expo-init-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

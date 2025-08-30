@@ -1,0 +1,37 @@
+{
+  "id": "strike-pubsub-worker-basic-ts",
+  "name": "pubsub worker basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "pubsub",
+    "ts"
+  ],
+  "tags": [
+    "worker",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for pubsub worker in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "pubsub-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/pubsub-worker.ts",
+      "template": "# Spike: pubsub worker (ts)\n// Auto-generated spike stub for pubsub (worker)\nexport function demo() {\n  console.log('use pubsub - worker (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pubsub-worker-basic-ts.ts.txt",
+      "template": "# Spike: pubsub worker (ts)\n// Auto-generated spike stub for pubsub (worker)\nexport function demo() {\n  console.log('use pubsub - worker (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pubsub-worker-basic-ts.md",
+      "template": "# pubsub worker (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

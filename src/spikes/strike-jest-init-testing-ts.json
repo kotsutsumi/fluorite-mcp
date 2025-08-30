@@ -1,0 +1,41 @@
+{
+  "id": "strike-jest-init-testing-ts",
+  "name": "jest init testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "jest",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for jest init in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "jest-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/jest-init.ts",
+      "template": "# Spike: jest init (ts)\n// Auto-generated spike stub for jest (init)\nexport function demo() {\n  console.log('use jest - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-jest-init-testing-ts.ts.txt",
+      "template": "# Spike: jest init (ts)\n// Auto-generated spike stub for jest (init)\nexport function demo() {\n  console.log('use jest - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-jest-init-testing-ts.md",
+      "template": "# jest init (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-jest-init-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

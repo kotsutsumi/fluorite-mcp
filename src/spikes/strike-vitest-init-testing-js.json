@@ -1,0 +1,41 @@
+{
+  "id": "strike-vitest-init-testing-js",
+  "name": "vitest init testing js",
+  "version": "0.1.0",
+  "stack": [
+    "vitest",
+    "js"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for vitest init in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "vitest-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/vitest-init.js",
+      "template": "# Spike: vitest init (js)\n// Auto-generated spike stub for vitest (init)\nmodule.exports = function demo(){\n  console.log('use vitest - init (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-vitest-init-testing-js.js.txt",
+      "template": "# Spike: vitest init (js)\n// Auto-generated spike stub for vitest (init)\nmodule.exports = function demo(){\n  console.log('use vitest - init (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-vitest-init-testing-js.md",
+      "template": "# vitest init (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-vitest-init-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

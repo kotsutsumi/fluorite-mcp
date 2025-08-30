@@ -1,0 +1,41 @@
+{
+  "id": "strike-clerk-init-typed-ts",
+  "name": "clerk init typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "clerk",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for clerk init in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "clerk-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/clerk-init.ts",
+      "template": "# Spike: clerk init (ts)\n// Auto-generated spike stub for clerk (init)\nexport function demo() {\n  console.log('use clerk - init (typed)');\n}\n"
+    },
+    {
+      "path": "src/clerk/client.ts",
+      "template": "export function createClerk(){ return { publishableKey: process.env.CLERK_PUBLISHABLE_KEY }; }\n"
+    },
+    {
+      "path": "spikes/strike-clerk-init-typed-ts.ts.txt",
+      "template": "# Spike: clerk init (ts)\n// Auto-generated spike stub for clerk (init)\nexport function demo() {\n  console.log('use clerk - init (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-clerk-init-typed-ts.md",
+      "template": "# clerk init (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

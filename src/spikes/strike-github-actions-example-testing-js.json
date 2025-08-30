@@ -1,0 +1,41 @@
+{
+  "id": "strike-github-actions-example-testing-js",
+  "name": "github-actions example testing js",
+  "version": "0.1.0",
+  "stack": [
+    "github-actions",
+    "js"
+  ],
+  "tags": [
+    "example",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for github-actions example in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "github-actions-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/github-actions-example.js",
+      "template": "# Spike: github-actions example (js)\n// Auto-generated spike stub for github-actions (example)\nmodule.exports = function demo(){\n  console.log('use github-actions - example (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-github-actions-example-testing-js.js.txt",
+      "template": "# Spike: github-actions example (js)\n// Auto-generated spike stub for github-actions (example)\nmodule.exports = function demo(){\n  console.log('use github-actions - example (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-github-actions-example-testing-js.md",
+      "template": "# github-actions example (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-github-actions-example-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

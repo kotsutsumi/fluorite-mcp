@@ -1,0 +1,41 @@
+{
+  "id": "strike-cohere-docs-testing-ts",
+  "name": "cohere docs testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "cohere",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for cohere docs in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "cohere-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/cohere-docs.ts",
+      "template": "# Spike: cohere docs (ts)\n// Auto-generated spike stub for cohere (docs)\nexport function demo() {\n  console.log('use cohere - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-cohere-docs-testing-ts.ts.txt",
+      "template": "# Spike: cohere docs (ts)\n// Auto-generated spike stub for cohere (docs)\nexport function demo() {\n  console.log('use cohere - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-cohere-docs-testing-ts.md",
+      "template": "# cohere docs (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-cohere-docs-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

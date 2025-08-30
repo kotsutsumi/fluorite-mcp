@@ -1,0 +1,41 @@
+{
+  "id": "strike-electron-docs-testing-ts",
+  "name": "electron docs testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "electron",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for electron docs in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "electron-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/electron-docs.ts",
+      "template": "# Spike: electron docs (ts)\n// Auto-generated spike stub for electron (docs)\nexport function demo() {\n  console.log('use electron - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-electron-docs-testing-ts.ts.txt",
+      "template": "# Spike: electron docs (ts)\n// Auto-generated spike stub for electron (docs)\nexport function demo() {\n  console.log('use electron - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-electron-docs-testing-ts.md",
+      "template": "# electron docs (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-electron-docs-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

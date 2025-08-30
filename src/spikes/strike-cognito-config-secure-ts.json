@@ -1,0 +1,41 @@
+{
+  "id": "strike-cognito-config-secure-ts",
+  "name": "cognito config secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "cognito",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for cognito config in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "cognito-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/cognito-config.ts",
+      "template": "# Spike: cognito config (ts)\n// Auto-generated spike stub for cognito (config)\nexport function demo() {\n  console.log('use cognito - config (secure)');\n}\n"
+    },
+    {
+      "path": "src/cognito/client.ts",
+      "template": "export function createCognito(){ return { userPoolId: process.env.COGNITO_USER_POOL_ID, clientId: process.env.COGNITO_CLIENT_ID }; }\n"
+    },
+    {
+      "path": "spikes/strike-cognito-config-secure-ts.ts.txt",
+      "template": "# Spike: cognito config (ts)\n// Auto-generated spike stub for cognito (config)\nexport function demo() {\n  console.log('use cognito - config (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-cognito-config-secure-ts.md",
+      "template": "# cognito config (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

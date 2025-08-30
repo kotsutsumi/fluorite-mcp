@@ -1,0 +1,41 @@
+{
+  "id": "strike-ansible-config-typed-js",
+  "name": "ansible config typed js",
+  "version": "0.1.0",
+  "stack": [
+    "ansible",
+    "js"
+  ],
+  "tags": [
+    "config",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for ansible config in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "ansible-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/ansible-config.js",
+      "template": "# Spike: ansible config (js)\n// Auto-generated spike stub for ansible (config)\nmodule.exports = function demo(){\n  console.log('use ansible - config (typed)');\n};\n"
+    },
+    {
+      "path": "ansible/playbook.yml",
+      "template": "- hosts: all\n  tasks:\n    - name: Ping\n      ping:\n"
+    },
+    {
+      "path": "spikes/strike-ansible-config-typed-js.js.txt",
+      "template": "# Spike: ansible config (js)\n// Auto-generated spike stub for ansible (config)\nmodule.exports = function demo(){\n  console.log('use ansible - config (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-ansible-config-typed-js.md",
+      "template": "# ansible config (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-electron-adapter-testing-ts",
+  "name": "electron adapter testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "electron",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for electron adapter in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "electron-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/electron-adapter.ts",
+      "template": "# Spike: electron adapter (ts)\n// Auto-generated spike stub for electron (adapter)\nexport function demo() {\n  console.log('use electron - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-electron-adapter-testing-ts.ts.txt",
+      "template": "# Spike: electron adapter (ts)\n// Auto-generated spike stub for electron (adapter)\nexport function demo() {\n  console.log('use electron - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-electron-adapter-testing-ts.md",
+      "template": "# electron adapter (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-electron-adapter-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

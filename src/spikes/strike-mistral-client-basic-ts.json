@@ -1,0 +1,41 @@
+{
+  "id": "strike-mistral-client-basic-ts",
+  "name": "mistral client basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "mistral",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for mistral client in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "mistral-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/mistral-client.ts",
+      "template": "# Spike: mistral client (ts)\n// Auto-generated spike stub for mistral (client)\nexport function demo() {\n  console.log('use mistral - client (basic)');\n}\n"
+    },
+    {
+      "path": "src/ai/mistral.ts",
+      "template": "export function mistral(){ return { apiKey: process.env.MISTRAL_API_KEY }; }\n"
+    },
+    {
+      "path": "spikes/strike-mistral-client-basic-ts.ts.txt",
+      "template": "# Spike: mistral client (ts)\n// Auto-generated spike stub for mistral (client)\nexport function demo() {\n  console.log('use mistral - client (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-mistral-client-basic-ts.md",
+      "template": "# mistral client (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-lucia-init-basic-js",
+  "name": "lucia init basic js",
+  "version": "0.1.0",
+  "stack": [
+    "lucia",
+    "js"
+  ],
+  "tags": [
+    "init",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for lucia init in js (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "lucia-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/lucia-init.js",
+      "template": "# Spike: lucia init (js)\n// Auto-generated spike stub for lucia (init)\nmodule.exports = function demo(){\n  console.log('use lucia - init (basic)');\n};\n"
+    },
+    {
+      "path": "src/lucia/auth.ts",
+      "template": "export function lucia(){ /* configure lucia here */ return {}; }\n"
+    },
+    {
+      "path": "spikes/strike-lucia-init-basic-js.js.txt",
+      "template": "# Spike: lucia init (js)\n// Auto-generated spike stub for lucia (init)\nmodule.exports = function demo(){\n  console.log('use lucia - init (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-lucia-init-basic-js.md",
+      "template": "# lucia init (basic, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

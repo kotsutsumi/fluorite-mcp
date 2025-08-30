@@ -1,0 +1,41 @@
+{
+  "id": "strike-weaviate-route-testing-ts",
+  "name": "weaviate route testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "weaviate",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for weaviate route in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "weaviate-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/weaviate-route.ts",
+      "template": "# Spike: weaviate route (ts)\n// Auto-generated spike stub for weaviate (route)\nexport function demo() {\n  console.log('use weaviate - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-weaviate-route-testing-ts.ts.txt",
+      "template": "# Spike: weaviate route (ts)\n// Auto-generated spike stub for weaviate (route)\nexport function demo() {\n  console.log('use weaviate - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-weaviate-route-testing-ts.md",
+      "template": "# weaviate route (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-weaviate-route-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

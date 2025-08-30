@@ -1,0 +1,45 @@
+{
+  "id": "strike-cypress-init-typed-js",
+  "name": "cypress init typed js",
+  "version": "0.1.0",
+  "stack": [
+    "cypress",
+    "js"
+  ],
+  "tags": [
+    "init",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for cypress init in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "cypress-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/cypress-init.js",
+      "template": "# Spike: cypress init (js)\n// Auto-generated spike stub for cypress (init)\nmodule.exports = function demo(){\n  console.log('use cypress - init (typed)');\n};\n"
+    },
+    {
+      "path": "cypress.config.ts",
+      "template": "import { defineConfig } from 'cypress';\nexport default defineConfig({ e2e: { baseUrl: 'http://localhost:3000' } });\n"
+    },
+    {
+      "path": "cypress/e2e/spec.cy.ts",
+      "template": "describe('home', () => { it('loads', () => { cy.visit('/'); cy.contains('html'); }); });\n"
+    },
+    {
+      "path": "spikes/strike-cypress-init-typed-js.js.txt",
+      "template": "# Spike: cypress init (js)\n// Auto-generated spike stub for cypress (init)\nmodule.exports = function demo(){\n  console.log('use cypress - init (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-cypress-init-typed-js.md",
+      "template": "# cypress init (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-transformers-docs-testing-ts",
+  "name": "transformers docs testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "transformers",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for transformers docs in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "transformers-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/transformers-docs.ts",
+      "template": "# Spike: transformers docs (ts)\n// Auto-generated spike stub for transformers (docs)\nexport function demo() {\n  console.log('use transformers - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-transformers-docs-testing-ts.ts.txt",
+      "template": "# Spike: transformers docs (ts)\n// Auto-generated spike stub for transformers (docs)\nexport function demo() {\n  console.log('use transformers - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-transformers-docs-testing-ts.md",
+      "template": "# transformers docs (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-transformers-docs-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

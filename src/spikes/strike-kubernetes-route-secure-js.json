@@ -1,0 +1,37 @@
+{
+  "id": "strike-kubernetes-route-secure-js",
+  "name": "kubernetes route secure js",
+  "version": "0.1.0",
+  "stack": [
+    "kubernetes",
+    "js"
+  ],
+  "tags": [
+    "route",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for kubernetes route in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "kubernetes-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/kubernetes-route.js",
+      "template": "# Spike: kubernetes route (js)\n// Auto-generated spike stub for kubernetes (route)\nmodule.exports = function demo(){\n  console.log('use kubernetes - route (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-kubernetes-route-secure-js.js.txt",
+      "template": "# Spike: kubernetes route (js)\n// Auto-generated spike stub for kubernetes (route)\nmodule.exports = function demo(){\n  console.log('use kubernetes - route (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-kubernetes-route-secure-js.md",
+      "template": "# kubernetes route (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

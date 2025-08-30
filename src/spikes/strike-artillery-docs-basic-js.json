@@ -1,0 +1,37 @@
+{
+  "id": "strike-artillery-docs-basic-js",
+  "name": "artillery docs basic js",
+  "version": "0.1.0",
+  "stack": [
+    "artillery",
+    "js"
+  ],
+  "tags": [
+    "docs",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for artillery docs in js (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "artillery-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/artillery-docs.js",
+      "template": "# Spike: artillery docs (js)\n// Auto-generated spike stub for artillery (docs)\nmodule.exports = function demo(){\n  console.log('use artillery - docs (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-artillery-docs-basic-js.js.txt",
+      "template": "# Spike: artillery docs (js)\n// Auto-generated spike stub for artillery (docs)\nmodule.exports = function demo(){\n  console.log('use artillery - docs (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-artillery-docs-basic-js.md",
+      "template": "# artillery docs (basic, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

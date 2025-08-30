@@ -1,0 +1,41 @@
+{
+  "id": "strike-clerk-config-typed-js",
+  "name": "clerk config typed js",
+  "version": "0.1.0",
+  "stack": [
+    "clerk",
+    "js"
+  ],
+  "tags": [
+    "config",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for clerk config in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "clerk-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/clerk-config.js",
+      "template": "# Spike: clerk config (js)\n// Auto-generated spike stub for clerk (config)\nmodule.exports = function demo(){\n  console.log('use clerk - config (typed)');\n};\n"
+    },
+    {
+      "path": "src/clerk/client.ts",
+      "template": "export function createClerk(){ return { publishableKey: process.env.CLERK_PUBLISHABLE_KEY }; }\n"
+    },
+    {
+      "path": "spikes/strike-clerk-config-typed-js.js.txt",
+      "template": "# Spike: clerk config (js)\n// Auto-generated spike stub for clerk (config)\nmodule.exports = function demo(){\n  console.log('use clerk - config (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-clerk-config-typed-js.md",
+      "template": "# clerk config (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-shadcn-config-typed-ts",
+  "name": "shadcn config typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "shadcn",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for shadcn config in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "shadcn-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/shadcn-config.ts",
+      "template": "# Spike: shadcn config (ts)\n// Auto-generated spike stub for shadcn (config)\nexport function demo() {\n  console.log('use shadcn - config (typed)');\n}\n"
+    },
+    {
+      "path": "components/ui/button.tsx",
+      "template": "import * as React from 'react';\nexport function Button(props: React.ButtonHTMLAttributes<HTMLButtonElement>){ return <button {...props} className={(props.className||'') + ' inline-flex items-center justify-center rounded-md px-3 py-2 text-sm font-medium'} /> }\n"
+    },
+    {
+      "path": "spikes/strike-shadcn-config-typed-ts.ts.txt",
+      "template": "# Spike: shadcn config (ts)\n// Auto-generated spike stub for shadcn (config)\nexport function demo() {\n  console.log('use shadcn - config (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-shadcn-config-typed-ts.md",
+      "template": "# shadcn config (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

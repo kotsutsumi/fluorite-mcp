@@ -1,0 +1,37 @@
+{
+  "id": "strike-neo4j-adapter-secure-ts",
+  "name": "neo4j adapter secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "neo4j",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for neo4j adapter in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "neo4j-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/neo4j-adapter.ts",
+      "template": "# Spike: neo4j adapter (ts)\n// Auto-generated spike stub for neo4j (adapter)\nexport function demo() {\n  console.log('use neo4j - adapter (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-neo4j-adapter-secure-ts.ts.txt",
+      "template": "# Spike: neo4j adapter (ts)\n// Auto-generated spike stub for neo4j (adapter)\nexport function demo() {\n  console.log('use neo4j - adapter (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-neo4j-adapter-secure-ts.md",
+      "template": "# neo4j adapter (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

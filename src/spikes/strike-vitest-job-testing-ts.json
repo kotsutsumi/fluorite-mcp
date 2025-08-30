@@ -1,0 +1,41 @@
+{
+  "id": "strike-vitest-job-testing-ts",
+  "name": "vitest job testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "vitest",
+    "ts"
+  ],
+  "tags": [
+    "job",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for vitest job in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "vitest-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/vitest-job.ts",
+      "template": "# Spike: vitest job (ts)\n// Auto-generated spike stub for vitest (job)\nexport function demo() {\n  console.log('use vitest - job (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-vitest-job-testing-ts.ts.txt",
+      "template": "# Spike: vitest job (ts)\n// Auto-generated spike stub for vitest (job)\nexport function demo() {\n  console.log('use vitest - job (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-vitest-job-testing-ts.md",
+      "template": "# vitest job (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-vitest-job-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

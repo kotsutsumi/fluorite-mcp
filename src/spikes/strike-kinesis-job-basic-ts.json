@@ -1,0 +1,37 @@
+{
+  "id": "strike-kinesis-job-basic-ts",
+  "name": "kinesis job basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "kinesis",
+    "ts"
+  ],
+  "tags": [
+    "job",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for kinesis job in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "kinesis-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/kinesis-job.ts",
+      "template": "# Spike: kinesis job (ts)\n// Auto-generated spike stub for kinesis (job)\nexport function demo() {\n  console.log('use kinesis - job (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kinesis-job-basic-ts.ts.txt",
+      "template": "# Spike: kinesis job (ts)\n// Auto-generated spike stub for kinesis (job)\nexport function demo() {\n  console.log('use kinesis - job (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kinesis-job-basic-ts.md",
+      "template": "# kinesis job (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

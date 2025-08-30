@@ -1,0 +1,37 @@
+{
+  "id": "strike-helm-docs-basic-js",
+  "name": "helm docs basic js",
+  "version": "0.1.0",
+  "stack": [
+    "helm",
+    "js"
+  ],
+  "tags": [
+    "docs",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for helm docs in js (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "helm-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/helm-docs.js",
+      "template": "# Spike: helm docs (js)\n// Auto-generated spike stub for helm (docs)\nmodule.exports = function demo(){\n  console.log('use helm - docs (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-helm-docs-basic-js.js.txt",
+      "template": "# Spike: helm docs (js)\n// Auto-generated spike stub for helm (docs)\nmodule.exports = function demo(){\n  console.log('use helm - docs (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-helm-docs-basic-js.md",
+      "template": "# helm docs (basic, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

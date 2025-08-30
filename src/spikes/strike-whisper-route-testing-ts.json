@@ -1,0 +1,41 @@
+{
+  "id": "strike-whisper-route-testing-ts",
+  "name": "whisper route testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "whisper",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for whisper route in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "whisper-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/whisper-route.ts",
+      "template": "# Spike: whisper route (ts)\n// Auto-generated spike stub for whisper (route)\nexport function demo() {\n  console.log('use whisper - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-whisper-route-testing-ts.ts.txt",
+      "template": "# Spike: whisper route (ts)\n// Auto-generated spike stub for whisper (route)\nexport function demo() {\n  console.log('use whisper - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-whisper-route-testing-ts.md",
+      "template": "# whisper route (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-whisper-route-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,37 @@
+{
+  "id": "strike-kinesis-adapter-secure-ts",
+  "name": "kinesis adapter secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "kinesis",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for kinesis adapter in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "kinesis-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/kinesis-adapter.ts",
+      "template": "# Spike: kinesis adapter (ts)\n// Auto-generated spike stub for kinesis (adapter)\nexport function demo() {\n  console.log('use kinesis - adapter (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kinesis-adapter-secure-ts.ts.txt",
+      "template": "# Spike: kinesis adapter (ts)\n// Auto-generated spike stub for kinesis (adapter)\nexport function demo() {\n  console.log('use kinesis - adapter (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kinesis-adapter-secure-ts.md",
+      "template": "# kinesis adapter (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

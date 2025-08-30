@@ -1,0 +1,45 @@
+{
+  "id": "strike-next-auth-config-basic-ts",
+  "name": "next-auth config basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "next-auth",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for next-auth config in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "next-auth-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/next-auth-config.ts",
+      "template": "# Spike: next-auth config (ts)\n// Auto-generated spike stub for next-auth (config)\nexport function demo() {\n  console.log('use next-auth - config (basic)');\n}\n"
+    },
+    {
+      "path": "app/api/auth/[...nextauth]/route.ts",
+      "template": "import NextAuth from 'next-auth';\nimport Credentials from 'next-auth/providers/credentials';\nconst handler = NextAuth({ providers: [Credentials({ name: 'Credentials', credentials: { username: {}, password: {} }, authorize: async () => ({ id: '1', name: 'demo' }) })] });\nexport { handler as GET, handler as POST };\n"
+    },
+    {
+      "path": "middleware.ts",
+      "template": "export { default } from 'next-auth/middleware';\nexport const config = { matcher: ['/dashboard/:path*'] };\n"
+    },
+    {
+      "path": "spikes/strike-next-auth-config-basic-ts.ts.txt",
+      "template": "# Spike: next-auth config (ts)\n// Auto-generated spike stub for next-auth (config)\nexport function demo() {\n  console.log('use next-auth - config (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-next-auth-config-basic-ts.md",
+      "template": "# next-auth config (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

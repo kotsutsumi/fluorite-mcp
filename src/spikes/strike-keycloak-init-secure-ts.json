@@ -1,0 +1,41 @@
+{
+  "id": "strike-keycloak-init-secure-ts",
+  "name": "keycloak init secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "keycloak",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for keycloak init in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "keycloak-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/keycloak-init.ts",
+      "template": "# Spike: keycloak init (ts)\n// Auto-generated spike stub for keycloak (init)\nexport function demo() {\n  console.log('use keycloak - init (secure)');\n}\n"
+    },
+    {
+      "path": "src/keycloak/client.ts",
+      "template": "export function keycloak(){ return { serverUrl: process.env.KEYCLOAK_URL, realm: process.env.KEYCLOAK_REALM }; }\n"
+    },
+    {
+      "path": "spikes/strike-keycloak-init-secure-ts.ts.txt",
+      "template": "# Spike: keycloak init (ts)\n// Auto-generated spike stub for keycloak (init)\nexport function demo() {\n  console.log('use keycloak - init (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-keycloak-init-secure-ts.md",
+      "template": "# keycloak init (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

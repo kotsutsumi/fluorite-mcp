@@ -1,0 +1,41 @@
+{
+  "id": "strike-electron-component-testing-js",
+  "name": "electron component testing js",
+  "version": "0.1.0",
+  "stack": [
+    "electron",
+    "js"
+  ],
+  "tags": [
+    "component",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for electron component in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "electron-component-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/electron-component.js",
+      "template": "# Spike: electron component (js)\n// Auto-generated spike stub for electron (component)\nmodule.exports = function demo(){\n  console.log('use electron - component (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-electron-component-testing-js.js.txt",
+      "template": "# Spike: electron component (js)\n// Auto-generated spike stub for electron (component)\nmodule.exports = function demo(){\n  console.log('use electron - component (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-electron-component-testing-js.md",
+      "template": "# electron component (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-electron-component-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

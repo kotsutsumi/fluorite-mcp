@@ -1,0 +1,41 @@
+{
+  "id": "strike-cloudflare-workers-config-typed-js",
+  "name": "cloudflare-workers config typed js",
+  "version": "0.1.0",
+  "stack": [
+    "cloudflare-workers",
+    "js"
+  ],
+  "tags": [
+    "config",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for cloudflare-workers config in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "cloudflare-workers-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/cloudflare-workers-config.js",
+      "template": "# Spike: cloudflare-workers config (js)\n// Auto-generated spike stub for cloudflare-workers (config)\nmodule.exports = function demo(){\n  console.log('use cloudflare-workers - config (typed)');\n};\n"
+    },
+    {
+      "path": "src/cloudflare/worker.ts",
+      "template": "export default { fetch(){ return new Response('ok'); } };\n"
+    },
+    {
+      "path": "spikes/strike-cloudflare-workers-config-typed-js.js.txt",
+      "template": "# Spike: cloudflare-workers config (js)\n// Auto-generated spike stub for cloudflare-workers (config)\nmodule.exports = function demo(){\n  console.log('use cloudflare-workers - config (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-cloudflare-workers-config-typed-js.md",
+      "template": "# cloudflare-workers config (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

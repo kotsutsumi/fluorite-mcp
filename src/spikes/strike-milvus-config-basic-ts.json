@@ -1,0 +1,41 @@
+{
+  "id": "strike-milvus-config-basic-ts",
+  "name": "milvus config basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "milvus",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for milvus config in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "milvus-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/milvus-config.ts",
+      "template": "# Spike: milvus config (ts)\n// Auto-generated spike stub for milvus (config)\nexport function demo() {\n  console.log('use milvus - config (basic)');\n}\n"
+    },
+    {
+      "path": "src/vectors/milvus.ts",
+      "template": "export function milvus(){ return { address: process.env.MILVUS_ADDR || 'localhost:19530' }; }\n"
+    },
+    {
+      "path": "spikes/strike-milvus-config-basic-ts.ts.txt",
+      "template": "# Spike: milvus config (ts)\n// Auto-generated spike stub for milvus (config)\nexport function demo() {\n  console.log('use milvus - config (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-milvus-config-basic-ts.md",
+      "template": "# milvus config (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

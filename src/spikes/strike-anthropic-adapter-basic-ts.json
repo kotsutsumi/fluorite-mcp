@@ -1,0 +1,37 @@
+{
+  "id": "strike-anthropic-adapter-basic-ts",
+  "name": "anthropic adapter basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "anthropic",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for anthropic adapter in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "anthropic-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/anthropic-adapter.ts",
+      "template": "# Spike: anthropic adapter (ts)\n// Auto-generated spike stub for anthropic (adapter)\nexport function demo() {\n  console.log('use anthropic - adapter (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-anthropic-adapter-basic-ts.ts.txt",
+      "template": "# Spike: anthropic adapter (ts)\n// Auto-generated spike stub for anthropic (adapter)\nexport function demo() {\n  console.log('use anthropic - adapter (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-anthropic-adapter-basic-ts.md",
+      "template": "# anthropic adapter (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

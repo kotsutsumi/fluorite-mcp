@@ -1,0 +1,37 @@
+{
+  "id": "strike-kafka-docs-basic-ts",
+  "name": "kafka docs basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "kafka",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for kafka docs in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "kafka-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/kafka-docs.ts",
+      "template": "# Spike: kafka docs (ts)\n// Auto-generated spike stub for kafka (docs)\nexport function demo() {\n  console.log('use kafka - docs (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kafka-docs-basic-ts.ts.txt",
+      "template": "# Spike: kafka docs (ts)\n// Auto-generated spike stub for kafka (docs)\nexport function demo() {\n  console.log('use kafka - docs (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kafka-docs-basic-ts.md",
+      "template": "# kafka docs (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

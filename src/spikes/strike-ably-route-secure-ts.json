@@ -1,0 +1,41 @@
+{
+  "id": "strike-ably-route-secure-ts",
+  "name": "ably route secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "ably",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for ably route in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "ably-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/ably-route.ts",
+      "template": "# Spike: ably route (ts)\n// Auto-generated spike stub for ably (route)\nexport function demo() {\n  console.log('use ably - route (secure)');\n}\n"
+    },
+    {
+      "path": "app/api/realtime/publish/route.ts",
+      "template": "import { NextResponse } from 'next/server';\nimport { ably } from '@/src/realtime/ably';\nexport async function POST(req: Request){ const json = await req.json(); const client = ably(); return NextResponse.json({ ok: true, channel: json.channel }); }\n"
+    },
+    {
+      "path": "spikes/strike-ably-route-secure-ts.ts.txt",
+      "template": "# Spike: ably route (ts)\n// Auto-generated spike stub for ably (route)\nexport function demo() {\n  console.log('use ably - route (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-ably-route-secure-ts.md",
+      "template": "# ably route (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

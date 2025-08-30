@@ -1,0 +1,45 @@
+{
+  "id": "strike-electron-init-testing-js",
+  "name": "electron init testing js",
+  "version": "0.1.0",
+  "stack": [
+    "electron",
+    "js"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for electron init in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "electron-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "main.js",
+      "template": "const { app, BrowserWindow } = require('electron');\nfunction createWindow(){ const win = new BrowserWindow({ width: 800, height: 600 }); win.loadFile('index.html'); }\napp.whenReady().then(createWindow);\n"
+    },
+    {
+      "path": "index.html",
+      "template": "<!doctype html><html><body><h1>Hello Electron</h1></body></html>\n"
+    },
+    {
+      "path": "spikes/strike-electron-init-testing-js.js.txt",
+      "template": "# Spike: electron init (js)\n// Auto-generated spike stub for electron (init)\nmodule.exports = function demo(){\n  console.log('use electron - init (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-electron-init-testing-js.md",
+      "template": "# electron init (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-electron-init-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

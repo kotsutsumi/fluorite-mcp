@@ -1,0 +1,37 @@
+{
+  "id": "strike-azure-blob-worker-typed-ts",
+  "name": "azure-blob worker typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "azure-blob",
+    "ts"
+  ],
+  "tags": [
+    "worker",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for azure-blob worker in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "azure-blob-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/azure-blob-worker.ts",
+      "template": "# Spike: azure-blob worker (ts)\n// Auto-generated spike stub for azure-blob (worker)\nexport function demo() {\n  console.log('use azure-blob - worker (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-azure-blob-worker-typed-ts.ts.txt",
+      "template": "# Spike: azure-blob worker (ts)\n// Auto-generated spike stub for azure-blob (worker)\nexport function demo() {\n  console.log('use azure-blob - worker (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-azure-blob-worker-typed-ts.md",
+      "template": "# azure-blob worker (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

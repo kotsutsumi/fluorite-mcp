@@ -1,0 +1,41 @@
+{
+  "id": "strike-mistral-docs-testing-ts",
+  "name": "mistral docs testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "mistral",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for mistral docs in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "mistral-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/mistral-docs.ts",
+      "template": "# Spike: mistral docs (ts)\n// Auto-generated spike stub for mistral (docs)\nexport function demo() {\n  console.log('use mistral - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-mistral-docs-testing-ts.ts.txt",
+      "template": "# Spike: mistral docs (ts)\n// Auto-generated spike stub for mistral (docs)\nexport function demo() {\n  console.log('use mistral - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-mistral-docs-testing-ts.md",
+      "template": "# mistral docs (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-mistral-docs-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

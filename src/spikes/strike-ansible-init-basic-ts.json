@@ -1,0 +1,41 @@
+{
+  "id": "strike-ansible-init-basic-ts",
+  "name": "ansible init basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "ansible",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for ansible init in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "ansible-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/ansible-init.ts",
+      "template": "# Spike: ansible init (ts)\n// Auto-generated spike stub for ansible (init)\nexport function demo() {\n  console.log('use ansible - init (basic)');\n}\n"
+    },
+    {
+      "path": "ansible/playbook.yml",
+      "template": "- hosts: all\n  tasks:\n    - name: Ping\n      ping:\n"
+    },
+    {
+      "path": "spikes/strike-ansible-init-basic-ts.ts.txt",
+      "template": "# Spike: ansible init (ts)\n// Auto-generated spike stub for ansible (init)\nexport function demo() {\n  console.log('use ansible - init (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-ansible-init-basic-ts.md",
+      "template": "# ansible init (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,37 @@
+{
+  "id": "strike-cloudflare-workers-example-typed-ts",
+  "name": "cloudflare-workers example typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "cloudflare-workers",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for cloudflare-workers example in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "cloudflare-workers-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/cloudflare-workers-example.ts",
+      "template": "# Spike: cloudflare-workers example (ts)\n// Auto-generated spike stub for cloudflare-workers (example)\nexport function demo() {\n  console.log('use cloudflare-workers - example (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-cloudflare-workers-example-typed-ts.ts.txt",
+      "template": "# Spike: cloudflare-workers example (ts)\n// Auto-generated spike stub for cloudflare-workers (example)\nexport function demo() {\n  console.log('use cloudflare-workers - example (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-cloudflare-workers-example-typed-ts.md",
+      "template": "# cloudflare-workers example (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

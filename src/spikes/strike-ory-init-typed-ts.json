@@ -1,0 +1,41 @@
+{
+  "id": "strike-ory-init-typed-ts",
+  "name": "ory init typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "ory",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for ory init in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "ory-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/ory-init.ts",
+      "template": "# Spike: ory init (ts)\n// Auto-generated spike stub for ory (init)\nexport function demo() {\n  console.log('use ory - init (typed)');\n}\n"
+    },
+    {
+      "path": "src/ory/client.ts",
+      "template": "export function createOry(){ return { project: process.env.ORY_PROJECT_ID }; }\n"
+    },
+    {
+      "path": "spikes/strike-ory-init-typed-ts.ts.txt",
+      "template": "# Spike: ory init (ts)\n// Auto-generated spike stub for ory (init)\nexport function demo() {\n  console.log('use ory - init (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-ory-init-typed-ts.md",
+      "template": "# ory init (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

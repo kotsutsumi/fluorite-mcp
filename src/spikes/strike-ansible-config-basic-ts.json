@@ -1,0 +1,41 @@
+{
+  "id": "strike-ansible-config-basic-ts",
+  "name": "ansible config basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "ansible",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for ansible config in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "ansible-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/ansible-config.ts",
+      "template": "# Spike: ansible config (ts)\n// Auto-generated spike stub for ansible (config)\nexport function demo() {\n  console.log('use ansible - config (basic)');\n}\n"
+    },
+    {
+      "path": "ansible/playbook.yml",
+      "template": "- hosts: all\n  tasks:\n    - name: Ping\n      ping:\n"
+    },
+    {
+      "path": "spikes/strike-ansible-config-basic-ts.ts.txt",
+      "template": "# Spike: ansible config (ts)\n// Auto-generated spike stub for ansible (config)\nexport function demo() {\n  console.log('use ansible - config (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-ansible-config-basic-ts.md",
+      "template": "# ansible config (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-serverless-config-basic-ts",
+  "name": "serverless config basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "serverless",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for serverless config in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "serverless-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/serverless-config.ts",
+      "template": "# Spike: serverless config (ts)\n// Auto-generated spike stub for serverless (config)\nexport function demo() {\n  console.log('use serverless - config (basic)');\n}\n"
+    },
+    {
+      "path": "serverless.yml",
+      "template": "service: app\nframeworkVersion: '3'\nprovider: { name: aws, runtime: nodejs20.x }\nfunctions: { hello: { handler: src/lambda/handler.handler, events: [{ httpApi: { path: /hello, method: get } }] } }\n"
+    },
+    {
+      "path": "spikes/strike-serverless-config-basic-ts.ts.txt",
+      "template": "# Spike: serverless config (ts)\n// Auto-generated spike stub for serverless (config)\nexport function demo() {\n  console.log('use serverless - config (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-serverless-config-basic-ts.md",
+      "template": "# serverless config (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

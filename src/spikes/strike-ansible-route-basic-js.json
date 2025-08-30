@@ -1,0 +1,37 @@
+{
+  "id": "strike-ansible-route-basic-js",
+  "name": "ansible route basic js",
+  "version": "0.1.0",
+  "stack": [
+    "ansible",
+    "js"
+  ],
+  "tags": [
+    "route",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for ansible route in js (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "ansible-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/ansible-route.js",
+      "template": "# Spike: ansible route (js)\n// Auto-generated spike stub for ansible (route)\nmodule.exports = function demo(){\n  console.log('use ansible - route (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-ansible-route-basic-js.js.txt",
+      "template": "# Spike: ansible route (js)\n// Auto-generated spike stub for ansible (route)\nmodule.exports = function demo(){\n  console.log('use ansible - route (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-ansible-route-basic-js.md",
+      "template": "# ansible route (basic, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

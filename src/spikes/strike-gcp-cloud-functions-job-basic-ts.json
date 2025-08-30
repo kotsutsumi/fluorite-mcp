@@ -1,0 +1,37 @@
+{
+  "id": "strike-gcp-cloud-functions-job-basic-ts",
+  "name": "gcp-cloud-functions job basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "gcp-cloud-functions",
+    "ts"
+  ],
+  "tags": [
+    "job",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for gcp-cloud-functions job in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "gcp-cloud-functions-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/gcp-cloud-functions-job.ts",
+      "template": "# Spike: gcp-cloud-functions job (ts)\n// Auto-generated spike stub for gcp-cloud-functions (job)\nexport function demo() {\n  console.log('use gcp-cloud-functions - job (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-gcp-cloud-functions-job-basic-ts.ts.txt",
+      "template": "# Spike: gcp-cloud-functions job (ts)\n// Auto-generated spike stub for gcp-cloud-functions (job)\nexport function demo() {\n  console.log('use gcp-cloud-functions - job (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-gcp-cloud-functions-job-basic-ts.md",
+      "template": "# gcp-cloud-functions job (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

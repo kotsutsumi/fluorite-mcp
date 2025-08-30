@@ -1,0 +1,49 @@
+{
+  "id": "strike-tailwindcss-config-typed-ts",
+  "name": "tailwindcss config typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "tailwindcss",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for tailwindcss config in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "tailwindcss-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/tailwindcss-config.ts",
+      "template": "# Spike: tailwindcss config (ts)\n// Auto-generated spike stub for tailwindcss (config)\nexport function demo() {\n  console.log('use tailwindcss - config (typed)');\n}\n"
+    },
+    {
+      "path": "tailwind.config.ts",
+      "template": "import type { Config } from 'tailwindcss';\nexport default { content: ['./index.html','./src/**/*.{ts,tsx,js,jsx}'], theme: { extend: {} }, plugins: [] } satisfies Config;\n"
+    },
+    {
+      "path": "postcss.config.js",
+      "template": "module.exports = { plugins: { tailwindcss: {}, autoprefixer: {} } };\n"
+    },
+    {
+      "path": "src/index.css",
+      "template": "@tailwind base;\n@tailwind components;\n@tailwind utilities;\n"
+    },
+    {
+      "path": "spikes/strike-tailwindcss-config-typed-ts.ts.txt",
+      "template": "# Spike: tailwindcss config (ts)\n// Auto-generated spike stub for tailwindcss (config)\nexport function demo() {\n  console.log('use tailwindcss - config (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-tailwindcss-config-typed-ts.md",
+      "template": "# tailwindcss config (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

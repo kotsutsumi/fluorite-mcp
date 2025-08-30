@@ -1,0 +1,41 @@
+{
+  "id": "strike-serverless-config-typed-js",
+  "name": "serverless config typed js",
+  "version": "0.1.0",
+  "stack": [
+    "serverless",
+    "js"
+  ],
+  "tags": [
+    "config",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for serverless config in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "serverless-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/serverless-config.js",
+      "template": "# Spike: serverless config (js)\n// Auto-generated spike stub for serverless (config)\nmodule.exports = function demo(){\n  console.log('use serverless - config (typed)');\n};\n"
+    },
+    {
+      "path": "serverless.yml",
+      "template": "service: app\nframeworkVersion: '3'\nprovider: { name: aws, runtime: nodejs20.x }\nfunctions: { hello: { handler: src/lambda/handler.handler, events: [{ httpApi: { path: /hello, method: get } }] } }\n"
+    },
+    {
+      "path": "spikes/strike-serverless-config-typed-js.js.txt",
+      "template": "# Spike: serverless config (js)\n// Auto-generated spike stub for serverless (config)\nmodule.exports = function demo(){\n  console.log('use serverless - config (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-serverless-config-typed-js.md",
+      "template": "# serverless config (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-newrelic-example-testing-js",
+  "name": "newrelic example testing js",
+  "version": "0.1.0",
+  "stack": [
+    "newrelic",
+    "js"
+  ],
+  "tags": [
+    "example",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for newrelic example in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "newrelic-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/newrelic-example.js",
+      "template": "# Spike: newrelic example (js)\n// Auto-generated spike stub for newrelic (example)\nmodule.exports = function demo(){\n  console.log('use newrelic - example (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-newrelic-example-testing-js.js.txt",
+      "template": "# Spike: newrelic example (js)\n// Auto-generated spike stub for newrelic (example)\nmodule.exports = function demo(){\n  console.log('use newrelic - example (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-newrelic-example-testing-js.md",
+      "template": "# newrelic example (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-newrelic-example-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-elysia-worker-testing-ts",
+  "name": "elysia worker testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "elysia",
+    "ts"
+  ],
+  "tags": [
+    "worker",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for elysia worker in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "elysia-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/elysia-worker.ts",
+      "template": "# Spike: elysia worker (ts)\n// Auto-generated spike stub for elysia (worker)\nexport function demo() {\n  console.log('use elysia - worker (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-elysia-worker-testing-ts.ts.txt",
+      "template": "# Spike: elysia worker (ts)\n// Auto-generated spike stub for elysia (worker)\nexport function demo() {\n  console.log('use elysia - worker (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-elysia-worker-testing-ts.md",
+      "template": "# elysia worker (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-elysia-worker-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

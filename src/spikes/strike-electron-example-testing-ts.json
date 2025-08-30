@@ -1,0 +1,41 @@
+{
+  "id": "strike-electron-example-testing-ts",
+  "name": "electron example testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "electron",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for electron example in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "electron-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/electron-example.ts",
+      "template": "# Spike: electron example (ts)\n// Auto-generated spike stub for electron (example)\nexport function demo() {\n  console.log('use electron - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-electron-example-testing-ts.ts.txt",
+      "template": "# Spike: electron example (ts)\n// Auto-generated spike stub for electron (example)\nexport function demo() {\n  console.log('use electron - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-electron-example-testing-ts.md",
+      "template": "# electron example (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-electron-example-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

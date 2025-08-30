@@ -1,0 +1,41 @@
+{
+  "id": "strike-terraform-config-typed-js",
+  "name": "terraform config typed js",
+  "version": "0.1.0",
+  "stack": [
+    "terraform",
+    "js"
+  ],
+  "tags": [
+    "config",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for terraform config in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "terraform-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/terraform-config.js",
+      "template": "# Spike: terraform config (js)\n// Auto-generated spike stub for terraform (config)\nmodule.exports = function demo(){\n  console.log('use terraform - config (typed)');\n};\n"
+    },
+    {
+      "path": "main.tf",
+      "template": "terraform { required_version = \">= 1.5.0\" }\n"
+    },
+    {
+      "path": "spikes/strike-terraform-config-typed-js.js.txt",
+      "template": "# Spike: terraform config (js)\n// Auto-generated spike stub for terraform (config)\nmodule.exports = function demo(){\n  console.log('use terraform - config (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-terraform-config-typed-js.md",
+      "template": "# terraform config (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-zustand-init-secure-ts",
+  "name": "zustand init secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "zustand",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for zustand init in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "zustand-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/zustand-init.ts",
+      "template": "# Spike: zustand init (ts)\n// Auto-generated spike stub for zustand (init)\nexport function demo() {\n  console.log('use zustand - init (secure)');\n}\n"
+    },
+    {
+      "path": "src/stores/useCounter.ts",
+      "template": "import { create } from 'zustand';\nexport const useCounter = create<{ count:number; inc:()=>void; }>((set)=>({ count:0, inc:()=> set((s)=> ({ count: s.count+1 })) }));\n"
+    },
+    {
+      "path": "spikes/strike-zustand-init-secure-ts.ts.txt",
+      "template": "# Spike: zustand init (ts)\n// Auto-generated spike stub for zustand (init)\nexport function demo() {\n  console.log('use zustand - init (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-zustand-init-secure-ts.md",
+      "template": "# zustand init (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

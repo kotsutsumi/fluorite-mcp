@@ -1,0 +1,37 @@
+{
+  "id": "strike-fastify-command-typed-ts",
+  "name": "fastify command typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "fastify",
+    "ts"
+  ],
+  "tags": [
+    "command",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastify command in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastify-command-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/fastify-command.ts",
+      "template": "# Spike: fastify command (ts)\n// Auto-generated spike stub for fastify (command)\nexport function demo() {\n  console.log('use fastify - command (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-fastify-command-typed-ts.ts.txt",
+      "template": "# Spike: fastify command (ts)\n// Auto-generated spike stub for fastify (command)\nexport function demo() {\n  console.log('use fastify - command (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-fastify-command-typed-ts.md",
+      "template": "# fastify command (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

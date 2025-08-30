@@ -1,0 +1,41 @@
+{
+  "id": "strike-k6-config-testing-ts",
+  "name": "k6 config testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "k6",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for k6 config in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "k6-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/k6-config.ts",
+      "template": "# Spike: k6 config (ts)\n// Auto-generated spike stub for k6 (config)\nexport function demo() {\n  console.log('use k6 - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-k6-config-testing-ts.ts.txt",
+      "template": "# Spike: k6 config (ts)\n// Auto-generated spike stub for k6 (config)\nexport function demo() {\n  console.log('use k6 - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-k6-config-testing-ts.md",
+      "template": "# k6 config (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-k6-config-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

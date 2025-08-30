@@ -1,0 +1,37 @@
+{
+  "id": "strike-kafka-route-typed-ts",
+  "name": "kafka route typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "kafka",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for kafka route in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "kafka-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/kafka-route.ts",
+      "template": "# Spike: kafka route (ts)\n// Auto-generated spike stub for kafka (route)\nexport function demo() {\n  console.log('use kafka - route (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kafka-route-typed-ts.ts.txt",
+      "template": "# Spike: kafka route (ts)\n// Auto-generated spike stub for kafka (route)\nexport function demo() {\n  console.log('use kafka - route (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kafka-route-typed-ts.md",
+      "template": "# kafka route (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

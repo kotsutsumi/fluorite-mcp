@@ -1,0 +1,41 @@
+{
+  "id": "strike-openapi-config-secure-js",
+  "name": "openapi config secure js",
+  "version": "0.1.0",
+  "stack": [
+    "openapi",
+    "js"
+  ],
+  "tags": [
+    "config",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for openapi config in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "openapi-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/openapi-config.js",
+      "template": "# Spike: openapi config (js)\n// Auto-generated spike stub for openapi (config)\nmodule.exports = function demo(){\n  console.log('use openapi - config (secure)');\n};\n"
+    },
+    {
+      "path": "openapi.yaml",
+      "template": "openapi: 3.0.0\ninfo: { title: API, version: 1.0.0 }\npaths:\n  /hello:\n    get:\n      responses:\n        '200': { description: ok }\n"
+    },
+    {
+      "path": "spikes/strike-openapi-config-secure-js.js.txt",
+      "template": "# Spike: openapi config (js)\n// Auto-generated spike stub for openapi (config)\nmodule.exports = function demo(){\n  console.log('use openapi - config (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-openapi-config-secure-js.md",
+      "template": "# openapi config (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

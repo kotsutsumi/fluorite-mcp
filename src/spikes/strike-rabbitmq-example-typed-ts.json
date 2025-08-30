@@ -1,0 +1,37 @@
+{
+  "id": "strike-rabbitmq-example-typed-ts",
+  "name": "rabbitmq example typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "rabbitmq",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for rabbitmq example in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "rabbitmq-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/rabbitmq-example.ts",
+      "template": "# Spike: rabbitmq example (ts)\n// Auto-generated spike stub for rabbitmq (example)\nexport function demo() {\n  console.log('use rabbitmq - example (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-rabbitmq-example-typed-ts.ts.txt",
+      "template": "# Spike: rabbitmq example (ts)\n// Auto-generated spike stub for rabbitmq (example)\nexport function demo() {\n  console.log('use rabbitmq - example (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-rabbitmq-example-typed-ts.md",
+      "template": "# rabbitmq example (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

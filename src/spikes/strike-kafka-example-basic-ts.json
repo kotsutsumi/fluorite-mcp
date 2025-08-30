@@ -1,0 +1,37 @@
+{
+  "id": "strike-kafka-example-basic-ts",
+  "name": "kafka example basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "kafka",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for kafka example in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "kafka-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/kafka-example.ts",
+      "template": "# Spike: kafka example (ts)\n// Auto-generated spike stub for kafka (example)\nexport function demo() {\n  console.log('use kafka - example (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kafka-example-basic-ts.ts.txt",
+      "template": "# Spike: kafka example (ts)\n// Auto-generated spike stub for kafka (example)\nexport function demo() {\n  console.log('use kafka - example (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kafka-example-basic-ts.md",
+      "template": "# kafka example (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

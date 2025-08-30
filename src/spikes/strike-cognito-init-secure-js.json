@@ -1,0 +1,41 @@
+{
+  "id": "strike-cognito-init-secure-js",
+  "name": "cognito init secure js",
+  "version": "0.1.0",
+  "stack": [
+    "cognito",
+    "js"
+  ],
+  "tags": [
+    "init",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for cognito init in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "cognito-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/cognito-init.js",
+      "template": "# Spike: cognito init (js)\n// Auto-generated spike stub for cognito (init)\nmodule.exports = function demo(){\n  console.log('use cognito - init (secure)');\n};\n"
+    },
+    {
+      "path": "src/cognito/client.ts",
+      "template": "export function createCognito(){ return { userPoolId: process.env.COGNITO_USER_POOL_ID, clientId: process.env.COGNITO_CLIENT_ID }; }\n"
+    },
+    {
+      "path": "spikes/strike-cognito-init-secure-js.js.txt",
+      "template": "# Spike: cognito init (js)\n// Auto-generated spike stub for cognito (init)\nmodule.exports = function demo(){\n  console.log('use cognito - init (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-cognito-init-secure-js.md",
+      "template": "# cognito init (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

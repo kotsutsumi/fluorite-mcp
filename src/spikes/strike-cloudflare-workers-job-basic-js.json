@@ -1,0 +1,37 @@
+{
+  "id": "strike-cloudflare-workers-job-basic-js",
+  "name": "cloudflare-workers job basic js",
+  "version": "0.1.0",
+  "stack": [
+    "cloudflare-workers",
+    "js"
+  ],
+  "tags": [
+    "job",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for cloudflare-workers job in js (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "cloudflare-workers-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/cloudflare-workers-job.js",
+      "template": "# Spike: cloudflare-workers job (js)\n// Auto-generated spike stub for cloudflare-workers (job)\nmodule.exports = function demo(){\n  console.log('use cloudflare-workers - job (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-cloudflare-workers-job-basic-js.js.txt",
+      "template": "# Spike: cloudflare-workers job (js)\n// Auto-generated spike stub for cloudflare-workers (job)\nmodule.exports = function demo(){\n  console.log('use cloudflare-workers - job (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-cloudflare-workers-job-basic-js.md",
+      "template": "# cloudflare-workers job (basic, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

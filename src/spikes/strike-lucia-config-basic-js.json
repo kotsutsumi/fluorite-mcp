@@ -1,0 +1,41 @@
+{
+  "id": "strike-lucia-config-basic-js",
+  "name": "lucia config basic js",
+  "version": "0.1.0",
+  "stack": [
+    "lucia",
+    "js"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for lucia config in js (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "lucia-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/lucia-config.js",
+      "template": "# Spike: lucia config (js)\n// Auto-generated spike stub for lucia (config)\nmodule.exports = function demo(){\n  console.log('use lucia - config (basic)');\n};\n"
+    },
+    {
+      "path": "src/lucia/auth.ts",
+      "template": "export function lucia(){ /* configure lucia here */ return {}; }\n"
+    },
+    {
+      "path": "spikes/strike-lucia-config-basic-js.js.txt",
+      "template": "# Spike: lucia config (js)\n// Auto-generated spike stub for lucia (config)\nmodule.exports = function demo(){\n  console.log('use lucia - config (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-lucia-config-basic-js.md",
+      "template": "# lucia config (basic, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

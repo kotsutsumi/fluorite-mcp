@@ -1,0 +1,37 @@
+{
+  "id": "strike-minio-schema-secure-ts",
+  "name": "minio schema secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "minio",
+    "ts"
+  ],
+  "tags": [
+    "schema",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for minio schema in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "minio-schema-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/minio-schema.ts",
+      "template": "# Spike: minio schema (ts)\n// Auto-generated spike stub for minio (schema)\nexport function demo() {\n  console.log('use minio - schema (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-minio-schema-secure-ts.ts.txt",
+      "template": "# Spike: minio schema (ts)\n// Auto-generated spike stub for minio (schema)\nexport function demo() {\n  console.log('use minio - schema (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-minio-schema-secure-ts.md",
+      "template": "# minio schema (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

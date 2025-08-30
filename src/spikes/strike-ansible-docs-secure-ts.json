@@ -1,0 +1,37 @@
+{
+  "id": "strike-ansible-docs-secure-ts",
+  "name": "ansible docs secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "ansible",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for ansible docs in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "ansible-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/ansible-docs.ts",
+      "template": "# Spike: ansible docs (ts)\n// Auto-generated spike stub for ansible (docs)\nexport function demo() {\n  console.log('use ansible - docs (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-ansible-docs-secure-ts.ts.txt",
+      "template": "# Spike: ansible docs (ts)\n// Auto-generated spike stub for ansible (docs)\nexport function demo() {\n  console.log('use ansible - docs (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-ansible-docs-secure-ts.md",
+      "template": "# ansible docs (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

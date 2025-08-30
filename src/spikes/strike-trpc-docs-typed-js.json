@@ -1,0 +1,37 @@
+{
+  "id": "strike-trpc-docs-typed-js",
+  "name": "trpc docs typed js",
+  "version": "0.1.0",
+  "stack": [
+    "trpc",
+    "js"
+  ],
+  "tags": [
+    "docs",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for trpc docs in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "trpc-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/trpc-docs.js",
+      "template": "# Spike: trpc docs (js)\n// Auto-generated spike stub for trpc (docs)\nmodule.exports = function demo(){\n  console.log('use trpc - docs (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-trpc-docs-typed-js.js.txt",
+      "template": "# Spike: trpc docs (js)\n// Auto-generated spike stub for trpc (docs)\nmodule.exports = function demo(){\n  console.log('use trpc - docs (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-trpc-docs-typed-js.md",
+      "template": "# trpc docs (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

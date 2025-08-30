@@ -1,0 +1,41 @@
+{
+  "id": "strike-zod-schema-basic-ts",
+  "name": "zod schema basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "zod",
+    "ts"
+  ],
+  "tags": [
+    "schema",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for zod schema in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "zod-schema-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/zod-schema.ts",
+      "template": "# Spike: zod schema (ts)\n// Auto-generated spike stub for zod (schema)\nexport function demo() {\n  console.log('use zod - schema (basic)');\n}\n"
+    },
+    {
+      "path": "src/validation/schemas.ts",
+      "template": "import { z } from 'zod';\nexport const UserSchema = z.object({ id: z.number().int().positive(), email: z.string().email(), name: z.string().optional() });\nexport type User = z.infer<typeof UserSchema>;\n"
+    },
+    {
+      "path": "spikes/strike-zod-schema-basic-ts.ts.txt",
+      "template": "# Spike: zod schema (ts)\n// Auto-generated spike stub for zod (schema)\nexport function demo() {\n  console.log('use zod - schema (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-zod-schema-basic-ts.md",
+      "template": "# zod schema (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

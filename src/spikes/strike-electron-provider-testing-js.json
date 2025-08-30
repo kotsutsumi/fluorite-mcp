@@ -1,0 +1,41 @@
+{
+  "id": "strike-electron-provider-testing-js",
+  "name": "electron provider testing js",
+  "version": "0.1.0",
+  "stack": [
+    "electron",
+    "js"
+  ],
+  "tags": [
+    "provider",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for electron provider in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "electron-provider-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/electron-provider.js",
+      "template": "# Spike: electron provider (js)\n// Auto-generated spike stub for electron (provider)\nmodule.exports = function demo(){\n  console.log('use electron - provider (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-electron-provider-testing-js.js.txt",
+      "template": "# Spike: electron provider (js)\n// Auto-generated spike stub for electron (provider)\nmodule.exports = function demo(){\n  console.log('use electron - provider (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-electron-provider-testing-js.md",
+      "template": "# electron provider (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-electron-provider-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

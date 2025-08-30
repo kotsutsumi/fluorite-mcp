@@ -1,0 +1,41 @@
+{
+  "id": "strike-react-pipeline-testing-ts",
+  "name": "react pipeline testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "react",
+    "ts"
+  ],
+  "tags": [
+    "pipeline",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for react pipeline in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "react-pipeline-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/react-pipeline.ts",
+      "template": "# Spike: react pipeline (ts)\n// Auto-generated spike stub for react (pipeline)\nexport function demo() {\n  console.log('use react - pipeline (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-react-pipeline-testing-ts.ts.txt",
+      "template": "# Spike: react pipeline (ts)\n// Auto-generated spike stub for react (pipeline)\nexport function demo() {\n  console.log('use react - pipeline (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-react-pipeline-testing-ts.md",
+      "template": "# react pipeline (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-react-pipeline-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-langchain-adapter-testing-ts",
+  "name": "langchain adapter testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "langchain",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for langchain adapter in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "langchain-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/langchain-adapter.ts",
+      "template": "# Spike: langchain adapter (ts)\n// Auto-generated spike stub for langchain (adapter)\nexport function demo() {\n  console.log('use langchain - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-langchain-adapter-testing-ts.ts.txt",
+      "template": "# Spike: langchain adapter (ts)\n// Auto-generated spike stub for langchain (adapter)\nexport function demo() {\n  console.log('use langchain - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-langchain-adapter-testing-ts.md",
+      "template": "# langchain adapter (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-langchain-adapter-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

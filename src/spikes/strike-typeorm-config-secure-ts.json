@@ -1,0 +1,45 @@
+{
+  "id": "strike-typeorm-config-secure-ts",
+  "name": "typeorm config secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "typeorm",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for typeorm config in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "typeorm-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/typeorm-config.ts",
+      "template": "# Spike: typeorm config (ts)\n// Auto-generated spike stub for typeorm (config)\nexport function demo() {\n  console.log('use typeorm - config (secure)');\n}\n"
+    },
+    {
+      "path": "src/typeorm/data-source.ts",
+      "template": "import 'reflect-metadata';\nimport { DataSource } from 'typeorm';\nexport const AppDataSource = new DataSource({ type: 'sqlite', database: ':memory:', entities: [__dirname + '/**/*.ts'], synchronize: true });\n"
+    },
+    {
+      "path": "src/typeorm/User.ts",
+      "template": "import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';\n@Entity() export class User { @PrimaryGeneratedColumn() id!: number; @Column({ unique: true }) email!: string; @Column({ nullable: true }) name?: string; }\n"
+    },
+    {
+      "path": "spikes/strike-typeorm-config-secure-ts.ts.txt",
+      "template": "# Spike: typeorm config (ts)\n// Auto-generated spike stub for typeorm (config)\nexport function demo() {\n  console.log('use typeorm - config (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-typeorm-config-secure-ts.md",
+      "template": "# typeorm config (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-weaviate-config-basic-ts",
+  "name": "weaviate config basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "weaviate",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for weaviate config in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "weaviate-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/weaviate-config.ts",
+      "template": "# Spike: weaviate config (ts)\n// Auto-generated spike stub for weaviate (config)\nexport function demo() {\n  console.log('use weaviate - config (basic)');\n}\n"
+    },
+    {
+      "path": "src/vectors/weaviate.ts",
+      "template": "export function weaviate(){ return { url: process.env.WEAVIATE_URL, apiKey: process.env.WEAVIATE_API_KEY }; }\n"
+    },
+    {
+      "path": "spikes/strike-weaviate-config-basic-ts.ts.txt",
+      "template": "# Spike: weaviate config (ts)\n// Auto-generated spike stub for weaviate (config)\nexport function demo() {\n  console.log('use weaviate - config (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-weaviate-config-basic-ts.md",
+      "template": "# weaviate config (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

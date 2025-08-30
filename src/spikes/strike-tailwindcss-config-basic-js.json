@@ -1,0 +1,49 @@
+{
+  "id": "strike-tailwindcss-config-basic-js",
+  "name": "tailwindcss config basic js",
+  "version": "0.1.0",
+  "stack": [
+    "tailwindcss",
+    "js"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for tailwindcss config in js (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "tailwindcss-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/tailwindcss-config.js",
+      "template": "# Spike: tailwindcss config (js)\n// Auto-generated spike stub for tailwindcss (config)\nmodule.exports = function demo(){\n  console.log('use tailwindcss - config (basic)');\n};\n"
+    },
+    {
+      "path": "tailwind.config.ts",
+      "template": "import type { Config } from 'tailwindcss';\nexport default { content: ['./index.html','./src/**/*.{ts,tsx,js,jsx}'], theme: { extend: {} }, plugins: [] } satisfies Config;\n"
+    },
+    {
+      "path": "postcss.config.js",
+      "template": "module.exports = { plugins: { tailwindcss: {}, autoprefixer: {} } };\n"
+    },
+    {
+      "path": "src/index.css",
+      "template": "@tailwind base;\n@tailwind components;\n@tailwind utilities;\n"
+    },
+    {
+      "path": "spikes/strike-tailwindcss-config-basic-js.js.txt",
+      "template": "# Spike: tailwindcss config (js)\n// Auto-generated spike stub for tailwindcss (config)\nmodule.exports = function demo(){\n  console.log('use tailwindcss - config (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-tailwindcss-config-basic-js.md",
+      "template": "# tailwindcss config (basic, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

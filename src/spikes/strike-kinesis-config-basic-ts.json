@@ -1,0 +1,41 @@
+{
+  "id": "strike-kinesis-config-basic-ts",
+  "name": "kinesis config basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "kinesis",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for kinesis config in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "kinesis-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/kinesis-config.ts",
+      "template": "# Spike: kinesis config (ts)\n// Auto-generated spike stub for kinesis (config)\nexport function demo() {\n  console.log('use kinesis - config (basic)');\n}\n"
+    },
+    {
+      "path": "src/aws/kinesis.ts",
+      "template": "export async function putRecord(stream: string, data: string){ /* stub */ return { stream, data }; }\n"
+    },
+    {
+      "path": "spikes/strike-kinesis-config-basic-ts.ts.txt",
+      "template": "# Spike: kinesis config (ts)\n// Auto-generated spike stub for kinesis (config)\nexport function demo() {\n  console.log('use kinesis - config (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kinesis-config-basic-ts.md",
+      "template": "# kinesis config (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

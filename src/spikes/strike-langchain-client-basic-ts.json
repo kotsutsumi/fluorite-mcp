@@ -1,0 +1,41 @@
+{
+  "id": "strike-langchain-client-basic-ts",
+  "name": "langchain client basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "langchain",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for langchain client in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "langchain-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/langchain-client.ts",
+      "template": "# Spike: langchain client (ts)\n// Auto-generated spike stub for langchain (client)\nexport function demo() {\n  console.log('use langchain - client (basic)');\n}\n"
+    },
+    {
+      "path": "src/langchain/basic.ts",
+      "template": "import { ChatOpenAI } from '@langchain/openai';\nimport { ChatPromptTemplate } from '@langchain/core/prompts';\nexport async function run(prompt: string){\n  const llm = new ChatOpenAI({ model: 'gpt-4o-mini', apiKey: process.env.OPENAI_API_KEY });\n  const tpl = ChatPromptTemplate.fromMessages([['system','You are helpful.'],['human','{input}']]);\n  const chain = tpl.pipe(llm);\n  const res = await chain.invoke({ input: prompt });\n  return res?.content?.toString?.() || String(res);\n}\n"
+    },
+    {
+      "path": "spikes/strike-langchain-client-basic-ts.ts.txt",
+      "template": "# Spike: langchain client (ts)\n// Auto-generated spike stub for langchain (client)\nexport function demo() {\n  console.log('use langchain - client (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-langchain-client-basic-ts.md",
+      "template": "# langchain client (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

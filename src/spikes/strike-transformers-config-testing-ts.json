@@ -1,0 +1,41 @@
+{
+  "id": "strike-transformers-config-testing-ts",
+  "name": "transformers config testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "transformers",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for transformers config in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "transformers-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/transformers-config.ts",
+      "template": "# Spike: transformers config (ts)\n// Auto-generated spike stub for transformers (config)\nexport function demo() {\n  console.log('use transformers - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-transformers-config-testing-ts.ts.txt",
+      "template": "# Spike: transformers config (ts)\n// Auto-generated spike stub for transformers (config)\nexport function demo() {\n  console.log('use transformers - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-transformers-config-testing-ts.md",
+      "template": "# transformers config (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-transformers-config-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

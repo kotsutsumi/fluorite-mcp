@@ -1,0 +1,45 @@
+{
+  "id": "strike-next-intl-route-basic-ts",
+  "name": "next-intl route basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "next-intl",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for next-intl route in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "next-intl-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/next-intl-route.ts",
+      "template": "# Spike: next-intl route (ts)\n// Auto-generated spike stub for next-intl (route)\nexport function demo() {\n  console.log('use next-intl - route (basic)');\n}\n"
+    },
+    {
+      "path": "src/i18n/next-intl.ts",
+      "template": "export const messages = { en: { hello: 'Hello' }, ja: { hello: 'こんにちは' } };\n"
+    },
+    {
+      "path": "app/api/i18n/hello/route.ts",
+      "template": "import { NextResponse } from 'next/server';\nimport { messages } from '@/src/i18n/next-intl';\nexport async function GET(){ return NextResponse.json({ msg: messages.en.hello }); }\n"
+    },
+    {
+      "path": "spikes/strike-next-intl-route-basic-ts.ts.txt",
+      "template": "# Spike: next-intl route (ts)\n// Auto-generated spike stub for next-intl (route)\nexport function demo() {\n  console.log('use next-intl - route (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-next-intl-route-basic-ts.md",
+      "template": "# next-intl route (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

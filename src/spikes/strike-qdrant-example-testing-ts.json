@@ -1,0 +1,41 @@
+{
+  "id": "strike-qdrant-example-testing-ts",
+  "name": "qdrant example testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "qdrant",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for qdrant example in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "qdrant-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/qdrant-example.ts",
+      "template": "# Spike: qdrant example (ts)\n// Auto-generated spike stub for qdrant (example)\nexport function demo() {\n  console.log('use qdrant - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-qdrant-example-testing-ts.ts.txt",
+      "template": "# Spike: qdrant example (ts)\n// Auto-generated spike stub for qdrant (example)\nexport function demo() {\n  console.log('use qdrant - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-qdrant-example-testing-ts.md",
+      "template": "# qdrant example (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-qdrant-example-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

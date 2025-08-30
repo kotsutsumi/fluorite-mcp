@@ -1,0 +1,41 @@
+{
+  "id": "strike-vitest-config-testing-ts",
+  "name": "vitest config testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "vitest",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for vitest config in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "vitest-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/vitest-config.ts",
+      "template": "# Spike: vitest config (ts)\n// Auto-generated spike stub for vitest (config)\nexport function demo() {\n  console.log('use vitest - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-vitest-config-testing-ts.ts.txt",
+      "template": "# Spike: vitest config (ts)\n// Auto-generated spike stub for vitest (config)\nexport function demo() {\n  console.log('use vitest - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-vitest-config-testing-ts.md",
+      "template": "# vitest config (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-vitest-config-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,37 @@
+{
+  "id": "strike-helm-job-secure-ts",
+  "name": "helm job secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "helm",
+    "ts"
+  ],
+  "tags": [
+    "job",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for helm job in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "helm-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/helm-job.ts",
+      "template": "# Spike: helm job (ts)\n// Auto-generated spike stub for helm (job)\nexport function demo() {\n  console.log('use helm - job (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-helm-job-secure-ts.ts.txt",
+      "template": "# Spike: helm job (ts)\n// Auto-generated spike stub for helm (job)\nexport function demo() {\n  console.log('use helm - job (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-helm-job-secure-ts.md",
+      "template": "# helm job (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

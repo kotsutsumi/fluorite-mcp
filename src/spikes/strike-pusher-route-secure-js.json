@@ -1,0 +1,41 @@
+{
+  "id": "strike-pusher-route-secure-js",
+  "name": "pusher route secure js",
+  "version": "0.1.0",
+  "stack": [
+    "pusher",
+    "js"
+  ],
+  "tags": [
+    "route",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for pusher route in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "pusher-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/pusher-route.js",
+      "template": "# Spike: pusher route (js)\n// Auto-generated spike stub for pusher (route)\nmodule.exports = function demo(){\n  console.log('use pusher - route (secure)');\n};\n"
+    },
+    {
+      "path": "app/api/realtime/publish/route.ts",
+      "template": "import { NextResponse } from 'next/server';\nimport { pusher } from '@/src/realtime/pusher';\nexport async function POST(req: Request){ const json = await req.json(); const client = pusher(); return NextResponse.json({ ok: true, channel: json.channel }); }\n"
+    },
+    {
+      "path": "spikes/strike-pusher-route-secure-js.js.txt",
+      "template": "# Spike: pusher route (js)\n// Auto-generated spike stub for pusher (route)\nmodule.exports = function demo(){\n  console.log('use pusher - route (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-pusher-route-secure-js.md",
+      "template": "# pusher route (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

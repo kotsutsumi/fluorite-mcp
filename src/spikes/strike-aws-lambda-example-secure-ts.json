@@ -1,0 +1,37 @@
+{
+  "id": "strike-aws-lambda-example-secure-ts",
+  "name": "aws-lambda example secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "aws-lambda",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for aws-lambda example in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "aws-lambda-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/aws-lambda-example.ts",
+      "template": "# Spike: aws-lambda example (ts)\n// Auto-generated spike stub for aws-lambda (example)\nexport function demo() {\n  console.log('use aws-lambda - example (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-aws-lambda-example-secure-ts.ts.txt",
+      "template": "# Spike: aws-lambda example (ts)\n// Auto-generated spike stub for aws-lambda (example)\nexport function demo() {\n  console.log('use aws-lambda - example (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-aws-lambda-example-secure-ts.md",
+      "template": "# aws-lambda example (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

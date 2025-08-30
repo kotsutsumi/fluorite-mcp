@@ -1,0 +1,41 @@
+{
+  "id": "strike-datadog-init-typed-js",
+  "name": "datadog init typed js",
+  "version": "0.1.0",
+  "stack": [
+    "datadog",
+    "js"
+  ],
+  "tags": [
+    "init",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for datadog init in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "datadog-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/datadog-init.js",
+      "template": "# Spike: datadog init (js)\n// Auto-generated spike stub for datadog (init)\nmodule.exports = function demo(){\n  console.log('use datadog - init (typed)');\n};\n"
+    },
+    {
+      "path": "src/apm/datadog.ts",
+      "template": "export function datadog(){ return { enabled: true }; }\n"
+    },
+    {
+      "path": "spikes/strike-datadog-init-typed-js.js.txt",
+      "template": "# Spike: datadog init (js)\n// Auto-generated spike stub for datadog (init)\nmodule.exports = function demo(){\n  console.log('use datadog - init (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-datadog-init-typed-js.md",
+      "template": "# datadog init (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

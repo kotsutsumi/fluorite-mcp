@@ -1,0 +1,41 @@
+{
+  "id": "strike-swr-hook-basic-js",
+  "name": "swr hook basic js",
+  "version": "0.1.0",
+  "stack": [
+    "swr",
+    "js"
+  ],
+  "tags": [
+    "hook",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for swr hook in js (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "swr-hook-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/swr-hook.js",
+      "template": "# Spike: swr hook (js)\n// Auto-generated spike stub for swr (hook)\nmodule.exports = function demo(){\n  console.log('use swr - hook (basic)');\n};\n"
+    },
+    {
+      "path": "src/hooks/useHello.ts",
+      "template": "import useSWR from 'swr';\nconst fetcher = (url: string)=> fetch(url).then(r=> r.json());\nexport function useHello(){ return useSWR('/api/hello', fetcher); }\n"
+    },
+    {
+      "path": "spikes/strike-swr-hook-basic-js.js.txt",
+      "template": "# Spike: swr hook (js)\n// Auto-generated spike stub for swr (hook)\nmodule.exports = function demo(){\n  console.log('use swr - hook (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-swr-hook-basic-js.md",
+      "template": "# swr hook (basic, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

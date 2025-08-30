@@ -1,0 +1,41 @@
+{
+  "id": "strike-aws-lambda-route-typed-js",
+  "name": "aws-lambda route typed js",
+  "version": "0.1.0",
+  "stack": [
+    "aws-lambda",
+    "js"
+  ],
+  "tags": [
+    "route",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for aws-lambda route in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "aws-lambda-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/aws-lambda-route.js",
+      "template": "# Spike: aws-lambda route (js)\n// Auto-generated spike stub for aws-lambda (route)\nmodule.exports = function demo(){\n  console.log('use aws-lambda - route (typed)');\n};\n"
+    },
+    {
+      "path": "src/lambda/handler.ts",
+      "template": "import type { APIGatewayProxyEventV2, APIGatewayProxyResultV2 } from 'aws-lambda';\nexport async function handler(_event: APIGatewayProxyEventV2): Promise<APIGatewayProxyResultV2>{\n  return { statusCode: 200, body: JSON.stringify({ ok: true }) };\n}\n"
+    },
+    {
+      "path": "spikes/strike-aws-lambda-route-typed-js.js.txt",
+      "template": "# Spike: aws-lambda route (js)\n// Auto-generated spike stub for aws-lambda (route)\nmodule.exports = function demo(){\n  console.log('use aws-lambda - route (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-aws-lambda-route-typed-js.md",
+      "template": "# aws-lambda route (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

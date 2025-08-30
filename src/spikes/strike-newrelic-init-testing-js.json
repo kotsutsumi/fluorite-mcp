@@ -1,0 +1,45 @@
+{
+  "id": "strike-newrelic-init-testing-js",
+  "name": "newrelic init testing js",
+  "version": "0.1.0",
+  "stack": [
+    "newrelic",
+    "js"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for newrelic init in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "newrelic-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/newrelic-init.js",
+      "template": "# Spike: newrelic init (js)\n// Auto-generated spike stub for newrelic (init)\nmodule.exports = function demo(){\n  console.log('use newrelic - init (testing)');\n};\n"
+    },
+    {
+      "path": "src/apm/newrelic.ts",
+      "template": "export function newrelic(){ return { enabled: true }; }\n"
+    },
+    {
+      "path": "spikes/strike-newrelic-init-testing-js.js.txt",
+      "template": "# Spike: newrelic init (js)\n// Auto-generated spike stub for newrelic (init)\nmodule.exports = function demo(){\n  console.log('use newrelic - init (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-newrelic-init-testing-js.md",
+      "template": "# newrelic init (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-newrelic-init-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

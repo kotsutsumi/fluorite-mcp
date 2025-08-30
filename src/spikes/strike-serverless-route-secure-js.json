@@ -1,0 +1,37 @@
+{
+  "id": "strike-serverless-route-secure-js",
+  "name": "serverless route secure js",
+  "version": "0.1.0",
+  "stack": [
+    "serverless",
+    "js"
+  ],
+  "tags": [
+    "route",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for serverless route in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "serverless-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/serverless-route.js",
+      "template": "# Spike: serverless route (js)\n// Auto-generated spike stub for serverless (route)\nmodule.exports = function demo(){\n  console.log('use serverless - route (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-serverless-route-secure-js.js.txt",
+      "template": "# Spike: serverless route (js)\n// Auto-generated spike stub for serverless (route)\nmodule.exports = function demo(){\n  console.log('use serverless - route (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-serverless-route-secure-js.md",
+      "template": "# serverless route (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

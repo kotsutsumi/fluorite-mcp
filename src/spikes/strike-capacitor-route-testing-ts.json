@@ -1,0 +1,41 @@
+{
+  "id": "strike-capacitor-route-testing-ts",
+  "name": "capacitor route testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "capacitor",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for capacitor route in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "capacitor-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/capacitor-route.ts",
+      "template": "# Spike: capacitor route (ts)\n// Auto-generated spike stub for capacitor (route)\nexport function demo() {\n  console.log('use capacitor - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-capacitor-route-testing-ts.ts.txt",
+      "template": "# Spike: capacitor route (ts)\n// Auto-generated spike stub for capacitor (route)\nexport function demo() {\n  console.log('use capacitor - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-capacitor-route-testing-ts.md",
+      "template": "# capacitor route (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-capacitor-route-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

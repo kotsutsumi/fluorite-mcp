@@ -1,0 +1,41 @@
+{
+  "id": "strike-cohere-route-testing-ts",
+  "name": "cohere route testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "cohere",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for cohere route in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "cohere-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/cohere-route.ts",
+      "template": "# Spike: cohere route (ts)\n// Auto-generated spike stub for cohere (route)\nexport function demo() {\n  console.log('use cohere - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-cohere-route-testing-ts.ts.txt",
+      "template": "# Spike: cohere route (ts)\n// Auto-generated spike stub for cohere (route)\nexport function demo() {\n  console.log('use cohere - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-cohere-route-testing-ts.md",
+      "template": "# cohere route (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-cohere-route-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

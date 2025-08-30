@@ -1,0 +1,41 @@
+{
+  "id": "strike-terraform-config-secure-ts",
+  "name": "terraform config secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "terraform",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for terraform config in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "terraform-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/terraform-config.ts",
+      "template": "# Spike: terraform config (ts)\n// Auto-generated spike stub for terraform (config)\nexport function demo() {\n  console.log('use terraform - config (secure)');\n}\n"
+    },
+    {
+      "path": "main.tf",
+      "template": "terraform { required_version = \">= 1.5.0\" }\n"
+    },
+    {
+      "path": "spikes/strike-terraform-config-secure-ts.ts.txt",
+      "template": "# Spike: terraform config (ts)\n// Auto-generated spike stub for terraform (config)\nexport function demo() {\n  console.log('use terraform - config (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-terraform-config-secure-ts.md",
+      "template": "# terraform config (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -68,7 +68,7 @@ const LIBRARIES = [
   // search
   'algolia','meilisearch','typesense',
   // realtime/apm/flags/secrets
-  'socket.io','pusher','ably','datadog','newrelic','launchdarkly','unleash','vault','doppler','minio','elasticsearch','opensearch','mqtt','memcached','cloudflare-workers',
+  'socket.io','pusher','ably','datadog','newrelic','launchdarkly','unleash','vault','doppler','minio','elasticsearch','opensearch','mqtt','memcached','cloudflare-workers','line',
   // i18n/CMS/AI/analytics/bugtracking/config/uploads
   'i18next','next-intl','strapi','contentful','sanity','ghost',
   'groq','mistral','cohere',
@@ -1120,8 +1120,309 @@ export function LoginForm(){ const { register, handleSubmit, formState:{ errors 
 export const useCounter = create<{ count:number; inc:()=>void; }>((set)=>({ count:0, inc:()=> set((s)=> ({ count: s.count+1 })) }));
 ` });
   }
+  // LINE Developers (Messaging API webhook + client)
+  if (lib === 'line' && (pattern === 'webhook' || pattern === 'route')) {
+    files.push({ path: `src/line/verify.ts`, template: `import crypto from 'node:crypto';
+export function verifyLineSignature(channelSecret: string, bodyRaw: string, signature: string){
+  const hmac = crypto.createHmac('sha256', channelSecret);
+  hmac.update(bodyRaw);
+  const expected = hmac.digest('base64');
+  try { return crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(signature || '', 'utf8')); }
+  catch { return false; }
+}
+` });
+    files.push({ path: `src/line/webhook.ts`, template: `import express from 'express';
+import { verifyLineSignature } from './verify';
+export function createLineWebhookApp(channelSecret: string){
+  const app = express();
+  app.use(express.text({ type: '*/*' })); // keep raw body for signature verification
+  app.post('/line/webhook', (req, res)=>{
+    const signature = req.get('x-line-signature') || '';
+    const ok = verifyLineSignature(channelSecret, req.body, signature);
+    if (!ok) return res.status(403).send('forbidden');
+    try {
+      const json = JSON.parse(req.body || '{}');
+      for (const ev of json.events || []) {
+        if (ev.type === 'message' && ev.message?.type === 'text') {
+          // handle message here (e.g., reply via LineMessagingClient)
+        }
+      }
+      res.status(200).send('ok');
+    } catch { res.status(400).send('bad request'); }
+  });
+  return app;
+}
+` });
+    // Next.js App Router variant for token exchange (advanced/secure)
+    if (pattern === 'route' && (style === 'advanced' || style === 'secure') && (lang === 'ts' || lang === 'js')) {
+      files.push({ path: `app/api/line/exchange/route.ts`, template: `import { NextResponse } from 'next/server';
+import { z } from 'zod';
+const Body = z.object({ code: z.string(), code_verifier: z.string(), redirect_uri: z.string() });
+export async function POST(req: Request){
+  try {
+    const json = await req.json();
+    const parsed = Body.safeParse(json);
+    if (!parsed.success) return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
+    // NOTE: Exchange should be done server-side using channel secret securely.
+    return NextResponse.json({ ok: true, input: parsed.data });
+  } catch (e) {
+    return NextResponse.json({ error: String(e) }, { status: 400 });
+  }
+}
+` });
+    }
+  }
+  // FastAPI variant for LINE token exchange (Python)
+  if (lib === 'line' && pattern === 'route' && lang === 'py') {
+    files.push({ path: `src/line/fastapi_exchange.py`, template: `from fastapi import APIRouter, HTTPException
+import httpx
+router = APIRouter()
 
+@router.post('/line/exchange')
+async def exchange(payload: dict):
+    code = payload.get('code')
+    code_verifier = payload.get('code_verifier')
+    redirect_uri = payload.get('redirect_uri')
+    channel_id = payload.get('channel_id', '')
+    channel_secret = payload.get('channel_secret', '')
+    if not code or not code_verifier or not redirect_uri:
+        raise HTTPException(status_code=400, detail='invalid_request')
+    data = {
+        'grant_type': 'authorization_code',
+        'code': code,
+        'redirect_uri': redirect_uri,
+        'client_id': channel_id,
+        'code_verifier': code_verifier,
+        'client_secret': channel_secret,
+    }
+    async with httpx.AsyncClient() as client:
+        resp = await client.post('https://api.line.me/oauth2/v2.1/token', data=data, headers={'Content-Type': 'application/x-www-form-urlencoded'})
+        if resp.status_code >= 400:
+            raise HTTPException(status_code=400, detail='token_exchange_failed')
+        return resp.json()
+` });
+  }
+  if (lib === 'line' && pattern === 'service') {
+    files.push({ path: `src/line/oauth.ts`, template: `export type TokenResponse = { access_token: string; expires_in: number; id_token?: string; refresh_token?: string; scope?: string; token_type: 'Bearer' };
+export async function exchangeCodeForToken(params: { channelId: string; channelSecret: string; code: string; redirectUri: string; codeVerifier: string }){
+  const body = new URLSearchParams({
+    grant_type: 'authorization_code',
+    code: params.code,
+    redirect_uri: params.redirectUri,
+    client_id: params.channelId,
+    code_verifier: params.codeVerifier,
+    client_secret: params.channelSecret
+  });
+  const resp = await fetch('https://api.line.me/oauth2/v2.1/token', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body });
+  if (!resp.ok) throw new Error('LINE token exchange failed: ' + resp.status);
+  return (await resp.json()) as TokenResponse;
+}
+` });
+  }
+  if (lib === 'line' && pattern === 'route') {
+    files.push({ path: `src/line/routes/exchange.ts`, template: `import type { Request, Response } from 'express';
+import { exchangeCodeForToken } from '../oauth';
+export function lineExchangeHandler(channelId: string, channelSecret: string){
+  return async function handler(req: Request, res: Response){
+    if (req.method !== 'POST') return res.status(405).json({ error: 'method_not_allowed' });
+    if (!/application\/json/.test(req.headers['content-type'] || '')) return res.status(415).json({ error: 'unsupported_media_type' });
+    try {
+      const { code, code_verifier, redirect_uri } = req.body || {};
+      if (!code || !code_verifier || !redirect_uri) return res.status(400).json({ error: 'invalid_request' });
+      const tokens = await exchangeCodeForToken({ channelId, channelSecret, code, redirectUri: redirect_uri, codeVerifier: code_verifier });
+      return res.json(tokens);
+    } catch (e){
+      return res.status(400).json({ error: String(e) });
+    }
+  };
+}
+` });
+  }
+  if (lib === 'line' && pattern === 'provider') {
+    files.push({ path: `src/line/liff.ts`, template: `// LIFF initializer (browser-side usage)
+export async function initLiff(liffId: string){
+  const { liff } = (await import('@line/liff')) as any;
+  if (!liff) throw new Error('LIFF SDK not available');
+  await liff.init({ liffId });
+  if (!liff.isLoggedIn()) liff.login();
+  return liff;
+}
+` });
+  }
+  if (lib === 'line' && (pattern === 'client' || pattern === 'service')) {
+    files.push({ path: `src/line/client.ts`, template: `export class LineMessagingClient {
+  constructor(private token: string){}
+  async reply(replyToken: string, messages: Array<{ type:'text'; text:string }>){
+    await fetch('https://api.line.me/v2/bot/message/reply', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + this.token, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ replyToken, messages })
+    });
+  }
+  async push(to: string, messages: Array<{ type:'text'; text:string }>){
+    await fetch('https://api.line.me/v2/bot/message/push', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + this.token, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ to, messages })
+    });
+  }
+}
+` });
+  }
 
+  // Expo example: LINE Login (AuthSession + PKCE)
+  if (lib === 'expo' && pattern === 'example') {
+    files.push({ path: `App.tsx`, template: `import * as AuthSession from 'expo-auth-session';
+import * as React from 'react';
+import { Button, SafeAreaView, Text } from 'react-native';
+const AUTH_URL = 'https://access.line.me/oauth2/v2.1/authorize';
+export default function App(){
+  const [result, setResult] = React.useState<any>(null);
+  const redirectUri = AuthSession.makeRedirectUri();
+  async function signIn(){
+    const state = Math.random().toString(36).slice(2);
+    const { codeVerifier, codeChallenge } = await AuthSession.generatePKCEChallengeAsync();
+    const params = new URLSearchParams({
+      response_type: 'code',
+      client_id: '<LINE_CHANNEL_ID>',
+      redirect_uri: redirectUri,
+      state,
+      scope: 'profile openid email',
+      code_challenge: codeChallenge,
+      code_challenge_method: 'S256'
+    }).toString();
+    const authUrl = AUTH_URL + '?' + params;
+    const res = await AuthSession.startAsync({ authUrl, returnUrl: redirectUri });
+    setResult(res);
+    // NOTE: Exchange code for tokens at your backend using code_verifier securely.
+    void codeVerifier;
+  }
+  return (<SafeAreaView style={{ padding: 24 }}>
+    <Button title="Sign in with LINE" onPress={signIn} />
+    <Text selectable>{JSON.stringify(result)}</Text>
+  </SafeAreaView>);
+}
+` });
+  }
+  // LINE Developers middleware (signature verification for Express)
+  if (lib === 'line' && pattern === 'middleware') {
+    files.push({ path: `src/line/middleware.ts`, template: `import type { Request, Response, NextFunction } from 'express';
+import { verifyLineSignature } from './verify';
+export function lineSignatureMiddleware(channelSecret: string){
+  return (req: Request, res: Response, next: NextFunction)=>{
+    const signature = req.get('x-line-signature') || '';
+    const raw = (req as any).rawBody || (typeof req.body === 'string' ? req.body : JSON.stringify(req.body || ''));
+    const ok = verifyLineSignature(channelSecret, raw, signature);
+    if (!ok) return res.status(403).send('forbidden');
+    next();
+  };
+}
+` });
+  }
+  // LINE Developers adapter (Echo reply sample)
+  if (lib === 'line' && pattern === 'adapter') {
+    files.push({ path: `src/line/echo-adapter.ts`, template: `import type { Request, Response } from 'express';
+import { LineMessagingClient } from './client';
+export function makeEchoHandler(channelAccessToken: string){
+  const client = new LineMessagingClient(channelAccessToken);
+  return async (req: Request, res: Response)=>{
+    const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+    for (const ev of body?.events || []){
+      if (ev.type === 'message' && ev.message?.type === 'text'){
+        await client.reply(ev.replyToken, [{ type: 'text', text: ev.message.text }]);
+      }
+    }
+    res.status(200).send('ok');
+  };
+}
+` });
+  }
+
+  // Expo hook/provider for LINE Login
+  if (lib === 'expo' && pattern === 'hook') {
+    files.push({ path: `src/hooks/useLineLogin.ts`, template: `import * as AuthSession from 'expo-auth-session';
+import * as React from 'react';
+const AUTH_URL = 'https://access.line.me/oauth2/v2.1/authorize';
+export function useLineLogin(clientId: string, scope = 'profile openid email'){
+  const [result, setResult] = React.useState<any>(null);
+  const redirectUri = AuthSession.makeRedirectUri();
+  const signIn = React.useCallback(async ()=>{
+    const state = Math.random().toString(36).slice(2);
+    const { codeVerifier, codeChallenge } = await AuthSession.generatePKCEChallengeAsync();
+    const params = new URLSearchParams({ response_type: 'code', client_id: clientId, redirect_uri: redirectUri, state, scope, code_challenge: codeChallenge, code_challenge_method: 'S256' }).toString();
+    const res = await AuthSession.startAsync({ authUrl: AUTH_URL + '?' + params, returnUrl: redirectUri });
+    setResult({ ...res, codeVerifier });
+    return res;
+  }, [clientId, scope, redirectUri]);
+  return { signIn, result };
+}
+` });
+  }
+  if (lib === 'expo' && style === 'advanced') {
+    files.push({ path: `src/app/deeplink.ts`, template: `import * as Linking from 'expo-linking';
+export function makePrefix(){ return Linking.createURL('/'); }
+export const prefixes = [makePrefix()];
+` });
+    files.push({ path: `src/components/ErrorToast.tsx`, template: `import * as React from 'react';
+export function ErrorToast({ message }: { message: string }){ return <>{message}</>; }
+` });
+  }
+  if (lib === 'expo' && pattern === 'provider') {
+    files.push({ path: `src/context/LineAuthProvider.tsx`, template: `import React, { createContext, useContext } from 'react';
+import { useLineLogin } from '@/src/hooks/useLineLogin';
+const Ctx = createContext<{ signIn: ()=>Promise<any>; result: any }|null>(null);
+export function LineAuthProvider({ clientId, children }: { clientId: string; children: React.ReactNode }){
+  const { signIn, result } = useLineLogin(clientId);
+  return <Ctx.Provider value={{ signIn, result }}>{children}</Ctx.Provider>;
+}
+export function useLineAuth(){ const v = useContext(Ctx); if(!v) throw new Error('LineAuthProvider missing'); return v; }
+` });
+  }
+  // LINE Developers: Flex Message example and helper
+  if (lib === 'line' && (pattern === 'example' || pattern === 'component')) {
+    files.push({ path: `src/line/flex.ts`, template: `export type FlexText = { type: 'text'; text: string; weight?: 'regular'|'bold'; size?: 'sm'|'md'|'lg'|'xl' };
+export type FlexBox = { type: 'box'; layout: 'vertical'|'horizontal'|'baseline'; contents: Array<FlexBox|FlexText> };
+export type FlexBubble = { type: 'bubble'; body: FlexBox };
+export type FlexMessage = { type: 'flex'; altText: string; contents: FlexBubble };
+export const HelloBubble: FlexBubble = {
+  type: 'bubble',
+  body: { type: 'box', layout: 'vertical', contents: [
+    { type: 'text', text: 'Hello from LINE Flex', weight: 'bold', size: 'lg' },
+    { type: 'text', text: 'This is a sample bubble.' }
+  ] }
+};
+export const HelloMessage: FlexMessage = { type: 'flex', altText: 'Hello Flex', contents: HelloBubble };
+` });
+    files.push({ path: `src/line/flex-example.ts`, template: `import { LineMessagingClient } from './client';
+import { HelloMessage } from './flex';
+export async function sendHelloFlex(token: string, to: string){
+  const client = new LineMessagingClient(token);
+  await client.push(to, [HelloMessage as any]);
+}
+` });
+  }
+
+  // Expo testing style: add RN-friendly test skeletons
+  if (lib === 'expo' && style === 'testing') {
+    if (pattern === 'hook') {
+      files.push({ path: `src/hooks/useLineLogin.test.tsx`, template: `import { describe, it, expect } from 'vitest';
+// NOTE: This is a placeholder test. In a real app, use @testing-library/react-native.
+describe('useLineLogin', () => { it('placeholder', () => { expect(true).toBe(true); }); });
+` });
+    }
+    if (pattern === 'provider') {
+      files.push({ path: `src/context/LineAuthProvider.test.tsx`, template: `import { describe, it, expect } from 'vitest';
+// NOTE: This is a placeholder test. In a real app, use @testing-library/react-native.
+describe('LineAuthProvider', () => { it('placeholder', () => { expect(true).toBe(true); }); });
+` });
+    }
+    if (pattern === 'example') {
+      files.push({ path: `App.test.tsx`, template: `import { describe, it, expect } from 'vitest';
+// NOTE: Placeholder App test for Expo example.
+describe('App', () => { it('renders', () => { expect(true).toBe(true); }); });
+` });
+    }
+  }
 
   // Always include the generic stub and README
   files.push({ path: `spikes/${id}.${ext}.txt`, template: codeSnippet(lib, pattern, lang, style) });
@@ -1140,6 +1441,12 @@ export const useCounter = create<{ count:number; inc:()=>void; }>((set)=>({ coun
 
 function extraParams(lib: string, pattern: string): Array<{ name: string; required?: boolean; description?: string; default?: string }>{
   const params: Array<{ name: string; required?: boolean; description?: string; default?: string }> = [];
+  if (lib === 'line') {
+    params.push({ name: 'channelId', required: false, description: 'LINE Channel ID', default: 'YOUR_CHANNEL_ID' });
+    params.push({ name: 'channelSecret', required: false, description: 'LINE Channel Secret', default: 'YOUR_CHANNEL_SECRET' });
+    params.push({ name: 'channelAccessToken', required: false, description: 'LINE Channel Access Token', default: 'YOUR_CHANNEL_ACCESS_TOKEN' });
+    params.push({ name: 'liffId', required: false, description: 'LIFF App ID (optional)', default: 'YOUR_LIFF_ID' });
+  }
   if (lib === 'prisma' && pattern === 'schema') {
     params.push({ name: 'model', required: false, description: 'Prisma モデル名', default: 'Item' });
   }

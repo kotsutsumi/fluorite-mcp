@@ -1,0 +1,41 @@
+{
+  "id": "strike-swagger-config-basic-ts",
+  "name": "swagger config basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "swagger",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for swagger config in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "swagger-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/swagger-config.ts",
+      "template": "# Spike: swagger config (ts)\n// Auto-generated spike stub for swagger (config)\nexport function demo() {\n  console.log('use swagger - config (basic)');\n}\n"
+    },
+    {
+      "path": "src/swagger/server.ts",
+      "template": "import express from 'express';\nimport swaggerUi from 'swagger-ui-express';\nimport YAML from 'yamljs';\nconst app = express();\nconst doc = YAML.parse('openapi: 3.0.0\\ninfo: { title: API, version: 1.0.0 }');\napp.use('/docs', swaggerUi.serve, swaggerUi.setup(doc));\napp.listen(3000);\n"
+    },
+    {
+      "path": "spikes/strike-swagger-config-basic-ts.ts.txt",
+      "template": "# Spike: swagger config (ts)\n// Auto-generated spike stub for swagger (config)\nexport function demo() {\n  console.log('use swagger - config (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-swagger-config-basic-ts.md",
+      "template": "# swagger config (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

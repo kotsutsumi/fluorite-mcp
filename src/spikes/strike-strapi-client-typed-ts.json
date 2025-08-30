@@ -1,0 +1,41 @@
+{
+  "id": "strike-strapi-client-typed-ts",
+  "name": "strapi client typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "strapi",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for strapi client in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "strapi-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/strapi-client.ts",
+      "template": "# Spike: strapi client (ts)\n// Auto-generated spike stub for strapi (client)\nexport function demo() {\n  console.log('use strapi - client (typed)');\n}\n"
+    },
+    {
+      "path": "src/cms/strapi.ts",
+      "template": "export function strapi(){ return { url: process.env.STRAPI_URL || 'http://localhost:1337' }; }\n"
+    },
+    {
+      "path": "spikes/strike-strapi-client-typed-ts.ts.txt",
+      "template": "# Spike: strapi client (ts)\n// Auto-generated spike stub for strapi (client)\nexport function demo() {\n  console.log('use strapi - client (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-strapi-client-typed-ts.md",
+      "template": "# strapi client (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

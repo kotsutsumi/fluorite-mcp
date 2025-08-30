@@ -1,0 +1,41 @@
+{
+  "id": "strike-sentry-init-secure-ts",
+  "name": "sentry init secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "sentry",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for sentry init in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sentry-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/sentry-init.ts",
+      "template": "# Spike: sentry init (ts)\n// Auto-generated spike stub for sentry (init)\nexport function demo() {\n  console.log('use sentry - init (secure)');\n}\n"
+    },
+    {
+      "path": "src/sentry/init.ts",
+      "template": "import * as Sentry from '@sentry/node';\nexport function initSentry(){\n  Sentry.init({ dsn: process.env.SENTRY_DSN, tracesSampleRate: 1.0 });\n}\n"
+    },
+    {
+      "path": "spikes/strike-sentry-init-secure-ts.ts.txt",
+      "template": "# Spike: sentry init (ts)\n// Auto-generated spike stub for sentry (init)\nexport function demo() {\n  console.log('use sentry - init (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sentry-init-secure-ts.md",
+      "template": "# sentry init (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

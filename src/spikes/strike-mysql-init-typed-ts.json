@@ -1,0 +1,37 @@
+{
+  "id": "strike-mysql-init-typed-ts",
+  "name": "mysql init typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "mysql",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for mysql init in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "mysql-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/mysql-init.ts",
+      "template": "# Spike: mysql init (ts)\n// Auto-generated spike stub for mysql (init)\nexport function demo() {\n  console.log('use mysql - init (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-mysql-init-typed-ts.ts.txt",
+      "template": "# Spike: mysql init (ts)\n// Auto-generated spike stub for mysql (init)\nexport function demo() {\n  console.log('use mysql - init (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-mysql-init-typed-ts.md",
+      "template": "# mysql init (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

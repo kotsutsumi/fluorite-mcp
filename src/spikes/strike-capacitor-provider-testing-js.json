@@ -1,0 +1,41 @@
+{
+  "id": "strike-capacitor-provider-testing-js",
+  "name": "capacitor provider testing js",
+  "version": "0.1.0",
+  "stack": [
+    "capacitor",
+    "js"
+  ],
+  "tags": [
+    "provider",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for capacitor provider in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "capacitor-provider-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/capacitor-provider.js",
+      "template": "# Spike: capacitor provider (js)\n// Auto-generated spike stub for capacitor (provider)\nmodule.exports = function demo(){\n  console.log('use capacitor - provider (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-capacitor-provider-testing-js.js.txt",
+      "template": "# Spike: capacitor provider (js)\n// Auto-generated spike stub for capacitor (provider)\nmodule.exports = function demo(){\n  console.log('use capacitor - provider (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-capacitor-provider-testing-js.md",
+      "template": "# capacitor provider (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-capacitor-provider-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

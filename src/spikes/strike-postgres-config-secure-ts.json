@@ -1,0 +1,41 @@
+{
+  "id": "strike-postgres-config-secure-ts",
+  "name": "postgres config secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "postgres",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for postgres config in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "postgres-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/postgres-config.ts",
+      "template": "# Spike: postgres config (ts)\n// Auto-generated spike stub for postgres (config)\nexport function demo() {\n  console.log('use postgres - config (secure)');\n}\n"
+    },
+    {
+      "path": "src/pg/client.ts",
+      "template": "import { Pool } from 'pg';\nexport const pg = new Pool({ connectionString: process.env.DATABASE_URL || 'postgres://localhost:5432/postgres' });\n"
+    },
+    {
+      "path": "spikes/strike-postgres-config-secure-ts.ts.txt",
+      "template": "# Spike: postgres config (ts)\n// Auto-generated spike stub for postgres (config)\nexport function demo() {\n  console.log('use postgres - config (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-postgres-config-secure-ts.md",
+      "template": "# postgres config (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

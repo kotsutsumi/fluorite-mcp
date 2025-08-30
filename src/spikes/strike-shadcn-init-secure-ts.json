@@ -1,0 +1,41 @@
+{
+  "id": "strike-shadcn-init-secure-ts",
+  "name": "shadcn init secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "shadcn",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for shadcn init in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "shadcn-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/shadcn-init.ts",
+      "template": "# Spike: shadcn init (ts)\n// Auto-generated spike stub for shadcn (init)\nexport function demo() {\n  console.log('use shadcn - init (secure)');\n}\n"
+    },
+    {
+      "path": "components/ui/button.tsx",
+      "template": "import * as React from 'react';\nexport function Button(props: React.ButtonHTMLAttributes<HTMLButtonElement>){ return <button {...props} className={(props.className||'') + ' inline-flex items-center justify-center rounded-md px-3 py-2 text-sm font-medium'} /> }\n"
+    },
+    {
+      "path": "spikes/strike-shadcn-init-secure-ts.ts.txt",
+      "template": "# Spike: shadcn init (ts)\n// Auto-generated spike stub for shadcn (init)\nexport function demo() {\n  console.log('use shadcn - init (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-shadcn-init-secure-ts.md",
+      "template": "# shadcn init (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

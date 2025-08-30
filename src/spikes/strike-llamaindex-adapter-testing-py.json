@@ -1,0 +1,41 @@
+{
+  "id": "strike-llamaindex-adapter-testing-py",
+  "name": "llamaindex adapter testing py",
+  "version": "0.1.0",
+  "stack": [
+    "llamaindex",
+    "py"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for llamaindex adapter in py (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "llamaindex-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/llamaindex-adapter.py",
+      "template": "# Spike: llamaindex adapter (py)\n# Auto-generated spike stub for llamaindex (adapter)\ndef demo():\n    print('use llamaindex - adapter (testing)')\n"
+    },
+    {
+      "path": "spikes/strike-llamaindex-adapter-testing-py.py.txt",
+      "template": "# Spike: llamaindex adapter (py)\n# Auto-generated spike stub for llamaindex (adapter)\ndef demo():\n    print('use llamaindex - adapter (testing)')\n"
+    },
+    {
+      "path": "spikes/strike-llamaindex-adapter-testing-py.md",
+      "template": "# llamaindex adapter (testing, py)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-llamaindex-adapter-testing-py_test.py",
+      "template": "def test_demo():\n    assert True\n"
+    }
+  ],
+  "patches": []
+}

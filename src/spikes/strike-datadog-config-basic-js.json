@@ -1,0 +1,41 @@
+{
+  "id": "strike-datadog-config-basic-js",
+  "name": "datadog config basic js",
+  "version": "0.1.0",
+  "stack": [
+    "datadog",
+    "js"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for datadog config in js (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "datadog-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/datadog-config.js",
+      "template": "# Spike: datadog config (js)\n// Auto-generated spike stub for datadog (config)\nmodule.exports = function demo(){\n  console.log('use datadog - config (basic)');\n};\n"
+    },
+    {
+      "path": "src/apm/datadog.ts",
+      "template": "export function datadog(){ return { enabled: true }; }\n"
+    },
+    {
+      "path": "spikes/strike-datadog-config-basic-js.js.txt",
+      "template": "# Spike: datadog config (js)\n// Auto-generated spike stub for datadog (config)\nmodule.exports = function demo(){\n  console.log('use datadog - config (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-datadog-config-basic-js.md",
+      "template": "# datadog config (basic, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

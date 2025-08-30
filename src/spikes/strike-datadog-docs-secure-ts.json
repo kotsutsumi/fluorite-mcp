@@ -1,0 +1,37 @@
+{
+  "id": "strike-datadog-docs-secure-ts",
+  "name": "datadog docs secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "datadog",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for datadog docs in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "datadog-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/datadog-docs.ts",
+      "template": "# Spike: datadog docs (ts)\n// Auto-generated spike stub for datadog (docs)\nexport function demo() {\n  console.log('use datadog - docs (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-datadog-docs-secure-ts.ts.txt",
+      "template": "# Spike: datadog docs (ts)\n// Auto-generated spike stub for datadog (docs)\nexport function demo() {\n  console.log('use datadog - docs (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-datadog-docs-secure-ts.md",
+      "template": "# datadog docs (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

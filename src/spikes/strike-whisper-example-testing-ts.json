@@ -1,0 +1,41 @@
+{
+  "id": "strike-whisper-example-testing-ts",
+  "name": "whisper example testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "whisper",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for whisper example in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "whisper-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/whisper-example.ts",
+      "template": "# Spike: whisper example (ts)\n// Auto-generated spike stub for whisper (example)\nexport function demo() {\n  console.log('use whisper - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-whisper-example-testing-ts.ts.txt",
+      "template": "# Spike: whisper example (ts)\n// Auto-generated spike stub for whisper (example)\nexport function demo() {\n  console.log('use whisper - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-whisper-example-testing-ts.md",
+      "template": "# whisper example (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-whisper-example-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

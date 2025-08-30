@@ -1,0 +1,37 @@
+{
+  "id": "strike-keycloak-middleware-secure-js",
+  "name": "keycloak middleware secure js",
+  "version": "0.1.0",
+  "stack": [
+    "keycloak",
+    "js"
+  ],
+  "tags": [
+    "middleware",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for keycloak middleware in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "keycloak-middleware-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/keycloak-middleware.js",
+      "template": "# Spike: keycloak middleware (js)\n// Auto-generated spike stub for keycloak (middleware)\nmodule.exports = function demo(){\n  console.log('use keycloak - middleware (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-keycloak-middleware-secure-js.js.txt",
+      "template": "# Spike: keycloak middleware (js)\n// Auto-generated spike stub for keycloak (middleware)\nmodule.exports = function demo(){\n  console.log('use keycloak - middleware (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-keycloak-middleware-secure-js.md",
+      "template": "# keycloak middleware (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

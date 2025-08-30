@@ -1,0 +1,37 @@
+{
+  "id": "strike-ansible-example-typed-ts",
+  "name": "ansible example typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "ansible",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for ansible example in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "ansible-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/ansible-example.ts",
+      "template": "# Spike: ansible example (ts)\n// Auto-generated spike stub for ansible (example)\nexport function demo() {\n  console.log('use ansible - example (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-ansible-example-typed-ts.ts.txt",
+      "template": "# Spike: ansible example (ts)\n// Auto-generated spike stub for ansible (example)\nexport function demo() {\n  console.log('use ansible - example (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-ansible-example-typed-ts.md",
+      "template": "# ansible example (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

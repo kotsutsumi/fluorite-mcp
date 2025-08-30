@@ -1,0 +1,45 @@
+{
+  "id": "strike-azure-functions-config-typed-js",
+  "name": "azure-functions config typed js",
+  "version": "0.1.0",
+  "stack": [
+    "azure-functions",
+    "js"
+  ],
+  "tags": [
+    "config",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for azure-functions config in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "azure-functions-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/azure-functions-config.js",
+      "template": "# Spike: azure-functions config (js)\n// Auto-generated spike stub for azure-functions (config)\nmodule.exports = function demo(){\n  console.log('use azure-functions - config (typed)');\n};\n"
+    },
+    {
+      "path": "AzureFunctions/HttpTrigger1/function.json",
+      "template": "{ \"bindings\": [{ \"authLevel\": \"function\", \"type\": \"httpTrigger\", \"direction\": \"in\", \"name\": \"req\", \"methods\": [\"get\"] }, { \"type\": \"http\", \"direction\": \"out\", \"name\": \"res\" }] }\n"
+    },
+    {
+      "path": "AzureFunctions/HttpTrigger1/index.ts",
+      "template": "import type { Context, HttpRequest } from '@azure/functions';\nexport default async function (context: Context, _req: HttpRequest){ context.res = { status: 200, body: { ok: true } }; }\n"
+    },
+    {
+      "path": "spikes/strike-azure-functions-config-typed-js.js.txt",
+      "template": "# Spike: azure-functions config (js)\n// Auto-generated spike stub for azure-functions (config)\nmodule.exports = function demo(){\n  console.log('use azure-functions - config (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-azure-functions-config-typed-js.md",
+      "template": "# azure-functions config (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

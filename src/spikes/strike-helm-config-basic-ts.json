@@ -1,0 +1,45 @@
+{
+  "id": "strike-helm-config-basic-ts",
+  "name": "helm config basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "helm",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for helm config in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "helm-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/helm-config.ts",
+      "template": "# Spike: helm config (ts)\n// Auto-generated spike stub for helm (config)\nexport function demo() {\n  console.log('use helm - config (basic)');\n}\n"
+    },
+    {
+      "path": "chart/Chart.yaml",
+      "template": "apiVersion: v2\nname: app\nversion: 0.1.0\n"
+    },
+    {
+      "path": "chart/templates/deployment.yaml",
+      "template": "apiVersion: apps/v1\nkind: Deployment\nmetadata: { name: app }\nspec: { replicas: 1, selector: { matchLabels: { app: app } }, template: { metadata: { labels: { app: app } }, spec: { containers: [{ name: app, image: node:20-alpine }] } } }\n"
+    },
+    {
+      "path": "spikes/strike-helm-config-basic-ts.ts.txt",
+      "template": "# Spike: helm config (ts)\n// Auto-generated spike stub for helm (config)\nexport function demo() {\n  console.log('use helm - config (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-helm-config-basic-ts.md",
+      "template": "# helm config (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

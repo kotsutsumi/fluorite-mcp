@@ -1,0 +1,41 @@
+{
+  "id": "strike-elysia-route-testing-ts",
+  "name": "elysia route testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "elysia",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for elysia route in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "elysia-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/elysia-route.ts",
+      "template": "# Spike: elysia route (ts)\n// Auto-generated spike stub for elysia (route)\nexport function demo() {\n  console.log('use elysia - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-elysia-route-testing-ts.ts.txt",
+      "template": "# Spike: elysia route (ts)\n// Auto-generated spike stub for elysia (route)\nexport function demo() {\n  console.log('use elysia - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-elysia-route-testing-ts.md",
+      "template": "# elysia route (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-elysia-route-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-openai-adapter-testing-ts",
+  "name": "openai adapter testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "openai",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for openai adapter in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "openai-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/openai-adapter.ts",
+      "template": "# Spike: openai adapter (ts)\n// Auto-generated spike stub for openai (adapter)\nexport function demo() {\n  console.log('use openai - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-openai-adapter-testing-ts.ts.txt",
+      "template": "# Spike: openai adapter (ts)\n// Auto-generated spike stub for openai (adapter)\nexport function demo() {\n  console.log('use openai - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-openai-adapter-testing-ts.md",
+      "template": "# openai adapter (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-openai-adapter-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

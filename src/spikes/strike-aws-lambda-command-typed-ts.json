@@ -1,0 +1,37 @@
+{
+  "id": "strike-aws-lambda-command-typed-ts",
+  "name": "aws-lambda command typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "aws-lambda",
+    "ts"
+  ],
+  "tags": [
+    "command",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for aws-lambda command in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "aws-lambda-command-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/aws-lambda-command.ts",
+      "template": "# Spike: aws-lambda command (ts)\n// Auto-generated spike stub for aws-lambda (command)\nexport function demo() {\n  console.log('use aws-lambda - command (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-aws-lambda-command-typed-ts.ts.txt",
+      "template": "# Spike: aws-lambda command (ts)\n// Auto-generated spike stub for aws-lambda (command)\nexport function demo() {\n  console.log('use aws-lambda - command (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-aws-lambda-command-typed-ts.md",
+      "template": "# aws-lambda command (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

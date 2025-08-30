@@ -1,0 +1,53 @@
+{
+  "id": "strike-drizzle-init-secure-ts",
+  "name": "drizzle init secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "drizzle",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for drizzle init in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "drizzle-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/drizzle-init.ts",
+      "template": "# Spike: drizzle init (ts)\n// Auto-generated spike stub for drizzle (init)\nexport function demo() {\n  console.log('use drizzle - init (secure)');\n}\n"
+    },
+    {
+      "path": "drizzle.config.ts",
+      "template": "import type { Config } from 'drizzle-kit';\nexport default { schema: './src/db/schema.ts', out: './drizzle', driver: 'pg', dbCredentials: { connectionString: process.env.DATABASE_URL! } } satisfies Config;\n"
+    },
+    {
+      "path": "src/db/schema.ts",
+      "template": "import { pgTable, serial, text, timestamp } from 'drizzle-orm/pg-core';\nexport const posts = pgTable('posts', { id: serial('id').primaryKey(), title: text('title').notNull(), createdAt: timestamp('created_at').defaultNow() });\n"
+    },
+    {
+      "path": "src/db/client.ts",
+      "template": "import { drizzle } from 'drizzle-orm/node-postgres';\nimport { Pool } from 'pg';\nconst pool = new Pool({ connectionString: process.env.DATABASE_URL });\nexport const db = drizzle(pool);\n"
+    },
+    {
+      "path": "src/db/migrate.ts",
+      "template": "import { migrate } from 'drizzle-orm/node-postgres/migrator';\nimport { db } from './client';\nimport { Client } from 'pg';\n(async()=>{ const client = new Client({ connectionString: process.env.DATABASE_URL }); await client.connect(); await migrate(db, { migrationsFolder: 'drizzle' }); await client.end(); })().catch(e=>{ console.error(e); process.exit(1); });\n"
+    },
+    {
+      "path": "spikes/strike-drizzle-init-secure-ts.ts.txt",
+      "template": "# Spike: drizzle init (ts)\n// Auto-generated spike stub for drizzle (init)\nexport function demo() {\n  console.log('use drizzle - init (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-drizzle-init-secure-ts.md",
+      "template": "# drizzle init (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

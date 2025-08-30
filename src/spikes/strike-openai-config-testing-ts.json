@@ -1,0 +1,41 @@
+{
+  "id": "strike-openai-config-testing-ts",
+  "name": "openai config testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "openai",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for openai config in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "openai-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/openai-config.ts",
+      "template": "# Spike: openai config (ts)\n// Auto-generated spike stub for openai (config)\nexport function demo() {\n  console.log('use openai - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-openai-config-testing-ts.ts.txt",
+      "template": "# Spike: openai config (ts)\n// Auto-generated spike stub for openai (config)\nexport function demo() {\n  console.log('use openai - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-openai-config-testing-ts.md",
+      "template": "# openai config (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-openai-config-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

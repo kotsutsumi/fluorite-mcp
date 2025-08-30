@@ -1,0 +1,37 @@
+{
+  "id": "strike-tauri-docs-typed-ts",
+  "name": "tauri docs typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "tauri",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for tauri docs in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "tauri-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/tauri-docs.ts",
+      "template": "# Spike: tauri docs (ts)\n// Auto-generated spike stub for tauri (docs)\nexport function demo() {\n  console.log('use tauri - docs (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-tauri-docs-typed-ts.ts.txt",
+      "template": "# Spike: tauri docs (ts)\n// Auto-generated spike stub for tauri (docs)\nexport function demo() {\n  console.log('use tauri - docs (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-tauri-docs-typed-ts.md",
+      "template": "# tauri docs (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

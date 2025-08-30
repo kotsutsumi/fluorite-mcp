@@ -1,0 +1,43 @@
+{
+  "id": "strike-redis-example-typed-ts",
+  "name": "redis example typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "redis",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for redis example in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "redis-example-app"
+    },
+    {
+      "name": "redisUrl",
+      "required": false,
+      "description": "Redis 接続URL",
+      "default": "redis://localhost:6379"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/redis-example.ts",
+      "template": "# Spike: redis example (ts)\n// Auto-generated spike stub for redis (example)\nexport function demo() {\n  console.log('use redis - example (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-example-typed-ts.ts.txt",
+      "template": "# Spike: redis example (ts)\n// Auto-generated spike stub for redis (example)\nexport function demo() {\n  console.log('use redis - example (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-example-typed-ts.md",
+      "template": "# redis example (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

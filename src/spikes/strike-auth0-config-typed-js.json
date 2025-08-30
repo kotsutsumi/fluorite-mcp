@@ -1,0 +1,41 @@
+{
+  "id": "strike-auth0-config-typed-js",
+  "name": "auth0 config typed js",
+  "version": "0.1.0",
+  "stack": [
+    "auth0",
+    "js"
+  ],
+  "tags": [
+    "config",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for auth0 config in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "auth0-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/auth0-config.js",
+      "template": "# Spike: auth0 config (js)\n// Auto-generated spike stub for auth0 (config)\nmodule.exports = function demo(){\n  console.log('use auth0 - config (typed)');\n};\n"
+    },
+    {
+      "path": "src/auth0/client.ts",
+      "template": "export function createAuth0(){ return { domain: process.env.AUTH0_DOMAIN, clientId: process.env.AUTH0_CLIENT_ID }; }\n"
+    },
+    {
+      "path": "spikes/strike-auth0-config-typed-js.js.txt",
+      "template": "# Spike: auth0 config (js)\n// Auto-generated spike stub for auth0 (config)\nmodule.exports = function demo(){\n  console.log('use auth0 - config (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-auth0-config-typed-js.md",
+      "template": "# auth0 config (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

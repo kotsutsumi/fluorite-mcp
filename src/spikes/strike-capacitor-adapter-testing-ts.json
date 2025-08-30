@@ -1,0 +1,41 @@
+{
+  "id": "strike-capacitor-adapter-testing-ts",
+  "name": "capacitor adapter testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "capacitor",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for capacitor adapter in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "capacitor-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/capacitor-adapter.ts",
+      "template": "# Spike: capacitor adapter (ts)\n// Auto-generated spike stub for capacitor (adapter)\nexport function demo() {\n  console.log('use capacitor - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-capacitor-adapter-testing-ts.ts.txt",
+      "template": "# Spike: capacitor adapter (ts)\n// Auto-generated spike stub for capacitor (adapter)\nexport function demo() {\n  console.log('use capacitor - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-capacitor-adapter-testing-ts.md",
+      "template": "# capacitor adapter (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-capacitor-adapter-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

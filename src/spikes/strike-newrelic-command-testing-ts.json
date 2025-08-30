@@ -1,0 +1,41 @@
+{
+  "id": "strike-newrelic-command-testing-ts",
+  "name": "newrelic command testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "newrelic",
+    "ts"
+  ],
+  "tags": [
+    "command",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for newrelic command in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "newrelic-command-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/newrelic-command.ts",
+      "template": "# Spike: newrelic command (ts)\n// Auto-generated spike stub for newrelic (command)\nexport function demo() {\n  console.log('use newrelic - command (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-newrelic-command-testing-ts.ts.txt",
+      "template": "# Spike: newrelic command (ts)\n// Auto-generated spike stub for newrelic (command)\nexport function demo() {\n  console.log('use newrelic - command (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-newrelic-command-testing-ts.md",
+      "template": "# newrelic command (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-newrelic-command-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

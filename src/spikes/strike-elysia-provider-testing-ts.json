@@ -1,0 +1,41 @@
+{
+  "id": "strike-elysia-provider-testing-ts",
+  "name": "elysia provider testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "elysia",
+    "ts"
+  ],
+  "tags": [
+    "provider",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for elysia provider in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "elysia-provider-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/elysia-provider.ts",
+      "template": "# Spike: elysia provider (ts)\n// Auto-generated spike stub for elysia (provider)\nexport function demo() {\n  console.log('use elysia - provider (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-elysia-provider-testing-ts.ts.txt",
+      "template": "# Spike: elysia provider (ts)\n// Auto-generated spike stub for elysia (provider)\nexport function demo() {\n  console.log('use elysia - provider (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-elysia-provider-testing-ts.md",
+      "template": "# elysia provider (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-elysia-provider-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

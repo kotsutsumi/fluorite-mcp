@@ -1,0 +1,41 @@
+{
+  "id": "strike-pino-config-secure-ts",
+  "name": "pino config secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "pino",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for pino config in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "pino-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/pino-config.ts",
+      "template": "# Spike: pino config (ts)\n// Auto-generated spike stub for pino (config)\nexport function demo() {\n  console.log('use pino - config (secure)');\n}\n"
+    },
+    {
+      "path": "src/logging/pino.ts",
+      "template": "export function logger(){ return { info: console.log, error: console.error }; }\n"
+    },
+    {
+      "path": "spikes/strike-pino-config-secure-ts.ts.txt",
+      "template": "# Spike: pino config (ts)\n// Auto-generated spike stub for pino (config)\nexport function demo() {\n  console.log('use pino - config (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pino-config-secure-ts.md",
+      "template": "# pino config (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

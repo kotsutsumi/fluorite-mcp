@@ -1,0 +1,37 @@
+{
+  "id": "strike-cloudflare-workers-job-secure-js",
+  "name": "cloudflare-workers job secure js",
+  "version": "0.1.0",
+  "stack": [
+    "cloudflare-workers",
+    "js"
+  ],
+  "tags": [
+    "job",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for cloudflare-workers job in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "cloudflare-workers-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/cloudflare-workers-job.js",
+      "template": "# Spike: cloudflare-workers job (js)\n// Auto-generated spike stub for cloudflare-workers (job)\nmodule.exports = function demo(){\n  console.log('use cloudflare-workers - job (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-cloudflare-workers-job-secure-js.js.txt",
+      "template": "# Spike: cloudflare-workers job (js)\n// Auto-generated spike stub for cloudflare-workers (job)\nmodule.exports = function demo(){\n  console.log('use cloudflare-workers - job (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-cloudflare-workers-job-secure-js.md",
+      "template": "# cloudflare-workers job (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

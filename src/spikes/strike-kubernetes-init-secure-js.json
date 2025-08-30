@@ -1,0 +1,45 @@
+{
+  "id": "strike-kubernetes-init-secure-js",
+  "name": "kubernetes init secure js",
+  "version": "0.1.0",
+  "stack": [
+    "kubernetes",
+    "js"
+  ],
+  "tags": [
+    "init",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for kubernetes init in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "kubernetes-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/kubernetes-init.js",
+      "template": "# Spike: kubernetes init (js)\n// Auto-generated spike stub for kubernetes (init)\nmodule.exports = function demo(){\n  console.log('use kubernetes - init (secure)');\n};\n"
+    },
+    {
+      "path": "k8s/deployment.yaml",
+      "template": "apiVersion: apps/v1\nkind: Deployment\nmetadata: { name: app }\nspec:\n  replicas: 1\n  selector: { matchLabels: { app: app } }\n  template:\n    metadata: { labels: { app: app } }\n    spec:\n      containers:\n        - name: app\n          image: node:20-alpine\n          args: ['node','index.js']\n"
+    },
+    {
+      "path": "k8s/service.yaml",
+      "template": "apiVersion: v1\nkind: Service\nmetadata: { name: app }\nspec:\n  type: ClusterIP\n  selector: { app: app }\n  ports: [{ port: 80, targetPort: 3000 }]\n"
+    },
+    {
+      "path": "spikes/strike-kubernetes-init-secure-js.js.txt",
+      "template": "# Spike: kubernetes init (js)\n// Auto-generated spike stub for kubernetes (init)\nmodule.exports = function demo(){\n  console.log('use kubernetes - init (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-kubernetes-init-secure-js.md",
+      "template": "# kubernetes init (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,37 @@
+{
+  "id": "strike-docker-worker-typed-js",
+  "name": "docker worker typed js",
+  "version": "0.1.0",
+  "stack": [
+    "docker",
+    "js"
+  ],
+  "tags": [
+    "worker",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for docker worker in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "docker-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/docker-worker.js",
+      "template": "# Spike: docker worker (js)\n// Auto-generated spike stub for docker (worker)\nmodule.exports = function demo(){\n  console.log('use docker - worker (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-docker-worker-typed-js.js.txt",
+      "template": "# Spike: docker worker (js)\n// Auto-generated spike stub for docker (worker)\nmodule.exports = function demo(){\n  console.log('use docker - worker (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-docker-worker-typed-js.md",
+      "template": "# docker worker (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

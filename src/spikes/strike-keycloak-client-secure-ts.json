@@ -1,0 +1,37 @@
+{
+  "id": "strike-keycloak-client-secure-ts",
+  "name": "keycloak client secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "keycloak",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for keycloak client in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "keycloak-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/keycloak-client.ts",
+      "template": "# Spike: keycloak client (ts)\n// Auto-generated spike stub for keycloak (client)\nexport function demo() {\n  console.log('use keycloak - client (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-keycloak-client-secure-ts.ts.txt",
+      "template": "# Spike: keycloak client (ts)\n// Auto-generated spike stub for keycloak (client)\nexport function demo() {\n  console.log('use keycloak - client (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-keycloak-client-secure-ts.md",
+      "template": "# keycloak client (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,45 @@
+{
+  "id": "strike-bullmq-job-typed-ts",
+  "name": "bullmq job typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "bullmq",
+    "ts"
+  ],
+  "tags": [
+    "job",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for bullmq job in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "bullmq-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/bullmq-job.ts",
+      "template": "# Spike: bullmq job (ts)\n// Auto-generated spike stub for bullmq (job)\nexport function demo() {\n  console.log('use bullmq - job (typed)');\n}\n"
+    },
+    {
+      "path": "src/queue/queue.ts",
+      "template": "import { Queue } from 'bullmq';\nexport const queue = new Queue('jobs', { connection: { host: '127.0.0.1', port: 6379 } });\nexport async function enqueue(name: string, data: any){ return queue.add(name, data); }\n"
+    },
+    {
+      "path": "src/queue/worker.ts",
+      "template": "import { Worker } from 'bullmq';\nexport const worker = new Worker('jobs', async (job)=>{ console.log('job', job.name, job.data); }, { connection: { host: '127.0.0.1', port: 6379 } });\n"
+    },
+    {
+      "path": "spikes/strike-bullmq-job-typed-ts.ts.txt",
+      "template": "# Spike: bullmq job (ts)\n// Auto-generated spike stub for bullmq (job)\nexport function demo() {\n  console.log('use bullmq - job (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-bullmq-job-typed-ts.md",
+      "template": "# bullmq job (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

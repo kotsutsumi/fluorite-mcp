@@ -1,0 +1,37 @@
+{
+  "id": "strike-cloudflare-workers-cli-typed-ts",
+  "name": "cloudflare-workers cli typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "cloudflare-workers",
+    "ts"
+  ],
+  "tags": [
+    "cli",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for cloudflare-workers cli in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "cloudflare-workers-cli-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/cloudflare-workers-cli.ts",
+      "template": "# Spike: cloudflare-workers cli (ts)\n// Auto-generated spike stub for cloudflare-workers (cli)\nexport function demo() {\n  console.log('use cloudflare-workers - cli (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-cloudflare-workers-cli-typed-ts.ts.txt",
+      "template": "# Spike: cloudflare-workers cli (ts)\n// Auto-generated spike stub for cloudflare-workers (cli)\nexport function demo() {\n  console.log('use cloudflare-workers - cli (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-cloudflare-workers-cli-typed-ts.md",
+      "template": "# cloudflare-workers cli (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

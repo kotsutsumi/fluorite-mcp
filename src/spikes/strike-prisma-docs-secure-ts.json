@@ -1,0 +1,37 @@
+{
+  "id": "strike-prisma-docs-secure-ts",
+  "name": "prisma docs secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "prisma",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for prisma docs in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "prisma-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/prisma-docs.ts",
+      "template": "# Spike: prisma docs (ts)\n// Auto-generated spike stub for prisma (docs)\nexport function demo() {\n  console.log('use prisma - docs (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-prisma-docs-secure-ts.ts.txt",
+      "template": "# Spike: prisma docs (ts)\n// Auto-generated spike stub for prisma (docs)\nexport function demo() {\n  console.log('use prisma - docs (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-prisma-docs-secure-ts.md",
+      "template": "# prisma docs (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

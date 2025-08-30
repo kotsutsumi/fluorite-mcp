@@ -1,0 +1,37 @@
+{
+  "id": "strike-stripe-worker-secure-ts",
+  "name": "stripe worker secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "stripe",
+    "ts"
+  ],
+  "tags": [
+    "worker",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for stripe worker in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "stripe-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/stripe-worker.ts",
+      "template": "# Spike: stripe worker (ts)\n// Auto-generated spike stub for stripe (worker)\nexport function demo() {\n  console.log('use stripe - worker (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-stripe-worker-secure-ts.ts.txt",
+      "template": "# Spike: stripe worker (ts)\n// Auto-generated spike stub for stripe (worker)\nexport function demo() {\n  console.log('use stripe - worker (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-stripe-worker-secure-ts.md",
+      "template": "# stripe worker (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

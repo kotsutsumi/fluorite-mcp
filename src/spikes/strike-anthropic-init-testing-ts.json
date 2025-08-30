@@ -1,0 +1,41 @@
+{
+  "id": "strike-anthropic-init-testing-ts",
+  "name": "anthropic init testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "anthropic",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for anthropic init in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "anthropic-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/anthropic-init.ts",
+      "template": "# Spike: anthropic init (ts)\n// Auto-generated spike stub for anthropic (init)\nexport function demo() {\n  console.log('use anthropic - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-anthropic-init-testing-ts.ts.txt",
+      "template": "# Spike: anthropic init (ts)\n// Auto-generated spike stub for anthropic (init)\nexport function demo() {\n  console.log('use anthropic - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-anthropic-init-testing-ts.md",
+      "template": "# anthropic init (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-anthropic-init-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

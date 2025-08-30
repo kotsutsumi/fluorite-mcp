@@ -1,0 +1,37 @@
+{
+  "id": "strike-cloudflare-workers-docs-secure-js",
+  "name": "cloudflare-workers docs secure js",
+  "version": "0.1.0",
+  "stack": [
+    "cloudflare-workers",
+    "js"
+  ],
+  "tags": [
+    "docs",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for cloudflare-workers docs in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "cloudflare-workers-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/cloudflare-workers-docs.js",
+      "template": "# Spike: cloudflare-workers docs (js)\n// Auto-generated spike stub for cloudflare-workers (docs)\nmodule.exports = function demo(){\n  console.log('use cloudflare-workers - docs (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-cloudflare-workers-docs-secure-js.js.txt",
+      "template": "# Spike: cloudflare-workers docs (js)\n// Auto-generated spike stub for cloudflare-workers (docs)\nmodule.exports = function demo(){\n  console.log('use cloudflare-workers - docs (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-cloudflare-workers-docs-secure-js.md",
+      "template": "# cloudflare-workers docs (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

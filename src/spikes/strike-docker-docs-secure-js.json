@@ -1,0 +1,37 @@
+{
+  "id": "strike-docker-docs-secure-js",
+  "name": "docker docs secure js",
+  "version": "0.1.0",
+  "stack": [
+    "docker",
+    "js"
+  ],
+  "tags": [
+    "docs",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for docker docs in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "docker-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/docker-docs.js",
+      "template": "# Spike: docker docs (js)\n// Auto-generated spike stub for docker (docs)\nmodule.exports = function demo(){\n  console.log('use docker - docs (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-docker-docs-secure-js.js.txt",
+      "template": "# Spike: docker docs (js)\n// Auto-generated spike stub for docker (docs)\nmodule.exports = function demo(){\n  console.log('use docker - docs (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-docker-docs-secure-js.md",
+      "template": "# docker docs (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

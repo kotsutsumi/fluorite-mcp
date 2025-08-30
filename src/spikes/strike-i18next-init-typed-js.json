@@ -1,0 +1,41 @@
+{
+  "id": "strike-i18next-init-typed-js",
+  "name": "i18next init typed js",
+  "version": "0.1.0",
+  "stack": [
+    "i18next",
+    "js"
+  ],
+  "tags": [
+    "init",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for i18next init in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "i18next-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/i18next-init.js",
+      "template": "# Spike: i18next init (js)\n// Auto-generated spike stub for i18next (init)\nmodule.exports = function demo(){\n  console.log('use i18next - init (typed)');\n};\n"
+    },
+    {
+      "path": "src/i18n/i18next.ts",
+      "template": "export const i18n = { lng: 'en', resources: { en: { translation: { hello: 'Hello' } } } };\n"
+    },
+    {
+      "path": "spikes/strike-i18next-init-typed-js.js.txt",
+      "template": "# Spike: i18next init (js)\n// Auto-generated spike stub for i18next (init)\nmodule.exports = function demo(){\n  console.log('use i18next - init (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-i18next-init-typed-js.md",
+      "template": "# i18next init (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

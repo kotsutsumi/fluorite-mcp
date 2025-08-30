@@ -1,0 +1,41 @@
+{
+  "id": "strike-jest-command-testing-js",
+  "name": "jest command testing js",
+  "version": "0.1.0",
+  "stack": [
+    "jest",
+    "js"
+  ],
+  "tags": [
+    "command",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for jest command in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "jest-command-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/jest-command.js",
+      "template": "# Spike: jest command (js)\n// Auto-generated spike stub for jest (command)\nmodule.exports = function demo(){\n  console.log('use jest - command (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-jest-command-testing-js.js.txt",
+      "template": "# Spike: jest command (js)\n// Auto-generated spike stub for jest (command)\nmodule.exports = function demo(){\n  console.log('use jest - command (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-jest-command-testing-js.md",
+      "template": "# jest command (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-jest-command-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

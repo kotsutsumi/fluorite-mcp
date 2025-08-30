@@ -1,0 +1,41 @@
+{
+  "id": "strike-keycloak-config-basic-ts",
+  "name": "keycloak config basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "keycloak",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for keycloak config in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "keycloak-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/keycloak-config.ts",
+      "template": "# Spike: keycloak config (ts)\n// Auto-generated spike stub for keycloak (config)\nexport function demo() {\n  console.log('use keycloak - config (basic)');\n}\n"
+    },
+    {
+      "path": "src/keycloak/client.ts",
+      "template": "export function keycloak(){ return { serverUrl: process.env.KEYCLOAK_URL, realm: process.env.KEYCLOAK_REALM }; }\n"
+    },
+    {
+      "path": "spikes/strike-keycloak-config-basic-ts.ts.txt",
+      "template": "# Spike: keycloak config (ts)\n// Auto-generated spike stub for keycloak (config)\nexport function demo() {\n  console.log('use keycloak - config (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-keycloak-config-basic-ts.md",
+      "template": "# keycloak config (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

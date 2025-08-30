@@ -1,0 +1,41 @@
+{
+  "id": "strike-elysia-plugin-testing-ts",
+  "name": "elysia plugin testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "elysia",
+    "ts"
+  ],
+  "tags": [
+    "plugin",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for elysia plugin in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "elysia-plugin-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/elysia-plugin.ts",
+      "template": "# Spike: elysia plugin (ts)\n// Auto-generated spike stub for elysia (plugin)\nexport function demo() {\n  console.log('use elysia - plugin (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-elysia-plugin-testing-ts.ts.txt",
+      "template": "# Spike: elysia plugin (ts)\n// Auto-generated spike stub for elysia (plugin)\nexport function demo() {\n  console.log('use elysia - plugin (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-elysia-plugin-testing-ts.md",
+      "template": "# elysia plugin (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-elysia-plugin-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

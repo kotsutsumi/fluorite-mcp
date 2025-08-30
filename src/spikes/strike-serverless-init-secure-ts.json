@@ -1,0 +1,41 @@
+{
+  "id": "strike-serverless-init-secure-ts",
+  "name": "serverless init secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "serverless",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for serverless init in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "serverless-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/serverless-init.ts",
+      "template": "# Spike: serverless init (ts)\n// Auto-generated spike stub for serverless (init)\nexport function demo() {\n  console.log('use serverless - init (secure)');\n}\n"
+    },
+    {
+      "path": "serverless.yml",
+      "template": "service: app\nframeworkVersion: '3'\nprovider: { name: aws, runtime: nodejs20.x }\nfunctions: { hello: { handler: src/lambda/handler.handler, events: [{ httpApi: { path: /hello, method: get } }] } }\n"
+    },
+    {
+      "path": "spikes/strike-serverless-init-secure-ts.ts.txt",
+      "template": "# Spike: serverless init (ts)\n// Auto-generated spike stub for serverless (init)\nexport function demo() {\n  console.log('use serverless - init (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-serverless-init-secure-ts.md",
+      "template": "# serverless init (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

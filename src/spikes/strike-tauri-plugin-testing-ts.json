@@ -1,0 +1,41 @@
+{
+  "id": "strike-tauri-plugin-testing-ts",
+  "name": "tauri plugin testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "tauri",
+    "ts"
+  ],
+  "tags": [
+    "plugin",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for tauri plugin in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "tauri-plugin-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/tauri-plugin.ts",
+      "template": "# Spike: tauri plugin (ts)\n// Auto-generated spike stub for tauri (plugin)\nexport function demo() {\n  console.log('use tauri - plugin (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-tauri-plugin-testing-ts.ts.txt",
+      "template": "# Spike: tauri plugin (ts)\n// Auto-generated spike stub for tauri (plugin)\nexport function demo() {\n  console.log('use tauri - plugin (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-tauri-plugin-testing-ts.md",
+      "template": "# tauri plugin (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-tauri-plugin-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

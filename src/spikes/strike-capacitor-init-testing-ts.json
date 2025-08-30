@@ -1,0 +1,45 @@
+{
+  "id": "strike-capacitor-init-testing-ts",
+  "name": "capacitor init testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "capacitor",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for capacitor init in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "capacitor-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/main.ts",
+      "template": "import { Capacitor } from '@capacitor/core';\nconsole.log('Platform:', Capacitor.getPlatform());\n"
+    },
+    {
+      "path": "index.html",
+      "template": "<!doctype html><html><body><h1>Capacitor</h1><script type=\"module\" src=\"/src/main.ts\"></script></body></html>\n"
+    },
+    {
+      "path": "spikes/strike-capacitor-init-testing-ts.ts.txt",
+      "template": "# Spike: capacitor init (ts)\n// Auto-generated spike stub for capacitor (init)\nexport function demo() {\n  console.log('use capacitor - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-capacitor-init-testing-ts.md",
+      "template": "# capacitor init (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-capacitor-init-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

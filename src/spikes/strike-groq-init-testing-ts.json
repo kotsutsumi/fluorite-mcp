@@ -1,0 +1,41 @@
+{
+  "id": "strike-groq-init-testing-ts",
+  "name": "groq init testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "groq",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for groq init in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "groq-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/groq-init.ts",
+      "template": "# Spike: groq init (ts)\n// Auto-generated spike stub for groq (init)\nexport function demo() {\n  console.log('use groq - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-groq-init-testing-ts.ts.txt",
+      "template": "# Spike: groq init (ts)\n// Auto-generated spike stub for groq (init)\nexport function demo() {\n  console.log('use groq - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-groq-init-testing-ts.md",
+      "template": "# groq init (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-groq-init-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

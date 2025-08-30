@@ -1,0 +1,37 @@
+{
+  "id": "strike-sqs-adapter-secure-ts",
+  "name": "sqs adapter secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "sqs",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for sqs adapter in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sqs-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/sqs-adapter.ts",
+      "template": "# Spike: sqs adapter (ts)\n// Auto-generated spike stub for sqs (adapter)\nexport function demo() {\n  console.log('use sqs - adapter (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sqs-adapter-secure-ts.ts.txt",
+      "template": "# Spike: sqs adapter (ts)\n// Auto-generated spike stub for sqs (adapter)\nexport function demo() {\n  console.log('use sqs - adapter (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sqs-adapter-secure-ts.md",
+      "template": "# sqs adapter (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

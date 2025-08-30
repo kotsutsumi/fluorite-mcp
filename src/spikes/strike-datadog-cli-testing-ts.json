@@ -1,0 +1,41 @@
+{
+  "id": "strike-datadog-cli-testing-ts",
+  "name": "datadog cli testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "datadog",
+    "ts"
+  ],
+  "tags": [
+    "cli",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for datadog cli in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "datadog-cli-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/datadog-cli.ts",
+      "template": "# Spike: datadog cli (ts)\n// Auto-generated spike stub for datadog (cli)\nexport function demo() {\n  console.log('use datadog - cli (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-datadog-cli-testing-ts.ts.txt",
+      "template": "# Spike: datadog cli (ts)\n// Auto-generated spike stub for datadog (cli)\nexport function demo() {\n  console.log('use datadog - cli (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-datadog-cli-testing-ts.md",
+      "template": "# datadog cli (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-datadog-cli-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

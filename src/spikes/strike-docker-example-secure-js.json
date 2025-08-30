@@ -1,0 +1,37 @@
+{
+  "id": "strike-docker-example-secure-js",
+  "name": "docker example secure js",
+  "version": "0.1.0",
+  "stack": [
+    "docker",
+    "js"
+  ],
+  "tags": [
+    "example",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for docker example in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "docker-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/docker-example.js",
+      "template": "# Spike: docker example (js)\n// Auto-generated spike stub for docker (example)\nmodule.exports = function demo(){\n  console.log('use docker - example (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-docker-example-secure-js.js.txt",
+      "template": "# Spike: docker example (js)\n// Auto-generated spike stub for docker (example)\nmodule.exports = function demo(){\n  console.log('use docker - example (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-docker-example-secure-js.md",
+      "template": "# docker example (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

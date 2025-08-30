@@ -1,0 +1,45 @@
+{
+  "id": "strike-azure-functions-config-typed-ts",
+  "name": "azure-functions config typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "azure-functions",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for azure-functions config in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "azure-functions-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/azure-functions-config.ts",
+      "template": "# Spike: azure-functions config (ts)\n// Auto-generated spike stub for azure-functions (config)\nexport function demo() {\n  console.log('use azure-functions - config (typed)');\n}\n"
+    },
+    {
+      "path": "AzureFunctions/HttpTrigger1/function.json",
+      "template": "{ \"bindings\": [{ \"authLevel\": \"function\", \"type\": \"httpTrigger\", \"direction\": \"in\", \"name\": \"req\", \"methods\": [\"get\"] }, { \"type\": \"http\", \"direction\": \"out\", \"name\": \"res\" }] }\n"
+    },
+    {
+      "path": "AzureFunctions/HttpTrigger1/index.ts",
+      "template": "import type { Context, HttpRequest } from '@azure/functions';\nexport default async function (context: Context, _req: HttpRequest){ context.res = { status: 200, body: { ok: true } }; }\n"
+    },
+    {
+      "path": "spikes/strike-azure-functions-config-typed-ts.ts.txt",
+      "template": "# Spike: azure-functions config (ts)\n// Auto-generated spike stub for azure-functions (config)\nexport function demo() {\n  console.log('use azure-functions - config (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-azure-functions-config-typed-ts.md",
+      "template": "# azure-functions config (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

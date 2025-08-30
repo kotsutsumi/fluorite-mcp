@@ -1,0 +1,41 @@
+{
+  "id": "strike-neo4j-config-typed-ts",
+  "name": "neo4j config typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "neo4j",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for neo4j config in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "neo4j-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/neo4j-config.ts",
+      "template": "# Spike: neo4j config (ts)\n// Auto-generated spike stub for neo4j (config)\nexport function demo() {\n  console.log('use neo4j - config (typed)');\n}\n"
+    },
+    {
+      "path": "src/neo4j/driver.ts",
+      "template": "import neo4j from 'neo4j-driver';\nexport const driver = neo4j.driver('bolt://localhost:7687', neo4j.auth.basic('neo4j','password'));\n"
+    },
+    {
+      "path": "spikes/strike-neo4j-config-typed-ts.ts.txt",
+      "template": "# Spike: neo4j config (ts)\n// Auto-generated spike stub for neo4j (config)\nexport function demo() {\n  console.log('use neo4j - config (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-neo4j-config-typed-ts.md",
+      "template": "# neo4j config (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

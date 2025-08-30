@@ -1,0 +1,53 @@
+{
+  "id": "strike-s3-config-basic-ts",
+  "name": "s3 config basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "s3",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for s3 config in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "s3-config-app"
+    },
+    {
+      "name": "region",
+      "required": false,
+      "description": "AWS リージョン",
+      "default": "us-east-1"
+    },
+    {
+      "name": "bucket",
+      "required": false,
+      "description": "S3 バケット名",
+      "default": "my-bucket"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/s3-config.ts",
+      "template": "# Spike: s3 config (ts)\n// Auto-generated spike stub for s3 (config)\nexport function demo() {\n  console.log('use s3 - config (basic)');\n}\n"
+    },
+    {
+      "path": "src/aws/s3.ts",
+      "template": "export function s3(){ return { bucket: process.env.S3_BUCKET }; }\n"
+    },
+    {
+      "path": "spikes/strike-s3-config-basic-ts.ts.txt",
+      "template": "# Spike: s3 config (ts)\n// Auto-generated spike stub for s3 (config)\nexport function demo() {\n  console.log('use s3 - config (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-s3-config-basic-ts.md",
+      "template": "# s3 config (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

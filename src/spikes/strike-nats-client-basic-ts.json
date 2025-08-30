@@ -1,0 +1,45 @@
+{
+  "id": "strike-nats-client-basic-ts",
+  "name": "nats client basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "nats",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nats client in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nats-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/nats-client.ts",
+      "template": "# Spike: nats client (ts)\n// Auto-generated spike stub for nats (client)\nexport function demo() {\n  console.log('use nats - client (basic)');\n}\n"
+    },
+    {
+      "path": "src/nats/pub.ts",
+      "template": "import { connect, StringCodec } from 'nats';\nexport async function pub(subject: string, message: string){ const nc = await connect({ servers: 'localhost:4222' }); const sc = StringCodec(); nc.publish(subject, sc.encode(message)); await nc.drain(); }\n"
+    },
+    {
+      "path": "src/nats/sub.ts",
+      "template": "import { connect, StringCodec } from 'nats';\nexport async function sub(subject: string){ const nc = await connect({ servers: 'localhost:4222' }); const sc = StringCodec(); const sub = nc.subscribe(subject); for await (const m of sub){ console.log(sc.decode(m.data)); } }\n"
+    },
+    {
+      "path": "spikes/strike-nats-client-basic-ts.ts.txt",
+      "template": "# Spike: nats client (ts)\n// Auto-generated spike stub for nats (client)\nexport function demo() {\n  console.log('use nats - client (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nats-client-basic-ts.md",
+      "template": "# nats client (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

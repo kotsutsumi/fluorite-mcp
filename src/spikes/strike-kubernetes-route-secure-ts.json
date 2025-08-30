@@ -1,0 +1,37 @@
+{
+  "id": "strike-kubernetes-route-secure-ts",
+  "name": "kubernetes route secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "kubernetes",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for kubernetes route in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "kubernetes-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/kubernetes-route.ts",
+      "template": "# Spike: kubernetes route (ts)\n// Auto-generated spike stub for kubernetes (route)\nexport function demo() {\n  console.log('use kubernetes - route (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kubernetes-route-secure-ts.ts.txt",
+      "template": "# Spike: kubernetes route (ts)\n// Auto-generated spike stub for kubernetes (route)\nexport function demo() {\n  console.log('use kubernetes - route (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kubernetes-route-secure-ts.md",
+      "template": "# kubernetes route (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

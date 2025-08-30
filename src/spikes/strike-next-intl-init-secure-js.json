@@ -1,0 +1,41 @@
+{
+  "id": "strike-next-intl-init-secure-js",
+  "name": "next-intl init secure js",
+  "version": "0.1.0",
+  "stack": [
+    "next-intl",
+    "js"
+  ],
+  "tags": [
+    "init",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for next-intl init in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "next-intl-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/next-intl-init.js",
+      "template": "# Spike: next-intl init (js)\n// Auto-generated spike stub for next-intl (init)\nmodule.exports = function demo(){\n  console.log('use next-intl - init (secure)');\n};\n"
+    },
+    {
+      "path": "src/i18n/next-intl.ts",
+      "template": "export const messages = { en: { hello: 'Hello' }, ja: { hello: 'こんにちは' } };\n"
+    },
+    {
+      "path": "spikes/strike-next-intl-init-secure-js.js.txt",
+      "template": "# Spike: next-intl init (js)\n// Auto-generated spike stub for next-intl (init)\nmodule.exports = function demo(){\n  console.log('use next-intl - init (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-next-intl-init-secure-js.md",
+      "template": "# next-intl init (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

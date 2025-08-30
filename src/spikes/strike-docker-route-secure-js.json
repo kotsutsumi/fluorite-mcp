@@ -1,0 +1,37 @@
+{
+  "id": "strike-docker-route-secure-js",
+  "name": "docker route secure js",
+  "version": "0.1.0",
+  "stack": [
+    "docker",
+    "js"
+  ],
+  "tags": [
+    "route",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for docker route in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "docker-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/docker-route.js",
+      "template": "# Spike: docker route (js)\n// Auto-generated spike stub for docker (route)\nmodule.exports = function demo(){\n  console.log('use docker - route (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-docker-route-secure-js.js.txt",
+      "template": "# Spike: docker route (js)\n// Auto-generated spike stub for docker (route)\nmodule.exports = function demo(){\n  console.log('use docker - route (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-docker-route-secure-js.md",
+      "template": "# docker route (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

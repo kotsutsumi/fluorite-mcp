@@ -1,0 +1,41 @@
+{
+  "id": "strike-transformers-init-testing-ts",
+  "name": "transformers init testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "transformers",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for transformers init in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "transformers-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/transformers-init.ts",
+      "template": "# Spike: transformers init (ts)\n// Auto-generated spike stub for transformers (init)\nexport function demo() {\n  console.log('use transformers - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-transformers-init-testing-ts.ts.txt",
+      "template": "# Spike: transformers init (ts)\n// Auto-generated spike stub for transformers (init)\nexport function demo() {\n  console.log('use transformers - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-transformers-init-testing-ts.md",
+      "template": "# transformers init (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-transformers-init-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,37 @@
+{
+  "id": "strike-react-docs-testing-go",
+  "name": "react docs testing go",
+  "version": "0.1.0",
+  "stack": [
+    "react",
+    "go"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for react docs in go (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "react-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/react-docs.go",
+      "template": "# Spike: react docs (go)\n// Auto-generated spike stub for react (docs)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use react - docs (testing)\") }\n"
+    },
+    {
+      "path": "spikes/strike-react-docs-testing-go.go.txt",
+      "template": "# Spike: react docs (go)\n// Auto-generated spike stub for react (docs)\npackage main\nimport \"fmt\"\nfunc demo(){ fmt.Println(\"use react - docs (testing)\") }\n"
+    },
+    {
+      "path": "spikes/strike-react-docs-testing-go.md",
+      "template": "# react docs (testing, go)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

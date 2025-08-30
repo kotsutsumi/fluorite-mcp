@@ -1,0 +1,41 @@
+{
+  "id": "strike-playwright-pipeline-testing-ts",
+  "name": "playwright pipeline testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "playwright",
+    "ts"
+  ],
+  "tags": [
+    "pipeline",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for playwright pipeline in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "playwright-pipeline-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/playwright-pipeline.ts",
+      "template": "# Spike: playwright pipeline (ts)\n// Auto-generated spike stub for playwright (pipeline)\nexport function demo() {\n  console.log('use playwright - pipeline (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-playwright-pipeline-testing-ts.ts.txt",
+      "template": "# Spike: playwright pipeline (ts)\n// Auto-generated spike stub for playwright (pipeline)\nexport function demo() {\n  console.log('use playwright - pipeline (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-playwright-pipeline-testing-ts.md",
+      "template": "# playwright pipeline (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-playwright-pipeline-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-next-intl-config-typed-js",
+  "name": "next-intl config typed js",
+  "version": "0.1.0",
+  "stack": [
+    "next-intl",
+    "js"
+  ],
+  "tags": [
+    "config",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for next-intl config in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "next-intl-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/next-intl-config.js",
+      "template": "# Spike: next-intl config (js)\n// Auto-generated spike stub for next-intl (config)\nmodule.exports = function demo(){\n  console.log('use next-intl - config (typed)');\n};\n"
+    },
+    {
+      "path": "src/i18n/next-intl.ts",
+      "template": "export const messages = { en: { hello: 'Hello' }, ja: { hello: 'こんにちは' } };\n"
+    },
+    {
+      "path": "spikes/strike-next-intl-config-typed-js.js.txt",
+      "template": "# Spike: next-intl config (js)\n// Auto-generated spike stub for next-intl (config)\nmodule.exports = function demo(){\n  console.log('use next-intl - config (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-next-intl-config-typed-js.md",
+      "template": "# next-intl config (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

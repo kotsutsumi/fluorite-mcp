@@ -1,0 +1,41 @@
+{
+  "id": "strike-pino-init-typed-ts",
+  "name": "pino init typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "pino",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for pino init in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "pino-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/pino-init.ts",
+      "template": "# Spike: pino init (ts)\n// Auto-generated spike stub for pino (init)\nexport function demo() {\n  console.log('use pino - init (typed)');\n}\n"
+    },
+    {
+      "path": "src/logging/pino.ts",
+      "template": "export function logger(){ return { info: console.log, error: console.error }; }\n"
+    },
+    {
+      "path": "spikes/strike-pino-init-typed-ts.ts.txt",
+      "template": "# Spike: pino init (ts)\n// Auto-generated spike stub for pino (init)\nexport function demo() {\n  console.log('use pino - init (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pino-init-typed-ts.md",
+      "template": "# pino init (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

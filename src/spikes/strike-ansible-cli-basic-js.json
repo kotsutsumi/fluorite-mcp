@@ -1,0 +1,37 @@
+{
+  "id": "strike-ansible-cli-basic-js",
+  "name": "ansible cli basic js",
+  "version": "0.1.0",
+  "stack": [
+    "ansible",
+    "js"
+  ],
+  "tags": [
+    "cli",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for ansible cli in js (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "ansible-cli-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/ansible-cli.js",
+      "template": "# Spike: ansible cli (js)\n// Auto-generated spike stub for ansible (cli)\nmodule.exports = function demo(){\n  console.log('use ansible - cli (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-ansible-cli-basic-js.js.txt",
+      "template": "# Spike: ansible cli (js)\n// Auto-generated spike stub for ansible (cli)\nmodule.exports = function demo(){\n  console.log('use ansible - cli (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-ansible-cli-basic-js.md",
+      "template": "# ansible cli (basic, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

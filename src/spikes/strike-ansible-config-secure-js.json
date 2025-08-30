@@ -1,0 +1,41 @@
+{
+  "id": "strike-ansible-config-secure-js",
+  "name": "ansible config secure js",
+  "version": "0.1.0",
+  "stack": [
+    "ansible",
+    "js"
+  ],
+  "tags": [
+    "config",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for ansible config in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "ansible-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/ansible-config.js",
+      "template": "# Spike: ansible config (js)\n// Auto-generated spike stub for ansible (config)\nmodule.exports = function demo(){\n  console.log('use ansible - config (secure)');\n};\n"
+    },
+    {
+      "path": "ansible/playbook.yml",
+      "template": "- hosts: all\n  tasks:\n    - name: Ping\n      ping:\n"
+    },
+    {
+      "path": "spikes/strike-ansible-config-secure-js.js.txt",
+      "template": "# Spike: ansible config (js)\n// Auto-generated spike stub for ansible (config)\nmodule.exports = function demo(){\n  console.log('use ansible - config (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-ansible-config-secure-js.md",
+      "template": "# ansible config (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

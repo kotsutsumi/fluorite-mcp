@@ -1,0 +1,41 @@
+{
+  "id": "strike-pinecone-config-typed-ts",
+  "name": "pinecone config typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "pinecone",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for pinecone config in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "pinecone-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/pinecone-config.ts",
+      "template": "# Spike: pinecone config (ts)\n// Auto-generated spike stub for pinecone (config)\nexport function demo() {\n  console.log('use pinecone - config (typed)');\n}\n"
+    },
+    {
+      "path": "src/vectors/pinecone.ts",
+      "template": "export function pinecone(){ return { apiKey: process.env.PINECONE_API_KEY, index: process.env.PINECONE_INDEX }; }\n"
+    },
+    {
+      "path": "spikes/strike-pinecone-config-typed-ts.ts.txt",
+      "template": "# Spike: pinecone config (ts)\n// Auto-generated spike stub for pinecone (config)\nexport function demo() {\n  console.log('use pinecone - config (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pinecone-config-typed-ts.md",
+      "template": "# pinecone config (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

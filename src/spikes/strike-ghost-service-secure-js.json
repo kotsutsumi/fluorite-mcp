@@ -1,0 +1,41 @@
+{
+  "id": "strike-ghost-service-secure-js",
+  "name": "ghost service secure js",
+  "version": "0.1.0",
+  "stack": [
+    "ghost",
+    "js"
+  ],
+  "tags": [
+    "service",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for ghost service in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "ghost-service-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/ghost-service.js",
+      "template": "# Spike: ghost service (js)\n// Auto-generated spike stub for ghost (service)\nmodule.exports = function demo(){\n  console.log('use ghost - service (secure)');\n};\n"
+    },
+    {
+      "path": "src/cms/ghost.ts",
+      "template": "export function ghost(){ return { url: process.env.GHOST_URL }; }\n"
+    },
+    {
+      "path": "spikes/strike-ghost-service-secure-js.js.txt",
+      "template": "# Spike: ghost service (js)\n// Auto-generated spike stub for ghost (service)\nmodule.exports = function demo(){\n  console.log('use ghost - service (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-ghost-service-secure-js.md",
+      "template": "# ghost service (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

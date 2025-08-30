@@ -1,0 +1,41 @@
+{
+  "id": "strike-ansible-init-basic-js",
+  "name": "ansible init basic js",
+  "version": "0.1.0",
+  "stack": [
+    "ansible",
+    "js"
+  ],
+  "tags": [
+    "init",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for ansible init in js (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "ansible-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/ansible-init.js",
+      "template": "# Spike: ansible init (js)\n// Auto-generated spike stub for ansible (init)\nmodule.exports = function demo(){\n  console.log('use ansible - init (basic)');\n};\n"
+    },
+    {
+      "path": "ansible/playbook.yml",
+      "template": "- hosts: all\n  tasks:\n    - name: Ping\n      ping:\n"
+    },
+    {
+      "path": "spikes/strike-ansible-init-basic-js.js.txt",
+      "template": "# Spike: ansible init (js)\n// Auto-generated spike stub for ansible (init)\nmodule.exports = function demo(){\n  console.log('use ansible - init (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-ansible-init-basic-js.md",
+      "template": "# ansible init (basic, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

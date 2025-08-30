@@ -1,0 +1,41 @@
+{
+  "id": "strike-react-hook-form-hook-secure-ts",
+  "name": "react-hook-form hook secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "react-hook-form",
+    "ts"
+  ],
+  "tags": [
+    "hook",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for react-hook-form hook in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "react-hook-form-hook-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/react-hook-form-hook.ts",
+      "template": "# Spike: react-hook-form hook (ts)\n// Auto-generated spike stub for react-hook-form (hook)\nexport function demo() {\n  console.log('use react-hook-form - hook (secure)');\n}\n"
+    },
+    {
+      "path": "src/components/LoginForm.tsx",
+      "template": "import { useForm } from 'react-hook-form';\ntype Inputs = { email: string; password: string };\nexport function LoginForm(){ const { register, handleSubmit, formState:{ errors } } = useForm<Inputs>(); const onSubmit = (data: Inputs)=> console.log(data); return (<form onSubmit={handleSubmit(onSubmit)}><input {...register('email',{ required:true })} /><input type='password' {...register('password',{ required:true })} /><button type='submit'>Sign in</button>{errors.email && 'email req'}</form>); }\n"
+    },
+    {
+      "path": "spikes/strike-react-hook-form-hook-secure-ts.ts.txt",
+      "template": "# Spike: react-hook-form hook (ts)\n// Auto-generated spike stub for react-hook-form (hook)\nexport function demo() {\n  console.log('use react-hook-form - hook (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-react-hook-form-hook-secure-ts.md",
+      "template": "# react-hook-form hook (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

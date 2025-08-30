@@ -1,0 +1,37 @@
+{
+  "id": "strike-ansible-job-secure-js",
+  "name": "ansible job secure js",
+  "version": "0.1.0",
+  "stack": [
+    "ansible",
+    "js"
+  ],
+  "tags": [
+    "job",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for ansible job in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "ansible-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/ansible-job.js",
+      "template": "# Spike: ansible job (js)\n// Auto-generated spike stub for ansible (job)\nmodule.exports = function demo(){\n  console.log('use ansible - job (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-ansible-job-secure-js.js.txt",
+      "template": "# Spike: ansible job (js)\n// Auto-generated spike stub for ansible (job)\nmodule.exports = function demo(){\n  console.log('use ansible - job (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-ansible-job-secure-js.md",
+      "template": "# ansible job (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

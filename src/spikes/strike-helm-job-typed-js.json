@@ -1,0 +1,37 @@
+{
+  "id": "strike-helm-job-typed-js",
+  "name": "helm job typed js",
+  "version": "0.1.0",
+  "stack": [
+    "helm",
+    "js"
+  ],
+  "tags": [
+    "job",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for helm job in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "helm-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/helm-job.js",
+      "template": "# Spike: helm job (js)\n// Auto-generated spike stub for helm (job)\nmodule.exports = function demo(){\n  console.log('use helm - job (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-helm-job-typed-js.js.txt",
+      "template": "# Spike: helm job (js)\n// Auto-generated spike stub for helm (job)\nmodule.exports = function demo(){\n  console.log('use helm - job (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-helm-job-typed-js.md",
+      "template": "# helm job (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

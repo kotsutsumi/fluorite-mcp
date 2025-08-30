@@ -1,0 +1,41 @@
+{
+  "id": "strike-tauri-provider-testing-ts",
+  "name": "tauri provider testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "tauri",
+    "ts"
+  ],
+  "tags": [
+    "provider",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for tauri provider in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "tauri-provider-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/tauri-provider.ts",
+      "template": "# Spike: tauri provider (ts)\n// Auto-generated spike stub for tauri (provider)\nexport function demo() {\n  console.log('use tauri - provider (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-tauri-provider-testing-ts.ts.txt",
+      "template": "# Spike: tauri provider (ts)\n// Auto-generated spike stub for tauri (provider)\nexport function demo() {\n  console.log('use tauri - provider (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-tauri-provider-testing-ts.md",
+      "template": "# tauri provider (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-tauri-provider-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

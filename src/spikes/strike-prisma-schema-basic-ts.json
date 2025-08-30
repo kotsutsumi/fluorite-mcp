@@ -1,0 +1,51 @@
+{
+  "id": "strike-prisma-schema-basic-ts",
+  "name": "prisma schema basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "prisma",
+    "ts"
+  ],
+  "tags": [
+    "schema",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for prisma schema in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "prisma-schema-app"
+    },
+    {
+      "name": "model",
+      "required": false,
+      "description": "Prisma モデル名",
+      "default": "Item"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/prisma-schema.ts",
+      "template": "# Spike: prisma schema (ts)\n// Auto-generated spike stub for prisma (schema)\nexport function demo() {\n  console.log('use prisma - schema (basic)');\n}\n"
+    },
+    {
+      "path": "prisma/schema.prisma",
+      "template": "generator client { provider = \"prisma-client-js\" }\ndatasource db { provider = \"postgresql\" url = env(\"DATABASE_URL\") }\n\nmodel {{model}} {\n  id    Int     @id @default(autoincrement())\n  name  String\n  createdAt DateTime @default(now())\n}\n"
+    },
+    {
+      "path": "src/db/client.ts",
+      "template": "import { PrismaClient } from '@prisma/client';\nexport const prisma = new PrismaClient();\n"
+    },
+    {
+      "path": "spikes/strike-prisma-schema-basic-ts.ts.txt",
+      "template": "# Spike: prisma schema (ts)\n// Auto-generated spike stub for prisma (schema)\nexport function demo() {\n  console.log('use prisma - schema (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-prisma-schema-basic-ts.md",
+      "template": "# prisma schema (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

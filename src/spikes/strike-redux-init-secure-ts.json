@@ -1,0 +1,45 @@
+{
+  "id": "strike-redux-init-secure-ts",
+  "name": "redux init secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "redux",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for redux init in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "redux-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/redux-init.ts",
+      "template": "# Spike: redux init (ts)\n// Auto-generated spike stub for redux (init)\nexport function demo() {\n  console.log('use redux - init (secure)');\n}\n"
+    },
+    {
+      "path": "src/store/store.ts",
+      "template": "import { configureStore } from '@reduxjs/toolkit';\nimport counter from './counterSlice';\nexport const store = configureStore({ reducer: { counter } });\nexport type RootState = ReturnType<typeof store.getState>;\nexport type AppDispatch = typeof store.dispatch;\n"
+    },
+    {
+      "path": "src/store/counterSlice.ts",
+      "template": "import { createSlice, PayloadAction } from '@reduxjs/toolkit';\ninterface State { value: number }\nconst initialState: State = { value: 0 };\nconst slice = createSlice({ name: 'counter', initialState, reducers: { inc: (s)=> { s.value += 1; }, add: (s, a: PayloadAction<number>)=> { s.value += a.payload; } } });\nexport const { inc, add } = slice.actions;\nexport default slice.reducer;\n"
+    },
+    {
+      "path": "spikes/strike-redux-init-secure-ts.ts.txt",
+      "template": "# Spike: redux init (ts)\n// Auto-generated spike stub for redux (init)\nexport function demo() {\n  console.log('use redux - init (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redux-init-secure-ts.md",
+      "template": "# redux init (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

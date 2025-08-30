@@ -1,0 +1,37 @@
+{
+  "id": "strike-aws-lambda-worker-secure-js",
+  "name": "aws-lambda worker secure js",
+  "version": "0.1.0",
+  "stack": [
+    "aws-lambda",
+    "js"
+  ],
+  "tags": [
+    "worker",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for aws-lambda worker in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "aws-lambda-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/aws-lambda-worker.js",
+      "template": "# Spike: aws-lambda worker (js)\n// Auto-generated spike stub for aws-lambda (worker)\nmodule.exports = function demo(){\n  console.log('use aws-lambda - worker (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-aws-lambda-worker-secure-js.js.txt",
+      "template": "# Spike: aws-lambda worker (js)\n// Auto-generated spike stub for aws-lambda (worker)\nmodule.exports = function demo(){\n  console.log('use aws-lambda - worker (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-aws-lambda-worker-secure-js.md",
+      "template": "# aws-lambda worker (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

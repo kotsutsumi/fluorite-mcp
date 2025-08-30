@@ -1,0 +1,41 @@
+{
+  "id": "strike-jest-example-testing-ts",
+  "name": "jest example testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "jest",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for jest example in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "jest-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/jest-example.ts",
+      "template": "# Spike: jest example (ts)\n// Auto-generated spike stub for jest (example)\nexport function demo() {\n  console.log('use jest - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-jest-example-testing-ts.ts.txt",
+      "template": "# Spike: jest example (ts)\n// Auto-generated spike stub for jest (example)\nexport function demo() {\n  console.log('use jest - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-jest-example-testing-ts.md",
+      "template": "# jest example (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-jest-example-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

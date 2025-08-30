@@ -1,0 +1,41 @@
+{
+  "id": "strike-artillery-scenario-testing-ts",
+  "name": "artillery scenario testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "artillery",
+    "ts"
+  ],
+  "tags": [
+    "scenario",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for artillery scenario in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "artillery-scenario-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "artillery/test.yml",
+      "template": "config:\n  target: 'https://example.com'\n  phases:\n    - duration: 10\n      arrivalRate: 1\nscenarios:\n  - flow:\n      - get:\n          url: /\n"
+    },
+    {
+      "path": "spikes/strike-artillery-scenario-testing-ts.ts.txt",
+      "template": "# Spike: artillery scenario (ts)\n// Auto-generated spike stub for artillery (scenario)\nexport function demo() {\n  console.log('use artillery - scenario (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-artillery-scenario-testing-ts.md",
+      "template": "# artillery scenario (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-artillery-scenario-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

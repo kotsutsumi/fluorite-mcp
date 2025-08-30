@@ -1,0 +1,37 @@
+{
+  "id": "strike-terraform-job-secure-js",
+  "name": "terraform job secure js",
+  "version": "0.1.0",
+  "stack": [
+    "terraform",
+    "js"
+  ],
+  "tags": [
+    "job",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for terraform job in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "terraform-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/terraform-job.js",
+      "template": "# Spike: terraform job (js)\n// Auto-generated spike stub for terraform (job)\nmodule.exports = function demo(){\n  console.log('use terraform - job (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-terraform-job-secure-js.js.txt",
+      "template": "# Spike: terraform job (js)\n// Auto-generated spike stub for terraform (job)\nmodule.exports = function demo(){\n  console.log('use terraform - job (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-terraform-job-secure-js.md",
+      "template": "# terraform job (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

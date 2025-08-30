@@ -1,0 +1,41 @@
+{
+  "id": "strike-qdrant-config-basic-py",
+  "name": "qdrant config basic py",
+  "version": "0.1.0",
+  "stack": [
+    "qdrant",
+    "py"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for qdrant config in py (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "qdrant-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/qdrant-config.py",
+      "template": "# Spike: qdrant config (py)\n# Auto-generated spike stub for qdrant (config)\ndef demo():\n    print('use qdrant - config (basic)')\n"
+    },
+    {
+      "path": "src/vectors/qdrant.ts",
+      "template": "export function qdrant(){ return { url: process.env.QDRANT_URL || 'http://localhost:6333' }; }\n"
+    },
+    {
+      "path": "spikes/strike-qdrant-config-basic-py.py.txt",
+      "template": "# Spike: qdrant config (py)\n# Auto-generated spike stub for qdrant (config)\ndef demo():\n    print('use qdrant - config (basic)')\n"
+    },
+    {
+      "path": "spikes/strike-qdrant-config-basic-py.md",
+      "template": "# qdrant config (basic, py)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

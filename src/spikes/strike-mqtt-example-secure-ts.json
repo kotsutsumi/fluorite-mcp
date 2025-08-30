@@ -1,0 +1,37 @@
+{
+  "id": "strike-mqtt-example-secure-ts",
+  "name": "mqtt example secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "mqtt",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for mqtt example in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "mqtt-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/mqtt-example.ts",
+      "template": "# Spike: mqtt example (ts)\n// Auto-generated spike stub for mqtt (example)\nexport function demo() {\n  console.log('use mqtt - example (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-mqtt-example-secure-ts.ts.txt",
+      "template": "# Spike: mqtt example (ts)\n// Auto-generated spike stub for mqtt (example)\nexport function demo() {\n  console.log('use mqtt - example (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-mqtt-example-secure-ts.md",
+      "template": "# mqtt example (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-llamaindex-route-testing-ts",
+  "name": "llamaindex route testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "llamaindex",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for llamaindex route in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "llamaindex-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/llamaindex-route.ts",
+      "template": "# Spike: llamaindex route (ts)\n// Auto-generated spike stub for llamaindex (route)\nexport function demo() {\n  console.log('use llamaindex - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-llamaindex-route-testing-ts.ts.txt",
+      "template": "# Spike: llamaindex route (ts)\n// Auto-generated spike stub for llamaindex (route)\nexport function demo() {\n  console.log('use llamaindex - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-llamaindex-route-testing-ts.md",
+      "template": "# llamaindex route (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-llamaindex-route-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

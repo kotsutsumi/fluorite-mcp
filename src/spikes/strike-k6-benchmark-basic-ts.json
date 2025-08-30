@@ -1,0 +1,37 @@
+{
+  "id": "strike-k6-benchmark-basic-ts",
+  "name": "k6 benchmark basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "k6",
+    "ts"
+  ],
+  "tags": [
+    "benchmark",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for k6 benchmark in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "k6-benchmark-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "k6/script.js",
+      "template": "import http from 'k6/http';\nimport { sleep } from 'k6';\nexport const options = { vus: 1, duration: '10s' };\nexport default function(){ http.get('https://example.com'); sleep(1); }\n"
+    },
+    {
+      "path": "spikes/strike-k6-benchmark-basic-ts.ts.txt",
+      "template": "# Spike: k6 benchmark (ts)\n// Auto-generated spike stub for k6 (benchmark)\nexport function demo() {\n  console.log('use k6 - benchmark (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-k6-benchmark-basic-ts.md",
+      "template": "# k6 benchmark (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

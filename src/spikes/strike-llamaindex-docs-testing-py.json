@@ -1,0 +1,41 @@
+{
+  "id": "strike-llamaindex-docs-testing-py",
+  "name": "llamaindex docs testing py",
+  "version": "0.1.0",
+  "stack": [
+    "llamaindex",
+    "py"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for llamaindex docs in py (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "llamaindex-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/llamaindex-docs.py",
+      "template": "# Spike: llamaindex docs (py)\n# Auto-generated spike stub for llamaindex (docs)\ndef demo():\n    print('use llamaindex - docs (testing)')\n"
+    },
+    {
+      "path": "spikes/strike-llamaindex-docs-testing-py.py.txt",
+      "template": "# Spike: llamaindex docs (py)\n# Auto-generated spike stub for llamaindex (docs)\ndef demo():\n    print('use llamaindex - docs (testing)')\n"
+    },
+    {
+      "path": "spikes/strike-llamaindex-docs-testing-py.md",
+      "template": "# llamaindex docs (testing, py)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-llamaindex-docs-testing-py_test.py",
+      "template": "def test_demo():\n    assert True\n"
+    }
+  ],
+  "patches": []
+}

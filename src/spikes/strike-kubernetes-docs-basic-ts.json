@@ -1,0 +1,37 @@
+{
+  "id": "strike-kubernetes-docs-basic-ts",
+  "name": "kubernetes docs basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "kubernetes",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for kubernetes docs in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "kubernetes-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/kubernetes-docs.ts",
+      "template": "# Spike: kubernetes docs (ts)\n// Auto-generated spike stub for kubernetes (docs)\nexport function demo() {\n  console.log('use kubernetes - docs (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kubernetes-docs-basic-ts.ts.txt",
+      "template": "# Spike: kubernetes docs (ts)\n// Auto-generated spike stub for kubernetes (docs)\nexport function demo() {\n  console.log('use kubernetes - docs (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kubernetes-docs-basic-ts.md",
+      "template": "# kubernetes docs (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-swr-hook-typed-ts",
+  "name": "swr hook typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "swr",
+    "ts"
+  ],
+  "tags": [
+    "hook",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for swr hook in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "swr-hook-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/swr-hook.ts",
+      "template": "# Spike: swr hook (ts)\n// Auto-generated spike stub for swr (hook)\nexport function demo() {\n  console.log('use swr - hook (typed)');\n}\n"
+    },
+    {
+      "path": "src/hooks/useHello.ts",
+      "template": "import useSWR from 'swr';\nconst fetcher = (url: string)=> fetch(url).then(r=> r.json());\nexport function useHello(){ return useSWR('/api/hello', fetcher); }\n"
+    },
+    {
+      "path": "spikes/strike-swr-hook-typed-ts.ts.txt",
+      "template": "# Spike: swr hook (ts)\n// Auto-generated spike stub for swr (hook)\nexport function demo() {\n  console.log('use swr - hook (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-swr-hook-typed-ts.md",
+      "template": "# swr hook (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

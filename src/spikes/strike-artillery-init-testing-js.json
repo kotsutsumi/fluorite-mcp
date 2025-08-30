@@ -1,0 +1,41 @@
+{
+  "id": "strike-artillery-init-testing-js",
+  "name": "artillery init testing js",
+  "version": "0.1.0",
+  "stack": [
+    "artillery",
+    "js"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for artillery init in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "artillery-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/artillery-init.js",
+      "template": "# Spike: artillery init (js)\n// Auto-generated spike stub for artillery (init)\nmodule.exports = function demo(){\n  console.log('use artillery - init (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-artillery-init-testing-js.js.txt",
+      "template": "# Spike: artillery init (js)\n// Auto-generated spike stub for artillery (init)\nmodule.exports = function demo(){\n  console.log('use artillery - init (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-artillery-init-testing-js.md",
+      "template": "# artillery init (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-artillery-init-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-capacitor-config-testing-js",
+  "name": "capacitor config testing js",
+  "version": "0.1.0",
+  "stack": [
+    "capacitor",
+    "js"
+  ],
+  "tags": [
+    "config",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for capacitor config in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "capacitor-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/capacitor-config.js",
+      "template": "# Spike: capacitor config (js)\n// Auto-generated spike stub for capacitor (config)\nmodule.exports = function demo(){\n  console.log('use capacitor - config (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-capacitor-config-testing-js.js.txt",
+      "template": "# Spike: capacitor config (js)\n// Auto-generated spike stub for capacitor (config)\nmodule.exports = function demo(){\n  console.log('use capacitor - config (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-capacitor-config-testing-js.md",
+      "template": "# capacitor config (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-capacitor-config-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

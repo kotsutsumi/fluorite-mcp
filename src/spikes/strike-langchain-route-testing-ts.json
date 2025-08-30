@@ -1,0 +1,41 @@
+{
+  "id": "strike-langchain-route-testing-ts",
+  "name": "langchain route testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "langchain",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for langchain route in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "langchain-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/langchain-route.ts",
+      "template": "# Spike: langchain route (ts)\n// Auto-generated spike stub for langchain (route)\nexport function demo() {\n  console.log('use langchain - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-langchain-route-testing-ts.ts.txt",
+      "template": "# Spike: langchain route (ts)\n// Auto-generated spike stub for langchain (route)\nexport function demo() {\n  console.log('use langchain - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-langchain-route-testing-ts.md",
+      "template": "# langchain route (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-langchain-route-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

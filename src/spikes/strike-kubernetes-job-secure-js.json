@@ -1,0 +1,37 @@
+{
+  "id": "strike-kubernetes-job-secure-js",
+  "name": "kubernetes job secure js",
+  "version": "0.1.0",
+  "stack": [
+    "kubernetes",
+    "js"
+  ],
+  "tags": [
+    "job",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for kubernetes job in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "kubernetes-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/kubernetes-job.js",
+      "template": "# Spike: kubernetes job (js)\n// Auto-generated spike stub for kubernetes (job)\nmodule.exports = function demo(){\n  console.log('use kubernetes - job (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-kubernetes-job-secure-js.js.txt",
+      "template": "# Spike: kubernetes job (js)\n// Auto-generated spike stub for kubernetes (job)\nmodule.exports = function demo(){\n  console.log('use kubernetes - job (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-kubernetes-job-secure-js.md",
+      "template": "# kubernetes job (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

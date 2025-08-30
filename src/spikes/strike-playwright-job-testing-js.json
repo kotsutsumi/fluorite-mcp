@@ -1,0 +1,41 @@
+{
+  "id": "strike-playwright-job-testing-js",
+  "name": "playwright job testing js",
+  "version": "0.1.0",
+  "stack": [
+    "playwright",
+    "js"
+  ],
+  "tags": [
+    "job",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for playwright job in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "playwright-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/playwright-job.js",
+      "template": "# Spike: playwright job (js)\n// Auto-generated spike stub for playwright (job)\nmodule.exports = function demo(){\n  console.log('use playwright - job (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-playwright-job-testing-js.js.txt",
+      "template": "# Spike: playwright job (js)\n// Auto-generated spike stub for playwright (job)\nmodule.exports = function demo(){\n  console.log('use playwright - job (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-playwright-job-testing-js.md",
+      "template": "# playwright job (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-playwright-job-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

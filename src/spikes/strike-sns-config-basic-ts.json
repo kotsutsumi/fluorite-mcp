@@ -1,0 +1,41 @@
+{
+  "id": "strike-sns-config-basic-ts",
+  "name": "sns config basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "sns",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for sns config in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sns-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/sns-config.ts",
+      "template": "# Spike: sns config (ts)\n// Auto-generated spike stub for sns (config)\nexport function demo() {\n  console.log('use sns - config (basic)');\n}\n"
+    },
+    {
+      "path": "src/aws/sns.ts",
+      "template": "export async function publishSNS(topicArn: string, message: string){ /* stub */ return { topicArn, message }; }\n"
+    },
+    {
+      "path": "spikes/strike-sns-config-basic-ts.ts.txt",
+      "template": "# Spike: sns config (ts)\n// Auto-generated spike stub for sns (config)\nexport function demo() {\n  console.log('use sns - config (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sns-config-basic-ts.md",
+      "template": "# sns config (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

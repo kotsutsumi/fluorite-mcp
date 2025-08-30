@@ -1,0 +1,41 @@
+{
+  "id": "strike-supabase-auth-config-secure-js",
+  "name": "supabase-auth config secure js",
+  "version": "0.1.0",
+  "stack": [
+    "supabase-auth",
+    "js"
+  ],
+  "tags": [
+    "config",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for supabase-auth config in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "supabase-auth-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/supabase-auth-config.js",
+      "template": "# Spike: supabase-auth config (js)\n// Auto-generated spike stub for supabase-auth (config)\nmodule.exports = function demo(){\n  console.log('use supabase-auth - config (secure)');\n};\n"
+    },
+    {
+      "path": "src/supabase/auth-server.ts",
+      "template": "export function supabaseAuth(){ return { url: process.env.SUPABASE_URL, key: process.env.SUPABASE_SERVICE_KEY }; }\n"
+    },
+    {
+      "path": "spikes/strike-supabase-auth-config-secure-js.js.txt",
+      "template": "# Spike: supabase-auth config (js)\n// Auto-generated spike stub for supabase-auth (config)\nmodule.exports = function demo(){\n  console.log('use supabase-auth - config (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-supabase-auth-config-secure-js.md",
+      "template": "# supabase-auth config (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

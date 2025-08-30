@@ -1,0 +1,41 @@
+{
+  "id": "strike-langchain-docs-testing-ts",
+  "name": "langchain docs testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "langchain",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for langchain docs in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "langchain-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/langchain-docs.ts",
+      "template": "# Spike: langchain docs (ts)\n// Auto-generated spike stub for langchain (docs)\nexport function demo() {\n  console.log('use langchain - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-langchain-docs-testing-ts.ts.txt",
+      "template": "# Spike: langchain docs (ts)\n// Auto-generated spike stub for langchain (docs)\nexport function demo() {\n  console.log('use langchain - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-langchain-docs-testing-ts.md",
+      "template": "# langchain docs (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-langchain-docs-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

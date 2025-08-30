@@ -1,0 +1,41 @@
+{
+  "id": "strike-paddle-client-basic-js",
+  "name": "paddle client basic js",
+  "version": "0.1.0",
+  "stack": [
+    "paddle",
+    "js"
+  ],
+  "tags": [
+    "client",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for paddle client in js (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "paddle-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/paddle-client.js",
+      "template": "# Spike: paddle client (js)\n// Auto-generated spike stub for paddle (client)\nmodule.exports = function demo(){\n  console.log('use paddle - client (basic)');\n};\n"
+    },
+    {
+      "path": "src/payments/paddle.ts",
+      "template": "export function paddle(){ return { vendorId: process.env.PADDLE_VENDOR_ID }; }\n"
+    },
+    {
+      "path": "spikes/strike-paddle-client-basic-js.js.txt",
+      "template": "# Spike: paddle client (js)\n// Auto-generated spike stub for paddle (client)\nmodule.exports = function demo(){\n  console.log('use paddle - client (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-paddle-client-basic-js.md",
+      "template": "# paddle client (basic, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

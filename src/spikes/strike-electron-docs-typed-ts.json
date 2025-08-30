@@ -1,0 +1,37 @@
+{
+  "id": "strike-electron-docs-typed-ts",
+  "name": "electron docs typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "electron",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for electron docs in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "electron-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/electron-docs.ts",
+      "template": "# Spike: electron docs (ts)\n// Auto-generated spike stub for electron (docs)\nexport function demo() {\n  console.log('use electron - docs (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-electron-docs-typed-ts.ts.txt",
+      "template": "# Spike: electron docs (ts)\n// Auto-generated spike stub for electron (docs)\nexport function demo() {\n  console.log('use electron - docs (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-electron-docs-typed-ts.md",
+      "template": "# electron docs (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

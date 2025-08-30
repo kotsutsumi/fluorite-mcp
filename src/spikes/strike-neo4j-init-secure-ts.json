@@ -1,0 +1,37 @@
+{
+  "id": "strike-neo4j-init-secure-ts",
+  "name": "neo4j init secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "neo4j",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for neo4j init in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "neo4j-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/neo4j-init.ts",
+      "template": "# Spike: neo4j init (ts)\n// Auto-generated spike stub for neo4j (init)\nexport function demo() {\n  console.log('use neo4j - init (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-neo4j-init-secure-ts.ts.txt",
+      "template": "# Spike: neo4j init (ts)\n// Auto-generated spike stub for neo4j (init)\nexport function demo() {\n  console.log('use neo4j - init (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-neo4j-init-secure-ts.md",
+      "template": "# neo4j init (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

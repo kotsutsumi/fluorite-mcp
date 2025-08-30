@@ -1,0 +1,41 @@
+{
+  "id": "strike-tauri-component-testing-js",
+  "name": "tauri component testing js",
+  "version": "0.1.0",
+  "stack": [
+    "tauri",
+    "js"
+  ],
+  "tags": [
+    "component",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for tauri component in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "tauri-component-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/tauri-component.js",
+      "template": "# Spike: tauri component (js)\n// Auto-generated spike stub for tauri (component)\nmodule.exports = function demo(){\n  console.log('use tauri - component (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-tauri-component-testing-js.js.txt",
+      "template": "# Spike: tauri component (js)\n// Auto-generated spike stub for tauri (component)\nmodule.exports = function demo(){\n  console.log('use tauri - component (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-tauri-component-testing-js.md",
+      "template": "# tauri component (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-tauri-component-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

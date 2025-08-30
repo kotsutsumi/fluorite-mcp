@@ -1,0 +1,37 @@
+{
+  "id": "strike-aws-lambda-config-basic-js",
+  "name": "aws-lambda config basic js",
+  "version": "0.1.0",
+  "stack": [
+    "aws-lambda",
+    "js"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for aws-lambda config in js (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "aws-lambda-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/aws-lambda-config.js",
+      "template": "# Spike: aws-lambda config (js)\n// Auto-generated spike stub for aws-lambda (config)\nmodule.exports = function demo(){\n  console.log('use aws-lambda - config (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-aws-lambda-config-basic-js.js.txt",
+      "template": "# Spike: aws-lambda config (js)\n// Auto-generated spike stub for aws-lambda (config)\nmodule.exports = function demo(){\n  console.log('use aws-lambda - config (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-aws-lambda-config-basic-js.md",
+      "template": "# aws-lambda config (basic, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

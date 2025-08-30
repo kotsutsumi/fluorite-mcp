@@ -1,0 +1,37 @@
+{
+  "id": "strike-elasticsearch-init-typed-ts",
+  "name": "elasticsearch init typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "elasticsearch",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for elasticsearch init in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "elasticsearch-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/elasticsearch-init.ts",
+      "template": "# Spike: elasticsearch init (ts)\n// Auto-generated spike stub for elasticsearch (init)\nexport function demo() {\n  console.log('use elasticsearch - init (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-elasticsearch-init-typed-ts.ts.txt",
+      "template": "# Spike: elasticsearch init (ts)\n// Auto-generated spike stub for elasticsearch (init)\nexport function demo() {\n  console.log('use elasticsearch - init (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-elasticsearch-init-typed-ts.md",
+      "template": "# elasticsearch init (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

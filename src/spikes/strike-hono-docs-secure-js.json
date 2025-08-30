@@ -1,0 +1,37 @@
+{
+  "id": "strike-hono-docs-secure-js",
+  "name": "hono docs secure js",
+  "version": "0.1.0",
+  "stack": [
+    "hono",
+    "js"
+  ],
+  "tags": [
+    "docs",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for hono docs in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "hono-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/hono-docs.js",
+      "template": "# Spike: hono docs (js)\n// Auto-generated spike stub for hono (docs)\nmodule.exports = function demo(){\n  console.log('use hono - docs (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-hono-docs-secure-js.js.txt",
+      "template": "# Spike: hono docs (js)\n// Auto-generated spike stub for hono (docs)\nmodule.exports = function demo(){\n  console.log('use hono - docs (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-hono-docs-secure-js.md",
+      "template": "# hono docs (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

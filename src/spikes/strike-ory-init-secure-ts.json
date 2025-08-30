@@ -1,0 +1,41 @@
+{
+  "id": "strike-ory-init-secure-ts",
+  "name": "ory init secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "ory",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for ory init in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "ory-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/ory-init.ts",
+      "template": "# Spike: ory init (ts)\n// Auto-generated spike stub for ory (init)\nexport function demo() {\n  console.log('use ory - init (secure)');\n}\n"
+    },
+    {
+      "path": "src/ory/client.ts",
+      "template": "export function createOry(){ return { project: process.env.ORY_PROJECT_ID }; }\n"
+    },
+    {
+      "path": "spikes/strike-ory-init-secure-ts.ts.txt",
+      "template": "# Spike: ory init (ts)\n// Auto-generated spike stub for ory (init)\nexport function demo() {\n  console.log('use ory - init (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-ory-init-secure-ts.md",
+      "template": "# ory init (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

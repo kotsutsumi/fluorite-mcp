@@ -1,0 +1,51 @@
+{
+  "id": "strike-redis-service-basic-ts",
+  "name": "redis service basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "redis",
+    "ts"
+  ],
+  "tags": [
+    "service",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for redis service in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "redis-service-app"
+    },
+    {
+      "name": "redisUrl",
+      "required": false,
+      "description": "Redis 接続URL",
+      "default": "redis://localhost:6379"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/redis-service.ts",
+      "template": "# Spike: redis service (ts)\n// Auto-generated spike stub for redis (service)\nexport function demo() {\n  console.log('use redis - service (basic)');\n}\n"
+    },
+    {
+      "path": "src/cache/redis.ts",
+      "template": "import { createClient } from 'redis';\nconst url = process.env.REDIS_URL || 'redis://localhost:6379';\nexport const redis = createClient({ url });\nredis.on('error', (e)=> console.error('Redis error', e));\nexport async function connect(){ if(!redis.isOpen) await redis.connect(); }\nexport async function get(key: string){ await connect(); return redis.get(key); }\nexport async function set(key: string, val: string, ttl?: number){ await connect(); if (ttl) return redis.set(key, val, { EX: ttl }); return redis.set(key, val); }\n"
+    },
+    {
+      "path": "src/redis/client.ts",
+      "template": "export function redis(){ return { url: process.env.REDIS_URL || 'redis://localhost:6379' }; }\n"
+    },
+    {
+      "path": "spikes/strike-redis-service-basic-ts.ts.txt",
+      "template": "# Spike: redis service (ts)\n// Auto-generated spike stub for redis (service)\nexport function demo() {\n  console.log('use redis - service (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-service-basic-ts.md",
+      "template": "# redis service (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

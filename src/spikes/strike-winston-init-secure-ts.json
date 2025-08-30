@@ -1,0 +1,41 @@
+{
+  "id": "strike-winston-init-secure-ts",
+  "name": "winston init secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "winston",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for winston init in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "winston-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/winston-init.ts",
+      "template": "# Spike: winston init (ts)\n// Auto-generated spike stub for winston (init)\nexport function demo() {\n  console.log('use winston - init (secure)');\n}\n"
+    },
+    {
+      "path": "src/logging/winston.ts",
+      "template": "export function logger(){ return { info: console.log, error: console.error }; }\n"
+    },
+    {
+      "path": "spikes/strike-winston-init-secure-ts.ts.txt",
+      "template": "# Spike: winston init (ts)\n// Auto-generated spike stub for winston (init)\nexport function demo() {\n  console.log('use winston - init (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-winston-init-secure-ts.md",
+      "template": "# winston init (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-sqs-client-basic-ts",
+  "name": "sqs client basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "sqs",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for sqs client in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sqs-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/sqs-client.ts",
+      "template": "# Spike: sqs client (ts)\n// Auto-generated spike stub for sqs (client)\nexport function demo() {\n  console.log('use sqs - client (basic)');\n}\n"
+    },
+    {
+      "path": "src/aws/sqs.ts",
+      "template": "import { SQSClient, SendMessageCommand, ReceiveMessageCommand, DeleteMessageCommand } from '@aws-sdk/client-sqs';\nconst client = new SQSClient({});\nexport async function send(queueUrl: string, body: string){ await client.send(new SendMessageCommand({ QueueUrl: queueUrl, MessageBody: body })); }\nexport async function receive(queueUrl: string){ const out = await client.send(new ReceiveMessageCommand({ QueueUrl: queueUrl, MaxNumberOfMessages: 1 })); const msg = out.Messages?.[0]; if(msg){ await client.send(new DeleteMessageCommand({ QueueUrl: queueUrl, ReceiptHandle: msg.ReceiptHandle! })); return msg.Body; } return undefined; }\n"
+    },
+    {
+      "path": "spikes/strike-sqs-client-basic-ts.ts.txt",
+      "template": "# Spike: sqs client (ts)\n// Auto-generated spike stub for sqs (client)\nexport function demo() {\n  console.log('use sqs - client (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sqs-client-basic-ts.md",
+      "template": "# sqs client (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-datadog-example-testing-ts",
+  "name": "datadog example testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "datadog",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for datadog example in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "datadog-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/datadog-example.ts",
+      "template": "# Spike: datadog example (ts)\n// Auto-generated spike stub for datadog (example)\nexport function demo() {\n  console.log('use datadog - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-datadog-example-testing-ts.ts.txt",
+      "template": "# Spike: datadog example (ts)\n// Auto-generated spike stub for datadog (example)\nexport function demo() {\n  console.log('use datadog - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-datadog-example-testing-ts.md",
+      "template": "# datadog example (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-datadog-example-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

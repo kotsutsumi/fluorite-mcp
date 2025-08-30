@@ -1,0 +1,41 @@
+{
+  "id": "strike-pubsub-config-basic-ts",
+  "name": "pubsub config basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "pubsub",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for pubsub config in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "pubsub-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/pubsub-config.ts",
+      "template": "# Spike: pubsub config (ts)\n// Auto-generated spike stub for pubsub (config)\nexport function demo() {\n  console.log('use pubsub - config (basic)');\n}\n"
+    },
+    {
+      "path": "src/gcp/pubsub.ts",
+      "template": "export async function publish(topic: string, msg: string){ /* stub */ return { topic, msg }; }\n"
+    },
+    {
+      "path": "spikes/strike-pubsub-config-basic-ts.ts.txt",
+      "template": "# Spike: pubsub config (ts)\n// Auto-generated spike stub for pubsub (config)\nexport function demo() {\n  console.log('use pubsub - config (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pubsub-config-basic-ts.md",
+      "template": "# pubsub config (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

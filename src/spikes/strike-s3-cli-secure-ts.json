@@ -1,0 +1,49 @@
+{
+  "id": "strike-s3-cli-secure-ts",
+  "name": "s3 cli secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "s3",
+    "ts"
+  ],
+  "tags": [
+    "cli",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for s3 cli in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "s3-cli-app"
+    },
+    {
+      "name": "region",
+      "required": false,
+      "description": "AWS リージョン",
+      "default": "us-east-1"
+    },
+    {
+      "name": "bucket",
+      "required": false,
+      "description": "S3 バケット名",
+      "default": "my-bucket"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/s3-cli.ts",
+      "template": "# Spike: s3 cli (ts)\n// Auto-generated spike stub for s3 (cli)\nexport function demo() {\n  console.log('use s3 - cli (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-s3-cli-secure-ts.ts.txt",
+      "template": "# Spike: s3 cli (ts)\n// Auto-generated spike stub for s3 (cli)\nexport function demo() {\n  console.log('use s3 - cli (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-s3-cli-secure-ts.md",
+      "template": "# s3 cli (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

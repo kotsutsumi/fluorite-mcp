@@ -1,0 +1,41 @@
+{
+  "id": "strike-anthropic-route-testing-ts",
+  "name": "anthropic route testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "anthropic",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for anthropic route in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "anthropic-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/anthropic-route.ts",
+      "template": "# Spike: anthropic route (ts)\n// Auto-generated spike stub for anthropic (route)\nexport function demo() {\n  console.log('use anthropic - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-anthropic-route-testing-ts.ts.txt",
+      "template": "# Spike: anthropic route (ts)\n// Auto-generated spike stub for anthropic (route)\nexport function demo() {\n  console.log('use anthropic - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-anthropic-route-testing-ts.md",
+      "template": "# anthropic route (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-anthropic-route-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

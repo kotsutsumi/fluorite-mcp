@@ -1,0 +1,41 @@
+{
+  "id": "strike-k6-scenario-testing-ts",
+  "name": "k6 scenario testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "k6",
+    "ts"
+  ],
+  "tags": [
+    "scenario",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for k6 scenario in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "k6-scenario-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/k6-scenario.ts",
+      "template": "# Spike: k6 scenario (ts)\n// Auto-generated spike stub for k6 (scenario)\nexport function demo() {\n  console.log('use k6 - scenario (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-k6-scenario-testing-ts.ts.txt",
+      "template": "# Spike: k6 scenario (ts)\n// Auto-generated spike stub for k6 (scenario)\nexport function demo() {\n  console.log('use k6 - scenario (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-k6-scenario-testing-ts.md",
+      "template": "# k6 scenario (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-k6-scenario-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

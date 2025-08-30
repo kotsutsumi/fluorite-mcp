@@ -1,0 +1,37 @@
+{
+  "id": "strike-sns-route-secure-ts",
+  "name": "sns route secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "sns",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for sns route in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sns-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/sns-route.ts",
+      "template": "# Spike: sns route (ts)\n// Auto-generated spike stub for sns (route)\nexport function demo() {\n  console.log('use sns - route (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sns-route-secure-ts.ts.txt",
+      "template": "# Spike: sns route (ts)\n// Auto-generated spike stub for sns (route)\nexport function demo() {\n  console.log('use sns - route (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sns-route-secure-ts.md",
+      "template": "# sns route (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

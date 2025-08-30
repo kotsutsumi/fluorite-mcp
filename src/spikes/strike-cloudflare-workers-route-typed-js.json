@@ -1,0 +1,37 @@
+{
+  "id": "strike-cloudflare-workers-route-typed-js",
+  "name": "cloudflare-workers route typed js",
+  "version": "0.1.0",
+  "stack": [
+    "cloudflare-workers",
+    "js"
+  ],
+  "tags": [
+    "route",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for cloudflare-workers route in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "cloudflare-workers-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/cloudflare-workers-route.js",
+      "template": "# Spike: cloudflare-workers route (js)\n// Auto-generated spike stub for cloudflare-workers (route)\nmodule.exports = function demo(){\n  console.log('use cloudflare-workers - route (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-cloudflare-workers-route-typed-js.js.txt",
+      "template": "# Spike: cloudflare-workers route (js)\n// Auto-generated spike stub for cloudflare-workers (route)\nmodule.exports = function demo(){\n  console.log('use cloudflare-workers - route (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-cloudflare-workers-route-typed-js.md",
+      "template": "# cloudflare-workers route (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

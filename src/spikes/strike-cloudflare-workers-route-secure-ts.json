@@ -1,0 +1,37 @@
+{
+  "id": "strike-cloudflare-workers-route-secure-ts",
+  "name": "cloudflare-workers route secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "cloudflare-workers",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for cloudflare-workers route in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "cloudflare-workers-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/cloudflare-workers-route.ts",
+      "template": "# Spike: cloudflare-workers route (ts)\n// Auto-generated spike stub for cloudflare-workers (route)\nexport function demo() {\n  console.log('use cloudflare-workers - route (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-cloudflare-workers-route-secure-ts.ts.txt",
+      "template": "# Spike: cloudflare-workers route (ts)\n// Auto-generated spike stub for cloudflare-workers (route)\nexport function demo() {\n  console.log('use cloudflare-workers - route (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-cloudflare-workers-route-secure-ts.md",
+      "template": "# cloudflare-workers route (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

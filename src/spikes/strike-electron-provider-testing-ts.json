@@ -1,0 +1,41 @@
+{
+  "id": "strike-electron-provider-testing-ts",
+  "name": "electron provider testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "electron",
+    "ts"
+  ],
+  "tags": [
+    "provider",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for electron provider in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "electron-provider-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/electron-provider.ts",
+      "template": "# Spike: electron provider (ts)\n// Auto-generated spike stub for electron (provider)\nexport function demo() {\n  console.log('use electron - provider (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-electron-provider-testing-ts.ts.txt",
+      "template": "# Spike: electron provider (ts)\n// Auto-generated spike stub for electron (provider)\nexport function demo() {\n  console.log('use electron - provider (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-electron-provider-testing-ts.md",
+      "template": "# electron provider (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-electron-provider-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

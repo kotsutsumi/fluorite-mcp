@@ -1,0 +1,37 @@
+{
+  "id": "strike-kubernetes-worker-basic-js",
+  "name": "kubernetes worker basic js",
+  "version": "0.1.0",
+  "stack": [
+    "kubernetes",
+    "js"
+  ],
+  "tags": [
+    "worker",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for kubernetes worker in js (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "kubernetes-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/kubernetes-worker.js",
+      "template": "# Spike: kubernetes worker (js)\n// Auto-generated spike stub for kubernetes (worker)\nmodule.exports = function demo(){\n  console.log('use kubernetes - worker (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-kubernetes-worker-basic-js.js.txt",
+      "template": "# Spike: kubernetes worker (js)\n// Auto-generated spike stub for kubernetes (worker)\nmodule.exports = function demo(){\n  console.log('use kubernetes - worker (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-kubernetes-worker-basic-js.md",
+      "template": "# kubernetes worker (basic, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

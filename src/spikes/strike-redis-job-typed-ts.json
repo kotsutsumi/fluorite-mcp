@@ -1,0 +1,43 @@
+{
+  "id": "strike-redis-job-typed-ts",
+  "name": "redis job typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "redis",
+    "ts"
+  ],
+  "tags": [
+    "job",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for redis job in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "redis-job-app"
+    },
+    {
+      "name": "redisUrl",
+      "required": false,
+      "description": "Redis 接続URL",
+      "default": "redis://localhost:6379"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/redis-job.ts",
+      "template": "# Spike: redis job (ts)\n// Auto-generated spike stub for redis (job)\nexport function demo() {\n  console.log('use redis - job (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-job-typed-ts.ts.txt",
+      "template": "# Spike: redis job (ts)\n// Auto-generated spike stub for redis (job)\nexport function demo() {\n  console.log('use redis - job (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-job-typed-ts.md",
+      "template": "# redis job (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-opentelemetry-cli-testing-ts",
+  "name": "opentelemetry cli testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "opentelemetry",
+    "ts"
+  ],
+  "tags": [
+    "cli",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for opentelemetry cli in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "opentelemetry-cli-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/opentelemetry-cli.ts",
+      "template": "# Spike: opentelemetry cli (ts)\n// Auto-generated spike stub for opentelemetry (cli)\nexport function demo() {\n  console.log('use opentelemetry - cli (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-opentelemetry-cli-testing-ts.ts.txt",
+      "template": "# Spike: opentelemetry cli (ts)\n// Auto-generated spike stub for opentelemetry (cli)\nexport function demo() {\n  console.log('use opentelemetry - cli (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-opentelemetry-cli-testing-ts.md",
+      "template": "# opentelemetry cli (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-opentelemetry-cli-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

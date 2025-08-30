@@ -1,0 +1,41 @@
+{
+  "id": "strike-newrelic-adapter-testing-js",
+  "name": "newrelic adapter testing js",
+  "version": "0.1.0",
+  "stack": [
+    "newrelic",
+    "js"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for newrelic adapter in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "newrelic-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/newrelic-adapter.js",
+      "template": "# Spike: newrelic adapter (js)\n// Auto-generated spike stub for newrelic (adapter)\nmodule.exports = function demo(){\n  console.log('use newrelic - adapter (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-newrelic-adapter-testing-js.js.txt",
+      "template": "# Spike: newrelic adapter (js)\n// Auto-generated spike stub for newrelic (adapter)\nmodule.exports = function demo(){\n  console.log('use newrelic - adapter (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-newrelic-adapter-testing-js.md",
+      "template": "# newrelic adapter (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-newrelic-adapter-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

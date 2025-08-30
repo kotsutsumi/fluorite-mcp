@@ -1,0 +1,45 @@
+{
+  "id": "strike-knex-config-secure-ts",
+  "name": "knex config secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "knex",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for knex config in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "knex-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/knex-config.ts",
+      "template": "# Spike: knex config (ts)\n// Auto-generated spike stub for knex (config)\nexport function demo() {\n  console.log('use knex - config (secure)');\n}\n"
+    },
+    {
+      "path": "knexfile.ts",
+      "template": "import type { Knex } from 'knex';\nconst config: { [key: string]: Knex.Config } = { development: { client: 'sqlite3', connection: { filename: './dev.sqlite3' }, useNullAsDefault: true, migrations: { directory: './migrations' } } };\nexport default config;\n"
+    },
+    {
+      "path": "migrations/0001_init.ts",
+      "template": "import { Knex } from 'knex';\nexport async function up(knex: Knex){ await knex.schema.createTable('users', (t)=>{ t.increments('id'); t.string('email').unique(); t.string('name'); }); }\nexport async function down(knex: Knex){ await knex.schema.dropTable('users'); }\n"
+    },
+    {
+      "path": "spikes/strike-knex-config-secure-ts.ts.txt",
+      "template": "# Spike: knex config (ts)\n// Auto-generated spike stub for knex (config)\nexport function demo() {\n  console.log('use knex - config (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-knex-config-secure-ts.md",
+      "template": "# knex config (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-capacitor-init-typed-js",
+  "name": "capacitor init typed js",
+  "version": "0.1.0",
+  "stack": [
+    "capacitor",
+    "js"
+  ],
+  "tags": [
+    "init",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for capacitor init in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "capacitor-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/main.ts",
+      "template": "import { Capacitor } from '@capacitor/core';\nconsole.log('Platform:', Capacitor.getPlatform());\n"
+    },
+    {
+      "path": "index.html",
+      "template": "<!doctype html><html><body><h1>Capacitor</h1><script type=\"module\" src=\"/src/main.ts\"></script></body></html>\n"
+    },
+    {
+      "path": "spikes/strike-capacitor-init-typed-js.js.txt",
+      "template": "# Spike: capacitor init (js)\n// Auto-generated spike stub for capacitor (init)\nmodule.exports = function demo(){\n  console.log('use capacitor - init (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-capacitor-init-typed-js.md",
+      "template": "# capacitor init (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

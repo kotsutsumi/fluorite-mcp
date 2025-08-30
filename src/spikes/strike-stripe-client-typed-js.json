@@ -1,0 +1,41 @@
+{
+  "id": "strike-stripe-client-typed-js",
+  "name": "stripe client typed js",
+  "version": "0.1.0",
+  "stack": [
+    "stripe",
+    "js"
+  ],
+  "tags": [
+    "client",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for stripe client in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "stripe-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/stripe-client.js",
+      "template": "# Spike: stripe client (js)\n// Auto-generated spike stub for stripe (client)\nmodule.exports = function demo(){\n  console.log('use stripe - client (typed)');\n};\n"
+    },
+    {
+      "path": "src/stripe/client.ts",
+      "template": "import Stripe from 'stripe';\nexport const stripe = new Stripe(process.env.STRIPE_API_KEY || '', { apiVersion: '2024-06-20' as any });\n"
+    },
+    {
+      "path": "spikes/strike-stripe-client-typed-js.js.txt",
+      "template": "# Spike: stripe client (js)\n// Auto-generated spike stub for stripe (client)\nmodule.exports = function demo(){\n  console.log('use stripe - client (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-stripe-client-typed-js.md",
+      "template": "# stripe client (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

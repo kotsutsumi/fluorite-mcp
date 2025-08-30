@@ -1,0 +1,41 @@
+{
+  "id": "strike-artillery-config-testing-ts",
+  "name": "artillery config testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "artillery",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for artillery config in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "artillery-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/artillery-config.ts",
+      "template": "# Spike: artillery config (ts)\n// Auto-generated spike stub for artillery (config)\nexport function demo() {\n  console.log('use artillery - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-artillery-config-testing-ts.ts.txt",
+      "template": "# Spike: artillery config (ts)\n// Auto-generated spike stub for artillery (config)\nexport function demo() {\n  console.log('use artillery - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-artillery-config-testing-ts.md",
+      "template": "# artillery config (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-artillery-config-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

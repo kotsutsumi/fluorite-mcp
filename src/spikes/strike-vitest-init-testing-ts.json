@@ -1,0 +1,41 @@
+{
+  "id": "strike-vitest-init-testing-ts",
+  "name": "vitest init testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "vitest",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for vitest init in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "vitest-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/vitest-init.ts",
+      "template": "# Spike: vitest init (ts)\n// Auto-generated spike stub for vitest (init)\nexport function demo() {\n  console.log('use vitest - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-vitest-init-testing-ts.ts.txt",
+      "template": "# Spike: vitest init (ts)\n// Auto-generated spike stub for vitest (init)\nexport function demo() {\n  console.log('use vitest - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-vitest-init-testing-ts.md",
+      "template": "# vitest init (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-vitest-init-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

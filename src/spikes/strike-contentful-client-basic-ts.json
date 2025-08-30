@@ -1,0 +1,41 @@
+{
+  "id": "strike-contentful-client-basic-ts",
+  "name": "contentful client basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "contentful",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for contentful client in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "contentful-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/contentful-client.ts",
+      "template": "# Spike: contentful client (ts)\n// Auto-generated spike stub for contentful (client)\nexport function demo() {\n  console.log('use contentful - client (basic)');\n}\n"
+    },
+    {
+      "path": "src/cms/contentful.ts",
+      "template": "export function contentful(){ return { space: process.env.CONTENTFUL_SPACE_ID }; }\n"
+    },
+    {
+      "path": "spikes/strike-contentful-client-basic-ts.ts.txt",
+      "template": "# Spike: contentful client (ts)\n// Auto-generated spike stub for contentful (client)\nexport function demo() {\n  console.log('use contentful - client (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-contentful-client-basic-ts.md",
+      "template": "# contentful client (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

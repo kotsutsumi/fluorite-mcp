@@ -1,0 +1,41 @@
+{
+  "id": "strike-pino-init-basic-ts",
+  "name": "pino init basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "pino",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for pino init in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "pino-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/pino-init.ts",
+      "template": "# Spike: pino init (ts)\n// Auto-generated spike stub for pino (init)\nexport function demo() {\n  console.log('use pino - init (basic)');\n}\n"
+    },
+    {
+      "path": "src/logging/pino.ts",
+      "template": "export function logger(){ return { info: console.log, error: console.error }; }\n"
+    },
+    {
+      "path": "spikes/strike-pino-init-basic-ts.ts.txt",
+      "template": "# Spike: pino init (ts)\n// Auto-generated spike stub for pino (init)\nexport function demo() {\n  console.log('use pino - init (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pino-init-basic-ts.md",
+      "template": "# pino init (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-whisper-config-testing-ts",
+  "name": "whisper config testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "whisper",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for whisper config in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "whisper-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/whisper-config.ts",
+      "template": "# Spike: whisper config (ts)\n// Auto-generated spike stub for whisper (config)\nexport function demo() {\n  console.log('use whisper - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-whisper-config-testing-ts.ts.txt",
+      "template": "# Spike: whisper config (ts)\n// Auto-generated spike stub for whisper (config)\nexport function demo() {\n  console.log('use whisper - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-whisper-config-testing-ts.md",
+      "template": "# whisper config (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-whisper-config-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

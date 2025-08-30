@@ -1,0 +1,41 @@
+{
+  "id": "strike-k6-init-testing-ts",
+  "name": "k6 init testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "k6",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for k6 init in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "k6-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/k6-init.ts",
+      "template": "# Spike: k6 init (ts)\n// Auto-generated spike stub for k6 (init)\nexport function demo() {\n  console.log('use k6 - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-k6-init-testing-ts.ts.txt",
+      "template": "# Spike: k6 init (ts)\n// Auto-generated spike stub for k6 (init)\nexport function demo() {\n  console.log('use k6 - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-k6-init-testing-ts.md",
+      "template": "# k6 init (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-k6-init-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

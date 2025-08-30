@@ -1,0 +1,45 @@
+{
+  "id": "strike-github-actions-init-testing-ts",
+  "name": "github-actions init testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "github-actions",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for github-actions init in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "github-actions-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/github-actions-init.ts",
+      "template": "# Spike: github-actions init (ts)\n// Auto-generated spike stub for github-actions (init)\nexport function demo() {\n  console.log('use github-actions - init (testing)');\n}\n"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "template": "name: CI\non: [push, pull_request]\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: '20' }\n      - run: npm ci\n      - run: npm test\n"
+    },
+    {
+      "path": "spikes/strike-github-actions-init-testing-ts.ts.txt",
+      "template": "# Spike: github-actions init (ts)\n// Auto-generated spike stub for github-actions (init)\nexport function demo() {\n  console.log('use github-actions - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-github-actions-init-testing-ts.md",
+      "template": "# github-actions init (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-github-actions-init-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

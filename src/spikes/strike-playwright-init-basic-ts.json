@@ -1,0 +1,45 @@
+{
+  "id": "strike-playwright-init-basic-ts",
+  "name": "playwright init basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "playwright",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for playwright init in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "playwright-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/playwright-init.ts",
+      "template": "# Spike: playwright init (ts)\n// Auto-generated spike stub for playwright (init)\nexport function demo() {\n  console.log('use playwright - init (basic)');\n}\n"
+    },
+    {
+      "path": "playwright.config.ts",
+      "template": "import { defineConfig } from '@playwright/test';\nexport default defineConfig({ use: { headless: true } });\n"
+    },
+    {
+      "path": "tests/example.spec.ts",
+      "template": "import { test, expect } from '@playwright/test';\ntest('homepage', async ({ page }) => { await page.goto('https://example.com'); await expect(page).toHaveTitle(/Example/); });\n"
+    },
+    {
+      "path": "spikes/strike-playwright-init-basic-ts.ts.txt",
+      "template": "# Spike: playwright init (ts)\n// Auto-generated spike stub for playwright (init)\nexport function demo() {\n  console.log('use playwright - init (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-playwright-init-basic-ts.md",
+      "template": "# playwright init (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

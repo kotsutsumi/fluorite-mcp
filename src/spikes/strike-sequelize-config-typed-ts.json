@@ -1,0 +1,41 @@
+{
+  "id": "strike-sequelize-config-typed-ts",
+  "name": "sequelize config typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "sequelize",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for sequelize config in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sequelize-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/sequelize-config.ts",
+      "template": "# Spike: sequelize config (ts)\n// Auto-generated spike stub for sequelize (config)\nexport function demo() {\n  console.log('use sequelize - config (typed)');\n}\n"
+    },
+    {
+      "path": "src/sequelize/index.ts",
+      "template": "import { Sequelize, DataTypes } from 'sequelize';\nexport const sequelize = new Sequelize(process.env.DATABASE_URL || 'sqlite::memory:');\nexport const User = sequelize.define('User', { email: { type: DataTypes.STRING, unique: true }, name: DataTypes.STRING });\n"
+    },
+    {
+      "path": "spikes/strike-sequelize-config-typed-ts.ts.txt",
+      "template": "# Spike: sequelize config (ts)\n// Auto-generated spike stub for sequelize (config)\nexport function demo() {\n  console.log('use sequelize - config (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sequelize-config-typed-ts.md",
+      "template": "# sequelize config (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

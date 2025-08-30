@@ -1,0 +1,37 @@
+{
+  "id": "strike-rabbitmq-docs-secure-ts",
+  "name": "rabbitmq docs secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "rabbitmq",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for rabbitmq docs in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "rabbitmq-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/rabbitmq-docs.ts",
+      "template": "# Spike: rabbitmq docs (ts)\n// Auto-generated spike stub for rabbitmq (docs)\nexport function demo() {\n  console.log('use rabbitmq - docs (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-rabbitmq-docs-secure-ts.ts.txt",
+      "template": "# Spike: rabbitmq docs (ts)\n// Auto-generated spike stub for rabbitmq (docs)\nexport function demo() {\n  console.log('use rabbitmq - docs (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-rabbitmq-docs-secure-ts.md",
+      "template": "# rabbitmq docs (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

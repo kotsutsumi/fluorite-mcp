@@ -1,0 +1,37 @@
+{
+  "id": "strike-kubernetes-job-basic-ts",
+  "name": "kubernetes job basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "kubernetes",
+    "ts"
+  ],
+  "tags": [
+    "job",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for kubernetes job in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "kubernetes-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/kubernetes-job.ts",
+      "template": "# Spike: kubernetes job (ts)\n// Auto-generated spike stub for kubernetes (job)\nexport function demo() {\n  console.log('use kubernetes - job (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kubernetes-job-basic-ts.ts.txt",
+      "template": "# Spike: kubernetes job (ts)\n// Auto-generated spike stub for kubernetes (job)\nexport function demo() {\n  console.log('use kubernetes - job (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kubernetes-job-basic-ts.md",
+      "template": "# kubernetes job (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

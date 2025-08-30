@@ -1,0 +1,37 @@
+{
+  "id": "strike-helm-cli-secure-ts",
+  "name": "helm cli secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "helm",
+    "ts"
+  ],
+  "tags": [
+    "cli",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for helm cli in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "helm-cli-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/helm-cli.ts",
+      "template": "# Spike: helm cli (ts)\n// Auto-generated spike stub for helm (cli)\nexport function demo() {\n  console.log('use helm - cli (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-helm-cli-secure-ts.ts.txt",
+      "template": "# Spike: helm cli (ts)\n// Auto-generated spike stub for helm (cli)\nexport function demo() {\n  console.log('use helm - cli (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-helm-cli-secure-ts.md",
+      "template": "# helm cli (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

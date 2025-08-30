@@ -1,0 +1,37 @@
+{
+  "id": "strike-ansible-service-secure-js",
+  "name": "ansible service secure js",
+  "version": "0.1.0",
+  "stack": [
+    "ansible",
+    "js"
+  ],
+  "tags": [
+    "service",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for ansible service in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "ansible-service-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/ansible-service.js",
+      "template": "# Spike: ansible service (js)\n// Auto-generated spike stub for ansible (service)\nmodule.exports = function demo(){\n  console.log('use ansible - service (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-ansible-service-secure-js.js.txt",
+      "template": "# Spike: ansible service (js)\n// Auto-generated spike stub for ansible (service)\nmodule.exports = function demo(){\n  console.log('use ansible - service (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-ansible-service-secure-js.md",
+      "template": "# ansible service (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

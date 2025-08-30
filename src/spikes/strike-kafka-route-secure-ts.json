@@ -1,0 +1,37 @@
+{
+  "id": "strike-kafka-route-secure-ts",
+  "name": "kafka route secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "kafka",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for kafka route in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "kafka-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/kafka-route.ts",
+      "template": "# Spike: kafka route (ts)\n// Auto-generated spike stub for kafka (route)\nexport function demo() {\n  console.log('use kafka - route (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kafka-route-secure-ts.ts.txt",
+      "template": "# Spike: kafka route (ts)\n// Auto-generated spike stub for kafka (route)\nexport function demo() {\n  console.log('use kafka - route (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kafka-route-secure-ts.md",
+      "template": "# kafka route (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

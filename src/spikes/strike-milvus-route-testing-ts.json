@@ -1,0 +1,41 @@
+{
+  "id": "strike-milvus-route-testing-ts",
+  "name": "milvus route testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "milvus",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for milvus route in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "milvus-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/milvus-route.ts",
+      "template": "# Spike: milvus route (ts)\n// Auto-generated spike stub for milvus (route)\nexport function demo() {\n  console.log('use milvus - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-milvus-route-testing-ts.ts.txt",
+      "template": "# Spike: milvus route (ts)\n// Auto-generated spike stub for milvus (route)\nexport function demo() {\n  console.log('use milvus - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-milvus-route-testing-ts.md",
+      "template": "# milvus route (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-milvus-route-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

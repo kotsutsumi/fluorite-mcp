@@ -1,0 +1,49 @@
+{
+  "id": "strike-s3-webhook-basic-ts",
+  "name": "s3 webhook basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "s3",
+    "ts"
+  ],
+  "tags": [
+    "webhook",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for s3 webhook in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "s3-webhook-app"
+    },
+    {
+      "name": "region",
+      "required": false,
+      "description": "AWS リージョン",
+      "default": "us-east-1"
+    },
+    {
+      "name": "bucket",
+      "required": false,
+      "description": "S3 バケット名",
+      "default": "my-bucket"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/s3-webhook.ts",
+      "template": "# Spike: s3 webhook (ts)\n// Auto-generated spike stub for s3 (webhook)\nexport function demo() {\n  console.log('use s3 - webhook (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-s3-webhook-basic-ts.ts.txt",
+      "template": "# Spike: s3 webhook (ts)\n// Auto-generated spike stub for s3 (webhook)\nexport function demo() {\n  console.log('use s3 - webhook (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-s3-webhook-basic-ts.md",
+      "template": "# s3 webhook (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-cohere-init-testing-ts",
+  "name": "cohere init testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "cohere",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for cohere init in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "cohere-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/cohere-init.ts",
+      "template": "# Spike: cohere init (ts)\n// Auto-generated spike stub for cohere (init)\nexport function demo() {\n  console.log('use cohere - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-cohere-init-testing-ts.ts.txt",
+      "template": "# Spike: cohere init (ts)\n// Auto-generated spike stub for cohere (init)\nexport function demo() {\n  console.log('use cohere - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-cohere-init-testing-ts.md",
+      "template": "# cohere init (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-cohere-init-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

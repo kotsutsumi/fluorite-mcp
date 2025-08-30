@@ -1,0 +1,37 @@
+{
+  "id": "strike-terraform-cli-secure-ts",
+  "name": "terraform cli secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "terraform",
+    "ts"
+  ],
+  "tags": [
+    "cli",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for terraform cli in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "terraform-cli-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/terraform-cli.ts",
+      "template": "# Spike: terraform cli (ts)\n// Auto-generated spike stub for terraform (cli)\nexport function demo() {\n  console.log('use terraform - cli (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-terraform-cli-secure-ts.ts.txt",
+      "template": "# Spike: terraform cli (ts)\n// Auto-generated spike stub for terraform (cli)\nexport function demo() {\n  console.log('use terraform - cli (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-terraform-cli-secure-ts.md",
+      "template": "# terraform cli (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

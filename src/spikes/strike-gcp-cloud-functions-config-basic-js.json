@@ -1,0 +1,41 @@
+{
+  "id": "strike-gcp-cloud-functions-config-basic-js",
+  "name": "gcp-cloud-functions config basic js",
+  "version": "0.1.0",
+  "stack": [
+    "gcp-cloud-functions",
+    "js"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for gcp-cloud-functions config in js (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "gcp-cloud-functions-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/gcp-cloud-functions-config.js",
+      "template": "# Spike: gcp-cloud-functions config (js)\n// Auto-generated spike stub for gcp-cloud-functions (config)\nmodule.exports = function demo(){\n  console.log('use gcp-cloud-functions - config (basic)');\n};\n"
+    },
+    {
+      "path": "src/gcp/functions.ts",
+      "template": "export async function helloHttp(req: any, res: any){ res.json({ ok: true }); }\n"
+    },
+    {
+      "path": "spikes/strike-gcp-cloud-functions-config-basic-js.js.txt",
+      "template": "# Spike: gcp-cloud-functions config (js)\n// Auto-generated spike stub for gcp-cloud-functions (config)\nmodule.exports = function demo(){\n  console.log('use gcp-cloud-functions - config (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-gcp-cloud-functions-config-basic-js.md",
+      "template": "# gcp-cloud-functions config (basic, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

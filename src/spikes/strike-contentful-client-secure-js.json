@@ -1,0 +1,41 @@
+{
+  "id": "strike-contentful-client-secure-js",
+  "name": "contentful client secure js",
+  "version": "0.1.0",
+  "stack": [
+    "contentful",
+    "js"
+  ],
+  "tags": [
+    "client",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for contentful client in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "contentful-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/contentful-client.js",
+      "template": "# Spike: contentful client (js)\n// Auto-generated spike stub for contentful (client)\nmodule.exports = function demo(){\n  console.log('use contentful - client (secure)');\n};\n"
+    },
+    {
+      "path": "src/cms/contentful.ts",
+      "template": "export function contentful(){ return { space: process.env.CONTENTFUL_SPACE_ID }; }\n"
+    },
+    {
+      "path": "spikes/strike-contentful-client-secure-js.js.txt",
+      "template": "# Spike: contentful client (js)\n// Auto-generated spike stub for contentful (client)\nmodule.exports = function demo(){\n  console.log('use contentful - client (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-contentful-client-secure-js.md",
+      "template": "# contentful client (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

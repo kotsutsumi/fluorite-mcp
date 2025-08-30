@@ -1,0 +1,41 @@
+{
+  "id": "strike-milvus-example-testing-ts",
+  "name": "milvus example testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "milvus",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for milvus example in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "milvus-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/milvus-example.ts",
+      "template": "# Spike: milvus example (ts)\n// Auto-generated spike stub for milvus (example)\nexport function demo() {\n  console.log('use milvus - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-milvus-example-testing-ts.ts.txt",
+      "template": "# Spike: milvus example (ts)\n// Auto-generated spike stub for milvus (example)\nexport function demo() {\n  console.log('use milvus - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-milvus-example-testing-ts.md",
+      "template": "# milvus example (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-milvus-example-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,37 @@
+{
+  "id": "strike-k6-scenario-basic-js",
+  "name": "k6 scenario basic js",
+  "version": "0.1.0",
+  "stack": [
+    "k6",
+    "js"
+  ],
+  "tags": [
+    "scenario",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for k6 scenario in js (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "k6-scenario-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/k6-scenario.js",
+      "template": "# Spike: k6 scenario (js)\n// Auto-generated spike stub for k6 (scenario)\nmodule.exports = function demo(){\n  console.log('use k6 - scenario (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-k6-scenario-basic-js.js.txt",
+      "template": "# Spike: k6 scenario (js)\n// Auto-generated spike stub for k6 (scenario)\nmodule.exports = function demo(){\n  console.log('use k6 - scenario (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-k6-scenario-basic-js.md",
+      "template": "# k6 scenario (basic, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

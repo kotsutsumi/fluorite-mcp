@@ -1,0 +1,37 @@
+{
+  "id": "strike-ansible-command-basic-ts",
+  "name": "ansible command basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "ansible",
+    "ts"
+  ],
+  "tags": [
+    "command",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for ansible command in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "ansible-command-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/ansible-command.ts",
+      "template": "# Spike: ansible command (ts)\n// Auto-generated spike stub for ansible (command)\nexport function demo() {\n  console.log('use ansible - command (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-ansible-command-basic-ts.ts.txt",
+      "template": "# Spike: ansible command (ts)\n// Auto-generated spike stub for ansible (command)\nexport function demo() {\n  console.log('use ansible - command (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-ansible-command-basic-ts.md",
+      "template": "# ansible command (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

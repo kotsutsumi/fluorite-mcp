@@ -1,0 +1,41 @@
+{
+  "id": "strike-newrelic-docs-testing-js",
+  "name": "newrelic docs testing js",
+  "version": "0.1.0",
+  "stack": [
+    "newrelic",
+    "js"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for newrelic docs in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "newrelic-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/newrelic-docs.js",
+      "template": "# Spike: newrelic docs (js)\n// Auto-generated spike stub for newrelic (docs)\nmodule.exports = function demo(){\n  console.log('use newrelic - docs (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-newrelic-docs-testing-js.js.txt",
+      "template": "# Spike: newrelic docs (js)\n// Auto-generated spike stub for newrelic (docs)\nmodule.exports = function demo(){\n  console.log('use newrelic - docs (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-newrelic-docs-testing-js.md",
+      "template": "# newrelic docs (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-newrelic-docs-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

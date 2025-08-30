@@ -1,0 +1,41 @@
+{
+  "id": "strike-newrelic-config-basic-js",
+  "name": "newrelic config basic js",
+  "version": "0.1.0",
+  "stack": [
+    "newrelic",
+    "js"
+  ],
+  "tags": [
+    "config",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for newrelic config in js (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "newrelic-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/newrelic-config.js",
+      "template": "# Spike: newrelic config (js)\n// Auto-generated spike stub for newrelic (config)\nmodule.exports = function demo(){\n  console.log('use newrelic - config (basic)');\n};\n"
+    },
+    {
+      "path": "src/apm/newrelic.ts",
+      "template": "export function newrelic(){ return { enabled: true }; }\n"
+    },
+    {
+      "path": "spikes/strike-newrelic-config-basic-js.js.txt",
+      "template": "# Spike: newrelic config (js)\n// Auto-generated spike stub for newrelic (config)\nmodule.exports = function demo(){\n  console.log('use newrelic - config (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-newrelic-config-basic-js.md",
+      "template": "# newrelic config (basic, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

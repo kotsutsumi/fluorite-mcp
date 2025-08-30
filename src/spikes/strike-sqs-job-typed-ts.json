@@ -1,0 +1,37 @@
+{
+  "id": "strike-sqs-job-typed-ts",
+  "name": "sqs job typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "sqs",
+    "ts"
+  ],
+  "tags": [
+    "job",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for sqs job in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sqs-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/sqs-job.ts",
+      "template": "# Spike: sqs job (ts)\n// Auto-generated spike stub for sqs (job)\nexport function demo() {\n  console.log('use sqs - job (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sqs-job-typed-ts.ts.txt",
+      "template": "# Spike: sqs job (ts)\n// Auto-generated spike stub for sqs (job)\nexport function demo() {\n  console.log('use sqs - job (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sqs-job-typed-ts.md",
+      "template": "# sqs job (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

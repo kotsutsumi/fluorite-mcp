@@ -1,0 +1,41 @@
+{
+  "id": "strike-cognito-config-typed-js",
+  "name": "cognito config typed js",
+  "version": "0.1.0",
+  "stack": [
+    "cognito",
+    "js"
+  ],
+  "tags": [
+    "config",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for cognito config in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "cognito-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/cognito-config.js",
+      "template": "# Spike: cognito config (js)\n// Auto-generated spike stub for cognito (config)\nmodule.exports = function demo(){\n  console.log('use cognito - config (typed)');\n};\n"
+    },
+    {
+      "path": "src/cognito/client.ts",
+      "template": "export function createCognito(){ return { userPoolId: process.env.COGNITO_USER_POOL_ID, clientId: process.env.COGNITO_CLIENT_ID }; }\n"
+    },
+    {
+      "path": "spikes/strike-cognito-config-typed-js.js.txt",
+      "template": "# Spike: cognito config (js)\n// Auto-generated spike stub for cognito (config)\nmodule.exports = function demo(){\n  console.log('use cognito - config (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-cognito-config-typed-js.md",
+      "template": "# cognito config (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

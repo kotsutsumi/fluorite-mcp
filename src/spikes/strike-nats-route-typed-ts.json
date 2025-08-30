@@ -1,0 +1,37 @@
+{
+  "id": "strike-nats-route-typed-ts",
+  "name": "nats route typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "nats",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nats route in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nats-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/nats-route.ts",
+      "template": "# Spike: nats route (ts)\n// Auto-generated spike stub for nats (route)\nexport function demo() {\n  console.log('use nats - route (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nats-route-typed-ts.ts.txt",
+      "template": "# Spike: nats route (ts)\n// Auto-generated spike stub for nats (route)\nexport function demo() {\n  console.log('use nats - route (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nats-route-typed-ts.md",
+      "template": "# nats route (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-datadog-adapter-testing-js",
+  "name": "datadog adapter testing js",
+  "version": "0.1.0",
+  "stack": [
+    "datadog",
+    "js"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for datadog adapter in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "datadog-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/datadog-adapter.js",
+      "template": "# Spike: datadog adapter (js)\n// Auto-generated spike stub for datadog (adapter)\nmodule.exports = function demo(){\n  console.log('use datadog - adapter (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-datadog-adapter-testing-js.js.txt",
+      "template": "# Spike: datadog adapter (js)\n// Auto-generated spike stub for datadog (adapter)\nmodule.exports = function demo(){\n  console.log('use datadog - adapter (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-datadog-adapter-testing-js.md",
+      "template": "# datadog adapter (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-datadog-adapter-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

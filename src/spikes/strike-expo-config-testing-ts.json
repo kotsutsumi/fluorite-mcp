@@ -1,0 +1,41 @@
+{
+  "id": "strike-expo-config-testing-ts",
+  "name": "expo config testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "expo",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for expo config in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "expo-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/expo-config.ts",
+      "template": "# Spike: expo config (ts)\n// Auto-generated spike stub for expo (config)\nexport function demo() {\n  console.log('use expo - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-expo-config-testing-ts.ts.txt",
+      "template": "# Spike: expo config (ts)\n// Auto-generated spike stub for expo (config)\nexport function demo() {\n  console.log('use expo - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-expo-config-testing-ts.md",
+      "template": "# expo config (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-expo-config-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

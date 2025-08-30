@@ -1,0 +1,45 @@
+{
+  "id": "strike-cohere-client-testing-py",
+  "name": "cohere client testing py",
+  "version": "0.1.0",
+  "stack": [
+    "cohere",
+    "py"
+  ],
+  "tags": [
+    "client",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for cohere client in py (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "cohere-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/cohere-client.py",
+      "template": "# Spike: cohere client (py)\n# Auto-generated spike stub for cohere (client)\ndef demo():\n    print('use cohere - client (testing)')\n"
+    },
+    {
+      "path": "src/ai/cohere.ts",
+      "template": "export function cohere(){ return { apiKey: process.env.COHERE_API_KEY }; }\n"
+    },
+    {
+      "path": "spikes/strike-cohere-client-testing-py.py.txt",
+      "template": "# Spike: cohere client (py)\n# Auto-generated spike stub for cohere (client)\ndef demo():\n    print('use cohere - client (testing)')\n"
+    },
+    {
+      "path": "spikes/strike-cohere-client-testing-py.md",
+      "template": "# cohere client (testing, py)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-cohere-client-testing-py_test.py",
+      "template": "def test_demo():\n    assert True\n"
+    }
+  ],
+  "patches": []
+}

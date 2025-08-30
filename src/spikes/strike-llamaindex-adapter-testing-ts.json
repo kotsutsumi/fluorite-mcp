@@ -1,0 +1,41 @@
+{
+  "id": "strike-llamaindex-adapter-testing-ts",
+  "name": "llamaindex adapter testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "llamaindex",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for llamaindex adapter in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "llamaindex-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/llamaindex-adapter.ts",
+      "template": "# Spike: llamaindex adapter (ts)\n// Auto-generated spike stub for llamaindex (adapter)\nexport function demo() {\n  console.log('use llamaindex - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-llamaindex-adapter-testing-ts.ts.txt",
+      "template": "# Spike: llamaindex adapter (ts)\n// Auto-generated spike stub for llamaindex (adapter)\nexport function demo() {\n  console.log('use llamaindex - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-llamaindex-adapter-testing-ts.md",
+      "template": "# llamaindex adapter (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-llamaindex-adapter-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,37 @@
+{
+  "id": "strike-serverless-cli-basic-ts",
+  "name": "serverless cli basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "serverless",
+    "ts"
+  ],
+  "tags": [
+    "cli",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for serverless cli in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "serverless-cli-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/serverless-cli.ts",
+      "template": "# Spike: serverless cli (ts)\n// Auto-generated spike stub for serverless (cli)\nexport function demo() {\n  console.log('use serverless - cli (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-serverless-cli-basic-ts.ts.txt",
+      "template": "# Spike: serverless cli (ts)\n// Auto-generated spike stub for serverless (cli)\nexport function demo() {\n  console.log('use serverless - cli (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-serverless-cli-basic-ts.md",
+      "template": "# serverless cli (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

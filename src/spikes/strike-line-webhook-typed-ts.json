@@ -1,0 +1,69 @@
+{
+  "id": "strike-line-webhook-typed-ts",
+  "name": "line webhook typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "line",
+    "ts"
+  ],
+  "tags": [
+    "webhook",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for line webhook in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "line-webhook-app"
+    },
+    {
+      "name": "channelId",
+      "required": false,
+      "description": "LINE Channel ID",
+      "default": "YOUR_CHANNEL_ID"
+    },
+    {
+      "name": "channelSecret",
+      "required": false,
+      "description": "LINE Channel Secret",
+      "default": "YOUR_CHANNEL_SECRET"
+    },
+    {
+      "name": "channelAccessToken",
+      "required": false,
+      "description": "LINE Channel Access Token",
+      "default": "YOUR_CHANNEL_ACCESS_TOKEN"
+    },
+    {
+      "name": "liffId",
+      "required": false,
+      "description": "LIFF App ID (optional)",
+      "default": "YOUR_LIFF_ID"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/line-webhook.ts",
+      "template": "# Spike: line webhook (ts)\n// Auto-generated spike stub for line (webhook)\nexport function demo() {\n  console.log('use line - webhook (typed)');\n}\n"
+    },
+    {
+      "path": "src/line/verify.ts",
+      "template": "import crypto from 'node:crypto';\nexport function verifyLineSignature(channelSecret: string, bodyRaw: string, signature: string){\n  const hmac = crypto.createHmac('sha256', channelSecret);\n  hmac.update(bodyRaw);\n  const expected = hmac.digest('base64');\n  try { return crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(signature || '', 'utf8')); }\n  catch { return false; }\n}\n"
+    },
+    {
+      "path": "src/line/webhook.ts",
+      "template": "import express from 'express';\nimport { verifyLineSignature } from './verify';\nexport function createLineWebhookApp(channelSecret: string){\n  const app = express();\n  app.use(express.text({ type: '*/*' })); // keep raw body for signature verification\n  app.post('/line/webhook', (req, res)=>{\n    const signature = req.get('x-line-signature') || '';\n    const ok = verifyLineSignature(channelSecret, req.body, signature);\n    if (!ok) return res.status(403).send('forbidden');\n    try {\n      const json = JSON.parse(req.body || '{}');\n      for (const ev of json.events || []) {\n        if (ev.type === 'message' && ev.message?.type === 'text') {\n          // handle message here (e.g., reply via LineMessagingClient)\n        }\n      }\n      res.status(200).send('ok');\n    } catch { res.status(400).send('bad request'); }\n  });\n  return app;\n}\n"
+    },
+    {
+      "path": "spikes/strike-line-webhook-typed-ts.ts.txt",
+      "template": "# Spike: line webhook (ts)\n// Auto-generated spike stub for line (webhook)\nexport function demo() {\n  console.log('use line - webhook (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-line-webhook-typed-ts.md",
+      "template": "# line webhook (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

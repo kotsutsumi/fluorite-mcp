@@ -1,0 +1,41 @@
+{
+  "id": "strike-weaviate-init-testing-ts",
+  "name": "weaviate init testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "weaviate",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for weaviate init in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "weaviate-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/weaviate-init.ts",
+      "template": "# Spike: weaviate init (ts)\n// Auto-generated spike stub for weaviate (init)\nexport function demo() {\n  console.log('use weaviate - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-weaviate-init-testing-ts.ts.txt",
+      "template": "# Spike: weaviate init (ts)\n// Auto-generated spike stub for weaviate (init)\nexport function demo() {\n  console.log('use weaviate - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-weaviate-init-testing-ts.md",
+      "template": "# weaviate init (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-weaviate-init-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

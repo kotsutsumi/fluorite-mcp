@@ -1,0 +1,41 @@
+{
+  "id": "strike-keycloak-config-typed-js",
+  "name": "keycloak config typed js",
+  "version": "0.1.0",
+  "stack": [
+    "keycloak",
+    "js"
+  ],
+  "tags": [
+    "config",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for keycloak config in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "keycloak-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/keycloak-config.js",
+      "template": "# Spike: keycloak config (js)\n// Auto-generated spike stub for keycloak (config)\nmodule.exports = function demo(){\n  console.log('use keycloak - config (typed)');\n};\n"
+    },
+    {
+      "path": "src/keycloak/client.ts",
+      "template": "export function keycloak(){ return { serverUrl: process.env.KEYCLOAK_URL, realm: process.env.KEYCLOAK_REALM }; }\n"
+    },
+    {
+      "path": "spikes/strike-keycloak-config-typed-js.js.txt",
+      "template": "# Spike: keycloak config (js)\n// Auto-generated spike stub for keycloak (config)\nmodule.exports = function demo(){\n  console.log('use keycloak - config (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-keycloak-config-typed-js.md",
+      "template": "# keycloak config (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

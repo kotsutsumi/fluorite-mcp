@@ -1,0 +1,37 @@
+{
+  "id": "strike-neo4j-schema-secure-ts",
+  "name": "neo4j schema secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "neo4j",
+    "ts"
+  ],
+  "tags": [
+    "schema",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for neo4j schema in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "neo4j-schema-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/neo4j-schema.ts",
+      "template": "# Spike: neo4j schema (ts)\n// Auto-generated spike stub for neo4j (schema)\nexport function demo() {\n  console.log('use neo4j - schema (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-neo4j-schema-secure-ts.ts.txt",
+      "template": "# Spike: neo4j schema (ts)\n// Auto-generated spike stub for neo4j (schema)\nexport function demo() {\n  console.log('use neo4j - schema (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-neo4j-schema-secure-ts.md",
+      "template": "# neo4j schema (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

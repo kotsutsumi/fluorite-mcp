@@ -1,0 +1,37 @@
+{
+  "id": "strike-ansible-docs-basic-ts",
+  "name": "ansible docs basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "ansible",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for ansible docs in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "ansible-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/ansible-docs.ts",
+      "template": "# Spike: ansible docs (ts)\n// Auto-generated spike stub for ansible (docs)\nexport function demo() {\n  console.log('use ansible - docs (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-ansible-docs-basic-ts.ts.txt",
+      "template": "# Spike: ansible docs (ts)\n// Auto-generated spike stub for ansible (docs)\nexport function demo() {\n  console.log('use ansible - docs (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-ansible-docs-basic-ts.md",
+      "template": "# ansible docs (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

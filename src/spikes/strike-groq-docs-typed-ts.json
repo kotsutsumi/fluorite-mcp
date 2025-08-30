@@ -1,0 +1,37 @@
+{
+  "id": "strike-groq-docs-typed-ts",
+  "name": "groq docs typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "groq",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for groq docs in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "groq-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/groq-docs.ts",
+      "template": "# Spike: groq docs (ts)\n// Auto-generated spike stub for groq (docs)\nexport function demo() {\n  console.log('use groq - docs (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-groq-docs-typed-ts.ts.txt",
+      "template": "# Spike: groq docs (ts)\n// Auto-generated spike stub for groq (docs)\nexport function demo() {\n  console.log('use groq - docs (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-groq-docs-typed-ts.md",
+      "template": "# groq docs (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

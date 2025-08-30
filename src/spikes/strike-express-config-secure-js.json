@@ -1,0 +1,41 @@
+{
+  "id": "strike-express-config-secure-js",
+  "name": "express config secure js",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "js"
+  ],
+  "tags": [
+    "config",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express config in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/express-config.js",
+      "template": "# Spike: express config (js)\n// Auto-generated spike stub for express (config)\nmodule.exports = function demo(){\n  console.log('use express - config (secure)');\n};\n"
+    },
+    {
+      "path": "src/express/security.ts",
+      "template": "import express from 'express';\nimport helmet from 'helmet';\nimport cors from 'cors';\nexport function createApp(){ const app = express(); app.use(helmet()); app.use(cors()); return app; }\n"
+    },
+    {
+      "path": "spikes/strike-express-config-secure-js.js.txt",
+      "template": "# Spike: express config (js)\n// Auto-generated spike stub for express (config)\nmodule.exports = function demo(){\n  console.log('use express - config (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-express-config-secure-js.md",
+      "template": "# express config (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

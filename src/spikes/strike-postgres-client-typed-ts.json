@@ -1,0 +1,37 @@
+{
+  "id": "strike-postgres-client-typed-ts",
+  "name": "postgres client typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "postgres",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for postgres client in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "postgres-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/postgres-client.ts",
+      "template": "# Spike: postgres client (ts)\n// Auto-generated spike stub for postgres (client)\nexport function demo() {\n  console.log('use postgres - client (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-postgres-client-typed-ts.ts.txt",
+      "template": "# Spike: postgres client (ts)\n// Auto-generated spike stub for postgres (client)\nexport function demo() {\n  console.log('use postgres - client (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-postgres-client-typed-ts.md",
+      "template": "# postgres client (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

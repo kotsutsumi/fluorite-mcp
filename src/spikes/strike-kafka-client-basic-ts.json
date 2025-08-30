@@ -1,0 +1,45 @@
+{
+  "id": "strike-kafka-client-basic-ts",
+  "name": "kafka client basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "kafka",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for kafka client in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "kafka-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/kafka-client.ts",
+      "template": "# Spike: kafka client (ts)\n// Auto-generated spike stub for kafka (client)\nexport function demo() {\n  console.log('use kafka - client (basic)');\n}\n"
+    },
+    {
+      "path": "src/kafka/producer.ts",
+      "template": "import { Kafka } from 'kafkajs';\nconst kafka = new Kafka({ clientId: 'app', brokers: ['localhost:9092'] });\nexport async function produce(topic: string, message: string){ const p = kafka.producer(); await p.connect(); await p.send({ topic, messages: [{ value: message }] }); await p.disconnect(); }\n"
+    },
+    {
+      "path": "src/kafka/consumer.ts",
+      "template": "import { Kafka } from 'kafkajs';\nconst kafka = new Kafka({ clientId: 'app', brokers: ['localhost:9092'] });\nexport async function consume(topic: string){ const c = kafka.consumer({ groupId: 'group' }); await c.connect(); await c.subscribe({ topic, fromBeginning: true }); await c.run({ eachMessage: async ({ message }) => console.log(message.value?.toString()) }); }\n"
+    },
+    {
+      "path": "spikes/strike-kafka-client-basic-ts.ts.txt",
+      "template": "# Spike: kafka client (ts)\n// Auto-generated spike stub for kafka (client)\nexport function demo() {\n  console.log('use kafka - client (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kafka-client-basic-ts.md",
+      "template": "# kafka client (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

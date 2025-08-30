@@ -1,0 +1,37 @@
+{
+  "id": "strike-postgres-docs-secure-ts",
+  "name": "postgres docs secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "postgres",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for postgres docs in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "postgres-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/postgres-docs.ts",
+      "template": "# Spike: postgres docs (ts)\n// Auto-generated spike stub for postgres (docs)\nexport function demo() {\n  console.log('use postgres - docs (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-postgres-docs-secure-ts.ts.txt",
+      "template": "# Spike: postgres docs (ts)\n// Auto-generated spike stub for postgres (docs)\nexport function demo() {\n  console.log('use postgres - docs (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-postgres-docs-secure-ts.md",
+      "template": "# postgres docs (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-opentelemetry-provider-testing-js",
+  "name": "opentelemetry provider testing js",
+  "version": "0.1.0",
+  "stack": [
+    "opentelemetry",
+    "js"
+  ],
+  "tags": [
+    "provider",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for opentelemetry provider in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "opentelemetry-provider-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/opentelemetry-provider.js",
+      "template": "# Spike: opentelemetry provider (js)\n// Auto-generated spike stub for opentelemetry (provider)\nmodule.exports = function demo(){\n  console.log('use opentelemetry - provider (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-opentelemetry-provider-testing-js.js.txt",
+      "template": "# Spike: opentelemetry provider (js)\n// Auto-generated spike stub for opentelemetry (provider)\nmodule.exports = function demo(){\n  console.log('use opentelemetry - provider (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-opentelemetry-provider-testing-js.md",
+      "template": "# opentelemetry provider (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-opentelemetry-provider-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

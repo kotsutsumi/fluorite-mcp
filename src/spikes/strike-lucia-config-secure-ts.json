@@ -1,0 +1,41 @@
+{
+  "id": "strike-lucia-config-secure-ts",
+  "name": "lucia config secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "lucia",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for lucia config in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "lucia-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/lucia-config.ts",
+      "template": "# Spike: lucia config (ts)\n// Auto-generated spike stub for lucia (config)\nexport function demo() {\n  console.log('use lucia - config (secure)');\n}\n"
+    },
+    {
+      "path": "src/lucia/auth.ts",
+      "template": "export function lucia(){ /* configure lucia here */ return {}; }\n"
+    },
+    {
+      "path": "spikes/strike-lucia-config-secure-ts.ts.txt",
+      "template": "# Spike: lucia config (ts)\n// Auto-generated spike stub for lucia (config)\nexport function demo() {\n  console.log('use lucia - config (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-lucia-config-secure-ts.md",
+      "template": "# lucia config (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

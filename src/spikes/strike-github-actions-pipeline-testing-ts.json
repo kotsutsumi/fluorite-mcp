@@ -1,0 +1,41 @@
+{
+  "id": "strike-github-actions-pipeline-testing-ts",
+  "name": "github-actions pipeline testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "github-actions",
+    "ts"
+  ],
+  "tags": [
+    "pipeline",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for github-actions pipeline in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "github-actions-pipeline-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/github-actions-pipeline.ts",
+      "template": "# Spike: github-actions pipeline (ts)\n// Auto-generated spike stub for github-actions (pipeline)\nexport function demo() {\n  console.log('use github-actions - pipeline (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-github-actions-pipeline-testing-ts.ts.txt",
+      "template": "# Spike: github-actions pipeline (ts)\n// Auto-generated spike stub for github-actions (pipeline)\nexport function demo() {\n  console.log('use github-actions - pipeline (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-github-actions-pipeline-testing-ts.md",
+      "template": "# github-actions pipeline (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-github-actions-pipeline-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

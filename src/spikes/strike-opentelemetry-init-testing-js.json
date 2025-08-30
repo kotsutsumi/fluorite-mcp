@@ -1,0 +1,41 @@
+{
+  "id": "strike-opentelemetry-init-testing-js",
+  "name": "opentelemetry init testing js",
+  "version": "0.1.0",
+  "stack": [
+    "opentelemetry",
+    "js"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for opentelemetry init in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "opentelemetry-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "otel/tracer.js",
+      "template": "const { NodeTracerProvider } = require('@opentelemetry/sdk-trace-node');\nconst { SimpleSpanProcessor, ConsoleSpanExporter } = require('@opentelemetry/sdk-trace-base');\nconst provider = new NodeTracerProvider();\nprovider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));\nprovider.register();\nmodule.exports = require('@opentelemetry/api').trace.getTracer('demo');\n"
+    },
+    {
+      "path": "spikes/strike-opentelemetry-init-testing-js.js.txt",
+      "template": "# Spike: opentelemetry init (js)\n// Auto-generated spike stub for opentelemetry (init)\nmodule.exports = function demo(){\n  console.log('use opentelemetry - init (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-opentelemetry-init-testing-js.md",
+      "template": "# opentelemetry init (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-opentelemetry-init-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

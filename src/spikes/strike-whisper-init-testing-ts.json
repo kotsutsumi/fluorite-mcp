@@ -1,0 +1,41 @@
+{
+  "id": "strike-whisper-init-testing-ts",
+  "name": "whisper init testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "whisper",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for whisper init in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "whisper-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/whisper-init.ts",
+      "template": "# Spike: whisper init (ts)\n// Auto-generated spike stub for whisper (init)\nexport function demo() {\n  console.log('use whisper - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-whisper-init-testing-ts.ts.txt",
+      "template": "# Spike: whisper init (ts)\n// Auto-generated spike stub for whisper (init)\nexport function demo() {\n  console.log('use whisper - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-whisper-init-testing-ts.md",
+      "template": "# whisper init (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-whisper-init-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

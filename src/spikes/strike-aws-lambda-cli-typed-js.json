@@ -1,0 +1,37 @@
+{
+  "id": "strike-aws-lambda-cli-typed-js",
+  "name": "aws-lambda cli typed js",
+  "version": "0.1.0",
+  "stack": [
+    "aws-lambda",
+    "js"
+  ],
+  "tags": [
+    "cli",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for aws-lambda cli in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "aws-lambda-cli-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/aws-lambda-cli.js",
+      "template": "# Spike: aws-lambda cli (js)\n// Auto-generated spike stub for aws-lambda (cli)\nmodule.exports = function demo(){\n  console.log('use aws-lambda - cli (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-aws-lambda-cli-typed-js.js.txt",
+      "template": "# Spike: aws-lambda cli (js)\n// Auto-generated spike stub for aws-lambda (cli)\nmodule.exports = function demo(){\n  console.log('use aws-lambda - cli (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-aws-lambda-cli-typed-js.md",
+      "template": "# aws-lambda cli (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

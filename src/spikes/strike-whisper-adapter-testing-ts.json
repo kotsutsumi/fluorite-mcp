@@ -1,0 +1,41 @@
+{
+  "id": "strike-whisper-adapter-testing-ts",
+  "name": "whisper adapter testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "whisper",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for whisper adapter in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "whisper-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/whisper-adapter.ts",
+      "template": "# Spike: whisper adapter (ts)\n// Auto-generated spike stub for whisper (adapter)\nexport function demo() {\n  console.log('use whisper - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-whisper-adapter-testing-ts.ts.txt",
+      "template": "# Spike: whisper adapter (ts)\n// Auto-generated spike stub for whisper (adapter)\nexport function demo() {\n  console.log('use whisper - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-whisper-adapter-testing-ts.md",
+      "template": "# whisper adapter (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-whisper-adapter-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

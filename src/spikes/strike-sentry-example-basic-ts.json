@@ -1,0 +1,37 @@
+{
+  "id": "strike-sentry-example-basic-ts",
+  "name": "sentry example basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "sentry",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for sentry example in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sentry-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/sentry-example.ts",
+      "template": "# Spike: sentry example (ts)\n// Auto-generated spike stub for sentry (example)\nexport function demo() {\n  console.log('use sentry - example (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sentry-example-basic-ts.ts.txt",
+      "template": "# Spike: sentry example (ts)\n// Auto-generated spike stub for sentry (example)\nexport function demo() {\n  console.log('use sentry - example (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sentry-example-basic-ts.md",
+      "template": "# sentry example (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,37 @@
+{
+  "id": "strike-prisma-init-typed-ts",
+  "name": "prisma init typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "prisma",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for prisma init in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "prisma-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/prisma-init.ts",
+      "template": "# Spike: prisma init (ts)\n// Auto-generated spike stub for prisma (init)\nexport function demo() {\n  console.log('use prisma - init (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-prisma-init-typed-ts.ts.txt",
+      "template": "# Spike: prisma init (ts)\n// Auto-generated spike stub for prisma (init)\nexport function demo() {\n  console.log('use prisma - init (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-prisma-init-typed-ts.md",
+      "template": "# prisma init (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

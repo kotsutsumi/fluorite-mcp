@@ -1,0 +1,37 @@
+{
+  "id": "strike-docker-docs-basic-js",
+  "name": "docker docs basic js",
+  "version": "0.1.0",
+  "stack": [
+    "docker",
+    "js"
+  ],
+  "tags": [
+    "docs",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for docker docs in js (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "docker-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/docker-docs.js",
+      "template": "# Spike: docker docs (js)\n// Auto-generated spike stub for docker (docs)\nmodule.exports = function demo(){\n  console.log('use docker - docs (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-docker-docs-basic-js.js.txt",
+      "template": "# Spike: docker docs (js)\n// Auto-generated spike stub for docker (docs)\nmodule.exports = function demo(){\n  console.log('use docker - docs (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-docker-docs-basic-js.md",
+      "template": "# docker docs (basic, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

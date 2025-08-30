@@ -1,0 +1,41 @@
+{
+  "id": "strike-electron-route-testing-js",
+  "name": "electron route testing js",
+  "version": "0.1.0",
+  "stack": [
+    "electron",
+    "js"
+  ],
+  "tags": [
+    "route",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for electron route in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "electron-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/electron-route.js",
+      "template": "# Spike: electron route (js)\n// Auto-generated spike stub for electron (route)\nmodule.exports = function demo(){\n  console.log('use electron - route (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-electron-route-testing-js.js.txt",
+      "template": "# Spike: electron route (js)\n// Auto-generated spike stub for electron (route)\nmodule.exports = function demo(){\n  console.log('use electron - route (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-electron-route-testing-js.md",
+      "template": "# electron route (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-electron-route-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-pusher-route-basic-js",
+  "name": "pusher route basic js",
+  "version": "0.1.0",
+  "stack": [
+    "pusher",
+    "js"
+  ],
+  "tags": [
+    "route",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for pusher route in js (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "pusher-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/pusher-route.js",
+      "template": "# Spike: pusher route (js)\n// Auto-generated spike stub for pusher (route)\nmodule.exports = function demo(){\n  console.log('use pusher - route (basic)');\n};\n"
+    },
+    {
+      "path": "app/api/realtime/publish/route.ts",
+      "template": "import { NextResponse } from 'next/server';\nimport { pusher } from '@/src/realtime/pusher';\nexport async function POST(req: Request){ const json = await req.json(); const client = pusher(); return NextResponse.json({ ok: true, channel: json.channel }); }\n"
+    },
+    {
+      "path": "spikes/strike-pusher-route-basic-js.js.txt",
+      "template": "# Spike: pusher route (js)\n// Auto-generated spike stub for pusher (route)\nmodule.exports = function demo(){\n  console.log('use pusher - route (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-pusher-route-basic-js.md",
+      "template": "# pusher route (basic, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

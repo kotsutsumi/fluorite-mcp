@@ -1,0 +1,41 @@
+{
+  "id": "strike-llamaindex-config-testing-ts",
+  "name": "llamaindex config testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "llamaindex",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for llamaindex config in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "llamaindex-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/llamaindex-config.ts",
+      "template": "# Spike: llamaindex config (ts)\n// Auto-generated spike stub for llamaindex (config)\nexport function demo() {\n  console.log('use llamaindex - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-llamaindex-config-testing-ts.ts.txt",
+      "template": "# Spike: llamaindex config (ts)\n// Auto-generated spike stub for llamaindex (config)\nexport function demo() {\n  console.log('use llamaindex - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-llamaindex-config-testing-ts.md",
+      "template": "# llamaindex config (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-llamaindex-config-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

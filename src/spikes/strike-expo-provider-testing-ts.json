@@ -1,0 +1,41 @@
+{
+  "id": "strike-expo-provider-testing-ts",
+  "name": "expo provider testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "expo",
+    "ts"
+  ],
+  "tags": [
+    "provider",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for expo provider in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "expo-provider-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/expo-provider.ts",
+      "template": "# Spike: expo provider (ts)\n// Auto-generated spike stub for expo (provider)\nexport function demo() {\n  console.log('use expo - provider (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-expo-provider-testing-ts.ts.txt",
+      "template": "# Spike: expo provider (ts)\n// Auto-generated spike stub for expo (provider)\nexport function demo() {\n  console.log('use expo - provider (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-expo-provider-testing-ts.md",
+      "template": "# expo provider (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-expo-provider-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-cypress-job-testing-js",
+  "name": "cypress job testing js",
+  "version": "0.1.0",
+  "stack": [
+    "cypress",
+    "js"
+  ],
+  "tags": [
+    "job",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for cypress job in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "cypress-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/cypress-job.js",
+      "template": "# Spike: cypress job (js)\n// Auto-generated spike stub for cypress (job)\nmodule.exports = function demo(){\n  console.log('use cypress - job (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-cypress-job-testing-js.js.txt",
+      "template": "# Spike: cypress job (js)\n// Auto-generated spike stub for cypress (job)\nmodule.exports = function demo(){\n  console.log('use cypress - job (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-cypress-job-testing-js.md",
+      "template": "# cypress job (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-cypress-job-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

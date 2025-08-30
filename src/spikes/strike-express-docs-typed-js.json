@@ -1,0 +1,37 @@
+{
+  "id": "strike-express-docs-typed-js",
+  "name": "express docs typed js",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "js"
+  ],
+  "tags": [
+    "docs",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express docs in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/express-docs.js",
+      "template": "# Spike: express docs (js)\n// Auto-generated spike stub for express (docs)\nmodule.exports = function demo(){\n  console.log('use express - docs (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-express-docs-typed-js.js.txt",
+      "template": "# Spike: express docs (js)\n// Auto-generated spike stub for express (docs)\nmodule.exports = function demo(){\n  console.log('use express - docs (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-express-docs-typed-js.md",
+      "template": "# express docs (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

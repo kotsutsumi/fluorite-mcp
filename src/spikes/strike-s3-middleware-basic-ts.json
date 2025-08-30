@@ -1,0 +1,49 @@
+{
+  "id": "strike-s3-middleware-basic-ts",
+  "name": "s3 middleware basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "s3",
+    "ts"
+  ],
+  "tags": [
+    "middleware",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for s3 middleware in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "s3-middleware-app"
+    },
+    {
+      "name": "region",
+      "required": false,
+      "description": "AWS リージョン",
+      "default": "us-east-1"
+    },
+    {
+      "name": "bucket",
+      "required": false,
+      "description": "S3 バケット名",
+      "default": "my-bucket"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/s3-middleware.ts",
+      "template": "# Spike: s3 middleware (ts)\n// Auto-generated spike stub for s3 (middleware)\nexport function demo() {\n  console.log('use s3 - middleware (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-s3-middleware-basic-ts.ts.txt",
+      "template": "# Spike: s3 middleware (ts)\n// Auto-generated spike stub for s3 (middleware)\nexport function demo() {\n  console.log('use s3 - middleware (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-s3-middleware-basic-ts.md",
+      "template": "# s3 middleware (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

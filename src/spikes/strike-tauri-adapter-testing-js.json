@@ -1,0 +1,41 @@
+{
+  "id": "strike-tauri-adapter-testing-js",
+  "name": "tauri adapter testing js",
+  "version": "0.1.0",
+  "stack": [
+    "tauri",
+    "js"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for tauri adapter in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "tauri-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/tauri-adapter.js",
+      "template": "# Spike: tauri adapter (js)\n// Auto-generated spike stub for tauri (adapter)\nmodule.exports = function demo(){\n  console.log('use tauri - adapter (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-tauri-adapter-testing-js.js.txt",
+      "template": "# Spike: tauri adapter (js)\n// Auto-generated spike stub for tauri (adapter)\nmodule.exports = function demo(){\n  console.log('use tauri - adapter (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-tauri-adapter-testing-js.md",
+      "template": "# tauri adapter (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-tauri-adapter-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

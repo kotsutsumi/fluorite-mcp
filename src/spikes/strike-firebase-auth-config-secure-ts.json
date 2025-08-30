@@ -1,0 +1,41 @@
+{
+  "id": "strike-firebase-auth-config-secure-ts",
+  "name": "firebase-auth config secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "firebase-auth",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for firebase-auth config in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "firebase-auth-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/firebase-auth-config.ts",
+      "template": "# Spike: firebase-auth config (ts)\n// Auto-generated spike stub for firebase-auth (config)\nexport function demo() {\n  console.log('use firebase-auth - config (secure)');\n}\n"
+    },
+    {
+      "path": "src/firebase/auth.ts",
+      "template": "export function initFirebaseAuth(){ return { projectId: process.env.FIREBASE_PROJECT_ID }; }\n"
+    },
+    {
+      "path": "spikes/strike-firebase-auth-config-secure-ts.ts.txt",
+      "template": "# Spike: firebase-auth config (ts)\n// Auto-generated spike stub for firebase-auth (config)\nexport function demo() {\n  console.log('use firebase-auth - config (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-firebase-auth-config-secure-ts.md",
+      "template": "# firebase-auth config (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

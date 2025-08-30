@@ -1,0 +1,41 @@
+{
+  "id": "strike-cohere-client-basic-ts",
+  "name": "cohere client basic ts",
+  "version": "0.1.0",
+  "stack": [
+    "cohere",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for cohere client in ts (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "cohere-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/cohere-client.ts",
+      "template": "# Spike: cohere client (ts)\n// Auto-generated spike stub for cohere (client)\nexport function demo() {\n  console.log('use cohere - client (basic)');\n}\n"
+    },
+    {
+      "path": "src/ai/cohere.ts",
+      "template": "export function cohere(){ return { apiKey: process.env.COHERE_API_KEY }; }\n"
+    },
+    {
+      "path": "spikes/strike-cohere-client-basic-ts.ts.txt",
+      "template": "# Spike: cohere client (ts)\n// Auto-generated spike stub for cohere (client)\nexport function demo() {\n  console.log('use cohere - client (basic)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-cohere-client-basic-ts.md",
+      "template": "# cohere client (basic, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

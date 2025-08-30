@@ -1,0 +1,41 @@
+{
+  "id": "strike-ably-route-basic-js",
+  "name": "ably route basic js",
+  "version": "0.1.0",
+  "stack": [
+    "ably",
+    "js"
+  ],
+  "tags": [
+    "route",
+    "basic",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for ably route in js (basic).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "ably-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/ably-route.js",
+      "template": "# Spike: ably route (js)\n// Auto-generated spike stub for ably (route)\nmodule.exports = function demo(){\n  console.log('use ably - route (basic)');\n};\n"
+    },
+    {
+      "path": "app/api/realtime/publish/route.ts",
+      "template": "import { NextResponse } from 'next/server';\nimport { ably } from '@/src/realtime/ably';\nexport async function POST(req: Request){ const json = await req.json(); const client = ably(); return NextResponse.json({ ok: true, channel: json.channel }); }\n"
+    },
+    {
+      "path": "spikes/strike-ably-route-basic-js.js.txt",
+      "template": "# Spike: ably route (js)\n// Auto-generated spike stub for ably (route)\nmodule.exports = function demo(){\n  console.log('use ably - route (basic)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-ably-route-basic-js.md",
+      "template": "# ably route (basic, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}
