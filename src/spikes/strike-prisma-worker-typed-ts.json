@@ -1,0 +1,37 @@
+{
+  "id": "strike-prisma-worker-typed-ts",
+  "name": "prisma worker typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "prisma",
+    "ts"
+  ],
+  "tags": [
+    "worker",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for prisma worker in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "prisma-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/prisma-worker.ts",
+      "template": "# Spike: prisma worker (ts)\n// Auto-generated spike stub for prisma (worker)\nexport function demo() {\n  console.log('use prisma - worker (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-prisma-worker-typed-ts.ts.txt",
+      "template": "# Spike: prisma worker (ts)\n// Auto-generated spike stub for prisma (worker)\nexport function demo() {\n  console.log('use prisma - worker (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-prisma-worker-typed-ts.md",
+      "template": "# prisma worker (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

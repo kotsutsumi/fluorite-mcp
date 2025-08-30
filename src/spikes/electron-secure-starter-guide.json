@@ -1,0 +1,12 @@
+{
+  "id": "electron-secure-starter-guide",
+  "name": "Electron セキュアスターター ガイド",
+  "version": "1.0.0",
+  "stack": ["electron", "docs"],
+  "tags": ["electron", "security", "starter", "docs"],
+  "description": "nonce/hash + preload(API最小露出) + shell許可リスト + safe file protocol + ナビ制限の統合チェックリスト。",
+  "files": [
+    { "path": "docs/electron-secure-starter.md", "template": "# Electron Secure Starter\n\n## Profile\n- Context: `contextIsolation: true`, `sandbox: true`, `nodeIntegration: false`, `devTools: prod=false`\n- Preload: `contextBridge.exposeInMainWorld` で最小APIのみ\n- IPC: `ipcMain.handle` / `ipcRenderer.invoke`\n- shell: 許可ドメインのみ `openExternal`\n- Protocol: `registerFileProtocol('safe', ...)` でpublic配下のみに制限\n- CSP: meta(またはヘッダ)で `default-src 'self' safe:` + `script-src 'self' 'nonce-...'` or hash\n- Navigation: `setWindowOpenHandler`/`will-navigate` で許可ドメインのみ\n\n## References\n- Spikes: `electron-secure-starter-minimal`, `electron-csp-nonce-hash-minimal`, `electron-protocol-file-safe-minimal`, `electron-navigation-restrictions-minimal`, `electron-sandbox-shell-allowlist`, `electron-csp-headers-devserver`.\n" }
+  ]
+}
+

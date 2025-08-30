@@ -1,0 +1,41 @@
+{
+  "id": "strike-nextjs-example-testing-ts",
+  "name": "nextjs example testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "nextjs",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nextjs example in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nextjs-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/nextjs-example.ts",
+      "template": "# Spike: nextjs example (ts)\n// Auto-generated spike stub for nextjs (example)\nexport function demo() {\n  console.log('use nextjs - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-example-testing-ts.ts.txt",
+      "template": "# Spike: nextjs example (ts)\n// Auto-generated spike stub for nextjs (example)\nexport function demo() {\n  console.log('use nextjs - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-example-testing-ts.md",
+      "template": "# nextjs example (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-example-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

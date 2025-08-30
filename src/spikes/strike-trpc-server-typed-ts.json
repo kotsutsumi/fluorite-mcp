@@ -1,0 +1,49 @@
+{
+  "id": "strike-trpc-server-typed-ts",
+  "name": "trpc server typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "trpc",
+    "ts"
+  ],
+  "tags": [
+    "server",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for trpc server in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "trpc-server-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/trpc-server.ts",
+      "template": "# Spike: trpc server (ts)\n// Auto-generated spike stub for trpc (server)\nexport function demo() {\n  console.log('use trpc - server (typed)');\n}\n"
+    },
+    {
+      "path": "src/trpc/context.ts",
+      "template": "export type Context = {};\nexport async function createContext(): Promise<Context> { return {}; }\n"
+    },
+    {
+      "path": "src/trpc/router.ts",
+      "template": "import { initTRPC } from '@trpc/server';\nconst t = initTRPC.context<{}>().create();\nexport const appRouter = t.router({ hello: t.procedure.query(()=> 'world') });\nexport type AppRouter = typeof appRouter;\n"
+    },
+    {
+      "path": "src/trpc/server.ts",
+      "template": "import { createHTTPServer } from '@trpc/server/adapters/standalone';\nimport { appRouter } from './router';\nconst server = createHTTPServer({ router: appRouter });\nserver.listen(20222);\n"
+    },
+    {
+      "path": "spikes/strike-trpc-server-typed-ts.ts.txt",
+      "template": "# Spike: trpc server (ts)\n// Auto-generated spike stub for trpc (server)\nexport function demo() {\n  console.log('use trpc - server (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-trpc-server-typed-ts.md",
+      "template": "# trpc server (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

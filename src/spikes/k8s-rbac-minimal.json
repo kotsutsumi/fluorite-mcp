@@ -1,0 +1,12 @@
+{
+  "id": "k8s-rbac-minimal",
+  "name": "K8s RBAC 最小 (SA/Role/RB)",
+  "version": "1.0.0",
+  "stack": ["kubernetes"],
+  "tags": ["k8s", "rbac"],
+  "description": "ServiceAccount, Role, RoleBindingの最小サンプル。",
+  "files": [
+    { "path": "k8s/rbac.yaml", "template": "apiVersion: v1\nkind: ServiceAccount\nmetadata: { name: myapp-sa }\n---\napiVersion: rbac.authorization.k8s.io/v1\nkind: Role\nmetadata: { name: myapp-role }\nrules:\n  - apiGroups: ['']\n    resources: ['configmaps']\n    verbs: ['get','list']\n---\napiVersion: rbac.authorization.k8s.io/v1\nkind: RoleBinding\nmetadata: { name: myapp-rb }\nsubjects:\n  - kind: ServiceAccount\n    name: myapp-sa\nroleRef:\n  apiGroup: rbac.authorization.k8s.io\n  kind: Role\n  name: myapp-role\n" }
+  ]
+}
+

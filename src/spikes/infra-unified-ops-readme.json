@@ -1,0 +1,12 @@
+{
+  "id": "infra-unified-ops-readme",
+  "name": "Infra 統合README(Secrets/Overlays/Preview→Prod)",
+  "version": "1.0.0",
+  "stack": ["kubernetes", "helm", "ci", "docs"],
+  "tags": ["infra", "unified", "docs"],
+  "description": "Secrets(SOPS/SealedSecrets)・values overlays・Preview namespace・Prod適用・Rollbackの読み物。",
+  "files": [
+    { "path": "docs/infra-unified-ops.md", "template": "# Infra Unified Ops\n\n## Secrets\n- SOPS: enc YAML→CIで復号\n- SealedSecrets: enc YAMLをそのままapply\n\n## Overlays\n- Helm values-dev/prodで差分管理\n- `-f` と `--set` で追加上書き\n\n## Preview\n- PR毎にnamespace作成→dry-run apply/helm dry-run\n- MergeでProd apply、PR closeでcleanup\n\n## Rollback\n- `helm history/rollback` で迅速復帰\n- 変更履歴とvalues差分はGit管理\n\nRefs: secrets(KMS/SOPS/SealedSecrets), overlays, preview namespace CI, prod apply, rollback guide.\n" }
+  ]
+}
+

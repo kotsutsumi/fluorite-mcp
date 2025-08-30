@@ -1,0 +1,41 @@
+{
+  "id": "strike-vitepress-example-testing-ts",
+  "name": "vitepress example testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "vitepress",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for vitepress example in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "vitepress-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/vitepress-example.ts",
+      "template": "# Spike: vitepress example (ts)\n// Auto-generated spike stub for vitepress (example)\nexport function demo() {\n  console.log('use vitepress - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-vitepress-example-testing-ts.ts.txt",
+      "template": "# Spike: vitepress example (ts)\n// Auto-generated spike stub for vitepress (example)\nexport function demo() {\n  console.log('use vitepress - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-vitepress-example-testing-ts.md",
+      "template": "# vitepress example (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-vitepress-example-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

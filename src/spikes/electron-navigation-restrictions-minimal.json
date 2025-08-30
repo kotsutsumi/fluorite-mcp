@@ -1,0 +1,13 @@
+{
+  "id": "electron-navigation-restrictions-minimal",
+  "name": "Electron ナビゲーション制限 最小",
+  "version": "1.0.0",
+  "stack": ["electron"],
+  "tags": ["electron", "security", "navigation"],
+  "description": "setWindowOpenHandler/Will-navigateで許可ドメインのみ遷移許可する最小例。",
+  "params": [{ "name": "app_name", "default": "electron-navlock" }],
+  "files": [
+    { "path": "{{app_name}}/main.js", "template": "const { app, BrowserWindow, shell } = require('electron');\nconst allow = ['example.com'];\nfunction isAllowed(url){ try{ const h = new URL(url).hostname; return allow.includes(h);}catch{ return false }}\nasync function createWindow(){ const win = new BrowserWindow({ webPreferences: { contextIsolation: true, nodeIntegration: false } });\n  const wc = win.webContents;\n  wc.setWindowOpenHandler(({ url })=>{ if (isAllowed(url)) { shell.openExternal(url); return { action: 'deny' }; } return { action: 'deny' }; });\n  wc.on('will-navigate', (e, url)=>{ if (!isAllowed(url)) e.preventDefault(); });\n  await win.loadURL('https://example.com');\n}\napp.whenReady().then(createWindow);\n" }
+  ]
+}
+

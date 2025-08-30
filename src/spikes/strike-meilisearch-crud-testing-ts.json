@@ -1,0 +1,41 @@
+{
+  "id": "strike-meilisearch-crud-testing-ts",
+  "name": "meilisearch crud testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "meilisearch",
+    "ts"
+  ],
+  "tags": [
+    "crud",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for meilisearch crud in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "meilisearch-crud-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/meilisearch-crud.ts",
+      "template": "# Spike: meilisearch crud (ts)\n// Auto-generated spike stub for meilisearch (crud)\nexport function demo() {\n  console.log('use meilisearch - crud (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-meilisearch-crud-testing-ts.ts.txt",
+      "template": "# Spike: meilisearch crud (ts)\n// Auto-generated spike stub for meilisearch (crud)\nexport function demo() {\n  console.log('use meilisearch - crud (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-meilisearch-crud-testing-ts.md",
+      "template": "# meilisearch crud (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-meilisearch-crud-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

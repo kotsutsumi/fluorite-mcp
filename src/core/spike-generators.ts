@@ -76,7 +76,7 @@ const LIBRARIES = [
   'bugsnag','honeybadger',
   'dotenv','cloudinary','uploadthing','mailgun','lru-cache','paddle',
   // frontend utilities
-  'zod','react-hook-form','zustand','redux','swr','radix-ui','tailwindcss','storybook','nx','turborepo',
+  'zod','react-hook-form','zustand','redux','swr','radix-ui','tailwindcss','storybook','nx','turborepo','xterm',
   // desktop/mobile platforms
   'electron','tauri','capacitor','expo','react-native',
   // load testing / observability
@@ -292,6 +292,37 @@ function makeFiles(id: string, lib: string, pattern: string, style: string, lang
 }\n` });
     files.push({ path: `astro.config.mjs`, template: `import { defineConfig } from 'astro/config';\nimport starlight from '@astrojs/starlight';\nexport default defineConfig({\n  site: 'https://example.com',\n  integrations: [ starlight({ title: 'Docs', sidebar: [{ label: 'Introduction', autogenerate: { directory: 'docs' } }] }) ]\n});\n` });
     files.push({ path: `src/content/docs/index.mdx`, template: `---\ntitle: Introduction\n---\n\n# Starlight Minimal\n\nThis is a minimal Starlight site.\n` });
+  }
+
+  // xterm.js
+  if (lib === 'xterm') {
+    const isTS = lang === 'ts';
+    const jsExt = isTS ? 'ts' : 'js';
+    // example/minimal: 素のDOMでターミナルを初期化
+    if (pattern === 'example' || pattern === 'minimal') {
+      files.push({ path: `index.html`, template: `<!doctype html>\n<html>\n  <head>\n    <meta charset=\"utf-8\"/>\n    <title>xterm example</title>\n    <style>html,body,#terminal{height:100%;margin:0;}#terminal{padding:8px;background:#1e1e1e;}</style>\n  </head>\n  <body>\n    <div id=\"terminal\"></div>\n    <script type=\"module\" src=\"/src/main.${jsExt}\"></script>\n  </body>\n</html>\n` });
+      files.push({ path: `src/main.${jsExt}` , template: `import { Terminal } from 'xterm';\nimport { FitAddon } from '@xterm/addon-fit';\nimport { WebLinksAddon } from '@xterm/addon-web-links';\nimport 'xterm/css/xterm.css';\n\nconst term = new Terminal({\n  fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',\n  theme: { background: '#1e1e1e' },\n});\nconst fit = new FitAddon();\nterm.loadAddon(fit);\nterm.loadAddon(new WebLinksAddon());\n\nconst el = document.getElementById('terminal');\nif (!el) throw new Error('missing #terminal');\nterm.open(el);\nfit.fit();\nterm.writeln('Welcome to xterm.js');\nterm.writeln('Type and see echo:');\nterm.onData((d)=> term.write('\r\n' + d));\nwindow.addEventListener('resize', ()=> fit.fit());\n` });
+    }
+    // component: Reactコンポーネントで埋め込み
+    if (pattern === 'component') {
+      if (isTS) {
+        files.push({ path: `src/components/XtermTerminal.tsx`, template: `import React, { useEffect, useRef } from 'react';\nimport { Terminal, ITerminalOptions } from 'xterm';\nimport { FitAddon } from '@xterm/addon-fit';\nimport 'xterm/css/xterm.css';\n\nexport interface XtermProps {\n  options?: ITerminalOptions;\n  onData?: (data: string)=> void;\n}\n\nexport function XtermTerminal({ options, onData }: XtermProps){\n  const ref = useRef<HTMLDivElement|null>(null);\n  const termRef = useRef<Terminal>();\n  useEffect(()=>{\n    if (!ref.current) return;\n    const term = new Terminal({\n      theme: { background: '#1e1e1e' },\n      cursorBlink: true,\n      ...options\n    });\n    const fit = new FitAddon();\n    term.loadAddon(fit);\n    term.open(ref.current);\n    fit.fit();\n    term.writeln('xterm ready');\n    const disp = term.onData(d => { onData?.(d); });\n    const onResize = () => fit.fit();\n    window.addEventListener('resize', onResize);\n    termRef.current = term;\n    return () => {\n      disp.dispose();\n      window.removeEventListener('resize', onResize);\n      term.dispose();\n    };\n  }, [ref.current]);\n  return <div ref={ref} style={{ height: 300, background: '#1e1e1e' }} />;\n}\n` });
+      } else {
+        files.push({ path: `src/components/XtermTerminal.jsx`, template: `import React, { useEffect, useRef } from 'react';\nimport { Terminal } from 'xterm';\nimport { FitAddon } from '@xterm/addon-fit';\nimport 'xterm/css/xterm.css';\n\nexport function XtermTerminal({ options, onData }){\n  const ref = useRef(null);\n  useEffect(()=>{\n    if (!ref.current) return;\n    const term = new Terminal({ theme: { background: '#1e1e1e' }, cursorBlink: true, ...(options||{}) });\n    const fit = new FitAddon();\n    term.loadAddon(fit);\n    term.open(ref.current);\n    fit.fit();\n    term.writeln('xterm ready');\n    const disp = term.onData(d => onData && onData(d));\n    const onResize = () => fit.fit();\n    window.addEventListener('resize', onResize);\n    return () => { disp.dispose(); window.removeEventListener('resize', onResize); term.dispose(); };\n  }, [ref.current]);\n  return <div ref={ref} style={{ height: 300, background: '#1e1e1e' }} />;\n}\n` });
+      }
+    }
+    // hook: React用のカスタムフック
+    if (pattern === 'hook') {
+      files.push({ path: `src/hooks/useXterm.${jsExt}`, template: `import { useEffect, useRef } from 'react';\nimport { Terminal } from 'xterm';\nimport { FitAddon } from '@xterm/addon-fit';\nimport 'xterm/css/xterm.css';\n\nexport function useXterm(options){\n  const containerRef = useRef(null);\n  const termRef = useRef(null);\n  useEffect(()=>{\n    if (!containerRef.current) return;\n    const term = new Terminal({ theme: { background: '#1e1e1e' }, cursorBlink: true, ...(options||{}) });\n    const fit = new FitAddon();\n    term.loadAddon(fit);\n    term.open(containerRef.current);\n    fit.fit();\n    termRef.current = term;\n    const onResize = () => fit.fit();\n    window.addEventListener('resize', onResize);\n    return () => { window.removeEventListener('resize', onResize); term.dispose(); };\n  }, [containerRef.current]);\n  return { containerRef, term: termRef };\n}\n` });
+    }
+    // plugin/adapter: アドオンをまとめてロード
+    if (pattern === 'plugin' || pattern === 'adapter') {
+      files.push({ path: `src/xterm/addons.${jsExt}`, template: `import { WebLinksAddon } from '@xterm/addon-web-links';\nimport { FitAddon } from '@xterm/addon-fit';\nimport { SerializeAddon } from '@xterm/addon-serialize';\nexport function loadBasicAddons(term){\n  const fit = new FitAddon();\n  term.loadAddon(fit);\n  term.loadAddon(new WebLinksAddon());\n  term.loadAddon(new SerializeAddon());\n  return { fit };\n}\n` });
+    }
+    // config: テーマなどの共通設定
+    if (pattern === 'config' || pattern === 'init') {
+      files.push({ path: `src/xterm/config.${jsExt}`, template: `export const xtermTheme = {\n  background: '#1e1e1e',\n  foreground: '#d4d4d4',\n  cursor: '#cccccc',\n};\nexport const xtermDefaults = {\n  fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',\n  allowProposedApi: true,\n  theme: xtermTheme,\n};\n` });
+    }
   }
 
   // Docusaurus (React docs)

@@ -1,0 +1,12 @@
+{
+  "id": "infra-preview-to-prod-flow-guide",
+  "name": "Infra Preview→Prod フロー ガイド",
+  "version": "1.0.0",
+  "stack": ["kubernetes", "helm", "ci", "docs"],
+  "tags": ["infra", "preview", "prod", "flow", "docs"],
+  "description": "Preview namespace作成→values overlays適用→検証→Merge→Prod適用→Rollbackまでの最小フロー。",
+  "files": [
+    { "path": "docs/infra-preview-to-prod.md", "template": "# Preview → Prod Flow\n\n1. PR open: Create namespace `pr-<number>`, apply k8s manifests (dry-run) / helm dry-run\n2. Preview deploy: `values-dev.yaml` + env (PR) を適用、SecretはSOPS/SealedSecrets\n3. Verify: smoke/health checks; metrics/logsで観測\n4. Merge: mainにマージで Prod apply (`values-prod.yaml`)\n5. Close: PR close で preview namespace cleanup\n6. Rollback: `helm rollback` 手順\n\nRefs: `infra-ci-preview-namespace-cleanup`, `infra-ci-env-matrix-preview-prod`, `helm-values-overlays-guide`, `infra-helm-rollback-guide`, `infra-ci-sops-secrets-github-actions`, `infra-ci-sealedsecrets-github-actions`.\n" }
+  ]
+}
+

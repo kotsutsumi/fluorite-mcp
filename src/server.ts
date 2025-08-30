@@ -35,6 +35,7 @@ import {
   type DiscoverInput
 } from "./core/spike-handlers.js";
 import { getSpikeStats } from "./core/spike-stats.js";
+import { handleListGeneratedSpikesTool } from "./core/generated-spike-handlers.js";
 
 // Resolve package version from package.json at runtime
 function getPackageVersion(): string {
@@ -202,6 +203,26 @@ server.registerTool(
   },
   async () => {
     return await handleListSpikePacksTool();
+  }
+);
+
+// List generated spike IDs (strike/gen) with filters
+server.registerTool(
+  "list-generated-spikes",
+  {
+    title: "List Generated Spikes",
+    description: "ライブラリ/パターン/スタイル/言語でフィルタした生成スパイクID（strike/gen）を列挙します",
+    inputSchema: {
+      libs: z.array(z.string()).optional().describe("Libraries to include"),
+      patterns: z.array(z.string()).optional().describe("Patterns to include"),
+      styles: z.array(z.string()).optional().describe("Styles to include"),
+      langs: z.array(z.string()).optional().describe("Languages to include"),
+      limit: z.number().optional().describe("Max number of ids"),
+      prefix: z.enum(['strike','gen','any']).optional().describe("ID prefix filter")
+    }
+  },
+  async (input) => {
+    return await handleListGeneratedSpikesTool(input as any);
   }
 );
 
@@ -482,7 +503,8 @@ async function main() {
         'upsert-spec', 'list-specs', 'catalog-stats', 
         'self-test', 'performance-test', 'server-metrics',
         'static-analysis', 'quick-validate', 'realtime-validation', 'get-validation-rules',
-        'discover-spikes', 'auto-spike', 'preview-spike', 'apply-spike', 'validate-spike', 'explain-spike'
+        'discover-spikes', 'auto-spike', 'preview-spike', 'apply-spike', 'validate-spike', 'explain-spike', 'list-spike-packs',
+        'list-generated-spikes'
       ]
     });
     
@@ -494,7 +516,7 @@ async function main() {
     console.error("  - Spec Management: upsert-spec, list-specs, catalog-stats");
     console.error("  - Diagnostics: self-test, performance-test, server-metrics");
     console.error("  - Static Analysis: static-analysis, quick-validate, realtime-validation, get-validation-rules");
-    console.error("  - Spikes: discover-spikes, auto-spike, preview-spike, apply-spike, validate-spike, explain-spike");
+    console.error("  - Spikes: discover-spikes, auto-spike, preview-spike, apply-spike, validate-spike, explain-spike, list-spike-packs, list-generated-spikes");
     
     // Graceful shutdown handling
     process.on("SIGINT", async () => {

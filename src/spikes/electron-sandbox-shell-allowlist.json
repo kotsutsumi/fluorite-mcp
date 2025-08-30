@@ -1,0 +1,15 @@
+{
+  "id": "electron-sandbox-shell-allowlist",
+  "name": "Electron sandbox + shell許可リスト 最小",
+  "version": "1.0.0",
+  "stack": ["electron"],
+  "tags": ["electron", "security", "sandbox"],
+  "description": "sandboxed rendererで、許可ドメインのみshell.openExternalを許可する最小例。",
+  "params": [{ "name": "app_name", "default": "electron-allowlist" }],
+  "files": [
+    { "path": "{{app_name}}/main.js", "template": "const { app, BrowserWindow, ipcMain, shell } = require('electron');\nconst allow = ['example.com','docs.example.com'];\nasync function openExternalSafe(url){ try { const u = new URL(url); if (!allow.includes(u.hostname)) throw new Error('denied'); await shell.openExternal(url); return true; } catch(e){ return false; } }\nasync function createWindow(){ const win = new BrowserWindow({ width: 800, height: 600, webPreferences: { sandbox: true, contextIsolation: true, nodeIntegration: false } }); await win.loadFile('index.html'); }\nipcMain.handle('open-external', (_e, url)=> openExternalSafe(url));\napp.whenReady().then(createWindow);\n" },
+    { "path": "{{app_name}}/preload.js", "template": "const { contextBridge, ipcRenderer } = require('electron');\ncontextBridge.exposeInMainWorld('api', { openExternal: (url)=> ipcRenderer.invoke('open-external', url) });\n" },
+    { "path": "{{app_name}}/index.html", "template": "<!doctype html><html><body><h1>Allowlist</h1><button id=a>Open example.com</button><button id=b>Open evil.com</button><script>btn('a','https://example.com');btn('b','https://evil.com');function btn(id,url){ document.getElementById(id).onclick=()=> window.api.openExternal(url).then((ok)=> alert(ok?'ok':'denied')); }</script></body></html>\n" }
+  ]
+}
+

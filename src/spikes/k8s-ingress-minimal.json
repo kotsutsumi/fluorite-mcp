@@ -1,0 +1,12 @@
+{
+  "id": "k8s-ingress-minimal",
+  "name": "K8s Ingress 最小",
+  "version": "1.0.0",
+  "stack": ["kubernetes"],
+  "tags": ["k8s", "ingress"],
+  "description": "nginx Ingress Controller向けの最小Ingress。",
+  "files": [
+    { "path": "k8s/ingress.yaml", "template": "apiVersion: networking.k8s.io/v1\nkind: Ingress\nmetadata:\n  name: myapp\n  annotations:\n    kubernetes.io/ingress.class: nginx\nspec:\n  rules:\n    - host: example.com\n      http:\n        paths:\n          - path: /\n            pathType: Prefix\n            backend:\n              service:\n                name: myapp\n                port: { number: 80 }\n" }
+  ]
+}
+

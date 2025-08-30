@@ -1,0 +1,15 @@
+{
+  "id": "k8s-kustomize-overlays-minimal",
+  "name": "K8s Kustomize Overlays 最小",
+  "version": "1.0.0",
+  "stack": ["kubernetes", "kustomize"],
+  "tags": ["k8s", "kustomize", "overlays"],
+  "description": "base + overlays(dev/prod)の最小構成。",
+  "files": [
+    { "path": "kustomize/base/deployment.yaml", "template": "apiVersion: apps/v1\nkind: Deployment\nmetadata: { name: myapp }\nspec:\n  replicas: 1\n  selector: { matchLabels: { app: myapp } }\n  template:\n    metadata: { labels: { app: myapp } }\n    spec:\n      containers:\n        - name: app\n          image: nginx:alpine\n" },
+    { "path": "kustomize/base/kustomization.yaml", "template": "resources:\n  - deployment.yaml\n" },
+    { "path": "kustomize/overlays/dev/kustomization.yaml", "template": "resources:\n  - ../../base\nnameSuffix: -dev\n" },
+    { "path": "kustomize/overlays/prod/kustomization.yaml", "template": "resources:\n  - ../../base\nnameSuffix: -prod\npatches:\n  - target: { kind: Deployment, name: myapp }\n    patch: |\n      - op: replace\n        path: /spec/replicas\n        value: 3\n" }
+  ]
+}
+

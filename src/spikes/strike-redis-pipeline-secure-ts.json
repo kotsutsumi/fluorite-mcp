@@ -1,0 +1,43 @@
+{
+  "id": "strike-redis-pipeline-secure-ts",
+  "name": "redis pipeline secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "redis",
+    "ts"
+  ],
+  "tags": [
+    "pipeline",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for redis pipeline in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "redis-pipeline-app"
+    },
+    {
+      "name": "redisUrl",
+      "required": false,
+      "description": "Redis 接続URL",
+      "default": "redis://localhost:6379"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/redis-pipeline.ts",
+      "template": "# Spike: redis pipeline (ts)\n// Auto-generated spike stub for redis (pipeline)\nexport function demo() {\n  console.log('use redis - pipeline (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-pipeline-secure-ts.ts.txt",
+      "template": "# Spike: redis pipeline (ts)\n// Auto-generated spike stub for redis (pipeline)\nexport function demo() {\n  console.log('use redis - pipeline (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-pipeline-secure-ts.md",
+      "template": "# redis pipeline (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

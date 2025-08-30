@@ -1,0 +1,37 @@
+{
+  "id": "strike-remix-route-secure-js",
+  "name": "remix route secure js",
+  "version": "0.1.0",
+  "stack": [
+    "remix",
+    "js"
+  ],
+  "tags": [
+    "route",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for remix route in js (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "remix-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "app/routes/_index.tsx",
+      "template": "import type { LoaderFunctionArgs, ActionFunctionArgs } from '@remix-run/node';\nimport { json } from '@remix-run/node';\nexport async function loader(_args: LoaderFunctionArgs){ return json({ ok: true }); }\nexport async function action(_args: ActionFunctionArgs){ return json({ ok: true }); }\nexport default function Index(){ return (<main><h1>Hello Remix</h1></main>); }\n"
+    },
+    {
+      "path": "spikes/strike-remix-route-secure-js.js.txt",
+      "template": "# Spike: remix route (js)\n// Auto-generated spike stub for remix (route)\nmodule.exports = function demo(){\n  console.log('use remix - route (secure)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-remix-route-secure-js.md",
+      "template": "# remix route (secure, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

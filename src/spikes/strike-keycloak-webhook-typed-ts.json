@@ -1,0 +1,37 @@
+{
+  "id": "strike-keycloak-webhook-typed-ts",
+  "name": "keycloak webhook typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "keycloak",
+    "ts"
+  ],
+  "tags": [
+    "webhook",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for keycloak webhook in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "keycloak-webhook-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/keycloak-webhook.ts",
+      "template": "# Spike: keycloak webhook (ts)\n// Auto-generated spike stub for keycloak (webhook)\nexport function demo() {\n  console.log('use keycloak - webhook (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-keycloak-webhook-typed-ts.ts.txt",
+      "template": "# Spike: keycloak webhook (ts)\n// Auto-generated spike stub for keycloak (webhook)\nexport function demo() {\n  console.log('use keycloak - webhook (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-keycloak-webhook-typed-ts.md",
+      "template": "# keycloak webhook (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

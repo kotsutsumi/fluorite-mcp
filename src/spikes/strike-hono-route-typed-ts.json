@@ -1,0 +1,41 @@
+{
+  "id": "strike-hono-route-typed-ts",
+  "name": "hono route typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "hono",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for hono route in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "hono-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/hono-route.ts",
+      "template": "# Spike: hono route (ts)\n// Auto-generated spike stub for hono (route)\nexport function demo() {\n  console.log('use hono - route (typed)');\n}\n"
+    },
+    {
+      "path": "src/hono/server.ts",
+      "template": "import { Hono } from 'hono';\nconst app = new Hono();\napp.get('/hello', (c)=> c.json({ ok: true }));\nexport default app;\n"
+    },
+    {
+      "path": "spikes/strike-hono-route-typed-ts.ts.txt",
+      "template": "# Spike: hono route (ts)\n// Auto-generated spike stub for hono (route)\nexport function demo() {\n  console.log('use hono - route (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-hono-route-typed-ts.md",
+      "template": "# hono route (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

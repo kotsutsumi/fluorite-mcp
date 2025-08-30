@@ -3,9 +3,10 @@
   "name": "SvelteKit hooks.handle 最小",
   "version": "1.0.0",
   "stack": ["sveltekit"],
-  "tags": ["web"],
-  "description": "hooks.server.ts の handle",
-  "params": [ ],
-  "files": [ { "path": "sveltekit/src/hooks.server.ts", "template": "import type { Handle } from '@sveltejs/kit';\nexport const handle: Handle = async ({ event, resolve }) => { event.locals.hello = 'world'; return resolve(event); };\n" } ]
+  "tags": ["sveltekit", "hooks"],
+  "description": "SvelteKitのhooks.server.tsで簡単なログ/ヘッダ付与を行う最小例。",
+  "files": [
+    { "path": "src/hooks.server.ts", "template": "import type { Handle } from '@sveltejs/kit';\nexport const handle: Handle = async ({ event, resolve }) => { console.log('req', event.url.pathname); const res = await resolve(event, { filterSerializedResponseHeaders: () => new Set(['content-type']) }); res.headers.set('x-powered-by','sveltekit'); return res; };\n" }
+  ]
 }
 

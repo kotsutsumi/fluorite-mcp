@@ -1,0 +1,41 @@
+{
+  "id": "strike-meilisearch-example-testing-ts",
+  "name": "meilisearch example testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "meilisearch",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for meilisearch example in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "meilisearch-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/meilisearch-example.ts",
+      "template": "# Spike: meilisearch example (ts)\n// Auto-generated spike stub for meilisearch (example)\nexport function demo() {\n  console.log('use meilisearch - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-meilisearch-example-testing-ts.ts.txt",
+      "template": "# Spike: meilisearch example (ts)\n// Auto-generated spike stub for meilisearch (example)\nexport function demo() {\n  console.log('use meilisearch - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-meilisearch-example-testing-ts.md",
+      "template": "# meilisearch example (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-meilisearch-example-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

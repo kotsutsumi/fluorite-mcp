@@ -1,0 +1,13 @@
+{
+  "id": "otel-exporter-switch-sample",
+  "name": "OTel Exporter 切替 サンプル",
+  "version": "1.0.0",
+  "stack": ["opentelemetry", "node"],
+  "tags": ["otel", "exporter", "switch"],
+  "description": "環境変数でConsole/OTLP/Prometheus Exporterを切替えるサンプルコード。",
+  "files": [
+    { "path": "otel/init.js", "template": "const useOtlp = process.env.OTLP === '1'; const useProm = process.env.PROM === '1';\nconst { NodeTracerProvider } = require('@opentelemetry/sdk-trace-node');\nconst { SimpleSpanProcessor, ConsoleSpanExporter, BatchSpanProcessor } = require('@opentelemetry/sdk-trace-base');\nconst { MeterProvider, PeriodicExportingMetricReader, ConsoleMetricExporter } = require('@opentelemetry/sdk-metrics');\nconst { OTLPTraceExporter } = require('@opentelemetry/exporter-trace-otlp-http');\nconst { PrometheusExporter } = require('@opentelemetry/exporter-prometheus');\nconst tracerProvider = new NodeTracerProvider();\nif (useOtlp) tracerProvider.addSpanProcessor(new BatchSpanProcessor(new OTLPTraceExporter({ url: process.env.OTLP_URL || 'http://localhost:4318/v1/traces' })));\nelse tracerProvider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));\ntracerProvider.register();\nconst meterProvider = new MeterProvider();\nif (useProm) meterProvider.addMetricReader(new PrometheusExporter({ port: 9464, endpoint: '/metrics' }));\nelse meterProvider.addMetricReader(new PeriodicExportingMetricReader({ exporter: new ConsoleMetricExporter(), exportIntervalMillis: 2000 }));\nmodule.exports = { tracer: require('@opentelemetry/api').trace.getTracer('switch'), meter: meterProvider.getMeter('switch') };\n" },
+    { "path": "server.js", "template": "const { tracer, meter } = require('./otel/init');\nconst pino = require('pino')();\nconst express = require('express');\nconst app = express();\nconst counter = meter.createCounter('requests');\napp.get('/ping', (_req,res)=> { counter.add(1); const span = tracer.startSpan('ping'); setTimeout(()=>{ span.end(); pino.info('ping'); res.json({ ok: true }); }, 100); });\napp.listen(3000, ()=> pino.info('listening on 3000'));\n" }
+  ]
+}
+

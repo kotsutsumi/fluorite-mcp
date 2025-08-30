@@ -1,0 +1,41 @@
+{
+  "id": "strike-fastapi-example-testing-ts",
+  "name": "fastapi example testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "fastapi",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastapi example in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastapi-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/fastapi-example.ts",
+      "template": "# Spike: fastapi example (ts)\n// Auto-generated spike stub for fastapi (example)\nexport function demo() {\n  console.log('use fastapi - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-example-testing-ts.ts.txt",
+      "template": "# Spike: fastapi example (ts)\n// Auto-generated spike stub for fastapi (example)\nexport function demo() {\n  console.log('use fastapi - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-example-testing-ts.md",
+      "template": "# fastapi example (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-example-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

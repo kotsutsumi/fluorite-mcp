@@ -1,0 +1,41 @@
+{
+  "id": "strike-fastapi-crud-testing-ts",
+  "name": "fastapi crud testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "fastapi",
+    "ts"
+  ],
+  "tags": [
+    "crud",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastapi crud in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastapi-crud-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/fastapi-crud.ts",
+      "template": "# Spike: fastapi crud (ts)\n// Auto-generated spike stub for fastapi (crud)\nexport function demo() {\n  console.log('use fastapi - crud (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-crud-testing-ts.ts.txt",
+      "template": "# Spike: fastapi crud (ts)\n// Auto-generated spike stub for fastapi (crud)\nexport function demo() {\n  console.log('use fastapi - crud (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-crud-testing-ts.md",
+      "template": "# fastapi crud (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-crud-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-starlight-example-testing-js",
+  "name": "starlight example testing js",
+  "version": "0.1.0",
+  "stack": [
+    "starlight",
+    "js"
+  ],
+  "tags": [
+    "example",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for starlight example in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "starlight-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/starlight-example.js",
+      "template": "# Spike: starlight example (js)\n// Auto-generated spike stub for starlight (example)\nmodule.exports = function demo(){\n  console.log('use starlight - example (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-starlight-example-testing-js.js.txt",
+      "template": "# Spike: starlight example (js)\n// Auto-generated spike stub for starlight (example)\nmodule.exports = function demo(){\n  console.log('use starlight - example (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-starlight-example-testing-js.md",
+      "template": "# starlight example (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-starlight-example-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

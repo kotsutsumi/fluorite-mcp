@@ -1,0 +1,41 @@
+{
+  "id": "strike-apollo-benchmark-testing-js",
+  "name": "apollo benchmark testing js",
+  "version": "0.1.0",
+  "stack": [
+    "apollo",
+    "js"
+  ],
+  "tags": [
+    "benchmark",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for apollo benchmark in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "apollo-benchmark-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/apollo-benchmark.js",
+      "template": "# Spike: apollo benchmark (js)\n// Auto-generated spike stub for apollo (benchmark)\nmodule.exports = function demo(){\n  console.log('use apollo - benchmark (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-apollo-benchmark-testing-js.js.txt",
+      "template": "# Spike: apollo benchmark (js)\n// Auto-generated spike stub for apollo (benchmark)\nmodule.exports = function demo(){\n  console.log('use apollo - benchmark (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-apollo-benchmark-testing-js.md",
+      "template": "# apollo benchmark (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-apollo-benchmark-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

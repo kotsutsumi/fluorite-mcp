@@ -1,0 +1,41 @@
+{
+  "id": "strike-apollo-crud-testing-ts",
+  "name": "apollo crud testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "apollo",
+    "ts"
+  ],
+  "tags": [
+    "crud",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for apollo crud in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "apollo-crud-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/apollo-crud.ts",
+      "template": "# Spike: apollo crud (ts)\n// Auto-generated spike stub for apollo (crud)\nexport function demo() {\n  console.log('use apollo - crud (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-apollo-crud-testing-ts.ts.txt",
+      "template": "# Spike: apollo crud (ts)\n// Auto-generated spike stub for apollo (crud)\nexport function demo() {\n  console.log('use apollo - crud (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-apollo-crud-testing-ts.md",
+      "template": "# apollo crud (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-apollo-crud-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

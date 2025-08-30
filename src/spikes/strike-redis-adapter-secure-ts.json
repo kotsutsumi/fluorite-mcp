@@ -1,0 +1,43 @@
+{
+  "id": "strike-redis-adapter-secure-ts",
+  "name": "redis adapter secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "redis",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for redis adapter in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "redis-adapter-app"
+    },
+    {
+      "name": "redisUrl",
+      "required": false,
+      "description": "Redis 接続URL",
+      "default": "redis://localhost:6379"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/redis-adapter.ts",
+      "template": "# Spike: redis adapter (ts)\n// Auto-generated spike stub for redis (adapter)\nexport function demo() {\n  console.log('use redis - adapter (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-adapter-secure-ts.ts.txt",
+      "template": "# Spike: redis adapter (ts)\n// Auto-generated spike stub for redis (adapter)\nexport function demo() {\n  console.log('use redis - adapter (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-adapter-secure-ts.md",
+      "template": "# redis adapter (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-vitepress-benchmark-testing-ts",
+  "name": "vitepress benchmark testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "vitepress",
+    "ts"
+  ],
+  "tags": [
+    "benchmark",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for vitepress benchmark in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "vitepress-benchmark-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/vitepress-benchmark.ts",
+      "template": "# Spike: vitepress benchmark (ts)\n// Auto-generated spike stub for vitepress (benchmark)\nexport function demo() {\n  console.log('use vitepress - benchmark (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-vitepress-benchmark-testing-ts.ts.txt",
+      "template": "# Spike: vitepress benchmark (ts)\n// Auto-generated spike stub for vitepress (benchmark)\nexport function demo() {\n  console.log('use vitepress - benchmark (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-vitepress-benchmark-testing-ts.md",
+      "template": "# vitepress benchmark (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-vitepress-benchmark-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

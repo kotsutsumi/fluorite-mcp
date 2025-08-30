@@ -1,0 +1,43 @@
+{
+  "id": "strike-redis-route-secure-ts",
+  "name": "redis route secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "redis",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for redis route in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "redis-route-app"
+    },
+    {
+      "name": "redisUrl",
+      "required": false,
+      "description": "Redis 接続URL",
+      "default": "redis://localhost:6379"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/redis-route.ts",
+      "template": "# Spike: redis route (ts)\n// Auto-generated spike stub for redis (route)\nexport function demo() {\n  console.log('use redis - route (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-route-secure-ts.ts.txt",
+      "template": "# Spike: redis route (ts)\n// Auto-generated spike stub for redis (route)\nexport function demo() {\n  console.log('use redis - route (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-route-secure-ts.md",
+      "template": "# redis route (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

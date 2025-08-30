@@ -1,0 +1,37 @@
+{
+  "id": "strike-kafka-controller-secure-ts",
+  "name": "kafka controller secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "kafka",
+    "ts"
+  ],
+  "tags": [
+    "controller",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for kafka controller in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "kafka-controller-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/kafka-controller.ts",
+      "template": "# Spike: kafka controller (ts)\n// Auto-generated spike stub for kafka (controller)\nexport function demo() {\n  console.log('use kafka - controller (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kafka-controller-secure-ts.ts.txt",
+      "template": "# Spike: kafka controller (ts)\n// Auto-generated spike stub for kafka (controller)\nexport function demo() {\n  console.log('use kafka - controller (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kafka-controller-secure-ts.md",
+      "template": "# kafka controller (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

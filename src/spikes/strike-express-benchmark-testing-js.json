@@ -1,0 +1,41 @@
+{
+  "id": "strike-express-benchmark-testing-js",
+  "name": "express benchmark testing js",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "js"
+  ],
+  "tags": [
+    "benchmark",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express benchmark in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-benchmark-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/express-benchmark.js",
+      "template": "# Spike: express benchmark (js)\n// Auto-generated spike stub for express (benchmark)\nmodule.exports = function demo(){\n  console.log('use express - benchmark (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-express-benchmark-testing-js.js.txt",
+      "template": "# Spike: express benchmark (js)\n// Auto-generated spike stub for express (benchmark)\nmodule.exports = function demo(){\n  console.log('use express - benchmark (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-express-benchmark-testing-js.md",
+      "template": "# express benchmark (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-express-benchmark-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

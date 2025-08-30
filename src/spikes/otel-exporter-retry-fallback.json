@@ -1,0 +1,13 @@
+{
+  "id": "otel-exporter-retry-fallback",
+  "name": "OTel Exporter リトライ + フォールバック 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry", "node"],
+  "tags": ["otel", "exporter", "retry", "fallback"],
+  "description": "OTLP送信が失敗したらコンソールExporterにフォールバックする最小例。",
+  "files": [
+    { "path": "otel/init.js", "template": "const { NodeTracerProvider } = require('@opentelemetry/sdk-trace-node');\nconst { BatchSpanProcessor, SimpleSpanProcessor, ConsoleSpanExporter } = require('@opentelemetry/sdk-trace-base');\nconst { OTLPTraceExporter } = require('@opentelemetry/exporter-trace-otlp-http');\nconst provider = new NodeTracerProvider();\n(async ()=>{ try { const otlp = new OTLPTraceExporter({ url: process.env.OTLP_URL || 'http://localhost:4318/v1/traces' }); provider.addSpanProcessor(new BatchSpanProcessor(otlp)); } catch(e){ provider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter())); } finally { provider.register(); } })();\nmodule.exports = require('@opentelemetry/api').trace.getTracer('retry-fallback');\n" },
+    { "path": "server.js", "template": "const tracer = require('./otel/init');\nconst express = require('express');\nconst app = express();\napp.get('/work', (_req,res)=>{ const span = tracer.startSpan('work'); setTimeout(()=>{ span.end(); res.json({ ok: true }); }, 100); });\napp.listen(3000, ()=> console.log('listening on 3000'));\n" }
+  ]
+}
+

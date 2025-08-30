@@ -1,0 +1,37 @@
+{
+  "id": "strike-elasticsearch-adapter-secure-ts",
+  "name": "elasticsearch adapter secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "elasticsearch",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for elasticsearch adapter in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "elasticsearch-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/elasticsearch-adapter.ts",
+      "template": "# Spike: elasticsearch adapter (ts)\n// Auto-generated spike stub for elasticsearch (adapter)\nexport function demo() {\n  console.log('use elasticsearch - adapter (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-elasticsearch-adapter-secure-ts.ts.txt",
+      "template": "# Spike: elasticsearch adapter (ts)\n// Auto-generated spike stub for elasticsearch (adapter)\nexport function demo() {\n  console.log('use elasticsearch - adapter (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-elasticsearch-adapter-secure-ts.md",
+      "template": "# elasticsearch adapter (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

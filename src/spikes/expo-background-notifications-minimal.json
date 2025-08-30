@@ -1,0 +1,13 @@
+{
+  "id": "expo-background-notifications-minimal",
+  "name": "Expo 背景通知ハンドラ 最小",
+  "version": "1.0.0",
+  "stack": ["expo", "react-native", "notifications"],
+  "tags": ["expo", "notifications", "background"],
+  "description": "通知受信時の表示/音/バッジ制御(handler)と、受信リスナの最小例（OS制約に留意）。",
+  "params": [{ "name": "app_name", "default": "expo-bg-noti" }],
+  "files": [
+    { "path": "{{app_name}}/App.tsx", "template": "import React, { useEffect } from 'react';\nimport { SafeAreaView, Text } from 'react-native';\nimport * as Notifications from 'expo-notifications';\nNotifications.setNotificationHandler({ handleNotification: async ()=> ({ shouldShowAlert: true, shouldPlaySound: false, shouldSetBadge: false }) });\nexport default function App(){\n  useEffect(()=>{ const sub = Notifications.addNotificationReceivedListener((n)=>{ console.log('received', n.request.content); }); return ()=> sub.remove(); },[]);\n  return (<SafeAreaView><Text>Background notifications handler set.</Text></SafeAreaView>);\n}\n" }
+  ]
+}
+

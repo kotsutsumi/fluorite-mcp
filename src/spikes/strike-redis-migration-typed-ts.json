@@ -1,0 +1,43 @@
+{
+  "id": "strike-redis-migration-typed-ts",
+  "name": "redis migration typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "redis",
+    "ts"
+  ],
+  "tags": [
+    "migration",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for redis migration in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "redis-migration-app"
+    },
+    {
+      "name": "redisUrl",
+      "required": false,
+      "description": "Redis 接続URL",
+      "default": "redis://localhost:6379"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/redis-migration.ts",
+      "template": "# Spike: redis migration (ts)\n// Auto-generated spike stub for redis (migration)\nexport function demo() {\n  console.log('use redis - migration (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-migration-typed-ts.ts.txt",
+      "template": "# Spike: redis migration (ts)\n// Auto-generated spike stub for redis (migration)\nexport function demo() {\n  console.log('use redis - migration (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-migration-typed-ts.md",
+      "template": "# redis migration (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

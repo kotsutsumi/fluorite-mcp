@@ -1,0 +1,13 @@
+{
+  "id": "nestjs-service-provider-minimal",
+  "name": "NestJS Service/Provider 最小",
+  "version": "1.0.0",
+  "stack": ["nestjs"],
+  "tags": ["nestjs", "service", "provider"],
+  "description": "NestJSの最小ServiceとModuleへのProvider登録例。",
+  "files": [
+    { "path": "src/app.service.ts", "template": "import { Injectable } from '@nestjs/common';\n@Injectable()\nexport class AppService { getHello(){ return 'Hello'; } }\n" },
+    { "path": "src/app.module.ts", "template": "import { Module } from '@nestjs/common';\nimport { AppService } from './app.service';\n@Module({ providers: [AppService], exports: [AppService] })\nexport class AppModule {}\n" }
+  ]
+}
+

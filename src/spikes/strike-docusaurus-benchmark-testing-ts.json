@@ -1,0 +1,41 @@
+{
+  "id": "strike-docusaurus-benchmark-testing-ts",
+  "name": "docusaurus benchmark testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "docusaurus",
+    "ts"
+  ],
+  "tags": [
+    "benchmark",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for docusaurus benchmark in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "docusaurus-benchmark-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/docusaurus-benchmark.ts",
+      "template": "# Spike: docusaurus benchmark (ts)\n// Auto-generated spike stub for docusaurus (benchmark)\nexport function demo() {\n  console.log('use docusaurus - benchmark (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-docusaurus-benchmark-testing-ts.ts.txt",
+      "template": "# Spike: docusaurus benchmark (ts)\n// Auto-generated spike stub for docusaurus (benchmark)\nexport function demo() {\n  console.log('use docusaurus - benchmark (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-docusaurus-benchmark-testing-ts.md",
+      "template": "# docusaurus benchmark (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-docusaurus-benchmark-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

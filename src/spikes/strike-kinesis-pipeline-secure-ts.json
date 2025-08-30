@@ -1,0 +1,37 @@
+{
+  "id": "strike-kinesis-pipeline-secure-ts",
+  "name": "kinesis pipeline secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "kinesis",
+    "ts"
+  ],
+  "tags": [
+    "pipeline",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for kinesis pipeline in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "kinesis-pipeline-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/kinesis-pipeline.ts",
+      "template": "# Spike: kinesis pipeline (ts)\n// Auto-generated spike stub for kinesis (pipeline)\nexport function demo() {\n  console.log('use kinesis - pipeline (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kinesis-pipeline-secure-ts.ts.txt",
+      "template": "# Spike: kinesis pipeline (ts)\n// Auto-generated spike stub for kinesis (pipeline)\nexport function demo() {\n  console.log('use kinesis - pipeline (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kinesis-pipeline-secure-ts.md",
+      "template": "# kinesis pipeline (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

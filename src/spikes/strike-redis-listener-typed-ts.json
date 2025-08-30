@@ -1,0 +1,43 @@
+{
+  "id": "strike-redis-listener-typed-ts",
+  "name": "redis listener typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "redis",
+    "ts"
+  ],
+  "tags": [
+    "listener",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for redis listener in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "redis-listener-app"
+    },
+    {
+      "name": "redisUrl",
+      "required": false,
+      "description": "Redis 接続URL",
+      "default": "redis://localhost:6379"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/redis-listener.ts",
+      "template": "# Spike: redis listener (ts)\n// Auto-generated spike stub for redis (listener)\nexport function demo() {\n  console.log('use redis - listener (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-listener-typed-ts.ts.txt",
+      "template": "# Spike: redis listener (ts)\n// Auto-generated spike stub for redis (listener)\nexport function demo() {\n  console.log('use redis - listener (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-listener-typed-ts.md",
+      "template": "# redis listener (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,16 @@
+{
+  "id": "electron-secure-starter-minimal",
+  "name": "Electron セキュアスターター 最小(Preload+Allowlist+CSP+Nav)",
+  "version": "1.0.0",
+  "stack": ["electron"],
+  "tags": ["electron", "security", "csp", "preload", "ipc", "navigation", "protocol"],
+  "description": "contextIsolation+preloadで最小API露出、shell/openExternal許可ドメイン制限、fileプロトコルsafe化、CSPとナビゲーション制限をまとめた最小スターター。",
+  "params": [{ "name": "app_name", "default": "electron-secure-starter" }],
+  "files": [
+    { "path": "{{app_name}}/main.js", "template": "const { app, BrowserWindow, ipcMain, shell, protocol } = require('electron');\nconst path = require('path'); const fs = require('fs');\nconst ALLOW = ['example.com'];\nfunction isAllowed(url){ try{ const h = new URL(url).hostname; return ALLOW.includes(h);}catch{ return false }}\nfunction safePath(requestUrl){ try { const url = new URL(requestUrl); const p = path.normalize(decodeURIComponent(url.pathname)); const base = path.join(__dirname, 'public'); const full = path.join(base, p); if (!full.startsWith(base)) return null; return full; } catch { return null; } }\nasync function createWindow(){ const win = new BrowserWindow({ width: 900, height: 700, webPreferences: { preload: path.join(__dirname, 'preload.js'), contextIsolation: true, nodeIntegration: false, sandbox: true, devTools: process.env.NODE_ENV !== 'production' } }); const wc = win.webContents; wc.setWindowOpenHandler(({ url })=>{ if (isAllowed(url)) { shell.openExternal(url); return { action: 'deny' }; } return { action: 'deny' }; }); wc.on('will-navigate', (e, url)=>{ if (!isAllowed(url)) e.preventDefault(); }); await win.loadFile('index.html'); if (process.env.NODE_ENV !== 'production') wc.openDevTools(); }\nipcMain.handle('open-external', (_e, url)=> isAllowed(url) ? shell.openExternal(url) : false);\napp.whenReady().then(()=>{ protocol.registerFileProtocol('safe', (req, cb)=> { const target = safePath(req.url); if (!target || !fs.existsSync(target)) return cb({ error: -6 }); cb(target); }); createWindow(); });\n" },
+    { "path": "{{app_name}}/preload.js", "template": "const { contextBridge, ipcRenderer } = require('electron');\ncontextBridge.exposeInMainWorld('api', { openExternal: (url)=> ipcRenderer.invoke('open-external', url) });\n" },
+    { "path": "{{app_name}}/index.html", "template": "<!doctype html><html><head>\n<meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'self' safe:; script-src 'self' 'nonce-abc123'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;\">\n<meta charset=\"utf-8\">\n</head><body>\n<h1>Secure Starter</h1>\n<button id=a>Open example.com</button>\n<button id=b>Open evil.com</button>\n<script nonce=\"abc123\">\n  const open = (u)=> window.api.openExternal(u).then(ok=> alert(ok?'ok':'denied'));\n  document.getElementById('a').onclick=()=> open('https://example.com');\n  document.getElementById('b').onclick=()=> open('https://evil.com');\n</script>\n</body></html>\n" },
+    { "path": "{{app_name}}/public/index.html", "template": "<!doctype html><html><body><h1>Safe file protocol</h1></body></html>\n" }
+  ]
+}
+

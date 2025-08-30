@@ -1,0 +1,41 @@
+{
+  "id": "strike-nextjs-benchmark-testing-js",
+  "name": "nextjs benchmark testing js",
+  "version": "0.1.0",
+  "stack": [
+    "nextjs",
+    "js"
+  ],
+  "tags": [
+    "benchmark",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nextjs benchmark in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nextjs-benchmark-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/nextjs-benchmark.js",
+      "template": "# Spike: nextjs benchmark (js)\n// Auto-generated spike stub for nextjs (benchmark)\nmodule.exports = function demo(){\n  console.log('use nextjs - benchmark (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-benchmark-testing-js.js.txt",
+      "template": "# Spike: nextjs benchmark (js)\n// Auto-generated spike stub for nextjs (benchmark)\nmodule.exports = function demo(){\n  console.log('use nextjs - benchmark (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-benchmark-testing-js.md",
+      "template": "# nextjs benchmark (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-benchmark-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

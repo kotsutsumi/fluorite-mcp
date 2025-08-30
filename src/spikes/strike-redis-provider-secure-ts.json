@@ -1,0 +1,43 @@
+{
+  "id": "strike-redis-provider-secure-ts",
+  "name": "redis provider secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "redis",
+    "ts"
+  ],
+  "tags": [
+    "provider",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for redis provider in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "redis-provider-app"
+    },
+    {
+      "name": "redisUrl",
+      "required": false,
+      "description": "Redis 接続URL",
+      "default": "redis://localhost:6379"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/redis-provider.ts",
+      "template": "# Spike: redis provider (ts)\n// Auto-generated spike stub for redis (provider)\nexport function demo() {\n  console.log('use redis - provider (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-provider-secure-ts.ts.txt",
+      "template": "# Spike: redis provider (ts)\n// Auto-generated spike stub for redis (provider)\nexport function demo() {\n  console.log('use redis - provider (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-provider-secure-ts.md",
+      "template": "# redis provider (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

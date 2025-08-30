@@ -1,0 +1,37 @@
+{
+  "id": "strike-gcs-webhook-typed-ts",
+  "name": "gcs webhook typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "gcs",
+    "ts"
+  ],
+  "tags": [
+    "webhook",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for gcs webhook in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "gcs-webhook-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/gcs-webhook.ts",
+      "template": "# Spike: gcs webhook (ts)\n// Auto-generated spike stub for gcs (webhook)\nexport function demo() {\n  console.log('use gcs - webhook (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-gcs-webhook-typed-ts.ts.txt",
+      "template": "# Spike: gcs webhook (ts)\n// Auto-generated spike stub for gcs (webhook)\nexport function demo() {\n  console.log('use gcs - webhook (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-gcs-webhook-typed-ts.md",
+      "template": "# gcs webhook (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

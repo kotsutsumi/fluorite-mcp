@@ -1,0 +1,37 @@
+{
+  "id": "strike-prisma-migration-typed-ts",
+  "name": "prisma migration typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "prisma",
+    "ts"
+  ],
+  "tags": [
+    "migration",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for prisma migration in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "prisma-migration-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/prisma-migration.ts",
+      "template": "# Spike: prisma migration (ts)\n// Auto-generated spike stub for prisma (migration)\nexport function demo() {\n  console.log('use prisma - migration (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-prisma-migration-typed-ts.ts.txt",
+      "template": "# Spike: prisma migration (ts)\n// Auto-generated spike stub for prisma (migration)\nexport function demo() {\n  console.log('use prisma - migration (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-prisma-migration-typed-ts.md",
+      "template": "# prisma migration (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

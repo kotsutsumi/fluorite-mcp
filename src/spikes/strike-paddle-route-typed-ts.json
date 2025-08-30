@@ -1,0 +1,41 @@
+{
+  "id": "strike-paddle-route-typed-ts",
+  "name": "paddle route typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "paddle",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for paddle route in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "paddle-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/paddle-route.ts",
+      "template": "# Spike: paddle route (ts)\n// Auto-generated spike stub for paddle (route)\nexport function demo() {\n  console.log('use paddle - route (typed)');\n}\n"
+    },
+    {
+      "path": "src/payments/paddle.ts",
+      "template": "export function paddle(){ return { vendorId: process.env.PADDLE_VENDOR_ID }; }\n"
+    },
+    {
+      "path": "spikes/strike-paddle-route-typed-ts.ts.txt",
+      "template": "# Spike: paddle route (ts)\n// Auto-generated spike stub for paddle (route)\nexport function demo() {\n  console.log('use paddle - route (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-paddle-route-typed-ts.md",
+      "template": "# paddle route (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

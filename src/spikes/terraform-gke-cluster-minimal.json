@@ -1,0 +1,12 @@
+{
+  "id": "terraform-gke-cluster-minimal",
+  "name": "Terraform GKE クラスタ 最小",
+  "version": "1.0.0",
+  "stack": ["terraform", "gke"],
+  "tags": ["terraform", "gke"],
+  "description": "GKEクラスタを作成する最小Terraform（概念、実行には認証/課金設定が必要）。",
+  "files": [
+    { "path": "terraform/main.tf", "template": "terraform { required_providers { google = { source = \"hashicorp/google\" version = \"~> 5.0\" } } }\nprovider \"google\" { project = var.project region = var.region }\nresource \"google_container_cluster\" \"primary\" { name = var.cluster_name location = var.region initial_node_count = 1 }\nvariable \"project\" { type = string }\nvariable \"region\" { type = string }\nvariable \"cluster_name\" { type = string }\n" }
+  ]
+}
+

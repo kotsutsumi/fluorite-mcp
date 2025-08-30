@@ -1,0 +1,41 @@
+{
+  "id": "strike-starlight-benchmark-testing-ts",
+  "name": "starlight benchmark testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "starlight",
+    "ts"
+  ],
+  "tags": [
+    "benchmark",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for starlight benchmark in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "starlight-benchmark-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/starlight-benchmark.ts",
+      "template": "# Spike: starlight benchmark (ts)\n// Auto-generated spike stub for starlight (benchmark)\nexport function demo() {\n  console.log('use starlight - benchmark (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-starlight-benchmark-testing-ts.ts.txt",
+      "template": "# Spike: starlight benchmark (ts)\n// Auto-generated spike stub for starlight (benchmark)\nexport function demo() {\n  console.log('use starlight - benchmark (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-starlight-benchmark-testing-ts.md",
+      "template": "# starlight benchmark (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-starlight-benchmark-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

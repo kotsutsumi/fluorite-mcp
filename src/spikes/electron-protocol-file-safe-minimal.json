@@ -1,0 +1,14 @@
+{
+  "id": "electron-protocol-file-safe-minimal",
+  "name": "Electron file:// プロトコル安全化 最小",
+  "version": "1.0.0",
+  "stack": ["electron"],
+  "tags": ["electron", "protocol", "security"],
+  "description": "registerFileProtocolで許可ディレクトリ配下のみ読み込む最小例。",
+  "params": [{ "name": "app_name", "default": "electron-protocol" }],
+  "files": [
+    { "path": "{{app_name}}/main.js", "template": "const { app, BrowserWindow, protocol } = require('electron');\nconst path = require('path'); const fs = require('fs');\nfunction safePath(requestUrl){ try { const url = new URL(requestUrl); const p = path.normalize(decodeURIComponent(url.pathname)); const base = path.join(__dirname, 'public'); const full = path.join(base, p); if (!full.startsWith(base)) return null; return full; } catch { return null; } }\napp.whenReady().then(()=>{ protocol.registerFileProtocol('safe', (req, cb)=> { const target = safePath(req.url); if (!target || !fs.existsSync(target)) return cb({ error: -6 }); cb(target); }); const win = new BrowserWindow({ webPreferences: { contextIsolation: true } }); win.loadURL('safe://host/index.html'); });\n" },
+    { "path": "{{app_name}}/public/index.html", "template": "<!doctype html><html><body><h1>Safe file protocol</h1></body></html>\n" }
+  ]
+}
+

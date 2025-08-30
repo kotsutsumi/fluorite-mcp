@@ -1,0 +1,43 @@
+{
+  "id": "strike-redis-pipeline-secure-py",
+  "name": "redis pipeline secure py",
+  "version": "0.1.0",
+  "stack": [
+    "redis",
+    "py"
+  ],
+  "tags": [
+    "pipeline",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for redis pipeline in py (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "redis-pipeline-app"
+    },
+    {
+      "name": "redisUrl",
+      "required": false,
+      "description": "Redis 接続URL",
+      "default": "redis://localhost:6379"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/redis-pipeline.py",
+      "template": "# Spike: redis pipeline (py)\n# Auto-generated spike stub for redis (pipeline)\ndef demo():\n    print('use redis - pipeline (secure)')\n"
+    },
+    {
+      "path": "spikes/strike-redis-pipeline-secure-py.py.txt",
+      "template": "# Spike: redis pipeline (py)\n# Auto-generated spike stub for redis (pipeline)\ndef demo():\n    print('use redis - pipeline (secure)')\n"
+    },
+    {
+      "path": "spikes/strike-redis-pipeline-secure-py.md",
+      "template": "# redis pipeline (secure, py)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

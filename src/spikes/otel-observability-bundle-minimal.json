@@ -1,0 +1,13 @@
+{
+  "id": "otel-observability-bundle-minimal",
+  "name": "OTel 観測バンドル(Traces+Metrics+Logs) 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry", "node"],
+  "tags": ["otel", "traces", "metrics", "logs"],
+  "description": "トレース(コンソール) + メトリクス(コンソール) + pinoログを同時に扱う最小サンプル。",
+  "files": [
+    { "path": "otel/init.js", "template": "const { NodeTracerProvider } = require('@opentelemetry/sdk-trace-node');\nconst { SimpleSpanProcessor, ConsoleSpanExporter } = require('@opentelemetry/sdk-trace-base');\nconst { MeterProvider, PeriodicExportingMetricReader, ConsoleMetricExporter } = require('@opentelemetry/sdk-metrics');\nconst provider = new NodeTracerProvider();\nprovider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));\nprovider.register();\nconst meterProvider = new MeterProvider();\nmeterProvider.addMetricReader(new PeriodicExportingMetricReader({ exporter: new ConsoleMetricExporter(), exportIntervalMillis: 2000 }));\nmodule.exports = { tracer: require('@opentelemetry/api').trace.getTracer('bundle'), meter: meterProvider.getMeter('bundle') };\n" },
+    { "path": "server.js", "template": "const { tracer, meter } = require('./otel/init');\nconst pino = require('pino')();\nconst express = require('express');\nconst app = express();\nconst counter = meter.createCounter('requests');\napp.get('/work', (_req,res)=> { counter.add(1); const span = tracer.startSpan('work'); setTimeout(()=>{ span.end(); pino.info('done'); res.json({ ok: true }); }, 200); });\napp.listen(3000, ()=> pino.info('listening on 3000'));\n" }
+  ]
+}
+

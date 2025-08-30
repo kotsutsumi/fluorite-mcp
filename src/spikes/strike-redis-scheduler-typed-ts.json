@@ -1,0 +1,43 @@
+{
+  "id": "strike-redis-scheduler-typed-ts",
+  "name": "redis scheduler typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "redis",
+    "ts"
+  ],
+  "tags": [
+    "scheduler",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for redis scheduler in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "redis-scheduler-app"
+    },
+    {
+      "name": "redisUrl",
+      "required": false,
+      "description": "Redis 接続URL",
+      "default": "redis://localhost:6379"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/redis-scheduler.ts",
+      "template": "# Spike: redis scheduler (ts)\n// Auto-generated spike stub for redis (scheduler)\nexport function demo() {\n  console.log('use redis - scheduler (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-scheduler-typed-ts.ts.txt",
+      "template": "# Spike: redis scheduler (ts)\n// Auto-generated spike stub for redis (scheduler)\nexport function demo() {\n  console.log('use redis - scheduler (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-scheduler-typed-ts.md",
+      "template": "# redis scheduler (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

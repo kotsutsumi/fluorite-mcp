@@ -1,0 +1,37 @@
+{
+  "id": "strike-nats-pipeline-typed-ts",
+  "name": "nats pipeline typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "nats",
+    "ts"
+  ],
+  "tags": [
+    "pipeline",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nats pipeline in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nats-pipeline-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/nats-pipeline.ts",
+      "template": "# Spike: nats pipeline (ts)\n// Auto-generated spike stub for nats (pipeline)\nexport function demo() {\n  console.log('use nats - pipeline (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nats-pipeline-typed-ts.ts.txt",
+      "template": "# Spike: nats pipeline (ts)\n// Auto-generated spike stub for nats (pipeline)\nexport function demo() {\n  console.log('use nats - pipeline (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nats-pipeline-typed-ts.md",
+      "template": "# nats pipeline (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,13 @@
+{
+  "id": "otel-instrumentations-toggle-sample",
+  "name": "OTel Instrumentations 切替サンプル(http/pg/redis/kafka/rabbit)",
+  "version": "1.0.0",
+  "stack": ["opentelemetry", "node"],
+  "tags": ["otel", "instrumentation", "toggle"],
+  "description": "環境変数で各instrumentation(http/pg/ioredis/kafkajs/amqplib)を有効/無効にする最小サンプル。",
+  "files": [
+    { "path": "otel/init.js", "template": "const { NodeTracerProvider } = require('@opentelemetry/sdk-trace-node');\nconst { registerInstrumentations } = require('@opentelemetry/instrumentation');\nconst { HttpInstrumentation } = require('@opentelemetry/instrumentation-http');\nconst { PgInstrumentation } = require('@opentelemetry/instrumentation-pg');\nconst { IORedisInstrumentation } = require('@opentelemetry/instrumentation-ioredis');\nconst { KafkaJsInstrumentation } = require('@opentelemetry/instrumentation-kafkajs');\nconst { AmqplibInstrumentation } = require('@opentelemetry/instrumentation-amqplib');\nconst { SimpleSpanProcessor, ConsoleSpanExporter } = require('@opentelemetry/sdk-trace-base');\nconst provider = new NodeTracerProvider();\nprovider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));\nprovider.register();\nconst instr = [];\nif (process.env.OTEL_HTTP !== '0') instr.push(new HttpInstrumentation());\nif (process.env.OTEL_PG === '1') instr.push(new PgInstrumentation());\nif (process.env.OTEL_REDIS === '1') instr.push(new IORedisInstrumentation());\nif (process.env.OTEL_KAFKA === '1') instr.push(new KafkaJsInstrumentation());\nif (process.env.OTEL_RABBIT === '1') instr.push(new AmqplibInstrumentation());\nregisterInstrumentations({ instrumentations: instr });\nmodule.exports = require('@opentelemetry/api').trace.getTracer('instr-toggle');\n" },
+    { "path": "server.js", "template": "require('./otel/init');\nconst express = require('express');\nconst app = express();\napp.get('/ping', (_req,res)=> res.json({ ok: true }));\napp.listen(3000, ()=> console.log('listening on 3000'));\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "remix-error-boundary-minimal",
+  "name": "Remix ErrorBoundary 最小",
+  "version": "1.0.0",
+  "stack": ["remix"],
+  "tags": ["remix", "error-boundary"],
+  "description": "RemixルートにErrorBoundary/loaderを実装する最小例。",
+  "files": [
+    { "path": "app/routes/_index.tsx", "template": "import type { LoaderFunctionArgs } from '@remix-run/node';\nimport { json } from '@remix-run/node';\nexport async function loader(_args: LoaderFunctionArgs){ return json({ ok: true }); }\nexport default function Index(){ return (<main><h1>Hello</h1></main>); }\nexport function ErrorBoundary(){ return (<main><h1>Something went wrong</h1></main>); }\n" }
+  ]
+}
+

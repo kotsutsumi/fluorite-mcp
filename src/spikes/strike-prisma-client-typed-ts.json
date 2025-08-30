@@ -1,0 +1,41 @@
+{
+  "id": "strike-prisma-client-typed-ts",
+  "name": "prisma client typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "prisma",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for prisma client in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "prisma-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/prisma-client.ts",
+      "template": "# Spike: prisma client (ts)\n// Auto-generated spike stub for prisma (client)\nexport function demo() {\n  console.log('use prisma - client (typed)');\n}\n"
+    },
+    {
+      "path": "src/db/client.ts",
+      "template": "import { PrismaClient } from '@prisma/client';\nexport const prisma = new PrismaClient();\n"
+    },
+    {
+      "path": "spikes/strike-prisma-client-typed-ts.ts.txt",
+      "template": "# Spike: prisma client (ts)\n// Auto-generated spike stub for prisma (client)\nexport function demo() {\n  console.log('use prisma - client (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-prisma-client-typed-ts.md",
+      "template": "# prisma client (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

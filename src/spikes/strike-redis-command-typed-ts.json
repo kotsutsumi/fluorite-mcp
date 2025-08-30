@@ -1,0 +1,43 @@
+{
+  "id": "strike-redis-command-typed-ts",
+  "name": "redis command typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "redis",
+    "ts"
+  ],
+  "tags": [
+    "command",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for redis command in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "redis-command-app"
+    },
+    {
+      "name": "redisUrl",
+      "required": false,
+      "description": "Redis 接続URL",
+      "default": "redis://localhost:6379"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/redis-command.ts",
+      "template": "# Spike: redis command (ts)\n// Auto-generated spike stub for redis (command)\nexport function demo() {\n  console.log('use redis - command (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-command-typed-ts.ts.txt",
+      "template": "# Spike: redis command (ts)\n// Auto-generated spike stub for redis (command)\nexport function demo() {\n  console.log('use redis - command (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-command-typed-ts.md",
+      "template": "# redis command (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

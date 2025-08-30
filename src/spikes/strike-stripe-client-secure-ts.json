@@ -1,0 +1,41 @@
+{
+  "id": "strike-stripe-client-secure-ts",
+  "name": "stripe client secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "stripe",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for stripe client in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "stripe-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/stripe-client.ts",
+      "template": "# Spike: stripe client (ts)\n// Auto-generated spike stub for stripe (client)\nexport function demo() {\n  console.log('use stripe - client (secure)');\n}\n"
+    },
+    {
+      "path": "src/stripe/client.ts",
+      "template": "import Stripe from 'stripe';\nexport const stripe = new Stripe(process.env.STRIPE_API_KEY || '', { apiVersion: '2024-06-20' as any });\n"
+    },
+    {
+      "path": "spikes/strike-stripe-client-secure-ts.ts.txt",
+      "template": "# Spike: stripe client (ts)\n// Auto-generated spike stub for stripe (client)\nexport function demo() {\n  console.log('use stripe - client (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-stripe-client-secure-ts.md",
+      "template": "# stripe client (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

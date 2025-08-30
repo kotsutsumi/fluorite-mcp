@@ -1,0 +1,41 @@
+{
+  "id": "strike-nextjs-docs-testing-ts",
+  "name": "nextjs docs testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "nextjs",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nextjs docs in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nextjs-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/nextjs-docs.ts",
+      "template": "# Spike: nextjs docs (ts)\n// Auto-generated spike stub for nextjs (docs)\nexport function demo() {\n  console.log('use nextjs - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-docs-testing-ts.ts.txt",
+      "template": "# Spike: nextjs docs (ts)\n// Auto-generated spike stub for nextjs (docs)\nexport function demo() {\n  console.log('use nextjs - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-docs-testing-ts.md",
+      "template": "# nextjs docs (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-docs-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

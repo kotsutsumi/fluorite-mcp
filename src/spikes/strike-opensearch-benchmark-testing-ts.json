@@ -1,0 +1,41 @@
+{
+  "id": "strike-opensearch-benchmark-testing-ts",
+  "name": "opensearch benchmark testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "opensearch",
+    "ts"
+  ],
+  "tags": [
+    "benchmark",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for opensearch benchmark in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "opensearch-benchmark-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/opensearch-benchmark.ts",
+      "template": "# Spike: opensearch benchmark (ts)\n// Auto-generated spike stub for opensearch (benchmark)\nexport function demo() {\n  console.log('use opensearch - benchmark (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-opensearch-benchmark-testing-ts.ts.txt",
+      "template": "# Spike: opensearch benchmark (ts)\n// Auto-generated spike stub for opensearch (benchmark)\nexport function demo() {\n  console.log('use opensearch - benchmark (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-opensearch-benchmark-testing-ts.md",
+      "template": "# opensearch benchmark (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-opensearch-benchmark-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,43 @@
+{
+  "id": "strike-redis-cron-secure-ts",
+  "name": "redis cron secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "redis",
+    "ts"
+  ],
+  "tags": [
+    "cron",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for redis cron in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "redis-cron-app"
+    },
+    {
+      "name": "redisUrl",
+      "required": false,
+      "description": "Redis 接続URL",
+      "default": "redis://localhost:6379"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/redis-cron.ts",
+      "template": "# Spike: redis cron (ts)\n// Auto-generated spike stub for redis (cron)\nexport function demo() {\n  console.log('use redis - cron (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-cron-secure-ts.ts.txt",
+      "template": "# Spike: redis cron (ts)\n// Auto-generated spike stub for redis (cron)\nexport function demo() {\n  console.log('use redis - cron (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-cron-secure-ts.md",
+      "template": "# redis cron (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

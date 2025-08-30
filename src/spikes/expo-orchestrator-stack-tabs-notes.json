@@ -1,0 +1,12 @@
+{
+  "id": "expo-orchestrator-stack-tabs-notes",
+  "name": "Expo Orchestrator Stack/Tabs 併用ノート",
+  "version": "1.0.0",
+  "stack": ["expo", "react-native", "react-navigation", "docs"],
+  "tags": ["expo", "navigation", "deeplink", "notifications", "docs"],
+  "description": "Stack/Tabs構成でDeepLink/通知遷移を扱う際の注意点とパターン。",
+  "files": [
+    { "path": "docs/expo-orchestrator-stack-tabs.md", "template": "# Orchestrator Stack/Tabs Notes\n\n- Linking: Tabs配下のscreenに対するパスをconfigで明示\n- 冷/温起動: NavigationContainerRefのreadinessを待って`Linking.openURL()`\n- タブ遷移: 通知payload→link生成→openURLで適切なタブへ\n- Back stack: DeepLinkで入った時の戻る挙動に注意（Stack初期化）\n- 例: `expo-operational-preset-complete`, `expo-notify-deeplink-orchestrator`.\n" }
+  ]
+}
+

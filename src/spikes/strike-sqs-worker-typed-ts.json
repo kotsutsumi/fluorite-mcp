@@ -1,0 +1,37 @@
+{
+  "id": "strike-sqs-worker-typed-ts",
+  "name": "sqs worker typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "sqs",
+    "ts"
+  ],
+  "tags": [
+    "worker",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for sqs worker in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sqs-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/sqs-worker.ts",
+      "template": "# Spike: sqs worker (ts)\n// Auto-generated spike stub for sqs (worker)\nexport function demo() {\n  console.log('use sqs - worker (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sqs-worker-typed-ts.ts.txt",
+      "template": "# Spike: sqs worker (ts)\n// Auto-generated spike stub for sqs (worker)\nexport function demo() {\n  console.log('use sqs - worker (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sqs-worker-typed-ts.md",
+      "template": "# sqs worker (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

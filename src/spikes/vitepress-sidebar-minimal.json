@@ -1,0 +1,14 @@
+{
+  "id": "vitepress-sidebar-minimal",
+  "name": "VitePress サイドバー 最小",
+  "version": "1.0.0",
+  "stack": ["vitepress"],
+  "tags": ["vitepress", "sidebar"],
+  "description": "VitePressのsidebar設定の最小。",
+  "params": [{ "name": "app_name", "default": "vitepress-docs" }, { "name": "title", "default": "My Docs" }],
+  "files": [
+    { "path": "{{app_name}}/.vitepress/config.ts", "template": "import { defineConfig } from 'vitepress';\nexport default defineConfig({ title: '{{title}}', themeConfig: { sidebar: [{ text: 'Guide', items: [{ text: 'Intro', link: '/' }] }] } });\n" },
+    { "path": "{{app_name}}/index.md", "template": "# {{title}}\n\nWelcome to VitePress sidebar minimal.\n" }
+  ]
+}
+

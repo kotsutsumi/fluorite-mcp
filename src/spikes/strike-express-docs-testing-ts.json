@@ -1,0 +1,41 @@
+{
+  "id": "strike-express-docs-testing-ts",
+  "name": "express docs testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express docs in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/express-docs.ts",
+      "template": "# Spike: express docs (ts)\n// Auto-generated spike stub for express (docs)\nexport function demo() {\n  console.log('use express - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-express-docs-testing-ts.ts.txt",
+      "template": "# Spike: express docs (ts)\n// Auto-generated spike stub for express (docs)\nexport function demo() {\n  console.log('use express - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-express-docs-testing-ts.md",
+      "template": "# express docs (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-express-docs-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

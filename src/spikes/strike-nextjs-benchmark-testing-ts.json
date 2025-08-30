@@ -1,0 +1,41 @@
+{
+  "id": "strike-nextjs-benchmark-testing-ts",
+  "name": "nextjs benchmark testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "nextjs",
+    "ts"
+  ],
+  "tags": [
+    "benchmark",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nextjs benchmark in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nextjs-benchmark-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/nextjs-benchmark.ts",
+      "template": "# Spike: nextjs benchmark (ts)\n// Auto-generated spike stub for nextjs (benchmark)\nexport function demo() {\n  console.log('use nextjs - benchmark (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-benchmark-testing-ts.ts.txt",
+      "template": "# Spike: nextjs benchmark (ts)\n// Auto-generated spike stub for nextjs (benchmark)\nexport function demo() {\n  console.log('use nextjs - benchmark (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-benchmark-testing-ts.md",
+      "template": "# nextjs benchmark (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-nextjs-benchmark-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

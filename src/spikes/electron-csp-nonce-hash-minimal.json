@@ -1,0 +1,15 @@
+{
+  "id": "electron-csp-nonce-hash-minimal",
+  "name": "Electron CSP nonce/hash 最小例",
+  "version": "1.0.0",
+  "stack": ["electron"],
+  "tags": ["electron", "csp", "nonce", "hash"],
+  "description": "CSPをnonce/hashで厳格化する最小例（インラインscriptにnonce、もしくはhashを付与）。",
+  "params": [{ "name": "app_name", "default": "electron-csp-nonce" }],
+  "files": [
+    { "path": "{{app_name}}/main.js", "template": "const { app, BrowserWindow } = require('electron');\nasync function createWindow(){ const win = new BrowserWindow({ webPreferences: { contextIsolation: true, nodeIntegration: false } }); await win.loadFile('index.html'); }\napp.whenReady().then(createWindow);\n" },
+    { "path": "{{app_name}}/index.html", "template": "<!doctype html><html><head>\n<meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'self'; script-src 'self' 'nonce-abc123'; style-src 'self' 'unsafe-inline';\">\n<meta charset=\"utf-8\">\n</head><body>\n<h1>CSP nonce</h1>\n<script nonce=\"abc123\">console.log('nonce ok');</script>\n</body></html>\n" },
+    { "path": "{{app_name}}/index-hash.html", "template": "<!doctype html><html><head>\n<meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'self'; script-src 'self' 'sha256-sqK8uA0fY+3gYQ0y8kzv5m7Q9qN3fYy8dK1k0JmH2lA='; style-src 'self' 'unsafe-inline';\">\n<meta charset=\"utf-8\">\n</head><body>\n<h1>CSP hash</h1>\n<!-- The following inline script must match the sha256 above -->\n<script>console.log('hash ok');</script>\n</body></html>\n" }
+  ]
+}
+

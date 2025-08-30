@@ -1,0 +1,14 @@
+{
+  "id": "otel-observability-unified",
+  "name": "OTel 観測統合テンプレ(Exporter切替+Collector)",
+  "version": "1.0.0",
+  "stack": ["opentelemetry", "node", "collector"],
+  "tags": ["otel", "traces", "metrics", "logs", "collector"],
+  "description": "Traces/Metrics/Logs + Exporter切替(Console/OTLP/Prom) + Collector接続の統合テンプレ。",
+  "files": [
+    { "path": "otel/init.js", "template": "const useOtlp = process.env.OTLP === '1'; const useProm = process.env.PROM === '1';\nconst { NodeTracerProvider } = require('@opentelemetry/sdk-trace-node');\nconst { SimpleSpanProcessor, ConsoleSpanExporter, BatchSpanProcessor } = require('@opentelemetry/sdk-trace-base');\nconst { MeterProvider, PeriodicExportingMetricReader, ConsoleMetricExporter } = require('@opentelemetry/sdk-metrics');\nconst { OTLPTraceExporter } = require('@opentelemetry/exporter-trace-otlp-http');\nconst { PrometheusExporter } = require('@opentelemetry/exporter-prometheus');\nconst tracerProvider = new NodeTracerProvider();\nif (useOtlp) tracerProvider.addSpanProcessor(new BatchSpanProcessor(new OTLPTraceExporter({ url: process.env.OTLP_URL || 'http://localhost:4318/v1/traces' })));\nelse tracerProvider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));\ntracerProvider.register();\nconst meterProvider = new MeterProvider();\nif (useProm) meterProvider.addMetricReader(new PrometheusExporter({ port: 9464, endpoint: '/metrics' }));\nelse meterProvider.addMetricReader(new PeriodicExportingMetricReader({ exporter: new ConsoleMetricExporter(), exportIntervalMillis: 2000 }));\nmodule.exports = { tracer: require('@opentelemetry/api').trace.getTracer('unified'), meter: meterProvider.getMeter('unified') };\n" },
+    { "path": "server.js", "template": "const { tracer, meter } = require('./otel/init');\nconst pino = require('pino')();\nconst express = require('express');\nconst app = express();\nconst counter = meter.createCounter('requests');\napp.get('/work', (_req,res)=> { counter.add(1); const span = tracer.startSpan('work'); setTimeout(()=>{ span.end(); pino.info('done'); res.json({ ok: true }); }, 150); });\napp.listen(3000, ()=> pino.info('listening on 3000'));\n" },
+    { "path": "docs/README-observability-unified.md", "template": "# Observability Unified\n\n- Exporter切替: `OTLP=1` でCollectorへ、`PROM=1`でPrometheusメトリクス、未指定でConsole出力\n- Collector(local): `otel-collector-docker-compose-minimal` を参照\n- Logs: pinoのConsole出力（Stackdriver等は別途フォワーディング）\n" }
+  ]
+}
+

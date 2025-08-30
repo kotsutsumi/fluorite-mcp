@@ -1,0 +1,37 @@
+{
+  "id": "strike-prisma-seed-secure-ts",
+  "name": "prisma seed secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "prisma",
+    "ts"
+  ],
+  "tags": [
+    "seed",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for prisma seed in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "prisma-seed-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/prisma-seed.ts",
+      "template": "# Spike: prisma seed (ts)\n// Auto-generated spike stub for prisma (seed)\nexport function demo() {\n  console.log('use prisma - seed (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-prisma-seed-secure-ts.ts.txt",
+      "template": "# Spike: prisma seed (ts)\n// Auto-generated spike stub for prisma (seed)\nexport function demo() {\n  console.log('use prisma - seed (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-prisma-seed-secure-ts.md",
+      "template": "# prisma seed (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

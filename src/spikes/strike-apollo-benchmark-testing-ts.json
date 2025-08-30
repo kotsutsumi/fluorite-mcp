@@ -1,0 +1,41 @@
+{
+  "id": "strike-apollo-benchmark-testing-ts",
+  "name": "apollo benchmark testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "apollo",
+    "ts"
+  ],
+  "tags": [
+    "benchmark",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for apollo benchmark in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "apollo-benchmark-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/apollo-benchmark.ts",
+      "template": "# Spike: apollo benchmark (ts)\n// Auto-generated spike stub for apollo (benchmark)\nexport function demo() {\n  console.log('use apollo - benchmark (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-apollo-benchmark-testing-ts.ts.txt",
+      "template": "# Spike: apollo benchmark (ts)\n// Auto-generated spike stub for apollo (benchmark)\nexport function demo() {\n  console.log('use apollo - benchmark (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-apollo-benchmark-testing-ts.md",
+      "template": "# apollo benchmark (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-apollo-benchmark-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

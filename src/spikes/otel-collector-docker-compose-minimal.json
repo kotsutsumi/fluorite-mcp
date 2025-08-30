@@ -1,0 +1,14 @@
+{
+  "id": "otel-collector-docker-compose-minimal",
+  "name": "OTel Collector docker-compose 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry", "collector", "docker"],
+  "tags": ["otel", "collector", "docker"],
+  "description": "OTLP受信→logging exporterの最小Collector構成（docker-compose）。",
+  "files": [
+    { "path": "otel/docker-compose.yml", "template": "version: '3'\nservices:\n  otel-collector:\n    image: otel/opentelemetry-collector:latest\n    command: [\"--config=/etc/otel-collector-config.yaml\"]\n    ports: [\"4318:4318\"]\n    volumes:\n      - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml:ro\n" },
+    { "path": "otel/otel-collector-config.yaml", "template": "receivers:\n  otlp:\n    protocols:\n      http:\nexporters:\n  logging: {}\nprocessors:\n  batch: {}\nextensions: {}\nservice:\n  pipelines:\n    traces:\n      receivers: [otlp]\n      processors: [batch]\n      exporters: [logging]\n" },
+    { "path": "docs/otel-collector-compose.md", "template": "# Collector with docker-compose\n\n- Start: `docker compose -f otel/docker-compose.yml up -d`\n- Send traces: set `OTLP_URL=http://localhost:4318/v1/traces` in your app\n- Logs appear in collector stdout\n" }
+  ]
+}
+

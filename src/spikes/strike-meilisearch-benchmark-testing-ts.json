@@ -1,0 +1,41 @@
+{
+  "id": "strike-meilisearch-benchmark-testing-ts",
+  "name": "meilisearch benchmark testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "meilisearch",
+    "ts"
+  ],
+  "tags": [
+    "benchmark",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for meilisearch benchmark in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "meilisearch-benchmark-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/meilisearch-benchmark.ts",
+      "template": "# Spike: meilisearch benchmark (ts)\n// Auto-generated spike stub for meilisearch (benchmark)\nexport function demo() {\n  console.log('use meilisearch - benchmark (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-meilisearch-benchmark-testing-ts.ts.txt",
+      "template": "# Spike: meilisearch benchmark (ts)\n// Auto-generated spike stub for meilisearch (benchmark)\nexport function demo() {\n  console.log('use meilisearch - benchmark (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-meilisearch-benchmark-testing-ts.md",
+      "template": "# meilisearch benchmark (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-meilisearch-benchmark-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

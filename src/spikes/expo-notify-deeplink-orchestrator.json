@@ -1,0 +1,14 @@
+{
+  "id": "expo-notify-deeplink-orchestrator",
+  "name": "Expo 通知→DeepLink オーケストレーター 最小",
+  "version": "1.0.0",
+  "stack": ["expo", "react-native", "react-navigation", "notifications"],
+  "tags": ["expo", "notifications", "deeplink", "navigation"],
+  "description": "通知payload(data)からDeep Linkを生成し、冷/温起動どちらでも所望の画面に遷移する最小例。",
+  "params": [{ "name": "scheme", "default": "myapp://" }],
+  "files": [
+    { "path": "utils/notificationToLink.ts", "template": "export type RouteData = { route?: string; params?: Record<string,string|number> };\nexport function notificationToLink(scheme: string, data: RouteData){\n  const route = data?.route || ''; const params = data?.params || {};\n  const qp = Object.entries(params).map(([k,v])=> `${encodeURIComponent(k)}=${encodeURIComponent(String(v))}`).join('&');\n  return scheme.replace(/\\/$/, '') + '/' + route + (qp?`?${qp}`:'');\n}\n" },
+    { "path": "App.tsx", "template": "import React, { useEffect } from 'react';\nimport { NavigationContainer, createNavigationContainerRef } from '@react-navigation/native';\nimport { createNativeStackNavigator } from '@react-navigation/native-stack';\nimport { SafeAreaView, Text } from 'react-native';\nimport * as Notifications from 'expo-notifications';\nimport * as Linking from 'expo-linking';\nimport { notificationToLink } from './utils/notificationToLink';\nconst Stack = createNativeStackNavigator();\nconst navRef = createNavigationContainerRef<any>();\nfunction Home(){ return (<SafeAreaView><Text>Home</Text></SafeAreaView>); }\nfunction Details({ route }: any){ return (<SafeAreaView><Text>Details id={route.params?.id}</Text></SafeAreaView>); }\nexport default function App(){\n  const scheme = process.env.LINK_SCHEME || '{{scheme}}';\n  useEffect(()=>{ const sub = Notifications.addNotificationResponseReceivedListener((resp)=>{ const data = resp.notification.request.content.data as any; const link = notificationToLink(scheme, data); if (navRef.isReady()) Linking.openURL(link); }); return ()=> sub.remove(); },[]);\n  useEffect(()=>{ (async()=>{ const initial = await Notifications.getLastNotificationResponseAsync(); if (initial){ const data = initial.notification.request.content.data as any; const link = notificationToLink(scheme, data); const open = ()=> Linking.openURL(link); if (navRef.isReady()) open(); else setTimeout(open, 300); } })(); },[]);\n  const linking = { prefixes: [scheme], config: { screens: { Home: '', Details: 'details' } } };\n  return (\n    <NavigationContainer ref={navRef} linking={linking}>\n      <Stack.Navigator>\n        <Stack.Screen name=\"Home\" component={Home} />\n        <Stack.Screen name=\"Details\" component={Details} />\n      </Stack.Navigator>\n    </NavigationContainer>\n  );\n}\n" }
+  ]
+}
+

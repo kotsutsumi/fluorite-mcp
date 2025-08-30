@@ -1,0 +1,41 @@
+{
+  "id": "strike-meilisearch-example-testing-js",
+  "name": "meilisearch example testing js",
+  "version": "0.1.0",
+  "stack": [
+    "meilisearch",
+    "js"
+  ],
+  "tags": [
+    "example",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for meilisearch example in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "meilisearch-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/meilisearch-example.js",
+      "template": "# Spike: meilisearch example (js)\n// Auto-generated spike stub for meilisearch (example)\nmodule.exports = function demo(){\n  console.log('use meilisearch - example (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-meilisearch-example-testing-js.js.txt",
+      "template": "# Spike: meilisearch example (js)\n// Auto-generated spike stub for meilisearch (example)\nmodule.exports = function demo(){\n  console.log('use meilisearch - example (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-meilisearch-example-testing-js.md",
+      "template": "# meilisearch example (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-meilisearch-example-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

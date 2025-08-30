@@ -1,0 +1,43 @@
+{
+  "id": "strike-redis-seed-secure-ts",
+  "name": "redis seed secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "redis",
+    "ts"
+  ],
+  "tags": [
+    "seed",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for redis seed in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "redis-seed-app"
+    },
+    {
+      "name": "redisUrl",
+      "required": false,
+      "description": "Redis 接続URL",
+      "default": "redis://localhost:6379"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/redis-seed.ts",
+      "template": "# Spike: redis seed (ts)\n// Auto-generated spike stub for redis (seed)\nexport function demo() {\n  console.log('use redis - seed (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-seed-secure-ts.ts.txt",
+      "template": "# Spike: redis seed (ts)\n// Auto-generated spike stub for redis (seed)\nexport function demo() {\n  console.log('use redis - seed (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-seed-secure-ts.md",
+      "template": "# redis seed (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

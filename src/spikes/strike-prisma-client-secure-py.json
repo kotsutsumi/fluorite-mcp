@@ -1,0 +1,41 @@
+{
+  "id": "strike-prisma-client-secure-py",
+  "name": "prisma client secure py",
+  "version": "0.1.0",
+  "stack": [
+    "prisma",
+    "py"
+  ],
+  "tags": [
+    "client",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for prisma client in py (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "prisma-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/prisma-client.py",
+      "template": "# Spike: prisma client (py)\n# Auto-generated spike stub for prisma (client)\ndef demo():\n    print('use prisma - client (secure)')\n"
+    },
+    {
+      "path": "src/db/client.ts",
+      "template": "import { PrismaClient } from '@prisma/client';\nexport const prisma = new PrismaClient();\n"
+    },
+    {
+      "path": "spikes/strike-prisma-client-secure-py.py.txt",
+      "template": "# Spike: prisma client (py)\n# Auto-generated spike stub for prisma (client)\ndef demo():\n    print('use prisma - client (secure)')\n"
+    },
+    {
+      "path": "spikes/strike-prisma-client-secure-py.md",
+      "template": "# prisma client (secure, py)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

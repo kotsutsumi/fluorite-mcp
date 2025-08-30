@@ -1030,6 +1030,11 @@ All library specifications include proper attribution and licensing information 
 
 Note: synth は仮想生成テンプレート（gen-*/strike-*）を列挙し、必要に応じて `src/spikes/` に JSON を書き出します（`--write` 指定時のみ）。
 
+### MCP ツールでの列挙（開発中）
+- `list-generated-spikes` ツールで strike/gen の仮想IDを高速列挙できます。
+  - 例: `list-generated-spikes { libs: ["nextjs","fastapi"], patterns: ["route"], styles: ["typed","secure"], langs: ["ts","py"], limit: 50, prefix: "strike" }`
+- 物理ファイル化はスクリプト推奨: `npm run materialize:spikes -- --libs nextjs,fastapi --patterns route --styles typed,secure --langs ts,py --limit 500 --prefix strike`
+
 #### 運用のコツ（重複回避と段階投入）
 - まず dry-run で重複確認: `node dist/cli/index.js spikes synth --filter '^strike-' --max 1000`
 - 既存ファイルはデフォルトで skip。上書きは基本禁止。どうしても必要なら `--overwrite` を明示

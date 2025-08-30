@@ -1,0 +1,41 @@
+{
+  "id": "strike-graphql-example-testing-py",
+  "name": "graphql example testing py",
+  "version": "0.1.0",
+  "stack": [
+    "graphql",
+    "py"
+  ],
+  "tags": [
+    "example",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for graphql example in py (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "graphql-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/graphql-example.py",
+      "template": "# Spike: graphql example (py)\n# Auto-generated spike stub for graphql (example)\ndef demo():\n    print('use graphql - example (testing)')\n"
+    },
+    {
+      "path": "spikes/strike-graphql-example-testing-py.py.txt",
+      "template": "# Spike: graphql example (py)\n# Auto-generated spike stub for graphql (example)\ndef demo():\n    print('use graphql - example (testing)')\n"
+    },
+    {
+      "path": "spikes/strike-graphql-example-testing-py.md",
+      "template": "# graphql example (testing, py)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-graphql-example-testing-py_test.py",
+      "template": "def test_demo():\n    assert True\n"
+    }
+  ],
+  "patches": []
+}

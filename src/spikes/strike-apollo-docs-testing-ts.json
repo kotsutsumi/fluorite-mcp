@@ -1,0 +1,41 @@
+{
+  "id": "strike-apollo-docs-testing-ts",
+  "name": "apollo docs testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "apollo",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for apollo docs in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "apollo-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/apollo-docs.ts",
+      "template": "# Spike: apollo docs (ts)\n// Auto-generated spike stub for apollo (docs)\nexport function demo() {\n  console.log('use apollo - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-apollo-docs-testing-ts.ts.txt",
+      "template": "# Spike: apollo docs (ts)\n// Auto-generated spike stub for apollo (docs)\nexport function demo() {\n  console.log('use apollo - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-apollo-docs-testing-ts.md",
+      "template": "# apollo docs (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-apollo-docs-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

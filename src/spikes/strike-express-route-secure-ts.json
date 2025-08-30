@@ -1,0 +1,37 @@
+{
+  "id": "strike-express-route-secure-ts",
+  "name": "express route secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express route in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/express-route.ts",
+      "template": "# Spike: express route (ts)\nimport express, { Request, Response } from 'express';\nconst app = express();\napp.get('/health', (req: Request, res: Response) => { res.json({ ok: true }); });\napp.listen(3000);\n"
+    },
+    {
+      "path": "spikes/strike-express-route-secure-ts.ts.txt",
+      "template": "# Spike: express route (ts)\nimport express, { Request, Response } from 'express';\nconst app = express();\napp.get('/health', (req: Request, res: Response) => { res.json({ ok: true }); });\napp.listen(3000);\n"
+    },
+    {
+      "path": "spikes/strike-express-route-secure-ts.md",
+      "template": "# express route (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

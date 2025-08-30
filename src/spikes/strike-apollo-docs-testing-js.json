@@ -1,0 +1,41 @@
+{
+  "id": "strike-apollo-docs-testing-js",
+  "name": "apollo docs testing js",
+  "version": "0.1.0",
+  "stack": [
+    "apollo",
+    "js"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for apollo docs in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "apollo-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/apollo-docs.js",
+      "template": "# Spike: apollo docs (js)\n// Auto-generated spike stub for apollo (docs)\nmodule.exports = function demo(){\n  console.log('use apollo - docs (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-apollo-docs-testing-js.js.txt",
+      "template": "# Spike: apollo docs (js)\n// Auto-generated spike stub for apollo (docs)\nmodule.exports = function demo(){\n  console.log('use apollo - docs (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-apollo-docs-testing-js.md",
+      "template": "# apollo docs (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-apollo-docs-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

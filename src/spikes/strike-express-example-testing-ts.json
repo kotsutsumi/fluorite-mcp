@@ -1,0 +1,41 @@
+{
+  "id": "strike-express-example-testing-ts",
+  "name": "express example testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express example in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/express-example.ts",
+      "template": "# Spike: express example (ts)\n// Auto-generated spike stub for express (example)\nexport function demo() {\n  console.log('use express - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-express-example-testing-ts.ts.txt",
+      "template": "# Spike: express example (ts)\n// Auto-generated spike stub for express (example)\nexport function demo() {\n  console.log('use express - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-express-example-testing-ts.md",
+      "template": "# express example (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-express-example-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

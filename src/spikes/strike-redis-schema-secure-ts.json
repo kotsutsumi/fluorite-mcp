@@ -1,0 +1,43 @@
+{
+  "id": "strike-redis-schema-secure-ts",
+  "name": "redis schema secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "redis",
+    "ts"
+  ],
+  "tags": [
+    "schema",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for redis schema in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "redis-schema-app"
+    },
+    {
+      "name": "redisUrl",
+      "required": false,
+      "description": "Redis 接続URL",
+      "default": "redis://localhost:6379"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/redis-schema.ts",
+      "template": "# Spike: redis schema (ts)\n// Auto-generated spike stub for redis (schema)\nexport function demo() {\n  console.log('use redis - schema (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-schema-secure-ts.ts.txt",
+      "template": "# Spike: redis schema (ts)\n// Auto-generated spike stub for redis (schema)\nexport function demo() {\n  console.log('use redis - schema (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-schema-secure-ts.md",
+      "template": "# redis schema (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-vitepress-crud-testing-ts",
+  "name": "vitepress crud testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "vitepress",
+    "ts"
+  ],
+  "tags": [
+    "crud",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for vitepress crud in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "vitepress-crud-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/vitepress-crud.ts",
+      "template": "# Spike: vitepress crud (ts)\n// Auto-generated spike stub for vitepress (crud)\nexport function demo() {\n  console.log('use vitepress - crud (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-vitepress-crud-testing-ts.ts.txt",
+      "template": "# Spike: vitepress crud (ts)\n// Auto-generated spike stub for vitepress (crud)\nexport function demo() {\n  console.log('use vitepress - crud (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-vitepress-crud-testing-ts.md",
+      "template": "# vitepress crud (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-vitepress-crud-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

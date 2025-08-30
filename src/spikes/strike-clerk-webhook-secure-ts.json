@@ -1,0 +1,37 @@
+{
+  "id": "strike-clerk-webhook-secure-ts",
+  "name": "clerk webhook secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "clerk",
+    "ts"
+  ],
+  "tags": [
+    "webhook",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for clerk webhook in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "clerk-webhook-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/clerk-webhook.ts",
+      "template": "# Spike: clerk webhook (ts)\n// Auto-generated spike stub for clerk (webhook)\nexport function demo() {\n  console.log('use clerk - webhook (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-clerk-webhook-secure-ts.ts.txt",
+      "template": "# Spike: clerk webhook (ts)\n// Auto-generated spike stub for clerk (webhook)\nexport function demo() {\n  console.log('use clerk - webhook (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-clerk-webhook-secure-ts.md",
+      "template": "# clerk webhook (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

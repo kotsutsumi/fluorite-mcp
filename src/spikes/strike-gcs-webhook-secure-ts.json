@@ -1,0 +1,37 @@
+{
+  "id": "strike-gcs-webhook-secure-ts",
+  "name": "gcs webhook secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "gcs",
+    "ts"
+  ],
+  "tags": [
+    "webhook",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for gcs webhook in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "gcs-webhook-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/gcs-webhook.ts",
+      "template": "# Spike: gcs webhook (ts)\n// Auto-generated spike stub for gcs (webhook)\nexport function demo() {\n  console.log('use gcs - webhook (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-gcs-webhook-secure-ts.ts.txt",
+      "template": "# Spike: gcs webhook (ts)\n// Auto-generated spike stub for gcs (webhook)\nexport function demo() {\n  console.log('use gcs - webhook (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-gcs-webhook-secure-ts.md",
+      "template": "# gcs webhook (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,13 @@
+{
+  "id": "otel-metrics-prometheus-minimal",
+  "name": "OpenTelemetry Prometheus メトリクス 最小",
+  "version": "1.0.0",
+  "stack": ["opentelemetry", "prometheus", "node"],
+  "tags": ["otel", "metrics", "prometheus"],
+  "description": "Prometheus Exporterで/metricsを公開する最小例。",
+  "files": [
+    { "path": "otel/metrics.js", "template": "const { MeterProvider } = require('@opentelemetry/sdk-metrics');\nconst { PrometheusExporter } = require('@opentelemetry/exporter-prometheus');\nconst exporter = new PrometheusExporter({ port: 9464, endpoint: '/metrics' }, ()=> console.log('scrape http://localhost:9464/metrics'));\nconst meterProvider = new MeterProvider();\nmeterProvider.addMetricReader(exporter);\nconst meter = meterProvider.getMeter('demo');\nconst counter = meter.createCounter('demo_counter');\nsetInterval(()=> counter.add(1), 1000);\n" },
+    { "path": "server.js", "template": "require('./otel/metrics');\nconsole.log('metrics ready');\nsetInterval(()=>{}, 1000);\n" }
+  ]
+}
+

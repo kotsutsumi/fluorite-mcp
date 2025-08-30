@@ -1,0 +1,41 @@
+{
+  "id": "strike-paddle-client-secure-ts",
+  "name": "paddle client secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "paddle",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for paddle client in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "paddle-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/paddle-client.ts",
+      "template": "# Spike: paddle client (ts)\n// Auto-generated spike stub for paddle (client)\nexport function demo() {\n  console.log('use paddle - client (secure)');\n}\n"
+    },
+    {
+      "path": "src/payments/paddle.ts",
+      "template": "export function paddle(){ return { vendorId: process.env.PADDLE_VENDOR_ID }; }\n"
+    },
+    {
+      "path": "spikes/strike-paddle-client-secure-ts.ts.txt",
+      "template": "# Spike: paddle client (ts)\n// Auto-generated spike stub for paddle (client)\nexport function demo() {\n  console.log('use paddle - client (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-paddle-client-secure-ts.md",
+      "template": "# paddle client (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

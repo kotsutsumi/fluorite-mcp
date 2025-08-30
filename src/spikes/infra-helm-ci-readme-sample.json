@@ -1,0 +1,12 @@
+{
+  "id": "infra-helm-ci-readme-sample",
+  "name": "Infra Helm/CI README サンプル",
+  "version": "1.0.0",
+  "stack": ["helm", "kubernetes", "ci", "docs"],
+  "tags": ["infra", "helm", "ci", "docs"],
+  "description": "Helm valuesオーバレイとCI分岐(Preview/Prod)のREADMEサンプル。",
+  "files": [
+    { "path": "docs/infra-helm-ci.md", "template": "# Infra Helm + CI\n\n## Values Overlays\n- Dev: `helm upgrade --install myapp helm/chart -f helm/chart/values-dev.yaml`\n- Prod: `helm upgrade --install myapp helm/chart -f helm/chart/values-prod.yaml`\n\n## CI Preview/Prod\n- Preview(PR): dry-run to preview namespace (see `infra-ci-env-matrix-preview-prod`)\n- Prod(main): install/upgrade to prod namespace\n\n## Cleanup\n- Auto delete preview namespace on PR close (`infra-ci-preview-namespace-cleanup`)\n\n## Tips\n- Combine `-f` and `--set` to override\n- Store secrets outside of values; refer via env/Secret\n" }
+  ]
+}
+

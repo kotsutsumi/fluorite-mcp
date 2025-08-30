@@ -1,0 +1,12 @@
+{
+  "id": "infra-ci-helm-values-matrix",
+  "name": "Infra CI Helm values マトリクス 最小",
+  "version": "1.0.0",
+  "stack": ["helm", "ci"],
+  "tags": ["helm", "ci", "matrix"],
+  "description": "dev/prodのvaluesをmatrixで切替えてhelm upgrade --installする最小例。",
+  "files": [
+    { "path": ".github/workflows/helm-matrix.yml", "template": "name: Helm Matrix\n\non: [workflow_dispatch]\n\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n    strategy:\n      matrix:\n        env: [dev, prod]\n    steps:\n      - uses: actions/checkout@v4\n      - name: Helm install\n        run: |\n          if [ \"${{ matrix.env }}\" = \"dev\" ]; then\n            helm upgrade --install myapp helm/chart -f helm/chart/values-dev.yaml --namespace dev --create-namespace || true\n          else\n            helm upgrade --install myapp helm/chart -f helm/chart/values-prod.yaml --namespace prod --create-namespace || true\n          fi\n" }
+  ]
+}
+

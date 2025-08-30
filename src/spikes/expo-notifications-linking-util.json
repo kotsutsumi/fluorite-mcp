@@ -1,0 +1,14 @@
+{
+  "id": "expo-notifications-linking-util",
+  "name": "Expo 通知→DeepLink 変換ユーティリティ 最小",
+  "version": "1.0.0",
+  "stack": ["expo", "react-native", "notifications"],
+  "tags": ["expo", "notifications", "deeplink"],
+  "description": "通知payload(data)からDeep Link文字列を生成する最小ユーティリティ。",
+  "params": [{ "name": "scheme", "default": "myapp://" }],
+  "files": [
+    { "path": "utils/notificationToLink.ts", "template": "export type RouteData = { route?: string; params?: Record<string,string|number> };\nexport function notificationToLink(scheme: string, data: RouteData){\n  const route = data?.route || ''; const params = data?.params || {};\n  const qp = Object.entries(params).map(([k,v])=> `${encodeURIComponent(k)}=${encodeURIComponent(String(v))}`).join('&');\n  return scheme.replace(/\\/$/, '') + '/' + route + (qp?`?${qp}`:'');\n}\n" },
+    { "path": "README.md", "template": "# notificationToLink\n\n```ts\nimport { notificationToLink } from './utils/notificationToLink';\nconst link = notificationToLink('myapp://', { route: 'details', params: { id: 123 } });\n// => myapp:///details?id=123\n```\n" }
+  ]
+}
+

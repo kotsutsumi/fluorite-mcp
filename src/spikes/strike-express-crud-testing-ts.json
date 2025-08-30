@@ -1,0 +1,41 @@
+{
+  "id": "strike-express-crud-testing-ts",
+  "name": "express crud testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "ts"
+  ],
+  "tags": [
+    "crud",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express crud in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-crud-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/express-crud.ts",
+      "template": "# Spike: express crud (ts)\n// Auto-generated spike stub for express (crud)\nexport function demo() {\n  console.log('use express - crud (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-express-crud-testing-ts.ts.txt",
+      "template": "# Spike: express crud (ts)\n// Auto-generated spike stub for express (crud)\nexport function demo() {\n  console.log('use express - crud (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-express-crud-testing-ts.md",
+      "template": "# express crud (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-express-crud-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

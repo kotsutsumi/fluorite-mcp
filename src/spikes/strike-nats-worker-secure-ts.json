@@ -1,0 +1,37 @@
+{
+  "id": "strike-nats-worker-secure-ts",
+  "name": "nats worker secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "nats",
+    "ts"
+  ],
+  "tags": [
+    "worker",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nats worker in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nats-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/nats-worker.ts",
+      "template": "# Spike: nats worker (ts)\n// Auto-generated spike stub for nats (worker)\nexport function demo() {\n  console.log('use nats - worker (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nats-worker-secure-ts.ts.txt",
+      "template": "# Spike: nats worker (ts)\n// Auto-generated spike stub for nats (worker)\nexport function demo() {\n  console.log('use nats - worker (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nats-worker-secure-ts.md",
+      "template": "# nats worker (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

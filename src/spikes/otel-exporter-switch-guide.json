@@ -1,0 +1,12 @@
+{
+  "id": "otel-exporter-switch-guide",
+  "name": "OTel Exporter切替 ガイド",
+  "version": "1.0.0",
+  "stack": ["opentelemetry", "docs"],
+  "tags": ["otel", "exporter", "docs"],
+  "description": "コンソール/OTLP/PrometheusなどExporterを環境変数で切替えるパターンのガイド。",
+  "files": [
+    { "path": "docs/otel-exporter-switch.md", "template": "# OTel Exporter Switch\n\n```js\nconst useOTLP = process.env.OTLP === '1';\nif (useOTLP) { /* OTLP exporter */ } else { /* Console exporter */ }\n```\n\n- Traces: ConsoleSpanExporter / OTLPTraceExporter\n- Metrics: ConsoleMetricExporter / PrometheusExporter\n- Logs: pinoなど既存ロガーと併用\n\nCI/Productionで`OTLP=1`など環境変数を切替。CollectorのURL/認証情報はSecretで管理。\n" }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "expo-notifications-routing-guide",
+  "name": "Expo 通知→ルーティング ガイド",
+  "version": "1.0.0",
+  "stack": ["expo", "react-native", "notifications", "docs"],
+  "tags": ["expo", "notifications", "navigation", "docs"],
+  "description": "通知ペイロード(data)から画面へのルーティング設計と実装のポイントをまとめたガイド。",
+  "files": [
+    { "path": "docs/expo-notifications-routing.md", "template": "# Notifications → Routing (Expo)\n\n- Notification payloadに `data: { route: 'Details', params: { id: '123' } }` の形で渡す\n- `addNotificationResponseReceivedListener` で取り出し、NavigationContainerRefがreadyか確認して `navigate(route, params)`\n- cold start時は初期化タイミング競合に注意（遅延処理 or キュー）\n- Deep Linksと併用する場合、payload→link変換のユーティリティを用意\n\nスパイク例: `expo-notify-navigate-minimal`, `expo-operational-preset-minimal`.\n" }
+  ]
+}
+

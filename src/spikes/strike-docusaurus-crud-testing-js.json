@@ -1,0 +1,41 @@
+{
+  "id": "strike-docusaurus-crud-testing-js",
+  "name": "docusaurus crud testing js",
+  "version": "0.1.0",
+  "stack": [
+    "docusaurus",
+    "js"
+  ],
+  "tags": [
+    "crud",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for docusaurus crud in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "docusaurus-crud-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/docusaurus-crud.js",
+      "template": "# Spike: docusaurus crud (js)\n// Auto-generated spike stub for docusaurus (crud)\nmodule.exports = function demo(){\n  console.log('use docusaurus - crud (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-docusaurus-crud-testing-js.js.txt",
+      "template": "# Spike: docusaurus crud (js)\n// Auto-generated spike stub for docusaurus (crud)\nmodule.exports = function demo(){\n  console.log('use docusaurus - crud (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-docusaurus-crud-testing-js.md",
+      "template": "# docusaurus crud (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-docusaurus-crud-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

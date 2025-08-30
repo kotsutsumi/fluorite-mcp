@@ -1,0 +1,12 @@
+{
+  "id": "github-actions-gke-deploy-minimal",
+  "name": "GitHub Actions → GKE デプロイ 最小",
+  "version": "1.0.0",
+  "stack": ["ci", "kubernetes", "gke"],
+  "tags": ["ci", "gke", "k8s"],
+  "description": "GKEへkubectl applyする最小ワークフロー（認証はWorkload Identity/Service Account鍵のいずれか）。",
+  "files": [
+    { "path": ".github/workflows/gke-deploy.yml", "template": "name: GKE Deploy\n\non: [workflow_dispatch]\n\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - name: Auth GKE (placeholder)\n        run: echo 'Authenticate with GKE: gcloud auth...'\n      - name: Apply manifests\n        run: kubectl apply -f k8s/\n" }
+  ]
+}
+

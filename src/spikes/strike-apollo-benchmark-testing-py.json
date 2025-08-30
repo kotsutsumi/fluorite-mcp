@@ -1,0 +1,41 @@
+{
+  "id": "strike-apollo-benchmark-testing-py",
+  "name": "apollo benchmark testing py",
+  "version": "0.1.0",
+  "stack": [
+    "apollo",
+    "py"
+  ],
+  "tags": [
+    "benchmark",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for apollo benchmark in py (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "apollo-benchmark-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/apollo-benchmark.py",
+      "template": "# Spike: apollo benchmark (py)\n# Auto-generated spike stub for apollo (benchmark)\ndef demo():\n    print('use apollo - benchmark (testing)')\n"
+    },
+    {
+      "path": "spikes/strike-apollo-benchmark-testing-py.py.txt",
+      "template": "# Spike: apollo benchmark (py)\n# Auto-generated spike stub for apollo (benchmark)\ndef demo():\n    print('use apollo - benchmark (testing)')\n"
+    },
+    {
+      "path": "spikes/strike-apollo-benchmark-testing-py.md",
+      "template": "# apollo benchmark (testing, py)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-apollo-benchmark-testing-py_test.py",
+      "template": "def test_demo():\n    assert True\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,13 +1,13 @@
 {
   "id": "sveltekit-form-actions-minimal",
-  "name": "SvelteKit Form Actions 最小",
+  "name": "SvelteKit フォーム + actions 最小",
   "version": "1.0.0",
   "stack": ["sveltekit"],
-  "tags": ["web"],
-  "description": "SvelteKit の +page.server.ts で actions",
-  "params": [ ],
+  "tags": ["sveltekit", "form", "actions"],
+  "description": "SvelteKitのFormと+page.server.tsのactionsでPOSTを処理する最小例。",
   "files": [
-    { "path": "sveltekit/src/routes/+page.server.ts", "template": "export const actions = { default: async ({ request }) => { const f = await request.formData(); return { name: f.get('name') }; } };\n" }
+    { "path": "src/routes/+page.svelte", "template": "<script lang=\"ts\">export let form;</script>\n<h1>Form</h1>\n<form method=\"POST\">\n  <input name=\"name\" placeholder=\"name\"/>\n  <button>Send</button>\n</form>\n{#if form}<pre>{JSON.stringify(form)}</pre>{/if}\n" },
+    { "path": "src/routes/+page.server.ts", "template": "import type { Actions } from './$types';\nexport const actions: Actions = { default: async ({ request })=>{ const fd = await request.formData(); return { ok: true, name: fd.get('name') }; } };\n" }
   ]
 }
 

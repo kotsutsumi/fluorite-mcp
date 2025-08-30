@@ -1,0 +1,12 @@
+{
+  "id": "electron-secure-starter-profiles-guide",
+  "name": "Electron セキュアスターター プロファイル比較(ヘッダ/メタ)",
+  "version": "1.0.0",
+  "stack": ["electron", "docs"],
+  "tags": ["electron", "security", "csp", "profiles", "docs"],
+  "description": "CSPをHTTPヘッダ運用とmeta運用で比較し、開発/本番の使い分けを示すガイド。",
+  "files": [
+    { "path": "docs/electron-secure-profiles.md", "template": "# Electron Secure Profiles (CSP)\n\n## Header vs Meta\n- Header: DevServer/HTTP配信で付与、centralized管理\n- Meta: ローカルfile読み込み時に付与、簡易\n\n## Dev\n- `electron-csp-headers-devserver`: HTTPヘッダでCSP、`loadURL('http://localhost:3001')`\n- DevToolsは通常ON、nonceベースで最小許可\n\n## Prod\n- `electron-secure-starter-minimal`: metaで厳格化 or リバースプロキシでCSPヘッダ\n- DevTools OFF、shell/ナビ制限/allowlist/protocol制限\n\n## Checklist\n- [ ] contextIsolation/nodeIntegration/sandbox\n- [ ] preload最小API\n- [ ] CSP(nonce/hash)\n- [ ] shell allowlist\n- [ ] safe file protocol\n- [ ] nav lock\n" }
+  ]
+}
+

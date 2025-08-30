@@ -1,0 +1,37 @@
+{
+  "id": "strike-fastapi-worker-typed-ts",
+  "name": "fastapi worker typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "fastapi",
+    "ts"
+  ],
+  "tags": [
+    "worker",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastapi worker in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastapi-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/fastapi-worker.ts",
+      "template": "# Spike: fastapi worker (ts)\n// Auto-generated spike stub for fastapi (worker)\nexport function demo() {\n  console.log('use fastapi - worker (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-worker-typed-ts.ts.txt",
+      "template": "# Spike: fastapi worker (ts)\n// Auto-generated spike stub for fastapi (worker)\nexport function demo() {\n  console.log('use fastapi - worker (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-worker-typed-ts.md",
+      "template": "# fastapi worker (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

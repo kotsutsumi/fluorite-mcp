@@ -1,0 +1,41 @@
+{
+  "id": "strike-starlight-crud-testing-ts",
+  "name": "starlight crud testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "starlight",
+    "ts"
+  ],
+  "tags": [
+    "crud",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for starlight crud in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "starlight-crud-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/starlight-crud.ts",
+      "template": "# Spike: starlight crud (ts)\n// Auto-generated spike stub for starlight (crud)\nexport function demo() {\n  console.log('use starlight - crud (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-starlight-crud-testing-ts.ts.txt",
+      "template": "# Spike: starlight crud (ts)\n// Auto-generated spike stub for starlight (crud)\nexport function demo() {\n  console.log('use starlight - crud (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-starlight-crud-testing-ts.md",
+      "template": "# starlight crud (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-starlight-crud-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

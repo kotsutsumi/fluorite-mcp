@@ -1,0 +1,41 @@
+{
+  "id": "strike-fastapi-benchmark-testing-ts",
+  "name": "fastapi benchmark testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "fastapi",
+    "ts"
+  ],
+  "tags": [
+    "benchmark",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastapi benchmark in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastapi-benchmark-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/fastapi-benchmark.ts",
+      "template": "# Spike: fastapi benchmark (ts)\n// Auto-generated spike stub for fastapi (benchmark)\nexport function demo() {\n  console.log('use fastapi - benchmark (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-benchmark-testing-ts.ts.txt",
+      "template": "# Spike: fastapi benchmark (ts)\n// Auto-generated spike stub for fastapi (benchmark)\nexport function demo() {\n  console.log('use fastapi - benchmark (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-benchmark-testing-ts.md",
+      "template": "# fastapi benchmark (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-benchmark-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

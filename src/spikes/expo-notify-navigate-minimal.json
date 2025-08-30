@@ -1,0 +1,13 @@
+{
+  "id": "expo-notify-navigate-minimal",
+  "name": "Expo 通知→画面遷移 最小",
+  "version": "1.0.0",
+  "stack": ["expo", "react-native", "react-navigation", "notifications"],
+  "tags": ["mobile", "expo", "notifications", "navigation"],
+  "description": "通知タップでNavigationContainerRefを使って対象画面へ遷移する最小例。",
+  "params": [{ "name": "app_name", "default": "expo-notify-nav" }],
+  "files": [
+    { "path": "{{app_name}}/App.tsx", "template": "import React, { useEffect, useRef, useState } from 'react';\nimport { NavigationContainer, createNavigationContainerRef } from '@react-navigation/native';\nimport { createNativeStackNavigator } from '@react-navigation/native-stack';\nimport { SafeAreaView, Text, Button } from 'react-native';\nimport * as Notifications from 'expo-notifications';\nconst Stack = createNativeStackNavigator();\nconst navRef = createNavigationContainerRef<any>();\nfunction Home(){ return (<SafeAreaView><Text>Home</Text></SafeAreaView>); }\nfunction Details({ route }: any){ return (<SafeAreaView><Text>Details id={route.params?.id}</Text></SafeAreaView>); }\nexport default function App(){\n  const [perm, setPerm] = useState('unknown');\n  useEffect(()=>{ (async()=>{ const { status } = await Notifications.requestPermissionsAsync(); setPerm(status); })(); },[]);\n  useEffect(()=>{ const sub = Notifications.addNotificationResponseReceivedListener((resp)=>{ const id = resp.notification.request.content.data?.id || '0'; if (navRef.isReady()) navRef.navigate('Details', { id }); }); return ()=> sub.remove(); },[]);\n  const notify = async ()=>{ await Notifications.scheduleNotificationAsync({ content: { title: 'Open details', body: 'Go to details', data: { id: '123' } }, trigger: null }); };\n  return (\n    <NavigationContainer ref={navRef}>\n      <Stack.Navigator>\n        <Stack.Screen name=\"Home\" component={Home} options={{ headerRight: ()=> <Button title=\"Notify\" onPress={notify} /> }} />\n        <Stack.Screen name=\"Details\" component={Details} />\n      </Stack.Navigator>\n    </NavigationContainer>\n  );\n}\n" }
+  ]
+}
+

@@ -1,0 +1,37 @@
+{
+  "id": "strike-fastapi-route-typed-py",
+  "name": "fastapi route typed py",
+  "version": "0.1.0",
+  "stack": [
+    "fastapi",
+    "py"
+  ],
+  "tags": [
+    "route",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastapi route in py (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastapi-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/fastapi-route.py",
+      "template": "# Spike: fastapi route (py)\nfrom fastapi import FastAPI\napp = FastAPI()\n@app.get('/health')\nasync def health():\n    return { 'ok': True }\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-route-typed-py.py.txt",
+      "template": "# Spike: fastapi route (py)\nfrom fastapi import FastAPI\napp = FastAPI()\n@app.get('/health')\nasync def health():\n    return { 'ok': True }\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-route-typed-py.md",
+      "template": "# fastapi route (typed, py)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

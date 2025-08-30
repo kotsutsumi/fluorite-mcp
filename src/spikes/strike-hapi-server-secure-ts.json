@@ -1,0 +1,37 @@
+{
+  "id": "strike-hapi-server-secure-ts",
+  "name": "hapi server secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "hapi",
+    "ts"
+  ],
+  "tags": [
+    "server",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for hapi server in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "hapi-server-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/hapi-server.ts",
+      "template": "# Spike: hapi server (ts)\n// Auto-generated spike stub for hapi (server)\nexport function demo() {\n  console.log('use hapi - server (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-hapi-server-secure-ts.ts.txt",
+      "template": "# Spike: hapi server (ts)\n// Auto-generated spike stub for hapi (server)\nexport function demo() {\n  console.log('use hapi - server (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-hapi-server-secure-ts.md",
+      "template": "# hapi server (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

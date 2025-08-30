@@ -1,0 +1,41 @@
+{
+  "id": "strike-fastapi-benchmark-testing-js",
+  "name": "fastapi benchmark testing js",
+  "version": "0.1.0",
+  "stack": [
+    "fastapi",
+    "js"
+  ],
+  "tags": [
+    "benchmark",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastapi benchmark in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastapi-benchmark-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/fastapi-benchmark.js",
+      "template": "# Spike: fastapi benchmark (js)\n// Auto-generated spike stub for fastapi (benchmark)\nmodule.exports = function demo(){\n  console.log('use fastapi - benchmark (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-benchmark-testing-js.js.txt",
+      "template": "# Spike: fastapi benchmark (js)\n// Auto-generated spike stub for fastapi (benchmark)\nmodule.exports = function demo(){\n  console.log('use fastapi - benchmark (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-benchmark-testing-js.md",
+      "template": "# fastapi benchmark (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-benchmark-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

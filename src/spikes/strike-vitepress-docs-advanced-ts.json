@@ -1,0 +1,41 @@
+{
+  "id": "strike-vitepress-docs-advanced-ts",
+  "name": "vitepress docs advanced ts",
+  "version": "0.1.0",
+  "stack": [
+    "vitepress",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for vitepress docs in ts (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "vitepress-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": ".vitepress/config.ts",
+      "template": "import { defineConfig } from 'vitepress';\nexport default defineConfig({ title: 'Docs' });\n"
+    },
+    {
+      "path": "index.md",
+      "template": "# Docs\n\nWelcome to VitePress.\n"
+    },
+    {
+      "path": "spikes/strike-vitepress-docs-advanced-ts.ts.txt",
+      "template": "# Spike: vitepress docs (ts)\n// Auto-generated spike stub for vitepress (docs)\nexport function demo() {\n  console.log('use vitepress - docs (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-vitepress-docs-advanced-ts.md",
+      "template": "# vitepress docs (advanced, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

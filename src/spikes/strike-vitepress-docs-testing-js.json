@@ -1,0 +1,45 @@
+{
+  "id": "strike-vitepress-docs-testing-js",
+  "name": "vitepress docs testing js",
+  "version": "0.1.0",
+  "stack": [
+    "vitepress",
+    "js"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for vitepress docs in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "vitepress-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": ".vitepress/config.ts",
+      "template": "import { defineConfig } from 'vitepress';\nexport default defineConfig({ title: 'Docs' });\n"
+    },
+    {
+      "path": "index.md",
+      "template": "# Docs\n\nWelcome to VitePress.\n"
+    },
+    {
+      "path": "spikes/strike-vitepress-docs-testing-js.js.txt",
+      "template": "# Spike: vitepress docs (js)\n// Auto-generated spike stub for vitepress (docs)\nmodule.exports = function demo(){\n  console.log('use vitepress - docs (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-vitepress-docs-testing-js.md",
+      "template": "# vitepress docs (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-vitepress-docs-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

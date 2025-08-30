@@ -1,0 +1,37 @@
+{
+  "id": "strike-express-route-typed-js",
+  "name": "express route typed js",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "js"
+  ],
+  "tags": [
+    "route",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express route in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/express-route.js",
+      "template": "# Spike: express route (js)\nconst express = require('express');\nconst app = express();\napp.get('/health', (req, res) => res.json({ ok: true }));\napp.listen(3000);\n"
+    },
+    {
+      "path": "spikes/strike-express-route-typed-js.js.txt",
+      "template": "# Spike: express route (js)\nconst express = require('express');\nconst app = express();\napp.get('/health', (req, res) => res.json({ ok: true }));\napp.listen(3000);\n"
+    },
+    {
+      "path": "spikes/strike-express-route-typed-js.md",
+      "template": "# express route (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

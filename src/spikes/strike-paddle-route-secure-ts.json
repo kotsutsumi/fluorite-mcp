@@ -1,0 +1,41 @@
+{
+  "id": "strike-paddle-route-secure-ts",
+  "name": "paddle route secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "paddle",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for paddle route in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "paddle-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/paddle-route.ts",
+      "template": "# Spike: paddle route (ts)\n// Auto-generated spike stub for paddle (route)\nexport function demo() {\n  console.log('use paddle - route (secure)');\n}\n"
+    },
+    {
+      "path": "src/payments/paddle.ts",
+      "template": "export function paddle(){ return { vendorId: process.env.PADDLE_VENDOR_ID }; }\n"
+    },
+    {
+      "path": "spikes/strike-paddle-route-secure-ts.ts.txt",
+      "template": "# Spike: paddle route (ts)\n// Auto-generated spike stub for paddle (route)\nexport function demo() {\n  console.log('use paddle - route (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-paddle-route-secure-ts.md",
+      "template": "# paddle route (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

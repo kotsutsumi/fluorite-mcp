@@ -1,0 +1,37 @@
+{
+  "id": "strike-opensearch-route-secure-ts",
+  "name": "opensearch route secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "opensearch",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for opensearch route in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "opensearch-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/opensearch-route.ts",
+      "template": "# Spike: opensearch route (ts)\n// Auto-generated spike stub for opensearch (route)\nexport function demo() {\n  console.log('use opensearch - route (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-opensearch-route-secure-ts.ts.txt",
+      "template": "# Spike: opensearch route (ts)\n// Auto-generated spike stub for opensearch (route)\nexport function demo() {\n  console.log('use opensearch - route (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-opensearch-route-secure-ts.md",
+      "template": "# opensearch route (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

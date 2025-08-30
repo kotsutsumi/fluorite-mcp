@@ -1,0 +1,12 @@
+{
+  "id": "remix-form-action-minimal",
+  "name": "Remix フォーム+action 最小",
+  "version": "1.0.0",
+  "stack": ["remix"],
+  "tags": ["remix", "form", "action"],
+  "description": "RemixのFormとactionでPOST処理する最小例。",
+  "files": [
+    { "path": "app/routes/_index.tsx", "template": "import { Form, useActionData } from '@remix-run/react';\nimport type { ActionFunctionArgs } from '@remix-run/node';\nimport { json } from '@remix-run/node';\nexport async function action({ request }: ActionFunctionArgs){ const fd = await request.formData(); return json({ ok: true, name: fd.get('name') }); }\nexport default function Index(){ const data = useActionData<typeof action>(); return (<main><h1>Form</h1><Form method=\"post\"><input name=\"name\" placeholder=\"name\"/><button>Send</button></Form>{data? <pre>{JSON.stringify(data)}</pre>:null}</main>); }\n" }
+  ]
+}
+

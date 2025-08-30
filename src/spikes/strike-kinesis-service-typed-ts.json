@@ -1,0 +1,45 @@
+{
+  "id": "strike-kinesis-service-typed-ts",
+  "name": "kinesis service typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "kinesis",
+    "ts"
+  ],
+  "tags": [
+    "service",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for kinesis service in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "kinesis-service-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/kinesis-service.ts",
+      "template": "# Spike: kinesis service (ts)\n// Auto-generated spike stub for kinesis (service)\nexport function demo() {\n  console.log('use kinesis - service (typed)');\n}\n"
+    },
+    {
+      "path": "src/aws/kinesis.ts",
+      "template": "import { KinesisClient, PutRecordCommand } from '@aws-sdk/client-kinesis';\nconst client = new KinesisClient({});\nexport async function put(streamName: string, data: string, partitionKey='pk'){ await client.send(new PutRecordCommand({ StreamName: streamName, Data: new TextEncoder().encode(data), PartitionKey: partitionKey })); }\n"
+    },
+    {
+      "path": "src/aws/kinesis.ts",
+      "template": "export async function putRecord(stream: string, data: string){ /* stub */ return { stream, data }; }\n"
+    },
+    {
+      "path": "spikes/strike-kinesis-service-typed-ts.ts.txt",
+      "template": "# Spike: kinesis service (ts)\n// Auto-generated spike stub for kinesis (service)\nexport function demo() {\n  console.log('use kinesis - service (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kinesis-service-typed-ts.md",
+      "template": "# kinesis service (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,37 @@
+{
+  "id": "strike-hono-server-secure-ts",
+  "name": "hono server secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "hono",
+    "ts"
+  ],
+  "tags": [
+    "server",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for hono server in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "hono-server-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/hono-server.ts",
+      "template": "# Spike: hono server (ts)\n// Auto-generated spike stub for hono (server)\nexport function demo() {\n  console.log('use hono - server (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-hono-server-secure-ts.ts.txt",
+      "template": "# Spike: hono server (ts)\n// Auto-generated spike stub for hono (server)\nexport function demo() {\n  console.log('use hono - server (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-hono-server-secure-ts.md",
+      "template": "# hono server (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

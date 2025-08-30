@@ -1,0 +1,37 @@
+{
+  "id": "strike-swagger-server-secure-ts",
+  "name": "swagger server secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "swagger",
+    "ts"
+  ],
+  "tags": [
+    "server",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for swagger server in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "swagger-server-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/swagger-server.ts",
+      "template": "# Spike: swagger server (ts)\n// Auto-generated spike stub for swagger (server)\nexport function demo() {\n  console.log('use swagger - server (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-swagger-server-secure-ts.ts.txt",
+      "template": "# Spike: swagger server (ts)\n// Auto-generated spike stub for swagger (server)\nexport function demo() {\n  console.log('use swagger - server (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-swagger-server-secure-ts.md",
+      "template": "# swagger server (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

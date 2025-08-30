@@ -1,0 +1,13 @@
+{
+  "id": "helm-ingress-values-minimal",
+  "name": "Helm values (Ingress) 最小",
+  "version": "1.0.0",
+  "stack": ["helm"],
+  "tags": ["helm", "ingress"],
+  "description": "HelmのvaluesでIngress設定を上書きする最小例。",
+  "files": [
+    { "path": "chart/values.yaml", "template": "ingress:\n  enabled: true\n  className: nginx\n  host: example.com\n" },
+    { "path": "chart/templates/ingress.yaml", "template": "{{- if .Values.ingress.enabled }}\napiVersion: networking.k8s.io/v1\nkind: Ingress\nmetadata: { name: myapp, annotations: { kubernetes.io/ingress.class: {{ .Values.ingress.className }} } }\nspec:\n  rules:\n    - host: {{ .Values.ingress.host }}\n      http:\n        paths:\n          - path: /\n            pathType: Prefix\n            backend:\n              service:\n                name: myapp\n                port: { number: 80 }\n{{- end }}\n" }
+  ]
+}
+

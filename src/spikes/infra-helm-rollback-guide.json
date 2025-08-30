@@ -1,0 +1,12 @@
+{
+  "id": "infra-helm-rollback-guide",
+  "name": "Helm ロールバック ガイド",
+  "version": "1.0.0",
+  "stack": ["helm", "docs"],
+  "tags": ["helm", "rollback", "docs"],
+  "description": "Helmのロールバック基本コマンドと注意点をまとめた短いガイド。",
+  "files": [
+    { "path": "docs/helm-rollback.md", "template": "# Helm Rollback\n\n- リビジョン確認: `helm history myapp -n prod`\n- ロールバック: `helm rollback myapp <revision> -n prod`\n- ドライラン: `helm rollback myapp <revision> -n prod --dry-run`\n- 注意: Hook/Jobの再実行に留意、`--cleanup-on-fail` 等の挙動を確認\n- values差分の追跡: Git管理と`helm get values`で比較\n" }
+  ]
+}
+

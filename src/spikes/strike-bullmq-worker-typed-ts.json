@@ -1,0 +1,37 @@
+{
+  "id": "strike-bullmq-worker-typed-ts",
+  "name": "bullmq worker typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "bullmq",
+    "ts"
+  ],
+  "tags": [
+    "worker",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for bullmq worker in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "bullmq-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/bullmq-worker.ts",
+      "template": "# Spike: bullmq worker (ts)\n// Auto-generated spike stub for bullmq (worker)\nexport function demo() {\n  console.log('use bullmq - worker (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-bullmq-worker-typed-ts.ts.txt",
+      "template": "# Spike: bullmq worker (ts)\n// Auto-generated spike stub for bullmq (worker)\nexport function demo() {\n  console.log('use bullmq - worker (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-bullmq-worker-typed-ts.md",
+      "template": "# bullmq worker (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

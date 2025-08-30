@@ -1,0 +1,41 @@
+{
+  "id": "strike-fastapi-docs-testing-js",
+  "name": "fastapi docs testing js",
+  "version": "0.1.0",
+  "stack": [
+    "fastapi",
+    "js"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastapi docs in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastapi-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/fastapi-docs.js",
+      "template": "# Spike: fastapi docs (js)\n// Auto-generated spike stub for fastapi (docs)\nmodule.exports = function demo(){\n  console.log('use fastapi - docs (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-docs-testing-js.js.txt",
+      "template": "# Spike: fastapi docs (js)\n// Auto-generated spike stub for fastapi (docs)\nmodule.exports = function demo(){\n  console.log('use fastapi - docs (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-docs-testing-js.md",
+      "template": "# fastapi docs (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-docs-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,37 @@
+{
+  "id": "strike-hono-client-typed-ts",
+  "name": "hono client typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "hono",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for hono client in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "hono-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/hono-client.ts",
+      "template": "# Spike: hono client (ts)\n// Auto-generated spike stub for hono (client)\nexport function demo() {\n  console.log('use hono - client (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-hono-client-typed-ts.ts.txt",
+      "template": "# Spike: hono client (ts)\n// Auto-generated spike stub for hono (client)\nexport function demo() {\n  console.log('use hono - client (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-hono-client-typed-ts.md",
+      "template": "# hono client (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,15 @@
+{
+  "id": "electron-secure-starter-profiles-sample",
+  "name": "Electron セキュアスタータープロファイル(ヘッダ/メタ) サンプル",
+  "version": "1.0.0",
+  "stack": ["electron"],
+  "tags": ["electron", "security", "csp", "profiles"],
+  "description": "DEVはHTTPヘッダCSP + loadURL、PRODはmeta CSP + loadFileを切替える最小サンプル。",
+  "params": [{ "name": "app_name", "default": "electron-secure-profiles" }],
+  "files": [
+    { "path": "{{app_name}}/server.js", "template": "const http = require('http');\nconst html = `<!doctype html><html><head><meta charset=\\\"utf-8\\\"></head><body><h1>Dev CSP by header</h1><script>console.log('ok')</script></body></html>`;\nhttp.createServer((req,res)=>{ res.setHeader('Content-Security-Policy', \"default-src 'self'; script-src 'self'\"); res.end(html); }).listen(3001, ()=> console.log('dev server on 3001'));\n" },
+    { "path": "{{app_name}}/main.js", "template": "const { app, BrowserWindow } = require('electron');\nconst dev = process.env.NODE_ENV !== 'production';\nif (dev) require('./server');\nasync function createWindow(){ const win = new BrowserWindow({ webPreferences: { contextIsolation: true, nodeIntegration: false, sandbox: true, devTools: dev } }); if (dev) await win.loadURL('http://localhost:3001'); else await win.loadFile('index.html'); if (dev) win.webContents.openDevTools(); }\napp.whenReady().then(createWindow);\n" },
+    { "path": "{{app_name}}/index.html", "template": "<!doctype html><html><head><meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'self'; script-src 'self' 'nonce-abc123';\"><meta charset=\"utf-8\"></head><body><h1>Prod CSP by meta</h1><script nonce=\"abc123\">console.log('ok')</script></body></html>\n" }
+  ]
+}
+

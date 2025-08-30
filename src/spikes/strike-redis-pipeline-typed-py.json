@@ -1,0 +1,43 @@
+{
+  "id": "strike-redis-pipeline-typed-py",
+  "name": "redis pipeline typed py",
+  "version": "0.1.0",
+  "stack": [
+    "redis",
+    "py"
+  ],
+  "tags": [
+    "pipeline",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for redis pipeline in py (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "redis-pipeline-app"
+    },
+    {
+      "name": "redisUrl",
+      "required": false,
+      "description": "Redis 接続URL",
+      "default": "redis://localhost:6379"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/redis-pipeline.py",
+      "template": "# Spike: redis pipeline (py)\n# Auto-generated spike stub for redis (pipeline)\ndef demo():\n    print('use redis - pipeline (typed)')\n"
+    },
+    {
+      "path": "spikes/strike-redis-pipeline-typed-py.py.txt",
+      "template": "# Spike: redis pipeline (py)\n# Auto-generated spike stub for redis (pipeline)\ndef demo():\n    print('use redis - pipeline (typed)')\n"
+    },
+    {
+      "path": "spikes/strike-redis-pipeline-typed-py.md",
+      "template": "# redis pipeline (typed, py)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

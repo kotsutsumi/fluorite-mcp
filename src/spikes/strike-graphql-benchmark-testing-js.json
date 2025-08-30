@@ -1,0 +1,41 @@
+{
+  "id": "strike-graphql-benchmark-testing-js",
+  "name": "graphql benchmark testing js",
+  "version": "0.1.0",
+  "stack": [
+    "graphql",
+    "js"
+  ],
+  "tags": [
+    "benchmark",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for graphql benchmark in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "graphql-benchmark-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/graphql-benchmark.js",
+      "template": "# Spike: graphql benchmark (js)\n// Auto-generated spike stub for graphql (benchmark)\nmodule.exports = function demo(){\n  console.log('use graphql - benchmark (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-graphql-benchmark-testing-js.js.txt",
+      "template": "# Spike: graphql benchmark (js)\n// Auto-generated spike stub for graphql (benchmark)\nmodule.exports = function demo(){\n  console.log('use graphql - benchmark (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-graphql-benchmark-testing-js.md",
+      "template": "# graphql benchmark (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-graphql-benchmark-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

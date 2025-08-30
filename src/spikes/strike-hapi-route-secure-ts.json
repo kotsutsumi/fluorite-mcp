@@ -1,0 +1,41 @@
+{
+  "id": "strike-hapi-route-secure-ts",
+  "name": "hapi route secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "hapi",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for hapi route in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "hapi-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/hapi-route.ts",
+      "template": "# Spike: hapi route (ts)\n// Auto-generated spike stub for hapi (route)\nexport function demo() {\n  console.log('use hapi - route (secure)');\n}\n"
+    },
+    {
+      "path": "src/hapi/server.ts",
+      "template": "import Hapi from '@hapi/hapi';\nasync function start(){ const server = Hapi.server({ port:3000, host:'localhost' }); server.route({ method: 'GET', path: '/', handler: ()=> ({ ok: true }) }); await server.start(); }\nstart();\n"
+    },
+    {
+      "path": "spikes/strike-hapi-route-secure-ts.ts.txt",
+      "template": "# Spike: hapi route (ts)\n// Auto-generated spike stub for hapi (route)\nexport function demo() {\n  console.log('use hapi - route (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-hapi-route-secure-ts.md",
+      "template": "# hapi route (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

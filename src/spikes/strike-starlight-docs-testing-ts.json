@@ -1,0 +1,41 @@
+{
+  "id": "strike-starlight-docs-testing-ts",
+  "name": "starlight docs testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "starlight",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for starlight docs in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "starlight-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/starlight-docs.ts",
+      "template": "# Spike: starlight docs (ts)\n// Auto-generated spike stub for starlight (docs)\nexport function demo() {\n  console.log('use starlight - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-starlight-docs-testing-ts.ts.txt",
+      "template": "# Spike: starlight docs (ts)\n// Auto-generated spike stub for starlight (docs)\nexport function demo() {\n  console.log('use starlight - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-starlight-docs-testing-ts.md",
+      "template": "# starlight docs (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-starlight-docs-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}
