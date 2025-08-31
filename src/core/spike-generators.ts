@@ -76,7 +76,7 @@ const LIBRARIES = [
   'bugsnag','honeybadger',
   'dotenv','cloudinary','uploadthing','mailgun','lru-cache','paddle',
   // frontend utilities
-  'zod','react-hook-form','zustand','redux','swr','radix-ui','tailwindcss','storybook','nx','turborepo','xterm','reactflow',
+  'zod','react-hook-form','zustand','redux','swr','radix-ui','tailwindcss','storybook','nx','turborepo','xterm','reactflow','shadcn-tree-view',
   // desktop/mobile platforms
   'electron','tauri','capacitor','expo','react-native',
   // load testing / observability
@@ -1133,6 +1133,276 @@ export default function App(){ return (<main><h1>React Flow Example</h1><Flow />
     // docs: 使い方メモ
     if (pattern === 'docs') {
       files.push({ path: `src/flow/README.md`, template: `# React Flow Quick Notes\n\n- Install: npm i reactflow\n- Import default styles: \'reactflow/dist/style.css\'\n- Core elements: ReactFlow, Background, Controls, MiniMap\n- Provide nodes/edges via props; manage state for interactivity\n` });
+    }
+
+    // hook: ノード/エッジの状態と接続ハンドラ
+    if (pattern === 'hook') {
+      files.push({ path: `src/flow/useFlowState.${isTS ? 'ts' : 'js'}`, template: `import { useCallback } from 'react';
+import { useNodesState, useEdgesState, addEdge } from 'reactflow';
+export function useFlowState(initialNodes = [], initialEdges = []){
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const onConnect = useCallback((params: any) => setEdges((eds: any) => addEdge(params, eds)), [setEdges]);
+  return { nodes, setNodes, onNodesChange, edges, setEdges, onEdgesChange, onConnect };
+}
+` });
+    }
+
+    // adapter: サーバ保存/読込のAPIアダプタ（スタブ）
+    if (pattern === 'adapter' || pattern === 'service') {
+      files.push({ path: `src/flow/api.${isTS ? 'ts' : 'js'}`, template: `export async function loadFlow(api = '/api/flow'){
+  const res = await fetch(api);
+  if (!res.ok) throw new Error('load_failed:' + res.status);
+  return res.json();
+}
+export async function saveFlow(data: any, api = '/api/flow'){
+  const res = await fetch(api, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+  if (!res.ok) throw new Error('save_failed:' + res.status);
+  return res.json();
+}
+` });
+    }
+
+    // advanced: MiniMap/CustomNode/ハンドラ付きの発展版
+    if (style === 'advanced' && (pattern === 'component' || pattern === 'example')) {
+      files.push({ path: `src/components/CustomNode.${jsxExt}`, template: `import React from 'react';
+export default function CustomNode({ data }: { data: any }){ return <div style={{ padding: 8, border: '1px solid #999' }}>{data?.label || 'Custom'}</div>; }
+` });
+      files.push({ path: `src/components/FlowAdvanced.${jsxExt}`, template: `import React, { useMemo } from 'react';
+import ReactFlow, { Background, Controls, MiniMap } from 'reactflow';
+import 'reactflow/dist/style.css';
+import CustomNode from '@/src/components/CustomNode';
+
+const initialNodes = [ { id: '1', position: { x: 0, y: 0 }, data: { label: 'Start' }, type: 'custom' } ];
+const initialEdges = [] as any[];
+
+export default function FlowAdvanced(){
+  const nodeTypes = useMemo(() => ({ custom: CustomNode }), []);
+  return (
+    <div style={{ width: '100%', height: 400 }}>
+      <ReactFlow nodes={initialNodes} edges={initialEdges} nodeTypes={nodeTypes}>
+        <MiniMap />
+        <Background />
+        <Controls />
+      </ReactFlow>
+    </div>
+  );
+}
+` });
+    }
+
+    // testing: 最小のテスト雛形
+    if (style === 'testing' && pattern === 'component') {
+      files.push({ path: `src/components/Flow.test.${isTS ? 'tsx' : 'jsx'}`, template: `// NOTE: In real apps, prefer @testing-library/react
+import { describe, it, expect } from 'vitest';
+describe('Flow', ()=>{ it('renders', ()=>{ expect(true).toBe(true); }); });
+` });
+      files.push({ path: `src/components/Flow.rtl.test.${isTS ? 'tsx' : 'jsx'}`, template: `// Placeholder for @testing-library/react based tests\n// import { render, screen } from '@testing-library/react'\n// import Flow from './Flow'\n// test('flow renders', ()=>{ /* render(<Flow />); expect(screen.getByText(/React Flow/)).toBeInTheDocument(); */ })\n` });
+    }
+
+    // server routes: Next.js App Router + Express + FastAPI stubs
+    if (pattern === 'route' && (lang === 'ts' || lang === 'js')) {
+      files.push({ path: `app/api/flow/route.ts`, template: `import { NextResponse } from 'next/server';\nexport async function GET(){ return NextResponse.json({ nodes: [], edges: [] }); }\nexport async function POST(req: Request){ const json = await req.json(); return NextResponse.json({ ok: true, received: json }); }\n` });
+      files.push({ path: `src/flow/route.${isTS ? 'ts' : 'js'}`, template: `import express from 'express';\nexport function createFlowRoute(){ const app = express(); app.use(express.json()); app.get('/api/flow', (_req, res)=> res.json({ nodes: [], edges: [] })); app.post('/api/flow', (req, res)=> res.json({ ok: true, received: req.body })); return app; }\n` });
+    }
+    if (pattern === 'route' && lang === 'py') {
+      files.push({ path: `src/flow/fastapi_flow.py`, template: `from fastapi import APIRouter, Request\nrouter = APIRouter()\n@router.get('/api/flow')\nasync def get_flow():\n    return { 'nodes': [], 'edges': [] }\n@router.post('/api/flow')\nasync def post_flow(request: Request):\n    data = await request.json()\n    return { 'ok': True, 'received': data }\n` });
+    }
+
+    // additional custom nodes for advanced style
+    if (style === 'advanced' && (pattern === 'component' || pattern === 'example')) {
+      files.push({ path: `src/components/InputNode.${jsxExt}`, template: `import React from 'react';\nexport default function InputNode({ data }: { data: any }){ return <input defaultValue={data?.label || ''} style={{ padding: 6, border: '1px solid #aaa' }} /> }\n` });
+      files.push({ path: `src/components/DecisionNode.${jsxExt}`, template: `import React from 'react';\nexport default function DecisionNode({ data }: { data: any }){ return <div style={{ padding: 8, border: '2px dashed #c77' }}>❓ {data?.label || 'Decision'}</div> }\n` });
+    }
+  }
+
+  // Shadcn-based TreeView (https://github.com/MrLightful/shadcn-tree-view)
+  if (lib === 'shadcn-tree-view') {
+    const isTS = lang === 'ts';
+    const jsxExt = isTS ? 'tsx' : 'jsx';
+    // component/init: 再帰描画の簡易ツリービュー（shadcn風のクラスを付与）
+    if (pattern === 'component' || pattern === 'init') {
+      files.push({ path: `src/components/TreeView.${jsxExt}`, template: `import React, { useState } from 'react';
+type Node = { id: string; label: string; children?: Node[] }${isTS ? '' : ' // @ts-ignore'};
+const sample: Node[] = [
+  { id: 'root', label: 'Root', children: [ { id: 'a', label: 'A' }, { id: 'b', label: 'B', children: [ { id: 'b-1', label: 'B-1' } ] } ] }
+];
+function Item({ node, depth = 0 }: { node: Node; depth?: number }){
+  const [open, setOpen] = useState(true);
+  const has = !!node.children?.length;
+  return (
+    <div style={{ paddingLeft: depth * 12 }} className="space-y-1">
+      <div className="flex items-center gap-2">
+        {has && (<button className="h-5 w-5 text-xs border rounded" onClick={()=> setOpen(!open)}>{open ? '-' : '+'}</button>)}
+        <span className="text-sm">{node.label}</span>
+      </div>
+      {has && open && (
+        <div className="border-l pl-3 ml-2">
+          {node.children!.map((c)=> (<Item key={c.id} node={c} depth={depth+1} />))}
+        </div>
+      )}
+    </div>
+  );
+}
+export default function TreeView({ nodes = sample }: { nodes?: Node[] }){
+  return (
+    <div className="rounded-md border p-2">
+      {nodes.map((n)=> (<Item key={n.id} node={n} />))}
+    </div>
+  );
+}
+` });
+    }
+    // example: ページにツリーを配置
+    if (pattern === 'example') {
+      files.push({ path: `src/treeview/App.${jsxExt}`, template: `import React from 'react';
+import TreeView from '@/src/components/TreeView';
+export default function App(){ return (<main><h1>Shadcn TreeView Example</h1><TreeView /></main>); }
+` });
+    }
+    // adapter: ノード配列の保存/読込
+    if (pattern === 'adapter' || pattern === 'service') {
+      files.push({ path: `src/treeview/api.${isTS ? 'ts' : 'js'}`, template: `export async function loadTree(api = '/api/tree'){
+  const res = await fetch(api); if (!res.ok) throw new Error('load_failed'); return res.json();
+}
+export async function saveTree(data: any, api = '/api/tree'){
+  const res = await fetch(api, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+  if (!res.ok) throw new Error('save_failed'); return res.json();
+}
+` });
+    }
+    // docs: 導入メモ
+    if (pattern === 'docs') {
+      files.push({ path: `src/treeview/README.md`, template: `# Shadcn TreeView Quick Notes\n\n- 参考: https://github.com/MrLightful/shadcn-tree-view\n- shadcn/ui スタイルに合わせた TreeView 実装やパッケージを利用可能\n- 最小例: 再帰描画 + 折り畳みボタン + インデント\n` });
+    }
+    // testing: RTL想定のプレースホルダ
+    if (style === 'testing' && pattern === 'component') {
+      files.push({ path: `src/components/TreeView.test.${jsxExt}`, template: `import { describe, it, expect } from 'vitest';
+describe('TreeView', ()=>{ it('renders', ()=>{ expect(true).toBe(true); }); });
+` });
+      files.push({ path: `src/components/TreeView.rtl.test.${jsxExt}`, template: `// Placeholder for @testing-library/react based tests\n// import { render, screen } from '@testing-library/react'\n// import TreeView from './TreeView'\n// test('tree renders', ()=>{ /* render(<TreeView />); expect(screen.getByText('Root')).toBeInTheDocument(); */ })\n` });
+    }
+    // route: Next.js/Express/FastAPI の保存/ロード
+    if (pattern === 'route' && (lang === 'ts' || lang === 'js')) {
+      files.push({ path: `app/api/tree/route.ts`, template: `import { NextResponse } from 'next/server';\nexport async function GET(){ return NextResponse.json([{ id: 'root', label: 'Root' }]); }\nexport async function POST(req: Request){ const json = await req.json(); return NextResponse.json({ ok: true, received: json }); }\n` });
+      files.push({ path: `src/treeview/route.${isTS ? 'ts' : 'js'}`, template: `import express from 'express';\nexport function createTreeRoute(){ const app = express(); app.use(express.json()); app.get('/api/tree', (_req, res)=> res.json([{ id: 'root', label: 'Root' }])); app.post('/api/tree', (req, res)=> res.json({ ok: true, received: req.body })); return app; }\n` });
+    }
+    if (pattern === 'route' && lang === 'py') {
+      files.push({ path: `src/treeview/fastapi_tree.py`, template: `from fastapi import APIRouter, Request\nrouter = APIRouter()\n@router.get('/api/tree')\nasync def get_tree():\n    return [{ 'id': 'root', 'label': 'Root' }]\n@router.post('/api/tree')\nasync def post_tree(request: Request):\n    data = await request.json()\n    return { 'ok': True, 'received': data }\n` });
+    }
+    // advanced: 選択/チェック/右クリックメニューの簡易版 + 仮想化/DnDのプレースホルダ
+    if (style === 'advanced' && (pattern === 'component' || pattern === 'example')) {
+      files.push({ path: `src/components/TreeViewAdvanced.${jsxExt}`, template: `import React, { useState } from 'react';
+type Node = { id: string; label: string; children?: Node[] }${isTS ? '' : ' // @ts-ignore'};
+const data: Node[] = [{ id: 'root', label: 'Root', children: [{ id: 'a', label: 'A' }, { id: 'b', label: 'B' }] }];
+function Item({ node, depth=0, onCtx }: { node: Node; depth?: number; onCtx: (id:string, e:any)=>void }){
+  const [open, setOpen] = useState(true);
+  const [checked, setChecked] = useState(false);
+  const has = !!node.children?.length;
+  return (
+    <div style={{ paddingLeft: depth * 12 }} className="space-y-1" onContextMenu={(e)=> onCtx(node.id, e)} role="tree" aria-label="Tree">
+      <div className="flex items-center gap-2" role="treeitem" aria-expanded={has ? open : undefined} aria-selected={checked}>
+        {has && (<button className="h-5 w-5 text-xs border rounded" aria-label={open ? 'Collapse' : 'Expand'} onClick={()=> setOpen(!open)}>{open ? '-' : '+'}</button>)}
+        <input type="checkbox" aria-label="Select" checked={checked} onChange={(e)=> setChecked(e.target.checked)} />
+        <span className="text-sm select-none">{node.label}</span>
+      </div>
+      {has && open && (
+        <div className="border-l pl-3 ml-2">
+          {node.children!.map((c)=> (<Item key={c.id} node={c} depth={depth+1} onCtx={onCtx} />))}
+        </div>
+      )}
+    </div>
+  );
+}
+export default function TreeViewAdvanced(){
+  const [ctx, setCtx] = useState<{id?:string;x?:number;y?:number}>({});
+  const [q, setQ] = useState('');
+  const filter = (n: Node): Node | null => {
+    const hit = n.label.toLowerCase().includes(q.toLowerCase());
+    const kids = (n.children||[]).map(filter).filter(Boolean) as Node[];
+    if (hit || kids.length) return { ...n, children: kids };
+    return null;
+  };
+  const filtered = (data.map(filter).filter(Boolean) as Node[]) || [];
+  return (
+    <div className="relative rounded-md border p-2">
+      <input className="mb-2 border rounded px-2 py-1 text-sm" placeholder="Filter..." value={q} onChange={(e:any)=> setQ(e.target.value)} />
+      {data.map((n)=> (<Item key={n.id} node={n} onCtx={(id,e)=>{ e.preventDefault(); setCtx({ id, x: e.clientX, y: e.clientY }); }} />))}
+      {ctx.id && (
+        <div className="absolute bg-white border rounded shadow p-2" style={{ left: ctx.x, top: ctx.y }}>
+          <div className="text-xs">Node: {ctx.id}</div>
+          <button className="text-xs">Action</button>
+        </div>
+      )}
+    </div>
+  );
+}
+` });
+      files.push({ path: `src/components/VirtualizedTree.${jsxExt}`, template: `// Placeholder for virtualized tree rendering (e.g., react-window)
+import React from 'react';
+export default function VirtualizedTree(){ return <div className=\"text-xs text-muted-foreground\">Virtualized tree placeholder</div>; }
+` });
+      files.push({ path: `src/components/DnDTree.${jsxExt}`, template: `// Placeholder for drag-and-drop tree (e.g., dnd-kit)
+import React from 'react';
+export default function DnDTree(){ return <div className=\"text-xs text-muted-foreground\">DnD tree placeholder</div>; }
+` });
+    }
+
+    // schema: Zod/Pydantic スキーマと PATCH API のスタブ
+    if (pattern === 'schema' || pattern === 'service') {
+      if (lang === 'ts') {
+        files.push({ path: `src/treeview/schema.ts`, template: `import { z } from 'zod';
+export const TreeNode = z.lazy(()=> z.object({ id: z.string(), label: z.string(), children: z.array(TreeNode).optional() }));
+export const Tree = z.array(TreeNode);
+export type TreeNodeT = z.infer<typeof TreeNode>;
+export type TreeT = z.infer<typeof Tree>;
+` });
+        files.push({ path: `src/treeview/patch.ts`, template: `// Apply simple patch operations (add/remove/update) to a tree (stub)
+export type Patch = { op: 'add'|'remove'|'update'; id: string; parentId?: string; label?: string };
+export function applyPatch(tree: any[], patch: Patch){ return tree; }
+` });
+        files.push({ path: `app/api/tree/patch/route.ts`, template: `import { NextResponse } from 'next/server';
+export async function POST(req: Request){ const json = await req.json(); return NextResponse.json({ ok: true, received: json }); }
+` });
+      }
+      if (lang === 'py') {
+        files.push({ path: `src/treeview/models.py`, template: `from pydantic import BaseModel
+from typing import List, Optional
+class TreeNode(BaseModel):
+    id: str
+    label: str
+    children: Optional[List['TreeNode']] = None
+TreeNode.model_rebuild()
+` });
+      }
+    }
+
+    // ReactFlow ブリッジ: Tree -> Flow へ展開
+    if (pattern === 'adapter' || pattern === 'service') {
+      files.push({ path: `src/treeview/toFlow.${isTS ? 'ts' : 'js'}`, template: `export function toFlow(tree: any[]){
+  const nodes: any[] = []; const edges: any[] = [];
+  const walk = (n: any, parent?: any, idx=0)=>{ nodes.push({ id: n.id, data: { label: n.label }, position: { x: idx*160, y: (parent? 100:0) + (idx*40) } }); if(parent){ edges.push({ id: parent.id+'-'+n.id, source: parent.id, target: n.id }); } (n.children||[]).forEach((c: any, i: number)=> walk(c, n, i)); };
+  (tree||[]).forEach((n, i)=> walk(n, undefined, i));
+  return { nodes, edges };
+}
+` });
+      files.push({ path: `src/treeview/fromFlow.${isTS ? 'ts' : 'js'}`, template: `// Convert ReactFlow graph back to a flat tree (simple heuristic)
+export function fromFlow(nodes: any[], edges: any[]){
+  const byId = new Map(nodes.map(n=> [n.id, { id: n.id, label: n.data?.label || n.id, children: [] as any[] }]));
+  const hasParent = new Set<string>();
+  for (const e of edges||[]){ const p = byId.get(e.source); const c = byId.get(e.target); if (p && c){ (p.children as any[]).push(c); hasParent.add(e.target); } }
+  const roots = nodes.filter(n=> !hasParent.has(n.id)).map(n=> byId.get(n.id));
+  return roots;
+}
+` });
+    }
+
+    // testing: SSR/Next.js App Routerでの簡易a11yチェック雛形
+    if (style === 'testing' && pattern === 'route' && (lang === 'ts' || lang === 'js')) {
+      files.push({ path: `src/treeview/a11y.test.${isTS ? 'ts' : 'js'}`, template: `import { describe, it, expect } from 'vitest';
+// Placeholder: In real projects, use axe-core or jest-axe for a11y checks
+describe('a11y', ()=>{ it('basic a11y placeholder', ()=>{ expect(true).toBe(true); }); });
+` });
     }
   }
 

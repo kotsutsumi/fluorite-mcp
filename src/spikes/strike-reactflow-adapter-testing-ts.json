@@ -1,0 +1,45 @@
+{
+  "id": "strike-reactflow-adapter-testing-ts",
+  "name": "reactflow adapter testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "reactflow",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for reactflow adapter in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "reactflow-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/reactflow-adapter.ts",
+      "template": "# Spike: reactflow adapter (ts)\n// Auto-generated spike stub for reactflow (adapter)\nexport function demo() {\n  console.log('use reactflow - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "src/flow/api.ts",
+      "template": "export async function loadFlow(api = '/api/flow'){\n  const res = await fetch(api);\n  if (!res.ok) throw new Error('load_failed:' + res.status);\n  return res.json();\n}\nexport async function saveFlow(data: any, api = '/api/flow'){\n  const res = await fetch(api, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });\n  if (!res.ok) throw new Error('save_failed:' + res.status);\n  return res.json();\n}\n"
+    },
+    {
+      "path": "spikes/strike-reactflow-adapter-testing-ts.ts.txt",
+      "template": "# Spike: reactflow adapter (ts)\n// Auto-generated spike stub for reactflow (adapter)\nexport function demo() {\n  console.log('use reactflow - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-reactflow-adapter-testing-ts.md",
+      "template": "# reactflow adapter (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-reactflow-adapter-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

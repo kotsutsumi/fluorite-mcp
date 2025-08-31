@@ -1,0 +1,41 @@
+{
+  "id": "strike-shadcn-tree-view-example-typed-ts",
+  "name": "shadcn-tree-view example typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "shadcn-tree-view",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for shadcn-tree-view example in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "shadcn-tree-view-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/shadcn-tree-view-example.ts",
+      "template": "# Spike: shadcn-tree-view example (ts)\n// Auto-generated spike stub for shadcn-tree-view (example)\nexport function demo() {\n  console.log('use shadcn-tree-view - example (typed)');\n}\n"
+    },
+    {
+      "path": "src/treeview/App.tsx",
+      "template": "import React from 'react';\nimport TreeView from '@/src/components/TreeView';\nexport default function App(){ return (<main><h1>Shadcn TreeView Example</h1><TreeView /></main>); }\n"
+    },
+    {
+      "path": "spikes/strike-shadcn-tree-view-example-typed-ts.ts.txt",
+      "template": "# Spike: shadcn-tree-view example (ts)\n// Auto-generated spike stub for shadcn-tree-view (example)\nexport function demo() {\n  console.log('use shadcn-tree-view - example (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-shadcn-tree-view-example-typed-ts.md",
+      "template": "# shadcn-tree-view example (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

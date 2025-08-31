@@ -1,0 +1,49 @@
+{
+  "id": "strike-reactflow-component-advanced-js",
+  "name": "reactflow component advanced js",
+  "version": "0.1.0",
+  "stack": [
+    "reactflow",
+    "js"
+  ],
+  "tags": [
+    "component",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for reactflow component in js (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "reactflow-component-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/reactflow-component.js",
+      "template": "# Spike: reactflow component (js)\n// Auto-generated spike stub for reactflow (component)\nmodule.exports = function demo(){\n  console.log('use reactflow - component (advanced)');\n};\n"
+    },
+    {
+      "path": "src/components/Flow.jsx",
+      "template": "import React from 'react';\nimport ReactFlow, { Background, Controls } from 'reactflow';\nimport 'reactflow/dist/style.css';\n\nconst initialNodes = [\n  { id: '1', position: { x: 0, y: 0 }, data: { label: 'Node 1' } },\n  { id: '2', position: { x: 200, y: 100 }, data: { label: 'Node 2' } }\n];\nconst initialEdges = [\n  { id: 'e1-2', source: '1', target: '2' }\n];\n\nexport default function Flow(){\n  return (\n    <div style={{ width: '100%', height: 400 }}>\n      <ReactFlow nodes={initialNodes} edges={initialEdges}>\n        <Background />\n        <Controls />\n      </ReactFlow>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/components/CustomNode.jsx",
+      "template": "import React from 'react';\nexport default function CustomNode({ data }: { data: any }){ return <div style={{ padding: 8, border: '1px solid #999' }}>{data?.label || 'Custom'}</div>; }\n"
+    },
+    {
+      "path": "src/components/FlowAdvanced.jsx",
+      "template": "import React, { useMemo } from 'react';\nimport ReactFlow, { Background, Controls, MiniMap } from 'reactflow';\nimport 'reactflow/dist/style.css';\nimport CustomNode from '@/src/components/CustomNode';\n\nconst initialNodes = [ { id: '1', position: { x: 0, y: 0 }, data: { label: 'Start' }, type: 'custom' } ];\nconst initialEdges = [] as any[];\n\nexport default function FlowAdvanced(){\n  const nodeTypes = useMemo(() => ({ custom: CustomNode }), []);\n  return (\n    <div style={{ width: '100%', height: 400 }}>\n      <ReactFlow nodes={initialNodes} edges={initialEdges} nodeTypes={nodeTypes}>\n        <MiniMap />\n        <Background />\n        <Controls />\n      </ReactFlow>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "spikes/strike-reactflow-component-advanced-js.js.txt",
+      "template": "# Spike: reactflow component (js)\n// Auto-generated spike stub for reactflow (component)\nmodule.exports = function demo(){\n  console.log('use reactflow - component (advanced)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-reactflow-component-advanced-js.md",
+      "template": "# reactflow component (advanced, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

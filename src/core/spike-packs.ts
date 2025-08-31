@@ -41,6 +41,17 @@ export const SPIKE_PACKS: Record<string, SpikePackDef> = {
     description: '監視/APM/ログ（Sentry/PostHog/Datadog/NewRelic/Prometheus/Pino/Winston）',
     include: { libs: ['sentry','posthog','datadog','newrelic','prometheus','pino','winston'], patterns: ['middleware','service','config','adapter'], styles: ['typed','basic','secure'], langs: ['ts'] }
   }
+  ,
+  'flow-tree-starter': {
+    name: 'flow-tree-starter',
+    description: 'ReactFlow + Shadcn TreeView のUI/サーバ/スキーマ/ブリッジを含むスターター',
+    include: {
+      libs: ['reactflow','shadcn-tree-view'],
+      patterns: ['component','route','schema','adapter','example','docs'],
+      styles: ['typed','advanced','testing'],
+      langs: ['ts','js','py']
+    }
+  }
 };
 
 // gen-/strike-の一般的ID: <prefix><lib>-<pattern>-<style>-<lang>
@@ -82,4 +93,3 @@ export function filterIdsByPack(ids: string[], packName: string): string[] {
 export function listPacks(): Array<{ key: string; name: string; description: string }>{
   return Object.entries(SPIKE_PACKS).map(([key, def])=> ({ key, name: def.name, description: def.description }));
 }
-

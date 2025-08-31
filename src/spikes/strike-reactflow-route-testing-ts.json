@@ -1,0 +1,49 @@
+{
+  "id": "strike-reactflow-route-testing-ts",
+  "name": "reactflow route testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "reactflow",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for reactflow route in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "reactflow-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/reactflow-route.ts",
+      "template": "# Spike: reactflow route (ts)\n// Auto-generated spike stub for reactflow (route)\nexport function demo() {\n  console.log('use reactflow - route (testing)');\n}\n"
+    },
+    {
+      "path": "app/api/flow/route.ts",
+      "template": "import { NextResponse } from 'next/server';\nexport async function GET(){ return NextResponse.json({ nodes: [], edges: [] }); }\nexport async function POST(req: Request){ const json = await req.json(); return NextResponse.json({ ok: true, received: json }); }\n"
+    },
+    {
+      "path": "src/flow/route.ts",
+      "template": "import express from 'express';\nexport function createFlowRoute(){ const app = express(); app.use(express.json()); app.get('/api/flow', (_req, res)=> res.json({ nodes: [], edges: [] })); app.post('/api/flow', (req, res)=> res.json({ ok: true, received: req.body })); return app; }\n"
+    },
+    {
+      "path": "spikes/strike-reactflow-route-testing-ts.ts.txt",
+      "template": "# Spike: reactflow route (ts)\n// Auto-generated spike stub for reactflow (route)\nexport function demo() {\n  console.log('use reactflow - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-reactflow-route-testing-ts.md",
+      "template": "# reactflow route (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-reactflow-route-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

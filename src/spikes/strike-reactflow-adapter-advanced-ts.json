@@ -1,0 +1,41 @@
+{
+  "id": "strike-reactflow-adapter-advanced-ts",
+  "name": "reactflow adapter advanced ts",
+  "version": "0.1.0",
+  "stack": [
+    "reactflow",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for reactflow adapter in ts (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "reactflow-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/reactflow-adapter.ts",
+      "template": "# Spike: reactflow adapter (ts)\n// Auto-generated spike stub for reactflow (adapter)\nexport function demo() {\n  console.log('use reactflow - adapter (advanced)');\n}\n"
+    },
+    {
+      "path": "src/flow/api.ts",
+      "template": "export async function loadFlow(api = '/api/flow'){\n  const res = await fetch(api);\n  if (!res.ok) throw new Error('load_failed:' + res.status);\n  return res.json();\n}\nexport async function saveFlow(data: any, api = '/api/flow'){\n  const res = await fetch(api, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });\n  if (!res.ok) throw new Error('save_failed:' + res.status);\n  return res.json();\n}\n"
+    },
+    {
+      "path": "spikes/strike-reactflow-adapter-advanced-ts.ts.txt",
+      "template": "# Spike: reactflow adapter (ts)\n// Auto-generated spike stub for reactflow (adapter)\nexport function demo() {\n  console.log('use reactflow - adapter (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-reactflow-adapter-advanced-ts.md",
+      "template": "# reactflow adapter (advanced, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

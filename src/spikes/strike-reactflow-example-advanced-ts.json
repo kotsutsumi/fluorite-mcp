@@ -1,0 +1,57 @@
+{
+  "id": "strike-reactflow-example-advanced-ts",
+  "name": "reactflow example advanced ts",
+  "version": "0.1.0",
+  "stack": [
+    "reactflow",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for reactflow example in ts (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "reactflow-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/reactflow-example.ts",
+      "template": "# Spike: reactflow example (ts)\n// Auto-generated spike stub for reactflow (example)\nexport function demo() {\n  console.log('use reactflow - example (advanced)');\n}\n"
+    },
+    {
+      "path": "src/flow/App.tsx",
+      "template": "import React from 'react';\nimport Flow from '@/src/components/Flow';\nexport default function App(){ return (<main><h1>React Flow Example</h1><Flow /></main>); }\n"
+    },
+    {
+      "path": "src/components/CustomNode.tsx",
+      "template": "import React from 'react';\nexport default function CustomNode({ data }: { data: any }){ return <div style={{ padding: 8, border: '1px solid #999' }}>{data?.label || 'Custom'}</div>; }\n"
+    },
+    {
+      "path": "src/components/FlowAdvanced.tsx",
+      "template": "import React, { useMemo } from 'react';\nimport ReactFlow, { Background, Controls, MiniMap } from 'reactflow';\nimport 'reactflow/dist/style.css';\nimport CustomNode from '@/src/components/CustomNode';\n\nconst initialNodes = [ { id: '1', position: { x: 0, y: 0 }, data: { label: 'Start' }, type: 'custom' } ];\nconst initialEdges = [] as any[];\n\nexport default function FlowAdvanced(){\n  const nodeTypes = useMemo(() => ({ custom: CustomNode }), []);\n  return (\n    <div style={{ width: '100%', height: 400 }}>\n      <ReactFlow nodes={initialNodes} edges={initialEdges} nodeTypes={nodeTypes}>\n        <MiniMap />\n        <Background />\n        <Controls />\n      </ReactFlow>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/components/InputNode.tsx",
+      "template": "import React from 'react';\nexport default function InputNode({ data }: { data: any }){ return <input defaultValue={data?.label || ''} style={{ padding: 6, border: '1px solid #aaa' }} /> }\n"
+    },
+    {
+      "path": "src/components/DecisionNode.tsx",
+      "template": "import React from 'react';\nexport default function DecisionNode({ data }: { data: any }){ return <div style={{ padding: 8, border: '2px dashed #c77' }}>❓ {data?.label || 'Decision'}</div> }\n"
+    },
+    {
+      "path": "spikes/strike-reactflow-example-advanced-ts.ts.txt",
+      "template": "# Spike: reactflow example (ts)\n// Auto-generated spike stub for reactflow (example)\nexport function demo() {\n  console.log('use reactflow - example (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-reactflow-example-advanced-ts.md",
+      "template": "# reactflow example (advanced, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

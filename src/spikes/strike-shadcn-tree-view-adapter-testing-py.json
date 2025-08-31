@@ -1,0 +1,49 @@
+{
+  "id": "strike-shadcn-tree-view-adapter-testing-py",
+  "name": "shadcn-tree-view adapter testing py",
+  "version": "0.1.0",
+  "stack": [
+    "shadcn-tree-view",
+    "py"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for shadcn-tree-view adapter in py (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "shadcn-tree-view-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/shadcn-tree-view-adapter.py",
+      "template": "# Spike: shadcn-tree-view adapter (py)\n# Auto-generated spike stub for shadcn-tree-view (adapter)\ndef demo():\n    print('use shadcn-tree-view - adapter (testing)')\n"
+    },
+    {
+      "path": "src/treeview/api.js",
+      "template": "export async function loadTree(api = '/api/tree'){\n  const res = await fetch(api); if (!res.ok) throw new Error('load_failed'); return res.json();\n}\nexport async function saveTree(data: any, api = '/api/tree'){\n  const res = await fetch(api, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });\n  if (!res.ok) throw new Error('save_failed'); return res.json();\n}\n"
+    },
+    {
+      "path": "src/treeview/toFlow.js",
+      "template": "export function toFlow(tree: any[]){\n  const nodes: any[] = []; const edges: any[] = [];\n  const walk = (n: any, parent?: any, idx=0)=>{ nodes.push({ id: n.id, data: { label: n.label }, position: { x: idx*160, y: (parent? 100:0) + (idx*40) } }); if(parent){ edges.push({ id: parent.id+'-'+n.id, source: parent.id, target: n.id }); } (n.children||[]).forEach((c: any, i: number)=> walk(c, n, i)); };\n  (tree||[]).forEach((n, i)=> walk(n, undefined, i));\n  return { nodes, edges };\n}\n"
+    },
+    {
+      "path": "spikes/strike-shadcn-tree-view-adapter-testing-py.py.txt",
+      "template": "# Spike: shadcn-tree-view adapter (py)\n# Auto-generated spike stub for shadcn-tree-view (adapter)\ndef demo():\n    print('use shadcn-tree-view - adapter (testing)')\n"
+    },
+    {
+      "path": "spikes/strike-shadcn-tree-view-adapter-testing-py.md",
+      "template": "# shadcn-tree-view adapter (testing, py)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-shadcn-tree-view-adapter-testing-py_test.py",
+      "template": "def test_demo():\n    assert True\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,45 @@
+{
+  "id": "strike-reactflow-hook-testing-js",
+  "name": "reactflow hook testing js",
+  "version": "0.1.0",
+  "stack": [
+    "reactflow",
+    "js"
+  ],
+  "tags": [
+    "hook",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for reactflow hook in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "reactflow-hook-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/reactflow-hook.js",
+      "template": "# Spike: reactflow hook (js)\n// Auto-generated spike stub for reactflow (hook)\nmodule.exports = function demo(){\n  console.log('use reactflow - hook (testing)');\n};\n"
+    },
+    {
+      "path": "src/flow/useFlowState.js",
+      "template": "import { useCallback } from 'react';\nimport { useNodesState, useEdgesState, addEdge } from 'reactflow';\nexport function useFlowState(initialNodes = [], initialEdges = []){\n  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);\n  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);\n  const onConnect = useCallback((params: any) => setEdges((eds: any) => addEdge(params, eds)), [setEdges]);\n  return { nodes, setNodes, onNodesChange, edges, setEdges, onEdgesChange, onConnect };\n}\n"
+    },
+    {
+      "path": "spikes/strike-reactflow-hook-testing-js.js.txt",
+      "template": "# Spike: reactflow hook (js)\n// Auto-generated spike stub for reactflow (hook)\nmodule.exports = function demo(){\n  console.log('use reactflow - hook (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-reactflow-hook-testing-js.md",
+      "template": "# reactflow hook (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-reactflow-hook-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

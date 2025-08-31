@@ -1,0 +1,45 @@
+{
+  "id": "strike-reactflow-example-testing-ts",
+  "name": "reactflow example testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "reactflow",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for reactflow example in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "reactflow-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/reactflow-example.ts",
+      "template": "# Spike: reactflow example (ts)\n// Auto-generated spike stub for reactflow (example)\nexport function demo() {\n  console.log('use reactflow - example (testing)');\n}\n"
+    },
+    {
+      "path": "src/flow/App.tsx",
+      "template": "import React from 'react';\nimport Flow from '@/src/components/Flow';\nexport default function App(){ return (<main><h1>React Flow Example</h1><Flow /></main>); }\n"
+    },
+    {
+      "path": "spikes/strike-reactflow-example-testing-ts.ts.txt",
+      "template": "# Spike: reactflow example (ts)\n// Auto-generated spike stub for reactflow (example)\nexport function demo() {\n  console.log('use reactflow - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-reactflow-example-testing-ts.md",
+      "template": "# reactflow example (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-reactflow-example-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

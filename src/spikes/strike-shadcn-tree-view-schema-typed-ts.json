@@ -1,0 +1,49 @@
+{
+  "id": "strike-shadcn-tree-view-schema-typed-ts",
+  "name": "shadcn-tree-view schema typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "shadcn-tree-view",
+    "ts"
+  ],
+  "tags": [
+    "schema",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for shadcn-tree-view schema in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "shadcn-tree-view-schema-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/shadcn-tree-view-schema.ts",
+      "template": "# Spike: shadcn-tree-view schema (ts)\n// Auto-generated spike stub for shadcn-tree-view (schema)\nexport function demo() {\n  console.log('use shadcn-tree-view - schema (typed)');\n}\n"
+    },
+    {
+      "path": "src/treeview/schema.ts",
+      "template": "import { z } from 'zod';\nexport const TreeNode = z.lazy(()=> z.object({ id: z.string(), label: z.string(), children: z.array(TreeNode).optional() }));\nexport const Tree = z.array(TreeNode);\nexport type TreeNodeT = z.infer<typeof TreeNode>;\nexport type TreeT = z.infer<typeof Tree>;\n"
+    },
+    {
+      "path": "src/treeview/patch.ts",
+      "template": "// Apply simple patch operations (add/remove/update) to a tree (stub)\nexport type Patch = { op: 'add'|'remove'|'update'; id: string; parentId?: string; label?: string };\nexport function applyPatch(tree: any[], patch: Patch){ return tree; }\n"
+    },
+    {
+      "path": "app/api/tree/patch/route.ts",
+      "template": "import { NextResponse } from 'next/server';\nexport async function POST(req: Request){ const json = await req.json(); return NextResponse.json({ ok: true, received: json }); }\n"
+    },
+    {
+      "path": "spikes/strike-shadcn-tree-view-schema-typed-ts.ts.txt",
+      "template": "# Spike: shadcn-tree-view schema (ts)\n// Auto-generated spike stub for shadcn-tree-view (schema)\nexport function demo() {\n  console.log('use shadcn-tree-view - schema (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-shadcn-tree-view-schema-typed-ts.md",
+      "template": "# shadcn-tree-view schema (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

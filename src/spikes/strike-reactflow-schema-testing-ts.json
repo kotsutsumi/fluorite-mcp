@@ -1,0 +1,41 @@
+{
+  "id": "strike-reactflow-schema-testing-ts",
+  "name": "reactflow schema testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "reactflow",
+    "ts"
+  ],
+  "tags": [
+    "schema",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for reactflow schema in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "reactflow-schema-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/reactflow-schema.ts",
+      "template": "# Spike: reactflow schema (ts)\n// Auto-generated spike stub for reactflow (schema)\nexport function demo() {\n  console.log('use reactflow - schema (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-reactflow-schema-testing-ts.ts.txt",
+      "template": "# Spike: reactflow schema (ts)\n// Auto-generated spike stub for reactflow (schema)\nexport function demo() {\n  console.log('use reactflow - schema (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-reactflow-schema-testing-ts.md",
+      "template": "# reactflow schema (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-reactflow-schema-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

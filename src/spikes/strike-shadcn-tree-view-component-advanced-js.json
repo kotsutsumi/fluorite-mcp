@@ -1,0 +1,53 @@
+{
+  "id": "strike-shadcn-tree-view-component-advanced-js",
+  "name": "shadcn-tree-view component advanced js",
+  "version": "0.1.0",
+  "stack": [
+    "shadcn-tree-view",
+    "js"
+  ],
+  "tags": [
+    "component",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for shadcn-tree-view component in js (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "shadcn-tree-view-component-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/shadcn-tree-view-component.js",
+      "template": "# Spike: shadcn-tree-view component (js)\n// Auto-generated spike stub for shadcn-tree-view (component)\nmodule.exports = function demo(){\n  console.log('use shadcn-tree-view - component (advanced)');\n};\n"
+    },
+    {
+      "path": "src/components/TreeView.jsx",
+      "template": "import React, { useState } from 'react';\ntype Node = { id: string; label: string; children?: Node[] } // @ts-ignore;\nconst sample: Node[] = [\n  { id: 'root', label: 'Root', children: [ { id: 'a', label: 'A' }, { id: 'b', label: 'B', children: [ { id: 'b-1', label: 'B-1' } ] } ] }\n];\nfunction Item({ node, depth = 0 }: { node: Node; depth?: number }){\n  const [open, setOpen] = useState(true);\n  const has = !!node.children?.length;\n  return (\n    <div style={{ paddingLeft: depth * 12 }} className=\"space-y-1\">\n      <div className=\"flex items-center gap-2\">\n        {has && (<button className=\"h-5 w-5 text-xs border rounded\" onClick={()=> setOpen(!open)}>{open ? '-' : '+'}</button>)}\n        <span className=\"text-sm\">{node.label}</span>\n      </div>\n      {has && open && (\n        <div className=\"border-l pl-3 ml-2\">\n          {node.children!.map((c)=> (<Item key={c.id} node={c} depth={depth+1} />))}\n        </div>\n      )}\n    </div>\n  );\n}\nexport default function TreeView({ nodes = sample }: { nodes?: Node[] }){\n  return (\n    <div className=\"rounded-md border p-2\">\n      {nodes.map((n)=> (<Item key={n.id} node={n} />))}\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/components/TreeViewAdvanced.jsx",
+      "template": "import React, { useState } from 'react';\ntype Node = { id: string; label: string; children?: Node[] } // @ts-ignore;\nconst data: Node[] = [{ id: 'root', label: 'Root', children: [{ id: 'a', label: 'A' }, { id: 'b', label: 'B' }] }];\nfunction Item({ node, depth=0, onCtx }: { node: Node; depth?: number; onCtx: (id:string, e:any)=>void }){\n  const [open, setOpen] = useState(true);\n  const [checked, setChecked] = useState(false);\n  const has = !!node.children?.length;\n  return (\n    <div style={{ paddingLeft: depth * 12 }} className=\"space-y-1\" onContextMenu={(e)=> onCtx(node.id, e)} role=\"tree\" aria-label=\"Tree\">\n      <div className=\"flex items-center gap-2\" role=\"treeitem\" aria-expanded={has ? open : undefined} aria-selected={checked}>\n        {has && (<button className=\"h-5 w-5 text-xs border rounded\" aria-label={open ? 'Collapse' : 'Expand'} onClick={()=> setOpen(!open)}>{open ? '-' : '+'}</button>)}\n        <input type=\"checkbox\" aria-label=\"Select\" checked={checked} onChange={(e)=> setChecked(e.target.checked)} />\n        <span className=\"text-sm select-none\">{node.label}</span>\n      </div>\n      {has && open && (\n        <div className=\"border-l pl-3 ml-2\">\n          {node.children!.map((c)=> (<Item key={c.id} node={c} depth={depth+1} onCtx={onCtx} />))}\n        </div>\n      )}\n    </div>\n  );\n}\nexport default function TreeViewAdvanced(){\n  const [ctx, setCtx] = useState<{id?:string;x?:number;y?:number}>({});\n  const [q, setQ] = useState('');\n  const filter = (n: Node): Node | null => {\n    const hit = n.label.toLowerCase().includes(q.toLowerCase());\n    const kids = (n.children||[]).map(filter).filter(Boolean) as Node[];\n    if (hit || kids.length) return { ...n, children: kids };\n    return null;\n  };\n  const filtered = (data.map(filter).filter(Boolean) as Node[]) || [];\n  return (\n    <div className=\"relative rounded-md border p-2\">\n      <input className=\"mb-2 border rounded px-2 py-1 text-sm\" placeholder=\"Filter...\" value={q} onChange={(e:any)=> setQ(e.target.value)} />\n      {data.map((n)=> (<Item key={n.id} node={n} onCtx={(id,e)=>{ e.preventDefault(); setCtx({ id, x: e.clientX, y: e.clientY }); }} />))}\n      {ctx.id && (\n        <div className=\"absolute bg-white border rounded shadow p-2\" style={{ left: ctx.x, top: ctx.y }}>\n          <div className=\"text-xs\">Node: {ctx.id}</div>\n          <button className=\"text-xs\">Action</button>\n        </div>\n      )}\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/components/VirtualizedTree.jsx",
+      "template": "// Placeholder for virtualized tree rendering (e.g., react-window)\nimport React from 'react';\nexport default function VirtualizedTree(){ return <div className=\"text-xs text-muted-foreground\">Virtualized tree placeholder</div>; }\n"
+    },
+    {
+      "path": "src/components/DnDTree.jsx",
+      "template": "// Placeholder for drag-and-drop tree (e.g., dnd-kit)\nimport React from 'react';\nexport default function DnDTree(){ return <div className=\"text-xs text-muted-foreground\">DnD tree placeholder</div>; }\n"
+    },
+    {
+      "path": "spikes/strike-shadcn-tree-view-component-advanced-js.js.txt",
+      "template": "# Spike: shadcn-tree-view component (js)\n// Auto-generated spike stub for shadcn-tree-view (component)\nmodule.exports = function demo(){\n  console.log('use shadcn-tree-view - component (advanced)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-shadcn-tree-view-component-advanced-js.md",
+      "template": "# shadcn-tree-view component (advanced, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,53 @@
+{
+  "id": "strike-shadcn-tree-view-route-testing-js",
+  "name": "shadcn-tree-view route testing js",
+  "version": "0.1.0",
+  "stack": [
+    "shadcn-tree-view",
+    "js"
+  ],
+  "tags": [
+    "route",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for shadcn-tree-view route in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "shadcn-tree-view-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/shadcn-tree-view-route.js",
+      "template": "# Spike: shadcn-tree-view route (js)\n// Auto-generated spike stub for shadcn-tree-view (route)\nmodule.exports = function demo(){\n  console.log('use shadcn-tree-view - route (testing)');\n};\n"
+    },
+    {
+      "path": "app/api/tree/route.ts",
+      "template": "import { NextResponse } from 'next/server';\nexport async function GET(){ return NextResponse.json([{ id: 'root', label: 'Root' }]); }\nexport async function POST(req: Request){ const json = await req.json(); return NextResponse.json({ ok: true, received: json }); }\n"
+    },
+    {
+      "path": "src/treeview/route.js",
+      "template": "import express from 'express';\nexport function createTreeRoute(){ const app = express(); app.use(express.json()); app.get('/api/tree', (_req, res)=> res.json([{ id: 'root', label: 'Root' }])); app.post('/api/tree', (req, res)=> res.json({ ok: true, received: req.body })); return app; }\n"
+    },
+    {
+      "path": "src/treeview/a11y.test.js",
+      "template": "import { describe, it, expect } from 'vitest';\n// Placeholder: In real projects, use axe-core or jest-axe for a11y checks\ndescribe('a11y', ()=>{ it('basic a11y placeholder', ()=>{ expect(true).toBe(true); }); });\n"
+    },
+    {
+      "path": "spikes/strike-shadcn-tree-view-route-testing-js.js.txt",
+      "template": "# Spike: shadcn-tree-view route (js)\n// Auto-generated spike stub for shadcn-tree-view (route)\nmodule.exports = function demo(){\n  console.log('use shadcn-tree-view - route (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-shadcn-tree-view-route-testing-js.md",
+      "template": "# shadcn-tree-view route (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-shadcn-tree-view-route-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}
