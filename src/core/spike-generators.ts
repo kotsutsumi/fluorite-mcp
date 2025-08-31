@@ -88,7 +88,9 @@ const PATTERNS = [
   // additional common patterns
   'middleware','schema','component','hook','provider','adapter','plugin','worker','listener','migration','seed',
   // expanded patterns
-  'cli','command','pipeline','scheduler','cron','benchmark','example','docs'
+  'cli','command','pipeline','scheduler','cron','benchmark','example','docs',
+  // new specialized patterns for UI/data flows
+  'realtime','graphql-server','graphql-client','dnd','virtualize','snapshot','export','replay','import','audit-log','conflict-resolve','collab-session'
 ];
 
 const STYLES = ['basic','typed','advanced','secure','testing'];
@@ -1214,6 +1216,25 @@ describe('Flow', ()=>{ it('renders', ()=>{ expect(true).toBe(true); }); });
       files.push({ path: `src/components/InputNode.${jsxExt}`, template: `import React from 'react';\nexport default function InputNode({ data }: { data: any }){ return <input defaultValue={data?.label || ''} style={{ padding: 6, border: '1px solid #aaa' }} /> }\n` });
       files.push({ path: `src/components/DecisionNode.${jsxExt}`, template: `import React from 'react';\nexport default function DecisionNode({ data }: { data: any }){ return <div style={{ padding: 8, border: '2px dashed #c77' }}>❓ {data?.label || 'Decision'}</div> }\n` });
     }
+    if (pattern === 'virtualize') {
+      files.push({ path: `src/flow/VirtualizeFlow.${jsxExt}`, template: `// Placeholder for virtualizing ReactFlow canvas (custom chunking/visibility)
+export default function VirtualizeFlow(){ return null }
+` });
+    }
+    if (pattern === 'dnd') {
+      files.push({ path: `src/flow/DnDFlow.${jsxExt}`, template: `// Placeholder for DnD on ReactFlow nodes/edges
+export default function DnDFlow(){ return null }
+` });
+    }
+    if (pattern === 'realtime') {
+      files.push({ path: `src/flow/realtime.${isTS ? 'ts' : 'js'}`, template: `export function connectFlowRealtime(){ return { emit: ()=>{}, on: ()=>{} }; }
+` });
+    }
+    if (pattern === 'graphql-client') {
+      files.push({ path: `src/flow/graphql.${isTS ? 'ts' : 'js'}`, template: `export async function saveFlowGraphQL(){ /* client stub */ }
+export async function loadFlowGraphQL(){ /* client stub */ }
+` });
+    }
   }
 
   // Shadcn-based TreeView (https://github.com/MrLightful/shadcn-tree-view)
@@ -1290,7 +1311,7 @@ describe('TreeView', ()=>{ it('renders', ()=>{ expect(true).toBe(true); }); });
     if (pattern === 'route' && lang === 'py') {
       files.push({ path: `src/treeview/fastapi_tree.py`, template: `from fastapi import APIRouter, Request\nrouter = APIRouter()\n@router.get('/api/tree')\nasync def get_tree():\n    return [{ 'id': 'root', 'label': 'Root' }]\n@router.post('/api/tree')\nasync def post_tree(request: Request):\n    data = await request.json()\n    return { 'ok': True, 'received': data }\n` });
     }
-    // advanced: 選択/チェック/右クリックメニューの簡易版 + 仮想化/DnDのプレースホルダ
+    // advanced: 選択/チェック/右クリックメニューの簡易版 + 仮想化/DnDのプレースホルダ + 実導入スターター雛形
     if (style === 'advanced' && (pattern === 'component' || pattern === 'example')) {
       files.push({ path: `src/components/TreeViewAdvanced.${jsxExt}`, template: `import React, { useState } from 'react';
 type Node = { id: string; label: string; children?: Node[] }${isTS ? '' : ' // @ts-ignore'};
@@ -1346,6 +1367,23 @@ export default function VirtualizedTree(){ return <div className=\"text-xs text-
 import React from 'react';
 export default function DnDTree(){ return <div className=\"text-xs text-muted-foreground\">DnD tree placeholder</div>; }
 ` });
+      // Practical starters (commented imports to avoid runtime deps)
+      files.push({ path: `src/components/VirtualizedTreeWindow.${jsxExt}`, template: `// react-window based starter (install react-window)
+import React from 'react';
+// import { FixedSizeList as List } from 'react-window';
+export default function VirtualizedTreeWindow(){
+  // const Row = ({ index, style }: any)=> (<div style={style}>Item {index}</div>);
+  return (<div className=\"text-xs text-muted-foreground\">Install react-window and replace placeholder.</div>);
+}
+` });
+      files.push({ path: `src/components/DnDTreeKit.${jsxExt}`, template: `// dnd-kit based starter (install @dnd-kit/*)
+import React from 'react';
+// import { DndContext } from '@dnd-kit/core';
+export default function DnDTreeKit(){
+  // return (<DndContext><div>DnD here</div></DndContext>);
+  return (<div className=\"text-xs text-muted-foreground\">Install @dnd-kit/core and wire up DnD.</div>);
+}
+` });
     }
 
     // schema: Zod/Pydantic スキーマと PATCH API のスタブ
@@ -1363,6 +1401,19 @@ export function applyPatch(tree: any[], patch: Patch){ return tree; }
 ` });
         files.push({ path: `app/api/tree/patch/route.ts`, template: `import { NextResponse } from 'next/server';
 export async function POST(req: Request){ const json = await req.json(); return NextResponse.json({ ok: true, received: json }); }
+` });
+        // GraphQL server stubs (schema/resolvers) for Tree
+        files.push({ path: `src/treeview/graphql-schema.ts`, template: `export const typeDefs = /* GraphQL */ ` + "`" + `
+scalar JSON
+type Query { tree: JSON }
+type Mutation { saveTree(tree: JSON!): Boolean! }
+` + "`" + `;
+` });
+        files.push({ path: `src/treeview/graphql-resolvers.ts`, template: `let _tree: any[] = [];
+export const resolvers = {
+  Query: { tree: ()=> _tree },
+  Mutation: { saveTree: (_: any, args: { tree: any[] })=> { _tree = args.tree; return true; } }
+};
 ` });
       }
       if (lang === 'py') {
@@ -1395,6 +1446,40 @@ export function fromFlow(nodes: any[], edges: any[]){
   return roots;
 }
 ` });
+      // GraphQL integration (save/load via mutation/query)
+      files.push({ path: `src/treeview/graphql.${isTS ? 'ts' : 'js'}`, template: `export async function saveTreeGraphQL(endpoint: string, tree: any){
+  const mutation = ` + "`" + `mutation($tree: JSON!){ saveTree(tree:$tree) }` + "`" + `;
+  const res = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ query: mutation, variables: { tree } }) });
+  if (!res.ok) throw new Error('graphql_save_failed:' + res.status);
+  return res.json();
+}
+export async function loadTreeGraphQL(endpoint: string){
+  const query = ` + "`" + `query{ tree }` + "`" + `;
+  const res = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ query }) });
+  if (!res.ok) throw new Error('graphql_load_failed:' + res.status);
+  return res.json();
+}
+` });
+      // Realtime (socket.io) placeholder
+      files.push({ path: `src/treeview/realtime.${isTS ? 'ts' : 'js'}`, template: `// Minimal socket.io client placeholder
+export function connectRealtime(url = 'http://localhost:3000'){
+  // In real app: import { io } from 'socket.io-client'; const socket = io(url);
+  return { emitChange: (_p: any)=>{}, onChange: (_cb: any)=>{} };
+}
+` });
+      files.push({ path: `src/treeview/realtime-ably.${isTS ? 'ts' : 'js'}`, template: `// Minimal Ably realtime placeholder
+export function connectAbly(keyEnv = 'ABLY_KEY'){
+  // In real app: const Realtime = require('ably').Realtime; const client = new Realtime(process.env[keyEnv]!);
+  return { publish: (_ch: string, _name: string, _data: any)=>{}, subscribe: (_ch: string, _cb: any)=>{} };
+}
+` });
+      // Realtime abstraction layer
+      files.push({ path: `src/treeview/realtime-adapter.${isTS ? 'ts' : 'js'}`, template: `export type RT = { emitChange: (p:any)=>void; onChange: (cb:(p:any)=>void)=>void };
+export function makeRealtime(kind: 'socket'|'ably'): RT{
+  if (kind === 'ably') return { emitChange: ()=>{}, onChange: ()=>{} };
+  return { emitChange: ()=>{}, onChange: ()=>{} };
+}
+` });
     }
 
     // testing: SSR/Next.js App Routerでの簡易a11yチェック雛形
@@ -1403,6 +1488,33 @@ export function fromFlow(nodes: any[], edges: any[]){
 // Placeholder: In real projects, use axe-core or jest-axe for a11y checks
 describe('a11y', ()=>{ it('basic a11y placeholder', ()=>{ expect(true).toBe(true); }); });
 ` });
+    }
+    if (pattern === 'virtualize') {
+      files.push({ path: `src/components/VirtualizedTreeWindow.${jsxExt}`, template: `// react-window based starter (install react-window)
+import React from 'react';
+export default function VirtualizedTreeWindow(){ return (<div className=\"text-xs text-muted-foreground\">Install react-window and replace placeholder.</div>); }
+` });
+    }
+    if (pattern === 'dnd') {
+      files.push({ path: `src/components/DnDTreeKit.${jsxExt}`, template: `// dnd-kit based starter (install @dnd-kit/*)
+import React from 'react';
+export default function DnDTreeKit(){ return (<div className=\"text-xs text-muted-foreground\">Install @dnd-kit/core and wire up DnD.</div>); }
+` });
+    }
+    if (pattern === 'realtime') {
+      files.push({ path: `src/treeview/realtime.${isTS ? 'ts' : 'js'}`, template: `export function connectRealtime(){ return { emitChange: ()=>{}, onChange: ()=>{} }; }
+` });
+      files.push({ path: `src/treeview/realtime-ably.${isTS ? 'ts' : 'js'}`, template: `export function connectAbly(){ return { publish: ()=>{}, subscribe: ()=>{} }; }
+` });
+    }
+    if (pattern === 'graphql-client') {
+      files.push({ path: `src/treeview/graphql.${isTS ? 'ts' : 'js'}`, template: `export async function saveTreeGraphQL(){ /* client stub */ }
+export async function loadTreeGraphQL(){ /* client stub */ }
+` });
+    }
+    if (pattern === 'graphql-server' && (lang === 'ts')) {
+      files.push({ path: `src/treeview/graphql-schema.ts`, template: `export const typeDefs = /* GraphQL */ ` + "`" + `scalar JSON\n type Query { tree: JSON }\n type Mutation { saveTree(tree: JSON!): Boolean! }` + "`" + `;\n` });
+      files.push({ path: `src/treeview/graphql-resolvers.ts`, template: `export const resolvers = { Query: { tree: ()=> [] }, Mutation: { saveTree: ()=> true } };\n` });
     }
   }
 

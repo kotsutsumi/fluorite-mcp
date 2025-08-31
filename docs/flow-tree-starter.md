@@ -46,7 +46,25 @@ npx tsx scripts/materialize-spikes.ts \
   --limit 2000
 ```
 
+### 既存ファイルと衝突しない物理化（推奨）
+既存の `strike-*.json` が多い場合は、CLIの `synth-bulk` による `--prefix gen-` 物理化が便利です。元IDに `gen-` を付けて新規として書き出します。
+
+```bash
+npx tsx src/cli/index.ts spikes synth-bulk \
+  --pack flow-tree-starter \
+  --generated-only \
+  --prefix gen- \
+  --total 2000 \
+  --batch 200 \
+  --pretty
+```
+
+### 依存の導入（任意）
+- Virtualized: `npm i react-window`
+- DnD: `npm i @dnd-kit/core @dnd-kit/sortable`
+- GraphQL: `npm i graphql @apollo/server` または `npm i @graphql-yoga/node`
+- Realtime: `npm i socket.io-client` または `npm i ably`
+
 ## 注意
 - Virtualized/DnD はプレースホルダ実装です。実導入時は `react-window` や `@dnd-kit/core` のセットアップを行ってください。
 - PATCH API/ブリッジは最小スタブです。要件に応じて差分適用や座標→階層マッピングの精度を調整してください。
-

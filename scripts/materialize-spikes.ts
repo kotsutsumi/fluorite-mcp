@@ -24,7 +24,7 @@ type Opts = {
   langs?: string[];
   limit?: number;
   outDir?: string;
-  prefix?: 'strike'|'gen'|'any';
+  prefix?: string; // 'strike'|'gen'|'any' or arbitrary (e.g., 'gen3-')
 };
 
 function parseArgs(argv: string[]): Opts {
@@ -65,7 +65,7 @@ async function main() {
     styles: opts.styles,
     langs: opts.langs,
     limit: opts.limit && opts.limit > 0 ? opts.limit : undefined
-  }).filter(id => opts.prefix === 'any' ? true : (opts.prefix === 'strike' ? id.startsWith('strike-') : id.startsWith('gen-')));
+  });
 
   if (!ids.length) {
     console.log('No ids selected with given filters.');
@@ -76,7 +76,10 @@ async function main() {
   let created = 0, skipped = 0;
   for (const id of ids) {
     const spec = generateSpike(id);
-    const file = path.join(outDir, `${id}.json`);
+    const needsCustomPrefix = opts.prefix && !['strike','gen','any'].includes(String(opts.prefix));
+    const effectiveId = needsCustomPrefix ? `${opts.prefix}${id}` : id;
+    if (needsCustomPrefix) { (spec as any).id = effectiveId; }
+    const file = path.join(outDir, `${effectiveId}.json`);
     if (await exists(file)) { skipped++; continue; }
     await writeFile(file, JSON.stringify(spec, null, 2), 'utf-8');
     created++;
@@ -89,4 +92,3 @@ main().catch((e) => {
   console.error('materialize-spikes failed:', e?.message || e);
   process.exit(1);
 });
-

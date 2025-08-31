@@ -47,8 +47,19 @@ export const SPIKE_PACKS: Record<string, SpikePackDef> = {
     description: 'ReactFlow + Shadcn TreeView のUI/サーバ/スキーマ/ブリッジを含むスターター',
     include: {
       libs: ['reactflow','shadcn-tree-view'],
-      patterns: ['component','route','schema','adapter','example','docs'],
+      patterns: ['component','route','schema','adapter','example','docs','realtime','graphql-server','graphql-client','dnd','virtualize'],
       styles: ['typed','advanced','testing'],
+      langs: ['ts','js','py']
+    }
+  }
+  ,
+  'flow-tree-ops': {
+    name: 'flow-tree-ops',
+    description: 'Flow/Tree の運用系（snapshot/export/replay と secure/realtime/graphql を含む）',
+    include: {
+      libs: ['reactflow','shadcn-tree-view'],
+      patterns: ['snapshot','export','replay','realtime','graphql-server','graphql-client','route','adapter'],
+      styles: ['typed','secure','advanced','testing'],
       langs: ['ts','js','py']
     }
   }

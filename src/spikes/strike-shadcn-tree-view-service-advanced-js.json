@@ -1,0 +1,57 @@
+{
+  "id": "strike-shadcn-tree-view-service-advanced-js",
+  "name": "shadcn-tree-view service advanced js",
+  "version": "0.1.0",
+  "stack": [
+    "shadcn-tree-view",
+    "js"
+  ],
+  "tags": [
+    "service",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for shadcn-tree-view service in js (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "shadcn-tree-view-service-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/shadcn-tree-view-service.js",
+      "template": "# Spike: shadcn-tree-view service (js)\n// Auto-generated spike stub for shadcn-tree-view (service)\nmodule.exports = function demo(){\n  console.log('use shadcn-tree-view - service (advanced)');\n};\n"
+    },
+    {
+      "path": "src/treeview/api.js",
+      "template": "export async function loadTree(api = '/api/tree'){\n  const res = await fetch(api); if (!res.ok) throw new Error('load_failed'); return res.json();\n}\nexport async function saveTree(data: any, api = '/api/tree'){\n  const res = await fetch(api, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });\n  if (!res.ok) throw new Error('save_failed'); return res.json();\n}\n"
+    },
+    {
+      "path": "src/treeview/toFlow.js",
+      "template": "export function toFlow(tree: any[]){\n  const nodes: any[] = []; const edges: any[] = [];\n  const walk = (n: any, parent?: any, idx=0)=>{ nodes.push({ id: n.id, data: { label: n.label }, position: { x: idx*160, y: (parent? 100:0) + (idx*40) } }); if(parent){ edges.push({ id: parent.id+'-'+n.id, source: parent.id, target: n.id }); } (n.children||[]).forEach((c: any, i: number)=> walk(c, n, i)); };\n  (tree||[]).forEach((n, i)=> walk(n, undefined, i));\n  return { nodes, edges };\n}\n"
+    },
+    {
+      "path": "src/treeview/fromFlow.js",
+      "template": "// Convert ReactFlow graph back to a flat tree (simple heuristic)\nexport function fromFlow(nodes: any[], edges: any[]){\n  const byId = new Map(nodes.map(n=> [n.id, { id: n.id, label: n.data?.label || n.id, children: [] as any[] }]));\n  const hasParent = new Set<string>();\n  for (const e of edges||[]){ const p = byId.get(e.source); const c = byId.get(e.target); if (p && c){ (p.children as any[]).push(c); hasParent.add(e.target); } }\n  const roots = nodes.filter(n=> !hasParent.has(n.id)).map(n=> byId.get(n.id));\n  return roots;\n}\n"
+    },
+    {
+      "path": "src/treeview/graphql.js",
+      "template": "export async function saveTreeGraphQL(endpoint: string, tree: any){\n  const mutation = `mutation($tree: JSON!){ saveTree(tree:$tree) }`;\n  const res = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ query: mutation, variables: { tree } }) });\n  if (!res.ok) throw new Error('graphql_save_failed:' + res.status);\n  return res.json();\n}\nexport async function loadTreeGraphQL(endpoint: string){\n  const query = `query{ tree }`;\n  const res = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ query }) });\n  if (!res.ok) throw new Error('graphql_load_failed:' + res.status);\n  return res.json();\n}\n"
+    },
+    {
+      "path": "src/treeview/realtime.js",
+      "template": "// Minimal socket.io client placeholder\nexport function connectRealtime(url = 'http://localhost:3000'){\n  // In real app: import { io } from 'socket.io-client'; const socket = io(url);\n  return { emitChange: (_p: any)=>{}, onChange: (_cb: any)=>{} };\n}\n"
+    },
+    {
+      "path": "spikes/strike-shadcn-tree-view-service-advanced-js.js.txt",
+      "template": "# Spike: shadcn-tree-view service (js)\n// Auto-generated spike stub for shadcn-tree-view (service)\nmodule.exports = function demo(){\n  console.log('use shadcn-tree-view - service (advanced)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-shadcn-tree-view-service-advanced-js.md",
+      "template": "# shadcn-tree-view service (advanced, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}
