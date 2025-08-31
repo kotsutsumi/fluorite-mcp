@@ -1,0 +1,47 @@
+{
+  "id": "strike-redis-route-testing-ts",
+  "name": "redis route testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "redis",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for redis route in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "redis-route-app"
+    },
+    {
+      "name": "redisUrl",
+      "required": false,
+      "description": "Redis 接続URL",
+      "default": "redis://localhost:6379"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/redis-route.ts",
+      "template": "# Spike: redis route (ts)\n// Auto-generated spike stub for redis (route)\nexport function demo() {\n  console.log('use redis - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-route-testing-ts.ts.txt",
+      "template": "# Spike: redis route (ts)\n// Auto-generated spike stub for redis (route)\nexport function demo() {\n  console.log('use redis - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-route-testing-ts.md",
+      "template": "# redis route (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-redis-route-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

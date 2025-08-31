@@ -1,0 +1,41 @@
+{
+  "id": "strike-pubsub-route-testing-ts",
+  "name": "pubsub route testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "pubsub",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for pubsub route in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "pubsub-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/pubsub-route.ts",
+      "template": "# Spike: pubsub route (ts)\n// Auto-generated spike stub for pubsub (route)\nexport function demo() {\n  console.log('use pubsub - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pubsub-route-testing-ts.ts.txt",
+      "template": "# Spike: pubsub route (ts)\n// Auto-generated spike stub for pubsub (route)\nexport function demo() {\n  console.log('use pubsub - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pubsub-route-testing-ts.md",
+      "template": "# pubsub route (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-pubsub-route-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

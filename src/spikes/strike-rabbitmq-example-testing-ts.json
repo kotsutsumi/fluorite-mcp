@@ -1,0 +1,41 @@
+{
+  "id": "strike-rabbitmq-example-testing-ts",
+  "name": "rabbitmq example testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "rabbitmq",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for rabbitmq example in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "rabbitmq-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/rabbitmq-example.ts",
+      "template": "# Spike: rabbitmq example (ts)\n// Auto-generated spike stub for rabbitmq (example)\nexport function demo() {\n  console.log('use rabbitmq - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-rabbitmq-example-testing-ts.ts.txt",
+      "template": "# Spike: rabbitmq example (ts)\n// Auto-generated spike stub for rabbitmq (example)\nexport function demo() {\n  console.log('use rabbitmq - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-rabbitmq-example-testing-ts.md",
+      "template": "# rabbitmq example (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-rabbitmq-example-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

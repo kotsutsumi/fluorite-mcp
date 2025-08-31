@@ -42,14 +42,24 @@ describe('LINE Developers and Expo spikes', () => {
 
   it('adds Next.js App Router variant for line exchange in advanced/secure', () => {
     const rtAdv = generateSpike('strike-line-route-advanced-ts');
-    const rpA = new Set((rtAdv.files || []).map((f) => f.path));
-    expect(rpA.has('app/api/line/exchange/route.ts')).toBe(true);
+    const rtSec = generateSpike('strike-line-route-secure-ts');
+    const pA = new Set((rtAdv.files || []).map((f) => f.path));
+    const pS = new Set((rtSec.files || []).map((f) => f.path));
+    expect(pA.has('app/api/line/exchange/route.ts')).toBe(true);
+    expect(pS.has('app/api/line/exchange/route.ts')).toBe(true);
+    expect(pS.has('src/line/next/security.ts')).toBe(true);
+    expect(pS.has('src/line/next/rateLimit.ts')).toBe(true);
+    expect(pS.has('src/line/next/audit.ts')).toBe(true);
   });
 
   it('adds FastAPI variant when lang=py', () => {
     const rtPy = generateSpike('strike-line-route-typed-py');
     const rpP = new Set((rtPy.files || []).map((f) => f.path));
     expect(rpP.has('src/line/fastapi_exchange.py')).toBe(true);
+    const advPy = generateSpike('strike-line-route-advanced-py');
+    const ap = new Set((advPy.files || []).map((f) => f.path));
+    expect(ap.has('src/line/models.py')).toBe(true);
+    expect(ap.has('src/line/settings.py')).toBe(true);
   });
 
   it('adds Expo advanced stubs', () => {
@@ -57,6 +67,15 @@ describe('LINE Developers and Expo spikes', () => {
     const ep = new Set((exAdv.files || []).map((f) => f.path));
     expect(ep.has('src/app/deeplink.ts')).toBe(true);
     expect(ep.has('src/components/ErrorToast.tsx')).toBe(true);
+  });
+
+  it('adds Expo secure stubs', () => {
+    const exSec = generateSpike('strike-expo-hook-secure-ts');
+    const sp = new Set((exSec.files || []).map((f) => f.path));
+    expect(sp.has('src/hooks/useSecureFetch.ts')).toBe(true);
+    expect(sp.has('src/components/ErrorBoundary.tsx')).toBe(true);
+    expect(sp.has('src/components/Toast.tsx')).toBe(true);
+    expect(sp.has('src/components/RetryButton.tsx')).toBe(true);
   });
 
   it('creates LIFF provider file', () => {

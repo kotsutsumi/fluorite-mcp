@@ -1,0 +1,37 @@
+{
+  "id": "strike-fastapi-route-advanced-py",
+  "name": "fastapi route advanced py",
+  "version": "0.1.0",
+  "stack": [
+    "fastapi",
+    "py"
+  ],
+  "tags": [
+    "route",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastapi route in py (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastapi-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/fastapi-route.py",
+      "template": "# Spike: fastapi route (py)\nfrom fastapi import FastAPI\napp = FastAPI()\n@app.get('/health')\nasync def health():\n    return { 'ok': True }\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-route-advanced-py.py.txt",
+      "template": "# Spike: fastapi route (py)\nfrom fastapi import FastAPI\napp = FastAPI()\n@app.get('/health')\nasync def health():\n    return { 'ok': True }\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-route-advanced-py.md",
+      "template": "# fastapi route (advanced, py)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

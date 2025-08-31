@@ -1,0 +1,41 @@
+{
+  "id": "strike-trpc-init-testing-js",
+  "name": "trpc init testing js",
+  "version": "0.1.0",
+  "stack": [
+    "trpc",
+    "js"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for trpc init in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "trpc-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/trpc-init.js",
+      "template": "# Spike: trpc init (js)\n// Auto-generated spike stub for trpc (init)\nmodule.exports = function demo(){\n  console.log('use trpc - init (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-trpc-init-testing-js.js.txt",
+      "template": "# Spike: trpc init (js)\n// Auto-generated spike stub for trpc (init)\nmodule.exports = function demo(){\n  console.log('use trpc - init (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-trpc-init-testing-js.md",
+      "template": "# trpc init (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-trpc-init-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

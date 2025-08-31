@@ -1,0 +1,45 @@
+{
+  "id": "strike-hapi-route-testing-js",
+  "name": "hapi route testing js",
+  "version": "0.1.0",
+  "stack": [
+    "hapi",
+    "js"
+  ],
+  "tags": [
+    "route",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for hapi route in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "hapi-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/hapi-route.js",
+      "template": "# Spike: hapi route (js)\n// Auto-generated spike stub for hapi (route)\nmodule.exports = function demo(){\n  console.log('use hapi - route (testing)');\n};\n"
+    },
+    {
+      "path": "src/hapi/server.ts",
+      "template": "import Hapi from '@hapi/hapi';\nasync function start(){ const server = Hapi.server({ port:3000, host:'localhost' }); server.route({ method: 'GET', path: '/', handler: ()=> ({ ok: true }) }); await server.start(); }\nstart();\n"
+    },
+    {
+      "path": "spikes/strike-hapi-route-testing-js.js.txt",
+      "template": "# Spike: hapi route (js)\n// Auto-generated spike stub for hapi (route)\nmodule.exports = function demo(){\n  console.log('use hapi - route (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-hapi-route-testing-js.md",
+      "template": "# hapi route (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-hapi-route-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

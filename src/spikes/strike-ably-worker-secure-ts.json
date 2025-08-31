@@ -1,0 +1,37 @@
+{
+  "id": "strike-ably-worker-secure-ts",
+  "name": "ably worker secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "ably",
+    "ts"
+  ],
+  "tags": [
+    "worker",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for ably worker in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "ably-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/ably-worker.ts",
+      "template": "# Spike: ably worker (ts)\n// Auto-generated spike stub for ably (worker)\nexport function demo() {\n  console.log('use ably - worker (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-ably-worker-secure-ts.ts.txt",
+      "template": "# Spike: ably worker (ts)\n// Auto-generated spike stub for ably (worker)\nexport function demo() {\n  console.log('use ably - worker (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-ably-worker-secure-ts.md",
+      "template": "# ably worker (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-hapi-init-testing-js",
+  "name": "hapi init testing js",
+  "version": "0.1.0",
+  "stack": [
+    "hapi",
+    "js"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for hapi init in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "hapi-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/hapi-init.js",
+      "template": "# Spike: hapi init (js)\n// Auto-generated spike stub for hapi (init)\nmodule.exports = function demo(){\n  console.log('use hapi - init (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-hapi-init-testing-js.js.txt",
+      "template": "# Spike: hapi init (js)\n// Auto-generated spike stub for hapi (init)\nmodule.exports = function demo(){\n  console.log('use hapi - init (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-hapi-init-testing-js.md",
+      "template": "# hapi init (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-hapi-init-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

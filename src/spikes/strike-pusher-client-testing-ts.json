@@ -1,0 +1,45 @@
+{
+  "id": "strike-pusher-client-testing-ts",
+  "name": "pusher client testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "pusher",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for pusher client in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "pusher-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/pusher-client.ts",
+      "template": "# Spike: pusher client (ts)\n// Auto-generated spike stub for pusher (client)\nexport function demo() {\n  console.log('use pusher - client (testing)');\n}\n"
+    },
+    {
+      "path": "src/realtime/pusher.ts",
+      "template": "export function pusher(){ return { appId: process.env.PUSHER_APP_ID }; }\n"
+    },
+    {
+      "path": "spikes/strike-pusher-client-testing-ts.ts.txt",
+      "template": "# Spike: pusher client (ts)\n// Auto-generated spike stub for pusher (client)\nexport function demo() {\n  console.log('use pusher - client (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pusher-client-testing-ts.md",
+      "template": "# pusher client (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-pusher-client-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

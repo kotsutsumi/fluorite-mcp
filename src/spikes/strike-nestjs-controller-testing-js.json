@@ -1,0 +1,41 @@
+{
+  "id": "strike-nestjs-controller-testing-js",
+  "name": "nestjs controller testing js",
+  "version": "0.1.0",
+  "stack": [
+    "nestjs",
+    "js"
+  ],
+  "tags": [
+    "controller",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nestjs controller in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nestjs-controller-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/nestjs-controller.js",
+      "template": "# Spike: nestjs controller (js)\n// Auto-generated spike stub for nestjs (controller)\nmodule.exports = function demo(){\n  console.log('use nestjs - controller (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-controller-testing-js.js.txt",
+      "template": "# Spike: nestjs controller (js)\n// Auto-generated spike stub for nestjs (controller)\nmodule.exports = function demo(){\n  console.log('use nestjs - controller (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-controller-testing-js.md",
+      "template": "# nestjs controller (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-controller-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

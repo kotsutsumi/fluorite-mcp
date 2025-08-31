@@ -1,0 +1,37 @@
+{
+  "id": "strike-nats-docs-advanced-ts",
+  "name": "nats docs advanced ts",
+  "version": "0.1.0",
+  "stack": [
+    "nats",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nats docs in ts (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nats-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/nats-docs.ts",
+      "template": "# Spike: nats docs (ts)\n// Auto-generated spike stub for nats (docs)\nexport function demo() {\n  console.log('use nats - docs (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nats-docs-advanced-ts.ts.txt",
+      "template": "# Spike: nats docs (ts)\n// Auto-generated spike stub for nats (docs)\nexport function demo() {\n  console.log('use nats - docs (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nats-docs-advanced-ts.md",
+      "template": "# nats docs (advanced, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-fastapi-middleware-testing-js",
+  "name": "fastapi middleware testing js",
+  "version": "0.1.0",
+  "stack": [
+    "fastapi",
+    "js"
+  ],
+  "tags": [
+    "middleware",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastapi middleware in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastapi-middleware-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/fastapi-middleware.js",
+      "template": "# Spike: fastapi middleware (js)\n// Auto-generated spike stub for fastapi (middleware)\nmodule.exports = function demo(){\n  console.log('use fastapi - middleware (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-middleware-testing-js.js.txt",
+      "template": "# Spike: fastapi middleware (js)\n// Auto-generated spike stub for fastapi (middleware)\nmodule.exports = function demo(){\n  console.log('use fastapi - middleware (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-middleware-testing-js.md",
+      "template": "# fastapi middleware (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-middleware-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

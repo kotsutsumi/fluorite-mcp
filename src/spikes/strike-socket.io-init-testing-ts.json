@@ -1,0 +1,41 @@
+{
+  "id": "strike-socket.io-init-testing-ts",
+  "name": "socket.io init testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "socket.io",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for socket.io init in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "socket.io-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/socket.io-init.ts",
+      "template": "# Spike: socket.io init (ts)\n// Auto-generated spike stub for socket.io (init)\nexport function demo() {\n  console.log('use socket.io - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-socket.io-init-testing-ts.ts.txt",
+      "template": "# Spike: socket.io init (ts)\n// Auto-generated spike stub for socket.io (init)\nexport function demo() {\n  console.log('use socket.io - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-socket.io-init-testing-ts.md",
+      "template": "# socket.io init (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-socket.io-init-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-fastapi-adapter-testing-js",
+  "name": "fastapi adapter testing js",
+  "version": "0.1.0",
+  "stack": [
+    "fastapi",
+    "js"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastapi adapter in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastapi-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/fastapi-adapter.js",
+      "template": "# Spike: fastapi adapter (js)\n// Auto-generated spike stub for fastapi (adapter)\nmodule.exports = function demo(){\n  console.log('use fastapi - adapter (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-adapter-testing-js.js.txt",
+      "template": "# Spike: fastapi adapter (js)\n// Auto-generated spike stub for fastapi (adapter)\nmodule.exports = function demo(){\n  console.log('use fastapi - adapter (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-adapter-testing-js.md",
+      "template": "# fastapi adapter (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-adapter-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,43 @@
+{
+  "id": "strike-redis-docs-advanced-ts",
+  "name": "redis docs advanced ts",
+  "version": "0.1.0",
+  "stack": [
+    "redis",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for redis docs in ts (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "redis-docs-app"
+    },
+    {
+      "name": "redisUrl",
+      "required": false,
+      "description": "Redis 接続URL",
+      "default": "redis://localhost:6379"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/redis-docs.ts",
+      "template": "# Spike: redis docs (ts)\n// Auto-generated spike stub for redis (docs)\nexport function demo() {\n  console.log('use redis - docs (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-docs-advanced-ts.ts.txt",
+      "template": "# Spike: redis docs (ts)\n// Auto-generated spike stub for redis (docs)\nexport function demo() {\n  console.log('use redis - docs (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-docs-advanced-ts.md",
+      "template": "# redis docs (advanced, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

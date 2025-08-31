@@ -1,0 +1,41 @@
+{
+  "id": "strike-express-init-testing-ts",
+  "name": "express init testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express init in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/express-init.ts",
+      "template": "# Spike: express init (ts)\n// Auto-generated spike stub for express (init)\nexport function demo() {\n  console.log('use express - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-express-init-testing-ts.ts.txt",
+      "template": "# Spike: express init (ts)\n// Auto-generated spike stub for express (init)\nexport function demo() {\n  console.log('use express - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-express-init-testing-ts.md",
+      "template": "# express init (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-express-init-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

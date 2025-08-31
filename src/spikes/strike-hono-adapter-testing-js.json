@@ -1,0 +1,41 @@
+{
+  "id": "strike-hono-adapter-testing-js",
+  "name": "hono adapter testing js",
+  "version": "0.1.0",
+  "stack": [
+    "hono",
+    "js"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for hono adapter in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "hono-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/hono-adapter.js",
+      "template": "# Spike: hono adapter (js)\n// Auto-generated spike stub for hono (adapter)\nmodule.exports = function demo(){\n  console.log('use hono - adapter (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-hono-adapter-testing-js.js.txt",
+      "template": "# Spike: hono adapter (js)\n// Auto-generated spike stub for hono (adapter)\nmodule.exports = function demo(){\n  console.log('use hono - adapter (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-hono-adapter-testing-js.md",
+      "template": "# hono adapter (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-hono-adapter-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

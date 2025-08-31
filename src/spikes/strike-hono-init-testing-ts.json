@@ -1,0 +1,41 @@
+{
+  "id": "strike-hono-init-testing-ts",
+  "name": "hono init testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "hono",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for hono init in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "hono-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/hono-init.ts",
+      "template": "# Spike: hono init (ts)\n// Auto-generated spike stub for hono (init)\nexport function demo() {\n  console.log('use hono - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-hono-init-testing-ts.ts.txt",
+      "template": "# Spike: hono init (ts)\n// Auto-generated spike stub for hono (init)\nexport function demo() {\n  console.log('use hono - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-hono-init-testing-ts.md",
+      "template": "# hono init (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-hono-init-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

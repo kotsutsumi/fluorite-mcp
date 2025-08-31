@@ -1,0 +1,41 @@
+{
+  "id": "strike-pubsub-job-testing-ts",
+  "name": "pubsub job testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "pubsub",
+    "ts"
+  ],
+  "tags": [
+    "job",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for pubsub job in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "pubsub-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/pubsub-job.ts",
+      "template": "# Spike: pubsub job (ts)\n// Auto-generated spike stub for pubsub (job)\nexport function demo() {\n  console.log('use pubsub - job (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pubsub-job-testing-ts.ts.txt",
+      "template": "# Spike: pubsub job (ts)\n// Auto-generated spike stub for pubsub (job)\nexport function demo() {\n  console.log('use pubsub - job (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pubsub-job-testing-ts.md",
+      "template": "# pubsub job (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-pubsub-job-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

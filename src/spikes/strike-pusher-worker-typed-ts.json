@@ -1,0 +1,37 @@
+{
+  "id": "strike-pusher-worker-typed-ts",
+  "name": "pusher worker typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "pusher",
+    "ts"
+  ],
+  "tags": [
+    "worker",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for pusher worker in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "pusher-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/pusher-worker.ts",
+      "template": "# Spike: pusher worker (ts)\n// Auto-generated spike stub for pusher (worker)\nexport function demo() {\n  console.log('use pusher - worker (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pusher-worker-typed-ts.ts.txt",
+      "template": "# Spike: pusher worker (ts)\n// Auto-generated spike stub for pusher (worker)\nexport function demo() {\n  console.log('use pusher - worker (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pusher-worker-typed-ts.md",
+      "template": "# pusher worker (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

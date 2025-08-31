@@ -1,0 +1,41 @@
+{
+  "id": "strike-pusher-job-testing-ts",
+  "name": "pusher job testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "pusher",
+    "ts"
+  ],
+  "tags": [
+    "job",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for pusher job in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "pusher-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/pusher-job.ts",
+      "template": "# Spike: pusher job (ts)\n// Auto-generated spike stub for pusher (job)\nexport function demo() {\n  console.log('use pusher - job (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pusher-job-testing-ts.ts.txt",
+      "template": "# Spike: pusher job (ts)\n// Auto-generated spike stub for pusher (job)\nexport function demo() {\n  console.log('use pusher - job (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pusher-job-testing-ts.md",
+      "template": "# pusher job (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-pusher-job-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

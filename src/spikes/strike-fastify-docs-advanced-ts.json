@@ -1,0 +1,41 @@
+{
+  "id": "strike-fastify-docs-advanced-ts",
+  "name": "fastify docs advanced ts",
+  "version": "0.1.0",
+  "stack": [
+    "fastify",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastify docs in ts (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastify-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/fastify-docs.ts",
+      "template": "# Spike: fastify docs (ts)\n// Auto-generated spike stub for fastify (docs)\nexport function demo() {\n  console.log('use fastify - docs (advanced)');\n}\n"
+    },
+    {
+      "path": "src/otel/fastify.ts",
+      "template": "// Fastify OpenTelemetry setup (stub)\nexport function setupFastifyOtel(){ /* integrate @opentelemetry/instrumentation-fastify here */ }\n"
+    },
+    {
+      "path": "spikes/strike-fastify-docs-advanced-ts.ts.txt",
+      "template": "# Spike: fastify docs (ts)\n// Auto-generated spike stub for fastify (docs)\nexport function demo() {\n  console.log('use fastify - docs (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-fastify-docs-advanced-ts.md",
+      "template": "# fastify docs (advanced, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

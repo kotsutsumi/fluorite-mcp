@@ -1,0 +1,41 @@
+{
+  "id": "strike-pubsub-init-testing-ts",
+  "name": "pubsub init testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "pubsub",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for pubsub init in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "pubsub-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/pubsub-init.ts",
+      "template": "# Spike: pubsub init (ts)\n// Auto-generated spike stub for pubsub (init)\nexport function demo() {\n  console.log('use pubsub - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pubsub-init-testing-ts.ts.txt",
+      "template": "# Spike: pubsub init (ts)\n// Auto-generated spike stub for pubsub (init)\nexport function demo() {\n  console.log('use pubsub - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pubsub-init-testing-ts.md",
+      "template": "# pubsub init (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-pubsub-init-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

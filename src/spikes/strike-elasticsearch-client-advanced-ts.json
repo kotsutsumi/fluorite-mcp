@@ -1,0 +1,41 @@
+{
+  "id": "strike-elasticsearch-client-advanced-ts",
+  "name": "elasticsearch client advanced ts",
+  "version": "0.1.0",
+  "stack": [
+    "elasticsearch",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for elasticsearch client in ts (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "elasticsearch-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/elasticsearch-client.ts",
+      "template": "# Spike: elasticsearch client (ts)\n// Auto-generated spike stub for elasticsearch (client)\nexport function demo() {\n  console.log('use elasticsearch - client (advanced)');\n}\n"
+    },
+    {
+      "path": "src/search/elasticsearch.ts",
+      "template": "export function elastic(){ return { node: process.env.ELASTIC_NODE || 'http://localhost:9200' }; }\n"
+    },
+    {
+      "path": "spikes/strike-elasticsearch-client-advanced-ts.ts.txt",
+      "template": "# Spike: elasticsearch client (ts)\n// Auto-generated spike stub for elasticsearch (client)\nexport function demo() {\n  console.log('use elasticsearch - client (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-elasticsearch-client-advanced-ts.md",
+      "template": "# elasticsearch client (advanced, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

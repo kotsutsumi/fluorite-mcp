@@ -1,0 +1,41 @@
+{
+  "id": "strike-ably-config-testing-ts",
+  "name": "ably config testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "ably",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for ably config in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "ably-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/ably-config.ts",
+      "template": "# Spike: ably config (ts)\n// Auto-generated spike stub for ably (config)\nexport function demo() {\n  console.log('use ably - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-ably-config-testing-ts.ts.txt",
+      "template": "# Spike: ably config (ts)\n// Auto-generated spike stub for ably (config)\nexport function demo() {\n  console.log('use ably - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-ably-config-testing-ts.md",
+      "template": "# ably config (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-ably-config-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

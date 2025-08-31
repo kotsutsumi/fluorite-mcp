@@ -1,0 +1,41 @@
+{
+  "id": "strike-hapi-middleware-testing-ts",
+  "name": "hapi middleware testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "hapi",
+    "ts"
+  ],
+  "tags": [
+    "middleware",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for hapi middleware in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "hapi-middleware-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/hapi-middleware.ts",
+      "template": "# Spike: hapi middleware (ts)\n// Auto-generated spike stub for hapi (middleware)\nexport function demo() {\n  console.log('use hapi - middleware (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-hapi-middleware-testing-ts.ts.txt",
+      "template": "# Spike: hapi middleware (ts)\n// Auto-generated spike stub for hapi (middleware)\nexport function demo() {\n  console.log('use hapi - middleware (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-hapi-middleware-testing-ts.md",
+      "template": "# hapi middleware (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-hapi-middleware-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

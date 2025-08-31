@@ -1,0 +1,37 @@
+{
+  "id": "strike-kafka-listener-advanced-ts",
+  "name": "kafka listener advanced ts",
+  "version": "0.1.0",
+  "stack": [
+    "kafka",
+    "ts"
+  ],
+  "tags": [
+    "listener",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for kafka listener in ts (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "kafka-listener-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/kafka-listener.ts",
+      "template": "# Spike: kafka listener (ts)\n// Auto-generated spike stub for kafka (listener)\nexport function demo() {\n  console.log('use kafka - listener (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kafka-listener-advanced-ts.ts.txt",
+      "template": "# Spike: kafka listener (ts)\n// Auto-generated spike stub for kafka (listener)\nexport function demo() {\n  console.log('use kafka - listener (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kafka-listener-advanced-ts.md",
+      "template": "# kafka listener (advanced, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

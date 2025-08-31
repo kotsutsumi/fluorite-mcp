@@ -1,0 +1,41 @@
+{
+  "id": "strike-typesense-adapter-testing-ts",
+  "name": "typesense adapter testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "typesense",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for typesense adapter in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "typesense-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/typesense-adapter.ts",
+      "template": "# Spike: typesense adapter (ts)\n// Auto-generated spike stub for typesense (adapter)\nexport function demo() {\n  console.log('use typesense - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-typesense-adapter-testing-ts.ts.txt",
+      "template": "# Spike: typesense adapter (ts)\n// Auto-generated spike stub for typesense (adapter)\nexport function demo() {\n  console.log('use typesense - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-typesense-adapter-testing-ts.md",
+      "template": "# typesense adapter (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-typesense-adapter-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

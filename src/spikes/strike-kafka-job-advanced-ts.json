@@ -1,0 +1,37 @@
+{
+  "id": "strike-kafka-job-advanced-ts",
+  "name": "kafka job advanced ts",
+  "version": "0.1.0",
+  "stack": [
+    "kafka",
+    "ts"
+  ],
+  "tags": [
+    "job",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for kafka job in ts (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "kafka-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/kafka-job.ts",
+      "template": "# Spike: kafka job (ts)\n// Auto-generated spike stub for kafka (job)\nexport function demo() {\n  console.log('use kafka - job (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kafka-job-advanced-ts.ts.txt",
+      "template": "# Spike: kafka job (ts)\n// Auto-generated spike stub for kafka (job)\nexport function demo() {\n  console.log('use kafka - job (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kafka-job-advanced-ts.md",
+      "template": "# kafka job (advanced, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

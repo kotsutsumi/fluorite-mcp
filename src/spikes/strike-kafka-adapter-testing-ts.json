@@ -1,0 +1,41 @@
+{
+  "id": "strike-kafka-adapter-testing-ts",
+  "name": "kafka adapter testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "kafka",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for kafka adapter in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "kafka-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/kafka-adapter.ts",
+      "template": "# Spike: kafka adapter (ts)\n// Auto-generated spike stub for kafka (adapter)\nexport function demo() {\n  console.log('use kafka - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kafka-adapter-testing-ts.ts.txt",
+      "template": "# Spike: kafka adapter (ts)\n// Auto-generated spike stub for kafka (adapter)\nexport function demo() {\n  console.log('use kafka - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kafka-adapter-testing-ts.md",
+      "template": "# kafka adapter (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-kafka-adapter-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

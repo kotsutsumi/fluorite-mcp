@@ -1,0 +1,41 @@
+{
+  "id": "strike-hono-controller-testing-js",
+  "name": "hono controller testing js",
+  "version": "0.1.0",
+  "stack": [
+    "hono",
+    "js"
+  ],
+  "tags": [
+    "controller",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for hono controller in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "hono-controller-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/hono-controller.js",
+      "template": "# Spike: hono controller (js)\n// Auto-generated spike stub for hono (controller)\nmodule.exports = function demo(){\n  console.log('use hono - controller (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-hono-controller-testing-js.js.txt",
+      "template": "# Spike: hono controller (js)\n// Auto-generated spike stub for hono (controller)\nmodule.exports = function demo(){\n  console.log('use hono - controller (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-hono-controller-testing-js.md",
+      "template": "# hono controller (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-hono-controller-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

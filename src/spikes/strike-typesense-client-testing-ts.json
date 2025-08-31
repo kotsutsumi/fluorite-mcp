@@ -1,0 +1,49 @@
+{
+  "id": "strike-typesense-client-testing-ts",
+  "name": "typesense client testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "typesense",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for typesense client in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "typesense-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/typesense-client.ts",
+      "template": "# Spike: typesense client (ts)\n// Auto-generated spike stub for typesense (client)\nexport function demo() {\n  console.log('use typesense - client (testing)');\n}\n"
+    },
+    {
+      "path": "src/search/typesense.ts",
+      "template": "import Typesense from 'typesense';\nexport const typesense = new (Typesense as any)({ nodes: [{ host: process.env.TS_HOST || 'localhost', port: parseInt(process.env.TS_PORT||'8108',10), protocol: 'http' }], apiKey: process.env.TS_API_KEY || 'xyz' });\nexport async function indexDoc(collection: string, doc: any){ return typesense.collections(collection).documents().upsert(doc); }\n"
+    },
+    {
+      "path": "src/search/typesense.ts",
+      "template": "export function typesense(){ return { host: process.env.TYPESENSE_HOST || 'localhost', apiKey: process.env.TYPESENSE_API_KEY }; }\n"
+    },
+    {
+      "path": "spikes/strike-typesense-client-testing-ts.ts.txt",
+      "template": "# Spike: typesense client (ts)\n// Auto-generated spike stub for typesense (client)\nexport function demo() {\n  console.log('use typesense - client (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-typesense-client-testing-ts.md",
+      "template": "# typesense client (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-typesense-client-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

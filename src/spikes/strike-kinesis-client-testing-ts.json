@@ -1,0 +1,49 @@
+{
+  "id": "strike-kinesis-client-testing-ts",
+  "name": "kinesis client testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "kinesis",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for kinesis client in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "kinesis-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/kinesis-client.ts",
+      "template": "# Spike: kinesis client (ts)\n// Auto-generated spike stub for kinesis (client)\nexport function demo() {\n  console.log('use kinesis - client (testing)');\n}\n"
+    },
+    {
+      "path": "src/aws/kinesis.ts",
+      "template": "import { KinesisClient, PutRecordCommand } from '@aws-sdk/client-kinesis';\nconst client = new KinesisClient({});\nexport async function put(streamName: string, data: string, partitionKey='pk'){ await client.send(new PutRecordCommand({ StreamName: streamName, Data: new TextEncoder().encode(data), PartitionKey: partitionKey })); }\n"
+    },
+    {
+      "path": "src/aws/kinesis.ts",
+      "template": "export async function putRecord(stream: string, data: string){ /* stub */ return { stream, data }; }\n"
+    },
+    {
+      "path": "spikes/strike-kinesis-client-testing-ts.ts.txt",
+      "template": "# Spike: kinesis client (ts)\n// Auto-generated spike stub for kinesis (client)\nexport function demo() {\n  console.log('use kinesis - client (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kinesis-client-testing-ts.md",
+      "template": "# kinesis client (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-kinesis-client-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

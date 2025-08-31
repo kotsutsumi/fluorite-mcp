@@ -1,0 +1,41 @@
+{
+  "id": "strike-trpc-docs-testing-ts",
+  "name": "trpc docs testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "trpc",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for trpc docs in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "trpc-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/trpc-docs.ts",
+      "template": "# Spike: trpc docs (ts)\n// Auto-generated spike stub for trpc (docs)\nexport function demo() {\n  console.log('use trpc - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-trpc-docs-testing-ts.ts.txt",
+      "template": "# Spike: trpc docs (ts)\n// Auto-generated spike stub for trpc (docs)\nexport function demo() {\n  console.log('use trpc - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-trpc-docs-testing-ts.md",
+      "template": "# trpc docs (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-trpc-docs-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

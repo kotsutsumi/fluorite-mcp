@@ -1,0 +1,41 @@
+{
+  "id": "strike-rabbitmq-route-testing-ts",
+  "name": "rabbitmq route testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "rabbitmq",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for rabbitmq route in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "rabbitmq-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/rabbitmq-route.ts",
+      "template": "# Spike: rabbitmq route (ts)\n// Auto-generated spike stub for rabbitmq (route)\nexport function demo() {\n  console.log('use rabbitmq - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-rabbitmq-route-testing-ts.ts.txt",
+      "template": "# Spike: rabbitmq route (ts)\n// Auto-generated spike stub for rabbitmq (route)\nexport function demo() {\n  console.log('use rabbitmq - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-rabbitmq-route-testing-ts.md",
+      "template": "# rabbitmq route (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-rabbitmq-route-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-winston-adapter-testing-ts",
+  "name": "winston adapter testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "winston",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for winston adapter in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "winston-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/winston-adapter.ts",
+      "template": "# Spike: winston adapter (ts)\n// Auto-generated spike stub for winston (adapter)\nexport function demo() {\n  console.log('use winston - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-winston-adapter-testing-ts.ts.txt",
+      "template": "# Spike: winston adapter (ts)\n// Auto-generated spike stub for winston (adapter)\nexport function demo() {\n  console.log('use winston - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-winston-adapter-testing-ts.md",
+      "template": "# winston adapter (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-winston-adapter-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

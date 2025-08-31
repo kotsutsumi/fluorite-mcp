@@ -1,0 +1,41 @@
+{
+  "id": "strike-kafka-worker-testing-ts",
+  "name": "kafka worker testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "kafka",
+    "ts"
+  ],
+  "tags": [
+    "worker",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for kafka worker in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "kafka-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/kafka-worker.ts",
+      "template": "# Spike: kafka worker (ts)\n// Auto-generated spike stub for kafka (worker)\nexport function demo() {\n  console.log('use kafka - worker (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kafka-worker-testing-ts.ts.txt",
+      "template": "# Spike: kafka worker (ts)\n// Auto-generated spike stub for kafka (worker)\nexport function demo() {\n  console.log('use kafka - worker (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kafka-worker-testing-ts.md",
+      "template": "# kafka worker (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-kafka-worker-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

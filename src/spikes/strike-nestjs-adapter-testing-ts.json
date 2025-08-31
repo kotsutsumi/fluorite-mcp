@@ -1,0 +1,41 @@
+{
+  "id": "strike-nestjs-adapter-testing-ts",
+  "name": "nestjs adapter testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "nestjs",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nestjs adapter in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nestjs-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/nestjs-adapter.ts",
+      "template": "# Spike: nestjs adapter (ts)\n// Auto-generated spike stub for nestjs (adapter)\nexport function demo() {\n  console.log('use nestjs - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-adapter-testing-ts.ts.txt",
+      "template": "# Spike: nestjs adapter (ts)\n// Auto-generated spike stub for nestjs (adapter)\nexport function demo() {\n  console.log('use nestjs - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-adapter-testing-ts.md",
+      "template": "# nestjs adapter (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-adapter-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

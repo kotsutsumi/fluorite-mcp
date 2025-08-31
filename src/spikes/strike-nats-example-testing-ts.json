@@ -1,0 +1,41 @@
+{
+  "id": "strike-nats-example-testing-ts",
+  "name": "nats example testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "nats",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nats example in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nats-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/nats-example.ts",
+      "template": "# Spike: nats example (ts)\n// Auto-generated spike stub for nats (example)\nexport function demo() {\n  console.log('use nats - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nats-example-testing-ts.ts.txt",
+      "template": "# Spike: nats example (ts)\n// Auto-generated spike stub for nats (example)\nexport function demo() {\n  console.log('use nats - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nats-example-testing-ts.md",
+      "template": "# nats example (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-nats-example-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

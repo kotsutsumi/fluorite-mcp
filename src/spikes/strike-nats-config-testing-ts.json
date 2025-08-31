@@ -1,0 +1,41 @@
+{
+  "id": "strike-nats-config-testing-ts",
+  "name": "nats config testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "nats",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nats config in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nats-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/nats-config.ts",
+      "template": "# Spike: nats config (ts)\n// Auto-generated spike stub for nats (config)\nexport function demo() {\n  console.log('use nats - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nats-config-testing-ts.ts.txt",
+      "template": "# Spike: nats config (ts)\n// Auto-generated spike stub for nats (config)\nexport function demo() {\n  console.log('use nats - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nats-config-testing-ts.md",
+      "template": "# nats config (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-nats-config-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

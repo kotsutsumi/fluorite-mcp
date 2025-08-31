@@ -1,0 +1,41 @@
+{
+  "id": "strike-prometheus-docs-testing-ts",
+  "name": "prometheus docs testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "prometheus",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for prometheus docs in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "prometheus-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/prometheus-docs.ts",
+      "template": "# Spike: prometheus docs (ts)\n// Auto-generated spike stub for prometheus (docs)\nexport function demo() {\n  console.log('use prometheus - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-prometheus-docs-testing-ts.ts.txt",
+      "template": "# Spike: prometheus docs (ts)\n// Auto-generated spike stub for prometheus (docs)\nexport function demo() {\n  console.log('use prometheus - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-prometheus-docs-testing-ts.md",
+      "template": "# prometheus docs (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-prometheus-docs-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

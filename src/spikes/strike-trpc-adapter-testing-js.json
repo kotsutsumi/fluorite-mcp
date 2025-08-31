@@ -1,0 +1,41 @@
+{
+  "id": "strike-trpc-adapter-testing-js",
+  "name": "trpc adapter testing js",
+  "version": "0.1.0",
+  "stack": [
+    "trpc",
+    "js"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for trpc adapter in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "trpc-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/trpc-adapter.js",
+      "template": "# Spike: trpc adapter (js)\n// Auto-generated spike stub for trpc (adapter)\nmodule.exports = function demo(){\n  console.log('use trpc - adapter (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-trpc-adapter-testing-js.js.txt",
+      "template": "# Spike: trpc adapter (js)\n// Auto-generated spike stub for trpc (adapter)\nmodule.exports = function demo(){\n  console.log('use trpc - adapter (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-trpc-adapter-testing-js.md",
+      "template": "# trpc adapter (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-trpc-adapter-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

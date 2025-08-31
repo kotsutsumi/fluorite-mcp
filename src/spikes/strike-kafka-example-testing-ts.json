@@ -1,0 +1,41 @@
+{
+  "id": "strike-kafka-example-testing-ts",
+  "name": "kafka example testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "kafka",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for kafka example in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "kafka-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/kafka-example.ts",
+      "template": "# Spike: kafka example (ts)\n// Auto-generated spike stub for kafka (example)\nexport function demo() {\n  console.log('use kafka - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kafka-example-testing-ts.ts.txt",
+      "template": "# Spike: kafka example (ts)\n// Auto-generated spike stub for kafka (example)\nexport function demo() {\n  console.log('use kafka - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kafka-example-testing-ts.md",
+      "template": "# kafka example (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-kafka-example-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

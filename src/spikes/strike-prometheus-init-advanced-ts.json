@@ -1,0 +1,41 @@
+{
+  "id": "strike-prometheus-init-advanced-ts",
+  "name": "prometheus init advanced ts",
+  "version": "0.1.0",
+  "stack": [
+    "prometheus",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for prometheus init in ts (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "prometheus-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/prometheus-init.ts",
+      "template": "# Spike: prometheus init (ts)\n// Auto-generated spike stub for prometheus (init)\nexport function demo() {\n  console.log('use prometheus - init (advanced)');\n}\n"
+    },
+    {
+      "path": "src/metrics/prometheus.ts",
+      "template": "export function metrics(){ return { register: {} as any }; }\n"
+    },
+    {
+      "path": "spikes/strike-prometheus-init-advanced-ts.ts.txt",
+      "template": "# Spike: prometheus init (ts)\n// Auto-generated spike stub for prometheus (init)\nexport function demo() {\n  console.log('use prometheus - init (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-prometheus-init-advanced-ts.md",
+      "template": "# prometheus init (advanced, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

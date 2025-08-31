@@ -1,0 +1,41 @@
+{
+  "id": "strike-hono-client-testing-js",
+  "name": "hono client testing js",
+  "version": "0.1.0",
+  "stack": [
+    "hono",
+    "js"
+  ],
+  "tags": [
+    "client",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for hono client in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "hono-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/hono-client.js",
+      "template": "# Spike: hono client (js)\n// Auto-generated spike stub for hono (client)\nmodule.exports = function demo(){\n  console.log('use hono - client (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-hono-client-testing-js.js.txt",
+      "template": "# Spike: hono client (js)\n// Auto-generated spike stub for hono (client)\nmodule.exports = function demo(){\n  console.log('use hono - client (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-hono-client-testing-js.md",
+      "template": "# hono client (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-hono-client-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

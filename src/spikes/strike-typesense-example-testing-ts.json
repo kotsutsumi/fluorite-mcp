@@ -1,0 +1,41 @@
+{
+  "id": "strike-typesense-example-testing-ts",
+  "name": "typesense example testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "typesense",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for typesense example in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "typesense-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/typesense-example.ts",
+      "template": "# Spike: typesense example (ts)\n// Auto-generated spike stub for typesense (example)\nexport function demo() {\n  console.log('use typesense - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-typesense-example-testing-ts.ts.txt",
+      "template": "# Spike: typesense example (ts)\n// Auto-generated spike stub for typesense (example)\nexport function demo() {\n  console.log('use typesense - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-typesense-example-testing-ts.md",
+      "template": "# typesense example (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-typesense-example-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

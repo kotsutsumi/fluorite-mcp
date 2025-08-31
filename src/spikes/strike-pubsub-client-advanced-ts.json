@@ -1,0 +1,41 @@
+{
+  "id": "strike-pubsub-client-advanced-ts",
+  "name": "pubsub client advanced ts",
+  "version": "0.1.0",
+  "stack": [
+    "pubsub",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for pubsub client in ts (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "pubsub-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/pubsub-client.ts",
+      "template": "# Spike: pubsub client (ts)\n// Auto-generated spike stub for pubsub (client)\nexport function demo() {\n  console.log('use pubsub - client (advanced)');\n}\n"
+    },
+    {
+      "path": "src/gcp/pubsub.ts",
+      "template": "export async function publish(topic: string, msg: string){ /* stub */ return { topic, msg }; }\n"
+    },
+    {
+      "path": "spikes/strike-pubsub-client-advanced-ts.ts.txt",
+      "template": "# Spike: pubsub client (ts)\n// Auto-generated spike stub for pubsub (client)\nexport function demo() {\n  console.log('use pubsub - client (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pubsub-client-advanced-ts.md",
+      "template": "# pubsub client (advanced, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

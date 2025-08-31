@@ -1,0 +1,41 @@
+{
+  "id": "strike-pino-adapter-testing-ts",
+  "name": "pino adapter testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "pino",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for pino adapter in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "pino-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/pino-adapter.ts",
+      "template": "# Spike: pino adapter (ts)\n// Auto-generated spike stub for pino (adapter)\nexport function demo() {\n  console.log('use pino - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pino-adapter-testing-ts.ts.txt",
+      "template": "# Spike: pino adapter (ts)\n// Auto-generated spike stub for pino (adapter)\nexport function demo() {\n  console.log('use pino - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pino-adapter-testing-ts.md",
+      "template": "# pino adapter (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-pino-adapter-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

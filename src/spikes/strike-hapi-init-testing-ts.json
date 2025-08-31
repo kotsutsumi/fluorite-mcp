@@ -1,0 +1,41 @@
+{
+  "id": "strike-hapi-init-testing-ts",
+  "name": "hapi init testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "hapi",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for hapi init in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "hapi-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/hapi-init.ts",
+      "template": "# Spike: hapi init (ts)\n// Auto-generated spike stub for hapi (init)\nexport function demo() {\n  console.log('use hapi - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-hapi-init-testing-ts.ts.txt",
+      "template": "# Spike: hapi init (ts)\n// Auto-generated spike stub for hapi (init)\nexport function demo() {\n  console.log('use hapi - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-hapi-init-testing-ts.md",
+      "template": "# hapi init (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-hapi-init-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

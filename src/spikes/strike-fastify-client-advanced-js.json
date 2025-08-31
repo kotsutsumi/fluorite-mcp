@@ -1,0 +1,41 @@
+{
+  "id": "strike-fastify-client-advanced-js",
+  "name": "fastify client advanced js",
+  "version": "0.1.0",
+  "stack": [
+    "fastify",
+    "js"
+  ],
+  "tags": [
+    "client",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastify client in js (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastify-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/fastify-client.js",
+      "template": "# Spike: fastify client (js)\n// Auto-generated spike stub for fastify (client)\nmodule.exports = function demo(){\n  console.log('use fastify - client (advanced)');\n};\n"
+    },
+    {
+      "path": "src/otel/fastify.ts",
+      "template": "// Fastify OpenTelemetry setup (stub)\nexport function setupFastifyOtel(){ /* integrate @opentelemetry/instrumentation-fastify here */ }\n"
+    },
+    {
+      "path": "spikes/strike-fastify-client-advanced-js.js.txt",
+      "template": "# Spike: fastify client (js)\n// Auto-generated spike stub for fastify (client)\nmodule.exports = function demo(){\n  console.log('use fastify - client (advanced)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-fastify-client-advanced-js.md",
+      "template": "# fastify client (advanced, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

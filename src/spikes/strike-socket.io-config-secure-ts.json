@@ -1,0 +1,41 @@
+{
+  "id": "strike-socket.io-config-secure-ts",
+  "name": "socket.io config secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "socket.io",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for socket.io config in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "socket.io-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/socket.io-config.ts",
+      "template": "# Spike: socket.io config (ts)\n// Auto-generated spike stub for socket.io (config)\nexport function demo() {\n  console.log('use socket.io - config (secure)');\n}\n"
+    },
+    {
+      "path": "src/realtime/socketio.ts",
+      "template": "export function socketio(){ return { server: 'stub' }; }\n"
+    },
+    {
+      "path": "spikes/strike-socket.io-config-secure-ts.ts.txt",
+      "template": "# Spike: socket.io config (ts)\n// Auto-generated spike stub for socket.io (config)\nexport function demo() {\n  console.log('use socket.io - config (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-socket.io-config-secure-ts.md",
+      "template": "# socket.io config (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

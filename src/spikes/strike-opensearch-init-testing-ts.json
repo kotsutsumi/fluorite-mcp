@@ -1,0 +1,41 @@
+{
+  "id": "strike-opensearch-init-testing-ts",
+  "name": "opensearch init testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "opensearch",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for opensearch init in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "opensearch-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/opensearch-init.ts",
+      "template": "# Spike: opensearch init (ts)\n// Auto-generated spike stub for opensearch (init)\nexport function demo() {\n  console.log('use opensearch - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-opensearch-init-testing-ts.ts.txt",
+      "template": "# Spike: opensearch init (ts)\n// Auto-generated spike stub for opensearch (init)\nexport function demo() {\n  console.log('use opensearch - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-opensearch-init-testing-ts.md",
+      "template": "# opensearch init (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-opensearch-init-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

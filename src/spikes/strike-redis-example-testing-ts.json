@@ -1,0 +1,47 @@
+{
+  "id": "strike-redis-example-testing-ts",
+  "name": "redis example testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "redis",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for redis example in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "redis-example-app"
+    },
+    {
+      "name": "redisUrl",
+      "required": false,
+      "description": "Redis 接続URL",
+      "default": "redis://localhost:6379"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/redis-example.ts",
+      "template": "# Spike: redis example (ts)\n// Auto-generated spike stub for redis (example)\nexport function demo() {\n  console.log('use redis - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-example-testing-ts.ts.txt",
+      "template": "# Spike: redis example (ts)\n// Auto-generated spike stub for redis (example)\nexport function demo() {\n  console.log('use redis - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-example-testing-ts.md",
+      "template": "# redis example (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-redis-example-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,45 @@
+{
+  "id": "strike-trpc-client-testing-js",
+  "name": "trpc client testing js",
+  "version": "0.1.0",
+  "stack": [
+    "trpc",
+    "js"
+  ],
+  "tags": [
+    "client",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for trpc client in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "trpc-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/trpc-client.js",
+      "template": "# Spike: trpc client (js)\n// Auto-generated spike stub for trpc (client)\nmodule.exports = function demo(){\n  console.log('use trpc - client (testing)');\n};\n"
+    },
+    {
+      "path": "src/trpc/client.ts",
+      "template": "import { createTRPCProxyClient, httpBatchLink } from '@trpc/client';\nimport type { AppRouter } from './router';\nexport const client = createTRPCProxyClient<AppRouter>({ links: [httpBatchLink({ url: '/trpc' })] });\n"
+    },
+    {
+      "path": "spikes/strike-trpc-client-testing-js.js.txt",
+      "template": "# Spike: trpc client (js)\n// Auto-generated spike stub for trpc (client)\nmodule.exports = function demo(){\n  console.log('use trpc - client (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-trpc-client-testing-js.md",
+      "template": "# trpc client (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-trpc-client-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-kinesis-job-testing-ts",
+  "name": "kinesis job testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "kinesis",
+    "ts"
+  ],
+  "tags": [
+    "job",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for kinesis job in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "kinesis-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/kinesis-job.ts",
+      "template": "# Spike: kinesis job (ts)\n// Auto-generated spike stub for kinesis (job)\nexport function demo() {\n  console.log('use kinesis - job (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kinesis-job-testing-ts.ts.txt",
+      "template": "# Spike: kinesis job (ts)\n// Auto-generated spike stub for kinesis (job)\nexport function demo() {\n  console.log('use kinesis - job (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kinesis-job-testing-ts.md",
+      "template": "# kinesis job (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-kinesis-job-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

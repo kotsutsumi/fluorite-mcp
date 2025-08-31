@@ -1,0 +1,41 @@
+{
+  "id": "strike-trpc-middleware-testing-ts",
+  "name": "trpc middleware testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "trpc",
+    "ts"
+  ],
+  "tags": [
+    "middleware",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for trpc middleware in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "trpc-middleware-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/trpc-middleware.ts",
+      "template": "# Spike: trpc middleware (ts)\n// Auto-generated spike stub for trpc (middleware)\nexport function demo() {\n  console.log('use trpc - middleware (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-trpc-middleware-testing-ts.ts.txt",
+      "template": "# Spike: trpc middleware (ts)\n// Auto-generated spike stub for trpc (middleware)\nexport function demo() {\n  console.log('use trpc - middleware (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-trpc-middleware-testing-ts.md",
+      "template": "# trpc middleware (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-trpc-middleware-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

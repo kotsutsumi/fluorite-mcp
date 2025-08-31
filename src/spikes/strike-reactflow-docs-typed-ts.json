@@ -1,0 +1,41 @@
+{
+  "id": "strike-reactflow-docs-typed-ts",
+  "name": "reactflow docs typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "reactflow",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for reactflow docs in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "reactflow-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/reactflow-docs.ts",
+      "template": "# Spike: reactflow docs (ts)\n// Auto-generated spike stub for reactflow (docs)\nexport function demo() {\n  console.log('use reactflow - docs (typed)');\n}\n"
+    },
+    {
+      "path": "src/flow/README.md",
+      "template": "# React Flow Quick Notes\n\n- Install: npm i reactflow\n- Import default styles: 'reactflow/dist/style.css'\n- Core elements: ReactFlow, Background, Controls, MiniMap\n- Provide nodes/edges via props; manage state for interactivity\n"
+    },
+    {
+      "path": "spikes/strike-reactflow-docs-typed-ts.ts.txt",
+      "template": "# Spike: reactflow docs (ts)\n// Auto-generated spike stub for reactflow (docs)\nexport function demo() {\n  console.log('use reactflow - docs (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-reactflow-docs-typed-ts.md",
+      "template": "# reactflow docs (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

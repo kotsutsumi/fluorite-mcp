@@ -1,0 +1,41 @@
+{
+  "id": "strike-hapi-config-testing-ts",
+  "name": "hapi config testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "hapi",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for hapi config in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "hapi-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/hapi-config.ts",
+      "template": "# Spike: hapi config (ts)\n// Auto-generated spike stub for hapi (config)\nexport function demo() {\n  console.log('use hapi - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-hapi-config-testing-ts.ts.txt",
+      "template": "# Spike: hapi config (ts)\n// Auto-generated spike stub for hapi (config)\nexport function demo() {\n  console.log('use hapi - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-hapi-config-testing-ts.md",
+      "template": "# hapi config (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-hapi-config-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

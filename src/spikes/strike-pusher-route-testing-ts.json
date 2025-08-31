@@ -1,0 +1,45 @@
+{
+  "id": "strike-pusher-route-testing-ts",
+  "name": "pusher route testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "pusher",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for pusher route in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "pusher-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/pusher-route.ts",
+      "template": "# Spike: pusher route (ts)\n// Auto-generated spike stub for pusher (route)\nexport function demo() {\n  console.log('use pusher - route (testing)');\n}\n"
+    },
+    {
+      "path": "app/api/realtime/publish/route.ts",
+      "template": "import { NextResponse } from 'next/server';\nimport { pusher } from '@/src/realtime/pusher';\nexport async function POST(req: Request){ const json = await req.json(); const client = pusher(); return NextResponse.json({ ok: true, channel: json.channel }); }\n"
+    },
+    {
+      "path": "spikes/strike-pusher-route-testing-ts.ts.txt",
+      "template": "# Spike: pusher route (ts)\n// Auto-generated spike stub for pusher (route)\nexport function demo() {\n  console.log('use pusher - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pusher-route-testing-ts.md",
+      "template": "# pusher route (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-pusher-route-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

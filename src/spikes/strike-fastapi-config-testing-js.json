@@ -1,0 +1,41 @@
+{
+  "id": "strike-fastapi-config-testing-js",
+  "name": "fastapi config testing js",
+  "version": "0.1.0",
+  "stack": [
+    "fastapi",
+    "js"
+  ],
+  "tags": [
+    "config",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastapi config in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastapi-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/fastapi-config.js",
+      "template": "# Spike: fastapi config (js)\n// Auto-generated spike stub for fastapi (config)\nmodule.exports = function demo(){\n  console.log('use fastapi - config (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-config-testing-js.js.txt",
+      "template": "# Spike: fastapi config (js)\n// Auto-generated spike stub for fastapi (config)\nmodule.exports = function demo(){\n  console.log('use fastapi - config (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-config-testing-js.md",
+      "template": "# fastapi config (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-config-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

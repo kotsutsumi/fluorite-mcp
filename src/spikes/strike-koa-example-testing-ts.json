@@ -1,0 +1,41 @@
+{
+  "id": "strike-koa-example-testing-ts",
+  "name": "koa example testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "koa",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for koa example in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "koa-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/koa-example.ts",
+      "template": "# Spike: koa example (ts)\n// Auto-generated spike stub for koa (example)\nexport function demo() {\n  console.log('use koa - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-koa-example-testing-ts.ts.txt",
+      "template": "# Spike: koa example (ts)\n// Auto-generated spike stub for koa (example)\nexport function demo() {\n  console.log('use koa - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-koa-example-testing-ts.md",
+      "template": "# koa example (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-koa-example-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

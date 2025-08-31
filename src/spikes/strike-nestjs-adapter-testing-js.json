@@ -1,0 +1,41 @@
+{
+  "id": "strike-nestjs-adapter-testing-js",
+  "name": "nestjs adapter testing js",
+  "version": "0.1.0",
+  "stack": [
+    "nestjs",
+    "js"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nestjs adapter in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nestjs-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/nestjs-adapter.js",
+      "template": "# Spike: nestjs adapter (js)\n// Auto-generated spike stub for nestjs (adapter)\nmodule.exports = function demo(){\n  console.log('use nestjs - adapter (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-adapter-testing-js.js.txt",
+      "template": "# Spike: nestjs adapter (js)\n// Auto-generated spike stub for nestjs (adapter)\nmodule.exports = function demo(){\n  console.log('use nestjs - adapter (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-adapter-testing-js.md",
+      "template": "# nestjs adapter (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-adapter-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

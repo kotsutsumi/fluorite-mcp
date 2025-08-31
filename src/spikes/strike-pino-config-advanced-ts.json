@@ -1,0 +1,41 @@
+{
+  "id": "strike-pino-config-advanced-ts",
+  "name": "pino config advanced ts",
+  "version": "0.1.0",
+  "stack": [
+    "pino",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for pino config in ts (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "pino-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/pino-config.ts",
+      "template": "# Spike: pino config (ts)\n// Auto-generated spike stub for pino (config)\nexport function demo() {\n  console.log('use pino - config (advanced)');\n}\n"
+    },
+    {
+      "path": "src/logging/pino.ts",
+      "template": "export function logger(){ return { info: console.log, error: console.error }; }\n"
+    },
+    {
+      "path": "spikes/strike-pino-config-advanced-ts.ts.txt",
+      "template": "# Spike: pino config (ts)\n// Auto-generated spike stub for pino (config)\nexport function demo() {\n  console.log('use pino - config (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pino-config-advanced-ts.md",
+      "template": "# pino config (advanced, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

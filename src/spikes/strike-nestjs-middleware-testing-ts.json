@@ -1,0 +1,41 @@
+{
+  "id": "strike-nestjs-middleware-testing-ts",
+  "name": "nestjs middleware testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "nestjs",
+    "ts"
+  ],
+  "tags": [
+    "middleware",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nestjs middleware in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nestjs-middleware-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/nestjs-middleware.ts",
+      "template": "# Spike: nestjs middleware (ts)\n// Auto-generated spike stub for nestjs (middleware)\nexport function demo() {\n  console.log('use nestjs - middleware (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-middleware-testing-ts.ts.txt",
+      "template": "# Spike: nestjs middleware (ts)\n// Auto-generated spike stub for nestjs (middleware)\nexport function demo() {\n  console.log('use nestjs - middleware (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-middleware-testing-ts.md",
+      "template": "# nestjs middleware (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-middleware-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

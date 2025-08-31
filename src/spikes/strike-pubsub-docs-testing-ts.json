@@ -1,0 +1,41 @@
+{
+  "id": "strike-pubsub-docs-testing-ts",
+  "name": "pubsub docs testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "pubsub",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for pubsub docs in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "pubsub-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/pubsub-docs.ts",
+      "template": "# Spike: pubsub docs (ts)\n// Auto-generated spike stub for pubsub (docs)\nexport function demo() {\n  console.log('use pubsub - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pubsub-docs-testing-ts.ts.txt",
+      "template": "# Spike: pubsub docs (ts)\n// Auto-generated spike stub for pubsub (docs)\nexport function demo() {\n  console.log('use pubsub - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pubsub-docs-testing-ts.md",
+      "template": "# pubsub docs (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-pubsub-docs-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

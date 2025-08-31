@@ -1,0 +1,41 @@
+{
+  "id": "strike-sns-init-testing-ts",
+  "name": "sns init testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "sns",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for sns init in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sns-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/sns-init.ts",
+      "template": "# Spike: sns init (ts)\n// Auto-generated spike stub for sns (init)\nexport function demo() {\n  console.log('use sns - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sns-init-testing-ts.ts.txt",
+      "template": "# Spike: sns init (ts)\n// Auto-generated spike stub for sns (init)\nexport function demo() {\n  console.log('use sns - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sns-init-testing-ts.md",
+      "template": "# sns init (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-sns-init-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

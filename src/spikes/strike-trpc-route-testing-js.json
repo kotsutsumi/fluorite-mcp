@@ -1,0 +1,41 @@
+{
+  "id": "strike-trpc-route-testing-js",
+  "name": "trpc route testing js",
+  "version": "0.1.0",
+  "stack": [
+    "trpc",
+    "js"
+  ],
+  "tags": [
+    "route",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for trpc route in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "trpc-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/trpc-route.js",
+      "template": "# Spike: trpc route (js)\n// Auto-generated spike stub for trpc (route)\nmodule.exports = function demo(){\n  console.log('use trpc - route (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-trpc-route-testing-js.js.txt",
+      "template": "# Spike: trpc route (js)\n// Auto-generated spike stub for trpc (route)\nmodule.exports = function demo(){\n  console.log('use trpc - route (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-trpc-route-testing-js.md",
+      "template": "# trpc route (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-trpc-route-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

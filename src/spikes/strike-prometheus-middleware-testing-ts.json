@@ -1,0 +1,41 @@
+{
+  "id": "strike-prometheus-middleware-testing-ts",
+  "name": "prometheus middleware testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "prometheus",
+    "ts"
+  ],
+  "tags": [
+    "middleware",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for prometheus middleware in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "prometheus-middleware-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/prometheus-middleware.ts",
+      "template": "# Spike: prometheus middleware (ts)\n// Auto-generated spike stub for prometheus (middleware)\nexport function demo() {\n  console.log('use prometheus - middleware (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-prometheus-middleware-testing-ts.ts.txt",
+      "template": "# Spike: prometheus middleware (ts)\n// Auto-generated spike stub for prometheus (middleware)\nexport function demo() {\n  console.log('use prometheus - middleware (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-prometheus-middleware-testing-ts.md",
+      "template": "# prometheus middleware (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-prometheus-middleware-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-nestjs-client-testing-js",
+  "name": "nestjs client testing js",
+  "version": "0.1.0",
+  "stack": [
+    "nestjs",
+    "js"
+  ],
+  "tags": [
+    "client",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nestjs client in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nestjs-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/nestjs-client.js",
+      "template": "# Spike: nestjs client (js)\n// Auto-generated spike stub for nestjs (client)\nmodule.exports = function demo(){\n  console.log('use nestjs - client (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-client-testing-js.js.txt",
+      "template": "# Spike: nestjs client (js)\n// Auto-generated spike stub for nestjs (client)\nmodule.exports = function demo(){\n  console.log('use nestjs - client (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-client-testing-js.md",
+      "template": "# nestjs client (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-client-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

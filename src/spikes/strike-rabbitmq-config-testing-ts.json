@@ -1,0 +1,41 @@
+{
+  "id": "strike-rabbitmq-config-testing-ts",
+  "name": "rabbitmq config testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "rabbitmq",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for rabbitmq config in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "rabbitmq-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/rabbitmq-config.ts",
+      "template": "# Spike: rabbitmq config (ts)\n// Auto-generated spike stub for rabbitmq (config)\nexport function demo() {\n  console.log('use rabbitmq - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-rabbitmq-config-testing-ts.ts.txt",
+      "template": "# Spike: rabbitmq config (ts)\n// Auto-generated spike stub for rabbitmq (config)\nexport function demo() {\n  console.log('use rabbitmq - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-rabbitmq-config-testing-ts.md",
+      "template": "# rabbitmq config (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-rabbitmq-config-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-ably-worker-testing-ts",
+  "name": "ably worker testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "ably",
+    "ts"
+  ],
+  "tags": [
+    "worker",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for ably worker in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "ably-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/ably-worker.ts",
+      "template": "# Spike: ably worker (ts)\n// Auto-generated spike stub for ably (worker)\nexport function demo() {\n  console.log('use ably - worker (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-ably-worker-testing-ts.ts.txt",
+      "template": "# Spike: ably worker (ts)\n// Auto-generated spike stub for ably (worker)\nexport function demo() {\n  console.log('use ably - worker (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-ably-worker-testing-ts.md",
+      "template": "# ably worker (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-ably-worker-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

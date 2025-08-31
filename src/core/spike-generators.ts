@@ -76,7 +76,7 @@ const LIBRARIES = [
   'bugsnag','honeybadger',
   'dotenv','cloudinary','uploadthing','mailgun','lru-cache','paddle',
   // frontend utilities
-  'zod','react-hook-form','zustand','redux','swr','radix-ui','tailwindcss','storybook','nx','turborepo','xterm',
+  'zod','react-hook-form','zustand','redux','swr','radix-ui','tailwindcss','storybook','nx','turborepo','xterm','reactflow',
   // desktop/mobile platforms
   'electron','tauri','capacitor','expo','react-native',
   // load testing / observability
@@ -1093,6 +1093,49 @@ function makeFiles(id: string, lib: string, pattern: string, style: string, lang
     files.push({ path: `src/components/RadixDialog.tsx`, template: `import * as Dialog from '@radix-ui/react-dialog';\nexport function RadixDialog(){ return (<Dialog.Root><Dialog.Trigger>Open</Dialog.Trigger><Dialog.Portal><Dialog.Overlay /><Dialog.Content><Dialog.Title>Title</Dialog.Title><Dialog.Close>Close</Dialog.Close></Dialog.Content></Dialog.Portal></Dialog.Root>); }\n` });
   }
 
+  // React Flow (reactflow.dev)
+  if (lib === 'reactflow') {
+    const isTS = lang === 'ts';
+    const jsxExt = isTS ? 'tsx' : 'jsx';
+    // component: 基本のノード/エッジ表示 + 背景/コントロール
+    if (pattern === 'component' || pattern === 'init') {
+      files.push({ path: `src/components/Flow.${jsxExt}`, template: `import React from 'react';
+import ReactFlow, { Background, Controls } from 'reactflow';
+import 'reactflow/dist/style.css';
+
+const initialNodes = [
+  { id: '1', position: { x: 0, y: 0 }, data: { label: 'Node 1' } },
+  { id: '2', position: { x: 200, y: 100 }, data: { label: 'Node 2' } }
+];
+const initialEdges = [
+  { id: 'e1-2', source: '1', target: '2' }
+];
+
+export default function Flow(){
+  return (
+    <div style={{ width: '100%', height: 400 }}>
+      <ReactFlow nodes={initialNodes} edges={initialEdges}>
+        <Background />
+        <Controls />
+      </ReactFlow>
+    </div>
+  );
+}
+` });
+    }
+    // example: 画面にFlowを表示する簡単なエントリ
+    if (pattern === 'example') {
+      files.push({ path: `src/flow/App.${jsxExt}`, template: `import React from 'react';
+import Flow from '@/src/components/Flow';
+export default function App(){ return (<main><h1>React Flow Example</h1><Flow /></main>); }
+` });
+    }
+    // docs: 使い方メモ
+    if (pattern === 'docs') {
+      files.push({ path: `src/flow/README.md`, template: `# React Flow Quick Notes\n\n- Install: npm i reactflow\n- Import default styles: \'reactflow/dist/style.css\'\n- Core elements: ReactFlow, Background, Controls, MiniMap\n- Provide nodes/edges via props; manage state for interactivity\n` });
+    }
+  }
+
   // TailwindCSS
   if (lib === 'tailwindcss' && (pattern === 'config' || pattern === 'init')) {
     files.push({ path: `tailwind.config.ts`, template: `import type { Config } from 'tailwindcss';\nexport default { content: ['./index.html','./src/**/*.{ts,tsx,js,jsx}'], theme: { extend: {} }, plugins: [] } satisfies Config;\n` });
@@ -1170,6 +1213,34 @@ export async function POST(req: Request){
   }
 }
 ` });
+      if (style === 'secure') {
+        files.push({ path: `src/line/next/security.ts`, template: `export function assertJson(req: Request){
+  const ct = req.headers.get('content-type') || '';
+  if (!ct.includes('application/json')) throw new Error('unsupported_media_type');
+}
+export function assertCsrf(req: Request){
+  const token = req.headers.get('x-csrf-token');
+  if (!token) throw new Error('missing_csrf');
+}
+` });
+        files.push({ path: `src/line/next/rateLimit.ts`, template: `const WINDOW_MS = 60_000; // 1 minute
+const LIMIT = 60; // 60 req/min
+const store = new Map<string, { count: number; resetAt: number }>();
+export function rateLimit(key: string){
+  const now = Date.now();
+  const rec = store.get(key) || { count: 0, resetAt: now + WINDOW_MS };
+  if (now > rec.resetAt) { rec.count = 0; rec.resetAt = now + WINDOW_MS; }
+  rec.count += 1;
+  store.set(key, rec);
+  if (rec.count > LIMIT) throw new Error('rate_limited');
+}
+` });
+        files.push({ path: `src/line/next/audit.ts`, template: `export type Audit = { at: string; path: string; ok: boolean; note?: string };
+const logs: Audit[] = [];
+export function audit(path: string, ok: boolean, note?: string){ logs.push({ at: new Date().toISOString(), path, ok, note }); }
+export function getAudits(){ return logs.slice(-1000); }
+` });
+      }
     }
   }
   // FastAPI variant for LINE token exchange (Python)
@@ -1201,6 +1272,22 @@ async def exchange(payload: dict):
             raise HTTPException(status_code=400, detail='token_exchange_failed')
         return resp.json()
 ` });
+    if (style === 'advanced') {
+      files.push({ path: `src/line/models.py`, template: `from pydantic import BaseModel
+class ExchangeRequest(BaseModel):
+    code: str
+    code_verifier: str
+    redirect_uri: str
+    channel_id: str
+    channel_secret: str
+` });
+      files.push({ path: `src/line/settings.py`, template: `from pydantic import BaseSettings
+class Settings(BaseSettings):
+    channel_id: str = ''
+    channel_secret: str = ''
+settings = Settings()
+` });
+    }
   }
   if (lib === 'line' && pattern === 'service') {
     files.push({ path: `src/line/oauth.ts`, template: `export type TokenResponse = { access_token: string; expires_in: number; id_token?: string; refresh_token?: string; scope?: string; token_type: 'Bearer' };
@@ -1367,6 +1454,33 @@ export const prefixes = [makePrefix()];
 export function ErrorToast({ message }: { message: string }){ return <>{message}</>; }
 ` });
   }
+  if (lib === 'expo' && style === 'secure') {
+    files.push({ path: `src/hooks/useSecureFetch.ts`, template: `export async function secureFetch(input: RequestInfo | URL, init: RequestInit = {}){
+  const headers = new Headers(init.headers || {});
+  headers.set('x-requested-with', 'xmlhttprequest');
+  headers.set('x-csrf-token', 'REPLACE_ME');
+  const res = await fetch(input, { ...init, headers });
+  if (!res.ok) throw new Error('request_failed:' + res.status);
+  return res;
+}
+` });
+    files.push({ path: `src/components/ErrorBoundary.tsx`, template: `import React from 'react';
+type Props = { children: React.ReactNode };
+type State = { hasError: boolean; error?: any };
+export class ErrorBoundary extends React.Component<Props, State> {
+  state: State = { hasError: false };
+  static getDerivedStateFromError(error: any){ return { hasError: true, error }; }
+  componentDidCatch(error: any){ console.error(error); }
+  render(){ if (this.state.hasError) return null; return this.props.children; }
+}
+` });
+    files.push({ path: `src/components/Toast.tsx`, template: `import * as React from 'react';
+export function Toast({ message }: { message: string }){ return <>{message}</>; }
+` });
+    files.push({ path: `src/components/RetryButton.tsx`, template: `import * as React from 'react';
+export function RetryButton({ onRetry }: { onRetry: ()=>void }){ return <button onClick={onRetry}>Retry</button>; }
+` });
+  }
   if (lib === 'expo' && pattern === 'provider') {
     files.push({ path: `src/context/LineAuthProvider.tsx`, template: `import React, { createContext, useContext } from 'react';
 import { useLineLogin } from '@/src/hooks/useLineLogin';
@@ -1423,8 +1537,261 @@ describe('App', () => { it('renders', () => { expect(true).toBe(true); }); });
 ` });
     }
   }
+  // Email/Notification providers
+  if ((lib === 'resend' || lib === 'sendgrid' || lib === 'postmark' || lib === 'mailgun' || lib === 'nodemailer') && (pattern === 'service')) {
+    if (lib === 'resend') {
+      files.push({ path: `src/email/resend.ts`, template: `export async function sendResend(apiKey: string, from: string, to: string, subject: string, html: string){
+  const res = await fetch('https://api.resend.com/emails', { method: 'POST', headers: { 'Authorization': 'Bearer ' + apiKey, 'Content-Type': 'application/json' }, body: JSON.stringify({ from, to, subject, html }) });
+  if (!res.ok) throw new Error('resend_failed:' + res.status);
+  return res.json();
+}
+` });
+    }
+    if (lib === 'postmark') {
+      files.push({ path: `src/email/postmark.ts`, template: `export async function sendPostmark(serverToken: string, from: string, to: string, subject: string, htmlBody: string){
+  const res = await fetch('https://api.postmarkapp.com/email', { method: 'POST', headers: { 'X-Postmark-Server-Token': serverToken, 'Content-Type': 'application/json' }, body: JSON.stringify({ From: from, To: to, Subject: subject, HtmlBody: htmlBody }) });
+  if (!res.ok) throw new Error('postmark_failed:' + res.status);
+  return res.json();
+}
+` });
+    }
+    if (lib === 'mailgun') {
+      files.push({ path: `src/email/mailgun.ts`, template: `export async function sendMailgun(domain: string, apiKey: string, from: string, to: string, subject: string, text: string){
+  const url = new URL('/v3/' + domain + '/messages', 'https://api.mailgun.net');
+  const body = new URLSearchParams({ from, to, subject, text });
+  const res = await fetch(url, { method: 'POST', headers: { 'Authorization': 'Basic ' + Buffer.from('api:' + apiKey).toString('base64') }, body });
+  if (!res.ok) throw new Error('mailgun_failed:' + res.status);
+  return res.text();
+}
+` });
+    }
+    if (lib === 'nodemailer') {
+      files.push({ path: `src/email/nodemailer.ts`, template: `import nodemailer from 'nodemailer';
+export async function sendSmtp(opts: { host: string; port?: number; secure?: boolean; user?: string; pass?: string; from: string; to: string; subject: string; text?: string; html?: string; }){
+  const transporter = nodemailer.createTransport({ host: opts.host, port: opts.port ?? 587, secure: !!opts.secure, auth: opts.user ? { user: opts.user, pass: opts.pass } : undefined });
+  const info = await transporter.sendMail({ from: opts.from, to: opts.to, subject: opts.subject, text: opts.text, html: opts.html });
+  return info.messageId;
+}
+` });
+    }
+    if (lib === 'sendgrid') {
+      files.push({ path: `src/email/sendgrid.ts`, template: `export async function sendSendGrid(apiKey: string, from: string, to: string, subject: string, html: string){
+  const res = await fetch('https://api.sendgrid.com/v3/mail/send', { method: 'POST', headers: { 'Authorization': 'Bearer ' + apiKey, 'Content-Type': 'application/json' }, body: JSON.stringify({ personalizations: [{ to: [{ email: to }] }], from: { email: from }, subject, content: [{ type: 'text/html', value: html }] }) });
+  if (!res.ok) throw new Error('sendgrid_failed:' + res.status);
+  return res.text();
+}
+` });
+    }
+  }
+  if ((lib === 'resend' || lib === 'sendgrid' || lib === 'postmark' || lib === 'mailgun') && pattern === 'route') {
+    files.push({ path: `src/email/${lib}-route.ts`, template: `import express from 'express';
+import { z } from 'zod';
+const Body = z.object({ from: z.string(), to: z.string(), subject: z.string(), html: z.string().optional(), text: z.string().optional() });
+export function make${lib.charAt(0).toUpperCase() + lib.slice(1)}Route(apiKey: string){
+  const app = express();
+  app.use(express.json());
+  app.post('/email/send', async (req, res)=>{
+    const parsed = Body.safeParse(req.body);
+    if (!parsed.success) return res.status(400).json({ error: parsed.error.flatten() });
+    try {
+      // call provider-specific sender here
+      return res.json({ ok: true });
+    } catch (e) { return res.status(400).json({ error: String(e) }); }
+  });
+  return app;
+}
+` });
+  }
 
-  // Always include the generic stub and README
+  // Email provider webhooks (secure style adds simple verify placeholder)
+  if ((lib === 'resend' || lib === 'sendgrid' || lib === 'postmark' || lib === 'mailgun') && pattern === 'webhook') {
+    const Name = lib.charAt(0).toUpperCase() + lib.slice(1);
+    files.push({ path: `src/email/${lib}-webhook.ts`, template: `import express from 'express';
+export function ${lib}Webhook(){
+  const app = express();
+  app.use(express.json());
+  app.post('/email/${lib}/events', (req, res)=>{
+    // NOTE: verify signature (${Name}) here when available
+    // events are in req.body
+    res.status(200).send('ok');
+  });
+  return app;
+}
+` });
+  }
+
+  // Email webhook signature verification stubs (secure)
+  if (lib === 'sendgrid' && pattern === 'webhook' && style === 'secure') {
+    files.push({ path: `src/email/sendgrid-verify.ts`, template: `// SendGrid Event Webhook signature verification (stub)
+export function verifySendGridSignature(_publicKey: string, _timestamp: string, _signature: string, _payload: string){
+  // See: https://docs.sendgrid.com/for-developers/tracking-events/event#verify-the-event-webhook-signature
+  return true; // replace with actual ECDSA verification
+}
+` });
+    files.push({ path: `src/email/sendgrid-webhook.ts`, template: `import express from 'express';
+import { verifySendGridSignature } from './sendgrid-verify';
+export function sendgridWebhookSecure(publicKey: string){
+  const app = express();
+  app.use(express.text({ type: '*/*' }));
+  app.post('/email/sendgrid/events', (req, res)=>{
+    const sig = req.get('X-Twilio-Email-Event-Webhook-Signature') || '';
+    const ts = req.get('X-Twilio-Email-Event-Webhook-Timestamp') || '';
+    const ok = verifySendGridSignature(publicKey, ts, sig, req.body);
+    if (!ok) return res.status(403).send('forbidden');
+    res.status(200).send('ok');
+  });
+  return app;
+}
+` });
+  }
+  if (lib === 'postmark' && pattern === 'webhook' && style === 'secure') {
+    files.push({ path: `src/email/postmark-verify.ts`, template: `// Postmark Webhook signature verification (stub)
+export function verifyPostmarkSignature(_token: string, _signature: string, _payload: string){
+  // See: https://postmarkapp.com/developer/webhooks
+  return true;
+}
+` });
+    files.push({ path: `src/email/postmark-webhook.ts`, template: `import express from 'express';
+import { verifyPostmarkSignature } from './postmark-verify';
+export function postmarkWebhookSecure(token: string){
+  const app = express();
+  app.use(express.text({ type: '*/*' }));
+  app.post('/email/postmark/events', (req, res)=>{
+    const sig = req.get('X-Postmark-Signature') || '';
+    const ok = verifyPostmarkSignature(token, sig, req.body);
+    if (!ok) return res.status(403).send('forbidden');
+    res.status(200).send('ok');
+  });
+  return app;
+}
+` });
+  }
+  if (lib === 'mailgun' && pattern === 'webhook' && style === 'secure') {
+    files.push({ path: `src/email/mailgun-verify.ts`, template: `// Mailgun Webhook signature verification (stub)
+export function verifyMailgunSignature(_apiKey: string, _timestamp: string, _token: string, _signature: string){
+  // See: https://documentation.mailgun.com/en/latest/user_manual.html#securing-webhooks
+  return true;
+}
+` });
+    files.push({ path: `src/email/mailgun-webhook.ts`, template: `import express from 'express';
+import { verifyMailgunSignature } from './mailgun-verify';
+export function mailgunWebhookSecure(apiKey: string){
+  const app = express();
+  app.use(express.urlencoded({ extended: true }));
+  app.post('/email/mailgun/events', (req, res)=>{
+    const ts = String(req.body.timestamp || '');
+    const token = String(req.body.token || '');
+    const sig = String(req.body.signature || '');
+    const ok = verifyMailgunSignature(apiKey, ts, token, sig);
+    if (!ok) return res.status(403).send('forbidden');
+    res.status(200).send('ok');
+  });
+  return app;
+}
+` });
+  }
+  if (lib === 'resend' && pattern === 'webhook' && style === 'secure') {
+    files.push({ path: `src/email/resend-verify.ts`, template: `// Resend Webhook verification (stub)
+export function verifyResendSignature(_secret: string, _timestamp: string, _signature: string, _payload: string){
+  return true;
+}
+` });
+    files.push({ path: `src/email/resend-webhook.ts`, template: `import express from 'express';
+import { verifyResendSignature } from './resend-verify';
+export function resendWebhookSecure(secret: string){
+  const app = express();
+  app.use(express.text({ type: '*/*' }));
+  app.post('/email/resend/events', (req, res)=>{
+    const sig = req.get('X-Resend-Signature') || '';
+    const ts = req.get('X-Resend-Timestamp') || '';
+    const ok = verifyResendSignature(secret, ts, sig, req.body);
+    if (!ok) return res.status(403).send('forbidden');
+    res.status(200).send('ok');
+  });
+  return app;
+}
+` });
+  }
+
+  // GraphQL endpoints (Next.js route / Express server)
+  if ((lib === 'graphql' || lib === 'apollo' || lib === 'graphql-yoga') && pattern === 'route' && (lang === 'ts' || lang === 'js')) {
+    files.push({ path: `app/api/graphql/route.ts`, template: `import { NextResponse } from 'next/server';
+export async function POST(){ return NextResponse.json({ ok: true }); }
+` });
+  }
+  if ((lib === 'graphql' || lib === 'apollo') && pattern === 'service' && (lang === 'ts' || lang === 'js')) {
+    files.push({ path: `src/graphql/express-server.ts`, template: `import express from 'express';
+export function createGraphQLServer(){ const app = express(); app.post('/graphql', (_req, res)=> res.json({ ok: true })); return app; }
+` });
+  }
+
+  // LINE Flex variants / RichMenu / LIFF share sample
+  if (lib === 'line' && (pattern === 'example' || pattern === 'component')) {
+    files.push({ path: `src/line/flex-variants.ts`, template: `export const InfoBubble = { type: 'bubble', body: { type: 'box', layout: 'vertical', contents: [ { type: 'text', text: 'Info', weight: 'bold' }, { type: 'text', text: 'Details here' } ] } } as const;
+export const AlertBubble = { type: 'bubble', body: { type: 'box', layout: 'vertical', contents: [ { type: 'text', text: 'Alert', weight: 'bold' }, { type: 'text', text: 'Something happened' } ] } } as const;
+` });
+  }
+  if (lib === 'line' && pattern === 'config') {
+    files.push({ path: `src/line/richmenu.ts`, template: `export const SampleRichMenu = { size: { width: 2500, height: 843 }, selected: false, areas: [ { bounds: { x:0,y:0,width:1250,height:843 }, action: { type: 'message', text: 'left' } }, { bounds: { x:1250,y:0,width:1250,height:843 }, action: { type: 'message', text: 'right' } } ] } as const;
+` });
+  }
+  if (lib === 'line' && (pattern === 'provider' || pattern === 'example')) {
+    files.push({ path: `src/line/liff-share.ts`, template: `export async function shareText(text: string){
+  const { liff } = (await import('@line/liff')) as any;
+  await liff.shareTargetPicker([{ type: 'text', text }]);
+}
+` });
+  }
+
+  // LINE webhook -> GraphQL + Email pipeline (advanced)
+  if (lib === 'line' && pattern === 'adapter' && style === 'advanced') {
+    files.push({ path: `src/line/pipeline.ts`, template: `import type { Request, Response } from 'express';
+import { postGraphQL } from '@/src/graphql/adapter';
+import { sendResend } from '@/src/email/resend';
+export function makeLinePipeline(endpoint: string, resendKey: string, notifyTo: string){
+  return async (req: Request, res: Response)=>{
+    const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+    for (const ev of body?.events || []){
+      if (ev.type === 'message' && ev.message?.type === 'text'){
+        await postGraphQL(endpoint, 'mutation($to:String!,$text:String!){ sendMessage(to:$to,text:$text) }', { to: ev.source?.userId || 'unknown', text: ev.message.text });
+        await sendResend(resendKey, 'no-reply@example.com', notifyTo, 'Line message', '<' + 'pre' + '>' + String(ev.message.text) + '</' + 'pre' + '>');
+      }
+    }
+    res.status(200).send('ok');
+  };
+}
+` });
+  }
+
+  // GraphQL schema/resolvers scaffolding
+  if ((lib === 'apollo' || lib === 'graphql-yoga' || lib === 'graphql') && (pattern === 'schema' || pattern === 'service')) {
+    files.push({ path: `src/graphql/schema.ts`, template: `export const typeDefs = /* GraphQL */ ` + "`" + `
+type Query { hello: String! }
+type Mutation { ping(message: String!): String! }
+` + "`" + `;
+` });
+    files.push({ path: `src/graphql/resolvers.ts`, template: `export const resolvers = {
+  Query: { hello: () => 'world' },
+  Mutation: { ping: (_: any, args: { message: string }) => args.message }
+};
+` });
+    if (lib === 'graphql-yoga' && pattern === 'service') {
+      files.push({ path: `src/graphql-yoga/server.ts`, template: `// Minimal Yoga server stub (for reference)
+export function createYogaServer(){ /* integrate @graphql-yoga/node in real app */ }
+` });
+    }
+  }
+
+  // LINE -> GraphQL bridge (advanced adapter posts mutation)
+  if (lib === 'line' && pattern === 'adapter' && (style === 'advanced' || style === 'typed')) {
+    files.push({ path: `src/line/graphql-bridge.ts`, template: `import { postGraphQL } from '@/src/graphql/adapter';
+export async function sendLineMessageViaGraphQL(endpoint: string, to: string, text: string){
+  const mutation = ` + "`" + `mutation($to: String!, $text: String!){ sendMessage(to:$to, text:$text) }` + "`" + `;
+  return postGraphQL(endpoint, mutation, { to, text });
+}
+` });
+  }
+
   files.push({ path: `spikes/${id}.${ext}.txt`, template: codeSnippet(lib, pattern, lang, style) });
   files.push({ path: `spikes/${id}.md`, template: `# ${lib} ${pattern} (${style}, ${lang})\n\nThis is an auto-generated spike template.\n` });
   // Testing artifacts

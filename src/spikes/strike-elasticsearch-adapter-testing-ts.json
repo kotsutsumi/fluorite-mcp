@@ -1,0 +1,41 @@
+{
+  "id": "strike-elasticsearch-adapter-testing-ts",
+  "name": "elasticsearch adapter testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "elasticsearch",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for elasticsearch adapter in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "elasticsearch-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/elasticsearch-adapter.ts",
+      "template": "# Spike: elasticsearch adapter (ts)\n// Auto-generated spike stub for elasticsearch (adapter)\nexport function demo() {\n  console.log('use elasticsearch - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-elasticsearch-adapter-testing-ts.ts.txt",
+      "template": "# Spike: elasticsearch adapter (ts)\n// Auto-generated spike stub for elasticsearch (adapter)\nexport function demo() {\n  console.log('use elasticsearch - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-elasticsearch-adapter-testing-ts.md",
+      "template": "# elasticsearch adapter (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-elasticsearch-adapter-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

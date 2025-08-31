@@ -1,0 +1,41 @@
+{
+  "id": "strike-nats-adapter-testing-ts",
+  "name": "nats adapter testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "nats",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nats adapter in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nats-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/nats-adapter.ts",
+      "template": "# Spike: nats adapter (ts)\n// Auto-generated spike stub for nats (adapter)\nexport function demo() {\n  console.log('use nats - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nats-adapter-testing-ts.ts.txt",
+      "template": "# Spike: nats adapter (ts)\n// Auto-generated spike stub for nats (adapter)\nexport function demo() {\n  console.log('use nats - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nats-adapter-testing-ts.md",
+      "template": "# nats adapter (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-nats-adapter-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

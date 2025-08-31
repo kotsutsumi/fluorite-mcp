@@ -1,0 +1,41 @@
+{
+  "id": "strike-sns-worker-testing-ts",
+  "name": "sns worker testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "sns",
+    "ts"
+  ],
+  "tags": [
+    "worker",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for sns worker in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sns-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/sns-worker.ts",
+      "template": "# Spike: sns worker (ts)\n// Auto-generated spike stub for sns (worker)\nexport function demo() {\n  console.log('use sns - worker (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sns-worker-testing-ts.ts.txt",
+      "template": "# Spike: sns worker (ts)\n// Auto-generated spike stub for sns (worker)\nexport function demo() {\n  console.log('use sns - worker (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sns-worker-testing-ts.md",
+      "template": "# sns worker (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-sns-worker-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

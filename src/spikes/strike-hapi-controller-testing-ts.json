@@ -1,0 +1,41 @@
+{
+  "id": "strike-hapi-controller-testing-ts",
+  "name": "hapi controller testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "hapi",
+    "ts"
+  ],
+  "tags": [
+    "controller",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for hapi controller in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "hapi-controller-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/hapi-controller.ts",
+      "template": "# Spike: hapi controller (ts)\n// Auto-generated spike stub for hapi (controller)\nexport function demo() {\n  console.log('use hapi - controller (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-hapi-controller-testing-ts.ts.txt",
+      "template": "# Spike: hapi controller (ts)\n// Auto-generated spike stub for hapi (controller)\nexport function demo() {\n  console.log('use hapi - controller (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-hapi-controller-testing-ts.md",
+      "template": "# hapi controller (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-hapi-controller-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

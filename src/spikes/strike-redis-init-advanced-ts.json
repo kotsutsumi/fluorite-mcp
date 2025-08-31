@@ -1,0 +1,43 @@
+{
+  "id": "strike-redis-init-advanced-ts",
+  "name": "redis init advanced ts",
+  "version": "0.1.0",
+  "stack": [
+    "redis",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for redis init in ts (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "redis-init-app"
+    },
+    {
+      "name": "redisUrl",
+      "required": false,
+      "description": "Redis 接続URL",
+      "default": "redis://localhost:6379"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/redis-init.ts",
+      "template": "# Spike: redis init (ts)\n// Auto-generated spike stub for redis (init)\nexport function demo() {\n  console.log('use redis - init (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-init-advanced-ts.ts.txt",
+      "template": "# Spike: redis init (ts)\n// Auto-generated spike stub for redis (init)\nexport function demo() {\n  console.log('use redis - init (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-init-advanced-ts.md",
+      "template": "# redis init (advanced, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

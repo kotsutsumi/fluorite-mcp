@@ -1,0 +1,41 @@
+{
+  "id": "strike-elasticsearch-docs-testing-ts",
+  "name": "elasticsearch docs testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "elasticsearch",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for elasticsearch docs in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "elasticsearch-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/elasticsearch-docs.ts",
+      "template": "# Spike: elasticsearch docs (ts)\n// Auto-generated spike stub for elasticsearch (docs)\nexport function demo() {\n  console.log('use elasticsearch - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-elasticsearch-docs-testing-ts.ts.txt",
+      "template": "# Spike: elasticsearch docs (ts)\n// Auto-generated spike stub for elasticsearch (docs)\nexport function demo() {\n  console.log('use elasticsearch - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-elasticsearch-docs-testing-ts.md",
+      "template": "# elasticsearch docs (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-elasticsearch-docs-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

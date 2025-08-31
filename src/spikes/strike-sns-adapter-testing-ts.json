@@ -1,0 +1,41 @@
+{
+  "id": "strike-sns-adapter-testing-ts",
+  "name": "sns adapter testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "sns",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for sns adapter in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sns-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/sns-adapter.ts",
+      "template": "# Spike: sns adapter (ts)\n// Auto-generated spike stub for sns (adapter)\nexport function demo() {\n  console.log('use sns - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sns-adapter-testing-ts.ts.txt",
+      "template": "# Spike: sns adapter (ts)\n// Auto-generated spike stub for sns (adapter)\nexport function demo() {\n  console.log('use sns - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sns-adapter-testing-ts.md",
+      "template": "# sns adapter (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-sns-adapter-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

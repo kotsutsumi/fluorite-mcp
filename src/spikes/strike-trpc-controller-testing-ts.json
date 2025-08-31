@@ -1,0 +1,41 @@
+{
+  "id": "strike-trpc-controller-testing-ts",
+  "name": "trpc controller testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "trpc",
+    "ts"
+  ],
+  "tags": [
+    "controller",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for trpc controller in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "trpc-controller-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/trpc-controller.ts",
+      "template": "# Spike: trpc controller (ts)\n// Auto-generated spike stub for trpc (controller)\nexport function demo() {\n  console.log('use trpc - controller (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-trpc-controller-testing-ts.ts.txt",
+      "template": "# Spike: trpc controller (ts)\n// Auto-generated spike stub for trpc (controller)\nexport function demo() {\n  console.log('use trpc - controller (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-trpc-controller-testing-ts.md",
+      "template": "# trpc controller (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-trpc-controller-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-sqs-job-testing-ts",
+  "name": "sqs job testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "sqs",
+    "ts"
+  ],
+  "tags": [
+    "job",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for sqs job in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sqs-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/sqs-job.ts",
+      "template": "# Spike: sqs job (ts)\n// Auto-generated spike stub for sqs (job)\nexport function demo() {\n  console.log('use sqs - job (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sqs-job-testing-ts.ts.txt",
+      "template": "# Spike: sqs job (ts)\n// Auto-generated spike stub for sqs (job)\nexport function demo() {\n  console.log('use sqs - job (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sqs-job-testing-ts.md",
+      "template": "# sqs job (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-sqs-job-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

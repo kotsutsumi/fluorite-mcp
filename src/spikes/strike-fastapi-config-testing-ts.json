@@ -1,0 +1,41 @@
+{
+  "id": "strike-fastapi-config-testing-ts",
+  "name": "fastapi config testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "fastapi",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastapi config in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastapi-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/fastapi-config.ts",
+      "template": "# Spike: fastapi config (ts)\n// Auto-generated spike stub for fastapi (config)\nexport function demo() {\n  console.log('use fastapi - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-config-testing-ts.ts.txt",
+      "template": "# Spike: fastapi config (ts)\n// Auto-generated spike stub for fastapi (config)\nexport function demo() {\n  console.log('use fastapi - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-config-testing-ts.md",
+      "template": "# fastapi config (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-config-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

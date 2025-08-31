@@ -1,0 +1,41 @@
+{
+  "id": "strike-hono-route-typed-py",
+  "name": "hono route typed py",
+  "version": "0.1.0",
+  "stack": [
+    "hono",
+    "py"
+  ],
+  "tags": [
+    "route",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for hono route in py (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "hono-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/hono-route.py",
+      "template": "# Spike: hono route (py)\n# Auto-generated spike stub for hono (route)\ndef demo():\n    print('use hono - route (typed)')\n"
+    },
+    {
+      "path": "src/hono/server.ts",
+      "template": "import { Hono } from 'hono';\nconst app = new Hono();\napp.get('/hello', (c)=> c.json({ ok: true }));\nexport default app;\n"
+    },
+    {
+      "path": "spikes/strike-hono-route-typed-py.py.txt",
+      "template": "# Spike: hono route (py)\n# Auto-generated spike stub for hono (route)\ndef demo():\n    print('use hono - route (typed)')\n"
+    },
+    {
+      "path": "spikes/strike-hono-route-typed-py.md",
+      "template": "# hono route (typed, py)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

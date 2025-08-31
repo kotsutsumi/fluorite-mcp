@@ -1,0 +1,41 @@
+{
+  "id": "strike-elasticsearch-config-testing-ts",
+  "name": "elasticsearch config testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "elasticsearch",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for elasticsearch config in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "elasticsearch-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/elasticsearch-config.ts",
+      "template": "# Spike: elasticsearch config (ts)\n// Auto-generated spike stub for elasticsearch (config)\nexport function demo() {\n  console.log('use elasticsearch - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-elasticsearch-config-testing-ts.ts.txt",
+      "template": "# Spike: elasticsearch config (ts)\n// Auto-generated spike stub for elasticsearch (config)\nexport function demo() {\n  console.log('use elasticsearch - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-elasticsearch-config-testing-ts.md",
+      "template": "# elasticsearch config (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-elasticsearch-config-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

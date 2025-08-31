@@ -1,0 +1,41 @@
+{
+  "id": "strike-bullmq-example-testing-ts",
+  "name": "bullmq example testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "bullmq",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for bullmq example in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "bullmq-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/bullmq-example.ts",
+      "template": "# Spike: bullmq example (ts)\n// Auto-generated spike stub for bullmq (example)\nexport function demo() {\n  console.log('use bullmq - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-bullmq-example-testing-ts.ts.txt",
+      "template": "# Spike: bullmq example (ts)\n// Auto-generated spike stub for bullmq (example)\nexport function demo() {\n  console.log('use bullmq - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-bullmq-example-testing-ts.md",
+      "template": "# bullmq example (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-bullmq-example-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-hono-middleware-testing-ts",
+  "name": "hono middleware testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "hono",
+    "ts"
+  ],
+  "tags": [
+    "middleware",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for hono middleware in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "hono-middleware-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/hono-middleware.ts",
+      "template": "# Spike: hono middleware (ts)\n// Auto-generated spike stub for hono (middleware)\nexport function demo() {\n  console.log('use hono - middleware (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-hono-middleware-testing-ts.ts.txt",
+      "template": "# Spike: hono middleware (ts)\n// Auto-generated spike stub for hono (middleware)\nexport function demo() {\n  console.log('use hono - middleware (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-hono-middleware-testing-ts.md",
+      "template": "# hono middleware (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-hono-middleware-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

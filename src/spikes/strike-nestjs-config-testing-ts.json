@@ -1,0 +1,41 @@
+{
+  "id": "strike-nestjs-config-testing-ts",
+  "name": "nestjs config testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "nestjs",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nestjs config in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nestjs-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/nestjs-config.ts",
+      "template": "# Spike: nestjs config (ts)\n// Auto-generated spike stub for nestjs (config)\nexport function demo() {\n  console.log('use nestjs - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-config-testing-ts.ts.txt",
+      "template": "# Spike: nestjs config (ts)\n// Auto-generated spike stub for nestjs (config)\nexport function demo() {\n  console.log('use nestjs - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-config-testing-ts.md",
+      "template": "# nestjs config (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-config-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

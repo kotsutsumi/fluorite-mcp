@@ -1,0 +1,41 @@
+{
+  "id": "strike-sns-route-testing-ts",
+  "name": "sns route testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "sns",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for sns route in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sns-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/sns-route.ts",
+      "template": "# Spike: sns route (ts)\n// Auto-generated spike stub for sns (route)\nexport function demo() {\n  console.log('use sns - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sns-route-testing-ts.ts.txt",
+      "template": "# Spike: sns route (ts)\n// Auto-generated spike stub for sns (route)\nexport function demo() {\n  console.log('use sns - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sns-route-testing-ts.md",
+      "template": "# sns route (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-sns-route-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

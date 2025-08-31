@@ -1,0 +1,41 @@
+{
+  "id": "strike-hapi-adapter-testing-js",
+  "name": "hapi adapter testing js",
+  "version": "0.1.0",
+  "stack": [
+    "hapi",
+    "js"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for hapi adapter in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "hapi-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/hapi-adapter.js",
+      "template": "# Spike: hapi adapter (js)\n// Auto-generated spike stub for hapi (adapter)\nmodule.exports = function demo(){\n  console.log('use hapi - adapter (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-hapi-adapter-testing-js.js.txt",
+      "template": "# Spike: hapi adapter (js)\n// Auto-generated spike stub for hapi (adapter)\nmodule.exports = function demo(){\n  console.log('use hapi - adapter (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-hapi-adapter-testing-js.md",
+      "template": "# hapi adapter (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-hapi-adapter-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

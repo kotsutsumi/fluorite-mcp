@@ -1,0 +1,37 @@
+{
+  "id": "strike-prometheus-client-advanced-ts",
+  "name": "prometheus client advanced ts",
+  "version": "0.1.0",
+  "stack": [
+    "prometheus",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for prometheus client in ts (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "prometheus-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/prometheus-client.ts",
+      "template": "# Spike: prometheus client (ts)\n// Auto-generated spike stub for prometheus (client)\nexport function demo() {\n  console.log('use prometheus - client (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-prometheus-client-advanced-ts.ts.txt",
+      "template": "# Spike: prometheus client (ts)\n// Auto-generated spike stub for prometheus (client)\nexport function demo() {\n  console.log('use prometheus - client (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-prometheus-client-advanced-ts.md",
+      "template": "# prometheus client (advanced, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

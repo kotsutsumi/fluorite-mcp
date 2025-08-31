@@ -1,0 +1,41 @@
+{
+  "id": "strike-bullmq-config-testing-ts",
+  "name": "bullmq config testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "bullmq",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for bullmq config in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "bullmq-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/bullmq-config.ts",
+      "template": "# Spike: bullmq config (ts)\n// Auto-generated spike stub for bullmq (config)\nexport function demo() {\n  console.log('use bullmq - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-bullmq-config-testing-ts.ts.txt",
+      "template": "# Spike: bullmq config (ts)\n// Auto-generated spike stub for bullmq (config)\nexport function demo() {\n  console.log('use bullmq - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-bullmq-config-testing-ts.md",
+      "template": "# bullmq config (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-bullmq-config-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

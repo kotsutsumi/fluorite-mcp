@@ -1,0 +1,37 @@
+{
+  "id": "strike-prometheus-client-typed-ts",
+  "name": "prometheus client typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "prometheus",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for prometheus client in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "prometheus-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/prometheus-client.ts",
+      "template": "# Spike: prometheus client (ts)\n// Auto-generated spike stub for prometheus (client)\nexport function demo() {\n  console.log('use prometheus - client (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-prometheus-client-typed-ts.ts.txt",
+      "template": "# Spike: prometheus client (ts)\n// Auto-generated spike stub for prometheus (client)\nexport function demo() {\n  console.log('use prometheus - client (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-prometheus-client-typed-ts.md",
+      "template": "# prometheus client (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,49 @@
+{
+  "id": "strike-github-actions-job-advanced-ts",
+  "name": "github-actions job advanced ts",
+  "version": "0.1.0",
+  "stack": [
+    "github-actions",
+    "ts"
+  ],
+  "tags": [
+    "job",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for github-actions job in ts (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "github-actions-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/github-actions-job.ts",
+      "template": "# Spike: github-actions job (ts)\n// Auto-generated spike stub for github-actions (job)\nexport function demo() {\n  console.log('use github-actions - job (advanced)');\n}\n"
+    },
+    {
+      "path": ".github/workflows/e2e.yml",
+      "template": "name: E2E\non: [push, pull_request]\njobs:\n  e2e:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: '20' }\n      - run: npm ci\n      - run: npx playwright install --with-deps\n      - run: npm run test:e2e --if-present\n"
+    },
+    {
+      "path": ".github/workflows/lint.yml",
+      "template": "name: Lint\non: [push, pull_request]\njobs:\n  lint:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: '20' }\n      - run: npm ci\n      - run: npm run lint --if-present\n      - run: npm run format:check --if-present\n"
+    },
+    {
+      "path": ".github/workflows/affected-tests.yml",
+      "template": "name: Affected Tests\non: [pull_request]\njobs:\n  affected:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: '20' }\n      - run: npm ci\n      - run: echo \"Run only affected tests (stub)\"\n"
+    },
+    {
+      "path": "spikes/strike-github-actions-job-advanced-ts.ts.txt",
+      "template": "# Spike: github-actions job (ts)\n// Auto-generated spike stub for github-actions (job)\nexport function demo() {\n  console.log('use github-actions - job (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-github-actions-job-advanced-ts.md",
+      "template": "# github-actions job (advanced, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

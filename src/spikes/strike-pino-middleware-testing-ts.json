@@ -1,0 +1,41 @@
+{
+  "id": "strike-pino-middleware-testing-ts",
+  "name": "pino middleware testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "pino",
+    "ts"
+  ],
+  "tags": [
+    "middleware",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for pino middleware in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "pino-middleware-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/pino-middleware.ts",
+      "template": "# Spike: pino middleware (ts)\n// Auto-generated spike stub for pino (middleware)\nexport function demo() {\n  console.log('use pino - middleware (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pino-middleware-testing-ts.ts.txt",
+      "template": "# Spike: pino middleware (ts)\n// Auto-generated spike stub for pino (middleware)\nexport function demo() {\n  console.log('use pino - middleware (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pino-middleware-testing-ts.md",
+      "template": "# pino middleware (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-pino-middleware-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

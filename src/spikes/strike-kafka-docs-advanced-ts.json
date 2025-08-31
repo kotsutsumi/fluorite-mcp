@@ -1,0 +1,37 @@
+{
+  "id": "strike-kafka-docs-advanced-ts",
+  "name": "kafka docs advanced ts",
+  "version": "0.1.0",
+  "stack": [
+    "kafka",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for kafka docs in ts (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "kafka-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/kafka-docs.ts",
+      "template": "# Spike: kafka docs (ts)\n// Auto-generated spike stub for kafka (docs)\nexport function demo() {\n  console.log('use kafka - docs (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kafka-docs-advanced-ts.ts.txt",
+      "template": "# Spike: kafka docs (ts)\n// Auto-generated spike stub for kafka (docs)\nexport function demo() {\n  console.log('use kafka - docs (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kafka-docs-advanced-ts.md",
+      "template": "# kafka docs (advanced, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

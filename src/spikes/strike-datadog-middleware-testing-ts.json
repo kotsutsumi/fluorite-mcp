@@ -1,0 +1,41 @@
+{
+  "id": "strike-datadog-middleware-testing-ts",
+  "name": "datadog middleware testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "datadog",
+    "ts"
+  ],
+  "tags": [
+    "middleware",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for datadog middleware in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "datadog-middleware-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/datadog-middleware.ts",
+      "template": "# Spike: datadog middleware (ts)\n// Auto-generated spike stub for datadog (middleware)\nexport function demo() {\n  console.log('use datadog - middleware (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-datadog-middleware-testing-ts.ts.txt",
+      "template": "# Spike: datadog middleware (ts)\n// Auto-generated spike stub for datadog (middleware)\nexport function demo() {\n  console.log('use datadog - middleware (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-datadog-middleware-testing-ts.md",
+      "template": "# datadog middleware (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-datadog-middleware-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

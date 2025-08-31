@@ -1,0 +1,47 @@
+{
+  "id": "strike-redis-docs-testing-ts",
+  "name": "redis docs testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "redis",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for redis docs in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "redis-docs-app"
+    },
+    {
+      "name": "redisUrl",
+      "required": false,
+      "description": "Redis 接続URL",
+      "default": "redis://localhost:6379"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/redis-docs.ts",
+      "template": "# Spike: redis docs (ts)\n// Auto-generated spike stub for redis (docs)\nexport function demo() {\n  console.log('use redis - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-docs-testing-ts.ts.txt",
+      "template": "# Spike: redis docs (ts)\n// Auto-generated spike stub for redis (docs)\nexport function demo() {\n  console.log('use redis - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-docs-testing-ts.md",
+      "template": "# redis docs (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-redis-docs-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

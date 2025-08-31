@@ -1,0 +1,41 @@
+{
+  "id": "strike-hono-init-testing-js",
+  "name": "hono init testing js",
+  "version": "0.1.0",
+  "stack": [
+    "hono",
+    "js"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for hono init in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "hono-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/hono-init.js",
+      "template": "# Spike: hono init (js)\n// Auto-generated spike stub for hono (init)\nmodule.exports = function demo(){\n  console.log('use hono - init (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-hono-init-testing-js.js.txt",
+      "template": "# Spike: hono init (js)\n// Auto-generated spike stub for hono (init)\nmodule.exports = function demo(){\n  console.log('use hono - init (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-hono-init-testing-js.md",
+      "template": "# hono init (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-hono-init-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

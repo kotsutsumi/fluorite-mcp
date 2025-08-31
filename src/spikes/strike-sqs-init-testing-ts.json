@@ -1,0 +1,41 @@
+{
+  "id": "strike-sqs-init-testing-ts",
+  "name": "sqs init testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "sqs",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for sqs init in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sqs-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/sqs-init.ts",
+      "template": "# Spike: sqs init (ts)\n// Auto-generated spike stub for sqs (init)\nexport function demo() {\n  console.log('use sqs - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sqs-init-testing-ts.ts.txt",
+      "template": "# Spike: sqs init (ts)\n// Auto-generated spike stub for sqs (init)\nexport function demo() {\n  console.log('use sqs - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sqs-init-testing-ts.md",
+      "template": "# sqs init (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-sqs-init-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

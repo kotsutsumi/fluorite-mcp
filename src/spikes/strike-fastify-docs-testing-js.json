@@ -1,0 +1,41 @@
+{
+  "id": "strike-fastify-docs-testing-js",
+  "name": "fastify docs testing js",
+  "version": "0.1.0",
+  "stack": [
+    "fastify",
+    "js"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastify docs in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastify-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/fastify-docs.js",
+      "template": "# Spike: fastify docs (js)\n// Auto-generated spike stub for fastify (docs)\nmodule.exports = function demo(){\n  console.log('use fastify - docs (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-fastify-docs-testing-js.js.txt",
+      "template": "# Spike: fastify docs (js)\n// Auto-generated spike stub for fastify (docs)\nmodule.exports = function demo(){\n  console.log('use fastify - docs (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-fastify-docs-testing-js.md",
+      "template": "# fastify docs (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-fastify-docs-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

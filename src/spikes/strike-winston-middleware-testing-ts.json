@@ -1,0 +1,41 @@
+{
+  "id": "strike-winston-middleware-testing-ts",
+  "name": "winston middleware testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "winston",
+    "ts"
+  ],
+  "tags": [
+    "middleware",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for winston middleware in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "winston-middleware-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/winston-middleware.ts",
+      "template": "# Spike: winston middleware (ts)\n// Auto-generated spike stub for winston (middleware)\nexport function demo() {\n  console.log('use winston - middleware (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-winston-middleware-testing-ts.ts.txt",
+      "template": "# Spike: winston middleware (ts)\n// Auto-generated spike stub for winston (middleware)\nexport function demo() {\n  console.log('use winston - middleware (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-winston-middleware-testing-ts.md",
+      "template": "# winston middleware (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-winston-middleware-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

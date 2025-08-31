@@ -1,0 +1,41 @@
+{
+  "id": "strike-nats-init-testing-ts",
+  "name": "nats init testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "nats",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nats init in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nats-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/nats-init.ts",
+      "template": "# Spike: nats init (ts)\n// Auto-generated spike stub for nats (init)\nexport function demo() {\n  console.log('use nats - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nats-init-testing-ts.ts.txt",
+      "template": "# Spike: nats init (ts)\n// Auto-generated spike stub for nats (init)\nexport function demo() {\n  console.log('use nats - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nats-init-testing-ts.md",
+      "template": "# nats init (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-nats-init-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

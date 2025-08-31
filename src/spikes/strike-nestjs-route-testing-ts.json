@@ -1,0 +1,41 @@
+{
+  "id": "strike-nestjs-route-testing-ts",
+  "name": "nestjs route testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "nestjs",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nestjs route in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nestjs-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/nestjs-route.ts",
+      "template": "# Spike: nestjs route (ts)\n// Auto-generated spike stub for nestjs (route)\nexport function demo() {\n  console.log('use nestjs - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-route-testing-ts.ts.txt",
+      "template": "# Spike: nestjs route (ts)\n// Auto-generated spike stub for nestjs (route)\nexport function demo() {\n  console.log('use nestjs - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-route-testing-ts.md",
+      "template": "# nestjs route (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-route-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

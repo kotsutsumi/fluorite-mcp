@@ -1,0 +1,41 @@
+{
+  "id": "strike-trpc-controller-testing-js",
+  "name": "trpc controller testing js",
+  "version": "0.1.0",
+  "stack": [
+    "trpc",
+    "js"
+  ],
+  "tags": [
+    "controller",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for trpc controller in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "trpc-controller-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/trpc-controller.js",
+      "template": "# Spike: trpc controller (js)\n// Auto-generated spike stub for trpc (controller)\nmodule.exports = function demo(){\n  console.log('use trpc - controller (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-trpc-controller-testing-js.js.txt",
+      "template": "# Spike: trpc controller (js)\n// Auto-generated spike stub for trpc (controller)\nmodule.exports = function demo(){\n  console.log('use trpc - controller (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-trpc-controller-testing-js.md",
+      "template": "# trpc controller (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-trpc-controller-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

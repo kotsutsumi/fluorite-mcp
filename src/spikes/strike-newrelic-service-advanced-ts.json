@@ -1,0 +1,41 @@
+{
+  "id": "strike-newrelic-service-advanced-ts",
+  "name": "newrelic service advanced ts",
+  "version": "0.1.0",
+  "stack": [
+    "newrelic",
+    "ts"
+  ],
+  "tags": [
+    "service",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for newrelic service in ts (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "newrelic-service-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/newrelic-service.ts",
+      "template": "# Spike: newrelic service (ts)\n// Auto-generated spike stub for newrelic (service)\nexport function demo() {\n  console.log('use newrelic - service (advanced)');\n}\n"
+    },
+    {
+      "path": "src/apm/newrelic.ts",
+      "template": "export function newrelic(){ return { enabled: true }; }\n"
+    },
+    {
+      "path": "spikes/strike-newrelic-service-advanced-ts.ts.txt",
+      "template": "# Spike: newrelic service (ts)\n// Auto-generated spike stub for newrelic (service)\nexport function demo() {\n  console.log('use newrelic - service (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-newrelic-service-advanced-ts.md",
+      "template": "# newrelic service (advanced, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

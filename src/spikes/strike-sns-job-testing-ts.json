@@ -1,0 +1,41 @@
+{
+  "id": "strike-sns-job-testing-ts",
+  "name": "sns job testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "sns",
+    "ts"
+  ],
+  "tags": [
+    "job",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for sns job in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sns-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/sns-job.ts",
+      "template": "# Spike: sns job (ts)\n// Auto-generated spike stub for sns (job)\nexport function demo() {\n  console.log('use sns - job (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sns-job-testing-ts.ts.txt",
+      "template": "# Spike: sns job (ts)\n// Auto-generated spike stub for sns (job)\nexport function demo() {\n  console.log('use sns - job (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sns-job-testing-ts.md",
+      "template": "# sns job (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-sns-job-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

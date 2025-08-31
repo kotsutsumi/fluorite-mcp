@@ -1,0 +1,41 @@
+{
+  "id": "strike-fastify-adapter-testing-ts",
+  "name": "fastify adapter testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "fastify",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastify adapter in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastify-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/fastify-adapter.ts",
+      "template": "# Spike: fastify adapter (ts)\n// Auto-generated spike stub for fastify (adapter)\nexport function demo() {\n  console.log('use fastify - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-fastify-adapter-testing-ts.ts.txt",
+      "template": "# Spike: fastify adapter (ts)\n// Auto-generated spike stub for fastify (adapter)\nexport function demo() {\n  console.log('use fastify - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-fastify-adapter-testing-ts.md",
+      "template": "# fastify adapter (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-fastify-adapter-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

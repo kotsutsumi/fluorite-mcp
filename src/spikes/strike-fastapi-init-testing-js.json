@@ -1,0 +1,41 @@
+{
+  "id": "strike-fastapi-init-testing-js",
+  "name": "fastapi init testing js",
+  "version": "0.1.0",
+  "stack": [
+    "fastapi",
+    "js"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastapi init in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastapi-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/fastapi-init.js",
+      "template": "# Spike: fastapi init (js)\n// Auto-generated spike stub for fastapi (init)\nmodule.exports = function demo(){\n  console.log('use fastapi - init (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-init-testing-js.js.txt",
+      "template": "# Spike: fastapi init (js)\n// Auto-generated spike stub for fastapi (init)\nmodule.exports = function demo(){\n  console.log('use fastapi - init (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-init-testing-js.md",
+      "template": "# fastapi init (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-fastapi-init-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

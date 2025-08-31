@@ -1,0 +1,41 @@
+{
+  "id": "strike-datadog-config-advanced-ts",
+  "name": "datadog config advanced ts",
+  "version": "0.1.0",
+  "stack": [
+    "datadog",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for datadog config in ts (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "datadog-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/datadog-config.ts",
+      "template": "# Spike: datadog config (ts)\n// Auto-generated spike stub for datadog (config)\nexport function demo() {\n  console.log('use datadog - config (advanced)');\n}\n"
+    },
+    {
+      "path": "src/apm/datadog.ts",
+      "template": "export function datadog(){ return { enabled: true }; }\n"
+    },
+    {
+      "path": "spikes/strike-datadog-config-advanced-ts.ts.txt",
+      "template": "# Spike: datadog config (ts)\n// Auto-generated spike stub for datadog (config)\nexport function demo() {\n  console.log('use datadog - config (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-datadog-config-advanced-ts.md",
+      "template": "# datadog config (advanced, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

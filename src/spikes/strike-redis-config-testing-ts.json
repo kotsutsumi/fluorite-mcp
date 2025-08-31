@@ -1,0 +1,51 @@
+{
+  "id": "strike-redis-config-testing-ts",
+  "name": "redis config testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "redis",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for redis config in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "redis-config-app"
+    },
+    {
+      "name": "redisUrl",
+      "required": false,
+      "description": "Redis 接続URL",
+      "default": "redis://localhost:6379"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/redis-config.ts",
+      "template": "# Spike: redis config (ts)\n// Auto-generated spike stub for redis (config)\nexport function demo() {\n  console.log('use redis - config (testing)');\n}\n"
+    },
+    {
+      "path": "src/redis/client.ts",
+      "template": "export function redis(){ return { url: process.env.REDIS_URL || 'redis://localhost:6379' }; }\n"
+    },
+    {
+      "path": "spikes/strike-redis-config-testing-ts.ts.txt",
+      "template": "# Spike: redis config (ts)\n// Auto-generated spike stub for redis (config)\nexport function demo() {\n  console.log('use redis - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-config-testing-ts.md",
+      "template": "# redis config (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-redis-config-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

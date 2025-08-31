@@ -1,0 +1,41 @@
+{
+  "id": "strike-elasticsearch-benchmark-testing-ts",
+  "name": "elasticsearch benchmark testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "elasticsearch",
+    "ts"
+  ],
+  "tags": [
+    "benchmark",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for elasticsearch benchmark in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "elasticsearch-benchmark-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/elasticsearch-benchmark.ts",
+      "template": "# Spike: elasticsearch benchmark (ts)\n// Auto-generated spike stub for elasticsearch (benchmark)\nexport function demo() {\n  console.log('use elasticsearch - benchmark (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-elasticsearch-benchmark-testing-ts.ts.txt",
+      "template": "# Spike: elasticsearch benchmark (ts)\n// Auto-generated spike stub for elasticsearch (benchmark)\nexport function demo() {\n  console.log('use elasticsearch - benchmark (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-elasticsearch-benchmark-testing-ts.md",
+      "template": "# elasticsearch benchmark (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-elasticsearch-benchmark-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-newrelic-init-advanced-ts",
+  "name": "newrelic init advanced ts",
+  "version": "0.1.0",
+  "stack": [
+    "newrelic",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for newrelic init in ts (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "newrelic-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/newrelic-init.ts",
+      "template": "# Spike: newrelic init (ts)\n// Auto-generated spike stub for newrelic (init)\nexport function demo() {\n  console.log('use newrelic - init (advanced)');\n}\n"
+    },
+    {
+      "path": "src/apm/newrelic.ts",
+      "template": "export function newrelic(){ return { enabled: true }; }\n"
+    },
+    {
+      "path": "spikes/strike-newrelic-init-advanced-ts.ts.txt",
+      "template": "# Spike: newrelic init (ts)\n// Auto-generated spike stub for newrelic (init)\nexport function demo() {\n  console.log('use newrelic - init (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-newrelic-init-advanced-ts.md",
+      "template": "# newrelic init (advanced, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

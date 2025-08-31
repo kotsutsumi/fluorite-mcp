@@ -1,0 +1,41 @@
+{
+  "id": "strike-pubsub-adapter-testing-ts",
+  "name": "pubsub adapter testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "pubsub",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for pubsub adapter in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "pubsub-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/pubsub-adapter.ts",
+      "template": "# Spike: pubsub adapter (ts)\n// Auto-generated spike stub for pubsub (adapter)\nexport function demo() {\n  console.log('use pubsub - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pubsub-adapter-testing-ts.ts.txt",
+      "template": "# Spike: pubsub adapter (ts)\n// Auto-generated spike stub for pubsub (adapter)\nexport function demo() {\n  console.log('use pubsub - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pubsub-adapter-testing-ts.md",
+      "template": "# pubsub adapter (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-pubsub-adapter-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

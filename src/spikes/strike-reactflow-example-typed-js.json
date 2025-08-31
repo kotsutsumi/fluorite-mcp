@@ -1,0 +1,41 @@
+{
+  "id": "strike-reactflow-example-typed-js",
+  "name": "reactflow example typed js",
+  "version": "0.1.0",
+  "stack": [
+    "reactflow",
+    "js"
+  ],
+  "tags": [
+    "example",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for reactflow example in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "reactflow-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/reactflow-example.js",
+      "template": "# Spike: reactflow example (js)\n// Auto-generated spike stub for reactflow (example)\nmodule.exports = function demo(){\n  console.log('use reactflow - example (typed)');\n};\n"
+    },
+    {
+      "path": "src/flow/App.jsx",
+      "template": "import React from 'react';\nimport Flow from '@/src/components/Flow';\nexport default function App(){ return (<main><h1>React Flow Example</h1><Flow /></main>); }\n"
+    },
+    {
+      "path": "spikes/strike-reactflow-example-typed-js.js.txt",
+      "template": "# Spike: reactflow example (js)\n// Auto-generated spike stub for reactflow (example)\nmodule.exports = function demo(){\n  console.log('use reactflow - example (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-reactflow-example-typed-js.md",
+      "template": "# reactflow example (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,43 @@
+{
+  "id": "strike-redis-example-advanced-ts",
+  "name": "redis example advanced ts",
+  "version": "0.1.0",
+  "stack": [
+    "redis",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for redis example in ts (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "redis-example-app"
+    },
+    {
+      "name": "redisUrl",
+      "required": false,
+      "description": "Redis 接続URL",
+      "default": "redis://localhost:6379"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/redis-example.ts",
+      "template": "# Spike: redis example (ts)\n// Auto-generated spike stub for redis (example)\nexport function demo() {\n  console.log('use redis - example (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-example-advanced-ts.ts.txt",
+      "template": "# Spike: redis example (ts)\n// Auto-generated spike stub for redis (example)\nexport function demo() {\n  console.log('use redis - example (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-redis-example-advanced-ts.md",
+      "template": "# redis example (advanced, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

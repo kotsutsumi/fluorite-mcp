@@ -1,0 +1,41 @@
+{
+  "id": "strike-bullmq-adapter-testing-ts",
+  "name": "bullmq adapter testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "bullmq",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for bullmq adapter in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "bullmq-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/bullmq-adapter.ts",
+      "template": "# Spike: bullmq adapter (ts)\n// Auto-generated spike stub for bullmq (adapter)\nexport function demo() {\n  console.log('use bullmq - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-bullmq-adapter-testing-ts.ts.txt",
+      "template": "# Spike: bullmq adapter (ts)\n// Auto-generated spike stub for bullmq (adapter)\nexport function demo() {\n  console.log('use bullmq - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-bullmq-adapter-testing-ts.md",
+      "template": "# bullmq adapter (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-bullmq-adapter-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

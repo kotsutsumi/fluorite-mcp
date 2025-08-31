@@ -1,0 +1,41 @@
+{
+  "id": "strike-express-adapter-testing-js",
+  "name": "express adapter testing js",
+  "version": "0.1.0",
+  "stack": [
+    "express",
+    "js"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for express adapter in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "express-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/express-adapter.js",
+      "template": "# Spike: express adapter (js)\n// Auto-generated spike stub for express (adapter)\nmodule.exports = function demo(){\n  console.log('use express - adapter (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-express-adapter-testing-js.js.txt",
+      "template": "# Spike: express adapter (js)\n// Auto-generated spike stub for express (adapter)\nmodule.exports = function demo(){\n  console.log('use express - adapter (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-express-adapter-testing-js.md",
+      "template": "# express adapter (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-express-adapter-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

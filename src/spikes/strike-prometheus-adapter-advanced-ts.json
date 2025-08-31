@@ -1,0 +1,37 @@
+{
+  "id": "strike-prometheus-adapter-advanced-ts",
+  "name": "prometheus adapter advanced ts",
+  "version": "0.1.0",
+  "stack": [
+    "prometheus",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for prometheus adapter in ts (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "prometheus-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/prometheus-adapter.ts",
+      "template": "# Spike: prometheus adapter (ts)\n// Auto-generated spike stub for prometheus (adapter)\nexport function demo() {\n  console.log('use prometheus - adapter (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-prometheus-adapter-advanced-ts.ts.txt",
+      "template": "# Spike: prometheus adapter (ts)\n// Auto-generated spike stub for prometheus (adapter)\nexport function demo() {\n  console.log('use prometheus - adapter (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-prometheus-adapter-advanced-ts.md",
+      "template": "# prometheus adapter (advanced, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

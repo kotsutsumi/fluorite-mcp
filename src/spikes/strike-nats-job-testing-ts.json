@@ -1,0 +1,41 @@
+{
+  "id": "strike-nats-job-testing-ts",
+  "name": "nats job testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "nats",
+    "ts"
+  ],
+  "tags": [
+    "job",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nats job in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nats-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/nats-job.ts",
+      "template": "# Spike: nats job (ts)\n// Auto-generated spike stub for nats (job)\nexport function demo() {\n  console.log('use nats - job (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nats-job-testing-ts.ts.txt",
+      "template": "# Spike: nats job (ts)\n// Auto-generated spike stub for nats (job)\nexport function demo() {\n  console.log('use nats - job (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nats-job-testing-ts.md",
+      "template": "# nats job (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-nats-job-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

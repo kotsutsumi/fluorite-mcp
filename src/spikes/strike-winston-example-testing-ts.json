@@ -1,0 +1,41 @@
+{
+  "id": "strike-winston-example-testing-ts",
+  "name": "winston example testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "winston",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for winston example in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "winston-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/winston-example.ts",
+      "template": "# Spike: winston example (ts)\n// Auto-generated spike stub for winston (example)\nexport function demo() {\n  console.log('use winston - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-winston-example-testing-ts.ts.txt",
+      "template": "# Spike: winston example (ts)\n// Auto-generated spike stub for winston (example)\nexport function demo() {\n  console.log('use winston - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-winston-example-testing-ts.md",
+      "template": "# winston example (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-winston-example-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

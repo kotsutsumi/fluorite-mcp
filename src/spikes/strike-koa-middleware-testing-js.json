@@ -1,0 +1,41 @@
+{
+  "id": "strike-koa-middleware-testing-js",
+  "name": "koa middleware testing js",
+  "version": "0.1.0",
+  "stack": [
+    "koa",
+    "js"
+  ],
+  "tags": [
+    "middleware",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for koa middleware in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "koa-middleware-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/koa-middleware.js",
+      "template": "# Spike: koa middleware (js)\n// Auto-generated spike stub for koa (middleware)\nmodule.exports = function demo(){\n  console.log('use koa - middleware (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-koa-middleware-testing-js.js.txt",
+      "template": "# Spike: koa middleware (js)\n// Auto-generated spike stub for koa (middleware)\nmodule.exports = function demo(){\n  console.log('use koa - middleware (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-koa-middleware-testing-js.md",
+      "template": "# koa middleware (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-koa-middleware-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

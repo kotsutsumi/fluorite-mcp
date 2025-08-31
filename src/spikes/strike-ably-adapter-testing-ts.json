@@ -1,0 +1,41 @@
+{
+  "id": "strike-ably-adapter-testing-ts",
+  "name": "ably adapter testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "ably",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for ably adapter in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "ably-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/ably-adapter.ts",
+      "template": "# Spike: ably adapter (ts)\n// Auto-generated spike stub for ably (adapter)\nexport function demo() {\n  console.log('use ably - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-ably-adapter-testing-ts.ts.txt",
+      "template": "# Spike: ably adapter (ts)\n// Auto-generated spike stub for ably (adapter)\nexport function demo() {\n  console.log('use ably - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-ably-adapter-testing-ts.md",
+      "template": "# ably adapter (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-ably-adapter-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

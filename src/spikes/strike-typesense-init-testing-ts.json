@@ -1,0 +1,41 @@
+{
+  "id": "strike-typesense-init-testing-ts",
+  "name": "typesense init testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "typesense",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for typesense init in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "typesense-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/typesense-init.ts",
+      "template": "# Spike: typesense init (ts)\n// Auto-generated spike stub for typesense (init)\nexport function demo() {\n  console.log('use typesense - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-typesense-init-testing-ts.ts.txt",
+      "template": "# Spike: typesense init (ts)\n// Auto-generated spike stub for typesense (init)\nexport function demo() {\n  console.log('use typesense - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-typesense-init-testing-ts.md",
+      "template": "# typesense init (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-typesense-init-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

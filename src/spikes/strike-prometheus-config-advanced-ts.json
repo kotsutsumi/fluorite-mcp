@@ -1,0 +1,41 @@
+{
+  "id": "strike-prometheus-config-advanced-ts",
+  "name": "prometheus config advanced ts",
+  "version": "0.1.0",
+  "stack": [
+    "prometheus",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for prometheus config in ts (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "prometheus-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/prometheus-config.ts",
+      "template": "# Spike: prometheus config (ts)\n// Auto-generated spike stub for prometheus (config)\nexport function demo() {\n  console.log('use prometheus - config (advanced)');\n}\n"
+    },
+    {
+      "path": "src/metrics/prometheus.ts",
+      "template": "export function metrics(){ return { register: {} as any }; }\n"
+    },
+    {
+      "path": "spikes/strike-prometheus-config-advanced-ts.ts.txt",
+      "template": "# Spike: prometheus config (ts)\n// Auto-generated spike stub for prometheus (config)\nexport function demo() {\n  console.log('use prometheus - config (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-prometheus-config-advanced-ts.md",
+      "template": "# prometheus config (advanced, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

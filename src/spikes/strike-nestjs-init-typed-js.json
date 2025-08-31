@@ -1,0 +1,49 @@
+{
+  "id": "strike-nestjs-init-typed-js",
+  "name": "nestjs init typed js",
+  "version": "0.1.0",
+  "stack": [
+    "nestjs",
+    "js"
+  ],
+  "tags": [
+    "init",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nestjs init in js (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nestjs-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/nestjs-init.js",
+      "template": "# Spike: nestjs init (js)\n// Auto-generated spike stub for nestjs (init)\nmodule.exports = function demo(){\n  console.log('use nestjs - init (typed)');\n};\n"
+    },
+    {
+      "path": "src/nest/main.ts",
+      "template": "import { NestFactory } from '@nestjs/core';\nimport { AppModule } from './app.module';\nasync function bootstrap(){ const app = await NestFactory.create(AppModule); await app.listen(3000); }\nbootstrap();\n"
+    },
+    {
+      "path": "src/nest/app.module.ts",
+      "template": "import { Module } from '@nestjs/common';\nimport { AppController } from './app.controller';\n@Module({ controllers: [AppController] })\nexport class AppModule {}\n"
+    },
+    {
+      "path": "src/nest/app.controller.ts",
+      "template": "import { Controller, Get } from '@nestjs/common';\n@Controller()\nexport class AppController { @Get() hello(){ return { ok: true }; } }\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-init-typed-js.js.txt",
+      "template": "# Spike: nestjs init (js)\n// Auto-generated spike stub for nestjs (init)\nmodule.exports = function demo(){\n  console.log('use nestjs - init (typed)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-init-typed-js.md",
+      "template": "# nestjs init (typed, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

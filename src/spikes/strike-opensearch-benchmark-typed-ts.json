@@ -1,0 +1,37 @@
+{
+  "id": "strike-opensearch-benchmark-typed-ts",
+  "name": "opensearch benchmark typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "opensearch",
+    "ts"
+  ],
+  "tags": [
+    "benchmark",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for opensearch benchmark in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "opensearch-benchmark-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/opensearch-benchmark.ts",
+      "template": "# Spike: opensearch benchmark (ts)\n// Auto-generated spike stub for opensearch (benchmark)\nexport function demo() {\n  console.log('use opensearch - benchmark (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-opensearch-benchmark-typed-ts.ts.txt",
+      "template": "# Spike: opensearch benchmark (ts)\n// Auto-generated spike stub for opensearch (benchmark)\nexport function demo() {\n  console.log('use opensearch - benchmark (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-opensearch-benchmark-typed-ts.md",
+      "template": "# opensearch benchmark (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

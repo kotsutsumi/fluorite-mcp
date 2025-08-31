@@ -1,0 +1,41 @@
+{
+  "id": "strike-bullmq-route-testing-ts",
+  "name": "bullmq route testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "bullmq",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for bullmq route in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "bullmq-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/bullmq-route.ts",
+      "template": "# Spike: bullmq route (ts)\n// Auto-generated spike stub for bullmq (route)\nexport function demo() {\n  console.log('use bullmq - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-bullmq-route-testing-ts.ts.txt",
+      "template": "# Spike: bullmq route (ts)\n// Auto-generated spike stub for bullmq (route)\nexport function demo() {\n  console.log('use bullmq - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-bullmq-route-testing-ts.md",
+      "template": "# bullmq route (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-bullmq-route-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

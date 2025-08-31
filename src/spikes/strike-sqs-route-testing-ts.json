@@ -1,0 +1,41 @@
+{
+  "id": "strike-sqs-route-testing-ts",
+  "name": "sqs route testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "sqs",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for sqs route in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sqs-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/sqs-route.ts",
+      "template": "# Spike: sqs route (ts)\n// Auto-generated spike stub for sqs (route)\nexport function demo() {\n  console.log('use sqs - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sqs-route-testing-ts.ts.txt",
+      "template": "# Spike: sqs route (ts)\n// Auto-generated spike stub for sqs (route)\nexport function demo() {\n  console.log('use sqs - route (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sqs-route-testing-ts.md",
+      "template": "# sqs route (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-sqs-route-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

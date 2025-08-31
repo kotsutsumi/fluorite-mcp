@@ -1,0 +1,41 @@
+{
+  "id": "strike-pino-example-testing-ts",
+  "name": "pino example testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "pino",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for pino example in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "pino-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/pino-example.ts",
+      "template": "# Spike: pino example (ts)\n// Auto-generated spike stub for pino (example)\nexport function demo() {\n  console.log('use pino - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pino-example-testing-ts.ts.txt",
+      "template": "# Spike: pino example (ts)\n// Auto-generated spike stub for pino (example)\nexport function demo() {\n  console.log('use pino - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pino-example-testing-ts.md",
+      "template": "# pino example (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-pino-example-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

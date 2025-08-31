@@ -1,0 +1,41 @@
+{
+  "id": "strike-sqs-worker-testing-ts",
+  "name": "sqs worker testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "sqs",
+    "ts"
+  ],
+  "tags": [
+    "worker",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for sqs worker in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sqs-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/sqs-worker.ts",
+      "template": "# Spike: sqs worker (ts)\n// Auto-generated spike stub for sqs (worker)\nexport function demo() {\n  console.log('use sqs - worker (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sqs-worker-testing-ts.ts.txt",
+      "template": "# Spike: sqs worker (ts)\n// Auto-generated spike stub for sqs (worker)\nexport function demo() {\n  console.log('use sqs - worker (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sqs-worker-testing-ts.md",
+      "template": "# sqs worker (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-sqs-worker-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

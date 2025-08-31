@@ -1,0 +1,49 @@
+{
+  "id": "strike-sns-client-testing-ts",
+  "name": "sns client testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "sns",
+    "ts"
+  ],
+  "tags": [
+    "client",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for sns client in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sns-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/sns-client.ts",
+      "template": "# Spike: sns client (ts)\n// Auto-generated spike stub for sns (client)\nexport function demo() {\n  console.log('use sns - client (testing)');\n}\n"
+    },
+    {
+      "path": "src/aws/sns.ts",
+      "template": "import { SNSClient, PublishCommand } from '@aws-sdk/client-sns';\nconst client = new SNSClient({});\nexport async function publish(topicArn: string, message: string){ await client.send(new PublishCommand({ TopicArn: topicArn, Message: message })); }\n"
+    },
+    {
+      "path": "src/aws/sns.ts",
+      "template": "export async function publishSNS(topicArn: string, message: string){ /* stub */ return { topicArn, message }; }\n"
+    },
+    {
+      "path": "spikes/strike-sns-client-testing-ts.ts.txt",
+      "template": "# Spike: sns client (ts)\n// Auto-generated spike stub for sns (client)\nexport function demo() {\n  console.log('use sns - client (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sns-client-testing-ts.md",
+      "template": "# sns client (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-sns-client-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

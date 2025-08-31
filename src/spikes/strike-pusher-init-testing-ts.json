@@ -1,0 +1,41 @@
+{
+  "id": "strike-pusher-init-testing-ts",
+  "name": "pusher init testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "pusher",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for pusher init in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "pusher-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/pusher-init.ts",
+      "template": "# Spike: pusher init (ts)\n// Auto-generated spike stub for pusher (init)\nexport function demo() {\n  console.log('use pusher - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pusher-init-testing-ts.ts.txt",
+      "template": "# Spike: pusher init (ts)\n// Auto-generated spike stub for pusher (init)\nexport function demo() {\n  console.log('use pusher - init (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-pusher-init-testing-ts.md",
+      "template": "# pusher init (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-pusher-init-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

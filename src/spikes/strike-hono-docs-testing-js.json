@@ -1,0 +1,41 @@
+{
+  "id": "strike-hono-docs-testing-js",
+  "name": "hono docs testing js",
+  "version": "0.1.0",
+  "stack": [
+    "hono",
+    "js"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for hono docs in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "hono-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/hono-docs.js",
+      "template": "# Spike: hono docs (js)\n// Auto-generated spike stub for hono (docs)\nmodule.exports = function demo(){\n  console.log('use hono - docs (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-hono-docs-testing-js.js.txt",
+      "template": "# Spike: hono docs (js)\n// Auto-generated spike stub for hono (docs)\nmodule.exports = function demo(){\n  console.log('use hono - docs (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-hono-docs-testing-js.md",
+      "template": "# hono docs (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-hono-docs-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

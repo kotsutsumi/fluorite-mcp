@@ -1,0 +1,41 @@
+{
+  "id": "strike-nestjs-example-testing-ts",
+  "name": "nestjs example testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "nestjs",
+    "ts"
+  ],
+  "tags": [
+    "example",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nestjs example in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nestjs-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/nestjs-example.ts",
+      "template": "# Spike: nestjs example (ts)\n// Auto-generated spike stub for nestjs (example)\nexport function demo() {\n  console.log('use nestjs - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-example-testing-ts.ts.txt",
+      "template": "# Spike: nestjs example (ts)\n// Auto-generated spike stub for nestjs (example)\nexport function demo() {\n  console.log('use nestjs - example (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-example-testing-ts.md",
+      "template": "# nestjs example (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-example-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

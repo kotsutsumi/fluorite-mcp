@@ -1,0 +1,45 @@
+{
+  "id": "strike-hapi-service-testing-ts",
+  "name": "hapi service testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "hapi",
+    "ts"
+  ],
+  "tags": [
+    "service",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for hapi service in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "hapi-service-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/hapi-service.ts",
+      "template": "# Spike: hapi service (ts)\n// Auto-generated spike stub for hapi (service)\nexport function demo() {\n  console.log('use hapi - service (testing)');\n}\n"
+    },
+    {
+      "path": "src/hapi/server.ts",
+      "template": "import Hapi from '@hapi/hapi';\nasync function start(){ const server = Hapi.server({ port:3000, host:'localhost' }); server.route({ method: 'GET', path: '/', handler: ()=> ({ ok: true }) }); await server.start(); }\nstart();\n"
+    },
+    {
+      "path": "spikes/strike-hapi-service-testing-ts.ts.txt",
+      "template": "# Spike: hapi service (ts)\n// Auto-generated spike stub for hapi (service)\nexport function demo() {\n  console.log('use hapi - service (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-hapi-service-testing-ts.md",
+      "template": "# hapi service (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-hapi-service-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

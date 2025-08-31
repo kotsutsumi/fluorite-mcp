@@ -1,0 +1,41 @@
+{
+  "id": "strike-sns-docs-testing-ts",
+  "name": "sns docs testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "sns",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for sns docs in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sns-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/sns-docs.ts",
+      "template": "# Spike: sns docs (ts)\n// Auto-generated spike stub for sns (docs)\nexport function demo() {\n  console.log('use sns - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sns-docs-testing-ts.ts.txt",
+      "template": "# Spike: sns docs (ts)\n// Auto-generated spike stub for sns (docs)\nexport function demo() {\n  console.log('use sns - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sns-docs-testing-ts.md",
+      "template": "# sns docs (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-sns-docs-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

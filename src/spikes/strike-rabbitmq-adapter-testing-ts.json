@@ -1,0 +1,41 @@
+{
+  "id": "strike-rabbitmq-adapter-testing-ts",
+  "name": "rabbitmq adapter testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "rabbitmq",
+    "ts"
+  ],
+  "tags": [
+    "adapter",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for rabbitmq adapter in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "rabbitmq-adapter-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/rabbitmq-adapter.ts",
+      "template": "# Spike: rabbitmq adapter (ts)\n// Auto-generated spike stub for rabbitmq (adapter)\nexport function demo() {\n  console.log('use rabbitmq - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-rabbitmq-adapter-testing-ts.ts.txt",
+      "template": "# Spike: rabbitmq adapter (ts)\n// Auto-generated spike stub for rabbitmq (adapter)\nexport function demo() {\n  console.log('use rabbitmq - adapter (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-rabbitmq-adapter-testing-ts.md",
+      "template": "# rabbitmq adapter (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-rabbitmq-adapter-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

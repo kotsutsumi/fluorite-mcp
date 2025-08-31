@@ -1,0 +1,37 @@
+{
+  "id": "strike-koa-docs-typed-ts",
+  "name": "koa docs typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "koa",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for koa docs in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "koa-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/koa-docs.ts",
+      "template": "# Spike: koa docs (ts)\n// Auto-generated spike stub for koa (docs)\nexport function demo() {\n  console.log('use koa - docs (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-koa-docs-typed-ts.ts.txt",
+      "template": "# Spike: koa docs (ts)\n// Auto-generated spike stub for koa (docs)\nexport function demo() {\n  console.log('use koa - docs (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-koa-docs-typed-ts.md",
+      "template": "# koa docs (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

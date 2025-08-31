@@ -1,0 +1,37 @@
+{
+  "id": "strike-elasticsearch-benchmark-typed-ts",
+  "name": "elasticsearch benchmark typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "elasticsearch",
+    "ts"
+  ],
+  "tags": [
+    "benchmark",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for elasticsearch benchmark in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "elasticsearch-benchmark-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/elasticsearch-benchmark.ts",
+      "template": "# Spike: elasticsearch benchmark (ts)\n// Auto-generated spike stub for elasticsearch (benchmark)\nexport function demo() {\n  console.log('use elasticsearch - benchmark (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-elasticsearch-benchmark-typed-ts.ts.txt",
+      "template": "# Spike: elasticsearch benchmark (ts)\n// Auto-generated spike stub for elasticsearch (benchmark)\nexport function demo() {\n  console.log('use elasticsearch - benchmark (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-elasticsearch-benchmark-typed-ts.md",
+      "template": "# elasticsearch benchmark (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

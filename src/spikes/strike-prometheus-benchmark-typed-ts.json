@@ -1,0 +1,37 @@
+{
+  "id": "strike-prometheus-benchmark-typed-ts",
+  "name": "prometheus benchmark typed ts",
+  "version": "0.1.0",
+  "stack": [
+    "prometheus",
+    "ts"
+  ],
+  "tags": [
+    "benchmark",
+    "typed",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for prometheus benchmark in ts (typed).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "prometheus-benchmark-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/prometheus-benchmark.ts",
+      "template": "# Spike: prometheus benchmark (ts)\n// Auto-generated spike stub for prometheus (benchmark)\nexport function demo() {\n  console.log('use prometheus - benchmark (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-prometheus-benchmark-typed-ts.ts.txt",
+      "template": "# Spike: prometheus benchmark (ts)\n// Auto-generated spike stub for prometheus (benchmark)\nexport function demo() {\n  console.log('use prometheus - benchmark (typed)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-prometheus-benchmark-typed-ts.md",
+      "template": "# prometheus benchmark (typed, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-hono-docs-testing-ts",
+  "name": "hono docs testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "hono",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for hono docs in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "hono-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/hono-docs.ts",
+      "template": "# Spike: hono docs (ts)\n// Auto-generated spike stub for hono (docs)\nexport function demo() {\n  console.log('use hono - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-hono-docs-testing-ts.ts.txt",
+      "template": "# Spike: hono docs (ts)\n// Auto-generated spike stub for hono (docs)\nexport function demo() {\n  console.log('use hono - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-hono-docs-testing-ts.md",
+      "template": "# hono docs (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-hono-docs-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

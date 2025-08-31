@@ -1,0 +1,49 @@
+{
+  "id": "strike-nestjs-service-secure-py",
+  "name": "nestjs service secure py",
+  "version": "0.1.0",
+  "stack": [
+    "nestjs",
+    "py"
+  ],
+  "tags": [
+    "service",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nestjs service in py (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nestjs-service-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/nestjs-service.py",
+      "template": "# Spike: nestjs service (py)\n# Auto-generated spike stub for nestjs (service)\ndef demo():\n    print('use nestjs - service (secure)')\n"
+    },
+    {
+      "path": "src/nest/main.ts",
+      "template": "import { NestFactory } from '@nestjs/core';\nimport { AppModule } from './app.module';\nasync function bootstrap(){ const app = await NestFactory.create(AppModule); await app.listen(3000); }\nbootstrap();\n"
+    },
+    {
+      "path": "src/nest/app.module.ts",
+      "template": "import { Module } from '@nestjs/common';\nimport { AppController } from './app.controller';\n@Module({ controllers: [AppController] })\nexport class AppModule {}\n"
+    },
+    {
+      "path": "src/nest/app.controller.ts",
+      "template": "import { Controller, Get } from '@nestjs/common';\n@Controller()\nexport class AppController { @Get() hello(){ return { ok: true }; } }\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-service-secure-py.py.txt",
+      "template": "# Spike: nestjs service (py)\n# Auto-generated spike stub for nestjs (service)\ndef demo():\n    print('use nestjs - service (secure)')\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-service-secure-py.md",
+      "template": "# nestjs service (secure, py)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

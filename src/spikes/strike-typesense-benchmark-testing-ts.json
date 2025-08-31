@@ -1,0 +1,41 @@
+{
+  "id": "strike-typesense-benchmark-testing-ts",
+  "name": "typesense benchmark testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "typesense",
+    "ts"
+  ],
+  "tags": [
+    "benchmark",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for typesense benchmark in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "typesense-benchmark-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/typesense-benchmark.ts",
+      "template": "# Spike: typesense benchmark (ts)\n// Auto-generated spike stub for typesense (benchmark)\nexport function demo() {\n  console.log('use typesense - benchmark (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-typesense-benchmark-testing-ts.ts.txt",
+      "template": "# Spike: typesense benchmark (ts)\n// Auto-generated spike stub for typesense (benchmark)\nexport function demo() {\n  console.log('use typesense - benchmark (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-typesense-benchmark-testing-ts.md",
+      "template": "# typesense benchmark (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-typesense-benchmark-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

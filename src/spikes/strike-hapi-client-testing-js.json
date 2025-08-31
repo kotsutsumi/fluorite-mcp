@@ -1,0 +1,41 @@
+{
+  "id": "strike-hapi-client-testing-js",
+  "name": "hapi client testing js",
+  "version": "0.1.0",
+  "stack": [
+    "hapi",
+    "js"
+  ],
+  "tags": [
+    "client",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for hapi client in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "hapi-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/hapi-client.js",
+      "template": "# Spike: hapi client (js)\n// Auto-generated spike stub for hapi (client)\nmodule.exports = function demo(){\n  console.log('use hapi - client (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-hapi-client-testing-js.js.txt",
+      "template": "# Spike: hapi client (js)\n// Auto-generated spike stub for hapi (client)\nmodule.exports = function demo(){\n  console.log('use hapi - client (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-hapi-client-testing-js.md",
+      "template": "# hapi client (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-hapi-client-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

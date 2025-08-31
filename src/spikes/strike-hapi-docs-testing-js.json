@@ -1,0 +1,41 @@
+{
+  "id": "strike-hapi-docs-testing-js",
+  "name": "hapi docs testing js",
+  "version": "0.1.0",
+  "stack": [
+    "hapi",
+    "js"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for hapi docs in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "hapi-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/hapi-docs.js",
+      "template": "# Spike: hapi docs (js)\n// Auto-generated spike stub for hapi (docs)\nmodule.exports = function demo(){\n  console.log('use hapi - docs (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-hapi-docs-testing-js.js.txt",
+      "template": "# Spike: hapi docs (js)\n// Auto-generated spike stub for hapi (docs)\nmodule.exports = function demo(){\n  console.log('use hapi - docs (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-hapi-docs-testing-js.md",
+      "template": "# hapi docs (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-hapi-docs-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

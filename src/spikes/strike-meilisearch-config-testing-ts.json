@@ -1,0 +1,41 @@
+{
+  "id": "strike-meilisearch-config-testing-ts",
+  "name": "meilisearch config testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "meilisearch",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for meilisearch config in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "meilisearch-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/meilisearch-config.ts",
+      "template": "# Spike: meilisearch config (ts)\n// Auto-generated spike stub for meilisearch (config)\nexport function demo() {\n  console.log('use meilisearch - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-meilisearch-config-testing-ts.ts.txt",
+      "template": "# Spike: meilisearch config (ts)\n// Auto-generated spike stub for meilisearch (config)\nexport function demo() {\n  console.log('use meilisearch - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-meilisearch-config-testing-ts.md",
+      "template": "# meilisearch config (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-meilisearch-config-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

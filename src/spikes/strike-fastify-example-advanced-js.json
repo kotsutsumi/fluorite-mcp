@@ -1,0 +1,41 @@
+{
+  "id": "strike-fastify-example-advanced-js",
+  "name": "fastify example advanced js",
+  "version": "0.1.0",
+  "stack": [
+    "fastify",
+    "js"
+  ],
+  "tags": [
+    "example",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastify example in js (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastify-example-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/fastify-example.js",
+      "template": "# Spike: fastify example (js)\n// Auto-generated spike stub for fastify (example)\nmodule.exports = function demo(){\n  console.log('use fastify - example (advanced)');\n};\n"
+    },
+    {
+      "path": "src/otel/fastify.ts",
+      "template": "// Fastify OpenTelemetry setup (stub)\nexport function setupFastifyOtel(){ /* integrate @opentelemetry/instrumentation-fastify here */ }\n"
+    },
+    {
+      "path": "spikes/strike-fastify-example-advanced-js.js.txt",
+      "template": "# Spike: fastify example (js)\n// Auto-generated spike stub for fastify (example)\nmodule.exports = function demo(){\n  console.log('use fastify - example (advanced)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-fastify-example-advanced-js.md",
+      "template": "# fastify example (advanced, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

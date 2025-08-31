@@ -1,0 +1,41 @@
+{
+  "id": "strike-fastify-docs-testing-ts",
+  "name": "fastify docs testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "fastify",
+    "ts"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for fastify docs in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "fastify-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/fastify-docs.ts",
+      "template": "# Spike: fastify docs (ts)\n// Auto-generated spike stub for fastify (docs)\nexport function demo() {\n  console.log('use fastify - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-fastify-docs-testing-ts.ts.txt",
+      "template": "# Spike: fastify docs (ts)\n// Auto-generated spike stub for fastify (docs)\nexport function demo() {\n  console.log('use fastify - docs (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-fastify-docs-testing-ts.md",
+      "template": "# fastify docs (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-fastify-docs-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-hapi-route-advanced-ts",
+  "name": "hapi route advanced ts",
+  "version": "0.1.0",
+  "stack": [
+    "hapi",
+    "ts"
+  ],
+  "tags": [
+    "route",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for hapi route in ts (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "hapi-route-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/hapi-route.ts",
+      "template": "# Spike: hapi route (ts)\n// Auto-generated spike stub for hapi (route)\nexport function demo() {\n  console.log('use hapi - route (advanced)');\n}\n"
+    },
+    {
+      "path": "src/hapi/server.ts",
+      "template": "import Hapi from '@hapi/hapi';\nasync function start(){ const server = Hapi.server({ port:3000, host:'localhost' }); server.route({ method: 'GET', path: '/', handler: ()=> ({ ok: true }) }); await server.start(); }\nstart();\n"
+    },
+    {
+      "path": "spikes/strike-hapi-route-advanced-ts.ts.txt",
+      "template": "# Spike: hapi route (ts)\n// Auto-generated spike stub for hapi (route)\nexport function demo() {\n  console.log('use hapi - route (advanced)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-hapi-route-advanced-ts.md",
+      "template": "# hapi route (advanced, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

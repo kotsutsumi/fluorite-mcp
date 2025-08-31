@@ -1,0 +1,41 @@
+{
+  "id": "strike-trpc-client-advanced-js",
+  "name": "trpc client advanced js",
+  "version": "0.1.0",
+  "stack": [
+    "trpc",
+    "js"
+  ],
+  "tags": [
+    "client",
+    "advanced",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for trpc client in js (advanced).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "trpc-client-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/trpc-client.js",
+      "template": "# Spike: trpc client (js)\n// Auto-generated spike stub for trpc (client)\nmodule.exports = function demo(){\n  console.log('use trpc - client (advanced)');\n};\n"
+    },
+    {
+      "path": "src/trpc/client.ts",
+      "template": "import { createTRPCProxyClient, httpBatchLink } from '@trpc/client';\nimport type { AppRouter } from './router';\nexport const client = createTRPCProxyClient<AppRouter>({ links: [httpBatchLink({ url: '/trpc' })] });\n"
+    },
+    {
+      "path": "spikes/strike-trpc-client-advanced-js.js.txt",
+      "template": "# Spike: trpc client (js)\n// Auto-generated spike stub for trpc (client)\nmodule.exports = function demo(){\n  console.log('use trpc - client (advanced)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-trpc-client-advanced-js.md",
+      "template": "# trpc client (advanced, js)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,37 @@
+{
+  "id": "strike-opensearch-init-secure-ts",
+  "name": "opensearch init secure ts",
+  "version": "0.1.0",
+  "stack": [
+    "opensearch",
+    "ts"
+  ],
+  "tags": [
+    "init",
+    "secure",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for opensearch init in ts (secure).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "opensearch-init-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/opensearch-init.ts",
+      "template": "# Spike: opensearch init (ts)\n// Auto-generated spike stub for opensearch (init)\nexport function demo() {\n  console.log('use opensearch - init (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-opensearch-init-secure-ts.ts.txt",
+      "template": "# Spike: opensearch init (ts)\n// Auto-generated spike stub for opensearch (init)\nexport function demo() {\n  console.log('use opensearch - init (secure)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-opensearch-init-secure-ts.md",
+      "template": "# opensearch init (secure, ts)\n\nThis is an auto-generated spike template.\n"
+    }
+  ],
+  "patches": []
+}

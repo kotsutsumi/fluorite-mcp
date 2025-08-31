@@ -1,0 +1,41 @@
+{
+  "id": "strike-nestjs-docs-testing-js",
+  "name": "nestjs docs testing js",
+  "version": "0.1.0",
+  "stack": [
+    "nestjs",
+    "js"
+  ],
+  "tags": [
+    "docs",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for nestjs docs in js (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "nestjs-docs-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/nestjs-docs.js",
+      "template": "# Spike: nestjs docs (js)\n// Auto-generated spike stub for nestjs (docs)\nmodule.exports = function demo(){\n  console.log('use nestjs - docs (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-docs-testing-js.js.txt",
+      "template": "# Spike: nestjs docs (js)\n// Auto-generated spike stub for nestjs (docs)\nmodule.exports = function demo(){\n  console.log('use nestjs - docs (testing)');\n};\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-docs-testing-js.md",
+      "template": "# nestjs docs (testing, js)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-nestjs-docs-testing-js.test.js",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

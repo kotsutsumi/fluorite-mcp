@@ -1,0 +1,41 @@
+{
+  "id": "strike-sns-listener-testing-ts",
+  "name": "sns listener testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "sns",
+    "ts"
+  ],
+  "tags": [
+    "listener",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for sns listener in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sns-listener-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/sns-listener.ts",
+      "template": "# Spike: sns listener (ts)\n// Auto-generated spike stub for sns (listener)\nexport function demo() {\n  console.log('use sns - listener (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sns-listener-testing-ts.ts.txt",
+      "template": "# Spike: sns listener (ts)\n// Auto-generated spike stub for sns (listener)\nexport function demo() {\n  console.log('use sns - listener (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sns-listener-testing-ts.md",
+      "template": "# sns listener (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-sns-listener-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "strike-kafka-job-testing-ts",
+  "name": "kafka job testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "kafka",
+    "ts"
+  ],
+  "tags": [
+    "job",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for kafka job in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "kafka-job-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/kafka-job.ts",
+      "template": "# Spike: kafka job (ts)\n// Auto-generated spike stub for kafka (job)\nexport function demo() {\n  console.log('use kafka - job (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kafka-job-testing-ts.ts.txt",
+      "template": "# Spike: kafka job (ts)\n// Auto-generated spike stub for kafka (job)\nexport function demo() {\n  console.log('use kafka - job (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-kafka-job-testing-ts.md",
+      "template": "# kafka job (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-kafka-job-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

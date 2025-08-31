@@ -1,0 +1,41 @@
+{
+  "id": "strike-rabbitmq-worker-testing-ts",
+  "name": "rabbitmq worker testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "rabbitmq",
+    "ts"
+  ],
+  "tags": [
+    "worker",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for rabbitmq worker in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "rabbitmq-worker-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/rabbitmq-worker.ts",
+      "template": "# Spike: rabbitmq worker (ts)\n// Auto-generated spike stub for rabbitmq (worker)\nexport function demo() {\n  console.log('use rabbitmq - worker (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-rabbitmq-worker-testing-ts.ts.txt",
+      "template": "# Spike: rabbitmq worker (ts)\n// Auto-generated spike stub for rabbitmq (worker)\nexport function demo() {\n  console.log('use rabbitmq - worker (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-rabbitmq-worker-testing-ts.md",
+      "template": "# rabbitmq worker (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-rabbitmq-worker-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}

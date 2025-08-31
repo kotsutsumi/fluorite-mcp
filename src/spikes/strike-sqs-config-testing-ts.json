@@ -1,0 +1,41 @@
+{
+  "id": "strike-sqs-config-testing-ts",
+  "name": "sqs config testing ts",
+  "version": "0.1.0",
+  "stack": [
+    "sqs",
+    "ts"
+  ],
+  "tags": [
+    "config",
+    "testing",
+    "generated",
+    "strike"
+  ],
+  "description": "Auto-generated spike for sqs config in ts (testing).",
+  "params": [
+    {
+      "name": "app_name",
+      "default": "sqs-config-app"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/sqs-config.ts",
+      "template": "# Spike: sqs config (ts)\n// Auto-generated spike stub for sqs (config)\nexport function demo() {\n  console.log('use sqs - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sqs-config-testing-ts.ts.txt",
+      "template": "# Spike: sqs config (ts)\n// Auto-generated spike stub for sqs (config)\nexport function demo() {\n  console.log('use sqs - config (testing)');\n}\n"
+    },
+    {
+      "path": "spikes/strike-sqs-config-testing-ts.md",
+      "template": "# sqs config (testing, ts)\n\nThis is an auto-generated spike template.\n"
+    },
+    {
+      "path": "spikes/strike-sqs-config-testing-ts.test.ts",
+      "template": "describe('demo', ()=>{ it('works', ()=>{ expect(true).toBe(true); }); });\n"
+    }
+  ],
+  "patches": []
+}
