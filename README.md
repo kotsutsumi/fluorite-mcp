@@ -58,7 +58,7 @@ Bridge the gap between idea and implementation:
 #### Strike Templates (100k+)
 - On-demand generator provides 100k+ Strike templates (no heavy checkout)
 - Use discover/preview/apply tools via Claude Code CLI integrations
-- See docs/ja/strike-templates.md for Japanese usage and performance tips
+- See docs/strike-templates-ja.md for Japanese usage and performance tips
 
 ### ⚡ Superior Developer Experience
 Professional-grade tooling that scales with your team:
