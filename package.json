@@ -82,7 +82,21 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs --port 5173",
-    "materialize:spikes": "tsx scripts/materialize-spikes.ts"
+    "materialize:spikes": "tsx scripts/materialize-spikes.ts",
+    "version:status": "bash scripts/version-utils.sh status",
+    "version:validate": "bash scripts/version-utils.sh validate",
+    "version:current": "bash scripts/version-utils.sh current",
+    "version:next": "bash scripts/version-utils.sh next",
+    "publish:workflow": "bash scripts/publish-workflow.sh",
+    "publish:patch": "bash scripts/publish-workflow.sh -v patch",
+    "publish:minor": "bash scripts/publish-workflow.sh -v minor",
+    "publish:major": "bash scripts/publish-workflow.sh -v major",
+    "publish:dry-run": "bash scripts/publish-workflow.sh --dry-run",
+    "publish:check": "bash scripts/pre-publish-checks.sh",
+    "publish:check-fix": "bash scripts/pre-publish-checks.sh --fix",
+    "publish:check-strict": "bash scripts/pre-publish-checks.sh --strict",
+    "git:merge": "bash scripts/git-merge-orchestrator.sh",
+    "git:merge-dry": "bash scripts/git-merge-orchestrator.sh --dry-run"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
