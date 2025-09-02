@@ -978,3 +978,102 @@ common_use_cases:
   - "チャットボットと仮想アシスタント"
   - "レコメンデーションシステム"
   - "異常検知と予測分析"
+  faiss:
+    name: "faiss"
+    description: "Meta製の高速ベクトル近傍探索ライブラリ（C++/Python）。ローカル環境での高性能類似検索に最適"
+    installation: "pip install faiss-cpu numpy"
+    usage: |
+      import numpy as np
+      import faiss
+
+      class FaissVectorIndex:
+          def __init__(self, dim: int, metric: str = 'l2', index_type: str = 'flat'):
+              self.dim = dim
+              if index_type.lower() == 'hnsw':
+                  # HNSW (graph-based) index
+                  self.index = faiss.IndexHNSWFlat(dim, 32)  # M=32
+                  if metric.lower() == 'ip':
+                      self.index = faiss.IndexHNSWFlat(dim, 32, faiss.METRIC_INNER_PRODUCT)
+              else:
+                  # Flat index (brute-force)
+                  if metric.lower() == 'ip':
+                      self.index = faiss.IndexFlatIP(dim)
+                  else:
+                      self.index = faiss.IndexFlatL2(dim)
+
+          def add(self, vectors: np.ndarray):
+              assert vectors.dtype == np.float32 and vectors.shape[1] == self.dim
+              self.index.add(vectors)
+
+          def search(self, query: np.ndarray, top_k: int = 5):
+              assert query.dtype == np.float32 and query.shape[1] == self.dim
+              distances, indices = self.index.search(query, top_k)
+              return distances, indices
+
+      # 使用例
+      dim = 3
+      xb = np.array([[0.1, 0.2, 0.3], [0.2, 0.1, 0.25]], dtype='float32')
+      xq = np.array([[0.1, 0.2, 0.3]], dtype='float32')
+      store = FaissVectorIndex(dim, metric='l2', index_type='flat')
+      store.add(xb)
+      D, I = store.search(xq, top_k=2)
+      print(I.tolist(), D.tolist())
+
+  milvus:
+    name: "milvus"
+    description: "Zillizが開発するスケーラブルなオープンソースベクターデータベース。大規模・高可用構成に適合"
+    installation: "npm install @zilliz/milvus2-sdk-node"
+    usage: |
+      import { MilvusClient, DataType, IndexType, MetricType } from '@zilliz/milvus2-sdk-node';
+
+      export class MilvusVectorStore {
+        private client: MilvusClient;
+        constructor(address: string = process.env.MILVUS_ADDRESS || 'localhost:19530') {
+          this.client = new MilvusClient({ address });
+        }
+
+        async ensureCollection(collection: string, dim: number = 1536) {
+          const exists = await this.client.describeCollection({ collection_name: collection }).then(()=>true).catch(()=>false);
+          if (!exists) {
+            await this.client.createCollection({
+              collection_name: collection,
+              fields: [
+                { name: 'id', data_type: DataType.Int64, is_primary_key: true, autoID: true },
+                { name: 'text', data_type: DataType.VarChar, max_length: 1024 },
+                { name: 'embedding', data_type: DataType.FloatVector, type_params: { dim: String(dim) } }
+              ]
+            });
+          }
+        }
+
+        async createIndex(collection: string) {
+          await this.client.createIndex({
+            collection_name: collection,
+            field_name: 'embedding',
+            index_type: IndexType.IVF_FLAT,
+            metric_type: MetricType.L2,
+            params: { nlist: '16' }
+          });
+          await this.client.loadCollection({ collection_name: collection });
+        }
+
+        async upsert(collection: string, embeddings: number[][], texts: string[]) {
+          await this.client.insert({
+            collection_name: collection,
+            fields_data: embeddings.map((v, i) => ({ text: texts[i], embedding: v }))
+          });
+        }
+
+        async search(collection: string, query: number[], topK: number = 5) {
+          const res = await this.client.search({
+            collection_name: collection,
+            vector: [query],
+            anns_field: 'embedding',
+            metric_type: MetricType.L2,
+            params: { nprobe: '8' },
+            output_fields: ['text'],
+            limit: topK
+          });
+          return res.results?.map(r => ({ text: r.text, score: r.score }));
+        }
+      }

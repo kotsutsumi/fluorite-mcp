@@ -42,6 +42,17 @@ export const SPIKE_PACKS: Record<string, SpikePackDef> = {
     include: { libs: ['sentry','posthog','datadog','newrelic','prometheus','pino','winston'], patterns: ['middleware','service','config','adapter'], styles: ['typed','basic','secure'], langs: ['ts'] }
   }
   ,
+  vectors: {
+    name: 'vectors',
+    description: 'ベクトルDB（Weaviate/Milvus/FAISS）のクライアント/インデックス/検索テンプレート',
+    include: {
+      libs: ['weaviate','milvus','faiss'],
+      patterns: ['client','index','search','adapter','config','init','example'],
+      styles: ['typed','basic','testing','advanced','secure'],
+      langs: ['ts','js','py']
+    }
+  }
+  ,
   'flow-tree-starter': {
     name: 'flow-tree-starter',
     description: 'ReactFlow + Shadcn TreeView のUI/サーバ/スキーマ/ブリッジを含むスターター',
