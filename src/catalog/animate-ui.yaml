@@ -1,0 +1,79 @@
+id: "animate-ui"
+name: "Animate UI"
+version: "latest"
+homepage: "https://animate-ui.com/docs"
+summary: "アニメーションを前提に設計されたモダンな UI コンポーネント集（React 対応）。"
+description: |
+  Animate UI は、スムーズなトランジションとモーションを備えた再利用可能な UI コンポーネントのコレクションです。
+  基本的なボタンやナビゲーション、モーダル、トーストなどの一般的な UI 要素に対し、
+  遷移・入退場・状態変化のアニメーションが組み込まれており、アクセシビリティとパフォーマンスにも配慮されています。
+  実運用で扱いやすい構成（制御可能な API、低いランタイム依存、スタイル拡張性）を目指しています。
+tags:
+  - ui-components
+  - animation
+  - transitions
+  - react
+  - accessibility
+
+install:
+  notes: |
+    インストールと初期設定は公式ドキュメントに従ってください。
+    プロジェクトのパッケージマネージャ（npm / pnpm / yarn）に応じてセットアップします。
+    参考: https://animate-ui.com/docs
+
+components:
+  overview: |
+    代表的なカテゴリの例（実際の名称・構成はコンポーネント一覧を参照してください）:
+    - フィードバック: Alert/Toast/Progress など
+    - オーバーレイ: Dialog/Drawer/Popover/Tooltip など
+    - ナビゲーション: Tabs/Breadcrumb/Pagination/Menu など
+    - フォーム: Button/Input/Checkbox/Radio/Select/Switch など
+    - データ表示: Card/Avatar/Table/Badge/Skeleton など
+  index: "https://animate-ui.com/docs/components"
+
+usage:
+  patterns: |
+    一般的な利用パターン（擬似コード）:
+    
+    // 1) 入退場アニメーション（モーダルやドロワー）
+    // <Modal open={open} onOpenChange={setOpen}
+    //        enter={{ type: 'spring', duration: 0.2 }}
+    //        exit={{ type: 'tween', duration: 0.15 }}>
+    //   ...content
+    // </Modal>
+    
+    // 2) 状態変化のトランジション（ボタン/トグル等）
+    // <Button loading={isSubmitting} transition={{ duration: 0.15 }}>
+    //   {isSubmitting ? 'Submitting…' : 'Submit'}
+    // </Button>
+    
+    // 3) リスト表示の入れ替え/並び替え（アニメーション付き）
+    // <AnimatedList items={items} keyBy={(x) => x.id}>
+    //   {(item) => <Card>{item.title}</Card>}
+    // </AnimatedList>
+  accessibility: |
+    - OS の「視覚効果を減らす（prefers-reduced-motion）」設定を尊重し、
+      低モーション設定時はアニメーションを無効化/簡略化する。
+    - フォーカスリングやロービジョン支援を損なわないよう、
+      フォーカス移動時のトランジション過多を避ける。
+    - モーダル/ドロワーでは適切な ARIA 属性とフォーカストラップを併用する。
+
+theming:
+  guidance: |
+    - トークン（色・半径・影・間隔）を CSS 変数またはテーマオブジェクトで一元管理。
+    - コンポーネントのバリアント（variant/size/state）を API とトークンの両面で拡張可能にする。
+    - アニメーションの duration/easing/keyframe は共通トークン化して一貫性を保つ。
+
+bestPractices:
+  - "小さな、意味のあるモーションを付与し、過剰な動作を避ける"
+  - "アクセシビリティ（prefers-reduced-motion、焦点管理、ARIA）を常に考慮する"
+  - "アニメーションの状態は props または状態管理で明示的に制御する"
+  - "レイアウトスラッシングを避け、transform/opacity を中心にトランジションする"
+  - "コンポーネントごとに入退場/状態変化のモーションを分離・再利用可能に設計する"
+
+references:
+  documentation: "https://animate-ui.com/docs"
+  components: "https://animate-ui.com/docs/components"
+
+lastReviewed: "2025-09-09"
+
