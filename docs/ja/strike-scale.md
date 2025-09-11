@@ -29,7 +29,7 @@ Fluorite MCP は、物理ファイルのスパイクに加えて「仮想スパ�
 - ショートエイリアス（推奨）
   - `/fl:implement "[alias: next-mw-ts]"`
   - `/fl:implement "[alias: prisma-schema-ts]" model=User`
-  - 詳細は `docs/short-aliases.md`
+  - 詳細は `docs/ja/short-aliases.md`（日本語） / `docs/short-aliases.md`（英語）
 
 ### パフォーマンス/出力件数の調整（環境変数）
 
@@ -65,7 +65,7 @@ Q. 10万件超のテンプレートをすべて列挙しますか？
 - いいえ。`list` 系は上限（`FLUORITE_SPIKE_LIST_LIMIT`）を適用し、`discover`/`auto` は必要分のみメタ読み込み→スコアリング→上位のみ詳細読み込みの二段階設計です。
 
 Q. どうやって目的のテンプレートに素早く辿り着けますか？
-- ショートエイリアス（`[alias: ...]`）の利用を推奨します。`docs/short-aliases.md` に代表例を掲載しています。
+- ショートエイリアス（`[alias: ...]`）の利用を推奨します。`docs/ja/short-aliases.md`（日本語）/ `docs/short-aliases.md`（英語）に代表例を掲載しています。
 
 Q. 個別フレームワーク向けの「凝った」テンプレートは作れますか？
 - はい。物理ファイルとして `src/spikes/strike-<lib>-<pattern>-<style>-<lang>.json` を追加すれば、合成よりもリッチな構成/差分を返せます。
@@ -73,4 +73,3 @@ Q. 個別フレームワーク向けの「凝った」テンプレートは作�
 —
 
 本ガイドは Strike 開発向けの大規模テンプレート運用にフォーカスしています。追加のレシピや運用例は `docs/recipes.md` や `docs/spike-templates.md` も参照してください。
-

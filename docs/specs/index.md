@@ -103,6 +103,7 @@ Specification files are stored in YAML format in the `src/catalog/` directory.
 
 ### AI/ML & LLM Integration
 - [AI/ML & LLM Comprehensive Ecosystem](./ai-ml-llm-comprehensive) - `spec://ai-ml-llm-comprehensive-ecosystem`
+- [Vercel AI SDK](./vercel-ai-sdk) - `spec://vercel-ai-sdk`
 
 ### Frontend & UI
 - [Frontend UI Innovation Ecosystem](./frontend-ui-innovation) - `spec://frontend-ui-innovation-ecosystem`

@@ -103,6 +103,7 @@ Fluorite MCPが提供するライブラリ仕様の一覧です。これらの�
 
 ### AI/ML・LLM統合
 - [AI/ML・LLM包括エコシステム](./ai-ml-llm-comprehensive) - `spec://ai-ml-llm-comprehensive-ecosystem`
+- [Vercel AI SDK](./vercel-ai-sdk) - `spec://vercel-ai-sdk`
 
 ### フロントエンド・UI
 - [フロントエンドUI革新エコシステム](./frontend-ui-innovation) - `spec://frontend-ui-innovation-ecosystem`

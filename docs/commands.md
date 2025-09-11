@@ -198,6 +198,12 @@ Configure Vitest with React Testing Library for component testing
 
 Access detailed specifications for 87+ libraries using natural language or direct references.
 
+### AI SDK (Vercel)
+
+- Reference: `spec://vercel-ai-sdk` — see docs/specs/vercel-ai-sdk.md
+- Use cases: server-side streaming via `streamText` with `toAIStreamResponse()`, typed outputs via Zod tools, embeddings via `embed`
+- Providers: import only what you need (`@ai-sdk/openai`, `@ai-sdk/anthropic`, `@ai-sdk/google`, etc.)
+
 ### Core Libraries
 
 | Library | Natural Language Example | Direct Access |

@@ -37,6 +37,8 @@ Transform your development workflow with professionally curated specifications:
 - **🏗️ Framework Mastery**: Deep integration with Next.js, React, Vue, FastAPI, Express, and emerging frameworks
 - **🎯 Best Practices Integration**: Every specification includes production-ready patterns and security considerations
 
+- New: Vercel AI SDK spec — see docs/specs/vercel-ai-sdk.md (`spec://vercel-ai-sdk`)
+
 ### 🔍 Advanced Code Intelligence
 Prevent issues before they occur with intelligent analysis:
 

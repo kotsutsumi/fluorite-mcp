@@ -60,6 +60,18 @@ In both cases, the server selects the corresponding spike and passes parameters 
   - `nats-service-ts` → `strike-nats-service-typed-ts`
   - `sqs-service-ts` → `strike-sqs-service-typed-ts`
 
+- Vercel AI SDK (AISDK)
+  - `vercel-ai-openai-stream` → `vercel-ai-openai-stream-minimal`
+  - `vercel-ai-openai-tools` → `vercel-ai-openai-tools-minimal`
+  - `vercel-ai-openai-zod` → `vercel-ai-openai-zod-structured-minimal`
+  - `vercel-ai-anthropic-stream` → `vercel-ai-anthropic-stream-minimal`
+  - `vercel-ai-anthropic-tools` → `vercel-ai-anthropic-tools-minimal`
+  - `vercel-ai-gemini-stream` → `vercel-ai-gemini-stream-minimal`
+  - `vercel-ai-gemini-zod` → `vercel-ai-gemini-zod-structured-minimal`
+  - `vercel-ai-groq-stream` → `vercel-ai-groq-stream-minimal`
+  - `vercel-ai-groq-zod` → `vercel-ai-groq-zod-structured-minimal`
+  - `vercel-ai-cohere-stream` → `vercel-ai-cohere-stream-minimal`
+
 ## Tuning
 
 - `FLUORITE_AUTO_SPIKE_THRESHOLD` (default 0.4): when the best match is below this, the server suggests `discover-spikes` and clarifying questions.

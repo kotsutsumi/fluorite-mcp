@@ -1,0 +1,85 @@
+id: "vercel-ai-sdk"
+name: "Vercel AI SDK"
+homepage: "https://ai-sdk.dev/docs/introduction"
+summary: "型安全な LLM 統合 SDK。generateText/streamText/embed/structured output/Tools を通じて OpenAI・Anthropic・Google などのプロバイダを統一 API で扱う。Next.js の Route Handlers や Edge Runtime と相性が良い。"
+packages:
+  - name: "ai"
+    homepage: "https://ai-sdk.dev"
+    summary: "コア（generateText/streamText/embed/structured output/Tools）"
+    install:
+      - "npm i ai"
+  - name: "@ai-sdk/openai"
+    homepage: "https://ai-sdk.dev/docs/providers/openai"
+    summary: "OpenAI プロバイダ（o3/gpt-4o 系など）"
+    install:
+      - "npm i @ai-sdk/openai"
+  - name: "@ai-sdk/anthropic"
+    homepage: "https://ai-sdk.dev/docs/providers/anthropic"
+    summary: "Anthropic プロバイダ（Claude 系）"
+    install:
+      - "npm i @ai-sdk/anthropic"
+  - name: "@ai-sdk/google"
+    homepage: "https://ai-sdk.dev/docs/providers/google-genai"
+    summary: "Google (Gemini) プロバイダ"
+    install:
+      - "npm i @ai-sdk/google"
+snippets:
+  node-stream: |
+    // index.mjs (Node, streaming)
+    import { createOpenAI } from '@ai-sdk/openai'
+    import { streamText } from 'ai'
+    const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY })
+    const result = await streamText({
+      model: openai('gpt-4o-mini'),
+      prompt: 'Stream a short greeting in 3 words.'
+    })
+    for await (const chunk of result.textStream) process.stdout.write(chunk)
+    console.log()
+  nextjs-route-stream: |
+    // app/api/chat/route.ts (Next.js App Router)
+    import 'server-only'
+    import { createOpenAI } from '@ai-sdk/openai'
+    import { streamText } from 'ai'
+    export const runtime = 'edge' // 低レイテンシ用途
+    const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY })
+    export async function POST(req: Request) {
+      const { prompt } = await req.json()
+      const result = await streamText({ model: openai('gpt-4o-mini'), prompt })
+      return result.toAIStreamResponse()
+    }
+  structured-output-zod: |
+    // 型安全な構造化出力（Zod）
+    import { z } from 'zod'
+    import { createOpenAI } from '@ai-sdk/openai'
+    import { generateText } from 'ai'
+    const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY })
+    const schema = z.object({ title: z.string(), tags: z.array(z.string()).max(5) })
+    const { text, toolResults } = await generateText({
+      model: openai('gpt-4o-mini'),
+      tools: { extract: { parameters: schema } },
+      prompt: 'ブログのタイトルと最大5つのタグを返して'
+    })
+    // toolResults[0].args as { title: string; tags: string[] }
+  embeddings: |
+    // 埋め込み生成
+    import { embed } from 'ai'
+    import { createOpenAI } from '@ai-sdk/openai'
+    const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY })
+    const { embeddings } = await embed({
+      model: openai.embedding('text-embedding-3-small'),
+      values: ['hello world', 'another text']
+    })
+bestPractices:
+  - "API キーは server-only（Route Handler/Edge/Server Actions など）で扱い、クライアントへ露出しない"
+  - "Next.js は Route Handlers + streaming を基本に、長時間処理は Server Functions/Queue へ委譲"
+  - "プロバイダは用途（推論/ツール/画像/埋め込み）ごとに最適モデルを選択"
+  - "Zod で構造化出力を型安全に受ける（上限/制約はスキーマで定義）"
+  - "Edge Runtime では Node ネイティブ API 非依存の実装にする"
+references:
+  - "Introduction: https://ai-sdk.dev/docs/introduction"
+  - "Providers (OpenAI): https://ai-sdk.dev/docs/providers/openai"
+  - "Providers (Anthropic): https://ai-sdk.dev/docs/providers/anthropic"
+  - "Providers (Google): https://ai-sdk.dev/docs/providers/google-genai"
+license: "Apache-2.0 (AI SDK) / 各プロバイダは各ライセンスに従う"
+lastReviewed: "2025-09-11"
+
