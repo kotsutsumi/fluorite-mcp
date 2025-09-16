@@ -1,0 +1,259 @@
+id: "p5js"
+name: "p5.js"
+homepage: "https://p5js.org/"
+summary: "Processing の精神を受け継ぐ創造的コーディング用 JS ライブラリ。直感的な API で 2D/3D 描画、インタラクション、メディア処理（画像/動画/音）、タイポグラフィ、アクセシビリティ記述まで幅広くカバー。学習用途からプロトタイピング、アート制作まで迅速に着手可能。"
+
+getting_started:
+  cdn_quickstart: |
+    <!-- index.html -->
+    <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+    <script src="./sketch.js"></script>
+    
+    // sketch.js
+    function setup() {
+      createCanvas(400, 400);
+    }
+    function draw() {
+      background(240);
+      fill(30, 144, 255);
+      noStroke();
+      circle(mouseX, mouseY, 40);
+    }
+  vite_typescript: |
+    // package.json（抜粋）
+    {
+      "type": "module",
+      "scripts": { "dev": "vite", "build": "vite build", "preview": "vite preview" },
+      "dependencies": { "p5": "^1.9.0" },
+      "devDependencies": { "vite": "^5.0.0", "typescript": "^5.0.0" }
+    }
+    
+    // src/main.ts
+    import p5 from 'p5';
+    new p5((p: p5) => {
+      p.setup = () => p.createCanvas(400, 400);
+      p.draw = () => { p.background(220); p.circle(p.mouseX, p.mouseY, 40); };
+    });
+  core_concepts: |
+    - setup()/draw(): 1フレーム毎に draw が呼ばれるループ構造。
+    - 座標系: 左上が (0,0)。右方向が +x、下方向が +y。
+    - ステート: fill()/stroke()/strokeWeight()/rectMode()/ellipseMode() 等で描画状態を構成。
+    - 事前読み込み: preload() で画像/フォント/音声の非同期読み込みを同期化。
+
+basics:
+  shapes_and_color: |
+    function draw() {
+      background(250);
+      stroke(0); strokeWeight(2);
+      fill(255, 99, 71, 180); // RGBA
+      rect(40, 40, 120, 80, 8);
+      fill(65, 105, 225);
+      ellipse(240, 160, 100, 100);
+      line(40, 160, 140, 260);
+    }
+  variables_conditionals: |
+    let r = 20;
+    function draw() {
+      background(230);
+      const over = dist(mouseX, mouseY, width/2, height/2) < r;
+      fill(over ? '#ff4757' : '#1e90ff');
+      circle(width/2, height/2, r*2);
+    }
+  functions_loops: |
+    function drawGrid(step = 40) {
+      stroke(200);
+      for (let x = 0; x <= width; x += step) line(x, 0, x, height);
+      for (let y = 0; y <= height; y += step) line(0, y, width, y);
+    }
+    function draw() { background(255); drawGrid(); }
+
+interactivity:
+  mouse_keyboard: |
+    let paused = false;
+    function keyPressed() { if (key === ' ') { paused = !paused; paused ? noLoop() : loop(); } }
+    function mousePressed() { console.log('mouse', mouseX, mouseY); }
+  events_and_state: |
+    function draw() {
+      if (mouseIsPressed) { background(255, 240, 240); } else { background(240); }
+      cursor(mouseIsPressed ? 'grabbing' : 'default');
+    }
+
+graphics_media:
+  images_video: |
+    let img, vid;
+    function preload() {
+      img = loadImage('assets/photo.jpg');
+      // ビデオ: createVideo も可（ユーザ操作で再生開始が必要）
+    }
+    function setup() { createCanvas(480, 360); }
+    function draw() { background(220); if (img) image(img, 0, 0, width, height); }
+  typography: |
+    let font;
+    function preload() { font = loadFont('assets/Inter-Regular.ttf'); }
+    function setup() { createCanvas(400, 200); textFont(font); textSize(32); textAlign(CENTER, CENTER); }
+    function draw() { background(250); fill(20); text('hello, p5.js', width/2, height/2); }
+  gradients: |
+    function drawLinearGradient(x, y, w, h, c1, c2) {
+      noFill();
+      for (let i = 0; i < h; i++) {
+        const t = i / (h - 1);
+        const c = lerpColor(c1, c2, t);
+        stroke(c);
+        line(x, y + i, x + w, y + i);
+      }
+    }
+    function draw() { background(255); drawLinearGradient(0,0,width,height,color('#74b9ff'),color('#a29bfe')); }
+
+animation_transform:
+  timing_loop: |
+    let angle = 0;
+    function setup() { createCanvas(400, 400); frameRate(60); }
+    function draw() { background(245); angle += 0.02; translate(width/2, height/2); rotate(angle); rectMode(CENTER); rect(0, 0, 120, 60); }
+  transforms: |
+    function draw() {
+      background(230);
+      push(); translate(80, 80); rotate(frameCount*0.02); rect(0, 0, 60, 30); pop();
+      push(); translate(240, 120); scale(1 + sin(frameCount*0.03)*0.3); circle(0, 0, 50); pop();
+    }
+
+webgl_3d:
+  basics: |
+    function setup() { createCanvas(400, 400, WEBGL); }
+    function draw() { background(220); orbitControl(); normalMaterial(); rotateY(frameCount*0.01); box(120, 80, 40); }
+  shaders_intro: |
+    // p5.Shader を使ったカスタムシェーダの導入は公式チュートリアル参照（intro-to-shaders）
+    // WebGL モードで createShader(vs, fs) → shader(program) → rect()/plane() 等で描画
+
+accessibility:
+  canvas_description: |
+    function setup() {
+      createCanvas(400, 200);
+      // 画面読み上げ向けにキャンバスの説明を付与
+      describe('A blue circle follows the mouse over a light background.');
+    }
+    function draw() { background(245); fill('#0984e3'); circle(mouseX, height/2, 60); }
+  screen_reader_tips: |
+    // describe()/describeElement() で意味を付与。キーボード操作（tab/space/矢印）を用意し、色のみで情報を伝えない。
+
+debugging_performance:
+  tips: |
+    - preload() でアセット読込を整理し、毎フレームのオブジェクト生成を避ける。
+    - createGraphics() でオフスクリーン描画し再利用。
+    - WebGL: テクスチャサイズ/ドローコール削減、不要な state 変更を抑制。
+    - 開発時は frameRate()/deltaTime、console.log、noLoop()/loop() を活用。
+
+node_usage:
+  note: |
+    p5 はブラウザでの利用が基本。Node.js でのスクリプト描画は p5 本体 + JSDOM/node-canvas 等の環境構築が必要（公式「getting-started-with-nodejs」参照）。
+
+advanced_shaders:
+  minimal_pipeline: |
+    // preload() でシェーダ読み込み → draw() で適用
+    let prog;
+    function preload(){ prog = loadShader('shader.vert', 'shader.frag'); }
+    function setup(){ createCanvas(400, 400, WEBGL); noStroke(); }
+    function draw(){
+      shader(prog);
+      prog.setUniform('u_time', millis()/1000.0);
+      prog.setUniform('u_resolution', [width, height]);
+      rect(-width/2, -height/2, width, height);
+    }
+    
+    // shader.vert（最小）
+    // attribute 名: aPosition / aTexCoord
+    // varying でフラグメントへ引き渡し可能
+    //
+    // attribute vec3 aPosition; attribute vec2 aTexCoord; varying vec2 vTexCoord;
+    // void main(){ vTexCoord = aTexCoord; gl_Position = vec4(aPosition, 1.0); }
+    
+    // shader.frag（最小）
+    // precision mediump float; uniform float u_time; uniform vec2 u_resolution; varying vec2 vTexCoord;
+    // void main(){ vec2 st = gl_FragCoord.xy / u_resolution; vec3 col = 0.5 + 0.5*cos(u_time + vec3(0.0,2.0,4.0) + st.xyx*3.14); gl_FragColor = vec4(col,1.0); }
+  layered_rendering_hint: |
+    createGraphics(WEBGL) を使うとフレームバッファ相当の「層」を作成でき、
+    1) g = createGraphics(w, h, WEBGL)
+    2) g.shader(...); g.rect(...)
+    3) image(g, 0, 0) の順で合成できる。
+
+media_capture_audio:
+  microphone_fft: |
+    // p5.sound を読み込み（CDN: p5@1.9.0/lib/addons/p5.sound.min.js）
+    let mic, fft;
+    function setup(){
+      createCanvas(400,200);
+      mic = new p5.AudioIn();
+      userStartAudio(); // モバイル/デスクトップのオート再生制限対策
+      mic.start();
+      fft = new p5.FFT(0.8, 64); // Smoothing, bins
+      fft.setInput(mic);
+      noStroke();
+    }
+    function draw(){
+      background(245);
+      const spec = fft.analyze();
+      const w = width / spec.length;
+      fill('#6c5ce7');
+      for (let i=0; i<spec.length; i++) {
+        const h = map(spec[i], 0, 255, 0, height);
+        rect(i*w, height-h, w-2, h);
+      }
+    }
+  video_capture: |
+    // Web カメラ入力をテクスチャとして利用
+    let cam;
+    function setup(){
+      createCanvas(480,360);
+      cam = createCapture(VIDEO);
+      cam.size(480,360);
+      cam.hide(); // DOM の <video> を非表示（image() で描画）
+    }
+    function draw(){
+      background(0);
+      translate(width, 0); scale(-1, 1); // ミラー
+      image(cam, 0, 0, width, height);
+      filter(POSTERIZE, 4);
+    }
+
+optimization_webgl:
+  practices: |
+    - uniform の更新回数を最小化し、定数は setup() 時に設定。
+    - draw call（rect()/box() 等）をまとめ、状態変更（shader()/texture()/fill()）を減らす。
+    - createGraphics(WEBGL) で中間結果を再利用し、複数パスの合成を行う。
+    - テクスチャ解像度を必要十分に抑え、mipmap/補間設定を適切に。
+    - パーティクル等はバッファを再利用し、毎フレームのオブジェクト生成を避ける。
+    - 計測: frameRate(), deltaTime, 開発時は noLoop()/loop() で範囲計測。
+
+references:
+  - "https://p5js.org/reference/"
+  - "https://p5js.org/tutorials/setting-up-your-environment/"
+  - "https://p5js.org/tutorials/get-started/"
+  - "https://p5js.org/tutorials/variables-and-change/"
+  - "https://p5js.org/tutorials/conditionals-and-interactivity/"
+  - "https://p5js.org/tutorials/organizing-code-with-functions/"
+  - "https://p5js.org/tutorials/repeating-with-loops/"
+  - "https://p5js.org/tutorials/data-structure-garden/"
+  - "https://p5js.org/tutorials/animating-with-media-objects/"
+  - "https://p5js.org/tutorials/color-gradients/"
+  - "https://p5js.org/tutorials/custom-shapes-and-smooth-curves/"
+  - "https://p5js.org/tutorials/creating-styling-html/"
+  - "https://p5js.org/tutorials/loading-and-selecting-fonts/"
+  - "https://p5js.org/tutorials/responding-to-inputs/"
+  - "https://p5js.org/tutorials/p5js-with-screen-reader/"
+  - "https://p5js.org/tutorials/writing-accessible-canvas-descriptions/"
+  - "https://p5js.org/tutorials/criticalai1-chatting-with-about-code/"
+  - "https://p5js.org/tutorials/criticalai2-prompt-battle/"
+  - "https://p5js.org/tutorials/criticalai3-sentiment-dataset-explorer/"
+  - "https://p5js.org/tutorials/criticalai4-no-ai-chatbot/"
+  - "https://p5js.org/tutorials/coordinates-and-transformations/"
+  - "https://p5js.org/tutorials/custom-geometry/"
+  - "https://p5js.org/tutorials/lights-camera-materials/"
+  - "https://p5js.org/tutorials/intro-to-shaders/"
+  - "https://p5js.org/tutorials/layered-rendering-with-framebuffers/"
+  - "https://p5js.org/tutorials/optimizing-webgl-sketches/"
+  - "https://p5js.org/tutorials/field-guide-to-debugging/"
+  - "https://p5js.org/tutorials/how-to-optimize-your-sketches/"
+  - "https://p5js.org/tutorials/speak-with-your-hands/"
+  - "https://p5js.org/tutorials/simple-melody-app/"
+  - "https://p5js.org/tutorials/getting-started-with-nodejs/"
+lastReviewed: "2025-09-15"

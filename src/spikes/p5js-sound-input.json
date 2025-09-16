@@ -1,0 +1,15 @@
+{
+  "id": "p5js-sound-input",
+  "name": "p5.js Sound Input + FFT",
+  "version": "1.0.0",
+  "stack": ["p5js", "sound"],
+  "tags": ["audio", "fft", "microphone"],
+  "description": "Microphone capture with FFT spectrum visualization (p5.sound).",
+  "params": [{ "name": "app_name", "default": "p5-sound" }],
+  "files": [
+    { "path": "{{app_name}}/index.html", "template": "<!doctype html>\n<html><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><title>p5.js Sound Input</title></head><body><p>Click to enable audio if needed.</p><script src=\"https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js\"></script><script src=\"https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/addons/p5.sound.min.js\"></script><script src=\"./sketch.js\"></script></body></html>\n" },
+    { "path": "{{app_name}}/sketch.js", "template": "let mic, fft;\nfunction setup(){ createCanvas(400,200); mic = new p5.AudioIn(); userStartAudio(); mic.start(); fft = new p5.FFT(0.8, 64); fft.setInput(mic); noStroke(); }\nfunction draw(){ background(245); const spectrum = fft.analyze(); const w = width / spectrum.length; fill('#6c5ce7'); for (let i=0; i<spectrum.length; i++){ const h = map(spectrum[i], 0, 255, 0, height); rect(i*w, height-h, w-2, h); } }\nfunction mousePressed(){ userStartAudio(); }\n" }
+  ],
+  "patches": []
+}
+

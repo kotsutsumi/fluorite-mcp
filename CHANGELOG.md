@@ -1,9 +1,38 @@
 # 変更ログ
 
+## [0.29.1] - 2025-09-16
+
+### 修正
+- リリース手順の整備とメタデータ更新（パッチバンプのみ）。
+
+### メンテナンス
+- `package.json` のバージョンを 0.29.1 に更新。
+- ビルド検証とパッケージ公開準備を実施。
+
+
 このプロジェクトの注目すべき変更はすべてこのファイルに記録されます。
 
 変更ログの形式は Keep a Changelog 形式に基づいており、
 このプロジェクトは Semantic Versioning に準拠しています。
+
+## [0.29.0] - 2025-09-16
+
+### 追加
+- p5.js カタログ仕様を追加（`spec://p5js`）。セットアップ、基本図形/色、インタラクション、メディア（画像/動画/音）、アニメーション/変換、WebGL、アクセシビリティ、デバッグ/最適化、Node 利用 TIPS、詳細リファレンス。
+- フロントエンド可視化エコシステムに p5.js を追加（`frontend-visualization-ecosystem.yaml` の canvas-2d）。
+- 新規スパイクテンプレート（3種 + 基本2種 計5種）
+  - `p5js-basic-sketch`: CDN で最小スケッチ。
+  - `p5js-vite-ts-minimal`: Vite + TypeScript 型付きセットアップ。
+  - `p5js-accessible-canvas`: describe() と live region による a11y 強化。
+  - `p5js-webgl-shader-starter`: WebGL シェーダ（頂点/フラグメント）最小構成。
+  - `p5js-sound-input`: マイク入力 + FFT スペクトラム（p5.sound）。
+  - `p5js-video-capture`: Web カメラキャプチャ + 簡易エフェクト。
+
+### 改善
+- p5.js の最適化ノート（uniform 更新、描画バッチ、createGraphics(WEBGL) の再利用、テクスチャ解像度/補間、割り当て最小化、計測手法）をカタログに追記。
+
+### 注意
+- 本リリースはサーバ機能追加ではなくカタログ/スパイクの拡充。サーバコード変更はなし。
 
 ## [0.20.0] - 2025-01-25
 

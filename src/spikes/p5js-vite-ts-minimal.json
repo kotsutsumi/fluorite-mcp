@@ -1,0 +1,17 @@
+{
+  "id": "p5js-vite-ts-minimal",
+  "name": "p5.js + Vite (TS) Minimal",
+  "version": "1.0.0",
+  "stack": ["p5js", "vite", "typescript"],
+  "tags": ["dev-server", "bundler"],
+  "description": "Vite + TypeScript setup for a typed p5.js sketch.",
+  "params": [{ "name": "app_name", "default": "p5-vite-app" }],
+  "files": [
+    { "path": "{{app_name}}/package.json", "template": "{ \"name\": \"{{app_name}}\", \"private\": true, \"type\": \"module\", \"scripts\": { \"dev\": \"vite\", \"build\": \"vite build\", \"preview\": \"vite preview\" }, \"dependencies\": { \"p5\": \"^1.9.0\" }, \"devDependencies\": { \"vite\": \"^5.0.0\", \"typescript\": \"^5.0.0\" } }\n" },
+    { "path": "{{app_name}}/index.html", "template": "<!doctype html>\n<html><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><title>p5 + Vite + TS</title></head><body><div id=\"app\"></div><script type=\"module\" src=\"/src/main.ts\"></script></body></html>\n" },
+    { "path": "{{app_name}}/tsconfig.json", "template": "{ \"compilerOptions\": { \"target\": \"ES2020\", \"module\": \"ESNext\", \"moduleResolution\": \"Bundler\", \"strict\": true, \"esModuleInterop\": true, \"skipLibCheck\": true }, \"include\": [\"src\"] }\n" },
+    { "path": "{{app_name}}/src/main.ts", "template": "import p5 from 'p5';\nnew p5((p: p5) => { p.setup = () => { p.createCanvas(400, 400); }; p.draw = () => { p.background(220); p.noStroke(); p.fill('#e17055'); p.circle(p.mouseX, p.mouseY, 40); }; });\n" }
+  ],
+  "patches": []
+}
+

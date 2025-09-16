@@ -1,0 +1,17 @@
+{
+  "id": "p5js-webgl-shader-starter",
+  "name": "p5.js WebGL Shader Starter",
+  "version": "1.0.0",
+  "stack": ["p5js", "webgl", "shader"],
+  "tags": ["webgl", "shader", "procedural"],
+  "description": "Minimal WebGL shader pipeline (vertex + fragment) with time/resolution uniforms.",
+  "params": [{ "name": "app_name", "default": "p5-shader" }],
+  "files": [
+    { "path": "{{app_name}}/index.html", "template": "<!doctype html>\n<html><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><title>p5.js WebGL Shader Starter</title></head><body><script src=\"https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js\"></script><script src=\"./sketch.js\"></script></body></html>\n" },
+    { "path": "{{app_name}}/shader.vert", "template": "attribute vec3 aPosition;\nattribute vec2 aTexCoord;\nvarying vec2 vTexCoord;\nvoid main(){ vTexCoord = aTexCoord; gl_Position = vec4(aPosition, 1.0); }\n" },
+    { "path": "{{app_name}}/shader.frag", "template": "precision mediump float;\nuniform float u_time;\nuniform vec2 u_resolution;\nvarying vec2 vTexCoord;\nvoid main(){ vec2 st = gl_FragCoord.xy / u_resolution; vec3 col = 0.5 + 0.5 * cos(u_time + vec3(0.0,2.0,4.0) + st.xyx*3.14159); gl_FragColor = vec4(col, 1.0); }\n" },
+    { "path": "{{app_name}}/sketch.js", "template": "let prog;\nfunction preload(){ prog = loadShader('shader.vert','shader.frag'); }\nfunction setup(){ createCanvas(400,400,WEBGL); noStroke(); }\nfunction draw(){ shader(prog); prog.setUniform('u_time', millis()/1000.0); prog.setUniform('u_resolution', [width, height]); rect(-width/2, -height/2, width, height); }\n" }
+  ],
+  "patches": []
+}
+

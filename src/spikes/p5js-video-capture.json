@@ -1,0 +1,15 @@
+{
+  "id": "p5js-video-capture",
+  "name": "p5.js Video Capture",
+  "version": "1.0.0",
+  "stack": ["p5js", "media"],
+  "tags": ["video", "webcam", "effects"],
+  "description": "Webcam video capture and simple effect with mirroring.",
+  "params": [{ "name": "app_name", "default": "p5-video" }],
+  "files": [
+    { "path": "{{app_name}}/index.html", "template": "<!doctype html>\n<html><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><title>p5.js Video Capture</title></head><body><script src=\"https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js\"></script><script src=\"./sketch.js\"></script></body></html>\n" },
+    { "path": "{{app_name}}/sketch.js", "template": "let cam;\nfunction setup(){ createCanvas(480,360); cam = createCapture(VIDEO); cam.size(480,360); cam.hide(); }\nfunction draw(){ background(0); translate(width, 0); scale(-1, 1); image(cam, 0, 0, width, height); filter(POSTERIZE, 4); }\n" }
+  ],
+  "patches": []
+}
+

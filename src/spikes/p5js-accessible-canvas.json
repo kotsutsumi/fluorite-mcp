@@ -1,0 +1,15 @@
+{
+  "id": "p5js-accessible-canvas",
+  "name": "p5.js Accessible Canvas",
+  "version": "1.0.0",
+  "stack": ["p5js", "a11y"],
+  "tags": ["accessibility", "screen-reader"],
+  "description": "Canvas に記述的な代替テキストを付与する基本テンプレート。",
+  "params": [{ "name": "app_name", "default": "p5-a11y" }],
+  "files": [
+    { "path": "{{app_name}}/index.html", "template": "<!doctype html>\n<html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><title>p5.js Accessible</title></head><body><main><div id=\"live\" aria-live=\"polite\" style=\"position:absolute;left:-9999px;\"></div></main><script src=\"https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js\"></script><script src=\"./sketch.js\"></script></body></html>\n" },
+    { "path": "{{app_name}}/sketch.js", "template": "let d=0; function setup(){ createCanvas(400,200); noStroke(); describe('A blue circle moves left to right across a light background.'); } function draw(){ background(245); fill('#0984e3'); const x = (frameCount%200)*2; circle(x, height/2, 60); if(frameCount%30===0){ const msg = 'Blue circle at x '+x; const live = document.getElementById('live'); if(live) live.textContent = msg; } }\n" }
+  ],
+  "patches": []
+}
+

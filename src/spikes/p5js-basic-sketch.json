@@ -1,0 +1,15 @@
+{
+  "id": "p5js-basic-sketch",
+  "name": "p5.js Basic Sketch",
+  "version": "1.0.0",
+  "stack": ["p5js", "browser"],
+  "tags": ["canvas", "interactive"],
+  "description": "Minimal p5.js sketch with mouse interaction.",
+  "params": [{ "name": "app_name", "default": "p5-sketch" }],
+  "files": [
+    { "path": "{{app_name}}/index.html", "template": "<!doctype html>\n<html><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><title>p5.js Basic</title></head><body><script src=\"https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js\"></script><script src=\"./sketch.js\"></script></body></html>\n" },
+    { "path": "{{app_name}}/sketch.js", "template": "function setup(){ createCanvas(400,400); noCursor(); }\nfunction draw(){ background(240); fill('#1e90ff'); noStroke(); circle(mouseX, mouseY, 40); fill(30); textSize(12); text('Press SPACE to pause/resume', 10, height-12);}\nfunction keyPressed(){ if(key===' '){ (isLooping()? noLoop(): loop()); } }\n" }
+  ],
+  "patches": []
+}
+
